@@ -29,7 +29,8 @@
       "type": "Download",
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files.zip",
-      "size": 3006477107
+      "size": 3006477107,
+      "recommended": false
     },
     {
       "type": "Repository",

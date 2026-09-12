@@ -13574,20 +13574,16 @@
     ],
     "category_id": "ports",
     "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "puzzle",
       "other"
     ],
     "version": "v.1.0",
     "version_date": "2025-07-15",
     "requirements": "- Game Data Files: SNES",
-    "size": 1918789,
+    "size": 1918894,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_01.png",
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_02.png",
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_03.png",
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_04.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -13596,21 +13592,35 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Official Website",
-        "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
+        "size": 1887437,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com/Rinnegatamante/smw"
+      },
+      {
+        "type": "Official Website",
+        "name": "Official Website",
+        "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
       }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_01.png",
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_02.png",
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_03.png",
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_04.png"
     ],
     "source_name": "VitaDB",
     "source_id": "1280",
     "source_url": "https://github.com/Rinnegatamante/smw",
     "release_page": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/",
-    "updated_at": "2026-08-14T01:05:59.212353+00:00"
+    "updated_at": "2026-08-14T01:05"
   },
   {
     "id": "super-mario-all-stars-vita",
@@ -13628,15 +13638,8 @@
     "version": "v.1.0",
     "version_date": "2025-07-15",
     "requirements": "- Game Data Files: SNES",
-    "size": 1918789,
+    "size": 1918894,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_04.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -13645,71 +13648,35 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Official Website",
-        "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
+        "size": 1887437,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
         "name": "Repositorio",
         "url": "https://github.com/Rinnegatamante/smw"
+      },
+      {
+        "type": "Official Website",
+        "name": "Official Website",
+        "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
       }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_04.png"
     ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1280",
     "source_url": "https://github.com/Rinnegatamante/smw",
     "release_page": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/",
-    "updated_at": "2026-08-13T15:34:48.402914+00:00"
-  },
-  {
-    "id": "super-mario-world-vita",
-    "title_id": "SPRMRWRLD",
-    "name": "Super Mario World Vita",
-    "description": "Port of Super Mario World for PSVITA.",
-    "long_description": "Super Mario World Vita is a port of smw, a reimplementation of Super Mario World with several enhancements.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "platformer"
-    ],
-    "version": "v.1.1.1",
-    "version_date": "2025-07-13",
-    "requirements": "- Game Data Files: SNES",
-    "size": 1614179,
-    "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-super-mario-world-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_05.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-super-mario-world-vita/super-mario-world-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Official Website",
-        "url": "https://www.psx-place.com/threads/release-super-mario-world-vita-port-of-a-reverse-engineering-project-for-super-mario-world.43964/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Rinnegatamante/smw"
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1215",
-    "source_url": "https://github.com/Rinnegatamante/smw",
-    "release_page": "https://www.psx-place.com/threads/release-super-mario-world-vita-port-of-a-reverse-engineering-project-for-super-mario-world.43964/",
-    "updated_at": "2026-08-13T15:34:48.403996+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "zelda3-vita",
@@ -13760,6 +13727,63 @@
     "source_url": "https://github.com/Rinnegatamante/zelda3",
     "release_page": "https://www.psx-place.com/threads/release-zelda3-vita-port-of-the-legend-of-zelda-a-link-to-the-past.38470/",
     "updated_at": "2026-08-13T15:34:48.403462+00:00"
+  },
+  {
+    "id": "super-mario-world-vita",
+    "title_id": "SPRMRWRLD",
+    "name": "Super Mario World Vita",
+    "description": "Port of Super Mario World for PSVITA.",
+    "long_description": "Super Mario World Vita is a port of smw, a reimplementation of Super Mario World with several enhancements.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer"
+    ],
+    "version": "v.1.1.1",
+    "version_date": "2025-07-13",
+    "requirements": "- Game Data Files: SNES",
+    "size": 1613758,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-super-mario-world-vita/super-mario-world-vita.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-super-mario-world-vita/smworld%20Game%20Files.zip",
+        "size": 882074,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Rinnegatamante/smw"
+      },
+      {
+        "type": "Official Website",
+        "name": "Official Website",
+        "url": "https://www.psx-place.com/threads/release-super-mario-world-vita-port-of-a-reverse-engineering-project-for-super-mario-world.43964/"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-super-mario-world-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-super-mario-world-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1215",
+    "source_url": "https://github.com/Rinnegatamante/smw",
+    "release_page": "https://www.psx-place.com/threads/release-super-mario-world-vita-port-of-a-reverse-engineering-project-for-super-mario-world.43964/",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "pikuniku-vita",
@@ -35346,8 +35370,8 @@
     "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
     "author_ids": [
       "aap",
-      "theflow",
-      "rinnegatamante"
+      "rinnegatamante",
+      "theflow"
     ],
     "category_id": "ports",
     "subcategory_ids": [
@@ -35358,14 +35382,6 @@
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
     "size": 896490,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -35374,14 +35390,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheOfficialFloW/bully_vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheOfficialFloW/bully_vita/releases/tag/v1.0"
+        "type": "Download",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files.zip",
+        "size": 3006477107,
+        "recommended": false
       },
       {
         "type": "Repository",
@@ -35389,11 +35402,19 @@
         "url": "https://github.com/TheOfficialFloW/bully_vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "676",
     "source_url": "https://github.com/TheOfficialFloW/bully_vita",
     "release_page": "https://github.com/TheOfficialFloW/bully_vita/releases",
-    "updated_at": "2026-08-13T15:34:48.582042+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "gta-ctw-vita",
