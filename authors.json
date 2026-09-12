@@ -9687,6 +9687,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "zm2283145",
+    "name": "zm2283145",
+    "avatar": "https://avatars.githubusercontent.com/u/324678428?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/zm2283145",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/324678428?v=4"
+  },
+  {
     "id": "zombiewizzard",
     "name": "ZombieWizzard",
     "avatar": "https://github.com/yhtez.png",
