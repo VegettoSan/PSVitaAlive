@@ -1,0 +1,46 @@
+{
+  "id": "golden-balloon",
+  "title_id": "GBLN00001",
+  "name": "Golden Balloon",
+  "description": "DKR64 Vita Port of Golden Ballon",
+  "long_description": "A PS Vita port of Golden Balloon, itself a native and browser source port of the 1997 Nintendo 64 kart racer, built on the community decompilation.\nNot an emulator: the game is cross-compiled for the Vita and runs from a ROM you already own.",
+  "author_ids": [
+    "claude-ai",
+    "zm2283145"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "racing"
+  ],
+  "version": "1.7.1",
+  "version_date": "2026-09-10",
+  "requirements": "- No Data",
+  "size": 4508877,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/golden-balloon-psvita/GoldenBalloon-Vita-v1.7.1.vpk",
+      "size": 4508877,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/golden-balloon-psvita/Game%20Files%20goldenballoon.zip",
+      "size": 12582912,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/zm2283145/goldenballoon-vita-port"
+    }
+  ],
+  "icon": "https://archive.org/download/golden-balloon-psvita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/golden-balloon-psvita/shot0.png"
+  ]
+}
