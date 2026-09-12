@@ -6,8 +6,8 @@
   "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
   "author_ids": [
     "aap",
-    "theflow",
-    "rinnegatamante"
+    "rinnegatamante",
+    "theflow"
   ],
   "category_id": "ports",
   "subcategory_ids": [
@@ -18,14 +18,6 @@
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "size": 896490,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
-    "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -34,14 +26,10 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/bully_vita/releases"
-    },
-    {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/bully_vita/releases/tag/v1.0"
+      "type": "Download",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files.zip",
+      "size": 3006477107
     },
     {
       "type": "Repository",
@@ -49,9 +37,17 @@
       "url": "https://github.com/TheOfficialFloW/bully_vita"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "676",
   "source_url": "https://github.com/TheOfficialFloW/bully_vita",
   "release_page": "https://github.com/TheOfficialFloW/bully_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.582042+00:00"
+  "updated_at": "2026-08-13T15:34"
 }

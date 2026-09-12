@@ -14,15 +14,8 @@
   "version": "v.1.0",
   "version_date": "2025-07-15",
   "requirements": "- Game Data Files: SNES",
-  "size": 1918789,
+  "size": 1918894,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_04.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -31,19 +24,33 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
+      "size": 1887437,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
       "url": "https://github.com/Rinnegatamante/smw"
+    },
+    {
+      "type": "Official Website",
+      "name": "Official Website",
+      "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
     }
+  ],
+  "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-super-mario-all-stars-vita/shot_04.png"
   ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1280",
   "source_url": "https://github.com/Rinnegatamante/smw",
   "release_page": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/",
-  "updated_at": "2026-08-13T15:34:48.402914+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
