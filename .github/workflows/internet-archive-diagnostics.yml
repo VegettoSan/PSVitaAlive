@@ -9,13 +9,13 @@ on:
         default: "all"
         type: choice
         options: [all, d2vita, z2, ink, ufe, pkgj]
-  # Temporary bootstrap trigger. Removed after this diagnostic run.
-  push:
+  # Temporary inspection trigger; removed after this test.
+  pull_request:
     paths:
-      - ".github/workflows/internet-archive-diagnostics.yml"
+      - ".github/ia-diagnostic-trigger.txt"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   archive-diagnostics:
@@ -23,8 +23,6 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v4
-
       - name: Probe Internet Archive downloads and storage nodes
         shell: bash
         env:
@@ -45,9 +43,7 @@ jobs:
           } > "$REPORT"
 
           probe_url() {
-            local label="$1"
-            local url="$2"
-            local slug="$3"
+            local label="$1" url="$2" slug="$3"
             local headers="diagnostics/${slug}-headers.txt"
             local chunk="diagnostics/${slug}-chunk.bin"
             local stats="diagnostics/${slug}-stats.txt"
@@ -135,25 +131,13 @@ PY
             echo
             echo '## Interpretation'
             echo
-            echo '- `curl=0` means the transfer itself completed successfully.'
+            echo '- `curl=0` means the transfer completed successfully.'
             echo '- HTTP `206` is expected for the 1 MiB Range probe; HTTP `200` can mean the edge ignored Range.'
-            echo '- `archive.org` rows test the normal redirect path; `direct` rows test metadata storage candidates.'
+            echo '- `archive.org` rows test normal redirects; `direct` rows test metadata storage candidates.'
           } >> "$REPORT"
 
+          cat "$REPORT"
           cat "$REPORT" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Publish bootstrap report to repository
-        if: always() && github.event_name == 'push'
-        shell: bash
-        run: |
-          mkdir -p .github/diagnostics
-          cp diagnostics/report.md .github/diagnostics/internet-archive-latest.md
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/diagnostics/internet-archive-latest.md
-          git diff --cached --quiet && exit 0
-          git commit -m "ci: record Internet Archive diagnostic result"
-          git push
 
       - name: Upload diagnostic evidence
         if: always()
