@@ -241,17 +241,27 @@ This avoids discarding gigabytes of valid partial data merely because a MediaFir
 
 Archive.org is handled as a provider with multiple storage edges.
 
-On relevant failures the client can query:
+For a fresh normal payload download, the client can query:
 
 ```text
 https://archive.org/metadata/<identifier>
 ```
 
-and build alternate download URLs from the metadata `server` / `d1` / `d2` fields.
+and build alternate download URLs from the metadata `server` / `d1` / `d2` fields. Non-`dn` / non-`.ca` storage nodes are preferred when possible because some Vita OpenSSL 1.0.2 combinations fail against particular Archive.org edges.
 
-Non-`dn` / non-`.ca` storage nodes are preferred when possible because some Vita OpenSSL 1.0.2 combinations fail against particular Archive.org edges.
+Before a large fresh payload starts, the client performs bounded **sequential** Range probes rather than accepting whichever edge the public `archive.org` redirect happens to choose:
 
-Failover can be triggered by more than explicit certificate errors. It also covers transport-like failures such as:
+```text
+1 byte      -> discover authoritative total
+< 16 MiB    -> use first responsive direct node; no speed benchmark
+>= 16 MiB   -> 256 KiB probe per candidate -> rank by measured B/s
+real file   -> fastest measured node
+failure     -> next ranked node -> remaining failover
+```
+
+Probe bytes are discarded and never enter `payload.part`. Resumed jobs and image/cache requests skip proactive benchmarking. If selection cannot establish a usable direct node, the canonical Archive URL and the previous failure-driven recovery remain intact.
+
+Failover can still be triggered by more than explicit certificate errors. It also covers transport-like failures such as:
 
 - connect failure
 - timeout

@@ -51,6 +51,21 @@ d2
 
 When possible, the client prefers storage nodes that do not look like problematic `dn*` / `.ca` edges.
 
+### Proactive node selection for fresh payloads
+
+For a **fresh payload download** handled by the normal installer path, Archive.org is no longer treated only as failure-driven failover:
+
+1. resolve `server` / `d1` / `d2` once from item metadata;
+2. issue a one-byte Range probe to a direct storage node to learn the authoritative file total;
+3. for files smaller than **16 MiB**, use the first responsive direct node without a speed benchmark;
+4. for files of **16 MiB or larger**, probe each direct candidate **sequentially** with a bounded **256 KiB** Range request;
+5. rank successful candidates by measured bytes/second and start the real transfer on the fastest one;
+6. keep the remaining ranked candidates as the existing failover order.
+
+The selector is intentionally skipped for resumed downloads and for small image/cache requests that use an explicit retry override. This avoids invalidating resume validators and prevents catalog artwork from paying metadata/benchmark overhead.
+
+Each probe has short connect/total timeouts and never writes probe bytes to the destination file. If metadata, the size probe or all speed probes fail, the canonical `archive.org/download/...` URL remains the first real transfer and the existing failover logic is preserved.
+
 ### Failover triggers
 
 Archive failover is broader than certificate errors alone.
@@ -136,6 +151,9 @@ Useful network/TLS markers include:
 ```text
 attempt ... tls_like=... ssl_verify=... detail=...
 archive failover built N alternate URL(s)
+archive selector probe ok=... HTTP=... bytes=... total=... speed=... url=...
+archive selector chose speed=... -> https://...
+archive selector start -> https://...
 archive failover switch HTTP=... -> https://...
 archive failover switch curl=... ssl_verify=... -> https://...
 retry resume from absolute=...
