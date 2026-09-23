@@ -326,6 +326,250 @@ static bool parseHttpStatusLine(const char* buffer, size_t bytes, long& statusOu
     return true;
 }
 
+// Small sequential probes let fresh, large Internet Archive payloads avoid a
+// technically-working but slow storage edge. Probes never write to disk and are
+// intentionally bounded so selection cannot turn into a second full download.
+constexpr uint64_t ARCHIVE_SELECTOR_MIN_BYTES = 16ULL * 1024ULL * 1024ULL;
+constexpr uint64_t ARCHIVE_SELECTOR_PROBE_BYTES = 256ULL * 1024ULL;
+constexpr long ARCHIVE_SELECTOR_CONNECT_TIMEOUT = 8L;
+constexpr long ARCHIVE_SELECTOR_TOTAL_TIMEOUT = 12L;
+
+struct ArchiveProbeContext {
+    uint64_t bytes = 0;
+    uint64_t maxBytes = 0;
+    uint64_t total = 0;
+    long responseCode = 0;
+    bool capped = false;
+    const HttpCancelFn* shouldCancel = nullptr;
+};
+
+struct ArchiveProbeResult {
+    std::string url;
+    bool ok = false;
+    uint64_t bytes = 0;
+    uint64_t total = 0;
+    uint64_t bytesPerSecond = 0;
+    uint64_t elapsedUs = 0;
+    long status = 0;
+    CURLcode curlCode = CURLE_OK;
+};
+
+static size_t archiveProbeHeaderCallback(char* buffer, size_t size, size_t nitems, void* userdata) {
+    ArchiveProbeContext* ctx = static_cast<ArchiveProbeContext*>(userdata);
+    const size_t bytes = size * nitems;
+    if (!ctx || bytes == 0) return bytes;
+
+    long status = 0;
+    if (parseHttpStatusLine(buffer, bytes, status)) {
+        ctx->responseCode = status;
+        return bytes;
+    }
+
+    const std::string contentRange = headerValue(buffer, bytes, "Content-Range:");
+    if (!contentRange.empty()) {
+        unsigned long long start = 0, end = 0, total = 0;
+        if (std::sscanf(contentRange.c_str(), "bytes %llu-%llu/%llu", &start, &end, &total) == 3 && total > 0) {
+            ctx->total = static_cast<uint64_t>(total);
+        } else if (std::sscanf(contentRange.c_str(), "bytes */%llu", &total) == 1 && total > 0) {
+            ctx->total = static_cast<uint64_t>(total);
+        }
+    }
+    return bytes;
+}
+
+static size_t archiveProbeWriteCallback(char*, size_t size, size_t nmemb, void* userdata) {
+    ArchiveProbeContext* ctx = static_cast<ArchiveProbeContext*>(userdata);
+    const size_t bytes = size * nmemb;
+    if (!ctx || bytes == 0) return bytes;
+    if (ctx->shouldCancel && *ctx->shouldCancel && (*ctx->shouldCancel)()) return 0;
+
+    if (ctx->maxBytes > 0 && ctx->bytes + bytes > ctx->maxBytes) {
+        const uint64_t remaining = ctx->maxBytes > ctx->bytes ? ctx->maxBytes - ctx->bytes : 0;
+        ctx->bytes += remaining;
+        ctx->capped = true;
+        // Abort if a server ignores Range instead of consuming a potentially huge body.
+        return 0;
+    }
+    ctx->bytes += static_cast<uint64_t>(bytes);
+    return bytes;
+}
+
+static int archiveProbeProgressCallback(void* userdata, curl_off_t, curl_off_t, curl_off_t, curl_off_t) {
+    ArchiveProbeContext* ctx = static_cast<ArchiveProbeContext*>(userdata);
+    if (ctx && ctx->shouldCancel && *ctx->shouldCancel && (*ctx->shouldCancel)()) return 1;
+    return 0;
+}
+
+static bool probeArchiveStorageUrl(
+    const std::string& url,
+    uint64_t requestedBytes,
+    const HttpCancelFn& shouldCancel,
+    ArchiveProbeResult& out
+) {
+    out = ArchiveProbeResult{};
+    out.url = url;
+    if (url.empty() || requestedBytes == 0) return false;
+
+    CURL* p = curl_easy_init();
+    if (!p) return false;
+
+    ArchiveProbeContext ctx;
+    ctx.maxBytes = requestedBytes;
+    ctx.shouldCancel = &shouldCancel;
+
+    char range[64];
+    sceClibSnprintf(range, sizeof(range), "0-%llu", (unsigned long long)(requestedBytes - 1));
+    char error[CURL_ERROR_SIZE];
+    std::memset(error, 0, sizeof(error));
+
+    curl_easy_setopt(p, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(p, CURLOPT_HTTPGET, 1L);
+    curl_easy_setopt(p, CURLOPT_RANGE, range);
+    curl_easy_setopt(p, CURLOPT_USERAGENT, UA_APP);
+    applyVitaSslDefaults(p);
+    curl_easy_setopt(p, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
+    curl_easy_setopt(p, CURLOPT_SSL_SESSIONID_CACHE, 1L);
+    curl_easy_setopt(p, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+    curl_easy_setopt(p, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+    curl_easy_setopt(p, CURLOPT_CONNECTTIMEOUT, ARCHIVE_SELECTOR_CONNECT_TIMEOUT);
+    curl_easy_setopt(p, CURLOPT_TIMEOUT, ARCHIVE_SELECTOR_TOTAL_TIMEOUT);
+    curl_easy_setopt(p, CURLOPT_FOLLOWLOCATION, 1L);
+    curl_easy_setopt(p, CURLOPT_MAXREDIRS, 3L);
+    curl_easy_setopt(p, CURLOPT_NOSIGNAL, 1L);
+    curl_easy_setopt(p, CURLOPT_ERRORBUFFER, error);
+    curl_easy_setopt(p, CURLOPT_WRITEFUNCTION, archiveProbeWriteCallback);
+    curl_easy_setopt(p, CURLOPT_WRITEDATA, &ctx);
+    curl_easy_setopt(p, CURLOPT_HEADERFUNCTION, archiveProbeHeaderCallback);
+    curl_easy_setopt(p, CURLOPT_HEADERDATA, &ctx);
+    curl_easy_setopt(p, CURLOPT_NOPROGRESS, 0L);
+    curl_easy_setopt(p, CURLOPT_XFERINFOFUNCTION, archiveProbeProgressCallback);
+    curl_easy_setopt(p, CURLOPT_XFERINFODATA, &ctx);
+    curl_easy_setopt(p, CURLOPT_BUFFERSIZE, 64L * 1024L);
+
+    struct curl_slist* headers = nullptr;
+    headers = curl_slist_append(headers, "Accept: */*");
+    headers = curl_slist_append(headers, "Accept-Encoding: identity");
+    headers = curl_slist_append(headers, "Referer: https://archive.org/");
+    curl_easy_setopt(p, CURLOPT_HTTPHEADER, headers);
+
+    const uint64_t started = sceKernelGetProcessTimeWide();
+    const CURLcode rc = curl_easy_perform(p);
+    const uint64_t elapsedUs = sceKernelGetProcessTimeWide() - started;
+    long status = 0;
+    curl_easy_getinfo(p, CURLINFO_RESPONSE_CODE, &status);
+
+    curl_slist_free_all(headers);
+    curl_easy_cleanup(p);
+
+    out.bytes = ctx.bytes;
+    out.total = ctx.total;
+    out.elapsedUs = elapsedUs;
+    out.status = status ? status : ctx.responseCode;
+    out.curlCode = rc;
+    if (elapsedUs > 0 && ctx.bytes > 0) {
+        out.bytesPerSecond = (ctx.bytes * 1000000ULL) / elapsedUs;
+    }
+
+    // IA direct storage nodes should honor Range with 206. If a node ignores it,
+    // do not select it proactively; the normal download/failover path remains available.
+    out.ok = (out.status == 206 && out.bytes > 0 &&
+              (rc == CURLE_OK || (rc == CURLE_WRITE_ERROR && ctx.capped)));
+
+    char msg[520];
+    sceClibSnprintf(msg, sizeof(msg),
+        "archive selector probe ok=%d curl=%d HTTP=%ld bytes=%llu total=%llu us=%llu speed=%llu url=%s",
+        out.ok ? 1 : 0,
+        static_cast<int>(rc),
+        out.status,
+        (unsigned long long)out.bytes,
+        (unsigned long long)out.total,
+        (unsigned long long)out.elapsedUs,
+        (unsigned long long)out.bytesPerSecond,
+        url.c_str());
+    httpDiagnostic(msg);
+    return out.ok;
+}
+
+// Returns true when a direct Archive storage node was validated and moved to
+// urls.front(). Successful large-file probes are ranked fastest-first so existing
+// failover automatically tries the next-best measured node after a failure.
+static bool rankArchiveAlternateUrls(
+    std::vector<std::string>& urls,
+    const HttpCancelFn& shouldCancel
+) {
+    if (urls.empty()) return false;
+
+    // First spend only one byte to learn the authoritative total. Try another
+    // candidate if the first storage node is unavailable.
+    ArchiveProbeResult sizeProbe;
+    size_t responsiveIndex = urls.size();
+    for (size_t i = 0; i < urls.size(); ++i) {
+        if (shouldCancel && shouldCancel()) return false;
+        if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+            responsiveIndex = i;
+            break;
+        }
+    }
+    if (responsiveIndex == urls.size()) {
+        httpDiagnostic("archive selector: no direct node passed size probe; keep normal archive.org path");
+        return false;
+    }
+
+    if (sizeProbe.total > 0 && sizeProbe.total < ARCHIVE_SELECTOR_MIN_BYTES) {
+        if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
+        char msg[320];
+        sceClibSnprintf(msg, sizeof(msg),
+            "archive selector: small file total=%llu; use responsive direct node without speed benchmark -> %s",
+            (unsigned long long)sizeProbe.total, urls.front().c_str());
+        httpDiagnostic(msg);
+        return true;
+    }
+
+    if (sizeProbe.total == 0) {
+        httpDiagnostic("archive selector: remote total unknown; keep normal archive.org path");
+        return false;
+    }
+
+    std::vector<ArchiveProbeResult> probes;
+    probes.reserve(urls.size());
+    for (const auto& candidate : urls) {
+        if (shouldCancel && shouldCancel()) return false;
+        ArchiveProbeResult probe;
+        probeArchiveStorageUrl(candidate, ARCHIVE_SELECTOR_PROBE_BYTES, shouldCancel, probe);
+        probes.push_back(probe);
+    }
+
+    bool anyOk = false;
+    for (const auto& p : probes) if (p.ok) { anyOk = true; break; }
+    if (!anyOk) {
+        httpDiagnostic("archive selector: speed probes failed; keep normal archive.org path");
+        return false;
+    }
+
+    // Tiny candidate count (normally two): simple stable ordering keeps code small
+    // and avoids adding another dependency. Successful nodes come first, then speed.
+    for (size_t i = 0; i < probes.size(); ++i) {
+        for (size_t j = i + 1; j < probes.size(); ++j) {
+            const bool jBetter =
+                (probes[j].ok && !probes[i].ok) ||
+                (probes[j].ok == probes[i].ok && probes[j].bytesPerSecond > probes[i].bytesPerSecond);
+            if (jBetter) std::swap(probes[i], probes[j]);
+        }
+    }
+
+    urls.clear();
+    for (const auto& p : probes) urls.push_back(p.url);
+
+    char chosen[420];
+    sceClibSnprintf(chosen, sizeof(chosen),
+        "archive selector chose speed=%llu B/s total=%llu -> %s",
+        (unsigned long long)probes.front().bytesPerSecond,
+        (unsigned long long)probes.front().total,
+        probes.front().url.c_str());
+    httpDiagnostic(chosen);
+    return probes.front().ok;
+}
+
 static void updateSpeed(TransferContext* ctx) {
     if (!ctx) return;
     const uint64_t now = sceKernelGetProcessTimeWide();
@@ -1039,6 +1283,29 @@ HttpResult HttpClient::downloadToFile(
     size_t archiveAltIndex = 0;
     bool archiveMetaTried = false;
     std::string activeUrl = url;
+
+    // Fresh payload downloads can avoid a slow Archive redirect before writing any
+    // bytes. maxAttemptsOverride != 0 is used by small image/cache requests, which
+    // deliberately skip this selector to avoid metadata/probe overhead. Resumes also
+    // keep the established URL first so validator/range semantics are unchanged.
+    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
+        if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
+            archiveMetaTried = true;
+            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel) && !archiveAltUrls.empty()) {
+                activeUrl = archiveAltUrls.front();
+                archiveAltIndex = 1;
+                char selected[420];
+                sceClibSnprintf(selected, sizeof(selected),
+                    "archive selector start -> %s", activeUrl.c_str());
+                httpDiagnostic(selected);
+            } else {
+                // Metadata candidates remain available for the existing failure-driven
+                // failover, but the first real attempt stays on the canonical URL.
+                archiveAltIndex = 0;
+            }
+        }
+    }
+
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
         applyVitaSslDefaults(curl);
         const int sslIdx = attempt < 4 ? attempt : (attempt % 4);

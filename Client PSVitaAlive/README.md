@@ -197,12 +197,15 @@ Default stack: **VitaSDK libcurl + OpenSSL 1.0.2** (EOL). Certificate verificati
 
 ### Archive.org resilience
 
-Many storage edges (`dn*.ca.archive.org`) fail TLS handshakes on this stack. On `CURLE_SSL_CONNECT_ERROR` for `archive.org/download/...` URLs the client:
+Some Archive storage edges (`dn*.ca.archive.org`) are slow or unreliable on the Vita TLS stack. For fresh installer payloads the client now:
 
-1. Fetches `https://archive.org/metadata/<identifier>`
-2. Retries on alternate hosts from metadata (`server` / `d1` / `d2`), preferring non-`dn` / non-`.ca` nodes (`ia*.us.archive.org`, etc.)
+1. fetches `https://archive.org/metadata/<identifier>`;
+2. builds direct candidates from `server` / `d1` / `d2`, preferring non-`dn` / non-`.ca` nodes;
+3. learns file size with a one-byte Range probe;
+4. for files >= 16 MiB, benchmarks candidates sequentially with 256 KiB Range probes and starts on the fastest measured node;
+5. keeps the remaining candidates as failover for TLS, transport and `5xx` failures.
 
-Logs: `archive failover built N alternate URL(s)` and `archive failover switch -> https://...`.
+Small payloads use the first responsive direct node without the speed benchmark. Resumes and image/cache requests skip proactive selection. If probing fails, the canonical Archive URL remains the fallback. Logs include `archive selector probe`, `archive selector chose`, `archive selector start` and the existing `archive failover` markers.
 
 SSL defaults (`VERIFYPEER/HOST=0`, clear `CAINFO`/`CAPATH`) are re-applied every attempt.
 
