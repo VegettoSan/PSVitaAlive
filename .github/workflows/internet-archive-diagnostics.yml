@@ -8,82 +8,53 @@ on:
         required: true
         default: "all"
         type: choice
-        options:
-          - all
-          - d2vita
-          - z2
-          - ink
-          - ufe
-          - pkgj
-  # Bootstrap trigger used only for the first diagnostic run.
-  # It will be removed after the results are collected so the final workflow is manual-only.
+        options: [all, d2vita, z2, ink, ufe, pkgj]
+  # Temporary bootstrap trigger. Removed after this diagnostic run.
   push:
     paths:
       - ".github/workflows/internet-archive-diagnostics.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   archive-diagnostics:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
 
     steps:
-      - name: Probe Internet Archive downloads
+      - uses: actions/checkout@v4
+
+      - name: Probe Internet Archive downloads and storage nodes
         shell: bash
         env:
           INPUT_TARGET: ${{ github.event.inputs.target || 'all' }}
         run: |
           set -u
-
           mkdir -p diagnostics
-          SUMMARY="$GITHUB_STEP_SUMMARY"
-          printf '# Internet Archive diagnostics\n\n' >> "$SUMMARY"
-          printf 'Runner UTC: `%s`  \n' "$(date -u +'%Y-%m-%d %H:%M:%S')" >> "$SUMMARY"
-          printf 'Target: `%s`\n\n' "$INPUT_TARGET" >> "$SUMMARY"
-          printf '| App | curl | HTTP | Redirects | Effective host | Remote IP | TTFB (s) | Total (s) | Speed | Bytes |\n' >> "$SUMMARY"
-          printf '|---|---:|---:|---:|---|---|---:|---:|---:|---:|\n' >> "$SUMMARY"
+          REPORT="diagnostics/report.md"
 
-          run_probe() {
-            local key="$1"
-            local app="$2"
-            local identifier="$3"
-            local filename="$4"
+          {
+            echo '# Internet Archive diagnostics'
+            echo
+            echo "Runner UTC: \`$(date -u +'%Y-%m-%d %H:%M:%S')\`  "
+            echo "Target: \`$INPUT_TARGET\`"
+            echo
+            echo '| App / route | curl | HTTP | Redirects | Effective host | Remote IP | TTFB s | Total s | Speed B/s | Bytes |'
+            echo '|---|---:|---:|---:|---|---|---:|---:|---:|---:|'
+          } > "$REPORT"
 
-            if [[ "$INPUT_TARGET" != "all" && "$INPUT_TARGET" != "$key" ]]; then
-              return 0
-            fi
-
-            local encoded_file
-            encoded_file="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$filename")"
-            local url="https://archive.org/download/${identifier}/${encoded_file}"
-            local meta="diagnostics/${key}-metadata.json"
-            local headers="diagnostics/${key}-headers.txt"
-            local chunk="diagnostics/${key}-chunk.bin"
-            local stats="diagnostics/${key}-stats.txt"
-
-            echo "===== $app ====="
-            echo "URL: $url"
-
-            set +e
-            curl -fsSL --connect-timeout 15 --max-time 45 \
-              "https://archive.org/metadata/${identifier}" -o "$meta"
-            local meta_rc=$?
-            set -e
-
-            if [[ $meta_rc -eq 0 ]] && jq -e . "$meta" >/dev/null 2>&1; then
-              echo "Archive metadata:"
-              jq '{identifier, server, d1, d2}' "$meta"
-            else
-              echo "Metadata request failed: curl=$meta_rc"
-              printf '{"identifier":"%s","metadata_curl":%d}\n' "$identifier" "$meta_rc" > "$meta"
-            fi
+          probe_url() {
+            local label="$1"
+            local url="$2"
+            local slug="$3"
+            local headers="diagnostics/${slug}-headers.txt"
+            local chunk="diagnostics/${slug}-chunk.bin"
+            local stats="diagnostics/${slug}-stats.txt"
 
             set +e
             curl -L --connect-timeout 15 --max-time 75 --retry 1 --retry-delay 2 \
-              --range 0-1048575 \
-              -sS -D "$headers" -o "$chunk" \
+              --range 0-1048575 -sS -D "$headers" -o "$chunk" \
               -w '%{http_code}\t%{url_effective}\t%{remote_ip}\t%{num_redirects}\t%{time_connect}\t%{time_starttransfer}\t%{time_total}\t%{speed_download}\t%{size_download}\n' \
               "$url" > "$stats"
             local rc=$?
@@ -91,14 +62,8 @@ jobs:
 
             local http effective ip redirects tconnect ttfb total speed bytes
             IFS=$'\t' read -r http effective ip redirects tconnect ttfb total speed bytes < "$stats" || true
-            http="${http:-0}"
-            effective="${effective:-n/a}"
-            ip="${ip:-n/a}"
-            redirects="${redirects:-0}"
-            ttfb="${ttfb:-0}"
-            total="${total:-0}"
-            speed="${speed:-0}"
-            bytes="${bytes:-0}"
+            http="${http:-0}"; effective="${effective:-n/a}"; ip="${ip:-n/a}"; redirects="${redirects:-0}"
+            ttfb="${ttfb:-0}"; total="${total:-0}"; speed="${speed:-0}"; bytes="${bytes:-0}"
 
             local host
             host="$(python3 - "$effective" <<'PY'
@@ -108,27 +73,87 @@ print(urlparse(sys.argv[1]).hostname or 'n/a')
 PY
 )"
 
-            printf '%s\n' "curl exit=$rc HTTP=$http effective=$effective remote_ip=$ip redirects=$redirects ttfb=$ttfb total=$total speed=$speed bytes=$bytes"
-            echo "Response chain:"
-            grep -iE '^(HTTP/|location:|content-range:|content-length:|accept-ranges:|server:)' "$headers" || true
-
-            printf '| %s | %s | %s | %s | `%s` | `%s` | %s | %s | %s B/s | %s |\n' \
-              "$app" "$rc" "$http" "$redirects" "$host" "$ip" "$ttfb" "$total" "$speed" "$bytes" >> "$SUMMARY"
-
+            printf '| %s | %s | %s | %s | `%s` | `%s` | %s | %s | %s | %s |\n' \
+              "$label" "$rc" "$http" "$redirects" "$host" "$ip" "$ttfb" "$total" "$speed" "$bytes" >> "$REPORT"
             rm -f "$chunk"
           }
 
-          set -e
-          run_probe d2vita "D2Vita 0.1.9" "D2Vita" "d2vita v0.1.9.vpk"
-          run_probe z2 "Z2" "psvitaalive-z2" "z2.vpk"
-          run_probe ink "INK" "psvitaalive-ink" "ink.vpk"
-          run_probe ufe "UFE" "psvitaalive-ufe" "ufe.vpk"
-          run_probe pkgj "PKGj" "psvitaalive-pkgj" "pkgj.vpk"
+          run_item() {
+            local key="$1" app="$2" identifier="$3" filename="$4"
+            [[ "$INPUT_TARGET" == "all" || "$INPUT_TARGET" == "$key" ]] || return 0
 
-          printf '\n## Notes\n\n' >> "$SUMMARY"
-          printf -- '- Each file probe follows redirects and requests only the first 1 MiB using HTTP Range.\n' >> "$SUMMARY"
-          printf -- '- Metadata captures Internet Archive `server`, `d1`, and `d2` storage candidates.\n' >> "$SUMMARY"
-          printf -- '- A successful HTTP `206` is ideal. Some edges may return `200` while still serving data.\n' >> "$SUMMARY"
+            local encoded meta dir
+            encoded="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$filename")"
+            meta="diagnostics/${key}-metadata.json"
+
+            set +e
+            curl -fsSL --connect-timeout 15 --max-time 45 "https://archive.org/metadata/${identifier}" -o "$meta"
+            local meta_rc=$?
+            set -e
+
+            probe_url "$app via archive.org" "https://archive.org/download/${identifier}/${encoded}" "${key}-archive"
+
+            if [[ $meta_rc -eq 0 ]] && jq -e . "$meta" >/dev/null 2>&1; then
+              dir="$(jq -r '.dir // empty' "$meta")"
+              {
+                echo
+                echo "### $app metadata"
+                echo
+                echo "- identifier: \`$identifier\`"
+                echo "- dir: \`${dir:-n/a}\`"
+                echo "- server: \`$(jq -r '.server // "n/a"' "$meta")\`"
+                echo "- d1: \`$(jq -r '.d1 // "n/a"' "$meta")\`"
+                echo "- d2: \`$(jq -r '.d2 // "n/a"' "$meta")\`"
+              } >> "$REPORT"
+
+              if [[ -n "$dir" ]]; then
+                mapfile -t hosts < <(jq -r '[.server,.d1,.d2] | map(select(. != null and . != "")) | unique[]' "$meta")
+                local i=0
+                for host in "${hosts[@]}"; do
+                  i=$((i+1))
+                  probe_url "$app direct $host" "https://${host}${dir}/${encoded}" "${key}-direct-${i}"
+                done
+              fi
+            else
+              {
+                echo
+                echo "### $app metadata"
+                echo
+                echo "Metadata request failed with curl exit \`$meta_rc\`."
+              } >> "$REPORT"
+            fi
+          }
+
+          set -e
+          run_item d2vita 'D2Vita 0.1.9' 'D2Vita' 'd2vita v0.1.9.vpk'
+          run_item z2 'Z2' 'psvitaalive-z2' 'z2.vpk'
+          run_item ink 'INK' 'psvitaalive-ink' 'ink.vpk'
+          run_item ufe 'UFE' 'psvitaalive-ufe' 'ufe.vpk'
+          run_item pkgj 'PKGj' 'psvitaalive-pkgj' 'pkgj.vpk'
+
+          {
+            echo
+            echo '## Interpretation'
+            echo
+            echo '- `curl=0` means the transfer itself completed successfully.'
+            echo '- HTTP `206` is expected for the 1 MiB Range probe; HTTP `200` can mean the edge ignored Range.'
+            echo '- `archive.org` rows test the normal redirect path; `direct` rows test metadata storage candidates.'
+          } >> "$REPORT"
+
+          cat "$REPORT" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Publish bootstrap report to repository
+        if: always() && github.event_name == 'push'
+        shell: bash
+        run: |
+          mkdir -p .github/diagnostics
+          cp diagnostics/report.md .github/diagnostics/internet-archive-latest.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/diagnostics/internet-archive-latest.md
+          git diff --cached --quiet && exit 0
+          git commit -m "ci: record Internet Archive diagnostic result"
+          git push
 
       - name: Upload diagnostic evidence
         if: always()
