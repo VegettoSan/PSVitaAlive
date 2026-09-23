@@ -1,0 +1,37 @@
+name: Temporary Archive selector compile check
+
+on:
+  push:
+    branches: [feature/archive-fastest-node]
+    paths:
+      - ".github/workflows/temp-archive-selector-build.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile with VitaSDK image without vdpm bootstrap
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull vitasdk/vitasdk:2026.08
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w "/workspace/Client PSVitaAlive" \
+            vitasdk/vitasdk:2026.08 \
+            bash -lc '
+              set -euo pipefail
+              echo "VITASDK=$VITASDK"
+              echo "PATH=$PATH"
+              find "$VITASDK" -maxdepth 3 -type f -name "vdpm*" -print || true
+              cmake -S . -B build-selector-ci \
+                -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_EXE_LINKER_FLAGS="-pthread"
+              cmake --build build-selector-ci --parallel 2
+              test -s build-selector-ci/PSVitaAlive.vpk
+              ls -lh build-selector-ci/PSVitaAlive.vpk
+            '
