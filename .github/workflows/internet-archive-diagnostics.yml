@@ -1,13 +1,11 @@
 name: Internet Archive Diagnostics
 
 on:
-  pull_request:
-    branches: [main]
   workflow_dispatch:
     inputs:
       target:
         description: "Target to test"
-        required: true
+        required: false
         default: "all"
         type: choice
         options:
@@ -17,6 +15,10 @@ on:
           - ink
           - ufe
           - pkgj
+  # Temporary test trigger. Removed after collecting one diagnostic run.
+  workflow_run:
+    workflows: ["Validate and Generate Local Catalog"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -30,24 +32,27 @@ jobs:
       - name: Probe Internet Archive downloads and storage nodes
         shell: bash
         env:
-          INPUT_TARGET: ${{ github.event.inputs.target || 'all' }}
+          INPUT_TARGET: ${{ inputs.target }}
         run: |
           set -u
+          TARGET="${INPUT_TARGET:-all}"
           mkdir -p diagnostics
           REPORT="diagnostics/report.md"
 
           {
             echo '# Internet Archive diagnostics'
             echo
-            echo "Runner UTC: \`$(date -u +'%Y-%m-%d %H:%M:%S')\`  "
-            echo "Target: \`$INPUT_TARGET\`"
+            echo "Runner UTC: \`$(date -u +'%Y-%m-%d %H:%M:%S')\`"
+            echo "Target: \`$TARGET\`"
             echo
             echo '| App / route | curl | HTTP | Redirects | Effective host | Remote IP | TTFB s | Total s | Speed B/s | Bytes |'
             echo '|---|---:|---:|---:|---|---|---:|---:|---:|---:|'
           } > "$REPORT"
 
           probe_url() {
-            local label="$1" url="$2" slug="$3"
+            local label="$1"
+            local url="$2"
+            local slug="$3"
             local headers="diagnostics/${slug}-headers.txt"
             local chunk="diagnostics/${slug}-chunk.bin"
             local stats="diagnostics/${slug}-stats.txt"
@@ -62,36 +67,44 @@ jobs:
 
             local http effective ip redirects tconnect ttfb total speed bytes
             IFS=$'\t' read -r http effective ip redirects tconnect ttfb total speed bytes < "$stats" || true
-            http="${http:-0}"; effective="${effective:-n/a}"; ip="${ip:-n/a}"; redirects="${redirects:-0}"
-            ttfb="${ttfb:-0}"; total="${total:-0}"; speed="${speed:-0}"; bytes="${bytes:-0}"
+            http="${http:-0}"
+            effective="${effective:-n/a}"
+            ip="${ip:-n/a}"
+            redirects="${redirects:-0}"
+            ttfb="${ttfb:-0}"
+            total="${total:-0}"
+            speed="${speed:-0}"
+            bytes="${bytes:-0}"
 
             local host
-            host="$(python3 - "$effective" <<'PY'
-import sys
-from urllib.parse import urlparse
-print(urlparse(sys.argv[1]).hostname or 'n/a')
-PY
-)"
+            host="$(python3 -c 'import sys; from urllib.parse import urlparse; print(urlparse(sys.argv[1]).hostname or "n/a")' "$effective")"
 
             printf '| %s | %s | %s | %s | `%s` | `%s` | %s | %s | %s | %s |\n' \
               "$label" "$rc" "$http" "$redirects" "$host" "$ip" "$ttfb" "$total" "$speed" "$bytes" >> "$REPORT"
+
             rm -f "$chunk"
           }
 
           run_item() {
-            local key="$1" app="$2" identifier="$3" filename="$4"
-            [[ "$INPUT_TARGET" == "all" || "$INPUT_TARGET" == "$key" ]] || return 0
+            local key="$1"
+            local app="$2"
+            local identifier="$3"
+            local filename="$4"
+            [[ "$TARGET" == "all" || "$TARGET" == "$key" ]] || return 0
 
             local encoded meta dir
             encoded="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$filename")"
             meta="diagnostics/${key}-metadata.json"
 
             set +e
-            curl -fsSL --connect-timeout 15 --max-time 45 "https://archive.org/metadata/${identifier}" -o "$meta"
+            curl -fsSL --connect-timeout 15 --max-time 45 \
+              "https://archive.org/metadata/${identifier}" -o "$meta"
             local meta_rc=$?
             set -e
 
-            probe_url "$app via archive.org" "https://archive.org/download/${identifier}/${encoded}" "${key}-archive"
+            probe_url "$app via archive.org" \
+              "https://archive.org/download/${identifier}/${encoded}" \
+              "${key}-archive"
 
             if [[ $meta_rc -eq 0 ]] && jq -e . "$meta" >/dev/null 2>&1; then
               dir="$(jq -r '.dir // empty' "$meta")"
@@ -111,7 +124,9 @@ PY
                 local i=0
                 for host in "${hosts[@]}"; do
                   i=$((i+1))
-                  probe_url "$app direct $host" "https://${host}${dir}/${encoded}" "${key}-direct-${i}"
+                  probe_url "$app direct $host" \
+                    "https://${host}${dir}/${encoded}" \
+                    "${key}-direct-${i}"
                 done
               fi
             else
@@ -131,15 +146,8 @@ PY
           run_item ufe 'UFE' 'psvitaalive-ufe' 'ufe.vpk'
           run_item pkgj 'PKGj' 'psvitaalive-pkgj' 'pkgj.vpk'
 
-          {
-            echo
-            echo '## Interpretation'
-            echo
-            echo '- `curl=0` means the transfer completed successfully.'
-            echo '- HTTP `206` is expected for the 1 MiB Range probe; HTTP `200` can mean the edge ignored Range.'
-            echo '- `archive.org` rows test normal redirects; `direct` rows test metadata storage candidates.'
-          } >> "$REPORT"
-
+          echo >> "$REPORT"
+          echo 'A successful HTTP 206 means the 1 MiB Range probe completed normally.' >> "$REPORT"
           cat "$REPORT"
           cat "$REPORT" >> "$GITHUB_STEP_SUMMARY"
 
