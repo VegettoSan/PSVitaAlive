@@ -1,6 +1,8 @@
 name: Internet Archive Diagnostics
 
 on:
+  pull_request:
+    branches: [main]
   workflow_dispatch:
     inputs:
       target:
@@ -8,11 +10,13 @@ on:
         required: true
         default: "all"
         type: choice
-        options: [all, d2vita, z2, ink, ufe, pkgj]
-  # Temporary inspection trigger; removed after this test.
-  pull_request:
-    paths:
-      - ".github/ia-diagnostic-trigger.txt"
+        options:
+          - all
+          - d2vita
+          - z2
+          - ink
+          - ufe
+          - pkgj
 
 permissions:
   contents: read
