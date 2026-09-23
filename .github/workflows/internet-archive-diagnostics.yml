@@ -15,10 +15,6 @@ on:
           - ink
           - ufe
           - pkgj
-  # Temporary test trigger. Removed after collecting one diagnostic run.
-  workflow_run:
-    workflows: ["Validate and Generate Local Catalog"]
-    types: [completed]
 
 permissions:
   contents: read
