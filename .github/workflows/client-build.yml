@@ -39,27 +39,26 @@ jobs:
             bash -lc '
               set -euo pipefail
               echo "VITASDK=$VITASDK"
+              VDPM="$VITASDK/bin/vdpm"
+              test -x "$VDPM"
 
-              # The moving full image currently contains openssl-1.1.1 while the
-              # official curl package declares the legacy `openssl` (Vita OpenSSL
-              # 1.0.2) dependency. The two packages now declare a conflict. For this
-              # isolated CI container remove the alternate ABI without dependency
-              # checks, then install curl's declared dependency from the same signed
-              # VitaSDK channel. No developer machine or release artifact is modified.
-              vdpm pacman -- -Rdd --noconfirm openssl-1.1.1 || true
-              VDPM_NONINTERACTIVE=1 vdpm install openssl
+              # The 2026.08 image currently contains openssl-1.1.1 while the
+              # official curl/libzip packages declare the legacy `openssl`
+              # (Vita OpenSSL 1.0.2) dependency. Use vdpm by absolute VitaSDK path
+              # so CI does not depend on login-shell PATH rewriting.
+              "$VDPM" pacman -- -Rdd --noconfirm openssl-1.1.1 || true
+              VDPM_NONINTERACTIVE=1 "$VDPM" install openssl
 
               echo "Installed network package metadata:"
-              vdpm info openssl || true
-              vdpm info curl || true
-              vdpm info libzip || true
+              "$VDPM" info openssl || true
+              "$VDPM" info curl || true
+              "$VDPM" info libzip || true
 
-              # GCC 15 libstdc++ uses pthread_once for guarded local statics. -pthread
-              # lets the driver place pthread support with its runtime libraries; the
-              # project retains its explicit pthread link for older VitaSDK setups.
+              # CMake already links pthread explicitly. Injecting an additional
+              # -pthread through CMAKE_EXE_LINKER_FLAGS duplicates libpthread with
+              # the current GCC 15 VitaSDK image and causes multiple definitions.
               cmake -S . -B build-ci \
-                -DCMAKE_BUILD_TYPE=Release \
-                -DCMAKE_EXE_LINKER_FLAGS="-pthread"
+                -DCMAKE_BUILD_TYPE=Release
               cmake --build build-ci --parallel 2
               test -s build-ci/PSVitaAlive.vpk || {
                 echo "Expected build-ci/PSVitaAlive.vpk was not produced" >&2
