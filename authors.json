@@ -2887,6 +2887,21 @@
     "icon": "https://github.com/muukalainenpuhuu.png"
   },
   {
+    "id": "federicoilgrandebardo",
+    "name": "Federicoilgrandebardo",
+    "avatar": "https://avatars.githubusercontent.com/u/118918998?v=4",
+    "bio": "Federico Loconte\nDesigner by trade. The rest of my time goes somewhere else entirely: multi-agent AI architectures, embedded electronics, 3D printing, and getting old games to run on hardware that was never meant for them.\n\nAndria, Puglia",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Federicoilgrandebardo",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/118918998?v=4"
+  },
+  {
     "id": "festi",
     "name": "festi",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -3025,6 +3040,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "fr3dsp",
+    "name": "fr3dsp",
+    "avatar": "https://avatars.githubusercontent.com/u/121837347?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/fr3dsp",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/121837347?v=4"
   },
   {
     "id": "franckrst",
@@ -9016,6 +9046,21 @@
       }
     ],
     "icon": "https://github.com/VegettoSan.png?size=256"
+  },
+  {
+    "id": "veitorman",
+    "name": "veitorman",
+    "avatar": "https://avatars.githubusercontent.com/u/99414483?v=4",
+    "bio": "https://github.com/veitorman",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/veitorman",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/99414483?v=4"
   },
   {
     "id": "vektast",

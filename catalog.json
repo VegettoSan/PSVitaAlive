@@ -138,6 +138,54 @@
     ]
   },
   {
+    "id": "sonic-r",
+    "title_id": "SONICR001",
+    "name": "Sonic R",
+    "description": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "long_description": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "author_ids": [
+      "fr3dsp"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "puzzle"
+    ],
+    "version": "1.1",
+    "version_date": "2026-09-24",
+    "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
+    "size": 4089446,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v1.1.vpk",
+        "size": 4089446,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
+        "size": 647705395,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/fr3dsp/sonic-r-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "sssplayer",
     "title_id": "SSSP00001",
     "name": "SSSPlayer",
@@ -184,6 +232,103 @@
     ],
     "source_url": "https://github.com/SergioSSantiago/SSSPlayer",
     "release_page": "https://github.com/SergioSSantiago/SSSPlayer/releases"
+  },
+  {
+    "id": "monster-shooter",
+    "title_id": "MNST00001",
+    "name": "Monster Shooter",
+    "description": "PS Vita port of Monster Shooter (Gamelion, 2012) via so-loader.",
+    "long_description": "A native PS Vita port of Monster Shooter (Gamelion, 2012), the top-down twin-stick shooter where a kidnapped kitten is reason enough to clear a planet of monsters. This runs the original ARMv7 Android binary through a so-loader, with the game's own Claw Engine driving vitaGL underneath.",
+    "author_ids": [
+      "federicoilgrandebardo"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "shooter",
+      "strategy"
+    ],
+    "version": "1.2",
+    "version_date": "2026-09-23",
+    "requirements": "- Install kubridge. Drop kubridge.skprx into ur0:tai/ and add this line to ur0:tai/config.txt, under *KERNEL\n- Install libshacccg.suprx if you have not already. vitaGL compiles its shaders at runtime and the port will not render a single frame without it. Use ShaRKBR33D to extract it from your console's own firmware.",
+    "size": 944333,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/moster-shooter-ps-vita/monstershooter%20v1.2.vpk",
+        "size": 944333,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/moster-shooter-ps-vita/Game%20Files.zip",
+        "size": 31142707,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Federicoilgrandebardo/MonsterShooter-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/moster-shooter-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/moster-shooter-ps-vita/shot0.png",
+      "https://archive.org/download/moster-shooter-ps-vita/shot1.png",
+      "https://archive.org/download/moster-shooter-ps-vita/shot2.png",
+      "https://archive.org/download/moster-shooter-ps-vita/shot3.png"
+    ]
+  },
+  {
+    "id": "nfs-ii-se-recompiled",
+    "title_id": "NFSR00001",
+    "name": "NFS II SE Recompiled",
+    "description": "Need For Speed 2 SE Port for PS Vita",
+    "long_description": "A PS Vita adaptation of Need for Speed II: Special Edition, based on zaps166's NFSIISE wrapper and ARM-compatible C++ core. Original Glide rendering is handled through vitaGL with native Cg shaders. This is an unofficial community port, not a new game engine written from scratch.",
+    "author_ids": [
+      "veitorman"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "strategy"
+    ],
+    "version": "1.00",
+    "version_date": "2026-09-23",
+    "requirements": "- A homebrew-enabled PS Vita with VitaShell.\n- Your own PC Need for Speed II: Special Edition data. The standard edition is not supported by this build.\n- The shader compiler module at ur0:data/libshacccg.suprx, obtained using the established Vita homebrew shader-compiler setup. It is not included here. See ShaRKF00D for its extraction tool and instructions.",
+    "size": 4613734,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/nfs2-se-ps-vita/nfs2se-vita-v1.00.vpk",
+        "size": 3565158,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/nfs2-se-ps-vita/Game%20Files.zip",
+        "size": 564133888,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/veitorman/nfs2se-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/nfs2-se-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/nfs2-se-ps-vita/shot0.jpg",
+      "https://archive.org/download/nfs2-se-ps-vita/shot1.jpg",
+      "https://archive.org/download/nfs2-se-ps-vita/shot2.jpg",
+      "https://archive.org/download/nfs2-se-ps-vita/shot3.jpg"
+    ]
   },
   {
     "id": "paper-mario-vita",
