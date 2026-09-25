@@ -174,11 +174,14 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     return !job.url.empty();
 }
 
-std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName) {
+std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint) {
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
     job.fileName = sanitizePayloadFileName(finalFileName.empty() ? "download" : finalFileName, url);
+    // Catalog/provider size is a hint. HttpClient still replaces it with an
+    // authoritative remote total once Content-Length/Content-Range is observed.
+    job.expectedSize = expectedSizeHint;
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -402,7 +405,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             progress,
             cancelFn,
             0,
-            ifRangeValidator
+            ifRangeValidator,
+            job.expectedSize
         );
         if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
         if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();

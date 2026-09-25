@@ -495,39 +495,71 @@ static bool probeArchiveStorageUrl(
 // failover automatically tries the next-best measured node after a failure.
 static bool rankArchiveAlternateUrls(
     std::vector<std::string>& urls,
-    const HttpCancelFn& shouldCancel
+    const HttpCancelFn& shouldCancel,
+    uint64_t sizeHint
 ) {
     if (urls.empty()) return false;
 
-    // First spend only one byte to learn the authoritative total. Try another
-    // candidate if the first storage node is unavailable.
+    // The catalog/link size is intentionally only a threshold hint. It never
+    // becomes authoritative transfer metadata and is never used for integrity.
+    // When absent, preserve the previous one-byte Range probe as the fallback
+    // for deciding whether the payload crosses the 16 MiB benchmark threshold.
+    uint64_t decisionSize = sizeHint;
     ArchiveProbeResult sizeProbe;
     size_t responsiveIndex = urls.size();
-    for (size_t i = 0; i < urls.size(); ++i) {
-        if (shouldCancel && shouldCancel()) return false;
-        if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
-            responsiveIndex = i;
-            break;
+    if (decisionSize == 0) {
+        for (size_t i = 0; i < urls.size(); ++i) {
+            if (shouldCancel && shouldCancel()) return false;
+            if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+                responsiveIndex = i;
+                break;
+            }
         }
-    }
-    if (responsiveIndex == urls.size()) {
-        httpDiagnostic("archive selector: no direct node passed size probe; keep normal archive.org path");
-        return false;
+        if (responsiveIndex == urls.size()) {
+            httpDiagnostic("archive selector: no direct node passed size probe; keep normal archive.org path");
+            return false;
+        }
+        decisionSize = sizeProbe.total;
+        if (decisionSize == 0) {
+            httpDiagnostic("archive selector: remote total unknown; keep normal archive.org path");
+            return false;
+        }
+        char sourceMsg[180];
+        sceClibSnprintf(sourceMsg, sizeof(sourceMsg),
+            "archive selector threshold source=range size=%llu",
+            (unsigned long long)decisionSize);
+        httpDiagnostic(sourceMsg);
+    } else {
+        char sourceMsg[180];
+        sceClibSnprintf(sourceMsg, sizeof(sourceMsg),
+            "archive selector threshold source=catalog-hint size=%llu",
+            (unsigned long long)decisionSize);
+        httpDiagnostic(sourceMsg);
     }
 
-    if (sizeProbe.total > 0 && sizeProbe.total < ARCHIVE_SELECTOR_MIN_BYTES) {
+    if (decisionSize < ARCHIVE_SELECTOR_MIN_BYTES) {
+        // A catalog hint can decide that benchmarking is unnecessary, but we
+        // still validate one direct node before replacing the canonical URL.
+        if (responsiveIndex == urls.size()) {
+            for (size_t i = 0; i < urls.size(); ++i) {
+                if (shouldCancel && shouldCancel()) return false;
+                if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+                    responsiveIndex = i;
+                    break;
+                }
+            }
+        }
+        if (responsiveIndex == urls.size()) {
+            httpDiagnostic("archive selector: no direct node passed validation probe; keep normal archive.org path");
+            return false;
+        }
         if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
         char msg[320];
         sceClibSnprintf(msg, sizeof(msg),
-            "archive selector: small file total=%llu; use responsive direct node without speed benchmark -> %s",
-            (unsigned long long)sizeProbe.total, urls.front().c_str());
+            "archive selector: small file decision=%llu; use responsive direct node without speed benchmark -> %s",
+            (unsigned long long)decisionSize, urls.front().c_str());
         httpDiagnostic(msg);
         return true;
-    }
-
-    if (sizeProbe.total == 0) {
-        httpDiagnostic("archive selector: remote total unknown; keep normal archive.org path");
-        return false;
     }
 
     std::vector<ArchiveProbeResult> probes;
@@ -1128,7 +1160,8 @@ HttpResult HttpClient::downloadToFile(
     HttpProgressFn onProgress,
     HttpCancelFn shouldCancel,
     int maxAttemptsOverride,
-    const std::string& ifRangeValidator
+    const std::string& ifRangeValidator,
+    uint64_t archiveSelectionSizeHint
 ) {
     lastStatus_ = 0;
     lastRangeAccepted_ = false;
@@ -1291,7 +1324,7 @@ HttpResult HttpClient::downloadToFile(
     if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
         if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
             archiveMetaTried = true;
-            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel) && !archiveAltUrls.empty()) {
+            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint) && !archiveAltUrls.empty()) {
                 activeUrl = archiveAltUrls.front();
                 archiveAltIndex = 1;
                 char selected[420];
