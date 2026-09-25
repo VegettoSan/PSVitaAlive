@@ -74,7 +74,7 @@ public:
 
     void setProgressCallback(DownloadProgressFn fn);
 
-    std::string enqueue(const std::string& url, const std::string& finalFileName);
+    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0);
     bool processQueue();
     void cancel(const std::string& jobId);
     int recoverJobs();

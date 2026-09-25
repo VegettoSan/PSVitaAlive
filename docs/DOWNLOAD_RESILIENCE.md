@@ -252,11 +252,12 @@ and build alternate download URLs from the metadata `server` / `d1` / `d2` field
 Before a large fresh payload starts, the client performs bounded **sequential** Range probes rather than accepting whichever edge the public `archive.org` redirect happens to choose:
 
 ```text
-1 byte      -> discover authoritative total
-< 16 MiB    -> use first responsive direct node; no speed benchmark
->= 16 MiB   -> 256 KiB probe per candidate -> rank by measured B/s
-real file   -> fastest measured node
-failure     -> next ranked node -> remaining failover
+catalog/link size -> threshold hint only
+size missing      -> 1-byte Range fallback to decide the threshold
+< 16 MiB          -> use first responsive direct node; no speed benchmark
+>= 16 MiB         -> 256 KiB probe per candidate -> rank by measured B/s
+real file         -> fastest measured node
+failure           -> next ranked node -> remaining failover
 ```
 
 Probe bytes are discarded and never enter `payload.part`. Resumed jobs and image/cache requests skip proactive benchmarking. If selection cannot establish a usable direct node, the canonical Archive URL and the previous failure-driven recovery remain intact.

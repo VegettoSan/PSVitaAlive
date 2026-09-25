@@ -56,7 +56,7 @@ When possible, the client prefers storage nodes that do not look like problemati
 For a **fresh payload download** handled by the normal installer path, Archive.org is no longer treated only as failure-driven failover:
 
 1. resolve `server` / `d1` / `d2` once from item metadata;
-2. issue a one-byte Range probe to a direct storage node to learn the authoritative file total;
+2. use the existing catalog/link size only as a hint for the **16 MiB benchmark threshold**; if no size hint exists, fall back to the previous one-byte Range probe to learn the threshold size;
 3. for files smaller than **16 MiB**, use the first responsive direct node without a speed benchmark;
 4. for files of **16 MiB or larger**, probe each direct candidate **sequentially** with a bounded **256 KiB** Range request;
 5. rank successful candidates by measured bytes/second and start the real transfer on the fastest one;

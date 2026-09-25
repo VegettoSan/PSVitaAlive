@@ -545,7 +545,7 @@ bool InstallController::requestInstall(
     }
     if (!http_.isInitialized() && !init()) return false;
 
-    const std::string jobId = downloads_.enqueue(url, fileName);
+    const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes);
     if (jobId.empty()) {
         setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
         diagnostics::log("[Installer] could not create download job");

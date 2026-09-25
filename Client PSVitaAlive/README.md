@@ -201,7 +201,7 @@ Some Archive storage edges (`dn*.ca.archive.org`) are slow or unreliable on the 
 
 1. fetches `https://archive.org/metadata/<identifier>`;
 2. builds direct candidates from `server` / `d1` / `d2`, preferring non-`dn` / non-`.ca` nodes;
-3. learns file size with a one-byte Range probe;
+3. uses the catalog/link expected size only to decide whether the 16 MiB benchmark threshold is crossed; if no size is available, it falls back to the one-byte Range size probe;
 4. for files >= 16 MiB, benchmarks candidates sequentially with 256 KiB Range probes and starts on the fastest measured node;
 5. keeps the remaining candidates as failover for TLS, transport and `5xx` failures.
 
