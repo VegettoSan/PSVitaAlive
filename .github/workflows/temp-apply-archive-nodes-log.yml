@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'scripts/temp_apply_archive_nodes_log.py'
+      - 'scripts/temp_fix_archive_runner.py'
 
 permissions:
   contents: write
@@ -21,11 +21,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 scripts/temp_fix_archive_runner.py
           python3 scripts/temp_apply_archive_nodes_log.py
           git diff --check
           grep -q 'archiveNodeLog' 'Client PSVitaAlive/source/network/http_client.cpp'
           grep -q 'archive_nodes.log' 'Client PSVitaAlive/source/diagnostic_logger.cpp'
-          git rm scripts/temp_apply_archive_nodes_log.py .github/workflows/temp-apply-archive-nodes-log.yml
+          git rm scripts/temp_fix_archive_runner.py scripts/temp_apply_archive_nodes_log.py .github/workflows/temp-apply-archive-nodes-log.yml
           git config user.name 'VegettoSanDev'
           git config user.email '72358120+VegettoSan@users.noreply.github.com'
           git add 'Client PSVitaAlive/include/diagnostic_logger.hpp' \
