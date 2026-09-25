@@ -1,3 +1,4 @@
+# trigger: apply once, then self-delete
 name: Temporary detailed Archive node diagnostics
 
 on:
@@ -31,7 +32,6 @@ jobs:
                   raise SystemExit(f'pattern not found in {path}: {old[:160]!r}')
               p.write_text(text.replace(old, new, 1), encoding='utf-8')
 
-          # Shared diagnostics API: keep one mutex for all log files.
           Path('Client PSVitaAlive/include/diagnostic_logger.hpp').write_text(r'''#pragma once
 
 #include <string>
@@ -41,8 +41,6 @@ namespace diagnostics {
 
 void init();
 void log(const std::string& message);
-// Dedicated Internet Archive selector/failover trace. This intentionally stays
-// separate from session.log so field reports can focus on node quality/routing.
 void archiveNodeLog(const std::string& message);
 void shutdown();
 
@@ -74,7 +72,6 @@ void ensureDirectories() {
     sceIoMkdir(LOG_DIR, 0777);
 }
 
-// Truncate a log file so each app session starts with a clean log.
 void resetLogFile(const char* path) {
     SceUID fd = sceIoOpen(path, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
     if (fd >= 0) sceIoClose(fd);
@@ -105,7 +102,6 @@ void appendLogFile(const char* path, const char* tag, const std::string& message
 void init() {
     if (g_initialized) return;
     ensureDirectories();
-    // New session => wipe previous session noise so logs stay small and focused.
     resetLogFile(LOG_FILE);
     resetLogFile(INSTALL_LOG);
     resetLogFile(ARCHIVE_NODE_LOG);
@@ -179,7 +175,6 @@ void archiveNodeDiagnostic(const std::string& message) {
 }
 ''')
 
-          # Metadata request/result details.
           replace_once(hp,
               '    curl_easy_setopt(m, CURLOPT_NOSIGNAL, 1L);\n    const CURLcode rc = curl_easy_perform(m);',
               '''    curl_easy_setopt(m, CURLOPT_NOSIGNAL, 1L);
@@ -225,7 +220,7 @@ void archiveNodeDiagnostic(const std::string& message) {
         archiveNodeDiagnostic(std::string("CANDIDATE_BUILD parse_failed canonical=") + originalUrl);
         return false;
     }
-    archiveNodeDiagnostic(std::string("------------------------------------------------------------"));
+    archiveNodeDiagnostic("------------------------------------------------------------");
     archiveNodeDiagnostic(std::string("CANDIDATE_BUILD begin identifier=") + id + " file=" + file);
     archiveNodeDiagnostic(std::string("CANONICAL_URL ") + originalUrl);
     std::string meta;
@@ -277,7 +272,6 @@ void archiveNodeDiagnostic(const std::string& message) {
     char msg[280];
 ''')
 
-          # Probe result fields used only for diagnostics/ranking visibility.
           replace_once(hp,
           '''struct ArchiveProbeResult {
     std::string url;
@@ -388,7 +382,6 @@ void archiveNodeDiagnostic(const std::string& message) {
 // Returns true when a direct Archive storage node was validated and moved to
 ''')
 
-          # Selector decision + ranking detail.
           replace_once(hp,
           '''    if (urls.empty()) return false;
 
@@ -472,7 +465,6 @@ void archiveNodeDiagnostic(const std::string& message) {
               '    httpDiagnostic(chosen);\n    return probes.front().ok;',
               '    httpDiagnostic(chosen);\n    archiveNodeDiagnostic(std::string("SELECTED ") + chosen);\n    return probes.front().ok;')
 
-          # Per-download section and selector skip/start.
           replace_once(hp,
           '''    bool archiveMetaTried = false;
     std::string activeUrl = url;
@@ -603,7 +595,6 @@ void archiveNodeDiagnostic(const std::string& message) {
         if (ctx.cancelled) break;
 ''')
 
-          # HTTP and transport failover: record from/to/reason.
           replace_once(hp,
           '''                if (archiveAltIndex < archiveAltUrls.size()) {
                     activeUrl = archiveAltUrls[archiveAltIndex++];
@@ -659,7 +650,6 @@ void archiveNodeDiagnostic(const std::string& message) {
                     archiveNodeDiagnostic(detailedSwitch);
 ''')
 
-          # Final summary and explicit outcome.
           replace_once(hp,
               '    httpDiagnostic(resultMsg);\n\n    if (ctx.cancelled) {',
               '''    httpDiagnostic(resultMsg);
@@ -717,7 +707,6 @@ void archiveNodeDiagnostic(const std::string& message) {
         responseCode,
 ''')
 
-          # Documentation.
           readme = Path('Client PSVitaAlive/README.md')
           text = readme.read_text(encoding='utf-8')
           text = text.replace('- Logs: `session.log`, `install.log`, `updater.log`',
