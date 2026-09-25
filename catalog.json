@@ -18731,61 +18731,6 @@
     "updated_at": "2026-08-13T15:34:48.437583+00:00"
   },
   {
-    "id": "fallout-ce",
-    "title_id": "FOUT00001",
-    "name": "Fallout CE",
-    "description": "Port of Fallout for PSVITA.",
-    "long_description": "Port of Fallout for PSVITA based on a reverse engineering of the game called Fallout: Community Edition.",
-    "author_ids": [
-      "northfear"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "rpg"
-    ],
-    "version": "v.1.1.0-vita.4",
-    "version_date": "2024-06-02",
-    "requirements": "- Game Data Files: PC",
-    "size": 1527116,
-    "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-fallout-ce/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-fallout-ce/shot_01.png",
-      "https://archive.org/download/psvitaalive-fallout-ce/shot_02.png",
-      "https://archive.org/download/psvitaalive-fallout-ce/shot_03.png",
-      "https://archive.org/download/psvitaalive-fallout-ce/shot_04.png",
-      "https://archive.org/download/psvitaalive-fallout-ce/shot_05.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-fallout-ce/fallout-ce.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/Northfear/fallout1-ce-vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/Northfear/fallout1-ce-vita/releases/tag/v1.1.0-vita.4"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Northfear/fallout1-ce-vita"
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1034",
-    "source_url": "https://github.com/Northfear/fallout1-ce-vita",
-    "release_page": "https://github.com/Northfear/fallout1-ce-vita/releases",
-    "updated_at": "2026-08-13T15:34:48.438696+00:00"
-  },
-  {
     "id": "fallout-2-ce",
     "title_id": "FOUT00002",
     "name": "Fallout 2 CE",
@@ -18801,16 +18746,8 @@
     "version": "v.1.3.0-vita.8",
     "version_date": "2024-06-02",
     "requirements": "- Game Data Files: PC",
-    "size": 1843349,
+    "size": 1843397,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-fallout-2-ce/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_01.png",
-      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_02.png",
-      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_03.png",
-      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_04.png",
-      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -18819,14 +18756,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/Northfear/fallout2-ce-vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/Northfear/fallout2-ce-vita/releases/tag/v1.3.0-vita.8"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-fallout-2-ce/Game%20Files.zip",
+        "size": 580911104,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
@@ -18834,11 +18768,71 @@
         "url": "https://github.com/Northfear/fallout2-ce-vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-fallout-2-ce/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_01.png",
+      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_02.png",
+      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_03.png",
+      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_04.png",
+      "https://archive.org/download/psvitaalive-fallout-2-ce/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "842",
     "source_url": "https://github.com/Northfear/fallout2-ce-vita",
     "release_page": "https://github.com/Northfear/fallout2-ce-vita/releases",
-    "updated_at": "2026-08-13T15:34:48.438187+00:00"
+    "updated_at": "2026-08-13T15:34"
+  },
+  {
+    "id": "fallout-ce",
+    "title_id": "FOUT00001",
+    "name": "Fallout CE",
+    "description": "Port of Fallout for PSVITA.",
+    "long_description": "Port of Fallout for PSVITA based on a reverse engineering of the game called Fallout: Community Edition.",
+    "author_ids": [
+      "northfear"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "rpg"
+    ],
+    "version": "v.1.1.0-vita.4",
+    "version_date": "2024-06-02",
+    "requirements": "- Game Data Files: PC",
+    "size": 1526727,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-fallout-ce/fallout-ce.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-fallout-ce/Game%20Files.zip",
+        "size": 576192512,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Northfear/fallout1-ce-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-fallout-ce/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-fallout-ce/shot_01.png",
+      "https://archive.org/download/psvitaalive-fallout-ce/shot_02.png",
+      "https://archive.org/download/psvitaalive-fallout-ce/shot_03.png",
+      "https://archive.org/download/psvitaalive-fallout-ce/shot_04.png",
+      "https://archive.org/download/psvitaalive-fallout-ce/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1034",
+    "source_url": "https://github.com/Northfear/fallout1-ce-vita",
+    "release_page": "https://github.com/Northfear/fallout1-ce-vita/releases",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "cradle-song-vita",
@@ -21683,54 +21677,6 @@
     "updated_at": "2026-08-13T15:34:48.460655+00:00"
   },
   {
-    "id": "xash3d-fwgs",
-    "title_id": "XASH10000",
-    "name": "Xash3D-FWGS",
-    "description": "Port of Xash3D-FWGS for PSVITA.",
-    "long_description": "Port of Xash3D-FWGS for PSVITA.\nXash3D-FWGS is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\n\nNOTE: Data files are slightly different from vitaXash3D. This means both versions can't be installed at the same time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-    "author_ids": [
-      "xash3d-fwgs-team",
-      "fgsfds"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.continuous",
-    "version_date": "2023-10-07",
-    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
-    "size": 33443462,
-    "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-xash3d-fwgs/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-xash3d-fwgs/shot_01.png",
-      "https://archive.org/download/psvitaalive-xash3d-fwgs/shot_02.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-xash3d-fwgs/xash3d-fwgs.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Repository",
-        "url": "https://github.com/FWGS/xash3d-fwgs/release"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/FWGS/xash3d-fwgs"
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1157",
-    "source_url": "https://github.com/FWGS/xash3d-fwgs",
-    "release_page": "https://github.com/FWGS/xash3d-fwgs/release",
-    "updated_at": "2026-08-13T15:34:48.462829+00:00"
-  },
-  {
     "id": "zik-zak-vita",
     "title_id": "ZIKZAK001",
     "name": "Zik-Zak Vita",
@@ -21774,6 +21720,58 @@
     "source_url": "https://github.com/Rinnegatamante/zikzak-vita",
     "release_page": "",
     "updated_at": "2026-08-13T15:34:48.461738+00:00"
+  },
+  {
+    "id": "xash3d-fwgs",
+    "title_id": "XASH10000",
+    "name": "Xash3D-FWGS",
+    "description": "Port of Xash3D-FWGS for PSVITA.",
+    "long_description": "Port of Xash3D-FWGS for PSVITA.\nXash3D-FWGS is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\n\nNOTE: Data files are slightly different from vitaXash3D. This means both versions can't be installed at the same time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+    "author_ids": [
+      "fgsfds",
+      "xash3d-fwgs-team"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "fps",
+      "shooter",
+      "other"
+    ],
+    "version": "v.continuous",
+    "version_date": "2023-10-07",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
+    "size": 33443283,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-xash3d-fwgs/xash3d-fwgs.vpk",
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-xash3d-fwgs/Game%20Files.zip",
+        "size": 1610612736,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/FWGS/xash3d-fwgs"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-xash3d-fwgs/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-xash3d-fwgs/shot_01.png",
+      "https://archive.org/download/psvitaalive-xash3d-fwgs/shot_02.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1157",
+    "source_url": "https://github.com/FWGS/xash3d-fwgs",
+    "release_page": "https://github.com/FWGS/xash3d-fwgs/release",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "chimerasnes",
