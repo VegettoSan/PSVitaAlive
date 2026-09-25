@@ -1,0 +1,115 @@
+name: Temporary Archive size hint patch
+
+on:
+  push:
+    branches: [feature/archive-size-hint-threshold]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/archive-size-hint-threshold
+      - name: Apply focused size-hint patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'pattern not found in {path}: {old[:120]!r}')
+              text = text.replace(old, new, 1)
+              p.write_text(text, encoding='utf-8')
+
+          # HttpClient: carry an optional catalog/link size hint. It is only used
+          # to decide whether the 16 MiB Archive benchmark threshold is crossed.
+          replace_once(
+              'Client PSVitaAlive/include/network/http_client.hpp',
+              '        int maxAttemptsOverride = 0, // 0 = default (archive 10 / other 5); images can pass 4\n        const std::string& ifRangeValidator = {} // persisted ETag or Last-Modified for safe resume\n',
+              '        int maxAttemptsOverride = 0, // 0 = default (archive 10 / other 5); images can pass 4\n        const std::string& ifRangeValidator = {}, // persisted ETag or Last-Modified for safe resume\n        uint64_t archiveSelectionSizeHint = 0 // threshold hint only; remote headers remain authoritative\n'
+          )
+
+          replace_once(
+              'Client PSVitaAlive/include/network/download_manager.hpp',
+              '    std::string enqueue(const std::string& url, const std::string& finalFileName);\n',
+              '    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0);\n'
+          )
+
+          replace_once(
+              'Client PSVitaAlive/source/network/download_manager.cpp',
+              'std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName) {\n    DownloadJob job;\n    job.id = makeJobId();\n    job.url = url;\n    job.fileName = sanitizePayloadFileName(finalFileName.empty() ? "download" : finalFileName, url);\n',
+              'std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint) {\n    DownloadJob job;\n    job.id = makeJobId();\n    job.url = url;\n    job.fileName = sanitizePayloadFileName(finalFileName.empty() ? "download" : finalFileName, url);\n    // Catalog/provider size is a hint. HttpClient still replaces it with an\n    // authoritative remote total once Content-Length/Content-Range is observed.\n    job.expectedSize = expectedSizeHint;\n'
+          )
+
+          replace_once(
+              'Client PSVitaAlive/source/network/download_manager.cpp',
+              '            cancelFn,\n            0,\n            ifRangeValidator\n        );\n',
+              '            cancelFn,\n            0,\n            ifRangeValidator,\n            job.expectedSize\n        );\n'
+          )
+
+          replace_once(
+              'Client PSVitaAlive/source/installer/install_controller.cpp',
+              '    const std::string jobId = downloads_.enqueue(url, fileName);\n',
+              '    const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes);\n'
+          )
+
+          # HttpClient implementation signature.
+          replace_once(
+              'Client PSVitaAlive/source/network/http_client.cpp',
+              '    HttpCancelFn shouldCancel,\n    int maxAttemptsOverride,\n    const std::string& ifRangeValidator\n) {\n',
+              '    HttpCancelFn shouldCancel,\n    int maxAttemptsOverride,\n    const std::string& ifRangeValidator,\n    uint64_t archiveSelectionSizeHint\n) {\n'
+          )
+
+          old_rank = '''static bool rankArchiveAlternateUrls(\n    std::vector<std::string>& urls,\n    const HttpCancelFn& shouldCancel\n) {\n    if (urls.empty()) return false;\n\n    // First spend only one byte to learn the authoritative total. Try another\n    // candidate if the first storage node is unavailable.\n    ArchiveProbeResult sizeProbe;\n    size_t responsiveIndex = urls.size();\n    for (size_t i = 0; i < urls.size(); ++i) {\n        if (shouldCancel && shouldCancel()) return false;\n        if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {\n            responsiveIndex = i;\n            break;\n        }\n    }\n    if (responsiveIndex == urls.size()) {\n        httpDiagnostic("archive selector: no direct node passed size probe; keep normal archive.org path");\n        return false;\n    }\n\n    if (sizeProbe.total > 0 && sizeProbe.total < ARCHIVE_SELECTOR_MIN_BYTES) {\n        if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);\n        char msg[320];\n        sceClibSnprintf(msg, sizeof(msg),\n            "archive selector: small file total=%llu; use responsive direct node without speed benchmark -> %s",\n            (unsigned long long)sizeProbe.total, urls.front().c_str());\n        httpDiagnostic(msg);\n        return true;\n    }\n\n    if (sizeProbe.total == 0) {\n        httpDiagnostic("archive selector: remote total unknown; keep normal archive.org path");\n        return false;\n    }\n\n    std::vector<ArchiveProbeResult> probes;\n'''
+
+          new_rank = '''static bool rankArchiveAlternateUrls(\n    std::vector<std::string>& urls,\n    const HttpCancelFn& shouldCancel,\n    uint64_t sizeHint\n) {\n    if (urls.empty()) return false;\n\n    // The catalog/link size is intentionally only a threshold hint. It never\n    // becomes authoritative transfer metadata and is never used for integrity.\n    // When absent, preserve the previous one-byte Range probe as the fallback\n    // for deciding whether the payload crosses the 16 MiB benchmark threshold.\n    uint64_t decisionSize = sizeHint;\n    ArchiveProbeResult sizeProbe;\n    size_t responsiveIndex = urls.size();\n    if (decisionSize == 0) {\n        for (size_t i = 0; i < urls.size(); ++i) {\n            if (shouldCancel && shouldCancel()) return false;\n            if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {\n                responsiveIndex = i;\n                break;\n            }\n        }\n        if (responsiveIndex == urls.size()) {\n            httpDiagnostic("archive selector: no direct node passed size probe; keep normal archive.org path");\n            return false;\n        }\n        decisionSize = sizeProbe.total;\n        if (decisionSize == 0) {\n            httpDiagnostic("archive selector: remote total unknown; keep normal archive.org path");\n            return false;\n        }\n        char sourceMsg[180];\n        sceClibSnprintf(sourceMsg, sizeof(sourceMsg),\n            "archive selector threshold source=range size=%llu",\n            (unsigned long long)decisionSize);\n        httpDiagnostic(sourceMsg);\n    } else {\n        char sourceMsg[180];\n        sceClibSnprintf(sourceMsg, sizeof(sourceMsg),\n            "archive selector threshold source=catalog-hint size=%llu",\n            (unsigned long long)decisionSize);\n        httpDiagnostic(sourceMsg);\n    }\n\n    if (decisionSize < ARCHIVE_SELECTOR_MIN_BYTES) {\n        // A catalog hint can decide that benchmarking is unnecessary, but we\n        // still validate one direct node before replacing the canonical URL.\n        if (responsiveIndex == urls.size()) {\n            for (size_t i = 0; i < urls.size(); ++i) {\n                if (shouldCancel && shouldCancel()) return false;\n                if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {\n                    responsiveIndex = i;\n                    break;\n                }\n            }\n        }\n        if (responsiveIndex == urls.size()) {\n            httpDiagnostic("archive selector: no direct node passed validation probe; keep normal archive.org path");\n            return false;\n        }\n        if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);\n        char msg[320];\n        sceClibSnprintf(msg, sizeof(msg),\n            "archive selector: small file decision=%llu; use responsive direct node without speed benchmark -> %s",\n            (unsigned long long)decisionSize, urls.front().c_str());\n        httpDiagnostic(msg);\n        return true;\n    }\n\n    std::vector<ArchiveProbeResult> probes;\n'''
+          replace_once('Client PSVitaAlive/source/network/http_client.cpp', old_rank, new_rank)
+
+          replace_once(
+              'Client PSVitaAlive/source/network/http_client.cpp',
+              '            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel) && !archiveAltUrls.empty()) {\n',
+              '            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint) && !archiveAltUrls.empty()) {\n'
+          )
+
+          # Documentation: size hint only decides whether the speed benchmark runs.
+          replace_once(
+              'docs/NETWORK_TLS.md',
+              '1. resolve `server` / `d1` / `d2` once from item metadata;\n2. issue a one-byte Range probe to a direct storage node to learn the authoritative file total;\n3. for files smaller than **16 MiB**, use the first responsive direct node without a speed benchmark;\n4. for files of **16 MiB or larger**, probe each direct candidate **sequentially** with a bounded **256 KiB** Range request;\n',
+              '1. resolve `server` / `d1` / `d2` once from item metadata;\n2. use the existing catalog/link size only as a hint for the **16 MiB benchmark threshold**; if no size hint exists, fall back to the previous one-byte Range probe to learn the threshold size;\n3. for files smaller than **16 MiB**, use the first responsive direct node without a speed benchmark;\n4. for files of **16 MiB or larger**, probe each direct candidate **sequentially** with a bounded **256 KiB** Range request;\n'
+          )
+
+          replace_once(
+              'docs/DOWNLOAD_RESILIENCE.md',
+              '1 byte      -> discover authoritative total\n< 16 MiB    -> use first responsive direct node; no speed benchmark\n>= 16 MiB   -> 256 KiB probe per candidate -> rank by measured B/s\nreal file   -> fastest measured node\nfailure     -> next ranked node -> remaining failover\n',
+              'catalog/link size -> threshold hint only\nsize missing      -> 1-byte Range fallback to decide the threshold\n< 16 MiB          -> use first responsive direct node; no speed benchmark\n>= 16 MiB         -> 256 KiB probe per candidate -> rank by measured B/s\nreal file         -> fastest measured node\nfailure           -> next ranked node -> remaining failover\n'
+          )
+
+          replace_once(
+              'Client PSVitaAlive/README.md',
+              '3. for files < 16 MiB, uses the first responsive direct node without a speed benchmark;\n4. for files >= 16 MiB, benchmarks candidates sequentially with 256 KiB Range probes and starts on the fastest measured node;\n',
+              '3. uses the catalog/link size only to decide whether the payload crosses the 16 MiB benchmark threshold (falling back to a 1-byte Range size probe when no hint exists);\n4. for files < 16 MiB, uses the first responsive direct node without a speed benchmark; for files >= 16 MiB, benchmarks candidates sequentially with 256 KiB Range probes and starts on the fastest measured node;\n'
+          )
+          PY
+
+          git diff --check
+          git status --short
+          git rm .github/workflows/temp-archive-size-hint-patch.yml
+          git config user.name "VegettoSanDev"
+          git config user.email "72358120+VegettoSan@users.noreply.github.com"
+          git add "Client PSVitaAlive/include/network/http_client.hpp" \
+                  "Client PSVitaAlive/include/network/download_manager.hpp" \
+                  "Client PSVitaAlive/source/network/http_client.cpp" \
+                  "Client PSVitaAlive/source/network/download_manager.cpp" \
+                  "Client PSVitaAlive/source/installer/install_controller.cpp" \
+                  "Client PSVitaAlive/README.md" \
+                  docs/NETWORK_TLS.md docs/DOWNLOAD_RESILIENCE.md
+          git commit -m "perf: use catalog size hint for Archive benchmark threshold"
+          git push origin HEAD:feature/archive-size-hint-threshold
