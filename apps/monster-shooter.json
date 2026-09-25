@@ -1,0 +1,49 @@
+{
+  "id": "monster-shooter",
+  "title_id": "MNST00001",
+  "name": "Monster Shooter",
+  "description": "PS Vita port of Monster Shooter (Gamelion, 2012) via so-loader.",
+  "long_description": "A native PS Vita port of Monster Shooter (Gamelion, 2012), the top-down twin-stick shooter where a kidnapped kitten is reason enough to clear a planet of monsters. This runs the original ARMv7 Android binary through a so-loader, with the game's own Claw Engine driving vitaGL underneath.",
+  "author_ids": [
+    "federicoilgrandebardo"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "shooter",
+    "strategy"
+  ],
+  "version": "1.2",
+  "version_date": "2026-09-23",
+  "requirements": "- Install kubridge. Drop kubridge.skprx into ur0:tai/ and add this line to ur0:tai/config.txt, under *KERNEL\n- Install libshacccg.suprx if you have not already. vitaGL compiles its shaders at runtime and the port will not render a single frame without it. Use ShaRKBR33D to extract it from your console's own firmware.",
+  "size": 944333,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/moster-shooter-ps-vita/monstershooter%20v1.2.vpk",
+      "size": 944333,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/moster-shooter-ps-vita/Game%20Files.zip",
+      "size": 31142707,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/Federicoilgrandebardo/MonsterShooter-Vita"
+    }
+  ],
+  "icon": "https://archive.org/download/moster-shooter-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/moster-shooter-ps-vita/shot0.png",
+    "https://archive.org/download/moster-shooter-ps-vita/shot1.png",
+    "https://archive.org/download/moster-shooter-ps-vita/shot2.png",
+    "https://archive.org/download/moster-shooter-ps-vita/shot3.png"
+  ]
+}
