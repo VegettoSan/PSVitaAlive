@@ -49,7 +49,7 @@ d1
 d2
 ```
 
-When possible, the client prefers storage nodes that do not look like problematic `dn*` / `.ca` edges.
+`dn*` / `.ca.archive.org` nodes are treated as **historically risky**, not forbidden. They remain lower-priority during discovery, but for large files they are probed exactly like `ia*` nodes. A risky edge that successfully handles TLS/HTTP Range and measures faster on the user's own Vita may be selected.
 
 ### Proactive node selection for fresh payloads
 
@@ -58,9 +58,10 @@ For a **fresh payload download** handled by the normal installer path, Archive.o
 1. resolve `server` / `d1` / `d2` once from item metadata;
 2. use the existing catalog/link size only as a hint for the **16 MiB benchmark threshold**; if no size hint exists, fall back to the previous one-byte Range probe to learn the threshold size;
 3. for files smaller than **16 MiB**, use the first responsive direct node without a speed benchmark;
-4. for files of **16 MiB or larger**, probe each direct candidate **sequentially** with a bounded **256 KiB** Range request;
-5. rank successful candidates by measured bytes/second and start the real transfer on the fastest one;
-6. keep the remaining ranked candidates as the existing failover order.
+4. for files of **16 MiB or larger**, probe every direct candidate — including `dn*` / `.ca` risk candidates — **sequentially** with a bounded **256 KiB** Range request;
+5. record both whole-request speed and **body throughput** (`bytes / (elapsed - TTFB)`), then rank successful candidates primarily by body throughput with lower TTFB as a tie-breaker;
+6. follow Archive redirects during probes, rank the **effective** storage destination actually reached, and deduplicate candidates that resolve to the same effective host;
+7. start the real transfer directly from the best usable effective URL and keep the remaining unique effective candidates as failover.
 
 The selector is intentionally skipped for resumed downloads and for small image/cache requests that use an explicit retry override. This avoids invalidating resume validators and prevents catalog artwork from paying metadata/benchmark overhead.
 
@@ -152,7 +153,7 @@ Dedicated Internet Archive node-selection log:
 ux0:data/psvitaalive/logs/archive_nodes.log
 ```
 
-`archive_nodes.log` is reset on every client launch and is intentionally verbose. It records the Archive identifier/file, catalog threshold hint, metadata `server`/`d1`/`d2`/`dir`, usable candidates, one-byte fallback probes, 256 KiB speed probes, HTTP/curl result, requested/effective URL, remote IP, redirects, TTFB, elapsed time, bytes, remote total, measured B/s + KiB/s + MiB/s, sorted ranking, selected node, every real transfer attempt, TLS verify result, failover reason/from/to, and the final effective node/outcome. Probe bytes are never written to the payload.
+`archive_nodes.log` is reset on every client launch and is intentionally verbose. It records the Archive identifier/file, catalog threshold hint, metadata `server`/`d1`/`d2`/`dir`, normal versus `dn*`/`.ca` risk candidates, one-byte fallback probes, 256 KiB speed probes, HTTP/curl result, requested/effective URL, remote IP, redirects, TTFB, elapsed/body time, whole-request throughput, body throughput, effective-host deduplication, sorted ranking, selected effective node, every real transfer attempt, TLS verify result, failover reason/from/to, and the final effective node/outcome. Probe bytes are never written to the payload.
 
 `session.log` remains the broad diagnostic source. Existing concise Archive markers are preserved there for compatibility, while `archive_nodes.log` is the focused file to request from users when investigating slow Archive downloads or incorrect node selection.
 

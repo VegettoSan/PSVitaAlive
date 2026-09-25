@@ -100,13 +100,39 @@ static bool curlDetailLooksTls(const char* detail) {
 
 static bool hostLooksLikeBadArchiveEdge(const char* url) {
     if (!url || !url[0]) return false;
-    // Canadian / dn* storage nodes frequently fail TLS with OpenSSL 1.0.2 on Vita.
+    // Historical risk marker only: dn*/.ca nodes are no longer hard-filtered.
+    // The selector probes them and lets real Vita-side results decide.
     if (containsAsciiNoCase(url, ".ca.archive.org")) return true;
     const char* host = std::strstr(url, "://");
     host = host ? host + 3 : url;
     if (asciiLower(host[0]) == 'd' && asciiLower(host[1]) == 'n' &&
         containsAsciiNoCase(host, "archive.org")) return true;
     return false;
+}
+
+static std::string archiveUrlHostLower(const std::string& url) {
+    if (url.empty()) return {};
+    size_t start = url.find("://");
+    start = (start == std::string::npos) ? 0 : start + 3;
+    if (start >= url.size()) return {};
+    size_t end = start;
+    while (end < url.size() && url[end] != '/' && url[end] != ':' &&
+           url[end] != '?' && url[end] != '#') {
+        ++end;
+    }
+    if (end <= start) return {};
+    std::string host = url.substr(start, end - start);
+    for (char& c : host) c = asciiLower(c);
+    return host;
+}
+
+static bool archiveEffectiveUrlUsable(const std::string& url) {
+    const std::string host = archiveUrlHostLower(url);
+    if (host == "archive.org") return true;
+    static const char* suffix = ".archive.org";
+    const size_t suffixLen = std::strlen(suffix);
+    return host.size() > suffixLen &&
+           host.compare(host.size() - suffixLen, suffixLen, suffix) == 0;
 }
 
 static bool parseArchiveDownloadParts(const std::string& url, std::string& identifier, std::string& fileName) {
@@ -220,7 +246,9 @@ static void pushUniqueHost(std::vector<std::string>& hosts, const std::string& h
     hosts.push_back(host);
 }
 
-// Prefer us.archive.org / ia* nodes over dn*/ca edges for Vita OpenSSL 1.0.2.
+// Keep dn*/.ca Archive edges as lower-priority risk candidates instead of
+// filtering them out. Large payloads benchmark every working candidate, so a
+// risky edge can win when it is actually faster from the user's own network.
 static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vector<std::string>& outUrls) {
     outUrls.clear();
     std::string id, file;
@@ -242,9 +270,9 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vecto
         " d1=" + (d1.empty() ? "-" : d1) +
         " d2=" + (d2.empty() ? "-" : d2) +
         " dir=" + (dir.empty() ? "-" : dir));
-    if (!server.empty() && hostLooksLikeBadArchiveEdge(server.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_FILTERED host=") + server + " reason=dn_or_ca_edge");
-    if (!d1.empty() && hostLooksLikeBadArchiveEdge(d1.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_FILTERED host=") + d1 + " reason=dn_or_ca_edge");
-    if (!d2.empty() && hostLooksLikeBadArchiveEdge(d2.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_FILTERED host=") + d2 + " reason=dn_or_ca_edge");
+    if (!server.empty() && hostLooksLikeBadArchiveEdge(server.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_RISKY host=") + server + " reason=dn_or_ca_edge allowed=1");
+    if (!d1.empty() && hostLooksLikeBadArchiveEdge(d1.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_RISKY host=") + d1 + " reason=dn_or_ca_edge allowed=1");
+    if (!d2.empty() && hostLooksLikeBadArchiveEdge(d2.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_RISKY host=") + d2 + " reason=dn_or_ca_edge allowed=1");
     if (dir.empty()) {
         // Fallback path used by many IA items when dir is absent from the top-level object.
         dir = std::string("/0/items/") + id;
@@ -270,7 +298,8 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vecto
     defer(d2);
 
     for (const auto& host : hosts) {
-        if (hostLooksLikeBadArchiveEdge(host.c_str())) continue;
+        // Risky dn*/.ca nodes stay after normal ia* candidates in discovery order,
+        // but they are allowed into the probe set and may win a large-file benchmark.
         std::string u = "https://" + host + dir + "/" + file;
         outUrls.push_back(u);
     }
@@ -285,7 +314,10 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vecto
         archiveNodeDiagnostic(countMsg);
         for (size_t i = 0; i < outUrls.size(); ++i) {
             char candidateMsg[760];
-            sceClibSnprintf(candidateMsg, sizeof(candidateMsg), "CANDIDATE[%u] url=%s", (unsigned int)i, outUrls[i].c_str());
+            sceClibSnprintf(candidateMsg, sizeof(candidateMsg), "CANDIDATE[%u] risk=%s url=%s",
+                (unsigned int)i,
+                hostLooksLikeBadArchiveEdge(outUrls[i].c_str()) ? "dn_or_ca" : "normal",
+                outUrls[i].c_str());
             archiveNodeDiagnostic(candidateMsg);
         }
     }
@@ -387,7 +419,8 @@ struct ArchiveProbeResult {
     bool ok = false;
     uint64_t bytes = 0;
     uint64_t total = 0;
-    uint64_t bytesPerSecond = 0;
+    uint64_t bytesPerSecond = 0;      // whole request, including TTFB/redirect latency
+    uint64_t bodyBytesPerSecond = 0;  // payload body only: bytes / (elapsed - TTFB)
     uint64_t elapsedUs = 0;
     uint64_t ttfbUs = 0;
     long status = 0;
@@ -524,6 +557,11 @@ static bool probeArchiveStorageUrl(
     if (elapsedUs > 0 && ctx.bytes > 0) {
         out.bytesPerSecond = (ctx.bytes * 1000000ULL) / elapsedUs;
     }
+    const uint64_t bodyUs =
+        (out.ttfbUs > 0 && out.elapsedUs > out.ttfbUs) ? (out.elapsedUs - out.ttfbUs) : out.elapsedUs;
+    if (bodyUs > 0 && ctx.bytes > 0) {
+        out.bodyBytesPerSecond = (ctx.bytes * 1000000ULL) / bodyUs;
+    }
 
     // IA direct storage nodes should honor Range with 206. If a node ignores it,
     // do not select it proactively; the normal download/failover path remains available.
@@ -532,7 +570,7 @@ static bool probeArchiveStorageUrl(
 
     char msg[520];
     sceClibSnprintf(msg, sizeof(msg),
-        "archive selector probe ok=%d curl=%d HTTP=%ld bytes=%llu total=%llu us=%llu speed=%llu url=%s",
+        "archive selector probe ok=%d curl=%d HTTP=%ld bytes=%llu total=%llu us=%llu total_speed=%llu body_speed=%llu url=%s",
         out.ok ? 1 : 0,
         static_cast<int>(rc),
         out.status,
@@ -540,25 +578,39 @@ static bool probeArchiveStorageUrl(
         (unsigned long long)out.total,
         (unsigned long long)out.elapsedUs,
         (unsigned long long)out.bytesPerSecond,
+        (unsigned long long)out.bodyBytesPerSecond,
         url.c_str());
     httpDiagnostic(msg);
     {
-        const uint64_t kibPerSecond = out.bytesPerSecond / 1024ULL;
-        const uint64_t mibHundredths = (out.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
-        char detailed[1500];
+        const uint64_t totalKibPerSecond = out.bytesPerSecond / 1024ULL;
+        const uint64_t totalMibHundredths = (out.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        const uint64_t bodyKibPerSecond = out.bodyBytesPerSecond / 1024ULL;
+        const uint64_t bodyMibHundredths = (out.bodyBytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        const uint64_t bodyUs =
+            (out.ttfbUs > 0 && out.elapsedUs > out.ttfbUs) ? (out.elapsedUs - out.ttfbUs) : out.elapsedUs;
+        const char* requestedRisk = hostLooksLikeBadArchiveEdge(url.c_str()) ? "dn_or_ca" : "normal";
+        const char* effectiveRisk = (!out.effectiveUrl.empty() && hostLooksLikeBadArchiveEdge(out.effectiveUrl.c_str())) ? "dn_or_ca" : "normal";
+        char detailed[1800];
         sceClibSnprintf(detailed, sizeof(detailed),
-            "PROBE requested=%llu ok=%d curl=%d curl_text=%s HTTP=%ld bytes=%llu remote_total=%llu elapsed_ms=%llu ttfb_ms=%llu speed_Bps=%llu speed_KiBps=%llu speed_MiBps=%llu.%02llu redirects=%ld ip=%s requested_url=%s effective_url=%s detail=%s",
+            "PROBE requested=%llu ok=%d curl=%d curl_text=%s HTTP=%ld bytes=%llu remote_total=%llu elapsed_ms=%llu ttfb_ms=%llu body_ms=%llu total_speed_Bps=%llu total_speed_KiBps=%llu total_speed_MiBps=%llu.%02llu body_speed_Bps=%llu body_speed_KiBps=%llu body_speed_MiBps=%llu.%02llu redirects=%ld ip=%s risk_requested=%s risk_effective=%s requested_url=%s effective_url=%s detail=%s",
             (unsigned long long)requestedBytes, out.ok ? 1 : 0,
             static_cast<int>(rc), curl_easy_strerror(rc), out.status,
             (unsigned long long)out.bytes, (unsigned long long)out.total,
             (unsigned long long)(out.elapsedUs / 1000ULL),
             (unsigned long long)(out.ttfbUs / 1000ULL),
+            (unsigned long long)(bodyUs / 1000ULL),
             (unsigned long long)out.bytesPerSecond,
-            (unsigned long long)kibPerSecond,
-            (unsigned long long)(mibHundredths / 100ULL),
-            (unsigned long long)(mibHundredths % 100ULL),
+            (unsigned long long)totalKibPerSecond,
+            (unsigned long long)(totalMibHundredths / 100ULL),
+            (unsigned long long)(totalMibHundredths % 100ULL),
+            (unsigned long long)out.bodyBytesPerSecond,
+            (unsigned long long)bodyKibPerSecond,
+            (unsigned long long)(bodyMibHundredths / 100ULL),
+            (unsigned long long)(bodyMibHundredths % 100ULL),
             out.redirectCount,
             out.primaryIp.empty() ? "-" : out.primaryIp.c_str(),
+            requestedRisk,
+            effectiveRisk,
             url.c_str(),
             out.effectiveUrl.empty() ? "-" : out.effectiveUrl.c_str(),
             error[0] ? error : "-");
@@ -642,6 +694,11 @@ static bool rankArchiveAlternateUrls(
             httpDiagnostic("archive selector: no direct node passed validation probe; keep normal archive.org path");
             return false;
         }
+        if (archiveEffectiveUrlUsable(sizeProbe.effectiveUrl)) {
+            archiveNodeDiagnostic(std::string("SMALL_FILE_EFFECTIVE_URL requested=") + urls[responsiveIndex] +
+                " effective=" + sizeProbe.effectiveUrl);
+            urls[responsiveIndex] = sizeProbe.effectiveUrl;
+        }
         if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
         char msg[320];
         sceClibSnprintf(msg, sizeof(msg),
@@ -669,13 +726,17 @@ static bool rankArchiveAlternateUrls(
         return false;
     }
 
-    // Tiny candidate count (normally two): simple stable ordering keeps code small
-    // and avoids adding another dependency. Successful nodes come first, then speed.
+    // Tiny candidate count (normally two or three): successful nodes first,
+    // then payload-body throughput. TTFB is only a tie-breaker so a slow first byte
+    // cannot make a fast sustained storage edge look artificially bad on large files.
     for (size_t i = 0; i < probes.size(); ++i) {
         for (size_t j = i + 1; j < probes.size(); ++j) {
+            const bool bothOk = probes[j].ok && probes[i].ok;
             const bool jBetter =
                 (probes[j].ok && !probes[i].ok) ||
-                (probes[j].ok == probes[i].ok && probes[j].bytesPerSecond > probes[i].bytesPerSecond);
+                (bothOk && probes[j].bodyBytesPerSecond > probes[i].bodyBytesPerSecond) ||
+                (bothOk && probes[j].bodyBytesPerSecond == probes[i].bodyBytesPerSecond &&
+                 probes[j].ttfbUs < probes[i].ttfbUs);
             if (jBetter) std::swap(probes[i], probes[j]);
         }
     }
@@ -683,36 +744,77 @@ static bool rankArchiveAlternateUrls(
     archiveNodeDiagnostic("RANKING_BEGIN fastest successful candidate first");
     for (size_t i = 0; i < probes.size(); ++i) {
         const auto& p = probes[i];
-        const uint64_t kibPerSecond = p.bytesPerSecond / 1024ULL;
-        const uint64_t mibHundredths = (p.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
-        char ranked[1200];
+        const uint64_t totalKibPerSecond = p.bytesPerSecond / 1024ULL;
+        const uint64_t totalMibHundredths = (p.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        const uint64_t bodyKibPerSecond = p.bodyBytesPerSecond / 1024ULL;
+        const uint64_t bodyMibHundredths = (p.bodyBytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        const std::string rankedEffective = archiveEffectiveUrlUsable(p.effectiveUrl) ? p.effectiveUrl : p.url;
+        char ranked[1500];
         sceClibSnprintf(ranked, sizeof(ranked),
-            "RANK[%u] ok=%d speed_Bps=%llu speed_KiBps=%llu speed_MiBps=%llu.%02llu HTTP=%ld curl=%d ttfb_ms=%llu elapsed_ms=%llu redirects=%ld ip=%s url=%s effective=%s",
+            "RANK[%u] ok=%d body_speed_Bps=%llu body_speed_KiBps=%llu body_speed_MiBps=%llu.%02llu total_speed_Bps=%llu total_speed_KiBps=%llu total_speed_MiBps=%llu.%02llu HTTP=%ld curl=%d ttfb_ms=%llu elapsed_ms=%llu redirects=%ld ip=%s risk=%s requested=%s effective=%s",
             (unsigned int)(i + 1), p.ok ? 1 : 0,
+            (unsigned long long)p.bodyBytesPerSecond,
+            (unsigned long long)bodyKibPerSecond,
+            (unsigned long long)(bodyMibHundredths / 100ULL),
+            (unsigned long long)(bodyMibHundredths % 100ULL),
             (unsigned long long)p.bytesPerSecond,
-            (unsigned long long)kibPerSecond,
-            (unsigned long long)(mibHundredths / 100ULL),
-            (unsigned long long)(mibHundredths % 100ULL),
+            (unsigned long long)totalKibPerSecond,
+            (unsigned long long)(totalMibHundredths / 100ULL),
+            (unsigned long long)(totalMibHundredths % 100ULL),
             p.status, static_cast<int>(p.curlCode),
             (unsigned long long)(p.ttfbUs / 1000ULL),
             (unsigned long long)(p.elapsedUs / 1000ULL),
             p.redirectCount,
             p.primaryIp.empty() ? "-" : p.primaryIp.c_str(),
+            hostLooksLikeBadArchiveEdge(rankedEffective.c_str()) ? "dn_or_ca" : "normal",
             p.url.c_str(),
             p.effectiveUrl.empty() ? "-" : p.effectiveUrl.c_str());
         archiveNodeDiagnostic(ranked);
     }
     archiveNodeDiagnostic("RANKING_END");
 
+    // Use what libcurl actually reached, not merely the requested storage URL.
+    // Archive can redirect ia601 -> ia801 (and vice versa); dedupe by effective host
+    // so the failover list does not contain multiple aliases for the same real node.
     urls.clear();
-    for (const auto& p : probes) urls.push_back(p.url);
+    std::vector<std::string> seenEffectiveHosts;
+    for (const auto& p : probes) {
+        std::string chosenUrl = p.url;
+        if (p.ok && archiveEffectiveUrlUsable(p.effectiveUrl)) chosenUrl = p.effectiveUrl;
+        const std::string chosenHost = archiveUrlHostLower(chosenUrl);
+        bool duplicateHost = false;
+        if (!chosenHost.empty()) {
+            for (const auto& seen : seenEffectiveHosts) {
+                if (seen == chosenHost) {
+                    duplicateHost = true;
+                    break;
+                }
+            }
+        }
+        if (duplicateHost) {
+            archiveNodeDiagnostic(std::string("EFFECTIVE_DUPLICATE_SKIPPED host=") + chosenHost +
+                " requested=" + p.url + " effective=" + (p.effectiveUrl.empty() ? "-" : p.effectiveUrl));
+            continue;
+        }
+        if (!chosenHost.empty()) seenEffectiveHosts.push_back(chosenHost);
+        urls.push_back(chosenUrl);
+    }
 
-    char chosen[420];
+    if (urls.empty()) {
+        httpDiagnostic("archive selector: effective candidate list unexpectedly empty; keep normal archive.org path");
+        return false;
+    }
+
+    char chosen[900];
     sceClibSnprintf(chosen, sizeof(chosen),
-        "archive selector chose speed=%llu B/s total=%llu -> %s",
+        "archive selector chose body_speed=%llu B/s total_speed=%llu B/s ttfb_ms=%llu total=%llu requested=%s effective=%s selected=%s",
+        (unsigned long long)probes.front().bodyBytesPerSecond,
         (unsigned long long)probes.front().bytesPerSecond,
+        (unsigned long long)(probes.front().ttfbUs / 1000ULL),
         (unsigned long long)probes.front().total,
-        probes.front().url.c_str());
+        probes.front().url.c_str(),
+        probes.front().effectiveUrl.empty() ? "-" : probes.front().effectiveUrl.c_str(),
+        urls.front().c_str());
     httpDiagnostic(chosen);
     archiveNodeDiagnostic(std::string("SELECTED ") + chosen);
     return probes.front().ok;
