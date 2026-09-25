@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# One-shot helper: adjusts the exact matcher in the temporary patch script.
 p = Path('scripts/temp_apply_archive_nodes_log.py')
 text = p.read_text(encoding='utf-8')
 old = """'''    if (urls.empty()) return false;
