@@ -1,0 +1,34 @@
+name: Temporary Archive selector v2 patch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/temp_apply_archive_selector_v2.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Apply Archive selector v2 patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/temp_apply_archive_selector_v2.py
+          git diff --check
+          grep -q 'METADATA_HOST_RISKY' 'Client PSVitaAlive/source/network/http_client.cpp'
+          grep -q 'bodyBytesPerSecond' 'Client PSVitaAlive/source/network/http_client.cpp'
+          grep -q 'EFFECTIVE_DUPLICATE_SKIPPED' 'Client PSVitaAlive/source/network/http_client.cpp'
+          git rm -f scripts/temp_apply_archive_selector_v2.py .github/workflows/temp-archive-selector-v2.yml
+          git config user.name 'VegettoSanDev'
+          git config user.email '72358120+VegettoSan@users.noreply.github.com'
+          git add 'Client PSVitaAlive/source/network/http_client.cpp' 'docs/NETWORK_TLS.md'
+          git commit -m 'fix: benchmark all Archive nodes by effective throughput'
+          git push origin HEAD:main
