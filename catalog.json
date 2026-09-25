@@ -1,5 +1,237 @@
 [
   {
+    "id": "asphalt-5",
+    "title_id": "ASPHALT05",
+    "name": "Asphalt 5",
+    "description": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
+    "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "1.1.0",
+    "version_date": "2026-09-24",
+    "requirements": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
+    "size": 1992294,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.1.0.vpk",
+        "size": 1992294,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
+        "size": 166199296,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Asphalt-5-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/asphalt-5-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/asphalt-5-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "plants-vs-zombies-2",
+    "title_id": "PVZ2VITA1",
+    "name": "Plants vs Zombies 2",
+    "description": "Plants vs Zombies 2 Ps Vita Port",
+    "long_description": "Plants vs Zombies 2 Ps Vita Port",
+    "author_ids": [
+      "lezergan"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "puzzle",
+      "strategy"
+    ],
+    "version": "v1.1-rc25",
+    "version_date": "2026-09-24",
+    "requirements": "- kubridge\n- libshacccg.suprx\n- Use 4.5.2 ROW / version 147 game files. Other builds are not supported.",
+    "size": 1153434,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2-vita-1.1%20RC25.vpk",
+        "size": 1153434,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
+        "size": 675073229,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/LeZergan/pvz2vita"
+      }
+    ],
+    "icon": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
+    ]
+  },
+  {
+    "id": "smash-melee-vita",
+    "title_id": "MLVITA002",
+    "name": "Smash Melee Vita",
+    "description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
+    "long_description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
+    "author_ids": [
+      "zm2283145"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "strategy"
+    ],
+    "version": "0.8.12",
+    "version_date": "2026-09-24",
+    "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
+    "size": 6710886,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita%20v0.8.12.vpk",
+        "size": 6710886,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/smash-melee-vita/Game%20Files.zip",
+        "size": 1503238554,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/zm2283145/melee-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/smash-melee-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/smash-melee-vita/Shot1.png",
+      "https://archive.org/download/smash-melee-vita/pic0.png"
+    ]
+  },
+  {
+    "id": "sssplayer",
+    "title_id": "SSSP00001",
+    "name": "SSSPlayer",
+    "description": "Music and video player for PS Vita by SergioSSantiago. Combines a VitaWave-style music shell (EQ, visualizer, playlists, themes) with VitaMediaDeck-class video playback: H.264 hardware decode, precise touch seek, subtitles, and network streaming (SMB, SFTP, WebDAV, Jellyfin).",
+    "long_description": "SSSPlayer is an all-in-one media player for PlayStation Vita by SergioSSantiago.\n\nMusic:\n- Browse ux0:/music and uma0:/music (MP3, FLAC, OGG)\n- Now Playing with touch scrub on the progress bar\n- 10-band equalizer, spectrum visualizer, M3U playlists\n- Theme system (Terminus CRT theme by default)\n\nVideo:\n- Browse ux0:/video, uma0:/video, ux0:/movies, uma0:/movies\n- Hardware H.264 playback with exact seek / scrub\n- Subtitles and audio tracks\n- Network sources: SMB, SFTP, WebDAV, Jellyfin\n\nInstall:\n1. Download SSSPlayer-x.y.z.vpk from GitHub Releases\n2. Enable FTP in VitaShell\n3. Copy the VPK to ux0: with Cyberduck\n4. Install from VitaShell\n\nCredits: built by SergioSSantiago. Thanks to VitaWave and VitaMediaDeck — SSSPlayer reuses foundations from both projects.\n\nTITLEID: SSSP00001\nData: ux0:data/SSSPlayer/\nLicense: GPL-3.0-only",
+    "author_ids": [
+      "sergiossantiago"
+    ],
+    "category_id": "media",
+    "subcategory_ids": [
+      "audio",
+      "music-player",
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "version": "1.1.34",
+    "version_date": "2026-09-24",
+    "requirements": "PS Vita / PSTV with HENkaku / enso. Network features need Wi-Fi.",
+    "size": 49073357,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/sssplayer-ps-vita/SSSPlayer-1.1.34.vpk",
+        "size": 49073357,
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "Release Page",
+        "url": "https://github.com/SergioSSantiago/SSSPlayer/releases/latest"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/SergioSSantiago/SSSPlayer"
+      }
+    ],
+    "icon": "https://archive.org/download/sssplayer-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/sssplayer-ps-vita/shot0.png"
+    ],
+    "source_url": "https://github.com/SergioSSantiago/SSSPlayer",
+    "release_page": "https://github.com/SergioSSantiago/SSSPlayer/releases"
+  },
+  {
+    "id": "paper-mario-vita",
+    "title_id": "PPMR00001",
+    "name": "Paper Mario Vita",
+    "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+    "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+    "author_ids": [
+      "kaziema"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle"
+    ],
+    "version": "0.3.1",
+    "version_date": "2026-09-23",
+    "requirements": "- A homebrew-enabled PS Vita or PS TV",
+    "size": 7969178,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.3.1.vpk",
+        "size": 7969178,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
+        "size": 41943040,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/kaziema/pmvita"
+      }
+    ],
+    "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/paper-mario-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "d2vita",
     "title_id": "DTWO00001",
     "name": "D2Vita",
@@ -14,17 +246,17 @@
       "rpg",
       "strategy"
     ],
-    "version": "0.1.9",
-    "version_date": "2026-09-21",
+    "version": "0.1.10",
+    "version_date": "2026-09-22",
     "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
-    "size": 7759462,
+    "size": 7864320,
     "status": "Verified",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.9.vpk",
-        "size": 7759462,
+        "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.10.vpk",
+        "size": 7864320,
         "recommended": true
       },
       {
@@ -108,147 +340,6 @@
       "https://archive.org/download/duskligth-ps-vita/bg.png",
       "https://archive.org/download/duskligth-ps-vita/0.jpg"
     ]
-  },
-  {
-    "id": "paper-mario-vita",
-    "title_id": "PPMR00001",
-    "name": "Paper Mario Vita",
-    "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-    "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-    "author_ids": [
-      "kaziema"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "puzzle"
-    ],
-    "version": "0.1.0",
-    "version_date": "2026-09-21",
-    "requirements": "- A homebrew-enabled PS Vita or PS TV",
-    "size": 7969178,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.1.0.vpk",
-        "size": 7969178,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files USA",
-        "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
-        "size": 41943040,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/kaziema/pmvita"
-      }
-    ],
-    "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/paper-mario-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "smash-melee-vita",
-    "title_id": "MLVITA002",
-    "name": "Smash Melee Vita",
-    "description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
-    "long_description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
-    "author_ids": [
-      "zm2283145"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "strategy"
-    ],
-    "version": "0.8.4",
-    "version_date": "2026-09-21",
-    "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
-    "size": 5242880,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita%20v0.8.4.vpk",
-        "size": 5242880,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/smash-melee-vita/Game%20Files.zip",
-        "size": 1503238554,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/zm2283145/melee-Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/smash-melee-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/smash-melee-vita/Shot1.png",
-      "https://archive.org/download/smash-melee-vita/pic0.png"
-    ]
-  },
-  {
-    "id": "sssplayer",
-    "title_id": "SSSP00001",
-    "name": "SSSPlayer",
-    "description": "Music and video player for PS Vita by SergioSSantiago. Combines a VitaWave-style music shell (EQ, visualizer, playlists, themes) with VitaMediaDeck-class video playback: H.264 hardware decode, precise touch seek, subtitles, and network streaming (SMB, SFTP, WebDAV, Jellyfin).",
-    "long_description": "SSSPlayer is an all-in-one media player for PlayStation Vita by SergioSSantiago.\n\nMusic:\n- Browse ux0:/music and uma0:/music (MP3, FLAC, OGG)\n- Now Playing with touch scrub on the progress bar\n- 10-band equalizer, spectrum visualizer, M3U playlists\n- Theme system (Terminus CRT theme by default)\n\nVideo:\n- Browse ux0:/video, uma0:/video, ux0:/movies, uma0:/movies\n- Hardware H.264 playback with exact seek / scrub\n- Subtitles and audio tracks\n- Network sources: SMB, SFTP, WebDAV, Jellyfin\n\nInstall:\n1. Download SSSPlayer-x.y.z.vpk from GitHub Releases\n2. Enable FTP in VitaShell\n3. Copy the VPK to ux0: with Cyberduck\n4. Install from VitaShell\n\nCredits: built by SergioSSantiago. Thanks to VitaWave and VitaMediaDeck — SSSPlayer reuses foundations from both projects.\n\nTITLEID: SSSP00001\nData: ux0:data/SSSPlayer/\nLicense: GPL-3.0-only",
-    "author_ids": [
-      "sergiossantiago"
-    ],
-    "category_id": "media",
-    "subcategory_ids": [
-      "audio",
-      "music-player",
-      "video",
-      "video-player",
-      "streaming"
-    ],
-    "version": "1.1.26",
-    "version_date": "2026-09-21",
-    "requirements": "PS Vita / PSTV with HENkaku / enso. Network features need Wi-Fi.",
-    "size": 49073357,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/sssplayer-ps-vita/SSSPlayer-1.1.26.vpk",
-        "size": 49073357,
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/SergioSSantiago/SSSPlayer/releases/latest"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/SergioSSantiago/SSSPlayer"
-      }
-    ],
-    "icon": "https://archive.org/download/sssplayer-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/sssplayer-ps-vita/shot0.png"
-    ],
-    "source_url": "https://github.com/SergioSSantiago/SSSPlayer",
-    "release_page": "https://github.com/SergioSSantiago/SSSPlayer/releases"
   },
   {
     "id": "ultimate-spiderman-total-mayhem",
@@ -395,51 +486,6 @@
     "icon": "https://archive.org/download/the-impossible-game-ps-vita-port/icon0.png",
     "screenshots": [
       "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
-    ]
-  },
-  {
-    "id": "asphalt-5",
-    "title_id": "ASPHALT05",
-    "name": "Asphalt 5",
-    "description": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
-    "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "racing"
-    ],
-    "version": "1.0.3",
-    "version_date": "2026-09-19",
-    "requirements": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
-    "size": 1992294,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.0.3.vpk",
-        "size": 1992294,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
-        "size": 166199296,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/Asphalt-5-Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/asphalt-5-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/asphalt-5-ps-vita/shot0.png"
     ]
   },
   {
@@ -926,52 +972,6 @@
     "icon": "https://archive.org/download/azahar-vita-/icon0.png",
     "screenshots": [
       "https://archive.org/download/azahar-vita-/Shot0.png"
-    ]
-  },
-  {
-    "id": "plants-vs-zombies-2",
-    "title_id": "PVZ2VITA1",
-    "name": "Plants vs Zombies 2",
-    "description": "Plants vs Zombies 2 Ps Vita Port",
-    "long_description": "Plants vs Zombies 2 Ps Vita Port",
-    "author_ids": [
-      "lezergan"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "puzzle",
-      "strategy"
-    ],
-    "version": "v1.1-rc12",
-    "version_date": "2026-09-12",
-    "requirements": "- kubridge\n- libshacccg.suprx\n- Use 4.5.2 ROW / version 147 game files. Other builds are not supported.",
-    "size": 1153434,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2-vita-1.1%20RC12.vpk",
-        "size": 1153434,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
-        "size": 675073229,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/LeZergan/pvz2vita"
-      }
-    ],
-    "icon": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
     ]
   },
   {
