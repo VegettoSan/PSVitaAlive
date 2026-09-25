@@ -7,6 +7,7 @@ namespace diagnostics {
 
 void init();
 void log(const std::string& message);
+void archiveNodeLog(const std::string& message);
 void shutdown();
 
 } // namespace diagnostics

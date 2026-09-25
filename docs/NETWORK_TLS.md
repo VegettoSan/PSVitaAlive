@@ -140,11 +140,21 @@ See [`DOWNLOAD_RESILIENCE.md`](DOWNLOAD_RESILIENCE.md) for the complete resume s
 
 ## Useful diagnostics
 
-Primary log:
+General application/network log:
 
 ```text
 ux0:data/psvitaalive/logs/session.log
 ```
+
+Dedicated Internet Archive node-selection log:
+
+```text
+ux0:data/psvitaalive/logs/archive_nodes.log
+```
+
+`archive_nodes.log` is reset on every client launch and is intentionally verbose. It records the Archive identifier/file, catalog threshold hint, metadata `server`/`d1`/`d2`/`dir`, usable candidates, one-byte fallback probes, 256 KiB speed probes, HTTP/curl result, requested/effective URL, remote IP, redirects, TTFB, elapsed time, bytes, remote total, measured B/s + KiB/s + MiB/s, sorted ranking, selected node, every real transfer attempt, TLS verify result, failover reason/from/to, and the final effective node/outcome. Probe bytes are never written to the payload.
+
+`session.log` remains the broad diagnostic source. Existing concise Archive markers are preserved there for compatibility, while `archive_nodes.log` is the focused file to request from users when investigating slow Archive downloads or incorrect node selection.
 
 Useful network/TLS markers include:
 

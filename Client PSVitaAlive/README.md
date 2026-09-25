@@ -39,7 +39,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 - **Automatic self-update** from [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases) via helper **PSVAUPDT1**
 - Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0); Settings **INFO → SYSTEM** shows NoNpDrm, NoPspEmuDrm, kubridge, fd_fix, libshacccg. Filesystem-backed plugin checks are snapshotted once when Settings opens, so the render loop does not repeatedly read `ur0:tai/config.txt` or probe plugin files.
 - Brand logo / loading splash can use monochrome assets tinted by the active theme
-- Logs: `session.log`, `install.log`, `updater.log`
+- Logs: `session.log`, `install.log`, `archive_nodes.log`, `updater.log`
 
 ## Image cache v3
 
@@ -205,7 +205,7 @@ Some Archive storage edges (`dn*.ca.archive.org`) are slow or unreliable on the 
 4. for files >= 16 MiB, benchmarks candidates sequentially with 256 KiB Range probes and starts on the fastest measured node;
 5. keeps the remaining candidates as failover for TLS, transport and `5xx` failures.
 
-Small payloads use the first responsive direct node without the speed benchmark. Resumes and image/cache requests skip proactive selection. If probing fails, the canonical Archive URL remains the fallback. Logs include `archive selector probe`, `archive selector chose`, `archive selector start` and the existing `archive failover` markers.
+Small payloads use the first responsive direct node without the speed benchmark. Resumes and image/cache requests skip proactive selection. If probing fails, the canonical Archive URL remains the fallback. A dedicated `ux0:data/psvitaalive/logs/archive_nodes.log` is reset each launch and records metadata hosts, candidate URLs, every Range probe, TTFB, IP, redirects, measured B/s + KiB/s + MiB/s, ranking, selected node, each real transfer attempt, failover reason/from/to, effective URL and final outcome. `session.log` remains the general application/network diagnostic log.
 
 SSL defaults (`VERIFYPEER/HOST=0`, clear `CAINFO`/`CAPATH`) are re-applied every attempt.
 

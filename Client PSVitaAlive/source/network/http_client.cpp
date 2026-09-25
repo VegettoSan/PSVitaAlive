@@ -1,4 +1,5 @@
 #include "network/http_client.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <curl/curl.h>
 #include <psp2/kernel/clib.h>
@@ -52,6 +53,10 @@ void httpDiagnostic(const char* message) {
     sceClibSnprintf(line, sizeof(line), "[%llu ms] HTTP %s\n", (unsigned long long)ms, message);
     sceIoWrite(fd, line, std::strlen(line));
     sceIoClose(fd);
+}
+
+void archiveNodeDiagnostic(const std::string& message) {
+    diagnostics::archiveNodeLog(message);
 }
 
 
@@ -186,16 +191,24 @@ static bool fetchArchiveMetadataJson(const std::string& identifier, std::string&
     curl_easy_setopt(m, CURLOPT_WRITEFUNCTION, +writeMeta);
     curl_easy_setopt(m, CURLOPT_WRITEDATA, &body);
     curl_easy_setopt(m, CURLOPT_NOSIGNAL, 1L);
+    archiveNodeDiagnostic(std::string("METADATA_REQUEST id=") + identifier + " url=" + metaUrl);
     const CURLcode rc = curl_easy_perform(m);
     long status = 0;
     curl_easy_getinfo(m, CURLINFO_RESPONSE_CODE, &status);
     curl_easy_cleanup(m);
     if (rc != CURLE_OK || status != 200 || body.empty()) {
-        char msg[240];
-        sceClibSnprintf(msg, sizeof(msg), "archive metadata failed id=%s curl=%d status=%ld",
-            identifier.c_str(), static_cast<int>(rc), status);
+        char msg[320];
+        sceClibSnprintf(msg, sizeof(msg), "archive metadata failed id=%s curl=%d status=%ld bytes=%llu",
+            identifier.c_str(), static_cast<int>(rc), status, (unsigned long long)body.size());
         httpDiagnostic(msg);
+        archiveNodeDiagnostic(std::string("METADATA_RESULT ok=0 ") + msg);
         return false;
+    }
+    {
+        char msg[320];
+        sceClibSnprintf(msg, sizeof(msg), "METADATA_RESULT ok=1 id=%s curl=%d HTTP=%ld bytes=%llu",
+            identifier.c_str(), static_cast<int>(rc), status, (unsigned long long)body.size());
+        archiveNodeDiagnostic(msg);
     }
     jsonOut.swap(body);
     return true;
@@ -211,7 +224,13 @@ static void pushUniqueHost(std::vector<std::string>& hosts, const std::string& h
 static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vector<std::string>& outUrls) {
     outUrls.clear();
     std::string id, file;
-    if (!parseArchiveDownloadParts(originalUrl, id, file)) return false;
+    if (!parseArchiveDownloadParts(originalUrl, id, file)) {
+        archiveNodeDiagnostic(std::string("CANDIDATE_BUILD parse_failed canonical=") + originalUrl);
+        return false;
+    }
+    archiveNodeDiagnostic("------------------------------------------------------------");
+    archiveNodeDiagnostic(std::string("CANDIDATE_BUILD begin identifier=") + id + " file=" + file);
+    archiveNodeDiagnostic(std::string("CANONICAL_URL ") + originalUrl);
     std::string meta;
     if (!fetchArchiveMetadataJson(id, meta)) return false;
     std::string server, d1, d2, dir;
@@ -219,6 +238,13 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vecto
     extractJsonStringField(meta, "d1", d1);
     extractJsonStringField(meta, "d2", d2);
     extractJsonStringField(meta, "dir", dir);
+    archiveNodeDiagnostic(std::string("METADATA_FIELDS server=") + (server.empty() ? "-" : server) +
+        " d1=" + (d1.empty() ? "-" : d1) +
+        " d2=" + (d2.empty() ? "-" : d2) +
+        " dir=" + (dir.empty() ? "-" : dir));
+    if (!server.empty() && hostLooksLikeBadArchiveEdge(server.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_FILTERED host=") + server + " reason=dn_or_ca_edge");
+    if (!d1.empty() && hostLooksLikeBadArchiveEdge(d1.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_FILTERED host=") + d1 + " reason=dn_or_ca_edge");
+    if (!d2.empty() && hostLooksLikeBadArchiveEdge(d2.c_str())) archiveNodeDiagnostic(std::string("METADATA_HOST_FILTERED host=") + d2 + " reason=dn_or_ca_edge");
     if (dir.empty()) {
         // Fallback path used by many IA items when dir is absent from the top-level object.
         dir = std::string("/0/items/") + id;
@@ -250,7 +276,18 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vecto
     }
     if (outUrls.empty()) {
         httpDiagnostic("archive failover: no usable alternate hosts in metadata");
+        archiveNodeDiagnostic("CANDIDATE_BUILD result=none; canonical Archive URL will remain active");
         return false;
+    }
+    {
+        char countMsg[160];
+        sceClibSnprintf(countMsg, sizeof(countMsg), "CANDIDATE_BUILD result=%d usable_direct_nodes", (int)outUrls.size());
+        archiveNodeDiagnostic(countMsg);
+        for (size_t i = 0; i < outUrls.size(); ++i) {
+            char candidateMsg[760];
+            sceClibSnprintf(candidateMsg, sizeof(candidateMsg), "CANDIDATE[%u] url=%s", (unsigned int)i, outUrls[i].c_str());
+            archiveNodeDiagnostic(candidateMsg);
+        }
     }
     char msg[280];
     sceClibSnprintf(msg, sizeof(msg), "archive failover built %d alternate URL(s) for id=%s",
@@ -345,12 +382,16 @@ struct ArchiveProbeContext {
 
 struct ArchiveProbeResult {
     std::string url;
+    std::string effectiveUrl;
+    std::string primaryIp;
     bool ok = false;
     uint64_t bytes = 0;
     uint64_t total = 0;
     uint64_t bytesPerSecond = 0;
     uint64_t elapsedUs = 0;
+    uint64_t ttfbUs = 0;
     long status = 0;
+    long redirectCount = 0;
     CURLcode curlCode = CURLE_OK;
 };
 
@@ -457,6 +498,16 @@ static bool probeArchiveStorageUrl(
     const uint64_t elapsedUs = sceKernelGetProcessTimeWide() - started;
     long status = 0;
     curl_easy_getinfo(p, CURLINFO_RESPONSE_CODE, &status);
+    const char* probeEffective = nullptr;
+    const char* probeIp = nullptr;
+    long probeRedirects = 0;
+    double probeTtfbSec = 0.0;
+    curl_easy_getinfo(p, CURLINFO_EFFECTIVE_URL, &probeEffective);
+    curl_easy_getinfo(p, CURLINFO_PRIMARY_IP, &probeIp);
+    curl_easy_getinfo(p, CURLINFO_REDIRECT_COUNT, &probeRedirects);
+    curl_easy_getinfo(p, CURLINFO_STARTTRANSFER_TIME, &probeTtfbSec);
+    const std::string probeEffectiveCopy = (probeEffective && *probeEffective) ? probeEffective : "";
+    const std::string probeIpCopy = (probeIp && *probeIp) ? probeIp : "";
 
     curl_slist_free_all(headers);
     curl_easy_cleanup(p);
@@ -466,6 +517,10 @@ static bool probeArchiveStorageUrl(
     out.elapsedUs = elapsedUs;
     out.status = status ? status : ctx.responseCode;
     out.curlCode = rc;
+    out.effectiveUrl = probeEffectiveCopy;
+    out.primaryIp = probeIpCopy;
+    out.redirectCount = probeRedirects;
+    out.ttfbUs = probeTtfbSec > 0.0 ? static_cast<uint64_t>(probeTtfbSec * 1000000.0) : 0ULL;
     if (elapsedUs > 0 && ctx.bytes > 0) {
         out.bytesPerSecond = (ctx.bytes * 1000000ULL) / elapsedUs;
     }
@@ -487,6 +542,28 @@ static bool probeArchiveStorageUrl(
         (unsigned long long)out.bytesPerSecond,
         url.c_str());
     httpDiagnostic(msg);
+    {
+        const uint64_t kibPerSecond = out.bytesPerSecond / 1024ULL;
+        const uint64_t mibHundredths = (out.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        char detailed[1500];
+        sceClibSnprintf(detailed, sizeof(detailed),
+            "PROBE requested=%llu ok=%d curl=%d curl_text=%s HTTP=%ld bytes=%llu remote_total=%llu elapsed_ms=%llu ttfb_ms=%llu speed_Bps=%llu speed_KiBps=%llu speed_MiBps=%llu.%02llu redirects=%ld ip=%s requested_url=%s effective_url=%s detail=%s",
+            (unsigned long long)requestedBytes, out.ok ? 1 : 0,
+            static_cast<int>(rc), curl_easy_strerror(rc), out.status,
+            (unsigned long long)out.bytes, (unsigned long long)out.total,
+            (unsigned long long)(out.elapsedUs / 1000ULL),
+            (unsigned long long)(out.ttfbUs / 1000ULL),
+            (unsigned long long)out.bytesPerSecond,
+            (unsigned long long)kibPerSecond,
+            (unsigned long long)(mibHundredths / 100ULL),
+            (unsigned long long)(mibHundredths % 100ULL),
+            out.redirectCount,
+            out.primaryIp.empty() ? "-" : out.primaryIp.c_str(),
+            url.c_str(),
+            out.effectiveUrl.empty() ? "-" : out.effectiveUrl.c_str(),
+            error[0] ? error : "-");
+        archiveNodeDiagnostic(detailed);
+    }
     return out.ok;
 }
 
@@ -499,8 +576,18 @@ static bool rankArchiveAlternateUrls(
     uint64_t sizeHint
 ) {
     if (urls.empty()) return false;
+    {
+        char beginMsg[280];
+        sceClibSnprintf(beginMsg, sizeof(beginMsg),
+            "SELECTOR_BEGIN candidates=%u size_hint=%llu threshold=%llu probe_bytes=%llu",
+            (unsigned int)urls.size(),
+            (unsigned long long)sizeHint,
+            (unsigned long long)ARCHIVE_SELECTOR_MIN_BYTES,
+            (unsigned long long)ARCHIVE_SELECTOR_PROBE_BYTES);
+        archiveNodeDiagnostic(beginMsg);
+    }
 
-    // The catalog/link size is intentionally only a threshold hint. It never
+    // The catalog/link size is intentionally only a threshold hint.
     // becomes authoritative transfer metadata and is never used for integrity.
     // When absent, preserve the previous one-byte Range probe as the fallback
     // for deciding whether the payload crosses the 16 MiB benchmark threshold.
@@ -529,12 +616,14 @@ static bool rankArchiveAlternateUrls(
             "archive selector threshold source=range size=%llu",
             (unsigned long long)decisionSize);
         httpDiagnostic(sourceMsg);
+        archiveNodeDiagnostic(sourceMsg);
     } else {
         char sourceMsg[180];
         sceClibSnprintf(sourceMsg, sizeof(sourceMsg),
             "archive selector threshold source=catalog-hint size=%llu",
             (unsigned long long)decisionSize);
         httpDiagnostic(sourceMsg);
+        archiveNodeDiagnostic(sourceMsg);
     }
 
     if (decisionSize < ARCHIVE_SELECTOR_MIN_BYTES) {
@@ -559,9 +648,11 @@ static bool rankArchiveAlternateUrls(
             "archive selector: small file decision=%llu; use responsive direct node without speed benchmark -> %s",
             (unsigned long long)decisionSize, urls.front().c_str());
         httpDiagnostic(msg);
+        archiveNodeDiagnostic(std::string("BENCHMARK_SKIPPED reason=below_16MiB ") + msg);
         return true;
     }
 
+    archiveNodeDiagnostic("BENCHMARK_BEGIN mode=sequential each_probe=256KiB");
     std::vector<ArchiveProbeResult> probes;
     probes.reserve(urls.size());
     for (const auto& candidate : urls) {
@@ -589,6 +680,30 @@ static bool rankArchiveAlternateUrls(
         }
     }
 
+    archiveNodeDiagnostic("RANKING_BEGIN fastest successful candidate first");
+    for (size_t i = 0; i < probes.size(); ++i) {
+        const auto& p = probes[i];
+        const uint64_t kibPerSecond = p.bytesPerSecond / 1024ULL;
+        const uint64_t mibHundredths = (p.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        char ranked[1200];
+        sceClibSnprintf(ranked, sizeof(ranked),
+            "RANK[%u] ok=%d speed_Bps=%llu speed_KiBps=%llu speed_MiBps=%llu.%02llu HTTP=%ld curl=%d ttfb_ms=%llu elapsed_ms=%llu redirects=%ld ip=%s url=%s effective=%s",
+            (unsigned int)(i + 1), p.ok ? 1 : 0,
+            (unsigned long long)p.bytesPerSecond,
+            (unsigned long long)kibPerSecond,
+            (unsigned long long)(mibHundredths / 100ULL),
+            (unsigned long long)(mibHundredths % 100ULL),
+            p.status, static_cast<int>(p.curlCode),
+            (unsigned long long)(p.ttfbUs / 1000ULL),
+            (unsigned long long)(p.elapsedUs / 1000ULL),
+            p.redirectCount,
+            p.primaryIp.empty() ? "-" : p.primaryIp.c_str(),
+            p.url.c_str(),
+            p.effectiveUrl.empty() ? "-" : p.effectiveUrl.c_str());
+        archiveNodeDiagnostic(ranked);
+    }
+    archiveNodeDiagnostic("RANKING_END");
+
     urls.clear();
     for (const auto& p : probes) urls.push_back(p.url);
 
@@ -599,6 +714,7 @@ static bool rankArchiveAlternateUrls(
         (unsigned long long)probes.front().total,
         probes.front().url.c_str());
     httpDiagnostic(chosen);
+    archiveNodeDiagnostic(std::string("SELECTED ") + chosen);
     return probes.front().ok;
 }
 
@@ -1317,6 +1433,22 @@ HttpResult HttpClient::downloadToFile(
     bool archiveMetaTried = false;
     std::string activeUrl = url;
 
+    if (isArchive) {
+        std::string archiveId, archiveFile;
+        parseArchiveDownloadParts(url, archiveId, archiveFile);
+        archiveNodeDiagnostic("============================================================");
+        char requestMsg[1500];
+        sceClibSnprintf(requestMsg, sizeof(requestMsg),
+            "DOWNLOAD_REQUEST identifier=%s file=%s resume=%llu size_hint=%llu max_attempt_override=%d destination=%s canonical=%s",
+            archiveId.empty() ? "-" : archiveId.c_str(),
+            archiveFile.empty() ? "-" : archiveFile.c_str(),
+            (unsigned long long)resumeOffset,
+            (unsigned long long)archiveSelectionSizeHint,
+            maxAttemptsOverride,
+            destinationPath.c_str(), url.c_str());
+        archiveNodeDiagnostic(requestMsg);
+    }
+
     // Fresh payload downloads can avoid a slow Archive redirect before writing any
     // bytes. maxAttemptsOverride != 0 is used by small image/cache requests, which
     // deliberately skip this selector to avoid metadata/probe overhead. Resumes also
@@ -1331,12 +1463,18 @@ HttpResult HttpClient::downloadToFile(
                 sceClibSnprintf(selected, sizeof(selected),
                     "archive selector start -> %s", activeUrl.c_str());
                 httpDiagnostic(selected);
+                archiveNodeDiagnostic(std::string("REAL_DOWNLOAD_SELECTED url=") + activeUrl +
+                    " fallback_candidates_remaining=" + std::to_string(archiveAltUrls.size() > 1 ? archiveAltUrls.size() - 1 : 0));
             } else {
+                archiveNodeDiagnostic("SELECTOR_RESULT no proactive winner; canonical URL starts first");
                 // Metadata candidates remain available for the existing failure-driven
                 // failover, but the first real attempt stays on the canonical URL.
                 archiveAltIndex = 0;
             }
         }
+    } else if (isArchive) {
+        if (resumeOffset > 0) archiveNodeDiagnostic("SELECTOR_SKIPPED reason=resume");
+        else if (maxAttemptsOverride != 0) archiveNodeDiagnostic("SELECTOR_SKIPPED reason=explicit_retry_override");
     }
 
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
@@ -1433,6 +1571,17 @@ HttpResult HttpClient::downloadToFile(
             }
         }
 
+        if (isArchive) {
+            char attemptBegin[1200];
+            sceClibSnprintf(attemptBegin, sizeof(attemptBegin),
+                "TRANSFER_ATTEMPT_BEGIN attempt=%d/%d resume=%llu ssl_mode=%ld fresh=%d active_url=%s",
+                attempt + 1, kMaxAttempts,
+                (unsigned long long)ctx.resumeOffset,
+                sslAttempts[sslIdx], needFresh ? 1 : 0,
+                activeUrl.c_str());
+            archiveNodeDiagnostic(attemptBegin);
+        }
+
         // Response headers belong to this attempt. Clear range-derived state so a
         // previous retry/redirect cannot leak an old total into the next response.
         ctx.total = 0;
@@ -1456,6 +1605,41 @@ HttpResult HttpClient::downloadToFile(
             lastSslVerifyResult = sslVerifyResult;
         else
             lastSslVerifyResult = 0;
+
+        if (isArchive) {
+            const char* attemptEffective = nullptr;
+            const char* attemptIp = nullptr;
+            long attemptRedirects = 0;
+            double attemptTotalSec = 0.0;
+            double attemptTtfbSec = 0.0;
+            curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &attemptEffective);
+            curl_easy_getinfo(curl, CURLINFO_PRIMARY_IP, &attemptIp);
+            curl_easy_getinfo(curl, CURLINFO_REDIRECT_COUNT, &attemptRedirects);
+            curl_easy_getinfo(curl, CURLINFO_TOTAL_TIME, &attemptTotalSec);
+            curl_easy_getinfo(curl, CURLINFO_STARTTRANSFER_TIME, &attemptTtfbSec);
+            const uint64_t kibPerSecond = ctx.bytesPerSecond / 1024ULL;
+            const uint64_t mibHundredths = (ctx.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+            char attemptEnd[1700];
+            sceClibSnprintf(attemptEnd, sizeof(attemptEnd),
+                "TRANSFER_ATTEMPT_RESULT attempt=%d/%d curl=%d curl_text=%s HTTP=%ld bytes_this_attempt=%llu absolute=%llu remote_total=%llu sampled_speed_Bps=%llu sampled_speed_KiBps=%llu sampled_speed_MiBps=%llu.%02llu total_ms=%llu ttfb_ms=%llu redirects=%ld ssl_verify=%ld ip=%s active_url=%s effective_url=%s detail=%s",
+                attempt + 1, kMaxAttempts,
+                static_cast<int>(result), curl_easy_strerror(result), responseCode,
+                (unsigned long long)ctx.downloaded,
+                (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
+                (unsigned long long)ctx.total,
+                (unsigned long long)ctx.bytesPerSecond,
+                (unsigned long long)kibPerSecond,
+                (unsigned long long)(mibHundredths / 100ULL),
+                (unsigned long long)(mibHundredths % 100ULL),
+                (unsigned long long)(attemptTotalSec * 1000.0),
+                (unsigned long long)(attemptTtfbSec * 1000.0),
+                attemptRedirects, lastSslVerifyResult,
+                (attemptIp && *attemptIp) ? attemptIp : "-",
+                activeUrl.c_str(),
+                (attemptEffective && *attemptEffective) ? attemptEffective : "-",
+                curlError[0] ? curlError : "-");
+            archiveNodeDiagnostic(attemptEnd);
+        }
 
         if (ctx.cancelled) break;
 
@@ -1592,12 +1776,20 @@ HttpResult HttpClient::downloadToFile(
                     archiveAltIndex = 0;
                 }
                 if (archiveAltIndex < archiveAltUrls.size()) {
+                    const std::string previousArchiveUrl = activeUrl;
                     activeUrl = archiveAltUrls[archiveAltIndex++];
                     char sw[360];
                     sceClibSnprintf(sw, sizeof(sw),
                         "archive failover switch HTTP=%ld -> %s",
                         responseCode, activeUrl.c_str());
                     httpDiagnostic(sw);
+                    char detailedSwitch[1500];
+                    sceClibSnprintf(detailedSwitch, sizeof(detailedSwitch),
+                        "FAILOVER reason=http_%ld from=%s to=%s next_index=%u remaining=%u",
+                        responseCode, previousArchiveUrl.c_str(), activeUrl.c_str(),
+                        (unsigned int)archiveAltIndex,
+                        (unsigned int)(archiveAltUrls.size() > archiveAltIndex ? archiveAltUrls.size() - archiveAltIndex : 0));
+                    archiveNodeDiagnostic(detailedSwitch);
                     curl_easy_setopt(curl, CURLOPT_URL, activeUrl.c_str());
                     curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, 1L);
                     curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, 1L);
@@ -1722,12 +1914,23 @@ HttpResult HttpClient::downloadToFile(
                     archiveAltIndex = 0;
                 }
                 if (archiveAltIndex < archiveAltUrls.size()) {
+                    const std::string previousArchiveUrl = activeUrl;
                     activeUrl = archiveAltUrls[archiveAltIndex++];
                     char sw[360];
                     sceClibSnprintf(sw, sizeof(sw),
                         "archive failover switch curl=%d ssl_verify=%ld -> %s",
                         static_cast<int>(result), lastSslVerifyResult, activeUrl.c_str());
                     httpDiagnostic(sw);
+                    char detailedSwitch[1700];
+                    sceClibSnprintf(detailedSwitch, sizeof(detailedSwitch),
+                        "FAILOVER reason=transport curl=%d curl_text=%s tls_like=%d ssl_verify=%ld bad_edge=%d from=%s to=%s effective_before=%s detail=%s next_index=%u remaining=%u",
+                        static_cast<int>(result), curl_easy_strerror(result), tlsLikeFailure ? 1 : 0,
+                        lastSslVerifyResult, badEdge ? 1 : 0,
+                        previousArchiveUrl.c_str(), activeUrl.c_str(), eff && *eff ? eff : "-",
+                        curlError[0] ? curlError : "-",
+                        (unsigned int)archiveAltIndex,
+                        (unsigned int)(archiveAltUrls.size() > archiveAltIndex ? archiveAltUrls.size() - archiveAltIndex : 0));
+                    archiveNodeDiagnostic(detailedSwitch);
                     curl_easy_setopt(curl, CURLOPT_URL, activeUrl.c_str());
                     curl_easy_setopt(curl, CURLOPT_FRESH_CONNECT, 1L);
                     curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, 1L);
@@ -1780,21 +1983,26 @@ HttpResult HttpClient::downloadToFile(
         effectiveUrlCopy[0] ? effectiveUrlCopy : "-",
         curlError[0] ? curlError : "-");
     httpDiagnostic(resultMsg);
+    if (isArchive) archiveNodeDiagnostic(std::string("FINAL_TRANSFER ") + resultMsg);
 
     if (ctx.cancelled) {
+        if (isArchive) archiveNodeDiagnostic("OUTCOME cancelled_by_user_or_callback");
         setError("cancelled");
         return HttpResult::Cancelled;
     }
     if (result == CURLE_ABORTED_BY_CALLBACK) {
+        if (isArchive) archiveNodeDiagnostic("OUTCOME error=transfer_aborted_by_callback");
         setError("transfer aborted");
         return HttpResult::NetworkError;
     }
 
     if (ctx.ioError) {
+        if (isArchive) archiveNodeDiagnostic("OUTCOME error=sceIoWrite_failed");
         setError("sceIoWrite failed");
         return HttpResult::IoError;
     }
     if (result != CURLE_OK) {
+        if (isArchive) archiveNodeDiagnostic(std::string("OUTCOME error=curl_") + std::to_string(static_cast<int>(result)) + " " + curl_easy_strerror(result));
         char message[460];
         sceClibSnprintf(
             message,
@@ -1814,6 +2022,7 @@ HttpResult HttpClient::downloadToFile(
         ctx.totalFromContentRange &&
         ctx.resumeOffset == ctx.total;
     if (!rangeAlreadyComplete && responseCode != 200 && responseCode != 206) {
+        if (isArchive) archiveNodeDiagnostic(std::string("OUTCOME error=http_status_") + std::to_string(responseCode));
         char message[96];
         sceClibSnprintf(message, sizeof(message), "HTTP status %ld", responseCode);
         setError(message);
@@ -1857,9 +2066,29 @@ HttpResult HttpClient::downloadToFile(
                 (unsigned long long)ctx.total);
             setError(err);
             httpDiagnostic(err);
+            if (isArchive) archiveNodeDiagnostic(std::string("OUTCOME error=size_mismatch ") + err);
             // Leave .part in place for diagnostics; caller must not treat as success.
             return HttpResult::NetworkError;
         }
+    }
+
+    if (isArchive) {
+        char success[1500];
+        const uint64_t finalKib = ctx.bytesPerSecond / 1024ULL;
+        const uint64_t finalMibHundredths = (ctx.bytesPerSecond * 100ULL) / (1024ULL * 1024ULL);
+        sceClibSnprintf(success, sizeof(success),
+            "OUTCOME success HTTP=%ld absolute=%llu remote_total=%llu sampled_final_speed_Bps=%llu sampled_final_speed_KiBps=%llu sampled_final_speed_MiBps=%llu.%02llu redirects=%ld selected_or_active_url=%s effective_url=%s",
+            responseCode,
+            (unsigned long long)(ctx.resumeOffset + ctx.downloaded),
+            (unsigned long long)ctx.total,
+            (unsigned long long)ctx.bytesPerSecond,
+            (unsigned long long)finalKib,
+            (unsigned long long)(finalMibHundredths / 100ULL),
+            (unsigned long long)(finalMibHundredths % 100ULL),
+            redirectCount, activeUrl.c_str(),
+            effectiveUrlCopy[0] ? effectiveUrlCopy : "-");
+        archiveNodeDiagnostic(success);
+        archiveNodeDiagnostic("============================================================");
     }
 
     sceClibPrintf("[HttpClient] done status=%ld downloaded=%llu absolute=%llu range=%d speed=%llu B/s redirects=%ld effective=%s\n",
