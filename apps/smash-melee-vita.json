@@ -13,17 +13,17 @@
     "platformer",
     "strategy"
   ],
-  "version": "0.8.4",
-  "version_date": "2026-09-21",
+  "version": "0.8.12",
+  "version_date": "2026-09-24",
   "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
-  "size": 5242880,
+  "size": 6710886,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita%20v0.8.4.vpk",
-      "size": 5242880,
+      "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita%20v0.8.12.vpk",
+      "size": 6710886,
       "recommended": true
     },
     {

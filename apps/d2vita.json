@@ -13,17 +13,17 @@
     "rpg",
     "strategy"
   ],
-  "version": "0.1.9",
-  "version_date": "2026-09-21",
+  "version": "0.1.10",
+  "version_date": "2026-09-22",
   "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
-  "size": 7759462,
+  "size": 7864320,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.9.vpk",
-      "size": 7759462,
+      "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.10.vpk",
+      "size": 7864320,
       "recommended": true
     },
     {

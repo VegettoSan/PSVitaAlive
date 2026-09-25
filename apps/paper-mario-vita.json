@@ -13,8 +13,8 @@
     "platformer",
     "puzzle"
   ],
-  "version": "0.1.0",
-  "version_date": "2026-09-21",
+  "version": "0.3.1",
+  "version_date": "2026-09-23",
   "requirements": "- A homebrew-enabled PS Vita or PS TV",
   "size": 7969178,
   "status": "Verified",
@@ -22,7 +22,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.1.0.vpk",
+      "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.3.1.vpk",
       "size": 7969178,
       "recommended": true
     },

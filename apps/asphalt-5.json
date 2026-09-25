@@ -12,8 +12,8 @@
     "arcade",
     "racing"
   ],
-  "version": "1.0.3",
-  "version_date": "2026-09-19",
+  "version": "1.1.0",
+  "version_date": "2026-09-24",
   "requirements": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
   "size": 1992294,
   "status": "Verified",
@@ -21,7 +21,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.0.3.vpk",
+      "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.1.0.vpk",
       "size": 1992294,
       "recommended": true
     },

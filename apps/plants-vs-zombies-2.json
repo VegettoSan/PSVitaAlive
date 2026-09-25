@@ -13,8 +13,8 @@
     "puzzle",
     "strategy"
   ],
-  "version": "v1.1-rc12",
-  "version_date": "2026-09-12",
+  "version": "v1.1-rc25",
+  "version_date": "2026-09-24",
   "requirements": "- kubridge\n- libshacccg.suprx\n- Use 4.5.2 ROW / version 147 game files. Other builds are not supported.",
   "size": 1153434,
   "status": "Verified",
@@ -22,7 +22,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2-vita-1.1%20RC12.vpk",
+      "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2-vita-1.1%20RC25.vpk",
       "size": 1153434,
       "recommended": true
     },
