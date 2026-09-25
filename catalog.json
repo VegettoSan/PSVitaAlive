@@ -18701,16 +18701,8 @@
     "version": "beta.1",
     "version_date": "2024-06-11",
     "requirements": "- Game Data Files: PC",
-    "size": 429964328,
+    "size": 429964394,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-blasphemous-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -18719,21 +18711,31 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Repository",
-        "url": "https://github.com/gl00mm/Blasphemous_PSVITA"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-blasphemous-vita/Game%20Files.zip",
+        "size": 816840704,
+        "extract_path": "ux0:app/"
       },
       {
         "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/gl00mm/Blasphemous_PSVITA/releases/tag/Blasphemous_PSVITA-beta.1"
+        "name": "Repository",
+        "url": "https://github.com/gl00mm/Blasphemous_PSVITA"
       }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-blasphemous-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-blasphemous-vita/shot_05.png"
     ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1209",
     "source_url": "https://github.com/gl00mm/Blasphemous_PSVITA",
     "release_page": "https://github.com/gl00mm/Blasphemous_PSVITA",
-    "updated_at": "2026-08-13T15:34:48.437583+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "fallout-2-ce",
@@ -30441,27 +30443,21 @@
     "long_description": "This is a wrapper/port of Craxy Taxi Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
     "author_ids": [
       "aap",
-      "vitahex-games",
+      "rinnegatamante",
       "theflow",
-      "rinnegatamante"
+      "vitahex-games"
     ],
     "category_id": "ports",
     "subcategory_ids": [
+      "arcade",
+      "racing",
       "other"
     ],
     "version": "v.1.2",
     "version_date": "2022-06-14",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-    "size": 1468779,
+    "size": 1469055,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-crazy-taxi-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -30470,14 +30466,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases/tag/v1.2"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip",
+        "size": 243793920,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
@@ -30485,11 +30478,19 @@
         "url": "https://github.com/TheOfficialFloW/crazytaxi_vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-crazy-taxi-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "728",
     "source_url": "https://github.com/TheOfficialFloW/crazytaxi_vita",
     "release_page": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases",
-    "updated_at": "2026-08-13T15:34:48.544353+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "chinese-social-credit-test",
@@ -38061,6 +38062,10 @@
     ],
     "category_id": "ports",
     "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy",
       "other"
     ],
     "version": "r4",
@@ -38068,14 +38073,6 @@
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
     "size": 993040,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-max-payne/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-max-payne/shot_01.png",
-      "https://archive.org/download/psvitaalive-max-payne/shot_02.png",
-      "https://archive.org/download/psvitaalive-max-payne/shot_03.png",
-      "https://archive.org/download/psvitaalive-max-payne/shot_04.png",
-      "https://archive.org/download/psvitaalive-max-payne/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -38084,14 +38081,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/fgsfdsfgs/max_vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/fgsfdsfgs/max_vita/releases/tag/r4"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-max-payne/Game%20Files.zip",
+        "size": 866648064,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
@@ -38099,11 +38093,19 @@
         "url": "https://github.com/fgsfdsfgs/max_vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-max-payne/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-max-payne/shot_01.png",
+      "https://archive.org/download/psvitaalive-max-payne/shot_02.png",
+      "https://archive.org/download/psvitaalive-max-payne/shot_03.png",
+      "https://archive.org/download/psvitaalive-max-payne/shot_04.png",
+      "https://archive.org/download/psvitaalive-max-payne/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "612",
     "source_url": "https://github.com/fgsfdsfgs/max_vita",
     "release_page": "https://github.com/fgsfdsfgs/max_vita/releases",
-    "updated_at": "2026-08-13T15:34:48.596035+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "hurrican",
