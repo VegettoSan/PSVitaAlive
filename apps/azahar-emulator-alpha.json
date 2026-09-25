@@ -41,6 +41,11 @@
       "extract_path": "ur0:tai/",
       "section": "*KERNEL",
       "line": "ur0:tai/CapUnlocker.skprx"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/Grarak/azahar"
     }
   ],
   "icon": "https://archive.org/download/azahar-vita-/icon0.png",
