@@ -1125,6 +1125,55 @@
     ]
   },
   {
+    "id": "gun-bros",
+    "title_id": "BROS00001",
+    "name": "Gun Bros",
+    "description": "Port of Gun Bros Psvita",
+    "long_description": "Gun Bros is a top-down twin-stick shooter developed by Glu Mobile. Play as Percy or Francis Gun and fight endless waves of enemies using a wide variety of weapons and gear. The game combines fast-paced shooting with character and equipment upgrades",
+    "author_ids": [
+      "rocroverss"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "arcade",
+      "shooter"
+    ],
+    "version": "1.0",
+    "version_date": "2026-09-09",
+    "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder.\n- Install libshacccg.suprx to ur0:/data/ or ur0:/data/external/. If you do not have it, follow a libshacccg extraction guide.\n- The game runs correctly at the default 444 MHz CPU clock. For the best performance, however, it's recommended to install PSVshell and overclock the Vita to 500 MHz.",
+    "size": 3355443,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.0.vpk",
+        "size": 3355443,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
+        "size": 226072986,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Rocroverss/Gun-Bros-Psvita"
+      }
+    ],
+    "icon": "https://archive.org/download/gun-bros-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/gun-bros-ps-vita/bg0.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot0.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot1.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "gravity-guy",
     "title_id": "GRVG00001",
     "name": "Gravity Guy",
