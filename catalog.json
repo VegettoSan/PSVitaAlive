@@ -1,5 +1,60 @@
 [
   {
+    "id": "arcaea",
+    "title_id": "ARCA69420",
+    "name": "Arcaea",
+    "description": "PS Vita .so loader port of Arcaea",
+    "long_description": "Arcaea is a mobile rhythm game developed by lowiro, released on March 9, 2017. The game known for its deep storyline and unique gameplay mechanics; players tap, hold, and slide on a musical arc as they follow notes that appear in time with music. It also features both \"sky\" and \"ground\" notes that players must interact with.",
+    "author_ids": [
+      "memoryhunter"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "puzzle",
+      "strategy"
+    ],
+    "version": "1.0",
+    "version_date": "2026-09-24",
+    "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder (usually ur0:tai) and adding two entries to your config.txt under *KERNEL\n- Extract libfmodstudio.suprx from PCSE01188 or PCSE01426\n- Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console.",
+    "size": 2726298,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/arcaea-ps-vita/arcaea%20v1.0.vpk",
+        "size": 2726298,
+        "recommended": true
+      },
+      {
+        "type": "Data Files",
+        "name": "FMOD Libs",
+        "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/Data%20Files.zip",
+        "size": 1468006,
+        "extract_path": "ur0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/arcaea-ps-vita/Game%20Files.zip",
+        "size": 505833062,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/memory-hunter/arcaea-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/arcaea-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/arcaea-ps-vita/shot0.png",
+      "https://archive.org/download/arcaea-ps-vita/shot1.png",
+      "https://archive.org/download/arcaea-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "asphalt-5",
     "title_id": "ASPHALT05",
     "name": "Asphalt 5",
