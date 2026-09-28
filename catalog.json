@@ -1,5 +1,292 @@
 [
   {
+    "id": "asphalt-5",
+    "title_id": "ASPHALT05",
+    "name": "Asphalt 5",
+    "description": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
+    "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing"
+    ],
+    "version": "1.2.0",
+    "version_date": "2026-09-28",
+    "requirements": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
+    "size": 1992294,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.2.0.vpk",
+        "size": 1992294,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
+        "size": 166199296,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Asphalt-5-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/asphalt-5-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/asphalt-5-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "d2vita",
+    "title_id": "DTWO00001",
+    "name": "D2Vita",
+    "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
+    "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.",
+    "author_ids": [
+      "franckrst"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "version": "0.1.12",
+    "version_date": "2026-09-27",
+    "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
+    "size": 7969178,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.12.vpk",
+        "size": 7969178,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files English",
+        "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
+        "size": 2018634629,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
+        "size": 2190433321,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Franckrst/D2Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/D2Vita/newicon0.png",
+    "screenshots": [
+      "https://archive.org/download/D2Vita/shot0.png",
+      "https://archive.org/download/D2Vita/shot1.png"
+    ]
+  },
+  {
+    "id": "shadow-guardian",
+    "title_id": "PSVSGHD01",
+    "name": "Shadow Guardian",
+    "description": "This is a wrapper/port of Shadow Guardian HD for the PS Vita.",
+    "long_description": "The port works by loading the official Android ARMv7 libshadowguardian.so executable in memory, resolving its imports with custom stubs, and patching it to properly run on the PS Vita using a fake JNI environment and translating OpenGL ES 2.0 calls to vitaGL.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy"
+    ],
+    "version": "1.4.0",
+    "version_date": "2026-09-27",
+    "requirements": "- Install the kubridge and fd_fix plugins on your PS Vita.\n- Install libshacccg.suprx, if you don't have it already.",
+    "size": 1153434,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/shadow-guardian-ps-vita/shadowguardian%20v1.4.0.vpk",
+        "size": 1153434,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
+        "size": 598946611,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/MetalSyntax/Shadow-Guardian-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/shadow-guardian-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/shadow-guardian-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "sonic-r",
+    "title_id": "SONICR001",
+    "name": "Sonic R",
+    "description": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "long_description": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "author_ids": [
+      "fr3dsp"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "puzzle"
+    ],
+    "version": "1.2",
+    "version_date": "2026-09-27",
+    "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
+    "size": 4089446,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v1.2.vpk",
+        "size": 4089446,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
+        "size": 647705395,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/fr3dsp/sonic-r-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
+    ]
+  },
+  {
+    "id": "paper-mario-vita",
+    "title_id": "PPMR00001",
+    "name": "Paper Mario Vita",
+    "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+    "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+    "author_ids": [
+      "kaziema"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle"
+    ],
+    "version": "0.4.0",
+    "version_date": "2026-09-26",
+    "requirements": "- A homebrew-enabled PS Vita or PS TV",
+    "size": 7969178,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.4.0.vpk",
+        "size": 7969178,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
+        "size": 41943040,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/kaziema/pmvita"
+      }
+    ],
+    "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/paper-mario-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "smash-melee-vita",
+    "title_id": "MLVITA002",
+    "name": "Smash Melee Vita",
+    "description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
+    "long_description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
+    "author_ids": [
+      "zm2283145"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "strategy"
+    ],
+    "version": "0.8.15",
+    "version_date": "2026-09-26",
+    "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
+    "size": 6710886,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/smash-melee-port-ps-vita/SmashMeleevita%20v0.8.15.vpk",
+        "size": 6710886,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip",
+        "size": 1503238554,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/zm2283145/melee-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/smash-melee-port-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/smash-melee-port-ps-vita/Shot1.png",
+      "https://archive.org/download/smash-melee-port-ps-vita/pic0.png"
+    ]
+  },
+  {
     "id": "arcaea",
     "title_id": "ARCA69420",
     "name": "Arcaea",
@@ -55,51 +342,6 @@
     ]
   },
   {
-    "id": "asphalt-5",
-    "title_id": "ASPHALT05",
-    "name": "Asphalt 5",
-    "description": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
-    "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "racing"
-    ],
-    "version": "1.1.0",
-    "version_date": "2026-09-24",
-    "requirements": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
-    "size": 1992294,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.1.0.vpk",
-        "size": 1992294,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
-        "size": 166199296,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/Asphalt-5-Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/asphalt-5-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/asphalt-5-ps-vita/shot0.png"
-    ]
-  },
-  {
     "id": "plants-vs-zombies-2",
     "title_id": "PVZ2VITA1",
     "name": "Plants vs Zombies 2",
@@ -143,101 +385,6 @@
     "icon": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
     "screenshots": [
       "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
-    ]
-  },
-  {
-    "id": "smash-melee-vita",
-    "title_id": "MLVITA002",
-    "name": "Smash Melee Vita",
-    "description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
-    "long_description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
-    "author_ids": [
-      "zm2283145"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "strategy"
-    ],
-    "version": "0.8.12",
-    "version_date": "2026-09-24",
-    "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
-    "size": 6710886,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita%20v0.8.12.vpk",
-        "size": 6710886,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/smash-melee-vita/Game%20Files.zip",
-        "size": 1503238554,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/zm2283145/melee-Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/smash-melee-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/smash-melee-vita/Shot1.png",
-      "https://archive.org/download/smash-melee-vita/pic0.png"
-    ]
-  },
-  {
-    "id": "sonic-r",
-    "title_id": "SONICR001",
-    "name": "Sonic R",
-    "description": "A reimplementation of Sonic R for the PlayStation Vita.",
-    "long_description": "A reimplementation of Sonic R for the PlayStation Vita.",
-    "author_ids": [
-      "fr3dsp"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "puzzle"
-    ],
-    "version": "1.1",
-    "version_date": "2026-09-24",
-    "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
-    "size": 4089446,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v1.1.vpk",
-        "size": 4089446,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
-        "size": 647705395,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/fr3dsp/sonic-r-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
-      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
-      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
     ]
   },
   {
@@ -383,106 +530,6 @@
       "https://archive.org/download/nfs2-se-ps-vita/shot1.jpg",
       "https://archive.org/download/nfs2-se-ps-vita/shot2.jpg",
       "https://archive.org/download/nfs2-se-ps-vita/shot3.jpg"
-    ]
-  },
-  {
-    "id": "paper-mario-vita",
-    "title_id": "PPMR00001",
-    "name": "Paper Mario Vita",
-    "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-    "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-    "author_ids": [
-      "kaziema"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "puzzle"
-    ],
-    "version": "0.3.1",
-    "version_date": "2026-09-23",
-    "requirements": "- A homebrew-enabled PS Vita or PS TV",
-    "size": 7969178,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.3.1.vpk",
-        "size": 7969178,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files USA",
-        "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
-        "size": 41943040,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/kaziema/pmvita"
-      }
-    ],
-    "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/paper-mario-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "d2vita",
-    "title_id": "DTWO00001",
-    "name": "D2Vita",
-    "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
-    "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.",
-    "author_ids": [
-      "franckrst"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "puzzle",
-      "rpg",
-      "strategy"
-    ],
-    "version": "0.1.10",
-    "version_date": "2026-09-22",
-    "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
-    "size": 7864320,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.10.vpk",
-        "size": 7864320,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files English",
-        "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
-        "size": 2018634629,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Spanish",
-        "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
-        "size": 2190433321,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Franckrst/D2Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/D2Vita/newicon0.png",
-    "screenshots": [
-      "https://archive.org/download/D2Vita/shot0.png",
-      "https://archive.org/download/D2Vita/shot1.png"
     ]
   },
   {
@@ -643,6 +690,52 @@
     "updated_at": "2026-08-22T15:39"
   },
   {
+    "id": "dungeon-hunter-2",
+    "title_id": "PSVDH0002",
+    "name": "Dungeon Hunter 2",
+    "description": "Dungeon Hunter 2 native port for PS Vita via so-loader",
+    "long_description": "A native port of Gameloft's Dungeon Hunter 2 (Android) to the PlayStation Vita, built on TheFloW's so-loader technique: the original Android .so libraries are relocated and run directly on the Vita, with a from-scratch FalsoJNI-based bridge standing in for the parts of the Android runtime the game calls into (rendering surface, touch input, asset loading, audio), rendering through vitaGL built from source.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy"
+    ],
+    "version": "1.1.0",
+    "version_date": "2026-09-20",
+    "requirements": "- No data",
+    "size": 1572864,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/dungeon-hunter-2-ps-vita/dungeon_hunter_2%20v1.1.0.vpk",
+        "size": 1572864,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/dungeon-hunter-2-ps-vita/Game%20Files.zip",
+        "size": 667523482,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/MetalSyntax/Dungeon-Hunter-2-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/dungeon-hunter-2-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/dungeon-hunter-2-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "the-impossible-game",
     "title_id": "PSVTIG001",
     "name": "The Impossible Game",
@@ -686,53 +779,6 @@
     "icon": "https://archive.org/download/the-impossible-game-ps-vita-port/icon0.png",
     "screenshots": [
       "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
-    ]
-  },
-  {
-    "id": "shadow-guardian",
-    "title_id": "PSVSGHD01",
-    "name": "Shadow Guardian",
-    "description": "This is a wrapper/port of Shadow Guardian HD for the PS Vita.",
-    "long_description": "The port works by loading the official Android ARMv7 libshadowguardian.so executable in memory, resolving its imports with custom stubs, and patching it to properly run on the PS Vita using a fake JNI environment and translating OpenGL ES 2.0 calls to vitaGL.",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "fps",
-      "shooter",
-      "strategy"
-    ],
-    "version": "1.3.0",
-    "version_date": "2026-09-19",
-    "requirements": "- Install the kubridge and fd_fix plugins on your PS Vita.\n- Install libshacccg.suprx, if you don't have it already.",
-    "size": 1153434,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/shadow-guardian-ps-vita/shadowguardian%20v1.3.0.vpk",
-        "size": 1153434,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
-        "size": 598946611,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/MetalSyntax/Shadow-Guardian-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/shadow-guardian-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/shadow-guardian-ps-vita/shot0.png"
     ]
   },
   {
