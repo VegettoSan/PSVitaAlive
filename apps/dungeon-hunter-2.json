@@ -1,0 +1,46 @@
+{
+  "id": "dungeon-hunter-2",
+  "title_id": "PSVDH0002",
+  "name": "Dungeon Hunter 2",
+  "description": "Dungeon Hunter 2 native port for PS Vita via so-loader",
+  "long_description": "A native port of Gameloft's Dungeon Hunter 2 (Android) to the PlayStation Vita, built on TheFloW's so-loader technique: the original Android .so libraries are relocated and run directly on the Vita, with a from-scratch FalsoJNI-based bridge standing in for the parts of the Android runtime the game calls into (rendering surface, touch input, asset loading, audio), rendering through vitaGL built from source.",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "rpg",
+    "strategy"
+  ],
+  "version": "1.1.0",
+  "version_date": "2026-09-20",
+  "requirements": "- No data",
+  "size": 1572864,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/dungeon-hunter-2-ps-vita/dungeon_hunter_2%20v1.1.0.vpk",
+      "size": 1572864,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/dungeon-hunter-2-ps-vita/Game%20Files.zip",
+      "size": 667523482,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/MetalSyntax/Dungeon-Hunter-2-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/dungeon-hunter-2-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/dungeon-hunter-2-ps-vita/shot0.png"
+  ]
+}
