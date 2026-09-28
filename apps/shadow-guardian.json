@@ -14,8 +14,8 @@
     "shooter",
     "strategy"
   ],
-  "version": "1.3.0",
-  "version_date": "2026-09-19",
+  "version": "1.4.0",
+  "version_date": "2026-09-27",
   "requirements": "- Install the kubridge and fd_fix plugins on your PS Vita.\n- Install libshacccg.suprx, if you don't have it already.",
   "size": 1153434,
   "status": "Verified",
@@ -23,7 +23,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/shadow-guardian-ps-vita/shadowguardian%20v1.3.0.vpk",
+      "url": "https://archive.org/download/shadow-guardian-ps-vita/shadowguardian%20v1.4.0.vpk",
       "size": 1153434,
       "recommended": true
     },
