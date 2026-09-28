@@ -99,6 +99,51 @@
     ]
   },
   {
+    "id": "real-racing-2",
+    "title_id": "RR2VITA01",
+    "name": "Real Racing 2",
+    "description": "A RR2 vita port based on android HD version.",
+    "long_description": "A RR2 vita port based on android HD version.",
+    "author_ids": [
+      "chuta7x"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "other"
+    ],
+    "version": "0.0.1",
+    "version_date": "2026-09-27",
+    "requirements": "- No Data",
+    "size": 5138022,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/real-racing-2-ps-vita/RR2Vita_Public_Beta_v0.0.1.vpk",
+        "size": 5138022,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/real-racing-2-ps-vita/Game%20Files.zip",
+        "size": 2726298,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/CHUTA7X/Real-Racing-2-Vita-Port-Release"
+      }
+    ],
+    "icon": "https://archive.org/download/real-racing-2-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/real-racing-2-ps-vita/bg.png"
+    ]
+  },
+  {
     "id": "shadow-guardian",
     "title_id": "PSVSGHD01",
     "name": "Shadow Guardian",
