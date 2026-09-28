@@ -13,8 +13,8 @@
     "platformer",
     "strategy"
   ],
-  "version": "0.8.12",
-  "version_date": "2026-09-24",
+  "version": "0.8.15",
+  "version_date": "2026-09-26",
   "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
   "size": 6710886,
   "status": "Verified",
@@ -22,14 +22,14 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita%20v0.8.12.vpk",
+      "url": "https://archive.org/download/smash-melee-port-ps-vita/SmashMeleevita%20v0.8.15.vpk",
       "size": 6710886,
       "recommended": true
     },
     {
       "type": "Game Files",
       "name": "Game Files",
-      "url": "https://archive.org/download/smash-melee-vita/Game%20Files.zip",
+      "url": "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip",
       "size": 1503238554,
       "extract_path": "ux0:data/"
     },
@@ -39,9 +39,9 @@
       "url": "https://github.com/zm2283145/melee-Vita"
     }
   ],
-  "icon": "https://archive.org/download/smash-melee-vita/icon0.png",
+  "icon": "https://archive.org/download/smash-melee-port-ps-vita/icon0.png",
   "screenshots": [
-    "https://archive.org/download/smash-melee-vita/Shot1.png",
-    "https://archive.org/download/smash-melee-vita/pic0.png"
+    "https://archive.org/download/smash-melee-port-ps-vita/Shot1.png",
+    "https://archive.org/download/smash-melee-port-ps-vita/pic0.png"
   ]
 }
