@@ -11,8 +11,8 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.0.4.1",
-  "version_date": "2026-06-06",
+  "version": "v.0.5.0",
+  "version_date": "2026-09-27",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Gamecube",
   "size": 6742344,
   "status": "Legacy",
@@ -21,12 +21,13 @@
       "type": "Download",
       "name": "VPK",
       "url": "https://archive.org/download/psvitaalive-animal-crossing-vita/animal-crossing-vita.vpk",
+      "size": 6710886,
       "recommended": true
     },
     {
       "type": "Game Files",
       "name": "Game Files USA",
-      "url": "https://archive.org/download/animal-crossing-usa/Animal%20Crossing%20%28USA%29.iso",
+      "url": "https://archive.org/download/psvitaalive-animal-crossing-vita/Game%20Files%20%28USA%29.zip",
       "size": 27577549,
       "extract_path": "ux0:data/AnimalCrossing/rom/"
     },
