@@ -21,7 +21,14 @@
       "type": "Download",
       "name": "VPK",
       "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/geometry-dash-vita.vpk",
+      "size": 1153434,
       "recommended": true
+    },
+    {
+      "type": "Download",
+      "name": "VPK Online Edition",
+      "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/gdash%20online%20v1.1.vpk",
+      "size": 797594
     },
     {
       "type": "Data Files",
