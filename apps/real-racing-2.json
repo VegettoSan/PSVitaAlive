@@ -12,17 +12,17 @@
     "racing",
     "other"
   ],
-  "version": "0.0.1",
-  "version_date": "2026-09-27",
+  "version": "1.0.0",
+  "version_date": "2026-09-30",
   "requirements": "- No Data",
-  "size": 5138022,
+  "size": 6396314,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/real-racing-2-ps-vita/RR2Vita_Public_Beta_v0.0.1.vpk",
-      "size": 5138022,
+      "url": "https://archive.org/download/real-racing-2-ps-vita/RR2Vita_Public_Beta_1.0.0.vpk",
+      "size": 6396314,
       "recommended": true
     },
     {
