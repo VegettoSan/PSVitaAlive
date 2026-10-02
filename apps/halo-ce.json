@@ -1,0 +1,50 @@
+{
+  "id": "halo-ce",
+  "title_id": "HCEV00001",
+  "name": "Halo CE",
+  "description": "Halo: Combat Evolved for the PS Vita (decomp port)",
+  "long_description": "A native PlayStation Vita port of Halo: Combat Evolved, built from the decompilation of the Xbox game. It is not an emulator: the game's own code is compiled for the Vita's ARM processor, and its Direct3D rendering is translated to the Vita's GPU.",
+  "author_ids": [
+    "birchwoodgod"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps",
+    "shooter",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-01",
+  "requirements": "- A PS Vita or PS TV with HENkaku/Ensō (firmware 3.60 to 3.74) and VitaShell.\n- About 1.5 GB free on ux0: (the game keeps decompressed copies of the levels it loads).\n- Your own Xbox copy of Halo: Combat Evolved (the disc, or an image of it). All versions of the Xbox game work. The PC version's maps do not.",
+  "size": 3040870,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/halo-ce-ps-vita-direct3d/halo%20v1.0.vpk",
+      "size": 3040870,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files English",
+      "url": "https://archive.org/download/halo-ce-ps-vita-direct3d/Game%20Files%20English.zip",
+      "size": 1857573356,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/BirchWoodGod/halo-ce-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/halo-ce-ps-vita-direct3d/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/halo-ce-ps-vita-direct3d/shot0.png",
+    "https://archive.org/download/halo-ce-ps-vita-direct3d/shot1.png",
+    "https://archive.org/download/halo-ce-ps-vita-direct3d/shot2.png",
+    "https://archive.org/download/halo-ce-ps-vita-direct3d/shot3.png"
+  ]
+}
