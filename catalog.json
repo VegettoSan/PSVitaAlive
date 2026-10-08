@@ -15,8 +15,8 @@
       "strategy",
       "source-port"
     ],
-    "version": "1.0",
-    "version_date": "2026-10-01",
+    "version": "1.0.1",
+    "version_date": "2026-10-02",
     "requirements": "- A PS Vita or PS TV with HENkaku/Ensō (firmware 3.60 to 3.74) and VitaShell.\n- About 1.5 GB free on ux0: (the game keeps decompressed copies of the levels it loads).\n- Your own Xbox copy of Halo: Combat Evolved (the disc, or an image of it). All versions of the Xbox game work. The PC version's maps do not.",
     "size": 3040870,
     "status": "Verified",
@@ -24,7 +24,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/halo-ce-ps-vita-direct3d/halo%20v1.0.vpk",
+        "url": "https://archive.org/download/halo-ce-ps-vita-direct3d/halo%20v1.0.1.vpk",
         "size": 3040870,
         "recommended": true
       },
