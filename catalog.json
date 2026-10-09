@@ -13,8 +13,8 @@
       "arcade",
       "engine-port"
     ],
-    "version": "1.1",
-    "version_date": "2026-10-08",
+    "version": "1.2",
+    "version_date": "2026-10-09",
     "requirements": "- A homebrew-enabled PlayStation Vita (PS Vita 1000 or 2000, with HENkaku/taiHEN, Ensō, or a compatible homebrew setup). The v1.1 release has been tested on real PS Vita hardware; PS TV and Vita3K compatibility have not been confirmed.\n- libshacccg.suprx installed and working on the console. The port uses vitaGL, which requires this shader compiler module. It is not included in the VPK. Follow the vitaGL prerequisites and the libshacccg extraction/installation guide to prepare it from your own console.\n- Writable ux0: storage with enough free space for the VPK and at least one extracted game profile. The amount of space needed depends on the APK/mod; large mods can use considerably more storage.\n-A compatible Dragon Ball Tap Battle APK that you legally possess. The VPK contains no playable game data, so you must prepare a profile using the Windows extractor (Windows 10/11) or the Web extractor (modern desktop/mobile browser). A PC is not required if you use the Web extractor on a phone or tablet.",
     "size": 2726298,
     "status": "Verified",
@@ -22,7 +22,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Dragon-Ball-Tap-Battle-PS-Vita-v1.1.vpk",
+        "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Dragon-Ball-Tap-Battle-PS-Vita-v1.2.vpk",
         "size": 2726298,
         "recommended": true
       },
