@@ -1,0 +1,34 @@
+{
+  "id": "insaniquarium",
+  "title_id": "INSNQ4R13",
+  "name": "Insaniquarium!",
+  "description": "Loader fpr the classic PopCap game Insaniquarium! Deluxe for the PS Vita. Feed your fish, collect coins, and fight aliens! (Note: Game data files from the original PC release are required).",
+  "long_description": "A PlayStation Vita port of Insaniquarium! Deluxe.\nNot affiliated with PopCap, EA or Sony.\n\nLoads the Android libmain.so (armeabi-v7a) of Insaniquarium directly on a PS Vita: maps it into memory, relocates it against Vita-side replacements for libc/SDL/GL, runs its C++ constructors and calls SDL_main. Plays the PopCap (and optional SOE) intro videos on launch. The first line of log.txt shows the loader version.\n\nCredit to kyle-sylvestre for the Android version of the game, which is a fork off of Vindirect's original WinFin decompilation. This build acts as a loader for the libmain.so library from the Android v0.1 release, adding custom button mappings. Future bug fix development for the PlayStation Vita version of the game will be separate to keep code/asset files as efficient as possible. Credit to rinnegatamante for vitaGL.\n\nThis repository contains no game files. You need your own copy of the game.\n\nInstall Instructions:\nFind the Insanquarium! Deluxe folder on your PC/Mac.\nOn Mac the path is: '/Users/***/Library/Application Support/Steam/steamapps/common/Insaniquarium Deluxe'\nOn PC the path is: 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\Insaniquarium Deluxe'\nCopy the folder to your PS Vita using a FTP or USB transfer into 'ux0:data/'\nRename the folder to 'insaniquarium'\nNote: not all the files are required, but the total size is 13.7MB so it's convenient to copy it all.\nHave fun! The game will play at 36 fps without overclocking.\n\n\n\nControls & Features\n\nTouchscreen:\tFeed your fish, collect coins, fight aliens, tap basically anything! Acts as a left click through the whole game.\nRear Touchscreen:\tUseful for feeding fish and fighting aliens. (Harder to collect coins)\nX BUTTON:\tTap on the glass...\nSQUARE:\tBubbles!!! Linked to \"B\"\nTRIANGLE:\tOpens the Presto Change-O menu. (Functions the same as as right-clicking Presto on PC)\nCIRCLE:\tA basic navigation/back button.\nL/R BUTTONS:\tCycle through menu/help/story pages.\nSTART:\tPauses the game. Linked to \"space\"\nD-PAD UP:\tHold down to open the keyboard. (Hold for at least 1500ms)\nCHEATS: Enter with ALL LOWERCASE letters using the keyboard.\nWARNING: Do not attempt to open the keyboard while the game is paused. This causes a softlock.",
+  "author_ids": [
+    "kartingsackboy06"
+  ],
+  "category_id": "games",
+  "subcategory_ids": [
+    "arcade",
+    "casual",
+    "simulation"
+  ],
+  "version": "1.00",
+  "version_date": "2026-10-06",
+  "requirements": "kubridge.suprx\nlibshacccg.suprx",
+  "size": 7444890,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "v1.00",
+      "url": "https://github.com/KartingSackboy06/insaniquarium-vita/releases/download/v1.00/InsaniquariumVita.vpk",
+      "size": 7444890,
+      "recommended": true
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/icon0.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/pic0.png"
+  ]
+}
