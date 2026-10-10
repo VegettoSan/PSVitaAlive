@@ -1,9 +1,12 @@
 #include "catalog/catalog_parser.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <psp2/json.h>
 #include <psp2/sysmodule.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/io/fcntl.h>
+#include <psp2/io/stat.h>
+#include <psp2/kernel/processmgr.h>
 
 #include <cstdlib>
 #include <cctype>
@@ -274,7 +277,8 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
 
 } // namespace
 
-bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogItem>& outItems) {
+bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogItem>& outItems) { 
+    const uint64_t perfTotalUs = sceKernelGetProcessTimeWide();
     outItems.clear();
 
     // Sidecar zRIF index next to the catalog JSON. Install looks up by URL so
@@ -307,14 +311,20 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
     }
 
     sce::Json::Value root;
+    const uint64_t perfJsonStartUs = sceKernelGetProcessTimeWide();
     const int parseResult = sce::Json::Parser::parse(root, path.c_str());
+    const uint64_t perfJsonMs = (sceKernelGetProcessTimeWide() - perfJsonStartUs) / 1000ULL;
     if (parseResult < 0) {
+        diagnostics::log(std::string("[Perf][Parser] result=failed file=") + path +
+            " json_ms=" + std::to_string(perfJsonMs) +
+            " total_ms=" + std::to_string((sceKernelGetProcessTimeWide() - perfTotalUs) / 1000ULL));
         sceClibPrintf("[CatalogParser] JSON parse failed: 0x%08X\n", parseResult);
         initializer.terminate();
         if (zrifIdxFd >= 0) sceIoClose(zrifIdxFd);
         return false;
     }
 
+    const uint64_t perfMaterializeUs = sceKernelGetProcessTimeWide();
     const char* imagePrefix = imageCatalogPrefixForPath(path);
     const sce::Json::Array& applications = root.getArray();
     for (SceSize i = 0; i < applications.size(); ++i) {
@@ -387,8 +397,18 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         outItems.push_back(std::move(item));
     }
 
+    const uint64_t perfMaterializeMs = (sceKernelGetProcessTimeWide() - perfMaterializeUs) / 1000ULL;
     initializer.terminate();
     if (zrifIdxFd >= 0) sceIoClose(zrifIdxFd);
+    SceIoStat perfStat = {};
+    const uint64_t perfFileBytes = sceIoGetstat(path.c_str(), &perfStat) >= 0 ?
+        static_cast<uint64_t>(perfStat.st_size) : 0;
+    diagnostics::log(std::string("[Perf][Parser] result=ok file=") + path +
+        " bytes=" + std::to_string(perfFileBytes) +
+        " items=" + std::to_string(outItems.size()) +
+        " json_ms=" + std::to_string(perfJsonMs) +
+        " build_ms=" + std::to_string(perfMaterializeMs) +
+        " total_ms=" + std::to_string((sceKernelGetProcessTimeWide() - perfTotalUs) / 1000ULL));
     sceClibPrintf("[CatalogParser] Loaded %u applications (zrif index entries=%u)\n",
                   static_cast<unsigned>(outItems.size()),
                   static_cast<unsigned>(zrifWritten));
