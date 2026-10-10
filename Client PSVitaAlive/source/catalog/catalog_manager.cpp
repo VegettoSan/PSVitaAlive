@@ -112,9 +112,10 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         status_.softRefresh = false;
         requestedCatalog_ = catalog;
         requestPending_ = false;
+        const size_t cacheItemCount = cachedItems_[idx].size();
         sceKernelUnlockMutex(mutex_, 1);
         diagnostics::log(std::string("[CatalogManager] memory cache hit for ") + label(catalog));
-        catalogPerf("memory_cache_copy", label(catalog), perfRequestUs, "hit", cachedItems_[idx].size());
+        catalogPerf("memory_cache_copy", label(catalog), perfRequestUs, "hit", cacheItemCount);
         return true;
     }
 
@@ -472,12 +473,15 @@ int CatalogManager::workerMain() {
         if (tryLoadDiskCache(catalog, diskItems)) {
             diagnostics::log(std::string("[CatalogManager] cache-first show: ") + label(catalog) +
                              " items=" + std::to_string(diskItems.size()));
+            bool cachePublished = false;
             sceKernelLockMutex(mutex_, 1, nullptr);
             if (!(requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_)) {
-                publishReady(catalog, diskItems, "Using cached catalog", true); 
-                catalogPerf("worker_cache_ready", label(catalog), perfWorkerUs, "cache_first", diskItems.size());
+                publishReady(catalog, diskItems, "Using cached catalog", true);
+                cachePublished = true;
             }
             sceKernelUnlockMutex(mutex_, 1);
+            if (cachePublished)
+                catalogPerf("worker_cache_ready", label(catalog), perfWorkerUs, "cache_first", diskItems.size());
 
             if (isStale()) continue;
 
