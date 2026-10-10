@@ -26,6 +26,14 @@ bool readTextFile(const std::string& path,std::string& out){out.clear();SceIoSta
 bool writeTextFile(const std::string& path,const std::string& text){SceUID fd=sceIoOpen(path.c_str(),SCE_O_WRONLY|SCE_O_CREAT|SCE_O_TRUNC,0666);if(fd<0)return false;size_t written=0;while(written<text.size()){const int result=sceIoWrite(fd,text.data()+written,(unsigned int)(text.size()-written));if(result<=0){sceIoClose(fd);return false;}written+=(size_t)result;}sceIoClose(fd);return true;}
 void parseValidators(const std::string& text,std::string& etag,std::string& modified){etag.clear();modified.clear();const size_t e=text.find("etag=");if(e!=std::string::npos){const size_t end=text.find('\n',e);etag=text.substr(e+5,end==std::string::npos?std::string::npos:end-(e+5));}const size_t m=text.find("last_modified=");if(m!=std::string::npos){const size_t end=text.find('\n',m);modified=text.substr(m+14,end==std::string::npos?std::string::npos:end-(m+14));}}
 bool validatorsMatch(const std::string& oldEtag,const std::string& oldModified,const std::string& newEtag,const std::string& newModified){const bool remoteHas=!newEtag.empty()||!newModified.empty();const bool storedHas=!oldEtag.empty()||!oldModified.empty();if(!remoteHas||!storedHas)return false;if(!newEtag.empty()&&oldEtag!=newEtag)return false;if(!newModified.empty()&&oldModified!=newModified)return false;return true;}
+void catalogPerf(const char* stage, const char* catalog, uint64_t startedUs,
+                 const char* result, size_t items = 0) {
+    diagnostics::log(std::string("[Perf][Catalog] stage=") + stage +
+        " catalog=" + catalog +
+        " duration_ms=" + std::to_string((sceKernelGetProcessTimeWide() - startedUs) / 1000ULL) +
+        " result=" + result + " items=" + std::to_string(items));
+}
+
 }
 
 CatalogManager::CatalogManager()=default;
@@ -64,6 +72,7 @@ bool CatalogManager::isBusy() const {
 }
 
 bool CatalogManager::request(ui::CatalogType catalog) {
+    const uint64_t perfRequestUs = sceKernelGetProcessTimeWide();
     if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);
 
@@ -105,6 +114,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         requestPending_ = false;
         sceKernelUnlockMutex(mutex_, 1);
         diagnostics::log(std::string("[CatalogManager] memory cache hit for ") + label(catalog));
+        catalogPerf("memory_cache_copy", label(catalog), perfRequestUs, "hit", cachedItems_[idx].size());
         return true;
     }
 
@@ -179,12 +189,20 @@ void ensureZrifIndexDownloaded(ui::CatalogType catalog, HttpClient& http) {
 #endif
 
 bool CatalogManager::tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
+    const uint64_t perfDiskStartUs = sceKernelGetProcessTimeWide();
     outItems.clear();
     const std::string path = cachePath(catalog);
-    if (!fileExists(path)) return false;
+    if (!fileExists(path)) {
+        catalogPerf("disk_cache", label(catalog), perfDiskStartUs, "missing");
+        return false;
+    }
     std::vector<ui::CatalogItem> cached;
-    if (!CatalogParser::parseFile(path, cached) || cached.empty()) return false;
+    if (!CatalogParser::parseFile(path, cached) || cached.empty()) {
+        catalogPerf("disk_cache", label(catalog), perfDiskStartUs, "invalid");
+        return false;
+    }
     outItems = std::move(cached);
+    catalogPerf("disk_cache", label(catalog), perfDiskStartUs, "hit", outItems.size());
     return true;
 }
 
@@ -214,7 +232,9 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     status_.message = ::psvitaalive::L(::psvitaalive::TextId::CheckingForAppUpdates);
     sceKernelUnlockMutex(mutex_, 1);
 
+    const uint64_t perfHeadUs = sceKernelGetProcessTimeWide();
     const HttpResult validatorResult = http.fetchRemoteValidators(url, remoteEtag, remoteModified);
+    catalogPerf("soft_refresh_head", label(catalog), perfHeadUs, validatorResult == HttpResult::Ok ? "ok" : "failed");
     if (validatorResult == HttpResult::Ok &&
         validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
         diagnostics::log(std::string("[CatalogManager] soft refresh: unchanged ") + label(catalog));
@@ -245,6 +265,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     status_.total = 0;
     sceKernelUnlockMutex(mutex_, 1);
 
+    const uint64_t perfDownloadUs = sceKernelGetProcessTimeWide();
     const HttpResult result = http.downloadToFile(
         url, temp, 0,
         [this](const HttpProgress& progress) {
@@ -256,6 +277,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
             status_.state = State::Ready;
             sceKernelUnlockMutex(mutex_, 1);
         });
+    catalogPerf("soft_refresh_download", label(catalog), perfDownloadUs, result == HttpResult::Ok ? "ok" : "failed");
 
     if (result == HttpResult::Ok) {
         std::vector<ui::CatalogItem> fresh;
@@ -302,8 +324,10 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
                             storedEtag, storedModified);
             std::string remoteEtag, remoteModified;
             setStatus(State::Loading, catalog, "Checking remote catalog (quick)...");
+            const uint64_t perfHardHeadUs = sceKernelGetProcessTimeWide();
             const HttpResult validatorResult =
                 http.fetchRemoteValidators(url, remoteEtag, remoteModified);
+            catalogPerf("hard_load_head", label(catalog), perfHardHeadUs, validatorResult == HttpResult::Ok ? "ok" : "failed");
             if (validatorResult == HttpResult::Ok &&
                 validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
                 outItems = std::move(cached);
@@ -324,6 +348,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
     }
 
     setStatus(State::Loading, catalog, "Downloading catalog...");
+    const uint64_t perfHardDownloadUs = sceKernelGetProcessTimeWide();
     diagnostics::log(std::string("[CatalogManager] downloading: ") + label(catalog));
     const HttpResult result = http.downloadToFile(
         url, temp, 0,
@@ -334,6 +359,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
             status_.message = "Downloading catalog from network — please wait...";
             sceKernelUnlockMutex(mutex_, 1);
         });
+    catalogPerf("hard_load_download", label(catalog), perfHardDownloadUs, result == HttpResult::Ok ? "ok" : "failed");
 
     if (result == HttpResult::Ok) {
         std::vector<ui::CatalogItem> fresh;
@@ -365,12 +391,20 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
 
 void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::CatalogItem>& items,
                                   const char* message, bool softRefresh) {
+    const uint64_t perfCopyUs = sceKernelGetProcessTimeWide();
+    uint64_t cacheCopyMs = 0;
     const int cidx = static_cast<int>(catalog);
     if (cidx >= 0 && cidx < static_cast<int>(ui::CatalogType::Count)) {
         cachedItems_[cidx] = items;
+        cacheCopyMs = (sceKernelGetProcessTimeWide() - perfCopyUs) / 1000ULL;
         cachedValid_[cidx] = true;
     }
+    const uint64_t perfReadyCopyUs = sceKernelGetProcessTimeWide();
     readyItems_ = items;
+    diagnostics::log(std::string("[Perf][Catalog] stage=publish_copies catalog=") + label(catalog) +
+        " cache_ms=" + std::to_string(cacheCopyMs) +
+        " ready_ms=" + std::to_string((sceKernelGetProcessTimeWide() - perfReadyCopyUs) / 1000ULL) +
+        " items=" + std::to_string(items.size()));
     readyCatalog_ = catalog;
     readyPending_ = true;
     status_.state = State::Ready;
@@ -417,6 +451,7 @@ int CatalogManager::workerMain() {
             continue;
         }
 
+        const uint64_t perfWorkerUs = sceKernelGetProcessTimeWide();
         auto isStale = [&]() -> bool {
             sceKernelLockMutex(mutex_, 1, nullptr);
             const bool stale =
@@ -439,7 +474,8 @@ int CatalogManager::workerMain() {
                              " items=" + std::to_string(diskItems.size()));
             sceKernelLockMutex(mutex_, 1, nullptr);
             if (!(requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_)) {
-                publishReady(catalog, diskItems, "Using cached catalog", true);
+                publishReady(catalog, diskItems, "Using cached catalog", true); 
+                catalogPerf("worker_cache_ready", label(catalog), perfWorkerUs, "cache_first", diskItems.size());
             }
             sceKernelUnlockMutex(mutex_, 1);
 
@@ -492,6 +528,7 @@ int CatalogManager::workerMain() {
             status_.softRefresh = false;
         }
         sceKernelUnlockMutex(mutex_, 1);
+        catalogPerf("worker_hard_load", label(catalog), perfWorkerUs, ok ? "ok" : "failed", loaded.size());
     }
     return 0;
 }
