@@ -3,6 +3,7 @@
 #include "network/http_client.hpp"
 #include "storage/storage_manager.hpp"
 #include <psp2/kernel/clib.h>
+#include <psp2/kernel/processmgr.h>
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
@@ -260,7 +261,10 @@ bool ImageCache::init(const StartupMaintenanceProgressFn&startupProgress){
     }
     if(!ensureDirectory(IMAGE_ROOT))return false;
     cleanupUnpublishedV3Draft();
+    const uint64_t perfImageMaintenanceUs = sceKernelGetProcessTimeWide();
     enforceStartupDiskLimit(startupProgress);
+    diagnostics::log(std::string("[Perf][Images] stage=disk_maintenance duration_ms=") +
+        std::to_string((sceKernelGetProcessTimeWide() - perfImageMaintenanceUs) / 1000ULL));
     ensureDirectory("ux0:data/psvitaalive/logs");
     mutex_=sceKernelCreateMutex("PSVitaAliveImageCache",0,0,nullptr);if(mutex_<0)return false;stopping_=false;cancelRequested_=false;workerThread_=sceKernelCreateThread("PSVitaAliveImageWorker",&ImageCache::workerEntry,WORKER_PRIORITY,WORKER_STACK,0,0,nullptr);if(workerThread_<0){sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}ImageCache*self=this;int r=sceKernelStartThread(workerThread_,sizeof(self),&self);if(r<0){sceKernelDeleteThread(workerThread_);workerThread_=-1;sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}diagnostics::log("[ImageCache] worker initialized cache=v3 replacement=per-image catalogs=H,PV,PSP,PS1");return true;
 }
