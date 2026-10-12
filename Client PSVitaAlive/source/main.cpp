@@ -912,6 +912,10 @@ int main(){
     psvitaalive::diagnostics::log("[Startup] entering main loop (pluginWarnPending=" +
         std::string(pluginWarnPending ? "1" : "0") + ")");
 
+    // Refresh UX0 only when a USER download or install finishes a phase.
+    // ImageCache thumbnails/captures are deliberately excluded.
+    using StorageInstallState = psvitaalive::InstallStatus::State;
+    StorageInstallState previousStorageInstallState = installer.status().state;
 while(true){
         screen.setExternalInputBlocked(gIme.busy());
         if(!screen.updateAndDraw()) break;
@@ -1120,7 +1124,20 @@ while(true){
             }
         }
 
-const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;images.setNetworkPaused(cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt);
+const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;
+        // One refresh on Downloading -> Installing (download finished), and
+        // one on any terminal install outcome (success/error/cancel/cleanup).
+        // State-edge detection prevents refreshing on every UI frame.
+        if (cur.state != previousStorageInstallState) {
+            const bool downloaded = previousStorageInstallState == InstallState::Downloading
+                                    && cur.state == InstallState::Installing;
+            const bool finished = cur.state == InstallState::Completed
+                               || cur.state == InstallState::Failed
+                               || cur.state == InstallState::Cancelled;
+            if (downloaded || finished) screen.requestUx0SpaceRefresh();
+            previousStorageInstallState = cur.state;
+        }
+        images.setNetworkPaused(cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt);
         if(startupThemePending && !active && !screen.isThemeSetupVisible()){
             screen.openThemeSetupIfNeeded();
             if(!screen.isThemeSetupVisible()){
