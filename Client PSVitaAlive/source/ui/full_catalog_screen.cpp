@@ -96,6 +96,7 @@ struct Ux0SpaceInfo {
 // Never call sceIoDevctl from drawFooterBar() or another render-path consumer.
 // The small mutex only protects a copy of three in-memory snapshot fields.
 SceUID gUx0SnapshotMutex = -1;
+SceUID gUx0SnapshotSema = -1;
 SceUID gUx0SnapshotThread = -1;
 std::atomic<bool> gUx0SnapshotStop{false};
 std::atomic<uint32_t> gUx0SnapshotQueries{0};
@@ -104,7 +105,11 @@ std::atomic<uint32_t> gUx0SnapshotLongestMs{0};
 Ux0SpaceInfo gUx0Snapshot{};
 
 int ux0SnapshotWorker(SceSize, void*) {
-    while (!gUx0SnapshotStop.load(std::memory_order_relaxed)) {
+    while (true) {
+        // Sleeps in the kernel until startup or a completed user transfer.
+        // Automatic icon/screenshot downloads never signal this semaphore.
+        if (sceKernelWaitSema(gUx0SnapshotSema, 1, nullptr) < 0) break;
+        if (gUx0SnapshotStop.load(std::memory_order_relaxed)) break;
         struct {
             uint64_t max_size;
             uint64_t free_size;
@@ -128,11 +133,15 @@ int ux0SnapshotWorker(SceSize, void*) {
             gUx0Snapshot.totalBytes = info.max_size > 0 ? info.max_size : info.free_size;
             sceKernelUnlockMutex(gUx0SnapshotMutex, 1);
         }
-        // Wake promptly on shutdown, but refresh the snapshot only every 3 seconds.
-        for (int i = 0; i < 30 && !gUx0SnapshotStop.load(std::memory_order_relaxed); ++i)
-            sceKernelDelayThread(100 * 1000);
     }
     return 0;
+}
+
+// Notification is nonblocking even if ux0 is very busy. The one-slot
+// semaphore coalesces overlapping completions into one pending refresh.
+void signalUx0SnapshotRefresh() {
+    if (gUx0SnapshotSema < 0 || gUx0SnapshotStop.load(std::memory_order_relaxed)) return;
+    sceKernelSignalSema(gUx0SnapshotSema, 1);
 }
 
 void startUx0SnapshotWorker() {
@@ -147,9 +156,18 @@ void startUx0SnapshotWorker() {
         diagnostics::log("[Ux0Space] snapshot mutex unavailable; footer shows ux0 n/a");
         return;
     }
+    gUx0SnapshotSema = sceKernelCreateSema("PSVitaAliveUx0Trigger", 0, 0, 1, nullptr);
+    if (gUx0SnapshotSema < 0) {
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+        diagnostics::log("[Ux0Space] trigger semaphore unavailable; footer shows ux0 n/a");
+        return;
+    }
     gUx0SnapshotThread = sceKernelCreateThread(
         "PSVitaAliveUx0Space", ux0SnapshotWorker, 0x10000110, 16 * 1024, 0, 0, nullptr);
     if (gUx0SnapshotThread < 0) {
+        sceKernelDeleteSema(gUx0SnapshotSema);
+        gUx0SnapshotSema = -1;
         sceKernelDeleteMutex(gUx0SnapshotMutex);
         gUx0SnapshotMutex = -1;
         diagnostics::log("[Ux0Space] snapshot worker unavailable; footer shows ux0 n/a");
@@ -158,17 +176,21 @@ void startUx0SnapshotWorker() {
     if (sceKernelStartThread(gUx0SnapshotThread, 0, nullptr) < 0) {
         sceKernelDeleteThread(gUx0SnapshotThread);
         gUx0SnapshotThread = -1;
+        sceKernelDeleteSema(gUx0SnapshotSema);
+        gUx0SnapshotSema = -1;
         sceKernelDeleteMutex(gUx0SnapshotMutex);
         gUx0SnapshotMutex = -1;
         diagnostics::log("[Ux0Space] snapshot worker start failed; footer shows ux0 n/a");
         return;
     }
-    diagnostics::log("[Ux0Space] async worker started refresh_ms=3000 ui_io=none");
+    signalUx0SnapshotRefresh(); // Exactly one initial capacity query.
+    diagnostics::log("[Ux0Space] async worker started mode=events startup=1 after_transfer=1 periodic=0");
 }
 
 void stopUx0SnapshotWorker() {
     gUx0SnapshotStop.store(true, std::memory_order_relaxed);
     if (gUx0SnapshotThread >= 0) {
+        sceKernelSignalSema(gUx0SnapshotSema, 1); // Wake idle worker before joining.
         sceKernelWaitThreadEnd(gUx0SnapshotThread, nullptr, nullptr);
         sceKernelDeleteThread(gUx0SnapshotThread);
         gUx0SnapshotThread = -1;
@@ -179,6 +201,10 @@ void stopUx0SnapshotWorker() {
             (unsigned)gUx0SnapshotSlowQueries.load(std::memory_order_relaxed),
             (unsigned)gUx0SnapshotLongestMs.load(std::memory_order_relaxed));
         diagnostics::log(msg);
+    }
+    if (gUx0SnapshotSema >= 0) {
+        sceKernelDeleteSema(gUx0SnapshotSema);
+        gUx0SnapshotSema = -1;
     }
     if (gUx0SnapshotMutex >= 0) {
         sceKernelDeleteMutex(gUx0SnapshotMutex);
@@ -2850,6 +2876,10 @@ void FullCatalogScreen::evictTextureIfNeeded(const std::string& ns){
         if(!removed)break;
     }
 }
+void FullCatalogScreen::requestUx0SpaceRefresh() {
+    signalUx0SnapshotRefresh();
+}
+
 void FullCatalogScreen::shutdown(){
     stopUx0SnapshotWorker();
     gProtectionMascotStartPending = false;
