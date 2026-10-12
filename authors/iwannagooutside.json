@@ -1,0 +1,15 @@
+{
+  "id": "iwannagooutside",
+  "name": "iwannagooutside",
+  "avatar": "https://github.com/iwannagooutside.png",
+  "bio": "PS Vita ports made with AI coding agents, tested on real hardware.",
+  "links": [
+    {
+      "type": "GitHub",
+      "name": "GitHub",
+      "url": "https://github.com/iwannagooutside",
+      "recommended": true
+    }
+  ],
+  "icon": "https://github.com/iwannagooutside.png"
+}

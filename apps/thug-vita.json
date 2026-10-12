@@ -1,0 +1,47 @@
+{
+  "id": "thug-vita",
+  "title_id": "THUG00001",
+  "name": "THUG Vita",
+  "description": "Native port of Tony Hawk's Underground for PSVita.",
+  "long_description": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.",
+  "author_ids": [
+    "iwannagooutside"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "source-port"
+  ],
+  "version": "v1.0.2",
+  "version_date": "2026-10-07",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
+  "size": 3356581,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://github.com/iwannagooutside/thug-vita-port/releases/download/v1.0.2/thug_vita.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Source",
+      "url": "https://github.com/iwannagooutside/thug-vita-port"
+    },
+    {
+      "type": "Issues",
+      "name": "Issues",
+      "url": "https://github.com/iwannagooutside/thug-vita-port/issues"
+    },
+    {
+      "type": "Official Website",
+      "name": "Trailer",
+      "url": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/iwannagooutside/thug-vita-port/main/covers/icon0.png",
+  "screenshots": [
+    "https://img.youtube.com/vi/XKwEK5B5K2w/maxresdefault.jpg"
+  ],
+  "release_page": "https://github.com/iwannagooutside/thug-vita-port/releases"
+}
