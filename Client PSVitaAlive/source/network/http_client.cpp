@@ -55,9 +55,10 @@ void httpDiagnostic(const char* message) {
     sceIoClose(fd);
 }
 
-void archiveNodeDiagnostic(const std::string& message) {
-    diagnostics::archiveNodeLog(message);
-}
+// The dedicated Archive.org node trace was retired after validation.
+// Swallow arguments at compile time: no log file, formatting, allocations,
+// or I/O. Archive candidate probing/failover logic is unchanged.
+#define archiveNodeDiagnostic(...) ((void)0)
 
 
 // VitaSDK ships OpenSSL 1.0.2-era TLS. Re-assert insecure-verify defaults every
