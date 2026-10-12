@@ -186,8 +186,7 @@ static bool extractJsonStringField(const std::string& json, const char* key, std
 }
 
 // Lightweight metadata fetch (separate easy handle) to locate alternate IA storage hosts.
-static bool fetchArchiveMetadataJson(const std::string& identifier, std::string& jsonOut,
-                                     bool lightweight = false) {
+static bool fetchArchiveMetadataJson(const std::string& identifier, std::string& jsonOut) {
     jsonOut.clear();
     if (identifier.empty()) return false;
     const std::string metaUrl = "https://archive.org/metadata/" + identifier;
@@ -211,9 +210,8 @@ static bool fetchArchiveMetadataJson(const std::string& identifier, std::string&
     curl_easy_setopt(m, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
     curl_easy_setopt(m, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
     curl_easy_setopt(m, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-    // Short metadata deadlines for images; large downloads keep 15/25s.
-    curl_easy_setopt(m, CURLOPT_CONNECTTIMEOUT, lightweight ? 4L : 15L);
-    curl_easy_setopt(m, CURLOPT_TIMEOUT, lightweight ? 8L : 25L);
+    curl_easy_setopt(m, CURLOPT_CONNECTTIMEOUT, 15L);
+    curl_easy_setopt(m, CURLOPT_TIMEOUT, 25L);
     curl_easy_setopt(m, CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(m, CURLOPT_MAXREDIRS, 5L);
     curl_easy_setopt(m, CURLOPT_ERRORBUFFER, err);
@@ -252,9 +250,7 @@ static void pushUniqueHost(std::vector<std::string>& hosts, const std::string& h
 // Keep dn*/.ca Archive edges as lower-priority risk candidates instead of
 // filtering them out. Large payloads benchmark every working candidate, so a
 // risky edge can win when it is actually faster from the user's own network.
-static bool buildArchiveAlternateUrls(const std::string& originalUrl,
-                                      std::vector<std::string>& outUrls,
-                                      bool lightweight = false) {
+static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vector<std::string>& outUrls) {
     outUrls.clear();
     std::string id, file;
     if (!parseArchiveDownloadParts(originalUrl, id, file)) {
@@ -265,7 +261,7 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl,
     archiveNodeDiagnostic(std::string("CANDIDATE_BUILD begin identifier=") + id + " file=" + file);
     archiveNodeDiagnostic(std::string("CANONICAL_URL ") + originalUrl);
     std::string meta;
-    if (!fetchArchiveMetadataJson(id, meta, lightweight)) return false;
+    if (!fetchArchiveMetadataJson(id, meta)) return false;
     std::string server, d1, d2, dir;
     extractJsonStringField(meta, "server", server);
     extractJsonStringField(meta, "d1", d1);
@@ -1888,7 +1884,7 @@ HttpResult HttpClient::downloadToFile(
             if (isArchive && responseCode >= 500) {
                 if (!archiveMetaTried) {
                     archiveMetaTried = true;
-                    buildArchiveAlternateUrls(url, archiveAltUrls, isImageCacheTransfer);
+                    buildArchiveAlternateUrls(url, archiveAltUrls);
                     archiveAltIndex = 0;
                 }
                 if (archiveAltIndex < archiveAltUrls.size()) {
@@ -2026,7 +2022,7 @@ HttpResult HttpClient::downloadToFile(
             if (badEdge || !archiveMetaTried) {
                 if (!archiveMetaTried) {
                     archiveMetaTried = true;
-                    buildArchiveAlternateUrls(url, archiveAltUrls, isImageCacheTransfer);
+                    buildArchiveAlternateUrls(url, archiveAltUrls);
                     archiveAltIndex = 0;
                 }
                 if (archiveAltIndex < archiveAltUrls.size()) {
