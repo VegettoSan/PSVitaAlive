@@ -1,5 +1,7 @@
 # PSVitaAlive — Inicio cache-first sin bloqueos (experimento del 12-10-2026)
 
+> **Estado actualizado (12-10-2026):** las mejoras aprobadas de inicio *cache-first* y carga de imágenes se integraron en `main` mediante [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). El texto inferior conserva la cronología y las instrucciones de la rama experimental original; sus frases “main no se ha modificado” ya **no describen el estado actual**. El índice binario posterior **no** se integró y falló la prueba de dos arranques. Ver [estado vigente y recuperación](CLIENT_PERFORMANCE_STATUS_20261012.md).
+
 ## Estado y alcance
 
 - **Rama:** `fix/catalog-startup-nonblocking-20261012` (creada desde
