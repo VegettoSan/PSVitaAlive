@@ -13,7 +13,6 @@ namespace {
 constexpr const char* LOG_DIR = "ux0:data/psvitaalive/logs";
 constexpr const char* LOG_FILE = "ux0:data/psvitaalive/logs/session.log";
 constexpr const char* INSTALL_LOG = "ux0:data/psvitaalive/logs/install.log";
-constexpr const char* ARCHIVE_NODE_LOG = "ux0:data/psvitaalive/logs/archive_nodes.log";
 SceUID g_mutex = -1;
 bool g_initialized = false;
 
@@ -54,28 +53,17 @@ void init() {
     ensureDirectories();
     resetLogFile(LOG_FILE);
     resetLogFile(INSTALL_LOG);
-    resetLogFile(ARCHIVE_NODE_LOG);
     g_mutex = sceKernelCreateMutex("PSVitaAliveDiag", 0, 0, nullptr);
     g_initialized = true;
     log("[System] shared diagnostic logger initialized (session.log reset)");
-    archiveNodeLog("============================================================");
-    archiveNodeLog("PSVitaAlive Internet Archive node diagnostics - session start");
-    archiveNodeLog("Metadata candidates, probes, ranking, transfer attempts and failovers are recorded here.");
-    archiveNodeLog("Catalog size is only a selector threshold hint; remote HTTP totals remain authoritative.");
-    archiveNodeLog("============================================================");
 }
 
 void log(const std::string& message) {
     appendLogFile(LOG_FILE, nullptr, message);
 }
 
-void archiveNodeLog(const std::string& message) {
-    appendLogFile(ARCHIVE_NODE_LOG, "Archive", message);
-}
-
 void shutdown() {
     if (!g_initialized) return;
-    archiveNodeLog("PSVitaAlive Internet Archive node diagnostics - session end");
     log("[System] shared diagnostic logger shutdown");
     if (g_mutex >= 0) {
         sceKernelDeleteMutex(g_mutex);
