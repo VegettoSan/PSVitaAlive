@@ -47,8 +47,9 @@ distintos: comparar solo eventos dentro de la misma escala.
 
 ## Cambios experimentales para corregir el rendimiento
 
-1. **3 intentos por imagen** frente a 8, únicamente en ImageCache;
-   las descargas del instalador siguen intactas.
+1. **3 intentos por imagen de Archive.org** frente a 8. Las imágenes
+   de GitHub/GitLab/otras fuentes mantienen 8, y todas las descargas
+   del instalador siguen intactas.
 2. **Iconos de Archive.org** (rutas `/cache/images/v3/*/app_*`):
    `CONNECTTIMEOUT=7 s`, `TIMEOUT=18 s` y
    `LOW_SPEED_TIME=12 s` por intento. No restringe VPK, PKG, datos
@@ -56,7 +57,7 @@ distintos: comparar solo eventos dentro de la misma escala.
 3. **Obtención de metadata rápida solo para imágenes**:
    `CONNECTTIMEOUT=4 s`, `TIMEOUT=8 s`; para demás descargas,
    continúan los plazos de 15/25 s. Conserva failover y candidatos.
-4. **Reintentos de 5xx aplazados**: un archivo de imagen que agota sus
+4. **Reintentos de 5xx de Archive.org aplazados**: un archivo de imagen que agota sus
    intentos con HTTP 5xx tiene enfriamiento de 45 s antes de
    ocupar de nuevo el trabajador. Los demás errores conservan 3 s.
 5. **Debounce de cancelación activa de 1,5 s**: la cola que ya no es
