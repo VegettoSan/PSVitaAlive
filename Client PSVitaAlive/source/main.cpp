@@ -24,6 +24,7 @@
 #include "ui/full_catalog_screen.hpp"
 #include "ui/image_cache.hpp"
 #include "catalog/catalog_manager.hpp"
+#include "catalog/catalog_trace.hpp"
 #include "update/startup_update_manager.hpp"
 #include "update/update_checker.hpp"
 
@@ -641,7 +642,18 @@ std::string fileNameFromUrl(const std::string&url,const std::string&id){
 bool isZipName(const std::string&name){if(name.size()<4)return false;std::string ext=name.substr(name.size()-4);for(char&c:ext){if(c>='A'&&c<='Z')c=static_cast<char>(c-'A'+'a');}return ext==".zip";}
 struct StartupImageJob{std::string url;std::string path;std::string namespaceName;std::string fileName;};
 void addStartupImage(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::string&url,const std::string&namespaceName,bool queueNow){if(url.empty()||images.isCached(url,namespaceName))return;const std::string key=namespaceName+"\n"+url;if(!seen.insert(key).second)return;std::string path;if(queueNow)path=images.request(url,namespaceName);jobs.push_back({url,path,namespaceName,fileNameFromUrl(url,namespaceName+"_image")});}
-void collectCatalogImages(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::vector<psvitaalive::ui::CatalogItem>&items,bool queueNow){for(const auto&item:items){addStartupImage(jobs,seen,images,item.icon,"app",queueNow);addStartupImage(jobs,seen,images,item.cover,"app",queueNow);const size_t count=std::min<size_t>(5,item.screenshots.size());for(size_t i=0;i<count;++i)addStartupImage(jobs,seen,images,item.screenshots[i],"shot",queueNow);}}
+void collectCatalogImages(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::vector<psvitaalive::ui::CatalogItem>&items,bool queueNow){
+    const uint64_t t=psvitaalive::catalog_trace::nowUs();
+    const size_t before=jobs.size();
+    for(const auto&item:items){
+        addStartupImage(jobs,seen,images,item.icon,"app",queueNow);
+        addStartupImage(jobs,seen,images,item.cover,"app",queueNow);
+        const size_t count=std::min<size_t>(5,item.screenshots.size());
+        for(size_t i=0;i<count;++i)addStartupImage(jobs,seen,images,item.screenshots[i],"shot",queueNow);
+    }
+    psvitaalive::catalog_trace::duration("image_job_scan",t,"apps="+std::to_string(items.size())+
+        " new_jobs="+std::to_string(jobs.size()-before)+" total_jobs="+std::to_string(jobs.size()));
+}
 void queueStartupImages(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images){for(auto&job:jobs){if(job.path.empty())job.path=images.request(job.url,job.namespaceName);}}
 void imageWarmupProgress(const std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images,uint64_t&completed,std::string&currentFile,bool&failedCurrent){completed=0;currentFile.clear();failedCurrent=false;for(const auto&job:jobs){const bool ready=images.isReady(job.path),failed=images.isFailed(job.path);if(ready||failed){++completed;continue;}if(currentFile.empty())currentFile=job.fileName;}}
 bool runImageWarmup(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images){
@@ -680,6 +692,8 @@ int main(){
     psvitaalive::diagnostics::init();
     psvitaalive::diagnostics::log("============================================================");
     psvitaalive::diagnostics::log("PSVitaAlive session BEGIN");
+    psvitaalive::catalog_trace::event("build_marker","catalog-startup-trace-20261012 main=untouched diagnostic=1");
+    const uint64_t catTraceStarted=psvitaalive::catalog_trace::nowUs();
     psvitaalive::diagnostics::log("TitleID=PSVAS1178");
 
     // Required for system dialogs (IME keyboard) on real hardware — VitaDB does this.
@@ -849,7 +863,12 @@ int main(){
 #endif
 
     // Catalog and image workers do not exist until the startup update phase is finished.
-    if(!catalogs.init())psvitaalive::diagnostics::log("[System] CatalogManager init failed");
+    {
+        const uint64_t t=psvitaalive::catalog_trace::nowUs();
+        const bool ok=catalogs.init();
+        psvitaalive::catalog_trace::duration("catalog_manager_init",t,std::string("ok=")+(ok?"1":"0"));
+        if(!ok)psvitaalive::diagnostics::log("[System] CatalogManager init failed");
+    }
     auto imageCacheStartupProgress=[&screen](psvitaalive::ui::ImageCache::StartupMaintenancePhase phase,uint64_t current,uint64_t total){
         const char*message=::psvitaalive::L("IMAGE_CACHE_CHECKING");
         if(phase==psvitaalive::ui::ImageCache::StartupMaintenancePhase::Cleaning)message=::psvitaalive::L("IMAGE_CACHE_CLEANING");
@@ -857,7 +876,12 @@ int main(){
         screen.setCatalogLoading(true,::psvitaalive::L("IMAGE_CACHE_LABEL"),current,total,message);
         screen.updateAndDraw();
     };
-    if(!images.init(imageCacheStartupProgress))psvitaalive::diagnostics::log("[System] ImageCache init failed");
+    {
+        const uint64_t t=psvitaalive::catalog_trace::nowUs();
+        const bool ok=images.init(imageCacheStartupProgress);
+        psvitaalive::catalog_trace::duration("image_cache_startup_init",t,std::string("ok=")+(ok?"1":"0"));
+        if(!ok)psvitaalive::diagnostics::log("[System] ImageCache init failed");
+    }
     screen.setImageCache(&images);
 
     const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
@@ -867,6 +891,7 @@ int main(){
 
     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,::psvitaalive::L(::psvitaalive::TextId::LoadingHomebrewCatalogMsg));
+    psvitaalive::catalog_trace::event("startup_homebrew_request");
     if(!catalogs.request(psvitaalive::ui::CatalogType::Homebrew)){startupCatalogs=false;screen.setCatalogError(::psvitaalive::L(::psvitaalive::TextId::UnableToStartCatalogCheck));}
 
         
@@ -918,6 +943,21 @@ while(true){
         }
         const uint64_t now=sceKernelGetSystemTimeWide();
         psvitaalive::CatalogManager::Status cs=catalogs.status();
+        {
+            static uint64_t lastTraceUs=0;
+            const uint64_t traceNow=psvitaalive::catalog_trace::nowUs();
+            if(traceNow-catTraceStarted<20000000ULL &&
+               (lastTraceUs==0 || traceNow-lastTraceUs>=300000ULL)){
+                lastTraceUs=traceNow;
+                psvitaalive::catalog_trace::event("startup_poll",
+                    std::string("startup=")+(startupCatalogs?"1":"0")+
+                    " state="+std::to_string((int)cs.state)+
+                    " soft="+std::to_string(cs.softRefresh?1:0)+
+                    " homebrew_ready="+std::to_string(homebrewReady?1:0)+
+                    " image_choice="+std::to_string(startupImageChoicePending?1:0)+
+                    " progress="+std::to_string(cs.current)+"/"+std::to_string(cs.total));
+            }
+        }
         if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Loading){screen.setCatalogLoading(true,cs.label,cs.current,cs.total,progressMessage(cs.current,cs.total,cs.message,""));}
         else if(startupCatalogs&&cs.state==psvitaalive::CatalogManager::State::Failed){
             psvitaalive::diagnostics::log(std::string("[Startup] catalog failed: ")+cs.label+" error="+cs.error);
@@ -947,11 +987,21 @@ while(true){
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
         if(catalogs.takeReady(ready,readyCatalog)){
             psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
+            const uint64_t stageBegan=psvitaalive::catalog_trace::nowUs();
+            psvitaalive::catalog_trace::event("main_received_ready",
+                std::string("catalog=")+psvitaalive::ui::catalogName(readyCatalog)+
+                " items="+std::to_string(ready.size())+
+                " startup="+std::to_string(startupCatalogs?1:0));
             startupCatalogItems[(int)readyCatalog]=ready;
+            psvitaalive::catalog_trace::duration("startup_buffer_copy",stageBegan,
+                "items="+std::to_string(ready.size()));
             if(startupCatalogs){
                 if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){
+                    const uint64_t uiBegan=psvitaalive::catalog_trace::nowUs();
                     screen.setCatalogItems(ready);
                     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
+                    psvitaalive::catalog_trace::duration("startup_screen_first_set",uiBegan,
+                        "items="+std::to_string(ready.size()));
                     homebrewReady=true;
                 }
 #if PSVITAALIVE_STARTUP_HOMEBREW_ONLY
@@ -985,6 +1035,8 @@ while(true){
         }
 
         if(startupImageChoicePending){
+            psvitaalive::catalog_trace::event("startup_image_choice_start",
+                "jobs="+std::to_string(startupImagesJobs.size()));
             startupImageChoicePending=false;
             if(startupImagesJobs.empty()){
                 screen.setCatalogLoading(false,"",0,0,"All catalog images are already cached");psvitaalive::diagnostics::log("[Startup] no pending catalog images");startupThemePending=true;
