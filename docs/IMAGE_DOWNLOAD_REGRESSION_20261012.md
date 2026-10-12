@@ -1,5 +1,7 @@
 # PSVitaAlive — regresión de descarga de imágenes: análisis y reparación
 
+> **Estado actualizado (12-10-2026):** después de las pruebas y autorización del mantenedor, los cambios aprobados de caché/arranque y de buckets se **incorporaron en `main` mediante PR #28**. “No modificar main” y los párrafos de decisión de fase de abajo son un registro de la rama original, no una restricción nueva. El experimento posterior `catalog.json.fastidx` permaneció fuera de `main` y no aceleró los dos arranques medidos. Ver [estado vigente](CLIENT_PERFORMANCE_STATUS_20261012.md).
+
 Fecha: 2026-10-12. Rama `fix/image-download-throughput-20261012`.
 Base: `fix/catalog-startup-nonblocking-20261012`. **No modificar main.**
 
