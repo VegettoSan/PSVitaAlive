@@ -182,3 +182,75 @@ arrancar este mismo VPK con `cache/images/v3` sin imágenes
 varias zonas del catálogo, conservar `session.log`,
 comprobar ausencia de errores de carpetas y de pausas de 1-3 s,
 y luego repetir con caché. La rama estable anterior no se toca.
+
+
+## Validación final con caché de imágenes vacía — 12/10/2026
+
+Archivo de prueba: `session.log` proporcionado por el mantenedor;
+847 líneas, marcador `async-image-buckets-20261012`.
+
+**Condiciones verificadas**:
+- `[ImageCache] startup cache size=0` y worker
+  `cache=v3 replacement=per-image`. Esta vez sí es caché vacía.
+- Además hubo **`disk_miss` en el catálogo JSON**: se descargó
+  `catalog.json` (2.101.356 bytes, 1118 aplicaciones). Por ello,
+  el tiempo total de inicio incluye descarga y no puede compararse
+  directamente con una sesión de catálogo almacenado.
+- `startup_homebrew_request t_us=3989548` a
+  `startup_screen_first_set t_us=17467872` = **13,478 s**.
+  Parse `parser_complete duration_ms=6113` (DOM 4916,
+  conversión 993 ms): problema de arranque independiente.
+
+**Resultado del caché y sus descargas**:
+- `[ImageCache] ready` **44**, exactamente **36 iconos** y
+  **8 capturas**;
+- `[ImageCache] failed` **0**,
+  `[ImageCache] cancelled` **0**,
+  `cannot create image bucket` **0**;
+- 3 respuestas HTTP 500 transitorias (Monster Shooter,
+  Crash Team Racing High Octane, Gravity Guy). En las tres el
+  *failover de Archive.org* cambió a nodo alternativo y respondió
+  HTTP 200. No se alteraron las estrategias de nodos.
+- Se liberaron y cargaron texturas al desplazarse y hubo capturas
+  nuevas de Dragon Ball Tap Battle y Halo CE.
+- El funcionamiento del cambio **queda validado con caché vacía**:
+  el worker crea carpetas y guarda correctamente los recursos.
+
+**Rendimiento residual**:
+- `[Perf] slow frame`: **107 eventos** registrados; máximo
+  **1624,985 ms**, mediana de esos eventos **66,754 ms**.
+  Importante: son registros de fotogramas *lentos*, no muestra de
+  todos los fotogramas, y existe limitación temporal del logger.
+- El fotograma de **1624,985 ms** contiene
+  `[Perf] texture decode slow us=1376709` para
+  `.../A5/app_H_A5D4B85DED59DF32_78EE24D1.png` (icono de
+  Asphalt 5). De manera directa, el tiempo dentro de la llamada
+  de carga de PNG supera **1,376 s**; esta medición es de reloj
+  transcurrido, podría incluir planificación e I/O, no únicamente
+  cálculo de decodificación.
+- También fotogramas de **1129,254 ms** durante capturas de Halo CE,
+  **706,629 ms** durante navegación e imágenes nuevas, y
+  **406,901 ms** con `deferred=9`. No disponemos de
+  `[PERFSEG]` en esta build, así que no asignar los tiempos
+  de esos fotogramas a llamadas específicas sin medirlas.
+- En la anterior prueba *también* sin caché, la mayor pausa fue
+  **2707 ms**, con un bloqueo de creación de directorio medido
+  de **1382 ms**. En esta prueba la mayor pausa es
+  ~**40% menor**, pero se navegaron imágenes y condiciones distintas;
+  esto **no prueba** una reducción causal exacta de la latencia.
+  El cambio estructural sí elimina el trabajo pesado de directorio
+  de `ImageCache::request()` en el hilo UI.
+
+**Veredicto**: corrección de directorios **validada funcionalmente**
+en hardware con imágenes vacías y no vacías, lista para
+**congelarse como referencia estable independiente**, sin
+confundirla con una eliminación completa de stutters.
+No publicar una release ni integrar `main` automáticamente.
+
+**Próxima fase propuesta**: medir el tiempo de
+`vita2d_load_PNG_file()` (carga del icono, lectura de disco,
+decoder/libpng, creación de textura GPU, CPU scheduling) y el
+fotograma de Halo CE de 1,129 s antes de introducir optimizaciones.
+Posponer el caché binario del JSON, que exige compatibilidad
+cuidadosa, a otra fase. Mantener la versión anterior
+`stable/startup-image-cache-20261012` como rollback.
