@@ -28,6 +28,8 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/io/dirent.h>
 #include <psp2/io/devctl.h>
+#include <psp2/kernel/threadmgr.h>
+#include <atomic>
 #include <algorithm>
 #include <cmath>
 #include <cctype>
@@ -90,25 +92,106 @@ struct Ux0SpaceInfo {
     uint64_t totalBytes = 0;
 };
 
-Ux0SpaceInfo queryUx0Space() {
-    static Ux0SpaceInfo cached{};
-    static uint64_t lastMs = 0;
-    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
-    if (lastMs != 0 && nowMs >= lastMs && (nowMs - lastMs) < 3000ULL) return cached;
+// Disk queries may take hundreds of milliseconds under ux0 I/O pressure.
+// Never call sceIoDevctl from drawFooterBar() or another render-path consumer.
+// The small mutex only protects a copy of three in-memory snapshot fields.
+SceUID gUx0SnapshotMutex = -1;
+SceUID gUx0SnapshotThread = -1;
+std::atomic<bool> gUx0SnapshotStop{false};
+std::atomic<uint32_t> gUx0SnapshotQueries{0};
+std::atomic<uint32_t> gUx0SnapshotSlowQueries{0};
+std::atomic<uint32_t> gUx0SnapshotLongestMs{0};
+Ux0SpaceInfo gUx0Snapshot{};
 
-    struct {
-        uint64_t max_size;
-        uint64_t free_size;
-        uint32_t cluster_size;
-        void* unk;
-    } info{};
-    const int ret = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
-    lastMs = nowMs;
-    cached = {};
-    if (ret < 0) return cached;
-    cached.ok = true;
-    cached.freeBytes = info.free_size;
-    cached.totalBytes = info.max_size > 0 ? info.max_size : info.free_size;
+int ux0SnapshotWorker(SceSize, void*) {
+    while (!gUx0SnapshotStop.load(std::memory_order_relaxed)) {
+        struct {
+            uint64_t max_size;
+            uint64_t free_size;
+            uint32_t cluster_size;
+            void* unk;
+        } info{};
+        const uint64_t beginUs = sceKernelGetProcessTimeWide();
+        const int rc = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
+        const uint64_t endUs = sceKernelGetProcessTimeWide();
+        const uint32_t elapsedMs = endUs >= beginUs
+            ? static_cast<uint32_t>((endUs - beginUs) / 1000ULL) : 0;
+        gUx0SnapshotQueries.fetch_add(1, std::memory_order_relaxed);
+        if (elapsedMs >= 150) gUx0SnapshotSlowQueries.fetch_add(1, std::memory_order_relaxed);
+        if (elapsedMs > gUx0SnapshotLongestMs.load(std::memory_order_relaxed))
+            gUx0SnapshotLongestMs.store(elapsedMs, std::memory_order_relaxed);
+
+        if (rc >= 0 && !gUx0SnapshotStop.load(std::memory_order_relaxed)) {
+            sceKernelLockMutex(gUx0SnapshotMutex, 1, nullptr);
+            gUx0Snapshot.ok = true;
+            gUx0Snapshot.freeBytes = info.free_size;
+            gUx0Snapshot.totalBytes = info.max_size > 0 ? info.max_size : info.free_size;
+            sceKernelUnlockMutex(gUx0SnapshotMutex, 1);
+        }
+        // Wake promptly on shutdown, but refresh the snapshot only every 3 seconds.
+        for (int i = 0; i < 30 && !gUx0SnapshotStop.load(std::memory_order_relaxed); ++i)
+            sceKernelDelayThread(100 * 1000);
+    }
+    return 0;
+}
+
+void startUx0SnapshotWorker() {
+    if (gUx0SnapshotThread >= 0) return;
+    gUx0Snapshot = {};
+    gUx0SnapshotStop.store(false, std::memory_order_relaxed);
+    gUx0SnapshotQueries.store(0, std::memory_order_relaxed);
+    gUx0SnapshotSlowQueries.store(0, std::memory_order_relaxed);
+    gUx0SnapshotLongestMs.store(0, std::memory_order_relaxed);
+    gUx0SnapshotMutex = sceKernelCreateMutex("PSVitaAliveUx0Space", 0, 0, nullptr);
+    if (gUx0SnapshotMutex < 0) {
+        diagnostics::log("[Ux0Space] snapshot mutex unavailable; footer shows ux0 n/a");
+        return;
+    }
+    gUx0SnapshotThread = sceKernelCreateThread(
+        "PSVitaAliveUx0Space", ux0SnapshotWorker, 0x10000110, 16 * 1024, 0, 0, nullptr);
+    if (gUx0SnapshotThread < 0) {
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+        diagnostics::log("[Ux0Space] snapshot worker unavailable; footer shows ux0 n/a");
+        return;
+    }
+    if (sceKernelStartThread(gUx0SnapshotThread, 0, nullptr) < 0) {
+        sceKernelDeleteThread(gUx0SnapshotThread);
+        gUx0SnapshotThread = -1;
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+        diagnostics::log("[Ux0Space] snapshot worker start failed; footer shows ux0 n/a");
+        return;
+    }
+    diagnostics::log("[Ux0Space] async worker started refresh_ms=3000 ui_io=none");
+}
+
+void stopUx0SnapshotWorker() {
+    gUx0SnapshotStop.store(true, std::memory_order_relaxed);
+    if (gUx0SnapshotThread >= 0) {
+        sceKernelWaitThreadEnd(gUx0SnapshotThread, nullptr, nullptr);
+        sceKernelDeleteThread(gUx0SnapshotThread);
+        gUx0SnapshotThread = -1;
+        char msg[170];
+        sceClibSnprintf(msg, sizeof(msg),
+            "[Ux0Space] async worker stopped queries=%u slow_ge_150ms=%u longest_ms=%u",
+            (unsigned)gUx0SnapshotQueries.load(std::memory_order_relaxed),
+            (unsigned)gUx0SnapshotSlowQueries.load(std::memory_order_relaxed),
+            (unsigned)gUx0SnapshotLongestMs.load(std::memory_order_relaxed));
+        diagnostics::log(msg);
+    }
+    if (gUx0SnapshotMutex >= 0) {
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+    }
+    gUx0Snapshot = {};
+}
+
+Ux0SpaceInfo queryUx0Space() {
+    if (gUx0SnapshotMutex < 0) return {};
+    sceKernelLockMutex(gUx0SnapshotMutex, 1, nullptr);
+    const Ux0SpaceInfo cached = gUx0Snapshot;
+    sceKernelUnlockMutex(gUx0SnapshotMutex, 1);
     return cached;
 }
 
@@ -2640,6 +2723,7 @@ bool FullCatalogScreen::init(){
         diagnostics::log("[UI] header logo mono not found (tint fallback to color art)");
     }
     state_=UiState{};
+    startUx0SnapshotWorker();
     ready_=true;
     diagnostics::log("[UI] initialized");
     return true;
@@ -2767,6 +2851,7 @@ void FullCatalogScreen::evictTextureIfNeeded(const std::string& ns){
     }
 }
 void FullCatalogScreen::shutdown(){
+    stopUx0SnapshotWorker();
     gProtectionMascotStartPending = false;
     gProtectionMascotStopPending = false;
     gProtectionMascotManager.stop();
