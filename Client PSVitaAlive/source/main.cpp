@@ -735,7 +735,7 @@ int main(){
     });
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
-    screen.setInstallZipRecoveryCallback([&installer](bool keep){ return installer.resolveZipRecovery(keep); });
+    screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep){ const bool resolved=installer.resolveZipRecovery(keep); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
     screen.setInstallCallbacks([&installer](const psvitaalive::ui::CatalogItem&item){psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
     if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;
         std::string zrif;std::string ltype;std::string cid;std::string extractPath;
@@ -1086,7 +1086,7 @@ while(true){
                 // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
                 for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
             }else if(installer.settings().promptImageWarmup && promptDownloadAllImages(startupImagesJobs.size())){
-                const bool completed=runImageWarmup(startupImagesJobs,images);screen.setCatalogLoading(false,"",completed?startupImagesJobs.size():0,(uint64_t)startupImagesJobs.size(),completed?"Image cache ready":"Image download cancelled");psvitaalive::diagnostics::log(std::string("[Startup] full image warmup finished result=")+(completed?"COMPLETE":"CANCELLED"));startupThemePending=true;
+                const bool completed=runImageWarmup(startupImagesJobs,images);screen.requestUx0SpaceRefresh();screen.setCatalogLoading(false,"",completed?startupImagesJobs.size():0,(uint64_t)startupImagesJobs.size(),completed?"Image cache ready":"Image download cancelled");psvitaalive::diagnostics::log(std::string("[Startup] full image warmup finished result=")+(completed?"COMPLETE":"CANCELLED"));startupThemePending=true;
                 // Preserve browsing state and textures; no second setCatalogItems.
                 // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
                 for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
