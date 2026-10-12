@@ -54,9 +54,12 @@ distintos: comparar solo eventos dentro de la misma escala.
    `CONNECTTIMEOUT=7 s`, `TIMEOUT=18 s` y
    `LOW_SPEED_TIME=12 s` por intento. No restringe VPK, PKG, datos
    grandes ni descargas normales. Las capturas mantienen los límites anteriores.
-3. **Obtención de metadata rápida solo para imágenes**:
-   `CONNECTTIMEOUT=4 s`, `TIMEOUT=8 s`; para demás descargas,
-   continúan los plazos de 15/25 s. Conserva failover y candidatos.
+3. **Metadata y descubrimiento de nodos Archive.org restaurados**
+   al comportamiento original: `CONNECTTIMEOUT=15 s` y
+   `TIMEOUT=25 s`, incluso para imágenes. Se había probado un límite
+   de 4/8 s para imágenes, pero se revierte preventivamente porque
+   podía impedir descubrir un nodo alternativo bajo conexiones lentas.
+   El algoritmo de failover, la lista y el ranking no se modifican.
 4. **Reintentos de 5xx de Archive.org aplazados**: un archivo de imagen que agota sus
    intentos con HTTP 5xx tiene enfriamiento de 45 s antes de
    ocupar de nuevo el trabajador. Los demás errores conservan 3 s.
@@ -117,3 +120,46 @@ en el mismo entorno con errores HTTP comparables.
   `diagnostics/catalog-startup-trace-20261012`.
 - `main` inalterada.
 - Title ID de VPK de pruebas: `PSVAS1178`.
+
+## Auditoría posterior solicitada: ¿se eliminó la lógica de nodos al quitar archive_nodes.log?
+
+**Resultado del análisis de commits:** No.
+
+Los commits exclusivos de retirada de registros:
+- `880d6c2f2360c0f8cad2301d5ff60c861a857473`: se eliminó únicamente la
+  configuración, creación, escritura y mensajes de `archive_nodes.log`
+  en `source/diagnostic_logger.cpp`.
+- `b12670ad0158469682f613f6ba240b4ed287f62d`: se retiró la
+  declaración pública `archiveNodeLog`.
+- `6eb3b67bede4e57592c8814bd573641d88a520b7`: únicamente se convirtió
+  `archiveNodeDiagnostic(...)` en un macro sin operación que descarta los
+  argumentos; no tocó `buildArchiveAlternateUrls`, `rankArchiveAlternateUrls`,
+  `probeArchiveStorageUrl`, descarga, TLS ni condiciones de failover.
+- `311495b7a7df80bcab3349e9c6c98eb86c7b0bb8`: borra la copia anterior
+  del **archivo de log** al iniciar, no datos ni caché de nodos.
+
+Verificación de contenido entre la rama original de trazas
+`diagnostics/catalog-startup-trace-20261012` y la rama actual:
+- `parseArchiveDownloadParts`: igual.
+- `hostLooksLikeBadArchiveEdge`: igual.
+- `probeArchiveStorageUrl`: igual.
+- `rankArchiveAlternateUrls`: igual.
+- `buildArchiveAlternateUrls` y `fetchArchiveMetadataJson`: en la
+  corrección de rendimiento de imágenes se había añadido un argumento
+  `lightweight` y límites menores; **se revirtió ese experimento** en el commit
+  `47e6fce858fde4ef38d039ecf28dc8bb5ac664fa` para conservar
+  las funciones y plazos originales. El archivo de log sigue desactivado.
+
+**Distinción necesaria:** la optimización *separada* del rendimiento de
+imágenes conserva cambios en los plazos de descarga de **iconos**
+(`CURLOPT_TIMEOUT=18`, `CONNECTTIMEOUT=7` para esa transferencia),
+intentos HTTP de iconos Archive.org (3), cooldown tras HTTP 5xx y
+cancelación por salida de pantalla (1,5 s). Esto NO elimina el mecanismo
+de búsqueda de nodos ni modifica sus metadatos, pero **sí cambia**
+cuánto se intenta descargar cada icono. Las reglas para VPK/PKG y archivos
+grandes continúan sin alterarse. No se debe describir esto como
+“solo cambios de logging” cuando se habla de toda la rama de optimización.
+
+La rama `main` no recibió estos cambios. La nueva versión debe
+**recompilarse** después de restaurar la API de metadata: cualquier VPK
+anterior al commit de restauración es anterior a esta auditoría.
