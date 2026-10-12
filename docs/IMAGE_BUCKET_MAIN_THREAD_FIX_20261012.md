@@ -1,5 +1,7 @@
 # PSVitaAlive — Evitar bloqueos al crear directorios de imágenes
 
+> **Estado actualizado (12-10-2026):** esta corrección fue validada en PS Vita real e **integrada en `main` por PR #28**, junto con otras optimizaciones aprobadas. Las referencias históricas siguientes a “main no modificada” y “no integrar automáticamente” corresponden a la etapa de diagnóstico anterior al merge, no son el estado presente. Persisten pausas al decodificar texturas PNG; ver [estado vigente y prueba fallida del índice](CLIENT_PERFORMANCE_STATUS_20261012.md).
+
 Fecha: 2026-10-12.
 
 **Base estable preservada:** `stable/startup-image-cache-20261012`.

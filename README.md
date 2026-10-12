@@ -185,6 +185,8 @@ The startup loading overlay shows localized checking/cleaning progress. During n
 
 Detailed design: [`docs/IMAGE_CACHE.md`](docs/IMAGE_CACHE.md).
 
+**Client performance / integration status (12 Oct 2026):** The approved cache-first, image-bucket worker, and event-driven UX0 improvements have already been merged via [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). An experimental binary Homebrew index (`.fastidx`) **was not merged** because two real-device startups missed the index and did not speed up JSON loading. GPU PNG decoding hitches remain under investigation. See [`docs/CLIENT_PERFORMANCE_STATUS_20261012.md`](docs/CLIENT_PERFORMANCE_STATUS_20261012.md) for measurements, rollback guidance and test requirements.
+
 #### Automatic client updates
 
 ```text

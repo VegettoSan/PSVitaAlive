@@ -1,5 +1,7 @@
 # PSVitaAlive — diagnóstico de arranque de catálogos (2026-10-12)
 
+> **Nota de estado (12-10-2026):** este archivo corresponde a una rama histórica de instrumentación. Las optimizaciones aprobadas de inicio/caché y UX0 por eventos ya están en `main` mediante [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). El prototipo posterior de índice `.fastidx` está **fuera de `main`** y falló la prueba de dos aperturas. La frase “No fusionar en main” que sigue era válida para esta **rama de diagnóstico**, no para el merge ya efectuado. Ver [estado vigente](CLIENT_PERFORMANCE_STATUS_20261012.md).
+
 ## Objetivo
 Reproducir la demora entre la pantalla de carga y el primer catálogo visible.
 Esta rama **solo añade instrumentación**: no cambia la estrategia de caché ni edita

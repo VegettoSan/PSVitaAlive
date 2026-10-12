@@ -1,5 +1,7 @@
 # PSVitaAlive — Corrección aislada: consulta asíncrona del espacio ux0
 
+> **Estado actualizado (12-10-2026):** este documento relata la variante anterior de UX0 asíncrono con sondeo periódico. La variante **definitivamente aprobada para integración es UX0 por eventos** (lectura inicial y al terminar operaciones relevantes), incluida en `main` mediante [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). Se conserva la historia técnica inferior, pero “main intacta” ya no indica el estado presente. La comprobación de esos eventos y del cierre en consola real continúa pendiente. Ver [estado actual](CLIENT_PERFORMANCE_STATUS_20261012.md) y [diseño por eventos](EVENT_DRIVEN_UX0_REFRESH_20261012.md).
+
 **Fecha:** 2026-10-12.
 **Estado:** corrección en rama experimental, pendiente de pruebas hardware.
 **Rama:** `fix/async-ux0-space-20261012`.
