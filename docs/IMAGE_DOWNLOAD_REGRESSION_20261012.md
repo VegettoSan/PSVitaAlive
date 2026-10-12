@@ -163,3 +163,59 @@ grandes continúan sin alterarse. No se debe describir esto como
 La rama `main` no recibió estos cambios. La nueva versión debe
 **recompilarse** después de restaurar la API de metadata: cualquier VPK
 anterior al commit de restauración es anterior a esta auditoría.
+
+## Tercera ronda: validación real favorable, después de restaurar los nodos
+
+**Fuente:** nuevas sesiones de PS Vita aportadas por el mantenedor:
+`session cache.log` (227 líneas aprox.) y `session no cache.log`
+(419 líneas aprox.), posteriores al VPK
+`PSVitaAlive-Archive-Nodes-Preserved-20261012.vpk`.
+Ambos registros contienen el marcador
+`image-download-throughput-20261012`. Este marcador identifica la
+familia de compilación y no contiene el SHA exacto del commit.
+
+**Comentarios del mantenedor:** «ya mejora bastante».
+
+| Métrica observada | Anterior: caché | Actual: caché | Anterior: sin caché | Actual: sin caché |
+|---|---:|---:|---:|---:|
+| `[ImageCache] ready` (iconos nuevos terminados) | 0 | **3** | 2 | **18** |
+| `[ImageCache] cancelled` | 6 | **0** | 5 | **0** |
+| `pruned off-screen active_cancel=1` | presente | **0** | presente | **0** |
+| Respuestas `HTTP response status=500/502` | 4 | **0** | 5 | **0** |
+| `image_job_scan` completo y bloqueante | ninguno en versión anterior optimizada | **ninguno** | ninguno | **ninguno** |
+
+En el último ensayo, todas las descargas de imágenes **terminadas** en
+ambos registros tienen éxito HTTP 200; el ensayo sin caché inicia una
+descarga adicional al final del log que no tiene resultado registrado, por
+lo que no debe clasificarse como error ni éxito.
+
+**Tiempos de entrada medidos con `[CATTRACE]`:**
+- Con caché: `startup_homebrew_request=3.098679 s` y
+  `startup_screen_first_set=9.623669 s`, diferencia **6.525 s**.
+  `parser_complete` informa **5.875 s**; el flujo omite inventario inicial
+  de imágenes. Los iconos inicialmente visibles pueden estar ya cacheados;
+  por eso **3 nuevos** no representa el total de iconos vistos.
+- Sin caché: solicitud **4.096333 s**, primera entrega **18.222657 s**,
+  diferencia **14.126 s**, con descarga de catálogo y parse
+  **6.170 s**. El flujo también omite el inventario inicial masivo.
+
+**Conclusión validada en estas sesiones:** la versión reparada conserva el
+beneficio de arranque y muestra una recuperación marcada de las descargas
+de iconos. En el log sin caché pasó de 2 a 18 imágenes terminadas;
+desaparecen las cancelaciones reportadas. No atribuir necesariamente
+todos los éxitos a cambios locales: en estas sesiones tampoco se registran
+HTTP 500/502 del servidor, por lo que el entorno de red era distinto.
+
+**Riesgo pendiente observado:** el log sin caché todavía presenta frames
+aislados lentos (máximo `2397259 us`, **2,397 s**, cerca del comienzo de
+las peticiones de imágenes); con caché el máximo observado fue
+`129523 us` (≈130 ms). Su causa exacta NO está determinada con estas
+trazas. Optimizar frames/pipeline GPU y el parse JSON (~6 s) sería
+trabajo separado, condicionado a medidas de RAM y pruebas de regresión.
+
+**Decisión de fase:** no hacer más cambios solo por intuición y no
+fusionar a `main` automáticamente. Conservar rama, VPK, evidencias,
+regresiones y la posibilidad de volver a la versión anterior. Confirmar
+antes de cualquier release: pestañas, capturas, detalles, precarga opcional,
+actualización en caliente, VPK/PKG, failover de descargas grandes y entorno
+sin Internet.
