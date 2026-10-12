@@ -2446,7 +2446,66 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     lastCatalogSwitchMs_=sceKernelGetProcessTimeWide()/1000ULL;
     psvitaalive::catalog_trace::duration("ui_set_items_complete",traceBegin,
         "items="+std::to_string(allItems_.size()));
-}void FullCatalogScreen::setActiveCatalog(CatalogType c){
+}
+
+void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
+    const uint64_t t=psvitaalive::catalog_trace::nowUs();
+    const auto& oldView=catalogView();
+    const int oldIndex=selectedIndex();
+    std::string selectedId, selectedTitleId;
+    if(oldIndex>=0){
+        selectedId=oldView[(size_t)oldIndex].id;
+        selectedTitleId=oldView[(size_t)oldIndex].titleId;
+    }
+    const int oldScroll=state_.catalogScrollRow;
+    const int oldDetailScroll=state_.detailScroll;
+    const int oldLinkFocus=state_.linkFocus;
+    const bool oldLinkNavigation=state_.linkNavigation;
+    // Existing GPU textures stay cached: identical URLs remain visible.
+    // prepareVisibleTextures() evicts textures that become off-screen.
+    allItems_=std::move(items);
+    sortItemsByDate(allItems_);
+    rebuildFilteredItems(); // unlike applySearch(), does not reset focus/scroll
+    const auto& newView=catalogView();
+    int found=-1;
+    for(size_t i=0;i<newView.size();++i){
+        const auto& app=newView[i];
+        if((!selectedId.empty() && app.id==selectedId) ||
+           (selectedId.empty() && !selectedTitleId.empty() && app.titleId==selectedTitleId)){
+            found=(int)i;
+            break;
+        }
+    }
+    if(found>=0)state_.focusIndex=found;
+    else{
+        clampCatalogFocus();
+        // A removed application cannot remain open in the detail view.
+        if(state_.mode!=UiMode::FULL_CATALOG){
+            state_.mode=UiMode::FULL_CATALOG;
+            state_.linkNavigation=false;
+            state_.linkFocus=-1;
+            state_.detailScroll=0;
+        }
+    }
+    state_.catalogScrollRow=oldScroll;
+    clampCatalogScroll();
+    visualCatalogScroll_=(float)state_.catalogScrollRow;
+    visualFocusIndex_=(float)state_.focusIndex;
+    if(found>=0){
+        state_.detailScroll=oldDetailScroll;
+        state_.linkFocus=oldLinkFocus;
+        state_.linkNavigation=oldLinkNavigation;
+    }
+    installStatusCache_.clear(); // versions might have changed
+    installStatusWarmupUntilMs_=sceKernelGetProcessTimeWide()/1000ULL+1500ULL;
+    catalogLoading_=false;
+    catalogError_.clear();
+    psvitaalive::catalog_trace::duration("ui_refresh_preserve_state",t,
+        "items="+std::to_string(allItems_.size())+
+        " selected_found="+std::to_string(found>=0?1:0));
+}
+
+void FullCatalogScreen::setActiveCatalog(CatalogType c){
     // Textures usually already released in changeCatalog; release again only if any remain.
     if(!textures_.empty() || !deferredFreeTextures_.empty()){
         releaseTextures();
