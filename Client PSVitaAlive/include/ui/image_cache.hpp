@@ -30,7 +30,7 @@ public:
     std::string request(const std::string& url, const std::string& namespaceName);
     /** Resolve local cache path without queueing a download. */
     std::string pathFor(const std::string& url, const std::string& namespaceName) const;
-    /** Drop queued jobs outside keep and request cancellation when the active image leaves keep. */
+    /** Prune queued off-screen jobs; active transfer uses a short grace period to avoid cancellation thrash. */
     void cancelQueuedExcept(const std::unordered_set<std::string>& keep);
 
     // Queue a remote image for background download without requiring it to be
@@ -88,6 +88,9 @@ private:
     uint64_t currentDownloaded_ = 0;
     uint64_t currentTotal_ = 0;
     uint64_t currentSpeed_ = 0;
+    // Ignore transient viewport churn before cancelling an in-flight image.
+    // Accessed under mutex_, unlike the renderer's per-frame keep set.
+    uint64_t activeOffscreenSinceUs_ = 0;
     uint64_t completedBytes_ = 0;
     uint64_t completedTotalBytes_ = 0;
     bool bulkPreload_ = false;
