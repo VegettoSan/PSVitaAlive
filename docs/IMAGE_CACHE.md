@@ -559,3 +559,11 @@ Once navigation settles, the final viewport resumes on-demand image preparation 
 Application/icon textures now use the existing bounded GPU LRU as intended. Leaving the viewport no longer immediately frees an `app_` texture. Up to `MAX_APP_TEXTURES = 18` recent app textures may remain resident; loading the next app texture evicts the least-recently-used app texture only when that bound is reached. With normalized app images capped at 128 px, a 128x128 RGBA surface is about 64 KiB, so 18 raw surfaces are roughly 1.1 MiB before vita2d/GXM overhead.
 
 Screenshots keep the previous aggressive policy: off-screen `shot_` textures are released and `MAX_SCREENSHOT_TEXTURES = 6` remains unchanged. Catalog switches still call the full texture release path, so textures never leak across catalogs.
+
+## Estado de rendimiento tras la prueba del índice binario (12-10-2026)
+
+Las correcciones aprobadas de caché de imágenes, creación de directorios en worker y el manejo de navegación están en `main` desde [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). Esto **no equivale** a haber eliminado todas las pausas de la interfaz.
+
+En dos sesiones de PS Vita real del VPK **experimental de índice `.fastidx` (no de `main`)** se midieron numerosos costes de `vita2d_load_PNG_file` de aproximadamente 100–473 ms para iconos, hasta 1,41 s para una captura y fotogramas máximos de 3,37/4,48 s. Los iconos recirculan al superar `MAX_APP_TEXTURES = 18`; existe también coste de `diagnostics::log()` sincrónico. Estos registros no aíslan cuánto corresponde al decodificador, GPU, almacenamiento, hilo de trabajo o logging y **no demuestran** que el índice sea la causa de los picos de textura.
+
+**No modificar los límites de GPU ni mover `vita2d` a otro hilo sin ensayo de RAM, permisos GXM, lifetime de texturas y comportamiento en Vita real.** Separar primero la fase de imágenes de la del parse JSON. Resultados completos, versiones comparadas y ruta de recuperación: [estado integrado y prueba negativa](CLIENT_PERFORMANCE_STATUS_20261012.md).
