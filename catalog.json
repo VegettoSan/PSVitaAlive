@@ -1,5 +1,65 @@
 [
   {
+    "id": "dragon-ball-tap-battle",
+    "title_id": "DBTB01178",
+    "name": "Dragon Ball Tap Battle",
+    "description": "Dragón Ball Tap Battle Port PS Vita",
+    "long_description": "A native PlayStation Vita port of Dragon Ball Tap Battle built with VitaSDK, vitaGL, and the original game core compiled privately for Vita.",
+    "author_ids": [
+      "vegettosandev"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "engine-port"
+    ],
+    "version": "1.2",
+    "version_date": "2026-10-09",
+    "requirements": "- A homebrew-enabled PlayStation Vita (PS Vita 1000 or 2000, with HENkaku/taiHEN, Ensō, or a compatible homebrew setup). The v1.1 release has been tested on real PS Vita hardware; PS TV and Vita3K compatibility have not been confirmed.\n- libshacccg.suprx installed and working on the console. The port uses vitaGL, which requires this shader compiler module. It is not included in the VPK. Follow the vitaGL prerequisites and the libshacccg extraction/installation guide to prepare it from your own console.\n- Writable ux0: storage with enough free space for the VPK and at least one extracted game profile. The amount of space needed depends on the APK/mod; large mods can use considerably more storage.\n-A compatible Dragon Ball Tap Battle APK that you legally possess. The VPK contains no playable game data, so you must prepare a profile using the Windows extractor (Windows 10/11) or the Web extractor (modern desktop/mobile browser). A PC is not required if you use the Web extractor on a phone or tablet.",
+    "size": 2726298,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Dragon-Ball-Tap-Battle-PS-Vita-v1.2.vpk",
+        "size": 2726298,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Japanese",
+        "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Japanese.zip",
+        "size": 82837504,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Spanish.zip",
+        "size": 71722598,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Official Website",
+        "name": "WEB APK DATA EXTRACTOR",
+        "url": "https://vegettosan.github.io/Drag-n-Ball-Tap-Battle-PS-Vita/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/VegettoSan/Drag-n-Ball-Tap-Battle-PS-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/dragon-ball-tap-battle-ps-vita/shot0.png",
+      "https://archive.org/download/dragon-ball-tap-battle-ps-vita/shot1.png",
+      "https://archive.org/download/dragon-ball-tap-battle-ps-vita/shot2.png",
+      "https://archive.org/download/dragon-ball-tap-battle-ps-vita/shot3.png"
+    ]
+  },
+  {
     "id": "halo-ce",
     "title_id": "HCEV00001",
     "name": "Halo CE",
