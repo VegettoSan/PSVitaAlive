@@ -119,3 +119,66 @@ generados `catalog.json`, `authors.json`, `categories.json`,
 Title IDs, enlaces, plugins, VPK/PKG, ZIP ni motores de actualización.
 Los datos de origen externo siguen siendo solo insumos para el catálogo
 oficial de PSVitaAlive.
+
+## Primera validación de la corrección en PS Vita real (12/10/2026)
+
+**Fuente:** nueva sesión enviada por el mantenedor: `session.log`,
+539 líneas, marcador exacto
+`[CATTRACE] build_marker ... async-image-buckets-20261012`.
+
+Esta sesión **NO es una prueba de caché vacía**: inicia con
+`[ImageCache] startup cache size=1404255` bytes (1,40 MB).
+Se debe comparar con cautela respecto al ensayo anterior,
+que tenía `startup cache size=0`.
+
+### Hallazgos de esta sesión
+
+- Homebrew de 1118 registros servido desde la caché de catálogo:
+  `startup_homebrew_request t_us=3347920`;
+  `startup_screen_first_set t_us=10370266` = **7,022 s**.
+- Procesamiento JSON todavía consume `parser_dom_end=5072 ms`,
+  `parser_conversion_end=1005 ms`, `parser_complete=6160 ms`.
+  El cacheado de imágenes no resuelve este coste de catálogo.
+- **13 imágenes nuevas terminadas**: 9 `app` y 4 `shot`.
+  Sin líneas `[ImageCache] failed` ni
+  `cannot create image bucket`: evidencia favorable de que el
+  trabajador crea correctamente nuevas carpetas.
+- **2 cancelaciones de capturas** de Halo CE mientras el usuario
+  cambiaba la zona visible; no se registran cancelaciones de iconos.
+- **2 HTTP 500 transitorios**, ambos seguidos del failover
+  Archive.org con otro nodo y HTTP 200 exitoso. El sistema de
+  nodos se conserva funcional.
+- **77 eventos** `[Perf] slow frame`; máximo registrado
+  **642,620 ms**, mediana de esos eventos **83,863 ms**.
+  Solo un fotograma registrado supera 500 ms.
+- Decodificaciones registradas de 47 texturas con log `slow`:
+  máximo **197,111 ms**, mediana **41,877 ms**.
+- Todavía hay pausas de **490 ms, 398 ms y ~370 ms**,
+  varias durante desplazamientos que liberan/recrean
+  texturas (`deferred=9`). La asignación exacta de ese
+  tiempo no se puede determinar en este build: al partir de
+  la base estable, **no incluye** la instrumentación experimental
+  `[PERFSEG]`/`[PERFIMGVIEW]`. No afirmar que esos
+  fotogramas se deban al sistema de directorios.
+- En esta sesión no se reproduce el bloqueo de 1,2 s
+  del dibujado de detalle visto en la sesión diagnóstica,
+  pero eso **no demuestra** que haya desaparecido para todos
+  los usuarios.
+
+### Interpretación responsable
+
+**La corrección pasa las pruebas funcionales observadas**:
+el catálogo se presenta, las imágenes nuevas se descargan y normalizan,
+las texturas aparecen y Archive.org continúa con failover. El fotograma
+peor registrado (642,6 ms) es mucho menor que el peor de la prueba
+previa de caché vacía (2707,3 ms), pero **las condiciones de
+caché son diferentes**, así que no se puede afirmar una
+reducción porcentual causal ni completar aún la validación
+de rendimiento en arranque frío.
+
+**Prueba restante requerida antes de actualizar la base estable:**
+arrancar este mismo VPK con `cache/images/v3` sin imágenes
+(sin borrar catálogos, configuraciones ni descargas), recorrer
+varias zonas del catálogo, conservar `session.log`,
+comprobar ausencia de errores de carpetas y de pausas de 1-3 s,
+y luego repetir con caché. La rama estable anterior no se toca.
