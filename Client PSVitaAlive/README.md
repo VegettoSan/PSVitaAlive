@@ -453,6 +453,7 @@ PSP **DLC** link buttons require **LiveArea** install target **or** Adrenaline *
 | Doc | Topic |
 |-----|--------|
 | [`../docs/IMAGE_CACHE.md`](../docs/IMAGE_CACHE.md) | Image cache v3, per-image replacement, normalization limits, startup disk cap/progress |
+| [`../docs/CLIENT_PERFORMANCE_STATUS_20261012.md`](../docs/CLIENT_PERFORMANCE_STATUS_20261012.md) | Integrated performance improvements (PR #28), failed `.fastidx` experiment, measured PNG stalls, rollback and pending hardware checks |
 | [source/ui/README.md](source/ui/README.md) | Themes, fonts, image cache integration, LOCKED UI, modals |
 | [source/catalog/README.md](source/catalog/README.md) | Catalog parser/cache, image identity handoff, zRIF sidecar |
 | [source/installer/README.md](source/installer/README.md) | Install paths, plugins, shell locks |
