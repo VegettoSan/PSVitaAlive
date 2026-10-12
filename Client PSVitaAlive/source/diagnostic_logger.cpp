@@ -53,6 +53,8 @@ void init() {
     ensureDirectories();
     resetLogFile(LOG_FILE);
     resetLogFile(INSTALL_LOG);
+    // One-time cleanup of the retired, separate Archive node diagnostics file.
+    sceIoRemove("ux0:data/psvitaalive/logs/archive_nodes.log");
     g_mutex = sceKernelCreateMutex("PSVitaAliveDiag", 0, 0, nullptr);
     g_initialized = true;
     log("[System] shared diagnostic logger initialized (session.log reset)");
