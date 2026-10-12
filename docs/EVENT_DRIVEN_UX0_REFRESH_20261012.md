@@ -153,3 +153,31 @@ con pruebas de descargas muy rápidas, BGDL y Install All.
 
 **Rollback:** `stable/async-image-buckets-20261012`.
 **No sustituir** la rama estable por esta versión aún.
+
+## Compilación oficial y verificación de artefacto
+
+**VitaSDK GitHub Actions:** [run 38313965270](https://github.com/VegettoSan/PSVitaAlive/actions/runs/38313965270),
+**SUCCESS** (compilación y carga de artefacto).
+**SHA EXACTO de código compilado:**
+`5f04a2cb1f232d77943372d3dfd95597ad5dee0a`.
+Los commits posteriores de documentación no cambian el binario.
+**Artifact ID** `11775797704`;
+nombre heredado `PSVitaAlive-image-throughput-5f04a2cb1f232d77943372d3dfd95597ad5dee0a`
+(no implica pipeline de imágenes modificado).
+
+**VPK extraído y comprobado:**
+`PSVitaAlive-Event-Driven-UX0-20261012.vpk`,
+**9.648.546 bytes**; **120 archivos internos**;
+`eboot.bin` y `sce_sys/param.sfo` presentes;
+`ZipFile.testzip()` exitoso.
+**SHA-256:** `5b6ff52daf89a12b85cc6e093fd812d0e110de7778550596a0f52b2ee5dade5d`.
+
+- [x] Compilación oficial VitaSDK (CI).
+- [x] Artefacto VPK extraído, SHA y CRC verificados.
+- [ ] Prueba de PS Vita real (nuevo archivo session.log).
+- [ ] Confirmación de consulta inicial única sin nuevas operaciones.
+- [ ] Actualización tras descarga/instalación y cierre correcto.
+- [ ] Promoción a estable (requiere pruebas y autorización).
+
+**Nota:** la CI confirma compilación y empaquetado, NO que los
+eventos, el semáforo o la barra funcionen correctamente en hardware.
