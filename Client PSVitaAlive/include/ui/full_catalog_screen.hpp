@@ -51,6 +51,8 @@ public:
     ~FullCatalogScreen();
     bool init();
     void shutdown();
+    /** Nonblocking: request a one-off refresh after a user download/install completes. */
+    void requestUx0SpaceRefresh();
     bool updateAndDraw();
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
