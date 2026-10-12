@@ -55,9 +55,10 @@ void httpDiagnostic(const char* message) {
     sceIoClose(fd);
 }
 
-void archiveNodeDiagnostic(const std::string& message) {
-    diagnostics::archiveNodeLog(message);
-}
+// The dedicated Archive.org node trace was retired after validation.
+// Swallow arguments at compile time: no log file, formatting, allocations,
+// or I/O. Archive candidate probing/failover logic is unchanged.
+#define archiveNodeDiagnostic(...) ((void)0)
 
 
 // VitaSDK ships OpenSSL 1.0.2-era TLS. Re-assert insecure-verify defaults every
@@ -1503,12 +1504,20 @@ HttpResult HttpClient::downloadToFile(
     const bool isGitlab = url.find("gitlab.com") != std::string::npos
         || url.find("gitlab.io") != std::string::npos;
     const bool isArchive = url.find("archive.org") != std::string::npos;
+    const bool isImageCacheTransfer =
+        destinationPath.find("/cache/images/v3/") != std::string::npos;
+    const bool isIconTransfer =
+        isImageCacheTransfer && destinationPath.find("/app_") != std::string::npos;
     const bool isGithub = url.find("github.com") != std::string::npos
         || url.find("githubusercontent.com") != std::string::npos;
 
     // archive.org: mid-transfer stalls still need patience; connect uses fail-fast below.
     if (isArchive) {
-        curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME, LOW_SPEED_TIME_ARCHIVE_SECONDS);
+        curl_easy_setopt(curl, CURLOPT_LOW_SPEED_TIME,
+                         isIconTransfer ? 12L : LOW_SPEED_TIME_ARCHIVE_SECONDS);
+        // Small icons should not occupy the single image worker for minutes
+        // on a broken Archive.org edge. VPK/PKG/screenshot timeouts unchanged.
+        if (isIconTransfer) curl_easy_setopt(curl, CURLOPT_TIMEOUT, 18L);
     }
 
     // TLS 1.2 first (archive.org + most CDNs). Avoid burning early attempts on TLS 1.1.
@@ -1586,7 +1595,8 @@ HttpResult HttpClient::downloadToFile(
         curl_easy_setopt(curl, CURLOPT_URL, activeUrl.c_str());
         // Fail-fast connect: short on first tries, slightly longer later.
         if (isArchive) {
-            const long ct = (attempt < 3) ? CONNECT_TIMEOUT_ARCHIVE_FAST : CONNECT_TIMEOUT_ARCHIVE_SLOW;
+            const long ct = isIconTransfer ? 7L :
+                            ((attempt < 3) ? CONNECT_TIMEOUT_ARCHIVE_FAST : CONNECT_TIMEOUT_ARCHIVE_SLOW);
             curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, ct);
         } else if (attempt > 0) {
             curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, CONNECT_TIMEOUT_SECONDS);

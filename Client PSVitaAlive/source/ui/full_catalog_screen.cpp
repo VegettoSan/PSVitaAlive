@@ -1,4 +1,5 @@
 #include "ui/full_catalog_screen.hpp"
+#include "catalog/catalog_trace.hpp"
 #include "ui/mascot_manager.hpp"
 #include "ui/news_markdown.hpp"
 #include "installer/app_settings.hpp"
@@ -27,6 +28,8 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/io/dirent.h>
 #include <psp2/io/devctl.h>
+#include <psp2/kernel/threadmgr.h>
+#include <atomic>
 #include <algorithm>
 #include <cmath>
 #include <cctype>
@@ -89,25 +92,132 @@ struct Ux0SpaceInfo {
     uint64_t totalBytes = 0;
 };
 
-Ux0SpaceInfo queryUx0Space() {
-    static Ux0SpaceInfo cached{};
-    static uint64_t lastMs = 0;
-    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
-    if (lastMs != 0 && nowMs >= lastMs && (nowMs - lastMs) < 3000ULL) return cached;
+// Disk queries may take hundreds of milliseconds under ux0 I/O pressure.
+// Never call sceIoDevctl from drawFooterBar() or another render-path consumer.
+// The small mutex only protects a copy of three in-memory snapshot fields.
+SceUID gUx0SnapshotMutex = -1;
+SceUID gUx0SnapshotSema = -1;
+SceUID gUx0SnapshotThread = -1;
+std::atomic<bool> gUx0SnapshotStop{false};
+std::atomic<uint32_t> gUx0SnapshotQueries{0};
+std::atomic<uint32_t> gUx0SnapshotSlowQueries{0};
+std::atomic<uint32_t> gUx0SnapshotLongestMs{0};
+Ux0SpaceInfo gUx0Snapshot{};
 
-    struct {
-        uint64_t max_size;
-        uint64_t free_size;
-        uint32_t cluster_size;
-        void* unk;
-    } info{};
-    const int ret = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
-    lastMs = nowMs;
-    cached = {};
-    if (ret < 0) return cached;
-    cached.ok = true;
-    cached.freeBytes = info.free_size;
-    cached.totalBytes = info.max_size > 0 ? info.max_size : info.free_size;
+int ux0SnapshotWorker(SceSize, void*) {
+    while (true) {
+        // Sleeps in the kernel until startup or a completed user transfer.
+        // Automatic icon/screenshot downloads never signal this semaphore.
+        if (sceKernelWaitSema(gUx0SnapshotSema, 1, nullptr) < 0) break;
+        if (gUx0SnapshotStop.load(std::memory_order_relaxed)) break;
+        struct {
+            uint64_t max_size;
+            uint64_t free_size;
+            uint32_t cluster_size;
+            void* unk;
+        } info{};
+        const uint64_t beginUs = sceKernelGetProcessTimeWide();
+        const int rc = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
+        const uint64_t endUs = sceKernelGetProcessTimeWide();
+        const uint32_t elapsedMs = endUs >= beginUs
+            ? static_cast<uint32_t>((endUs - beginUs) / 1000ULL) : 0;
+        gUx0SnapshotQueries.fetch_add(1, std::memory_order_relaxed);
+        if (elapsedMs >= 150) gUx0SnapshotSlowQueries.fetch_add(1, std::memory_order_relaxed);
+        if (elapsedMs > gUx0SnapshotLongestMs.load(std::memory_order_relaxed))
+            gUx0SnapshotLongestMs.store(elapsedMs, std::memory_order_relaxed);
+
+        if (rc >= 0 && !gUx0SnapshotStop.load(std::memory_order_relaxed)) {
+            sceKernelLockMutex(gUx0SnapshotMutex, 1, nullptr);
+            gUx0Snapshot.ok = true;
+            gUx0Snapshot.freeBytes = info.free_size;
+            gUx0Snapshot.totalBytes = info.max_size > 0 ? info.max_size : info.free_size;
+            sceKernelUnlockMutex(gUx0SnapshotMutex, 1);
+        }
+    }
+    return 0;
+}
+
+// Notification is nonblocking even if ux0 is very busy. The one-slot
+// semaphore coalesces overlapping completions into one pending refresh.
+void signalUx0SnapshotRefresh() {
+    if (gUx0SnapshotSema < 0 || gUx0SnapshotStop.load(std::memory_order_relaxed)) return;
+    sceKernelSignalSema(gUx0SnapshotSema, 1);
+}
+
+void startUx0SnapshotWorker() {
+    if (gUx0SnapshotThread >= 0) return;
+    gUx0Snapshot = {};
+    gUx0SnapshotStop.store(false, std::memory_order_relaxed);
+    gUx0SnapshotQueries.store(0, std::memory_order_relaxed);
+    gUx0SnapshotSlowQueries.store(0, std::memory_order_relaxed);
+    gUx0SnapshotLongestMs.store(0, std::memory_order_relaxed);
+    gUx0SnapshotMutex = sceKernelCreateMutex("PSVitaAliveUx0Space", 0, 0, nullptr);
+    if (gUx0SnapshotMutex < 0) {
+        diagnostics::log("[Ux0Space] snapshot mutex unavailable; footer shows ux0 n/a");
+        return;
+    }
+    gUx0SnapshotSema = sceKernelCreateSema("PSVitaAliveUx0Trigger", 0, 0, 1, nullptr);
+    if (gUx0SnapshotSema < 0) {
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+        diagnostics::log("[Ux0Space] trigger semaphore unavailable; footer shows ux0 n/a");
+        return;
+    }
+    gUx0SnapshotThread = sceKernelCreateThread(
+        "PSVitaAliveUx0Space", ux0SnapshotWorker, 0x10000110, 16 * 1024, 0, 0, nullptr);
+    if (gUx0SnapshotThread < 0) {
+        sceKernelDeleteSema(gUx0SnapshotSema);
+        gUx0SnapshotSema = -1;
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+        diagnostics::log("[Ux0Space] snapshot worker unavailable; footer shows ux0 n/a");
+        return;
+    }
+    if (sceKernelStartThread(gUx0SnapshotThread, 0, nullptr) < 0) {
+        sceKernelDeleteThread(gUx0SnapshotThread);
+        gUx0SnapshotThread = -1;
+        sceKernelDeleteSema(gUx0SnapshotSema);
+        gUx0SnapshotSema = -1;
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+        diagnostics::log("[Ux0Space] snapshot worker start failed; footer shows ux0 n/a");
+        return;
+    }
+    signalUx0SnapshotRefresh(); // Exactly one initial capacity query.
+    diagnostics::log("[Ux0Space] async worker started mode=events startup=1 after_transfer=1 periodic=0");
+}
+
+void stopUx0SnapshotWorker() {
+    gUx0SnapshotStop.store(true, std::memory_order_relaxed);
+    if (gUx0SnapshotThread >= 0) {
+        sceKernelSignalSema(gUx0SnapshotSema, 1); // Wake idle worker before joining.
+        sceKernelWaitThreadEnd(gUx0SnapshotThread, nullptr, nullptr);
+        sceKernelDeleteThread(gUx0SnapshotThread);
+        gUx0SnapshotThread = -1;
+        char msg[170];
+        sceClibSnprintf(msg, sizeof(msg),
+            "[Ux0Space] async worker stopped queries=%u slow_ge_150ms=%u longest_ms=%u",
+            (unsigned)gUx0SnapshotQueries.load(std::memory_order_relaxed),
+            (unsigned)gUx0SnapshotSlowQueries.load(std::memory_order_relaxed),
+            (unsigned)gUx0SnapshotLongestMs.load(std::memory_order_relaxed));
+        diagnostics::log(msg);
+    }
+    if (gUx0SnapshotSema >= 0) {
+        sceKernelDeleteSema(gUx0SnapshotSema);
+        gUx0SnapshotSema = -1;
+    }
+    if (gUx0SnapshotMutex >= 0) {
+        sceKernelDeleteMutex(gUx0SnapshotMutex);
+        gUx0SnapshotMutex = -1;
+    }
+    gUx0Snapshot = {};
+}
+
+Ux0SpaceInfo queryUx0Space() {
+    if (gUx0SnapshotMutex < 0) return {};
+    sceKernelLockMutex(gUx0SnapshotMutex, 1, nullptr);
+    const Ux0SpaceInfo cached = gUx0Snapshot;
+    sceKernelUnlockMutex(gUx0SnapshotMutex, 1);
     return cached;
 }
 
@@ -2413,13 +2523,22 @@ void FullCatalogScreen::completeSearch(const std::string& query){
 }
 
 void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
+    const uint64_t traceBegin=psvitaalive::catalog_trace::nowUs();
+    psvitaalive::catalog_trace::event("ui_set_items_begin",
+        "items="+std::to_string(items.size()));
     // Textures for the previous tab may still be draining; only schedule free if needed.
     releaseTextures();
+    const uint64_t released=psvitaalive::catalog_trace::nowUs();
+    psvitaalive::catalog_trace::duration("ui_release_textures",traceBegin);
     installStatusCache_.clear();
     allItems_=std::move(items);
     sortItemsByDate(allItems_);
+    const uint64_t sorted=psvitaalive::catalog_trace::nowUs();
+    psvitaalive::catalog_trace::duration("ui_sort_items",released,
+        "items="+std::to_string(allItems_.size()));
     items_.clear();
     applySearch(searchQuery_);
+    psvitaalive::catalog_trace::duration("ui_apply_search",sorted);
     visualCatalogScroll_=0.f;
     visualDetailScroll_=0.f;
     visualFocusIndex_=0.f;
@@ -2434,7 +2553,68 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     if(catalogSwitchCooldownFrames_<CATALOG_SWITCH_COOLDOWN_FRAMES/2)
         catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES/2;
     lastCatalogSwitchMs_=sceKernelGetProcessTimeWide()/1000ULL;
-}void FullCatalogScreen::setActiveCatalog(CatalogType c){
+    psvitaalive::catalog_trace::duration("ui_set_items_complete",traceBegin,
+        "items="+std::to_string(allItems_.size()));
+}
+
+void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
+    const uint64_t t=psvitaalive::catalog_trace::nowUs();
+    const auto& oldView=catalogView();
+    const int oldIndex=selectedIndex();
+    std::string selectedId, selectedTitleId;
+    if(oldIndex>=0){
+        selectedId=oldView[(size_t)oldIndex].id;
+        selectedTitleId=oldView[(size_t)oldIndex].titleId;
+    }
+    const int oldScroll=state_.catalogScrollRow;
+    const int oldDetailScroll=state_.detailScroll;
+    const int oldLinkFocus=state_.linkFocus;
+    const bool oldLinkNavigation=state_.linkNavigation;
+    // Existing GPU textures stay cached: identical URLs remain visible.
+    // prepareVisibleTextures() evicts textures that become off-screen.
+    allItems_=std::move(items);
+    sortItemsByDate(allItems_);
+    rebuildFilteredItems(); // unlike applySearch(), does not reset focus/scroll
+    const auto& newView=catalogView();
+    int found=-1;
+    for(size_t i=0;i<newView.size();++i){
+        const auto& app=newView[i];
+        if((!selectedId.empty() && app.id==selectedId) ||
+           (selectedId.empty() && !selectedTitleId.empty() && app.titleId==selectedTitleId)){
+            found=(int)i;
+            break;
+        }
+    }
+    if(found>=0)state_.focusIndex=found;
+    else{
+        clampCatalogFocus();
+        // A removed application cannot remain open in the detail view.
+        if(state_.mode!=UiMode::FULL_CATALOG){
+            state_.mode=UiMode::FULL_CATALOG;
+            state_.linkNavigation=false;
+            state_.linkFocus=-1;
+            state_.detailScroll=0;
+        }
+    }
+    state_.catalogScrollRow=oldScroll;
+    clampCatalogScroll();
+    visualCatalogScroll_=(float)state_.catalogScrollRow;
+    visualFocusIndex_=(float)state_.focusIndex;
+    if(found>=0){
+        state_.detailScroll=oldDetailScroll;
+        state_.linkFocus=oldLinkFocus;
+        state_.linkNavigation=oldLinkNavigation;
+    }
+    installStatusCache_.clear(); // versions might have changed
+    installStatusWarmupUntilMs_=sceKernelGetProcessTimeWide()/1000ULL+1500ULL;
+    catalogLoading_=false;
+    catalogError_.clear();
+    psvitaalive::catalog_trace::duration("ui_refresh_preserve_state",t,
+        "items="+std::to_string(allItems_.size())+
+        " selected_found="+std::to_string(found>=0?1:0));
+}
+
+void FullCatalogScreen::setActiveCatalog(CatalogType c){
     // Textures usually already released in changeCatalog; release again only if any remain.
     if(!textures_.empty() || !deferredFreeTextures_.empty()){
         releaseTextures();
@@ -2454,6 +2634,10 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     state_.linkFocus=-1;
     state_.linkNavigation=false;
 }void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){
+    if(catalogLoading_ != l) {
+        psvitaalive::catalog_trace::event("ui_loading_toggle",
+            std::string("loading=")+(l?"1":"0")+" label="+lab);
+    }
     if (l) {
         catalogLoading_ = true;
         catalogSplashAlpha_ = 1.f;
@@ -2565,6 +2749,7 @@ bool FullCatalogScreen::init(){
         diagnostics::log("[UI] header logo mono not found (tint fallback to color art)");
     }
     state_=UiState{};
+    startUx0SnapshotWorker();
     ready_=true;
     diagnostics::log("[UI] initialized");
     return true;
@@ -2691,7 +2876,12 @@ void FullCatalogScreen::evictTextureIfNeeded(const std::string& ns){
         if(!removed)break;
     }
 }
+void FullCatalogScreen::requestUx0SpaceRefresh() {
+    signalUx0SnapshotRefresh();
+}
+
 void FullCatalogScreen::shutdown(){
+    stopUx0SnapshotWorker();
     gProtectionMascotStartPending = false;
     gProtectionMascotStopPending = false;
     gProtectionMascotManager.stop();
@@ -7597,11 +7787,15 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     const uint64_t frameEndUs=sceKernelGetProcessTimeWide();
     const uint64_t frameUs=frameEndUs>=frameStartUs?frameEndUs-frameStartUs:0;
     static uint64_t lastSlowFrameLogUs=0;
-    if(frameUs>=25000ULL&&(lastSlowFrameLogUs==0||frameEndUs-lastSlowFrameLogUs>=2000000ULL)){
+    if(frameUs>=25000ULL&&(lastSlowFrameLogUs==0||frameEndUs-lastSlowFrameLogUs>=500000ULL)){
         char pm[180];
         sceClibSnprintf(pm,sizeof(pm),"[Perf] slow frame us=%llu mode=%d textures=%u deferred=%u",
             (unsigned long long)frameUs,(int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
         diagnostics::log(pm);
+        psvitaalive::catalog_trace::event("ui_slow_frame",
+            "duration_ms="+std::to_string(frameUs/1000ULL)+
+            " loading="+std::to_string(catalogLoading_?1:0)+
+            " items="+std::to_string(allItems_.size()));
         lastSlowFrameLogUs=frameEndUs;
     }
     return !state_.requestExit;

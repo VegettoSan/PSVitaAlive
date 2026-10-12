@@ -1,4 +1,5 @@
 #include "catalog/catalog_parser.hpp"
+#include "catalog/catalog_trace.hpp"
 
 #include <psp2/json.h>
 #include <psp2/sysmodule.h>
@@ -275,6 +276,8 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
 } // namespace
 
 bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogItem>& outItems) {
+    const uint64_t traceStarted=catalog_trace::nowUs();
+    catalog_trace::event("parser_begin","path="+path);
     outItems.clear();
 
     // Sidecar zRIF index next to the catalog JSON. Install looks up by URL so
@@ -307,7 +310,10 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
     }
 
     sce::Json::Value root;
+    const uint64_t domStart=catalog_trace::nowUs();
     const int parseResult = sce::Json::Parser::parse(root, path.c_str());
+    catalog_trace::duration("parser_dom_end",domStart,
+        "rc="+std::to_string(parseResult));
     if (parseResult < 0) {
         sceClibPrintf("[CatalogParser] JSON parse failed: 0x%08X\n", parseResult);
         initializer.terminate();
@@ -316,7 +322,9 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
     }
 
     const char* imagePrefix = imageCatalogPrefixForPath(path);
+    const uint64_t conversionStart=catalog_trace::nowUs();
     const sce::Json::Array& applications = root.getArray();
+    catalog_trace::event("parser_conversion_begin","entries="+std::to_string(applications.size()));
     for (SceSize i = 0; i < applications.size(); ++i) {
         const sce::Json::Value& app = root[i];
         ui::CatalogItem item;
@@ -387,8 +395,13 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         outItems.push_back(std::move(item));
     }
 
+    catalog_trace::duration("parser_conversion_end",conversionStart,
+        "loaded="+std::to_string(outItems.size())+
+        " entries="+std::to_string(applications.size()));
     initializer.terminate();
     if (zrifIdxFd >= 0) sceIoClose(zrifIdxFd);
+    catalog_trace::duration("parser_complete",traceStarted,
+        "loaded="+std::to_string(outItems.size()));
     sceClibPrintf("[CatalogParser] Loaded %u applications (zrif index entries=%u)\n",
                   static_cast<unsigned>(outItems.size()),
                   static_cast<unsigned>(zrifWritten));

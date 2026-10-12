@@ -2,7 +2,7 @@ name: Build PS Vita Client
 
 on:
   push:
-    branches: [main]
+    branches: [main, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
     paths:
       - "Client PSVitaAlive/**"
       - ".github/workflows/client-build.yml"
@@ -72,7 +72,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: PSVitaAlive-ci-${{ github.sha }}
+          name: PSVitaAlive-image-throughput-${{ github.sha }}
           path: Client PSVitaAlive/build-ci/PSVitaAlive.vpk
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 14

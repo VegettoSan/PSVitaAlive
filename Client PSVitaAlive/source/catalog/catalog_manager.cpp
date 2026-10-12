@@ -1,6 +1,7 @@
 #include "catalog/catalog_manager.hpp"
 
 #include "catalog/catalog_parser.hpp"
+#include "catalog/catalog_trace.hpp"
 #include "diagnostic_logger.hpp"
 #include "localization/localization.hpp"
 #include "network/http_client.hpp"
@@ -26,6 +27,25 @@ bool readTextFile(const std::string& path,std::string& out){out.clear();SceIoSta
 bool writeTextFile(const std::string& path,const std::string& text){SceUID fd=sceIoOpen(path.c_str(),SCE_O_WRONLY|SCE_O_CREAT|SCE_O_TRUNC,0666);if(fd<0)return false;size_t written=0;while(written<text.size()){const int result=sceIoWrite(fd,text.data()+written,(unsigned int)(text.size()-written));if(result<=0){sceIoClose(fd);return false;}written+=(size_t)result;}sceIoClose(fd);return true;}
 void parseValidators(const std::string& text,std::string& etag,std::string& modified){etag.clear();modified.clear();const size_t e=text.find("etag=");if(e!=std::string::npos){const size_t end=text.find('\n',e);etag=text.substr(e+5,end==std::string::npos?std::string::npos:end-(e+5));}const size_t m=text.find("last_modified=");if(m!=std::string::npos){const size_t end=text.find('\n',m);modified=text.substr(m+14,end==std::string::npos?std::string::npos:end-(m+14));}}
 bool validatorsMatch(const std::string& oldEtag,const std::string& oldModified,const std::string& newEtag,const std::string& newModified){const bool remoteHas=!newEtag.empty()||!newModified.empty();const bool storedHas=!oldEtag.empty()||!oldModified.empty();if(!remoteHas||!storedHas)return false;if(!newEtag.empty()&&oldEtag!=newEtag)return false;if(!newModified.empty()&&oldModified!=newModified)return false;return true;}
+}
+// Compare identical remote payload without allocating a second JSON tree.
+bool filesIdentical(const std::string& left,const std::string& right){
+    SceIoStat a{},b{};
+    if(sceIoGetstat(left.c_str(),&a)<0||sceIoGetstat(right.c_str(),&b)<0||
+       a.st_size<=0||a.st_size!=b.st_size)return false;
+    const SceUID fa=sceIoOpen(left.c_str(),SCE_O_RDONLY,0);
+    if(fa<0)return false;
+    const SceUID fb=sceIoOpen(right.c_str(),SCE_O_RDONLY,0);
+    if(fb<0){sceIoClose(fa);return false;}
+    unsigned char aa[4096],bb[4096];bool same=true;
+    for(;;){
+        const int n=sceIoRead(fa,aa,sizeof(aa));
+        if(n<0){same=false;break;}
+        if(n==0)break;
+        const int m=sceIoRead(fb,bb,(unsigned)n);
+        if(m!=n||std::memcmp(aa,bb,(size_t)n)!=0){same=false;break;}
+    }
+    sceIoClose(fb);sceIoClose(fa);return same;
 }
 
 CatalogManager::CatalogManager()=default;
@@ -123,7 +143,20 @@ bool CatalogManager::request(ui::CatalogType catalog) {
 }
 
 CatalogManager::Status CatalogManager::status()const{Status result;if(mutex_<0)return result;sceKernelLockMutex(mutex_,1,nullptr);result=status_;sceKernelUnlockMutex(mutex_,1);return result;}
-bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::CatalogType&catalog){if(mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);if(!readyPending_){sceKernelUnlockMutex(mutex_,1);return false;}outItems=std::move(readyItems_);catalog=readyCatalog_;readyPending_=false;sceKernelUnlockMutex(mutex_,1);return true;}
+bool CatalogManager::takeReady(std::vector<ui::CatalogItem>&outItems,ui::CatalogType&catalog){
+    if(mutex_<0)return false;
+    const uint64_t t=catalog_trace::nowUs();
+    sceKernelLockMutex(mutex_,1,nullptr);
+    if(!readyPending_){sceKernelUnlockMutex(mutex_,1);return false;}
+    outItems=std::move(readyItems_);
+    catalog=readyCatalog_;
+    const bool soft=status_.softRefresh;
+    readyPending_=false;
+    sceKernelUnlockMutex(mutex_,1);
+    catalog_trace::duration("ready_consumed",t,std::string("catalog=")+label(catalog)+
+        " items="+std::to_string(outItems.size())+" soft="+std::to_string(soft?1:0));
+    return true;
+}
 
 void ensureZrifIndexDownloaded(ui::CatalogType catalog, HttpClient& http) {
     if (catalog != ui::CatalogType::VitaGames) return;
@@ -181,10 +214,19 @@ void ensureZrifIndexDownloaded(ui::CatalogType catalog, HttpClient& http) {
 bool CatalogManager::tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
     outItems.clear();
     const std::string path = cachePath(catalog);
-    if (!fileExists(path)) return false;
+    const uint64_t t=catalog_trace::nowUs();
+    SceIoStat stat{};
+    if(!fileExists(path)){catalog_trace::event("disk_miss",label(catalog));return false;}
+    sceIoGetstat(path.c_str(),&stat);
+    catalog_trace::event("disk_parse_start",std::string("catalog=")+label(catalog)+
+        " bytes="+std::to_string((uint64_t)stat.st_size));
     std::vector<ui::CatalogItem> cached;
-    if (!CatalogParser::parseFile(path, cached) || cached.empty()) return false;
-    outItems = std::move(cached);
+    if(!CatalogParser::parseFile(path,cached)||cached.empty()){
+        catalog_trace::duration("disk_parse_failed",t,label(catalog));return false;
+    }
+    outItems=std::move(cached);
+    catalog_trace::duration("disk_parse_ok",t,std::string("catalog=")+label(catalog)+
+        " items="+std::to_string(outItems.size()));
     return true;
 }
 
@@ -214,7 +256,14 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     status_.message = ::psvitaalive::L(::psvitaalive::TextId::CheckingForAppUpdates);
     sceKernelUnlockMutex(mutex_, 1);
 
-    const HttpResult validatorResult = http.fetchRemoteValidators(url, remoteEtag, remoteModified);
+    const uint64_t tValidator=catalog_trace::nowUs();
+    const HttpResult validatorResult=http.fetchRemoteValidators(url,remoteEtag,remoteModified);
+    catalog_trace::duration("validator_result",tValidator,
+        std::string("catalog=")+label(catalog)+" rc="+std::to_string((int)validatorResult)+
+        " etag_old="+std::to_string(!storedEtag.empty())+
+        " etag_new="+std::to_string(!remoteEtag.empty())+
+        " lm_old="+std::to_string(!storedModified.empty())+
+        " lm_new="+std::to_string(!remoteModified.empty()));
     if (validatorResult == HttpResult::Ok &&
         validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
         diagnostics::log(std::string("[CatalogManager] soft refresh: unchanged ") + label(catalog));
@@ -236,6 +285,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         return false;
     }
 
+    catalog_trace::event("soft_download_start",label(catalog));
     diagnostics::log(std::string("[CatalogManager] soft refresh: downloading ") + label(catalog));
     sceKernelLockMutex(mutex_, 1, nullptr);
     status_.softRefresh = true;
@@ -257,7 +307,26 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
             sceKernelUnlockMutex(mutex_, 1);
         });
 
-    if (result == HttpResult::Ok) {
+    if(result==HttpResult::Ok){
+        const uint64_t cmpStart=catalog_trace::nowUs();
+        const bool same=filesIdentical(path,temp);
+        catalog_trace::duration("catalog_content_compare",cmpStart,
+            std::string("catalog=")+label(catalog)+" identical="+std::to_string(same?1:0));
+        if(same){
+            sceIoRemove(temp.c_str());
+            writeTextFile(meta,"etag="+remoteEtag+"\nlast_modified="+remoteModified+"\n");
+            http.shutdown();
+            sceKernelLockMutex(mutex_,1,nullptr);
+            status_.softRefresh=false;
+            status_.message=::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+            sceKernelUnlockMutex(mutex_,1);
+            diagnostics::log(std::string("[CatalogManager] byte-identical remote, skip JSON/hot-swap: ")+label(catalog));
+            return false;
+        }
+        sceKernelLockMutex(mutex_,1,nullptr);
+        status_.message="Processing updated catalog...";
+        status_.current=0;status_.total=0;
+        sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
         if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
             sceIoRemove(path.c_str());
@@ -336,6 +405,10 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
         });
 
     if (result == HttpResult::Ok) {
+        sceKernelLockMutex(mutex_,1,nullptr);
+        status_.message="Processing downloaded catalog...";
+        status_.current=0;status_.total=0;
+        sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
         if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
             sceIoRemove(path.c_str());
@@ -370,9 +443,14 @@ void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::Catal
         cachedItems_[cidx] = items;
         cachedValid_[cidx] = true;
     }
-    readyItems_ = items;
-    readyCatalog_ = catalog;
-    readyPending_ = true;
+    if(readyPending_)catalog_trace::event("WARNING_unconsumed_ready_overwrite",
+        std::string("old=")+label(readyCatalog_)+" new="+label(catalog));
+    readyItems_=items;
+    readyCatalog_=catalog;
+    readyPending_=true;
+    catalog_trace::event("publish_ready",std::string("catalog=")+label(catalog)+
+        " items="+std::to_string(items.size())+
+        " soft="+std::to_string(softRefresh?1:0));
     status_.state = State::Ready;
     status_.catalog = catalog;
     status_.current = status_.total > 0 ? status_.total : 1;
@@ -417,6 +495,8 @@ int CatalogManager::workerMain() {
             continue;
         }
 
+        catalog_trace::event("worker_request",std::string("catalog=")+label(catalog)+
+            " gen="+std::to_string(gen));
         auto isStale = [&]() -> bool {
             sceKernelLockMutex(mutex_, 1, nullptr);
             const bool stale =
@@ -444,7 +524,18 @@ int CatalogManager::workerMain() {
             sceKernelUnlockMutex(mutex_, 1);
 
             if (isStale()) continue;
-
+            // Never overwrite a not-yet-consumed cache-first payload.
+            while(!stopping_){
+                sceKernelLockMutex(mutex_,1,nullptr);
+                const bool pending=readyPending_ && readyCatalog_==catalog;
+                const bool stale=requestPending_||catalog!=requestedCatalog_||
+                    gen!=requestGeneration_;
+                sceKernelUnlockMutex(mutex_,1);
+                if(stale||!pending)break;
+                sceKernelDelayThread(10*1000);
+            }
+            if(stopping_||isStale())continue;
+            catalog_trace::event("cache_consumed_network_next",label(catalog));
             std::vector<ui::CatalogItem> fresh;
             if (trySoftNetworkRefresh(catalog, fresh) && !fresh.empty()) {
                 if (isStale()) continue;
@@ -464,6 +555,7 @@ int CatalogManager::workerMain() {
             }
             continue;
         }
+        catalog_trace::event("hard_load_start",label(catalog));
         diagnostics::log(std::string("[CatalogManager] no disk cache, hard load: ") + label(catalog));
 #endif
 

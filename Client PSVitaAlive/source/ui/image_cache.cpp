@@ -6,6 +6,7 @@
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
+#include <psp2/net/netctl.h>
 #include <png.h>
 #include <jpeglib.h>
 #include <algorithm>
@@ -20,10 +21,21 @@ constexpr const char* CATALOG_CACHE_ROOT="ux0:data/psvitaalive/cache/catalog";
 constexpr const char* V3_LAYOUT_MARKER="ux0:data/psvitaalive/cache/images/v3/.per_image_v1";
 constexpr int WORKER_PRIORITY=0x10000100,WORKER_STACK=128*1024,MAX_RETRIES=3;
 // Fewer SSL rounds per image — UI should not burn 10× curl-35 on a missing icon.
-constexpr int IMAGE_HTTP_ATTEMPTS = 8; // more tries so icon0 lands in cache (no wrong fallback)
+// A failing Archive.org icon should not monopolize the image worker.
+// Retain original retry budget for GitHub/GitLab/other image providers.
+constexpr int IMAGE_HTTP_ATTEMPTS = 8;
+constexpr int ARCHIVE_IMAGE_HTTP_ATTEMPTS = 3;
 
 /* services/img removed — IA page thumb is often a screenshot, not icon0 */
 
+// Cache-first browsing must remain usable while Wi-Fi is down.
+// Fail open if NetCtl is unavailable (Vita3K / early startup).
+bool imageNetworkConnected(){
+    int state=0;
+    int rc=sceNetCtlInetGetState(&state);
+    if(rc<0){sceNetCtlInit();rc=sceNetCtlInetGetState(&state);}
+    return rc<0 || state==SCE_NETCTL_STATE_CONNECTED;
+}
 constexpr uint64_t RETRY_COOLDOWN_US=3000000ULL;
 constexpr size_t MAX_INTERACTIVE_QUEUE=12;
 constexpr uint64_t IMAGE_PROGRESS_PUBLISH_INTERVAL_US=100000ULL; // UI progress <= 10 Hz
@@ -315,6 +327,7 @@ void ImageCache::pruneSupersededVersions(const std::string&currentPath){
 
 void ImageCache::cancelQueuedExcept(const std::unordered_set<std::string>& keep) {
     if (mutex_ < 0) return;
+    const uint64_t now = sceKernelGetSystemTimeWide();
     sceKernelLockMutex(mutex_, 1, nullptr);
     size_t removed = 0;
     std::vector<Job> keptJobs;
@@ -328,8 +341,20 @@ void ImageCache::cancelQueuedExcept(const std::unordered_set<std::string>& keep)
         }
     }
     queue_.swap(keptJobs);
-    const bool cancelActive = !currentPath_.empty() && keep.find(currentPath_) == keep.end();
-    if (cancelActive) cancelRequested_ = true;
+
+    // Scroll animations briefly report an empty/old viewport. Previously that
+    // immediately cancelled the active transfer, sometimes multiple times in
+    // one second, preventing small icon downloads from ever finishing.
+    bool cancelActive = false;
+    if (currentPath_.empty() || keep.find(currentPath_) != keep.end()) {
+        activeOffscreenSinceUs_ = 0;
+    } else if (activeOffscreenSinceUs_ == 0) {
+        activeOffscreenSinceUs_ = now;
+    } else if (!cancelRequested_ && now >= activeOffscreenSinceUs_ &&
+               now - activeOffscreenSinceUs_ >= 1500000ULL) {
+        cancelRequested_ = true;
+        cancelActive = true;
+    }
     sceKernelUnlockMutex(mutex_, 1);
     if (removed > 0 || cancelActive) {
         char m[160];
@@ -388,7 +413,8 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
         sceIoRemove(path.c_str());
     }
 
-    const std::string parent=parentDirOf(path);if(!parent.empty()&&!ensureDirectory(parent)){diagnostics::log(std::string("[ImageCache] cannot create image bucket path=")+parent);return path;}
+    // Disk cache directories are ensured by the image worker, not the UI.
+    // A cold cache can make sceIoMkdir/createDirectories stall for >1 second.
     sceKernelLockMutex(mutex_,1,nullptr);
     const bool queued=std::any_of(queue_.begin(),queue_.end(),[&](const Job&j){return j.path==path;});
     if(!queued&&!contains(pending_,path)){
@@ -432,7 +458,33 @@ void ImageCache::resetProgress(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,
 void ImageCache::cancelAll(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);const bool active=!currentPath_.empty();const size_t queued=queue_.size();for(const Job&j:queue_)pending_.erase(std::remove(pending_.begin(),pending_.end(),j.path),pending_.end());queue_.clear();cancelRequested_=active;sceKernelUnlockMutex(mutex_,1);if(queued||active)diagnostics::log("[ImageCache] cancel requested for image work");}
 void ImageCache::cancelQueuedRequests(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);std::vector<std::string>cancelled;cancelled.reserve(queue_.size());for(const Job&j:queue_)cancelled.push_back(j.path);const size_t count=queue_.size();queue_.clear();for(const auto&p:cancelled)pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());sceKernelUnlockMutex(mutex_,1);if(count){char m[160];sceClibSnprintf(m,sizeof(m),"[ImageCache] cancelled queued requests=%u",(unsigned)count);diagnostics::log(m);}}
 void ImageCache::markReady(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,p))ready_.push_back(p);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());failed_.erase(std::remove(failed_.begin(),failed_.end(),p),failed_.end());retryAfter_.erase(p);sceKernelUnlockMutex(mutex_,1);}
-void ImageCache::markFailed(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());if(!contains(failed_,p))failed_.push_back(p);retryAfter_[p]=sceKernelGetSystemTimeWide()+RETRY_COOLDOWN_US;sceKernelUnlockMutex(mutex_,1);}
+void ImageCache::markFailed(const std::string&p,uint64_t cooldownUs){sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());if(!contains(failed_,p))failed_.push_back(p);retryAfter_[p]=sceKernelGetSystemTimeWide()+(cooldownUs?cooldownUs:RETRY_COOLDOWN_US);sceKernelUnlockMutex(mutex_,1);}
 int ImageCache::workerEntry(SceSize a,void*arg){(void)a;ImageCache*self=nullptr;if(arg)std::memcpy(&self,arg,sizeof(self));return self?self->workerMain():-1;}
-void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);const bool changed=(networkPaused_!=paused);networkPaused_=paused;if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);if(changed){if(paused)diagnostics::log("[ImageCache] network paused (install/download active)");else diagnostics::log("[ImageCache] network resumed");}}int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){bool paused=false;if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;sceKernelUnlockMutex(mutex_,1);}if(paused){sceKernelDelayThread(100*1000);continue;}Job job;bool have=false;sceKernelLockMutex(mutex_,1,nullptr);if(!queue_.empty()){job=queue_.front();queue_.erase(queue_.begin());have=true;const size_t slash=job.url.find_last_of('/');currentFile_=(slash==std::string::npos?job.url:job.url.substr(slash+1));currentPath_=job.path;currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;}sceKernelUnlockMutex(mutex_,1);if(!have){sceKernelDelayThread(50*1000);continue;}uint64_t latestDownloaded=0,latestTotal=0,latestSpeed=0,lastProgressPublishUs=0;HttpProgressFn onProgress=[this,&latestDownloaded,&latestTotal,&latestSpeed,&lastProgressPublishUs](const HttpProgress&p){latestDownloaded=p.downloaded;latestTotal=p.total;latestSpeed=p.bytesPerSecond;const uint64_t now=sceKernelGetSystemTimeWide();const bool finalKnown=p.total>0&&p.downloaded>=p.total;if(!finalKnown&&lastProgressPublishUs!=0&&now-lastProgressPublishUs<IMAGE_PROGRESS_PUBLISH_INTERVAL_US)return;lastProgressPublishUs=now;if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);currentDownloaded_=latestDownloaded;currentTotal_=latestTotal;currentSpeed_=latestSpeed;sceKernelUnlockMutex(mutex_,1);};HttpCancelFn shouldCancel=[this](){if(mutex_<0)return true;sceKernelLockMutex(mutex_,1,nullptr);const bool c=cancelRequested_||stopping_;sceKernelUnlockMutex(mutex_,1);return c;};/* A: only real catalog URL (icon0/shots). B: IMAGE_HTTP_ATTEMPTS retries to fill cache. */HttpResult r=http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,IMAGE_HTTP_ATTEMPTS);if(job.url.find("archive.org")!=std::string::npos){/* archive.org image spacing */sceKernelDelayThread(150*1000);}const uint64_t doneBytes=latestDownloaded,doneTotal=latestTotal;sceKernelLockMutex(mutex_,1,nullptr);const bool cancelled=cancelRequested_||r==HttpResult::Cancelled||stopping_;sceKernelUnlockMutex(mutex_,1);if(cancelled){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled url=")+job.url+" path="+job.path);continue;}bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}const uint64_t normStart=sceKernelGetSystemTimeWide();if(valid)valid=normalizeImageForVita(job.path,job.path.find("/app_")!=std::string::npos?APP_IMAGE_MAX_DIM:SCREENSHOT_IMAGE_MAX_DIM);const uint64_t normUs=sceKernelGetSystemTimeWide()-normStart;if(valid&&normUs>=8000ULL){char pm[220];sceClibSnprintf(pm,sizeof(pm),"[Perf] image normalize slow us=%llu path=%s",(unsigned long long)normUs,job.path.c_str());diagnostics::log(pm);}sceKernelLockMutex(mutex_,1,nullptr);const bool cancelledAfterNormalize=cancelRequested_||stopping_;if(!cancelledAfterNormalize&&r==HttpResult::Ok&&valid){completedBytes_+=doneBytes;if(doneTotal>0)completedTotalBytes_+=doneTotal;}currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);if(cancelledAfterNormalize){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled after transfer url=")+job.url+" path="+job.path);continue;}if(valid){markReady(job.path);pruneSupersededVersions(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else markFailed(job.path);}}http.shutdown();return 0;}
+void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);const bool changed=(networkPaused_!=paused);networkPaused_=paused;if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);if(changed){if(paused)diagnostics::log("[ImageCache] network paused (install/download active)");else diagnostics::log("[ImageCache] network resumed");}}int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){bool paused=false;if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;sceKernelUnlockMutex(mutex_,1);}if(paused){sceKernelDelayThread(100*1000);continue;}
+    // Do not spend eight curl DNS retries on each image while offline.
+    // Keep requests queued and retry after connectivity returns.
+    bool queuedForNetwork=false;
+    sceKernelLockMutex(mutex_,1,nullptr);
+    queuedForNetwork=!queue_.empty();
+    sceKernelUnlockMutex(mutex_,1);
+    if(queuedForNetwork && !imageNetworkConnected()){
+        sceKernelDelayThread(500*1000);
+        continue;
+    }
+    Job job;bool have=false;sceKernelLockMutex(mutex_,1,nullptr);if(!queue_.empty()){job=queue_.front();queue_.erase(queue_.begin());have=true;const size_t slash=job.url.find_last_of('/');currentFile_=(slash==std::string::npos?job.url:job.url.substr(slash+1));currentPath_=job.path;activeOffscreenSinceUs_=0;currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;}sceKernelUnlockMutex(mutex_,1);if(!have){sceKernelDelayThread(50*1000);continue;}uint64_t latestDownloaded=0,latestTotal=0,latestSpeed=0,lastProgressPublishUs=0;HttpProgressFn onProgress=[this,&latestDownloaded,&latestTotal,&latestSpeed,&lastProgressPublishUs](const HttpProgress&p){latestDownloaded=p.downloaded;latestTotal=p.total;latestSpeed=p.bytesPerSecond;const uint64_t now=sceKernelGetSystemTimeWide();const bool finalKnown=p.total>0&&p.downloaded>=p.total;if(!finalKnown&&lastProgressPublishUs!=0&&now-lastProgressPublishUs<IMAGE_PROGRESS_PUBLISH_INTERVAL_US)return;lastProgressPublishUs=now;if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);currentDownloaded_=latestDownloaded;currentTotal_=latestTotal;currentSpeed_=latestSpeed;sceKernelUnlockMutex(mutex_,1);};HttpCancelFn shouldCancel=[this](){if(mutex_<0)return true;sceKernelLockMutex(mutex_,1,nullptr);const bool c=cancelRequested_||stopping_;sceKernelUnlockMutex(mutex_,1);return c;};/* A: only real catalog URL (icon0/shots). B: IMAGE_HTTP_ATTEMPTS retries to fill cache. */const bool archiveImage=job.url.find("archive.org")!=std::string::npos;
+    const int attempts=archiveImage?ARCHIVE_IMAGE_HTTP_ATTEMPTS:IMAGE_HTTP_ATTEMPTS;
+    // Create the parent bucket here, off the render thread, before curl opens
+    // the destination. Keep the same on-disk v3 layout and failure handling.
+    const std::string parent=parentDirOf(job.path);
+    const bool directoryReady=parent.empty()||ensureDirectory(parent);
+    if(!directoryReady)diagnostics::log(std::string("[ImageCache] cannot create image bucket path=")+parent);
+    HttpResult r=directoryReady?http.downloadToFile(job.url,job.path,0,onProgress,shouldCancel,attempts):HttpResult::IoError;
+    if(directoryReady&&archiveImage){/* archive.org image spacing */sceKernelDelayThread(150*1000);}const uint64_t doneBytes=latestDownloaded,doneTotal=latestTotal;sceKernelLockMutex(mutex_,1,nullptr);const bool cancelled=cancelRequested_||r==HttpResult::Cancelled||stopping_;sceKernelUnlockMutex(mutex_,1);if(cancelled){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled url=")+job.url+" path="+job.path);continue;}bool valid=false;if(r==HttpResult::Ok){SceIoStat st={};valid=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;}const uint64_t normStart=sceKernelGetSystemTimeWide();if(valid)valid=normalizeImageForVita(job.path,job.path.find("/app_")!=std::string::npos?APP_IMAGE_MAX_DIM:SCREENSHOT_IMAGE_MAX_DIM);const uint64_t normUs=sceKernelGetSystemTimeWide()-normStart;if(valid&&normUs>=8000ULL){char pm[220];sceClibSnprintf(pm,sizeof(pm),"[Perf] image normalize slow us=%llu path=%s",(unsigned long long)normUs,job.path.c_str());diagnostics::log(pm);}sceKernelLockMutex(mutex_,1,nullptr);const bool cancelledAfterNormalize=cancelRequested_||stopping_;if(!cancelledAfterNormalize&&r==HttpResult::Ok&&valid){completedBytes_+=doneBytes;if(doneTotal>0)completedTotalBytes_+=doneTotal;}currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;cancelRequested_=false;sceKernelUnlockMutex(mutex_,1);if(cancelledAfterNormalize){sceIoRemove(job.path.c_str());sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());sceKernelUnlockMutex(mutex_,1);diagnostics::log(std::string("[ImageCache] cancelled after transfer url=")+job.url+" path="+job.path);continue;}if(valid){markReady(job.path);pruneSupersededVersions(job.path);char m[900];sceClibSnprintf(m,sizeof(m),"[ImageCache] ready url=%s path=%s attempt=%d",job.url.c_str(),job.path.c_str(),job.attempt+1);diagnostics::log(m);}else{sceIoRemove(job.path.c_str());char m[1000];sceClibSnprintf(m,sizeof(m),"[ImageCache] failed url=%s path=%s attempt=%d http=%d error=%s",job.url.c_str(),job.path.c_str(),job.attempt+1,http.lastStatusCode(),http.lastError().c_str());diagnostics::log(m);if(job.attempt+1<MAX_RETRIES&&!stopping_){sceKernelDelayThread((job.attempt+1)*250*1000);job.attempt++;sceKernelLockMutex(mutex_,1,nullptr);queue_.push_back(job);sceKernelUnlockMutex(mutex_,1);}else {
+            // When an Archive edge serves HTTP 5xx, back off this single URL
+            // so other visible icons have a chance to download first.
+            const long status=http.lastStatusCode();
+            const uint64_t retryDelay=(archiveImage && status>=500 && status<=599)
+                ? 45000000ULL : RETRY_COOLDOWN_US;
+            markFailed(job.path,retryDelay);
+        }}}http.shutdown();return 0;}
 } // namespace psvitaalive::ui
