@@ -104,7 +104,7 @@ private:
     void enforceStartupDiskLimit(const StartupMaintenanceProgressFn& startupProgress);
     void pruneSupersededVersions(const std::string& currentPath);
     void markReady(const std::string& path);
-    void markFailed(const std::string& path);
+    void markFailed(const std::string& path, uint64_t cooldownUs = 0);
 };
 
 } // namespace ui
