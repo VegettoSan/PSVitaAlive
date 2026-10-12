@@ -117,9 +117,8 @@ detección de instalados/updates, plugins.
 
 ## Protocolo de aceptación
 
-- [ ] VitaSDK oficial CI `vitasdk/vitasdk:2026.08`
-  compila rama fix; registrar run, commit binario,
-  tamaño, integridad y SHA256 de VPK.
+- [x] VitaSDK oficial CI `vitasdk/vitasdk:2026.08`
+  compilado; commit exacto, tamaño, integridad y SHA256 registrados.
 - [ ] En PS Vita real, verificar build marker
   `async-ux0-space-20261012 main=untouched fix=1`
   y `[Ux0Space] async worker started`.
@@ -149,3 +148,29 @@ detección de instalados/updates, plugins.
   y regenerar JSON por Action. Solicitar aprobación.
 
 **Rollback disponible:** `stable/async-image-buckets-20261012`.
+
+## Build oficial y paquete verificado
+
+- **CI:** https://github.com/VegettoSan/PSVitaAlive/actions/runs/38312277356
+- **Resultado:** SUCCESS.
+- **SHA del código compilado:** `37066473764e68da925774a5c4a4c575888521ba`.
+  (Es anterior a la documentación adicional; el VPK incluye el código
+  de esta corrección exactamente, no los commits de documentación.)
+- **Artifact ID:** `11775670477`.
+- **VPK de prueba:** `PSVitaAlive-Async-UX0-Space-20261012.vpk`.
+- **Tamaño:** 9.648.566 bytes. **120** entradas ZIP.
+- **Contenido:** `eboot.bin` y `sce_sys/param.sfo` presentes.
+  `ZipFile.testzip()` sin errores.
+- **SHA-256:** `b0d574fb7ed38350e71754a13878c5f58b58ec95fdd2b11261194d0e8cd6264a`.
+- **Estado:** compilado y empaquetado; **NO VALIDADO TODAVÍA EN
+  PS VITA REAL**. Esperar nuevo `session.log`.
+
+**Procedimiento inmediato:** instalar el VPK de esta rama;
+revisar texto `[Ux0Space] async worker started` y
+que el footer actualice el espacio; explorar grid
+y detalle durante descargas para repetir el
+escenario del bloqueo de 3,017 segundos.
+Esperar que ya NO aparezca ese retraso por consulta
+UX0 en el hilo UI, pero medir antes de asegurar
+su desaparición. Abrir/cerrar una vez para registrar
+resumen `[Ux0Space] async worker stopped ...`.
