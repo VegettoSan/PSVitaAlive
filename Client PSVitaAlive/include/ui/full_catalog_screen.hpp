@@ -67,6 +67,9 @@ public:
     void setImageCache(ImageCache* cache);
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
+    CatalogType activeCatalog() const { return state_.catalog; }
+    /** Refresh the active catalog without losing user selection, search or scroll. */
+    void refreshCatalogItems(std::vector<CatalogItem> items);
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
     void showToast(const std::string& message, uint64_t durationMs = 2600);
