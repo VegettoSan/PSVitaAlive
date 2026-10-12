@@ -692,7 +692,7 @@ int main(){
     psvitaalive::diagnostics::init();
     psvitaalive::diagnostics::log("============================================================");
     psvitaalive::diagnostics::log("PSVitaAlive session BEGIN");
-    psvitaalive::catalog_trace::event("build_marker","async-image-buckets-20261012 main=untouched diagnostic=1");
+    psvitaalive::catalog_trace::event("build_marker","async-ux0-space-20261012 main=untouched fix=1");
     const uint64_t catTraceStarted=psvitaalive::catalog_trace::nowUs();
     psvitaalive::diagnostics::log("TitleID=PSVAS1178");
 
