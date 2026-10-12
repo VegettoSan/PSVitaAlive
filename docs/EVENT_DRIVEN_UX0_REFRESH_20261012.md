@@ -1,5 +1,7 @@
 # PSVitaAlive — UX0: actualizar capacidad solo al iniciar y al terminar transferencias
 
+> **Estado actualizado (12-10-2026):** la versión de UX0 estrictamente **por eventos** fue autorizada e **integrada en `main` por PR #28** (commit `9060e790a3dadec7a43ef0913e5b2e53ac727aa1`, CI VitaSDK correcto). Las expresiones históricas “NO main” y “promoción pendiente” documentan el estado *anterior* al merge. **La integración no significa validación completa de hardware:** aún hay que probar refresco tras transferencias y cierre limpio en una sesión del VPK de `main`. Ver [estado vigente](CLIENT_PERFORMANCE_STATUS_20261012.md).
+
 **Fecha:** 2026-10-12.
 **Estado:** prueba de implementación; NO stable, NO main.
 **Nueva rama:** `fix/event-driven-ux0-space-20261012`.
