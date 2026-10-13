@@ -7,35 +7,39 @@
   "author_ids": [
     "aap",
     "rinnegatamante",
-    "theflow"
+    "theflow",
+    "delon5"
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "action",
+    "simulation",
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-06-05",
+  "version": "v.1.01",
+  "version_date": "2026-09-19",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 896490,
-  "status": "Legacy",
+  "size": 1258291,
+  "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bully-vita/bully-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-bully-vita/BULLY-V1.01.vpk",
+      "size": 1258291,
       "recommended": true
     },
     {
       "type": "Game Files",
       "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-bully-vita/Bully%20Game%20Files.zip",
+      "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files%20Update.zip",
       "size": 3006477107,
       "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
       "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/bully_vita"
+      "url": "https://github.com/delon5/bully_vita"
     }
   ],
   "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
