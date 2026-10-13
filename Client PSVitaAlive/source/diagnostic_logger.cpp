@@ -175,7 +175,7 @@ void log(const std::string& message) {
     const size_t bytes = static_cast<size_t>(printed) < sizeof(line)
         ? static_cast<size_t>(printed) : sizeof(line) - 1;
     // Preserve line boundaries for oversized URLs/errors after truncation.
-    if (static_cast<size_t>(printed) >= sizeof(line)) line[bytes - 1] = '\\n';
+    if (static_cast<size_t>(printed) >= sizeof(line)) line[bytes - 1] = '\n';
     if (!g_async) {
         fallbackWrite(line, bytes);
         return;
