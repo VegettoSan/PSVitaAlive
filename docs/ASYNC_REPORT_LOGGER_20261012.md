@@ -1,11 +1,14 @@
 # PSVitaAlive — Logger para reportes sin E/S durante la navegación (12-10-2026)
 
-## Estado y aislamiento
+## Estado e integración aprobada
 
-- **Rama experimental:** `fix/async-report-logging-20261012`, nacida de `main` @ `c720189d4733176718169cd5871c9b8877edaae2`.
-- **Versión de cliente:** conserva `02.10`. No crea una release ni modifica `main`.
-- **Objetivo:** el hilo de UI nunca abre/escribe/cierra `session.log` durante navegación. La consola conserva errores útiles para los reportes sin una traza por cada icono o frame.
-- **Validez:** GitHub Actions comprueba compilación; la fluidez de 60 FPS y estabilidad requieren pruebas de PS Vita real con caché idéntica.
+- **Integración autorizada:** este documento pertenece al [PR #30](https://github.com/VegettoSan/PSVitaAlive/pull/30), aprobado por el mantenedor tras probar en **PS Vita real** el VPK experimental del logger. Se incorpora a `main` junto con la implementación; no se ha creado ni publicado una release mediante este PR.
+- **Base del experimento:** `main` @ `c720189d4733176718169cd5871c9b8877edaae2`; código verificado de la prueba: `7e5a861948edc3f5175e897dd0ca57ad37064ed4`. Las modificaciones posteriores de este PR son de documentación, salvo que los checks indiquen lo contrario.
+- **Versión:** `02.10`, Title ID `PSVAS1178`; se preservan datos y rutas anteriores.
+- **GitHub Actions:** compilación VitaSDK [run 38327869414](https://github.com/VegettoSan/PSVitaAlive/actions/runs/38327869414) **SUCCESS** y validación [run 38327869439](https://github.com/VegettoSan/PSVitaAlive/actions/runs/38327869439) **SUCCESS**.
+- **Verificación real reportada por el mantenedor:** tras instalar y navegar con el VPK experimental, confirmó que la fluidez quedó «super bien» y autorizó la integración a `main`. Es una **validación funcional cualitativa**, no una medición instrumental de FPS sostenidos.
+- **Pendientes específicos:** comprobar sistemáticamente la integridad de reportes automáticos tras fallos controlados, el marcador de cierre del worker y su funcionamiento con presión sostenida de E/S. No afirmar que se ha demostrado 60 FPS constantes en todos los escenarios.
+
 
 ## Cambios
 
@@ -42,7 +45,7 @@
 - La cola llena prioriza los mensajes nuevos, no los más graves. Cualquier contador `[Logger] dropped` indica que se debe repetir el ensayo con menos ruido o comprobar almacenamiento.
 - No se cambian políticas TLS, integridad de descarga, ZIP, instalación, render, estructura JSON, librerías ni límites GPU.
 
-## Comprobación en PS Vita real antes de integrar
+## Pruebas de regresión en PS Vita real tras integrar
 
 1. Instalar el VPK de esta rama sobre `PSVAS1178` **sin borrar cachés**. Desactivar temporalmente autoupdate al comparar dos builds de la misma versión.
 2. Verificar al iniciar: `[System] diagnostic logger initialized (async, bounded, session.log reset)`. No debe aparecer el fallback salvo problema de recursos.
@@ -56,7 +59,7 @@
 
 ## Rollback
 
-La instalación previa de PSVitaAlive 02.10 sigue siendo el punto de recuperación. Volver a compilar `main` o reinstalar el VPK de esa versión no exige borrar la caché. No fusionar esta rama a `main` antes de pruebas reales y aprobación.
+El VPK `02.10` anterior a PR #30 y el checkpoint `main` @ `c720189d4733176718169cd5871c9b8877edaae2` son referencias previas al logger asíncrono. Volver a compilar ese commit o reinstalar el VPK anterior no exige borrar la caché. No revertir parcialmente la cola sin revisar el acoplamiento `ErrorReporter::buildLogBlock() -> diagnostics::flush()`. La integración de PR #30 fue aprobada tras la prueba funcional del mantenedor; futuras regresiones se investigan por separado.
 
 Arquitectura de catálogo preservada:
 
