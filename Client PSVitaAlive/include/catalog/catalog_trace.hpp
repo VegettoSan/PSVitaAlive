@@ -1,7 +1,11 @@
 #pragma once
-// Temporary instrumentation for catalog startup investigations.
-// Remove this header and CATTRACE calls after diagnosing the issue.
-// Event-based only: no per-item network/content logging, no credentials or URLs.
+// Temporary catalog performance tracing is disabled for production-like VPKs.
+// Re-enable only on a dedicated profiling branch/build. Call-site macros avoid
+// constructing std::string detail arguments when disabled (unlike no-op functions).
+#ifndef PSVITAALIVE_ENABLE_CATALOG_TRACE
+#define PSVITAALIVE_ENABLE_CATALOG_TRACE 0
+#endif
+
 #include "diagnostic_logger.hpp"
 #include <psp2/kernel/processmgr.h>
 #include <cstdint>
@@ -21,3 +25,11 @@ inline void duration(const char* phase, uint64_t started,
         + (detail.empty() ? "" : " " + detail));
 }
 } } // namespace psvitaalive::catalog_trace
+
+#if PSVITAALIVE_ENABLE_CATALOG_TRACE
+#define PSVA_TRACE_EVENT(...) ::psvitaalive::catalog_trace::event(__VA_ARGS__)
+#define PSVA_TRACE_DURATION(...) ::psvitaalive::catalog_trace::duration(__VA_ARGS__)
+#else
+#define PSVA_TRACE_EVENT(...) ((void)0)
+#define PSVA_TRACE_DURATION(...) ((void)0)
+#endif
