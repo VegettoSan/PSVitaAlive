@@ -13,17 +13,17 @@
     "platformer",
     "puzzle"
   ],
-  "version": "1.2",
-  "version_date": "2026-09-27",
+  "version": "2.0",
+  "version_date": "2026-10-12",
   "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
-  "size": 4089446,
+  "size": 4299162,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v1.2.vpk",
-      "size": 4089446,
+      "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v2.0.vpk",
+      "size": 4299162,
       "recommended": true
     },
     {

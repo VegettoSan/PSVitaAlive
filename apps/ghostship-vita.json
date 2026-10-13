@@ -14,16 +14,17 @@
     "puzzle",
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2026-06-02",
+  "version": "v.1.3",
+  "version_date": "2026-10-09",
   "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 6740247,
-  "status": "Legacy",
+  "size": 6815744,
+  "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ghostship-vita/ghostship-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-ghostship-vita/Ghostship%20v1.3.vpk",
+      "size": 6815744,
       "recommended": true
     },
     {
