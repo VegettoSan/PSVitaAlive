@@ -2107,6 +2107,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "delon5",
+    "name": "delon5",
+    "avatar": "https://avatars.githubusercontent.com/u/25923990?v=4",
+    "bio": "dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/delon5",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/25923990?v=4"
+  },
+  {
     "id": "deltaclock",
     "name": "Deltaclock",
     "avatar": "https://github.com/deltaclock.png",
@@ -3271,6 +3286,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "ggdrn",
+    "name": "ggdrn",
+    "avatar": "https://avatars.githubusercontent.com/u/34396735?v=4",
+    "bio": "Front-End Developer | VUE.js | Node.js | React-Native | Express | Sequelize.",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ggdrn",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/34396735?v=4"
   },
   {
     "id": "gguihurt",
@@ -4496,6 +4526,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "jwfeniello",
+    "name": "jwfeniello",
+    "avatar": "https://avatars.githubusercontent.com/u/99435269?v=4",
+    "bio": "lowfat chocolate milk enthusiast",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "VPK",
+        "url": "https://github.com/jwfeniello",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/99435269?v=4"
   },
   {
     "id": "kaaass",

@@ -1,5 +1,61 @@
 [
   {
+    "id": "monster-hunter-tri",
+    "title_id": "MH3WII001",
+    "name": "Monster Hunter Tri",
+    "description": "Monster Hunter Tri for the PS Vita.",
+    "long_description": "A static recompilation of Monster Hunter Tri (Wii) to native ARM code. The game's PowerPC code is translated to C++ and linked with a native runtime that replaces the Wii's hardware and system software: there is no emulator, interpreter or JIT. Rendering goes through native GXM on the PS Vita and OpenGL ES 3.0 on Linux; a WebAssembly build draws through WebGPU.\n\nThe repository contains no game code or data. You need your own copy of the European disc (RMHP08, \"Monster Hunter Tri (Europe) (En,Fr,De,Es,It)\") as an ISO or RVZ image. WIA images are recognized too, but untested and possibly unstable. Other regions are not supported.\n\nHow the port reaches full speed on a 444 MHz Cortex-A9, written so that the techniques carry over to other Wii games: docs/optimizations.",
+    "author_ids": [
+      "grarak"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1",
+    "version_date": "2026-10-12",
+    "requirements": "- kubridge.skprx (0.3.1 or newer)\n- CapUnlocker.skprx",
+    "size": 18350080,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/monster-hunter-tri-ps-vita/mh3-vita%20v0.1.vpk",
+        "size": 18350080,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
+        "size": 2469606195,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4",
+        "url": "https://archive.org/download/azahar-vita-/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Grarak/mh3-wii"
+      }
+    ],
+    "icon": "https://archive.org/download/monster-hunter-tri-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/monster-hunter-tri-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "sonic-r",
     "title_id": "SONICR001",
     "name": "Sonic R",
@@ -46,6 +102,158 @@
       "https://archive.org/download/sonic-r-ps-vita/shot1.png",
       "https://archive.org/download/sonic-r-ps-vita/shot2.png"
     ]
+  },
+  {
+    "id": "kingdom-hearts-358-2-days",
+    "title_id": "KHDD00358",
+    "name": "Kingdom Hearts 358/2 Days",
+    "description": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
+    "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.",
+    "author_ids": [
+      "ggdrn"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "source-port",
+      "game-engine"
+    ],
+    "version": "0.7.0",
+    "version_date": "2026-10-10",
+    "requirements": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
+    "size": 3670016,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/kh-days-vita/khdays-vita-0.7.0.vpk",
+        "size": 3670016,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
+        "size": 268435456,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ggdrn/KH-DAYS-VITA"
+      }
+    ],
+    "icon": "https://archive.org/download/kh-days-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/kh-days-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "predators",
+    "title_id": "PRED42069",
+    "name": "PREDATORS",
+    "description": "Predators 2010 port to vita",
+    "long_description": "Predators 2010 port to vita",
+    "author_ids": [
+      "aj170"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "strategy",
+      "game-engine"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-10",
+    "requirements": "- no data",
+    "size": 14889779,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/predators-psvita-port/PREDATORS-v1.0.vpk",
+        "size": 14889779,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/predators-psvita-port/Game%20Files.zip",
+        "size": 350748672,
+        "extract_path": "ux0:app/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/AJ170/Predators-PSVita-Port"
+      }
+    ],
+    "icon": "https://archive.org/download/predators-psvita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/predators-psvita-port/shot0.png",
+      "https://archive.org/download/predators-psvita-port/shot1.png"
+    ]
+  },
+  {
+    "id": "thug-vita",
+    "title_id": "THUG00001",
+    "name": "THUG Vita",
+    "description": "Native port of Tony Hawk's Underground for PSVita.",
+    "long_description": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.",
+    "author_ids": [
+      "iwannagooutside"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "source-port"
+    ],
+    "version": "v1.1.0",
+    "version_date": "2026-10-10",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
+    "size": 3879731,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/thug-vita/thug_vita%20v1.1.0.vpk",
+        "size": 3879731,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/thug-vita/Game%20Files.zip",
+        "size": 1717986918,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/iwannagooutside/thug-vita-port"
+      },
+      {
+        "type": "Issues",
+        "name": "Issues",
+        "url": "https://github.com/iwannagooutside/thug-vita-port/issues"
+      },
+      {
+        "type": "Official Website",
+        "name": "Trailer",
+        "url": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
+      }
+    ],
+    "icon": "https://archive.org/download/thug-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/thug-vita/shot0.jpg",
+      "https://archive.org/download/thug-vita/shot1.png"
+    ],
+    "release_page": "https://github.com/iwannagooutside/thug-vita-port/releases"
   },
   {
     "id": "ghostship-vita",
@@ -361,51 +569,152 @@
     ]
   },
   {
-    "id": "thug-vita",
-    "title_id": "THUG00001",
-    "name": "THUG Vita",
-    "description": "Native port of Tony Hawk's Underground for PSVita.",
-    "long_description": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.",
+    "id": "paperboat",
+    "title_id": "PAPERBOAT",
+    "name": "PaperBoat",
+    "description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.",
+    "long_description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.",
     "author_ids": [
-      "iwannagooutside"
+      "rinnegatamante"
     ],
     "category_id": "ports",
     "subcategory_ids": [
-      "source-port"
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port",
+      "game-engine"
     ],
-    "version": "v1.0.2",
-    "version_date": "2026-10-07",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
-    "size": 3356581,
+    "version": "1.0",
+    "version_date": "2026-10-08",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+    "size": 9856614,
     "status": "Verified",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://github.com/iwannagooutside/thug-vita-port/releases/download/v1.0.2/thug_vita.vpk",
+        "url": "https://archive.org/download/paperboat-ps-vita/PaperBoat%20v1.0.vpk",
+        "size": 9856614,
         "recommended": true
       },
       {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/paperboat-ps-vita/Game%20Files.zip",
+        "size": 70044877,
+        "extract_path": "ux0:data/"
+      },
+      {
         "type": "Repository",
-        "name": "Source",
-        "url": "https://github.com/iwannagooutside/thug-vita-port"
-      },
-      {
-        "type": "Issues",
-        "name": "Issues",
-        "url": "https://github.com/iwannagooutside/thug-vita-port/issues"
-      },
-      {
-        "type": "Official Website",
-        "name": "Trailer",
-        "url": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
+        "name": "Github",
+        "url": "https://github.com/Rinnegatamante/PaperBoat"
       }
     ],
-    "icon": "https://raw.githubusercontent.com/iwannagooutside/thug-vita-port/main/covers/icon0.png",
+    "icon": "https://archive.org/download/paperboat-ps-vita/icon0.png",
     "screenshots": [
-      "https://img.youtube.com/vi/XKwEK5B5K2w/maxresdefault.jpg"
+      "https://archive.org/download/paperboat-ps-vita/pic0.png"
+    ]
+  },
+  {
+    "id": "ge007vita",
+    "title_id": "GEVT00001",
+    "name": "GE007Vita",
+    "description": "A native PS Vita port of GoldenEye 007 (N64)",
+    "long_description": "A native PS Vita port of GoldenEye 007 (Rare, 1997, Nintendo 64). This is built on top of the GoldenEye 007 PC port, which compiles the original N64 game from the GoldenEye 007 decompilation, retargeted for Vita hardware. It runs the original N64 game from its reconstructed source code.",
+    "author_ids": [
+      "kaziema"
     ],
-    "release_page": "https://github.com/iwannagooutside/thug-vita-port/releases"
+    "category_id": "ports",
+    "subcategory_ids": [
+      "fps",
+      "shooter",
+      "engine-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-07",
+    "requirements": "- You need a GoldenEye 007 (Nintendo 64) ROM that you legally own, in big-endian (.z64) format.",
+    "size": 2202010,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "https://archive.org/download/GE007Vita/GE007Vita.vpk",
+        "url": "https://archive.org/download/GE007Vita/GE007Vita.vpk",
+        "size": 2202010,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/GE007Vita/Game%20Files.zip",
+        "size": 12582912,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/kaziema/gevita"
+      }
+    ],
+    "icon": "https://archive.org/download/GE007Vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/GE007Vita/shot0.png",
+      "https://archive.org/download/GE007Vita/shot1.png",
+      "https://archive.org/download/GE007Vita/shot2.png",
+      "https://archive.org/download/GE007Vita/shot3.png",
+      "https://archive.org/download/GE007Vita/shot4.png"
+    ]
+  },
+  {
+    "id": "cod-waw",
+    "title_id": "WAW000001",
+    "name": "COD WAW",
+    "description": "COD WAW Zombies IOS Port Ps Vita.",
+    "long_description": "COD WAW Zombies IOS Port Ps Vita.",
+    "author_ids": [
+      "devnoname120"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "fps",
+      "shooter"
+    ],
+    "version": "00.00",
+    "version_date": "2026-10-06",
+    "requirements": "- no data",
+    "size": 523571,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/cod-waw-ps-vita/waw.vpk",
+        "size": 523571,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip",
+        "size": 52953088,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Plugin",
+        "name": "Plugin TTBR Remap",
+        "url": "https://archive.org/download/cod-waw-ps-vita/ttbr_remap.skprx",
+        "size": 19149,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:/tai/ttbr_remap.skprx"
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
+    "screenshots": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+    ]
   },
   {
     "id": "insaniquarium",
@@ -543,6 +852,97 @@
     "icon": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
     "screenshots": [
       "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
+    ]
+  },
+  {
+    "id": "scribblenauts-remix",
+    "title_id": "SCRB00001",
+    "name": "Scribblenauts Remix",
+    "description": "Scribblenauts Remix is a mobile remake combining content from Scribblenauts and Super Scribblenauts for mobile devices.",
+    "long_description": "This is a heavily AI-assisted port of the Android version of Scribblenauts Remix to the PS Vita. It started as an experiment I didn't plan on posting, but it's been quite fun and has worked surprisingly well.\n\nYou'll need the game data from Scribblenauts Remix v6.9. Enjoy!",
+    "author_ids": [
+      "jwfeniello"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "puzzle"
+    ],
+    "version": "0.9",
+    "version_date": "2026-10-03",
+    "requirements": "- no data",
+    "size": 2097152,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/scribblenauts-remix-ps-vita/Scribblenauts%20Remix%20v0.9.vpk",
+        "size": 2097152,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/scribblenauts-remix-ps-vita/Game%20Files.zip",
+        "size": 226806989,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/jwfeniello/scribblenauts-remix-vita/tree/main"
+      }
+    ],
+    "icon": "https://archive.org/download/scribblenauts-remix-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/scribblenauts-remix-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "real-racing-3",
+    "title_id": "RR3VITA01",
+    "name": "Real Racing 3",
+    "description": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
+    "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.",
+    "author_ids": [
+      "chuta7x"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing",
+      "strategy"
+    ],
+    "version": "1.1.1",
+    "version_date": "2026-10-02",
+    "requirements": "- No data",
+    "size": 5138022,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita_Public_Beta_1.1.1.vpk",
+        "size": 5138022,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
+        "size": 1610612736,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/CHUTA7X/Real-Racing-3-Port-Release"
+      }
+    ],
+    "icon": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/real-racing-3-port-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -1183,6 +1583,64 @@
     "screenshots": [
       "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
     ]
+  },
+  {
+    "id": "bully-vita",
+    "title_id": "BULLY0000",
+    "name": "Bully Vita",
+    "description": "Port of Bully: Anniversary Edition for PSVITA.",
+    "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+    "author_ids": [
+      "aap",
+      "rinnegatamante",
+      "theflow",
+      "delon5"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "simulation",
+      "other"
+    ],
+    "version": "v.1.01",
+    "version_date": "2026-09-19",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-bully-vita/BULLY-V1.01.vpk",
+        "size": 1258291,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files%20Update.zip",
+        "size": 3006477107,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/delon5/bully_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "676",
+    "source_url": "https://github.com/TheOfficialFloW/bully_vita",
+    "release_page": "https://github.com/TheOfficialFloW/bully_vita/releases",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "golden-balloon",
@@ -36555,60 +37013,6 @@
     "source_url": "http://www.crait.net/",
     "release_page": "http://www.crait.net/",
     "updated_at": "2026-08-13T15:34:48.582160+00:00"
-  },
-  {
-    "id": "bully-vita",
-    "title_id": "BULLY0000",
-    "name": "Bully Vita",
-    "description": "Port of Bully: Anniversary Edition for PSVITA.",
-    "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
-    "author_ids": [
-      "aap",
-      "rinnegatamante",
-      "theflow"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2021-06-05",
-    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-    "size": 896490,
-    "status": "Legacy",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-bully-vita/bully-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/psvitaalive-bully-vita/Bully%20Game%20Files.zip",
-        "size": 3006477107,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/TheOfficialFloW/bully_vita"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-bully-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-bully-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-bully-vita/shot_05.png"
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "676",
-    "source_url": "https://github.com/TheOfficialFloW/bully_vita",
-    "release_page": "https://github.com/TheOfficialFloW/bully_vita/releases",
-    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "gta-ctw-vita",

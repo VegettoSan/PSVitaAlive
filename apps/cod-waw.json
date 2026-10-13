@@ -42,5 +42,9 @@
       "section": "*KERNEL",
       "line": "ur0:/tai/ttbr_remap.skprx"
     }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
   ]
 }
