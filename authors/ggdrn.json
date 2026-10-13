@@ -1,0 +1,15 @@
+{
+  "id": "ggdrn",
+  "name": "ggdrn",
+  "avatar": "https://avatars.githubusercontent.com/u/34396735?v=4",
+  "bio": "Front-End Developer | VUE.js | Node.js | React-Native | Express | Sequelize.",
+  "links": [
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/ggdrn",
+      "recommended": true
+    }
+  ],
+  "icon": "https://avatars.githubusercontent.com/u/34396735?v=4"
+}
