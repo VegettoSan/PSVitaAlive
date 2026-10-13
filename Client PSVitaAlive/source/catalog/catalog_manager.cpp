@@ -443,8 +443,9 @@ void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::Catal
         cachedItems_[cidx] = items;
         cachedValid_[cidx] = true;
     }
-    if(readyPending_)PSVA_TRACE_EVENT("WARNING_unconsumed_ready_overwrite",
-        std::string("old=")+label(readyCatalog_)+" new="+label(catalog));
+    // Unexpected overwrite is relevant to catalog error reports even when CATTRACE is off.
+    if(readyPending_)diagnostics::log(std::string("[CatalogManager] WARNING unconsumed ready overwrite old=")
+        +label(readyCatalog_)+" new="+label(catalog));
     readyItems_=items;
     readyCatalog_=catalog;
     readyPending_=true;
