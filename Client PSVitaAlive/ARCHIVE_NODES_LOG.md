@@ -1,14 +1,16 @@
-# Internet Archive node diagnostics log
+# Internet Archive node diagnostics log (historical format, retired)
 
-PSVitaAlive writes a dedicated Internet Archive selector trace to:
+> **Current status (02.10 / PR #30):** this dedicated trace is **no longer generated** by normal PSVitaAlive builds. The old `ux0:data/psvitaalive/logs/archive_nodes.log` is removed at startup to eliminate repeated storage writes. The descriptions below document the **former diagnostic format** for historical investigations, not a file users can currently provide.
+>
+> Archive.org metadata, fastest-node selection, bounded 256 KiB probes, retry and failover **still work**. Relevant failures, HTTP and Archive markers now appear in `ux0:data/psvitaalive/logs/session.log` (asynchronous bounded logger). For reports use `session.log` and, where appropriate, `install.log`; see [docs/NETWORK_TLS.md](../docs/NETWORK_TLS.md) and [docs/ASYNC_REPORT_LOGGER_20261012.md](../docs/ASYNC_REPORT_LOGGER_20261012.md).
+
+## Historical file path
 
 ```text
 ux0:data/psvitaalive/logs/archive_nodes.log
 ```
 
-The file is reset on every client launch. It is intentionally separate from `session.log` so reports about slow Internet Archive downloads can be inspected without unrelated UI/catalog/image noise.
-
-## What is recorded
+## What was recorded (historical only)
 
 For each Internet Archive payload the log can record:
 
