@@ -1,0 +1,46 @@
+{
+  "id": "carnivores-ice-age",
+  "title_id": "PSVCSIA01",
+  "name": "Carnivores Ice Age",
+  "description": "Android to PS Vita port of Carnivores: Ice Age",
+  "long_description": "Carnivores: Ice Age is Tatem Games' prehistoric hunting game, originally released for Android as Carnivores__Ice_Age_1.5.4_Android_4.0.apk (package com.tatemgames.iceage, version 1.5.4). This port runs the original ARM libraries from the Android release — the game (libIceAgeAndroid.so) and its audio engine (libfmodex.so), both armeabi — directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the OpenGL ES 1.1 rendering backend.",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps",
+    "shooter",
+    "strategy"
+  ],
+  "version": "1.1",
+  "version_date": "2026-10-01",
+  "requirements": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso).\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Carnivores: Ice Age 1.5.4 for Android",
+  "size": 1048576,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.1.vpk",
+      "size": 1048576,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
+      "size": 73610035,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/MetalSyntax/Carnivores-Ice-Age-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/carnivores-ice-age-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/carnivores-ice-age-ps-vita-port/pic0.png"
+  ]
+}

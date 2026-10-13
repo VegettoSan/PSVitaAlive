@@ -1,0 +1,47 @@
+{
+  "id": "carnivores-dinosaur-hunter",
+  "title_id": "PSVCDH001",
+  "name": "Carnivores Dinosaur Hunter",
+  "description": "Android to PS Vita port of Carnivores Dinosaur Hunter",
+  "long_description": "so-loader port of the Android version (1.3.1) of Carnivores: Dinosaur Hunter (Tatem Games / Action Forms). It runs the original libdinHunter.so + libfmodex.so with an emulated Java layer (FalsoJNI).",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "fps",
+    "shooter",
+    "strategy"
+  ],
+  "version": "1.1.0",
+  "version_date": "2026-10-01",
+  "requirements": "- No Data",
+  "size": 1025741,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/carnivoresdinosaurhunter%20v1.1.0.vpk",
+      "size": 1025741,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/Game%20Files.zip",
+      "size": 60083405,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/MetalSyntax/Carnivores-Dinosaur-Hunter-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/shot0.png"
+  ]
+}
