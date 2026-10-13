@@ -1,0 +1,45 @@
+{
+  "id": "scribblenauts-remix",
+  "title_id": "SCRB00001",
+  "name": "Scribblenauts Remix",
+  "description": "Scribblenauts Remix is a mobile remake combining content from Scribblenauts and Super Scribblenauts for mobile devices.",
+  "long_description": "This is a heavily AI-assisted port of the Android version of Scribblenauts Remix to the PS Vita. It started as an experiment I didn't plan on posting, but it's been quite fun and has worked surprisingly well.\n\nYou'll need the game data from Scribblenauts Remix v6.9. Enjoy!",
+  "author_ids": [
+    "jwfeniello"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer",
+    "puzzle"
+  ],
+  "version": "0.9",
+  "version_date": "2026-10-03",
+  "requirements": "- no data",
+  "size": 2097152,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/scribblenauts-remix-ps-vita/Scribblenauts%20Remix%20v0.9.vpk",
+      "size": 2097152,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/scribblenauts-remix-ps-vita/Game%20Files.zip",
+      "size": 226806989,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/jwfeniello/scribblenauts-remix-vita/tree/main"
+    }
+  ],
+  "icon": "https://archive.org/download/scribblenauts-remix-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/scribblenauts-remix-ps-vita/shot0.png"
+  ]
+}

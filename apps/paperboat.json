@@ -1,0 +1,48 @@
+{
+  "id": "paperboat",
+  "title_id": "PAPERBOAT",
+  "name": "PaperBoat",
+  "description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.",
+  "long_description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.",
+  "author_ids": [
+    "rinnegatamante"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "puzzle",
+    "source-port",
+    "game-engine"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-08",
+  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+  "size": 9856614,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/paperboat-ps-vita/PaperBoat%20v1.0.vpk",
+      "size": 9856614,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/paperboat-ps-vita/Game%20Files.zip",
+      "size": 70044877,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/Rinnegatamante/PaperBoat"
+    }
+  ],
+  "icon": "https://archive.org/download/paperboat-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/paperboat-ps-vita/pic0.png"
+  ]
+}

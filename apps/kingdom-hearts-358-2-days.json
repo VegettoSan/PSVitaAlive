@@ -1,0 +1,47 @@
+{
+  "id": "kingdom-hearts-358-2-days",
+  "title_id": "KHDD00358",
+  "name": "Kingdom Hearts 358/2 Days",
+  "description": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
+  "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.",
+  "author_ids": [
+    "ggdrn"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "rpg",
+    "source-port",
+    "game-engine"
+  ],
+  "version": "0.7.0",
+  "version_date": "2026-10-10",
+  "requirements": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
+  "size": 3670016,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/kh-days-vita/khdays-vita-0.7.0.vpk",
+      "size": 3670016,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
+      "size": 268435456,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/ggdrn/KH-DAYS-VITA"
+    }
+  ],
+  "icon": "https://archive.org/download/kh-days-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/kh-days-vita/shot0.png"
+  ]
+}

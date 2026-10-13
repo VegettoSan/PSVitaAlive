@@ -1,0 +1,56 @@
+{
+  "id": "monster-hunter-tri",
+  "title_id": "MH3WII001",
+  "name": "Monster Hunter Tri",
+  "description": "Monster Hunter Tri for the PS Vita.",
+  "long_description": "A static recompilation of Monster Hunter Tri (Wii) to native ARM code. The game's PowerPC code is translated to C++ and linked with a native runtime that replaces the Wii's hardware and system software: there is no emulator, interpreter or JIT. Rendering goes through native GXM on the PS Vita and OpenGL ES 3.0 on Linux; a WebAssembly build draws through WebGPU.\n\nThe repository contains no game code or data. You need your own copy of the European disc (RMHP08, \"Monster Hunter Tri (Europe) (En,Fr,De,Es,It)\") as an ISO or RVZ image. WIA images are recognized too, but untested and possibly unstable. Other regions are not supported.\n\nHow the port reaches full speed on a 444 MHz Cortex-A9, written so that the techniques carry over to other Wii games: docs/optimizations.",
+  "author_ids": [
+    "grarak"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "adventure",
+    "strategy",
+    "source-port"
+  ],
+  "version": "0.1",
+  "version_date": "2026-10-12",
+  "requirements": "- kubridge.skprx (0.3.1 or newer)\n- CapUnlocker.skprx",
+  "size": 18350080,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/monster-hunter-tri-ps-vita/mh3-vita%20v0.1.vpk",
+      "size": 18350080,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
+      "size": 2469606195,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Plugin",
+      "name": "CapUnlocker 1.4",
+      "url": "https://archive.org/download/azahar-vita-/CapUnlocker.skprx",
+      "size": 5222,
+      "extract_path": "ur0:tai/",
+      "section": "*KERNEL",
+      "line": "ur0:tai/CapUnlocker.skprx"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/Grarak/mh3-wii"
+    }
+  ],
+  "icon": "https://archive.org/download/monster-hunter-tri-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/monster-hunter-tri-ps-vita/shot0.png"
+  ]
+}

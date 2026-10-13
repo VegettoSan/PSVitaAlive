@@ -1,0 +1,50 @@
+{
+  "id": "ge007vita",
+  "title_id": "GEVT00001",
+  "name": "GE007Vita",
+  "description": "A native PS Vita port of GoldenEye 007 (N64)",
+  "long_description": "A native PS Vita port of GoldenEye 007 (Rare, 1997, Nintendo 64). This is built on top of the GoldenEye 007 PC port, which compiles the original N64 game from the GoldenEye 007 decompilation, retargeted for Vita hardware. It runs the original N64 game from its reconstructed source code.",
+  "author_ids": [
+    "kaziema"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps",
+    "shooter",
+    "engine-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-07",
+  "requirements": "- You need a GoldenEye 007 (Nintendo 64) ROM that you legally own, in big-endian (.z64) format.",
+  "size": 2202010,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "https://archive.org/download/GE007Vita/GE007Vita.vpk",
+      "url": "https://archive.org/download/GE007Vita/GE007Vita.vpk",
+      "size": 2202010,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/GE007Vita/Game%20Files.zip",
+      "size": 12582912,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/kaziema/gevita"
+    }
+  ],
+  "icon": "https://archive.org/download/GE007Vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/GE007Vita/shot0.png",
+    "https://archive.org/download/GE007Vita/shot1.png",
+    "https://archive.org/download/GE007Vita/shot2.png",
+    "https://archive.org/download/GE007Vita/shot3.png",
+    "https://archive.org/download/GE007Vita/shot4.png"
+  ]
+}

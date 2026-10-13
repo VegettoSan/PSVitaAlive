@@ -1,0 +1,46 @@
+{
+  "id": "real-racing-3",
+  "title_id": "RR3VITA01",
+  "name": "Real Racing 3",
+  "description": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
+  "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.",
+  "author_ids": [
+    "chuta7x"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "racing",
+    "strategy"
+  ],
+  "version": "1.1.1",
+  "version_date": "2026-10-02",
+  "requirements": "- No data",
+  "size": 5138022,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita_Public_Beta_1.1.1.vpk",
+      "size": 5138022,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
+      "size": 1610612736,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/CHUTA7X/Real-Racing-3-Port-Release"
+    }
+  ],
+  "icon": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/real-racing-3-port-for-ps-vita/shot0.png"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "predators",
+  "title_id": "PRED42069",
+  "name": "PREDATORS",
+  "description": "Predators 2010 port to vita",
+  "long_description": "Predators 2010 port to vita",
+  "author_ids": [
+    "aj170"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "strategy",
+    "game-engine"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-10",
+  "requirements": "- no data",
+  "size": 14889779,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/predators-psvita-port/PREDATORS-v1.0.vpk",
+      "size": 14889779,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/predators-psvita-port/Game%20Files.zip",
+      "size": 350748672,
+      "extract_path": "ux0:app/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/AJ170/Predators-PSVita-Port"
+    }
+  ],
+  "icon": "https://archive.org/download/predators-psvita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/predators-psvita-port/shot0.png",
+    "https://archive.org/download/predators-psvita-port/shot1.png"
+  ]
+}
