@@ -191,6 +191,52 @@
     ]
   },
   {
+    "id": "plants-vs-zombies-2",
+    "title_id": "PVZ2VITA1",
+    "name": "Plants vs Zombies 2",
+    "description": "Plants vs Zombies 2 Ps Vita Port",
+    "long_description": "Plants vs Zombies 2 Ps Vita Port",
+    "author_ids": [
+      "lezergan"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "puzzle",
+      "strategy"
+    ],
+    "version": "v1.1-rc29",
+    "version_date": "2026-10-04",
+    "requirements": "- kubridge\n- libshacccg.suprx\n- Use 4.5.2 ROW / version 147 game files. Other builds are not supported.",
+    "size": 1153434,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2-vita-1.1%20RC29.vpk",
+        "size": 1153434,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
+        "size": 675073229,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/LeZergan/pvz2vita"
+      }
+    ],
+    "icon": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
+    ]
+  },
+  {
     "id": "real-racing-2",
     "title_id": "RR2VITA01",
     "name": "Real Racing 2",
@@ -628,52 +674,6 @@
       "https://archive.org/download/arcaea-ps-vita/shot0.png",
       "https://archive.org/download/arcaea-ps-vita/shot1.png",
       "https://archive.org/download/arcaea-ps-vita/shot2.png"
-    ]
-  },
-  {
-    "id": "plants-vs-zombies-2",
-    "title_id": "PVZ2VITA1",
-    "name": "Plants vs Zombies 2",
-    "description": "Plants vs Zombies 2 Ps Vita Port",
-    "long_description": "Plants vs Zombies 2 Ps Vita Port",
-    "author_ids": [
-      "lezergan"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "puzzle",
-      "strategy"
-    ],
-    "version": "v1.1-rc25",
-    "version_date": "2026-09-24",
-    "requirements": "- kubridge\n- libshacccg.suprx\n- Use 4.5.2 ROW / version 147 game files. Other builds are not supported.",
-    "size": 1153434,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2-vita-1.1%20RC25.vpk",
-        "size": 1153434,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
-        "size": 675073229,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/LeZergan/pvz2vita"
-      }
-    ],
-    "icon": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
     ]
   },
   {
