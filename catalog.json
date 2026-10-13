@@ -1,5 +1,163 @@
 [
   {
+    "id": "sonic-r",
+    "title_id": "SONICR001",
+    "name": "Sonic R",
+    "description": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "long_description": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "author_ids": [
+      "fr3dsp"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "puzzle"
+    ],
+    "version": "2.0",
+    "version_date": "2026-10-12",
+    "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
+    "size": 4299162,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v2.0.vpk",
+        "size": 4299162,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
+        "size": 647705395,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/fr3dsp/sonic-r-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
+    ]
+  },
+  {
+    "id": "ghostship-vita",
+    "title_id": "GHSTSHP01",
+    "name": "Ghostship Vita",
+    "description": "Port of Ghostship for PSVita.",
+    "long_description": "Ghostship is a sourceport of Super Mario 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.2 (Dutchman Charlie) with bugfixes from the in-development branch.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "other"
+    ],
+    "version": "v.1.3",
+    "version_date": "2026-10-09",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
+    "size": 6815744,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-ghostship-vita/Ghostship%20v1.3.vpk",
+        "size": 6815744,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-ghostship-vita/Game%20Files%20Fix.zip",
+        "size": 18454938,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/Rinnegatamante/Ghostship"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-ghostship-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-ghostship-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-ghostship-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-ghostship-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-ghostship-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-ghostship-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1387",
+    "source_url": "https://github.com/Rinnegatamante/Ghostship",
+    "release_page": "https://github.com/Rinnegatamante/Ghostship/releases",
+    "updated_at": "2026-08-13T15:34"
+  },
+  {
+    "id": "d2vita",
+    "title_id": "DTWO00001",
+    "name": "D2Vita",
+    "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
+    "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.",
+    "author_ids": [
+      "franckrst"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "version": "0.2.1",
+    "version_date": "2026-10-09",
+    "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
+    "size": 8074035,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/D2Vita/d2vita%20v0.2.1.vpk",
+        "size": 8074035,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files English",
+        "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
+        "size": 2018634629,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
+        "size": 2190433321,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Franckrst/D2Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/D2Vita/newicon0.png",
+    "screenshots": [
+      "https://archive.org/download/D2Vita/shot0.png",
+      "https://archive.org/download/D2Vita/shot1.png"
+    ]
+  },
+  {
     "id": "dragon-ball-tap-battle",
     "title_id": "DBTB01178",
     "name": "Dragon Ball Tap Battle",
@@ -110,6 +268,99 @@
     ]
   },
   {
+    "id": "smash-melee-vita",
+    "title_id": "MLVITA002",
+    "name": "Smash Melee Vita",
+    "description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
+    "long_description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
+    "author_ids": [
+      "zm2283145"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "strategy"
+    ],
+    "version": "0.8.16",
+    "version_date": "2026-10-09",
+    "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
+    "size": 6710886,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/smash-melee-vita/SmashMeleevita-0.8.16.vpk",
+        "size": 6710886,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip",
+        "size": 1503238554,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/zm2283145/melee-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/smash-melee-port-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/smash-melee-port-ps-vita/Shot1.png",
+      "https://archive.org/download/smash-melee-port-ps-vita/pic0.png"
+    ]
+  },
+  {
+    "id": "paper-mario-vita",
+    "title_id": "PPMR00001",
+    "name": "Paper Mario Vita",
+    "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+    "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+    "author_ids": [
+      "kaziema"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle"
+    ],
+    "version": "0.6.1",
+    "version_date": "2026-10-08",
+    "requirements": "- A homebrew-enabled PS Vita or PS TV",
+    "size": 7969178,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.6.1.vpk",
+        "size": 7969178,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
+        "size": 41943040,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/kaziema/pmvita"
+      }
+    ],
+    "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/paper-mario-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "thug-vita",
     "title_id": "THUG00001",
     "name": "THUG Vita",
@@ -188,6 +439,64 @@
     "icon": "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/icon0.png",
     "screenshots": [
       "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/pic0.png"
+    ]
+  },
+  {
+    "id": "prince-of-persia-classic",
+    "title_id": "POPC00001",
+    "name": "Prince of Persia Classic",
+    "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
+    "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics",
+    "author_ids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "arcade",
+      "platformer",
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "version": "01.45",
+    "version_date": "2026-10-06",
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 3145728,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ppc-psvita/popclassic-v01.45.vpk",
+        "size": 3145728,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
+        "size": 81699799,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+        "size": 81699799,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
+      }
+    ],
+    "icon": "https://archive.org/download/ppc-psvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ppc-psvita/pic0.png"
     ]
   },
   {
@@ -327,60 +636,6 @@
     ]
   },
   {
-    "id": "d2vita",
-    "title_id": "DTWO00001",
-    "name": "D2Vita",
-    "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
-    "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.",
-    "author_ids": [
-      "franckrst"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "puzzle",
-      "rpg",
-      "strategy"
-    ],
-    "version": "0.1.13",
-    "version_date": "2026-09-28",
-    "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
-    "size": 7969178,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/D2Vita/d2vita%20v0.1.13.vpk",
-        "size": 7969178,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files English",
-        "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
-        "size": 2018634629,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Spanish",
-        "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
-        "size": 2190433321,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Franckrst/D2Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/D2Vita/newicon0.png",
-    "screenshots": [
-      "https://archive.org/download/D2Vita/shot0.png",
-      "https://archive.org/download/D2Vita/shot1.png"
-    ]
-  },
-  {
     "id": "animal-crossing-vita",
     "title_id": "ACGC00001",
     "name": "Animal Crossing Vita",
@@ -478,147 +733,6 @@
     "icon": "https://archive.org/download/shadow-guardian-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/shadow-guardian-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "sonic-r",
-    "title_id": "SONICR001",
-    "name": "Sonic R",
-    "description": "A reimplementation of Sonic R for the PlayStation Vita.",
-    "long_description": "A reimplementation of Sonic R for the PlayStation Vita.",
-    "author_ids": [
-      "fr3dsp"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "puzzle"
-    ],
-    "version": "1.2",
-    "version_date": "2026-09-27",
-    "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
-    "size": 4089446,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v1.2.vpk",
-        "size": 4089446,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
-        "size": 647705395,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/fr3dsp/sonic-r-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
-      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
-      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
-    ]
-  },
-  {
-    "id": "paper-mario-vita",
-    "title_id": "PPMR00001",
-    "name": "Paper Mario Vita",
-    "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-    "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-    "author_ids": [
-      "kaziema"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "puzzle"
-    ],
-    "version": "0.4.0",
-    "version_date": "2026-09-26",
-    "requirements": "- A homebrew-enabled PS Vita or PS TV",
-    "size": 7969178,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.4.0.vpk",
-        "size": 7969178,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files USA",
-        "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
-        "size": 41943040,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/kaziema/pmvita"
-      }
-    ],
-    "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/paper-mario-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "smash-melee-vita",
-    "title_id": "MLVITA002",
-    "name": "Smash Melee Vita",
-    "description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
-    "long_description": "Native PlayStation Vita port of Super Smash Bros. Melee (NTSC-U 1.02), built from doldecomp/melee on aurora.",
-    "author_ids": [
-      "zm2283145"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "strategy"
-    ],
-    "version": "0.8.15",
-    "version_date": "2026-09-26",
-    "requirements": "- The Vita runtime shader compiler, libshacccg.suprx, installed at ur0:data/libshacccg.suprx. This proprietary module is not included in the repository or release package; obtain it from your own legally acquired Vita software using the appropriate homebrew setup instructions.\n- Your own legally obtained, uncompressed Super Smash Bros. Melee USA revision 2 / NTSC-U 1.02 disc image (GALE01), named GALE01.iso. Other regions/revisions and compressed RVZ/CISO images are not supported by this Vita backend. Renaming a compressed image does not decompress it.\n- Writable storage on ux0: for the image, installed application, saves, and shader cache. A full-size disc image alone is 1,459,978,240 bytes (about 1.36 GiB); leave additional free space.",
-    "size": 6710886,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/smash-melee-port-ps-vita/SmashMeleevita%20v0.8.15.vpk",
-        "size": 6710886,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip",
-        "size": 1503238554,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/zm2283145/melee-Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/smash-melee-port-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/smash-melee-port-ps-vita/Shot1.png",
-      "https://archive.org/download/smash-melee-port-ps-vita/pic0.png"
     ]
   },
   {
@@ -5860,76 +5974,6 @@
     "updated_at": "2026-08-13T15:34:48.324788+00:00"
   },
   {
-    "id": "prince-of-persia-classic",
-    "title_id": "POPC00001",
-    "name": "Prince of Persia Classic",
-    "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
-    "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics",
-    "author_ids": [
-      "claude-ai",
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "arcade",
-      "platformer",
-      "puzzle",
-      "rpg",
-      "strategy"
-    ],
-    "version": "01.20",
-    "version_date": "2026-07-28",
-    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-    "size": 1080001,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/ppc-psvita/popclassic-v01.20.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Download",
-        "name": "VPK - Mediafire",
-        "url": "https://www.mediafire.com/file/f9saa49yr81u504/popclassic-v01.20.vpk/file",
-        "recommended": false
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP - MediaFire",
-        "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
-        "recommended": false,
-        "size": 81700000,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP",
-        "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
-        "recommended": false,
-        "size": 81700000,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
-      }
-    ],
-    "icon": "https://archive.org/download/ppc-psvita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/ppc-psvita/pic0.png"
-    ]
-  },
-  {
     "id": "switchfin",
     "title_id": "SWITCHFIN",
     "name": "Switchfin",
@@ -8294,61 +8338,6 @@
     "source_url": "https://github.com/huceus/vitavault-vpk",
     "release_page": "https://github.com/huceus/vitavault-vpk/releases",
     "updated_at": "2026-08-13T15:34:48.343588+00:00"
-  },
-  {
-    "id": "ghostship-vita",
-    "title_id": "GHSTSHP01",
-    "name": "Ghostship Vita",
-    "description": "Port of Ghostship for PSVita.",
-    "long_description": "Ghostship is a sourceport of Super Mario 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.2 (Dutchman Charlie) with bugfixes from the in-development branch.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "other"
-    ],
-    "version": "v.1.2",
-    "version_date": "2026-06-02",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-    "size": 6740247,
-    "status": "Legacy",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-ghostship-vita/ghostship-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/psvitaalive-ghostship-vita/Game%20Files%20Fix.zip",
-        "size": 18454938,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/Rinnegatamante/Ghostship"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-ghostship-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-ghostship-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-ghostship-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-ghostship-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-ghostship-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-ghostship-vita/shot_05.png"
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1387",
-    "source_url": "https://github.com/Rinnegatamante/Ghostship",
-    "release_page": "https://github.com/Rinnegatamante/Ghostship/releases",
-    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "minecraft-pe-demo",
