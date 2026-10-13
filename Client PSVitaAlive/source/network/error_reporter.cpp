@@ -431,6 +431,7 @@ std::string compactExcerpt(
 }
 
 std::string buildLogBlock(const ErrorReportRequest& req) {
+    diagnostics::flush(); // Snapshot current queued diagnostics before reading report tails.
     const ReportScope scope = classifyScope(req);
     const std::string sessionRaw = readFileTail("ux0:data/psvitaalive/logs/session.log", kSessionTailBytes);
     const std::string installRaw = readFileTail("ux0:data/psvitaalive/logs/install.log", kInstallTailBytes);

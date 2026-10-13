@@ -147,15 +147,9 @@ General application/network log:
 ux0:data/psvitaalive/logs/session.log
 ```
 
-Dedicated Internet Archive node-selection log:
+**Current diagnostic policy (02.10, PR #30):** the former dedicated `archive_nodes.log` trace has been **disabled and the old file removed at startup**. The verbose trace caused excessive filesystem writes and is not a file to request in user reports. Archive metadata discovery, speed probes, node selection, redirects and failover are **still operational**; only that additional per-node logging was retired.
 
-```text
-ux0:data/psvitaalive/logs/archive_nodes.log
-```
-
-`archive_nodes.log` is reset on every client launch and is intentionally verbose. It records the Archive identifier/file, catalog threshold hint, metadata `server`/`d1`/`d2`/`dir`, normal versus `dn*`/`.ca` risk candidates, one-byte fallback probes, 256 KiB speed probes, HTTP/curl result, requested/effective URL, remote IP, redirects, TTFB, elapsed/body time, whole-request throughput, body throughput, effective-host deduplication, sorted ranking, selected effective node, every real transfer attempt, TLS verify result, failover reason/from/to, and the final effective node/outcome. Probe bytes are never written to the payload.
-
-`session.log` remains the broad diagnostic source. Existing concise Archive markers are preserved there for compatibility, while `archive_nodes.log` is the focused file to request from users when investigating slow Archive downloads or incorrect node selection.
+`session.log` is the primary source for concise HTTP, TLS and Archive events, including failures and failover decisions. It is written through a bounded asynchronous logger so normal navigation does not synchronously open/append/close the file. `install.log` remains available for detailed installer failures. See [ASYNC_REPORT_LOGGER_20261012.md](ASYNC_REPORT_LOGGER_20261012.md) and historical [ARCHIVE_NODES_LOG.md](../Client%20PSVitaAlive/ARCHIVE_NODES_LOG.md) for the retired debug format.
 
 Useful network/TLS markers include:
 

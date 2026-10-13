@@ -2524,21 +2524,21 @@ void FullCatalogScreen::completeSearch(const std::string& query){
 
 void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     const uint64_t traceBegin=psvitaalive::catalog_trace::nowUs();
-    psvitaalive::catalog_trace::event("ui_set_items_begin",
+    PSVA_TRACE_EVENT("ui_set_items_begin",
         "items="+std::to_string(items.size()));
     // Textures for the previous tab may still be draining; only schedule free if needed.
     releaseTextures();
     const uint64_t released=psvitaalive::catalog_trace::nowUs();
-    psvitaalive::catalog_trace::duration("ui_release_textures",traceBegin);
+    PSVA_TRACE_DURATION("ui_release_textures",traceBegin);
     installStatusCache_.clear();
     allItems_=std::move(items);
     sortItemsByDate(allItems_);
     const uint64_t sorted=psvitaalive::catalog_trace::nowUs();
-    psvitaalive::catalog_trace::duration("ui_sort_items",released,
+    PSVA_TRACE_DURATION("ui_sort_items",released,
         "items="+std::to_string(allItems_.size()));
     items_.clear();
     applySearch(searchQuery_);
-    psvitaalive::catalog_trace::duration("ui_apply_search",sorted);
+    PSVA_TRACE_DURATION("ui_apply_search",sorted);
     visualCatalogScroll_=0.f;
     visualDetailScroll_=0.f;
     visualFocusIndex_=0.f;
@@ -2553,7 +2553,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     if(catalogSwitchCooldownFrames_<CATALOG_SWITCH_COOLDOWN_FRAMES/2)
         catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES/2;
     lastCatalogSwitchMs_=sceKernelGetProcessTimeWide()/1000ULL;
-    psvitaalive::catalog_trace::duration("ui_set_items_complete",traceBegin,
+    PSVA_TRACE_DURATION("ui_set_items_complete",traceBegin,
         "items="+std::to_string(allItems_.size()));
 }
 
@@ -2609,7 +2609,7 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     installStatusWarmupUntilMs_=sceKernelGetProcessTimeWide()/1000ULL+1500ULL;
     catalogLoading_=false;
     catalogError_.clear();
-    psvitaalive::catalog_trace::duration("ui_refresh_preserve_state",t,
+    PSVA_TRACE_DURATION("ui_refresh_preserve_state",t,
         "items="+std::to_string(allItems_.size())+
         " selected_found="+std::to_string(found>=0?1:0));
 }
@@ -2635,7 +2635,7 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     state_.linkNavigation=false;
 }void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){
     if(catalogLoading_ != l) {
-        psvitaalive::catalog_trace::event("ui_loading_toggle",
+        PSVA_TRACE_EVENT("ui_loading_toggle",
             std::string("loading=")+(l?"1":"0")+" label="+lab);
     }
     if (l) {
@@ -2773,7 +2773,7 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
     const uint64_t perfEndUs=sceKernelGetProcessTimeWide();
     const uint64_t perfUs=perfEndUs>=perfStartUs?perfEndUs-perfStartUs:0;
     static uint64_t lastPerfLogUs=0;
-    if(perfUs>=8000ULL&&(lastPerfLogUs==0||perfEndUs-lastPerfLogUs>=1000000ULL)){
+    if(perfUs>=50000ULL&&(lastPerfLogUs==0||perfEndUs-lastPerfLogUs>=10000000ULL)){
         char m[160];
         sceClibSnprintf(m,sizeof(m),"[Perf] deferred texture free slow us=%llu freed=%u remaining=%u",
             (unsigned long long)perfUs,(unsigned)n,(unsigned)deferredFreeTextures_.size());
@@ -2830,24 +2830,16 @@ void FullCatalogScreen::releaseTexturesNotIn(const std::unordered_set<std::strin
         if(kv.first.find("/shot_")!=std::string::npos&&keep.find(kv.first)==keep.end()){any=true;break;}
     }
     if(!any)return;
-    size_t freed=0;
     for(auto i=textures_.begin();i!=textures_.end();){
         const bool screenshot=i->first.find("/shot_")!=std::string::npos;
         if(screenshot&&keep.find(i->first)==keep.end()){
             scheduleTextureFree(i->second);
             i=textures_.erase(i);
-            ++freed;
         }else ++i;
     }
     textureOrder_.erase(std::remove_if(textureOrder_.begin(),textureOrder_.end(),[&](const std::string& p){
         return p.find("/shot_")!=std::string::npos&&keep.find(p)==keep.end();
     }),textureOrder_.end());
-    if(freed>0){
-        char m[112];
-        sceClibSnprintf(m,sizeof(m),"[UI] deferred-free %u off-screen screenshot textures (kept %u)",
-            (unsigned)freed,(unsigned)textures_.size());
-        diagnostics::log(m);
-    }
 }
 void FullCatalogScreen::touchTexture(const std::string& p){
     auto i=std::find(textureOrder_.begin(),textureOrder_.end(),p);
@@ -3035,7 +3027,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     state_.linkFocus=0;
     state_.detailScroll=0;
     clampDetailScroll();
-    diagnostics::log("[UI] link navigation enabled (downloads only)");
+    
 }void FullCatalogScreen::exitLinkNavigation(){if(!state_.linkNavigation)return;state_.linkNavigation=false;state_.linkFocus=-1;state_.detailScroll=detailScrollBeforeLinkMode_;detailScrollBeforeLinkMode_=0;clampDetailScroll();diagnostics::log("[UI] link navigation disabled; detail scroll restored");}void FullCatalogScreen::moveLinkFocus(int dx, int dy) {
     (void)dx;
     int i = selectedIndex();
@@ -3248,12 +3240,12 @@ void FullCatalogScreen::changeCatalog(int d){
     setActiveCatalog(n);
     catalogLoading_=false;
 }
-bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL;}void FullCatalogScreen::startOpeningDetail(){if(state_.mode!=UiMode::FULL_CATALOG||catalogLoading_||installProgressActive_||selectedIndex()<0)return;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::OPENING_DETAIL;diagnostics::log("[UI] opening detail");}void FullCatalogScreen::startClosingDetail(){
+bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL;}void FullCatalogScreen::startOpeningDetail(){if(state_.mode!=UiMode::FULL_CATALOG||catalogLoading_||installProgressActive_||selectedIndex()<0)return;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::OPENING_DETAIL;}void FullCatalogScreen::startClosingDetail(){
     if(state_.mode!=UiMode::SPLIT_DETAIL)return;
     exitLinkNavigation();
     state_.transitionStart=sceKernelGetProcessTimeWide();
     state_.mode=UiMode::CLOSING_DETAIL;
-    diagnostics::log("[UI] closing detail");
+    
 }float FullCatalogScreen::transitionProgress()const{
     if(!isTransitioning())return 1.0f;
     uint64_t e=sceKernelGetProcessTimeWide()-state_.transitionStart;
@@ -3270,7 +3262,7 @@ bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENI
     if(closing){
         releaseScreenshotTextures();
         catalogSwitchCooldownFrames_=2;
-        diagnostics::log("[UI] detail closed — screenshot textures scheduled for free");
+        
     }
 }
 void FullCatalogScreen::handleTouch() {
@@ -5137,7 +5129,7 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     const uint64_t perfEndUs=sceKernelGetProcessTimeWide();
     const uint64_t perfUs=perfEndUs>=perfStartUs?perfEndUs-perfStartUs:0;
     static uint64_t lastTexturePerfLogUs=0;
-    if(perfUs>=8000ULL&&(lastTexturePerfLogUs==0||perfEndUs-lastTexturePerfLogUs>=500000ULL)){
+    if(perfUs>=50000ULL&&(lastTexturePerfLogUs==0||perfEndUs-lastTexturePerfLogUs>=5000000ULL)){
         char pm[240];
         sceClibSnprintf(pm,sizeof(pm),"[Perf] texture decode slow us=%llu ns=%s path=%s",
             (unsigned long long)perfUs,ns.c_str(),path.c_str());
@@ -7786,17 +7778,30 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     draw();
     const uint64_t frameEndUs=sceKernelGetProcessTimeWide();
     const uint64_t frameUs=frameEndUs>=frameStartUs?frameEndUs-frameStartUs:0;
-    static uint64_t lastSlowFrameLogUs=0;
-    if(frameUs>=25000ULL&&(lastSlowFrameLogUs==0||frameEndUs-lastSlowFrameLogUs>=500000ULL)){
-        char pm[180];
-        sceClibSnprintf(pm,sizeof(pm),"[Perf] slow frame us=%llu mode=%d textures=%u deferred=%u",
-            (unsigned long long)frameUs,(int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
-        diagnostics::log(pm);
-        psvitaalive::catalog_trace::event("ui_slow_frame",
-            "duration_ms="+std::to_string(frameUs/1000ULL)+
-            " loading="+std::to_string(catalogLoading_?1:0)+
-            " items="+std::to_string(allItems_.size()));
-        lastSlowFrameLogUs=frameEndUs;
+    // Aggregate frame hitches in RAM instead of doing string/log I/O per slow frame.
+    // One concise diagnostic every 10s keeps performance reports actionable.
+    static uint64_t perfWindowStartUs=0;
+    static uint64_t perfWorstUs=0;
+    static unsigned perfOver25ms=0;
+    static unsigned perfOver100ms=0;
+    if(perfWindowStartUs==0)perfWindowStartUs=frameEndUs;
+    if(frameUs>=25000ULL){
+        ++perfOver25ms;
+        if(frameUs>=100000ULL)++perfOver100ms;
+        if(frameUs>perfWorstUs)perfWorstUs=frameUs;
+    }
+    if(frameEndUs-perfWindowStartUs>=10000000ULL){
+        if(perfOver25ms){
+            char pm[180];
+            sceClibSnprintf(pm,sizeof(pm),
+                "[Perf] 10s summary slow_25ms=%u severe_100ms=%u worst_us=%llu mode=%d textures=%u deferred=%u",
+                perfOver25ms,perfOver100ms,(unsigned long long)perfWorstUs,
+                (int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
+            diagnostics::log(pm);
+        }
+        perfWindowStartUs=frameEndUs;
+        perfOver25ms=perfOver100ms=0;
+        perfWorstUs=0;
     }
     return !state_.requestExit;
 }
