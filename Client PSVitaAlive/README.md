@@ -39,7 +39,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 - **Automatic self-update** from [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases) via helper **PSVAUPDT1**
 - Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0); Settings **INFO → SYSTEM** shows NoNpDrm, NoPspEmuDrm, kubridge, fd_fix, libshacccg. Filesystem-backed plugin checks are snapshotted once when Settings opens, so the render loop does not repeatedly read `ur0:tai/config.txt` or probe plugin files.
 - Brand logo / loading splash can use monochrome assets tinted by the active theme
-- Logs: `session.log`, `install.log`, `archive_nodes.log`, `updater.log`
+- Logs: `session.log` (asynchronous, bounded report-oriented worker), `install.log` (installer), `updater.log`. The former verbose `archive_nodes.log` is retired; see [`../docs/ASYNC_REPORT_LOGGER_20261012.md`](../docs/ASYNC_REPORT_LOGGER_20261012.md).
 
 ## Image cache v3
 
@@ -454,6 +454,7 @@ PSP **DLC** link buttons require **LiveArea** install target **or** Adrenaline *
 |-----|--------|
 | [`../docs/IMAGE_CACHE.md`](../docs/IMAGE_CACHE.md) | Image cache v3, per-image replacement, normalization limits, startup disk cap/progress |
 | [`../docs/CLIENT_PERFORMANCE_STATUS_20261012.md`](../docs/CLIENT_PERFORMANCE_STATUS_20261012.md) | Integrated performance improvements (PR #28), failed `.fastidx` experiment, measured PNG stalls, rollback and pending hardware checks |
+| [`../docs/ASYNC_REPORT_LOGGER_20261012.md`](../docs/ASYNC_REPORT_LOGGER_20261012.md) | PR #30: asynchronous bounded session logger, quiet catalog/image traces, lightweight 10-second frame summaries, error-report flushing and hardware validation |
 | [source/ui/README.md](source/ui/README.md) | Themes, fonts, image cache integration, LOCKED UI, modals |
 | [source/catalog/README.md](source/catalog/README.md) | Catalog parser/cache, image identity handoff, zRIF sidecar |
 | [source/installer/README.md](source/installer/README.md) | Install paths, plugins, shell locks |
