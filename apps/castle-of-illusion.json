@@ -1,0 +1,46 @@
+{
+  "id": "castle-of-illusion",
+  "title_id": "COIV00001",
+  "name": "Castle of Illusion",
+  "description": "PS Vita port of the Android version of Castle of Illusion (2013).",
+  "long_description": "A heavily AI-assisted port of the Android version of Castle of Illusion Starring Mickey Mouse, using vitaGL. Includes physical controls, custom LiveArea artwork, and a prepared shader cache to avoid the original lengthy shader-compilation waits.",
+  "author_ids": [
+    "jwfeniello"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "puzzle"
+  ],
+  "version": "0.12",
+  "version_date": "2026-10-11",
+  "requirements": "- Install kubridge and libshacccg.suprx (ShaRKBR33D can install it).",
+  "size": 2831155,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/castle_of_illusion_vita%20v0.12.vpk",
+      "size": 2831155,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/Game%20Files.zip",
+      "size": 625370726,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/jwfeniello/Castle-of-Illusion-Vita"
+    }
+  ],
+  "icon": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/pic0.png"
+  ]
+}
