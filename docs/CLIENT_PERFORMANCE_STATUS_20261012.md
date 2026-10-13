@@ -1,5 +1,9 @@
 # PSVitaAlive — Estado de integración y rendimiento del cliente (12-10-2026)
 
+> **Actualización de integración (12 de octubre, tras prueba de 02.10):** el mantenedor probó en PS Vita real el VPK de `fix/async-report-logging-20261012` y confirmó recuperación de una navegación fluida. Autorizó incorporar el [PR #30](https://github.com/VegettoSan/PSVitaAlive/pull/30) a `main`, documentado en [ASYNC_REPORT_LOGGER_20261012.md](ASYNC_REPORT_LOGGER_20261012.md). La nueva implementación usa un logger asíncrono con cola fija, elimina los registros temporales `[CATTRACE]` en compilación normal, silencia los eventos rutinarios de imágenes y resume frames lentos cada 10 segundos. Compilación de la prueba: [run 38327869414](https://github.com/VegettoSan/PSVitaAlive/actions/runs/38327869414), exitosa. **La prueba es cualitativa: no demuestra 60 FPS fijos ni valida todavía cada ruta de envío de reportes.**
+>
+> Los hallazgos, cifras, advertencias y recomendaciones de recuperación **más abajo son históricos y anteriores a PR #30**. La caché rápida `.fastidx` sigue excluida. PNG/GPU sigue con decodificaciones/bloqueos síncronos potenciales; solo se ha mitigado el ruido y coste de los logs.
+
 > **Documento de estado vigente** de las optimizaciones aprobadas y del experimento de índice rápido. Complementa los informes históricos de esta carpeta. Las frases “no tocar main”, “no fusionado” y las tareas pendientes de integración en informes escritos *antes* del PR #28 describen aquel momento; no revocan los hechos posteriores aquí verificados.
 
 ## 1. Decisión actual
@@ -19,6 +23,7 @@
 | Caché v3 y creación de directorios/buckets fuera del hilo UI | En `main` | Corrección de buckets validada en hardware con caché de imágenes vacía y existente; **no elimina** la latencia de decodificación PNG |
 | Preparación de imágenes bajo demanda; cancelación durante navegación; LRU de iconos acotada | En `main` | PNG/JPEG todavía se convierten a texturas mediante llamadas en el hilo UI; capturas grandes pueden bloquear |
 | Lectura de espacio `ux0:` desde worker al inicio y al terminar trabajos relevantes | En `main` | CI OK; sigue **pendiente** comprobar en PS Vita real los disparos por instalaciones/descargas y el cierre limpio |
+| Logger asíncrono de reportes y CATTRACE desactivado | En `main` (PR #30) | Prueba funcional positiva del mantenedor en PS Vita real; siguen pendientes pruebas exhaustivas de reportes y medición sostenida de FPS |
 | Índice local `catalog.json.fastidx` | **No integrado** | Dos arranques del mismo VPK: `catalog_fast_miss` en ambos. Sin confirmación de `catalog_fast_build` ni `catalog_fast_hit` |
 | Descargas VPK/ZIP, Archive.org, BGDL/PKG, zRIF, plugins, idiomas, favoritos y catálogos de juegos | Sin cambios por la documentación | Mantener pruebas de regresión si se modifica el cliente en el futuro |
 
@@ -97,3 +102,12 @@ El archivo `ux0:data/psvitaalive/logs/session.log` se reinicia al iniciar; **gua
 - [Documento del índice rápido (solo rama experimental)](https://github.com/VegettoSan/PSVitaAlive/blob/perf/catalog-fast-local-index-20261012/docs/HOMEBREW_FAST_CATALOG_INDEX_20261012.md): diseño propuesto, **no adoptado**.
 
 **Decisión de mantenimiento (12-10-2026):** integrar solamente lo aprobado (ya aplicado en PR #28), documentar el resultado negativo del índice, preservar `main` y no prometer fluidez de imágenes aún no verificada.
+
+## 8. Resultado posterior: logger de reportes ligero (PR #30)
+
+- VPK de prueba compilado sin errores desde `7e5a861948edc3f5175e897dd0ca57ad37064ed4` y ensayado por el mantenedor en hardware real; confirmó comportamiento fluido y autorizó su integración.
+- `session.log` se escribe mediante hilo VitaSDK fuera del render; mensajes agrupados y cola fija de 64 × 1024 B. `install.log` conserva su ruta anterior. Al construir un reporte el worker de reportes solicita `diagnostics::flush()` para recoger las líneas pendientes.
+- `[CATTRACE]` no se emite por defecto; `[Perf] 10s summary` evita registrar cada fotograma lento; descargas correctas/cancelaciones de imágenes dejan de generar ruido en los logs. Los errores de instalación, catálogo, red y plugins permanecen disponibles.
+- Se mantiene como tarea separada comprobar reportes de fallo, cierre limpio del logger y bajones de PNG/GPU en escenarios extremos; no mezclar esa investigación con el índice rápido descartado.
+
+El detalle técnico, precauciones de RAM, fallback y rollback está en [ASYNC_REPORT_LOGGER_20261012.md](ASYNC_REPORT_LOGGER_20261012.md).
