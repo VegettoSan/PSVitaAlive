@@ -2524,21 +2524,21 @@ void FullCatalogScreen::completeSearch(const std::string& query){
 
 void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     const uint64_t traceBegin=psvitaalive::catalog_trace::nowUs();
-    psvitaalive::catalog_trace::event("ui_set_items_begin",
+    PSVA_TRACE_EVENT("ui_set_items_begin",
         "items="+std::to_string(items.size()));
     // Textures for the previous tab may still be draining; only schedule free if needed.
     releaseTextures();
     const uint64_t released=psvitaalive::catalog_trace::nowUs();
-    psvitaalive::catalog_trace::duration("ui_release_textures",traceBegin);
+    PSVA_TRACE_DURATION("ui_release_textures",traceBegin);
     installStatusCache_.clear();
     allItems_=std::move(items);
     sortItemsByDate(allItems_);
     const uint64_t sorted=psvitaalive::catalog_trace::nowUs();
-    psvitaalive::catalog_trace::duration("ui_sort_items",released,
+    PSVA_TRACE_DURATION("ui_sort_items",released,
         "items="+std::to_string(allItems_.size()));
     items_.clear();
     applySearch(searchQuery_);
-    psvitaalive::catalog_trace::duration("ui_apply_search",sorted);
+    PSVA_TRACE_DURATION("ui_apply_search",sorted);
     visualCatalogScroll_=0.f;
     visualDetailScroll_=0.f;
     visualFocusIndex_=0.f;
@@ -2553,7 +2553,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     if(catalogSwitchCooldownFrames_<CATALOG_SWITCH_COOLDOWN_FRAMES/2)
         catalogSwitchCooldownFrames_=CATALOG_SWITCH_COOLDOWN_FRAMES/2;
     lastCatalogSwitchMs_=sceKernelGetProcessTimeWide()/1000ULL;
-    psvitaalive::catalog_trace::duration("ui_set_items_complete",traceBegin,
+    PSVA_TRACE_DURATION("ui_set_items_complete",traceBegin,
         "items="+std::to_string(allItems_.size()));
 }
 
@@ -2609,7 +2609,7 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     installStatusWarmupUntilMs_=sceKernelGetProcessTimeWide()/1000ULL+1500ULL;
     catalogLoading_=false;
     catalogError_.clear();
-    psvitaalive::catalog_trace::duration("ui_refresh_preserve_state",t,
+    PSVA_TRACE_DURATION("ui_refresh_preserve_state",t,
         "items="+std::to_string(allItems_.size())+
         " selected_found="+std::to_string(found>=0?1:0));
 }
@@ -2635,7 +2635,7 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     state_.linkNavigation=false;
 }void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){
     if(catalogLoading_ != l) {
-        psvitaalive::catalog_trace::event("ui_loading_toggle",
+        PSVA_TRACE_EVENT("ui_loading_toggle",
             std::string("loading=")+(l?"1":"0")+" label="+lab);
     }
     if (l) {
@@ -7792,7 +7792,7 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
         sceClibSnprintf(pm,sizeof(pm),"[Perf] slow frame us=%llu mode=%d textures=%u deferred=%u",
             (unsigned long long)frameUs,(int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
         diagnostics::log(pm);
-        psvitaalive::catalog_trace::event("ui_slow_frame",
+        PSVA_TRACE_EVENT("ui_slow_frame",
             "duration_ms="+std::to_string(frameUs/1000ULL)+
             " loading="+std::to_string(catalogLoading_?1:0)+
             " items="+std::to_string(allItems_.size()));
