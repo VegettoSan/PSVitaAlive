@@ -185,7 +185,7 @@ The startup loading overlay shows localized checking/cleaning progress. During n
 
 Detailed design: [`docs/IMAGE_CACHE.md`](docs/IMAGE_CACHE.md).
 
-**Client performance / integration status (12 Oct 2026):** The approved cache-first, image-bucket worker, and event-driven UX0 improvements have already been merged via [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). An experimental binary Homebrew index (`.fastidx`) **was not merged** because two real-device startups missed the index and did not speed up JSON loading. GPU PNG decoding hitches remain under investigation. See [`docs/CLIENT_PERFORMANCE_STATUS_20261012.md`](docs/CLIENT_PERFORMANCE_STATUS_20261012.md) for measurements, rollback guidance and test requirements.
+**Client performance / integration status (12 Oct 2026):** Cache-first startup, image bucket workers and event-driven UX0 were merged via [PR #28](https://github.com/VegettoSan/PSVitaAlive/pull/28). The [PR #30](https://github.com/VegettoSan/PSVitaAlive/pull/30) asynchronous session logger and reduced diagnostic noise were subsequently approved after a positive real-PS Vita navigation test, preserving logs useful for error reports without opening/closing session.log on the render thread. The experimental binary Homebrew index (`.fastidx`) **was not merged**; GPU PNG decoding hitches can still occur in some cases. See [`docs/CLIENT_PERFORMANCE_STATUS_20261012.md`](docs/CLIENT_PERFORMANCE_STATUS_20261012.md) and [`docs/ASYNC_REPORT_LOGGER_20261012.md`](docs/ASYNC_REPORT_LOGGER_20261012.md).
 
 #### Automatic client updates
 
