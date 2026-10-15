@@ -96,6 +96,111 @@
     ]
   },
   {
+    "id": "conker-s-bad-fur-day",
+    "title_id": "CBFD00064",
+    "name": "Conker's Bad Fur Day",
+    "description": "Conker's Bad Fur Day native PS Vita port",
+    "long_description": "Conker's Bad Fur Day (Rare, 2001) running natively on the PS Vita / PS TV. This is not an emulator: the N64 game was statically recompiled to C with N64Recomp (based on CBFD-Recompiled) and built for the Vita, with the N64's graphics drawn by a renderer written for the Vita's GPU (sceGxm) and the audio microcode running on the Vita's CPU.",
+    "author_ids": [
+      "henrykun55"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "platformer",
+      "other"
+    ],
+    "version": "1.1.0",
+    "version_date": "2026-10-14",
+    "requirements": "- A PS Vita or PS TV with HENkaku/Ensō and VitaShell.\n- libshacccg.suprx (the runtime shader compiler) in ur0:data/. If you already play other ports you have it. Otherwise, extract it with ShaRKBR33D.\n- The US ROM of Conker's Bad Fur Day",
+    "size": 8493466,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/conker-vita/conker%20v1.1.0.vpk",
+        "size": 8493466,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/conker-vita/Game%20Files.zip",
+        "size": 67108864,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/HenryKun55/conker-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/conker-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/conker-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "thug-vita",
+    "title_id": "THUG00001",
+    "name": "THUG Vita",
+    "description": "Native port of Tony Hawk's Underground for PSVita.",
+    "long_description": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.",
+    "author_ids": [
+      "iwannagooutside"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "source-port"
+    ],
+    "version": "v1.2.0",
+    "version_date": "2026-10-13",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
+    "size": 4613734,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/thug-vita/thug_vita%20v1.2.0.vpk",
+        "size": 4613734,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/thug-vita/Game%20Files.zip",
+        "size": 1717986918,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/iwannagooutside/thug-vita-port"
+      },
+      {
+        "type": "Issues",
+        "name": "Issues",
+        "url": "https://github.com/iwannagooutside/thug-vita-port/issues"
+      },
+      {
+        "type": "Official Website",
+        "name": "Trailer",
+        "url": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
+      }
+    ],
+    "icon": "https://archive.org/download/thug-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/thug-vita/shot0.jpg",
+      "https://archive.org/download/thug-vita/shot1.png"
+    ],
+    "release_page": "https://github.com/iwannagooutside/thug-vita-port/releases"
+  },
+  {
     "id": "vita-steam-link",
     "title_id": "VSLK00001",
     "name": "Vita Steam Link",
@@ -465,64 +570,6 @@
       "https://archive.org/download/predators-psvita-port/shot0.png",
       "https://archive.org/download/predators-psvita-port/shot1.png"
     ]
-  },
-  {
-    "id": "thug-vita",
-    "title_id": "THUG00001",
-    "name": "THUG Vita",
-    "description": "Native port of Tony Hawk's Underground for PSVita.",
-    "long_description": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.",
-    "author_ids": [
-      "iwannagooutside"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "source-port"
-    ],
-    "version": "v1.1.0",
-    "version_date": "2026-10-10",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
-    "size": 3879731,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/thug-vita/thug_vita%20v1.1.0.vpk",
-        "size": 3879731,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/thug-vita/Game%20Files.zip",
-        "size": 1717986918,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/iwannagooutside/thug-vita-port"
-      },
-      {
-        "type": "Issues",
-        "name": "Issues",
-        "url": "https://github.com/iwannagooutside/thug-vita-port/issues"
-      },
-      {
-        "type": "Official Website",
-        "name": "Trailer",
-        "url": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
-      }
-    ],
-    "icon": "https://archive.org/download/thug-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/thug-vita/shot0.jpg",
-      "https://archive.org/download/thug-vita/shot1.png"
-    ],
-    "release_page": "https://github.com/iwannagooutside/thug-vita-port/releases"
   },
   {
     "id": "ghostship-vita",
