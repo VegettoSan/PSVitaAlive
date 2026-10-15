@@ -1,5 +1,38 @@
 [
   {
+    "id": "vita-steam-link",
+    "title_id": "VSLK00001",
+    "name": "Vita Steam Link",
+    "description": "Vita Steam Link streams your Steam games from your PC to a PS Vita over your home network, with video, sound and fully rebindable controls.",
+    "long_description": "Vita Steam Link is a free homebrew app that turns the PS Vita into a Steam Remote Play client. It finds PCs running Steam on your home network by itself, pairs with a 4-digit PIN the first time, and then streams whatever Steam shows, from Big Picture to the game you launch, straight to the Vita’s screen.\n\nVideo is decoded by the Vita’s hardware H.264 decoder at up to 60 frames per second, with stereo sound. You choose resolution, bitrate, frame rate and audio buffer to match your Wi-Fi.\n\nThe Vita’s buttons and sticks appear to the PC as a gamepad. The rear touch pad supplies the triggers and stick clicks the Vita lacks, the front touch screen works as a mouse, and a short press of the PS button opens the Steam overlay. Everything can be rebound: each button, plus up to eight zones on each touch surface that you draw yourself in a built-in editor, can act as a gamepad button, mouse button, keyboard key or shortcut.\n\nRequirements: a PS Vita or PS TV with custom firmware (HENkaku or Ensō), and a PC running Steam on the same network. It works at home only, not over the internet.\n\nThis is a beta: it runs well, but expect rough edges and an occasional crash when the PC switches between games. Unofficial software, not affiliated with Valve or Sony.\n\nDownload and install guide: https://vankash.de/steamonvita/\n\nTwitter: @vankash\ninstagram: ziegenbeisser\ntiktok: vankash",
+    "author_ids": [
+      "vankash"
+    ],
+    "category_id": "networking",
+    "subcategory_ids": [
+      "game-streaming"
+    ],
+    "version": "1.0.0",
+    "version_date": "2026-10-13",
+    "requirements": "HENkaku or Ensō CFW",
+    "size": 567530,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VitaSteamLink.vpk",
+        "url": "https://vankash.de/steamonvita/VitaSteamLink.vpk",
+        "size": 567530,
+        "recommended": true
+      }
+    ],
+    "icon": "https://vankash.de/vitaonsteam.png",
+    "screenshots": [
+      "https://vankash.de/steamonvita/img/stream-big-picture.jpg",
+      "https://vankash.de/steamonvita/img/main-menu.jpg"
+    ]
+  },
+  {
     "id": "ctr-high-octane",
     "title_id": "CTR000004",
     "name": "CTR: High Octane",
