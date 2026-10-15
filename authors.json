@@ -1066,6 +1066,21 @@
     "icon": "https://github.com/bomblik.png"
   },
   {
+    "id": "boomannotjeff",
+    "name": "boomannotjeff",
+    "avatar": "https://avatars.githubusercontent.com/u/342081000?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/boomannotjeff",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/342081000?v=4"
+  },
+  {
     "id": "borad-games",
     "name": "Borad Games",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -7899,6 +7914,21 @@
       }
     ],
     "icon": "https://github.com/DvaMishkiLapa.png"
+  },
+  {
+    "id": "scoobydouche",
+    "name": "ScoobyDouche",
+    "avatar": "https://avatars.githubusercontent.com/u/43378931?v=4",
+    "bio": "I understand all the code just too lazy to do it myself https://ko-fi.com/scoobydouche",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ScoobyDouche",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/43378931?v=4"
   },
   {
     "id": "scummvm-team",
