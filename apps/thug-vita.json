@@ -13,17 +13,17 @@
     "platformer",
     "source-port"
   ],
-  "version": "v1.1.0",
-  "version_date": "2026-10-10",
+  "version": "v1.2.0",
+  "version_date": "2026-10-13",
   "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
-  "size": 3879731,
+  "size": 4613734,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/thug-vita/thug_vita%20v1.1.0.vpk",
-      "size": 3879731,
+      "url": "https://archive.org/download/thug-vita/thug_vita%20v1.2.0.vpk",
+      "size": 4613734,
       "recommended": true
     },
     {
