@@ -1,0 +1,47 @@
+{
+  "id": "conker-s-bad-fur-day",
+  "title_id": "CBFD00064",
+  "name": "Conker's Bad Fur Day",
+  "description": "Conker's Bad Fur Day native PS Vita port",
+  "long_description": "Conker's Bad Fur Day (Rare, 2001) running natively on the PS Vita / PS TV. This is not an emulator: the N64 game was statically recompiled to C with N64Recomp (based on CBFD-Recompiled) and built for the Vita, with the N64's graphics drawn by a renderer written for the Vita's GPU (sceGxm) and the audio microcode running on the Vita's CPU.",
+  "author_ids": [
+    "henrykun55"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "adventure",
+    "platformer",
+    "other"
+  ],
+  "version": "1.1.0",
+  "version_date": "2026-10-14",
+  "requirements": "- A PS Vita or PS TV with HENkaku/Ensō and VitaShell.\n- libshacccg.suprx (the runtime shader compiler) in ur0:data/. If you already play other ports you have it. Otherwise, extract it with ShaRKBR33D.\n- The US ROM of Conker's Bad Fur Day",
+  "size": 8493466,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/conker-vita/conker%20v1.1.0.vpk",
+      "size": 8493466,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/conker-vita/Game%20Files.zip",
+      "size": 67108864,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/HenryKun55/conker-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/conker-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/conker-vita/Shot0.png"
+  ]
+}
