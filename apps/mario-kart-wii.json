@@ -1,0 +1,49 @@
+{
+  "id": "mario-kart-wii",
+  "title_id": "MKWV00001",
+  "name": "Mario Kart Wii",
+  "description": "A native PlayStation Vita port of MiniBandit's MKW-3DS",
+  "long_description": "A native PlayStation Vita port of MiniBandit's MKW-3DS, a 1:1 recreation of Mario Kart Wii for the Nintendo 3DS. It's a port of that 3DS recreation, not of the Wii game: no Wii code runs.",
+  "author_ids": [
+    "boomannotjeff"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.2.0",
+  "version_date": "2026-10-15",
+  "requirements": "- A PS Vita or PS TV with HENkaku / Ensō and VitaShell.\n- ur0:data/libshacccg.suprx, the Vita's shader compiler. Extract it once with ShaRKF00D.\n- About 3 GB free on ux0: for the game files.",
+  "size": 2233467,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/mkwiita/mkw%20v1.2.0.vpk",
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/mkwiita/Game%20Files.zip",
+      "size": 3006477107,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/boomannotjeff/mkwiita"
+    }
+  ],
+  "icon": "https://archive.org/download/mkwiita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/mkwiita/shot0.png",
+    "https://archive.org/download/mkwiita/shot1.png",
+    "https://archive.org/download/mkwiita/shot2.png",
+    "https://archive.org/download/mkwiita/shot3.png",
+    "https://archive.org/download/mkwiita/shot4.png"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "kotor",
+  "title_id": "KOTR00001",
+  "name": "KOTOR",
+  "description": "Star Wars: Knights of the Old Republic on the PlayStation Vita.",
+  "long_description": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.",
+  "author_ids": [
+    "scoobydouche"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "adventure",
+    "strategy"
+  ],
+  "version": "0.4.2",
+  "version_date": "2026-10-10",
+  "requirements": "- A Vita or PS TV on firmware that can run HENkaku / taiHEN\n- kubridge.skprx installed as a taiHEN plugin\n- libshacccg.suprx in ur0:data/ — the runtime shader compiler. Use this installer if you don't have it. Without it the game hangs on a black screen at the first shader compile, with no error message.\n- Roughly 2.7 GB free on ux0:",
+  "size": 2726298,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/VitaKotor/KOTOR%20v0.4.2.vpk",
+      "size": 2726298,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/VitaKotor/Game%20Files.zip",
+      "size": 2576980378,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/ScoobyDouche/VitaKotor"
+    }
+  ],
+  "icon": "https://archive.org/download/VitaKotor/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/VitaKotor/shot0.png"
+  ]
+}
