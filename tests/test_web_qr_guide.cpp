@@ -13,9 +13,9 @@ int main() {
     CatalogItem home;
     home.linkDetails = {
         {"Download", "VPK", "https://example.org/game.vpk"},
-        {"Game Files", "Game Files English", "https://example.org/data.zip", "", "", "ux0:data/"},
-        {"Game Files", "Game Files Spanish", "https://example.org/data2.zip", "", "", "ux0:data/"},
-        {"Data Files", "Extra", "https://example.org/extra.zip", "", "", "ux0:custom/"},
+        {"Game Files", "Game Files English", "https://example.org/data.zip", "", "", "", "ux0:data/"},
+        {"Game Files", "Game Files Spanish", "https://example.org/data2.zip", "", "", "", "ux0:data/"},
+        {"Data Files", "Extra", "https://example.org/extra.zip", "", "", "", "ux0:custom/"},
     };
     auto g = makeWebQrGuide(CatalogType::Homebrew, home);
     assert(g.size() == 4);
@@ -46,7 +46,7 @@ int main() {
     CatalogItem empty;
     g = makeWebQrGuide(CatalogType::Homebrew, empty);
     assert(contains(g, WebQrGuideKind::Other));
-    home.linkDetails = {{"Data Files", "unsafe", "https://example.org/data.zip", "", "", "ux0:data/../bad"}};
+    home.linkDetails = {{"Data Files", "unsafe", "https://example.org/data.zip", "", "", "", "ux0:data/../bad"}};
     g = makeWebQrGuide(CatalogType::Homebrew, home);
     assert(contains(g, WebQrGuideKind::DataFiles));
     assert(!contains(g, WebQrGuideKind::DataFiles, "ux0:data/../bad"));

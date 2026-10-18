@@ -168,6 +168,16 @@ private:
     std::string webQrUrl_;
     std::string webQrPath_;
     vita2d_texture* webQrTexture_ = nullptr;
+    struct WebQrHelpLine {
+        std::string text;
+        bool heading = false;
+        int advance = 22; // vertical line advance, already wrapped for the right pane
+    };
+    std::vector<WebQrHelpLine> webQrHelpLines_;
+    std::vector<std::string> webQrUrlLines_;
+    int webQrHelpScroll_ = 0;
+    int webQrHelpMaxScroll_ = 0;
+    int webQrUrlScrollLine_ = 0;
     bool installAllHadPlugin_ = false;
 
     // Startup: recommend missing critical plugins (kubridge, fd_fix, libshacccg)
@@ -310,6 +320,7 @@ private:
     void openWebQrModal();
     void closeWebQrModal();
     void drawWebQrOverlay();
+    void scrollWebQrHelp(int direction);
     void drawInstallAllOverlay();
     void drawPluginRebootOverlay();
     void drawEssentialPluginsOverlay();
