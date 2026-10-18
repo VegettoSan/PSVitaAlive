@@ -119,10 +119,10 @@ static size_t onHeader(char* ptr, size_t size, size_t nmemb, void* userdata) {
     return n;
 }
 
-static void sendProgress(Session& s, bool finished = false) {
+static void sendProgress(Session& s, bool finished = false, bool finalizing = false) {
     if (!s.progress || !*s.progress) return;
     const uint64_t now = monotonicUs();
-    if (!finished && now - s.lastReportUs < 250000ULL) return;
+    if (!finished && !finalizing && now - s.lastReportUs < 250000ULL) return;
     s.lastReportUs = now;
     HttpProgress p;
     // Hold at 99% until the part files have been assembled and checked.
@@ -131,7 +131,8 @@ static void sendProgress(Session& s, bool finished = false) {
     p.downloaded = p.absoluteDownloaded;
     p.total = s.size;
     const uint64_t elapsed = now > s.startUs ? now - s.startUs : 1;
-    p.bytesPerSecond = (s.received / (elapsed / 1000ULL + 1)) * 1000ULL;
+    p.bytesPerSecond = finalizing ? 0 : (s.received / (elapsed / 1000ULL + 1)) * 1000ULL;
+    p.finalizing = finalizing;
     (*s.progress)(p);
 }
 
@@ -503,6 +504,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
         return ParallelArchiveOutcome::RetrySerial;
     }
 
+    // Network transfer has finished, but disk merge + digest verification
+    // still require time. Publish a separate UI phase instead of freezing at 99%.
+    sendProgress(session, false, true);
+    diagnostics::log("[HTTP] parallel transfer complete; joining and verifying parts");
     bool checksumMismatch = false;
     if (!joinParts(destination, authoritativeSize,
                    isDirectHttp(url) ? expectedSha1 : std::string(),
