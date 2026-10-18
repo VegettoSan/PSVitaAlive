@@ -80,6 +80,8 @@ set_source_files_properties(source/network/http_client.cpp PROPERTIES
 set_source_files_properties(
   source/network/http_client.cpp
   source/network/parallel_archive_download.cpp
+  source/installer/install_controller.cpp
+  source/diagnostic_logger.cpp
   PROPERTIES COMPILE_OPTIONS "-Os"
 )
 set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
