@@ -24,6 +24,7 @@ set(SOURCES
   source/diagnostic_logger.cpp
   source/storage/storage_manager.cpp
   source/network/http_client.cpp
+  source/network/parallel_archive_download.cpp
   source/network/curl_lifecycle.cpp
   third_party/pkg2zip/pkg2zip_aes.c
   third_party/pkg2zip/pkg2zip_crc32.c
@@ -75,6 +76,17 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 set_source_files_properties(source/network/http_client.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_PROXY"
+)
+
+# Vita ELF text segment has limited room for SCE metadata at conversion time.
+# Keep the network transport code compact without reducing optimization of
+# zlib/libzip, rendering, or the rest of the client.
+set_source_files_properties(
+  source/network/http_client.cpp
+  source/network/parallel_archive_download.cpp
+  source/installer/install_controller.cpp
+  source/diagnostic_logger.cpp
+  PROPERTIES COMPILE_OPTIONS "-Os"
 )
 set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_IMPL"

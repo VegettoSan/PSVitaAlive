@@ -237,6 +237,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     auto progress = [&](const HttpProgress& p) {
         job.downloadedSize = p.absoluteDownloaded;
         job.bytesPerSecond = p.bytesPerSecond;
+        job.state = p.finalizing ? DownloadState::Verifying : DownloadState::Downloading;
         // p.total is only non-zero when HttpClient observed a remote length.
         if (p.total > 0) {
             job.expectedSize = p.total;
@@ -279,7 +280,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             // UI %: use expected hint even when CDN omits Content-Length
             ev.total = job.expectedSize ? job.expectedSize : job.downloadedSize;
             ev.bytesPerSecond = job.bytesPerSecond;
-            ev.state = DownloadState::Downloading;
+            ev.state = p.finalizing ? DownloadState::Verifying : DownloadState::Downloading;
+            if (p.finalizing) ev.message = ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS");
             onProgress_(ev);
         }
         if ((job.downloadedSize >= lastSaved && job.downloadedSize - lastSaved >= kMetadataSaveStep) ||

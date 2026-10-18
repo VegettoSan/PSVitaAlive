@@ -2,6 +2,8 @@
 
 This document covers the TLS-specific behaviour of the native client network stack.
 
+**Adaptive transfer update (18 October 2026):** [ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md](ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md) documents the current two/four-range and serial policies. The 16 MiB threshold described below is for Archive **node benchmarking** and does not prevent 1–8 MiB files from using two validated ranges. Direct HTTP is restricted to the Archive file-checksum path; generic HTTPS downloads are not downgraded.
+
 For the complete download pipeline — retries, Range validation, MediaFire re-resolution, free-space guards, ZIP/ZIP64 integrity and archive extraction — see [`DOWNLOAD_RESILIENCE.md`](DOWNLOAD_RESILIENCE.md).
 
 ## Default stack (production today)

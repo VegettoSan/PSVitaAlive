@@ -3,6 +3,7 @@
 #include "storage/storage_manager.hpp"
 
 #include <psp2/kernel/clib.h>
+#include <psp2/kernel/processmgr.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 #include <zip.h>
@@ -14,7 +15,12 @@
 
 namespace psvitaalive {
 namespace {
-constexpr size_t EXTRACT_CHUNK = 64 * 1024;
+// A larger streaming buffer reduces sceIoRead/sceIoWrite calls during
+// multi-megabyte entries. Still bounded to 256 KiB of extra heap RAM.
+constexpr size_t EXTRACT_CHUNK = 256 * 1024;
+constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
+constexpr uint64_t ZIP_VERBOSE_ENTRY_MIN_SIZE = 4ULL * 1024ULL * 1024ULL;
+constexpr zip_int64_t ZIP_ENTRY_LOG_STEP = 64;
 
 std::string zipArchiveError(zip_t* za) {
     if (!za) return "null archive";
@@ -531,8 +537,26 @@ ZipResult ZipExtractor::extract(
         }
     }
 
-std::vector<char> buffer(EXTRACT_CHUNK);
+    std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
+
+    // Limit UI handoffs while retaining byte-level progress inside large
+    // entries. Cancellation is still checked for every extraction chunk.
+    uint64_t lastProgressUs = 0;
+    auto reportProgress = [&](bool force = false) {
+        if (!onProgress) return;
+        const uint64_t now = sceKernelGetProcessTimeWide();
+        if (force || lastProgressUs == 0 ||
+            now - lastProgressUs >= ZIP_PROGRESS_INTERVAL_US) {
+            lastProgressUs = now;
+            onProgress(prog);
+        }
+    };
+    reportProgress(true);
+
+    // Consecutive ZIP entries very often share the same parent directory.
+    // Avoid a stat() plus recursive mkdir walk per tiny file.
+    std::string lastEnsuredParent;
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         if (shouldCancel && shouldCancel()) {
@@ -562,18 +586,29 @@ std::vector<char> buffer(EXTRACT_CHUNK);
         }
 
         if (isDir) {
-            if (!st.createDirectories(outPath)) {
+            if (!st.createDirectories(outPath) && !st.isDirectory(outPath)) {
                 setError(std::string("mkdir failed: ") + outPath);
                 outcome = ZipResult::IoError;
                 break;
             }
+            lastEnsuredParent = outPath;
             ++prog.entriesDone;
-            if (onProgress) onProgress(prog);
+            reportProgress();
             continue;
         }
 
         const auto slash = outPath.find_last_of('/');
-        if (slash != std::string::npos) st.createDirectories(outPath.substr(0, slash));
+        if (slash != std::string::npos) {
+            const std::string parent = outPath.substr(0, slash);
+            if (parent != lastEnsuredParent) {
+                if (!st.isDirectory(parent) && !st.createDirectories(parent)) {
+                    setError(std::string("mkdir failed: ") + parent);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                lastEnsuredParent = parent;
+            }
+        }
 
         zip_file_t* zf = zip_fopen_index(za, i, 0);
         if (!zf) {
@@ -593,7 +628,14 @@ std::vector<char> buffer(EXTRACT_CHUNK);
         const unsigned method = (zs.valid & ZIP_STAT_COMP_METHOD) ? static_cast<unsigned>(zs.comp_method) : 0u;
         bool fileOk = true;
         uint64_t writtenTotal = 0;
-        {
+        // Per-file session logging competes with extraction I/O for the same
+        // ux0 storage. Preserve detailed logs for large entries, unusual
+        // compression and one sample per 64 small files.
+        const bool traceEntry = numEntries <= 20 ||
+            i % ZIP_ENTRY_LOG_STEP == 0 ||
+            ((zs.valid & ZIP_STAT_SIZE) && zs.size >= ZIP_VERBOSE_ENTRY_MIN_SIZE) ||
+            (method != 0 && method != 8);
+        if (traceEntry) {
             char diag[512];
             sceClibSnprintf(
                 diag, sizeof(diag),
@@ -664,7 +706,7 @@ std::vector<char> buffer(EXTRACT_CHUNK);
             if (!fileOk) break;
             writtenTotal += static_cast<uint64_t>(n);
             prog.bytesWritten += static_cast<uint64_t>(n);
-            if (onProgress) onProgress(prog);
+            reportProgress();
         }
 
         const int zipCloseResult = zip_fclose(zf);
@@ -688,7 +730,7 @@ std::vector<char> buffer(EXTRACT_CHUNK);
             fileOk = false;
         }
 
-        if (fileOk) {
+        if (fileOk && traceEntry) {
             char diag[384];
             sceClibSnprintf(
                 diag, sizeof(diag),
@@ -722,7 +764,7 @@ std::vector<char> buffer(EXTRACT_CHUNK);
         }
 
         ++prog.entriesDone;
-        if (onProgress) onProgress(prog);
+        reportProgress();
     }
 
     const int archiveCloseResult = zip_close(za);
@@ -734,6 +776,8 @@ std::vector<char> buffer(EXTRACT_CHUNK);
         zip_discard(za);
     }
     if (outcome == ZipResult::Ok) {
+        prog.currentEntry.clear();
+        reportProgress(true);
         diagnostics::log(
             std::string("[ZipExtractor] extracted ") +
             std::to_string(static_cast<unsigned long long>(prog.entriesDone)) +

@@ -15,6 +15,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 |----------|--------|
 | Root `README.md` | Project overview, public JSON API, multi-catalog, recommended Vita setup, download/install locks, commercial PKG routing, client feature summary |
 | `docs/BGDL_PREPARATION_FRAME.md` | **BGDL preparation-frame handoff**: keep ShellSvc enqueue on the main thread while presenting a visible Preparing overlay first |
+| `docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md` | **Adaptive transfer and ZIP/VPK optimizations (18 October 2026):** thresholds, HTTP validators/checksums, buffering, progress UI, measurements and regression tests |
 | `docs/DOWNLOAD_RESILIENCE.md` | **In-app download + archive hardening**: HTTP response isolation, retries, safe Range resume, MediaFire re-resolution, Archive.org failover, runtime free-space guard, metadata throttling, large ZIP / ZIP64 extraction and diagnostics |
 | `docs/IMAGE_CACHE.md` | **Image cache v3**: per-resource identity, H/PV/PSP/PS1 scopes, 256 buckets, URL-change replacement, startup 200 MiB → ~40 MiB trim, loading-bar progress, localization and validation |
 | `docs/MULTILANGUAGE.md` | Current UI localization architecture, packaged languages, system/manual selection, English fallback and startup localization ordering |
@@ -83,6 +84,7 @@ When fixing a bug, identify the layer:
 Patch the responsible layer—not a generated catalog—whenever possible.
 
 - [BGDL_PREPARATION_FRAME.md](BGDL_PREPARATION_FRAME.md) — main-thread BGDL enqueue with one-frame visible preparation handoff
+- [ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md](ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md) — adaptive downloader design, on-device results and maintenance testing
 - [DOWNLOAD_RESILIENCE.md](DOWNLOAD_RESILIENCE.md) — hardened HTTP downloads, retries, resume, providers, storage guards and ZIP/archive integrity
 - [IMAGE_CACHE.md](IMAGE_CACHE.md) — client image cache v3 / disk policy / per-image replacement
 - [MULTILANGUAGE.md](MULTILANGUAGE.md) — localization architecture and current packaged languages

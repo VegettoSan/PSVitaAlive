@@ -2,6 +2,8 @@
 
 This document describes the current resilience rules for **in-app HTTP downloads** and **ZIP/VPK extraction** in the native PS Vita client.
 
+**Adaptive downloader update (18 October 2026):** the current size-based serial/two-range/four-range selection, 256 KiB buffers, host validators, integrity behavior, verification UI and ZIP extraction ETA are specified in [ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md](ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md). This document remains the reference for retries, resume and provider recovery.
+
 It complements [`NETWORK_TLS.md`](NETWORK_TLS.md) and the installer notes in [`Client PSVitaAlive/source/installer/README.md`](../Client%20PSVitaAlive/source/installer/README.md).
 
 The goal is not to hide transport or archive corruption. The client should either complete a transfer with strong evidence that the payload is coherent, or fail with enough diagnostics to explain what happened.
