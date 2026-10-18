@@ -7,8 +7,8 @@
 
 namespace psvitaalive {
 
-// Used only for fresh, large, range-capable Archive.org payloads.
-// The normal resumable downloader remains the fallback.
+// Bounded adaptive range downloads for eligible HTTP(S) payloads.
+// The normal resumable downloader remains the fallback for unsupported hosts.
 enum class ParallelArchiveOutcome {
     Skipped,
     Complete,
@@ -23,7 +23,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
     uint64_t authoritativeSize,
     const HttpProgressFn& onProgress,
     const HttpCancelFn& shouldCancel,
-    const std::string& expectedSha1 = {} // Required for direct HTTP; ignored for HTTPS
+    const std::string& expectedSha1 = {}, // Required for direct Archive HTTP
+    const std::string& expectedEtag = {}, // For generic HTTPS probes
+    const std::string& expectedModified = {}
 );
 
 } // namespace psvitaalive
