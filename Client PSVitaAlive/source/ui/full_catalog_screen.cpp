@@ -4074,7 +4074,8 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             if (!state_.linkNavigation && itemEligibleForDataRequest(tapItem)) {
-                const int rby = !tapItem.linkDetails.empty() ? (by + bh + 6) : by;
+                const bool linkHeader = !tapItem.linkDetails.empty() || primaryActionFor(tapItem)!=PrimaryAction::None;
+                const int rby = linkHeader ? (by + bh + 6) : by;
                 if (hit(x, y, bx, rby, bw, 32)) {
                     openDataRequestConfirm();
                     return;
@@ -6507,7 +6508,8 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             // Amber identity color so it stands out from green "Select links".
             const unsigned REQ = RGBA8(0xFF, 0xB0, 0x20, 255);
             const unsigned REQ_BG = RGBA8(0x3A, 0x2A, 0x10, 255);
-            const int rby = !it.linkDetails.empty() ? (by + bh + 6) : by;
+            const bool linkHeader = !it.linkDetails.empty() || primaryActionFor(it)!=PrimaryAction::None;
+            const int rby = linkHeader ? (by + bh + 6) : by;
             const int rbx = bx, rbw = bw, rbh = 32;
             vita2d_draw_rectangle(rbx, rby, rbw, rbh, REQ_BG);
             vita2d_draw_rectangle(rbx, rby, rbw, 2, REQ);
