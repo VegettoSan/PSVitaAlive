@@ -20,7 +20,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 - **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
 - **Image cache v3** with UI-first on-demand loading, catalog/resource-aware replacement and startup disk cap: app/icon/cover images are normalized to max **128 px**, screenshots to max **256 px**; rapid catalog/detail scrolling suppresses new network image requests, off-screen active image transfers are cancellable, and shared download progress is throttled to 10 Hz; if cache exceeds **200 MiB**, startup trims oldest complete images to about **40 MiB**; see [`../docs/IMAGE_CACHE.md`](../docs/IMAGE_CACHE.md)
 - **Data Files / Game Files** indicators on app cards
-- Downloads via libcurl (MediaFire CDN/size resolution, **Archive.org edge failover**, GitHub, …) with retry behaviour on slow links and SSL connect errors
+- Downloads via libcurl (MediaFire CDN/size resolution, **Archive.org edge failover**, GitHub, …) with retry behaviour on slow links and SSL connect errors, plus **adaptive two/four-range downloading by remote size, buffered serial I/O and checksum/validator safeguards** ([design and tests](../docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md))
 - Install pipeline:
   - **VPK** promote (including a nested `.vpk` inside a release ZIP)
   - **ZIP** extract (`extract_path` from catalog or quick-path UI), including **large / >2 GB** archives (libzip + custom `sceIo` source); EOCD/ZIP64 incomplete retries with delay
