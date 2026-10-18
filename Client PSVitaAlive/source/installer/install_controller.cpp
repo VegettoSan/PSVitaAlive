@@ -378,6 +378,10 @@ bool InstallController::resolveZipRecovery(bool keep) {
 }
 
 bool InstallController::busy() const {
+    // The terminal state can be published before the worker exits, and
+    // completed-job cleanup still touches shared job and receipt state.
+    if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
+        return true;
     const auto s = static_cast<InstallStatus::State>(state_.load());
     return s == InstallStatus::State::Downloading || s == InstallStatus::State::Installing;
 }
@@ -385,6 +389,10 @@ bool InstallController::busy() const {
 void InstallController::setPendingCatalogMeta(const std::string& appId, const std::string& version,
                                                    const std::string& versionDate, int revision,
                                                    const std::string& titleId) {
+    // Metadata is also consumed by the worker when writing the install receipt.
+    // Never replace it during an earlier installation's cleanup tail.
+    if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
+        return;
     pendingAppId_ = appId;
     pendingCatalogVersion_ = version;
     pendingVersionDate_ = versionDate;
