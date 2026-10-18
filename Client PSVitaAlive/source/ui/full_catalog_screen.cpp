@@ -471,6 +471,8 @@ ProtectionPhase protectionPhaseForStage(bool active, int outcome, const std::str
 
     const bool installing =
         stage == "Installing" ||
+        stage == "Promoting" ||
+        stage == "Cleaning" ||
         stage.find("Install") != std::string::npos ||
         stage.find("Promote") != std::string::npos ||
         stage.find("promote") != std::string::npos ||
@@ -482,6 +484,7 @@ ProtectionPhase protectionPhaseForStage(bool active, int outcome, const std::str
 
     const bool downloading =
         stage == "Downloading" ||
+        stage == "Verifying" ||
         stage == "Cancelling" ||
         stage.empty();
     return downloading ? ProtectionPhase::Downloading : ProtectionPhase::None;
@@ -2708,6 +2711,9 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     installProgressCurrent_ = current;
     installProgressTotal_ = total;
     installProgressSpeed_ = bytesPerSecond;
+    if ((!installProgressActive_ || stage != installProgressStage_) && active)
+        installPhaseStartedUs_ = sceKernelGetProcessTimeWide();
+    if (!active) installPhaseStartedUs_ = 0;
 
     installProgressStage_ = stage;
     installProgressFile_ = fileName;
@@ -7306,11 +7312,22 @@ if (installProgressActive_ && installOutcome_ == 0 && gProtectionActive) {
     const uint64_t current = std::min<uint64_t>(installProgressCurrent_, total ? total : installProgressCurrent_);
     const bool determinate = total > 0;
     const uint64_t pct = determinate ? std::min<uint64_t>(100, (current * 100) / total) : 0;
-    const bool etaKnown = installProgressSpeed_ > 0 && total > current;
+    const bool verifying = installProgressStage_ == "Verifying";
+    const bool promoting = installProgressStage_ == "Promoting";
+    const bool etaKnown = !verifying && !promoting && installProgressSpeed_ > 0 && total > current;
     const uint64_t eta = etaKnown ? (total - current) / installProgressSpeed_ : 0;
+    const uint64_t elapsedPhaseSec = installPhaseStartedUs_ ?
+        (sceKernelGetProcessTimeWide() - installPhaseStartedUs_) / 1000000ULL : 0;
 
     char progressLine[128];
-    if (determinate && etaKnown) {
+    if (verifying) {
+        sceClibSnprintf(progressLine, sizeof(progressLine), "%s",
+            ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS"));
+    } else if (promoting) {
+        sceClibSnprintf(progressLine, sizeof(progressLine), "%s: %s",
+            ::psvitaalive::L("LABEL_ELAPSED"),
+            formatEta(elapsedPhaseSec ? elapsedPhaseSec : 1).c_str());
+    } else if (determinate && etaKnown) {
         sceClibSnprintf(progressLine, sizeof(progressLine), "%llu%%   %s: %s",
             (unsigned long long)pct,
             ::psvitaalive::L(TID::LabelEta),
@@ -7608,7 +7625,8 @@ if(catalogLoading_){
   if (installProgressStage_ == "BGDL") title = ::psvitaalive::L(TID::StagePreparingDownload);
   else if (installProgressStage_ == "Downloading" || installProgressStage_ == "Cancelling" || installProgressStage_.empty())
     title = ::psvitaalive::L(TID::StageDownloading);
-  else if (installProgressStage_ == "Installing") title = ::psvitaalive::L(TID::StageInstalling);
+  else if (installProgressStage_ == "Installing" || installProgressStage_ == "Promoting" || installProgressStage_ == "Cleaning") title = ::psvitaalive::L(TID::StageInstalling);
+  else if (installProgressStage_ == "Verifying") title = ::psvitaalive::L("DOWNLOAD_VERIFYING_TITLE");
   else if (installProgressStage_ == "Retrying") title = ::psvitaalive::L(TID::StageRetrying);
   else if (installProgressStage_ == "Network") title = ::psvitaalive::L(TID::StageNetwork);
   else if (installProgressStage_ == "Space") title = ::psvitaalive::L(TID::StageSpace);
@@ -7643,6 +7661,7 @@ const bool msgRetry =
     installProgressMessage_.find("Retry") != std::string::npos ||
     installProgressMessage_.find("retry") != std::string::npos ||
     installProgressMessage_.find("reintent") != std::string::npos;
+const bool stageFinalizing = installProgressStage_ == "Verifying";
 const bool stageExtract =
     installProgressStage_.find("Extract") != std::string::npos ||
     installProgressStage_.find("extract") != std::string::npos ||
@@ -7651,6 +7670,8 @@ const bool stageExtract =
     installProgressStage_.find("Unpack") != std::string::npos;
 const bool stageInstall =
     installProgressStage_ == "Installing" ||
+    installProgressStage_ == "Promoting" ||
+    installProgressStage_ == "Cleaning" ||
     installProgressStage_.find("Install") != std::string::npos ||
     installProgressStage_.find("Promote") != std::string::npos ||
     installProgressStage_.find("promote") != std::string::npos ||
@@ -7661,11 +7682,12 @@ const bool stageInstall =
 const bool stageDownload =
     !stageExtract && !stageInstall && (
     installProgressStage_ == "Downloading" ||
+    installProgressStage_ == "Verifying" ||
     installProgressStage_ == "BGDL" ||
     installProgressStage_ == "Cancelling" ||
     installProgressStage_.empty());
 const bool indeterminate =
-    msgRetry ||
+    msgRetry || stageFinalizing ||
     total == 0 ||
     (current == 0 && installProgressSpeed_ == 0 && (stageDownload || stageInstall || stageExtract));
 if (indeterminate) {
@@ -7693,7 +7715,16 @@ if (indeterminate) {
 uint64_t eta = 0;
 if (installProgressSpeed_ > 0 && total > current) eta = (total - current) / installProgressSpeed_;
 char info[180];
-if (indeterminate)
+if (stageFinalizing)
+  sceClibSnprintf(info, sizeof(info), "%s",
+      ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS"));
+else if (installProgressStage_ == "Promoting") {
+  const uint64_t elapsed = installPhaseStartedUs_ ?
+      (sceKernelGetProcessTimeWide() - installPhaseStartedUs_) / 1000000ULL : 0;
+  sceClibSnprintf(info, sizeof(info), "%s: %s",
+      ::psvitaalive::L("LABEL_ELAPSED"),
+      formatEta(elapsed ? elapsed : 1).c_str());
+} else if (indeterminate)
   sceClibSnprintf(info, sizeof(info), "%s: 1 / 1   %s: —",
       ::psvitaalive::L(::psvitaalive::TextId::LabelFile),
       ::psvitaalive::L(::psvitaalive::TextId::LabelEta));
@@ -7706,7 +7737,9 @@ else
 if (!installProgressMessage_.empty())
   ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
 const char* waitHint = nullptr;
-if (msgRetry && stageDownload)
+if (stageFinalizing)
+  waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS");
+else if (msgRetry && stageDownload)
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryConnection);
 else if (msgRetry && (stageInstall || stageExtract))
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryStep);
