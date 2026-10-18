@@ -35,7 +35,10 @@ bool pathUsable(const std::string& p) {
     // Show device paths only. Catalog authors are not allowed to insert text
     // controls or untrusted prose into the modal via extract_path.
     const size_t colon = p.find(':');
-    if (colon < 2 || colon > 5 || colon + 1 >= p.size() || p[colon+1] != '/') return false;
+    // PS Vita paths use a partition prefix such as "ux0:data/" or "ur0:tai/".
+    // The slash belongs to the subfolder, not directly after the colon.
+    if (colon < 2 || colon > 5 || colon + 1 >= p.size() ||
+        p.find('/', colon + 1) == std::string::npos) return false;
     for (unsigned char c : p)
         if (c < 0x21 || c > 0x7e) return false;
     return true;
