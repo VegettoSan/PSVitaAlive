@@ -32,6 +32,18 @@ To the extent possible under law, the catalog compilation and curation work desc
 
 Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+## Requested attribution (voluntary)
+
+Maintaining this free catalog involves collecting, checking, normalizing, categorizing, and updating records. If your store, application, mirror, or website reuses catalog data from PSVitaAlive, **please mention PSVitaAlive as the source** and link to the project where reasonable.
+
+Suggested credit:
+
+> Homebrew catalog data sourced from [PS Vita Alive Store (PSVitaAlive)](https://github.com/VegettoSan/PSVitaAlive).
+
+For example, include this in your README, credits, documentation, website, or About screen. Please also preserve proper credit to original homebrew authors and upstream data sources.
+
+**This is a request for recognition, not a legal requirement or a modification of CC0.** Reusers may still use the existing CC0-covered material without attribution.
+
 ## Third-party material
 
 Upstream databases, author repositories, and individual assets remain under their own terms. CC0 here only covers rights this project can dedicate in its own compilation and metadata arrangement. It does **not** relicense third-party binaries, artwork, or an upstream database as a whole.
