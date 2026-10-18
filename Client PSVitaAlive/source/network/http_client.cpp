@@ -546,6 +546,10 @@ struct ArchiveProbeContext {
     uint64_t total = 0;
     long responseCode = 0;
     bool capped = false;
+    bool rangeValid = false;
+    uint64_t requestedBytes = 0;
+    std::string etag;
+    std::string lastModified;
     const HttpCancelFn* shouldCancel = nullptr;
 };
 
@@ -553,6 +557,8 @@ struct ArchiveProbeResult {
     std::string url;
     std::string effectiveUrl;
     std::string primaryIp;
+    std::string etag;
+    std::string lastModified;
     bool ok = false;
     uint64_t bytes = 0;
     uint64_t total = 0;
@@ -573,14 +579,24 @@ static size_t archiveProbeHeaderCallback(char* buffer, size_t size, size_t nitem
     long status = 0;
     if (parseHttpStatusLine(buffer, bytes, status)) {
         ctx->responseCode = status;
+        ctx->rangeValid = false;
+        ctx->total = 0;
+        ctx->etag.clear();
+        ctx->lastModified.clear();
         return bytes;
     }
+
+    const std::string etag = headerValue(buffer, bytes, "ETag:");
+    if (!etag.empty()) ctx->etag = etag;
+    const std::string modified = headerValue(buffer, bytes, "Last-Modified:");
+    if (!modified.empty()) ctx->lastModified = modified;
 
     const std::string contentRange = headerValue(buffer, bytes, "Content-Range:");
     if (!contentRange.empty()) {
         unsigned long long start = 0, end = 0, total = 0;
         if (std::sscanf(contentRange.c_str(), "bytes %llu-%llu/%llu", &start, &end, &total) == 3 && total > 0) {
             ctx->total = static_cast<uint64_t>(total);
+            ctx->rangeValid = (start == 0 && end == ctx->requestedBytes - 1 && total > end);
         } else if (std::sscanf(contentRange.c_str(), "bytes */%llu", &total) == 1 && total > 0) {
             ctx->total = static_cast<uint64_t>(total);
         }
@@ -626,6 +642,7 @@ static bool probeArchiveStorageUrl(
 
     ArchiveProbeContext ctx;
     ctx.maxBytes = requestedBytes;
+    ctx.requestedBytes = requestedBytes;
     ctx.shouldCancel = &shouldCancel;
 
     char range[64];
@@ -660,7 +677,8 @@ static bool probeArchiveStorageUrl(
     struct curl_slist* headers = nullptr;
     headers = curl_slist_append(headers, "Accept: */*");
     headers = curl_slist_append(headers, "Accept-Encoding: identity");
-    headers = curl_slist_append(headers, "Referer: https://archive.org/");
+    if (url.find("archive.org/") != std::string::npos)
+        headers = curl_slist_append(headers, "Referer: https://archive.org/");
     curl_easy_setopt(p, CURLOPT_HTTPHEADER, headers);
 
     const uint64_t started = sceKernelGetProcessTimeWide();
@@ -689,6 +707,8 @@ static bool probeArchiveStorageUrl(
     out.curlCode = rc;
     out.effectiveUrl = probeEffectiveCopy;
     out.primaryIp = probeIpCopy;
+    out.etag = ctx.etag;
+    out.lastModified = ctx.lastModified;
     out.redirectCount = probeRedirects;
     out.ttfbUs = probeTtfbSec > 0.0 ? static_cast<uint64_t>(probeTtfbSec * 1000000.0) : 0ULL;
     if (elapsedUs > 0 && ctx.bytes > 0) {
@@ -702,7 +722,8 @@ static bool probeArchiveStorageUrl(
 
     // IA direct storage nodes should honor Range with 206. If a node ignores it,
     // do not select it proactively; the normal download/failover path remains available.
-    out.ok = (out.status == 206 && out.bytes > 0 &&
+    out.ok = (out.status == 206 && out.bytes == requestedBytes &&
+              ctx.rangeValid && out.total >= requestedBytes &&
               (rc == CURLE_OK || (rc == CURLE_WRITE_ERROR && ctx.capped)));
 
     char msg[520];
@@ -1772,35 +1793,48 @@ HttpResult HttpClient::downloadToFile(
         else if (maxAttemptsOverride != 0) archiveNodeDiagnostic("SELECTOR_SKIPPED reason=explicit_retry_override");
     }
 
-    // Fresh, large Archive.org payloads can be fetched over four bounded
-    // HTTP byte ranges. Each stream writes its own sequential part on ux0,
-    // since random writes past EOF are not reliable on the Vita filesystem.
-    // Keep the existing single-stream transfer as the fallback for servers
-    // that reject Range, inconsistent responses or transient network faults.
-    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0 &&
-        (!ctx.shouldCancel || !ctx.shouldCancel())) {
+    // Adaptive range transfers apply to payloads of any format, not file
+    // extensions. Small payloads use two connections; larger ones use four.
+    // Non-Archive HTTPS sources must prove byte-range support and provide a
+    // validator, or retain the existing resumable serial downloader.
+    // Leave cache images and explicit retry-override requests on their proven path.
+    if ((isArchive || (isHttps && !isImageCacheTransfer)) &&
+        resumeOffset == 0 && maxAttemptsOverride == 0 &&
+        (!ctx.shouldCancel || !ctx.shouldCancel()) &&
+        (isArchive || archiveSelectionSizeHint == 0 ||
+         archiveSelectionSizeHint >= 1024ULL * 1024ULL)) {
         ArchiveProbeResult rangeProbe;
         bool rangeReady = false;
-        if (selectedArchiveTotal > 0 && archiveEffectiveUrlUsable(activeUrl)) {
+        if (isArchive && selectedArchiveTotal > 0 &&
+            archiveEffectiveUrlUsable(activeUrl)) {
             rangeProbe.total = selectedArchiveTotal;
             rangeReady = true;
         } else {
             rangeReady = probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe);
         }
-        if (rangeReady && rangeProbe.total >= 4ULL * 1024ULL * 1024ULL) {
-            std::string parallelUrl = activeUrl;
+        // Never use the fast path for generic URLs without stable content
+        // identity: concurrent ranges may otherwise represent different files.
+        if (!isArchive) {
+            const bool haveValidator =
+                (!rangeProbe.etag.empty() && rangeProbe.etag.compare(0, 2, "W/") != 0) ||
+                !rangeProbe.lastModified.empty();
+            rangeReady = rangeReady && haveValidator &&
+                rangeProbe.effectiveUrl.compare(0, 8, "https://") == 0;
+        }
+        if (rangeReady && rangeProbe.total >= 1024ULL * 1024ULL) {
+            std::string parallelUrl = isArchive ? activeUrl : rangeProbe.effectiveUrl;
 #ifndef PSVITAALIVE_CURL_MBEDTLS
             // Experimental fast path: only the Archive storage node selected by
             // the existing HTTPS selector, never arbitrary catalog URLs.
             // Metadata must provide the exact file's SHA-1; the complete HTTP
             // download will be hashed on disk before returning success.
-            if (validSha1Hex(archiveSha1) &&
+            if (isArchive && validSha1Hex(archiveSha1) &&
                 !selectedArchiveHttpUrl.empty() &&
                 archiveEffectiveUrlUsable(selectedArchiveHttpUrl)) {
                 // 256 KiB benchmark already validated HTTP 206 and size.
                 parallelUrl = selectedArchiveHttpUrl;
                 httpDiagnostic("archive direct HTTP selected by transport benchmark; checksum required");
-            } else if (validSha1Hex(archiveSha1) &&
+            } else if (isArchive && validSha1Hex(archiveSha1) &&
                 activeUrl.compare(0, 8, "https://") == 0 &&
                 archiveEffectiveUrlUsable(activeUrl)) {
                 const std::string directHttp = "http://" + activeUrl.substr(8);
