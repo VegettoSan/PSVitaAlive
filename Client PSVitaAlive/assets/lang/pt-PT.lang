@@ -411,3 +411,39 @@ ZIP_RECOVERY_DELETED=ZIP apagado
 ZIP_RECOVERY_KEEP_FAILED=Não foi possível guardar o ZIP recuperado
 ZIP_RECOVERY_DELETE_FAILED=Não foi possível apagar o ZIP recuperado
 ZIP_RECOVERY_CHOOSE_ACTION=Escolhe primeiro Guardar ZIP ou Apagar ZIP.
+
+# QR / Web handoff
+WEB_QR_SECTION=TRANSFERÊNCIA EXTERNA
+WEB_QR_BUTTON=Abrir no telemóvel / PC
+WEB_QR_SUBTITLE=Mostrar QR e ligação à página
+WEB_QR_TITLE=Abrir noutro dispositivo
+WEB_QR_SCAN=Lê o QR no telemóvel ou usa a ligação
+WEB_QR_CLOSE=O  Fechar
+WEB_QR_ERROR=Não foi possível gerar o código QR
+WEB_QR_INVALID=Página web indisponível
+
+# Contextual QR installation guide
+WEB_QR_URL_LABEL=LIGAÇÃO WEB
+WEB_QR_URL_SCROLL=Esq./Dir.: ver ligação
+WEB_QR_GUIDE_TITLE=GUIA DE INSTALAÇÃO
+WEB_QR_SCROLL_HELP=Cima/Baixo: deslocar
+WEB_QR_STEP_START=1. Transferir
+WEB_QR_BODY_START=Lê o QR ou escreve a ligação no telemóvel ou PC. Abre a página e transfere os ficheiros necessários.
+WEB_QR_STEP_VPK=Instalar VPK
+WEB_QR_BODY_VPK=Se transferires um .vpk, passa-o para a Vita por USB ou FTP e abre-o no VitaShell para instalar.
+WEB_QR_STEP_GAME=Game Files
+WEB_QR_BODY_GAME=Se vierem em ZIP, extrai-os primeiro. Mantém as pastas e copia os ficheiros para o destino abaixo.
+WEB_QR_STEP_DATA=Data Files
+WEB_QR_BODY_DATA=Se vierem em ZIP, extrai-os primeiro. Mantém as pastas e copia os ficheiros para o destino abaixo.
+WEB_QR_STEP_ZIP=Arquivos ZIP
+WEB_QR_BODY_ZIP=Extrai o .zip e segue as instruções do autor. A pasta depende do pacote.
+WEB_QR_STEP_ISO=PSP ISO / CSO
+WEB_QR_BODY_ISO=Se usares Adrenaline, copia os ficheiros ISO ou CSO para ux0:pspemu/ISO/.
+WEB_QR_STEP_PBP=PS1 / PBP
+WEB_QR_BODY_PBP=Com Adrenaline, coloca EBOOT.PBP numa pasta do jogo dentro de ux0:pspemu/PSP/GAME/.
+WEB_QR_STEP_PKG=Pacotes PKG
+WEB_QR_BODY_PKG=Um .pkg não se instala como um VPK no VitaShell. Usa um método compatível e a licença necessária.
+WEB_QR_STEP_OTHER=Outros ficheiros
+WEB_QR_BODY_OTHER=Consulta os requisitos e as instruções na página web da aplicação.
+WEB_QR_PATH_LABEL=Destino:
+WEB_QR_NO_PATH=Não há destino definido. Consulta a página web antes de copiar os ficheiros.

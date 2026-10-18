@@ -2,6 +2,9 @@
 #include "catalog/catalog_trace.hpp"
 #include "ui/mascot_manager.hpp"
 #include "ui/news_markdown.hpp"
+#include "ui/web_page_link.hpp"
+#include "ui/qr_code.hpp"
+#include "ui/web_qr_guide.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "installer/tai_config_editor.hpp"
@@ -1061,6 +1064,27 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
 }
 
 
+namespace {
+// One fixed geometry shared by drawing and touch. Vita native viewport = 960x544.
+// Left: QR + manual URL. Right: contextual help and independent scroll.
+constexpr int WEB_QR_MODAL_X = 24;
+constexpr int WEB_QR_MODAL_Y = 6;
+constexpr int WEB_QR_MODAL_W = 912;
+constexpr int WEB_QR_MODAL_H = 532;
+constexpr int WEB_QR_LEFT_X = 44;
+constexpr int WEB_QR_LEFT_W = 388;
+constexpr int WEB_QR_HELP_X = 483;
+constexpr int WEB_QR_HELP_W = 414;
+constexpr int WEB_QR_HELP_TOP = 100;
+constexpr int WEB_QR_HELP_BOTTOM = 473;
+constexpr int WEB_QR_HELP_VIEW_H = WEB_QR_HELP_BOTTOM - WEB_QR_HELP_TOP;
+constexpr int WEB_QR_BTN_X = 356;
+constexpr int WEB_QR_BTN_Y = 494;
+constexpr int WEB_QR_BTN_W = 248;
+constexpr int WEB_QR_BTN_H = 35;
+constexpr int WEB_QR_URL_VISIBLE_LINES = 5;
+}
+
 constexpr int FULL_CARD_H=136,SPLIT_CARD_H=118,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
@@ -1317,6 +1341,7 @@ struct LinkLayoutRow {
 };
 
 static const int LINK_SECTION_H = 26;
+static const int WEB_QR_BLOCK_H = LINK_SECTION_H + 4 + LINK_ROW_H + 8;
 
 std::vector<LinkLayoutRow> buildLinkLayout(const CatalogItem& it) {
     std::vector<int> buckets[static_cast<int>(LinkSection::Count)];
@@ -2903,6 +2928,7 @@ void FullCatalogScreen::requestUx0SpaceRefresh() {
 }
 
 void FullCatalogScreen::shutdown(){
+    closeWebQrModal();
     stopUx0SnapshotWorker();
     gProtectionMascotStartPending = false;
     gProtectionMascotStopPending = false;
@@ -3006,7 +3032,7 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
         return (int)lines.size();
     };
 
-    int h = linkLayoutTotalHeight(buildLinkLayout(i));
+    int h = linkLayoutTotalHeight(buildLinkLayout(i)) + WEB_QR_BLOCK_H;
     if (primaryActionFor(i) != PrimaryAction::None) h += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
 
     auto addSection = [&](int body) {
@@ -3040,13 +3066,12 @@ int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h){
     (void)w;
     const auto rows = buildLinkLayout(i);
     const bool hasAction=primaryActionFor(i)!=PrimaryAction::None;
-    if(rows.empty()&&!hasAction)return 0;
-    int lh=linkLayoutTotalHeight(rows);
+    int lh=linkLayoutTotalHeight(rows) + WEB_QR_BLOCK_H;
     if(hasAction)lh+=LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8;
     const int v = std::max(1, h - DETAIL_HEADER_H - 18);
     return std::max(0, lh - v);
 }
-void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0);
+void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0)+1;
     if(focusCount==0){state_.linkFocus=-1;state_.linkNavigation=false;}
     else if(state_.linkFocus>=focusCount)state_.linkFocus=focusCount-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
 void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
@@ -3054,7 +3079,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     if(i<0)return;
     const auto idxs=downloadLinkIndices(catalogView()[i]);
     const bool hasAll=primaryActionFor(catalogView()[i])!=PrimaryAction::None;
-    if(idxs.empty()&&!hasAll)return;
+    // QR is always selectable, even when the item has no normal links.
     detailScrollBeforeLinkMode_=state_.detailScroll;
     state_.linkNavigation=true;
     state_.linkFocus=0;
@@ -3068,18 +3093,21 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     const auto idxs = downloadLinkIndices(catalogView()[i]);
     const bool hasAll = primaryActionFor(catalogView()[i]) != PrimaryAction::None;
     const int off = hasAll ? 1 : 0;
-    const int c = (int)idxs.size() + off;
+    const int c = (int)idxs.size() + off + 1;
     if (c <= 0) return;
     if (state_.linkFocus < 0) state_.linkFocus = 0;
     else state_.linkFocus = std::max(0, std::min(c - 1, state_.linkFocus + dy));
     state_.linkNavigation = true;
     const auto rows = buildLinkLayout(catalogView()[i]);
     int top = 0;
+    const int primaryH = hasAll ? LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8 : 0;
     if (hasAll && state_.linkFocus == 0) {
         top = 0;
+    } else if (state_.linkFocus == off) {
+        top = primaryH + LINK_SECTION_H + 4;
     } else {
-        const int linkFocus = state_.linkFocus - off;
-        top = yOfLinkFocus(rows, linkFocus) + (hasAll ? (LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8) : 0);
+        const int linkFocus = state_.linkFocus - off - 1;
+        top = yOfLinkFocus(rows, linkFocus) + primaryH + WEB_QR_BLOCK_H;
     }
     const int vis = SCREEN_H - HEADER_H - TABS_H - FOOTER_H - DETAIL_HEADER_H - 18;
     const int lim = detailLinkScrollLimit(catalogView()[i], SCREEN_W / 2, SCREEN_H - HEADER_H - TABS_H - FOOTER_H);
@@ -3092,9 +3120,10 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     const CatalogItem& item = catalogView()[i];
     const bool hasAll=primaryActionFor(item)!=PrimaryAction::None;
     if(hasAll && state_.linkFocus==0){activatePrimaryAction(item);return;}
-    const auto idxs=downloadLinkIndices(item);
     const int off = hasAll ? 1 : 0;
-    const int li = state_.linkFocus - off;
+    if(state_.linkFocus == off) { openWebQrModal(); return; }
+    const auto idxs=downloadLinkIndices(item);
+    const int li = state_.linkFocus - off - 1;
     if(li<0||li>=(int)idxs.size())return;
     const int linkDetailIndex = idxs[li];
     const CatalogLink&l=item.linkDetails[linkDetailIndex];
@@ -3330,6 +3359,32 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
+    // Touch drag scrolls only the right-hand instructions; QR/URL stay fixed.
+    if (webQrVisible_) {
+        if (td.reportNum <= 0) {
+            if (touchDown_ && !touchMoved_ &&
+                hit(touchStartX_, touchStartY_, WEB_QR_BTN_X, WEB_QR_BTN_Y,
+                    WEB_QR_BTN_W, WEB_QR_BTN_H))
+                closeWebQrModal();
+            touchDown_ = touchMoved_ = false;
+            return;
+        }
+        const int x = mapX(td.report[0].x), y = mapY(td.report[0].y);
+        if (!touchDown_) {
+            touchDown_ = true; touchStartX_ = x; touchStartY_ = y;
+            touchLastY_ = y;
+            touchMoved_ = false;
+        } else {
+            const int delta = touchLastY_ - y;
+            if (std::abs(x-touchStartX_) > 13 || std::abs(y-touchStartY_) > 13)
+                touchMoved_ = true;
+            if (touchStartX_ >= WEB_QR_HELP_X && touchStartX_ <= WEB_QR_HELP_X+WEB_QR_HELP_W
+                && touchStartY_ >= WEB_QR_HELP_TOP && touchStartY_ <= WEB_QR_HELP_BOTTOM)
+                scrollWebQrHelp(delta);
+            touchLastY_ = y;
+        }
+        return;
+    }
     // Block all underlying UI while reboot modal is up (only Restart button is live).
     if (pluginRebootModal_) {
         if (td.reportNum <= 0) {
@@ -4098,7 +4153,8 @@ void FullCatalogScreen::handleTouch() {
         if (i >= 0) {
             const CatalogItem& it = catalogView()[i];
             const bool hasAll=primaryActionFor(it)!=PrimaryAction::None;
-            const int yOff=hasAll?(LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8):0;
+            const int primaryH=hasAll?(LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8):0;
+            const int yOff=primaryH+WEB_QR_BLOCK_H;
             const int listTop = dy + DETAIL_HEADER_H - (int)visualDetailScroll_;
             const int allBtnY = listTop + (hasAll ? (LINK_SECTION_H + 4) : 0);
             if (hasAll && hit(x, y, dx + 18, allBtnY, dw - 36, INSTALL_ALL_BLOCK_H)) {
@@ -4111,8 +4167,20 @@ void FullCatalogScreen::handleTouch() {
                 activatePrimaryAction(it);
                 return;
             }
+            const int qrY = listTop + 10 + primaryH + LINK_SECTION_H + 4;
+            if (hit(x, y, dx + 18, qrY, dw - 36, LINK_ROW_H)) {
+                const int qrFocus = hasAll ? 1 : 0;
+                if (!state_.linkNavigation) {
+                    enterLinkNavigation();
+                    state_.linkFocus = qrFocus;
+                } else {
+                    state_.linkFocus = qrFocus;
+                    openWebQrModal();
+                }
+                return;
+            }
             const auto rows = buildLinkLayout(it);
-            const int focusOff = hasAll ? 1 : 0;
+            const int focusOff = (hasAll ? 1 : 0) + 1;
             for (const auto& row : rows) {
                 if (row.isSection) continue;
                 const int ry = listTop + yOff + row.y;
@@ -4936,7 +5004,14 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
-if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;if(gProtectionActive&&(pressed!=0||direct!=0)){protectionDismiss();return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
+if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;if(webQrVisible_){
+    if(pressed&(SCE_CTRL_CIRCLE|SCE_CTRL_CROSS))closeWebQrModal();
+    else if(nav&SCE_CTRL_UP)scrollWebQrHelp(-49);
+    else if(nav&SCE_CTRL_DOWN)scrollWebQrHelp(49);
+    else if((nav&SCE_CTRL_LEFT)&&webQrUrlScrollLine_>0)--webQrUrlScrollLine_;
+    else if((nav&SCE_CTRL_RIGHT)&&webQrUrlScrollLine_+WEB_QR_URL_VISIBLE_LINES<(int)webQrUrlLines_.size())++webQrUrlScrollLine_;
+    return;
+}if(gProtectionActive&&(pressed!=0||direct!=0)){protectionDismiss();return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}return;}return;}if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
         if(installProgressActive_ && installOutcome_==0){
@@ -6195,12 +6270,178 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
 
 
 void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::string>&out)const{out.clear();std::string cur;for(char c:t){if(c=='\n'){out.push_back(cur);cur.clear();continue;}if((int)cur.size()>=max&&c==' '){out.push_back(cur);cur.clear();continue;}cur.push_back(c);if((int)cur.size()>=max){out.push_back(cur);cur.clear();}}if(!cur.empty())out.push_back(cur);}void FullCatalogScreen::drawTextLines(const std::vector<std::string>&l,int x,int y,int lh,unsigned col,float sc,int start,int max,int top,int bottom){int first=std::max(0,start),last=std::min((int)l.size(),first+max),dy=y+first*lh;for(int i=first;i<last;++i){if(dy>=top&&dy<=bottom)::psvitaalive::ui::uiDrawText(&font_,x,dy,col,sc,l[i].c_str());dy+=lh;}}
+
+void FullCatalogScreen::scrollWebQrHelp(int direction) {
+    webQrHelpScroll_ = std::max(0, std::min(webQrHelpMaxScroll_, webQrHelpScroll_ + direction));
+}
+void FullCatalogScreen::openWebQrModal() {
+    const int index = selectedIndex();
+    if (index < 0 || installProgressActive_ || catalogLoading_) return;
+    const CatalogItem& item = catalogView()[index];
+    const std::string url = webPageUrl(state_.catalog, item);
+    if (url.empty()) {
+        showToast(::psvitaalive::L("WEB_QR_INVALID"), 3000);
+        return;
+    }
+    closeWebQrModal();
+    webQrUrl_ = url;
+    webQrVisible_ = true;
+    touchDown_ = touchMoved_ = false;
+    webQrHelpScroll_ = webQrHelpMaxScroll_ = webQrUrlScrollLine_ = 0;
+
+    // Prepare both text columns once. No wrapping, link classification or
+    // allocation runs in the frame renderer while the modal is open.
+    webQrUrlLines_ = wrapTextToWidth(&font_, 0.65f, webQrUrl_, WEB_QR_LEFT_W - 8);
+    const auto steps = makeWebQrGuide(state_.catalog, item);
+    auto appendLines = [&](const std::string& text, bool heading) {
+        const float scale = heading ? 0.82f : 0.72f;
+        const auto wrapped = wrapTextToWidth(&font_, scale, text, WEB_QR_HELP_W - 26);
+        for (const auto& line : wrapped)
+            webQrHelpLines_.push_back({line, heading, heading ? 26 : 22});
+    };
+    auto stepKeys = [](WebQrGuideKind kind, const char*& title, const char*& body) {
+        switch (kind) {
+            case WebQrGuideKind::Start: title="WEB_QR_STEP_START"; body="WEB_QR_BODY_START"; break;
+            case WebQrGuideKind::Vpk: title="WEB_QR_STEP_VPK"; body="WEB_QR_BODY_VPK"; break;
+            case WebQrGuideKind::GameFiles: title="WEB_QR_STEP_GAME"; body="WEB_QR_BODY_GAME"; break;
+            case WebQrGuideKind::DataFiles: title="WEB_QR_STEP_DATA"; body="WEB_QR_BODY_DATA"; break;
+            case WebQrGuideKind::Zip: title="WEB_QR_STEP_ZIP"; body="WEB_QR_BODY_ZIP"; break;
+            case WebQrGuideKind::PspIso: title="WEB_QR_STEP_ISO"; body="WEB_QR_BODY_ISO"; break;
+            case WebQrGuideKind::Ps1Pbp: title="WEB_QR_STEP_PBP"; body="WEB_QR_BODY_PBP"; break;
+            case WebQrGuideKind::Pkg: title="WEB_QR_STEP_PKG"; body="WEB_QR_BODY_PKG"; break;
+            default: title="WEB_QR_STEP_OTHER"; body="WEB_QR_BODY_OTHER"; break;
+        }
+    };
+    for (const auto& step : steps) {
+        const char* title = nullptr;
+        const char* body = nullptr;
+        stepKeys(step.kind, title, body);
+        if (!webQrHelpLines_.empty()) webQrHelpLines_.push_back({"", false, 10});
+        appendLines(::psvitaalive::L(title), true);
+        appendLines(::psvitaalive::L(body), false);
+        if (step.kind == WebQrGuideKind::GameFiles || step.kind == WebQrGuideKind::DataFiles) {
+            if (!step.destination.empty()) {
+                appendLines(std::string(::psvitaalive::L("WEB_QR_PATH_LABEL")) +
+                            " " + step.destination, false);
+            } else {
+                appendLines(::psvitaalive::L("WEB_QR_NO_PATH"), false);
+            }
+        }
+    }
+    int textHeight = 0;
+    for (const auto& line : webQrHelpLines_) textHeight += line.advance;
+    webQrHelpMaxScroll_ = std::max(0, textHeight + 4 - WEB_QR_HELP_VIEW_H);
+
+    std::string reason;
+    if (ensureWebQrPng(url, webQrPath_, reason)) {
+        webQrTexture_ = vita2d_load_PNG_file(webQrPath_.c_str());
+        if (!webQrTexture_) {
+            // Cache file corrupt: remove and regenerate once.
+            sceIoRemove(webQrPath_.c_str());
+            if (ensureWebQrPng(url, webQrPath_, reason))
+                webQrTexture_ = vita2d_load_PNG_file(webQrPath_.c_str());
+        }
+    }
+    if (webQrTexture_) {
+        vita2d_texture_set_filters(webQrTexture_, SCE_GXM_TEXTURE_FILTER_POINT,
+                                  SCE_GXM_TEXTURE_FILTER_POINT);
+        diagnostics::log(std::string("[WebQR] loaded id=") + item.id);
+    } else {
+        diagnostics::log(std::string("[WebQR] generation/load failed: ") + reason);
+    }
+}
+void FullCatalogScreen::closeWebQrModal() {
+    if (webQrTexture_) {
+        scheduleTextureFree(webQrTexture_); // never free while GPU may still render previous frame
+        webQrTexture_ = nullptr;
+    }
+    webQrVisible_ = false;
+    webQrUrl_.clear();
+    webQrPath_.clear();
+    webQrHelpLines_.clear();
+    webQrUrlLines_.clear();
+    webQrHelpScroll_ = webQrHelpMaxScroll_ = webQrUrlScrollLine_ = 0;
+}
+void FullCatalogScreen::drawWebQrOverlay() {
+    if (!webQrVisible_) return;
+    vita2d_disable_clipping();
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0,0,0,222));
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, WEB_QR_MODAL_H, PANEL);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, 3, ACCENT);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, ACCENT);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X + WEB_QR_MODAL_W - 3, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, ACCENT);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y + WEB_QR_MODAL_H - 3, WEB_QR_MODAL_W, 3, ACCENT);
+    const char* title = ::psvitaalive::L("WEB_QR_TITLE");
+    const int titleW = ::psvitaalive::ui::uiTextWidth(&font_, 0.90f, title);
+    ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-titleW)/2, 40, WHITE, 0.90f, title);
+
+    // Two strict non-overlapping columns: black/white scannable texture on left.
+    vita2d_draw_rectangle(457, 59, 1, 424, BORDER);
+    if (webQrTexture_) {
+        const int side = (int)vita2d_texture_get_width(webQrTexture_);
+        const int factor = std::max(1, 296 / std::max(1, side));
+        const int drawSize = side * factor;
+        vita2d_draw_texture_scale(webQrTexture_,
+            WEB_QR_LEFT_X + (WEB_QR_LEFT_W-drawSize)/2,
+            64 + (296-drawSize)/2, (float)factor, (float)factor);
+    } else {
+        const char* msg = ::psvitaalive::L("WEB_QR_ERROR");
+        auto wrapped = wrapTextToWidth(&font_, 0.74f, msg, WEB_QR_LEFT_W - 16);
+        int ey = 196;
+        for (const auto& line : wrapped) {
+            ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X+8, ey, TEXT, 0.74f, line.c_str());
+            ey += 22;
+        }
+    }
+    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X + 2, 390, ACCENT, 0.76f,
+                                 ::psvitaalive::L("WEB_QR_URL_LABEL"));
+    const int urlEnd = std::min((int)webQrUrlLines_.size(), webQrUrlScrollLine_ + WEB_QR_URL_VISIBLE_LINES);
+    for (int i = webQrUrlScrollLine_; i < urlEnd; ++i) {
+        const int y = 410 + (i-webQrUrlScrollLine_) * 17;
+        ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X+2, y, WHITE, 0.65f, webQrUrlLines_[i].c_str());
+    }
+    if ((int)webQrUrlLines_.size() > WEB_QR_URL_VISIBLE_LINES)
+        ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X+205, 390, DIM, 0.56f,
+                                     ::psvitaalive::L("WEB_QR_URL_SCROLL"));
+
+    // The instructions alone are clipped and scrolled; QR and URL stay fixed.
+    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 80, ACCENT, 0.82f,
+                                 ::psvitaalive::L("WEB_QR_GUIDE_TITLE"));
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(WEB_QR_HELP_X, WEB_QR_HELP_TOP,
+                              WEB_QR_HELP_X + WEB_QR_HELP_W, WEB_QR_HELP_BOTTOM);
+    int lineY = WEB_QR_HELP_TOP - webQrHelpScroll_;
+    for (const auto& line : webQrHelpLines_) {
+        if (!line.text.empty() && lineY + line.advance >= WEB_QR_HELP_TOP
+            && lineY <= WEB_QR_HELP_BOTTOM) {
+            ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, lineY + 18,
+                line.heading ? WHITE : TEXT, line.heading ? 0.82f : 0.72f, line.text.c_str());
+        }
+        lineY += line.advance;
+    }
+    vita2d_disable_clipping();
+    if (webQrHelpMaxScroll_ > 0) {
+        const int trackX = WEB_QR_HELP_X+WEB_QR_HELP_W+5;
+        const int trackH = WEB_QR_HELP_VIEW_H;
+        const int knobH = std::max(28, trackH*trackH/(trackH+webQrHelpMaxScroll_));
+        const int knobY = WEB_QR_HELP_TOP + webQrHelpScroll_*(trackH-knobH)/webQrHelpMaxScroll_;
+        vita2d_draw_rectangle(trackX,WEB_QR_HELP_TOP,4,trackH,SURFACE2);
+        vita2d_draw_rectangle(trackX,knobY,4,knobH,ACCENT);
+        ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 486, DIM, 0.60f,
+                                     ::psvitaalive::L("WEB_QR_SCROLL_HELP"));
+    }
+    vita2d_draw_rectangle(WEB_QR_BTN_X, WEB_QR_BTN_Y, WEB_QR_BTN_W, WEB_QR_BTN_H, ACCENT);
+    const char* close = ::psvitaalive::L("WEB_QR_CLOSE");
+    const int closeW = ::psvitaalive::ui::uiTextWidth(&font_, 0.73f, close);
+    ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-closeW)/2, WEB_QR_BTN_Y + 25, BG, 0.73f, close);
+}
+
 void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
     heightOut = 0;
     const auto rows = buildLinkLayout(it);
     const PrimaryAction action=primaryActionFor(it);
     const bool showAll=action!=PrimaryAction::None;
-    const int focusOff=showAll?1:0;
+    const int focusOff=(showAll?1:0)+1;
     int yOff = 0;
 
     if (showAll) {
@@ -6235,7 +6476,20 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
     }
 
-    if (rows.empty() && !showAll) return;
+    // Permanent section between primary OPEN/UPDATE/INSTALL ALL and Downloads.
+    const int webHeaderY = y + yOff;
+    vita2d_draw_rectangle(x, webHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 4, webHeaderY + 18, ACCENT, 0.76f,
+        ::psvitaalive::L("WEB_QR_SECTION"));
+    const int webButtonY = webHeaderY + LINK_SECTION_H + 4;
+    const bool webFocused = state_.linkNavigation && state_.linkFocus == (showAll ? 1 : 0);
+    vita2d_draw_rectangle(x, webButtonY, w, LINK_ROW_H, webFocused ? ACCENT : SURFACE2);
+    vita2d_draw_rectangle(x, webButtonY, w, 1, webFocused ? ACCENT : BORDER);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 17,
+        webFocused ? BG : WHITE, 0.80f, ::psvitaalive::L("WEB_QR_BUTTON"));
+    ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 35,
+        webFocused ? BG : DIM, 0.66f, ::psvitaalive::L("WEB_QR_SUBTITLE"));
+    yOff += WEB_QR_BLOCK_H;
 
     for (const auto& row : rows) {
         const int ry = y + yOff + row.y;
@@ -7876,7 +8130,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter));
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();finishFrameWithCommonDialog();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();finishFrameWithCommonDialog();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();finishFrameWithCommonDialog();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();drawWebQrOverlay();finishFrameWithCommonDialog();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     const uint64_t frameStartUs=sceKernelGetProcessTimeWide();
     {

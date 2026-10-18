@@ -426,3 +426,39 @@ ZIP_RECOVERY_DELETED=ZIP deleted
 ZIP_RECOVERY_KEEP_FAILED=Could not keep the recovered ZIP
 ZIP_RECOVERY_DELETE_FAILED=Could not delete the recovered ZIP
 ZIP_RECOVERY_CHOOSE_ACTION=Choose Keep ZIP or Delete ZIP first.
+
+# QR / Web handoff
+WEB_QR_SECTION=EXTERNAL DOWNLOAD
+WEB_QR_BUTTON=Open on phone / PC
+WEB_QR_SUBTITLE=Show QR and page link
+WEB_QR_TITLE=Open on another device
+WEB_QR_SCAN=Scan with your phone or use the link below
+WEB_QR_CLOSE=O  Close
+WEB_QR_ERROR=Unable to generate QR code
+WEB_QR_INVALID=Web page unavailable
+
+# Contextual QR installation guide
+WEB_QR_URL_LABEL=WEB PAGE LINK
+WEB_QR_URL_SCROLL=Left/Right: more URL
+WEB_QR_GUIDE_TITLE=INSTALLATION GUIDE
+WEB_QR_SCROLL_HELP=Up/Down: scroll
+WEB_QR_STEP_START=1. Download
+WEB_QR_BODY_START=Scan the QR or enter the link on your phone or PC. Open the web page and download the needed files.
+WEB_QR_STEP_VPK=VPK installation
+WEB_QR_BODY_VPK=If you download a .vpk, transfer it to your Vita via USB or FTP, then open it with VitaShell to install.
+WEB_QR_STEP_GAME=Game Files
+WEB_QR_BODY_GAME=If supplied as .zip, extract it first. Keep the original folder structure and copy the contents to the destination below.
+WEB_QR_STEP_DATA=Data Files
+WEB_QR_BODY_DATA=If supplied as .zip, extract it first. Preserve folders and copy the contents to the destination below.
+WEB_QR_STEP_ZIP=ZIP archives
+WEB_QR_BODY_ZIP=Extract the .zip and follow the developer's instructions. The target folder depends on the package.
+WEB_QR_STEP_ISO=PSP ISO / CSO
+WEB_QR_BODY_ISO=If you use Adrenaline, transfer ISO or CSO files to ux0:pspemu/ISO/.
+WEB_QR_STEP_PBP=PS1 / PBP
+WEB_QR_BODY_PBP=With Adrenaline, place EBOOT.PBP in a game-specific folder inside ux0:pspemu/PSP/GAME/.
+WEB_QR_STEP_PKG=PKG packages
+WEB_QR_BODY_PKG=A .pkg is not installed like a VPK in VitaShell. Use a supported method and the required license.
+WEB_QR_STEP_OTHER=Other downloads
+WEB_QR_BODY_OTHER=Check the app's web page for specific requirements and installation instructions.
+WEB_QR_PATH_LABEL=Destination:
+WEB_QR_NO_PATH=No target path was provided. Check the web page instructions before copying files.

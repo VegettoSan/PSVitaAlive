@@ -1,6 +1,6 @@
 # PSVitaAlive — QR / Web handoff desde el cliente
 
-> **Estado:** diseño aprobado / pendiente de implementación.
+> **Estado:** implementación en `feature/external-download-qr-modal`, pendiente de CI y pruebas físicas.
 >
 > **Objetivo:** permitir que, desde la ficha de una aplicación o juego en el cliente de PS Vita, el usuario abra un modal con un código QR y la URL de la ficha equivalente en la web de PSVitaAlive para continuar la descarga desde un teléfono o PC.
 >
@@ -348,38 +348,24 @@ Si la lógica crece, separar la generación en `qr_code.cpp` y mantener en `Full
 
 ---
 
-## 10. Botón en la ficha
+## 10. Sección Descarga externa (actualización aprobada)
 
-Ubicación preferida:
-
-- parte superior de la ficha;
-- cerca del icono y metadatos;
-- sin aumentar innecesariamente la altura del detalle;
-- sin interferir con `Select links` ni `Request Data`.
-
-Texto inicial propuesto:
+La función se ofrece **siempre**, dentro de la lista seleccionable de la ficha
+tanto de Homebrew como de PS Vita, PSP y PS1. Su posición fija es:
 
 ```text
-Web / QR
+INSTALL ALL / UPDATE / OPEN  (cuando corresponda)
+DESCARGA EXTERNA
+  [ Abrir en móvil / PC ]
+DOWNLOADS
+  enlaces originales...
 ```
 
-También puede representarse como acción contextual:
-
-```text
-△ Web
-```
-
-### Botón físico
-
-En modo Detail, `△` es el candidato preferido para abrir el modal siempre que no colisione con otro flujo añadido posteriormente.
-
-En Full Catalog, `△` continúa reservado para búsqueda.
-
-La acción es contextual y solo cambia cuando la ficha Detail está activa.
-
-### Touch
-
-El mismo botón visual debe poder abrirse por touch.
+- La sección permanece visible aunque no haya acción principal ni enlaces.
+- Se navega con cruceta, X y pantalla táctil, siguiendo exactamente la
+  semántica de las filas normales (primer toque selecciona, segundo activa).
+- **No usar △** para abrir esta función; △ conserva su comportamiento previo.
+- Su ubicación respeta el alto desplazable del panel Detail.
 
 ---
 
@@ -656,8 +642,75 @@ A fecha de esta documentación:
 - la idea está definida;
 - las rutas web necesarias ya existen;
 - el cliente ya tiene `CatalogType`, `CatalogItem`, modal/overlay patterns e Image Cache v3 que pueden reutilizarse;
-- **no se ha implementado todavía el QR**;
-- **no se ha modificado todavía el cliente para esta función**;
-- **no se ha añadido todavía ninguna dependencia QR al build**.
+- **la implementación QR está en una rama experimental, sin fusionar**;
+- **el cliente se modifica únicamente en la rama de trabajo**;
+- **el build de la rama incluye el generador QR en C**.
 
 Cuando se retome, empezar por **Fase 1 — construcción y validación de URLs**, no por la UI.
+
+---
+
+## 22. Detalles de implementación de la rama
+
+- Librería Nayuki (MIT) incluida como código fuente local en `third_party/qrcodegen`.
+- `web_page_link.cpp` genera rutas según `CatalogType` (nunca JSON extra).
+- `qr_code.cpp` guarda símbolos PNG de 1 píxel por módulo y 4 módulos blancos
+  de margen en `cache/images/v3/<bucket>/qr_<hash>.png`.
+- El control de caché v3 ya contabiliza PNG dentro de buckets de dos hexadecimales.
+- La textura se carga solo al abrir, se amplía por múltiplos enteros y usa filtro
+  POINT, se libera mediante el pipeline existente de liberación diferida.
+- El modal grande incluye URL completa con ajuste visual por ancho, input exclusivo,
+  botón táctil de cierre y localización en los ocho idiomas empaquetados.
+- `tests/test_web_page_link.cpp` comprueba las cuatro clases de URLs.
+- **Pendiente:** resultado de VitaSDK CI y pruebas en PS Vita/Vita3K. No fusionar a
+  `main` sin ello.
+
+---
+
+## 23. Rediseño del modal QR: guía de descarga e instalación (octubre de 2026)
+
+El usuario validó que la primera implementación genera el QR instantáneamente en hardware real.
+Se aprobó una segunda iteración visual **sin cambiar** el botón Descarga externa:
+
+- **Columna izquierda:** QR grande, negro sobre blanco y escalado por múltiplos
+  enteros; debajo aparece la URL legible, envuelta por ancho. Si el enlace
+  necesita más de cinco líneas, izquierda/derecha permite verlas todas.
+- **Columna derecha:** título Guía de instalación y pasos locales derivados del
+  tipo de enlace presente en el `CatalogItem`. Scroll exclusivo de instrucciones
+  mediante cruceta arriba/abajo, analógico o arrastre táctil. Barra de
+  desplazamiento solo cuando el contenido no cabe.
+- **Pie:** cierre con círculo o botón táctil, sin superposición con ninguno
+  de los paneles.
+- El código de selección `makeWebQrGuide(CatalogType, CatalogItem)` vive en
+  `include/ui/web_qr_guide.hpp` y `source/ui/web_qr_guide.cpp` para permitir
+  pruebas nativas, independiente de GPU y VitaSDK.
+
+### Reglas de contenido dinámico
+
+1. Todos ven instrucciones para escanear QR, abrir ficha en teléfono/PC y
+   descargar archivos desde allí.
+2. Si se detecta un VPK, se indica transferencia USB/FTP e instalación con
+   VitaShell.
+3. Enlaces Game Files / Data Files añaden pasos sobre extracción ZIP y
+   preservación de la estructura. **Solo** se imprime una ruta concreta si
+   el propio enlace declara `extract_path`; por ejemplo `ux0:data/`.
+   Se deduplican enlaces con mismo tipo y ruta. Sin ruta definida, pedir
+   consultar la documentación del proyecto, sin inventar destino.
+4. Para ISO/CSO de PSP y PBP compatible con Adrenaline, se ofrecen rutas
+   convencionales de Adrenaline. Para PKG se evita recomendar instalarlos
+   como VPK con VitaShell y se aclara que puede ser necesaria una licencia.
+5. Si no hay tipos reconocidos, mostrar las instrucciones generales de la
+   ficha del desarrollador.
+6. Todas las frases están traducidas a EN, ES, FR, DE, IT, PT-PT, PT-BR y RU.
+7. El texto se prepara una sola vez al abrir. La ruta QR, la identidad web,
+   Image Cache v3 y los JSON oficiales no cambian.
+
+### Pruebas
+
+El test `tests/test_web_qr_guide.cpp` verifica variantes VPK, Game Files,
+Data Files, destinos válidos/ausentes, enlaces duplicados, PSP ISO, PS1 PBP
+y PKG. Su CI forma parte del workflow de compilación del cliente.
+
+**Estado de aceptación:** pendiente comprobar alineación, anchuras reales de
+fuentes, scroll táctil/cruceta, caminos largos y lectura del QR en la nueva
+disposición en PS Vita física. No fusionar a `main` sin confirmar.
