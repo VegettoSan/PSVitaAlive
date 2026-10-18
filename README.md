@@ -96,6 +96,16 @@ Requires a real device with taiHEN, **NoNpDrm** (and related plugins as needed),
 
 Any HTTP client can consume these JSON files without using this store’s UI.
 
+### Using PSVitaAlive catalog data? Please credit the source
+
+PS Vita Alive Store makes its homebrew catalog freely available so other stores, tools, and developers can build on it. Collecting, checking, normalizing, and maintaining the records takes ongoing community effort.
+
+**If your project uses or mirrors PSVitaAlive's homebrew catalog, we kindly ask you to acknowledge PSVitaAlive and link to this repository** in your README, credits, website, or app's About section. For example:
+
+> Homebrew catalog data sourced from [PS Vita Alive Store (PSVitaAlive)](https://github.com/VegettoSan/PSVitaAlive).
+
+This is a **voluntary attribution request**, not an additional license condition: the existing homebrew catalog is dedicated under [CC0 1.0](CATALOG_LICENSE.md), which does **not** require attribution. Please also credit original homebrew developers and applicable upstream sources.
+
 ---
 
 ## Link types (website, app JSON & client)
@@ -366,7 +376,7 @@ PS Vita Alive Store is a **discovery and download helper** for the PS Vita scene
 |------|--------|
 | **Homebrew catalog data** (`apps/`, `authors/`, `categories/`, generated `catalog.json`, `authors.json`, `categories.json`, and this project’s compilation/curation of that data) | **[CC0 1.0](CATALOG_LICENSE.md)** (public domain dedication) |
 
-**Anyone may use the homebrew catalog data for any purpose**, including other stores, mirrors, apps, and commercial use. **Credit is not required.** A mention is welcome if you want to, but it is optional.
+**Anyone may use the homebrew catalog data for any purpose**, including other stores, mirrors, apps, and commercial use. **Attribution is not legally required under CC0.** However, we expressly ask downstream projects to acknowledge PSVitaAlive as their catalog source when reasonable; see the suggested credit above. This request is voluntary and does not change CC0 permissions.
 
 Full text: [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
 
