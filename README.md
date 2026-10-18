@@ -26,7 +26,7 @@ PS Vita Alive Store helps users discover, download and install content on PlaySt
 | `web/` | Static website (GitHub Pages) |
 | `Client PSVitaAlive/` | Native PS Vita client (VPK) |
 | `sources/`, `catalog_overrides/` | External source config and manual enrichment |
-| `docs/` | Extra documentation, including native-client image cache and localization design |
+| `docs/` | Extra documentation, including native-client image cache, localization and [adaptive downloading / ZIP extraction](docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md) |
 
 ```text
 apps/*.json  (+ optional external sources if enabled)
