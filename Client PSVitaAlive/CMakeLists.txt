@@ -63,6 +63,9 @@ set(SOURCES
   source/ui/ui_font.cpp
   source/ui/mascot_manager.cpp
   source/ui/full_catalog_screen.cpp
+  source/ui/web_page_link.cpp
+  source/ui/qr_code.cpp
+  third_party/qrcodegen/qrcodegen.c
   source/localization/language.cpp
   source/localization/localization.cpp
 )
@@ -91,6 +94,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   ${CMAKE_SOURCE_DIR}/include
   ${CMAKE_SOURCE_DIR}/source
   ${CMAKE_CURRENT_SOURCE_DIR}/third_party/pkg2zip
+  ${CMAKE_CURRENT_SOURCE_DIR}/third_party/qrcodegen
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE

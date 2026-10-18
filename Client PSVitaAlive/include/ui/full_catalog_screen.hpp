@@ -163,6 +163,11 @@ private:
     bool installProgressActive_ = false;
     /** After Plugin install(s): force reboot dialog (blocks LiveArea exit). */
     bool pluginRebootModal_ = false;
+    // QR/Web handoff: only the displayed symbol occupies VRAM.
+    bool webQrVisible_ = false;
+    std::string webQrUrl_;
+    std::string webQrPath_;
+    vita2d_texture* webQrTexture_ = nullptr;
     bool installAllHadPlugin_ = false;
 
     // Startup: recommend missing critical plugins (kubridge, fd_fix, libshacccg)
@@ -302,6 +307,9 @@ private:
     void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
+    void openWebQrModal();
+    void closeWebQrModal();
+    void drawWebQrOverlay();
     void drawInstallAllOverlay();
     void drawPluginRebootOverlay();
     void drawEssentialPluginsOverlay();
