@@ -20,6 +20,7 @@
 #include "network/news_manager.hpp"
 #include <psp2/ctrl.h>
 #include <psp2/power.h>
+#include <psp2/appmgr.h>
 #include <psp2/touch.h>
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -2981,7 +2982,7 @@ void FullCatalogScreen::applySearch(const std::string& q) {
                     q.c_str(), dataFilesFilter_ ? 1 : 0, (unsigned)catalogView().size());
     diagnostics::log(m);
 }
-int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
+int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
     const int cw = std::max(1, w - 36);
     const int mc = std::max(16, cw / 7);
     auto bodyLines = [&](const std::string& text) -> int {
@@ -3006,7 +3007,7 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
     };
 
     int h = linkLayoutTotalHeight(buildLinkLayout(i));
-    if (itemHasDataOrGameFiles(i)) h += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+    if (primaryActionFor(i) != PrimaryAction::None) h += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
 
     auto addSection = [&](int body) {
         if (body <= 0) return;
@@ -3035,21 +3036,24 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) const {
     return h + 24;
 }
 
-int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h)const{
+int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h){
     (void)w;
     const auto rows = buildLinkLayout(i);
-    if (rows.empty()) return 0;
-    int lh = linkLayoutTotalHeight(rows);
-    if (itemHasDataOrGameFiles(i)) lh += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+    const bool hasAction=primaryActionFor(i)!=PrimaryAction::None;
+    if(rows.empty()&&!hasAction)return 0;
+    int lh=linkLayoutTotalHeight(rows);
+    if(hasAction)lh+=LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8;
     const int v = std::max(1, h - DETAIL_HEADER_H - 18);
     return std::max(0, lh - v);
 }
-void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));if(catalogView()[i].linkDetails.empty()){state_.linkFocus=-1;state_.linkNavigation=false;}else if(state_.linkFocus>=(int)catalogView()[i].linkDetails.size())state_.linkFocus=(int)catalogView()[i].linkDetails.size()-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
+void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0);
+    if(focusCount==0){state_.linkFocus=-1;state_.linkNavigation=false;}
+    else if(state_.linkFocus>=focusCount)state_.linkFocus=focusCount-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
 void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
     int i=selectedIndex();
     if(i<0)return;
     const auto idxs=downloadLinkIndices(catalogView()[i]);
-    const bool hasAll=itemHasDataOrGameFiles(catalogView()[i]);
+    const bool hasAll=primaryActionFor(catalogView()[i])!=PrimaryAction::None;
     if(idxs.empty()&&!hasAll)return;
     detailScrollBeforeLinkMode_=state_.detailScroll;
     state_.linkNavigation=true;
@@ -3062,7 +3066,7 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     int i = selectedIndex();
     if (i < 0) return;
     const auto idxs = downloadLinkIndices(catalogView()[i]);
-    const bool hasAll = itemHasDataOrGameFiles(catalogView()[i]);
+    const bool hasAll = primaryActionFor(catalogView()[i]) != PrimaryAction::None;
     const int off = hasAll ? 1 : 0;
     const int c = (int)idxs.size() + off;
     if (c <= 0) return;
@@ -3086,11 +3090,8 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     int i=selectedIndex();
     if(i<0||state_.linkFocus<0)return;
     const CatalogItem& item = catalogView()[i];
-    const bool hasAll = itemHasDataOrGameFiles(item);
-    if(hasAll && state_.linkFocus==0){
-        openInstallAllWizard();
-        return;
-    }
+    const bool hasAll=primaryActionFor(item)!=PrimaryAction::None;
+    if(hasAll && state_.linkFocus==0){activatePrimaryAction(item);return;}
     const auto idxs=downloadLinkIndices(item);
     const int off = hasAll ? 1 : 0;
     const int li = state_.linkFocus - off;
@@ -4066,7 +4067,8 @@ void FullCatalogScreen::handleTouch() {
         if (i >= 0) {
             const CatalogItem& tapItem = catalogView()[i];
             const int bx = dx + dw - 156, by = dy + 12, bw = 142, bh = 32;
-            if (!tapItem.linkDetails.empty() && hit(x, y, bx, by, bw, bh)) {
+            if ((!tapItem.linkDetails.empty() || primaryActionFor(tapItem)!=PrimaryAction::None)
+                && hit(x,y,bx,by,bw,bh)) {
                 if (state_.linkNavigation) exitLinkNavigation();
                 else enterLinkNavigation();
                 return;
@@ -4094,8 +4096,8 @@ void FullCatalogScreen::handleTouch() {
         const int i = selectedIndex();
         if (i >= 0) {
             const CatalogItem& it = catalogView()[i];
-            const bool hasAll = itemHasDataOrGameFiles(it);
-            const int yOff = hasAll ? (LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8) : 0;
+            const bool hasAll=primaryActionFor(it)!=PrimaryAction::None;
+            const int yOff=hasAll?(LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8):0;
             const int listTop = dy + DETAIL_HEADER_H - (int)visualDetailScroll_;
             const int allBtnY = listTop + (hasAll ? (LINK_SECTION_H + 4) : 0);
             if (hasAll && hit(x, y, dx + 18, allBtnY, dw - 36, INSTALL_ALL_BLOCK_H)) {
@@ -4105,7 +4107,7 @@ void FullCatalogScreen::handleTouch() {
                     diagnostics::log("[UI] link navigation enabled (touch Install All)");
                     return;
                 }
-                openInstallAllWizard();
+                activatePrimaryAction(it);
                 return;
             }
             const auto rows = buildLinkLayout(it);
@@ -6195,14 +6197,24 @@ void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::st
 void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
     heightOut = 0;
     const auto rows = buildLinkLayout(it);
-    const bool showAll = itemHasDataOrGameFiles(it);
-    const int focusOff = showAll ? 1 : 0;
+    const PrimaryAction action=primaryActionFor(it);
+    const bool showAll=action!=PrimaryAction::None;
+    const int focusOff=showAll?1:0;
     int yOff = 0;
 
     if (showAll) {
-        // Own section header (same style as DOWNLOADS / GAME FILES)
-        vita2d_draw_rectangle(x, y + LINK_SECTION_H - 1, w, 1, BORDER);
-        ::psvitaalive::ui::uiDrawText(&font_, x + 4, y + 18, ACCENT, 0.76f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllHeader));
+        const char* actionTitle=action==PrimaryAction::Update
+            ?::psvitaalive::L(::psvitaalive::TextId::PrimaryUpdate)
+            :action==PrimaryAction::Open
+                ?::psvitaalive::L(::psvitaalive::TextId::PrimaryOpen)
+                : ::psvitaalive::L(::psvitaalive::TextId::InstallAllHeader);
+        const char* actionSubtitle=action==PrimaryAction::Update
+            ?::psvitaalive::L(::psvitaalive::TextId::PrimaryUpdateSubtitle)
+            :action==PrimaryAction::Open
+                ?::psvitaalive::L(::psvitaalive::TextId::PrimaryOpenSubtitle)
+                : ::psvitaalive::L(::psvitaalive::TextId::InstallAllSubtitle);
+        vita2d_draw_rectangle(x,y+LINK_SECTION_H-1,w,1,BORDER);
+        ::psvitaalive::ui::uiDrawText(&font_,x+4,y+18,ACCENT,0.76f,actionTitle);
         const int by = y + LINK_SECTION_H + 4;
         const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
         // Same look as download rows (SURFACE2 / ACCENT focus) + soft border pulse
@@ -6216,9 +6228,9 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
         const unsigned tc = fAll ? BG : WHITE;
         const unsigned sub = fAll ? BG : TEXT;
-        ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 24, tc, 0.84f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllHeader));
+        ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 24, tc, 0.84f, actionTitle);
         ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 48, sub, 0.66f,
-            ::psvitaalive::L(::psvitaalive::TextId::InstallAllSubtitle));
+            actionSubtitle);
         yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
     }
 
@@ -6469,8 +6481,8 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     }
     {
         const int bx = x + w - 156, by = y + 12, bw = 142, bh = 32;
-        if (!it.linkDetails.empty()) {
-            const bool linkOn = state_.linkNavigation;
+        if (!it.linkDetails.empty() || primaryActionFor(it)!=PrimaryAction::None) {
+            const bool linkOn=state_.linkNavigation;
             const float pulse = linkOn ? focusPulse() : 0.f;
             vita2d_draw_rectangle(bx, by, bw, bh, linkOn ? ACCENT : SURFACE2);
             if (linkOn) {
@@ -6514,6 +6526,87 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
         drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, ::psvitaalive::L(::psvitaalive::TextId::PanelDetail));
 }
 
+
+FullCatalogScreen::PrimaryAction FullCatalogScreen::primaryActionFor(const CatalogItem& item){
+    // Only Homebrew has this replacement; game catalogs retain Install All.
+    if(state_.catalog==CatalogType::Homebrew&&!item.titleId.empty()){
+        const LocalInstallInfo installed=queryLocalInstall(item);
+        if(installed.state==LocalInstallState::UpdateAvailable)return PrimaryAction::Update;
+        if(installed.state==LocalInstallState::Installed)return PrimaryAction::Open;
+        // Never assert that InstalledUnknown is up-to-date.
+    }
+    return itemHasDataOrGameFiles(item)?PrimaryAction::InstallAll:PrimaryAction::None;
+}
+int FullCatalogScreen::preferredVpkDownloadIndex(const CatalogItem& item) const{
+    int fallback=-1;
+    for(size_t i=0;i<item.linkDetails.size();++i){
+        const CatalogLink& l=item.linkDetails[i];
+        if(!isDownloadTypeLink(l)||l.url.empty()||!actionableLink(l))continue;
+        std::string path=l.url.substr(0,l.url.find_first_of("?#"));
+        std::string name=l.name;
+        for(char& c:path)c=(char)std::tolower((unsigned char)c);
+        for(char& c:name)c=(char)std::tolower((unsigned char)c);
+        const bool isVpk=(path.size()>=4&&path.compare(path.size()-4,4,".vpk")==0)
+                      ||(name.size()>=4&&name.compare(name.size()-4,4,".vpk")==0);
+        if(!isVpk)continue;
+        if(l.recommended)return (int)i;
+        if(fallback<0)fallback=(int)i;
+    }
+    // A legacy Download VPK without recommended flag is a safe fallback.
+    return fallback;
+}
+void FullCatalogScreen::activatePrimaryAction(const CatalogItem& item){
+    if(installProgressActive_||catalogLoading_||selfUpdateBusy_.load()){
+        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation),1800);
+        return;
+    }
+    switch(primaryActionFor(item)){
+    case PrimaryAction::InstallAll: openInstallAllWizard();return;
+    case PrimaryAction::Update:{
+        const int idx=preferredVpkDownloadIndex(item);
+        if(idx<0){
+            diagnostics::log("[UI] update blocked, no Download VPK for "+item.titleId);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryVpkUnavailable),2800);
+            return;
+        }
+        const CatalogLink& selected=item.linkDetails[idx];
+        diagnostics::log("[UI] update VPK "+item.titleId+" recommended="+std::to_string(selected.recommended?1:0));
+        // Reuse installer, receipts, progress UI and image-memory suspension.
+        if(linkAction_&&linkAction_(item,selected))exitLinkNavigation();
+        else showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall),2200);
+        return;
+    }
+    case PrimaryAction::Open:{
+        std::string tid=item.titleId;
+        for(char& c:tid)c=(char)std::toupper((unsigned char)c);
+        if(tid.size()!=9){
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryLaunchFailed),2800);
+            return;
+        }
+        for(unsigned char c:tid)if(!(c>='A'&&c<='Z')&&!(c>='0'&&c<='9')){
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryLaunchFailed),2800);
+            return;
+        }
+        SceIoStat st{};
+        const std::string sfo="ux0:app/"+tid+"/sce_sys/param.sfo";
+        if(sceIoGetstat(sfo.c_str(),&st)<0){
+            invalidateInstallStatus(tid);
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryLaunchFailed),2800);
+            return;
+        }
+        // Same main-thread app-manager URI handoff as the proven client updater.
+        char uri[64];
+        sceClibSnprintf(uri,sizeof(uri),"psgm:play?titleid=%s",tid.c_str());
+        diagnostics::log("[UI] launching installed title "+tid);
+        const int result=sceAppMgrLaunchAppByUri(0xFFFFF,uri);
+        diagnostics::log("[UI] LaunchAppByUri result="+std::to_string(result));
+        if(result>=0)sceKernelExitProcess(0);
+        showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryLaunchFailed),2800);
+        return;
+    }
+    default: return;
+    }
+}
 bool FullCatalogScreen::itemSupportsInstallAll(const CatalogItem& item) const {
     return itemHasDataOrGameFiles(item) || itemHasPluginLinks(item);
 }
