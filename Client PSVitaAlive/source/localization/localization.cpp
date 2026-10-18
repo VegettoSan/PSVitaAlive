@@ -264,6 +264,12 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::AlreadyInstalled: return "ALREADY_INSTALLED";
         case TextId::PspDlcBlocked: return "PSP_DLC_BLOCKED";
         case TextId::InstallAllHeader: return "INSTALL_ALL_HEADER";
+        case TextId::PrimaryUpdate: return "PRIMARY_UPDATE";
+        case TextId::PrimaryOpen: return "PRIMARY_OPEN";
+        case TextId::PrimaryUpdateSubtitle: return "PRIMARY_UPDATE_SUBTITLE";
+        case TextId::PrimaryOpenSubtitle: return "PRIMARY_OPEN_SUBTITLE";
+        case TextId::PrimaryVpkUnavailable: return "PRIMARY_VPK_UNAVAILABLE";
+        case TextId::PrimaryLaunchFailed: return "PRIMARY_LAUNCH_FAILED";
         case TextId::InstallAllSubtitle: return "INSTALL_ALL_SUBTITLE";
         case TextId::BadgeRecommended: return "BADGE_RECOMMENDED";
         case TextId::BadgeInstalled: return "BADGE_INSTALLED";
