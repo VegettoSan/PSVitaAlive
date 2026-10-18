@@ -1,4 +1,5 @@
 #include "network/http_client.hpp"
+#include "network/parallel_archive_download.hpp"
 #include "diagnostic_logger.hpp"
 
 #include <curl/curl.h>
@@ -1586,6 +1587,57 @@ HttpResult HttpClient::downloadToFile(
     } else if (isArchive) {
         if (resumeOffset > 0) archiveNodeDiagnostic("SELECTOR_SKIPPED reason=resume");
         else if (maxAttemptsOverride != 0) archiveNodeDiagnostic("SELECTOR_SKIPPED reason=explicit_retry_override");
+    }
+
+    // Fresh, large Archive.org payloads can be fetched over four bounded
+    // HTTP byte ranges. Each stream writes its own sequential part on ux0,
+    // since random writes past EOF are not reliable on the Vita filesystem.
+    // Keep the existing single-stream transfer as the fallback for servers
+    // that reject Range, inconsistent responses or transient network faults.
+    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0 &&
+        (!ctx.shouldCancel || !ctx.shouldCancel())) {
+        ArchiveProbeResult rangeProbe;
+        if (probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe) &&
+            rangeProbe.total >= 4ULL * 1024ULL * 1024ULL) {
+            sceIoClose(ctx.fd);
+            ctx.fd = -1;
+            const ParallelArchiveOutcome parallel = downloadArchiveRanges(
+                activeUrl, destinationPath, rangeProbe.total,
+                ctx.onProgress, ctx.shouldCancel);
+            if (parallel == ParallelArchiveOutcome::Complete ||
+                parallel == ParallelArchiveOutcome::Cancelled ||
+                parallel == ParallelArchiveOutcome::IoError) {
+                curl_slist_free_all(headers);
+                curl_easy_cleanup(curl);
+                if (parallel == ParallelArchiveOutcome::Complete) {
+                    lastStatus_ = 206;
+                    return HttpResult::Ok;
+                }
+                if (parallel == ParallelArchiveOutcome::Cancelled) {
+                    setError("cancelled");
+                    return HttpResult::Cancelled;
+                }
+                setError("parallel download storage error");
+                return HttpResult::IoError;
+            }
+            // The helper removed all staging parts on network failure. Reset
+            // the UI bytes and restore the original retry/failover machinery.
+            ctx.fd = sceIoOpen(destinationPath.c_str(),
+                               SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+            if (ctx.fd < 0) {
+                curl_slist_free_all(headers);
+                curl_easy_cleanup(curl);
+                setError("cannot reopen download after parallel fallback");
+                return HttpResult::IoError;
+            }
+            ctx.resumeOffset = 0;
+            ctx.downloaded = 0;
+            if (ctx.onProgress) {
+                HttpProgress reset;
+                reset.total = rangeProbe.total;
+                ctx.onProgress(reset);
+            }
+        }
     }
 
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {
