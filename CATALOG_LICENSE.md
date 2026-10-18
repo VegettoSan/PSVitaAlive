@@ -14,14 +14,17 @@ It does **not** apply to the store client software, scripts, or build system (th
 
 **PS Vita Alive Store does not own, and does not claim to own:**
 
-- third-party homebrew applications, plugins, ports, or tools
-- their source code or binaries (VPK and related assets)
+- third-party homebrew applications, plugins, ports, mods, or tools
+- their source code, binaries (including VPKs), Game Files, external data packs, or other downloads
 - icons, screenshots, artwork, trademarks, or logos created by others
-- the original releases published by each homebrew author
+- commercial PKGs, DLC, updates, related licenses, or distribution rights
+- the original releases and material published by each developer, rightsholder, or upstream community source
 
 Each catalog entry is intended to **credit the real authors** through fields such as `author_ids` / author profiles and, when available, repository or release links. Credits belong to those authors and projects.
 
-This project only aims to **make discovery and download easier** by gathering public metadata and links in one place.
+The PSVitaAlive community **gathers, checks, organizes and maintains** discovery metadata, author credits and links contributed by developers, community members and upstream sources. That compilation effort is PSVitaAlive's contribution; **the underlying works and third-party material are not owned by PSVitaAlive**. A catalog record or download link is not permission to redistribute someone else's files.
+
+Original developers, community contributors and upstream catalog maintainers should receive appropriate credit for their respective work.
 
 ## License for the catalog compilation
 
@@ -32,9 +35,21 @@ To the extent possible under law, the catalog compilation and curation work desc
 
 Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
+## Requested attribution (voluntary)
+
+Maintaining this free, community-built catalog involves collecting, checking, normalizing, categorizing, and updating records from many different sources. If your store, application, mirror, or website reuses catalog data from PSVitaAlive, **please mention PSVitaAlive as the source** and link to the project where reasonable.
+
+Suggested credit:
+
+> Homebrew catalog data sourced from [PS Vita Alive Store (PSVitaAlive)](https://github.com/VegettoSan/PSVitaAlive).
+
+For example, include this in your README, credits, documentation, website, or About screen. Please also preserve proper credit to original homebrew authors and upstream data sources.
+
+**This is a request for recognition, not a legal requirement or a modification of CC0.** Reusers may still use the existing CC0-covered material without attribution.
+
 ## Third-party material
 
-Upstream databases, author repositories, and individual assets remain under their own terms. CC0 here only covers rights this project can dedicate in its own compilation and metadata arrangement. It does **not** relicense third-party binaries, artwork, or an upstream database as a whole.
+Upstream databases, author repositories, community-submitted materials and individual assets remain under their respective terms. CC0 here only covers rights PSVitaAlive can dedicate in its own compilation and metadata arrangement. It does **not** relicense third-party VPKs, Game Files, plugins, mods, PKGs, artwork, source code, or an upstream database as a whole. Do not assume that making a link visible in the catalog grants reuse or redistribution rights for its destination.
 
 Respect each homebrew’s own license and the rights of its author. If an author requests a correction or removal of their entry, open an issue on this repository.
 
