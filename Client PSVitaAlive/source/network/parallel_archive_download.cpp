@@ -190,9 +190,42 @@ static bool writeAll(SceUID fd, const unsigned char* bytes, size_t n) {
     return true;
 }
 
-static bool joinParts(const std::string& base, uint64_t total) {
+// Assemble sequentially to avoid sparse/random Vita filesystem writes.
+// For direct HTTP, calculate SHA-1 as the parts are read; this avoids
+// reopening and re-reading the whole payload after assembly.
+static bool joinParts(
+    const std::string& base,
+    uint64_t total,
+    const std::string& expectedSha1,
+    bool& checksumMismatch
+) {
+    checksumMismatch = false;
     std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
     if (!buf) return false;
+
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    SHA_CTX sha{};
+    const bool hashRequired = !expectedSha1.empty();
+    if (hashRequired) {
+        SHA1_Init(&sha);
+        // Part zero already occupies the initial portion of the final file.
+        // Hash it first before appending the remaining parts.
+        SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
+        if (first < 0) return false;
+        bool readOk = true;
+        for (;;) {
+            const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
+            if (n < 0) { readOk = false; break; }
+            if (n == 0) break;
+            SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
+        }
+        sceIoClose(first);
+        if (!readOk) return false;
+    }
+#else
+    if (!expectedSha1.empty()) return false;
+#endif
+
     SceUID dst = sceIoOpen(base.c_str(), SCE_O_WRONLY | SCE_O_APPEND, 0777);
     if (dst < 0) return false;
     bool ok = true;
@@ -208,6 +241,9 @@ static bool joinParts(const std::string& base, uint64_t total) {
                 ok = false;
                 break;
             }
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+            if (hashRequired) SHA1_Update(&sha, buf.get(), static_cast<size_t>(count));
+#endif
         }
         sceIoClose(src);
         if (ok) sceIoRemove(file.c_str());
@@ -216,48 +252,26 @@ static bool joinParts(const std::string& base, uint64_t total) {
     SceIoStat stat{};
     if (!ok || sceIoGetstat(base.c_str(), &stat) < 0 ||
         static_cast<uint64_t>(stat.st_size) != total) return false;
-    return true;
-}
 
-// A checksum prevents accidentally installing corrupted HTTP payloads.
-// It is not proof of authenticity if the metadata source itself is untrusted.
-static bool matchesSha1(const std::string& path, const std::string& expected) {
-#ifdef PSVITAALIVE_CURL_MBEDTLS
-    (void)path;
-    (void)expected;
-    return false; // Keep the HTTPS-only fallback for the optional TLS backend.
-#else
-    if (expected.size() != SHA_DIGEST_LENGTH * 2) return false;
-    SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
-    if (fd < 0) return false;
-    std::unique_ptr<unsigned char[]> buffer(new (std::nothrow) unsigned char[64 * 1024]);
-    if (!buffer) { sceIoClose(fd); return false; }
-    SHA_CTX sha{};
-    SHA1_Init(&sha);
-    bool ok = true;
-    for (;;) {
-        const int n = sceIoRead(fd, buffer.get(), 64 * 1024);
-        if (n < 0) { ok = false; break; }
-        if (n == 0) break;
-        SHA1_Update(&sha, buffer.get(), static_cast<size_t>(n));
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    if (hashRequired) {
+        unsigned char digest[SHA_DIGEST_LENGTH];
+        SHA1_Final(digest, &sha);
+        static const char* hex = "0123456789abcdef";
+        for (size_t i = 0; i < SHA_DIGEST_LENGTH; ++i) {
+            unsigned char a = static_cast<unsigned char>(expectedSha1[i * 2]);
+            unsigned char b = static_cast<unsigned char>(expectedSha1[i * 2 + 1]);
+            if (a >= 'A' && a <= 'F') a = static_cast<unsigned char>(a + 32);
+            if (b >= 'A' && b <= 'F') b = static_cast<unsigned char>(b + 32);
+            if (a != static_cast<unsigned char>(hex[digest[i] >> 4]) ||
+                b != static_cast<unsigned char>(hex[digest[i] & 15])) {
+                checksumMismatch = true;
+                return false;
+            }
+        }
     }
-    sceIoClose(fd);
-    if (!ok) return false;
-    unsigned char digest[SHA_DIGEST_LENGTH];
-    SHA1_Final(digest, &sha);
-    static const char* hex = "0123456789abcdef";
-    for (size_t i = 0; i < SHA_DIGEST_LENGTH; ++i) {
-        const unsigned char a = static_cast<unsigned char>(expected[i * 2]);
-        const unsigned char b = static_cast<unsigned char>(expected[i * 2 + 1]);
-        const unsigned char actualA = hex[(digest[i] >> 4) & 15];
-        const unsigned char actualB = hex[digest[i] & 15];
-        auto asciiLower = [](unsigned char x) -> unsigned char {
-            return (x >= 'A' && x <= 'F') ? static_cast<unsigned char>(x + 32) : x;
-        };
-        if (asciiLower(a) != actualA || asciiLower(b) != actualB) return false;
-    }
-    return true;
 #endif
+    return true;
 }
 
 static bool isDirectHttp(const std::string& url) {
@@ -460,17 +474,17 @@ ParallelArchiveOutcome downloadArchiveRanges(
         return ParallelArchiveOutcome::RetrySerial;
     }
 
-    if (!joinParts(destination, authoritativeSize)) {
+    bool checksumMismatch = false;
+    if (!joinParts(destination, authoritativeSize,
+                   isDirectHttp(url) ? expectedSha1 : std::string(),
+                   checksumMismatch)) {
         clearPartFiles(destination, true);
+        if (checksumMismatch) {
+            diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");
+            return ParallelArchiveOutcome::RetrySerial;
+        }
         diagnostics::log("[HTTP] parallel merge failed");
         return ParallelArchiveOutcome::IoError;
-    }
-    // Check the actual merged payload (not just the lengths of the ranges).
-    // If it disagrees with the metadata checksum, force a fresh HTTPS download.
-    if (isDirectHttp(url) && !matchesSha1(destination, expectedSha1)) {
-        clearPartFiles(destination, true);
-        diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");
-        return ParallelArchiveOutcome::RetrySerial;
     }
     sendProgress(session, true);
     diagnostics::log("[HTTP] parallel payload validated and joined");
