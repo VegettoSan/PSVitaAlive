@@ -427,6 +427,11 @@ ZIP_RECOVERY_KEEP_FAILED=Could not keep the recovered ZIP
 ZIP_RECOVERY_DELETE_FAILED=Could not delete the recovered ZIP
 ZIP_RECOVERY_CHOOSE_ACTION=Choose Keep ZIP or Delete ZIP first.
 
+# Final download phase / install timer
+DOWNLOAD_VERIFYING_TITLE=Verifying download
+DOWNLOAD_VERIFYING_PARTS=Joining parts and checking file integrity...
+LABEL_ELAPSED=Elapsed
+
 # QR / Web handoff
 WEB_QR_SECTION=EXTERNAL DOWNLOAD
 WEB_QR_BUTTON=Open on phone / PC
