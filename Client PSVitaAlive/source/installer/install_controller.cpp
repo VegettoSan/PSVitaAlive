@@ -230,7 +230,7 @@ bool InstallController::init() {
         total_.store(event.total);
         speed_.store(event.bytesPerSecond);
         setFileName(event.fileName.c_str());
-        setStage("Downloading");
+        setStage(event.state == DownloadState::Verifying ? "Verifying" : "Downloading");
         state_.store(static_cast<int>(InstallStatus::State::Downloading));
         // Prefer explicit status from DownloadManager (retries); else generic line.
         if (!event.message.empty())
@@ -920,8 +920,8 @@ int InstallController::workerMain() {
         workerDone_.store(true);
         return 0;
     }
-    current_.store(job->downloadedSize);
-    total_.store(job->expectedSize ? job->expectedSize : job->downloadedSize);
+    current_.store(0);
+    total_.store(0);
     speed_.store(0);
     // Slower SD2Vita / USB media may still be flushing the last blocks after rename.
     // ZIP EOCD / ZIP64 locators live at EOF — reading too early can look "incomplete".
@@ -1072,8 +1072,13 @@ int InstallController::workerMain() {
     InstallDispatchResult result = InstallDispatchResult::InstallFailed;
     std::string lastInstallError;
     int attemptsUsed = 0;
+    uint64_t extractStartedUs = 0;
+    uint64_t extractLastBytes = 0;
     for (int attempt = 1; attempt <= kMaxInstallAttempts; ++attempt) {
         attemptsUsed = attempt;
+        extractStartedUs = 0;
+        extractLastBytes = 0;
+        speed_.store(0);
         if (attempt > 1) {
             const bool integrityHint =
                 lastInstallError.find("incomplete") != std::string::npos ||
@@ -1110,7 +1115,38 @@ int InstallController::workerMain() {
             [&](const InstallDispatchProgress& progress) {
                 current_.store(progress.current);
                 total_.store(progress.total);
-                setStage(progress.message.empty() ? "Installing" : progress.message.c_str());
+                // The download rate cannot estimate ZIP extraction, and Vita
+                // Promoter does not expose an honest progress/remaining time.
+                // Derive a rolling, byte-based ETA only for extraction stages.
+                if (progress.stage == InstallDispatchProgress::Extracting) {
+                    setStage("Extracting");
+                    const uint64_t now = sceKernelGetProcessTimeWide();
+                    if (extractStartedUs == 0 || progress.current < extractLastBytes) {
+                        extractStartedUs = now;
+                        extractLastBytes = progress.current;
+                        speed_.store(0);
+                    }
+                    const uint64_t elapsed = now - extractStartedUs;
+                    if (elapsed >= 2000000ULL && progress.current > 0 &&
+                        progress.total > progress.current) {
+                        // Average since start avoids very noisy instantaneous
+                        // rates on ZIPs containing hundreds of tiny files.
+                        speed_.store((progress.current * 1000000ULL) / elapsed);
+                    } else if (progress.total <= progress.current) {
+                        speed_.store(0);
+                    }
+                    extractLastBytes = progress.current;
+                } else {
+                    speed_.store(0);
+                    switch (progress.stage) {
+                        case InstallDispatchProgress::Promoting: setStage("Promoting"); break;
+                        case InstallDispatchProgress::Cleaning: setStage("Cleaning"); break;
+                        case InstallDispatchProgress::Completed: setStage("Completed"); break;
+                        case InstallDispatchProgress::Error: setStage("Error"); break;
+                        case InstallDispatchProgress::Detecting: setStage("Preparing"); break;
+                        default: setStage("Installing"); break;
+                    }
+                }
                 if (!progress.message.empty()) setMessage(progress.message.c_str());
             },
             nullptr,
