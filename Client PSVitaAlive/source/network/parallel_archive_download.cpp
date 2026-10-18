@@ -26,7 +26,9 @@ namespace {
 constexpr size_t kParts = 4;
 constexpr uint64_t kMinimumBytes = 4ULL * 1024ULL * 1024ULL;
 constexpr uint64_t kDiskReserve = 32ULL * 1024ULL * 1024ULL;
-constexpr size_t kJoinBuffer = 64 * 1024;
+// Large files were spending extra time joining four sequential part files.
+// 256 KiB reduces read/write syscalls, without allocating the archive in RAM.
+constexpr size_t kJoinBuffer = 256 * 1024;
 constexpr const char* kUserAgent =
     "PSVitaAlive/1.14 (PlayStation Vita; +https://github.com/VegettoSan/PSVitaAlive)";
 
