@@ -2,7 +2,7 @@ name: Build PS Vita Client
 
 on:
   push:
-    branches: [main, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
+    branches: [main, feature/archive-parallel-range-downloads, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
     paths:
       - "Client PSVitaAlive/**"
       - ".github/workflows/client-build.yml"
