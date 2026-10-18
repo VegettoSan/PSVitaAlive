@@ -37,8 +37,9 @@ This permits concurrent modification of a job vector and job metadata, an unsafe
 1. On a new `requestInstall()`, if the old worker has **not** published `workerDone_`, **do not accept or start a new request**. A finished worker is first joined with `sceKernelWaitThreadEnd`, its thread handle deleted, then shared job fields may be reused. The owner of `workerThread_` is the controller on the main thread, not the worker itself.
 2. `status()` temporarily masks prematurely terminal `Completed/Failed/Cancelled` as `Installing` while an installer thread is finishing. This prevents **Install All** auto-advancement until the worker is safe to reap, regardless of how long the device's `ux0:` cleanup takes.
 3. `acknowledgeResult()` does not clear result/ZIP recovery fields while the worker is still finishing. Automatic dismissal similarly waits until cleanup.
-4. The successful VPK/ZIP path now persists its version receipt, logs completion, deletes the finished download job and resets `activeJobId_` **before** publishing the terminal `Completed` state.
-5. The worker signals `workerDone_` with release ordering; the UI/controller reads it with acquire ordering. Worker thread handles are never cleared from inside their own worker entry point.
+4. `busy()` also treats an unfinished worker as busy, and `setPendingCatalogMeta()` will not overwrite metadata while the previous worker is still preparing its version receipt. This closes a secondary race preceding `requestInstall()`.
+5. The successful VPK/ZIP path now persists its version receipt, logs completion, deletes the finished download job and resets `activeJobId_` **before** publishing the terminal `Completed` state.
+6. The worker signals `workerDone_` with release ordering; the UI/controller reads it with acquire ordering. Worker thread handles are never cleared from inside their own worker entry point.
 
 These barriers also protect slower storage media: a successful Promoter call is **not** equivalent to a completely finished download/installer worker.
 
