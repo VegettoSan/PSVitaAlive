@@ -34,6 +34,9 @@ constexpr size_t kJoinBuffer = 256 * 1024;
 // Sequential per-range writes with a bounded buffer reduce costly ux0 I/O.
 // A 256 KiB buffer per stream uses at most 1 MiB additional heap RAM.
 constexpr size_t kPartWriteBuffer = 256 * 1024;
+// Tiny cooperative yields during sustained ux0 writes/hash reads, without
+// reducing the parallel connection count or changing transfer integrity.
+constexpr uint64_t kIoYieldStep = 4ULL * 1024ULL * 1024ULL;
 constexpr const char* kUserAgent =
     "PSVitaAlive/1.14 (PlayStation Vita; +https://github.com/VegettoSan/PSVitaAlive)";
 
@@ -54,6 +57,7 @@ struct Part {
     SceUID fd = -1;
     std::unique_ptr<unsigned char[]> writeBuffer;
     size_t buffered = 0;
+    uint64_t bytesSinceYield = 0;
     std::string path;
     std::string range;
     std::string etag;
@@ -146,7 +150,12 @@ static bool flushPartBuffer(Part& p) {
         if (wrote <= 0) { p.ioError = true; return false; }
         offset += static_cast<size_t>(wrote);
     }
+    p.bytesSinceYield += p.buffered;
     p.buffered = 0;
+    if (p.bytesSinceYield >= kIoYieldStep) {
+        p.bytesSinceYield = 0;
+        sceKernelDelayThread(1000);
+    }
     return true;
 }
 
@@ -234,11 +243,17 @@ static bool joinParts(
         SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
         if (first < 0) return false;
         bool readOk = true;
+        uint64_t bytesSinceYield = 0;
         for (;;) {
             const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
             if (n < 0) { readOk = false; break; }
             if (n == 0) break;
             SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
+            bytesSinceYield += static_cast<uint64_t>(n);
+            if (bytesSinceYield >= kIoYieldStep) {
+                bytesSinceYield = 0;
+                sceKernelDelayThread(1000);
+            }
         }
         sceIoClose(first);
         if (!readOk) return false;
@@ -250,6 +265,7 @@ static bool joinParts(
     SceUID dst = sceIoOpen(base.c_str(), SCE_O_WRONLY | SCE_O_APPEND, 0777);
     if (dst < 0) return false;
     bool ok = true;
+    uint64_t joinedSinceYield = 0;
     for (size_t i = 1; i < partCount && ok; ++i) {
         const std::string file = partPath(base, i);
         SceUID src = sceIoOpen(file.c_str(), SCE_O_RDONLY, 0);
@@ -261,6 +277,11 @@ static bool joinParts(
             if (!writeAll(dst, buf.get(), static_cast<size_t>(count))) {
                 ok = false;
                 break;
+            }
+            joinedSinceYield += static_cast<uint64_t>(count);
+            if (joinedSinceYield >= kIoYieldStep) {
+                joinedSinceYield = 0;
+                sceKernelDelayThread(1000);
             }
 #ifndef PSVITAALIVE_CURL_MBEDTLS
             if (hashRequired) SHA1_Update(&sha, buf.get(), static_cast<size_t>(count));
