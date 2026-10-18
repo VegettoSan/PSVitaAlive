@@ -47,6 +47,7 @@ These barriers also protect slower storage media: a successful Promoter call is 
 
 - Keep the faster **256 KiB** ZIP extraction buffer, ZIP64 handling, strict integrity checks and regular progress updates.
 - After approximately **1 MiB of actual extracted bytes**, the installer worker calls `sceKernelDelayThread(1000)` (1 ms) to yield CPU time to rendering and system services. This is bounded and may slightly reduce throughput; it cannot prevent a single synchronous filesystem call from blocking.
+- The parallel download's existing 256 KiB per-stream write buffer now yields **1 ms per ~4 MiB written**, and the ordered file assembly / checksum reader yields at similar intervals. This targets sustained storage-related UI spikes during transfers and final verification.
 - No new worker or large RAM allocation was introduced, and cancellation is still checked per extraction chunk.
 
 ## Regression tests
