@@ -138,19 +138,31 @@ void init() {
     g_lastEnqueued = g_lastWritten = 0;
     g_dropped = 0;
     g_stopping = false;
+    const char* failedStep = nullptr;
+    int failedCode = 0;
     g_mutex = sceKernelCreateMutex("PSVitaAliveDiag", 0, 0, nullptr);
+    if (g_mutex < 0) { failedStep = "mutex"; failedCode = g_mutex; }
     if (g_mutex >= 0) {
         g_sema = sceKernelCreateSema("PSVitaAliveDiagWake", 0, 0, 1, nullptr);
+        if (g_sema < 0) { failedStep = "semaphore"; failedCode = g_sema; }
         if (g_sema >= 0) {
+            // VitaSDK-documented default user-thread priority; avoid an
+            // undocumented offset that may fail on some firmware setups.
             g_thread = sceKernelCreateThread("PSVitaAliveDiagIO", logWorker,
-                                            0x10000120, 16 * 1024, 0, 0, nullptr);
+                                            0x10000100, 16 * 1024, 0, 0, nullptr);
             if (g_thread >= 0) {
-                if (sceKernelStartThread(g_thread, 0, nullptr) >= 0) {
+                const int started = sceKernelStartThread(g_thread, 0, nullptr);
+                if (started >= 0) {
                     g_async = true;
                 } else {
+                    failedStep = "thread_start";
+                    failedCode = started;
                     sceKernelDeleteThread(g_thread);
                     g_thread = -1;
                 }
+            } else {
+                failedStep = "thread_create";
+                failedCode = g_thread;
             }
             if (!g_async) {
                 sceKernelDeleteSema(g_sema);
@@ -159,9 +171,16 @@ void init() {
         }
     }
     g_initialized = true;
-    log(g_async
-        ? "[System] diagnostic logger initialized (async, bounded, session.log reset)"
-        : "[System] diagnostic worker unavailable; synchronous fallback (session.log reset)");
+    if (g_async) {
+        log("[System] diagnostic logger initialized (async, bounded, session.log reset)");
+    } else {
+        char failure[200];
+        sceClibSnprintf(failure, sizeof(failure),
+            "[System] diagnostic worker unavailable step=%s code=0x%08X; synchronous fallback (session.log reset)",
+            failedStep ? failedStep : "unknown",
+            static_cast<unsigned int>(failedCode));
+        log(failure);
+    }
 }
 
 void log(const std::string& message) {

@@ -22,6 +22,8 @@ struct HttpProgress {
     uint64_t total = 0;
     uint64_t absoluteDownloaded = 0;
     uint64_t bytesPerSecond = 0;
+    // Parallel Archive transfer finished; parts are being joined and verified.
+    bool finalizing = false;
 };
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
