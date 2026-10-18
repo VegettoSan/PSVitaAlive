@@ -736,7 +736,7 @@ int main(){
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
     screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep){ const bool resolved=installer.resolveZipRecovery(keep); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
-    screen.setInstallCallbacks([&installer](const psvitaalive::ui::CatalogItem&item){psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
+    screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
     if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;
         std::string zrif;std::string ltype;std::string cid;std::string extractPath;
         for(const auto&L:item.linkDetails){if(L.url==item.downloadUrl){zrif=L.zrif;ltype=L.type;cid=L.contentId;extractPath=L.extractPath;break;}}
@@ -753,9 +753,10 @@ int main(){
         {
             uint64_t exp = parseCatalogSizeBytes(item.size);
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
+            screen.prepareForHeavyWork();
             return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
         }},[&installer](){return installStatusText(installer.status());});
-    screen.setLinkActionCallback([&installer](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
+    screen.setLinkActionCallback([&installer, &screen](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
         const std::string type=link.type;
         const bool isPlugin=(type=="Plugin"||type=="plugin"||type=="Plugins"||type=="plugins");
         const bool actionable=isPlugin||(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||type=="Data Files"||type=="Game Files"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos||link.url.find(".suprx")!=std::string::npos||link.url.find(".skprx")!=std::string::npos);
@@ -802,6 +803,7 @@ int main(){
             uint64_t exp = parseCatalogSizeBytes(link.size);
             if (exp == 0) exp = parseCatalogSizeBytes(item.size);
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
+            screen.prepareForHeavyWork();
             return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line);
         }
     });

@@ -67,6 +67,8 @@ public:
     void setExternalInputBlocked(bool blocked) { externalInputBlocked_ = blocked; }
     void setLinkActionCallback(LinkActionFn callback);
     void setImageCache(ImageCache* cache);
+    /** Free catalog icons/covers/screenshots before starting a heavy install worker. UI thread only. */
+    void prepareForHeavyWork();
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
     CatalogType activeCatalog() const { return state_.catalog; }
@@ -244,6 +246,8 @@ private:
     float visualThemeSetupScroll_ = 0.f;
 
     std::unordered_map<std::string, vita2d_texture*> textures_;
+    /** True while install/extract/download work requires catalog media GPU memory. */
+    bool mediaTexturesSuspended_ = false;
     std::vector<std::string> textureOrder_;
     /** Freed one frame later so the GPU is done with the previous swap. */
     std::vector<vita2d_texture*> deferredFreeTextures_;
@@ -329,6 +333,7 @@ private:
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void drawImageLoadingPlaceholder(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void releaseTextures();
+    void updateMediaTextureSuspension();
     void releaseScreenshotTextures();
     void scheduleTextureFree(vita2d_texture* texture);
     void flushDeferredTextureFrees();

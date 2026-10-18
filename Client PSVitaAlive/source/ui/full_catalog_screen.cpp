@@ -2707,6 +2707,7 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     if (essentialInstallRunning_ && outcome != 1) {
         essentialPluginsTryAdvanceFromProgress(outcome);
     }
+    updateMediaTextureSuspension();
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
@@ -2779,6 +2780,34 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
             (unsigned long long)perfUs,(unsigned)n,(unsigned)deferredFreeTextures_.size());
         diagnostics::log(m);
         lastPerfLogUs=perfEndUs;
+    }
+}
+void FullCatalogScreen::prepareForHeavyWork(){
+    // Called on the UI thread before starting a transfer, never by an install worker.
+    // This includes icon, cover and screenshot GPU textures, but not on-disk files.
+    if(mediaTexturesSuspended_)return;
+    mediaTexturesSuspended_=true;
+    const size_t resident=textures_.size();
+    const size_t deferred=deferredFreeTextures_.size();
+    releaseTextures(); // Wait for outstanding rendering and drain all deferred GPU frees.
+    if(imageCache_)imageCache_->cancelAll(); // Stop only image fetches, not the user's installer.
+    char msg[180];
+    sceClibSnprintf(msg,sizeof(msg),
+        "[UI] catalog media suspended released_textures=%u deferred_before=%u",
+        (unsigned)resident,(unsigned)deferred);
+    diagnostics::log(msg);
+}
+void FullCatalogScreen::updateMediaTextureSuspension(){
+    // Keep memory free across Install All / plugin steps and during self-update.
+    const bool busy=(installProgressActive_&&installOutcome_==0)
+        ||selfUpdateBusy_.load()
+        ||installAllPhase_==InstallAllPhase::Running
+        ||essentialInstallRunning_;
+    if(busy){
+        prepareForHeavyWork();
+    }else if(mediaTexturesSuspended_){
+        mediaTexturesSuspended_=false;
+        diagnostics::log("[UI] catalog media resumed (lazy on-demand textures)");
     }
 }
 void FullCatalogScreen::releaseTextures(){
@@ -5140,7 +5169,7 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     textures_[path]=t;textureOrder_.push_back(path);
 }
 void FullCatalogScreen::prepareVisibleTextures(){
-    if(!imageCache_||catalogLoading_||installProgressActive_)return;
+    if(!imageCache_||catalogLoading_||installProgressActive_||mediaTexturesSuspended_)return;
     // Do not thrash GPU while frees are still draining or right after a catalog switch.
     if(catalogSwitchCooldownFrames_>0||!deferredFreeTextures_.empty())return;
 
@@ -5327,6 +5356,11 @@ void FullCatalogScreen::drawImage(const std::string& url, const std::string& ns,
         const int clipTop = HEADER_H + TABS_H + DETAIL_HEADER_H;
         const int clipBottom = SCREEN_H - FOOTER_H;
         if (y + h <= clipTop || y >= clipBottom) return;
+    }
+
+    if(mediaTexturesSuspended_){
+        vita2d_draw_rectangle(x,y,w,h,SURFACE2);
+        return;
     }
 
     // Resolve path without enqueueing. Downloads are only started from prepareVisibleTextures.
