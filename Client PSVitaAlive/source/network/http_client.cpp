@@ -1853,7 +1853,9 @@ HttpResult HttpClient::downloadToFile(
             const ParallelArchiveOutcome parallel = downloadArchiveRanges(
                 parallelUrl, destinationPath, rangeProbe.total,
                 ctx.onProgress, ctx.shouldCancel,
-                parallelUrl.compare(0, 7, "http://") == 0 ? archiveSha1 : std::string());
+                parallelUrl.compare(0, 7, "http://") == 0 ? archiveSha1 : std::string(),
+                isArchive ? std::string() : rangeProbe.etag,
+                isArchive ? std::string() : rangeProbe.lastModified);
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::IoError) {
