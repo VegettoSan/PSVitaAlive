@@ -228,15 +228,16 @@ static bool matchesSha1(const std::string& path, const std::string& expected) {
     if (expected.size() != SHA_DIGEST_LENGTH * 2) return false;
     SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
     if (fd < 0) return false;
-    unsigned char buffer[64 * 1024];
+    std::unique_ptr<unsigned char[]> buffer(new (std::nothrow) unsigned char[64 * 1024]);
+    if (!buffer) { sceIoClose(fd); return false; }
     SHA_CTX sha{};
     SHA1_Init(&sha);
     bool ok = true;
     for (;;) {
-        const int n = sceIoRead(fd, buffer, static_cast<unsigned int>(sizeof(buffer)));
+        const int n = sceIoRead(fd, buffer.get(), 64 * 1024);
         if (n < 0) { ok = false; break; }
         if (n == 0) break;
-        SHA1_Update(&sha, buffer, static_cast<size_t>(n));
+        SHA1_Update(&sha, buffer.get(), static_cast<size_t>(n));
     }
     sceIoClose(fd);
     if (!ok) return false;
@@ -259,6 +260,22 @@ static bool matchesSha1(const std::string& path, const std::string& expected) {
 
 static bool isDirectHttp(const std::string& url) {
     return url.compare(0, 7, "http://") == 0;
+}
+
+// Redirected parallel parts must remain on Archive's own storage hosts.
+static bool usableArchiveFinalUrl(const char* rawUrl, bool requireHttp) {
+    if (!rawUrl) return false;
+    const std::string url(rawUrl);
+    const size_t offset = url.compare(0, 7, "http://") == 0 ? 7 :
+        (url.compare(0, 8, "https://") == 0 ? 8 : 0);
+    if (!offset || (requireHttp && offset != 7)) return false;
+    const size_t end = url.find_first_of("/?#:", offset);
+    const std::string host = url.substr(offset, end == std::string::npos ?
+        std::string::npos : end - offset);
+    if (host == "archive.org") return true;
+    static const std::string suffix = ".archive.org";
+    return host.size() > suffix.size() &&
+           host.compare(host.size() - suffix.size(), suffix.size(), suffix) == 0;
 }
 
 static void closeParts(CURLM* multi, std::array<Part, kParts>& parts) {
@@ -395,6 +412,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
                 if (p.easy == msg->easy_handle) {
                     p.done = true;
                     p.code = msg->data.result;
+                    const char* reached = nullptr;
+                    curl_easy_getinfo(p.easy, CURLINFO_EFFECTIVE_URL, &reached);
+                    if (!usableArchiveFinalUrl(reached, isDirectHttp(url)))
+                        p.rangeError = true;
                     break;
                 }
             }
