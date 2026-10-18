@@ -314,6 +314,11 @@ private:
     void kickNextEssentialPluginInstall();
     void essentialPluginsTryAdvanceFromProgress(int outcome);
 
+    enum class PrimaryAction { None, InstallAll, Update, Open };
+    /** Action is derived from the existing installed-release detector. */
+    PrimaryAction primaryActionFor(const CatalogItem& item);
+    int preferredVpkDownloadIndex(const CatalogItem& item) const;
+    void activatePrimaryAction(const CatalogItem& item);
     void openInstallAllWizard();
     void closeInstallAllWizard(bool cancel);
     void installAllAdvancePick();
@@ -348,7 +353,7 @@ private:
     void clampCatalogFocus();
     void clampCatalogScroll();
     void clampDetailScroll();
-    int detailLinkScrollLimit(const CatalogItem& item, int width, int height) const;
+    int detailLinkScrollLimit(const CatalogItem& item, int width, int height);
     void enterLinkNavigation();
     void exitLinkNavigation();
     int totalRows() const;
@@ -463,7 +468,7 @@ private:
     SceUID selfUpdateThread_ = -1;
     bool matchesSearch(const CatalogItem& item, const std::string& query) const;
     void sortItemsByDate(std::vector<CatalogItem>& items) const;
-    int detailContentHeight(const CatalogItem& item, int width) const;
+    int detailContentHeight(const CatalogItem& item, int width);
     void wrapText(const std::string& text, int maxChars, std::vector<std::string>& lines) const;
     void drawTextLines(const std::vector<std::string>& lines, int x, int y, int lineHeight, unsigned color, float scale,
                        int startLine, int maxLines, int clipTop, int clipBottom);
