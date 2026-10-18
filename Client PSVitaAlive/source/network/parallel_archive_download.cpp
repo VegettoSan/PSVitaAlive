@@ -16,6 +16,9 @@
 #include <new>
 #include <string>
 #include <strings.h>
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+#include <openssl/sha.h>
+#endif
 
 namespace psvitaalive {
 namespace {
@@ -214,6 +217,50 @@ static bool joinParts(const std::string& base, uint64_t total) {
     return true;
 }
 
+// A checksum prevents accidentally installing corrupted HTTP payloads.
+// It is not proof of authenticity if the metadata source itself is untrusted.
+static bool matchesSha1(const std::string& path, const std::string& expected) {
+#ifdef PSVITAALIVE_CURL_MBEDTLS
+    (void)path;
+    (void)expected;
+    return false; // Keep the HTTPS-only fallback for the optional TLS backend.
+#else
+    if (expected.size() != SHA_DIGEST_LENGTH * 2) return false;
+    SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
+    if (fd < 0) return false;
+    unsigned char buffer[64 * 1024];
+    SHA_CTX sha{};
+    SHA1_Init(&sha);
+    bool ok = true;
+    for (;;) {
+        const int n = sceIoRead(fd, buffer, static_cast<unsigned int>(sizeof(buffer)));
+        if (n < 0) { ok = false; break; }
+        if (n == 0) break;
+        SHA1_Update(&sha, buffer, static_cast<size_t>(n));
+    }
+    sceIoClose(fd);
+    if (!ok) return false;
+    unsigned char digest[SHA_DIGEST_LENGTH];
+    SHA1_Final(digest, &sha);
+    static const char* hex = "0123456789abcdef";
+    for (size_t i = 0; i < SHA_DIGEST_LENGTH; ++i) {
+        const unsigned char a = static_cast<unsigned char>(expected[i * 2]);
+        const unsigned char b = static_cast<unsigned char>(expected[i * 2 + 1]);
+        const unsigned char actualA = hex[(digest[i] >> 4) & 15];
+        const unsigned char actualB = hex[digest[i] & 15];
+        auto asciiLower = [](unsigned char x) -> unsigned char {
+            return (x >= 'A' && x <= 'F') ? static_cast<unsigned char>(x + 32) : x;
+        };
+        if (asciiLower(a) != actualA || asciiLower(b) != actualB) return false;
+    }
+    return true;
+#endif
+}
+
+static bool isDirectHttp(const std::string& url) {
+    return url.compare(0, 7, "http://") == 0;
+}
+
 static void closeParts(CURLM* multi, std::array<Part, kParts>& parts) {
     for (Part& p : parts) {
         if (p.easy) {
@@ -236,9 +283,13 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& destination,
     uint64_t authoritativeSize,
     const HttpProgressFn& onProgress,
-    const HttpCancelFn& shouldCancel
+    const HttpCancelFn& shouldCancel,
+    const std::string& expectedSha1
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
+    // Never accept a plain HTTP payload without an exact expected checksum.
+    if (isDirectHttp(url) && expectedSha1.size() != 40)
+        return ParallelArchiveOutcome::Skipped;
 
     // Leave headroom for part assembly and installation. If storage is
     // tight, retain the existing low-space-guarded single-stream path.
@@ -390,6 +441,13 @@ ParallelArchiveOutcome downloadArchiveRanges(
         clearPartFiles(destination, true);
         diagnostics::log("[HTTP] parallel merge failed");
         return ParallelArchiveOutcome::IoError;
+    }
+    // Check the actual merged payload (not just the lengths of the ranges).
+    // If it disagrees with the metadata checksum, force a fresh HTTPS download.
+    if (isDirectHttp(url) && !matchesSha1(destination, expectedSha1)) {
+        clearPartFiles(destination, true);
+        diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");
+        return ParallelArchiveOutcome::RetrySerial;
     }
     sendProgress(session, true);
     diagnostics::log("[HTTP] parallel payload validated and joined");
