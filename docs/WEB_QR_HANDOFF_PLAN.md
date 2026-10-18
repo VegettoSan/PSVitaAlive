@@ -664,3 +664,53 @@ Cuando se retome, empezar por **Fase 1 — construcción y validación de URLs**
 - `tests/test_web_page_link.cpp` comprueba las cuatro clases de URLs.
 - **Pendiente:** resultado de VitaSDK CI y pruebas en PS Vita/Vita3K. No fusionar a
   `main` sin ello.
+
+---
+
+## 23. Rediseño del modal QR: guía de descarga e instalación (octubre de 2026)
+
+El usuario validó que la primera implementación genera el QR instantáneamente en hardware real.
+Se aprobó una segunda iteración visual **sin cambiar** el botón Descarga externa:
+
+- **Columna izquierda:** QR grande, negro sobre blanco y escalado por múltiplos
+  enteros; debajo aparece la URL legible, envuelta por ancho. Si el enlace
+  necesita más de cinco líneas, izquierda/derecha permite verlas todas.
+- **Columna derecha:** título Guía de instalación y pasos locales derivados del
+  tipo de enlace presente en el `CatalogItem`. Scroll exclusivo de instrucciones
+  mediante cruceta arriba/abajo, analógico o arrastre táctil. Barra de
+  desplazamiento solo cuando el contenido no cabe.
+- **Pie:** cierre con círculo o botón táctil, sin superposición con ninguno
+  de los paneles.
+- El código de selección `makeWebQrGuide(CatalogType, CatalogItem)` vive en
+  `include/ui/web_qr_guide.hpp` y `source/ui/web_qr_guide.cpp` para permitir
+  pruebas nativas, independiente de GPU y VitaSDK.
+
+### Reglas de contenido dinámico
+
+1. Todos ven instrucciones para escanear QR, abrir ficha en teléfono/PC y
+   descargar archivos desde allí.
+2. Si se detecta un VPK, se indica transferencia USB/FTP e instalación con
+   VitaShell.
+3. Enlaces Game Files / Data Files añaden pasos sobre extracción ZIP y
+   preservación de la estructura. **Solo** se imprime una ruta concreta si
+   el propio enlace declara `extract_path`; por ejemplo `ux0:data/`.
+   Se deduplican enlaces con mismo tipo y ruta. Sin ruta definida, pedir
+   consultar la documentación del proyecto, sin inventar destino.
+4. Para ISO/CSO de PSP y PBP compatible con Adrenaline, se ofrecen rutas
+   convencionales de Adrenaline. Para PKG se evita recomendar instalarlos
+   como VPK con VitaShell y se aclara que puede ser necesaria una licencia.
+5. Si no hay tipos reconocidos, mostrar las instrucciones generales de la
+   ficha del desarrollador.
+6. Todas las frases están traducidas a EN, ES, FR, DE, IT, PT-PT, PT-BR y RU.
+7. El texto se prepara una sola vez al abrir. La ruta QR, la identidad web,
+   Image Cache v3 y los JSON oficiales no cambian.
+
+### Pruebas
+
+El test `tests/test_web_qr_guide.cpp` verifica variantes VPK, Game Files,
+Data Files, destinos válidos/ausentes, enlaces duplicados, PSP ISO, PS1 PBP
+y PKG. Su CI forma parte del workflow de compilación del cliente.
+
+**Estado de aceptación:** pendiente comprobar alineación, anchuras reales de
+fuentes, scroll táctil/cruceta, caminos largos y lectura del QR en la nueva
+disposición en PS Vita física. No fusionar a `main` sin confirmar.
