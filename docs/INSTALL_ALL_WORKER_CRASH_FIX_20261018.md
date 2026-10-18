@@ -2,7 +2,7 @@
 
 **Date:** 18 October 2026  
 **Scope:** `InstallController`, `FullCatalogScreen`, `ZipExtractor` on real PS Vita  
-**Status:** emergency corrective change applied directly to `main`, pending device regression verification.
+**Status:** ✅ **Validated on real PS Vita by the project maintainer (18 October 2026).** The maintainer tested the corrected VPK and reported that the crash fix and UI behavior were excellent and functional. This is a qualitative hardware acceptance, not proof that every exceptional path or device configuration is covered.
 
 ## Input evidence
 
@@ -49,6 +49,14 @@ These barriers also protect slower storage media: a successful Promoter call is 
 - After approximately **1 MiB of actual extracted bytes**, the installer worker calls `sceKernelDelayThread(1000)` (1 ms) to yield CPU time to rendering and system services. This is bounded and may slightly reduce throughput; it cannot prevent a single synchronous filesystem call from blocking.
 - The parallel download's existing 256 KiB per-stream write buffer now yields **1 ms per ~4 MiB written**, and the ordered file assembly / checksum reader yields at similar intervals. This targets sustained storage-related UI spikes during transfers and final verification.
 - No new worker or large RAM allocation was introduced, and cancellation is still checked per extraction chunk.
+
+## Validation outcome — 18 October 2026
+
+The project maintainer installed and tested the corrected PS Vita client build and explicitly confirmed: **“ya hice la prueba y quedó excelente, lo doy por validado y funcional.”**
+
+- **Accepted:** installer thread-lifecycle fix and the improved user experience are validated for the maintainer's real-console scenario.
+- **Integration:** already merged into `main`; no additional source changes or release-version increment are required to record this acceptance.
+- **Scope:** this confirmation does not independently quantify frame-rate gains, establish a multi-device test matrix, or certify all network/provider error cases. Retain the regression checklist below for future refactors.
 
 ## Regression tests
 
