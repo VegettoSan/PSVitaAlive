@@ -29,6 +29,9 @@ constexpr uint64_t kDiskReserve = 32ULL * 1024ULL * 1024ULL;
 // Large files were spending extra time joining four sequential part files.
 // 256 KiB reduces read/write syscalls, without allocating the archive in RAM.
 constexpr size_t kJoinBuffer = 256 * 1024;
+// Sequential per-range writes with a bounded buffer reduce costly ux0 I/O.
+// A 256 KiB buffer per stream uses at most 1 MiB additional heap RAM.
+constexpr size_t kPartWriteBuffer = 256 * 1024;
 constexpr const char* kUserAgent =
     "PSVitaAlive/1.14 (PlayStation Vita; +https://github.com/VegettoSan/PSVitaAlive)";
 
@@ -47,6 +50,8 @@ struct Part {
     CURL* easy = nullptr;
     curl_slist* headers = nullptr;
     SceUID fd = -1;
+    std::unique_ptr<unsigned char[]> writeBuffer;
+    size_t buffered = 0;
     std::string path;
     std::string range;
     std::string etag;
@@ -130,6 +135,18 @@ static void sendProgress(Session& s, bool finished = false) {
     (*s.progress)(p);
 }
 
+static bool flushPartBuffer(Part& p) {
+    size_t offset = 0;
+    while (offset < p.buffered) {
+        const int wrote = sceIoWrite(p.fd, p.writeBuffer.get() + offset,
+                                    static_cast<unsigned int>(p.buffered - offset));
+        if (wrote <= 0) { p.ioError = true; return false; }
+        offset += static_cast<size_t>(wrote);
+    }
+    p.buffered = 0;
+    return true;
+}
+
 static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
     Part* p = static_cast<Part*>(userdata);
     const size_t n = size * nmemb;
@@ -146,15 +163,15 @@ static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
         p->rangeError = true;
         return 0;
     }
-    size_t written = 0;
-    while (written < n) {
-        const int rc = sceIoWrite(p->fd, data + written,
-                                  static_cast<unsigned int>(n - written));
-        if (rc <= 0) {
-            p->ioError = true;
+    size_t copied = 0;
+    while (copied < n) {
+        if (p->buffered == kPartWriteBuffer && !flushPartBuffer(*p))
             return 0;
-        }
-        written += static_cast<size_t>(rc);
+        const size_t available = kPartWriteBuffer - p->buffered;
+        const size_t take = (n - copied < available) ? (n - copied) : available;
+        std::memcpy(p->writeBuffer.get() + p->buffered, data + copied, take);
+        p->buffered += take;
+        copied += take;
     }
     p->received += static_cast<uint64_t>(n);
     s.received += static_cast<uint64_t>(n);
@@ -356,6 +373,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
         p.range = std::to_string(p.start) + "-" + std::to_string(p.end);
         p.fd = sceIoOpen(p.path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         if (p.fd < 0) { setupIoError = true; setupOk = false; break; }
+        p.writeBuffer.reset(new (std::nothrow) unsigned char[kPartWriteBuffer]);
+        if (!p.writeBuffer) { setupOk = false; break; }
         p.easy = curl_easy_init();
         if (!p.easy) { setupOk = false; break; }
         p.headers = curl_slist_append(p.headers, "Accept: */*");
@@ -441,6 +460,16 @@ ParallelArchiveOutcome downloadArchiveRanges(
                 !p.validRange || p.rangeError || p.ioError ||
                 p.received != p.end - p.start + 1) {
                 networkOk = false;
+            }
+        }
+        // Only commit buffered tails after all four byte ranges have finished.
+        // Any incomplete response is discarded instead of being assembled.
+        if (networkOk) {
+            for (Part& p : parts) {
+                if (!flushPartBuffer(p)) {
+                    networkOk = false;
+                    break;
+                }
             }
         }
         // Reject inconsistent replicas or an object replaced mid-download.
