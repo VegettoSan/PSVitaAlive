@@ -22,7 +22,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& destination,
     uint64_t authoritativeSize,
     const HttpProgressFn& onProgress,
-    const HttpCancelFn& shouldCancel
+    const HttpCancelFn& shouldCancel,
+    const std::string& expectedSha1 = {} // Required for direct HTTP; ignored for HTTPS
 );
 
 } // namespace psvitaalive
