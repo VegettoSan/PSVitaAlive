@@ -24,7 +24,9 @@ namespace psvitaalive {
 namespace {
 
 constexpr size_t kParts = 4;
-constexpr uint64_t kMinimumBytes = 4ULL * 1024ULL * 1024ULL;
+// Files under 1 MiB are cheaper to download serially than to split/join.
+constexpr uint64_t kMinimumBytes = 1ULL * 1024ULL * 1024ULL;
+constexpr uint64_t kFourWayBytes = 8ULL * 1024ULL * 1024ULL;
 constexpr uint64_t kDiskReserve = 32ULL * 1024ULL * 1024ULL;
 // Large files were spending extra time joining four sequential part files.
 // 256 KiB reduces read/write syscalls, without allocating the archive in RAM.
@@ -215,7 +217,8 @@ static bool joinParts(
     const std::string& base,
     uint64_t total,
     const std::string& expectedSha1,
-    bool& checksumMismatch
+    bool& checksumMismatch,
+    size_t partCount
 ) {
     checksumMismatch = false;
     std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
@@ -247,7 +250,7 @@ static bool joinParts(
     SceUID dst = sceIoOpen(base.c_str(), SCE_O_WRONLY | SCE_O_APPEND, 0777);
     if (dst < 0) return false;
     bool ok = true;
-    for (size_t i = 1; i < kParts && ok; ++i) {
+    for (size_t i = 1; i < partCount && ok; ++i) {
         const std::string file = partPath(base, i);
         SceUID src = sceIoOpen(file.c_str(), SCE_O_RDONLY, 0);
         if (src < 0) { ok = false; break; }
@@ -297,12 +300,14 @@ static bool isDirectHttp(const std::string& url) {
 }
 
 // Redirected parallel parts must remain on Archive's own storage hosts.
-static bool usableArchiveFinalUrl(const char* rawUrl, bool requireHttp) {
+static bool usableArchiveFinalUrl(const char* rawUrl, bool requireHttp, bool archiveOnly) {
     if (!rawUrl) return false;
     const std::string url(rawUrl);
     const size_t offset = url.compare(0, 7, "http://") == 0 ? 7 :
         (url.compare(0, 8, "https://") == 0 ? 8 : 0);
-    if (!offset || (requireHttp && offset != 7)) return false;
+    if (!offset || (requireHttp && offset != 7) ||
+        (!requireHttp && offset != 8)) return false;
+    if (!archiveOnly) return !requireHttp; // non-Archive ranges require HTTPS
     const size_t end = url.find_first_of("/?#:", offset);
     const std::string host = url.substr(offset, end == std::string::npos ?
         std::string::npos : end - offset);
@@ -338,6 +343,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& expectedSha1
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
+    const bool archiveOnly = url.find("archive.org/") != std::string::npos;
+    const size_t partCount = authoritativeSize < kFourWayBytes ? 2 : kParts;
+    if (!archiveOnly && isDirectHttp(url)) return ParallelArchiveOutcome::Skipped;
     // Never accept a plain HTTP payload without an exact expected checksum.
     if (isDirectHttp(url) && expectedSha1.size() != 40)
         return ParallelArchiveOutcome::Skipped;
@@ -345,7 +353,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     // Leave headroom for part assembly and installation. If storage is
     // tight, retain the existing low-space-guarded single-stream path.
     uint64_t freeBytes = 0, capacity = 0;
-    const uint64_t extra = authoritativeSize - authoritativeSize / kParts;
+    const uint64_t extra = authoritativeSize - authoritativeSize / partCount;
     if (!StorageManager::queryUx0Space(freeBytes, capacity) ||
         extra > UINT64_MAX - kDiskReserve ||
         authoritativeSize > UINT64_MAX - extra - kDiskReserve ||
@@ -364,12 +372,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
     session.startUs = monotonicUs();
     bool setupOk = true;
     bool setupIoError = false;
-    const uint64_t chunk = authoritativeSize / kParts;
-    for (size_t i = 0; i < kParts; ++i) {
+    const uint64_t chunk = authoritativeSize / partCount;
+    for (size_t i = 0; i < partCount; ++i) {
         Part& p = parts[i];
         p.session = &session;
         p.start = i * chunk;
-        p.end = (i + 1 == kParts) ? authoritativeSize - 1 : ((i + 1) * chunk - 1);
+        p.end = (i + 1 == partCount) ? authoritativeSize - 1 : ((i + 1) * chunk - 1);
         p.path = partPath(destination, i);
         p.range = std::to_string(p.start) + "-" + std::to_string(p.end);
         p.fd = sceIoOpen(p.path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
@@ -380,7 +388,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
         if (!p.easy) { setupOk = false; break; }
         p.headers = curl_slist_append(p.headers, "Accept: */*");
         p.headers = curl_slist_append(p.headers, "Accept-Encoding: identity");
-        p.headers = curl_slist_append(p.headers, "Referer: https://archive.org/");
+        if (archiveOnly) p.headers = curl_slist_append(p.headers, "Referer: https://archive.org/");
         if (!p.headers) { setupOk = false; break; }
         curl_easy_setopt(p.easy, CURLOPT_URL, url.c_str());
         curl_easy_setopt(p.easy, CURLOPT_HTTPGET, 1L);
@@ -401,10 +409,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
         curl_easy_setopt(p.easy, CURLOPT_BUFFERSIZE, 64L * 1024L);
 #if LIBCURL_VERSION_NUM >= 0x075500
         curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS_STR, "http,https");
-        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS_STR, "http,https");
+        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS_STR, isDirectHttp(url) ? "http" : "https");
 #else
         curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS, (long)(CURLPROTO_HTTP | CURLPROTO_HTTPS));
-        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS, (long)(CURLPROTO_HTTP | CURLPROTO_HTTPS));
+        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS, (long)(isDirectHttp(url) ? CURLPROTO_HTTP : CURLPROTO_HTTPS));
 #endif
         curl_easy_setopt(p.easy, CURLOPT_WRITEFUNCTION, onWrite);
         curl_easy_setopt(p.easy, CURLOPT_WRITEDATA, &p);
@@ -423,7 +431,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
 
     bool networkOk = setupOk;
     if (networkOk) {
-        diagnostics::log("[HTTP] starting 4-range parallel payload download");
+        diagnostics::log(std::string("[HTTP] starting ") + std::to_string(partCount) + "-range parallel payload download");
         int active = 0;
         CURLMcode mr;
         do { mr = curl_multi_perform(multi, &active); }
@@ -450,13 +458,14 @@ ParallelArchiveOutcome downloadArchiveRanges(
                     p.code = msg->data.result;
                     const char* reached = nullptr;
                     curl_easy_getinfo(p.easy, CURLINFO_EFFECTIVE_URL, &reached);
-                    if (!usableArchiveFinalUrl(reached, isDirectHttp(url)))
+                    if (!usableArchiveFinalUrl(reached, isDirectHttp(url), archiveOnly))
                         p.rangeError = true;
                     break;
                 }
             }
         }
-        for (const Part& p : parts) {
+        for (size_t i = 0; i < partCount; ++i) {
+            const Part& p = parts[i];
             if (!p.done || p.code != CURLE_OK || p.status != 206 ||
                 !p.validRange || p.rangeError || p.ioError ||
                 p.received != p.end - p.start + 1) {
@@ -466,7 +475,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
         // Only commit buffered tails after all four byte ranges have finished.
         // Any incomplete response is discarded instead of being assembled.
         if (networkOk) {
-            for (Part& p : parts) {
+            for (size_t i = 0; i < partCount; ++i) {
+                Part& p = parts[i];
                 if (!flushPartBuffer(p)) {
                     networkOk = false;
                     break;
@@ -475,7 +485,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
         }
         // Reject inconsistent replicas or an object replaced mid-download.
         if (networkOk) {
-            for (size_t i = 1; i < kParts; ++i) {
+            for (size_t i = 1; i < partCount; ++i) {
                 if (parts[i].etag != parts[0].etag ||
                     parts[i].lastModified != parts[0].lastModified) {
                     networkOk = false;
@@ -511,7 +521,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool checksumMismatch = false;
     if (!joinParts(destination, authoritativeSize,
                    isDirectHttp(url) ? expectedSha1 : std::string(),
-                   checksumMismatch)) {
+                   checksumMismatch, partCount)) {
         clearPartFiles(destination, true);
         if (checksumMismatch) {
             diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");
