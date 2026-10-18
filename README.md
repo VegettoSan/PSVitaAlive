@@ -96,18 +96,19 @@ Requires a real device with taiHEN, **NoNpDrm** (and related plugins as needed),
 
 Any HTTP client can consume these JSON files without using this store’s UI.
 
-### Using PSVitaAlive catalog data? Please credit the source
+### Using PSVitaAlive catalog data? Attribution terms
 
 PSVitaAlive is a **free, community-driven catalog** built by collecting, reviewing, organizing, validating, and maintaining information from original developers, public community sources, and contributions from the PS Vita scene. We share the homebrew catalog so other stores, tools, and developers can reuse it freely. Maintaining this collection takes ongoing effort.
 
-**If your project uses or mirrors PSVitaAlive's homebrew catalog, we kindly ask you to acknowledge PSVitaAlive and link to this repository** in your README, credits, website, or app's About section. For example:
+**If you reuse new, original PSVitaAlive catalog contributions published after the licensing transition, attribution is required under CC BY 4.0 wherever that license applies.** A credit in your README, documentation, website or app's About/Credits screen is generally an appropriate way to provide it, considering your medium. Example:
 
-> Homebrew catalog data sourced from [PS Vita Alive Store (PSVitaAlive)](https://github.com/VegettoSan/PSVitaAlive).
+> Homebrew catalog curation and original metadata: [PS Vita Alive Store (PSVitaAlive)](https://github.com/VegettoSan/PSVitaAlive) and contributors — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
-This is a **voluntary attribution request**, not an additional license condition: the homebrew catalog is shared under [CC0 1.0](CATALOG_LICENSE.md), which does **not** require attribution.
+When redistributing covered material, also retain the applicable licensing information and indicate if you made changes. **The credit does not imply PSVitaAlive endorses your project.**
 
-**Content ownership:** PSVitaAlive curates catalog metadata and links; it does **not** own the referenced **homebrew, VPKs, Game Files / data packs, plugins, ports, mods, PKGs, DLC, updates, source code, images, screenshots, or other third-party downloads**. Those remain the responsibility and property of their respective creators or rights holders. Please credit original homebrew developers and upstream sources, and respect their applicable licenses. A catalog entry or download link is not a grant of rights to redistribute third-party content.
+**Important CC0 exception:** catalog material already published under CC0 — including the full historical snapshot at [commit `78b7399`](https://github.com/VegettoSan/PSVitaAlive/tree/78b739951e3f4f8b035519de02302f8a82ec370c) — **remains reusable without credit**. The previous permission cannot be revoked. The new attribution condition only applies to *new, original, rights-covered contributions* that PSVitaAlive or contributors are entitled to license under CC BY 4.0. A generated JSON may combine historical CC0 data, new material and third-party references: it must **not** be presumed that the entire file or all of its factual contents are exclusively CC BY 4.0. See [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
 
+**Content ownership:** PSVitaAlive curates catalog metadata and links; it does **not** own the referenced **homebrew, VPKs, Game Files / data packs, plugins, ports, mods, PKGs, DLC, updates, source code, images, screenshots, or other third-party downloads**. Those remain with their respective creators or rights holders. Please credit original homebrew developers and upstream sources, and respect their applicable licenses. A catalog entry or download link is not a grant of rights to redistribute third-party content.
 ---
 
 ## Link types (website, app JSON & client)
@@ -379,11 +380,13 @@ PS Vita Alive Store is a **discovery and download helper** for the PS Vita scene
 
 | Part | Terms |
 |------|--------|
-| **Homebrew catalog data** (`apps/`, `authors/`, `categories/`, generated `catalog.json`, `authors.json`, `categories.json`, and this project’s compilation/curation of that data) | **[CC0 1.0](CATALOG_LICENSE.md)** (public domain dedication) |
+| **Historical homebrew catalog material** (published through [commit `78b7399`](https://github.com/VegettoSan/PSVitaAlive/tree/78b739951e3f4f8b035519de02302f8a82ec370c)) | **[CC0 1.0](CATALOG_LICENSE_CC0_LEGACY.md)** — attribution optional; prior permissions remain valid |
+| **New original homebrew catalog contributions** published after this licensing transition, to the extent the project/contributors own licensable rights | **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)** — attribution required when the license applies |
+| **Third-party metadata and referenced works** | Their respective owners' licenses and applicable rights; not automatically CC BY 4.0 or CC0 |
 
-**Anyone may use the homebrew catalog data for any purpose**, including other stores, mirrors, apps, and commercial use. **Attribution is not legally required under CC0.** However, we expressly ask downstream projects to acknowledge PSVitaAlive as their catalog source when reasonable; see the suggested credit above. This request is voluntary and does not change CC0 permissions.
+**The catalog stays free to reuse, modify and redistribute.** For new, original PSVitaAlive material under CC BY 4.0, provide appropriate credit to PSVitaAlive and contributors, link the source and license, and indicate modifications. **Previously published CC0 material is still free to reuse without attribution.** A generated catalog may combine differently licensed materials; factual data and third-party works are not claimed as PSVitaAlive property.
 
-Full text: [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
+Details and the transition boundary: [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
 
 ### Third-party rights (unchanged)
 
@@ -391,7 +394,7 @@ Full text: [CATALOG_LICENSE.md](CATALOG_LICENSE.md).
 - The catalog may reference **PKG, DLC and updates**; these remain third-party content. A link in PSVitaAlive does not grant redistribution rights.
 - Information from upstream catalogs and community contributors remains subject to any applicable third-party rights.
 - Commercial catalogs and zRIF/license sidecars are **not** covered by the CC0 homebrew catalog dedication.
-- The CC0 dedication applies only to rights PSVitaAlive can grant in its own homebrew catalog compilation, not to anyone else's content.
+- The original CC0 dedication applies only to rights PSVitaAlive could grant in its own historical homebrew catalog compilation, not to anyone else's content. The new CC BY 4.0 terms likewise cover only new, original contributions over which their licensors hold applicable rights.
 
 ### Upstream catalogs
 
