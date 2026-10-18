@@ -1064,6 +1064,27 @@ void drawNeonFrame(int x, int y, int w, int h, unsigned alphaOuter = 70, unsigne
 }
 
 
+namespace {
+// One fixed geometry shared by drawing and touch. Vita native viewport = 960x544.
+// Left: QR + manual URL. Right: contextual help and independent scroll.
+constexpr int WEB_QR_MODAL_X = 24;
+constexpr int WEB_QR_MODAL_Y = 6;
+constexpr int WEB_QR_MODAL_W = 912;
+constexpr int WEB_QR_MODAL_H = 532;
+constexpr int WEB_QR_LEFT_X = 44;
+constexpr int WEB_QR_LEFT_W = 388;
+constexpr int WEB_QR_HELP_X = 483;
+constexpr int WEB_QR_HELP_W = 414;
+constexpr int WEB_QR_HELP_TOP = 100;
+constexpr int WEB_QR_HELP_BOTTOM = 473;
+constexpr int WEB_QR_HELP_VIEW_H = WEB_QR_HELP_BOTTOM - WEB_QR_HELP_TOP;
+constexpr int WEB_QR_BTN_X = 356;
+constexpr int WEB_QR_BTN_Y = 494;
+constexpr int WEB_QR_BTN_W = 248;
+constexpr int WEB_QR_BTN_H = 35;
+constexpr int WEB_QR_URL_VISIBLE_LINES = 5;
+}
+
 constexpr int FULL_CARD_H=136,SPLIT_CARD_H=118,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
@@ -6250,26 +6271,6 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
 
 void FullCatalogScreen::wrapText(const std::string&t,int max,std::vector<std::string>&out)const{out.clear();std::string cur;for(char c:t){if(c=='\n'){out.push_back(cur);cur.clear();continue;}if((int)cur.size()>=max&&c==' '){out.push_back(cur);cur.clear();continue;}cur.push_back(c);if((int)cur.size()>=max){out.push_back(cur);cur.clear();}}if(!cur.empty())out.push_back(cur);}void FullCatalogScreen::drawTextLines(const std::vector<std::string>&l,int x,int y,int lh,unsigned col,float sc,int start,int max,int top,int bottom){int first=std::max(0,start),last=std::min((int)l.size(),first+max),dy=y+first*lh;for(int i=first;i<last;++i){if(dy>=top&&dy<=bottom)::psvitaalive::ui::uiDrawText(&font_,x,dy,col,sc,l[i].c_str());dy+=lh;}}
 
-namespace {
-// One fixed geometry shared by drawing and touch. Vita native viewport = 960x544.
-// Left: QR + manual URL. Right: contextual help and independent scroll.
-constexpr int WEB_QR_MODAL_X = 24;
-constexpr int WEB_QR_MODAL_Y = 6;
-constexpr int WEB_QR_MODAL_W = 912;
-constexpr int WEB_QR_MODAL_H = 532;
-constexpr int WEB_QR_LEFT_X = 44;
-constexpr int WEB_QR_LEFT_W = 388;
-constexpr int WEB_QR_HELP_X = 483;
-constexpr int WEB_QR_HELP_W = 414;
-constexpr int WEB_QR_HELP_TOP = 100;
-constexpr int WEB_QR_HELP_BOTTOM = 473;
-constexpr int WEB_QR_HELP_VIEW_H = WEB_QR_HELP_BOTTOM - WEB_QR_HELP_TOP;
-constexpr int WEB_QR_BTN_X = 356;
-constexpr int WEB_QR_BTN_Y = 494;
-constexpr int WEB_QR_BTN_W = 248;
-constexpr int WEB_QR_BTN_H = 35;
-constexpr int WEB_QR_URL_VISIBLE_LINES = 5;
-}
 void FullCatalogScreen::scrollWebQrHelp(int direction) {
     webQrHelpScroll_ = std::max(0, std::min(webQrHelpMaxScroll_, webQrHelpScroll_ + direction));
 }
