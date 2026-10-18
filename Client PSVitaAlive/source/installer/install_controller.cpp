@@ -308,6 +308,11 @@ void InstallController::cancel() {
 }
 
 void InstallController::acknowledgeResult() {
+    // A terminal state may be published while a worker is still persisting its
+    // receipt or cleaning its DownloadManager job. Never clear shared fields
+    // before that worker has finished.
+    if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
+        return;
     const auto s = static_cast<InstallStatus::State>(state_.load());
     if (s != InstallStatus::State::Completed && s != InstallStatus::State::Failed
         && s != InstallStatus::State::Cancelled) return;
@@ -400,6 +405,21 @@ bool InstallController::requestInstall(
     const std::string& pluginLine
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
+
+    // IMPORTANT: a previous worker may have reported Completed before its
+    // cleanup/logging tail returned. The UI's Install All can immediately
+    // request another link: do not mutate DownloadManager jobs, activeJobId_
+    // or dispatcher state until the old worker has truly exited.
+    if (workerThread_ >= 0) {
+        if (!workerDone_.load(std::memory_order_acquire)) {
+            diagnostics::log("[Installer] start deferred: previous worker finishing cleanup");
+            return false;
+        }
+        sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
+        sceKernelDeleteThread(workerThread_);
+        workerThread_ = -1;
+        diagnostics::log("[Installer] previous worker reaped before next request");
+    }
 
     // Downloads need network; extraction/install of an already-downloaded file does not.
     if (!networkIsConnected()) {
@@ -538,11 +558,6 @@ bool InstallController::requestInstall(
     if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed
         || s == InstallStatus::State::Cancelled) acknowledgeResult();
 
-    if (workerThread_ >= 0 && workerDone_.load()) {
-        sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
-        sceKernelDeleteThread(workerThread_);
-        workerThread_ = -1;
-    }
     if (!http_.isInitialized() && !init()) return false;
 
     const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes);
@@ -674,10 +689,23 @@ InstallStatus InstallController::status() const {
         }
     }
 
-    const_cast<InstallController*>(this)->maybeAutoAcknowledgeResult();
+    // The UI must not acknowledge/advance a finished job until the worker's
+    // final metadata and cleanup operations have finished.
+    const bool priorWorkerFinishing =
+        workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire);
+    if (!priorWorkerFinishing)
+        const_cast<InstallController*>(this)->maybeAutoAcknowledgeResult();
 
     InstallStatus result;
     result.state = static_cast<InstallStatus::State>(state_.load());
+    if (priorWorkerFinishing &&
+        (result.state == InstallStatus::State::Completed ||
+         result.state == InstallStatus::State::Failed ||
+         result.state == InstallStatus::State::Cancelled)) {
+        // Prevent Install All from advancing early. Keep the current overlay
+        // until the background worker publishes workerDone_ with release order.
+        result.state = InstallStatus::State::Installing;
+    }
     result.current = current_.load();
     result.total = total_.load();
     result.bytesPerSecond = speed_.load();
@@ -844,8 +872,7 @@ int InstallController::workerMain() {
             setState(InstallStatus::State::Failed,
                      "BGDL unavailable on this device. Try again or check plugins.");
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-            workerDone_.store(true);
-            workerThread_ = -1;
+            workerDone_.store(true, std::memory_order_release);
             return 0;
         }
         setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgQueuingBgdl));
@@ -896,8 +923,7 @@ int InstallController::workerMain() {
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
             diagnostics::log(std::string("[Installer] PKG BGDL failed: ") + failMsg);
         }
-        workerDone_.store(true);
-        workerThread_ = -1;
+        workerDone_.store(true, std::memory_order_release);
         return 0;
     }
 
@@ -1330,8 +1356,8 @@ int InstallController::workerMain() {
                 dispatcher_.lastTitleId().c_str()
             );
         }
-        setStage("Completed");
-        setState(InstallStatus::State::Completed, okMsg);
+        // The install is technically complete, but do not publish Completed
+        // to Install All until the receipt and job cleanup have finished.
         // Local receipt so future queries do not depend on APP_VER alone.
         {
             const std::string tid = dispatcher_.lastTitleId();
@@ -1363,9 +1389,14 @@ int InstallController::workerMain() {
         downloads_.cleanupCompletedJob(activeJobId_);
         activeJobId_.clear();
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        setStage("Completed");
+        setState(InstallStatus::State::Completed, okMsg);
     }
 
-    workerDone_.store(true);
+    // Release/acquire publication gate. UI cannot reuse DownloadManager until
+    // all operations above have completed, and requestInstall will join this
+    // exact kernel thread before creating the next one.
+    workerDone_.store(true, std::memory_order_release);
     return 0;
 }
 
