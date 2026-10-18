@@ -411,3 +411,13 @@ ZIP_RECOVERY_DELETED=ZIP apagado
 ZIP_RECOVERY_KEEP_FAILED=Não foi possível guardar o ZIP recuperado
 ZIP_RECOVERY_DELETE_FAILED=Não foi possível apagar o ZIP recuperado
 ZIP_RECOVERY_CHOOSE_ACTION=Escolhe primeiro Guardar ZIP ou Apagar ZIP.
+
+# QR / Web handoff
+WEB_QR_SECTION=TRANSFERÊNCIA EXTERNA
+WEB_QR_BUTTON=Abrir no telemóvel / PC
+WEB_QR_SUBTITLE=Mostrar QR e ligação à página
+WEB_QR_TITLE=Abrir noutro dispositivo
+WEB_QR_SCAN=Lê o QR no telemóvel ou usa a ligação
+WEB_QR_CLOSE=O  Fechar
+WEB_QR_ERROR=Não foi possível gerar o código QR
+WEB_QR_INVALID=Página web indisponível

@@ -411,3 +411,13 @@ ZIP_RECOVERY_DELETED=ZIP удалён
 ZIP_RECOVERY_KEEP_FAILED=Не удалось сохранить восстановленный ZIP
 ZIP_RECOVERY_DELETE_FAILED=Не удалось удалить восстановленный ZIP
 ZIP_RECOVERY_CHOOSE_ACTION=Сначала выберите Сохранить ZIP или Удалить ZIP.
+
+# QR / Web handoff
+WEB_QR_SECTION=ВНЕШНЯЯ ЗАГРУЗКА
+WEB_QR_BUTTON=Открыть на телефоне / ПК
+WEB_QR_SUBTITLE=Показать QR-код и ссылку
+WEB_QR_TITLE=Открыть на другом устройстве
+WEB_QR_SCAN=Сканируйте телефоном или используйте ссылку
+WEB_QR_CLOSE=O  Закрыть
+WEB_QR_ERROR=Не удалось создать QR-код
+WEB_QR_INVALID=Веб-страница недоступна
