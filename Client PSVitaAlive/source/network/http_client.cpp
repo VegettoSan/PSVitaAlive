@@ -711,8 +711,10 @@ static bool probeArchiveStorageUrl(
 static bool rankArchiveAlternateUrls(
     std::vector<std::string>& urls,
     const HttpCancelFn& shouldCancel,
-    uint64_t sizeHint
+    uint64_t sizeHint,
+    uint64_t* validatedTotal = nullptr
 ) {
+    if (validatedTotal) *validatedTotal = 0;
     if (urls.empty()) return false;
     {
         char beginMsg[280];
@@ -792,6 +794,7 @@ static bool rankArchiveAlternateUrls(
             (unsigned long long)decisionSize, urls.front().c_str());
         httpDiagnostic(msg);
         archiveNodeDiagnostic(std::string("BENCHMARK_SKIPPED reason=below_16MiB ") + msg);
+        if (validatedTotal) *validatedTotal = sizeProbe.total;
         return true;
     }
 
@@ -903,6 +906,8 @@ static bool rankArchiveAlternateUrls(
         urls.front().c_str());
     httpDiagnostic(chosen);
     archiveNodeDiagnostic(std::string("SELECTED ") + chosen);
+    if (validatedTotal && probes.front().ok)
+        *validatedTotal = probes.front().total;
     return probes.front().ok;
 }
 
@@ -1629,6 +1634,9 @@ HttpResult HttpClient::downloadToFile(
     bool archiveMetaTried = false;
     std::string activeUrl = url;
     std::string archiveSha1;
+    // The node selector already made an authoritative 206 Range request.
+    // Reuse that observed total instead of opening another HTTPS connection.
+    uint64_t selectedArchiveTotal = 0;
 
     if (isArchive) {
         std::string archiveId, archiveFile;
@@ -1653,7 +1661,8 @@ HttpResult HttpClient::downloadToFile(
     if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
         if (buildArchiveAlternateUrls(url, archiveAltUrls, &archiveSha1)) {
             archiveMetaTried = true;
-            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint) && !archiveAltUrls.empty()) {
+            if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint,
+                                         &selectedArchiveTotal) && !archiveAltUrls.empty()) {
                 activeUrl = archiveAltUrls.front();
                 archiveAltIndex = 1;
                 char selected[420];
@@ -1682,8 +1691,14 @@ HttpResult HttpClient::downloadToFile(
     if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0 &&
         (!ctx.shouldCancel || !ctx.shouldCancel())) {
         ArchiveProbeResult rangeProbe;
-        if (probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe) &&
-            rangeProbe.total >= 4ULL * 1024ULL * 1024ULL) {
+        bool rangeReady = false;
+        if (selectedArchiveTotal > 0 && archiveEffectiveUrlUsable(activeUrl)) {
+            rangeProbe.total = selectedArchiveTotal;
+            rangeReady = true;
+        } else {
+            rangeReady = probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe);
+        }
+        if (rangeReady && rangeProbe.total >= 4ULL * 1024ULL * 1024ULL) {
             std::string parallelUrl = activeUrl;
 #ifndef PSVITAALIVE_CURL_MBEDTLS
             // Experimental fast path: only the Archive storage node selected by
