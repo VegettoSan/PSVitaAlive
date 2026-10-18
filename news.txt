@@ -1,5 +1,5 @@
-id: 2026-09-21-0001
-title: PSVitaAlive 02.07 is here!
+id: 2026-10-18-0001
+title: PSVitaAlive 02.11 is here!
 enabled: true
 ---
 # Thanks for using PS Vita Alive Store.
@@ -10,22 +10,20 @@ enabled: true
 
 ---
 
-### We use Archive.org as our Homebrew database, which may cause downloads to take a little while to start, please be patient.
-
----
-
 # What's New
 
 ## Improvements
 
-- Major download stability and recovery improvements, especially for large and long-running downloads.
-- Improved Archive.org/TLS handling, automatic failover, stalled-transfer detection, and download diagnostics.
-- Added ZIP extraction recovery with better integrity checks and options to keep or delete failed downloads.
-- Improved error reporting and diagnostic information.
-- Added left analog stick support for UI navigation.
-- Improved controls in app details and link selection.
-- Circle can now quickly clear active catalog filters.
-- Additional stability fixes, UI improvements, and catalog updates.
+- Faster downloads with adaptive parallel connections.
+- Improved ZIP and VPK extraction performance.
+- Added estimated extraction time and improved installation progress.
+- New Open and Update actions for Homebrew.
+- Added QR code support for accessing content on the website.
+- Fixed crashes during consecutive installations.
+- Improved interface responsiveness and memory management.
+- Additional bug fixes and optimizations.
+
+## Thank you for your continued support!
 
 ---
 
