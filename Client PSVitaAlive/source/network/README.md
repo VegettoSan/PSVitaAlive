@@ -6,11 +6,13 @@ Detailed cross-module behaviour lives in:
 
 - [`../../../docs/DOWNLOAD_RESILIENCE.md`](../../../docs/DOWNLOAD_RESILIENCE.md) — HTTP/download/archive resilience
 - [`../../../docs/NETWORK_TLS.md`](../../../docs/NETWORK_TLS.md) — Vita libcurl/OpenSSL and Archive.org TLS/failover notes
+- [`../../../docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md`](../../../docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md) — adaptive two/four-range downloads, serial buffering, validator checks and real-Vita measurements
 
 ## Main components
 
 | File | Role |
 |------|------|
+| `parallel_archive_download.cpp` | Bounded two/four-range downloads, ordered file assembly and SHA-1 checks |
 | `http_client.cpp` | libcurl lifecycle per request; redirects, retries, TLS settings, Range resume, header/body callbacks, progress/cancel, diagnostics |
 | `download_manager.cpp` | Job state, `.part`/final files, resume metadata, provider retries, size/free-space guards, progress events |
 | `mediafire_resolver.cpp` | Resolve MediaFire page URLs to short-lived direct CDN URLs and obtain size hints |
