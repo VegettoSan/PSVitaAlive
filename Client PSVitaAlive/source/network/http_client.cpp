@@ -14,11 +14,15 @@
 #include <utility>
 #include <atomic>
 #include <vector>
+#include <memory>
+#include <new>
 
 namespace psvitaalive {
 
 namespace {
 constexpr size_t DOWNLOAD_BUFFER_SIZE = 512 * 1024;
+// One 256 KiB staging buffer for all serial transfers, independent of format.
+constexpr size_t SERIAL_WRITE_BUFFER_SIZE = 256 * 1024;
 constexpr long CONNECT_TIMEOUT_SECONDS = 25;
 // archive.org: fail-fast on early attempts so users are not stuck minutes on a dead edge;
 // later attempts get a bit more patience without the old 90s hang.
@@ -469,6 +473,8 @@ static bool buildArchiveAlternateUrls(
 struct TransferContext {
     CURL* curl = nullptr;
     SceUID fd = -1;
+    std::unique_ptr<char[]> pendingWrite;
+    size_t pendingCount = 0;
     uint64_t resumeOffset = 0;
     uint64_t downloaded = 0;
     uint64_t total = 0;
@@ -662,6 +668,13 @@ static bool probeArchiveStorageUrl(
     curl_easy_setopt(p, CURLOPT_CONNECTTIMEOUT, ARCHIVE_SELECTOR_CONNECT_TIMEOUT);
     curl_easy_setopt(p, CURLOPT_TIMEOUT, ARCHIVE_SELECTOR_TOTAL_TIMEOUT);
     curl_easy_setopt(p, CURLOPT_FOLLOWLOCATION, 1L);
+#if LIBCURL_VERSION_NUM >= 0x075500
+    curl_easy_setopt(p, CURLOPT_REDIR_PROTOCOLS_STR,
+                     url.compare(0, 8, "https://") == 0 ? "https" : "http");
+#else
+    curl_easy_setopt(p, CURLOPT_REDIR_PROTOCOLS,
+                     (long)(url.compare(0, 8, "https://") == 0 ? CURLPROTO_HTTPS : CURLPROTO_HTTP));
+#endif
     curl_easy_setopt(p, CURLOPT_MAXREDIRS, 3L);
     curl_easy_setopt(p, CURLOPT_NOSIGNAL, 1L);
     curl_easy_setopt(p, CURLOPT_ERRORBUFFER, error);
@@ -1145,6 +1158,22 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
     return bytes;
 }
 
+static bool flushSerialWrite(TransferContext& ctx) {
+    if (ctx.pendingCount == 0) return true;
+    size_t done = 0;
+    while (done < ctx.pendingCount) {
+        const int result = sceIoWrite(ctx.fd, ctx.pendingWrite.get() + done,
+                                      static_cast<unsigned int>(ctx.pendingCount - done));
+        if (result <= 0) {
+            ctx.ioError = true;
+            return false;
+        }
+        done += static_cast<size_t>(result);
+    }
+    ctx.pendingCount = 0;
+    return true;
+}
+
 static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata) {
     TransferContext* ctx = static_cast<TransferContext*>(userdata);
     const size_t bytes = size * nmemb;
@@ -1212,12 +1241,25 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
 
     size_t written = 0;
     while (written < bytes) {
-        const int result = sceIoWrite(ctx->fd, static_cast<const char*>(ptr) + written, static_cast<unsigned int>(bytes - written));
-        if (result <= 0) {
-            ctx->ioError = true;
-            return 0;
+        if (ctx->pendingWrite) {
+            if (ctx->pendingCount == SERIAL_WRITE_BUFFER_SIZE &&
+                !flushSerialWrite(*ctx)) return 0;
+            const size_t available = SERIAL_WRITE_BUFFER_SIZE - ctx->pendingCount;
+            const size_t take = (bytes - written < available) ? bytes - written : available;
+            std::memcpy(ctx->pendingWrite.get() + ctx->pendingCount,
+                        static_cast<const char*>(ptr) + written, take);
+            ctx->pendingCount += take;
+            written += take;
+        } else {
+            const int result = sceIoWrite(ctx->fd,
+                static_cast<const char*>(ptr) + written,
+                static_cast<unsigned int>(bytes - written));
+            if (result <= 0) {
+                ctx->ioError = true;
+                return 0;
+            }
+            written += static_cast<size_t>(result);
         }
-        written += static_cast<size_t>(result);
     }
 
     ctx->downloaded += static_cast<uint64_t>(bytes);
@@ -1616,6 +1658,9 @@ HttpResult HttpClient::downloadToFile(
     ctx.onProgress = std::move(onProgress);
     ctx.shouldCancel = std::move(shouldCancel);
     ctx.path = destinationPath;
+    ctx.pendingWrite.reset(new (std::nothrow) char[SERIAL_WRITE_BUFFER_SIZE]);
+    if (!ctx.pendingWrite)
+        diagnostics::log("[HTTP] serial write buffer unavailable; using direct writes");
 
     int flags = SCE_O_WRONLY | SCE_O_CREAT;
     flags |= (resumeOffset > 0) ? SCE_O_APPEND : SCE_O_TRUNC;
@@ -2014,6 +2059,9 @@ HttpResult HttpClient::downloadToFile(
         ctx.retryAfterSeconds = 0;
         curlError[0] = '\0';
         result = curl_easy_perform(curl);
+        // A failed transfer may be resumed. Flush its buffered tail before
+        // calculating the next absolute offset or re-opening the descriptor.
+        if (!flushSerialWrite(ctx)) break;
         responseCode = 0;
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
         long sslVerifyResult = 0;
