@@ -211,6 +211,8 @@ private:
     uint64_t installProgressCurrent_ = 0;
     uint64_t installProgressTotal_ = 0;
     uint64_t installProgressSpeed_ = 0;
+    // UI-only clock for indeterminate Promoter phases (elapsed, not guessed ETA).
+    uint64_t installPhaseStartedUs_ = 0;
     std::string installProgressStage_;
     std::string installProgressFile_;
     std::string installProgressMessage_;
