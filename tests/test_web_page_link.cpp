@@ -13,8 +13,8 @@ int main() {
     assert(webPageUrl(CatalogType::VitaGames,item)==base+"game.html?catalog=psvita&id=my-game");
     assert(webPageUrl(CatalogType::PspGames,item)==base+"game.html?catalog=psp&id=my-game");
     assert(webPageUrl(CatalogType::Ps1Games,item)==base+"game.html?catalog=ps1&id=my-game");
-    item.id = "game with space";
-    assert(webPageUrl(CatalogType::Ps1Games,item)==base+"game.html?catalog=ps1&id=game%20with%20space");
+    item.id = "game#alt";
+    assert(webPageUrl(CatalogType::Ps1Games,item)==base+"game.html?catalog=ps1&id=game%23alt");
     item.titleId.clear();
     assert(webPageUrl(CatalogType::Homebrew,item).empty());
     item.id.clear();

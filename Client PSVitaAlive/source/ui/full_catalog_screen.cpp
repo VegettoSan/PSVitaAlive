@@ -4137,7 +4137,7 @@ void FullCatalogScreen::handleTouch() {
                 activatePrimaryAction(it);
                 return;
             }
-            const int qrY = listTop + primaryH + LINK_SECTION_H + 4;
+            const int qrY = listTop + 10 + primaryH + LINK_SECTION_H + 4;
             if (hit(x, y, dx + 18, qrY, dw - 36, LINK_ROW_H)) {
                 const int qrFocus = hasAll ? 1 : 0;
                 if (!state_.linkNavigation) {
@@ -6307,12 +6307,12 @@ void FullCatalogScreen::drawWebQrOverlay() {
     for (int line = 0; offset < webQrUrl_.size() && line < 4; ++line) {
         size_t end = offset + 1;
         while (end <= webQrUrl_.size() &&
-               ::psvitaalive::ui::uiTextWidth(&font_, 0.55f, webQrUrl_.substr(offset,end-offset).c_str()) <= 850)
+               ::psvitaalive::ui::uiTextWidth(&font_, 0.66f, webQrUrl_.substr(offset,end-offset).c_str()) <= 850)
             ++end;
         end = std::max(offset + 1, end - 1);
         const std::string segment = webQrUrl_.substr(offset, end-offset);
-        const int width = ::psvitaalive::ui::uiTextWidth(&font_, 0.55f, segment.c_str());
-        ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-width)/2, 417+line*17, WHITE, 0.55f, segment.c_str());
+        const int width = ::psvitaalive::ui::uiTextWidth(&font_, 0.66f, segment.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-width)/2, 417+line*19, WHITE, 0.66f, segment.c_str());
         offset = end;
     }
     vita2d_draw_rectangle(354, 487, 252, 42, ACCENT);
