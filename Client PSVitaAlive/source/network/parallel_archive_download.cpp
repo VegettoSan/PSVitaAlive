@@ -340,7 +340,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
     uint64_t authoritativeSize,
     const HttpProgressFn& onProgress,
     const HttpCancelFn& shouldCancel,
-    const std::string& expectedSha1
+    const std::string& expectedSha1,
+    const std::string& expectedEtag,
+    const std::string& expectedModified
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
@@ -478,6 +480,18 @@ ParallelArchiveOutcome downloadArchiveRanges(
             for (size_t i = 0; i < partCount; ++i) {
                 Part& p = parts[i];
                 if (!flushPartBuffer(p)) {
+                    networkOk = false;
+                    break;
+                }
+            }
+        }
+        // Generic HTTPS ranges must match the validator from the initial
+        // successful 206 probe; never combine versions of a changing file.
+        if (networkOk && (!expectedEtag.empty() || !expectedModified.empty())) {
+            for (size_t i = 0; i < partCount; ++i) {
+                if ((!expectedEtag.empty() && parts[i].etag != expectedEtag) ||
+                    (!expectedModified.empty() &&
+                     parts[i].lastModified != expectedModified)) {
                     networkOk = false;
                     break;
                 }
