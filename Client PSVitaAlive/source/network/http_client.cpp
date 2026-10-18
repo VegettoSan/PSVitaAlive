@@ -248,11 +248,94 @@ static void pushUniqueHost(std::vector<std::string>& hosts, const std::string& h
     hosts.push_back(host);
 }
 
+// Locate the checksum for exactly the requested file in Archive metadata.
+// Never infer a checksum from another file in the same item.
+static std::string archivePercentDecode(const std::string& value) {
+    std::string out;
+    out.reserve(value.size());
+    auto val = [](char c) -> int {
+        if (c >= '0' && c <= '9') return c - '0';
+        if (c >= 'a' && c <= 'f') return c - 'a' + 10;
+        if (c >= 'A' && c <= 'F') return c - 'A' + 10;
+        return -1;
+    };
+    for (size_t i = 0; i < value.size(); ++i) {
+        if (value[i] == '%' && i + 2 < value.size() &&
+            val(value[i + 1]) >= 0 && val(value[i + 2]) >= 0) {
+            out.push_back(static_cast<char>((val(value[i + 1]) << 4) | val(value[i + 2])));
+            i += 2;
+        } else {
+            out.push_back(value[i]);
+        }
+    }
+    return out;
+}
+
+static bool validSha1Hex(const std::string& value) {
+    if (value.size() != 40) return false;
+    for (char c : value) {
+        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') ||
+              (c >= 'A' && c <= 'F'))) return false;
+    }
+    return true;
+}
+
+static bool findArchiveFileSha1(
+    const std::string& json, const std::string& encodedFile, std::string& shaOut
+) {
+    shaOut.clear();
+    const std::string fileName = archivePercentDecode(encodedFile);
+    const size_t field = json.find("\"files\"");
+    if (field == std::string::npos) return false;
+    const size_t begin = json.find('[', field + 7);
+    if (begin == std::string::npos) return false;
+
+    // Scan direct objects in the files array, tracking strings and escapes so
+    // braces in metadata text cannot alter object boundaries.
+    bool inString = false, escaped = false;
+    int arrayDepth = 1, objectDepth = 0;
+    size_t objectBegin = std::string::npos;
+    for (size_t i = begin + 1; i < json.size() && arrayDepth > 0; ++i) {
+        const char ch = json[i];
+        if (inString) {
+            if (escaped) escaped = false;
+            else if (ch == '\\') escaped = true;
+            else if (ch == '"') inString = false;
+            continue;
+        }
+        if (ch == '"') { inString = true; continue; }
+        if (ch == '[') { ++arrayDepth; continue; }
+        if (ch == ']') { --arrayDepth; continue; }
+        if (arrayDepth != 1) continue;
+        if (ch == '{') {
+            if (objectDepth++ == 0) objectBegin = i;
+        } else if (ch == '}' && objectDepth > 0 && --objectDepth == 0 &&
+                   objectBegin != std::string::npos) {
+            const std::string item = json.substr(objectBegin, i - objectBegin + 1);
+            std::string name;
+            if (extractJsonStringField(item, "name", name) && name == fileName) {
+                std::string digest;
+                if (extractJsonStringField(item, "sha1", digest) && validSha1Hex(digest)) {
+                    shaOut = digest;
+                    return true;
+                }
+                return false;
+            }
+        }
+    }
+    return false;
+}
+
 // Keep dn*/.ca Archive edges as lower-priority risk candidates instead of
 // filtering them out. Large payloads benchmark every working candidate, so a
 // risky edge can win when it is actually faster from the user's own network.
-static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vector<std::string>& outUrls) {
+static bool buildArchiveAlternateUrls(
+    const std::string& originalUrl,
+    std::vector<std::string>& outUrls,
+    std::string* archiveSha1 = nullptr
+) {
     outUrls.clear();
+    if (archiveSha1) archiveSha1->clear();
     std::string id, file;
     if (!parseArchiveDownloadParts(originalUrl, id, file)) {
         archiveNodeDiagnostic(std::string("CANDIDATE_BUILD parse_failed canonical=") + originalUrl);
@@ -263,6 +346,7 @@ static bool buildArchiveAlternateUrls(const std::string& originalUrl, std::vecto
     archiveNodeDiagnostic(std::string("CANONICAL_URL ") + originalUrl);
     std::string meta;
     if (!fetchArchiveMetadataJson(id, meta)) return false;
+    if (archiveSha1) findArchiveFileSha1(meta, file, *archiveSha1);
     std::string server, d1, d2, dir;
     extractJsonStringField(meta, "server", server);
     extractJsonStringField(meta, "d1", d1);
@@ -1544,6 +1628,7 @@ HttpResult HttpClient::downloadToFile(
     size_t archiveAltIndex = 0;
     bool archiveMetaTried = false;
     std::string activeUrl = url;
+    std::string archiveSha1;
 
     if (isArchive) {
         std::string archiveId, archiveFile;
@@ -1566,7 +1651,7 @@ HttpResult HttpClient::downloadToFile(
     // deliberately skip this selector to avoid metadata/probe overhead. Resumes also
     // keep the established URL first so validator/range semantics are unchanged.
     if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
-        if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
+        if (buildArchiveAlternateUrls(url, archiveAltUrls, &archiveSha1)) {
             archiveMetaTried = true;
             if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint) && !archiveAltUrls.empty()) {
                 activeUrl = archiveAltUrls.front();
@@ -1599,11 +1684,32 @@ HttpResult HttpClient::downloadToFile(
         ArchiveProbeResult rangeProbe;
         if (probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe) &&
             rangeProbe.total >= 4ULL * 1024ULL * 1024ULL) {
+            std::string parallelUrl = activeUrl;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+            // Experimental fast path: only the Archive storage node selected by
+            // the existing HTTPS selector, never arbitrary catalog URLs.
+            // Metadata must provide the exact file's SHA-1; the complete HTTP
+            // download will be hashed on disk before returning success.
+            if (validSha1Hex(archiveSha1) &&
+                activeUrl.compare(0, 8, "https://") == 0 &&
+                archiveEffectiveUrlUsable(activeUrl)) {
+                const std::string directHttp = "http://" + activeUrl.substr(8);
+                ArchiveProbeResult httpProbe;
+                if (probeArchiveStorageUrl(directHttp, 1, ctx.shouldCancel, httpProbe) &&
+                    httpProbe.total == rangeProbe.total &&
+                    httpProbe.effectiveUrl.compare(0, 7, "http://") == 0 &&
+                    archiveEffectiveUrlUsable(httpProbe.effectiveUrl)) {
+                    parallelUrl = httpProbe.effectiveUrl;
+                    httpDiagnostic("archive direct HTTP accepted; checksum verification required");
+                }
+            }
+#endif
             sceIoClose(ctx.fd);
             ctx.fd = -1;
             const ParallelArchiveOutcome parallel = downloadArchiveRanges(
-                activeUrl, destinationPath, rangeProbe.total,
-                ctx.onProgress, ctx.shouldCancel);
+                parallelUrl, destinationPath, rangeProbe.total,
+                ctx.onProgress, ctx.shouldCancel,
+                parallelUrl.compare(0, 7, "http://") == 0 ? archiveSha1 : std::string());
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::IoError) {
