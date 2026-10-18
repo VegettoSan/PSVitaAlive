@@ -64,6 +64,7 @@ set(SOURCES
   source/ui/mascot_manager.cpp
   source/ui/full_catalog_screen.cpp
   source/ui/web_page_link.cpp
+  source/ui/web_qr_guide.cpp
   source/ui/qr_code.cpp
   third_party/qrcodegen/qrcodegen.c
   source/localization/language.cpp

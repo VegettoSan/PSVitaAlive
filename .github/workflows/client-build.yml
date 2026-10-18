@@ -34,6 +34,13 @@ jobs:
             -o /tmp/psvitaalive-web-url-test
           /tmp/psvitaalive-web-url-test
 
+      - name: Test dynamic QR installation instructions
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_web_qr_guide.cpp "Client PSVitaAlive/source/ui/web_qr_guide.cpp" \
+            -o /tmp/psvitaalive-qr-guide-test
+          /tmp/psvitaalive-qr-guide-test
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |
