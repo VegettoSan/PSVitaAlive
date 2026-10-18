@@ -19,6 +19,9 @@ namespace {
 // multi-megabyte entries. Still bounded to 256 KiB of extra heap RAM.
 constexpr size_t EXTRACT_CHUNK = 256 * 1024;
 constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
+// Let Vita's render thread run between large ux0 write bursts. 1ms per MiB
+// adds little overhead while reducing sustained worker/IO scheduling pressure.
+constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
 constexpr uint64_t ZIP_VERBOSE_ENTRY_MIN_SIZE = 4ULL * 1024ULL * 1024ULL;
 constexpr zip_int64_t ZIP_ENTRY_LOG_STEP = 64;
 
@@ -557,6 +560,7 @@ ZipResult ZipExtractor::extract(
     // Consecutive ZIP entries very often share the same parent directory.
     // Avoid a stat() plus recursive mkdir walk per tiny file.
     std::string lastEnsuredParent;
+    uint64_t bytesSinceYield = 0;
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         if (shouldCancel && shouldCancel()) {
@@ -707,6 +711,13 @@ ZipResult ZipExtractor::extract(
             writtenTotal += static_cast<uint64_t>(n);
             prog.bytesWritten += static_cast<uint64_t>(n);
             reportProgress();
+            bytesSinceYield += static_cast<uint64_t>(n);
+            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
+                bytesSinceYield = 0;
+                // This worker is not the UI thread. Yield without allocating
+                // extra buffers or relaxing any ZIP validation/cancel checks.
+                sceKernelDelayThread(1000);
+            }
         }
 
         const int zipCloseResult = zip_fclose(zf);
