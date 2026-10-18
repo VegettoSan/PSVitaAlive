@@ -13,6 +13,7 @@
 #include <cstdio>
 #include <cstring>
 #include <memory>
+#include <new>
 #include <string>
 #include <strings.h>
 
@@ -89,11 +90,10 @@ static size_t onHeader(char* ptr, size_t size, size_t nmemb, void* userdata) {
         p->validRange = false;
         p->etag.clear();
         p->lastModified.clear();
-        const char* space = static_cast<const char*>(std::memchr(ptr, ' ', n));
-        if (space && space + 3 < ptr + n) {
-            long code = 0;
-            if (std::sscanf(space + 1, "%ld", &code) == 1) p->status = code;
-        }
+        const std::string line(ptr, n);
+        long code = 0;
+        if (std::sscanf(line.c_str(), "HTTP/%*s %ld", &code) == 1)
+            p->status = code;
     } else if (startsWithHeader(ptr, n, "Content-Range:")) {
         const std::string value = headerText(ptr, n, std::strlen("Content-Range:"));
         unsigned long long begin = 0, end = 0, total = 0;
@@ -240,11 +240,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
 
-    // Four part files peak at 1.75x the payload during assembly. If storage
-    // is tight, retain the existing low-space-guarded single-stream path.
+    // Leave headroom for part assembly and installation. If storage is
+    // tight, retain the existing low-space-guarded single-stream path.
     uint64_t freeBytes = 0, capacity = 0;
     const uint64_t extra = authoritativeSize - authoritativeSize / kParts;
     if (!StorageManager::queryUx0Space(freeBytes, capacity) ||
+        extra > UINT64_MAX - kDiskReserve ||
         authoritativeSize > UINT64_MAX - extra - kDiskReserve ||
         freeBytes < authoritativeSize + extra + kDiskReserve) {
         diagnostics::log("[HTTP] range download skipped: insufficient staging space");
