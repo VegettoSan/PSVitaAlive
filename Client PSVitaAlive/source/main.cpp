@@ -736,6 +736,15 @@ int main(){
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
     screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep){ const bool resolved=installer.resolveZipRecovery(keep); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
+    screen.setSavedZipCallbacks(
+        [&installer](const psvitaalive::ui::CatalogItem& item) {
+            return installer.hasSavedZip(item.id, item.titleId);
+        },
+        [&installer, &screen](const psvitaalive::ui::CatalogItem& item) {
+            const bool started = installer.requestSavedZipExtraction(item.id, item.titleId);
+            if (started) screen.requestUx0SpaceRefresh();
+            return started;
+        });
     screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
     if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;
         std::string zrif;std::string ltype;std::string cid;std::string extractPath;
