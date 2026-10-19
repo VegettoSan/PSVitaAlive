@@ -46,6 +46,8 @@ public:
     using CatalogChangeFn = std::function<bool(CatalogType)>;
     using SearchRequestFn = std::function<void(const std::string&)>;
     using LinkActionFn = std::function<bool(const CatalogItem&, const CatalogLink&)>;
+    using SavedZipCheckFn = std::function<bool(const CatalogItem&)>;
+    using SavedZipRetryFn = std::function<bool(const CatalogItem&)>;
 
     FullCatalogScreen();
     ~FullCatalogScreen();
@@ -66,6 +68,10 @@ public:
     /** Block underlying catalog input while a system dialog owns controls/touch. */
     void setExternalInputBlocked(bool blocked) { externalInputBlocked_ = blocked; }
     void setLinkActionCallback(LinkActionFn callback);
+    void setSavedZipCallbacks(SavedZipCheckFn check, SavedZipRetryFn retry) {
+        savedZipCheck_ = std::move(check); savedZipRetry_ = std::move(retry);
+        savedZipProbeAtUs_ = 0;
+    }
     void setImageCache(ImageCache* cache);
     /** Free catalog icons/covers/screenshots before starting a heavy install worker. UI thread only. */
     void prepareForHeavyWork();
@@ -131,6 +137,12 @@ private:
     CatalogChangeFn catalogChange_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
+    SavedZipCheckFn savedZipCheck_;
+    SavedZipRetryFn savedZipRetry_;
+    std::string savedZipProbeKey_;
+    uint64_t savedZipProbeAtUs_ = 0;
+    bool savedZipProbeResult_ = false;
+    bool hasSavedZipFor(const CatalogItem& item);
     ImageCache* imageCache_ = nullptr;
     ::psvitaalive::ui::UiFont font_;
     /** Full-screen splash while catalogs download/load at startup (app0:ui/catalog_loading.png). */
