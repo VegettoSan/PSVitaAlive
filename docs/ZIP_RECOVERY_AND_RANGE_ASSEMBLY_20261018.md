@@ -32,6 +32,21 @@ A further patch now probes file creation in the actual deep destination folder(s
 - ZIP extraction: `734375 → 749667 ms` = **15.29 s**, completed normally.
 - The ~21-second join for ~67 MB means the storage-write overhead remains substantial. We still need a large-file benchmark before claiming a significant speedup vs. the previous ~721-second Simpsons assembly.
 
+## Final hardware validation of deep-path preflight
+
+A further **physical Vita** test of commit `ba7d02b7397b3957dd54cd589462e3e14f65dffc` confirmed the new early-detection guard:
+- `[1996528 ms]` Offline saved ZIP extraction started, with no download.
+- `[1999032 ms]` Preflight found 122 directories.
+- `[1999310 ms]` One deep parent directory was probed.
+- `[1999321 ms]` Temporary file creation failed immediately in `ux0:data/simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs` with **`sceIoOpen=0x80010016`**.
+- `[1999388 ms]` The worker reported failure and kept the archive.
+- `[2010217 ms]` The user explicitly chose to keep the ZIP.
+- Total time from button to failure: **2.86 seconds**, compared with roughly **6m 24s** wasted before the guard.
+
+**Conclusion:** The prevention fix works and is validated on real hardware, but Simpsons game data still **cannot be completely extracted as-is** by PSVitaAlive on this device. No skipped or renamed files are authorized without checking the upstream port's runtime path expectations. Independent VitaShell reports describe error `0x80010016` as subdirectory limit reached (https://github.com/TheOfficialFloW/VitaShell/issues/200). This does not establish that the game assets are corrupted.
+
+The official Simpsons Vita port instructs users to place the PC assets under `ux0:/data/simpsons` (https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run); moving that base folder arbitrarily could break the game. A possible next investigation is whether the specific deep `_stubs` files are optional in **that port**, verified against the port source and on real hardware before any per-app exclusion rule. The generic ZIP extractor must not silently omit files.
+
 ## Changes
 
 ### Deterministic folder preflight
