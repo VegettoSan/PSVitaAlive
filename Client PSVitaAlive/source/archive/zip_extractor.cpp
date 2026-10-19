@@ -6,8 +6,10 @@
 #include <psp2/kernel/processmgr.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
+#include <psp2/io/dirent.h>
 #include <zip.h>
 
+#include <algorithm>
 #include <cstdint>
 #include <cstring>
 #include <string>
@@ -418,6 +420,7 @@ ZipResult ZipExtractor::extract(
     ZipCancelFn shouldCancel
 ) {
     lastError_.clear();
+    usedStagedMoves_ = false;
     StorageManager st;
 
     // VitaDB extracts into an already-installed app folder (ux0:/app/TITLEID). On real
@@ -540,6 +543,230 @@ ZipResult ZipExtractor::extract(
         }
     }
 
+    // On a retail Vita sceIoOpen may return 0x80010016 for files at >10
+    // path components under the device. The original archive paths must not
+    // be shortened or skipped. Instead extract a complete affected directory
+    // branch in a shallow staging tree, then rename the WHOLE branch in place.
+    // This requires that the target branch be absent or empty. We deliberately
+    // do not merge into nonempty game directories or delete other game assets.
+    struct StagedBranch {
+        std::string destination;
+        std::string staging;
+        uint64_t files = 0;
+    };
+    std::vector<std::string> requiredDirs;
+    std::vector<std::string> deepBranchPaths;
+    requiredDirs.reserve(std::min(static_cast<size_t>(numEntries), size_t(4096)));
+    auto pathDepth = [](const std::string& path) -> size_t {
+        const size_t device = path.find(':');
+        size_t depth = 0;
+        bool inSegment = false;
+        for (size_t i = device == std::string::npos ? 0 : device + 1;
+             i < path.size(); ++i) {
+            if (path[i] == '/' || path[i] == '\\') inSegment = false;
+            else if (!inSegment) { ++depth; inSegment = true; }
+        }
+        return depth;
+    };
+    auto pathPrefixAtDepth = [](const std::string& path, size_t depth) -> std::string {
+        const size_t device = path.find(':');
+        size_t found = 0;
+        bool inSegment = false;
+        for (size_t i = device == std::string::npos ? 0 : device + 1;
+             i < path.size(); ++i) {
+            if (path[i] == '/' || path[i] == '\\') {
+                if (inSegment && found == depth) return path.substr(0, i);
+                inSegment = false;
+            } else if (!inSegment) { ++found; inSegment = true; }
+        }
+        return found >= depth ? path : std::string();
+    };
+    auto withinBranch = [](const std::string& path, const std::string& branch) -> bool {
+        return path == branch ||
+            (path.size() > branch.size() && path.compare(0, branch.size(), branch) == 0 &&
+             path[branch.size()] == '/');
+    };
+
+    for (zip_int64_t i = 0; i < numEntries; ++i) {
+        if (shouldCancel && shouldCancel()) {
+            setError("cancelled");
+            zip_close(za);
+            return ZipResult::Cancelled;
+        }
+        zip_stat_t zs;
+        zip_stat_init(&zs);
+        if (zip_stat_index(za, i, 0, &zs) != 0) {
+            setError(std::string("ZIP preflight stat failed: ") + zipArchiveError(za));
+            zip_close(za);
+            return ZipResult::InvalidEntry;
+        }
+        const std::string name = zs.name ? zs.name : "";
+        std::string path;
+        if (!resolveSafePath(destinationDir, name, path)) {
+            setError("unsafe ZIP entry path: " + name);
+            zip_close(za);
+            return ZipResult::UnsafePath;
+        }
+        const bool isDir = !name.empty() && (name.back() == '/' || name.back() == '\\');
+        if (isDir) {
+            while (!path.empty() && path.back() == '/') path.pop_back();
+            requiredDirs.push_back(path);
+        } else {
+            const auto slash = path.find_last_of('/');
+            if (slash != std::string::npos) requiredDirs.push_back(path.substr(0, slash));
+        }
+        // A directory's own creation at depth 11+ can also fail. Select a
+        // directory root at depth 10; its parent remains a normal Vita path.
+        if (pathDepth(path) > 10) {
+            const std::string branch = pathPrefixAtDepth(path, 10);
+            if (branch.empty()) {
+                setError("cannot derive safe ZIP staging branch: " + path);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+            deepBranchPaths.push_back(branch);
+        }
+    }
+    std::sort(requiredDirs.begin(), requiredDirs.end());
+    requiredDirs.erase(std::unique(requiredDirs.begin(), requiredDirs.end()), requiredDirs.end());
+    std::sort(deepBranchPaths.begin(), deepBranchPaths.end());
+    deepBranchPaths.erase(std::unique(deepBranchPaths.begin(), deepBranchPaths.end()), deepBranchPaths.end());
+
+    std::vector<StagedBranch> staged;
+    std::string stagingBase;
+    auto findBranch = [&](const std::string& path) -> const StagedBranch* {
+        for (const StagedBranch& branch : staged)
+            if (withinBranch(path, branch.destination)) return &branch;
+        return nullptr;
+    };
+
+    // Stage only on a writable data volume, and always on the SAME partition
+    // as the destination. Moving a folder across partitions would copy files
+    // instead of using an atomic single-filesystem rename.
+    if (!deepBranchPaths.empty()) {
+        const size_t colon = destinationDir.find(':');
+        const std::string device = colon == std::string::npos
+            ? std::string() : destinationDir.substr(0, colon + 1);
+        const std::string dataDir = device + "data";
+        if ((device != "ux0:" && device != "uma0:") || !st.isDirectory(dataDir)) {
+            setError("deep ZIP directory staging needs writable ux0:data or uma0:data on same device");
+            zip_close(za);
+            return ZipResult::IoError;
+        }
+        const std::string candidateBase = dataDir + "/PSVA_ZIP_STAGE_" +
+            std::to_string(static_cast<unsigned long long>(sceKernelGetProcessTimeWide()));
+        for (int n = 0; n < 32; ++n) {
+            const std::string candidate = candidateBase + "_" + std::to_string(n);
+            if (!st.exists(candidate)) { stagingBase = candidate; break; }
+        }
+        if (stagingBase.empty() || !st.createDirectories(stagingBase)) {
+            setError("cannot create unique ZIP staging directory on target volume");
+            zip_close(za);
+            return ZipResult::IoError;
+        }
+        for (size_t n = 0; n < deepBranchPaths.size(); ++n) {
+            const std::string& dest = deepBranchPaths[n];
+            const size_t slash = dest.find_last_of('/');
+            if (slash == std::string::npos) {
+                setError("invalid staged destination branch: " + dest);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+            const std::string source = stagingBase + "/b" + std::to_string(n) +
+                "/" + dest.substr(slash + 1);
+            staged.push_back({dest, source, 0});
+        }
+        diagnostics::log("[ZipExtractor] directory staging enabled branches=" +
+                         std::to_string(staged.size()) + " base=" + stagingBase);
+    }
+
+    // Preflight every actual output directory. The staged members are prepared
+    // in the temporary tree, never in their deep final paths during extraction.
+    for (const std::string& dir : requiredDirs) {
+        if (findBranch(dir)) continue;
+        if (!st.isDirectory(dir) && !st.createDirectories(dir)) {
+            setError("cannot prepare ZIP directory: " + dir +
+                     (st.exists(dir) ? " (non-directory path collision)" : " (mkdir failed)"));
+            zip_close(za);
+            return ZipResult::IoError;
+        }
+    }
+    for (StagedBranch& branch : staged) {
+        const auto slash = branch.destination.find_last_of('/');
+        const std::string parent = branch.destination.substr(0, slash);
+        if (!st.isDirectory(parent) || !st.createDirectories(branch.staging)) {
+            setError("cannot prepare ZIP staging branch: " + branch.staging);
+            zip_close(za);
+            return ZipResult::IoError;
+        }
+        // A previous failed install may have created an EMPTY destination dir.
+        // It can be replaced safely at commit time. Never merge into or
+        // remove a directory containing other data, even if ZIP says overwrite.
+        if (st.exists(branch.destination)) {
+            if (!st.isDirectory(branch.destination)) {
+                setError("ZIP branch destination collides with a file: " + branch.destination);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+            const SceUID dh = sceIoDopen(branch.destination.c_str());
+            if (dh < 0) {
+                setError("cannot check existing ZIP branch safely: " + branch.destination);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+            SceIoDirent ent{};
+            int rc = 0;
+            bool nonempty = false;
+            while ((rc = sceIoDread(dh, &ent)) > 0) {
+                if (std::strcmp(ent.d_name, ".") && std::strcmp(ent.d_name, "..")) {
+                    nonempty = true;
+                    break;
+                }
+            }
+            sceIoDclose(dh);
+            if (rc < 0 || nonempty) {
+                setError("deep ZIP destination branch is not safely empty; preserved: " +
+                         branch.destination + " staging=" + stagingBase);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+        }
+    }
+    // A physical Vita can reject the deep destination even when the entire
+    // branch was successfully moved (the game's later reads may still fail).
+    // We intentionally check the root directory move, not open the deepest
+    // child; that respects the installer-only contract, but we explicitly log
+    // that runtime accessibility is UNVERIFIED.
+    for (zip_int64_t i = 0; i < numEntries; ++i) {
+        zip_stat_t zs;
+        zip_stat_init(&zs);
+        if (zip_stat_index(za, i, 0, &zs) != 0) {
+            setError("ZIP staging preflight stat failed");
+            zip_close(za);
+            return ZipResult::InvalidEntry;
+        }
+        const std::string name = zs.name ? zs.name : "";
+        std::string original;
+        if (!resolveSafePath(destinationDir, name, original)) {
+            setError("unsafe ZIP staging path: " + name);
+            zip_close(za);
+            return ZipResult::UnsafePath;
+        }
+        const StagedBranch* branch = findBranch(original);
+        if (branch) {
+            const std::string rel = original.substr(branch->destination.size());
+            if (pathDepth(branch->staging + rel) > 10) {
+                setError("ZIP staging cannot safely create overdeep nested path: " +
+                         name + " staging=" + stagingBase);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+        }
+    }
+    diagnostics::log("[ZipExtractor] directory preflight unique=" +
+                     std::to_string(requiredDirs.size()) +
+                     " staged_branches=" + std::to_string(staged.size()));
+
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
 
@@ -588,6 +815,9 @@ ZipResult ZipExtractor::extract(
             outcome = ZipResult::UnsafePath;
             break;
         }
+        const std::string originalPath = outPath;
+        const StagedBranch* branch = findBranch(originalPath);
+        if (branch) outPath = branch->staging + originalPath.substr(branch->destination.size());
 
         if (isDir) {
             if (!st.createDirectories(outPath) && !st.isDirectory(outPath)) {
@@ -624,7 +854,12 @@ ZipResult ZipExtractor::extract(
         SceUID fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         if (fd < 0) {
             zip_fclose(zf);
-            setError(std::string("cannot create file: ") + outPath);
+            char err[480];
+            sceClibSnprintf(err, sizeof(err),
+                            "cannot create file: %s sceIoOpen=0x%08X parent_is_dir=%d",
+                            outPath.c_str(), static_cast<unsigned>(fd),
+                            slash != std::string::npos && st.isDirectory(outPath.substr(0, slash)) ? 1 : 0);
+            setError(err);
             outcome = ZipResult::IoError;
             break;
         }
@@ -774,6 +1009,10 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
+        if (branch) {
+            for (StagedBranch& entry : staged)
+                if (entry.destination == branch->destination) { ++entry.files; break; }
+        }
         ++prog.entriesDone;
         reportProgress();
     }
@@ -786,7 +1025,78 @@ ZipResult ZipExtractor::extract(
         }
         zip_discard(za);
     }
+    // Commit one COMPLETE directory branch at a time, only after libzip
+    // reported successful extraction and CRC verification for all entries.
+    // Preserve staged contents on any move error for manual recovery.
     if (outcome == ZipResult::Ok) {
+        for (const StagedBranch& branch : staged) {
+            if (shouldCancel && shouldCancel()) {
+                setError("cancelled before ZIP folder move; staged data kept at " + stagingBase);
+                outcome = ZipResult::Cancelled;
+                break;
+            }
+            if (st.exists(branch.destination)) {
+                const SceUID dh = sceIoDopen(branch.destination.c_str());
+                if (dh < 0) {
+                    setError("ZIP move: cannot check final directory " + branch.destination +
+                             " staged=" + branch.staging);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                SceIoDirent ent{};
+                int rc = 0;
+                bool nonempty = false;
+                while ((rc = sceIoDread(dh, &ent)) > 0) {
+                    if (std::strcmp(ent.d_name, ".") && std::strcmp(ent.d_name, "..")) {
+                        nonempty = true;
+                        break;
+                    }
+                }
+                sceIoDclose(dh);
+                if (rc < 0 || nonempty) {
+                    setError("ZIP move: destination now contains files; refusing overwrite " +
+                             branch.destination + " staged=" + branch.staging);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                const int removeEmpty = sceIoRmdir(branch.destination.c_str());
+                if (removeEmpty < 0) {
+                    setError("ZIP move: cannot remove empty destination folder " +
+                             branch.destination + " ret=" + std::to_string(removeEmpty));
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+            }
+            const int moved = sceIoRename(branch.staging.c_str(), branch.destination.c_str());
+            if (moved < 0) {
+                char detail[560];
+                sceClibSnprintf(detail, sizeof(detail),
+                    "ZIP directory relocation failed dest=%s stage=%s sceIoRename=0x%08X",
+                    branch.destination.c_str(), branch.staging.c_str(),
+                    static_cast<unsigned>(moved));
+                setError(detail);
+                outcome = ZipResult::IoError;
+                break;
+            }
+            diagnostics::log("[ZipExtractor] staged subtree moved successfully to " +
+                             branch.destination + " files=" + std::to_string(branch.files) +
+                             " (deep-child accessibility unverified)");
+        }
+    }
+    if (!staged.empty()) {
+        if (outcome == ZipResult::Ok) {
+            // Only known-empty staging parents are removed. Never recursively
+            // delete a directory that could still hold user files after errors.
+            for (size_t n = 0; n < staged.size(); ++n)
+                st.removeDirectory(stagingBase + "/b" + std::to_string(n));
+            st.removeDirectory(stagingBase);
+            diagnostics::log("[ZipExtractor] staged folders moved; runtime file access remains unverified");
+        } else {
+            diagnostics::log("[ZipExtractor] staging kept for investigation: " + stagingBase);
+        }
+    }
+    if (outcome == ZipResult::Ok) {
+        usedStagedMoves_ = !staged.empty();
         prog.currentEntry.clear();
         reportProgress(true);
         diagnostics::log(

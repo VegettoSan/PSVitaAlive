@@ -39,11 +39,14 @@ public:
     );
 
     const std::string& lastError() const { return lastError_; }
+    /** Staged directory branches were moved; very deep child reads are not verified. */
+    bool usedStagedMoves() const { return usedStagedMoves_; }
     static bool isSafeEntryName(const std::string& entryName);
     static bool resolveSafePath(const std::string& destinationDir, const std::string& entryName, std::string& outPath);
 
 private:
     std::string lastError_;
+    bool usedStagedMoves_ = false;
     void setError(const std::string& msg);
 };
 

@@ -447,3 +447,9 @@ WEB_QR_STEP_OTHER=Outros arquivos
 WEB_QR_BODY_OTHER=Confira os requisitos e as instruções na página da aplicação.
 WEB_QR_PATH_LABEL=Destino:
 WEB_QR_NO_PATH=Nenhuma pasta indicada. Consulte a página antes de copiar os arquivos.
+
+# Local retry of a preserved ZIP archive
+ZIP_SAVED_SECTION=ZIP SALVO
+ZIP_SAVED_BUTTON=Tentar extrair ZIP novamente
+ZIP_SAVED_SUBTITLE=Sem baixar novamente; usa o arquivo salvo
+ZIP_SAVED_UNAVAILABLE=ZIP salvo não encontrado.

@@ -29,8 +29,9 @@ constexpr uint64_t kMinimumBytes = 1ULL * 1024ULL * 1024ULL;
 constexpr uint64_t kFourWayBytes = 8ULL * 1024ULL * 1024ULL;
 constexpr uint64_t kDiskReserve = 32ULL * 1024ULL * 1024ULL;
 // Large files were spending extra time joining four sequential part files.
-// 256 KiB reduces read/write syscalls, without allocating the archive in RAM.
-constexpr size_t kJoinBuffer = 256 * 1024;
+// Larger sequential assembly batches reduce ux0 read/write syscalls for
+// multi-gigabyte archives. The file is never loaded fully into RAM.
+constexpr size_t kJoinBuffer = 1024 * 1024;
 // Sequential per-range writes with a bounded buffer reduce costly ux0 I/O.
 // A 256 KiB buffer per stream uses at most 1 MiB additional heap RAM.
 constexpr size_t kPartWriteBuffer = 256 * 1024;
@@ -58,6 +59,10 @@ struct Part {
     std::unique_ptr<unsigned char[]> writeBuffer;
     size_t buffered = 0;
     uint64_t bytesSinceYield = 0;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    SHA_CTX firstPartSha{};
+    bool streamingSha = false;
+#endif
     std::string path;
     std::string range;
     std::string etag;
@@ -175,6 +180,12 @@ static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
         p->rangeError = true;
         return 0;
     }
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    // SHA-1 is an ordered streaming hash: the first range arrives in byte
+    // order, so hash it while downloading, overlapping this work with network
+    // IO. The remaining ranges are hashed later while appending in order.
+    if (p->streamingSha) SHA1_Update(&p->firstPartSha, data, n);
+#endif
     size_t copied = 0;
     while (copied < n) {
         if (p->buffered == kPartWriteBuffer && !flushPartBuffer(*p))
@@ -228,35 +239,52 @@ static bool joinParts(
     const std::string& expectedSha1,
     bool& checksumMismatch,
     size_t partCount
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    , const SHA_CTX* prehashedFirstPart
+#endif
 ) {
     checksumMismatch = false;
-    std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
+    size_t joinChunk = kJoinBuffer;
+    std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[joinChunk]);
+    if (!buf) {
+        // RAM is tight on some Vita configurations; preserve the legacy
+        // 256 KiB assembly path rather than failing a valid 2 GB download.
+        joinChunk = 256 * 1024;
+        buf.reset(new (std::nothrow) unsigned char[joinChunk]);
+    }
     if (!buf) return false;
 
 #ifndef PSVITAALIVE_CURL_MBEDTLS
     SHA_CTX sha{};
     const bool hashRequired = !expectedSha1.empty();
     if (hashRequired) {
-        SHA1_Init(&sha);
-        // Part zero already occupies the initial portion of the final file.
-        // Hash it first before appending the remaining parts.
-        SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
-        if (first < 0) return false;
-        bool readOk = true;
-        uint64_t bytesSinceYield = 0;
-        for (;;) {
-            const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
-            if (n < 0) { readOk = false; break; }
-            if (n == 0) break;
-            SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
-            bytesSinceYield += static_cast<uint64_t>(n);
-            if (bytesSinceYield >= kIoYieldStep) {
-                bytesSinceYield = 0;
-                sceKernelDelayThread(1000);
+        if (prehashedFirstPart) {
+            sha = *prehashedFirstPart;
+            diagnostics::log("[HTTP] range0 SHA1 streamed during transfer; post-download reread skipped");
+        } else {
+            SHA1_Init(&sha);
+            // Fallback for download paths without a streaming SHA-1 context.
+            SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
+            if (first < 0) return false;
+            bool readOk = true;
+            const uint64_t hashStartedUs = sceKernelGetProcessTimeWide();
+            uint64_t bytesSinceYield = 0;
+            for (;;) {
+                const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(joinChunk));
+                if (n < 0) { readOk = false; break; }
+                if (n == 0) break;
+                SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
+                bytesSinceYield += static_cast<uint64_t>(n);
+                if (bytesSinceYield >= kIoYieldStep) {
+                    bytesSinceYield = 0;
+                    sceKernelDelayThread(1000);
+                }
             }
+            sceIoClose(first);
+            diagnostics::log(std::string("[HTTP] range0 SHA1 read done elapsed_ms=") +
+                             std::to_string((sceKernelGetProcessTimeWide() - hashStartedUs) / 1000ULL));
+            if (!readOk) return false;
         }
-        sceIoClose(first);
-        if (!readOk) return false;
     }
 #else
     if (!expectedSha1.empty()) return false;
@@ -265,13 +293,14 @@ static bool joinParts(
     SceUID dst = sceIoOpen(base.c_str(), SCE_O_WRONLY | SCE_O_APPEND, 0777);
     if (dst < 0) return false;
     bool ok = true;
+    const uint64_t joinStartedUs = sceKernelGetProcessTimeWide();
     uint64_t joinedSinceYield = 0;
     for (size_t i = 1; i < partCount && ok; ++i) {
         const std::string file = partPath(base, i);
         SceUID src = sceIoOpen(file.c_str(), SCE_O_RDONLY, 0);
         if (src < 0) { ok = false; break; }
         for (;;) {
-            const int count = sceIoRead(src, buf.get(), static_cast<unsigned int>(kJoinBuffer));
+            const int count = sceIoRead(src, buf.get(), static_cast<unsigned int>(joinChunk));
             if (count < 0) { ok = false; break; }
             if (count == 0) break;
             if (!writeAll(dst, buf.get(), static_cast<size_t>(count))) {
@@ -291,6 +320,8 @@ static bool joinParts(
         if (ok) sceIoRemove(file.c_str());
     }
     sceIoClose(dst);
+    diagnostics::log(std::string("[HTTP] ranges appended elapsed_ms=") +
+                     std::to_string((sceKernelGetProcessTimeWide() - joinStartedUs) / 1000ULL));
     SceIoStat stat{};
     if (!ok || sceIoGetstat(base.c_str(), &stat) < 0 ||
         static_cast<uint64_t>(stat.st_size) != total) return false;
@@ -399,6 +430,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
     for (size_t i = 0; i < partCount; ++i) {
         Part& p = parts[i];
         p.session = &session;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+        if (i == 0 && !expectedSha1.empty() && isDirectHttp(url)) {
+            SHA1_Init(&p.firstPartSha);
+            p.streamingSha = true;
+        }
+#endif
         p.start = i * chunk;
         p.end = (i + 1 == partCount) ? authoritativeSize - 1 : ((i + 1) * chunk - 1);
         p.path = partPath(destination, i);
@@ -556,7 +593,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool checksumMismatch = false;
     if (!joinParts(destination, authoritativeSize,
                    isDirectHttp(url) ? expectedSha1 : std::string(),
-                   checksumMismatch, partCount)) {
+                   checksumMismatch, partCount
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                   , parts[0].streamingSha ? &parts[0].firstPartSha : nullptr
+#endif
+                   )) {
         clearPartFiles(destination, true);
         if (checksumMismatch) {
             diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");

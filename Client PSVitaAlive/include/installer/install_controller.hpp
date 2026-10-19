@@ -10,6 +10,7 @@
 
 #include <atomic>
 #include <string>
+#include <vector>
 
 namespace psvitaalive {
 
@@ -50,6 +51,13 @@ struct InstallStatus {
  * Failed / Cancelled stay until the user acknowledges (no auto-dismiss).
  * Cancelled is shown as "Download cancelled" without an error Report button.
  */
+struct SavedZipArchive {
+    std::string fileName; // visible basename in app details
+    std::string archivePath; // exact validated path, not caller-supplied
+    std::string target;
+    std::string infoPath;
+};
+
 class InstallController {
 public:
     InstallController();
@@ -75,6 +83,13 @@ public:
     void acknowledgeResult();
     /** Resolve a pending ZIP extraction recovery. keep=true preserves it; false deletes it. */
     bool resolveZipRecovery(bool keep);
+    /** Existing preserved manual ZIP associated with a catalog app, with no network. */
+    bool hasSavedZip(const std::string& appId, const std::string& titleId) const;
+    /** Validated recovery ZIPs belonging to one app, sorted by display name. */
+    std::vector<SavedZipArchive> savedZips(const std::string& appId, const std::string& titleId) const;
+    /** Re-extract a selected preserved ZIP via the standard background installer worker. */
+    bool requestSavedZipExtraction(const std::string& appId, const std::string& titleId,
+                                   const std::string& archivePath);
     InstallStatus status() const;
 
     bool busy() const;
@@ -163,6 +178,11 @@ private:
     std::string zipRecoveryInfoPath_;
     std::string zipRecoveryExtractPath_;
     std::string zipRecoveryJobId_; // non-empty only if rename out of the job dir failed
+    bool savedZipMode_ = false;
+    std::string savedZipPath_;
+    std::string savedZipTarget_;
+    std::string savedZipInfoPath_;
+     int workerSavedZipMain();
 
     std::atomic<int> state_{static_cast<int>(InstallStatus::State::Idle)};
     std::atomic<uint64_t> current_{0};

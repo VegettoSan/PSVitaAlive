@@ -2720,6 +2720,7 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     installProgressMessage_ = message;
     installResultAutoCloseMs_ = resultAutoCloseRemainingMs;
 
+    if (outcome != 0 && outcome != installOutcome_) savedZipProbeAtUs_ = 0;
     installOutcome_ = outcome;
     installLiveAreaOk_ = liveAreaOk;
     protectionUpdateForJob(active, outcome, stage);
@@ -3014,6 +3015,33 @@ void FullCatalogScreen::applySearch(const std::string& q) {
                     q.c_str(), dataFilesFilter_ ? 1 : 0, (unsigned)catalogView().size());
     diagnostics::log(m);
 }
+const std::vector<FullCatalogScreen::SavedZipOption>&
+FullCatalogScreen::savedZipsFor(const CatalogItem& item) {
+    const std::string key = item.id + "|" + item.titleId;
+    const uint64_t now = sceKernelGetProcessTimeWide();
+    if (key != savedZipProbeKey_ || savedZipProbeAtUs_ == 0 ||
+        now < savedZipProbeAtUs_ || now - savedZipProbeAtUs_ >= 5000000ULL) {
+        savedZipProbeKey_ = key;
+        savedZipProbeResult_.clear();
+        if (savedZipList_ && (!item.id.empty() || !item.titleId.empty()))
+            savedZipProbeResult_ = savedZipList_(item);
+        savedZipProbeAtUs_ = now;
+    }
+    return savedZipProbeResult_;
+}
+
+bool FullCatalogScreen::hasSavedZipFor(const CatalogItem& item) {
+    return !savedZipsFor(item).empty();
+}
+
+int FullCatalogScreen::savedZipCountFor(const CatalogItem& item) {
+    return static_cast<int>(savedZipsFor(item).size());
+}
+
+int FullCatalogScreen::savedZipBlockHeight(const CatalogItem& item) {
+    const int count = savedZipCountFor(item);
+    return count ? LINK_SECTION_H + 4 + LINK_ROW_H * count + 8 : 0;
+}
 int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
     const int cw = std::max(1, w - 36);
     const int mc = std::max(16, cw / 7);
@@ -3038,7 +3066,8 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
         return (int)lines.size();
     };
 
-    int h = linkLayoutTotalHeight(buildLinkLayout(i)) + WEB_QR_BLOCK_H;
+    int h = linkLayoutTotalHeight(buildLinkLayout(i)) + WEB_QR_BLOCK_H +
+        savedZipBlockHeight(i);
     if (primaryActionFor(i) != PrimaryAction::None) h += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
 
     auto addSection = [&](int body) {
@@ -3072,12 +3101,13 @@ int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h){
     (void)w;
     const auto rows = buildLinkLayout(i);
     const bool hasAction=primaryActionFor(i)!=PrimaryAction::None;
-    int lh=linkLayoutTotalHeight(rows) + WEB_QR_BLOCK_H;
+    int lh=linkLayoutTotalHeight(rows) + WEB_QR_BLOCK_H +
+        savedZipBlockHeight(i);
     if(hasAction)lh+=LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8;
     const int v = std::max(1, h - DETAIL_HEADER_H - 18);
     return std::max(0, lh - v);
 }
-void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0)+1;
+void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0)+1+savedZipCountFor(catalogView()[i]);
     if(focusCount==0){state_.linkFocus=-1;state_.linkNavigation=false;}
     else if(state_.linkFocus>=focusCount)state_.linkFocus=focusCount-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
 void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
@@ -3096,40 +3126,63 @@ void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;
     (void)dx;
     int i = selectedIndex();
     if (i < 0) return;
-    const auto idxs = downloadLinkIndices(catalogView()[i]);
-    const bool hasAll = primaryActionFor(catalogView()[i]) != PrimaryAction::None;
+    const CatalogItem& item = catalogView()[i];
+    const int linkCount = static_cast<int>(downloadLinkIndices(item).size());
+    const bool hasAll = primaryActionFor(item) != PrimaryAction::None;
     const int off = hasAll ? 1 : 0;
-    const int c = (int)idxs.size() + off + 1;
-    if (c <= 0) return;
+    const int saved = savedZipCountFor(item);
+    const int count = linkCount + off + 1 + saved;
     if (state_.linkFocus < 0) state_.linkFocus = 0;
-    else state_.linkFocus = std::max(0, std::min(c - 1, state_.linkFocus + dy));
+    else state_.linkFocus = std::max(0, std::min(count - 1, state_.linkFocus + dy));
     state_.linkNavigation = true;
-    const auto rows = buildLinkLayout(catalogView()[i]);
+    const auto rows = buildLinkLayout(item);
     int top = 0;
     const int primaryH = hasAll ? LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8 : 0;
     if (hasAll && state_.linkFocus == 0) {
         top = 0;
-    } else if (state_.linkFocus == off) {
-        top = primaryH + LINK_SECTION_H + 4;
+    } else if (state_.linkFocus >= off && state_.linkFocus < off + saved) {
+        top = primaryH + LINK_SECTION_H + 4 + (state_.linkFocus - off) * LINK_ROW_H;
+    } else if (state_.linkFocus == off + saved) {
+        top = primaryH + savedZipBlockHeight(item) + LINK_SECTION_H + 4;
     } else {
-        const int linkFocus = state_.linkFocus - off - 1;
-        top = yOfLinkFocus(rows, linkFocus) + primaryH + WEB_QR_BLOCK_H;
+        const int linkFocus = state_.linkFocus - off - saved - 1;
+        top = yOfLinkFocus(rows, linkFocus) + primaryH + WEB_QR_BLOCK_H +
+              savedZipBlockHeight(item);
     }
     const int vis = SCREEN_H - HEADER_H - TABS_H - FOOTER_H - DETAIL_HEADER_H - 18;
-    const int lim = detailLinkScrollLimit(catalogView()[i], SCREEN_W / 2, SCREEN_H - HEADER_H - TABS_H - FOOTER_H);
+    const int lim = detailLinkScrollLimit(item, SCREEN_W / 2, SCREEN_H-HEADER_H-TABS_H-FOOTER_H);
     if (top < state_.detailScroll) state_.detailScroll = top;
     if (top + LINK_ROW_H > state_.detailScroll + vis) state_.detailScroll = top + LINK_ROW_H - vis;
     state_.detailScroll = std::max(0, std::min(state_.detailScroll, lim));
-}void FullCatalogScreen::activateFocusedLink(){
+}
+void FullCatalogScreen::activateFocusedLink(){
     int i=selectedIndex();
     if(i<0||state_.linkFocus<0)return;
     const CatalogItem& item = catalogView()[i];
     const bool hasAll=primaryActionFor(item)!=PrimaryAction::None;
     if(hasAll && state_.linkFocus==0){activatePrimaryAction(item);return;}
     const int off = hasAll ? 1 : 0;
-    if(state_.linkFocus == off) { openWebQrModal(); return; }
+    const auto& savedZips = savedZipsFor(item);
+    const int savedCount = static_cast<int>(savedZips.size());
+    if (state_.linkFocus >= off && state_.linkFocus < off + savedCount) {
+        if (installProgressActive_ || !savedZipRetry_) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1800);
+            return;
+        }
+        const std::string selectedArchive = savedZips[state_.linkFocus - off].archivePath;
+        prepareForHeavyWork();
+        if (!savedZipRetry_(item, selectedArchive)) {
+            showToast(::psvitaalive::L("ZIP_SAVED_UNAVAILABLE"), 2200);
+        } else {
+            diagnostics::log("[UI] saved ZIP offline extraction requested app=" + item.id +
+                             " archive=" + selectedArchive);
+            savedZipProbeAtUs_ = 0;
+        }
+        return;
+    }
+    if(state_.linkFocus == off + savedCount) { openWebQrModal(); return; }
     const auto idxs=downloadLinkIndices(item);
-    const int li = state_.linkFocus - off - 1;
+    const int li = state_.linkFocus - off - 1 - savedCount;
     if(li<0||li>=(int)idxs.size())return;
     const int linkDetailIndex = idxs[li];
     const CatalogLink&l=item.linkDetails[linkDetailIndex];
@@ -4160,7 +4213,9 @@ void FullCatalogScreen::handleTouch() {
             const CatalogItem& it = catalogView()[i];
             const bool hasAll=primaryActionFor(it)!=PrimaryAction::None;
             const int primaryH=hasAll?(LINK_SECTION_H+4+INSTALL_ALL_BLOCK_H+8):0;
-            const int yOff=primaryH+WEB_QR_BLOCK_H;
+            const int savedCount = savedZipCountFor(it);
+            const int savedH = savedZipBlockHeight(it);
+            const int yOff=primaryH+WEB_QR_BLOCK_H+savedH;
             const int listTop = dy + DETAIL_HEADER_H - (int)visualDetailScroll_;
             const int allBtnY = listTop + (hasAll ? (LINK_SECTION_H + 4) : 0);
             if (hasAll && hit(x, y, dx + 18, allBtnY, dw - 36, INSTALL_ALL_BLOCK_H)) {
@@ -4173,9 +4228,23 @@ void FullCatalogScreen::handleTouch() {
                 activatePrimaryAction(it);
                 return;
             }
-            const int qrY = listTop + 10 + primaryH + LINK_SECTION_H + 4;
+            const int savedY = listTop + 10 + primaryH + LINK_SECTION_H + 4;
+            for (int z = 0; z < savedCount; ++z) {
+                if (hit(x, y, dx + 18, savedY + z * LINK_ROW_H, dw - 36, LINK_ROW_H)) {
+                    const int savedFocus = (hasAll ? 1 : 0) + z;
+                    if (!state_.linkNavigation) {
+                        enterLinkNavigation();
+                        state_.linkFocus = savedFocus;
+                    } else {
+                        state_.linkFocus = savedFocus;
+                        activateFocusedLink();
+                    }
+                    return;
+                }
+            }
+            const int qrY = savedY + savedH;
             if (hit(x, y, dx + 18, qrY, dw - 36, LINK_ROW_H)) {
-                const int qrFocus = hasAll ? 1 : 0;
+                const int qrFocus = (hasAll ? 1 : 0) + savedCount;
                 if (!state_.linkNavigation) {
                     enterLinkNavigation();
                     state_.linkFocus = qrFocus;
@@ -4186,7 +4255,7 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             const auto rows = buildLinkLayout(it);
-            const int focusOff = (hasAll ? 1 : 0) + 1;
+            const int focusOff = (hasAll ? 1 : 0) + 1 + savedCount;
             for (const auto& row : rows) {
                 if (row.isSection) continue;
                 const int ry = listTop + yOff + row.y;
@@ -6447,7 +6516,9 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     const auto rows = buildLinkLayout(it);
     const PrimaryAction action=primaryActionFor(it);
     const bool showAll=action!=PrimaryAction::None;
-    const int focusOff=(showAll?1:0)+1;
+    const auto& savedZipOptions = savedZipsFor(it);
+    const int savedCount = static_cast<int>(savedZipOptions.size());
+    const int focusOff=(showAll?1:0)+1+savedCount;
     int yOff = 0;
 
     if (showAll) {
@@ -6482,13 +6553,36 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
     }
 
+    // App-specific recovery archives, one focusable button per ZIP.
+    // This entire section disappears when no validated archives are found.
+    if (savedCount > 0) {
+        const int savedHeaderY = y + yOff;
+        vita2d_draw_rectangle(x, savedHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
+        ::psvitaalive::ui::uiDrawText(&font_, x + 4, savedHeaderY + 18, ACCENT, 0.76f,
+                                      ::psvitaalive::L("ZIP_SAVED_SECTION"));
+        const int baseY = savedHeaderY + LINK_SECTION_H + 4;
+        for (int z = 0; z < savedCount; ++z) {
+            const int btnY = baseY + z * LINK_ROW_H;
+            const bool focused = state_.linkNavigation &&
+                state_.linkFocus == (showAll ? 1 : 0) + z;
+            vita2d_draw_rectangle(x, btnY, w, LINK_ROW_H, focused ? ACCENT : SURFACE2);
+            vita2d_draw_rectangle(x, btnY, w, 1, focused ? ACCENT : BORDER);
+            const std::string name = ellipsize(savedZipOptions[z].fileName, 46);
+            ::psvitaalive::ui::uiDrawText(&font_, x + 10, btnY + 17,
+                focused ? BG : WHITE, 0.80f, name.c_str());
+            ::psvitaalive::ui::uiDrawText(&font_, x + 10, btnY + 35,
+                focused ? BG : DIM, 0.66f, ::psvitaalive::L("ZIP_SAVED_SUBTITLE"));
+        }
+        yOff += savedZipBlockHeight(it);
+    }
+
     // Permanent section between primary OPEN/UPDATE/INSTALL ALL and Downloads.
     const int webHeaderY = y + yOff;
     vita2d_draw_rectangle(x, webHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
     ::psvitaalive::ui::uiDrawText(&font_, x + 4, webHeaderY + 18, ACCENT, 0.76f,
         ::psvitaalive::L("WEB_QR_SECTION"));
     const int webButtonY = webHeaderY + LINK_SECTION_H + 4;
-    const bool webFocused = state_.linkNavigation && state_.linkFocus == (showAll ? 1 : 0);
+    const bool webFocused = state_.linkNavigation && state_.linkFocus == ((showAll ? 1 : 0) + savedCount);
     vita2d_draw_rectangle(x, webButtonY, w, LINK_ROW_H, webFocused ? ACCENT : SURFACE2);
     vita2d_draw_rectangle(x, webButtonY, w, 1, webFocused ? ACCENT : BORDER);
     ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 17,

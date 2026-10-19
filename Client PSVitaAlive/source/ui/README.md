@@ -157,3 +157,11 @@ Settings is deliberately **render-only after entry**. Opening Settings cancels q
 ### D-pad navigation-aware image scheduler
 
 `FullCatalogScreen` treats held UP/DOWN as continuous navigation even during the controller repeat delay. While navigation is busy it cancels image work once, starts no new network request or GPU decode, and keeps resident textures drawable. App textures that leave the viewport remain in the existing 18-entry LRU; off-screen screenshots are still released immediately.
+
+## Multiple recovered ZIP buttons in the app detail (October 2026)
+
+The optional **Saved ZIP** block appears only when `InstallController` discovers recovered archives with matching app identity and safe `.info.txt` metadata. It renders one button per ZIP using its actual filename, above External Download / QR. Each row is independently focusable by gamepad and touch; height, scrolling and indices account for the actual number of saved archives.
+
+The discovery list is cached for five seconds on the UI thread to avoid repeated filesystem scans every frame. Selecting a row passes that exact archive path back to the installer, which checks it against current validated recovery metadata before starting the offline worker. After successful extraction the ZIP/metadata is removed and the cached list refreshes. Failure retains the files for retry.
+
+See [ZIP recovery and folder relocation](../../../docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).

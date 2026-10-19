@@ -65,6 +65,7 @@ public:
     const std::string& lastTitleId() const { return lastTitleId_; }
     const std::string& lastInstallPath() const { return lastInstallPath_; }
     bool lastLiveAreaOk() const { return lastLiveAreaOk_; }
+    bool lastZipUsedStagedMoves() const { return lastZipUsedStagedMoves_; }
 
     /** Where PSP/PS1 media should land: Adrenaline (pspemu only) vs LiveArea (VPK/PKG bubbles). */
     void setPspTarget(PspTarget t) { pspTarget_ = t; }
@@ -77,6 +78,7 @@ private:
     std::string lastTitleId_;
     std::string lastInstallPath_;
     bool lastLiveAreaOk_ = false;
+    bool lastZipUsedStagedMoves_ = false;
     PspTarget pspTarget_ = PspTarget::Adrenaline;
     PspMediaFormat pspMediaFormat_ = PspMediaFormat::Folder;
 

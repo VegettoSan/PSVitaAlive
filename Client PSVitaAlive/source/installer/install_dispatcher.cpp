@@ -72,6 +72,7 @@ void InstallDispatcher::clearResultMeta() {
     lastTitleId_.clear();
     lastInstallPath_.clear();
     lastLiveAreaOk_ = false;
+    lastZipUsedStagedMoves_ = false;
 }
 
 InstallDispatchResult InstallDispatcher::installFile(
@@ -325,13 +326,16 @@ InstallDispatchResult InstallDispatcher::installFile(
         lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote
         if (result == ZipResult::Cancelled) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled)); return InstallDispatchResult::Cancelled; }
         if (result != ZipResult::Ok) { setError(extractor.lastError()); return InstallDispatchResult::InstallFailed; }
-        diagnostics::log(std::string("[InstallDispatcher] ZIP extracted to ") + zipDestination);
+        lastZipUsedStagedMoves_ = extractor.usedStagedMoves();
+        diagnostics::log(std::string("[InstallDispatcher] ZIP extracted to ") + zipDestination +
+                         (lastZipUsedStagedMoves_ ? " [moved deep folders; runtime readability unverified]" : ""));
         if (onProgress) {
             InstallDispatchProgress p;
             p.stage = InstallDispatchProgress::Completed;
             p.current = 1;
             p.total = 1;
-            p.message = "ZIP extracted";
+            p.message = lastZipUsedStagedMoves_
+                ? "ZIP directory branches moved; deep files may not be readable" : "ZIP extracted";
             onProgress(p);
         }
         return InstallDispatchResult::Ok;
