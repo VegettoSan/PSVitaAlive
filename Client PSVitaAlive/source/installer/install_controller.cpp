@@ -1610,13 +1610,13 @@ int InstallController::workerMain() {
                 }
             }
             if (moved) {
-                std::string info = "PS Vita Alive Store - ZIP deep-folder recovery\\n\\n";
-                info += "App: " + activeDisplayTitle_ + "\\n";
-                info += "App ID: " + pendingAppId_ + "\\n";
-                info += "Title ID: " + pendingTitleId_ + "\\n";
-                info += "Saved path: " + recoveryPath + "\\n";
-                info += "Manual extraction target: " + activeZipDestination_ + "\\n";
-                info += "Warning: deep directory trees moved; runtime file access not verified.\\n";
+                std::string info = "PS Vita Alive Store - ZIP deep-folder recovery\n\n";
+                info += "App: " + activeDisplayTitle_ + "\n";
+                info += "App ID: " + pendingAppId_ + "\n";
+                info += "Title ID: " + pendingTitleId_ + "\n";
+                info += "Saved path: " + recoveryPath + "\n";
+                info += "Manual extraction target: " + activeZipDestination_ + "\n";
+                info += "Warning: deep directory trees moved; runtime file access not verified.\n";
                 st.writeTextFile(recoveryPath + ".info.txt", info);
                 downloads_.cleanupCompletedJob(activeJobId_);
                 activeJobId_.clear();
