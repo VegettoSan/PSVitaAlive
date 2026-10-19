@@ -59,6 +59,10 @@ struct Part {
     std::unique_ptr<unsigned char[]> writeBuffer;
     size_t buffered = 0;
     uint64_t bytesSinceYield = 0;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    SHA_CTX firstPartSha{};
+    bool streamingSha = false;
+#endif
     std::string path;
     std::string range;
     std::string etag;
@@ -176,6 +180,12 @@ static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
         p->rangeError = true;
         return 0;
     }
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    // SHA-1 is an ordered streaming hash: the first range arrives in byte
+    // order, so hash it while downloading, overlapping this work with network
+    // IO. The remaining ranges are hashed later while appending in order.
+    if (p->streamingSha) SHA1_Update(&p->firstPartSha, data, n);
+#endif
     size_t copied = 0;
     while (copied < n) {
         if (p->buffered == kPartWriteBuffer && !flushPartBuffer(*p))
@@ -229,6 +239,9 @@ static bool joinParts(
     const std::string& expectedSha1,
     bool& checksumMismatch,
     size_t partCount
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    , const SHA_CTX* prehashedFirstPart
+#endif
 ) {
     checksumMismatch = false;
     std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
@@ -238,29 +251,33 @@ static bool joinParts(
     SHA_CTX sha{};
     const bool hashRequired = !expectedSha1.empty();
     if (hashRequired) {
-        SHA1_Init(&sha);
-        // Part zero already occupies the initial portion of the final file.
-        // Hash it first before appending the remaining parts.
-        SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
-        if (first < 0) return false;
-        bool readOk = true;
-        const uint64_t hashStartedUs = sceKernelGetProcessTimeWide();
-        uint64_t bytesSinceYield = 0;
-        for (;;) {
-            const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
-            if (n < 0) { readOk = false; break; }
-            if (n == 0) break;
-            SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
-            bytesSinceYield += static_cast<uint64_t>(n);
-            if (bytesSinceYield >= kIoYieldStep) {
-                bytesSinceYield = 0;
-                sceKernelDelayThread(1000);
+        if (prehashedFirstPart) {
+            sha = *prehashedFirstPart;
+            diagnostics::log("[HTTP] range0 SHA1 streamed during transfer; post-download reread skipped");
+        } else {
+            SHA1_Init(&sha);
+            // Fallback for download paths without a streaming SHA-1 context.
+            SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
+            if (first < 0) return false;
+            bool readOk = true;
+            const uint64_t hashStartedUs = sceKernelGetProcessTimeWide();
+            uint64_t bytesSinceYield = 0;
+            for (;;) {
+                const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
+                if (n < 0) { readOk = false; break; }
+                if (n == 0) break;
+                SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
+                bytesSinceYield += static_cast<uint64_t>(n);
+                if (bytesSinceYield >= kIoYieldStep) {
+                    bytesSinceYield = 0;
+                    sceKernelDelayThread(1000);
+                }
             }
+            sceIoClose(first);
+            diagnostics::log(std::string("[HTTP] range0 SHA1 read done elapsed_ms=") +
+                             std::to_string((sceKernelGetProcessTimeWide() - hashStartedUs) / 1000ULL));
+            if (!readOk) return false;
         }
-        sceIoClose(first);
-        diagnostics::log(std::string("[HTTP] range0 SHA1 read done elapsed_ms=") +
-                         std::to_string((sceKernelGetProcessTimeWide() - hashStartedUs) / 1000ULL));
-        if (!readOk) return false;
     }
 #else
     if (!expectedSha1.empty()) return false;
@@ -406,6 +423,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
     for (size_t i = 0; i < partCount; ++i) {
         Part& p = parts[i];
         p.session = &session;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+        if (i == 0 && !expectedSha1.empty() && isDirectHttp(url)) {
+            SHA1_Init(&p.firstPartSha);
+            p.streamingSha = true;
+        }
+#endif
         p.start = i * chunk;
         p.end = (i + 1 == partCount) ? authoritativeSize - 1 : ((i + 1) * chunk - 1);
         p.path = partPath(destination, i);
@@ -563,7 +586,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool checksumMismatch = false;
     if (!joinParts(destination, authoritativeSize,
                    isDirectHttp(url) ? expectedSha1 : std::string(),
-                   checksumMismatch, partCount)) {
+                   checksumMismatch, partCount
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                   , parts[0].streamingSha ? &parts[0].firstPartSha : nullptr
+#endif
+                   )) {
         clearPartFiles(destination, true);
         if (checksumMismatch) {
             diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");
