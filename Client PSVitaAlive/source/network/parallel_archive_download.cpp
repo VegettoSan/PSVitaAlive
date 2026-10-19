@@ -29,8 +29,9 @@ constexpr uint64_t kMinimumBytes = 1ULL * 1024ULL * 1024ULL;
 constexpr uint64_t kFourWayBytes = 8ULL * 1024ULL * 1024ULL;
 constexpr uint64_t kDiskReserve = 32ULL * 1024ULL * 1024ULL;
 // Large files were spending extra time joining four sequential part files.
-// 256 KiB reduces read/write syscalls, without allocating the archive in RAM.
-constexpr size_t kJoinBuffer = 256 * 1024;
+// Larger sequential assembly batches reduce ux0 read/write syscalls for
+// multi-gigabyte archives. The file is never loaded fully into RAM.
+constexpr size_t kJoinBuffer = 1024 * 1024;
 // Sequential per-range writes with a bounded buffer reduce costly ux0 I/O.
 // A 256 KiB buffer per stream uses at most 1 MiB additional heap RAM.
 constexpr size_t kPartWriteBuffer = 256 * 1024;
@@ -243,6 +244,7 @@ static bool joinParts(
         SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
         if (first < 0) return false;
         bool readOk = true;
+        const uint64_t hashStartedUs = sceKernelGetProcessTimeWide();
         uint64_t bytesSinceYield = 0;
         for (;;) {
             const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
@@ -256,6 +258,8 @@ static bool joinParts(
             }
         }
         sceIoClose(first);
+        diagnostics::log(std::string("[HTTP] range0 SHA1 read done elapsed_ms=") +
+                         std::to_string((sceKernelGetProcessTimeWide() - hashStartedUs) / 1000ULL));
         if (!readOk) return false;
     }
 #else
@@ -265,6 +269,7 @@ static bool joinParts(
     SceUID dst = sceIoOpen(base.c_str(), SCE_O_WRONLY | SCE_O_APPEND, 0777);
     if (dst < 0) return false;
     bool ok = true;
+    const uint64_t joinStartedUs = sceKernelGetProcessTimeWide();
     uint64_t joinedSinceYield = 0;
     for (size_t i = 1; i < partCount && ok; ++i) {
         const std::string file = partPath(base, i);
@@ -291,6 +296,8 @@ static bool joinParts(
         if (ok) sceIoRemove(file.c_str());
     }
     sceIoClose(dst);
+    diagnostics::log(std::string("[HTTP] ranges appended elapsed_ms=") +
+                     std::to_string((sceKernelGetProcessTimeWide() - joinStartedUs) / 1000ULL));
     SceIoStat stat{};
     if (!ok || sceIoGetstat(base.c_str(), &stat) < 0 ||
         static_cast<uint64_t>(stat.st_size) != total) return false;
