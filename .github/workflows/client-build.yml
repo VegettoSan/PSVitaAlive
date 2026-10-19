@@ -41,6 +41,13 @@ jobs:
             -o /tmp/psvitaalive-qr-guide-test
           /tmp/psvitaalive-qr-guide-test
 
+      - name: Test Game/Data ZIP dispatch policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_install_archive_policy.cpp \
+            -o /tmp/psvitaalive-install-archive-policy-test
+          /tmp/psvitaalive-install-archive-policy-test
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |

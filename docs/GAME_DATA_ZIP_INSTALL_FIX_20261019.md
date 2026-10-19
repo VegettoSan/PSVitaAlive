@@ -27,23 +27,26 @@ data archive could enter `HomebrewInstaller::installVpk()`.
    when the downloaded URL does not end in `.zip`.
 3. `InstallController::requestInstall` refuses data/game ZIP requests
    lacking a destination, instead of downloading then promoting a VPK.
-4. `InstallDispatcher` prioritizes an explicit ZIP destination when
-   the downloaded filename ends in `.zip`, **even if** the content
-   detector returns `FileFormat::Vpk`. Typed data/game files with
-   opaque filenames are also extracted when ZIP/VPK container magic is
-   recognized. A typed data/game file named `.vpk` or with unrecognized
+4. `InstallDispatcher` prioritizes ZIP extraction **only** for
+   `Game Files` / `Data Files` types with a destination. For those
+   link types, a `.zip` filename wins even if the content detector
+   returns `FileFormat::Vpk`. Typed data/game files with opaque
+   filenames also extract when ZIP/VPK container magic is recognized.
+   A typed data/game file named `.vpk` or with unrecognized
    content fails as unsupported; it is **never promoted**.
 5. ZIP extraction uses the existing `ZipExtractor`, preserving its
    path safety checks, progress reporting, ZIP64 handling, failure
    reporting, and destination-folder policy. No content is flattened or
    relocated by this routing fix.
-6. ZIP manual recovery eligibility now uses the **same routing policy**
-   rather than assuming `FormatDetector` must say `Zip`.
+6. ZIP manual recovery eligibility includes VPK-looking ZIPs **only
+   for these two typed data links**, keeping the previous eligibility
+   for all other link types.
 7. Ordinary explicit `.vpk` downloads still use
    `HomebrewInstaller`. ZIPs with no destination from other link
    types retain the historical ZIP-backed VPK/release-archive fallback
    for compatibility; that fallback is **never available** to
-   Game Files / Data Files.
+   Game Files / Data Files. ZIPs with a configured destination on other
+   link types retain the original format-detection precedence.
 
 ### Blasphemous expected path
 
@@ -88,9 +91,12 @@ g++ -std=c++11 -Wall -Wextra -Werror \
 ```
 
 Cases: Blasphemous `.zip` with VPK-looking magic and an extraction
-destination, ordinary ZIP extraction, no-destination rejection
-contract, typed ZIP with opaque URL, normal VPK non-extraction, and
-case-insensitive link types.
+destination, no-destination rejection contract, typed ZIP with opaque
+URL, normal VPK non-extraction, case-insensitive link types, **and
+explicit preservation of old behavior for non-Game/Data links**.
+
+**CI automation:** `.github/workflows/client-build.yml` compiles and runs
+the host-only dispatch policy test before the VitaSDK build.
 
 **Device validation still required:** build with VitaSDK and check
 `Install All` plus individual links for Blasphemous; confirm logs show

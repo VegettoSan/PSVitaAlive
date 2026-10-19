@@ -1266,11 +1266,14 @@ int InstallController::workerMain() {
     const DetectResult downloadedPayload = payloadDetector.detectFile(job->finalPath);
     // VPK-looking ZIPs are still recoverable when the user requested extraction.
     // Keep this in sync with InstallDispatcher ZIP routing.
-    const bool zipRecoveryCandidate = shouldExtractZipArchive(
-        FormatDetector::extensionOf(job->finalPath),
-        !activeZipDestination_.empty(),
-        isDataOrGameFilesLinkType(activeLinkType_),
-        downloadedPayload.format == FileFormat::Zip || downloadedPayload.format == FileFormat::Vpk);
+    const bool zipRecoveryCandidate = !activeZipDestination_.empty() &&
+        (downloadedPayload.format == FileFormat::Zip ||
+         shouldExtractZipArchive(
+             FormatDetector::extensionOf(job->finalPath),
+             true,
+             isDataOrGameFilesLinkType(activeLinkType_),
+             downloadedPayload.format == FileFormat::Zip ||
+                 downloadedPayload.format == FileFormat::Vpk));
     diagnostics::log(std::string("[Installer] ZIP recovery candidate=") +
         (zipRecoveryCandidate ? "yes" : "no") +
         " format=" + toString(downloadedPayload.format) +

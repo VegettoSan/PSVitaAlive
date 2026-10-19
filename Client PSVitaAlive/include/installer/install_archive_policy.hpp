@@ -24,18 +24,21 @@ inline bool isDataOrGameFilesLinkType(const std::string& rawType) {
            normalized == "data files" || normalized == "data file";
 }
 
-// A ZIP with a chosen destination is always extracted, even when VPK markers
-// inside the archive make FormatDetector return Vpk. Opaque download names
-// are supported for explicitly typed Game Files / Data Files only.
+// This override applies ONLY to Game Files / Data Files. Every other link type
+// retains the installer's previous format-detection behavior (including ZIP
+// releases containing VPKs). Typed data archives may have opaque URL names.
 inline bool shouldExtractZipArchive(const std::string& extension,
                                    bool hasDestination,
                                    bool gameOrDataFiles,
                                    bool detectedZipContainer) {
-    if (!hasDestination) return false;
-    if (extension == "zip") return true;
-    // An explicitly .vpk file must not be silently extracted as game data.
+    if (!gameOrDataFiles || !hasDestination) return false;
+    // A file explicitly named .vpk must not be promoted or extracted as data.
     if (extension == "vpk") return false;
-    return gameOrDataFiles && detectedZipContainer;
+    // For typed data, .zip wins over any inferred VPK layout; ZipExtractor
+    // will still reject a corrupt or non-ZIP payload.
+    if (extension == "zip") return true;
+    // Signed redirects / opaque filenames: require recognizable ZIP magic.
+    return detectedZipContainer;
 }
 
 } // namespace psvitaalive

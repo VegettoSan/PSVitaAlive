@@ -271,8 +271,9 @@ InstallDispatchResult InstallDispatcher::installFile(
     }
 
     if (extractZip || detected.format == FileFormat::Zip || ext == "zip") {
-        // Typed Game Files/Data Files, and ZIPs with destinations, never
-        // enter the VPK promoter path, even when ZIP magic looks like VPK.
+        // Typed Game Files/Data Files with a ZIP destination never enter the
+        // VPK promoter path, even when ZIP magic looks like VPK. For all other
+        // link types, keep the original detection and dispatch precedence.
         // VPKs are ZIP containers. If the download lost the .vpk extension (or
         // magic detection only saw ZIP), try HomebrewInstaller when the user did
         // not supply an explicit extract path. This fallback is preserved
