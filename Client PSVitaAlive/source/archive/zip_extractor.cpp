@@ -420,6 +420,7 @@ ZipResult ZipExtractor::extract(
     ZipCancelFn shouldCancel
 ) {
     lastError_.clear();
+    usedStagedMoves_ = false;
     StorageManager st;
 
     // VitaDB extracts into an already-installed app folder (ux0:/app/TITLEID). On real
@@ -1095,6 +1096,7 @@ ZipResult ZipExtractor::extract(
         }
     }
     if (outcome == ZipResult::Ok) {
+        usedStagedMoves_ = !staged.empty();
         prog.currentEntry.clear();
         reportProgress(true);
         diagnostics::log(
