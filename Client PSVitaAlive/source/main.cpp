@@ -20,6 +20,7 @@
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
 #include "installer/install_controller.hpp"
+#include "installer/install_archive_policy.hpp"
 #include "ui/ui_font.hpp"
 #include "ui/full_catalog_screen.hpp"
 #include "ui/image_cache.hpp"
@@ -755,7 +756,7 @@ int main(){
         std::string zrif;std::string ltype;std::string cid;std::string extractPath;
         for(const auto&L:item.linkDetails){if(L.url==item.downloadUrl){zrif=L.zrif;ltype=L.type;cid=L.contentId;extractPath=L.extractPath;break;}}
         std::string zipDestination;
-        if(isZipName(item.downloadFileName)){
+        if(isZipName(item.downloadFileName) || psvitaalive::isDataOrGameFilesLinkType(ltype)){
             if(!extractPath.empty()){
                 zipDestination=extractPath;
                 psvitaalive::diagnostics::log(std::string("[UI] ZIP extract_path from catalog: ")+zipDestination);
@@ -800,7 +801,7 @@ int main(){
         if(isPlugin){
             zipDestination = link.extractPath.empty() ? "ur0:tai/" : link.extractPath;
             psvitaalive::diagnostics::log(std::string("[UI] Plugin extract_path: ")+zipDestination+" section="+link.section+" line="+link.line);
-        } else if(isZipName(requestItem.downloadFileName)){
+        } else if(isZipName(requestItem.downloadFileName) || psvitaalive::isDataOrGameFilesLinkType(link.type)){
             // Prefer per-link extract_path when present; otherwise ask the user.
             if(!link.extractPath.empty()){
                 zipDestination=link.extractPath;

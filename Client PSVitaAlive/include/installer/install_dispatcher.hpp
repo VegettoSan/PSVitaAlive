@@ -48,7 +48,8 @@ using InstallDispatchCancelFn =
  * Decide qué operación utilizar según el formato detectado:
  * - VPK -> HomebrewInstaller / Promoter Utility
  * - PKG -> VitaInstaller / Promoter Utility
- * - ZIP -> ZipExtractor a la ruta elegida por el usuario
+ * - ZIP con destino -> ZipExtractor (aunque la firma parezca VPK)
+ * - Game Files/Data Files -> ZIP obligatorio, nunca VPK
  * No maneja descargas ni DRM/licencias.
  */
 class InstallDispatcher {
@@ -58,7 +59,8 @@ public:
         InstallDispatchProgressFn onProgress = nullptr,
         InstallDispatchCancelFn shouldCancel = nullptr,
         const std::string& zipDestination = std::string(),
-        const std::string& rifPath = std::string()
+        const std::string& rifPath = std::string(),
+        bool forceZipExtract = false
     );
 
     const std::string& lastError() const { return lastError_; }

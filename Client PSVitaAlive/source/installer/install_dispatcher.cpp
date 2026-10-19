@@ -6,6 +6,7 @@
 #include "installer/vita_installer.hpp"
 #include "installer/psp_installer.hpp"
 #include "installer/app_settings.hpp"
+#include "installer/install_archive_policy.hpp"
 #include "psp_pkg_unpack.h"
 #include "storage/storage_manager.hpp"
 #include "diagnostic_logger.hpp"
@@ -80,7 +81,8 @@ InstallDispatchResult InstallDispatcher::installFile(
     InstallDispatchProgressFn onProgress,
     InstallDispatchCancelFn shouldCancel,
     const std::string& zipDestination,
-    const std::string& rifPath
+    const std::string& rifPath,
+    bool forceZipExtract
 ) {
     lastError_.clear();
     clearResultMeta();
@@ -99,10 +101,25 @@ InstallDispatchResult InstallDispatcher::installFile(
     FormatDetector detector;
     const DetectResult detected = detector.detectFile(path);
     const std::string ext = lowerExtension(path);
+    const bool extractZip = shouldExtractZipArchive(
+        ext, !zipDestination.empty(), forceZipExtract,
+        detected.format == FileFormat::Zip || detected.format == FileFormat::Vpk);
     diagnostics::log(std::string("[InstallDispatcher] detect format=") + toString(detected.format) + " ext=" + ext +
-        " pspTarget=" + AppSettings::toString(pspTarget_));
+        " pspTarget=" + AppSettings::toString(pspTarget_) +
+        " forceZip=" + (forceZipExtract ? "yes" : "no") +
+        " extractZip=" + (extractZip ? "yes" : "no") +
+        " destination=" + (zipDestination.empty() ? "-" : zipDestination));
 
-    if (detected.format == FileFormat::Vpk || ext == "vpk") {
+    if (forceZipExtract && zipDestination.empty()) {
+        setError("Game Files / Data Files ZIP requires an extract destination");
+        return InstallDispatchResult::InvalidArgument;
+    }
+    if (forceZipExtract && !extractZip) {
+        setError("Game Files / Data Files must be ZIP archives, not VPK/PKG");
+        return InstallDispatchResult::UnsupportedFormat;
+    }
+
+    if (!extractZip && (detected.format == FileFormat::Vpk || ext == "vpk")) {
         HomebrewInstaller installer;
         const InstallResult result = installer.installVpk(
             path,
@@ -253,11 +270,13 @@ InstallDispatchResult InstallDispatcher::installFile(
         return InstallDispatchResult::InstallFailed;
     }
 
-    if (detected.format == FileFormat::Zip || ext == "zip") {
+    if (extractZip || detected.format == FileFormat::Zip || ext == "zip") {
+        // Typed Game Files/Data Files, and ZIPs with destinations, never
+        // enter the VPK promoter path, even when ZIP magic looks like VPK.
         // VPKs are ZIP containers. If the download lost the .vpk extension (or
         // magic detection only saw ZIP), try HomebrewInstaller when the user did
-        // not supply an explicit extract path. A real data ZIP still needs a
-        // destination and will fail the VPK layout check with a clear error.
+        // not supply an explicit extract path. This fallback is preserved
+        // only for non-Game/Data links, whose missing destination was rejected above.
         if (zipDestination.empty()) {
             diagnostics::log("[InstallDispatcher] ZIP without destination — trying as VPK (ZIP-backed homebrew)");
             HomebrewInstaller installer;

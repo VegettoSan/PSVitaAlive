@@ -17,6 +17,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `docs/BGDL_PREPARATION_FRAME.md` | **BGDL preparation-frame handoff**: keep ShellSvc enqueue on the main thread while presenting a visible Preparing overlay first |
 | `docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md` | **Adaptive transfer and ZIP/VPK optimizations (18 October 2026):** thresholds, HTTP validators/checksums, buffering, progress UI, measurements and regression tests |
 | `docs/INSTALL_ALL_WORKER_CRASH_FIX_20261018.md` | **Install All SIGABRT regression:** dump evidence, worker-lifecycle synchronization, VPK→ZIP transition and extraction render-yield mitigation |
+| `docs/GAME_DATA_ZIP_INSTALL_FIX_20261019.md` | **Game/Data Files ZIP dispatch fix**: type-aware extraction over VPK-looking magic, missing-destination guard, ZIP recovery and regression test |
 | `docs/DOWNLOAD_RESILIENCE.md` | **In-app download + archive hardening**: HTTP response isolation, retries, safe Range resume, MediaFire re-resolution, Archive.org failover, runtime free-space guard, metadata throttling, large ZIP / ZIP64 extraction and diagnostics |
 | `docs/IMAGE_CACHE.md` | **Image cache v3**: per-resource identity, H/PV/PSP/PS1 scopes, 256 buckets, URL-change replacement, startup 200 MiB → ~40 MiB trim, loading-bar progress, localization and validation |
 | `docs/MULTILANGUAGE.md` | Current UI localization architecture, packaged languages, system/manual selection, English fallback and startup localization ordering |

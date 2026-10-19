@@ -8,6 +8,7 @@
 #include "installer/tai_config_editor.hpp"
 #include "storage/storage_manager.hpp"
 #include "installer/app_settings.hpp"
+#include "installer/install_archive_policy.hpp"
 #include "installer/refresh_manager.hpp"
 #include "installer/bgdl_client.hpp"
 #include "installer/pkg_bgdl_installer.hpp"
@@ -544,6 +545,12 @@ bool InstallController::requestInstall(
     const std::string& pluginLine
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
+    // Game Files / Data Files are extraction-only. Do not enqueue a download
+    // that could later be mistaken for an installable VPK.
+    if (isDataOrGameFilesLinkType(linkType) && zipDestination.empty()) {
+        diagnostics::log("[Installer] Data/Game Files ZIP rejected: missing extract destination");
+        return false;
+    }
 
     // IMPORTANT: a previous worker may have reported Completed before its
     // cleanup/logging tail returned. The UI's Install All can immediately
@@ -1257,8 +1264,13 @@ int InstallController::workerMain() {
 
     FormatDetector payloadDetector;
     const DetectResult downloadedPayload = payloadDetector.detectFile(job->finalPath);
-    const bool zipRecoveryCandidate =
-        downloadedPayload.format == FileFormat::Zip && !activeZipDestination_.empty();
+    // VPK-looking ZIPs are still recoverable when the user requested extraction.
+    // Keep this in sync with InstallDispatcher ZIP routing.
+    const bool zipRecoveryCandidate = shouldExtractZipArchive(
+        FormatDetector::extensionOf(job->finalPath),
+        !activeZipDestination_.empty(),
+        isDataOrGameFilesLinkType(activeLinkType_),
+        downloadedPayload.format == FileFormat::Zip || downloadedPayload.format == FileFormat::Vpk);
     diagnostics::log(std::string("[Installer] ZIP recovery candidate=") +
         (zipRecoveryCandidate ? "yes" : "no") +
         " format=" + toString(downloadedPayload.format) +
@@ -1379,7 +1391,8 @@ int InstallController::workerMain() {
             },
             nullptr,
             activeZipDestination_,
-            directRifPath
+            directRifPath,
+            isDataOrGameFilesLinkType(activeLinkType_)
         );
 
         if (result == InstallDispatchResult::Ok ||
