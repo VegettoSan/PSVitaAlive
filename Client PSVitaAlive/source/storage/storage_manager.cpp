@@ -1,4 +1,5 @@
 #include "storage/storage_manager.hpp"
+#include "diagnostic_logger.hpp"
 
 #include <psp2/io/fcntl.h>
 #include <psp2/io/dirent.h>
@@ -89,8 +90,13 @@ bool StorageManager::createDirectories(const std::string& path) {
                 continue;
             }
             if (!exists(dir)) {
-                int res = sceIoMkdir(dir.c_str(), 0777);
+                const int res = sceIoMkdir(dir.c_str(), 0777);
                 if (res < 0 && !exists(dir)) {
+                    char err[384];
+                    sceClibSnprintf(err, sizeof(err),
+                                    "[Storage] mkdir failed path=%s ret=0x%08X",
+                                    dir.c_str(), static_cast<unsigned>(res));
+                    diagnostics::log(err);
                     return false;
                 }
             }
