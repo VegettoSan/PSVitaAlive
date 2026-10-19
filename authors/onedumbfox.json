@@ -1,0 +1,15 @@
+{
+  "id": "onedumbfox",
+  "name": "OneDumbFox",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "bio": "Dev",
+  "links": [
+    {
+      "type": "Community",
+      "name": "Reddit",
+      "url": "https://www.reddit.com/user/OneDumbFox/",
+      "recommended": true
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+}
