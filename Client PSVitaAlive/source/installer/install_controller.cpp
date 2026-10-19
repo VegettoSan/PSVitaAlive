@@ -311,8 +311,12 @@ void InstallController::cancel() {
         setState(InstallStatus::State::Downloading, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCancellingDownload));
         diagnostics::log(std::string("[Installer] download cancellation requested job=") + activeJobId_);
     } else if (currentState == InstallStatus::State::Installing &&
-               workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire)) {
-        // Cooperative cancellation: never terminate a worker mid-write.
+               workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire) &&
+               (savedZipMode_ || !isPluginLinkType(activeLinkType_))) {
+        // Plugin copies have their own installer path without a cancellation
+        // callback; retain the old behavior rather than showing a false
+        // "Cancelling" status. Normal ZIP/VPK installs are cooperative.
+        // Never terminate a worker mid-write.
         installCancelRequested_.store(true, std::memory_order_release);
         setStage("Cancelling");
         setState(InstallStatus::State::Installing, "Cancelling installation...");

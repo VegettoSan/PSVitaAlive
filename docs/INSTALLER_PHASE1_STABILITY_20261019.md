@@ -17,7 +17,7 @@ Si falla el paso 2 se intenta restaurar el anterior desde su respaldo, y el erro
 **Importante:** protección por archivo, **no** transacción atómica de todo el ZIP. Si falla una entrada posterior, otras entradas ya sustituidas permanecen actualizadas. Un corte eléctrico entre los renombrados puede dejar un `.bak` recuperable; no se debe borrar ciegamente.
 
 ## 3. Cancelación cooperativa
-La señal de cancelación de `DownloadJob` es atómica compartida; no se pierde al copiar/mover trabajos ni se restablece en los reintentos. Las pausas externas de reintento la comprueban cada 100 ms. El instalador tiene una señal atómica separada, pasada a `InstallDispatcher` durante instalación/extracción, incluso ZIP offline. No se matan hilos a la fuerza. Algunas operaciones del sistema (BGDL y Promoter) no son cancelables una vez entregadas a la consola.
+La señal de cancelación de `DownloadJob` es atómica compartida; no se pierde al copiar/mover trabajos ni se restablece en los reintentos. Las pausas externas de reintento la comprueban cada 100 ms. El instalador tiene una señal atómica separada, pasada a `InstallDispatcher` durante instalación/extracción, incluso ZIP offline. No se matan hilos a la fuerza. Algunas operaciones del sistema (BGDL y Promoter) no son cancelables una vez entregadas a la consola. Durante la copia final de plugins no se anuncia cancelación: esa ruta no tiene callback seguro y mantiene su comportamiento anterior.
 
 ## 4. Política de reintentos
 `InstallDispatchResult::InvalidArchive` identifica layouts VPK inválidos o entradas ZIP inseguras/inválidas. Se detienen sin repetir cinco veces lo que no puede corregirse solo. Fallos transitorios de almacenamiento, Promoter o E/S conservan el manejo anterior de reintentos.
