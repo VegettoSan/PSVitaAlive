@@ -22,6 +22,7 @@
 #include <psp2/shellutil.h>
 
 #include <cstring>
+#include <algorithm>
 #include <cstdlib>
 
 
