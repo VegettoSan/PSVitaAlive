@@ -1214,7 +1214,11 @@ int InstallController::workerMain() {
             lastInstallError.find("cancelled") != std::string::npos ||
             lastInstallError.find("not found") != std::string::npos ||
             lastInstallError.find("empty installation") != std::string::npos ||
-            lastInstallError.find("not enough free space") != std::string::npos;
+            lastInstallError.find("not enough free space") != std::string::npos ||
+            lastInstallError.find("cannot prepare ZIP directory:") != std::string::npos ||
+            lastInstallError.find("cannot create file:") != std::string::npos ||
+            lastInstallError.find("mkdir failed:") != std::string::npos ||
+            lastInstallError.find("sceIoWrite failed") != std::string::npos;
         if (hardPermanent) {
             diagnostics::log(
                 std::string("[Installer] permanent install error — stop retries: ") +
