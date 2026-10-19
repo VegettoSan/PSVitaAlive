@@ -1015,16 +1015,25 @@ int InstallController::workerSavedZipMain() {
         },
         nullptr, target, std::string());
     if (result == InstallDispatchResult::Ok) {
-        // The recovered ZIP has served its purpose. Free 1-3 GB of ux0 storage
-        // only after verified successful extraction; never erase on failure.
-        StorageManager st;
-        const bool removed = st.removeFile(path);
-        if (removed) st.removeFile(infoPath);
-        diagnostics::log(std::string("[Installer] offline ZIP extraction OK archive_deleted=") +
-                         (removed ? "yes" : "no") + " target=" + target);
+        const bool staged = dispatcher_.lastZipUsedStagedMoves();
+        bool removed = false;
+        if (!staged) {
+            // Direct extraction keeps the old cleanup policy. For staged
+            // subtree moves, preserve the original ZIP: physical Vita tests
+            // show very deep children can remain unreadable after a move.
+            StorageManager st;
+            removed = st.removeFile(path);
+            if (removed) st.removeFile(infoPath);
+        }
+        diagnostics::log(std::string("[Installer] offline ZIP result moved_deep_folders=") +
+                         (staged ? "yes" : "no") +
+                         " archive_deleted=" + (removed ? "yes" : "no") +
+                         " target=" + target);
         setInstallPath(target.c_str());
         setStage("Completed");
-        setState(InstallStatus::State::Completed, "Saved ZIP extracted successfully");
+        setState(InstallStatus::State::Completed,
+                 staged ? "ZIP folders moved. Deep files may be unreadable; ZIP kept."
+                        : "Saved ZIP extracted successfully");
     } else {
         const std::string error = dispatcher_.lastError().empty()
             ? "ZIP extraction failed" : dispatcher_.lastError();
@@ -1574,13 +1583,54 @@ int InstallController::workerMain() {
                 }
             }
         }
+        if (dispatcher_.lastZipUsedStagedMoves()) {
+            sceClibSnprintf(okMsg, sizeof(okMsg),
+                            "ZIP folders moved. Deep files may be unreadable; ZIP kept.");
+        }
         diagnostics::log(std::string("[Installer] installation completed path=") +
             dispatcher_.lastInstallPath() + " titleId=" + dispatcher_.lastTitleId() +
             " liveArea=" + (dispatcher_.lastLiveAreaOk() ? "yes" : "no") +
             " verify=" + verifyMsg +
             " attempts=" + std::to_string(attemptsUsed));
-        downloads_.cleanupCompletedJob(activeJobId_);
-        activeJobId_.clear();
+        if (dispatcher_.lastZipUsedStagedMoves() && zipRecoveryCandidate) {
+            // Preserve the complete original archive after directory-staging
+            // success. We cannot assert that the port can read all deep files.
+            // Use the same bounded manual recovery directory as failed ZIPs.
+            StorageManager st;
+            const std::string key = sanitizeRecoveryComponent(
+                !pendingTitleId_.empty() ? pendingTitleId_ : pendingAppId_, "unknown");
+            const std::string recoveryDir = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
+            bool moved = false;
+            std::string recoveryPath = job->finalPath;
+            if (st.createDirectories(recoveryDir)) {
+                const std::string candidate = uniqueRecoveryPath(st, recoveryDir, job->fileName);
+                if (st.rename(job->finalPath, candidate)) {
+                    recoveryPath = candidate;
+                    moved = true;
+                }
+            }
+            if (moved) {
+                std::string info = "PS Vita Alive Store - ZIP deep-folder recovery\\n\\n";
+                info += "App: " + activeDisplayTitle_ + "\\n";
+                info += "App ID: " + pendingAppId_ + "\\n";
+                info += "Title ID: " + pendingTitleId_ + "\\n";
+                info += "Saved path: " + recoveryPath + "\\n";
+                info += "Manual extraction target: " + activeZipDestination_ + "\\n";
+                info += "Warning: deep directory trees moved; runtime file access not verified.\\n";
+                st.writeTextFile(recoveryPath + ".info.txt", info);
+                downloads_.cleanupCompletedJob(activeJobId_);
+                activeJobId_.clear();
+            } else {
+                // Preserve the completed job rather than deleting the only ZIP
+                // copy. Startup cleanup already preserves completed jobs.
+                diagnostics::log("[Installer] staged ZIP kept in completed job: " + recoveryPath);
+                activeJobId_.clear();
+            }
+            diagnostics::log("[Installer] staged ZIP archive retained: " + recoveryPath);
+        } else {
+            downloads_.cleanupCompletedJob(activeJobId_);
+            activeJobId_.clear();
+        }
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         setStage("Completed");
         setState(InstallStatus::State::Completed, okMsg);
