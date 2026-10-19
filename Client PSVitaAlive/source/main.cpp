@@ -738,10 +738,15 @@ int main(){
     screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep){ const bool resolved=installer.resolveZipRecovery(keep); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
     screen.setSavedZipCallbacks(
         [&installer](const psvitaalive::ui::CatalogItem& item) {
-            return installer.hasSavedZip(item.id, item.titleId);
+            std::vector<psvitaalive::ui::FullCatalogScreen::SavedZipOption> options;
+            for (const auto& archive : installer.savedZips(item.id, item.titleId))
+                options.push_back({archive.fileName, archive.archivePath});
+            return options;
         },
-        [&installer, &screen](const psvitaalive::ui::CatalogItem& item) {
-            const bool started = installer.requestSavedZipExtraction(item.id, item.titleId);
+        [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
+                             const std::string& archivePath) {
+            const bool started = installer.requestSavedZipExtraction(
+                item.id, item.titleId, archivePath);
             if (started) screen.requestUx0SpaceRefresh();
             return started;
         });
