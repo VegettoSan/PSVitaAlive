@@ -48,6 +48,13 @@ jobs:
             -o /tmp/psvitaalive-install-archive-policy-test
           /tmp/psvitaalive-install-archive-policy-test
 
+      - name: Test installer retry policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_install_retry_policy.cpp \
+            -o /tmp/psvitaalive-install-retry-test
+          /tmp/psvitaalive-install-retry-test
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |

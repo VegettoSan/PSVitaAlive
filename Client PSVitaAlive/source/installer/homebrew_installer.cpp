@@ -694,7 +694,7 @@ InstallResult HomebrewInstaller::installVpk(
     if (!st.exists(ebootPath) || !st.exists(paramPath)) {
         removeTree(tmpDir);
         setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgInvalidVpkLayout));
-        return InstallResult::ExtractFailed;
+        return InstallResult::NotVpk;
     }
     if (shouldCancel && shouldCancel()) {
         removeTree(tmpDir);

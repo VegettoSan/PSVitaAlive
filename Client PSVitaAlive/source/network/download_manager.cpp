@@ -191,7 +191,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
 
 void DownloadManager::cancel(const std::string& jobId) {
     if (auto* j = findJob(jobId)) {
-        j->cancelRequested = true;
+        j->cancelRequested->store(true, std::memory_order_release);
         StorageManager st;
         if (j->state == DownloadState::Queued) {
             st.removeFile(j->temporaryPath);
@@ -204,7 +204,7 @@ void DownloadManager::cancel(const std::string& jobId) {
 
 bool DownloadManager::runJob(DownloadJob& job) {
     job.state = DownloadState::Preparing;
-    job.cancelRequested = false;
+    // Never reset a cancellation sent before this worker started.
     saveMetadata(job);
 
     StorageManager st;
@@ -246,7 +246,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         const uint64_t limit = remoteTotalKnown ? sizeHardLimit(job.expectedSize) : 0;
         if (limit > 0 && job.downloadedSize > limit) {
             sizeLimitHit = true;
-            job.cancelRequested = true;
+            job.cancelRequested->store(true, std::memory_order_release);
             char m[160];
             sceClibSnprintf(m, sizeof(m),
                 "[DownloadManager] size limit hit downloaded=%llu expected=%llu limit=%llu",
@@ -261,7 +261,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             uint64_t freeB = 0, totalB = 0;
             if (StorageManager::queryUx0Space(freeB, totalB) && freeB < kFreeSpaceReserve) {
                 diskSpaceHit = true;
-                job.cancelRequested = true;
+                job.cancelRequested->store(true, std::memory_order_release);
                 char m[180];
                 sceClibSnprintf(m, sizeof(m),
                     "[DownloadManager] low-space guard free=%llu downloaded=%llu reserve=%llu",
@@ -290,7 +290,9 @@ bool DownloadManager::runJob(DownloadJob& job) {
             lastSaved = job.downloadedSize;
         }
     };
-    auto cancelFn = [&]() -> bool { return job.cancelRequested; };
+    auto cancelFn = [&]() -> bool {
+        return job.cancelRequested->load(std::memory_order_acquire);
+    };
 
     std::string effectiveUrl = job.url;
     const bool mediafire = isMediaFireUrl(job.url);
@@ -350,7 +352,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
             }
             // Outer gap kept small — inner loop already retried with fail-fast.
             const int delayMs = isArchiveUrl ? (1000 * outer) : 500;
-            sceKernelDelayThread(delayMs * 1000);
+            // Check cancellation during the retry delay.
+            for (int waited = 0; waited < delayMs && !cancelFn(); waited += 100)
+                sceKernelDelayThread(100 * 1000);
+            if (cancelFn()) { hr = HttpResult::Cancelled; break; }
             if (mediafire) {
                 // MediaFire direct URLs expire, but the bytes already downloaded do not.
                 // Re-resolve the page and attempt a normal Range resume against the new
@@ -392,8 +397,9 @@ bool DownloadManager::runJob(DownloadJob& job) {
             diskSpaceHit = false;
             remoteTotalKnown = false;
             lastSpaceCheck = 0;
-            job.cancelRequested = false;
+            // Never clear the cancellation when preparing a new attempt.
         }
+        if (cancelFn()) { hr = HttpResult::Cancelled; break; }
         // Validators are only meaningful for the same resolved resource. MediaFire
         // direct links are short-lived, so do not reuse a validator across a new URL.
         std::string ifRangeValidator;
@@ -414,7 +420,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
         job.validatorUrl = effectiveUrl;
         saveMetadata(job);
-        if (hr == HttpResult::Ok || hr == HttpResult::Cancelled || job.cancelRequested || sizeLimitHit)
+        if (hr == HttpResult::Ok || hr == HttpResult::Cancelled || cancelFn() || sizeLimitHit)
             break;
     }
     job.lastHttpStatus = http_.lastStatusCode();
@@ -443,7 +449,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         diagnostics::log("[DownloadManager] aborted: exceeded expected size with margin");
         return false;
     }
-    if (hr == HttpResult::Cancelled || job.cancelRequested) {
+    if (hr == HttpResult::Cancelled || cancelFn()) {
         st.removeFile(job.temporaryPath);
         job.downloadedSize = 0;
         job.state = DownloadState::Cancelled;

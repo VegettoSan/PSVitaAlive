@@ -851,13 +851,45 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
-        SceUID fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+        // Existing files are NEVER truncated before a replacement has been
+        // extracted and verified. New files keep the fast direct-write path.
+        const bool replacingExisting = st.exists(outPath);
+        if (replacingExisting && st.isDirectory(outPath)) {
+            zip_fclose(zf);
+            setError("ZIP file destination is a directory: " + outPath);
+            outcome = ZipResult::InvalidEntry;
+            break;
+        }
+        std::string tempPath, backupPath, writePath = outPath;
+        if (replacingExisting) {
+            const std::string parent = outPath.substr(0, outPath.find_last_of('/'));
+            for (unsigned slot = 0; slot < 32; ++slot) {
+                const std::string suffix = std::to_string(static_cast<unsigned long long>(i)) +
+                    "_" + std::to_string(slot);
+                const std::string candidate = parent + "/._psva_" + suffix;
+                const std::string temp = candidate + ".tmp";
+                const std::string backup = candidate + ".bak";
+                if (!st.exists(temp) && !st.exists(backup)) {
+                    tempPath = temp;
+                    backupPath = backup;
+                    break;
+                }
+            }
+            if (tempPath.empty()) {
+                zip_fclose(zf);
+                setError("cannot reserve safe ZIP replacement paths: " + outPath);
+                outcome = ZipResult::IoError;
+                break;
+            }
+            writePath = tempPath;
+        }
+        SceUID fd = sceIoOpen(writePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         if (fd < 0) {
             zip_fclose(zf);
             char err[480];
             sceClibSnprintf(err, sizeof(err),
                             "cannot create file: %s sceIoOpen=0x%08X parent_is_dir=%d",
-                            outPath.c_str(), static_cast<unsigned>(fd),
+                            writePath.c_str(), static_cast<unsigned>(fd),
                             slash != std::string::npos && st.isDirectory(outPath.substr(0, slash)) ? 1 : 0);
             setError(err);
             outcome = ZipResult::IoError;
@@ -989,8 +1021,8 @@ ZipResult ZipExtractor::extract(
         }
 
         if (!fileOk) {
-            // Best-effort cleanup of partial output
-            st.removeFile(outPath);
+            // A failed overwrite removes only the temporary output.
+            st.removeFile(writePath);
             break;
         }
 
@@ -1004,9 +1036,40 @@ ZipResult ZipExtractor::extract(
                 (unsigned long long)zs.size,
                 (unsigned long long)writtenTotal);
             setError(detail);
-            st.removeFile(outPath);
+            st.removeFile(writePath);
             outcome = ZipResult::IoError;
             break;
+        }
+
+        if (replacingExisting) {
+            // CRC, ZIP stream close and expected-size verification all passed.
+            if (shouldCancel && shouldCancel()) {
+                st.removeFile(tempPath);
+                setError("cancelled before ZIP file replacement");
+                outcome = ZipResult::Cancelled;
+                break;
+            }
+            const int backedUp = sceIoRename(outPath.c_str(), backupPath.c_str());
+            if (backedUp < 0) {
+                st.removeFile(tempPath);
+                setError("cannot back up existing ZIP destination: " + outPath +
+                         " sceIoRename=" + std::to_string(backedUp));
+                outcome = ZipResult::IoError;
+                break;
+            }
+            const int promoted = sceIoRename(tempPath.c_str(), outPath.c_str());
+            if (promoted < 0) {
+                const int restored = sceIoRename(backupPath.c_str(), outPath.c_str());
+                st.removeFile(tempPath);
+                setError("ZIP replacement rename failed: " + outPath +
+                         " commit=" + std::to_string(promoted) +
+                         " restore=" + std::to_string(restored) +
+                         (restored < 0 ? " (original preserved at " + backupPath + ")" : ""));
+                outcome = ZipResult::IoError;
+                break;
+            }
+            if (!st.removeFile(backupPath))
+                diagnostics::log("[ZipExtractor] overwrite complete, old backup retained at " + backupPath);
         }
 
         if (branch) {

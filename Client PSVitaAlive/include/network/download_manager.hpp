@@ -2,8 +2,10 @@
 
 #include "network/http_client.hpp"
 
+#include <atomic>
 #include <cstdint>
 #include <functional>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -40,7 +42,9 @@ struct DownloadJob {
 
     DownloadState state = DownloadState::Queued;
     bool resumable = true;
-    bool cancelRequested = false;
+    // Shared atomic remains stable when DownloadJob objects are copied/moved.
+    std::shared_ptr<std::atomic<bool>> cancelRequested =
+        std::make_shared<std::atomic<bool>>(false);
 
     int lastHttpStatus = 0;
     std::string lastError;

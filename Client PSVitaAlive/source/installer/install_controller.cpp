@@ -9,6 +9,7 @@
 #include "storage/storage_manager.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/install_archive_policy.hpp"
+#include "installer/install_retry_policy.hpp"
 #include "installer/refresh_manager.hpp"
 #include "installer/bgdl_client.hpp"
 #include "installer/pkg_bgdl_installer.hpp"
@@ -303,11 +304,20 @@ void InstallController::setSettings(const AppSettingsData& s) {
 
 void InstallController::cancel() {
     const auto currentState = static_cast<InstallStatus::State>(state_.load());
-    if (currentState != InstallStatus::State::Downloading || activeJobId_.empty()) return;
-    downloads_.cancel(activeJobId_);
-    setStage("Cancelling");
-    setState(InstallStatus::State::Downloading, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCancellingDownload));
-    diagnostics::log(std::string("[Installer] cancel requested job=") + activeJobId_);
+    if (currentState == InstallStatus::State::Downloading && !activeJobId_.empty()) {
+        installCancelRequested_.store(true, std::memory_order_release);
+        downloads_.cancel(activeJobId_);
+        setStage("Cancelling");
+        setState(InstallStatus::State::Downloading, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCancellingDownload));
+        diagnostics::log(std::string("[Installer] download cancellation requested job=") + activeJobId_);
+    } else if (currentState == InstallStatus::State::Installing &&
+               workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire)) {
+        // Cooperative cancellation: never terminate a worker mid-write.
+        installCancelRequested_.store(true, std::memory_order_release);
+        setStage("Cancelling");
+        setState(InstallStatus::State::Installing, "Cancelling installation...");
+        diagnostics::log("[Installer] extraction/installation cancellation requested");
+    }
 }
 
 void InstallController::acknowledgeResult() {
@@ -476,6 +486,7 @@ bool InstallController::requestSavedZipExtraction(
     savedZipTarget_ = selected->target;
     savedZipInfoPath_ = selected->infoPath;
     savedZipMode_ = true;
+    installCancelRequested_.store(false, std::memory_order_release);
     activeJobId_.clear();
     activeZipDestination_ = selected->target;
     zipRecoveryAvailable_.store(false);
@@ -646,6 +657,7 @@ bool InstallController::requestInstall(
         diagnostics::log("[Installer] no expected size; space pre-check skipped");
     }
 
+    installCancelRequested_.store(false, std::memory_order_release);
     activeZrif_ = zrif;
     activeContentId_ = contentId;
 
@@ -1031,7 +1043,8 @@ int InstallController::workerSavedZipMain() {
             }
             if (!progress.message.empty()) setMessage(progress.message.c_str());
         },
-        nullptr, target, std::string());
+        [this]() { return installCancelRequested_.load(std::memory_order_acquire); },
+        target, std::string(), true);
     if (result == InstallDispatchResult::Ok) {
         const bool staged = dispatcher_.lastZipUsedStagedMoves();
         // All ZIP entries and whole-directory relocations completed successfully.
@@ -1049,17 +1062,21 @@ int InstallController::workerSavedZipMain() {
                  removed ? "Saved ZIP extracted and removed successfully"
                          : "ZIP extracted, but could not delete the saved archive");
     } else {
-        const std::string error = dispatcher_.lastError().empty()
-            ? "ZIP extraction failed" : dispatcher_.lastError();
-        diagnostics::log("[Installer] offline ZIP extraction FAILED (archive preserved): " + error);
+        const bool cancelled = result == InstallDispatchResult::Cancelled;
+        const std::string error = cancelled ? "ZIP extraction cancelled (saved ZIP preserved)"
+            : (dispatcher_.lastError().empty()
+                ? "ZIP extraction failed" : dispatcher_.lastError());
+        diagnostics::log("[Installer] offline ZIP extraction interrupted (archive preserved): " + error);
         zipRecoveryPath_ = path;
         zipRecoveryExtractPath_ = target;
         zipRecoveryInfoPath_ = infoPath;
         zipRecoveryJobId_.clear();
-        zipRecoveryMayBeCorrupt_.store(looksLikeDamagedZipError(error));
-        zipRecoveryAvailable_.store(true);
-        setStage("ZipRecovery");
-        setState(InstallStatus::State::Failed, error.c_str());
+        zipRecoveryMayBeCorrupt_.store(!cancelled && looksLikeDamagedZipError(error));
+        // A cancelled offline ZIP remains available from the saved ZIP list.
+        zipRecoveryAvailable_.store(!cancelled);
+        setStage(cancelled ? "Cancelled" : "ZipRecovery");
+        setState(cancelled ? InstallStatus::State::Cancelled
+                           : InstallStatus::State::Failed, error.c_str());
     }
     resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
     savedZipMode_ = false;
@@ -1318,6 +1335,11 @@ int InstallController::workerMain() {
     uint64_t extractStartedUs = 0;
     uint64_t extractLastBytes = 0;
     for (int attempt = 1; attempt <= kMaxInstallAttempts; ++attempt) {
+        if (installCancelRequested_.load(std::memory_order_acquire)) {
+            result = InstallDispatchResult::Cancelled;
+            lastInstallError = "Installation cancelled";
+            break;
+        }
         attemptsUsed = attempt;
         extractStartedUs = 0;
         extractLastBytes = 0;
@@ -1348,7 +1370,15 @@ int InstallController::workerMain() {
                 (integrityHint ? " (integrity/FS settle)" : "") +
                 " after: " + lastInstallError);
             // Longer pause when EOCD may be a short FS lag after a big write.
-            sceKernelDelayThread((integrityHint ? 4 : 2) * 1000 * 1000);
+            const int waitMs = integrityHint ? 4000 : 2000;
+            for (int waited = 0; waited < waitMs &&
+                 !installCancelRequested_.load(std::memory_order_acquire); waited += 100)
+                sceKernelDelayThread(100 * 1000);
+            if (installCancelRequested_.load(std::memory_order_acquire)) {
+                result = InstallDispatchResult::Cancelled;
+                lastInstallError = "Installation cancelled";
+                break;
+            }
         }
 
         dispatcher_.setPspTarget(settings_.pspTarget);
@@ -1392,7 +1422,7 @@ int InstallController::workerMain() {
                 }
                 if (!progress.message.empty()) setMessage(progress.message.c_str());
             },
-            nullptr,
+            [this]() { return installCancelRequested_.load(std::memory_order_acquire); },
             activeZipDestination_,
             directRifPath,
             isDataOrGameFilesLinkType(activeLinkType_)
@@ -1417,9 +1447,7 @@ int InstallController::workerMain() {
             lastInstallError.find("unsupported compression") != std::string::npos ||
             lastInstallError.find("encryption") != std::string::npos;
         const bool hardPermanent =
-            result == InstallDispatchResult::InvalidArgument ||
-            result == InstallDispatchResult::UnsupportedFormat ||
-            result == InstallDispatchResult::DetectFailed ||
+            isPermanentInstallResult(result) ||
             corruptArchive ||
             lastInstallError.find("cancelled") != std::string::npos ||
             lastInstallError.find("not found") != std::string::npos ||

@@ -59,6 +59,7 @@ const char* toString(InstallDispatchResult result) {
         case InstallDispatchResult::Cancelled: return "Cancelled";
         case InstallDispatchResult::IoError: return "IoError";
         case InstallDispatchResult::UnknownError: return "UnknownError";
+        case InstallDispatchResult::InvalidArchive: return "InvalidArchive";
         default: return "Unknown";
     }
 }
@@ -163,7 +164,9 @@ InstallDispatchResult InstallDispatcher::installFile(
             return InstallDispatchResult::Cancelled;
         }
         setError(installer.lastError());
-        return InstallDispatchResult::InstallFailed;
+        return result == InstallResult::NotVpk
+            ? InstallDispatchResult::InvalidArchive
+            : InstallDispatchResult::InstallFailed;
     }
 
     if (detected.format == FileFormat::Pkg || ext == "pkg") {
@@ -326,7 +329,9 @@ InstallDispatchResult InstallDispatcher::installFile(
             setError(installer.lastError().empty()
                 ? "ZIP file is not a VPK and no extract path was provided"
                 : (std::string("Not a VPK / install failed: ") + installer.lastError()));
-            return InstallDispatchResult::InstallFailed;
+            return result == InstallResult::NotVpk
+                ? InstallDispatchResult::InvalidArchive
+                : InstallDispatchResult::InstallFailed;
         }
         ZipExtractor extractor;
         const ZipResult result = extractor.extract(
@@ -345,7 +350,12 @@ InstallDispatchResult InstallDispatcher::installFile(
         lastInstallPath_ = zipDestination;
         lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote
         if (result == ZipResult::Cancelled) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgExtractCancelled)); return InstallDispatchResult::Cancelled; }
-        if (result != ZipResult::Ok) { setError(extractor.lastError()); return InstallDispatchResult::InstallFailed; }
+        if (result != ZipResult::Ok) {
+            setError(extractor.lastError());
+            return (result == ZipResult::InvalidEntry || result == ZipResult::UnsafePath)
+                ? InstallDispatchResult::InvalidArchive
+                : InstallDispatchResult::InstallFailed;
+        }
         lastZipUsedStagedMoves_ = extractor.usedStagedMoves();
         diagnostics::log(std::string("[InstallDispatcher] ZIP extracted to ") + zipDestination +
                          (lastZipUsedStagedMoves_ ? " [moved deep folders; runtime readability unverified]" : ""));

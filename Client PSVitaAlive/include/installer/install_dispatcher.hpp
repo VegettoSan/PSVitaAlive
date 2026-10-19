@@ -15,7 +15,8 @@ enum class InstallDispatchResult {
     InstallFailed,
     Cancelled,
     IoError,
-    UnknownError
+    UnknownError,
+    InvalidArchive // structurally invalid / unsafe payload; retry cannot repair it
 };
 
 const char* toString(InstallDispatchResult result);

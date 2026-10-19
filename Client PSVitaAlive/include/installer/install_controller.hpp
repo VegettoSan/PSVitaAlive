@@ -170,6 +170,8 @@ private:
     std::string activePluginLine_;
     std::string activeDisplayTitle_;
     std::atomic<bool> needsReboot_{false};
+    // Shared UI-to-worker signal; persists across installation retry attempts.
+    std::atomic<bool> installCancelRequested_{false};
 
     // ZIP-only manual recovery. This is never populated for direct VPK/PKG/plugin jobs.
     std::atomic<bool> zipRecoveryAvailable_{false};
