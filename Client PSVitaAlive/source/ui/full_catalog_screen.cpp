@@ -2721,8 +2721,8 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     installProgressMessage_ = message;
     installResultAutoCloseMs_ = resultAutoCloseRemainingMs;
 
+    if (outcome != 0 && outcome != installOutcome_) savedZipProbeAtUs_ = 0;
     installOutcome_ = outcome;
-    if (outcome != 0) savedZipProbeAtUs_ = 0;
     installLiveAreaOk_ = liveAreaOk;
     protectionUpdateForJob(active, outcome, stage);
     installResultPath_ = installPath;
