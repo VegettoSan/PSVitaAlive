@@ -379,99 +379,108 @@ bool InstallController::resolveZipRecovery(bool keep) {
 }
 
 
-bool InstallController::locateSavedZip(const std::string& appId, const std::string& titleId,
-                                       std::string& path, std::string& target,
-                                       std::string& infoPath) const {
-    path.clear(); target.clear(); infoPath.clear();
-    if (appId.empty() && titleId.empty()) return false;
-    const std::string key = sanitizeRecoveryComponent(
-        !titleId.empty() ? titleId : appId, "unknown");
-    const std::string folder = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
-    const SceUID dir = sceIoDopen(folder.c_str());
-    if (dir < 0) return false;
+std::vector<SavedZipArchive> InstallController::savedZips(
+    const std::string& appId, const std::string& titleId) const {
+    std::vector<SavedZipArchive> results;
+    if (appId.empty() && titleId.empty()) return results;
     StorageManager st;
-    SceIoDirent entry{};
-    int seen = 0;
-    bool found = false;
-    while (++seen <= 128 && sceIoDread(dir, &entry) > 0) {
-        const std::string name(entry.d_name);
-        const std::string suffix = ".zip.info.txt";
-        if (name.size() <= suffix.size() ||
-            name.compare(name.size() - suffix.size(), suffix.size(), suffix) != 0)
-            continue;
-        const std::string candidateInfo = folder + "/" + name;
-        const std::string candidateZip = folder + "/" + name.substr(0, name.size() - 9);
-        const int64_t infoSize = st.fileSize(candidateInfo);
-        if (infoSize <= 0 || infoSize > 8192 || st.fileSize(candidateZip) <= 0)
-            continue;
-        std::string metadata;
-        if (!st.readTextFile(candidateInfo, metadata)) continue;
-        auto field = [&](const char* label) -> std::string {
-            const size_t p = metadata.find(label);
-            if (p == std::string::npos || (p != 0 && metadata[p - 1] != '\n')) return {};
-            const size_t start = p + std::strlen(label);
-            const size_t end = metadata.find_first_of("\r\n", start);
-            return metadata.substr(start, end == std::string::npos ? end : end - start);
-        };
-        if (field("App ID: ") != appId ||
-            (!titleId.empty() && field("Title ID: ") != titleId))
-            continue;
-        const std::string dest = field("Manual extraction target: ");
-        // Retain original catalog extraction target, but reject relative/traversal
-        // and control-character paths. Never use the metadata's Saved path field.
-        if (dest.size() < 5 || dest.size() > 180 ||
-            dest.find("..") != std::string::npos ||
-            !(dest.compare(0, 4, "ux0:") == 0 ||
-              dest.compare(0, 4, "ur0:") == 0 ||
-              dest.compare(0, 5, "uma0:") == 0))
-            continue;
-        bool safe = true;
-        for (unsigned char ch : dest)
-            if (ch < 0x21 || ch > 0x7e) safe = false;
-        if (!safe) continue;
-        path = candidateZip; target = dest; infoPath = candidateInfo;
-        found = true;
-        break;
+    const std::string root = std::string(StorageManager::BASE_DIR) + "/manual/";
+    std::vector<std::string> keys;
+    if (!titleId.empty()) keys.push_back(sanitizeRecoveryComponent(titleId, "unknown"));
+    if (!appId.empty()) {
+        const std::string key = sanitizeRecoveryComponent(appId, "unknown");
+        if (std::find(keys.begin(), keys.end(), key) == keys.end()) keys.push_back(key);
     }
-    sceIoDclose(dir);
-    return found;
+    for (const auto& key : keys) {
+        const std::string folder = root + key;
+        const SceUID dir = sceIoDopen(folder.c_str());
+        if (dir < 0) continue;
+        SceIoDirent entry{};
+        int seen = 0;
+        while (++seen <= 128 && results.size() < 32 && sceIoDread(dir, &entry) > 0) {
+            const std::string name(entry.d_name);
+            const std::string suffix = ".zip.info.txt";
+            if (name.size() <= suffix.size() ||
+                name.compare(name.size() - suffix.size(), suffix.size(), suffix) != 0)
+                continue;
+            const std::string info = folder + "/" + name;
+            const std::string archive = folder + "/" + name.substr(0, name.size() - 9);
+            const int64_t infoSize = st.fileSize(info);
+            if (infoSize <= 0 || infoSize > 8192 || st.fileSize(archive) <= 0)
+                continue;
+            std::string metadata;
+            if (!st.readTextFile(info, metadata)) continue;
+            const auto field = [&](const char* label) -> std::string {
+                const size_t p = metadata.find(label);
+                if (p == std::string::npos || (p != 0 && metadata[p - 1] != '\n')) return {};
+                const size_t at = p + std::strlen(label);
+                const size_t end = metadata.find_first_of("\r\n", at);
+                return metadata.substr(at, end == std::string::npos ? end : end - at);
+            };
+            if (field("App ID: ") != appId ||
+                (!titleId.empty() && field("Title ID: ") != titleId)) continue;
+            const std::string dest = field("Manual extraction target: ");
+            if (dest.size() < 5 || dest.size() > 180 ||
+                dest.find("..") != std::string::npos ||
+                !(dest.compare(0, 4, "ux0:") == 0 ||
+                  dest.compare(0, 4, "ur0:") == 0 ||
+                  dest.compare(0, 5, "uma0:") == 0)) continue;
+            bool safe = true;
+            for (unsigned char ch : dest) if (ch < 0x21 || ch > 0x7e) safe = false;
+            if (!safe) continue;
+            SavedZipArchive saved;
+            saved.fileName = name.substr(0, name.size() - 9);
+            saved.archivePath = archive;
+            saved.target = dest;
+            saved.infoPath = info;
+            results.push_back(std::move(saved));
+        }
+        sceIoDclose(dir);
+    }
+    std::sort(results.begin(), results.end(), [](const SavedZipArchive& a, const SavedZipArchive& b) {
+        if (a.fileName != b.fileName) return a.fileName < b.fileName;
+        return a.archivePath < b.archivePath;
+    });
+    return results;
 }
 
 bool InstallController::hasSavedZip(const std::string& appId, const std::string& titleId) const {
-    std::string path, target, info;
-    return locateSavedZip(appId, titleId, path, target, info);
+    return !savedZips(appId, titleId).empty();
 }
 
-bool InstallController::requestSavedZipExtraction(const std::string& appId,
-                                                  const std::string& titleId) {
+bool InstallController::requestSavedZipExtraction(
+    const std::string& appId, const std::string& titleId,
+    const std::string& archivePath) {
     if (busy() || zipRecoveryAvailable_.load()) return false;
+    // Never trust a UI-provided path: resolve the selected archive afresh from
+    // its app-specific metadata. This also handles deletion between UI frames.
+    const auto matches = savedZips(appId, titleId);
+    const auto selected = std::find_if(matches.begin(), matches.end(),
+        [&](const SavedZipArchive& z) { return z.archivePath == archivePath; });
+    if (selected == matches.end()) {
+        diagnostics::log("[Installer] selected saved ZIP missing or metadata invalid app=" + appId);
+        return false;
+    }
     if (workerThread_ >= 0) {
         if (!workerDone_.load(std::memory_order_acquire)) return false;
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
-    std::string archive, target, info;
-    if (!locateSavedZip(appId, titleId, archive, target, info)) {
-        diagnostics::log("[Installer] saved ZIP not found for app=" + appId);
-        return false;
-    }
     const auto s = static_cast<InstallStatus::State>(state_.load());
     if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed ||
         s == InstallStatus::State::Cancelled) acknowledgeResult();
-    savedZipPath_ = archive;
-    savedZipTarget_ = target;
-    savedZipInfoPath_ = info;
+    savedZipPath_ = selected->archivePath;
+    savedZipTarget_ = selected->target;
+    savedZipInfoPath_ = selected->infoPath;
     savedZipMode_ = true;
     activeJobId_.clear();
-    activeZipDestination_ = target;
+    activeZipDestination_ = selected->target;
     zipRecoveryAvailable_.store(false);
     current_.store(0); total_.store(0); speed_.store(0);
     liveAreaOk_.store(false); needsReboot_.store(false);
     resultShownAtMs_.store(0);
-    const auto slash = archive.find_last_of('/');
-    const std::string name = slash == std::string::npos ? archive : archive.substr(slash + 1);
-    setFileName(name.c_str());
+    setFileName(selected->fileName.c_str());
     setStage("Extracting");
     setState(InstallStatus::State::Installing, "Extracting saved ZIP without downloading...");
     workerDone_.store(false, std::memory_order_release);
@@ -493,7 +502,8 @@ bool InstallController::requestSavedZipExtraction(const std::string& appId,
         setState(InstallStatus::State::Failed, "Could not start ZIP extraction worker");
         return false;
     }
-    diagnostics::log("[Installer] offline ZIP retry started path=" + archive + " target=" + target);
+    diagnostics::log("[Installer] offline ZIP retry started path=" + savedZipPath_ +
+                     " target=" + savedZipTarget_);
     return true;
 }
 
@@ -1016,15 +1026,11 @@ int InstallController::workerSavedZipMain() {
         nullptr, target, std::string());
     if (result == InstallDispatchResult::Ok) {
         const bool staged = dispatcher_.lastZipUsedStagedMoves();
-        bool removed = false;
-        if (!staged) {
-            // Direct extraction keeps the old cleanup policy. For staged
-            // subtree moves, preserve the original ZIP: physical Vita tests
-            // show very deep children can remain unreadable after a move.
-            StorageManager st;
-            removed = st.removeFile(path);
-            if (removed) st.removeFile(infoPath);
-        }
+        // All ZIP entries and whole-directory relocations completed successfully.
+        // Delete only the selected archive; other recovery ZIPs of the app stay.
+        StorageManager st;
+        const bool removed = st.removeFile(path);
+        if (removed) st.removeFile(infoPath);
         diagnostics::log(std::string("[Installer] offline ZIP result moved_deep_folders=") +
                          (staged ? "yes" : "no") +
                          " archive_deleted=" + (removed ? "yes" : "no") +
@@ -1032,8 +1038,8 @@ int InstallController::workerSavedZipMain() {
         setInstallPath(target.c_str());
         setStage("Completed");
         setState(InstallStatus::State::Completed,
-                 staged ? "ZIP folders moved. Deep files may be unreadable; ZIP kept."
-                        : "Saved ZIP extracted successfully");
+                 removed ? "Saved ZIP extracted and removed successfully"
+                         : "ZIP extracted, but could not delete the saved archive");
     } else {
         const std::string error = dispatcher_.lastError().empty()
             ? "ZIP extraction failed" : dispatcher_.lastError();
@@ -1592,45 +1598,11 @@ int InstallController::workerMain() {
             " liveArea=" + (dispatcher_.lastLiveAreaOk() ? "yes" : "no") +
             " verify=" + verifyMsg +
             " attempts=" + std::to_string(attemptsUsed));
-        if (dispatcher_.lastZipUsedStagedMoves() && zipRecoveryCandidate) {
-            // Preserve the complete original archive after directory-staging
-            // success. We cannot assert that the port can read all deep files.
-            // Use the same bounded manual recovery directory as failed ZIPs.
-            StorageManager st;
-            const std::string key = sanitizeRecoveryComponent(
-                !pendingTitleId_.empty() ? pendingTitleId_ : pendingAppId_, "unknown");
-            const std::string recoveryDir = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
-            bool moved = false;
-            std::string recoveryPath = job->finalPath;
-            if (st.createDirectories(recoveryDir)) {
-                const std::string candidate = uniqueRecoveryPath(st, recoveryDir, job->fileName);
-                if (st.rename(job->finalPath, candidate)) {
-                    recoveryPath = candidate;
-                    moved = true;
-                }
-            }
-            if (moved) {
-                std::string info = "PS Vita Alive Store - ZIP deep-folder recovery\n\n";
-                info += "App: " + activeDisplayTitle_ + "\n";
-                info += "App ID: " + pendingAppId_ + "\n";
-                info += "Title ID: " + pendingTitleId_ + "\n";
-                info += "Saved path: " + recoveryPath + "\n";
-                info += "Manual extraction target: " + activeZipDestination_ + "\n";
-                info += "Warning: deep directory trees moved; runtime file access not verified.\n";
-                st.writeTextFile(recoveryPath + ".info.txt", info);
-                downloads_.cleanupCompletedJob(activeJobId_);
-                activeJobId_.clear();
-            } else {
-                // Preserve the completed job rather than deleting the only ZIP
-                // copy. Startup cleanup already preserves completed jobs.
-                diagnostics::log("[Installer] staged ZIP kept in completed job: " + recoveryPath);
-                activeJobId_.clear();
-            }
-            diagnostics::log("[Installer] staged ZIP archive retained: " + recoveryPath);
-        } else {
-            downloads_.cleanupCompletedJob(activeJobId_);
-            activeJobId_.clear();
-        }
+        // Successful ZIP extraction (including completed staged directory
+        // moves) can now free the job's original archive immediately. Recovery
+        // archives are kept only when the extraction or move fails.
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         setStage("Completed");
         setState(InstallStatus::State::Completed, okMsg);
