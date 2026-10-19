@@ -1,101 +1,49 @@
-# Large ZIP extraction reliability and saved-archive retry — 18 October 2026
+# ZIP recovery, directory-depth mitigation and saved archives — 19 October 2026
 
-**Status:** Experimental; on-device retry confirmed original ZIP still fails, now explained by a deep-path filesystem error. Next hardware validation is the early-failure guard. No proven workaround for game content structure yet.
-**Scope:** PSVitaAlive native client only. No changes to canonical catalog JSON or GitHub Pages.
+## Hardware-validated result
 
-## Reproducing the reported failure
+Physical PS Vita test of experimental PR #37:
+- Recovery action selected `ux0:data/psvitaalive/manual/ROADRAGE2/Game Files Spanish.zip` (1,957,085,950 bytes), and began direct offline extraction, without networking.
+- At `[4687339 ms]` archive preflight enabled **one staged branch** under `ux0:data/PSVA_ZIP_STAGE_29741690_0`.
+- At `[5640195 ms]` directory rename succeeded to the original `ux0:data/simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs` with **56 files**.
+- At `[5640220 ms]` the extractor reported **3,877 entries, 1,956,255,106 bytes**, completed successfully.
+- The maintainer verified correct game-folder size and reported the Simpsons Hit & Run port **launches correctly** on PS Vita.
+- Extract duration approximately **15m 56s** (`[4684429 ms]` to `[5640220 ms]`). This is a local re-extraction benchmark, not network download time.
+- Original experimental build logged `archive_deleted=no` after success, because it intentionally preserved a ZIP whenever folder staging was used. The new cleanup changes deliberately remove this exception.
 
-`session.log` of PSVitaAlive 02.11 shows:
-- **Simpsons Hit & Run**, VPK `SimpsonsPAL.vpk` installed successfully, Title ID `ROADRAGE2`.
-- **Game Files Spanish.zip**: valid 4-range Archive.org transfer, total **1,957,085,950 bytes**.
-- Network transfer complete at `[2746834 ms]` but verified, joined archive not available until `[3468087 ms]`: approximately **721 seconds** (12.0 minutes) of local hash and append work.
-- ZIP64-capable sceIo source successfully opens the ZIP; preflight reports approximately 1.956 GB of uncompressed bytes and roughly 39 GB free space. This excludes low storage as the observed primary error.
-- Each of five extraction attempts makes progress through ~1,472 ZIP entries before `cannot create file: ux0:data/simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs/card00_t.png`. The same destination fails in every attempt, so it is a **deterministic path/creation failure**, not the signature of temporary ZIP tail lag or a network retry.
-- The archive is **preserved** in `ux0:data/psvitaalive/manual/ROADRAGE2/Game Files Spanish.zip`; the companion `.info.txt` stores `App ID: simpsons-hit-run`, title ID, and `Manual extraction target: ux0:data/`.
+The test demonstrates a successful complete-folder move followed by functioning game startup **for this particular archive and PS Vita**. It does not prove arbitrary ports, ZIP layouts, devices, or pre-populated deep directories universally work. Previous separate VitaShell testing could move deep directories even when subsequent manual deep-file access returned `0x80010016`; installer success cannot guarantee every loader's subsequent reads. Do not overwrite valid user data to mask that distinction.
 
-The original log has no `sceIoOpen` numeric error, so the precise filesystem reason (missing directory, file-vs-directory collision, Vita filesystem constraint) is not proven yet. Do not claim ZIP corruption from this trace.
+## Algorithm
 
-## Maintainer retest on PS Vita — exact failure and download timing
+1. Open archive through the Vita ZIP64-capable `sceIo` source and validate member names, compression and space.
+2. Count path components after the device prefix. When a member exceeds ten in the current device-tested policy, group it into a distinct branch at component depth ten.
+3. Create a unique shallow staging area **on the same device** (`ux0:` or `uma0:`), with a subdirectory per affected branch, and preflight all real and temporary parent directories. Reject traversal paths.
+4. Write ordinary members directly and affected members into their staging branch. ZIP archive entries, bytes and relative directory structure are preserved.
+5. After successful extraction and archive closure, move each *complete* branch via `sceIoRename` to its original directory, without per-file deep writes. Existing nonempty destinations are never silently merged or deleted; if blocked, report error and preserve work for recovery.
+6. Log each branch move and the final extraction count. For a successful extraction *including all branch moves*, clean the source ZIP; keep ZIPs on failure.
 
-The newly uploaded `session.log` confirms the **offline Saved ZIP button works** without network and preserves the original file on failure:
-- Re-extraction started at `[229148 ms]`, ZIP directory preflight found **122** distinct directories at `[231917 ms]`, and extraction stopped at `[612785 ms]` (~6m 24s).
-- The same member **`ux0:data/simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs/card00_t.png`** returned `sceIoOpen=0x80010016 parent_is_dir=1`. The parent directory **does** exist.
-- Compare the prior successful `.../cards/db/card48.png` (10 nonempty path components after `ux0:`) with the failing `.../cards/db/_stubs/card00_t.png` (11 components). **Depth, not filename length or missing parent**, is the critical difference.
-- `0x80010016` is the `EINVAL` errno; VitaShell contributors explicitly call it **"Subdirectory limit reached"** (https://github.com/TheOfficialFloW/VitaShell/issues/200). This strongly supports a PS Vita filesystem nesting limit in this case. There is not yet proof of a universal, exact maximum across all supported storage devices.
-- This cannot be resolved by creating directories early; silently flattening the ZIP or omitting `_stubs` would corrupt the developer-defined game directory structure. A **developer-provided, Vita-compatible folder layout or carefully verified asset migration** would be needed to guarantee full installation.
+## Per-application Saved ZIP UI
 
-A further patch now probes file creation in the actual deep destination folder(s) with a uniquely named zero-byte temporary file **before extracting any payload bytes**. If the filesystem refuses, it fails with a clear message, preserves the full ZIP for recovery and **does not retry five times**. Any test file is removed upon successful probe. This improves diagnostics and avoids wasting 6 minutes; it **does not claim to bypass a hardware/filesystem depth restriction**.
+- The section is hidden unless at least one valid matching ZIP is discoverable.
+- Each ZIP appears as its **own button with its filename**, supporting touch and controller selection. Count changes recompute layout height, link focus indices and QR position.
+- Bounded scan (128 directory entries per matching folder, maximum 32 saved archives), `.zip.info.txt` sidecars no larger than 8 KiB, nonempty ZIP, matching **App ID** and **Title ID** when known, and safe absolute extraction target.
+- Candidates are sorted by filename, checked again immediately on selection, and extracted using original target **without re-downloading**. Other apps' ZIPs cannot be selected by passing a foreign filename.
+- Successful extraction removes only the selected ZIP and its sidecar, including when a deep-directory move occurred. Failed retries retain the archive and report its path; no silent deletion of unrelated ZIPs.
+- Fresh ZIP downloads use ordinary download-job cleanup once extraction succeeds. Older ZIPs retained by previous builds are not automatically deleted; they remain available as separate recovery buttons.
 
-**Conker's Bad Fur Day** Game Files.zip (**67,109,198 bytes**):
-- Adaptive 4-range transfer: `653315 → 710225 ms` = **56.91 s**.
-- Range append plus integrity verification: `710225 → 731213 ms` = **20.99 s**; first-range SHA-1 was streamed during network transfer and did not require another read.
-- ZIP extraction: `734375 → 749667 ms` = **15.29 s**, completed normally.
-- The ~21-second join for ~67 MB means the storage-write overhead remains substantial. We still need a large-file benchmark before claiming a significant speedup vs. the previous ~721-second Simpsons assembly.
+## Limitations and regression checklist
 
-## Final hardware validation of deep-path preflight
+- Existing nonempty destination branches are deliberately protected against destructive overwrite. Updating an already populated deep branch can fail cleanly instead of merging; this needs separate safe-update design.
+- Multiple branch moves are not all-or-nothing: an error after one move may leave some new data in its destination and other data in staging. Logs indicate the preserved staging base, and source ZIP stays available.
+- A short-lived UI cache may take up to five seconds to rescan after external filesystem changes; successful in-app retry invalidates the cache.
+- Verify touchscreen and gamepad selecting the first/last of multiple ZIPs, scroll/QR offsets, zip membership isolation, saved ZIP cleanup and partial errors, and ordinary ZIP/VPK updates.
+- The storage design still uses the canonical `apps/`, `authors/`, `categories/` inputs and generated catalogs. None of the generated JSONs are manually edited.
+- Range joining retains SHA-1 validation. Separate Conker ZIP benchmark (67,109,198 bytes) previously measured **56.91 s download, 20.99 s append/checksum, 15.29 s extraction**; a 2 GB post-optimization assembly benchmark remains pending.
 
-A further **physical Vita** test of commit `ba7d02b7397b3957dd54cd589462e3e14f65dffc` confirmed the new early-detection guard:
-- `[1996528 ms]` Offline saved ZIP extraction started, with no download.
-- `[1999032 ms]` Preflight found 122 directories.
-- `[1999310 ms]` One deep parent directory was probed.
-- `[1999321 ms]` Temporary file creation failed immediately in `ux0:data/simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs` with **`sceIoOpen=0x80010016`**.
-- `[1999388 ms]` The worker reported failure and kept the archive.
-- `[2010217 ms]` The user explicitly chose to keep the ZIP.
-- Total time from button to failure: **2.86 seconds**, compared with roughly **6m 24s** wasted before the guard.
+## Core files
 
-**Conclusion:** The prevention fix works and is validated on real hardware, but Simpsons game data still **cannot be completely extracted as-is** by PSVitaAlive on this device. No skipped or renamed files are authorized without checking the upstream port's runtime path expectations. Independent VitaShell reports describe error `0x80010016` as subdirectory limit reached (https://github.com/TheOfficialFloW/VitaShell/issues/200). This does not establish that the game assets are corrupted.
-
-### Independent historical confirmation: exact Simpsons asset
-
-In a [July 2024 community discussion](https://www.reddit.com/r/VitaPiracy/comments/1e47vvl/simpsons_hit_and_run_ps_vita_vpk_game_data_files/), Vita users reported that transfer tools could not copy **the exact same file** `simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs/card00_t.png`, and more generally the contents of `_stubs`. This pre-dates PSVitaAlive's extractor and strengthens the conclusion that the problem is a Vita filesystem path restriction, not a damaged download.
-
-Some community replies report using the game despite this transfer difficulty, but those reports are **not proof** that excluding `_stubs` is universally safe. The official port's [installation guide](https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run) requires PC assets in `ux0:data/simpsons`; preserve that root path.
-
-**Superseded proposal — DO NOT implement:** Skipping `_stubs` was raised as a possible diagnostic but the project maintainer has confirmed those resources **are required** by the game. Therefore do not omit them, do not report partial extraction as successful, and do not silently flatten or rename files. An app-specific exclusion is explicitly rejected. Any functional fix must keep every file at its original absolute path, unchanged. PSVitaAlive **must not patch ports, relocate game data, remap paths, flatten directories, or omit files**. The portable client-side question is solely whether a supported VitaSDK file operation can create the exact path where `sceIoOpen` returns `0x80010016`; no compatible bypass is known or verified. If the filesystem rejects the required path, the correct fallback is an early, clear error and ZIP preservation, never a false success.
-
-The official Simpsons Vita port instructs users to place the PC assets under `ux0:/data/simpsons` (https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run); moving that base folder arbitrarily could break the game. The maintainer confirms that `_stubs` files are required. A per-app exclusion, even experimentally, is **not an acceptable solution**. Port modification, game path remapping, and changing the archive's directory layout are also **out of scope** for PSVitaAlive. The native client may only use existing supported file APIs while preserving exact paths and bytes.
-
-## Changes
-
-### Deterministic folder preflight
-
-The native extractor now walks the ZIP central directory before writing payload data. It resolves **every entry** with the existing path-safety rules, collects parent directories (and explicit directory entries), sorts/deduplicates them and attempts to create them **before** the first file is extracted.
-
-If a required parent fails this check, extraction stops immediately, logs the exact failing directory and preserves the ZIP without five redundant full extracts. Existing files at directory paths are treated as collisions; files are never automatically removed to make room for archive entries.
-
-The `sceIoOpen` create-file error now includes the full return code and parent directory status. Deterministic `cannot prepare ZIP directory`, `cannot create file`, `mkdir failed` and `sceIoWrite failed` errors stop the automatic install retry loop; transient ZIP EOCD/ZIP64 and other recoverable errors retain their bounded retry policy.
-
-This early folder layout check can help with directory creation sequencing on PS Vita storage, but real-device tests determine whether it fixes the concrete `_stubs` path.
-
-### Local retry of a saved ZIP (no new download)
-
-When an app has a saved recovery ZIP under `ux0:data/psvitaalive/manual/<TITLE_ID or app ID>/`, and a small `.info.txt` matches both `App ID` and `Title ID`, the detail screen displays a **Saved ZIP** action above **External Download / QR**.
-
-- The action is available through D-pad link navigation and touch.
-- The scan is bounded to a matching recovery folder, a maximum of 128 entries and metadata files no bigger than 8 KiB, with a five-second in-memory UI cache to avoid scanning every frame.
-- The action uses the **original recorded extraction target** and launches a standard Vita install worker; it does not access the internet, perform any download or recombine any ranges.
-- Failure preserves the ZIP and offers the existing Keep/Delete recovery dialog.
-- Success deletes the preserved ZIP and its companion metadata to return space on `ux0:`; no version receipt is changed for data-only ZIPs.
-- Navigation and status safety barriers prevent simultaneous installer workers. Localization is available in all eight bundled languages.
-
-If a saved ZIP was manually moved or its metadata is missing, the section is hidden: this prevents operating on a mismatched application or destination.
-
-### Large-file range assembly
-
-The existing ordered four-range merger uses a bounded **1 MiB streaming buffer** (previously 256 KiB) to reduce `sceIoRead`/`sceIoWrite` calls on multi-gigabyte files. **The first range's SHA-1 is now computed while its bytes are being received**, so the post-download join no longer needs to reopen and hash approximately one-quarter of the file. The remaining ranges are hashed in order while they are appended. SHA-1 validation required by the Archive.org direct-HTTP path remains enabled; all expected file-size/range checks remain.
-
-The code now logs the time spent hashing the first range and separately the time spent appending remaining ranges. **No quantified speedup is claimed yet.** A virtual fragmented reader that avoids physical assembly is a possible *future* architecture but requires careful ZIP64 and integrity validation and has not been adopted in this change.
-
-## PS Vita regression plan
-
-1. Install this experimental VPK over 02.11, open **Simpsons Hit & Run**. Verify that **Saved ZIP / Retry extraction** appears before the external-download section.
-2. Without downloading, activate the button. Confirm `[Installer] offline ZIP retry started`, `[ZipExtractor] directory preflight unique=` and progress UI. The 1.96 GB archive must be preserved if the filesystem still refuses the `_stubs` directory.
-3. A saved Simpsons ZIP should now report `ZIP destination cannot create deep files (possible Vita subdirectory depth limit)` **before extraction progresses**, retaining the ZIP. Record the probe error code and do not delete the archive. This is an early-detection test, not a complete game-installation repair.
-4. If the deep probe unexpectedly succeeds, monitor the subsequent extraction. On full success, verify all files and that the saved archive and `.info.txt` have been removed; a second failure means the filesystem rule needs further isolation.
-5. Test a fresh large Archive.org download and look for `range0 SHA1 streamed during transfer` (or fallback `range0 SHA1 read done elapsed_ms`) plus `ranges appended elapsed_ms` with the previous 721-second combined measurement.
-6. Test VPK installs, ZIP64 archives, ZIPs with nested directories and 1,000+ entries, extraction failures, resource pressure, QR selection and the existing `Install All` lifecycle guard.
-7. Compile with VitaSDK and run existing repository tests. CI proves compilation, not real-world extraction correctness.
-
-## Compatibility
-
-The only source-of-truth structure remains `apps/`, `authors/`, `categories/` → GitHub Actions → generated catalogs → client/web. Generated JSONs are not manually edited. The feature does not change catalog metadata or any existing download links.
+- `Client PSVitaAlive/source/archive/zip_extractor.cpp`: deep-folder stage and whole-directory rename.
+- `Client PSVitaAlive/source/installer/install_controller.cpp` + `include/installer/install_controller.hpp`: recovery listing, validated selection, offline worker, cleanup.
+- `Client PSVitaAlive/source/ui/full_catalog_screen.cpp` + `include/ui/full_catalog_screen.hpp`: variable list layout, touch/gamepad, name display and cache.
+- `Client PSVitaAlive/source/main.cpp`: callbacks.
+- `Client PSVitaAlive/source/network/parallel_archive_download.cpp`: SHA-1 streamed for the first range and larger merge buffer.
