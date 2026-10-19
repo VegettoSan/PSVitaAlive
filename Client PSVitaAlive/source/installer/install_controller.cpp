@@ -1394,6 +1394,9 @@ int InstallController::workerMain() {
             lastInstallError.find("empty installation") != std::string::npos ||
             lastInstallError.find("not enough free space") != std::string::npos ||
             lastInstallError.find("cannot prepare ZIP directory:") != std::string::npos ||
+            lastInstallError.find("ZIP destination cannot create deep files") != std::string::npos ||
+            lastInstallError.find("ZIP preflight probe cleanup failed:") != std::string::npos ||
+            lastInstallError.find("cannot test deep ZIP destination safely:") != std::string::npos ||
             lastInstallError.find("cannot create file:") != std::string::npos ||
             lastInstallError.find("mkdir failed:") != std::string::npos ||
             lastInstallError.find("sceIoWrite failed") != std::string::npos;
