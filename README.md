@@ -439,3 +439,12 @@ If any are missing, a modal offers **Install plugins** or **Remind me later**. I
 | **NoNpDrm** + **NoPspEmuDrm** | Licensed Vita PKG and PSP LiveArea bubbles |
 | **kubridge** + **fd_fix** + **libshacccg** | Many ports / advanced homebrew |
 | Prefer **ur0:tai** for plugins | Survives memory card swaps better than ux0-only setups |
+
+
+## ZIP recovery, multiple saved archives, and deep directories
+
+- PSVitaAlive detects overly deep ZIP directory branches (device-path depth greater than ten components on tested Vita storage), extracts each affected subtree to a shallow temporary directory **on the same device**, then moves the complete folder to its unchanged original location with `sceIoRename`. It never modifies individual ports, omits data, or rewrites the catalog.
+- Real PS Vita verification (19 October 2026): Simpsons Hit & Run, 3,877 ZIP entries, 1,956,255,106 uncompressed bytes, 56 files in `_stubs` moved to their original folder, extraction completed, game launched. This validates that one hardware/use-case; generic regressions remain important.
+- In the app detail, the **Saved ZIP** section lists **one named button per recovered ZIP** belonging to that app. It is hidden when no validated recovery ZIP exists. Each button re-extracts only the selected ZIP, offline.
+- On successful extraction **and** completion of every pending folder move, PSVitaAlive removes the corresponding downloaded or recovered ZIP and its companion metadata to free storage. On failure, keep archives and staged data for recovery. Previously retained archives from older builds are not purged automatically.
+- Technical reference: [ZIP recovery, folder relocation and validation](docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md). Reinstalling into a nonempty deep destination remains deliberately conservative: the installer will not destructively merge directories.
