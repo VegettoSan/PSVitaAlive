@@ -546,6 +546,11 @@ ZipResult ZipExtractor::extract(
     // late in a crowded parent may fail despite ample ux0 free bytes.
     // Explicit errors also avoid wasting minutes extracting the same prefix.
     std::vector<std::string> requiredDirs;
+    // Files more than ten path components below the device root have proven
+    // problematic on retail PS Vita (sceIoOpen 0x80010016). Do not reject them
+    // based on an assumed universal limit; probe the real destination before
+    // spending minutes extracting gigabytes.
+    std::vector<std::string> deepParents;
     // Do not reserve attacker-controlled ZIP entry counts directly: a corrupt
     // central directory may claim millions of entries on a memory-limited Vita.
     requiredDirs.reserve(std::min(static_cast<size_t>(numEntries), size_t(4096)));
@@ -569,7 +574,19 @@ ZipResult ZipExtractor::extract(
             requiredDirs.push_back(path);
         } else {
             const auto slash = path.find_last_of('/');
-            if (slash != std::string::npos) requiredDirs.push_back(path.substr(0, slash));
+            if (slash != std::string::npos) {
+                const std::string parent = path.substr(0, slash);
+                requiredDirs.push_back(parent);
+                const size_t colon = path.find(':');
+                bool inside = false;
+                size_t components = 0;
+                for (size_t n = colon == std::string::npos ? 0 : colon + 1;
+                     n < path.size(); ++n) {
+                    if (path[n] == '/' || path[n] == '\\') inside = false;
+                    else if (!inside) { inside = true; ++components; }
+                }
+                if (components > 10) deepParents.push_back(parent);
+            }
         }
     }
     std::sort(requiredDirs.begin(), requiredDirs.end());
@@ -582,6 +599,58 @@ ZipResult ZipExtractor::extract(
                      (st.exists(dir) ? " (non-directory path collision)" : " (mkdir failed)"));
             zip_close(za);
             return ZipResult::IoError;
+        }
+    }
+
+    // Test the first file creation in every exceptionally deep parent with
+    // a temporary, uniquely named zero-byte probe. This catches Vita's
+    // filesystem depth limitation BEFORE any extraction writes. We do not
+    // flatten, skip, or relocate game resources: changing the tree may break
+    // game code that expects the developer's original paths.
+    std::sort(deepParents.begin(), deepParents.end());
+    deepParents.erase(std::unique(deepParents.begin(), deepParents.end()), deepParents.end());
+    if (!deepParents.empty()) {
+        diagnostics::log(std::string("[ZipExtractor] probing deep folders=") +
+                         std::to_string(deepParents.size()));
+        for (const std::string& parent : deepParents) {
+            if (shouldCancel && shouldCancel()) {
+                setError("cancelled");
+                zip_close(za);
+                return ZipResult::Cancelled;
+            }
+            std::string probePath;
+            for (int candidate = 0; candidate < 16; ++candidate) {
+                probePath = parent + "/PSVA_DEPTH_PROBE_" + std::to_string(candidate) + ".tmp";
+                if (!st.exists(probePath)) break;
+                probePath.clear();
+            }
+            if (probePath.empty()) {
+                setError("cannot test deep ZIP destination safely: " + parent);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+            const SceUID test = sceIoOpen(probePath.c_str(),
+                                         SCE_O_WRONLY | SCE_O_CREAT, 0777);
+            if (test < 0) {
+                char err[600];
+                sceClibSnprintf(err, sizeof(err),
+                    "ZIP destination cannot create deep files (possible Vita subdirectory depth limit): %s sceIoOpen=0x%08X. Archive preserved; original game data requires compatible folder layout.",
+                    parent.c_str(), static_cast<unsigned>(test));
+                setError(err);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
+            sceIoClose(test);
+            const int cleaned = sceIoRemove(probePath.c_str());
+            if (cleaned < 0) {
+                char err[440];
+                sceClibSnprintf(err, sizeof(err),
+                    "ZIP preflight probe cleanup failed: %s sceIoRemove=0x%08X",
+                    probePath.c_str(), static_cast<unsigned>(cleaned));
+                setError(err);
+                zip_close(za);
+                return ZipResult::IoError;
+            }
         }
     }
 
