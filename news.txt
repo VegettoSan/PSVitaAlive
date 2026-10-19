@@ -1,7 +1,9 @@
-id: 2026-10-18-0001
-title: PSVitaAlive 02.11 is here!
+id: 2026-10-19-0001
+title: PSVitaAlive 02.12 is here!
 enabled: true
+
 ---
+
 # Thanks for using PS Vita Alive Store.
 
 ---
@@ -14,14 +16,16 @@ enabled: true
 
 ## Improvements
 
-- Faster downloads with adaptive parallel connections.
-- Improved ZIP and VPK extraction performance.
-- Added estimated extraction time and improved installation progress.
-- New Open and Update actions for Homebrew.
-- Added QR code support for accessing content on the website.
-- Fixed crashes during consecutive installations.
-- Improved interface responsiveness and memory management.
-- Additional bug fixes and optimizations.
+- Fixed ZIP extraction issues with deeply nested folders.
+- Improved compatibility with large Homebrew and Game Files archives.
+- Added a new **Recovered ZIPs** section to retry saved archives without downloading them again.
+- Added individual recovery buttons for multiple saved ZIPs.
+- ZIP archives are now automatically cleaned up after successful extraction.
+- Failed extractions preserve ZIP files for later recovery.
+- Improved download assembly speed and SHA-1 verification.
+- Improved installation safety, recovery handling, and interface navigation.
+- Updated translations across all eight supported languages.
+- Additional stability improvements, bug fixes, and catalog updates.
 
 ## Thank you for your continued support!
 
@@ -33,8 +37,3 @@ enabled: true
 - Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1)
 
 **Enjoy and report issues with session.log when possible. Thank you!**
-
-
-We are experiencing some issues with the Archive.org server, so downloads may not work while the server is down; we appreciate your patience.
-
-
