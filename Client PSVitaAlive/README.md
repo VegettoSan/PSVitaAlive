@@ -465,3 +465,13 @@ PSP **DLC** link buttons require **LiveArea** install target **or** Adrenaline *
 ### Navigation-aware image scheduling
 
 Catalog image work is paused while vertical navigation is physically held, while scroll animation is moving, and for a short post-navigation grace period. App/icon GPU textures use a bounded 18-entry LRU so reversing direction can reuse recent 128 px textures instead of immediately freeing and decoding them again; screenshots remain aggressively released with their existing 6-texture limit. See `../docs/IMAGE_CACHE.md` for the full policy.
+
+
+## Deep ZIP folder extraction and multiple saved ZIPs
+
+- Path-safe preflight identifies ZIP entries beyond the tested ten-component Vita path threshold, and stages **entire affected folders** on the same device in a shallow working area.
+- Only after successful extraction do complete directories move to the original paths through `sceIoRename`. Files, tree structure and game binaries are unchanged; existing nonempty destination branches cannot be replaced silently.
+- PS Vita hardware test: Simpsons Hit & Run completed extraction of 3,877 entries / 1,956,255,106 bytes; relocated a branch containing 56 files; the port launched.
+- Application detail shows an individual button (actual archive filename) for **every matching saved recovery ZIP**. The section disappears when none exist. Archive selection is checked against the app's stored App ID and Title ID before starting offline extraction.
+- Upon successful extraction and all moves, delete **only the selected ZIP** and its metadata; normal completed download jobs likewise clean up their payload. Keep recovery files on failure. Automatic deletion cannot retroactively remove older already-saved ZIPs.
+- Additional specifics: [ZIP recovery and folder staging](../docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).
