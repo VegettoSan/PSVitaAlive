@@ -244,7 +244,14 @@ static bool joinParts(
 #endif
 ) {
     checksumMismatch = false;
-    std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
+    size_t joinChunk = kJoinBuffer;
+    std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[joinChunk]);
+    if (!buf) {
+        // RAM is tight on some Vita configurations; preserve the legacy
+        // 256 KiB assembly path rather than failing a valid 2 GB download.
+        joinChunk = 256 * 1024;
+        buf.reset(new (std::nothrow) unsigned char[joinChunk]);
+    }
     if (!buf) return false;
 
 #ifndef PSVITAALIVE_CURL_MBEDTLS
@@ -263,7 +270,7 @@ static bool joinParts(
             const uint64_t hashStartedUs = sceKernelGetProcessTimeWide();
             uint64_t bytesSinceYield = 0;
             for (;;) {
-                const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(kJoinBuffer));
+                const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(joinChunk));
                 if (n < 0) { readOk = false; break; }
                 if (n == 0) break;
                 SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
@@ -293,7 +300,7 @@ static bool joinParts(
         SceUID src = sceIoOpen(file.c_str(), SCE_O_RDONLY, 0);
         if (src < 0) { ok = false; break; }
         for (;;) {
-            const int count = sceIoRead(src, buf.get(), static_cast<unsigned int>(kJoinBuffer));
+            const int count = sceIoRead(src, buf.get(), static_cast<unsigned int>(joinChunk));
             if (count < 0) { ok = false; break; }
             if (count == 0) break;
             if (!writeAll(dst, buf.get(), static_cast<size_t>(count))) {
