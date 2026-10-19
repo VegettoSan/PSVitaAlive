@@ -294,3 +294,14 @@ ux0:data/psvitaalive/manual/<title_id-or-app_id>/<archive>.zip
 ```
 
 The move stays on `ux0:` and therefore uses `StorageManager::rename` rather than duplicating a potentially multi-GB archive. The UI exposes Keep ZIP / Delete ZIP / Report actions and the intended manual extraction destination. Direct VPK, ZIP-as-VPK, PKG, plugin, cancelled and incomplete-download paths keep their previous cleanup semantics.
+
+
+## ZIP subdirectory-depth mitigation and recovery cleanup (October 2026)
+
+`ZipExtractor` scans archive entries and stages complete affected deep branches to a unique short directory on the **same ux0:/uma0: partition**. Once all entries are extracted it renames each finished subtree into the original directory. Neither the ZIP's file names nor the port's expected paths are changed. The PS Vita test with Simpsons Hit & Run confirmed 3,877 entries and 56 files in the moved `_stubs` branch, and the game started.
+
+`InstallController::savedZips(appId, titleId)` returns validated matching recovery ZIPs, using matching App ID / Title ID metadata, original extraction target, and bounded directory scanning. `requestSavedZipExtraction(appId, titleId, archivePath)` revalidates the selected ZIP path and starts a worker. This prevents cross-app extraction and supports several ZIPs per app.
+
+On success **including successful deep-folder moves**, the installer deletes the selected saved archive and its `.info.txt` sidecar; normal completed ZIP jobs are cleaned too. On error the archive and any staging work are retained. Nonempty destination branches are not overwritten or recursively merged; report the limitation rather than deleting other data. Delete failures are logged and surfaced without claiming disk space was freed. This behavior does not retroactively clean ZIPs retained by previous builds.
+
+Full procedure and diagnostics: [ZIP recovery technical record](../../../docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).
