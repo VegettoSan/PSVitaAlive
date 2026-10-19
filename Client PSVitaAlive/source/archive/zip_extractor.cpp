@@ -8,6 +8,7 @@
 #include <psp2/io/stat.h>
 #include <zip.h>
 
+#include <algorithm>
 #include <cstdint>
 #include <cstring>
 #include <string>
@@ -540,6 +541,48 @@ ZipResult ZipExtractor::extract(
         }
     }
 
+    // Validate every path and create all directory entries BEFORE writing
+    // payloads. On Vita filesystem implementations, a directory created very
+    // late in a crowded parent may fail despite ample ux0 free bytes.
+    // Explicit errors also avoid wasting minutes extracting the same prefix.
+    std::vector<std::string> requiredDirs;
+    requiredDirs.reserve(static_cast<size_t>(numEntries));
+    for (zip_int64_t i = 0; i < numEntries; ++i) {
+        zip_stat_t zs;
+        zip_stat_init(&zs);
+        if (zip_stat_index(za, i, 0, &zs) != 0) {
+            setError(std::string("ZIP preflight stat failed: ") + zipArchiveError(za));
+            zip_close(za);
+            return ZipResult::InvalidEntry;
+        }
+        const std::string name = zs.name ? zs.name : "";
+        std::string path;
+        if (!resolveSafePath(destinationDir, name, path)) {
+            setError("unsafe ZIP entry path: " + name);
+            zip_close(za);
+            return ZipResult::UnsafePath;
+        }
+        if (!name.empty() && (name.back() == '/' || name.back() == '\\')) {
+            while (!path.empty() && path.back() == '/') path.pop_back();
+            requiredDirs.push_back(path);
+        } else {
+            const auto slash = path.find_last_of('/');
+            if (slash != std::string::npos) requiredDirs.push_back(path.substr(0, slash));
+        }
+    }
+    std::sort(requiredDirs.begin(), requiredDirs.end());
+    requiredDirs.erase(std::unique(requiredDirs.begin(), requiredDirs.end()), requiredDirs.end());
+    diagnostics::log(std::string("[ZipExtractor] directory preflight unique=") +
+                     std::to_string(requiredDirs.size()));
+    for (const auto& dir : requiredDirs) {
+        if (!st.isDirectory(dir) && !st.createDirectories(dir)) {
+            setError("cannot prepare ZIP directory: " + dir +
+                     (st.exists(dir) ? " (non-directory path collision)" : " (mkdir failed)"));
+            zip_close(za);
+            return ZipResult::IoError;
+        }
+    }
+
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
 
@@ -624,7 +667,12 @@ ZipResult ZipExtractor::extract(
         SceUID fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         if (fd < 0) {
             zip_fclose(zf);
-            setError(std::string("cannot create file: ") + outPath);
+            char err[480];
+            sceClibSnprintf(err, sizeof(err),
+                            "cannot create file: %s sceIoOpen=0x%08X parent_is_dir=%d",
+                            outPath.c_str(), static_cast<unsigned>(fd),
+                            slash != std::string::npos && st.isDirectory(outPath.substr(0, slash)) ? 1 : 0);
+            setError(err);
             outcome = ZipResult::IoError;
             break;
         }
