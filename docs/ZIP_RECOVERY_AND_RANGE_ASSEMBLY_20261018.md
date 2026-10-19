@@ -45,6 +45,14 @@ A further **physical Vita** test of commit `ba7d02b7397b3957dd54cd589462e3e14f65
 
 **Conclusion:** The prevention fix works and is validated on real hardware, but Simpsons game data still **cannot be completely extracted as-is** by PSVitaAlive on this device. No skipped or renamed files are authorized without checking the upstream port's runtime path expectations. Independent VitaShell reports describe error `0x80010016` as subdirectory limit reached (https://github.com/TheOfficialFloW/VitaShell/issues/200). This does not establish that the game assets are corrupted.
 
+### Independent historical confirmation: exact Simpsons asset
+
+In a [July 2024 community discussion](https://www.reddit.com/r/VitaPiracy/comments/1e47vvl/simpsons_hit_and_run_ps_vita_vpk_game_data_files/), Vita users reported that transfer tools could not copy **the exact same file** `simpsons/art/frontend/scrooby2/resource/images/cards/db/_stubs/card00_t.png`, and more generally the contents of `_stubs`. This pre-dates PSVitaAlive's extractor and strengthens the conclusion that the problem is a Vita filesystem path restriction, not a damaged download.
+
+Some community replies report using the game despite this transfer difficulty, but those reports are **not proof** that excluding `_stubs` is universally safe. The official port's [installation guide](https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run) requires PC assets in `ux0:data/simpsons`; preserve that root path.
+
+**Potential next experiment, not implemented:** a logged, reversible, per-application exclusion limited to that exact failing subtree, retaining the original ZIP, so the remainder of the archive can extract. Require a real Vita game launch test and verify any omitted files are not needed before marking the app-specific behavior supported. Never enable generic silent omission for arbitrary ZIP archives.
+
 The official Simpsons Vita port instructs users to place the PC assets under `ux0:/data/simpsons` (https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run); moving that base folder arbitrarily could break the game. A possible next investigation is whether the specific deep `_stubs` files are optional in **that port**, verified against the port source and on real hardware before any per-app exclusion rule. The generic ZIP extractor must not silently omit files.
 
 ## Changes
