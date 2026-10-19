@@ -466,3 +466,10 @@ When the extractor reports CRC, truncation, EOCD/ZIP64/incomplete-data or size-i
 A direct `.vpk` remains on the normal VPK/promoter failure path and is cleaned exactly as before. A ZIP treated as a VPK because it has no data-extraction destination is also excluded from this feature. Successful ZIP extraction still cleans its downloaded installation payload automatically.
 
 The client does **not** recursively delete files already written to the chosen extraction destination after a failed extraction: those destinations can contain pre-existing user data, so a blind rollback would be unsafe.
+
+
+## ZIP extraction depth and recovered archives (October 2026)
+
+ZIP retry and integrity handling now includes same-device temporary **directory** staging for paths deeper than ten components, followed by complete subtree rename into the unchanged destination after successful extraction. Real hardware logs of Simpsons Hit & Run confirm a 56-file `_stubs` branch moved and a complete 3,877-entry extraction. No port or original path adaptation is necessary in the tested case.
+
+Each recovered ZIP has its own named retry action in the owning app detail and can be re-extracted without downloading; the Saved ZIP section is hidden when empty. A successful retry deletes only the chosen ZIP and its `.info.txt` metadata, freeing the space, and successful new downloads are cleaned normally; failed extraction keeps the ZIP. The installer will not overwrite a pre-existing nonempty destination subtree as a safety measure. Read [technical validation](ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).
