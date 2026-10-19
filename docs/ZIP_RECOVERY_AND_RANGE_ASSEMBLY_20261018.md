@@ -42,7 +42,7 @@ If a saved ZIP was manually moved or its metadata is missing, the section is hid
 
 ### Large-file range assembly
 
-The existing ordered four-range merger uses a bounded **1 MiB streaming buffer** (previously 256 KiB) to reduce `sceIoRead`/`sceIoWrite` calls on multi-gigabyte files. SHA-1 validation required by the Archive.org direct-HTTP path remains enabled; all expected file-size/range checks remain.
+The existing ordered four-range merger uses a bounded **1 MiB streaming buffer** (previously 256 KiB) to reduce `sceIoRead`/`sceIoWrite` calls on multi-gigabyte files. **The first range's SHA-1 is now computed while its bytes are being received**, so the post-download join no longer needs to reopen and hash approximately one-quarter of the file. The remaining ranges are hashed in order while they are appended. SHA-1 validation required by the Archive.org direct-HTTP path remains enabled; all expected file-size/range checks remain.
 
 The code now logs the time spent hashing the first range and separately the time spent appending remaining ranges. **No quantified speedup is claimed yet.** A virtual fragmented reader that avoids physical assembly is a possible *future* architecture but requires careful ZIP64 and integrity validation and has not been adopted in this change.
 
@@ -52,7 +52,7 @@ The code now logs the time spent hashing the first range and separately the time
 2. Without downloading, activate the button. Confirm `[Installer] offline ZIP retry started`, `[ZipExtractor] directory preflight unique=` and progress UI. The 1.96 GB archive must be preserved if the filesystem still refuses the `_stubs` directory.
 3. If failure repeats, report `cannot prepare ZIP directory` or the new `sceIoOpen=0x...` code; do not delete the saved ZIP until diagnostics are captured.
 4. If successful, verify all files and that the saved archive and `.info.txt` have been removed after extraction.
-5. Test a fresh large Archive.org download and compare `range0 SHA1 read done elapsed_ms` plus `ranges appended elapsed_ms` with the previous 721-second combined measurement.
+5. Test a fresh large Archive.org download and look for `range0 SHA1 streamed during transfer` (or fallback `range0 SHA1 read done elapsed_ms`) plus `ranges appended elapsed_ms` with the previous 721-second combined measurement.
 6. Test VPK installs, ZIP64 archives, ZIPs with nested directories and 1,000+ entries, extraction failures, resource pressure, QR selection and the existing `Install All` lifecycle guard.
 7. Compile with VitaSDK and run existing repository tests. CI proves compilation, not real-world extraction correctness.
 
