@@ -90,3 +90,8 @@ Patch the responsible layer—not a generated catalog—whenever possible.
 - [IMAGE_CACHE.md](IMAGE_CACHE.md) — client image cache v3 / disk policy / per-image replacement
 - [MULTILANGUAGE.md](MULTILANGUAGE.md) — localization architecture and current packaged languages
 - [NETWORK_TLS.md](NETWORK_TLS.md) — libcurl / OpenSSL / Archive.org TLS failover / optional mbedTLS
+
+
+## ZIP folder-relocation fix and saved archive maintenance
+
+See [ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md](ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md) for the verified 19 October 2026 Simpsons extraction, directory-stage/rename algorithm, per-archive offline recovery buttons, success-only ZIP deletion, limitations on overwriting existing directory branches, and source files changed. Related README updates: [native client](../Client%20PSVitaAlive/README.md), [installer](../Client%20PSVitaAlive/source/installer/README.md), [UI](../Client%20PSVitaAlive/source/ui/README.md).
