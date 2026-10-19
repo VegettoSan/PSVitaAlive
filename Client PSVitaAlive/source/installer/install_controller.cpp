@@ -18,6 +18,7 @@
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
 #include <psp2/io/fcntl.h>
+#include <psp2/io/dirent.h>
 #include <psp2/shellutil.h>
 
 #include <cstring>
@@ -374,6 +375,125 @@ bool InstallController::resolveZipRecovery(bool keep) {
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryJobId_.clear();
     acknowledgeResult();
+    return true;
+}
+
+
+bool InstallController::locateSavedZip(const std::string& appId, const std::string& titleId,
+                                       std::string& path, std::string& target,
+                                       std::string& infoPath) const {
+    path.clear(); target.clear(); infoPath.clear();
+    if (appId.empty() && titleId.empty()) return false;
+    const std::string key = sanitizeRecoveryComponent(
+        !titleId.empty() ? titleId : appId, "unknown");
+    const std::string folder = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
+    const SceUID dir = sceIoDopen(folder.c_str());
+    if (dir < 0) return false;
+    StorageManager st;
+    SceIoDirent entry{};
+    int seen = 0;
+    bool found = false;
+    while (++seen <= 128 && sceIoDread(dir, &entry) > 0) {
+        const std::string name(entry.d_name);
+        const std::string suffix = ".zip.info.txt";
+        if (name.size() <= suffix.size() ||
+            name.compare(name.size() - suffix.size(), suffix.size(), suffix) != 0)
+            continue;
+        const std::string candidateInfo = folder + "/" + name;
+        const std::string candidateZip = folder + "/" + name.substr(0, name.size() - 9);
+        const int64_t infoSize = st.fileSize(candidateInfo);
+        if (infoSize <= 0 || infoSize > 8192 || st.fileSize(candidateZip) <= 0)
+            continue;
+        std::string metadata;
+        if (!st.readTextFile(candidateInfo, metadata)) continue;
+        auto field = [&](const char* label) -> std::string {
+            const size_t p = metadata.find(label);
+            if (p == std::string::npos || (p != 0 && metadata[p - 1] != '\n')) return {};
+            const size_t start = p + std::strlen(label);
+            const size_t end = metadata.find_first_of("\r\n", start);
+            return metadata.substr(start, end == std::string::npos ? end : end - start);
+        };
+        if (field("App ID: ") != appId ||
+            (!titleId.empty() && field("Title ID: ") != titleId))
+            continue;
+        const std::string dest = field("Manual extraction target: ");
+        // Retain original catalog extraction target, but reject relative/traversal
+        // and control-character paths. Never use the metadata's Saved path field.
+        if (dest.size() < 5 || dest.size() > 180 ||
+            dest.find("..") != std::string::npos ||
+            !(dest.compare(0, 4, "ux0:") == 0 ||
+              dest.compare(0, 4, "ur0:") == 0 ||
+              dest.compare(0, 5, "uma0:") == 0))
+            continue;
+        bool safe = true;
+        for (unsigned char ch : dest)
+            if (ch < 0x21 || ch > 0x7e) safe = false;
+        if (!safe) continue;
+        path = candidateZip; target = dest; infoPath = candidateInfo;
+        found = true;
+        break;
+    }
+    sceIoDclose(dir);
+    return found;
+}
+
+bool InstallController::hasSavedZip(const std::string& appId, const std::string& titleId) const {
+    std::string path, target, info;
+    return locateSavedZip(appId, titleId, path, target, info);
+}
+
+bool InstallController::requestSavedZipExtraction(const std::string& appId,
+                                                  const std::string& titleId) {
+    if (busy() || zipRecoveryAvailable_.load()) return false;
+    if (workerThread_ >= 0) {
+        if (!workerDone_.load(std::memory_order_acquire)) return false;
+        sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
+        sceKernelDeleteThread(workerThread_);
+        workerThread_ = -1;
+    }
+    std::string archive, target, info;
+    if (!locateSavedZip(appId, titleId, archive, target, info)) {
+        diagnostics::log("[Installer] saved ZIP not found for app=" + appId);
+        return false;
+    }
+    const auto s = static_cast<InstallStatus::State>(state_.load());
+    if (s == InstallStatus::State::Completed || s == InstallStatus::State::Failed ||
+        s == InstallStatus::State::Cancelled) acknowledgeResult();
+    savedZipPath_ = archive;
+    savedZipTarget_ = target;
+    savedZipInfoPath_ = info;
+    savedZipMode_ = true;
+    activeJobId_.clear();
+    activeZipDestination_ = target;
+    zipRecoveryAvailable_.store(false);
+    current_.store(0); total_.store(0); speed_.store(0);
+    liveAreaOk_.store(false); needsReboot_.store(false);
+    resultShownAtMs_.store(0);
+    const auto slash = archive.find_last_of('/');
+    const std::string name = slash == std::string::npos ? archive : archive.substr(slash + 1);
+    setFileName(name.c_str());
+    setStage("Extracting");
+    setState(InstallStatus::State::Installing, "Extracting saved ZIP without downloading...");
+    workerDone_.store(false, std::memory_order_release);
+    workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
+                                         0x10000100, 512 * 1024, 0, 0, nullptr);
+    if (workerThread_ < 0) {
+        savedZipMode_ = false;
+        workerDone_.store(true);
+        setState(InstallStatus::State::Failed, "Could not create ZIP extraction worker");
+        return false;
+    }
+    InstallController* self = this;
+    const int started = sceKernelStartThread(workerThread_, sizeof(self), &self);
+    if (started < 0) {
+        sceKernelDeleteThread(workerThread_);
+        workerThread_ = -1;
+        savedZipMode_ = false;
+        workerDone_.store(true);
+        setState(InstallStatus::State::Failed, "Could not start ZIP extraction worker");
+        return false;
+    }
+    diagnostics::log("[Installer] offline ZIP retry started path=" + archive + " target=" + target);
     return true;
 }
 
@@ -867,7 +987,65 @@ int InstallController::workerEntry(SceSize args, void* argp) {
     return self ? self->workerMain() : -1;
 }
 
+
+int InstallController::workerSavedZipMain() {
+    const std::string path = savedZipPath_;
+    const std::string target = savedZipTarget_;
+    const std::string infoPath = savedZipInfoPath_;
+    uint64_t startedUs = 0;
+    dispatcher_.setPspTarget(settings_.pspTarget);
+    dispatcher_.setPspMediaFormat(settings_.pspMediaFormat);
+    const InstallDispatchResult result = dispatcher_.installFile(
+        path,
+        [&](const InstallDispatchProgress& progress) {
+            current_.store(progress.current);
+            total_.store(progress.total);
+            if (progress.stage == InstallDispatchProgress::Extracting) {
+                setStage("Extracting");
+                const uint64_t now = sceKernelGetProcessTimeWide();
+                if (!startedUs) startedUs = now;
+                const uint64_t elapsed = now - startedUs;
+                speed_.store(elapsed >= 2000000ULL && progress.current > 0
+                    ? (progress.current * 1000000ULL) / elapsed : 0);
+            } else {
+                speed_.store(0);
+                setStage("Installing");
+            }
+            if (!progress.message.empty()) setMessage(progress.message.c_str());
+        },
+        nullptr, target, std::string());
+    if (result == InstallDispatchResult::Ok) {
+        // The recovered ZIP has served its purpose. Free 1-3 GB of ux0 storage
+        // only after verified successful extraction; never erase on failure.
+        StorageManager st;
+        const bool removed = st.removeFile(path);
+        if (removed) st.removeFile(infoPath);
+        diagnostics::log(std::string("[Installer] offline ZIP extraction OK archive_deleted=") +
+                         (removed ? "yes" : "no") + " target=" + target);
+        setInstallPath(target.c_str());
+        setStage("Completed");
+        setState(InstallStatus::State::Completed, "Saved ZIP extracted successfully");
+    } else {
+        const std::string error = dispatcher_.lastError().empty()
+            ? "ZIP extraction failed" : dispatcher_.lastError();
+        diagnostics::log("[Installer] offline ZIP extraction FAILED (archive preserved): " + error);
+        zipRecoveryPath_ = path;
+        zipRecoveryExtractPath_ = target;
+        zipRecoveryInfoPath_ = infoPath;
+        zipRecoveryJobId_.clear();
+        zipRecoveryMayBeCorrupt_.store(looksLikeDamagedZipError(error));
+        zipRecoveryAvailable_.store(true);
+        setStage("ZipRecovery");
+        setState(InstallStatus::State::Failed, error.c_str());
+    }
+    resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+    savedZipMode_ = false;
+    workerDone_.store(true, std::memory_order_release);
+    return 0;
+}
+
 int InstallController::workerMain() {
+    if (savedZipMode_) return workerSavedZipMain();
     if (activeBgdlJob_) {
         activeBgdlJob_ = false;
         const std::string title = activeBgdlTitle_;
