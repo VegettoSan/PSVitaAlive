@@ -546,7 +546,9 @@ ZipResult ZipExtractor::extract(
     // late in a crowded parent may fail despite ample ux0 free bytes.
     // Explicit errors also avoid wasting minutes extracting the same prefix.
     std::vector<std::string> requiredDirs;
-    requiredDirs.reserve(static_cast<size_t>(numEntries));
+    // Do not reserve attacker-controlled ZIP entry counts directly: a corrupt
+    // central directory may claim millions of entries on a memory-limited Vita.
+    requiredDirs.reserve(std::min(static_cast<size_t>(numEntries), size_t(4096)));
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         zip_stat_t zs;
         zip_stat_init(&zs);
