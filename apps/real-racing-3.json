@@ -13,17 +13,17 @@
     "racing",
     "strategy"
   ],
-  "version": "1.1.1",
-  "version_date": "2026-10-02",
+  "version": "3.6.2",
+  "version_date": "2026-10-19",
   "requirements": "- No data",
-  "size": 5138022,
+  "size": 8598323,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita_Public_Beta_1.1.1.vpk",
-      "size": 5138022,
+      "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita%20v3.6.2.vpk",
+      "size": 8598323,
       "recommended": true
     },
     {
