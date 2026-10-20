@@ -126,7 +126,7 @@ private:
     UiState state_;
     std::vector<CatalogItem> allItems_;
     std::vector<CatalogItem> items_; // existing filtered view (RAM optimization deferred)
-    enum class ContentFilter { All, DataOrGame, GameFiles, DataFiles, Dlc, Category, Heading };
+    enum class ContentFilter { All, DataOrGame, Dlc, Category, Heading };
     struct FilterOption {
         ContentFilter mode;
         std::string category;
