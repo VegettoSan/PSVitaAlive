@@ -1,4 +1,5 @@
 #include "ui/full_catalog_screen.hpp"
+#include "ui/installed_game_index.hpp"
 #include "catalog/catalog_trace.hpp"
 #include "ui/mascot_manager.hpp"
 #include "ui/news_markdown.hpp"
@@ -2699,6 +2700,8 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
         releaseTextures();
     }
     state_.catalog=c;
+    // Check removable media / external installers after switching catalogs.
+    invalidateInstallStatus("");
     installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
     searchQuery_.clear();
     filterMode_ = ContentFilter::All;
@@ -2785,6 +2788,7 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     // Refresh local install badges after a finished install attempt
     if (!titleId.empty() && (outcome == 1 || outcome == 2)) {
         invalidateInstallStatus(titleId);
+        if (isInstallStateFilter()) rebuildFilteredItems();
     }
 
     // Install All queue: advance on Completed, abort tracking on fail/cancel
@@ -3015,8 +3019,17 @@ void FullCatalogScreen::shutdown(){
     diagnostics::log("[UI] shutdown");
 }
 int FullCatalogScreen::totalRows()const{return catalogView().empty()?0:(int(catalogView().size())+2)/3;}int FullCatalogScreen::visibleRowsFull()const{return 3;}int FullCatalogScreen::visibleRowsSplit()const{const int usable=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-GRID_PAD*2;return std::max(1,(usable+CARD_GAP)/(SPLIT_CARD_H+CARD_GAP));}int FullCatalogScreen::selectedIndex()const{return catalogView().empty()?-1:std::max(0,std::min(state_.focusIndex,(int)catalogView().size()-1));}void FullCatalogScreen::clampCatalogFocus(){if(catalogView().empty())state_.focusIndex=0;else state_.focusIndex=std::max(0,std::min(state_.focusIndex,(int)catalogView().size()-1));}void FullCatalogScreen::clampCatalogScroll(){if(catalogView().empty()){state_.catalogScrollRow=0;return;}int v=state_.mode==UiMode::FULL_CATALOG?visibleRowsFull():visibleRowsSplit();if(state_.mode==UiMode::FULL_CATALOG){int r=state_.focusIndex/3;if(r<state_.catalogScrollRow)state_.catalogScrollRow=r;if(r>=state_.catalogScrollRow+v)state_.catalogScrollRow=r-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,std::max(0,totalRows()-v)));}else{int m=std::max(0,(int)catalogView().size()-v);if(state_.focusIndex<state_.catalogScrollRow)state_.catalogScrollRow=state_.focusIndex;if(state_.focusIndex>=state_.catalogScrollRow+v)state_.catalogScrollRow=state_.focusIndex-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,m));}}
-void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::rebuildFilteredItems() {
+void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}bool FullCatalogScreen::isInstallStateFilter() const {
+    return filterMode_ == ContentFilter::Installed ||
+           filterMode_ == ContentFilter::Updates ||
+           filterMode_ == ContentFilter::Unrecognized;
+}
+
+void FullCatalogScreen::rebuildFilteredItems() {
     items_.clear();
+    installFilterScanNext_ = 0;
+    // Never perform a synchronous whole-catalog filesystem probe on filter input.
+    if (isInstallStateFilter()) return;
     if (searchQuery_.empty() && filterMode_ == ContentFilter::All) {
         // No extra catalog copy; keep the existing RAM behavior unchanged.
         return;
@@ -3029,9 +3042,22 @@ void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::st
     }
 }
 
-bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) const {
+bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) {
     switch (filterMode_) {
         case ContentFilter::All: return true;
+        case ContentFilter::Installed: {
+            const LocalInstallState state = queryLocalInstall(item).state;
+            // Both updates and unrecognized installed releases are INSTALLED.
+            return state == LocalInstallState::Installed ||
+                   state == LocalInstallState::UpdateAvailable ||
+                   state == LocalInstallState::InstalledUnknown;
+        }
+        case ContentFilter::Updates:
+            return state_.catalog == CatalogType::Homebrew &&
+                   queryLocalInstall(item).state == LocalInstallState::UpdateAvailable;
+        case ContentFilter::Unrecognized:
+            return state_.catalog == CatalogType::Homebrew &&
+                   queryLocalInstall(item).state == LocalInstallState::InstalledUnknown;
         case ContentFilter::DataOrGame: return state_.catalog == CatalogType::Homebrew && itemHasDataOrGameFiles(item);
         case ContentFilter::Dlc:
             return (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames) && itemHasDlc(item);
@@ -3043,6 +3069,27 @@ bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) const 
         case ContentFilter::Heading: return true; // Never an active filter.
     }
     return true;
+}
+
+void FullCatalogScreen::advanceInstallFilterScan() {
+    if (!isInstallStateFilter() || catalogLoading_ || installProgressActive_ ||
+        state_.mode == UiMode::SETTINGS || installFilterScanNext_ >= allItems_.size())
+        return;
+    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    if (nowMs < installStatusWarmupUntilMs_) return;
+    // Time-slice the work; Homebrew retains the existing SFO probe throttle.
+    // Unknown means a pending probe, NOT a negative installation result.
+    unsigned examined = 0;
+    while (installFilterScanNext_ < allItems_.size() && examined < 64) {
+        const CatalogItem& item = allItems_[installFilterScanNext_];
+        const LocalInstallInfo probe = queryLocalInstall(item);
+        if (probe.state == LocalInstallState::Unknown && !item.titleId.empty())
+            break;
+        ++installFilterScanNext_;
+        ++examined;
+        if (matchesSearch(item, searchQuery_) && itemMatchesCurrentFilter(item))
+            items_.push_back(item);
+    }
 }
 
 void FullCatalogScreen::applyContentFilter(ContentFilter mode, const char* category) {
@@ -3078,6 +3125,10 @@ const FullCatalogScreen::FilterOption* FullCatalogScreen::filterOptionsForCatalo
 
     static constexpr FilterOption homebrew[] = {
         {ContentFilter::All, "", "FILTERS_ALL"},
+        {ContentFilter::Heading, "", "FILTERS_STATUS_HEADING"},
+        {ContentFilter::Installed, "", "FILTERS_INSTALLED"},
+        {ContentFilter::Updates, "", "FILTERS_UPDATES"},
+        {ContentFilter::Unrecognized, "", "FILTERS_VERSION_UNKNOWN"},
         {ContentFilter::Heading, "", "FILTERS_FILES_HEADING"},
         {ContentFilter::DataOrGame, "", "FILTERS_ANY_FILES"},
         {ContentFilter::Heading, "", "FILTERS_CATEGORIES_HEADING"},
@@ -3093,6 +3144,8 @@ const FullCatalogScreen::FilterOption* FullCatalogScreen::filterOptionsForCatalo
 
     static constexpr FilterOption vita[] = {
         {ContentFilter::All, "", "FILTERS_ALL"},
+        {ContentFilter::Heading, "", "FILTERS_STATUS_HEADING"},
+        {ContentFilter::Installed, "", "FILTERS_INSTALLED"},
         {ContentFilter::Heading, "", "FILTERS_FILES_HEADING"},
         {ContentFilter::Dlc, "", "FILTERS_DLC"},
         {ContentFilter::Heading, "", "FILTERS_GENRES_HEADING"},
@@ -3115,6 +3168,8 @@ const FullCatalogScreen::FilterOption* FullCatalogScreen::filterOptionsForCatalo
 
     static constexpr FilterOption psp[] = {
         {ContentFilter::All, "", "FILTERS_ALL"},
+        {ContentFilter::Heading, "", "FILTERS_STATUS_HEADING"},
+        {ContentFilter::Installed, "", "FILTERS_INSTALLED"},
         {ContentFilter::Heading, "", "FILTERS_FILES_HEADING"},
         {ContentFilter::Dlc, "", "FILTERS_DLC"},
         {ContentFilter::Heading, "", "FILTERS_GENRES_HEADING"},
@@ -3136,6 +3191,8 @@ const FullCatalogScreen::FilterOption* FullCatalogScreen::filterOptionsForCatalo
 
     static constexpr FilterOption ps1[] = {
         {ContentFilter::All, "", "FILTERS_ALL"},
+        {ContentFilter::Heading, "", "FILTERS_STATUS_HEADING"},
+        {ContentFilter::Installed, "", "FILTERS_INSTALLED"},
         {ContentFilter::Heading, "", "FILTERS_GENRES_HEADING"},
         {ContentFilter::Genre, "action", "FILTER_GENRE_ACTION"},
         {ContentFilter::Genre, "adventure", "FILTER_GENRE_ADVENTURE"},
@@ -6276,6 +6333,24 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
     if (catalogLoading_ || nowMs < installStatusWarmupUntilMs_) {
         return unknown;
     }
+    InstalledGameIndex& index = installedGameIndex();
+    if (state_.catalog != CatalogType::Homebrew) {
+        // Games: presence-only detection. Never evaluate installed SFO versions.
+        LocalInstallInfo game;
+        game.state = index.contains(state_.catalog, tid, item.alternateTitleIds)
+            ? LocalInstallState::Installed : LocalInstallState::NotInstalled;
+        return game;
+    }
+    // Fast negative for Homebrew status filters: only actually installed
+    // Homebrew need SFO + conservative release decision checks.
+    if (isInstallStateFilter()) {
+        index.refresh();
+        if (index.appScanOk && index.liveAreaIds.count(tid) == 0) {
+            LocalInstallInfo absent;
+            absent.state = LocalInstallState::NotInstalled;
+            return absent;
+        }
+    }
     auto& cache = installProbeCache();
     auto cached = cache.find(key);
 
@@ -6384,6 +6459,7 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
 }
 
 void FullCatalogScreen::invalidateInstallStatus(const std::string& titleId) {
+    installedGameIndex().invalidate();
     if (titleId.empty()) {
         installStatusCache_.clear();
         installProbeCache().clear();
@@ -8625,6 +8701,7 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     protectionTick();
     protectionServiceMascot();
     updateAnimations();
+    advanceInstallFilterScan();
     // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
     if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
     draw();
