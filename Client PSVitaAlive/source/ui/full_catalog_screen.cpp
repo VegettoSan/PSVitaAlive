@@ -3869,21 +3869,21 @@ void FullCatalogScreen::handleTouch() {
         const int listW = (colW * 58) / 100;
         const int sideX = listX + listW + 12;
         struct Meta { bool sectionStart; const char* section; };
-        // Must match opts[11] section breaks in drawSettings
-        Meta meta[11] = {
+        // Must match opts[10] section breaks in drawSettings.
+        Meta meta[10] = {
             {true, "INSTALL"}, {false, ""}, {false, ""},
             {true, "INTERFACE"}, {false, ""}, {false, ""}, {false, ""}, {false, ""}, {false, ""},
-            {true, "CATALOG"}, {true, "UPDATES"}
+            {true, "UPDATES"}
         };
-        int rowY[11];
+        int rowY[10];
         int y = contentTop - static_cast<int>(settingsScrollY_);
-        for (int i = 0; i < 11; ++i) {
+        for (int i = 0; i < 10; ++i) {
             if (meta[i].sectionStart && meta[i].section[0]) y += 22;
             rowY[i] = y;
             y += 52 + 8;
         }
         const int rowH = 52;
-        const int measured = 11 * (52 + 8) + 4 * 22;
+        const int measured = 10 * (52 + 8) + 3 * 22;
         const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
@@ -3905,7 +3905,7 @@ void FullCatalogScreen::handleTouch() {
                 // Same as main catalog: drag steps move focus like D-Pad up/down
                 if (touchMoved_) {
                     constexpr float kScrollPx = 48.f;
-                    constexpr int kRows = 11;
+                    constexpr int kRows = 10;
                     touchAccumY_ += static_cast<float>(dy);
                     while (touchAccumY_ <= -kScrollPx) {
                         touchAccumY_ += kScrollPx;
@@ -3922,7 +3922,7 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
             // Allow slight finger jitter — still treat as tap if not a long drag
-            for (int i = 0; i < 11; ++i) {
+            for (int i = 0; i < 10; ++i) {
                 if (hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -4569,14 +4569,12 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
     } else if (row == 8) {
         settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 9) {
-        settingsEdit_.promptImageWarmup = !settingsEdit_.promptImageWarmup;
-    } else if (row == 10) {
         triggerSelfUpdateAction();
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 11;
+    constexpr int kRows = 10;
     if (nav & SCE_CTRL_UP) {
         settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
         settingsInfoScrollY_ = 0.f;
@@ -4697,7 +4695,7 @@ void FullCatalogScreen::drawSettings() {
             default: return ::psvitaalive::L(TID::FontDefault);
         }
     };
-    Opt opts[11] = {
+    Opt opts[10] = {
         {::psvitaalive::L(TID::SectionInstall), ::psvitaalive::L(TID::InstallMethod), methodLabel(), ::psvitaalive::L(TID::HintInstallMethod), true},
         {"", ::psvitaalive::L(TID::PspPs1Target), pspLabel(), ::psvitaalive::L(TID::HintPspTarget), false},
         {"", ::psvitaalive::L(TID::PspMediaAdrenaline), mediaFormatLabel(), ::psvitaalive::L(TID::HintPspMedia), false},
@@ -4707,7 +4705,6 @@ void FullCatalogScreen::drawSettings() {
         {"", ::psvitaalive::L(TID::ColorTheme), themeLabel() + "  >", ::psvitaalive::L(TID::HintColorTheme), false},
         {"", ::psvitaalive::L("MASCOT"), mascotLabel(), ::psvitaalive::L("HINT_MASCOT"), false},
         {"", ::psvitaalive::L(TID::WarnMissingPlugins), yesNo(settingsEdit_.warnMissingPlugins), ::psvitaalive::L(TID::HintWarnPlugins), false},
-        {::psvitaalive::L(TID::SectionCatalog), ::psvitaalive::L(TID::PromptImageDownload), yesNo(settingsEdit_.promptImageWarmup), ::psvitaalive::L(TID::HintImageWarmup), true},
         {::psvitaalive::L(TID::SectionUpdates), ::psvitaalive::L(TID::CheckForUpdates), updateLabel(), ::psvitaalive::L(TID::HintSelfUpdate), true},
     };
 
@@ -4722,7 +4719,7 @@ void FullCatalogScreen::drawSettings() {
     const int rowGap = 8;
 
     int measured = 0;
-    for (int i = 0; i < 11; ++i) {
+    for (int i = 0; i < 10; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
         measured += rowH + rowGap;
     }
@@ -4733,7 +4730,7 @@ void FullCatalogScreen::drawSettings() {
 
     {
         int fy = 0;
-        for (int i = 0; i <= settingsFocus_ && i < 11; ++i) {
+        for (int i = 0; i <= settingsFocus_ && i < 10; ++i) {
             if (opts[i].sectionStart && opts[i].section[0]) fy += sectionH;
             if (i < settingsFocus_) fy += rowH + rowGap;
         }
@@ -4750,9 +4747,9 @@ void FullCatalogScreen::drawSettings() {
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(listX, contentTop, listX + listW, listClipBottom);
 
-    int rowY[11] = {};
+    int rowY[10] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
-    for (int i = 0; i < 11; ++i) {
+    for (int i = 0; i < 10; ++i) {
         if (opts[i].sectionStart && opts[i].section[0]) {
             ::psvitaalive::ui::uiDrawText(&font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
             y += sectionH;
@@ -4849,11 +4846,6 @@ void FullCatalogScreen::drawSettings() {
             body3 = ::psvitaalive::L(TID::InfoWarnPlugins3);
             break;
         case 9:
-            body1 = ::psvitaalive::L(TID::InfoImageWarmup1);
-            body2 = ::psvitaalive::L(TID::InfoImageWarmup2);
-            body3 = ::psvitaalive::L(TID::InfoImageWarmup3);
-            break;
-        case 10:
             body1 = ::psvitaalive::L(TID::InfoSelfUpdate1);
             body2 = ::psvitaalive::L(TID::InfoSelfUpdate2);
             body3 = ::psvitaalive::L(TID::InfoSelfUpdate3);
@@ -4910,7 +4902,7 @@ void FullCatalogScreen::drawSettings() {
             if (!pluginsStatus_.configPathUsed.empty()) {
                 pushWrapped(pluginsStatus_.configPathUsed.c_str(), DIM, 0.60f, 18);
             }
-            if (settingsFocus_ == 10) {
+            if (settingsFocus_ == 9) {
                 char ver[96];
                 sceClibSnprintf(ver, sizeof(ver), "%s: v%s",
                                 ::psvitaalive::L(TID::LocalVersion), PSVITAALIVE_VERSION);
