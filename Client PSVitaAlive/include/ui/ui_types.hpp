@@ -49,6 +49,9 @@ struct CatalogLink {
 struct CatalogItem {
     std::string id;
     std::string titleId;
+    // Additional regional Title IDs for commercial games, pipe separated.
+    // Homebrew keeps its existing single titleId.
+    std::string alternateTitleIds;
     std::string name;
     std::string author;
 
