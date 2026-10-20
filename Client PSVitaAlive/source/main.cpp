@@ -15,7 +15,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <string>
-#include <unordered_set>
 #include <vector>
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
@@ -518,84 +517,6 @@ bool promptZipDestination(std::string& dst) {
 }
 
 
-std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
-bool promptDownloadAllImages(size_t totalImages){
-    vita2d_wait_rendering_done();
-    ::psvitaalive::ui::UiFont font=::psvitaalive::ui::loadDefaultUiFont();
-    if(!font) return false;
-    bool yes=false, done=false;
-    int selected=0;
-    uint32_t prev=0;
-    bool touchWasDown=false;
-    {
-        SceCtrlData pad{};
-        sceCtrlPeekBufferPositive(0,&pad,1);
-        prev=pad.buttons;
-    }
-    while(!done){
-        SceCtrlData pad={};
-        sceCtrlPeekBufferPositive(0,&pad,1);
-        uint32_t pressed=pad.buttons&~prev;
-        prev=pad.buttons;
-        if(pressed&SCE_CTRL_LEFT) selected=0;
-        if(pressed&SCE_CTRL_RIGHT) selected=1;
-        if(pressed&SCE_CTRL_CROSS){ yes=selected==0; done=true; }
-        if(pressed&SCE_CTRL_CIRCLE){ yes=false; done=true; }
-
-        const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255);
-        const unsigned TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255);
-        const unsigned ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255);
-        const unsigned BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);
-        const int w=620,h=360,x=(960-w)/2,y=(544-h)/2;
-        const int by=y+266,bw=220,bh=38;
-        const int btn0x=x+58, btn1x=x+342;
-
-        int tx=0,ty=0; bool touchDown=false;
-        peekFrontTouch(tx,ty,touchDown);
-        if(touchDown && !touchWasDown){
-            if(tx>=btn0x && tx<btn0x+bw && ty>=by && ty<by+bh){ selected=0; yes=true; done=true; }
-            else if(tx>=btn1x && tx<btn1x+bw && ty>=by && ty<by+bh){ selected=1; yes=false; done=true; }
-        }
-        touchWasDown=touchDown;
-
-        vita2d_start_drawing();
-        vita2d_draw_rectangle(0,0,960,544,RGBA8(0x18,0x18,0x18,255));
-        vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,70));
-        vita2d_draw_rectangle(x,y,w,h,PANEL);
-        vita2d_draw_rectangle(x,y,w,2,ACCENT);
-        vita2d_draw_rectangle(x,y+2,2,h-4,ACCENT);
-        vita2d_draw_rectangle(x+w-2,y+2,2,h-4,BORDER);
-        vita2d_draw_rectangle(x,y+h-2,w,2,BORDER);
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+36,ACCENT,.68f,"PSVitaAlive");
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+78,WHITE,1.02f,"Download catalog images?");
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+108,TEXT,.58f,"Images are downloaded once and kept in the local cache.");
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+118,DIM,.54f,"This can take a very long time and use network data.");
-        const unsigned WARN=RGBA8(0xFF,0xB0,0x20,255);
-        vita2d_draw_rectangle(x+24,y+136,w-48,36,RGBA8(0x3A,0x2A,0x10,255));
-        vita2d_draw_rectangle(x+24,y+136,3,36,WARN);
-        ::psvitaalive::ui::uiDrawText(&font,x+36,y+150,WARN,.56f,"Warning: total may exceed 2 GB");
-        ::psvitaalive::ui::uiDrawText(&font,x+36,y+166,WARN,.50f,"of data. Use Wi-Fi and check free space.");
-        char count[96];
-        sceClibSnprintf(count,sizeof(count),"Pending images: %u",(unsigned)totalImages);
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+188,ACCENT,.68f,count);
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+210,TEXT,.52f,"Already cached images are excluded from this count.");
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+228,TEXT,.52f,"Speed, ETA and progress appear in the next panel.");
-        vita2d_draw_rectangle(btn0x,by,bw,bh,selected==0?ACCENT:SURFACE);
-        vita2d_draw_rectangle(btn1x,by,bw,bh,selected==1?ACCENT:SURFACE);
-        ::psvitaalive::ui::uiDrawText(&font,x+125,by+25,selected==0?BLACK:WHITE,.62f,"DOWNLOAD ALL");
-        ::psvitaalive::ui::uiDrawText(&font,x+425,by+25,selected==1?BLACK:WHITE,.62f,"LATER");
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+h-14,DIM,.52f,"Touch buttons or  Left/Right + Cross / Circle");
-        vita2d_end_drawing();
-        vita2d_swap_buffers();
-        sceKernelDelayThread(16*1000);
-    }
-    vita2d_wait_rendering_done();
-    font.reset();
-    return yes;
-}
-
-
-
 uint64_t parseCatalogSizeBytes(const std::string& raw) {
     if (raw.empty()) return 0;
     std::string s;
@@ -630,8 +551,6 @@ uint64_t parseCatalogSizeBytes(const std::string& raw) {
     return static_cast<uint64_t>(v * static_cast<double>(mul) + 0.5);
 }
 
-std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}
-std::string twoLineFileName(const std::string&name){if(name.size()<=42)return name;if(name.size()<=84)return name.substr(0,42)+"\n"+name.substr(42);return name.substr(0,42)+"\n..."+name.substr(name.size()-38);}
 int hexValue(char c){if(c>='0'&&c<='9')return c-'0';if(c>='a'&&c<='f')return c-'a'+10;if(c>='A'&&c<='F')return c-'A'+10;return -1;}
 std::string urlDecodePath(std::string value){for(int pass=0;pass<2;++pass){std::string out;out.reserve(value.size());bool changed=false;for(size_t i=0;i<value.size();++i){if(value[i]=='%'&&i+2<value.size()){const int h=hexValue(value[i+1]);const int l=hexValue(value[i+2]);if(h>=0&&l>=0){out.push_back(static_cast<char>((h<<4)|l));i+=2;changed=true;continue;}}out.push_back(value[i]);}value.swap(out);if(!changed)break;}return value;}
 std::string fileNameFromUrl(const std::string&url,const std::string&id){
@@ -642,51 +561,6 @@ std::string fileNameFromUrl(const std::string&url,const std::string&id){
     name=urlDecodePath(name);return name.empty()||name=="file"?id+".bin":name;
 }
 bool isZipName(const std::string&name){if(name.size()<4)return false;std::string ext=name.substr(name.size()-4);for(char&c:ext){if(c>='A'&&c<='Z')c=static_cast<char>(c-'A'+'a');}return ext==".zip";}
-struct StartupImageJob{std::string url;std::string path;std::string namespaceName;std::string fileName;};
-void addStartupImage(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::string&url,const std::string&namespaceName,bool queueNow){if(url.empty()||images.isCached(url,namespaceName))return;const std::string key=namespaceName+"\n"+url;if(!seen.insert(key).second)return;std::string path;if(queueNow)path=images.request(url,namespaceName);jobs.push_back({url,path,namespaceName,fileNameFromUrl(url,namespaceName+"_image")});}
-void collectCatalogImages(std::vector<StartupImageJob>&jobs,std::unordered_set<std::string>&seen,psvitaalive::ui::ImageCache&images,const std::vector<psvitaalive::ui::CatalogItem>&items,bool queueNow){
-    const uint64_t t=psvitaalive::catalog_trace::nowUs();
-    const size_t before=jobs.size();
-    for(const auto&item:items){
-        addStartupImage(jobs,seen,images,item.icon,"app",queueNow);
-        addStartupImage(jobs,seen,images,item.cover,"app",queueNow);
-        const size_t count=std::min<size_t>(5,item.screenshots.size());
-        for(size_t i=0;i<count;++i)addStartupImage(jobs,seen,images,item.screenshots[i],"shot",queueNow);
-    }
-    PSVA_TRACE_DURATION("image_job_scan",t,"apps="+std::to_string(items.size())+
-        " new_jobs="+std::to_string(jobs.size()-before)+" total_jobs="+std::to_string(jobs.size()));
-}
-void queueStartupImages(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images){for(auto&job:jobs){if(job.path.empty())job.path=images.request(job.url,job.namespaceName);}}
-void imageWarmupProgress(const std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images,uint64_t&completed,std::string&currentFile,bool&failedCurrent){completed=0;currentFile.clear();failedCurrent=false;for(const auto&job:jobs){const bool ready=images.isReady(job.path),failed=images.isFailed(job.path);if(ready||failed){++completed;continue;}if(currentFile.empty())currentFile=job.fileName;}}
-bool runImageWarmup(std::vector<StartupImageJob>&jobs,psvitaalive::ui::ImageCache&images){
-    if(jobs.empty())return true;
-    images.cancelAll();
-    while(images.progress().active)sceKernelDelayThread(10*1000);
-    images.resetProgress();::psvitaalive::ui::UiFont prepFont=::psvitaalive::ui::loadDefaultUiFont();if(prepFont){vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));const int pw=620,ph=280,px=(960-pw)/2,py=(544-ph)/2;vita2d_draw_rectangle(px,py,pw,ph,RGBA8(0x20,0x20,0x20,255));vita2d_draw_rectangle(px,py,pw,2,RGBA8(0x3B,0xFF,0,255));::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+44,RGBA8(0x3B,0xFF,0,255),.68f,"PSVitaAlive");::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+86,RGBA8(255,255,255,255),1.0f,"Preparing image downloads");::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+122,RGBA8(0xAA,0xAA,0xAA,255),.58f,"Building the download queue...");::psvitaalive::ui::uiDrawText(&prepFont,px+28,py+160,RGBA8(0x3B,0xFF,0,255),.62f,"Please wait");vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);prepFont.reset();}
-    queueStartupImages(jobs,images);
-    ::psvitaalive::ui::UiFont font=::psvitaalive::ui::loadDefaultUiFont();
-    if(!font){images.cancelAll();return false;}
-    const uint64_t started=sceKernelGetSystemTimeWide();uint64_t lastPoll=0;bool cancelled=false;
-    while(true){
-        const uint64_t now=sceKernelGetSystemTimeWide();
-        uint64_t completed=0;std::string currentFile;bool failedCurrent=false;imageWarmupProgress(jobs,images,completed,currentFile,failedCurrent);
-        const auto p=images.progress();
-        if(completed>=(uint64_t)jobs.size()&&!p.active)break;
-        SceCtrlData pad={};sceCtrlPeekBufferPositive(0,&pad,1);if(pad.buttons&SCE_CTRL_CIRCLE&&!cancelled){images.cancelAll();cancelled=true;}if(cancelled){vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(170,142,620,260,RGBA8(0x20,0x20,0x20,255));vita2d_draw_rectangle(170,142,620,2,RGBA8(0x3B,0xFF,0,255));::psvitaalive::ui::uiDrawText(&font,198,184,RGBA8(0x3B,0xFF,0,255),.68f,"PSVitaAlive");::psvitaalive::ui::uiDrawText(&font,198,226,RGBA8(255,255,255,255),1.0f,"Cancelling image downloads");::psvitaalive::ui::uiDrawText(&font,198,262,RGBA8(0xAA,0xAA,0xAA,255),.58f,"Stopping transfer and removing incomplete file...");vita2d_end_drawing();vita2d_swap_buffers();if(!images.progress().active)break;sceKernelDelayThread(16*1000);continue;}
-        if(now<lastPoll){sceKernelDelayThread(16*1000);continue;}lastPoll=now+100000;
-        const unsigned SURFACE=RGBA8(0x37,0x37,0x37,255),BORDER=RGBA8(0x6E,0x6E,0x6E,255),TEXT=RGBA8(0xAA,0xAA,0xAA,255),DIM=RGBA8(0x6E,0x6E,0x6E,255),ACCENT=RGBA8(0x3B,0xFF,0,255),WHITE=RGBA8(255,255,255,255),BLACK=RGBA8(0,0,0,255),PANEL=RGBA8(0x20,0x20,0x20,255);
-        const int w=620,h=320,x=(960-w)/2,y=(544-h)/2;
-        vita2d_start_drawing();vita2d_draw_rectangle(0,0,960,544,RGBA8(0,0,0,96));vita2d_draw_rectangle(x,y,w,h,PANEL);vita2d_draw_rectangle(x,y,w,2,ACCENT);vita2d_draw_rectangle(x,y+2,2,h-2,ACCENT);
-        ::psvitaalive::ui::uiDrawText(&font,x+28,y+32,ACCENT,.68f,"PSVitaAlive");::psvitaalive::ui::uiDrawText(&font,x+28,y+68,WHITE,1.02f,"Downloading Images");
-        std::string fn=twoLineFileName(p.fileName.empty()?currentFile:p.fileName);const size_t nl=fn.find('\n');if(nl==std::string::npos)::psvitaalive::ui::uiDrawText(&font,x+28,y+98,TEXT,.62f,fn.c_str());else{::psvitaalive::ui::uiDrawText(&font,x+28,y+98,TEXT,.62f,fn.substr(0,nl).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+120,TEXT,.62f,fn.substr(nl+1).c_str());}
-        const uint64_t current=p.downloaded,total=p.total;const uint64_t filePct=total?std::min<uint64_t>(100,(current*100)/total):0;const uint64_t overallPct=jobs.empty()?100:std::min<uint64_t>(100,((completed*10000)+(filePct*100))/jobs.size()/100);int bx=x+28,by=y+140,bw=w-56,bh=12;vita2d_draw_rectangle(bx,by,bw,bh,BORDER);vita2d_draw_rectangle(bx,by,bw*(int)overallPct/100,bh,ACCENT);char stats[220]={};sceClibSnprintf(stats,sizeof(stats),"%llu%%  Files: %llu / %u  •  %s/s",(unsigned long long)overallPct,(unsigned long long)completed,(unsigned)jobs.size(),formatBytes(p.speed).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+168,TEXT,.58f,stats);uint64_t eta=0;if(p.speed>0){uint64_t avg=completed?p.completedBytes/completed:(p.total?p.total:0);uint64_t futureFiles=jobs.size()>completed+(p.active?1:0)?jobs.size()-completed-(p.active?1:0):0;uint64_t remaining=(p.total>p.downloaded?p.total-p.downloaded:0)+avg*futureFiles;eta=remaining/p.speed;}char etaText[96];sceClibSnprintf(etaText,sizeof(etaText),"ETA: %s",formatEta(eta).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+194,ACCENT,.62f,etaText);
-        char known[220]={};sceClibSnprintf(known,sizeof(known),"Known size: %s",formatBytes(p.knownTotalBytes).c_str());::psvitaalive::ui::uiDrawText(&font,x+28,y+218,TEXT,.56f,known);
-        vita2d_draw_rectangle(x+w-190,y+h-52,162,38,cancelled?ACCENT:SURFACE);vita2d_draw_rectangle(x+w-190,y+h-52,162,1,ACCENT);::psvitaalive::ui::uiDrawText(&font,x+w-176,y+h-27,cancelled?BLACK:WHITE,.54f,"CIRCLE  CANCEL DOWNLOAD");
-        vita2d_end_drawing();vita2d_swap_buffers();sceKernelDelayThread(16*1000);
-        if(cancelled&&!images.progress().active)break;
-    }
-    vita2d_wait_rendering_done();font.reset();return !cancelled;
-}
 std::string progressMessage(uint64_t current,uint64_t total,const std::string&prefix,const std::string&file){char b[320];const uint64_t pct=total?std::min<uint64_t>(100,(current*100)/total):0;sceClibSnprintf(b,sizeof(b),"%s | %llu%% | %llu / %llu%s%s",prefix.c_str(),(unsigned long long)pct,(unsigned long long)current,(unsigned long long)total,file.empty()?"":" | ",file.c_str());return b;}
 }
 
@@ -912,9 +786,7 @@ int main(){
     screen.setImageCache(&images);
 
     const int catalogCount=(int)psvitaalive::ui::CatalogType::Count;
-    int preloadIndex=0;bool startupCatalogs=true;bool homebrewReady=false;bool startupImageChoicePending=false;bool startupImageScanActive=false;size_t startupImageScanIndex=0;bool startupThemePending=false;bool startupNewsPending=false;bool startupEssentialPending=false;
-    std::vector<std::vector<psvitaalive::ui::CatalogItem>> startupCatalogItems((size_t)catalogCount);
-    std::vector<StartupImageJob> startupImagesJobs;std::unordered_set<std::string> startupImageSeen;
+    int preloadIndex=0;bool startupCatalogs=true;bool homebrewReady=false;bool startupThemePending=false;bool startupNewsPending=false;bool startupEssentialPending=false;
 
     screen.setActiveCatalog(psvitaalive::ui::CatalogType::Homebrew);
     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(psvitaalive::ui::CatalogType::Homebrew),0,0,::psvitaalive::L(::psvitaalive::TextId::LoadingHomebrewCatalogMsg));
@@ -985,7 +857,6 @@ while(true){
                     " state="+std::to_string((int)cs.state)+
                     " soft="+std::to_string(cs.softRefresh?1:0)+
                     " homebrew_ready="+std::to_string(homebrewReady?1:0)+
-                    " image_choice="+std::to_string(startupImageChoicePending?1:0)+
                     " progress="+std::to_string(cs.current)+"/"+std::to_string(cs.total));
             }
         }
@@ -994,11 +865,9 @@ while(true){
             psvitaalive::diagnostics::log(std::string("[Startup] catalog failed: ")+cs.label+" error="+cs.error);
 #if PSVITAALIVE_STARTUP_HOMEBREW_ONLY
             startupCatalogs=false;
-            startupImageChoicePending=true;
-            startupImagesJobs.clear();
-            startupImageSeen.clear();
-            // No bulk image scan on failure: leave the existing cache and UI intact.
-            screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),
+            startupThemePending=true;
+            // Preserve the existing image cache; images load while browsing.
+            screen.setCatalogLoading(false,"",0,0,
                 homebrewReady?(::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg)):(::psvitaalive::L(::psvitaalive::TextId::CatalogUnavailableMsg)));
             if(!homebrewReady)
                 screen.setCatalogError(cs.error.empty()?::psvitaalive::L(::psvitaalive::TextId::UnableToLoadCatalog):cs.error);
@@ -1007,7 +876,7 @@ while(true){
             ++preloadIndex;
             if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,::psvitaalive::L(::psvitaalive::TextId::CheckingCatalogOfflineOk));catalogs.request(next);}
             else{
-                startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),::psvitaalive::L(::psvitaalive::TextId::CatalogsReadyMsg));psvitaalive::diagnostics::log("[Startup] all catalogs processed; waiting for image warmup choice");
+                startupCatalogs=false;startupThemePending=true;screen.setCatalogLoading(false,"",0,0,::psvitaalive::L(::psvitaalive::TextId::CatalogsReadyMsg));psvitaalive::diagnostics::log("[Startup] all catalogs processed; images load on demand");
             }
 #endif
         }
@@ -1015,19 +884,11 @@ while(true){
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
         if(catalogs.takeReady(ready,readyCatalog)){
             psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
-            const uint64_t stageBegan=psvitaalive::catalog_trace::nowUs();
             PSVA_TRACE_EVENT("main_received_ready",
                 std::string("catalog=")+psvitaalive::ui::catalogName(readyCatalog)+
                 " items="+std::to_string(ready.size())+
                 " startup="+std::to_string(startupCatalogs?1:0));
             const size_t readyCount=ready.size();
-            // Retain a second catalog only while the optional complete-image
-            // download wizard needs an incremental inventory of missing files.
-            if(startupCatalogs && installer.settings().promptImageWarmup)
-                startupCatalogItems[(int)readyCatalog]=ready;
-            PSVA_TRACE_DURATION("startup_buffer_copy",stageBegan,
-                "items="+std::to_string(readyCount)+" retained="+
-                std::to_string(startupCatalogs && installer.settings().promptImageWarmup ? 1 : 0));
             if(startupCatalogs){
                 if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){
                     const uint64_t uiBegan=psvitaalive::catalog_trace::nowUs();
@@ -1040,22 +901,15 @@ while(true){
 #if PSVITAALIVE_STARTUP_HOMEBREW_ONLY
                 if(readyCatalog==psvitaalive::ui::CatalogType::Homebrew){
                     startupCatalogs=false;
-                    startupImageChoicePending=!installer.settings().promptImageWarmup;
-                    startupImageScanActive=installer.settings().promptImageWarmup;
-                    startupImageScanIndex=0;
-                    startupImagesJobs.clear();
-                    startupImageSeen.clear();
-                    // Optional complete-image inventory now executes in small frame
-                    // budgets; on-demand users skip thousands of ux0 Getstat calls.
-                    PSVA_TRACE_EVENT("startup_images",
-                        std::string("inventory=")+(startupImageScanActive?"incremental":"skipped_on_demand"));
+                    startupThemePending=true;
+                    // Catalog images are requested on demand by the UI.
                     screen.setCatalogLoading(false,"",0,0,::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg));
                     psvitaalive::diagnostics::log("[Startup] homebrew ready (no multi-catalog preload)");
                 }
 #else
                 ++preloadIndex;
                 if(preloadIndex<catalogCount){const auto next=(psvitaalive::ui::CatalogType)preloadIndex;screen.setCatalogLoading(true,psvitaalive::ui::catalogName(next),0,0,::psvitaalive::L(::psvitaalive::TextId::CheckingCatalogOfflineOk));catalogs.request(next);}
-                else{startupCatalogs=false;startupImageChoicePending=true;startupImagesJobs.clear();startupImageSeen.clear();for(const auto&items:startupCatalogItems)collectCatalogImages(startupImagesJobs,startupImageSeen,images,items,false);screen.setCatalogLoading(false,"",0,(uint64_t)startupImagesJobs.size(),::psvitaalive::L(::psvitaalive::TextId::CatalogsReadyMsg));psvitaalive::diagnostics::log("[Startup] all catalogs ready; waiting for image warmup choice");}
+                else{startupCatalogs=false;startupThemePending=true;screen.setCatalogLoading(false,"",0,0,::psvitaalive::L(::psvitaalive::TextId::CatalogsReadyMsg));psvitaalive::diagnostics::log("[Startup] all catalogs ready; images load on demand");}
 #endif
             }else{
                 // Runtime tab load or soft-refresh hot-swap.
@@ -1077,64 +931,6 @@ while(true){
             }
         }
 
-        // Inventory for the *optional* download-all wizard: at most 8 apps
-        // or 3ms per frame. The catalog is visible and remains navigable.
-        if(startupImageScanActive){
-            const auto& bucket=startupCatalogItems[(int)psvitaalive::ui::CatalogType::Homebrew];
-            const uint64_t slice=psvitaalive::catalog_trace::nowUs();
-            size_t done=0;
-            while(startupImageScanIndex<bucket.size() && done<8 &&
-                  psvitaalive::catalog_trace::nowUs()-slice<3000ULL){
-                const auto& item=bucket[startupImageScanIndex++];
-                addStartupImage(startupImagesJobs,startupImageSeen,images,item.icon,"app",false);
-                addStartupImage(startupImagesJobs,startupImageSeen,images,item.cover,"app",false);
-                const size_t shots=std::min<size_t>(5,item.screenshots.size());
-                for(size_t i=0;i<shots;++i)
-                    addStartupImage(startupImagesJobs,startupImageSeen,images,item.screenshots[i],"shot",false);
-                ++done;
-            }
-            if(startupImageScanIndex>=bucket.size()){
-                startupImageScanActive=false;
-                startupImageChoicePending=true;
-                PSVA_TRACE_EVENT("image_inventory_complete",
-                    "apps="+std::to_string(bucket.size())+
-                    " missing="+std::to_string(startupImagesJobs.size()));
-            }
-        }
-        if(startupImageChoicePending){
-            PSVA_TRACE_EVENT("startup_image_choice_start",
-                "jobs="+std::to_string(startupImagesJobs.size()));
-            startupImageChoicePending=false;
-            if(startupImagesJobs.empty()){
-                screen.setCatalogLoading(false,"",0,0,"Image cache ready");psvitaalive::diagnostics::log(
-                    installer.settings().promptImageWarmup?"[Startup] no pending catalog images":"[Startup] on-demand image inventory skipped");
-                startupThemePending=true;
-                // The initial catalog is already active; do not sort/reset it twice.
-                // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
-                for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
-            }else if(installer.settings().promptImageWarmup && promptDownloadAllImages(startupImagesJobs.size())){
-                const bool completed=runImageWarmup(startupImagesJobs,images);screen.requestUx0SpaceRefresh();screen.setCatalogLoading(false,"",completed?startupImagesJobs.size():0,(uint64_t)startupImagesJobs.size(),completed?"Image cache ready":"Image download cancelled");psvitaalive::diagnostics::log(std::string("[Startup] full image warmup finished result=")+(completed?"COMPLETE":"CANCELLED"));startupThemePending=true;
-                // Preserve browsing state and textures; no second setCatalogItems.
-                // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
-                for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
-            }else{
-                // User declined once (or prompt disabled in settings): remember and stay on-demand.
-                if(installer.settings().promptImageWarmup){
-                    auto s=installer.settings();
-                    s.promptImageWarmup=false;
-                    installer.setSettings(s);
-                    screen.setAppSettings(s);
-                    psvitaalive::diagnostics::log("[Startup] image warmup declined - will not ask again (enable in Settings)");
-                }
-
-                screen.setCatalogLoading(false,"",0,0,"Images will download while browsing");startupImagesJobs.clear();startupImageSeen.clear();psvitaalive::diagnostics::log("[Startup] user selected on-demand image loading");startupThemePending=true;
-                // Preserve browsing state and textures; no second setCatalogItems.
-                // Drop the other preloaded catalogs from RAM (Vita Games + zRIF was huge).
-                for(auto& bucket : startupCatalogItems){ std::vector<psvitaalive::ui::CatalogItem> empty; bucket.swap(empty); }
-            }
-        }
-
-        
         if(!startupCatalogs){
             const auto csBusy=catalogs.status();
             if(catalogs.isBusy()||csBusy.state==psvitaalive::CatalogManager::State::Loading){
