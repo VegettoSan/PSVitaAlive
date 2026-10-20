@@ -1,0 +1,47 @@
+{
+  "id": "the-drifter",
+  "title_id": "DRFT00001",
+  "name": "The Drifter",
+  "description": "The Drifter on the PS Vita",
+  "long_description": "The Drifter on a PS Vita. A pipeline takes the PC release (Unity 2020.3) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.",
+  "author_ids": [
+    "xob0t"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "strategy",
+    "source-port",
+    "other"
+  ],
+  "version": "1.3.0",
+  "version_date": "2026-10-13",
+  "requirements": "You need Windows 10 or 11 with 8 GB of memory, The Drifter from Steam or GOG and a console on HENkaku/Ensō with VitaShell.",
+  "size": 16777216,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/the-drifter-ps-vita/drifter-vita-small.vpk",
+      "size": 16777216,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1288490189,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/xob0t/the-drifter-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/the-drifter-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/the-drifter-ps-vita/Shot0.png",
+    "https://archive.org/download/the-drifter-ps-vita/Shot1.png"
+  ]
+}

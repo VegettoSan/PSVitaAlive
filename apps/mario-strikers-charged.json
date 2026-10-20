@@ -1,0 +1,48 @@
+{
+  "id": "mario-strikers-charged",
+  "title_id": "MSCN00003",
+  "name": "Mario Strikers Charged",
+  "description": "Mario Strikers Charged for PS Vita.",
+  "long_description": "A native PS Vita port of Mario Strikers Charged, with Vita controls, audio and graphics support.",
+  "author_ids": [
+    "cboc-vita-lab"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "strategy",
+    "source-port",
+    "other"
+  ],
+  "version": "01.00",
+  "version_date": "2026-10-19",
+  "requirements": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
+  "size": 3879731,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Strikers%20v01.00%2020261019.vpk",
+      "size": 3879731,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1932735283,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "GitHub",
+      "url": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/mario-strikers-charged-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
+    "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
+  ]
+}

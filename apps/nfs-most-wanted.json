@@ -1,0 +1,45 @@
+{
+  "id": "nfs-most-wanted",
+  "title_id": "NFSMWVITA",
+  "name": "NFS Most Wanted",
+  "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+  "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+  "author_ids": [
+    "germanalvarez15"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing",
+    "source-port"
+  ],
+  "version": "1.1.0",
+  "version_date": "2026-10-20",
+  "requirements": "- No Data",
+  "size": 4613734,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.1.0.vpk",
+      "size": 4613734,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1610612736,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Gihub",
+      "url": "https://github.com/germanalvarez15/nfsmw-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/nfsmw-vita/shot0.png"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "link-s-awakening-dx-hd",
+  "title_id": "LADX00001",
+  "name": "Link's Awakening DX HD",
+  "description": "A LADXHD port for the PS Vita",
+  "long_description": "A LADXHD port for the PS Vita",
+  "author_ids": [
+    "vogtmh"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "rpg",
+    "source-port"
+  ],
+  "version": "2.0.9",
+  "version_date": "2026-10-17",
+  "requirements": "- No Data",
+  "size": 25165824,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/ladxhd-vita/LADXHD-Vita-v2.0.9.vpk",
+      "size": 25165824,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/vogtmh/ladxhd-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/ladxhd-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/ladxhd-vita/Shot0.png"
+  ]
+}
