@@ -50,7 +50,7 @@ constexpr int FILTER_CHIP_W = 192;
 constexpr int FILTER_CHIP_Y = 8;
 constexpr int FILTER_CHIP_H = 36;
 constexpr int FILTER_CHIP_GAP = 8;
-constexpr int FILTER_CLOCK_RESERVE = 100;
+constexpr int HEADER_STATUS_RESERVE = 188; // battery + clock; keep the filter button width
 constexpr int FILTER_MODAL_X = 98;
 constexpr int FILTER_MODAL_Y = 46;
 constexpr int FILTER_MODAL_W = 764;
@@ -399,6 +399,54 @@ unsigned ACCENT_DIM=RGBA8(0x3B,0xFF,0x00,90);
 unsigned ACCENT_SOFT=RGBA8(0x3B,0xFF,0x00,40);
 unsigned WHITE=RGBA8(0xF0,0xF0,0xF0,255);
 unsigned SILVER=RGBA8(0xC8,0xC8,0xCC,255);
+
+// Header and OLED protection share a cached power reading (not a per-frame SDK call).
+struct BatteryDisplayState {
+    int percent = -1; // unknown: never present an error as 0%
+    bool charging = false;
+};
+
+BatteryDisplayState batteryDisplayState() {
+    static BatteryDisplayState cached{};
+    static uint64_t lastPollMs = 0;
+    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    if (lastPollMs == 0 || nowMs < lastPollMs || nowMs - lastPollMs >= 15000ULL) {
+        const int percent = scePowerGetBatteryLifePercent();
+        cached.percent = percent >= 0 && percent <= 100 ? percent : -1;
+        cached.charging = cached.percent >= 0 && scePowerIsBatteryCharging() > 0;
+        lastPollMs = nowMs;
+    }
+    return cached;
+}
+
+// The outlined icon uses only vita2d rectangles: no textures or localized glyphs.
+void drawBatteryIndicator(const ::psvitaalive::ui::UiFont* font,
+                          int anchorX, int topY, float textScale, bool centered) {
+    const BatteryDisplayState state = batteryDisplayState();
+    char label[12];
+    if (state.percent >= 0)
+        sceClibSnprintf(label, sizeof(label), "%d%%", state.percent);
+    else
+        sceClibSnprintf(label, sizeof(label), "--%%");
+    const int labelWidth = ::psvitaalive::ui::uiTextWidth(font, textScale, label);
+    const int x = centered ? anchorX - (28 + labelWidth) / 2 : anchorX;
+    const unsigned levelColor = state.percent >= 0 && state.percent <= 15
+        ? RGBA8(0xE0, 0x55, 0x48, 255) : ACCENT;
+    vita2d_draw_rectangle(x, topY + 1, 22, 14, levelColor);
+    vita2d_draw_rectangle(x + 2, topY + 3, 18, 10, SURFACE2);
+    vita2d_draw_rectangle(x + 22, topY + 5, 3, 6, levelColor);
+    if (state.percent > 0) {
+        const int fill = 18 * state.percent / 100;
+        if (fill > 0) vita2d_draw_rectangle(x + 2, topY + 3, fill, 10, levelColor);
+    }
+    if (state.charging) {
+        // A small plus denotes charging without a special font character.
+        vita2d_draw_rectangle(x + 9, topY + 7, 6, 2, WHITE);
+        vita2d_draw_rectangle(x + 11, topY + 5, 2, 6, WHITE);
+    }
+    ::psvitaalive::ui::uiDrawText(font, x + 28, topY + 14,
+                                  state.percent >= 0 ? SILVER : DIM, textScale, label);
+}
 
 
 // OLED protection mode for long-running download / extract / install phases.
@@ -4366,7 +4414,7 @@ void FullCatalogScreen::handleTouch() {
 // --- Header search + filters; hitbox mirrors drawHeader() ---
     if (y < HEADER_H) {
         const int barY = 10, barH = 32;
-        const int clockReserve = FILTER_CLOCK_RESERVE;
+        const int clockReserve = HEADER_STATUS_RESERVE;
         const int filterGap = FILTER_CHIP_GAP;
         // Match drawHeader exactly so the visual search box and touch hitbox stay aligned.
         int barX = 200;
@@ -5493,13 +5541,13 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         searchLeft = 200;
         }
     }
-    // Search + content filter to the RIGHT of the bar (same as Homebrew), then clock.
-    // [logo][ search ][ gap ][ □ Filtros ][ clock ]; long translations scroll within the chip.
+    // Keep the original filter chip dimensions; reduce search to add battery before clock.
+    // [logo][ search ][ gap ][ filters ][ battery ][ clock ].
     const int barY = 10, barH = 32;
     const int barX = searchLeft;
     const bool showContentFilter = canShowFilterButton();
     const int gdW = FILTER_CHIP_W;
-    const int barW = std::max(100, w - barX - FILTER_CLOCK_RESERVE -
+    const int barW = std::max(100, w - barX - HEADER_STATUS_RESERVE -
         (showContentFilter ? gdW + FILTER_CHIP_GAP : 0));
     const int gdX = barX + barW + FILTER_CHIP_GAP;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
@@ -5541,6 +5589,12 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     {
         const std::string clock = currentTimeLabel();
         const int clockX = w - 16 - (int)clock.size() * 11;
+
+        // Center the full battery icon + percent in the gap before the clock.
+        // Without filters, the search box expands and becomes the left edge.
+        const int statusLeft = showContentFilter ? gdX + gdW : barX + barW;
+        const int batteryCenterX = statusLeft + (clockX - statusLeft) / 2;
+        drawBatteryIndicator(&font_, batteryCenterX, 17, 0.72f, true);
         ::psvitaalive::ui::uiDrawText(&font_, clockX, 32, SILVER, 0.78f, clock.c_str());
     }
 }
@@ -7737,7 +7791,10 @@ if (installProgressActive_ && installOutcome_ == 0 && gProtectionActive) {
     drawCentered("PSVitaAlive", 24, ACCENT, 0.82f, 0.62f);
     drawCentered(phaseText, 54, TEXT, 0.86f, 0.62f);
     drawCentered(progressLine, 86, ACCENT, 0.82f, 0.58f);
-    drawCentered(::psvitaalive::L("PROTECTION_PRESS_ANY_BUTTON"), 126, DIM, 0.64f, 0.46f);
+    // This status stays visible while OLED protection hides the regular header.
+    drawBatteryIndicator(&font_, gProtectionX + kProtectionBlockW / 2,
+                         gProtectionY + 98, 0.72f, true);
+    drawCentered(::psvitaalive::L("PROTECTION_PRESS_ANY_BUTTON"), 138, DIM, 0.64f, 0.46f);
     return;
 }
 

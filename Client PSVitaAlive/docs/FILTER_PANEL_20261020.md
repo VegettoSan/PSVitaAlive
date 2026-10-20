@@ -25,6 +25,12 @@
 - `CatalogItem::category` se obtiene del catálogo ya cargado. No se solicita `categories.json` ni se modifican los JSON oficiales.
 - Cada opción fija incluye su clave de traducción; están presentes en los ocho archivos `.lang`.
 
+## Indicador de batería junto a los filtros (PR #41)
+
+El botón conserva `FILTER_CHIP_W = 192` y su zona táctil; para batería/reloj se reserva `HEADER_STATUS_RESERVE = 188` y se recorta **el buscador**. El indicador se centra como bloque completo entre el borde derecho del filtro (cuando es visible), o el del buscador expandido (cuando está oculto), y `clockX`. El reloj no se mueve. La alineación con y sin filtros fue validada por el responsable del proyecto en PS Vita real el 2026-10-20.
+
+Al modificar estos valores, actualizar y comprobar a la vez el dibujo y el hitbox táctil. Detalles de la batería y del protector OLED: [`OLED_PROTECTION_MODE.md`](OLED_PROTECTION_MODE.md).
+
 ## Lista de regresión para nuevas compilaciones
 
 Las siguientes comprobaciones se conservan como guía de QA para versiones posteriores (no como tareas pendientes de fusión del PR #40). Los pasos de Vita3K/consola requieren verificación manual específica de cada nuevo build.

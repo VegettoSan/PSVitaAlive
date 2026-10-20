@@ -17,6 +17,14 @@ Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00
 - Essential plugins modal and plugin **reboot** modal
 - Report / data-request confirms
 
+## Battery indicator
+
+`FullCatalogScreen::drawHeader()` centers the icon and percentage as a **single measured block** between the filters/search edge and the clock. Filter width (192 px), clock position and touch hitboxes remain unchanged; search yields the reserved space. If filters are hidden, the expanding search box becomes the left boundary.
+
+The OLED protection overlay reuses `drawBatteryIndicator()`. `batteryDisplayState()` caches VitaSDK power readings for 15 s, indicates charging and <=15% battery, and uses `--%` for unavailable data. There are no new textures/threads/network requests and no changes to installer or suspend/power locks.
+
+Implementation, hardware validation and regression scenarios: [`../../docs/OLED_PROTECTION_MODE.md`](../../docs/OLED_PROTECTION_MODE.md), [PR #41](https://github.com/VegettoSan/PSVitaAlive/pull/41).
+
 ## Image cache v3
 
 The UI image cache is implemented in `image_cache.cpp` / `image_cache.hpp` and is documented in detail in [`../../../docs/IMAGE_CACHE.md`](../../../docs/IMAGE_CACHE.md).
