@@ -2988,6 +2988,10 @@ bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) const 
         case ContentFilter::Dlc:
             return (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames) && itemHasDlc(item);
         case ContentFilter::Category: return item.category == filterCategory_;
+        case ContentFilter::Genre:
+            // Game catalogs carry genre IDs in subcategory_ids; the parser
+            // already keeps their first value in CatalogItem::subcategory.
+            return item.subcategory == filterCategory_;
         case ContentFilter::Heading: return true; // Never an active filter.
     }
     return true;
@@ -2997,7 +3001,8 @@ void FullCatalogScreen::applyContentFilter(ContentFilter mode, const std::string
     if (mode == ContentFilter::Heading) return;
     if (filterMode_ == mode && filterCategory_ == category) return;
     filterMode_ = mode;
-    filterCategory_ = mode == ContentFilter::Category ? category : std::string();
+    filterCategory_ = (mode == ContentFilter::Category || mode == ContentFilter::Genre)
+        ? category : std::string();
     rebuildFilteredItems();
     state_.focusIndex = 0;
     state_.catalogScrollRow = 0;
@@ -3031,24 +3036,40 @@ void FullCatalogScreen::openFilterMenu() {
         filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_FILES_HEADING"});
         filterOptions_.push_back({ContentFilter::Dlc, "", "FILTERS_DLC"});
     }
-    // Categories are already present in the loaded CatalogItem objects.
-    // No categories.json download, separate parser, or persistent category table.
+    // Homebrew uses top-level category_id; Vita/PSP/PS1 titles normally
+    // share category_id="games" and encode real genres in subcategory_ids.
+    // Reuse the parsed fields: no extra JSON, requests, or persistent lists.
+    const bool gameCatalog = state_.catalog != CatalogType::Homebrew;
+    const ContentFilter desiredMode = gameCatalog ? ContentFilter::Genre : ContentFilter::Category;
     std::vector<std::string> ids;
-    ids.reserve(16);
+    ids.reserve(24);
     for (const auto& item : allItems_) {
-        if (!item.category.empty() && std::find(ids.begin(), ids.end(), item.category) == ids.end())
-            ids.push_back(item.category);
+        const std::string& value = gameCatalog ? item.subcategory : item.category;
+        if (!value.empty() && std::find(ids.begin(), ids.end(), value) == ids.end())
+            ids.push_back(value);
+    }
+    // Future game catalogs without genre IDs still expose top-level categories.
+    ContentFilter actualMode = desiredMode;
+    if (gameCatalog && ids.empty()) {
+        actualMode = ContentFilter::Category;
+        for (const auto& item : allItems_) {
+            if (!item.category.empty() &&
+                std::find(ids.begin(), ids.end(), item.category) == ids.end())
+                ids.push_back(item.category);
+        }
     }
     std::sort(ids.begin(), ids.end());
     if (!ids.empty()) {
-        filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_CATEGORIES_HEADING"});
+        const char* heading = actualMode == ContentFilter::Genre
+            ? "FILTERS_GENRES_HEADING" : "FILTERS_CATEGORIES_HEADING";
+        filterOptions_.push_back({ContentFilter::Heading, "", heading});
         for (const auto& id : ids)
-            filterOptions_.push_back({ContentFilter::Category, id, ""});
+            filterOptions_.push_back({actualMode, id, ""});
     }
     filterFocus_ = 0;
     for (int i = 0; i < (int)filterOptions_.size(); ++i) {
         const auto& option = filterOptions_[i];
-        if (option.mode == filterMode_ && (option.mode != ContentFilter::Category || option.category == filterCategory_)) {
+        if (option.mode == filterMode_ && ((option.mode != ContentFilter::Category && option.mode != ContentFilter::Genre) || option.category == filterCategory_)) {
             filterFocus_ = i;
             break;
         }
@@ -3089,9 +3110,11 @@ void FullCatalogScreen::selectFilterOption(int index) {
 }
 
 std::string FullCatalogScreen::filterOptionLabel(const FilterOption& option) const {
-    if (option.mode != ContentFilter::Category) return ::psvitaalive::L(option.labelKey);
-    // Translate the UI label only; catalog category_id and external metadata stay unchanged.
-    std::string key = "FILTER_CATEGORY_";
+    if (option.mode != ContentFilter::Category && option.mode != ContentFilter::Genre)
+        return ::psvitaalive::L(option.labelKey);
+    // Only UI strings are translated. Keep official IDs unchanged.
+    std::string key = option.mode == ContentFilter::Genre
+        ? "FILTER_GENRE_" : "FILTER_CATEGORY_";
     for (char c : option.category) {
         if (c >= 'a' && c <= 'z') key.push_back((char)(c - 'a' + 'A'));
         else if (c == '-') key.push_back('_');
@@ -3167,7 +3190,7 @@ void FullCatalogScreen::drawFilterOverlay() {
         }
         const bool focused = index == filterFocus_;
         const bool selected = option.mode == filterMode_ &&
-            (option.mode != ContentFilter::Category || option.category == filterCategory_);
+            ((option.mode != ContentFilter::Category && option.mode != ContentFilter::Genre) || option.category == filterCategory_);
         if (focused) vita2d_draw_rectangle(x + 15, ry + 2, w - 30, rowH - 4, SURFACE);
         if (selected) vita2d_draw_rectangle(x + 17, ry + 9, 4, rowH - 18, ACCENT);
         drawFilterMarqueeText(&font_, x + 34, ry + 43, w - 109,
