@@ -98,7 +98,6 @@ struct AppSettingsData {
     PspMediaFormat pspMediaFormat = PspMediaFormat::Folder;
     ColorTheme colorTheme = ColorTheme::NeonLime;
     bool warnMissingPlugins = true;
-    bool promptImageWarmup = false;
     bool themeSetupDone = false;
     /** First-time PSP/PS1 install method wizard completed. */
     bool pspSetupDone = false;
