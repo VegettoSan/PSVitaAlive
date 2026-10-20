@@ -28,6 +28,7 @@
 #include "catalog/catalog_trace.hpp"
 #include "update/startup_update_manager.hpp"
 #include "update/update_checker.hpp"
+#include "installer/install_space_policy.hpp"
 
 namespace {
 std::string installStatusText(const psvitaalive::InstallStatus&s){using S=psvitaalive::InstallStatus::State;if(s.state==S::Idle)return{};char b[384];uint64_t p=s.total?std::min<uint64_t>(100,(s.current*100)/s.total):0;sceClibSnprintf(b,sizeof(b),"%s | %s | %llu%% | %s",s.stage.c_str(),s.fileName.empty()?"file":s.fileName.c_str(),(unsigned long long)p,s.message.c_str());return b;}
@@ -767,6 +768,14 @@ int main(){
         }
         {
             uint64_t exp = parseCatalogSizeBytes(item.size);
+            for (const auto& link : item.linkDetails) {
+                if (link.url == item.downloadUrl) {
+                    exp = psvitaalive::chooseSelectedLinkSizeBytes(
+                        parseCatalogSizeBytes(link.size), exp,
+                        link.url, item.downloadUrl);
+                    break;
+                }
+            }
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
             screen.prepareForHeavyWork();
             return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
@@ -815,8 +824,9 @@ int main(){
             }
         }
         {
-            uint64_t exp = parseCatalogSizeBytes(link.size);
-            if (exp == 0) exp = parseCatalogSizeBytes(item.size);
+            const uint64_t exp = psvitaalive::chooseSelectedLinkSizeBytes(
+                parseCatalogSizeBytes(link.size), parseCatalogSizeBytes(item.size),
+                link.url, item.downloadUrl);
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
             screen.prepareForHeavyWork();
             return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line);

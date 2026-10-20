@@ -55,6 +55,13 @@ jobs:
             -o /tmp/psvitaalive-install-retry-test
           /tmp/psvitaalive-install-retry-test
 
+      - name: Test installer space preflight
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_install_space_policy.cpp \
+            -o /tmp/psvitaalive-install-space-test
+          /tmp/psvitaalive-install-space-test
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |

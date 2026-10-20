@@ -100,3 +100,5 @@ See [ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md](ZIP_RECOVERY_AND_RANGE_ASSEMBL
 - [Estabilidad del instalador — fase 1 (2026-10-19)](INSTALLER_PHASE1_STABILITY_20261019.md): recuperación ZIP, protección de archivos, cancelación y reintentos.
 
 - [Investigación futura: versiones instaladas externamente](FUTURE_EXTERNAL_VERSION_IDENTIFICATION_20261019.md): APP_VER/VERSION, recibos, VitaDB MD5, huellas por release y límites. **Solo documentado, no implementado.**
+
+- [Estabilidad del instalador — fase 2 (2026-10-19)](INSTALLER_PHASE2_SPACE_PREFLIGHT_20261019.md): preflight según destino/tipo, tamaños correctos de enlaces y límites pendientes.

@@ -10,6 +10,7 @@
 #include "installer/app_settings.hpp"
 #include "installer/install_archive_policy.hpp"
 #include "installer/install_retry_policy.hpp"
+#include "installer/install_space_policy.hpp"
 #include "installer/refresh_manager.hpp"
 #include "installer/bgdl_client.hpp"
 #include "installer/pkg_bgdl_installer.hpp"
@@ -619,15 +620,31 @@ bool InstallController::requestInstall(
         if (!cleaned.empty()) niceTitle = cleaned;
     }
 
-    // Pre-flight: require ~2.1x payload size free on ux0 (2x + 5%) when size is known.
-    if (expectedBytes > 0) {
+    // Do not rely only on a .pkg suffix. Sony/NPS Vita CDN URLs often end in an
+    // opaque token, while their content_id still unambiguously identifies PCS*.
+    const bool vitaPkgByMetadata = looksLikeVitaPkgMetadata(contentId, zrif);
+    const bool pkgInstall = vitaPkgByMetadata || BgdlClient::looksLikePkgUrl(url, fileName);
+    const bool pspPs1Pkg = pkgInstall && !vitaPkgByMetadata &&
+        looksLikePspPs1Pkg(linkType, contentId, fileName);
+    // Vita PKGs must never be downloaded by PSVitaAlive itself. The only direct-PKG
+    // exception is PSP/PS1 when the user explicitly targets Adrenaline/pspemu.
+    const bool pspPs1Adrenaline =
+        pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline;
+    const bool wantBgdl = pkgInstall && !pspPs1Adrenaline;
+
+    // ZIP preflight covers compressed download only; ZipExtractor later checks
+    // the *actual uncompressed* size. System BGDL never uses this local budget.
+    const bool isZipExtraction = !isPluginLinkType(linkType) && !zipDestination.empty() &&
+        (isDataOrGameFilesLinkType(linkType) || FormatDetector::extensionOf(fileName) == "zip");
+    const InstallSpaceMode budgetMode = selectInstallSpaceMode(
+        wantBgdl, isZipExtraction, isPluginLinkType(linkType));
+    const uint64_t requiredSpace = preflightRequiredSpaceBytes(expectedBytes, budgetMode);
+    if (wantBgdl) diagnostics::log("[Installer] space preflight delegated to system BGDL");
+
+    if (requiredSpace > 0) {
         uint64_t freeB = 0, totalB = 0;
         if (StorageManager::queryUx0Space(freeB, totalB)) {
-            const uint64_t need = (expectedBytes / 10ULL) * 21ULL; // 2.1x, avoid overflow a bit
-            // Prefer wider multiply when safe
-            const uint64_t needExact = (expectedBytes <= (~0ULL / 21ULL))
-                ? (expectedBytes * 21ULL) / 10ULL
-                : need;
+            const uint64_t needExact = requiredSpace;
             if (freeB < needExact) {
                 const uint64_t missing = needExact - freeB;
                 char msg[320];
@@ -658,24 +675,13 @@ bool InstallController::requestInstall(
             diagnostics::log("[Installer] ux0 space probe failed; skipping pre-check");
         }
     } else {
-        diagnostics::log("[Installer] no expected size; space pre-check skipped");
+        if (!wantBgdl)
+            diagnostics::log("[Installer] no usable payload size hint; space pre-check skipped");
     }
 
     installCancelRequested_.store(false, std::memory_order_release);
     activeZrif_ = zrif;
     activeContentId_ = contentId;
-
-    // Do not rely only on a .pkg suffix. Sony/NPS Vita CDN URLs often end in an
-    // opaque token, while their content_id still unambiguously identifies PCS*.
-    const bool vitaPkgByMetadata = looksLikeVitaPkgMetadata(contentId, zrif);
-    const bool pkgInstall = vitaPkgByMetadata || BgdlClient::looksLikePkgUrl(url, fileName);
-    const bool pspPs1Pkg = pkgInstall && !vitaPkgByMetadata &&
-        looksLikePspPs1Pkg(linkType, contentId, fileName);
-    // Vita PKGs must never be downloaded by PSVitaAlive itself. The only direct-PKG
-    // exception is PSP/PS1 when the user explicitly targets Adrenaline/pspemu.
-    const bool pspPs1Adrenaline =
-        pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline;
-    const bool wantBgdl = pkgInstall && !pspPs1Adrenaline;
 
     if (vitaPkgByMetadata) {
         diagnostics::log("[Installer] Vita PCS* PKG detected from metadata; forcing system BGDL before client download");
