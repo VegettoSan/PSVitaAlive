@@ -25,7 +25,7 @@ Native C++ sources for the PS Vita client.
 5. Optional **update check** on main thread (config flag)
    - If update applied: install helper → **updater-style** `LaunchAppByUri` + `ExitProcess`
 6. Catalog manager + image cache workers
-7. Preload catalogs / image warmup choice
+7. Load the Homebrew catalog, then fetch icon/cover/screenshots on demand through the bounded image cache
 8. **Theme setup** (first run only, if `themeSetupDone` is false)
 9. **News** modal (when a new `news.txt` id is available)
 10. **Essential plugins** prompt (kubridge / fd_fix / libshacccg) if any are missing

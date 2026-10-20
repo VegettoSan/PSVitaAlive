@@ -167,7 +167,6 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::PspPs1Target: return "PSP_PS1_TARGET";
         case TextId::PspMediaAdrenaline: return "PSP_MEDIA_ADRENALINE";
         case TextId::WarnMissingPlugins: return "WARN_MISSING_PLUGINS";
-        case TextId::PromptImageDownload: return "PROMPT_IMAGE_DOWNLOAD";
         case TextId::CheckForUpdates: return "CHECK_FOR_UPDATES";
         case TextId::Auto: return "AUTO";
         case TextId::Direct: return "DIRECT";
@@ -192,7 +191,6 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::HintLanguage: return "HINT_LANGUAGE";
         case TextId::HintColorTheme: return "HINT_COLOR_THEME";
         case TextId::HintWarnPlugins: return "HINT_WARN_PLUGINS";
-        case TextId::HintImageWarmup: return "HINT_IMAGE_WARMUP";
         case TextId::HintSelfUpdate: return "HINT_SELF_UPDATE";
         case TextId::CatalogHomebrew: return "CATALOG_HOMEBREW";
         case TextId::CatalogVitaGames: return "CATALOG_VITA_GAMES";
@@ -226,9 +224,6 @@ const char* LocalizationManager::keyFor(TextId id) {
         case TextId::InfoWarnPlugins1: return "INFO_WARN_PLUGINS_1";
         case TextId::InfoWarnPlugins2: return "INFO_WARN_PLUGINS_2";
         case TextId::InfoWarnPlugins3: return "INFO_WARN_PLUGINS_3";
-        case TextId::InfoImageWarmup1: return "INFO_IMAGE_WARMUP_1";
-        case TextId::InfoImageWarmup2: return "INFO_IMAGE_WARMUP_2";
-        case TextId::InfoImageWarmup3: return "INFO_IMAGE_WARMUP_3";
         case TextId::InfoSelfUpdate1: return "INFO_SELF_UPDATE_1";
         case TextId::InfoSelfUpdate2: return "INFO_SELF_UPDATE_2";
         case TextId::InfoSelfUpdate3: return "INFO_SELF_UPDATE_3";

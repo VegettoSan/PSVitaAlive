@@ -26,7 +26,7 @@ enum class TextId {
     PspPs1Target,
     PspMediaAdrenaline,
     WarnMissingPlugins,
-    PromptImageDownload,
+    
     CheckForUpdates,
     Auto,
     Direct,
@@ -51,7 +51,7 @@ enum class TextId {
     HintLanguage,
     HintColorTheme,
     HintWarnPlugins,
-    HintImageWarmup,
+    
     HintSelfUpdate,
     CatalogHomebrew,
     CatalogVitaGames,
@@ -74,7 +74,7 @@ enum class TextId {
     InfoLanguage1, InfoLanguage2, InfoLanguage3,
     InfoColorTheme1, InfoColorTheme2, InfoColorTheme3,
     InfoWarnPlugins1, InfoWarnPlugins2, InfoWarnPlugins3,
-    InfoImageWarmup1, InfoImageWarmup2, InfoImageWarmup3,
+    
     InfoSelfUpdate1, InfoSelfUpdate2, InfoSelfUpdate3,
     StatusOk,
     StatusMissing,

@@ -14,7 +14,6 @@ INSTALL_METHOD=Méthode d'installation
 PSP_PS1_TARGET=Cible PSP / PS1
 PSP_MEDIA_ADRENALINE=Média PSP (Adrenaline)
 WARN_MISSING_PLUGINS=Alerter plugins manquants
-PROMPT_IMAGE_DOWNLOAD=Demander téléchargement images
 CHECK_FOR_UPDATES=Vérifier les mises à jour
 AUTO=Auto
 DIRECT=Direct
@@ -39,7 +38,6 @@ HINT_PSP_MEDIA=Dossier=EBOOT dans GAME; ISO=pspemu/ISO
 HINT_LANGUAGE=Système suit la langue de la Vita si disponible
 HINT_COLOR_THEME=X / toucher: ouvrir le sélecteur de thème
 HINT_WARN_PLUGINS=Toast au démarrage si NoNpDrm manque
-HINT_IMAGE_WARMUP=Si vous choisissez Non une fois, plus de demande
 HINT_SELF_UPDATE=Vérifie GitHub Releases pour un nouveau VPK
 CATALOG_HOMEBREW=Homebrew
 CATALOG_VITA_GAMES=Jeux PS Vita
@@ -73,9 +71,6 @@ INFO_COLOR_THEME_3=et confirmer le thème.
 INFO_WARN_PLUGINS_1=Affiche un toast au démarrage si
 INFO_WARN_PLUGINS_2=NoNpDrm / NoPspEmuDrm manquent
 INFO_WARN_PLUGINS_3=ou sont commentés dans config.txt.
-INFO_IMAGE_WARMUP_1=Propose de précharger les images
-INFO_IMAGE_WARMUP_2=du catalogue au démarrage.
-INFO_IMAGE_WARMUP_3=Non = téléchargement à la demande.
 INFO_SELF_UPDATE_1=Vérifie les releases GitHub
 INFO_SELF_UPDATE_2=pour une version client plus récente.
 INFO_SELF_UPDATE_3=Désactivez pour démarrer hors ligne.

@@ -14,7 +14,6 @@ INSTALL_METHOD=Installationsmethode
 PSP_PS1_TARGET=PSP / PS1 Ziel
 PSP_MEDIA_ADRENALINE=PSP-Medium (Adrenaline)
 WARN_MISSING_PLUGINS=Fehlende Plugins warnen
-PROMPT_IMAGE_DOWNLOAD=Bilder-Download fragen
 CHECK_FOR_UPDATES=Nach Updates suchen
 AUTO=Auto
 DIRECT=Direkt
@@ -39,7 +38,6 @@ HINT_PSP_MEDIA=Ordner=EBOOT in GAME; ISO=pspemu/ISO
 HINT_LANGUAGE=System folgt Vita-Sprache wenn verfügbar
 HINT_COLOR_THEME=X / Tippen: Farbpalette öffnen
 HINT_WARN_PLUGINS=Start-Toast wenn NoNpDrm fehlt
-HINT_IMAGE_WARMUP=Bei einmal Nein wird nicht erneut gefragt
 HINT_SELF_UPDATE=Prüft GitHub Releases auf neueren Client-VPK
 CATALOG_HOMEBREW=Homebrew
 CATALOG_VITA_GAMES=PS-Vita-Spiele
@@ -73,9 +71,6 @@ INFO_COLOR_THEME_3=popular. Report stays red.
 INFO_WARN_PLUGINS_1=Show a toast at startup when
 INFO_WARN_PLUGINS_2=NoNpDrm / NoPspEmuDrm are
 INFO_WARN_PLUGINS_3=missing from taiHEN config.
-INFO_IMAGE_WARMUP_1=Ask once whether to download
-INFO_IMAGE_WARMUP_2=all catalog images at startup.
-INFO_IMAGE_WARMUP_3=Off = load images on demand.
 INFO_SELF_UPDATE_1=Checks GitHub Releases for a
 INFO_SELF_UPDATE_2=newer PSVitaAlive.vpk and can
 INFO_SELF_UPDATE_3=install it in-place (VitaDB style).
