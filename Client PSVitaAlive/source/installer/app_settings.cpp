@@ -153,13 +153,14 @@ AppSettingsData AppSettings::load() {
     }
     bool b = true;
     if (containsBool(json, "warn_missing_plugins", b)) data.warnMissingPlugins = b;
-    if (containsBool(json, "prompt_image_warmup", b)) data.promptImageWarmup = b;
+    // Legacy setting is intentionally ignored; all images load on demand.
+    const bool obsoleteImageWarmup = containsBool(json, "prompt_image_warmup", b);
     const bool hasThemeSetupDone = containsBool(json, "theme_setup_done", b); if (hasThemeSetupDone) data.themeSetupDone = b; else data.themeSetupDone = true;
     // Missing key => not done: show wizard once on first PSP/PS1 download.
     if (containsBool(json, "psp_setup_done", b)) data.pspSetupDone = b; else data.pspSetupDone = false;
     const bool hasStartupPluginDetection = containsBool(json, "startup_plugin_detection", b); if (hasStartupPluginDetection) data.startupPluginDetection = b;
     const bool hasStartupUpdateCheck = containsBool(json, "startup_update_check", b); if (hasStartupUpdateCheck) data.startupUpdateCheck = b;
-    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone) save(data);
+    if (!hasStartupPluginDetection || !hasStartupUpdateCheck || !hasThemeSetupDone || obsoleteImageWarmup) save(data);
     LocalizationManager::instance().initialize(data);
     sceClibPrintf("[AppSettings] loaded theme=%s language=%s psp_setup_done=%d mascot=%s\n",
                   toString(data.colorTheme), data.language.c_str(), data.pspSetupDone ? 1 : 0, data.mascotSelection.c_str());
@@ -170,9 +171,9 @@ bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st; st.createDirectories(StorageManager::BASE_DIR);
     char json[2304];
     sceClibSnprintf(json, sizeof(json),
-        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"prompt_image_warmup\": %s,\n  \"theme_setup_done\": %s,\n  \"psp_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\",\n  \"ui_font_file\": \"%s\",\n  \"ui_font_scale\": %d,\n  \"mascot_selection\": \"%s\"\n}\n",
+        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"theme_setup_done\": %s,\n  \"psp_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\",\n  \"ui_font_file\": \"%s\",\n  \"ui_font_scale\": %d,\n  \"mascot_selection\": \"%s\"\n}\n",
         toString(data.installMethod), toString(data.pspTarget), toString(data.pspMediaFormat), toString(data.colorTheme),
-        data.warnMissingPlugins ? "true" : "false", data.promptImageWarmup ? "true" : "false", data.themeSetupDone ? "true" : "false",
+        data.warnMissingPlugins ? "true" : "false", data.themeSetupDone ? "true" : "false",
         data.pspSetupDone ? "true" : "false",
         data.startupPluginDetection ? "true" : "false", data.startupUpdateCheck ? "true" : "false", toString(data.languageMode), data.language.c_str(),
         toString(data.uiFontStyle), data.uiFontFile.c_str(), data.uiFontScalePct,
