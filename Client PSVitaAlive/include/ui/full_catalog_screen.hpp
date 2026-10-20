@@ -129,7 +129,7 @@ private:
     enum class ContentFilter { All, DataOrGame, Dlc, Category, Genre, Heading };
     struct FilterOption {
         ContentFilter mode;
-        std::string category;
+        const char* category;
         const char* labelKey;
     };
     /** Browsing without search/filter reuses allItems_, avoiding a second list. */
@@ -138,13 +138,14 @@ private:
     }
     void rebuildFilteredItems();
     bool itemMatchesCurrentFilter(const CatalogItem& item) const;
-    void applyContentFilter(ContentFilter mode, const std::string& category = {});
+    void applyContentFilter(ContentFilter mode, const char* category = "");
     bool canShowFilterButton() const;
+    const FilterOption* filterOptionsForCatalog(int& count) const;
     void openFilterMenu();
     void closeFilterMenu();
     void moveFilterFocus(int direction);
     void selectFilterOption(int index);
-    std::string filterOptionLabel(const FilterOption& option) const;
+    const char* filterOptionLabel(const FilterOption& option) const;
     void drawFilterOverlay();
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
@@ -180,9 +181,8 @@ private:
     std::string searchQuery_;
     bool externalInputBlocked_ = false;
     ContentFilter filterMode_ = ContentFilter::All;
-    std::string filterCategory_;
+    const char* filterCategory_ = ""; // points into compiled-in menu table (no allocation)
     bool filterModalOpen_ = false;
-    std::vector<FilterOption> filterOptions_; // small menu; only populated while open
     int filterFocus_ = 0;
     int filterScrollRow_ = 0;
 
