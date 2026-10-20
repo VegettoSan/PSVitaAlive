@@ -1,5 +1,232 @@
 [
   {
+    "id": "nfs-most-wanted",
+    "title_id": "NFSMWVITA",
+    "name": "NFS Most Wanted",
+    "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "author_ids": [
+      "germanalvarez15"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "source-port"
+    ],
+    "version": "1.1.0",
+    "version_date": "2026-10-20",
+    "requirements": "- No Data",
+    "size": 4613734,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.1.0.vpk",
+        "size": 4613734,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1610612736,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Gihub",
+        "url": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "mario-strikers-charged",
+    "title_id": "MSCN00003",
+    "name": "Mario Strikers Charged",
+    "description": "Mario Strikers Charged for PS Vita.",
+    "long_description": "A native PS Vita port of Mario Strikers Charged, with Vita controls, audio and graphics support.",
+    "author_ids": [
+      "cboc-vita-lab"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "version": "01.00",
+    "version_date": "2026-10-19",
+    "requirements": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
+    "size": 3879731,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Strikers%20v01.00%2020261019.vpk",
+        "size": 3879731,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1932735283,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/mario-strikers-charged-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
+      "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
+    ]
+  },
+  {
+    "id": "real-racing-3",
+    "title_id": "RR3VITA01",
+    "name": "Real Racing 3",
+    "description": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
+    "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.",
+    "author_ids": [
+      "chuta7x"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "racing",
+      "strategy"
+    ],
+    "version": "3.6.2",
+    "version_date": "2026-10-19",
+    "requirements": "- No data",
+    "size": 8598323,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita%20v3.6.2.vpk",
+        "size": 8598323,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
+        "size": 1610612736,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/CHUTA7X/Real-Racing-3-Port-Release"
+      }
+    ],
+    "icon": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/real-racing-3-port-for-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "gun-bros",
+    "title_id": "BROS00001",
+    "name": "Gun Bros",
+    "description": "Port of Gun Bros Psvita",
+    "long_description": "Gun Bros is a top-down twin-stick shooter developed by Glu Mobile. Play as Percy or Francis Gun and fight endless waves of enemies using a wide variety of weapons and gear. The game combines fast-paced shooting with character and equipment upgrades",
+    "author_ids": [
+      "rocroverss"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "arcade",
+      "shooter"
+    ],
+    "version": "1.01",
+    "version_date": "2026-10-17",
+    "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder.\n- Install libshacccg.suprx to ur0:/data/ or ur0:/data/external/. If you do not have it, follow a libshacccg extraction guide.\n- The game runs correctly at the default 444 MHz CPU clock. For the best performance, however, it's recommended to install PSVshell and overclock the Vita to 500 MHz.",
+    "size": 3355443,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.01.vpk",
+        "size": 3355443,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
+        "size": 226072986,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Rocroverss/Gun-Bros-Psvita"
+      }
+    ],
+    "icon": "https://archive.org/download/gun-bros-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/gun-bros-ps-vita/bg0.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot0.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot1.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot2.png"
+    ]
+  },
+  {
+    "id": "link-s-awakening-dx-hd",
+    "title_id": "LADX00001",
+    "name": "Link's Awakening DX HD",
+    "description": "A LADXHD port for the PS Vita",
+    "long_description": "A LADXHD port for the PS Vita",
+    "author_ids": [
+      "vogtmh"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "source-port"
+    ],
+    "version": "2.0.9",
+    "version_date": "2026-10-17",
+    "requirements": "- No Data",
+    "size": 25165824,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ladxhd-vita/LADXHD-Vita-v2.0.9.vpk",
+        "size": 25165824,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/vogtmh/ladxhd-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/ladxhd-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ladxhd-vita/Shot0.png"
+    ]
+  },
+  {
     "id": "insurgency-beta",
     "title_id": "VITACQ001",
     "name": "Insurgency BETA",
@@ -70,7 +297,7 @@
       {
         "type": "Game Files",
         "name": "Game Files",
-        "url": "https://archive.org/download/mkwiita/Game%20Files.zip",
+        "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20for%20PSVA.zip",
         "size": 3006477107,
         "extract_path": "ux0:data/"
       },
@@ -181,6 +408,53 @@
     "icon": "https://archive.org/download/conker-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/conker-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "the-drifter",
+    "title_id": "DRFT00001",
+    "name": "The Drifter",
+    "description": "The Drifter on the PS Vita",
+    "long_description": "The Drifter on a PS Vita. A pipeline takes the PC release (Unity 2020.3) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.",
+    "author_ids": [
+      "xob0t"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "version": "1.3.0",
+    "version_date": "2026-10-13",
+    "requirements": "You need Windows 10 or 11 with 8 GB of memory, The Drifter from Steam or GOG and a console on HENkaku/Ensō with VitaShell.",
+    "size": 16777216,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/the-drifter-ps-vita/drifter-vita-small.vpk",
+        "size": 16777216,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1288490189,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/xob0t/the-drifter-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/the-drifter-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/the-drifter-ps-vita/Shot0.png",
+      "https://archive.org/download/the-drifter-ps-vita/Shot1.png"
     ]
   },
   {
@@ -1254,52 +1528,6 @@
     "icon": "https://archive.org/download/scribblenauts-remix-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/scribblenauts-remix-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "real-racing-3",
-    "title_id": "RR3VITA01",
-    "name": "Real Racing 3",
-    "description": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
-    "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.",
-    "author_ids": [
-      "chuta7x"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "racing",
-      "strategy"
-    ],
-    "version": "1.1.1",
-    "version_date": "2026-10-02",
-    "requirements": "- No data",
-    "size": 5138022,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita_Public_Beta_1.1.1.vpk",
-        "size": 5138022,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
-        "size": 1610612736,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/CHUTA7X/Real-Racing-3-Port-Release"
-      }
-    ],
-    "icon": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/real-racing-3-port-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -2486,55 +2714,6 @@
     "icon": "https://archive.org/download/azahar-vita-/icon0.png",
     "screenshots": [
       "https://archive.org/download/azahar-vita-/Shot0.png"
-    ]
-  },
-  {
-    "id": "gun-bros",
-    "title_id": "BROS00001",
-    "name": "Gun Bros",
-    "description": "Port of Gun Bros Psvita",
-    "long_description": "Gun Bros is a top-down twin-stick shooter developed by Glu Mobile. Play as Percy or Francis Gun and fight endless waves of enemies using a wide variety of weapons and gear. The game combines fast-paced shooting with character and equipment upgrades",
-    "author_ids": [
-      "rocroverss"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "arcade",
-      "shooter"
-    ],
-    "version": "1.0",
-    "version_date": "2026-09-09",
-    "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder.\n- Install libshacccg.suprx to ur0:/data/ or ur0:/data/external/. If you do not have it, follow a libshacccg extraction guide.\n- The game runs correctly at the default 444 MHz CPU clock. For the best performance, however, it's recommended to install PSVshell and overclock the Vita to 500 MHz.",
-    "size": 3355443,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.0.vpk",
-        "size": 3355443,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
-        "size": 226072986,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Rocroverss/Gun-Bros-Psvita"
-      }
-    ],
-    "icon": "https://archive.org/download/gun-bros-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/gun-bros-ps-vita/bg0.png",
-      "https://archive.org/download/gun-bros-ps-vita/shot0.png",
-      "https://archive.org/download/gun-bros-ps-vita/shot1.png",
-      "https://archive.org/download/gun-bros-ps-vita/shot2.png"
     ]
   },
   {

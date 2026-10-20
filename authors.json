@@ -1376,6 +1376,21 @@
     "icon": "https://github.com/CatoTheYounger97.png"
   },
   {
+    "id": "cboc-vita-lab",
+    "name": "CBOC-Vita-Lab",
+    "avatar": "https://avatars.githubusercontent.com/u/344342028?s=200&v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/CBOC-Vita-Lab",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/344342028?s=200&v=4"
+  },
+  {
     "id": "ccoolguy",
     "name": "Ccoolguy",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -3301,6 +3316,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "germanalvarez15",
+    "name": "germanalvarez15",
+    "avatar": "https://avatars.githubusercontent.com/u/12685031?v=4",
+    "bio": "Software Developer and AR/VR Developer",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/germanalvarez15",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/12685031?v=4"
   },
   {
     "id": "ggdrn",
@@ -9371,6 +9401,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "vogtmh",
+    "name": "vogtmh",
+    "avatar": "https://avatars.githubusercontent.com/u/37808063?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/vogtmh",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/37808063?v=4"
+  },
+  {
     "id": "voxel",
     "name": "Voxel",
     "avatar": "https://github.com/Voxel9.png",
@@ -9789,6 +9834,21 @@
       }
     ],
     "icon": "https://github.com/TheMrIron2.png"
+  },
+  {
+    "id": "xob0t",
+    "name": "xob0t",
+    "avatar": "https://avatars.githubusercontent.com/u/32616886?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/xob0t",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/32616886?v=4"
   },
   {
     "id": "xqspx",
