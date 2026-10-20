@@ -498,3 +498,9 @@ FILTER_GENRE_TOWER_DEFENSE=Защита башен
 FILTER_GENRE_TRIVIA=Викторины
 FILTER_GENRE_VISUAL_NOVEL=Визуальная новелла
 FILTER_GENRE_OTHER=Другое
+
+# Installed-state catalog filters
+FILTERS_STATUS_HEADING=СТАТУС УСТАНОВКИ
+FILTERS_INSTALLED=Установлено
+FILTERS_UPDATES=Обновления
+FILTERS_VERSION_UNKNOWN=Версия не распознана
