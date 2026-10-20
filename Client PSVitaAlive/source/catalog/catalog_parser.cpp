@@ -164,6 +164,19 @@ std::string makeDownloadFileName(const std::string& url, const std::string& id) 
     return fileName;
 }
 
+// Commercial games group multiple regional IDs; normalize once in the parser.
+void addCatalogTitleId(ui::CatalogItem& item, std::string tid) {
+    if (tid.size() != 9) return;
+    for (char& c : tid) {
+        if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
+        if (!((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) return;
+    }
+    if (item.titleId.empty()) { item.titleId = tid; return; }
+    if (item.titleId == tid || item.alternateTitleIds.find(tid) != std::string::npos) return;
+    if (!item.alternateTitleIds.empty()) item.alternateTitleIds.push_back('|');
+    item.alternateTitleIds += tid;
+}
+
 void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceUID zrifIdxFd, uint32_t* zrifWritten) {
     const sce::Json::Value& linksValue = application["links"];
     if (!linksValue) return;
@@ -177,6 +190,10 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
         const std::string type = getString(link, "type");
         const std::string name = getString(link, "name");
         const std::string url = getString(link, "url");
+        // DLC-specific IDs never identify the base game as installed.
+        if (type == "Download" || type == "Downloads" || type == "download" ||
+            type == "Mirror" || type == "mirror")
+            addCatalogTitleId(item, getString(link, "title_id"));
         if (url.empty()) continue;
 
         ui::CatalogLink detail;
@@ -331,6 +348,16 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
 
         item.id = getString(app, "id");
         item.titleId = getString(app, "title_id");
+        // Regional game IDs are grouped in title_ids rather than title_id.
+        const sce::Json::Value& regionIds = app["title_ids"];
+        if (regionIds) {
+            static const char* regions[] = {
+                "US", "EU", "JP", "AS", "AU", "KR", "CA", "CN", "TW",
+                "HK", "INT", "Other", "other", "World", "WORLD"
+            };
+            for (const char* region : regions)
+                addCatalogTitleId(item, getString(regionIds, region));
+        }
         item.name = getString(app, "name");
         item.description = getString(app, "description");
         // long_description skipped — was a major RAM cost on Vita Games catalog.
