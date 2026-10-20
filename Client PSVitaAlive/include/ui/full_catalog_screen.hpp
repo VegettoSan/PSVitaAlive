@@ -79,6 +79,8 @@ public:
     void setImageCache(ImageCache* cache);
     /** Free catalog icons/covers/screenshots before starting a heavy install worker. UI thread only. */
     void prepareForHeavyWork();
+    /** Drop GPU catalog images before opening the system IME; disk cache stays intact. */
+    void prepareForIme();
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
     CatalogType activeCatalog() const { return state_.catalog; }

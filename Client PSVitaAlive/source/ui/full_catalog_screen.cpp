@@ -69,6 +69,15 @@ inline void finishFrameWithCommonDialog() {
     vita2d_swap_buffers();
 }
 
+// During the native keyboard keep only CommonDialog and a plain background.
+// No catalog texture decode, animation or complex UI/GPU work in these frames.
+inline void drawImeLightFrame() {
+    vita2d_start_drawing();
+    vita2d_set_clear_color(RGBA8(0, 0, 0, 255));
+    vita2d_clear_screen();
+    finishFrameWithCommonDialog();
+}
+
 constexpr uint32_t NAV_DIRECTION_MASK =
     SCE_CTRL_UP | SCE_CTRL_DOWN | SCE_CTRL_LEFT | SCE_CTRL_RIGHT;
 
@@ -2870,6 +2879,17 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
         diagnostics::log(m);
         lastPerfLogUs=perfEndUs;
     }
+}
+void FullCatalogScreen::prepareForIme(){
+    // UI thread only, BEFORE sceImeDialogInit(): release catalog GPU textures
+    // while CommonDialog is still inactive. Keep disk cache and all UI state.
+    const size_t resident = textures_.size();
+    releaseTextures();
+    if(imageCache_)imageCache_->cancelAll(); // Stop image jobs, not installer jobs.
+    char msg[112];
+    sceClibSnprintf(msg, sizeof(msg), "[UI] IME lightweight prepare freed_gpu_textures=%u",
+                    (unsigned)resident);
+    diagnostics::log(msg);
 }
 void FullCatalogScreen::prepareForHeavyWork(){
     // Called on the UI thread before starting a transfer, never by an install worker.
@@ -8676,6 +8696,12 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
 
 void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();finishFrameWithCommonDialog();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();drawWebQrOverlay();finishFrameWithCommonDialog();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
+    // The keyboard owns the screen. Skip normal animation, workers' UI polls,
+    // texture decode/upload and expensive catalog drawing until it closes.
+    if(externalInputBlocked_){
+        drawImeLightFrame();
+        return !state_.requestExit;
+    }
     const uint64_t frameStartUs=sceKernelGetProcessTimeWide();
     {
         static bool once = false;
@@ -8696,6 +8722,12 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     if (filterModalOpen_ && !canShowFilterButton()) closeFilterMenu();
     handleInput();
     handleTouch();
+    // Search may have opened IME from input/touch during THIS frame.
+    // Do not render the heavy catalog even once after sceImeDialogInit().
+    if(externalInputBlocked_){
+        drawImeLightFrame();
+        return !state_.requestExit;
+    }
     updateTransition();
     pollSelfUpdateProgress();
     protectionTick();
