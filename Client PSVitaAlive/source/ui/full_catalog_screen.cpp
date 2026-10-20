@@ -3095,6 +3095,21 @@ std::string FullCatalogScreen::filterOptionLabel(const FilterOption& option) con
     return fallback;
 }
 
+// The generic ellipsize() slices bytes; category labels may contain Cyrillic UTF-8.
+static std::string filterUtf8Ellipsize(const std::string& s, size_t maxChars) {
+    if (maxChars < 4) return s;
+    size_t pos = 0, characters = 0, cut = 0;
+    while (pos < s.size()) {
+        if (characters == maxChars - 3) cut = pos;
+        const unsigned char byte = (unsigned char)s[pos];
+        const size_t bytes = byte < 0x80 ? 1 : (byte & 0xE0) == 0xC0 ? 2 :
+                             (byte & 0xF0) == 0xE0 ? 3 : (byte & 0xF8) == 0xF0 ? 4 : 1;
+        pos += std::min(bytes, s.size() - pos);
+        if (++characters > maxChars) return s.substr(0, cut) + "...";
+    }
+    return s;
+}
+
 void FullCatalogScreen::drawFilterOverlay() {
     if (!filterModalOpen_) return;
     constexpr int x = 220, y = 72, w = 520, h = 400, rowH = 39, visible = 7;
@@ -3114,7 +3129,7 @@ void FullCatalogScreen::drawFilterOverlay() {
         const std::string label = filterOptionLabel(option);
         if (option.mode == ContentFilter::Heading) {
             ::psvitaalive::ui::uiDrawText(&font_, x + 22, ry + 26, ACCENT, 0.59f,
-                ellipsize(label, 42).c_str());
+                filterUtf8Ellipsize(label, 42).c_str());
             continue;
         }
         const bool focused = index == filterFocus_;
@@ -3123,7 +3138,7 @@ void FullCatalogScreen::drawFilterOverlay() {
         if (focused) vita2d_draw_rectangle(x + 14, ry, w - 28, rowH - 2, SURFACE);
         if (selected) vita2d_draw_rectangle(x + 16, ry + 5, 3, rowH - 12, ACCENT);
         ::psvitaalive::ui::uiDrawText(&font_, x + 29, ry + 27,
-            focused ? WHITE : TEXT, 0.70f, ellipsize(label, 43).c_str());
+            focused ? WHITE : TEXT, 0.70f, filterUtf8Ellipsize(label, 43).c_str());
         if (selected) ::psvitaalive::ui::uiDrawText(&font_, x + w - 48, ry + 27, ACCENT, 0.71f, "X");
     }
     if (filterScrollRow_ > 0) vita2d_draw_rectangle(x + w - 10, top, 3, 12, ACCENT);
