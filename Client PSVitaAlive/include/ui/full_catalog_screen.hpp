@@ -125,14 +125,27 @@ public:
 private:
     UiState state_;
     std::vector<CatalogItem> allItems_;
-    std::vector<CatalogItem> items_; // filtered only when searchQuery_ non-empty
-    /** Browse list: allItems_ when not searching (avoids 2x RAM on large catalogs). */
+    std::vector<CatalogItem> items_; // existing filtered view (RAM optimization deferred)
+    enum class ContentFilter { All, DataOrGame, GameFiles, DataFiles, Dlc, Category, Heading };
+    struct FilterOption {
+        ContentFilter mode;
+        std::string category;
+        const char* labelKey;
+    };
+    /** Browsing without search/filter reuses allItems_, avoiding a second list. */
     const std::vector<CatalogItem>& catalogView() const {
-        return (searchQuery_.empty() && !dataFilesFilter_) ? allItems_ : items_;
+        return (searchQuery_.empty() && filterMode_ == ContentFilter::All) ? allItems_ : items_;
     }
     void rebuildFilteredItems();
-    void setDataFilesFilter(bool enabled);
-    bool dataFilesFilter() const { return dataFilesFilter_; }
+    bool itemMatchesCurrentFilter(const CatalogItem& item) const;
+    void applyContentFilter(ContentFilter mode, const std::string& category = {});
+    bool canShowFilterButton() const;
+    void openFilterMenu();
+    void closeFilterMenu();
+    void moveFilterFocus(int direction);
+    void selectFilterOption(int index);
+    std::string filterOptionLabel(const FilterOption& option) const;
+    void drawFilterOverlay();
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
     InstallCancelFn installCancel_;
@@ -166,8 +179,12 @@ private:
 
     std::string searchQuery_;
     bool externalInputBlocked_ = false;
-    /** When true, catalogView only includes apps with G/D Files (Homebrew) or DLC (Vita/PSP). */
-    bool dataFilesFilter_ = false;
+    ContentFilter filterMode_ = ContentFilter::All;
+    std::string filterCategory_;
+    bool filterModalOpen_ = false;
+    std::vector<FilterOption> filterOptions_; // small menu; only populated while open
+    int filterFocus_ = 0;
+    int filterScrollRow_ = 0;
 
     bool catalogLoading_ = false;
     std::unordered_map<std::string, LocalInstallInfo> installStatusCache_;

@@ -1402,18 +1402,6 @@ bool itemHasDlc(const CatalogItem& it) {
     return itemHasLinkType(it, "dlc");
 }
 
-/** Homebrew: G/D Files chip. Vita Games + PSP: DLC chip. */
-bool catalogSupportsContentFilter(CatalogType cat) {
-    return cat == CatalogType::Homebrew
-        || cat == CatalogType::VitaGames
-        || cat == CatalogType::PspGames;
-}
-
-bool itemMatchesContentFilter(const CatalogItem& it, CatalogType cat) {
-    if (cat == CatalogType::Homebrew) return itemHasDataOrGameFiles(it);
-    if (cat == CatalogType::VitaGames || cat == CatalogType::PspGames) return itemHasDlc(it);
-    return false;
-}
 
 /** Only Games and Ports may request Data/Game Files. */
 bool categoryWantsDataFiles(const std::string& category) {
@@ -2651,7 +2639,9 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     state_.catalog=c;
     installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
     searchQuery_.clear();
-    dataFilesFilter_ = false;
+    filterMode_ = ContentFilter::All;
+    filterCategory_.clear();
+    closeFilterMenu();
     items_.clear(); // browse via allItems_ (catalogView) — no duplicate
     state_.focusIndex=0;
     state_.catalogScrollRow=0;
@@ -2965,21 +2955,37 @@ void FullCatalogScreen::shutdown(){
 int FullCatalogScreen::totalRows()const{return catalogView().empty()?0:(int(catalogView().size())+2)/3;}int FullCatalogScreen::visibleRowsFull()const{return 3;}int FullCatalogScreen::visibleRowsSplit()const{const int usable=SCREEN_H-HEADER_H-TABS_H-FOOTER_H-GRID_PAD*2;return std::max(1,(usable+CARD_GAP)/(SPLIT_CARD_H+CARD_GAP));}int FullCatalogScreen::selectedIndex()const{return catalogView().empty()?-1:std::max(0,std::min(state_.focusIndex,(int)catalogView().size()-1));}void FullCatalogScreen::clampCatalogFocus(){if(catalogView().empty())state_.focusIndex=0;else state_.focusIndex=std::max(0,std::min(state_.focusIndex,(int)catalogView().size()-1));}void FullCatalogScreen::clampCatalogScroll(){if(catalogView().empty()){state_.catalogScrollRow=0;return;}int v=state_.mode==UiMode::FULL_CATALOG?visibleRowsFull():visibleRowsSplit();if(state_.mode==UiMode::FULL_CATALOG){int r=state_.focusIndex/3;if(r<state_.catalogScrollRow)state_.catalogScrollRow=r;if(r>=state_.catalogScrollRow+v)state_.catalogScrollRow=r-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,std::max(0,totalRows()-v)));}else{int m=std::max(0,(int)catalogView().size()-v);if(state_.focusIndex<state_.catalogScrollRow)state_.catalogScrollRow=state_.focusIndex;if(state_.focusIndex>=state_.catalogScrollRow+v)state_.catalogScrollRow=state_.focusIndex-v+1;state_.catalogScrollRow=std::max(0,std::min(state_.catalogScrollRow,m));}}
 void FullCatalogScreen::sortItemsByDate(std::vector<CatalogItem>&v)const{std::stable_sort(v.begin(),v.end(),[](const CatalogItem&a,const CatalogItem&b){if(a.versionDate!=b.versionDate)return a.versionDate>b.versionDate;return lowerAscii(a.name)<lowerAscii(b.name);});}bool FullCatalogScreen::matchesSearch(const CatalogItem&i,const std::string&q)const{if(q.empty())return true;std::string x=lowerAscii(q),h=lowerAscii(i.name+"\n"+i.titleId+"\n"+i.author+"\n"+i.description+"\n"+i.longDescription+"\n"+i.category+"\n"+i.subcategory);return h.find(x)!=std::string::npos;}void FullCatalogScreen::rebuildFilteredItems() {
     items_.clear();
-    if (searchQuery_.empty() && !dataFilesFilter_) {
-        // catalogView() uses allItems_ — no second full copy in RAM.
+    if (searchQuery_.empty() && filterMode_ == ContentFilter::All) {
+        // No extra catalog copy; keep the existing RAM behavior unchanged.
         return;
     }
     items_.reserve(allItems_.size() > 256 ? 256 : allItems_.size());
-    for (const auto& i : allItems_) {
-        if (dataFilesFilter_ && !itemMatchesContentFilter(i, state_.catalog)) continue;
-        if (!matchesSearch(i, searchQuery_)) continue;
-        items_.push_back(i);
+    for (const auto& item : allItems_) {
+        if (!itemMatchesCurrentFilter(item)) continue;
+        if (!matchesSearch(item, searchQuery_)) continue;
+        items_.push_back(item);
     }
 }
 
-void FullCatalogScreen::setDataFilesFilter(bool enabled) {
-    if (dataFilesFilter_ == enabled) return;
-    dataFilesFilter_ = enabled;
+bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) const {
+    switch (filterMode_) {
+        case ContentFilter::All: return true;
+        case ContentFilter::DataOrGame: return state_.catalog == CatalogType::Homebrew && itemHasDataOrGameFiles(item);
+        case ContentFilter::GameFiles: return state_.catalog == CatalogType::Homebrew && itemHasLinkType(item, "game files");
+        case ContentFilter::DataFiles: return state_.catalog == CatalogType::Homebrew && itemHasLinkType(item, "data files");
+        case ContentFilter::Dlc:
+            return (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames) && itemHasDlc(item);
+        case ContentFilter::Category: return item.category == filterCategory_;
+        case ContentFilter::Heading: return true; // Never an active filter.
+    }
+    return true;
+}
+
+void FullCatalogScreen::applyContentFilter(ContentFilter mode, const std::string& category) {
+    if (mode == ContentFilter::Heading) return;
+    if (filterMode_ == mode && filterCategory_ == category) return;
+    filterMode_ = mode;
+    filterCategory_ = mode == ContentFilter::Category ? category : std::string();
     rebuildFilteredItems();
     state_.focusIndex = 0;
     state_.catalogScrollRow = 0;
@@ -2988,17 +2994,141 @@ void FullCatalogScreen::setDataFilesFilter(bool enabled) {
     state_.linkFocus = -1;
     state_.linkNavigation = false;
     visualCatalogScroll_ = 0.f;
-    char m[160];
-    sceClibSnprintf(m, sizeof(m), "[UI] content filter=%d catalog=%d results=%u",
-                    dataFilesFilter_ ? 1 : 0, (int)state_.catalog, (unsigned)catalogView().size());
-    diagnostics::log(m);
-    if (!dataFilesFilter_) {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::FilterCleared), 2600);
-    } else if (state_.catalog == CatalogType::Homebrew) {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::FilterGdOnly), 2600);
-    } else {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::FilterDlcOnly), 2600);
+    diagnostics::log("[UI] filter selected; results=" + std::to_string(catalogView().size()));
+    showToast(::psvitaalive::L(mode == ContentFilter::All ? "FILTER_CLEARED" : "FILTERS_APPLIED"), 1700);
+}
+
+bool FullCatalogScreen::canShowFilterButton() const {
+    // Same guard for rendering, pad activation and front touch. Never steal a modal/report input.
+    return state_.mode == UiMode::FULL_CATALOG && !externalInputBlocked_ && !isTransitioning()
+        && !catalogLoading_ && catalogSplashAlpha_ <= 0.01f && !installProgressActive_
+        && installAllPhase_ == InstallAllPhase::Hidden
+        && !newsVisible_ && !themeSetupVisible_ && !reportConfirmVisible_
+        && !dataRequestConfirmVisible_ && !webQrVisible_ && !essentialPluginsModal_
+        && !pspSetupModal_ && !pluginRebootModal_ && !gProtectionActive;
+}
+
+void FullCatalogScreen::openFilterMenu() {
+    if (!canShowFilterButton() || filterModalOpen_) return;
+    filterOptions_.clear();
+    filterOptions_.push_back({ContentFilter::All, "", "FILTERS_ALL"});
+    if (state_.catalog == CatalogType::Homebrew) {
+        filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_FILES_HEADING"});
+        filterOptions_.push_back({ContentFilter::DataOrGame, "", "FILTERS_ANY_FILES"});
+        filterOptions_.push_back({ContentFilter::GameFiles, "", "FILTERS_GAME_FILES"});
+        filterOptions_.push_back({ContentFilter::DataFiles, "", "FILTERS_DATA_FILES"});
+    } else if (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames) {
+        filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_FILES_HEADING"});
+        filterOptions_.push_back({ContentFilter::Dlc, "", "FILTERS_DLC"});
     }
+    // Categories are already present in the loaded CatalogItem objects.
+    // No categories.json download, separate parser, or persistent category table.
+    std::vector<std::string> ids;
+    ids.reserve(16);
+    for (const auto& item : allItems_) {
+        if (!item.category.empty() && std::find(ids.begin(), ids.end(), item.category) == ids.end())
+            ids.push_back(item.category);
+    }
+    std::sort(ids.begin(), ids.end());
+    if (!ids.empty()) {
+        filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_CATEGORIES_HEADING"});
+        for (const auto& id : ids)
+            filterOptions_.push_back({ContentFilter::Category, id, ""});
+    }
+    filterFocus_ = 0;
+    for (int i = 0; i < (int)filterOptions_.size(); ++i) {
+        const auto& option = filterOptions_[i];
+        if (option.mode == filterMode_ && (option.mode != ContentFilter::Category || option.category == filterCategory_)) {
+            filterFocus_ = i;
+            break;
+        }
+    }
+    filterScrollRow_ = std::max(0, std::min(filterFocus_ - 3, std::max(0, (int)filterOptions_.size() - 7)));
+    touchDown_ = touchMoved_ = false;
+    touchAccumY_ = 0.f;
+    filterModalOpen_ = true;
+}
+
+void FullCatalogScreen::closeFilterMenu() {
+    filterModalOpen_ = false;
+    filterOptions_.clear();
+    filterFocus_ = 0;
+    filterScrollRow_ = 0;
+    touchDown_ = touchMoved_ = false;
+    touchAccumY_ = 0.f;
+}
+
+void FullCatalogScreen::moveFilterFocus(int direction) {
+    const int count = (int)filterOptions_.size();
+    int candidate = filterFocus_ + direction;
+    while (candidate >= 0 && candidate < count &&
+           filterOptions_[candidate].mode == ContentFilter::Heading) candidate += direction;
+    if (candidate < 0 || candidate >= count) return;
+    filterFocus_ = candidate;
+    if (filterFocus_ < filterScrollRow_) filterScrollRow_ = filterFocus_;
+    if (filterFocus_ >= filterScrollRow_ + 7) filterScrollRow_ = filterFocus_ - 6;
+}
+
+void FullCatalogScreen::selectFilterOption(int index) {
+    if (index < 0 || index >= (int)filterOptions_.size()) return;
+    const FilterOption option = filterOptions_[index];
+    if (option.mode == ContentFilter::Heading) return;
+    closeFilterMenu();
+    applyContentFilter(option.mode, option.category);
+}
+
+std::string FullCatalogScreen::filterOptionLabel(const FilterOption& option) const {
+    if (option.mode != ContentFilter::Category) return ::psvitaalive::L(option.labelKey);
+    // Translate the UI label only; catalog category_id and external metadata stay unchanged.
+    std::string key = "FILTER_CATEGORY_";
+    for (char c : option.category) {
+        if (c >= 'a' && c <= 'z') key.push_back((char)(c - 'a' + 'A'));
+        else if (c == '-') key.push_back('_');
+        else key.push_back(c);
+    }
+    const char* label = ::psvitaalive::L(key.c_str());
+    if (key != label) return label;
+    std::string fallback = option.category;
+    for (char& c : fallback) if (c == '-' || c == '_') c = ' ';
+    if (!fallback.empty() && fallback[0] >= 'a' && fallback[0] <= 'z')
+        fallback[0] = (char)(fallback[0] - 'a' + 'A');
+    return fallback;
+}
+
+void FullCatalogScreen::drawFilterOverlay() {
+    if (!filterModalOpen_) return;
+    constexpr int x = 220, y = 72, w = 520, h = 400, rowH = 39, visible = 7;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 184));
+    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+    vita2d_draw_rectangle(x, y, w, 2, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 2, w, 2, BORDER);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 22, y + 37, WHITE, 0.91f,
+        ::psvitaalive::L("FILTERS_MENU_TITLE"));
+    ::psvitaalive::ui::uiDrawText(&font_, x + 22, y + h - 20, DIM, 0.57f,
+        ::psvitaalive::L("FILTERS_HINT"));
+    const int top = y + 61;
+    const int last = std::min((int)filterOptions_.size(), filterScrollRow_ + visible);
+    for (int index = filterScrollRow_; index < last; ++index) {
+        const FilterOption& option = filterOptions_[index];
+        const int ry = top + (index - filterScrollRow_) * rowH;
+        const std::string label = filterOptionLabel(option);
+        if (option.mode == ContentFilter::Heading) {
+            ::psvitaalive::ui::uiDrawText(&font_, x + 22, ry + 26, ACCENT, 0.59f,
+                ellipsize(label, 42).c_str());
+            continue;
+        }
+        const bool focused = index == filterFocus_;
+        const bool selected = option.mode == filterMode_ &&
+            (option.mode != ContentFilter::Category || option.category == filterCategory_);
+        if (focused) vita2d_draw_rectangle(x + 14, ry, w - 28, rowH - 2, SURFACE);
+        if (selected) vita2d_draw_rectangle(x + 16, ry + 5, 3, rowH - 12, ACCENT);
+        ::psvitaalive::ui::uiDrawText(&font_, x + 29, ry + 27,
+            focused ? WHITE : TEXT, 0.70f, ellipsize(label, 43).c_str());
+        if (selected) ::psvitaalive::ui::uiDrawText(&font_, x + w - 48, ry + 27, ACCENT, 0.71f, "X");
+    }
+    if (filterScrollRow_ > 0) vita2d_draw_rectangle(x + w - 10, top, 3, 12, ACCENT);
+    if (last < (int)filterOptions_.size())
+        vita2d_draw_rectangle(x + w - 10, top + visible * rowH - 13, 3, 12, ACCENT);
 }
 
 void FullCatalogScreen::applySearch(const std::string& q) {
@@ -3011,8 +3141,8 @@ void FullCatalogScreen::applySearch(const std::string& q) {
     state_.linkFocus = -1;
     state_.linkNavigation = false;
     char m[256];
-    sceClibSnprintf(m, sizeof(m), "[UI] search query='%s' dataFilter=%d results=%u",
-                    q.c_str(), dataFilesFilter_ ? 1 : 0, (unsigned)catalogView().size());
+    sceClibSnprintf(m, sizeof(m), "[UI] search query='%s' filter=%d results=%u",
+                    q.c_str(), (int)filterMode_, (unsigned)catalogView().size());
     diagnostics::log(m);
 }
 const std::vector<FullCatalogScreen::SavedZipOption>&
