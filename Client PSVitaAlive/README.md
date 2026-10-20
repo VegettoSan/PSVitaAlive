@@ -15,6 +15,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
 - Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme**, **UI font**, **language** System/manual), touch + buttons
+- **Battery indicator**: icon and percentage centred between filters/search and the clock, including when filters disappear. The OLED protector also shows battery level during long jobs. The VitaSDK sensor is polled every 15 s, with low-battery and charging states and `--%` fallback. Confirmed on real PS Vita hardware; see [OLED protection and battery guide](docs/OLED_PROTECTION_MODE.md).
 - **Full Catalog filter panel (□)**: localized, fixed-option menu; Homebrew **8 categories + Game Files or Data Files**, PS Vita **15 genres + DLC**, PSP **14 genres + DLC**, PS1 **12 genres**; combines with text search, resets on catalog change, and is unavailable in details/dialogs. Options use `static constexpr` tables to avoid dynamic menu allocations; the existing filtered `items_` vector remains unchanged. See [filter panel guide](docs/FILTER_PANEL_20261020.md) ([merged PR #40](https://github.com/VegettoSan/PSVitaAlive/pull/40)).
 - **Multilanguage UI** (`app0:lang/*.lang`): currently packaged **EN / ES / FR / DE / IT / PT-PT / PT-BR / RU**; missing keys fall back to English; catalog content stays original language
 - **News** from repo `news.txt`; optional Discord **Report** on real errors (and dedicated data-request webhook path)
@@ -455,7 +456,9 @@ PSP **DLC** link buttons require **LiveArea** install target **or** Adrenaline *
 | [`../docs/IMAGE_CACHE.md`](../docs/IMAGE_CACHE.md) | Image cache v3, per-image replacement, normalization limits, startup disk cap/progress |
 | [`../docs/CLIENT_PERFORMANCE_STATUS_20261012.md`](../docs/CLIENT_PERFORMANCE_STATUS_20261012.md) | Integrated performance improvements (PR #28), failed `.fastidx` experiment, measured PNG stalls, rollback and pending hardware checks |
 | [`../docs/ASYNC_REPORT_LOGGER_20261012.md`](../docs/ASYNC_REPORT_LOGGER_20261012.md) | PR #30: asynchronous bounded session logger, quiet catalog/image traces, lightweight 10-second frame summaries, error-report flushing and hardware validation |
-| [source/ui/README.md](source/ui/README.md) | Themes, fonts, image cache integration, LOCKED UI, modals |
+| [source/ui/README.md](source/ui/README.md) | Themes, fonts, image cache integration, LOCKED UI, battery, modals |
+| [docs/OLED_PROTECTION_MODE.md](docs/OLED_PROTECTION_MODE.md) | OLED protection and battery status (header + protection overlay) |
+| [docs/FILTER_PANEL_20261020.md](docs/FILTER_PANEL_20261020.md) | Filter visibility, battery alignment and shared touch geometry |
 | [source/catalog/README.md](source/catalog/README.md) | Catalog parser/cache, image identity handoff, zRIF sidecar |
 | [source/installer/README.md](source/installer/README.md) | Install paths, plugins, shell locks |
 | [docs/NETWORK_TLS.md](../docs/NETWORK_TLS.md) | libcurl / archive.org failover |
