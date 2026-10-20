@@ -1,6 +1,16 @@
-# Panel de filtros del catálogo — prueba manual
+# Panel de filtros del catálogo — implementación y mantenimiento
 
-**Rama:** `feature/catalog-filter-panel-20261020`. No incluye optimización de RAM, nuevos catálogos ni cambios al instalador.
+**Estado:** integrado en `main` mediante [PR #40](https://github.com/VegettoSan/PSVitaAlive/pull/40) el **2026-10-20**; commit de integración [`473a10f`](https://github.com/VegettoSan/PSVitaAlive/commit/473a10fe6a07c70247daa3d8da4eae715dcf7bd3). Rama de origen: `feature/catalog-filter-panel-20261020`.
+
+**Alcance:** interfaz nativa del catálogo completo, filtros estáticos y traducciones. No incluye optimización adicional de RAM, nuevos catálogos, cambios al instalador ni modificación de JSON fuente o catálogos generados.
+
+## Estado de validación e integración
+
+- **GitHub Actions — Build PS Vita Client:** éxito para la revisión fusionada, incluyendo compilación con imagen oficial de VitaSDK y subida de VPK smoke-build ([ejecución #155](https://github.com/VegettoSan/PSVitaAlive/actions/runs/39455491958)).
+- **GitHub Actions — Validate and Generate Local Catalog:** éxito, incluyendo generación local y validación de catálogos ([ejecución #2340](https://github.com/VegettoSan/PSVitaAlive/actions/runs/39455491807)).
+- **Revisión funcional:** el responsable del proyecto confirmó haber validado la información del PR #40 y solicitó integrarlo a `main` el 2026-10-20. Las pruebas de Vita3K/hardware real no quedan certificadas por GitHub Actions; conservar la lista inferior como regresión en versiones futuras.
+- **Fusión:** inicialmente en draft, después marcado ready for review y fusionado con método `merge`, preservando los commits del PR.
+
 
 ## Comportamiento implementado
 
@@ -15,7 +25,9 @@
 - `CatalogItem::category` se obtiene del catálogo ya cargado. No se solicita `categories.json` ni se modifican los JSON oficiales.
 - Cada opción fija incluye su clave de traducción; están presentes en los ocho archivos `.lang`.
 
-## Pruebas antes de fusionar a main
+## Lista de regresión para nuevas compilaciones
+
+Las siguientes comprobaciones se conservan como guía de QA para versiones posteriores (no como tareas pendientes de fusión del PR #40). Los pasos de Vita3K/consola requieren verificación manual específica de cada nuevo build.
 
 1. Compilar en GitHub Actions el cliente VitaSDK; verificar que no existan errores de C++ ni fallos de empaquetado de `.lang`.
 2. En Vita3K y una Vita real: comprobar □ y táctil en Full Catalog, incluyendo abrir/cerrar repetidamente.
@@ -34,7 +46,7 @@ No se implementó la conversión de `std::vector<CatalogItem> items_` a un vecto
 
 ## Revisión posterior a pruebas en Vita3K (2026-10-20)
 
-Se ajustaron el ancho del botón, el icono □ (dibujado sin depender de la fuente), el marquee para idiomas largos, el tamaño del texto del panel y la alineación del área táctil con el logotipo activo. Debe verificarse la legibilidad del nuevo panel en Vita3K antes de fusionar.
+Se ajustaron el ancho del botón, el icono □ (dibujado sin depender de la fuente), el marquee para idiomas largos, el tamaño del texto del panel y la alineación del área táctil con el logotipo activo. La legibilidad debe revisarse en cada nueva compilación, especialmente si se cambian fuentes, temas o textos.
 
 ## Adaptación de categorías según catálogo
 
@@ -48,3 +60,34 @@ Los juegos comerciales llevan comúnmente `category_id: "games"`, por lo que ese
 - **PS1 (12)**: action, adventure, arcade, fighting, horror, other, platformer, puzzle, racing, rpg, shooter, sports.
 
 Un género futuro no aparece automáticamente en la lista; sus juegos seguirán disponibles en «Mostrar todo». Los cambios en listas fijas se harán más adelante en el código, sin tocar JSON generados.
+
+## Archivos relacionados
+
+- `include/ui/full_catalog_screen.hpp`: estado del filtro, `ContentFilter`, `FilterOption`, selección de la vista y funciones del panel.
+- `source/ui/full_catalog_screen.cpp`: tablas fijas, filtrado, dibujo, posición táctil, navegación y restricciones de modo.
+- `assets/lang/{en,es,fr,de,it,pt-PT,pt-BR,ru}.lang`: traducciones `FILTERS_*`, `FILTER_CATEGORY_*` y `FILTER_GENRE_*`.
+- Esta guía: `docs/FILTER_PANEL_20261020.md` (rutas relativas a `Client PSVitaAlive/`).
+
+## Cómo mantener o ampliar los filtros
+
+1. **Examinar las fuentes oficiales**, sin editar catálogos agregados a mano: para Homebrew, revisar `categories/` y `apps/`; para juegos, revisar las subcategorías de los JSON del catálogo correspondiente.
+2. **Identificar el ID exacto** que usa el cliente: `CatalogItem::category` en Homebrew y `CatalogItem::subcategory` (primera entrada de `subcategory_ids`) en juegos.
+3. **Actualizar la tabla fija correspondiente** de `FilterOption` en `source/ui/full_catalog_screen.cpp`. No convertir la tabla a listas generadas recorriendo `allItems_` al abrir el modal: el objetivo es mantener las opciones con memoria estable.
+4. **Añadir la clave de traducción** en los ocho `.lang`; no introducir texto visible sin su traducción y fallback existente.
+5. **Recompilar con VitaSDK** y comprobar controles, toque, desplazamiento, filtros combinados con búsqueda y cuatro pestañas. Usar la lista de regresión anterior.
+6. **Verificar la compatibilidad** al cambiar de catálogo y al abrir detalle, ajustes, errores y diálogos. Si una nueva categoría/género no está en la tabla fija, seguirá navegable mediante «Mostrar todo» hasta publicar un nuevo cliente.
+
+### Decisiones de arquitectura y límites
+
+- No consumir `categories.json` desde el panel. Los metadatos permanecen en los catálogos existentes; se evita añadir solicitudes remotas al abrir los filtros.
+- No modificar `catalog.json`, `authors.json` ni `categories.json` manualmente: pertenecen al flujo `apps/ + authors/ + categories/ → GitHub Actions → catálogos publicados`. Los tres catálogos comerciales siguen independientes.
+- Las tablas `static constexpr` evitan crear listas de opciones dinámicas al abrir el modal, **pero no significan que el filtrado sea de costo cero**: `items_` sigue reconstruyéndose al filtrar o buscar.
+- No mezclar la optimización pendiente de `items_` con mantenimiento rutinario del panel sin pruebas de RAM, navegación e instalación en consola real.
+- Los filtros de Homebrew se basan en **categorías**; los de juegos en **géneros/subcategorías**. No sustituir los géneros comerciales por `category_id: "games"`.
+- Mantener la geometría compartida entre dibujo e hitboxes táctiles, los límites de `UiMode::FULL_CATALOG` y los usos anteriores de □ en otras pantallas.
+
+## Referencias
+
+- [PR #40 — historial de revisión y código fusionado](https://github.com/VegettoSan/PSVitaAlive/pull/40)
+- [Build PS Vita Client — éxito en CI](https://github.com/VegettoSan/PSVitaAlive/actions/runs/39455491958)
+- [Validate and Generate Local Catalog — éxito en CI](https://github.com/VegettoSan/PSVitaAlive/actions/runs/39455491807)
