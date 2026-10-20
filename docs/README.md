@@ -98,3 +98,5 @@ Patch the responsible layer—not a generated catalog—whenever possible.
 See [ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md](ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md) for the verified 19 October 2026 Simpsons extraction, directory-stage/rename algorithm, per-archive offline recovery buttons, success-only ZIP deletion, limitations on overwriting existing directory branches, and source files changed. Related README updates: [native client](../Client%20PSVitaAlive/README.md), [installer](../Client%20PSVitaAlive/source/installer/README.md), [UI](../Client%20PSVitaAlive/source/ui/README.md).
 
 - [Estabilidad del instalador — fase 1 (2026-10-19)](INSTALLER_PHASE1_STABILITY_20261019.md): recuperación ZIP, protección de archivos, cancelación y reintentos.
+
+- [Investigación futura: versiones instaladas externamente](FUTURE_EXTERNAL_VERSION_IDENTIFICATION_20261019.md): APP_VER/VERSION, recibos, VitaDB MD5, huellas por release y límites. **Solo documentado, no implementado.**
