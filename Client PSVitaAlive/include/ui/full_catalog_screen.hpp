@@ -126,7 +126,9 @@ private:
     UiState state_;
     std::vector<CatalogItem> allItems_;
     std::vector<CatalogItem> items_; // existing filtered view (RAM optimization deferred)
-    enum class ContentFilter { All, DataOrGame, Dlc, Category, Genre, Heading };
+    enum class ContentFilter {
+        All, Installed, Updates, Unrecognized, DataOrGame, Dlc, Category, Genre, Heading
+    };
     struct FilterOption {
         ContentFilter mode;
         const char* category;
@@ -137,7 +139,9 @@ private:
         return (searchQuery_.empty() && filterMode_ == ContentFilter::All) ? allItems_ : items_;
     }
     void rebuildFilteredItems();
-    bool itemMatchesCurrentFilter(const CatalogItem& item) const;
+    bool isInstallStateFilter() const;
+    void advanceInstallFilterScan();
+    bool itemMatchesCurrentFilter(const CatalogItem& item);
     void applyContentFilter(ContentFilter mode, const char* category = "");
     bool canShowFilterButton() const;
     const FilterOption* filterOptionsForCatalog(int& count) const;
@@ -182,6 +186,7 @@ private:
     bool externalInputBlocked_ = false;
     ContentFilter filterMode_ = ContentFilter::All;
     const char* filterCategory_ = ""; // points into compiled-in menu table (no allocation)
+    size_t installFilterScanNext_ = 0; // status filters scan progressively
     bool filterModalOpen_ = false;
     int filterFocus_ = 0;
     int filterScrollRow_ = 0;
