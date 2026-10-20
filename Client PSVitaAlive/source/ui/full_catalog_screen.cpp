@@ -45,6 +45,20 @@
 #include <vector>
 namespace psvitaalive::ui { namespace {
 
+// Shared header/modal geometry: touch and rendering MUST use the same values.
+constexpr int FILTER_CHIP_W = 192;
+constexpr int FILTER_CHIP_Y = 8;
+constexpr int FILTER_CHIP_H = 36;
+constexpr int FILTER_CHIP_GAP = 8;
+constexpr int FILTER_CLOCK_RESERVE = 100;
+constexpr int FILTER_MODAL_X = 98;
+constexpr int FILTER_MODAL_Y = 46;
+constexpr int FILTER_MODAL_W = 764;
+constexpr int FILTER_MODAL_H = 448;
+constexpr int FILTER_MODAL_ROW_H = 62;
+constexpr int FILTER_MODAL_VISIBLE = 5;
+constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
+
 // Service Sony CommonDialog between end_drawing and swap on every UI frame.
 // Repeated IME sessions on real hardware depend on this lifecycle continuing
 // even after sceImeDialogTerm() while the dialog state drains back to NONE.
@@ -2971,8 +2985,6 @@ bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) const 
     switch (filterMode_) {
         case ContentFilter::All: return true;
         case ContentFilter::DataOrGame: return state_.catalog == CatalogType::Homebrew && itemHasDataOrGameFiles(item);
-        case ContentFilter::GameFiles: return state_.catalog == CatalogType::Homebrew && itemHasLinkType(item, "game files");
-        case ContentFilter::DataFiles: return state_.catalog == CatalogType::Homebrew && itemHasLinkType(item, "data files");
         case ContentFilter::Dlc:
             return (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames) && itemHasDlc(item);
         case ContentFilter::Category: return item.category == filterCategory_;
@@ -3015,8 +3027,6 @@ void FullCatalogScreen::openFilterMenu() {
     if (state_.catalog == CatalogType::Homebrew) {
         filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_FILES_HEADING"});
         filterOptions_.push_back({ContentFilter::DataOrGame, "", "FILTERS_ANY_FILES"});
-        filterOptions_.push_back({ContentFilter::GameFiles, "", "FILTERS_GAME_FILES"});
-        filterOptions_.push_back({ContentFilter::DataFiles, "", "FILTERS_DATA_FILES"});
     } else if (state_.catalog == CatalogType::VitaGames || state_.catalog == CatalogType::PspGames) {
         filterOptions_.push_back({ContentFilter::Heading, "", "FILTERS_FILES_HEADING"});
         filterOptions_.push_back({ContentFilter::Dlc, "", "FILTERS_DLC"});
@@ -3043,7 +3053,7 @@ void FullCatalogScreen::openFilterMenu() {
             break;
         }
     }
-    filterScrollRow_ = std::max(0, std::min(filterFocus_ - 3, std::max(0, (int)filterOptions_.size() - 7)));
+    filterScrollRow_ = std::max(0, std::min(filterFocus_ - 2, std::max(0, (int)filterOptions_.size() - FILTER_MODAL_VISIBLE)));
     touchDown_ = touchMoved_ = false;
     touchAccumY_ = 0.f;
     filterModalOpen_ = true;
@@ -3066,7 +3076,8 @@ void FullCatalogScreen::moveFilterFocus(int direction) {
     if (candidate < 0 || candidate >= count) return;
     filterFocus_ = candidate;
     if (filterFocus_ < filterScrollRow_) filterScrollRow_ = filterFocus_;
-    if (filterFocus_ >= filterScrollRow_ + 7) filterScrollRow_ = filterFocus_ - 6;
+    if (filterFocus_ >= filterScrollRow_ + FILTER_MODAL_VISIBLE)
+        filterScrollRow_ = filterFocus_ - FILTER_MODAL_VISIBLE + 1;
 }
 
 void FullCatalogScreen::selectFilterOption(int index) {
@@ -3095,55 +3106,79 @@ std::string FullCatalogScreen::filterOptionLabel(const FilterOption& option) con
     return fallback;
 }
 
-// The generic ellipsize() slices bytes; category labels may contain Cyrillic UTF-8.
-static std::string filterUtf8Ellipsize(const std::string& s, size_t maxChars) {
-    if (maxChars < 4) return s;
-    size_t pos = 0, characters = 0, cut = 0;
-    while (pos < s.size()) {
-        if (characters == maxChars - 3) cut = pos;
-        const unsigned char byte = (unsigned char)s[pos];
-        const size_t bytes = byte < 0x80 ? 1 : (byte & 0xE0) == 0xC0 ? 2 :
-                             (byte & 0xF0) == 0xE0 ? 3 : (byte & 0xF8) == 0xF0 ? 4 : 1;
-        pos += std::min(bytes, s.size() - pos);
-        if (++characters > maxChars) return s.substr(0, cut) + "...";
+// Draw localized labels within a pixel-accurate clipping strip. The animated
+// path never slices UTF-8 and the static fallback trims whole code points.
+void drawFilterMarqueeText(const ::psvitaalive::ui::UiFont* font,
+                           int x, int baseline, int maxWidth, int clipTop, int clipBottom,
+                           unsigned color, float scale, const std::string& label, bool animate) {
+    if (!font || label.empty() || maxWidth <= 8) return;
+    const int fullWidth = ::psvitaalive::ui::uiTextWidth(font, scale, label.c_str());
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, clipTop, x + maxWidth, clipBottom);
+    if (fullWidth <= maxWidth) {
+        ::psvitaalive::ui::uiDrawText(font, x, baseline, color, scale, label.c_str());
+    } else if (animate) {
+        const int cycle = fullWidth + 48;
+        const uint64_t t = (sceKernelGetProcessTimeWide() / 1000ULL) %
+                           (static_cast<uint64_t>(cycle) * 28ULL + 1200ULL);
+        const int offset = t <= 1200ULL ? 0 :
+            std::min(cycle, static_cast<int>((t - 1200ULL) / 28ULL));
+        ::psvitaalive::ui::uiDrawText(font, x - offset, baseline, color, scale, label.c_str());
+        ::psvitaalive::ui::uiDrawText(font, x - offset + cycle, baseline, color, scale, label.c_str());
+    } else {
+        std::string shortened = label;
+        const int dotsW = ::psvitaalive::ui::uiTextWidth(font, scale, "...");
+        while (!shortened.empty() &&
+               ::psvitaalive::ui::uiTextWidth(font, scale, shortened.c_str()) + dotsW > maxWidth) {
+            size_t end = shortened.size() - 1;
+            while (end > 0 && ((unsigned char)shortened[end] & 0xC0) == 0x80) --end;
+            shortened.resize(end);
+        }
+        shortened += "...";
+        ::psvitaalive::ui::uiDrawText(font, x, baseline, color, scale, shortened.c_str());
     }
-    return s;
+    // The header and this modal are drawn outside catalog-card clip scopes.
+    vita2d_disable_clipping();
 }
 
 void FullCatalogScreen::drawFilterOverlay() {
     if (!filterModalOpen_) return;
-    constexpr int x = 220, y = 72, w = 520, h = 400, rowH = 39, visible = 7;
+    constexpr int x = FILTER_MODAL_X, y = FILTER_MODAL_Y;
+    constexpr int w = FILTER_MODAL_W, h = FILTER_MODAL_H;
+    constexpr int top = FILTER_MODAL_LIST_TOP, rowH = FILTER_MODAL_ROW_H;
+    constexpr int visible = FILTER_MODAL_VISIBLE;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 184));
     vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    vita2d_draw_rectangle(x, y, w, 2, ACCENT);
+    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
     vita2d_draw_rectangle(x, y + h - 2, w, 2, BORDER);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 22, y + 37, WHITE, 0.91f,
-        ::psvitaalive::L("FILTERS_MENU_TITLE"));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 22, y + h - 20, DIM, 0.57f,
-        ::psvitaalive::L("FILTERS_HINT"));
-    const int top = y + 61;
+    drawFilterMarqueeText(&font_, x + 26, y + 47, w - 52, y + 5, y + 57,
+        WHITE, 1.35f, ::psvitaalive::L("FILTERS_MENU_TITLE"), false);
+    drawFilterMarqueeText(&font_, x + 25, y + h - 18, w - 50, y + h - 47, y + h - 5,
+        DIM, 0.88f, ::psvitaalive::L("FILTERS_HINT"), false);
     const int last = std::min((int)filterOptions_.size(), filterScrollRow_ + visible);
     for (int index = filterScrollRow_; index < last; ++index) {
         const FilterOption& option = filterOptions_[index];
         const int ry = top + (index - filterScrollRow_) * rowH;
         const std::string label = filterOptionLabel(option);
         if (option.mode == ContentFilter::Heading) {
-            ::psvitaalive::ui::uiDrawText(&font_, x + 22, ry + 26, ACCENT, 0.59f,
-                filterUtf8Ellipsize(label, 42).c_str());
+            drawFilterMarqueeText(&font_, x + 26, ry + 41, w - 68,
+                ry + 4, ry + rowH - 3, ACCENT, 1.04f, label, false);
             continue;
         }
         const bool focused = index == filterFocus_;
         const bool selected = option.mode == filterMode_ &&
             (option.mode != ContentFilter::Category || option.category == filterCategory_);
-        if (focused) vita2d_draw_rectangle(x + 14, ry, w - 28, rowH - 2, SURFACE);
-        if (selected) vita2d_draw_rectangle(x + 16, ry + 5, 3, rowH - 12, ACCENT);
-        ::psvitaalive::ui::uiDrawText(&font_, x + 29, ry + 27,
-            focused ? WHITE : TEXT, 0.70f, filterUtf8Ellipsize(label, 43).c_str());
-        if (selected) ::psvitaalive::ui::uiDrawText(&font_, x + w - 48, ry + 27, ACCENT, 0.71f, "X");
+        if (focused) vita2d_draw_rectangle(x + 15, ry + 2, w - 30, rowH - 4, SURFACE);
+        if (selected) vita2d_draw_rectangle(x + 17, ry + 9, 4, rowH - 18, ACCENT);
+        drawFilterMarqueeText(&font_, x + 34, ry + 43, w - 109,
+            ry + 4, ry + rowH - 3, focused ? WHITE : TEXT, 1.22f, label, focused);
+        if (selected)
+            ::psvitaalive::ui::uiDrawText(&font_, x + w - 53, ry + 42, ACCENT, 1.05f, "X");
     }
-    if (filterScrollRow_ > 0) vita2d_draw_rectangle(x + w - 10, top, 3, 12, ACCENT);
+    if (filterScrollRow_ > 0)
+        vita2d_draw_rectangle(x + w - 12, top + 5, 4, 16, ACCENT);
     if (last < (int)filterOptions_.size())
-        vita2d_draw_rectangle(x + w - 10, top + visible * rowH - 13, 3, 12, ACCENT);
+        vita2d_draw_rectangle(x + w - 12, top + visible * rowH - 21, 4, 16, ACCENT);
 }
 
 void FullCatalogScreen::applySearch(const std::string& q) {
@@ -3591,8 +3626,10 @@ void FullCatalogScreen::handleTouch() {
     }
     // Compact filter modal: consumes all front touch, including drags and taps outside.
     if (filterModalOpen_) {
-        constexpr int x = 220, y = 72, w = 520, h = 400;
-        constexpr int top = y + 61, rowH = 39, visible = 7;
+        constexpr int x = FILTER_MODAL_X, y = FILTER_MODAL_Y;
+        constexpr int w = FILTER_MODAL_W, h = FILTER_MODAL_H;
+        constexpr int top = FILTER_MODAL_LIST_TOP, rowH = FILTER_MODAL_ROW_H;
+        constexpr int visible = FILTER_MODAL_VISIBLE;
         if (td.reportNum > 0) {
             const int px = mapX(td.report[0].x), py = mapY(td.report[0].y);
             if (!touchDown_) {
@@ -3610,13 +3647,13 @@ void FullCatalogScreen::handleTouch() {
                 if (touchMoved_) {
                     touchAccumY_ += (float)dy;
                     const int maximum = std::max(0, (int)filterOptions_.size() - visible);
-                    while (touchAccumY_ <= -34.f) {
+                    while (touchAccumY_ <= -46.f) {
                         filterScrollRow_ = std::min(maximum, filterScrollRow_ + 1);
-                        touchAccumY_ += 34.f;
+                        touchAccumY_ += 46.f;
                     }
-                    while (touchAccumY_ >= 34.f) {
+                    while (touchAccumY_ >= 46.f) {
                         filterScrollRow_ = std::max(0, filterScrollRow_ - 1);
-                        touchAccumY_ -= 34.f;
+                        touchAccumY_ -= 46.f;
                     }
                 }
             }
@@ -4255,11 +4292,11 @@ void FullCatalogScreen::handleTouch() {
         }
     }
 
-// --- Header search bar + G/D Files filter (Homebrew only) ---
+// --- Header search + filters; hitbox mirrors drawHeader() ---
     if (y < HEADER_H) {
         const int barY = 10, barH = 32;
-        const int clockReserve = 100;
-        const int filterGap = 8;
+        const int clockReserve = FILTER_CLOCK_RESERVE;
+        const int filterGap = FILTER_CHIP_GAP;
         // Match drawHeader exactly so the visual search box and touch hitbox stay aligned.
         int barX = 200;
         if (headerLogoTex_) {
@@ -4273,21 +4310,11 @@ void FullCatalogScreen::handleTouch() {
             if (barX < 160) barX = 160;
         }
         const bool showContentFilter = canShowFilterButton();
-        const char* filterLab = ::psvitaalive::L("FILTERS_MENU_TITLE");
-        int gdW = 118;
-        if (showContentFilter && font_) {
-            gdW = ::psvitaalive::ui::uiTextWidth(&font_, 0.70f, filterLab) + 28;
-            if (gdW < 72) gdW = 72;
-            if (gdW > 128) gdW = 128;
-        }
-        int barW = std::max(100, SCREEN_W - barX - clockReserve - (showContentFilter ? (gdW + filterGap) : 0));
-        if (showContentFilter) {
-            const int chipEnd = barX + barW + filterGap + gdW;
-            if (chipEnd > SCREEN_W - clockReserve + 4)
-                barW = std::max(80, SCREEN_W - barX - clockReserve - gdW - filterGap);
-        }
+        const int gdW = FILTER_CHIP_W;
+        const int barW = std::max(100, SCREEN_W - barX - clockReserve -
+            (showContentFilter ? (gdW + filterGap) : 0));
         const int gdX = barX + barW + filterGap;
-        if (showContentFilter && hit(x, y, gdX, barY, gdW, barH)) {
+        if (showContentFilter && hit(x, y, gdX, FILTER_CHIP_Y, gdW, FILTER_CHIP_H)) {
             openFilterMenu();
             return;
         }
@@ -5398,23 +5425,10 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     const int barY = 10, barH = 32;
     const int barX = searchLeft;
     const bool showContentFilter = canShowFilterButton();
-    const char* filterLab = ::psvitaalive::L("FILTERS_MENU_TITLE");
-    const float filterSc = 0.70f;
-    int gdW = 118;
-    if (showContentFilter && font_) {
-        gdW = ::psvitaalive::ui::uiTextWidth(&font_, filterSc, filterLab) + 28;
-        if (gdW < 72) gdW = 72;
-        if (gdW > 128) gdW = 128;
-    }
-    const int filterGap = 8;
-    const int clockReserve = 100;
-    int barW = std::max(100, w - barX - clockReserve - (showContentFilter ? (gdW + filterGap) : 0));
-    if (showContentFilter) {
-        const int chipEnd = barX + barW + filterGap + gdW;
-        if (chipEnd > w - clockReserve + 4)
-            barW = std::max(80, w - barX - clockReserve - gdW - filterGap);
-    }
-    const int gdX = barX + barW + filterGap;
+    const int gdW = FILTER_CHIP_W;
+    const int barW = std::max(100, w - barX - FILTER_CLOCK_RESERVE -
+        (showContentFilter ? gdW + FILTER_CHIP_GAP : 0));
+    const int gdX = barX + barW + FILTER_CHIP_GAP;
     vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
     vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, withAlpha(ACCENT, 50));
     vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, withAlpha(ACCENT, 50));
@@ -5431,21 +5445,25 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         ::psvitaalive::ui::uiDrawText(&font_, barX + 78, barY + 22, WHITE, 0.66f, ellipsize(searchQuery_, 20).c_str());
         ::psvitaalive::ui::uiDrawText(&font_, barX + barW - 52, barY + 21, DIM, 0.52f, ::psvitaalive::L(::psvitaalive::TextId::FilterClearHint));
     }
-    // Content filter chip immediately right of search (never drawn on top of the bar)
+    // Square is drawn geometrically: it works even if a .pgf font lacks '□'.
+    // The label gets its own clipping strip and scrolls if localized text overflows.
     if (showContentFilter) {
-        const unsigned folderBg = filterMode_ != ContentFilter::All ? SURFACE : SURFACE2;
-        const unsigned folderEdge = ACCENT;
-        const unsigned folderText = filterMode_ != ContentFilter::All ? WHITE : ACCENT;
-        vita2d_draw_rectangle(gdX, barY, gdW, barH, folderBg);
-        vita2d_draw_rectangle(gdX, barY, gdW, 3, folderEdge);
-        vita2d_draw_rectangle(gdX, barY, 3, barH, folderEdge);
-        vita2d_draw_rectangle(gdX + gdW - 1, barY, 1, barH, folderEdge);
-        vita2d_draw_rectangle(gdX, barY + barH - 1, gdW, 1, folderEdge);
-        if (filterMode_ != ContentFilter::All) {
-            vita2d_draw_rectangle(gdX, barY, gdW, 3, ACCENT);
-        }
-        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, filterSc, filterLab);
-        ::psvitaalive::ui::uiDrawText(&font_, gdX + (gdW - tw) / 2, barY + 22, folderText, filterSc, filterLab);
+        const unsigned chipBg = filterMode_ != ContentFilter::All ? SURFACE : SURFACE2;
+        const unsigned chipFg = filterMode_ != ContentFilter::All ? WHITE : ACCENT;
+        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, FILTER_CHIP_H, chipBg);
+        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, 3, ACCENT);
+        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, 3, FILTER_CHIP_H, ACCENT);
+        vita2d_draw_rectangle(gdX + gdW - 2, FILTER_CHIP_Y, 2, FILTER_CHIP_H, ACCENT);
+        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y + FILTER_CHIP_H - 2, gdW, 2, ACCENT);
+        constexpr int side = 17;
+        const int sx = gdX + 13, sy = FILTER_CHIP_Y + (FILTER_CHIP_H - side) / 2;
+        vita2d_draw_rectangle(sx, sy, side, 2, chipFg);
+        vita2d_draw_rectangle(sx, sy + side - 2, side, 2, chipFg);
+        vita2d_draw_rectangle(sx, sy, 2, side, chipFg);
+        vita2d_draw_rectangle(sx + side - 2, sy, 2, side, chipFg);
+        drawFilterMarqueeText(&font_, gdX + 43, FILTER_CHIP_Y + 26,
+            gdW - 54, FILTER_CHIP_Y + 3, FILTER_CHIP_Y + FILTER_CHIP_H - 3,
+            chipFg, 0.89f, ::psvitaalive::L("FILTERS_MENU_TITLE"), true);
     }
     {
         const std::string clock = currentTimeLabel();
