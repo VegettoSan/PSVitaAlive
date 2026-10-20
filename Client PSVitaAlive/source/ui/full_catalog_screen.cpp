@@ -5586,10 +5586,15 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
             gdW - 54, FILTER_CHIP_Y + 3, FILTER_CHIP_Y + FILTER_CHIP_H - 3,
             chipFg, 0.89f, ::psvitaalive::L("FILTERS_MENU_TITLE"), true);
     }
-    drawBatteryIndicator(&font_, w - HEADER_STATUS_RESERVE + 14, 17, 0.72f, false);
     {
         const std::string clock = currentTimeLabel();
         const int clockX = w - 16 - (int)clock.size() * 11;
+
+        // Center the full battery icon + percent in the gap before the clock.
+        // Without filters, the search box expands and becomes the left edge.
+        const int statusLeft = showContentFilter ? gdX + gdW : barX + barW;
+        const int batteryCenterX = statusLeft + (clockX - statusLeft) / 2;
+        drawBatteryIndicator(&font_, batteryCenterX, 17, 0.72f, true);
         ::psvitaalive::ui::uiDrawText(&font_, clockX, 32, SILVER, 0.78f, clock.c_str());
     }
 }
