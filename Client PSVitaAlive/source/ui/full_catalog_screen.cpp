@@ -3152,9 +3152,9 @@ void FullCatalogScreen::drawFilterOverlay() {
     vita2d_draw_rectangle(x, y, w, 3, ACCENT);
     vita2d_draw_rectangle(x, y + h - 2, w, 2, BORDER);
     drawFilterMarqueeText(&font_, x + 26, y + 47, w - 52, y + 5, y + 57,
-        WHITE, 1.35f, ::psvitaalive::L("FILTERS_MENU_TITLE"), false);
+        WHITE, 1.40f, ::psvitaalive::L("FILTERS_MENU_TITLE"), false);
     drawFilterMarqueeText(&font_, x + 25, y + h - 18, w - 50, y + h - 47, y + h - 5,
-        DIM, 0.88f, ::psvitaalive::L("FILTERS_HINT"), false);
+        DIM, 0.94f, ::psvitaalive::L("FILTERS_HINT"), false);
     const int last = std::min((int)filterOptions_.size(), filterScrollRow_ + visible);
     for (int index = filterScrollRow_; index < last; ++index) {
         const FilterOption& option = filterOptions_[index];
@@ -3162,7 +3162,7 @@ void FullCatalogScreen::drawFilterOverlay() {
         const std::string label = filterOptionLabel(option);
         if (option.mode == ContentFilter::Heading) {
             drawFilterMarqueeText(&font_, x + 26, ry + 41, w - 68,
-                ry + 4, ry + rowH - 3, ACCENT, 1.04f, label, false);
+                ry + 4, ry + rowH - 3, ACCENT, 1.10f, label, false);
             continue;
         }
         const bool focused = index == filterFocus_;
@@ -3171,7 +3171,7 @@ void FullCatalogScreen::drawFilterOverlay() {
         if (focused) vita2d_draw_rectangle(x + 15, ry + 2, w - 30, rowH - 4, SURFACE);
         if (selected) vita2d_draw_rectangle(x + 17, ry + 9, 4, rowH - 18, ACCENT);
         drawFilterMarqueeText(&font_, x + 34, ry + 43, w - 109,
-            ry + 4, ry + rowH - 3, focused ? WHITE : TEXT, 1.22f, label, focused);
+            ry + 4, ry + rowH - 3, focused ? WHITE : TEXT, 1.30f, label, focused);
         if (selected)
             ::psvitaalive::ui::uiDrawText(&font_, x + w - 53, ry + 42, ACCENT, 1.05f, "X");
     }
@@ -4299,9 +4299,11 @@ void FullCatalogScreen::handleTouch() {
         const int filterGap = FILTER_CHIP_GAP;
         // Match drawHeader exactly so the visual search box and touch hitbox stay aligned.
         int barX = 200;
-        if (headerLogoTex_) {
-            const float lw = (float)vita2d_texture_get_width(headerLogoTex_);
-            const float lh = (float)vita2d_texture_get_height(headerLogoTex_);
+        vita2d_texture* logoTex = (isBrandColorTheme(settingsEdit_.colorTheme) || !headerLogoMonoTex_)
+            ? headerLogoTex_ : headerLogoMonoTex_;
+        if (logoTex) {
+            const float lw = (float)vita2d_texture_get_width(logoTex);
+            const float lh = (float)vita2d_texture_get_height(logoTex);
             const float maxH = (float)(HEADER_H - 10);
             const float maxW = 190.f;
             float sc = maxH / (lh > 1.f ? lh : 1.f);
@@ -5421,7 +5423,7 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         }
     }
     // Search + content filter to the RIGHT of the bar (same as Homebrew), then clock.
-    // [logo][ search ][ gap ][ G/D Files | DLC ][ clock ] — chip never overlaps search.
+    // [logo][ search ][ gap ][ □ Filtros ][ clock ]; long translations scroll within the chip.
     const int barY = 10, barH = 32;
     const int barX = searchLeft;
     const bool showContentFilter = canShowFilterButton();
