@@ -129,7 +129,9 @@ public:
         // but left all-language mask enabled; this tests the auto pair.
         param.supportedLanguages = 0;
         param.languagesForced = SCE_FALSE;
-        param.type = SCE_IME_TYPE_DEFAULT;
+        // VitaDB-Downloader control experiment: BASIC_LATIN instead of DEFAULT.
+        // Keep language policy, render loop and UTF-16 buffers unchanged.
+        param.type = SCE_IME_TYPE_BASIC_LATIN;
         param.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
         param.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
         param.textBoxMode = SCE_IME_DIALOG_TEXTBOX_MODE_WITH_CLEAR;
