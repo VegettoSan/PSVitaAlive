@@ -124,9 +124,10 @@ public:
 
         SceImeDialogParam param;
         sceImeDialogParamInit(&param);
-        param.supportedLanguages = 0x0001FFFF;
-        // IME PAF crash A/B test: let the system choose its own keyboard language.
-        // Keep supportedLanguages, type and all lifecycle code unchanged.
+        // Match the Vita SDL system-language policy: don't supply a forced
+        // language bitmask. Previous A/B test changed languagesForced alone,
+        // but left all-language mask enabled; this tests the auto pair.
+        param.supportedLanguages = 0;
         param.languagesForced = SCE_FALSE;
         param.type = SCE_IME_TYPE_DEFAULT;
         param.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;

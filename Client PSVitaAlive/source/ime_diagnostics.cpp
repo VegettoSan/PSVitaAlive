@@ -17,20 +17,21 @@ bool gReady = false;
 unsigned gSession = 0;
 uint32_t gSequence = 0;
 uint32_t gBytes = 0;
+SceUID gFile = -1;
 
-// Deliberately synchronous on UI transitions. The normal session.log uses an
-// async queue whose last lines can be lost when Sony's PAF thread crashes.
+// The earlier diagnostic opened/closed ux0: on EVERY log message, including
+// many messages per frame. Reuse one handle to avoid SD2Vita filesystem stalls.
+// Writes remain synchronous for crash breadcrumbs; never log search text.
 void append(const char* data, unsigned count) {
-    if (!gReady || !count || gBytes >= kMaxBytes) return;
-    const SceUID fd = sceIoOpen(kLog, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_APPEND, 0666);
-    if (fd < 0) return;
+    if (!gReady || gFile < 0 || !count || gBytes >= kMaxBytes) return;
+    const unsigned available = kMaxBytes - gBytes;
+    if (count > available) count = available;
     unsigned done = 0;
     while (done < count) {
-        const int n = sceIoWrite(fd, data + done, count - done);
+        const int n = sceIoWrite(gFile, data + done, count - done);
         if (n <= 0) break;
         done += (unsigned)n;
     }
-    sceIoClose(fd);
     gBytes += done;
 }
 } // namespace
@@ -44,8 +45,9 @@ void init() {
         sceIoRemove(kPrevious);
         sceIoRename(kLog, kPrevious);
     }
-    const SceUID fd = sceIoOpen(kLog, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
-    if (fd >= 0) sceIoClose(fd);
+    // Keep the descriptor open until shutdown (or the OS closes it at crash).
+    // Do not open/close the log during every IME render frame.
+    gFile = sceIoOpen(kLog, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
     gReady = true;
     gSession = gSequence = gBytes = 0;
     record("trace_start_diagnostic_build", 0, 1, 0, true);
@@ -77,5 +79,9 @@ void shutdown() {
     if (!gReady) return;
     record("clean_shutdown", gSession, 0, 0, true);
     gReady = false;
+    if (gFile >= 0) {
+        sceIoClose(gFile);
+        gFile = -1;
+    }
 }
 } // namespace psvitaalive::ime_diagnostics
