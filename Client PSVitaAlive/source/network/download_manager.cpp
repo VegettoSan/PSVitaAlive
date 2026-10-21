@@ -422,6 +422,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             job.preferSegmentedZip
         );
         if (hr == HttpResult::Ok) job.segmentedZip = http_.lastSegmentedZip();
+        job.sourceUnavailable = http_.lastSourceUnavailable();
         if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
         if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
         job.validatorUrl = effectiveUrl;
