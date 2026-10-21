@@ -245,7 +245,7 @@ bool promptZipDestination(std::string& dst, psvitaalive::ui::FullCatalogScreen& 
 
     // Custom path uses the same embedded keyboard as catalog search.
     std::string custom = dst.empty() ? "ux0:data/" : dst;
-    if (!screen.promptTextBlocking(custom, "ZIP extract path", custom)) {
+    if (!screen.promptTextBlocking(custom, ::psvitaalive::L("KEYBOARD_ZIP_TITLE"), custom)) {
         return false;
     }
     for (char& c : custom) {
