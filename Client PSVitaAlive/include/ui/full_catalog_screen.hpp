@@ -81,6 +81,7 @@ public:
     void prepareForHeavyWork();
     /** Drop GPU catalog images before opening the system IME; disk cache stays intact. */
     void prepareForIme();
+    void drawImeDiagnosticFrame();
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
     CatalogType activeCatalog() const { return state_.catalog; }
@@ -186,6 +187,7 @@ private:
 
     std::string searchQuery_;
     bool externalInputBlocked_ = false;
+    unsigned imeDiagnosticFrames_ = 0;
     ContentFilter filterMode_ = ContentFilter::All;
     const char* filterCategory_ = ""; // points into compiled-in menu table (no allocation)
     size_t installFilterScanNext_ = 0; // status filters scan progressively

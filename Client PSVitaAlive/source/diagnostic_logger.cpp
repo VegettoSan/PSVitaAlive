@@ -13,6 +13,7 @@ namespace psvitaalive::diagnostics {
 namespace {
 constexpr const char* LOG_DIR = "ux0:data/psvitaalive/logs";
 constexpr const char* LOG_FILE = "ux0:data/psvitaalive/logs/session.log";
+constexpr const char* PREVIOUS_LOG_FILE = "ux0:data/psvitaalive/logs/session_previous.log";
 constexpr const char* INSTALL_LOG = "ux0:data/psvitaalive/logs/install.log";
 
 // A fixed 64 KiB queue: no allocations in the logger's hot path and no disk I/O
@@ -130,6 +131,12 @@ int logWorker(SceSize, void*) {
 void init() {
     if (g_initialized) return;
     ensureDirectories();
+    // Preserve previous logs if the user relaunches after a system crash.
+    SceIoStat previous{};
+    if (sceIoGetstat(LOG_FILE, &previous) >= 0) {
+        sceIoRemove(PREVIOUS_LOG_FILE);
+        sceIoRename(LOG_FILE, PREVIOUS_LOG_FILE);
+    }
     resetLogFile(LOG_FILE);
     resetLogFile(INSTALL_LOG);
     // No new verbose Archive node trace file; remove the old one once.

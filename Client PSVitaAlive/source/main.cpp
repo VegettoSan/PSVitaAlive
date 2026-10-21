@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include "diagnostic_logger.hpp"
+#include "ime_diagnostics.hpp"
 #include "storage/storage_manager.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/install_archive_policy.hpp"
@@ -113,6 +114,7 @@ public:
             return false;
         }
 
+        psvitaalive::ime_diagnostics::record("open_enter", sessionId_ + 1, (int)initial.size(), (int)title.size(), true);
         sceClibMemset(inputBuf_, 0, sizeof(inputBuf_));
         sceClibMemset(initialBuf_, 0, sizeof(initialBuf_));
         sceClibMemset(titleBuf_, 0, sizeof(titleBuf_));
@@ -139,12 +141,16 @@ public:
         resultText_.clear();
         cooldownFrames_ = 0;
         ++sessionId_;
+        psvitaalive::ime_diagnostics::setSession(sessionId_);
+        psvitaalive::ime_diagnostics::record("init_before", sessionId_, (int)param.type, (int)param.languagesForced, true);
 
         // Do not explicitly load SCE_SYSMODULE_IME here. The official VitaSDK
         // sample, VitaShell and pkgj use sceImeDialogInit directly. Keeping the
         // lifecycle owned by CommonDialog avoids accumulating/competing module
         // state across many open/close cycles.
         const int r = sceImeDialogInit(&param);
+        psvitaalive::ime_diagnostics::record("init_after", sessionId_, r, (int)param.maxTextLength, true);
+        lastStatus_ = -1;
         char b[128];
         sceClibSnprintf(b, sizeof(b), "[UI] IME session=%u init=0x%08X", sessionId_, r);
         psvitaalive::diagnostics::log(b);
@@ -169,18 +175,27 @@ public:
             if (++cooldownFrames_ >= kCooldownFrames) {
                 state_ = State::Idle;
                 cooldownFrames_ = 0;
+                psvitaalive::ime_diagnostics::record("cooldown_complete", sessionId_, kCooldownFrames, 0, true);
                 psvitaalive::diagnostics::log("[UI] IME cooldown complete");
             }
             return;
         }
 
         const SceCommonDialogStatus st = sceImeDialogGetStatus();
+        if ((int)st != lastStatus_) {
+            psvitaalive::ime_diagnostics::record("status_change", sessionId_, (int)st, lastStatus_, true);
+            lastStatus_ = (int)st;
+        }
         if (st == SCE_COMMON_DIALOG_STATUS_FINISHED) {
+            psvitaalive::ime_diagnostics::record("get_result_before", sessionId_, 0, 0, true);
             SceImeDialogResult result{};
             const int gr = sceImeDialogGetResult(&result);
+            psvitaalive::ime_diagnostics::record("get_result_after", sessionId_, gr, (int)result.button, true);
             resultAccepted_ = (gr >= 0 && result.button == SCE_IME_DIALOG_BUTTON_ENTER);
             resultText_ = resultAccepted_ ? utf16ToUtf8(inputBuf_) : std::string();
+            psvitaalive::ime_diagnostics::record("term_before", sessionId_, resultAccepted_ ? 1 : 0, (int)resultText_.size(), true);
             const int tr = sceImeDialogTerm();
+            psvitaalive::ime_diagnostics::record("term_after", sessionId_, tr, resultAccepted_ ? 1 : 0, true);
             resultReady_ = true;
             state_ = State::Cooldown;
             cooldownFrames_ = 0;
@@ -199,6 +214,7 @@ public:
             resultReady_ = true;
             state_ = State::Cooldown;
             cooldownFrames_ = 0;
+            psvitaalive::ime_diagnostics::record("unexpected_status_none", sessionId_, 0, 0, true);
             psvitaalive::diagnostics::log("[UI] IME returned NONE while running; entering cooldown");
         }
     }
@@ -212,6 +228,7 @@ public:
     }
 
     bool busy() const { return state_ != State::Idle; }
+    unsigned nextSessionId() const { return sessionId_ + 1; }
 
     bool runBlocking(const std::string& initial, const std::string& title, std::string& out) {
         if (!open(initial, title)) return false;
@@ -273,6 +290,7 @@ private:
     bool resultAccepted_ = false;
     unsigned sessionId_ = 0;
     int cooldownFrames_ = 0;
+    int lastStatus_ = -1;
     std::string resultText_;
     SceWChar16 inputBuf_[kMaxLen + 1]{};
     SceWChar16 initialBuf_[kMaxLen + 1]{};
@@ -566,6 +584,7 @@ std::string progressMessage(uint64_t current,uint64_t total,const std::string&pr
 
 int main(){
     psvitaalive::diagnostics::init();
+    psvitaalive::ime_diagnostics::init();
     psvitaalive::diagnostics::log("============================================================");
     psvitaalive::diagnostics::log("PSVitaAlive session BEGIN");
     PSVA_TRACE_EVENT("build_marker","event-driven-ux0-space-20261012 main=untouched fix=1");
@@ -604,10 +623,13 @@ int main(){
     psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
     screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
     screen.setSearchCallback([&](const std::string& current){
+        psvitaalive::ime_diagnostics::setSession(gIme.nextSessionId());
+        psvitaalive::ime_diagnostics::record("search_request", gIme.nextSessionId(), (int)current.size(), 0, true);
         // Free catalog image VRAM and cancel image downloads BEFORE opening
         // CommonDialog. Its input/UTF buffers and all UI state remain intact.
         screen.prepareForIme();
         if (!gIme.open(current, "Search catalog")) {
+            psvitaalive::ime_diagnostics::record("open_rejected", psvitaalive::ime_diagnostics::activeSession(), 0, 0, true);
             psvitaalive::diagnostics::log("[UI] search IME request rejected");
             screen.showToast("Keyboard unavailable", 1800);
         } else {
@@ -831,8 +853,13 @@ while(true){
         gIme.poll();
         std::string imeText;
         bool imeAccepted = false;
-        if(gIme.takeFinished(imeText, imeAccepted) && imeAccepted){
-            screen.completeSearch(imeText);
+        if(gIme.takeFinished(imeText, imeAccepted)){
+            psvitaalive::ime_diagnostics::record("search_result_ready", psvitaalive::ime_diagnostics::activeSession(), imeAccepted ? 1 : 0, (int)imeText.size(), true);
+            if(imeAccepted){
+                psvitaalive::ime_diagnostics::record("search_apply_before", psvitaalive::ime_diagnostics::activeSession(), (int)imeText.size());
+                screen.completeSearch(imeText);
+                psvitaalive::ime_diagnostics::record("search_apply_after", psvitaalive::ime_diagnostics::activeSession(), (int)imeText.size(), 0, true);
+            }
         }
         // After a few frames, surface plugin warnings safely.
         if (pluginWarnPending) {
@@ -1006,5 +1033,5 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
         }
     }
 
-    screen.setInstallProgress(false,0,0,0,"","","",0,false,"","");gIme.shutdown();screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();sceAppUtilShutdown();psvitaalive::diagnostics::log("PSVitaAlive session END");psvitaalive::diagnostics::shutdown();sceKernelExitProcess(0);return 0;
+    screen.setInstallProgress(false,0,0,0,"","","",0,false,"","");gIme.shutdown();screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();sceAppUtilShutdown();psvitaalive::ime_diagnostics::shutdown();psvitaalive::diagnostics::log("PSVitaAlive session END");psvitaalive::diagnostics::shutdown();sceKernelExitProcess(0);return 0;
 }
