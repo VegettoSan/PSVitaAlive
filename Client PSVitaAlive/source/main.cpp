@@ -699,22 +699,28 @@ int main(){
     }
 
     psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
+    bool imeOpenPending = false;
+    bool imeGpuPrepared = false;
+    uint64_t imeOpenRequestedUs = 0;
+    uint64_t imeGpuPreparedUs = 0;
+    std::string imePendingInitial;
     screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
     screen.setSearchCallback([&](const std::string& current){
+        if(imeOpenPending || gIme.busy()) return;
+        imePendingInitial = current;
+        imeOpenPending = true;
+        imeGpuPrepared = false;
+        imeOpenRequestedUs = sceKernelGetSystemTimeWide();
+        imeGpuPreparedUs = 0;
         psvitaalive::ime_diagnostics::setSession(gIme.nextSessionId());
-        psvitaalive::ime_diagnostics::record("search_request", gIme.nextSessionId(), (int)current.size(), 0, true);
-        // Free catalog image VRAM and cancel image downloads BEFORE opening
-        // CommonDialog. Its input/UTF buffers and all UI state remain intact.
-        screen.prepareForIme();
-        if (!gIme.open(current, "Search catalog")) {
-            psvitaalive::ime_diagnostics::record("open_rejected", psvitaalive::ime_diagnostics::activeSession(), 0, 0, true);
-            psvitaalive::diagnostics::log("[UI] search IME request rejected");
-            screen.showToast("Keyboard unavailable", 1800);
-        } else {
-            // The callback is inside handleInput/handleTouch; draw the lightweight
-            // CommonDialog frame immediately, not one heavy frame later.
-            screen.setExternalInputBlocked(true);
-        }
+        psvitaalive::ime_diagnostics::record("ime_deferred", gIme.nextSessionId(), (int)current.size(), 0, true);
+        // Pause and cancel BEFORE invoking sceImeDialogInit(). cancelAll()
+        // is asynchronous; opening is deferred until isQuiescentForIme().
+        images.setNetworkPaused(true);
+        images.cancelAll();
+        // This callback runs inside handleInput/handleTouch. Never render a
+        // heavy catalog frame while the IME is waiting for image worker idle.
+        screen.setExternalInputBlocked(true);
     });
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
@@ -923,7 +929,44 @@ int main(){
     using StorageInstallState = psvitaalive::InstallStatus::State;
     StorageInstallState previousStorageInstallState = installer.status().state;
 while(true){
-        screen.setExternalInputBlocked(gIme.busy());
+        if(imeOpenPending){
+            const uint64_t nowUs = sceKernelGetSystemTimeWide();
+            if(images.isQuiescentForIme()){
+                if(!imeGpuPrepared){
+                    psvitaalive::ime_diagnostics::record("image_worker_idle",
+                        gIme.nextSessionId(), 0, 0, true);
+                    screen.prepareForIme(); // GPU waits/frees only when image work is done
+                    imeGpuPrepared = true;
+                    imeGpuPreparedUs = sceKernelGetSystemTimeWide();
+                    psvitaalive::ime_diagnostics::record("gpu_release_complete",
+                        gIme.nextSessionId(), 0, 0, true);
+                }
+                // Present at least two lightweight frames before initializing PAF.
+                if(nowUs >= imeGpuPreparedUs && nowUs-imeGpuPreparedUs >= 50000ULL){
+                    psvitaalive::ime_diagnostics::record("ime_init_start",
+                        gIme.nextSessionId(), 0, 0, true);
+                    const bool opened=gIme.open(imePendingInitial, "Search catalog");
+                    imeOpenPending=false;
+                    imeGpuPrepared=false;
+                    imePendingInitial.clear();
+                    if(!opened){
+                        psvitaalive::ime_diagnostics::record("open_rejected",
+                            psvitaalive::ime_diagnostics::activeSession(), 0, 0, true);
+                        screen.showToast("Keyboard unavailable", 1800);
+                    }
+                }
+            }else if(nowUs>=imeOpenRequestedUs && nowUs-imeOpenRequestedUs>=8000000ULL){
+                // Do not risk PAF while a curl/normalize worker has not stopped.
+                psvitaalive::ime_diagnostics::record("image_worker_timeout",
+                    gIme.nextSessionId(), 0, 0, true);
+                psvitaalive::diagnostics::log("[IME] image worker did not become idle; keyboard opening cancelled");
+                imeOpenPending=false;
+                imeGpuPrepared=false;
+                imePendingInitial.clear();
+                screen.showToast("Keyboard unavailable: image worker busy", 2500);
+            }
+        }
+        screen.setExternalInputBlocked(imeOpenPending || gIme.busy());
         if(!screen.updateAndDraw()) break;
 
         // CommonDialog was serviced during the frame. Poll IME only afterwards
@@ -1072,7 +1115,7 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
             if (downloaded || finished) screen.requestUx0SpaceRefresh();
             previousStorageInstallState = cur.state;
         }
-        images.setNetworkPaused(gIme.busy()||cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt);
+        images.setNetworkPaused(imeOpenPending||gIme.busy()||cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt);
         if(startupThemePending && !active && !screen.isThemeSetupVisible()){
             screen.openThemeSetupIfNeeded();
             if(!screen.isThemeSetupVisible()){

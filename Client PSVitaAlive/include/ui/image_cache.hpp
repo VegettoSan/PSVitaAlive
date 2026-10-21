@@ -60,6 +60,9 @@ public:
     // by the worker after libcurl acknowledges the cancellation.
     void cancelAll();
     void cancelQueuedRequests();
+    // UI-thread, non-blocking check. True only while paused and after the
+    // worker completed download, decode, cleanup and cache publication.
+    bool isQuiescentForIme() const;
 
     /** Pause background image downloads so install/VPK bandwidth is not shared. */
     void setNetworkPaused(bool paused);
@@ -77,6 +80,7 @@ private:
     volatile bool stopping_ = false;
     volatile bool cancelRequested_ = false;
     volatile bool networkPaused_ = false;
+    bool workerBusy_ = false; // protected by mutex_; covers entire active job
     std::vector<Job> queue_;
     std::vector<std::string> pending_;
     std::vector<std::string> ready_;
