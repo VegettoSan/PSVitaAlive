@@ -347,6 +347,56 @@ static bool joinParts(
     return true;
 }
 
+
+static bool verifySegmentedSha1(const std::string& base, size_t partCount,
+                                const std::string& expectedSha1, bool& mismatch
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                                , const SHA_CTX* prehashedFirstPart
+#endif
+) {
+    mismatch = false;
+    if (expectedSha1.empty()) return true;
+#ifdef PSVITAALIVE_CURL_MBEDTLS
+    return false;
+#else
+    if (expectedSha1.size() != 40) return false;
+    SHA_CTX sha{};
+    SHA1_Init(&sha);
+    const size_t begin = prehashedFirstPart ? 1 : 0;
+    if (prehashedFirstPart) sha = *prehashedFirstPart;
+    std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
+    if (!buf) return false;
+    for (size_t i = begin; i < partCount; ++i) {
+        const SceUID fd = sceIoOpen(partPath(base, i).c_str(), SCE_O_RDONLY, 0);
+        if (fd < 0) return false;
+        bool ok = true;
+        for (;;) {
+            const int n = sceIoRead(fd, buf.get(), static_cast<unsigned int>(kJoinBuffer));
+            if (n < 0) { ok = false; break; }
+            if (n == 0) break;
+            SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
+        }
+        sceIoClose(fd);
+        if (!ok) return false;
+    }
+    unsigned char digest[SHA_DIGEST_LENGTH];
+    SHA1_Final(digest, &sha);
+    static const char* hex = "0123456789abcdef";
+    for (size_t i = 0; i < SHA_DIGEST_LENGTH; ++i) {
+        unsigned char a = static_cast<unsigned char>(expectedSha1[i * 2]);
+        unsigned char b = static_cast<unsigned char>(expectedSha1[i * 2 + 1]);
+        if (a >= 'A' && a <= 'F') a = static_cast<unsigned char>(a + 32);
+        if (b >= 'A' && b <= 'F') b = static_cast<unsigned char>(b + 32);
+        if (a != static_cast<unsigned char>(hex[digest[i] >> 4]) ||
+            b != static_cast<unsigned char>(hex[digest[i] & 15])) {
+            mismatch = true;
+            return false;
+        }
+    }
+    return true;
+#endif
+}
+
 static bool isDirectHttp(const std::string& url) {
     return url.compare(0, 7, "http://") == 0;
 }
@@ -394,7 +444,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const HttpCancelFn& shouldCancel,
     const std::string& expectedSha1,
     const std::string& expectedEtag,
-    const std::string& expectedModified
+    const std::string& expectedModified,
+    bool keepZipParts
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
@@ -589,8 +640,28 @@ ParallelArchiveOutcome downloadArchiveRanges(
     // Network transfer has finished, but disk merge + digest verification
     // still require time. Publish a separate UI phase instead of freezing at 99%.
     sendProgress(session, false, true);
-    diagnostics::log("[HTTP] parallel transfer complete; joining and verifying parts");
+    diagnostics::log(keepZipParts
+        ? "[HTTP] parallel transfer complete; checking segmented ZIP"
+        : "[HTTP] parallel transfer complete; joining and verifying parts");
     bool checksumMismatch = false;
+    if (keepZipParts) {
+        if (!verifySegmentedSha1(destination, partCount,
+                                 isDirectHttp(url) ? expectedSha1 : std::string(),
+                                 checksumMismatch
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                                 , parts[0].streamingSha ? &parts[0].firstPartSha : nullptr
+#endif
+                                 )) {
+            clearPartFiles(destination, true);
+            diagnostics::log(checksumMismatch ? "[HTTP] segmented SHA1 mismatch"
+                                              : "[HTTP] segmented verification read failed");
+            return checksumMismatch ? ParallelArchiveOutcome::RetrySerial
+                                    : ParallelArchiveOutcome::IoError;
+        }
+        sendProgress(session, true);
+        diagnostics::log("[HTTP] segmented ZIP verified; join skipped");
+        return ParallelArchiveOutcome::Segmented;
+    }
     if (!joinParts(destination, authoritativeSize,
                    isDirectHttp(url) ? expectedSha1 : std::string(),
                    checksumMismatch, partCount
@@ -609,6 +680,21 @@ ParallelArchiveOutcome downloadArchiveRanges(
     sendProgress(session, true);
     diagnostics::log("[HTTP] parallel payload validated and joined");
     return ParallelArchiveOutcome::Complete;
+}
+
+bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize) {
+    SceIoStat stat{};
+    const size_t partCount = sceIoGetstat(partPath(base, 3).c_str(), &stat) >= 0 ? 4 : 2;
+    if (sceIoGetstat(partPath(base, 1).c_str(), &stat) < 0) return false;
+    bool mismatch = false;
+    const bool ok = joinParts(base, expectedSize, std::string(), mismatch, partCount
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                              , nullptr
+#endif
+                              );
+    diagnostics::log(ok ? "[HTTP] recovery ZIP materialized"
+                        : "[HTTP] recovery ZIP materialization failed");
+    return ok;
 }
 
 } // namespace psvitaalive
