@@ -90,6 +90,10 @@ public:
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
     void showToast(const std::string& message, uint64_t durationMs = 2600);
+    // Queue the Archive.org warning. It opens only when startup/install
+    // modals are no longer visible, never over an error/recovery dialog.
+    void queueArchiveServiceWarning(bool fromDownload);
+    void openArchiveServiceWarningIfReady();
     void setAppSettings(const ::psvitaalive::AppSettingsData& settings);
     void setPluginStatus(const ::psvitaalive::PluginStatus& plugins);
     using SettingsSaveFn = std::function<void(const ::psvitaalive::AppSettingsData&)>;
@@ -207,6 +211,9 @@ private:
     bool installProgressActive_ = false;
     /** After Plugin install(s): force reboot dialog (blocks LiveArea exit). */
     bool pluginRebootModal_ = false;
+    bool archiveWarningVisible_ = false;
+    bool archiveWarningPending_ = false;
+    bool archiveWarningDownload_ = false;
     // QR/Web handoff: only the displayed symbol occupies VRAM.
     bool webQrVisible_ = false;
     std::string webQrUrl_;
@@ -370,6 +377,7 @@ private:
     void scrollWebQrHelp(int direction);
     void drawInstallAllOverlay();
     void drawPluginRebootOverlay();
+    void drawArchiveServiceOverlay();
     void drawEssentialPluginsOverlay();
     void closeEssentialPluginsPrompt(bool install);
     void drawPspSetupOverlay();
