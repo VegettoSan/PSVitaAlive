@@ -136,6 +136,9 @@ target_link_libraries(${PROJECT_NAME}
   SceLibJson_stub
   SceAppMgr_stub
   SceAppUtil_stub
+  # vita2d's static object needs this symbol even though the embedded
+  # QWERTY does not initialize or update Sony CommonDialog.
+  SceCommonDialog_stub
   SceIofilemgr_stub
   SceLibKernel_stub
   SceSysmem_stub
