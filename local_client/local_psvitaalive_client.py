@@ -34,6 +34,8 @@ from urllib3.util.retry import Retry
 # ── Constants ────────────────────────────────────────────────────────────────
 
 RAW_BASE = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main"
+AUTHORS_FILE = "authors.json"
+CATEGORIES_FILE = "categories.json"
 CATALOGS = {
     "Homebrew":   "catalog.json",
     "Vita Games": "catalog_psvita_games.json",
@@ -82,23 +84,47 @@ def safe_filename(url: str) -> str:
 
 # ── Data model ───────────────────────────────────────────────────────────────
 
+def build_lookups(authors_data, categories_data) -> dict:
+    """Map IDs from authors.json / categories.json to display names."""
+    authors = {a["id"]: a.get("name") or a["id"]
+               for a in authors_data if isinstance(a, dict) and a.get("id")}
+    categories = {}
+    for c in categories_data:
+        if not isinstance(c, dict) or not c.get("id"):
+            continue
+        categories[c["id"]] = {
+            "name": c.get("name") or c["id"],
+            "subcategories": {s["id"]: s.get("name") or s["id"]
+                              for s in c.get("subcategories", []) if s.get("id")},
+        }
+    return {"authors": authors, "categories": categories}
+
+
 class CatalogEntry:
     __slots__ = (
-        "id", "name", "catalog", "category", "subcategories", "version",
-        "author", "size", "status", "links", "description", "long_description",
+        "id", "name", "catalog", "category", "category_id", "subcategories",
+        "subcategory_names", "version", "author", "author_names", "size",
+        "status", "links", "description", "long_description",
         "icon", "screenshots", "raw",
     )
 
-    def __init__(self, raw: dict, catalog_label: str):
+    def __init__(self, raw: dict, catalog_label: str, lookups: dict | None = None):
+        lk = lookups or {}
+        authors = lk.get("authors", {})
+        categories = lk.get("categories", {})
         self.raw = raw
         self.id = raw.get("id", "")
         self.name = raw.get("name", self.id)
         self.catalog = catalog_label
-        self.category = raw.get("category_id", "")
-        self.subcategories = ", ".join(raw.get("subcategory_ids", []))
+        self.category_id = raw.get("category_id", "")
+        cat = categories.get(self.category_id, {})
+        self.category = cat.get("name") or self.category_id
+        sub_names = cat.get("subcategories", {})
+        self.subcategory_names = [sub_names.get(s, s) for s in raw.get("subcategory_ids", [])]
+        self.subcategories = ", ".join(self.subcategory_names)
         self.version = raw.get("version", "")
-        aids = raw.get("author_ids", [])
-        self.author = ", ".join(aids) if aids else ""
+        self.author_names = [authors.get(a, a) for a in raw.get("author_ids", [])]
+        self.author = ", ".join(self.author_names)
         self.size = raw.get("size", 0) or 0
         self.status = raw.get("status", "")
         self.links = raw.get("links", [])
@@ -109,6 +135,26 @@ class CatalogEntry:
 
     def downloadable_links(self):
         return [l for l in self.links if l.get("type") in DOWNLOADABLE_TYPES and l.get("url")]
+
+    def selected_links(self, recommended_only: bool = True):
+        """Return the links to download for this entry.
+
+        With recommended_only, mirror / alternate links are dropped wherever the
+        catalog marks a recommended link for the same type. Groups with no
+        recommended flag at all (e.g. Vita Updates and DLC) are kept whole, so
+        nothing is silently lost.
+        """
+        links = self.downloadable_links()
+        if not recommended_only:
+            return links
+        groups: dict[str, list] = {}
+        for link in links:
+            groups.setdefault(link.get("type", ""), []).append(link)
+        chosen = []
+        for group in groups.values():
+            rec = [l for l in group if l.get("recommended")]
+            chosen.extend(rec if rec else group)
+        return chosen
 
     def total_download_size(self) -> int:
         return sum(l.get("size", 0) or 0 for l in self.downloadable_links())
@@ -253,7 +299,7 @@ class FilterProxyModel(QSortFilterProxyModel):
                 return False
 
         if self._subcategory_filter != "All":
-            subs = {s.lower() for s in entry.raw.get("subcategory_ids", [])}
+            subs = {s.lower() for s in entry.subcategory_names}
             if self._subcategory_filter.lower() not in subs:
                 return False
 
@@ -262,7 +308,7 @@ class FilterProxyModel(QSortFilterProxyModel):
                 return False
 
         if self._search:
-            haystack = f"{entry.name} {entry.author} {entry.description} {entry.id} {entry.subcategories}".lower()
+            haystack = f"{entry.name} {' '.join(entry.author_names)} {entry.description} {entry.id} {entry.subcategories}".lower()
             for word in self._search.split():
                 if word not in haystack:
                     return False
@@ -280,6 +326,15 @@ class DownloadSignals(QObject):
 
 
 class DownloadWorker(QThread):
+    """Downloads files one at a time.
+
+    Each file is written to "<name>.part" and only renamed into place after the
+    byte count has been verified. A file is never reported as successful unless
+    its size matches the catalog size (when known) and the server's
+    Content-Length (when it is sent unencoded). Existing files are only kept
+    when their size is known and matches; otherwise they are fetched again.
+    """
+
     def __init__(self, tasks: list[dict], parent=None):
         super().__init__(parent)
         self.tasks = tasks  # [{url, dest, size, name}]
@@ -296,46 +351,106 @@ class DownloadWorker(QThread):
                 break
             url = task["url"]
             dest = Path(task["dest"])
-            expected = task.get("size")
+            expected = int(task.get("size") or 0)
             fname = dest.name
             self.signals.log.emit(f"Downloading: {task.get('name', fname)}")
 
             dest.parent.mkdir(parents=True, exist_ok=True)
-            if dest.exists() and dest.stat().st_size > 0:
-                if expected and dest.stat().st_size == expected:
-                    self.signals.log.emit(f"  Skipped (complete): {fname}")
-                    self.signals.finished.emit(fname, True)
-                    continue
-                elif not expected:
-                    self.signals.log.emit(f"  Skipped (exists): {fname}")
-                    self.signals.finished.emit(fname, True)
-                    continue
+            if expected and dest.is_file() and dest.stat().st_size == expected:
+                self.signals.log.emit(f"  Skipped (complete): {fname}")
+                self.signals.finished.emit(fname, True)
+                continue
 
-            try:
-                r = session.get(url, stream=True, timeout=(30, 300))
-                r.raise_for_status()
-                total = int(r.headers.get("Content-Length", 0)) or expected or 0
-                downloaded = 0
-                with open(dest, "wb") as f:
-                    for chunk in r.iter_content(chunk_size=1 << 18):
-                        if self._cancel:
-                            break
-                        f.write(chunk)
-                        downloaded += len(chunk)
-                        self.signals.progress.emit(fname, downloaded, total or 0)
-
+            part = dest.with_name(dest.name + ".part")
+            ok, detail = self._fetch(session, url, part, expected, fname)
+            if ok:
+                os.replace(part, dest)
+                self.signals.log.emit(f"  Done: {fname} ({detail})")
+            else:
+                part.unlink(missing_ok=True)
                 if self._cancel:
                     self.signals.log.emit(f"  Cancelled: {fname}")
-                    self.signals.finished.emit(fname, False)
                 else:
-                    self.signals.log.emit(f"  Done: {fname} ({human_size(downloaded)})")
-                    self.signals.finished.emit(fname, True)
-
-            except Exception as exc:
-                self.signals.log.emit(f"  FAILED: {fname} — {exc}")
-                self.signals.finished.emit(fname, False)
+                    self.signals.log.emit(f"  FAILED: {fname} — {detail}")
+            self.signals.finished.emit(fname, ok)
 
         self.signals.all_done.emit()
+
+    def _fetch(self, session, url, part: Path, expected: int, fname: str):
+        """Stream url into part. Returns (ok, detail)."""
+        try:
+            with session.get(url, stream=True, timeout=(30, 300)) as r:
+                r.raise_for_status()
+                encoding = r.headers.get("Content-Encoding", "identity").lower()
+                declared = None
+                if encoding in ("", "identity"):
+                    # Content-Length is only comparable to the body when not compressed.
+                    declared = int(r.headers.get("Content-Length") or 0) or None
+                total = expected or declared or 0
+                written = 0
+                with open(part, "wb") as f:
+                    for chunk in r.iter_content(chunk_size=1 << 18):
+                        if self._cancel:
+                            return False, "cancelled"
+                        f.write(chunk)
+                        written += len(chunk)
+                        self.signals.progress.emit(fname, written, total)
+
+            if expected and written != expected:
+                return False, f"size mismatch: got {human_size(written)}, expected {human_size(expected)}"
+            if declared and written != declared:
+                return False, f"incomplete: got {written} of {declared} bytes"
+            if not expected and not declared:
+                self.signals.log.emit("  Note: size unknown, completeness could not be verified")
+            return True, human_size(written)
+        except Exception as exc:
+            return False, str(exc)
+
+
+# ── Catalog loader (background thread) ───────────────────────────────────────
+
+def _get_json(session, filename: str):
+    r = session.get(f"{RAW_BASE}/{filename}", timeout=30)
+    r.raise_for_status()
+    return r.json()
+
+
+class CatalogLoader(QThread):
+    message = Signal(str)   # status text
+    loaded = Signal(object) # dict: entries, categories, subcategories, statuses
+
+    def run(self):
+        session = make_session()
+        try:
+            lookups = build_lookups(_get_json(session, AUTHORS_FILE),
+                                    _get_json(session, CATEGORIES_FILE))
+        except Exception as exc:
+            lookups = {"authors": {}, "categories": {}}
+            self.message.emit(f"Author/category names unavailable, showing IDs: {exc}")
+
+        entries, categories, subcategories, statuses = [], set(), set(), set()
+        for label, filename in CATALOGS.items():
+            try:
+                data = _get_json(session, filename)
+            except Exception as exc:
+                self.message.emit(f"Failed to load {label}: {exc}")
+                continue
+            for item in data:
+                entry = CatalogEntry(item, label, lookups)
+                entries.append(entry)
+                if entry.category:
+                    categories.add(entry.category)
+                subcategories.update(entry.subcategory_names)
+                if entry.status:
+                    statuses.add(entry.status)
+            self.message.emit(f"Loaded {label}: {len(data)} entries")
+
+        self.loaded.emit({
+            "entries": entries,
+            "categories": categories,
+            "subcategories": subcategories,
+            "statuses": statuses,
+        })
 
 
 # ── Main Window ──────────────────────────────────────────────────────────────
@@ -352,6 +467,9 @@ class MainWindow(QMainWindow):
         self._statuses: set[str] = set()
         self._download_dir = str(Path.home() / "Downloads" / "PSVitaAlive_Archive")
         self._worker: DownloadWorker | None = None
+        self._loader: CatalogLoader | None = None
+        self._dl_done_count = 0
+        self._dl_total = 0
 
         self._build_ui()
         self._load_catalogs()
@@ -460,6 +578,14 @@ class MainWindow(QMainWindow):
         self.choose_dir_btn.clicked.connect(self._choose_dir)
         dl_row.addWidget(self.choose_dir_btn)
 
+        self.recommended_only = QCheckBox("Recommended sources only")
+        self.recommended_only.setChecked(True)
+        self.recommended_only.setToolTip(
+            "When ticked, mirror and alternate links are skipped wherever the catalog "
+            "marks a recommended link. Untick to download every available link."
+        )
+        dl_row.addWidget(self.recommended_only)
+
         self.dl_selected_btn = QPushButton("Download Selected")
         self.dl_selected_btn.clicked.connect(self._download_selected)
         dl_row.addWidget(self.dl_selected_btn)
@@ -499,36 +625,20 @@ class MainWindow(QMainWindow):
     # ── Catalog loading ───────────────────────────────────────────────────
 
     def _load_catalogs(self):
+        if self._loader and self._loader.isRunning():
+            return
         self.status_bar.showMessage("Loading catalogs...")
         self.refresh_btn.setEnabled(False)
-        QApplication.processEvents()
+        self._loader = CatalogLoader(self)
+        self._loader.message.connect(lambda m: self.status_bar.showMessage(m))
+        self._loader.loaded.connect(self._on_catalogs_loaded)
+        self._loader.start()
 
-        session = make_session()
-        entries = []
-        categories = set()
-        subcategories = set()
-        statuses = set()
-
-        for label, filename in CATALOGS.items():
-            url = f"{RAW_BASE}/{filename}"
-            try:
-                r = session.get(url, timeout=30)
-                r.raise_for_status()
-                data = r.json()
-                for item in data:
-                    entry = CatalogEntry(item, label)
-                    entries.append(entry)
-                    if entry.category:
-                        categories.add(entry.category)
-                    for sc in item.get("subcategory_ids", []):
-                        subcategories.add(sc)
-                    if entry.status:
-                        statuses.add(entry.status)
-                self.status_bar.showMessage(f"Loaded {label}: {len(data)} entries")
-                QApplication.processEvents()
-            except Exception as exc:
-                self.status_bar.showMessage(f"Failed to load {label}: {exc}")
-                QApplication.processEvents()
+    def _on_catalogs_loaded(self, result: dict):
+        entries = result["entries"]
+        categories = result["categories"]
+        subcategories = result["subcategories"]
+        statuses = result["statuses"]
 
         self._all_entries = entries
         self._categories = categories
@@ -683,18 +793,17 @@ class MainWindow(QMainWindow):
                 entries.append(e)
         return entries
 
-    def _build_tasks(self, entries: list[CatalogEntry]) -> list[dict]:
+    def _build_tasks(self, entries: list[CatalogEntry], recommended_only: bool) -> list[dict]:
         tasks = []
         seen = set()
         for entry in entries:
-            for link in entry.downloadable_links():
+            for link in entry.selected_links(recommended_only):
                 url = link.get("url", "")
                 if not url or url in seen:
                     continue
                 seen.add(url)
                 fname = safe_filename(url)
-                subdir = entry.id
-                dest = Path(self._download_dir) / entry.catalog / subdir / fname
+                dest = Path(self._download_dir) / entry.catalog / entry.id / fname
                 tasks.append({
                     "url": url,
                     "dest": str(dest),
@@ -708,7 +817,7 @@ class MainWindow(QMainWindow):
         if not entries:
             self.status_bar.showMessage("No entries selected", 3000)
             return
-        tasks = self._build_tasks(entries)
+        tasks = self._build_tasks(entries, self.recommended_only.isChecked())
         self._start_download(tasks)
 
     def _download_all_visible(self):
@@ -717,18 +826,20 @@ class MainWindow(QMainWindow):
             self.status_bar.showMessage("No visible entries", 3000)
             return
 
-        total_size = sum(e.total_download_size() for e in entries)
+        recommended = self.recommended_only.isChecked()
+        tasks = self._build_tasks(entries, recommended)
+        total_size = sum(t["size"] or 0 for t in tasks)
+        mode = "recommended sources only" if recommended else "ALL sources, including mirrors"
         reply = QMessageBox.question(
             self, "Confirm bulk download",
-            f"Download all files from {len(entries)} visible entries?\n"
-            f"Estimated size: {human_size(total_size)}\n\n"
+            f"Download {len(tasks)} file(s) from {len(entries)} visible entries?\n"
+            f"Mode: {mode}\n"
+            f"Estimated size: {human_size(total_size) or 'unknown'}\n\n"
             f"Destination: {self._download_dir}",
             QMessageBox.Yes | QMessageBox.No,
         )
         if reply != QMessageBox.Yes:
             return
-
-        tasks = self._build_tasks(entries)
         self._start_download(tasks)
 
     def _start_download(self, tasks: list[dict]):
