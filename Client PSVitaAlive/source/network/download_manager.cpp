@@ -426,6 +426,13 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
         job.validatorUrl = effectiveUrl;
         saveMetadata(job);
+        // A nonexistent resource (HTTP 404/410/etc.) or repeated pre-response
+        // connection failure cannot benefit from 2–4 more full HTTP sessions.
+        // Preserve ordinary retry/resume for transient and mid-transfer errors.
+        if (http_.lastSourceUnavailable()) {
+            diagnostics::log("[DownloadManager] source unavailable; skipping outer retries");
+            break;
+        }
         if (hr == HttpResult::Ok || hr == HttpResult::Cancelled || cancelFn() || sizeLimitHit)
             break;
     }
