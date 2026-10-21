@@ -2238,6 +2238,9 @@ HttpResult HttpClient::downloadToFile(
         }
 
         if (result == CURLE_OK) {
+            // Even an HTTP 429/503 proves that the server responded; pre-response
+            // failures separated by a real response must never count together.
+            unreachableDetector.observe(false, false, false);
             if (isPermanentDownloadHttpFailure(responseCode)) {
                 lastSourceUnavailable_ = true;
                 char permanentMsg[140];
