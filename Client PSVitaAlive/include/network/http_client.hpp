@@ -49,7 +49,8 @@ public:
         HttpCancelFn shouldCancel = nullptr,
         int maxAttemptsOverride = 0, // 0 = default (archive 10 / other 5); images can pass 4
         const std::string& ifRangeValidator = {}, // persisted ETag or Last-Modified for safe resume
-        uint64_t archiveSelectionSizeHint = 0 // threshold hint only; remote headers remain authoritative
+        uint64_t archiveSelectionSizeHint = 0, // threshold hint only; remote headers remain authoritative
+        bool keepZipParts = false // opt-in for ZIP data extraction only
     );
 
     /**
@@ -85,6 +86,7 @@ public:
     int lastStatusCode() const { return lastStatus_; }
     const std::string& lastError() const { return lastError_; }
     bool lastRangeAccepted() const { return lastRangeAccepted_; }
+    bool lastSegmentedZip() const { return lastSegmentedZip_; }
     const std::string& lastEtag() const { return lastEtag_; }
     const std::string& lastModified() const { return lastModified_; }
 
@@ -92,6 +94,7 @@ private:
     bool initialized_ = false;
     int lastStatus_ = 0;
     bool lastRangeAccepted_ = false;
+    bool lastSegmentedZip_ = false;
     std::string lastError_;
     std::string lastEtag_;
     std::string lastModified_;
