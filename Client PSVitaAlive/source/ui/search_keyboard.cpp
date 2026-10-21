@@ -18,14 +18,21 @@ constexpr int kPanelX = 46;
 constexpr int kPanelY = 34;
 constexpr int kPanelW = 868;
 constexpr int kPanelH = 482;
-constexpr int kRowW = 708;
-constexpr int kActionX = 801;
+constexpr int kKeyGap = 7;
 constexpr int kActionW = 91;
-constexpr int kRowX = (kScreenW - kRowW) / 2;
+constexpr int kInnerMargin = 22;
+// Symmetric inner margins: 22 px on the left of QWERTY, 22 px on
+// the right of the action rail. Exactly 7 px between both sections.
+constexpr int kRowX = kPanelX + kInnerMargin;
+constexpr int kActionX = kPanelX + kPanelW - kInnerMargin - kActionW;
+constexpr int kRowW = kActionX - kKeyGap - kRowX;
+static_assert(kRowX + kRowW + kKeyGap == kActionX,
+              "QWERTY must not overlap the action rail");
+static_assert(kRowX - kPanelX == kPanelX + kPanelW - kActionX - kActionW,
+              "Keep balanced margins inside the keyboard modal");
 constexpr int kRowTop = 178;
 constexpr int kRowHeight = 57;
 constexpr int kRowGap = 9;
-constexpr int kKeyGap = 7;
 constexpr uint64_t kAnimationUs = 230000ULL;
 constexpr size_t kMaxInputBytes = 128;
 
@@ -192,7 +199,7 @@ void SearchKeyboard::activate(int index, uint64_t now) {
             if (shift_ && ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);
             input_.push_back(ch);
         }
-        if (shift_) { shift_ = false; }
+        // SHIFT is a persistent toggle: the user decides when to disable it.
         break;
     case Action::Shift: shift_ = !shift_; break;
     case Action::Numbers: numbers_ = true; more_ = false; rebuild(); break;
@@ -255,7 +262,19 @@ void SearchKeyboard::update() {
     touchWasDown_ = down;
     if (closing_) return;
 
-    const unsigned nav = buttons & (SCE_CTRL_LEFT | SCE_CTRL_RIGHT | SCE_CTRL_UP | SCE_CTRL_DOWN);
+    // Treat the left analog stick as an alternative to the D-pad. Matching
+    // thresholds with the catalog avoids accidental drift, while sharing
+    // the same navigation repeat/cooldown prevents double movement.
+    unsigned analogNav = 0;
+    if (ctrl > 0) {
+        constexpr unsigned char low = 64, high = 192;
+        if (pad.lx <= low) analogNav |= SCE_CTRL_LEFT;
+        else if (pad.lx >= high) analogNav |= SCE_CTRL_RIGHT;
+        if (pad.ly <= low) analogNav |= SCE_CTRL_UP;
+        else if (pad.ly >= high) analogNav |= SCE_CTRL_DOWN;
+    }
+    const unsigned nav = (buttons & (SCE_CTRL_LEFT | SCE_CTRL_RIGHT |
+                                     SCE_CTRL_UP | SCE_CTRL_DOWN)) | analogNav;
     if (nav != lastNav_) {
         nextNavUs_ = now + 290000ULL;
     }
