@@ -283,6 +283,14 @@ Installer behaviour is driven by install method, PSP target/media, and catalog l
 The essential-plugins prompt and Settings SYSTEM treat **RePatch as satisfying the FdFix requirement**: if RePatch is active, **fd_fix is not proposed for install** (avoids the known RePatch + FdFix conflict). kubridge and libshacccg are unchanged.
 
 
+## Custom ZIP destination input (embedded keyboard)
+
+The destination picker in `source/main.cpp` still offers its quick paths (`ux0:data/`, `ux0:app/`, `ux0:repatch/`, `ux0:pspemu/ISO/`, `ux0:pspemu/PSP/GAME/`). Choosing **custom path** now calls `FullCatalogScreen::promptTextBlocking(...)`, which uses the same themed `SearchKeyboard` as catalog search — **not** the Sony native IME. The QWERTY character layout includes `123` and `MORE` for `:`, `/`, `_` and other path characters; selected client language only changes the surrounding UI labels.
+
+Press OK/Start to return the entered string or CANCEL/Circle to abort without changing the installation target. Existing path normalization and safety validation remain in `main.cpp` and the installer. This UI change **does not** alter ZIP extraction, destination permissions, saved recovery archives or the installer worker.
+
+The rationale, hardware crash history, controls and regression scenarios are recorded in [the keyboard architecture decision](../../../docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
+
 ## ZIP extraction manual recovery
 
 For data ZIPs, a successful network download and a failed extraction are treated as separate outcomes. If the outer payload is detected as `FileFormat::Zip`, an explicit `zipDestination` exists, and extraction later fails, `InstallController` preserves the completed ZIP instead of immediately reclaiming it.

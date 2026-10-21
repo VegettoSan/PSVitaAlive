@@ -220,6 +220,18 @@ Settings is treated as a UI-only surface. When it opens, `FullCatalogScreen` can
 
 This also keeps Settings isolated from image-network and GPU-decode contention while the user changes options. No catalog schema or disk-cache format changes are involved.
 
+## Embedded keyboard and image-cache interaction (since 20 October 2026)
+
+The client no longer invokes Sony's IME when searching or typing a custom ZIP destination. The on-screen QWERTY modal is drawn over the existing catalog frame and **does not require an IME-specific release of every GPU texture or a blocking worker-quiescence wait**. Those were experiments for the old native IME crash, not part of the supported keyboard architecture.
+
+- While `FullCatalogScreen::keyboardVisible()` is true, `main.cpp` includes that condition in `images.setNetworkPaused(...)`.
+- `FullCatalogScreen::updateAndDraw()` gives the keyboard exclusive input and skips `prepareVisibleTextures()`, animations and normal catalog input until the modal closes. The already-resident background/catalog textures remain drawable under the overlay.
+- The keyboard itself uses text and `vita2d_draw_rectangle`; it does not allocate new per-key textures or start background network work.
+- After close, normal visibility-based scheduling resumes. Do **not** reintroduce `ImageCache::isQuiescentForIme`, IME `prepareForIme`, or Sony CommonDialog frame updates merely to support search.
+- Remaining image-cache worker cancel/pause/mutex protections still serve normal catalog performance and installation; they must not be removed as a blanket IME cleanup.
+
+See [keyboard replacement decision](KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md) for the hardware investigation and [UI implementation](../Client%20PSVitaAlive/source/ui/README.md) for frame ownership.
+
 ## Image normalization dimensions
 
 Downloaded PNG/JPEG images are normalized locally before they are marked ready for the UI. The current maximum dimensions are:

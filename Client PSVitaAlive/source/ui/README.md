@@ -12,10 +12,27 @@ Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00
 - Download / install progress and result overlays (success, failure, **Download cancelled**, ZIP complete)
 - Install All wizard and mirror/link pickers
 - Search and catalog switching
+- Embedded, themed `SearchKeyboard`: English QWERTY with localized controls, used for search and custom ZIP destination paths (no Sony IME)
 - News modal (`news.txt`)
 - First-run / Settings **theme picker**
 - Essential plugins modal and plugin **reboot** modal
 - Report / data-request confirms
+
+## Built-in QWERTY modal (Sony IME retired)
+
+**Code:** `include/ui/search_keyboard.hpp`, `source/ui/search_keyboard.cpp`, `source/ui/full_catalog_screen.cpp` and `source/main.cpp`.
+
+`SearchKeyboard` is a **single UI-thread input state machine**. `FullCatalogScreen::openSearchKeyboard()` starts catalog searches; `FullCatalogScreen::promptTextBlocking()` reuses the same keyboard when the ZIP destination picker requires a custom path. Confirmation returns entered text; cancellation leaves the current search / destination unchanged.
+
+- `FullCatalogScreen::updateAndDraw()` routes gamepad/touch events exclusively to the keyboard while active. Input and image-texture preparation for the catalog are not advanced under the modal.
+- `FullCatalogScreen::draw()` renders the current catalog view. `finishUiFrame()` then calls `keyboard_.drawOverlay()` **before one normal frame end/swap**, keeping the catalog visible through a dim layer instead of clearing the screen to black. No separate keyboard texture or `vitaGL` dependency.
+- Palette: `BG`, `SURFACE`, `SURFACE2`, `BORDER`, `TEXT`, `DIM` and `ACCENT` follow the selected theme. Keyboard titles, hints and action captions load `KEYBOARD_*` keys through the usual localization manager; the keymap remains English QWERTY.
+- Geometry: right-hand **SHIFT, DEL, CANCEL, OK** column, equal **22 px** left/right inner margins, **7 px** separator. Existing character row order is preserved. Compile-time geometry assertions prevent overlap.
+- Navigation: D-pad **or left joystick** (dead-zone thresholds matching the catalog), X selection, touch positions mapped from native 1920×1088 logical units. Triangle switches ABC/123, `MORE` exposes extra symbols, L or SHIFT toggles **persistent case**. Start/OK confirms; Circle/CANCEL discards.
+- Backspace: a tap removes one character; hold Square or the visible DEL button and it repeats after ~420 ms, roughly every 105 ms until release. Case labels follow the next character to be entered.
+- Entry/exit uses a ~230 ms smoothstep slide. Layout and buttons are not language-specific; UI labels support all eight packaged languages. No candidate/predictive/complex IME is provided.
+
+**Do not reintroduce** `sceImeDialog*` or `vita2d_common_dialog_update` into the search flow. The binary still links `SceCommonDialog_stub` for **vita2d static linkage only**; Sony promoter/PAF modules required by installation/update remain independent. For crash history, rationale and validation: [native IME replacement decision](../../../docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
 
 ## Battery indicator
 

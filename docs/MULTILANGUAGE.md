@@ -263,6 +263,7 @@ Client-generated visible text should use localization where practical, including
 - navigation labels;
 - Settings labels/descriptions;
 - search/filter UI;
+- embedded QWERTY keyboard titles, placeholders, instructions and action captions (not the physical English keymap);
 - buttons/actions;
 - loading/startup states;
 - download/install progress;
@@ -274,6 +275,30 @@ Client-generated visible text should use localization where practical, including
 - image-cache startup maintenance.
 
 Diagnostic logs do not need to be translated.
+
+## Embedded keyboard: localized interface, English key layout
+
+As of the [native IME replacement decision (20 October 2026)](KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md), PSVitaAlive draws its own `SearchKeyboard` using the current theme/font. The **keyboard itself is English QWERTY on every language**, with a `123` page and extra `MORE` symbols. No Japanese/Chinese/Cyrillic composition or predictive input method is implemented. Changing the UI language **does not** switch the character layout.
+
+The titles and surrounding buttons do use the normal `LocalizationManager::get` lookup, from the currently selected `app0:lang/*.lang` table:
+
+| Key | Displayed context |
+|---|---|
+| `KEYBOARD_SEARCH_TITLE` | Catalog search modal title |
+| `KEYBOARD_ZIP_TITLE` | Custom ZIP extraction path modal title |
+| `KEYBOARD_PLACEHOLDER` | Empty text field |
+| `KEYBOARD_NAV_HINT` | D-pad / X / Square / Start quick guide |
+| `KEYBOARD_TOUCH_HINT` | Touch and hold-to-delete hint |
+| `KEYBOARD_SHIFT` | Right-side persistent SHIFT toggle |
+| `KEYBOARD_DELETE` | Right-side delete button (tap or hold) |
+| `KEYBOARD_CANCEL` | Right-side cancel button |
+| `KEYBOARD_CONFIRM` | Right-side confirm button |
+| `KEYBOARD_SPACE` | Space key caption |
+| `KEYBOARD_MORE` | Second symbol page caption |
+
+The currently packaged **`en`, `es`, `fr`, `de`, `it`, `pt-PT`, `pt-BR` and `ru`** packs include these eleven keys. Standard `active_ → english_ → raw key` lookup applies. Test label width in the 91 px-wide right action rail (the code reduces font scale to fit), and validate glyph coverage of both PGF and custom fonts.
+
+Do not translate or reorder individual A–Z key positions; uppercase/lowercase visibility follows sticky SHIFT instead. Search names and other catalog content remain untouched.
 
 ## What is not translated
 

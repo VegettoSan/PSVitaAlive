@@ -156,6 +156,7 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 
 - Catalogs: Homebrew, Vita Games, PSP, PS1
 - Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** + first-run picker with preview/confirm and **smooth palette cross-fade**, **UI font** styles, **language** System/manual), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- **Built-in keyboard (replaces Sony IME for text entry):** QWERTY English keys + numbers/symbols, D-pad / **left stick** / touch, persistent SHIFT, hold-to-delete, translated labels and selected-theme backdrop. Used for searches **and custom ZIP extraction paths**; see [the decision and technical guide](docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
 - **Multilanguage UI**: currently packaged `en`, `es`, `fr`, `de`, `it`, `pt-PT`, `pt-BR`, `ru`; unavailable/missing keys fall back to English; catalog text stays unchanged — see [docs/MULTILANGUAGE.md](docs/MULTILANGUAGE.md)
 - **Image cache v3**: images download on demand; changing an image URL replaces only that resource; startup checks disk use and, only when cache is over **200 MiB**, removes oldest complete files down to about **40 MiB** with localized progress — see [docs/IMAGE_CACHE.md](docs/IMAGE_CACHE.md)
 - Downloads (MediaFire CDN resolution, Archive.org fastest-edge selection + failover, GitHub, …) with retries on slow networks and SSL connect errors
@@ -170,6 +171,12 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 - Self-update from [Releases](https://github.com/VegettoSan/PSVitaAlive/releases) (see below)
 - Plugin detection (prefer `ur0:tai`); Settings INFO shows NoNpDrm / NoPspEmuDrm / kubridge / fd_fix / libshacccg status
 - Session logs under `ux0:data/psvitaalive/logs/`
+
+#### Why PSVitaAlive uses its own keyboard
+
+Repeated openings of the native Sony IME produced reproducible crashes on real PS Vita hardware. Multiple PS Vita dumps pointed to `SceCommonDialogPafMain` in `ScePaf` (module offset `0x13D8`), although the original trigger was **not conclusively identified**. Experiments with IME language/type, trace overhead, texture release and image-worker synchronization did not yield a reliable fix. The supported input path is now an **in-app vita2d modal** integrated with the theme and current interface language (character layout stays English QWERTY). This change does not remove unrelated Sony install/updater modules or the `SceCommonDialog_stub` link needed by `vita2d`.
+
+Implementation and validation: [native keyboard replacement decision (20 Oct 2026)](docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
 
 #### Image cache lifecycle
 

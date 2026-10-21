@@ -20,7 +20,8 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `docs/GAME_DATA_ZIP_INSTALL_FIX_20261019.md` | **Game/Data Files ZIP dispatch fix**: type-aware extraction over VPK-looking magic, missing-destination guard, ZIP recovery and regression test |
 | `docs/DOWNLOAD_RESILIENCE.md` | **In-app download + archive hardening**: HTTP response isolation, retries, safe Range resume, MediaFire re-resolution, Archive.org failover, runtime free-space guard, metadata throttling, large ZIP / ZIP64 extraction and diagnostics |
 | `docs/IMAGE_CACHE.md` | **Image cache v3**: per-resource identity, H/PV/PSP/PS1 scopes, 256 buckets, URL-change replacement, startup 200 MiB → ~40 MiB trim, loading-bar progress, localization and validation |
-| `docs/MULTILANGUAGE.md` | Current UI localization architecture, packaged languages, system/manual selection, English fallback and startup localization ordering |
+| `docs/MULTILANGUAGE.md` | Current UI localization architecture, packaged languages, system/manual selection, English fallback, startup ordering and keyboard UI labels |
+| `docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md` | **Accepted architecture decision:** hardware IME/PAF failure history; rationale for replacing Sony IME; built-in QWERTY/touch/gamepad controls, themed modal, ZIP input, localization, system-library distinction and tests |
 | `docs/NETWORK_TLS.md` | libcurl / OpenSSL / Archive.org TLS failover / optional mbedTLS; TLS-specific companion to `DOWNLOAD_RESILIENCE.md` |
 | `docs/PLUGIN_UPDATES.md` | **Planned** remote plugin update system (manifest / versioned Plugin links) — deferred |
 | `docs/UPDATE_DETECTION.md` | Installed/update version detection notes |
@@ -35,6 +36,12 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `sources/` | External feeds |
 | `web/` | Website |
 | `.github/workflows/` | CI / Pages |
+
+## Keyboard maintenance documentation rule
+
+The supported text-input path is the in-app QWERTY keyboard for **both catalog search and custom ZIP destination**. When changing it, keep the decision record, [UI module README](../Client%20PSVitaAlive/source/ui/README.md), [native client README](../Client%20PSVitaAlive/README.md), and [localization guide](MULTILANGUAGE.md) synchronized. Do not resurrect the former Sony IME controller or remove Sony promoter/PAF utilities used by unrelated installers. `SceCommonDialog_stub` remains necessary for `vita2d`'s static link, not for PSVitaAlive text input.
+
+Historical diagnostic notes dated **before 20 October 2026** describe the *previous* IME architecture; they are not current implementation guidance. Retain them as historical evidence unless explicitly superseded in a new record.
 
 ## Image cache documentation rule
 
@@ -89,7 +96,8 @@ Patch the responsible layer—not a generated catalog—whenever possible.
 - [ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md](ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md) — adaptive downloader design, on-device results and maintenance testing
 - [DOWNLOAD_RESILIENCE.md](DOWNLOAD_RESILIENCE.md) — hardened HTTP downloads, retries, resume, providers, storage guards and ZIP/archive integrity
 - [IMAGE_CACHE.md](IMAGE_CACHE.md) — client image cache v3 / disk policy / per-image replacement
-- [MULTILANGUAGE.md](MULTILANGUAGE.md) — localization architecture and current packaged languages
+- [MULTILANGUAGE.md](MULTILANGUAGE.md) — localization architecture and current packaged languages, including localized keyboard chrome
+- [KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md](KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md) — decision record: native Sony IME retired from PSVitaAlive text input after repeated real-hardware PAF crashes; integrated QWERTY implementation, touch/gamepad navigation and verification
 - [NETWORK_TLS.md](NETWORK_TLS.md) — libcurl / OpenSSL / Archive.org TLS failover / optional mbedTLS
 
 
