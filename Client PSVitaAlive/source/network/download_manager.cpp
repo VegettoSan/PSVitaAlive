@@ -114,7 +114,8 @@ bool DownloadManager::saveMetadata(const DownloadJob& job) const {
         "  \"last_http_status\": %d,\n"
         "  \"etag\": \"%s\",\n"
         "  \"last_modified\": \"%s\",\n"
-        "  \"validator_url\": \"%s\"\n"
+        "  \"validator_url\": \"%s\",\n"
+        "  \"segmented_zip\": %d\n"
         "}\n",
         id.c_str(),
         url.c_str(),
@@ -126,7 +127,8 @@ bool DownloadManager::saveMetadata(const DownloadJob& job) const {
         job.lastHttpStatus,
         etag.c_str(),
         lastModified.c_str(),
-        validatorUrl.c_str()
+        validatorUrl.c_str(),
+        job.segmentedZip ? 1 : 0
     );
     StorageManager st;
     return st.writeTextFile(job.metadataPath, body);
@@ -165,6 +167,7 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     job.etag = findStr("etag");
     job.lastModified = findStr("last_modified");
     job.validatorUrl = findStr("validator_url");
+    job.segmentedZip = findNum("segmented_zip") != 0;
     const std::string state = findStr("state");
     if (state == "Completed") job.state = DownloadState::Completed;
     else if (state == "Failed") job.state = DownloadState::Failed;
@@ -174,7 +177,7 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     return !job.url.empty();
 }
 
-std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint) {
+std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip) {
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
@@ -182,6 +185,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     // Catalog/provider size is a hint. HttpClient still replaces it with an
     // authoritative remote total once Content-Length/Content-Range is observed.
     job.expectedSize = expectedSizeHint;
+    job.preferSegmentedZip = preferSegmentedZip;
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -414,8 +418,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
             cancelFn,
             0,
             ifRangeValidator,
-            job.expectedSize
+            job.expectedSize,
+            job.preferSegmentedZip
         );
+        if (hr == HttpResult::Ok) job.segmentedZip = http_.lastSegmentedZip();
         if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
         if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
         job.validatorUrl = effectiveUrl;
@@ -475,9 +481,42 @@ bool DownloadManager::runJob(DownloadJob& job) {
         return false;
     }
 
+    if (job.segmentedZip) {
+        bool moved = true;
+        const int64_t headSize = st.fileSize(job.finalPath);
+        uint64_t bytes = headSize > 0 ? static_cast<uint64_t>(headSize) : 0;
+        unsigned partsFound = 1;
+        for (unsigned i = 1; i <= 3; ++i) {
+            const std::string suffix = ".range" + std::to_string(i);
+            if (!st.exists(job.temporaryPath + suffix)) continue;
+            const int64_t partSize = st.fileSize(job.temporaryPath + suffix);
+            if (partSize <= 0 || !st.rename(job.temporaryPath + suffix, job.finalPath + suffix)) {
+                moved = false;
+                break;
+            }
+            bytes += static_cast<uint64_t>(partSize);
+            ++partsFound;
+        }
+        if (!moved || (partsFound != 2 && partsFound != 4) ||
+            bytes != job.expectedSize) {
+            job.state = DownloadState::Failed;
+            job.lastError = "segmented ZIP finalization failed";
+            saveMetadata(job);
+            for (unsigned i = 1; i <= 3; ++i) {
+                const std::string suffix = ".range" + std::to_string(i);
+                st.removeFile(job.temporaryPath + suffix);
+                st.removeFile(job.finalPath + suffix);
+            }
+            st.removeFile(job.finalPath);
+            return false;
+        }
+        job.downloadedSize = bytes;
+        diagnostics::log("[DownloadManager] segmented ZIP ready; no disk join");
+    } else {
+        const int64_t fs = st.fileSize(job.finalPath);
+        job.downloadedSize = static_cast<uint64_t>(fs > 0 ? fs : 0);
+    }
     job.state = DownloadState::Completed;
-    const int64_t fs = st.fileSize(job.finalPath);
-    job.downloadedSize = static_cast<uint64_t>(fs > 0 ? fs : 0);
     saveMetadata(job);
 
     if (onProgress_) {
@@ -507,6 +546,11 @@ bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
     bool ok = true;
     if (st.exists(job->temporaryPath)) ok = st.removeFile(job->temporaryPath) && ok;
     if (st.exists(job->finalPath)) ok = st.removeFile(job->finalPath) && ok;
+    for (unsigned i = 1; i <= 3; ++i) {
+        const std::string suffix = ".range" + std::to_string(i);
+        if (st.exists(job->temporaryPath + suffix)) ok = st.removeFile(job->temporaryPath + suffix) && ok;
+        if (st.exists(job->finalPath + suffix)) ok = st.removeFile(job->finalPath + suffix) && ok;
+    }
     if (st.exists(job->metadataPath)) ok = st.removeFile(job->metadataPath) && ok;
     const std::string jobDir = jobsRoot() + "/" + job->id;
     if (st.exists(jobDir) && st.isDirectory(jobDir)) ok = st.removeDirectory(jobDir) && ok;
