@@ -238,7 +238,8 @@ static bool joinParts(
     uint64_t total,
     const std::string& expectedSha1,
     bool& checksumMismatch,
-    size_t partCount
+    size_t partCount,
+    bool preservePartsUntilComplete = false
 #ifndef PSVITAALIVE_CURL_MBEDTLS
     , const SHA_CTX* prehashedFirstPart
 #endif
@@ -317,7 +318,7 @@ static bool joinParts(
 #endif
         }
         sceIoClose(src);
-        if (ok) sceIoRemove(file.c_str());
+        if (ok && !preservePartsUntilComplete) sceIoRemove(file.c_str());
     }
     sceIoClose(dst);
     diagnostics::log(std::string("[HTTP] ranges appended elapsed_ms=") +
@@ -325,6 +326,11 @@ static bool joinParts(
     SceIoStat stat{};
     if (!ok || sceIoGetstat(base.c_str(), &stat) < 0 ||
         static_cast<uint64_t>(stat.st_size) != total) return false;
+    // Recovery must never delete a range before the complete archive exists.
+    if (preservePartsUntilComplete) {
+        for (size_t i = 1; i < partCount; ++i)
+            sceIoRemove(partPath(base, i).c_str());
+    }
 
 #ifndef PSVITAALIVE_CURL_MBEDTLS
     if (hashRequired) {
@@ -664,7 +670,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     }
     if (!joinParts(destination, authoritativeSize,
                    isDirectHttp(url) ? expectedSha1 : std::string(),
-                   checksumMismatch, partCount
+                   checksumMismatch, partCount, false
 #ifndef PSVITAALIVE_CURL_MBEDTLS
                    , parts[0].streamingSha ? &parts[0].firstPartSha : nullptr
 #endif
@@ -687,7 +693,7 @@ bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize) {
     const size_t partCount = sceIoGetstat(partPath(base, 3).c_str(), &stat) >= 0 ? 4 : 2;
     if (sceIoGetstat(partPath(base, 1).c_str(), &stat) < 0) return false;
     bool mismatch = false;
-    const bool ok = joinParts(base, expectedSize, std::string(), mismatch, partCount
+    const bool ok = joinParts(base, expectedSize, std::string(), mismatch, partCount, true
 #ifndef PSVITAALIVE_CURL_MBEDTLS
                               , nullptr
 #endif
