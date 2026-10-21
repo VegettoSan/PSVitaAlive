@@ -113,8 +113,17 @@ namespace {
 
 // libzip's zip_open() on Vita often returns ZIP_ER_INVAL (18) for files >2GB
 // (32-bit off_t / fstat). Use a custom source backed by sceIo* 64-bit seeks.
+struct VitaZipPart {
+    std::string path;
+    SceUID fd = -1;
+    uint64_t start = 0;
+    uint64_t size = 0;
+};
+
 struct VitaZipFileSource {
     std::string path;
+    bool segmented = false;
+    std::vector<VitaZipPart> parts;
     SceUID fd = -1;
     uint64_t size = 0;
     uint64_t pos = 0;
@@ -141,6 +150,23 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
             -1);
 
     case ZIP_SOURCE_OPEN: {
+        if (s->segmented) {
+            for (VitaZipPart& part : s->parts) {
+                if (part.fd >= 0) sceIoClose(part.fd);
+                part.fd = sceIoOpen(part.path.c_str(), SCE_O_RDONLY, 0);
+                if (part.fd < 0) {
+                    s->lastSysError = static_cast<int>(part.fd);
+                    s->lastZipError = ZIP_ER_OPEN;
+                    for (VitaZipPart& opened : s->parts) {
+                        if (opened.fd >= 0) sceIoClose(opened.fd);
+                        opened.fd = -1;
+                    }
+                    return -1;
+                }
+            }
+            s->pos = 0;
+            return 0;
+        }
         if (s->fd >= 0) {
             sceIoClose(s->fd);
             s->fd = -1;
@@ -159,7 +185,44 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
     }
 
     case ZIP_SOURCE_READ: {
-        if (s->fd < 0 || !data || len == 0) return 0;
+        if (!data || len == 0) return 0;
+        if (s->segmented) {
+            zip_int64_t total = 0;
+            auto* out = static_cast<uint8_t*>(data);
+            while (len > 0 && s->pos < s->size) {
+                VitaZipPart* current = nullptr;
+                for (VitaZipPart& part : s->parts) {
+                    if (s->pos >= part.start && s->pos - part.start < part.size) {
+                        current = &part;
+                        break;
+                    }
+                }
+                if (!current || current->fd < 0) {
+                    s->lastZipError = ZIP_ER_READ;
+                    return -1;
+                }
+                const uint64_t local = s->pos - current->start;
+                const uint64_t remaining = current->size - local;
+                const SceSize chunk = static_cast<SceSize>(std::min<uint64_t>(
+                    std::min<uint64_t>(remaining, len), 512u * 1024u));
+                if (sceIoLseek(current->fd, static_cast<SceOff>(local), SCE_SEEK_SET) < 0) {
+                    s->lastZipError = ZIP_ER_SEEK;
+                    return -1;
+                }
+                const int n = sceIoRead(current->fd, out, chunk);
+                if (n <= 0) {
+                    s->lastSysError = n;
+                    s->lastZipError = ZIP_ER_READ;
+                    return -1;
+                }
+                out += n;
+                len -= static_cast<zip_uint64_t>(n);
+                total += n;
+                s->pos += static_cast<uint64_t>(n);
+            }
+            return total;
+        }
+        if (s->fd < 0) return -1;
         zip_int64_t total = 0;
         uint8_t* out = static_cast<uint8_t*>(data);
         while (len > 0) {
@@ -184,6 +247,10 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
             sceIoClose(s->fd);
             s->fd = -1;
         }
+        for (VitaZipPart& part : s->parts) {
+            if (part.fd >= 0) sceIoClose(part.fd);
+            part.fd = -1;
+        }
         return 0;
     }
 
@@ -199,7 +266,7 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
     }
 
     case ZIP_SOURCE_SEEK: {
-        if (s->fd < 0) {
+        if (s->fd < 0 && !s->segmented) {
             s->lastZipError = ZIP_ER_SEEK;
             return -1;
         }
@@ -214,6 +281,10 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
             return -1;
         }
         zip_error_fini(&zerr);
+        if (s->segmented) {
+            s->pos = static_cast<uint64_t>(target);
+            return 0;
+        }
         const SceOff got = sceIoLseek(s->fd, (SceOff)target, SCE_SEEK_SET);
         if (got < 0) {
             s->lastSysError = (int)got;
@@ -240,6 +311,9 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
             sceIoClose(s->fd);
             s->fd = -1;
         }
+        for (VitaZipPart& part : s->parts) {
+            if (part.fd >= 0) sceIoClose(part.fd);
+        }
         delete s;
         return 0;
 
@@ -250,7 +324,8 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
 
 
 // True if EOCD (or ZIP64 marker) is present near EOF.
-static bool zipLooksCompleteOnDisk(const std::string& path, uint64_t fileSize, std::string* detail) {
+static bool zipLooksCompleteOnDisk(const std::string& path, uint64_t fileSize,
+                                   std::string* detail, const std::string& tailPath = {}) {
     if (fileSize < 22) {
         if (detail) *detail = "file too small for ZIP EOCD";
         return false;
@@ -266,6 +341,23 @@ static bool zipLooksCompleteOnDisk(const std::string& path, uint64_t fileSize, s
         sceIoClose(fd);
         if (detail) *detail = "missing local header magic at start";
         return false;
+    }
+    // A segmented ZIP keeps the central directory/EOCD in its final range.
+    // The first range still contains the real local-header magic.
+    if (!tailPath.empty()) {
+        sceIoClose(fd);
+        fd = sceIoOpen(tailPath.c_str(), SCE_O_RDONLY, 0);
+        if (fd < 0) {
+            if (detail) *detail = "cannot open ZIP tail range";
+            return false;
+        }
+        const SceOff tailSize = sceIoLseek(fd, 0, SCE_SEEK_END);
+        if (tailSize <= 0) {
+            sceIoClose(fd);
+            if (detail) *detail = "invalid ZIP tail range";
+            return false;
+        }
+        fileSize = static_cast<uint64_t>(tailSize);
     }
     const uint64_t window = fileSize < (65536ULL + 22ULL) ? fileSize : (65536ULL + 22ULL);
     if (sceIoLseek(fd, (SceOff)(fileSize - window), SCE_SEEK_SET) < 0) {
@@ -311,11 +403,72 @@ static uint64_t diskFileSize64(const std::string& path) {
     return end > 0 ? (uint64_t)end : 0;
 }
 
-static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* outDetail) {
+
+static bool openSegmentLayout(const std::string& base,
+                              std::vector<VitaZipPart>& parts,
+                              uint64_t& total,
+                              std::string* detail) {
+    parts.clear();
+    total = 0;
+    // Only two- and four-range layouts are produced by our downloader.
+    // Reject gaps, extra ranges, zero lengths and noncontiguous sizes.
+    for (size_t i = 0; i < 4; ++i) {
+        const std::string path = i == 0 ? base : base + ".range" + std::to_string(i);
+        const SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
+        if (fd < 0) {
+            if (i == 2 && parts.size() == 2) break;
+            if (detail) *detail = "missing ZIP range " + std::to_string(i);
+            return false;
+        }
+        const SceOff len = sceIoLseek(fd, 0, SCE_SEEK_END);
+        sceIoClose(fd);
+        if (len <= 0 || static_cast<uint64_t>(len) > UINT64_MAX - total) {
+            if (detail) *detail = "invalid segmented ZIP range size";
+            return false;
+        }
+        VitaZipPart part;
+        part.path = path;
+        part.start = total;
+        part.size = static_cast<uint64_t>(len);
+        total += part.size;
+        parts.push_back(part);
+    }
+    if (parts.size() != 2 && parts.size() != 4) {
+        if (detail) *detail = "expected exactly 2 or 4 ZIP ranges";
+        return false;
+    }
+    if (parts.size() == 2 && sceIoOpen((base + ".range2").c_str(), SCE_O_RDONLY, 0) >= 0) {
+        if (detail) *detail = "unexpected extra ZIP range";
+        return false;
+    }
+    const uint64_t length = parts.front().size;
+    for (size_t i = 1; i + 1 < parts.size(); ++i) {
+        if (parts[i].size != length) {
+            if (detail) *detail = "uneven intermediate ZIP ranges";
+            return false;
+        }
+    }
+    if (parts.back().size < length || parts.back().size > length + parts.size() - 1) {
+        if (detail) *detail = "incorrect final ZIP range length";
+        return false;
+    }
+    return true;
+}
+
+static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* outDetail, bool segmented = false) {
     if (outErr) *outErr = 0;
     if (outDetail) outDetail->clear();
 
-    uint64_t fileSize = diskFileSize64(zipPath);
+    std::vector<VitaZipPart> segmentParts;
+    uint64_t fileSize = 0;
+    if (segmented) {
+        if (!openSegmentLayout(zipPath, segmentParts, fileSize, outDetail)) {
+            if (outErr) *outErr = ZIP_ER_INVAL;
+            return nullptr;
+        }
+    } else {
+        fileSize = diskFileSize64(zipPath);
+    }
     if (fileSize == 0) {
         SceIoStat st{};
         if (sceIoGetstat(zipPath.c_str(), &st) < 0 || st.st_size <= 0) {
@@ -335,7 +488,8 @@ static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* 
     }
 
     std::string eocdDetail;
-    if (!zipLooksCompleteOnDisk(zipPath, fileSize, &eocdDetail)) {
+    if (!zipLooksCompleteOnDisk(zipPath, fileSize, &eocdDetail,
+                                segmented ? segmentParts.back().path : std::string())) {
 #ifdef ZIP_ER_TRUNCATED_ZIP
         if (outErr) *outErr = ZIP_ER_TRUNCATED_ZIP;
 #else
@@ -348,7 +502,7 @@ static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* 
     }
 
     const bool needCustom =
-        fileSize >= 0x80000000ULL ||
+        segmented || fileSize >= 0x80000000ULL ||
         zipPath.find(' ') != std::string::npos;
 
     if (!needCustom) {
@@ -366,6 +520,8 @@ static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* 
     auto* srcState = new VitaZipFileSource();
     srcState->path = zipPath;
     srcState->size = fileSize;
+    srcState->segmented = segmented;
+    srcState->parts = std::move(segmentParts);
 
     zip_error_t error;
     zip_error_init(&error);
@@ -417,7 +573,8 @@ ZipResult ZipExtractor::extract(
     const std::string& zipPath,
     const std::string& destinationDir,
     ZipProgressFn onProgress,
-    ZipCancelFn shouldCancel
+    ZipCancelFn shouldCancel,
+    bool segmentedZip
 ) {
     lastError_.clear();
     usedStagedMoves_ = false;
@@ -434,7 +591,7 @@ ZipResult ZipExtractor::extract(
 
     int zerr = 0;
     std::string openDetail;
-    zip_t* za = vitaZipOpen(zipPath, &zerr, &openDetail);
+    zip_t* za = vitaZipOpen(zipPath, &zerr, &openDetail, segmentedZip);
     if (!za) {
         char buf[320];
         sceClibSnprintf(buf, sizeof(buf),
