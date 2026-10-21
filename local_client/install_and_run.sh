@@ -62,9 +62,16 @@ if [ ! -x "$VENV/bin/python" ]; then
     "$PY" -m venv "$VENV" || die "Could not create the environment. On Debian/Ubuntu run: sudo apt install python3-venv"
 fi
 
-info "Checking dependencies ..."
-"$VENV/bin/python" -m pip install --quiet --disable-pip-version-check -r "$REQ" ||
-    die "Installing dependencies failed. Check your internet connection and try again. If it keeps failing, delete the $VENV folder and run this again."
+if [ -f "$VENV/installed_requirements.txt" ] &&
+   cmp -s "$REQ" "$VENV/installed_requirements.txt" &&
+   "$VENV/bin/python" -c "import PySide6, requests" >/dev/null 2>&1; then
+    info "Dependencies are up to date."
+else
+    info "Installing dependencies (this can take a minute the first time) ..."
+    "$VENV/bin/python" -m pip install --quiet --disable-pip-version-check -r "$REQ" ||
+        die "Installing dependencies failed. Check your internet connection and try again. If it keeps failing, delete the $VENV folder and run this again."
+    cp "$REQ" "$VENV/installed_requirements.txt"
+fi
 
 if [ "${1:-}" = "--setup-only" ]; then
     info "Setup complete."

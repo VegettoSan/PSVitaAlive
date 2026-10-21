@@ -25,11 +25,22 @@ echo Creating a private Python environment in %VENV% ...
 if errorlevel 1 goto :venv_failed
 :have_venv
 
-rem --- 3. Install or verify the dependencies ---
-echo Checking dependencies ...
+rem --- 3. Install dependencies only when requirements.txt has changed ---
+if not exist "%VENV%\installed_requirements.txt" goto :need_install
+fc /b requirements.txt "%VENV%\installed_requirements.txt" >nul 2>nul
+if errorlevel 1 goto :need_install
+"%VENV%\Scripts\python.exe" -c "import PySide6, requests" >nul 2>nul
+if errorlevel 1 goto :need_install
+echo Dependencies are up to date.
+goto :deps_done
+
+:need_install
+echo Installing dependencies. This can take a minute the first time ...
 "%VENV%\Scripts\python.exe" -m pip install --quiet --disable-pip-version-check -r requirements.txt
 if errorlevel 1 goto :pip_failed
+copy /y requirements.txt "%VENV%\installed_requirements.txt" >nul
 
+:deps_done
 rem --- 4. Start the app ---
 echo Starting PSVitaAlive Catalog Browser ...
 "%VENV%\Scripts\python.exe" "%APP%"
@@ -53,6 +64,24 @@ exit /b 0
 :no_python
 echo.
 echo ERROR: Python 3.10 or newer was not found on this computer.
+where winget >nul 2>nul
+if errorlevel 1 goto :no_python_manual
+echo.
+set "ANS="
+set /p "ANS=Install Python 3.12 now with winget? [Y/N]: "
+if /i not "%ANS%"=="Y" goto :no_python_manual
+echo.
+echo Installing Python 3.12. This can take a few minutes ...
+winget install -e --id Python.Python.3.12 --accept-package-agreements --accept-source-agreements
+if errorlevel 1 goto :no_python_manual
+echo.
+echo Python 3.12 is installed. Close this window, then double-click
+echo install_and_run.bat again so Windows finds the new Python.
+echo.
+pause
+exit /b 0
+
+:no_python_manual
 echo.
 echo  1. Download Python from https://www.python.org/downloads/
 echo  2. Run the installer and tick "Add python.exe to PATH" on the first screen.
