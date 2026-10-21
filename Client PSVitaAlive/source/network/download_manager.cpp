@@ -422,7 +422,17 @@ bool DownloadManager::runJob(DownloadJob& job) {
             job.preferSegmentedZip
         );
         if (hr == HttpResult::Ok) job.segmentedZip = http_.lastSegmentedZip();
-        job.sourceUnavailable = http_.lastSourceUnavailable();
+        // Terminal 404/410 is a missing file, NOT an Archive.org outage.
+        // A service warning requires repeated no-response failures (HTTP 0),
+        // or an exhausted server-side 5xx response with no downloaded bytes.
+        // Existing 404 handling still skips redundant outer retries.
+        const int serviceHttpStatus = http_.lastStatusCode();
+        job.sourceUnavailable = isArchiveUrl && (
+            (http_.lastSourceUnavailable() && serviceHttpStatus == 0) ||
+            (serviceHttpStatus >= 500 && serviceHttpStatus <= 599 &&
+             hr != HttpResult::Ok && job.downloadedSize == 0));
+        if (job.sourceUnavailable)
+            diagnostics::log("[DownloadManager] Archive.org service connection issue classified");
         if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
         if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
         job.validatorUrl = effectiveUrl;
@@ -430,7 +440,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         // A nonexistent resource (HTTP 404/410/etc.) or repeated pre-response
         // connection failure cannot benefit from 2–4 more full HTTP sessions.
         // Preserve ordinary retry/resume for transient and mid-transfer errors.
-        if (http_.lastSourceUnavailable()) {
+        if (http_.lastSourceUnavailable() || job.sourceUnavailable) {
             diagnostics::log("[DownloadManager] source unavailable; skipping outer retries");
             break;
         }
