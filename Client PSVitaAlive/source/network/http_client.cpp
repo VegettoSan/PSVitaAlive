@@ -1,5 +1,6 @@
 #include "network/http_client.hpp"
 #include "network/parallel_archive_download.hpp"
+#include "network/download_failure_policy.hpp"
 #include "diagnostic_logger.hpp"
 
 #include <curl/curl.h>
@@ -46,6 +47,11 @@ constexpr const char* UA_CDN_FALLBACK =
 // libcurl global state belongs to the whole process, not to individual HttpClient objects.
 // Multiple PSVitaAlive workers can own HttpClient instances at the same time.
 std::atomic<int> gCurlGlobalState{0}; // 0=not initialized, 1=initializing, 2=ready
+// Only failed Archive image requests share a short cooldown. This stops a
+// single image worker from spending minutes on dozens of unreachable icons;
+// actual downloads and other image hosts are never blocked by it.
+std::atomic<uint32_t> gArchiveImagePauseUntilSec{0};
+constexpr uint32_t ARCHIVE_IMAGE_COOLDOWN_SECONDS = 45;
 
 void httpDiagnostic(const char* message) {
     if (!message) return;
@@ -1625,6 +1631,7 @@ HttpResult HttpClient::downloadToFile(
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
+    lastSourceUnavailable_ = false;
     lastRangeAccepted_ = false;
     lastError_.clear();
     lastEtag_.clear();
@@ -1642,6 +1649,19 @@ HttpResult HttpClient::downloadToFile(
     if (!isHttps && !isHttp) {
         setError("url must start with http:// or https://");
         return HttpResult::InvalidArgument;
+    }
+
+    const bool archiveImageRequest =
+        url.find("archive.org") != std::string::npos &&
+        destinationPath.find("/cache/images/v3/") != std::string::npos;
+    if (archiveImageRequest) {
+        const uint32_t now = static_cast<uint32_t>(sceKernelGetProcessTimeWide() / 1000000ULL);
+        if (gArchiveImagePauseUntilSec.load(std::memory_order_relaxed) > now) {
+            lastSourceUnavailable_ = true;
+            setError("Archive.org is not responding; image retry paused briefly");
+            httpDiagnostic("[HTTP] archive image skipped: temporary network cooldown");
+            return HttpResult::NetworkError;
+        }
     }
 
     char begin[900];
@@ -1782,6 +1802,7 @@ HttpResult HttpClient::downloadToFile(
     bool lastTlsLikeFail = false;
     // One-shot guard: if a Range request fails (curl 33), truncate and retry as full GET.
     bool rangeFallbackUsed = false;
+    UnreachableSourceDetector unreachableDetector;
     // archive.org: when a 302 lands on dn*/ca edges, OpenSSL 1.0.2 often fails TLS.
     // Build alternate item URLs from metadata once and rotate through them.
     std::vector<std::string> archiveAltUrls;
@@ -2217,6 +2238,14 @@ HttpResult HttpClient::downloadToFile(
         }
 
         if (result == CURLE_OK) {
+            if (isPermanentDownloadHttpFailure(responseCode)) {
+                lastSourceUnavailable_ = true;
+                char permanentMsg[140];
+                sceClibSnprintf(permanentMsg, sizeof(permanentMsg),
+                    "[HTTP] resource unavailable HTTP %ld; skipping pointless retries", responseCode);
+                httpDiagnostic(permanentMsg);
+                break;
+            }
             const bool transientHttp =
                 responseCode == 408 || responseCode == 425 || responseCode == 429 ||
                 responseCode == 500 || responseCode == 502 || responseCode == 503 ||
@@ -2362,6 +2391,29 @@ HttpResult HttpClient::downloadToFile(
         lastFail = result;
         lastTlsLikeFail = tlsLikeFailure;
 
+        // Two consecutive failures without a usable HTTP response and before
+        // transferring any bytes strongly suggest an inaccessible source.
+        // Never short-circuit a partially downloaded file: it must retain the
+        // previous resume, alternate-host and SSL recovery mechanisms.
+        const bool connectionFailure =
+            result == CURLE_COULDNT_RESOLVE_HOST ||
+            result == CURLE_COULDNT_CONNECT ||
+            result == CURLE_OPERATION_TIMEDOUT;
+        const bool noUsableResponse = responseCode == 0 ||
+            (responseCode >= 300 && responseCode < 400);
+        if (unreachableDetector.observe(connectionFailure, noUsableResponse,
+                                        ctx.resumeOffset == 0 && ctx.downloaded == 0)) {
+            lastSourceUnavailable_ = true;
+            httpDiagnostic("[HTTP] source unreachable: two attempts without a response or bytes; stopping retries");
+            if (archiveImageRequest) {
+                const uint32_t now = static_cast<uint32_t>(sceKernelGetProcessTimeWide() / 1000000ULL);
+                gArchiveImagePauseUntilSec.store(now + ARCHIVE_IMAGE_COOLDOWN_SECONDS,
+                                                  std::memory_order_relaxed);
+                httpDiagnostic("[HTTP] Archive.org image cooldown activated for 45 seconds");
+            }
+            break;
+        }
+
         // archive.org edge failover: storage nodes can fail as TLS errors, plain
         // receive/send failures, timeouts, or half-open connections. Rotate away
         // from the edge for all transport-like failures, not only certificate text.
@@ -2472,6 +2524,14 @@ HttpResult HttpClient::downloadToFile(
         return HttpResult::IoError;
     }
     if (result != CURLE_OK) {
+        if (lastSourceUnavailable_) {
+            char unavailableMsg[256];
+            sceClibSnprintf(unavailableMsg, sizeof(unavailableMsg),
+                "source not responding (DNS/connect/timeout, curl %d); try another link",
+                static_cast<int>(result));
+            setError(unavailableMsg);
+            return HttpResult::NetworkError;
+        }
         if (isArchive) archiveNodeDiagnostic(std::string("OUTCOME error=curl_") + std::to_string(static_cast<int>(result)) + " " + curl_easy_strerror(result));
         char message[460];
         sceClibSnprintf(
