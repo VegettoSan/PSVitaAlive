@@ -342,6 +342,7 @@ private:
     void handleInput();
     void handleTouch();
     void draw();
+    void finishUiFrame();  // in-frame keyboard overlay, then a single buffer swap
     void drawFullCatalog();
     void drawOpeningDetail();
     void drawSplitDetail();
