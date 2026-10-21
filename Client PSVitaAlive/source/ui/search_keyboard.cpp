@@ -1,4 +1,5 @@
 #include "ui/search_keyboard.hpp"
+#include "localization/localization.hpp"
 
 #include <psp2/ctrl.h>
 #include <psp2/touch.h>
@@ -17,7 +18,9 @@ constexpr int kPanelX = 46;
 constexpr int kPanelY = 34;
 constexpr int kPanelW = 868;
 constexpr int kPanelH = 482;
-constexpr int kRowW = 802;
+constexpr int kRowW = 708;
+constexpr int kActionX = 801;
+constexpr int kActionW = 91;
 constexpr int kRowX = (kScreenW - kRowW) / 2;
 constexpr int kRowTop = 178;
 constexpr int kRowHeight = 57;
@@ -93,10 +96,8 @@ void SearchKeyboard::rebuild() {
                 {"B",'b',A::Character,1},{"N",'n',A::Character,1},
                 {"M",'m',A::Character,1},{"?",'?',A::Character,1},
                 {"!",'!',A::Character,1}},2);
-        addRow({{"123",0,A::Numbers,3},{"SHIFT",0,A::Shift,3},
-                {"SPACE",0,A::Space,8},{".",'.',A::Character,2},
-                {"DEL",0,A::Backspace,3},{"CANCEL",0,A::Cancel,4},
-                {"OK",0,A::Confirm,3}},3);
+        addRow({{"123",0,A::Numbers,3},{"SPACE",0,A::Space,8},
+                {".",'.',A::Character,2}},3);
     } else {
         addRow({{"1",'1',A::Character,1},{"2",'2',A::Character,1},
                 {"3",'3',A::Character,1},{"4",'4',A::Character,1},
@@ -127,10 +128,16 @@ void SearchKeyboard::rebuild() {
                     {"_", '_',A::Character,1}},2);
         }
         addRow({{"ABC",0,A::Letters,3},{"MORE",0,A::More,3},
-                {"SPACE",0,A::Space,8},{".",'.',A::Character,2},
-                {"DEL",0,A::Backspace,3},{"CANCEL",0,A::Cancel,4},
-                {"OK",0,A::Confirm,3}},3);
+                {"SPACE",0,A::Space,8},{".",'.',A::Character,2}},3);
     }
+    // Dedicated right-hand action column, on both QWERTY and 123 pages.
+    keys_.push_back({"SHIFT", 0, A::Shift, kActionX, kRowTop, kActionW, kRowHeight, 0});
+    keys_.push_back({"DEL", 0, A::Backspace, kActionX, kRowTop + (kRowHeight+kRowGap),
+                     kActionW, kRowHeight, 1});
+    keys_.push_back({"CANCEL", 0, A::Cancel, kActionX, kRowTop + 2*(kRowHeight+kRowGap),
+                     kActionW, kRowHeight, 2});
+    keys_.push_back({"OK", 0, A::Confirm, kActionX, kRowTop + 3*(kRowHeight+kRowGap),
+                     kActionW, kRowHeight, 3});
     if (focused_ >= (int)keys_.size()) focused_ = 0;
 }
 
@@ -298,7 +305,7 @@ bool SearchKeyboard::takeResult(std::string& text, bool& accepted) {
     return true;
 }
 
-void SearchKeyboard::draw(const UiFont* font, const KeyboardPalette& colors) const {
+void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colors) const {
     if (!active_) return;
     const uint64_t now = timeUs();
     const uint64_t elapsed = closing_ ? now - closeAtUs_ : now - openedAtUs_;
@@ -307,19 +314,15 @@ void SearchKeyboard::draw(const UiFont* font, const KeyboardPalette& colors) con
     const int offset = (int)((1.f - visibility) * 510.f);
     const int panelY = kPanelY + offset;
 
-    vita2d_start_drawing();
-    vita2d_set_clear_color(colors.bg);
-    vita2d_clear_screen();
+    // Same catalog frame, no black clear or second swap. Gentle modal dim.
     vita2d_draw_rectangle(0, 0, kScreenW, kScreenH,
-                          RGBA8(0,0,0,(unsigned)(110.f * visibility)));
+                          RGBA8(0,0,0,(unsigned)(145.f * visibility)));
     vita2d_draw_rectangle(kPanelX, panelY, kPanelW, kPanelH, colors.border);
     vita2d_draw_rectangle(kPanelX + 2, panelY + 2, kPanelW - 4,
                           kPanelH - 4, colors.surface);
     vita2d_draw_rectangle(kPanelX + 2, panelY + 2, kPanelW - 4, 5, colors.accent);
 
     uiDrawText(font, kPanelX + 24, panelY + 32, colors.text, 1.0f, title_.c_str());
-    const char* hint = numbers_ ? "SYMBOLS / NUMBERS" : "ENGLISH QWERTY";
-    uiDrawText(font, kPanelX + 635, panelY + 32, colors.dim, .65f, hint);
 
     const int inputX = kPanelX + 22;
     const int inputW = kPanelW - 44;
@@ -329,12 +332,15 @@ void SearchKeyboard::draw(const UiFont* font, const KeyboardPalette& colors) con
     std::string visible = input_;
     while (!visible.empty() && uiTextWidth(font, .89f, visible.c_str()) > inputW - 50)
         visible.erase(visible.begin());
-    if (visible.empty()) visible = "Search...";
+    if (visible.empty()) visible = ::psvitaalive::L("KEYBOARD_PLACEHOLDER");
     else if (!closing_ && ((now / 500000ULL) & 1) == 0) visible.push_back('|');
     uiDrawText(font, inputX + 15, inputY + 37, colors.text, .89f, visible.c_str());
     const int progressY = panelY + 127;
-    uiDrawText(font, inputX, progressY, colors.dim, .63f,
-               "D-PAD Move   X Select   SQUARE Delete   TRIANGLE 123   START OK");
+    const char* navHint = ::psvitaalive::L("KEYBOARD_NAV_HINT");
+    float hintScale = .63f;
+    while(hintScale > .42f && uiTextWidth(font,hintScale,navHint) > inputW)
+        hintScale -= .03f;
+    uiDrawText(font, inputX, progressY, colors.dim, hintScale, navHint);
 
     for (int i = 0; i < (int)keys_.size(); ++i) {
         const Key& k = keys_[i];
@@ -349,15 +355,30 @@ void SearchKeyboard::draw(const UiFont* font, const KeyboardPalette& colors) con
         vita2d_draw_rectangle(k.x + 2, y + 2, k.width - 4, k.height - 4, fill);
         const unsigned color = focused ? colors.bg :
             affirmative ? colors.accent : colors.text;
-        const float scale = special ? .76f : .89f;
-        centered(font, k.x, y + 37, k.width, color, scale, k.label.c_str());
-        if (focused && (k.action == Action::Shift && shift_))
-            vita2d_draw_rectangle(k.x + 9, y + k.height - 7, k.width - 18, 3, colors.bg);
+        // Draw the case that will actually be inserted by the next keystroke.
+        std::string caption = k.label;
+        if(k.action == Action::Character && k.character >= 'a' && k.character <= 'z')
+            caption.assign(1, shift_ ? (char)(k.character - ('a'-'A')) : k.character);
+        else if(k.action == Action::Shift) caption = ::psvitaalive::L("KEYBOARD_SHIFT");
+        else if(k.action == Action::Backspace) caption = ::psvitaalive::L("KEYBOARD_DELETE");
+        else if(k.action == Action::Cancel) caption = ::psvitaalive::L("KEYBOARD_CANCEL");
+        else if(k.action == Action::Confirm) caption = ::psvitaalive::L("KEYBOARD_CONFIRM");
+        else if(k.action == Action::Space) caption = ::psvitaalive::L("KEYBOARD_SPACE");
+        else if(k.action == Action::More) caption = ::psvitaalive::L("KEYBOARD_MORE");
+        float scale = special ? .75f : .89f;
+        while(scale > .40f && uiTextWidth(font,scale,caption.c_str()) > k.width-8)
+            scale -= .04f;
+        centered(font, k.x, y + 37, k.width, color, scale, caption.c_str());
+        if (k.action == Action::Shift && shift_)
+            vita2d_draw_rectangle(k.x + 9, y + k.height - 7, k.width - 18, 3,
+                                  focused ? colors.bg : colors.accent);
     }
-    centered(font, kPanelX, panelY + 463, kPanelW, colors.dim, .65f,
-             "Touch keys or use PS Vita controls     |     Hold DEL / SQUARE to erase");
-    vita2d_end_drawing();
-    vita2d_swap_buffers();
+    const char* bottomHint = ::psvitaalive::L("KEYBOARD_TOUCH_HINT");
+    float bottomScale = .65f;
+    while(bottomScale > .40f && uiTextWidth(font,bottomScale,bottomHint) > kPanelW-32)
+        bottomScale -= .03f;
+    centered(font, kPanelX, panelY + 463, kPanelW, colors.dim, bottomScale,
+             bottomHint);
 }
 
 } // namespace psvitaalive::ui
