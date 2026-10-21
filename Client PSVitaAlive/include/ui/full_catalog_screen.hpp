@@ -5,6 +5,7 @@
 #include "ui/search_keyboard.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "ui/install_failure_presentation.hpp"
 #include "update/update_checker.hpp"
 
 #include <vita2d.h>
@@ -273,6 +274,7 @@ private:
     bool installLiveAreaOk_ = false;
     // Structured failure source: never infer connectivity from localized text.
     bool installArchiveSourceUnavailable_ = false;
+    InstallFailureKind installFailureKind_ = InstallFailureKind::Other;
     std::string installResultPath_;
     std::string installResultTitleId_;
     bool installZipRecoveryAvailable_ = false;
