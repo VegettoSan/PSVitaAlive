@@ -222,102 +222,31 @@ function renderLinks(app) {
                     linkData
                 );
 
-            const metaParts = [];
-
-            if (linkData.region) {
-                metaParts.push(
-                    String(
-                        linkData.region
-                    )
-                );
-            }
-
-            if (linkData.title_id) {
-                metaParts.push(
-                    String(
-                        linkData.title_id
-                    )
-                );
-            }
-
-            if (linkData.description) {
-                metaParts.push(
-                    String(
-                        linkData.description
-                    )
-                );
-            }
+            // The type and Recommended label flow side by side.
+            const header = document.createElement("div");
+            header.className = "app-link-card-header";
+            header.appendChild(type);
 
             if (isRecommended) {
-
-                const recommended =
-                    document.createElement(
-                        "span"
-                    );
-
-                recommended.className =
-                    "app-link-card-recommended";
-
-                recommended.textContent =
-                    "Recommended";
-
-                link.appendChild(
-                    recommended
-                );
+                const recommended = document.createElement("span");
+                recommended.className = "app-link-card-recommended";
+                recommended.textContent = "Recommended";
+                header.appendChild(recommended);
             }
 
+            link.appendChild(header);
+            link.appendChild(name);
+
+            const metaParts = [];
+            if (linkData.region) metaParts.push(String(linkData.region));
+            if (linkData.title_id) metaParts.push(String(linkData.title_id));
+            if (linkData.description) metaParts.push(String(linkData.description));
+
             if (metaParts.length > 0) {
-
-                const meta =
-                    document.createElement(
-                        "span"
-                    );
-
-                meta.className =
-                    "app-link-card-meta";
-
-                meta.textContent =
-                    metaParts.join(
-                        " · "
-                    );
-
-                link.appendChild(
-                    meta
-                );
-
-                /*
-                 * Move meta after the title
-                 * so the visual order is:
-                 *
-                 * TYPE
-                 * NAME
-                 * metadata
-                 */
-                link.removeChild(
-                    meta
-                );
-
-                link.appendChild(
-                    type
-                );
-
-                link.appendChild(
-                    name
-                );
-
-                link.appendChild(
-                    meta
-                );
-
-            } else {
-
-                link.appendChild(
-                    type
-                );
-
-                link.appendChild(
-                    name
-                );
+                const meta = document.createElement("span");
+                meta.className = "app-link-card-meta";
+                meta.textContent = metaParts.join(" · ");
+                link.appendChild(meta);
             }
 
             const size =
@@ -342,6 +271,49 @@ function renderLinks(app) {
                 link.appendChild(
                     sizeElement
                 );
+            }
+
+            // Only show destinations explicitly present on this link.
+            // A Plugin uses the destination to copy its .skprx/.suprx file.
+            const isPlugin =
+                getHomebrewLinkType(linkData).trim().toLowerCase() === "plugin";
+            const extractPath = typeof linkData.extract_path === "string"
+                ? linkData.extract_path.trim() : "";
+            const pluginSection = isPlugin && typeof linkData.section === "string"
+                ? linkData.section.trim() : "";
+            const pluginLine = isPlugin && typeof linkData.line === "string"
+                ? linkData.line.trim() : "";
+
+            const detailRows = [];
+            if (extractPath) {
+                detailRows.push([
+                    isPlugin ? "Install to" : "Extract to",
+                    extractPath
+                ]);
+            }
+            if (pluginSection) detailRows.push(["Config", pluginSection]);
+            if (pluginLine) detailRows.push(["Entry", pluginLine]);
+
+            if (detailRows.length > 0) {
+                const details = document.createElement("div");
+                details.className = "app-link-card-details";
+                detailRows.forEach(([labelText, valueText]) => {
+                    const row = document.createElement("div");
+                    row.className = "app-link-card-detail";
+
+                    const label = document.createElement("span");
+                    label.className = "app-link-card-detail-label";
+                    label.textContent = labelText;
+
+                    const value = document.createElement("code");
+                    value.className = "app-link-card-detail-value";
+                    value.textContent = valueText;
+
+                    row.appendChild(label);
+                    row.appendChild(value);
+                    details.appendChild(row);
+                });
+                link.appendChild(details);
             }
 
             container.appendChild(

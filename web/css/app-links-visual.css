@@ -264,11 +264,70 @@
 .app-link-card:hover { background: #303030; }
 .app-link-card.recommended { background: #273125; border-color: var(--accent); }
 .app-link-card.recommended:hover { background: #303d2d; }
-.app-link-card.recommended .app-link-card-type { margin-top: 28px; }
+
 .app-link-card-name { font-size: .97rem; line-height: 1.4; }
 .app-link-card-meta { color: #c1c1c1; opacity: 1; font-size: .79rem; font-weight: 500; }
 .app-link-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (max-width: 640px) {
     .app-links { grid-template-columns: 1fr; }
     .app-link-card { min-height: auto; padding: 15px; }
+}
+
+/* In-flow badges avoid the former empty top strip on recommended links. */
+.app-link-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px 10px;
+    width: 100%;
+    min-width: 0;
+}
+.app-link-card-header .app-link-card-recommended {
+    position: static;
+    top: auto;
+    right: auto;
+    flex: 0 0 auto;
+    max-width: 100%;
+    box-shadow: none;
+}
+.app-link-card-header .app-link-card-type { margin-top: 0; }
+
+/* Explicit extraction and plugin destinations from each catalog link. */
+.app-link-card-details {
+    display: grid;
+    gap: 7px;
+    width: 100%;
+    min-width: 0;
+    margin-top: 3px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+.app-link-card-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 78px) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 9px;
+    min-width: 0;
+}
+.app-link-card-detail-label {
+    color: #b9b9b9;
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.035em;
+}
+.app-link-card-detail-value {
+    min-width: 0;
+    color: #f0f0f0;
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    font-size: 0.77rem;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+@media (max-width: 380px) {
+    .app-link-card-detail { grid-template-columns: 1fr; gap: 1px; }
 }
