@@ -525,3 +525,9 @@ ARCHIVE_WARNING_STARTUP_2=Algumas transferências, ícones e capturas podem esta
 ARCHIVE_WARNING_DOWNLOAD_1=Esta transferência não consegue aceder ao Archive.org neste momento.
 ARCHIVE_WARNING_DOWNLOAD_2=O serviço externo pode estar com problemas; não é necessariamente um erro do PSVitaAlive. Usa outra fonte, se disponível, ou tenta mais tarde.
 ARCHIVE_WARNING_OK=Entendido
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Transferência indisponível
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Não foi possível aceder ao Archive.org neste momento.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=O serviço ou a tua ligação pode estar com problemas temporários. Isto não significa necessariamente que o PSVitaAlive esteja a falhar.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Usa outro link de transferência, se existir, ou tenta mais tarde.
