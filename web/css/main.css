@@ -1303,3 +1303,200 @@ input {
 
     line-height: 1.6;
 }
+
+/* ========================================
+   Compact catalog cards — 2026 visual refresh
+   Shared by Homebrew, PS Vita, PSP and PS1.
+======================================== */
+.apps-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+.app-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+    padding: 16px;
+    min-width: 0;
+    background: var(--surface);
+    transition: background .18s ease, border-color .18s ease,
+                box-shadow .18s ease, transform .18s ease;
+}
+.app-card:hover {
+    background: #414141;
+    border-color: var(--accent);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .25);
+}
+.app-card-clickable { cursor: pointer; }
+.app-card-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, .09);
+    background: #252525;
+}
+.app-card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.app-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+}
+.app-card-top { margin-bottom: 6px; }
+.status-badge {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: rgba(59, 255, 0, .11);
+    color: var(--accent);
+    font-size: .65rem;
+}
+.app-card h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+.app-card-authors {
+    display: block;
+    width: 100%;
+    margin: 0 0 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.35;
+}
+.app-card-author, .app-card-author-separator {
+    display: inline;
+    margin: 0;
+    color: var(--accent);
+    font-size: .78rem;
+    font-weight: 700;
+}
+.app-card-author:hover { text-decoration: underline; }
+.app-card-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 10px;
+    color: #c3c3c3;
+    font-size: .81rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+.app-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 4px 8px;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, .11);
+    color: #b8b8b8;
+    font-size: .71rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+.app-card-meta > * + *::before {
+    content: "·";
+    margin-right: 8px;
+    color: #909090;
+}
+.app-card-category { font-weight: 700; }
+.app-card-category:hover { color: var(--accent); text-decoration: underline; }
+.official-game-cover {
+    width: 72px;
+    height: 108px;
+    aspect-ratio: 2 / 3;
+}
+.official-game-cover img { object-fit: cover; }
+.category-card:hover { background: #414141; }
+.hero { min-height: 420px; }
+.hero p { line-height: 1.65; }
+.apps-section, .categories-section { padding-block: 54px; }
+.featured-homebrew-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 1024px) {
+    .apps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .main-nav { gap: 16px; }
+}
+@media (max-width: 900px) {
+    .featured-homebrew-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+    .container { width: min(calc(100% - 28px), var(--container-width)); }
+    .header-inner {
+        min-height: auto;
+        padding: 12px 0;
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 12px;
+        row-gap: 10px;
+    }
+    .site-logo img { max-width: min(170px, 43vw); height: 36px; }
+    .header-search { flex: 1 1 120px; min-width: 0; margin-left: auto; }
+    .header-search input { width: 100%; min-width: 0; }
+    .main-nav {
+        order: 3;
+        width: 100%;
+        gap: 16px;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 2px 0 5px;
+        white-space: nowrap;
+        scrollbar-width: thin;
+    }
+    .main-nav a { flex-shrink: 0; }
+    .hero { min-height: 380px; }
+    .hero h1 { max-width: 100%; font-size: clamp(2.35rem, 10vw, 3.7rem); }
+    .hero p { max-width: 100%; font-size: .95rem; }
+    .hero-actions { flex-direction: row; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .hero-button { width: auto; min-height: 44px; padding: 10px 14px; }
+    .apps-section, .categories-section { padding-block: 42px; }
+    .catalog-switcher { gap: 8px; }
+    .catalog-switch-button { padding: 9px 12px; font-size: .82rem; }
+    .apps-grid, .featured-homebrew-grid { grid-template-columns: 1fr; gap: 12px; }
+    .app-card {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 12px;
+        padding: 14px;
+    }
+    .app-card-icon { width: 64px; height: 64px; margin: 0; aspect-ratio: auto; }
+    .official-game-cover { width: 64px; height: 96px; aspect-ratio: 2 / 3; }
+    .app-card h3 { font-size: .98rem; }
+    .app-card-meta { font-size: .7rem; }
+    .featured-section { padding-block: 40px 46px; }
+}
+@media (max-width: 380px) {
+    .categories-grid { grid-template-columns: 1fr; }
+    .app-card { padding: 12px; }
+}
+:where(a, button, input):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .app-card, .category-card, .author-card { transition: none; }
+    .app-card:hover, .category-card:hover, .author-card:hover { transform: none; }
+}
