@@ -46,7 +46,7 @@ if errorlevel 1 (
 exit /b 0
 
 :try_python
-rem Usage: call :try_python <command> [args]. Sets PY if the command is Python 3.10+.
+rem Usage: call :try_python COMMAND [ARGS]. Sets PY if COMMAND is Python 3.10 or newer.
 where %1 >nul 2>nul
 if errorlevel 1 exit /b 0
 %* -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" >nul 2>nul
