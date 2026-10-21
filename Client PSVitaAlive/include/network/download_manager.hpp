@@ -42,6 +42,8 @@ struct DownloadJob {
 
     DownloadState state = DownloadState::Queued;
     bool resumable = true;
+    bool preferSegmentedZip = false; // Explicit ZIP extraction job only.
+    bool segmentedZip = false; // Verified 2/4-part ZIP ready for virtual reading.
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =
         std::make_shared<std::atomic<bool>>(false);
@@ -78,7 +80,7 @@ public:
 
     void setProgressCallback(DownloadProgressFn fn);
 
-    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0);
+    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false);
     bool processQueue();
     void cancel(const std::string& jobId);
     int recoverJobs();
