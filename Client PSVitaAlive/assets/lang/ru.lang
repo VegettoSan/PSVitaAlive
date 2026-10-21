@@ -504,3 +504,16 @@ FILTERS_STATUS_HEADING=СТАТУС УСТАНОВКИ
 FILTERS_INSTALLED=Установлено
 FILTERS_UPDATES=Обновления
 FILTERS_VERSION_UNKNOWN=Версия не распознана
+
+# Built-in QWERTY keyboard UI (layout stays English).
+KEYBOARD_SEARCH_TITLE=Поиск по каталогу
+KEYBOARD_ZIP_TITLE=Путь распаковки ZIP
+KEYBOARD_PLACEHOLDER=Введите текст...
+KEYBOARD_NAV_HINT=Крестовина: выбор  |  X: ввод  |  Квадрат: удалить  |  Start: OK
+KEYBOARD_TOUCH_HINT=Сенсор или кнопки  |  Удерживайте Удалить / Квадрат
+KEYBOARD_SHIFT=РЕГ.
+KEYBOARD_DELETE=УДАЛ.
+KEYBOARD_CANCEL=ОТМЕНА
+KEYBOARD_CONFIRM=OK
+KEYBOARD_SPACE=ПРОБЕЛ
+KEYBOARD_MORE=ЕЩЁ
