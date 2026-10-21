@@ -54,7 +54,8 @@ int ArchiveServiceProbe::run() {
     const HttpResult rc = http.fetchRemoteValidators("https://archive.org/", etag, modified);
     const int code = http.lastStatusCode();
     // HTTP 4xx means the server answered; it is not a network outage.
-    const bool answered = code >= 200 && code < 500;
+    const bool answered = (rc == HttpResult::Ok || rc == HttpResult::HttpError) &&
+                          code >= 200 && code < 500;
     const bool failed = !answered &&
         (rc == HttpResult::NetworkError || rc == HttpResult::SslError ||
          (code >= 500 && code <= 599));
