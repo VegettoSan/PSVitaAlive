@@ -87,6 +87,8 @@ public:
     const std::string& lastError() const { return lastError_; }
     bool lastRangeAccepted() const { return lastRangeAccepted_; }
     bool lastSegmentedZip() const { return lastSegmentedZip_; }
+    // True when the current resource is unreachable or returned a terminal HTTP status.
+    bool lastSourceUnavailable() const { return lastSourceUnavailable_; }
     const std::string& lastEtag() const { return lastEtag_; }
     const std::string& lastModified() const { return lastModified_; }
 
@@ -95,6 +97,7 @@ private:
     int lastStatus_ = 0;
     bool lastRangeAccepted_ = false;
     bool lastSegmentedZip_ = false;
+    bool lastSourceUnavailable_ = false;
     std::string lastError_;
     std::string lastEtag_;
     std::string lastModified_;
