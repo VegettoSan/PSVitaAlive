@@ -12,6 +12,7 @@ namespace psvitaalive {
 enum class ParallelArchiveOutcome {
     Skipped,
     Complete,
+    Segmented, // Verified ZIP parts, ready for virtual extraction.
     RetrySerial,
     Cancelled,
     IoError
@@ -25,7 +26,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const HttpCancelFn& shouldCancel,
     const std::string& expectedSha1 = {}, // Required for direct Archive HTTP
     const std::string& expectedEtag = {}, // For generic HTTPS probes
-    const std::string& expectedModified = {}
+    const std::string& expectedModified = {},
+    bool keepZipParts = false
 );
+
+// Assemble only on manual recovery after failed extraction.
+bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize);
 
 } // namespace psvitaalive
