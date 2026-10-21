@@ -26,7 +26,7 @@ constexpr int kKeyGap = 7;
 constexpr uint64_t kAnimationUs = 230000ULL;
 constexpr size_t kMaxInputBytes = 128;
 
-uint64_t timeUs() { return sceKernelGetProcessTimeWide(); }
+uint64_t timeUs() { return sceKernelGetSystemTimeWide(); }
 float smooth(float t) {
     t = std::max(0.0f, std::min(1.0f, t));
     return t * t * (3.f - 2.f*t);
