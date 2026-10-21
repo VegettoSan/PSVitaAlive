@@ -1,4 +1,5 @@
 #include "archive/zip_extractor.hpp"
+#include "archive/segmented_zip_layout.hpp"
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
 
@@ -124,6 +125,7 @@ struct VitaZipFileSource {
     std::string path;
     bool segmented = false;
     std::vector<VitaZipPart> parts;
+    std::vector<ZipRangeSpan> layout;
     SceUID fd = -1;
     uint64_t size = 0;
     uint64_t pos = 0;
@@ -190,14 +192,13 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
             zip_int64_t total = 0;
             auto* out = static_cast<uint8_t*>(data);
             while (len > 0 && s->pos < s->size) {
-                VitaZipPart* current = nullptr;
-                for (VitaZipPart& part : s->parts) {
-                    if (s->pos >= part.start && s->pos - part.start < part.size) {
-                        current = &part;
-                        break;
-                    }
+                const size_t partIndex = findZipRange(s->layout, s->pos);
+                if (partIndex >= s->parts.size()) {
+                    s->lastZipError = ZIP_ER_READ;
+                    return -1;
                 }
-                if (!current || current->fd < 0) {
+                VitaZipPart* current = &s->parts[partIndex];
+                if (current->fd < 0) {
                     s->lastZipError = ZIP_ER_READ;
                     return -1;
                 }
@@ -444,17 +445,16 @@ static bool openSegmentLayout(const std::string& base,
             return false;
         }
     }
-    const uint64_t length = parts.front().size;
-    for (size_t i = 1; i + 1 < parts.size(); ++i) {
-        if (parts[i].size != length) {
-            if (detail) *detail = "uneven intermediate ZIP ranges";
-            return false;
-        }
-    }
-    if (parts.back().size < length || parts.back().size > length + parts.size() - 1) {
-        if (detail) *detail = "incorrect final ZIP range length";
+    std::vector<uint64_t> sizes;
+    sizes.reserve(parts.size());
+    for (const VitaZipPart& part : parts) sizes.push_back(part.size);
+    std::vector<ZipRangeSpan> layout;
+    uint64_t checkedTotal = 0;
+    if (!buildZipRangeLayout(sizes, layout, checkedTotal) || checkedTotal != total) {
+        if (detail) *detail = "invalid ZIP range offsets or lengths";
         return false;
     }
+    for (size_t i = 0; i < parts.size(); ++i) parts[i].start = layout[i].start;
     return true;
 }
 
@@ -525,6 +525,17 @@ static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* 
     srcState->size = fileSize;
     srcState->segmented = segmented;
     srcState->parts = std::move(segmentParts);
+    if (segmented) {
+        std::vector<uint64_t> sizes;
+        for (const VitaZipPart& part : srcState->parts) sizes.push_back(part.size);
+        uint64_t checkedTotal = 0;
+        if (!buildZipRangeLayout(sizes, srcState->layout, checkedTotal) ||
+            checkedTotal != srcState->size) {
+            if (outErr) *outErr = ZIP_ER_INVAL;
+            delete srcState;
+            return nullptr;
+        }
+    }
 
     zip_error_t error;
     zip_error_init(&error);
