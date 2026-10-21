@@ -517,3 +517,11 @@ KEYBOARD_CANCEL=CANCELAR
 KEYBOARD_CONFIRM=OK
 KEYBOARD_SPACE=ESPAÇO
 KEYBOARD_MORE=MAIS
+
+# Archive.org connectivity warnings (startup / failed user download)
+ARCHIVE_WARNING_TITLE=Problemas de ligação ao Archive.org
+ARCHIVE_WARNING_STARTUP_1=O PSVitaAlive não consegue aceder ao Archive.org através da ligação atual.
+ARCHIVE_WARNING_STARTUP_2=Algumas transferências, ícones e capturas podem estar indisponíveis. Isto não significa necessariamente que o PSVitaAlive tenha uma falha. Tenta mais tarde ou aguarda a recuperação do serviço externo.
+ARCHIVE_WARNING_DOWNLOAD_1=Esta transferência não consegue aceder ao Archive.org neste momento.
+ARCHIVE_WARNING_DOWNLOAD_2=O serviço externo pode estar com problemas; não é necessariamente um erro do PSVitaAlive. Usa outra fonte, se disponível, ou tenta mais tarde.
+ARCHIVE_WARNING_OK=Entendido
