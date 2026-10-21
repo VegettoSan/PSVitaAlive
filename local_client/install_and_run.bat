@@ -1,7 +1,5 @@
 @echo off
-rem PSVitaAlive Catalog Browser (PC client) - installer and launcher for Windows.
-rem Double-click this file. It checks for Python, installs what the app needs,
-rem then starts the app. Every problem stops with a message; nothing fails silently.
+rem Double-click to set up Python dependencies if needed, then start the app.
 setlocal EnableExtensions
 title PSVitaAlive Catalog Browser - setup
 cd /d "%~dp0"
@@ -10,7 +8,6 @@ set "APP=local_psvitaalive_client.py"
 set "VENV=.venv"
 set "PY="
 
-rem --- 1. Find Python 3.10 or newer (the py launcher first, then python) ---
 call :try_python py -3
 if not defined PY call :try_python python
 if not defined PY call :try_python python3
@@ -18,14 +15,12 @@ if not defined PY goto :no_python
 
 echo Using Python: %PY%
 
-rem --- 2. Create a private environment (once) ---
 if exist "%VENV%\Scripts\python.exe" goto :have_venv
 echo Creating a private Python environment in %VENV% ...
 %PY% -m venv "%VENV%"
 if errorlevel 1 goto :venv_failed
 :have_venv
 
-rem --- 3. Install dependencies only when requirements.txt has changed ---
 if not exist "%VENV%\installed_requirements.txt" goto :need_install
 fc /b requirements.txt "%VENV%\installed_requirements.txt" >nul 2>nul
 if errorlevel 1 goto :need_install
@@ -41,7 +36,6 @@ if errorlevel 1 goto :pip_failed
 copy /y requirements.txt "%VENV%\installed_requirements.txt" >nul
 
 :deps_done
-rem --- 4. Start the app ---
 echo Starting PSVitaAlive Catalog Browser ...
 "%VENV%\Scripts\python.exe" "%APP%"
 if errorlevel 1 (
@@ -51,7 +45,6 @@ if errorlevel 1 (
 )
 exit /b 0
 
-rem ---------------------------------------------------------------------------
 :try_python
 rem Usage: call :try_python <command> [args]. Sets PY if the command is Python 3.10+.
 where %1 >nul 2>nul

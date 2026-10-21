@@ -4,27 +4,22 @@ PSVitaAlive Catalog Browser
 A local Qt GUI for browsing, filtering, and downloading from the PSVitaAlive catalogs.
 """
 
-import json
 import os
 import re
 import sys
-import time
-import threading
 from pathlib import Path
 from urllib.parse import unquote, urlparse
-from functools import partial
 
 from PySide6.QtCore import (
     Qt, QSortFilterProxyModel, QAbstractTableModel, QModelIndex, Signal,
-    QObject, QThread, QTimer, QSize,
+    QObject, QThread,
 )
-from PySide6.QtGui import QIcon, QFont, QColor, QPalette, QAction
+from PySide6.QtGui import QFont, QColor, QPalette
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QTableView, QHeaderView, QLineEdit, QComboBox, QLabel, QPushButton,
     QFileDialog, QProgressBar, QStatusBar, QSplitter, QTextEdit,
-    QGroupBox, QCheckBox, QMessageBox, QStyle, QAbstractItemView,
-    QMenu, QToolBar, QFrame,
+    QCheckBox, QMessageBox, QAbstractItemView, QMenu,
 )
 
 import requests
@@ -105,7 +100,7 @@ class CatalogEntry:
         "id", "name", "catalog", "category", "category_id", "subcategories",
         "subcategory_names", "version", "author", "author_names", "size",
         "status", "links", "description", "long_description",
-        "icon", "screenshots", "raw",
+        "raw",
     )
 
     def __init__(self, raw: dict, catalog_label: str, lookups: dict | None = None):
@@ -130,8 +125,6 @@ class CatalogEntry:
         self.links = raw.get("links", [])
         self.description = raw.get("description", "")
         self.long_description = raw.get("long_description", "")
-        self.icon = raw.get("icon", "") or raw.get("cover", "")
-        self.screenshots = raw.get("screenshots", [])
 
     def downloadable_links(self):
         return [l for l in self.links if l.get("type") in DOWNLOADABLE_TYPES and l.get("url")]
@@ -461,10 +454,6 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("PSVitaAlive Catalog Browser")
         self.resize(1280, 800)
 
-        self._all_entries: list[CatalogEntry] = []
-        self._categories: set[str] = set()
-        self._subcategories: set[str] = set()
-        self._statuses: set[str] = set()
         self._download_dir = str(Path.home() / "Downloads" / "PSVitaAlive_Archive")
         self._worker: DownloadWorker | None = None
         self._loader: CatalogLoader | None = None
@@ -639,11 +628,6 @@ class MainWindow(QMainWindow):
         categories = result["categories"]
         subcategories = result["subcategories"]
         statuses = result["statuses"]
-
-        self._all_entries = entries
-        self._categories = categories
-        self._subcategories = subcategories
-        self._statuses = statuses
 
         self.model.set_entries(entries)
         self.table.sortByColumn(COL_NAME, Qt.AscendingOrder)

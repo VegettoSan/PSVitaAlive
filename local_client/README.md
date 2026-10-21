@@ -17,9 +17,8 @@ dependencies, so nothing is added to the rest of your system.
 
 **macOS**
 
-1. Double-click `install_and_run.command`. The first time, macOS may ask you to
-   confirm opening a file from an unidentified developer. Right-click it and choose
-   Open if so.
+1. Double-click `install_and_run.sh`. Finder opens it in Terminal. If macOS refuses,
+   run `chmod +x install_and_run.sh` once, then try again.
 2. If Python is missing, install it with `brew install python@3.12` or from
    https://www.python.org/downloads/, then run it again.
 
@@ -68,11 +67,3 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
 | Installing dependencies failed | Check your internet connection and run the installer again. If it keeps failing, delete the `.venv` folder next to the script and run it again. |
 | Author or category shows as an ID | The catalog metadata could not be downloaded. Use Refresh Catalogs once you're back online. |
 | A file failed with "size mismatch" | The catalog size and the server copy disagree. Try again later; if it persists, report it. |
-
-## Files
-
-- `local_psvitaalive_client.py`: the application.
-- `requirements.txt`: Python dependencies (PySide6 and requests).
-- `install_and_run.bat`: Windows installer and launcher.
-- `install_and_run.command`: macOS double-click launcher.
-- `install_and_run.sh`: Linux and macOS installer and launcher.

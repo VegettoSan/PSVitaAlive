@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
-# PSVitaAlive Catalog Browser (PC client) - installer and launcher for macOS / Linux.
-#
-#   ./install_and_run.sh          check Python, install dependencies, start the app
-#   ./install_and_run.sh --setup-only   only check and install, don't start the app
-#
-# Every problem prints a clear message and exits non-zero. Nothing fails silently.
+# Set up Python dependencies if needed, then start the app. Pass --setup-only to skip the launch.
 
 set -u
 cd "$(dirname "$0")" || exit 1
