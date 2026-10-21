@@ -125,7 +125,9 @@ public:
         SceImeDialogParam param;
         sceImeDialogParamInit(&param);
         param.supportedLanguages = 0x0001FFFF;
-        param.languagesForced = SCE_TRUE;
+        // IME PAF crash A/B test: let the system choose its own keyboard language.
+        // Keep supportedLanguages, type and all lifecycle code unchanged.
+        param.languagesForced = SCE_FALSE;
         param.type = SCE_IME_TYPE_DEFAULT;
         param.option = SCE_IME_OPTION_NO_AUTO_CAPITALIZATION;
         param.dialogMode = SCE_IME_DIALOG_DIALOG_MODE_WITH_CANCEL;
