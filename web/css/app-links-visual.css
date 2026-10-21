@@ -251,3 +251,24 @@
     }
 
 }
+
+/* Updated download cards with clearer contrast and spacing. */
+.app-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.app-link-card {
+    min-height: 116px;
+    padding: 16px;
+    gap: 8px;
+    background: #202020;
+    border-color: #555;
+}
+.app-link-card:hover { background: #303030; }
+.app-link-card.recommended { background: #273125; border-color: var(--accent); }
+.app-link-card.recommended:hover { background: #303d2d; }
+.app-link-card.recommended .app-link-card-type { margin-top: 28px; }
+.app-link-card-name { font-size: .97rem; line-height: 1.4; }
+.app-link-card-meta { color: #c1c1c1; opacity: 1; font-size: .79rem; font-weight: 500; }
+.app-link-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 640px) {
+    .app-links { grid-template-columns: 1fr; }
+    .app-link-card { min-height: auto; padding: 15px; }
+}

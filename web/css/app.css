@@ -734,3 +734,163 @@
     }
 
 }
+
+/* ========================================
+   Refined application detail — aligned with
+   the responsive catalog card language
+======================================== */
+.app-detail {
+    width: min(calc(100% - 40px), var(--container-width));
+}
+
+.app-back { margin-bottom: 16px; }
+.app-back a {
+    min-height: 40px;
+    color: #d4d4d4;
+    background: #262626;
+}
+.app-back a:hover { background: #373737; }
+
+.app-hero {
+    grid-template-columns: 156px minmax(0, 1fr);
+    align-items: center;
+    gap: 26px;
+    padding: 26px;
+    background: linear-gradient(135deg, #333333, #202020);
+}
+.app-hero-icon {
+    width: 156px;
+    height: 156px;
+    border-radius: 16px;
+    background: #171717;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .24);
+}
+.app-hero-info { align-items: flex-start; text-align: left; }
+.app-hero-info h1 {
+    max-width: 100%;
+    margin: 10px 0 10px;
+    font-size: clamp(2rem, 3.6vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -.035em;
+}
+.app-version {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    margin: 0 0 10px;
+    padding: 6px 11px;
+    border: 1px solid #555;
+    border-radius: 7px;
+    background: #202020;
+    color: #e0e0e0;
+    font-size: .82rem;
+    line-height: 1.3;
+}
+.app-authors, .app-category {
+    max-width: 100%;
+    color: #cfcfcf;
+    font-size: .86rem;
+    line-height: 1.6;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+.app-meta-label { color: #b3b3b3; }
+.app-author-link, .app-category-link { color: var(--accent); }
+
+.app-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr);
+    align-items: stretch;
+    gap: 18px;
+    margin-top: 18px;
+}
+.app-overview > .app-section { min-width: 0; margin: 0; }
+.app-section {
+    margin-top: 18px;
+    padding: 24px;
+    background: #2b2b2b;
+    border-color: #535353;
+}
+.app-section h2 {
+    margin-bottom: 18px;
+    font-size: 1.18rem;
+    letter-spacing: -.015em;
+}
+.app-description {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+.app-long-description {
+    color: #c9c9c9;
+    font-size: .9rem;
+    line-height: 1.7;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+.app-screenshots {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 12px;
+}
+.app-screenshot { background: #151515; }
+.app-screenshot img { object-fit: contain; }
+.app-information { grid-template-columns: 1fr; gap: 9px; }
+.app-information > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+    padding: 12px 14px;
+    background: #1f1f1f;
+    border: 1px solid #454545;
+    border-radius: 8px;
+}
+.app-information dt {
+    flex: 0 0 auto;
+    margin: 0;
+    color: #a9a9a9;
+    font-size: .7rem;
+    line-height: 1.5;
+}
+.app-information dd {
+    min-width: 0;
+    text-align: right;
+    color: #f1f1f1;
+    font-size: .85rem;
+    font-weight: 700;
+    line-height: 1.5;
+}
+@media (max-width: 900px) {
+    .app-overview { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .app-detail { width: calc(100% - 28px); }
+    .app-page { padding-block: 20px 64px; }
+    .app-hero {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+        padding: 16px;
+    }
+    .app-hero-icon { width: 92px; height: 92px; margin: 0; border-radius: 12px; }
+    .app-hero-info { align-items: flex-start; text-align: left; }
+    .app-hero-info h1 {
+        margin: 7px 0;
+        font-size: clamp(1.5rem, 6vw, 2.25rem);
+        line-height: 1.1;
+    }
+    .app-hero-info .status-badge { font-size: .62rem; min-height: 24px; padding: 4px 8px; }
+    .app-version { min-height: 27px; padding: 4px 8px; margin-bottom: 7px; font-size: .74rem; }
+    .app-authors, .app-category { font-size: .79rem; line-height: 1.5; }
+    .app-overview { gap: 14px; margin-top: 14px; }
+    .app-section { margin-top: 14px; padding: 18px; }
+    .app-screenshots { grid-template-columns: 1fr; }
+    .app-information > div { padding: 10px 12px; }
+}
+@media (max-width: 360px) {
+    .app-hero { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; padding: 14px; }
+    .app-hero-icon { width: 76px; height: 76px; }
+    .app-hero-info h1 { font-size: 1.4rem; }
+}

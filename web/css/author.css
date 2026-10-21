@@ -659,3 +659,122 @@
     .author-applications { padding: 16px; }
     .author-apps { grid-template-columns: 1fr; gap: 12px; }
 }
+
+/* ========================================
+   Refined developer profile — compact,
+   readable, and consistent with app cards
+======================================== */
+.author-content {
+    width: min(calc(100% - 40px), var(--container-width));
+}
+.author-back { margin-bottom: 16px; }
+.author-back a {
+    min-height: 40px;
+    color: #d4d4d4;
+    background: #262626;
+}
+.author-back a:hover { background: #373737; }
+
+.author-profile {
+    grid-template-columns: 148px minmax(0, 1fr);
+    align-items: center;
+    gap: 26px;
+    padding: 28px;
+    background: linear-gradient(135deg, #333333, #202020);
+}
+.author-avatar {
+    width: 148px;
+    height: 148px;
+    background: #1a1a1a;
+    border: 2px solid #686868;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .2);
+}
+.author-profile-info { align-items: flex-start; text-align: left; }
+.author-profile-info h1 {
+    font-size: clamp(2rem, 3.6vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -.035em;
+}
+.author-label { margin-bottom: 8px; }
+.author-bio {
+    margin-top: 12px;
+    color: #c9c9c9;
+    font-size: .95rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+.author-links { gap: 9px; margin-top: 18px; }
+.author-link {
+    min-height: 40px;
+    padding: 8px 13px;
+    background: #242424;
+    border-color: #626262;
+    font-size: .79rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+.author-link:hover { background: #363636; }
+
+.author-applications {
+    margin-top: 18px;
+    padding: 24px;
+    background: #202020;
+    border-color: #505050;
+}
+.author-applications .section-heading { margin-bottom: 18px; }
+.author-app-count {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 11px;
+    color: var(--accent);
+    background: rgba(59, 255, 0, .07);
+    border: 1px solid rgba(59, 255, 0, .25);
+    border-radius: 999px;
+    white-space: nowrap;
+    font-size: .72rem;
+}
+.author-apps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.author-apps .app-card { background: var(--surface); }
+.author-apps .app-card:hover { background: #414141; }
+
+@media (max-width: 900px) {
+    .author-apps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+    .author-profile {
+        grid-template-columns: 108px minmax(0, 1fr);
+        align-items: center;
+        gap: 20px;
+        padding: 22px;
+    }
+    .author-avatar-wrapper { justify-content: flex-start; }
+    .author-avatar { width: 108px; height: 108px; }
+    .author-profile-info { align-items: flex-start; text-align: left; }
+    .author-profile-info h1 { font-size: clamp(1.65rem, 5vw, 2.3rem); }
+    .author-applications { padding: 18px; }
+}
+@media (max-width: 640px) {
+    .author-content { width: calc(100% - 28px); }
+    .author-page { padding-block: 20px 64px; }
+    .author-profile {
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px;
+    }
+    .author-avatar-wrapper { justify-content: flex-start; }
+    .author-avatar { width: 88px; height: 88px; }
+    .author-profile-info { align-items: flex-start; text-align: left; }
+    .author-profile-info h1 { font-size: clamp(1.45rem, 5.8vw, 2rem); line-height: 1.1; }
+    .author-label { font-size: .62rem; margin-bottom: 5px; }
+    .author-bio { margin-top: 8px; font-size: .82rem; line-height: 1.5; }
+    .author-links { margin-top: 12px; gap: 7px; justify-content: flex-start; }
+    .author-link { padding: 7px 10px; font-size: .74rem; min-height: 36px; }
+    .author-applications { padding: 16px; }
+    .author-applications .section-heading { gap: 12px; }
+    .author-applications .section-heading h2 { font-size: 1.3rem; }
+    .author-apps { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 360px) {
+    .author-profile { grid-template-columns: 72px minmax(0, 1fr); gap: 12px; padding: 14px; }
+    .author-avatar { width: 72px; height: 72px; }
+}
