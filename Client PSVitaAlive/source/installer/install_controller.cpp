@@ -1,4 +1,5 @@
 #include "installer/install_controller.hpp"
+#include "network/parallel_archive_download.hpp"
 #include "update/installed_release_tracker.hpp"
 #include "localization/localization.hpp"
 #include "diagnostic_logger.hpp"
@@ -728,7 +729,8 @@ bool InstallController::requestInstall(
 
     if (!http_.isInitialized() && !init()) return false;
 
-    const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes);
+    const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes,
+        isZipExtraction && FormatDetector::extensionOf(fileName) == "zip");
     if (jobId.empty()) {
         setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
         diagnostics::log("[Installer] could not create download job");
@@ -1435,7 +1437,8 @@ int InstallController::workerMain() {
             [this]() { return installCancelRequested_.load(std::memory_order_acquire); },
             activeZipDestination_,
             directRifPath,
-            isDataOrGameFilesLinkType(activeLinkType_)
+            isDataOrGameFilesLinkType(activeLinkType_),
+            job->segmentedZip
         );
 
         if (result == InstallDispatchResult::Ok ||
@@ -1519,6 +1522,21 @@ int InstallController::workerMain() {
         // existing cleanup behavior.
         if (!cancelled && zipRecoveryCandidate) {
   StorageManager st;
+  // Recovery UI requires a single independently usable ZIP. Materialize only
+  // after direct segmented extraction has exhausted its normal retries.
+  const bool recoveryReady = !job->segmentedZip ||
+      materializeSegmentedZip(job->finalPath, job->expectedSize);
+  if (!recoveryReady) {
+      diagnostics::log("[Installer] failed to assemble segmented ZIP; keeping completed job for inspection");
+      setStage("Error");
+      setState(InstallStatus::State::Failed,
+          "ZIP extraction failed and manual ZIP assembly failed; original parts retained");
+      activeJobId_.clear();
+      resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+      workerDone_.store(true, std::memory_order_release);
+      return 0;
+  }
+  job->segmentedZip = false;
   const std::string key = sanitizeRecoveryComponent(
       !pendingTitleId_.empty() ? pendingTitleId_ : pendingAppId_, "unknown");
   const std::string recoveryDir = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
