@@ -525,3 +525,9 @@ ARCHIVE_WARNING_STARTUP_2=Некоторые загрузки, значки и �
 ARCHIVE_WARNING_DOWNLOAD_1=Сейчас не удаётся загрузить файл с Archive.org.
 ARCHIVE_WARNING_DOWNLOAD_2=Возможно, внешний сервис временно недоступен; это не обязательно ошибка PSVitaAlive. Попробуйте другой источник или повторите попытку позже.
 ARCHIVE_WARNING_OK=Понятно
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Загрузка недоступна
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Сейчас не удаётся подключиться к Archive.org.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=Возможно, временные проблемы у сервиса или с вашим подключением. Это не обязательно означает ошибку PSVitaAlive.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Попробуйте другую ссылку для загрузки или повторите попытку позже.
