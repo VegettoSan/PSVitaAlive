@@ -239,7 +239,7 @@ static bool joinParts(
     const std::string& expectedSha1,
     bool& checksumMismatch,
     size_t partCount,
-    bool preservePartsUntilComplete = false
+    bool preservePartsUntilComplete
 #ifndef PSVITAALIVE_CURL_MBEDTLS
     , const SHA_CTX* prehashedFirstPart
 #endif
