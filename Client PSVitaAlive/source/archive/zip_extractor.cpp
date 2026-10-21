@@ -437,9 +437,12 @@ static bool openSegmentLayout(const std::string& base,
         if (detail) *detail = "expected exactly 2 or 4 ZIP ranges";
         return false;
     }
-    if (parts.size() == 2 && sceIoOpen((base + ".range2").c_str(), SCE_O_RDONLY, 0) >= 0) {
-        if (detail) *detail = "unexpected extra ZIP range";
-        return false;
+    if (parts.size() == 2) {
+        SceIoStat extra{};
+        if (sceIoGetstat((base + ".range3").c_str(), &extra) >= 0) {
+            if (detail) *detail = "unexpected fourth ZIP range";
+            return false;
+        }
     }
     const uint64_t length = parts.front().size;
     for (size_t i = 1; i + 1 < parts.size(); ++i) {
