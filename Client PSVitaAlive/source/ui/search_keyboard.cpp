@@ -44,7 +44,7 @@ void centered(const UiFont* font, int x, int y, int w, unsigned color,
 bool SearchKeyboard::open(const std::string& initial, const std::string& title) {
     if (active_) return false;
     input_ = initial.substr(0, kMaxInputBytes);
-    title_ = title.empty() ? "Search catalog" : title;
+    title_ = title.empty() ? ::psvitaalive::L("KEYBOARD_SEARCH_TITLE") : title;
     numbers_ = more_ = shift_ = false;
     closing_ = accepted_ = ready_ = eraseHeld_ = false;
     focused_ = 0;
