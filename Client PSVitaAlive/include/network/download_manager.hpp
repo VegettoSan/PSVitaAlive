@@ -44,6 +44,7 @@ struct DownloadJob {
     bool resumable = true;
     bool preferSegmentedZip = false; // Explicit ZIP extraction job only.
     bool segmentedZip = false; // Verified 2/4-part ZIP ready for virtual reading.
+    bool sourceUnavailable = false; // Failed before bytes or HTTP terminal response.
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =
         std::make_shared<std::atomic<bool>>(false);
