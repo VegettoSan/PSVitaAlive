@@ -1620,9 +1620,11 @@ HttpResult HttpClient::downloadToFile(
     HttpCancelFn shouldCancel,
     int maxAttemptsOverride,
     const std::string& ifRangeValidator,
-    uint64_t archiveSelectionSizeHint
+    uint64_t archiveSelectionSizeHint,
+    bool keepZipParts
 ) {
     lastStatus_ = 0;
+    lastSegmentedZip_ = false;
     lastRangeAccepted_ = false;
     lastError_.clear();
     lastEtag_.clear();
@@ -1900,13 +1902,17 @@ HttpResult HttpClient::downloadToFile(
                 ctx.onProgress, ctx.shouldCancel,
                 isArchive && validSha1Hex(archiveSha1) ? archiveSha1 : std::string(),
                 isArchive ? std::string() : rangeProbe.etag,
-                isArchive ? std::string() : rangeProbe.lastModified);
+                isArchive ? std::string() : rangeProbe.lastModified,
+                keepZipParts);
             if (parallel == ParallelArchiveOutcome::Complete ||
+                parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::IoError) {
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
-                if (parallel == ParallelArchiveOutcome::Complete) {
+                if (parallel == ParallelArchiveOutcome::Complete ||
+                    parallel == ParallelArchiveOutcome::Segmented) {
+                    lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;
                     lastStatus_ = 206;
                     return HttpResult::Ok;
                 }
