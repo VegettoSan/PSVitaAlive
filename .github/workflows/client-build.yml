@@ -48,6 +48,13 @@ jobs:
             -o /tmp/psvitaalive-install-archive-policy-test
           /tmp/psvitaalive-install-archive-policy-test
 
+      - name: Test segmented ZIP 2/4-range layout and ZIP64 offsets
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_segmented_zip_layout.cpp \
+            -o /tmp/psvitaalive-segmented-zip-test
+          /tmp/psvitaalive-segmented-zip-test
+
       - name: Test installer retry policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
