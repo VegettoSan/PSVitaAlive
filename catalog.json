@@ -13,7 +13,7 @@
       "racing",
       "source-port"
     ],
-    "version": "1.1.0",
+    "version": "1.3.0",
     "version_date": "2026-10-20",
     "requirements": "- No Data",
     "size": 4613734,
@@ -22,7 +22,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.1.0.vpk",
+        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.0.vpk",
         "size": 4613734,
         "recommended": true
       },
