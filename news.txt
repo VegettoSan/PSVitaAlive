@@ -1,5 +1,5 @@
-id: 2026-10-19-0001
-title: PSVitaAlive 02.12 is here!
+id: 2026-10-21-0001
+title: PSVitaAlive 02.13 is here!
 enabled: true
 
 ---
@@ -8,26 +8,57 @@ enabled: true
 
 ---
 
-### Not all Homebrew / Ports have Game Files yet, please be patient as I will gradually upload them so they can be downloaded.
+### Not all Homebrew / Ports have Game Files yet. Please be patient as more files are gradually added to the catalog.
 
 ---
 
-# What's New
+# What's New in 02.13
 
-## Improvements
+## New Built-in Keyboard
 
-- Fixed ZIP extraction issues with deeply nested folders.
-- Improved compatibility with large Homebrew and Game Files archives.
-- Added a new **Recovered ZIPs** section to retry saved archives without downloading them again.
-- Added individual recovery buttons for multiple saved ZIPs.
-- ZIP archives are now automatically cleaned up after successful extraction.
-- Failed extractions preserve ZIP files for later recovery.
-- Improved download assembly speed and SHA-1 verification.
-- Improved installation safety, recovery handling, and interface navigation.
+- Completely replaced the native PS Vita keyboard with a custom QWERTY keyboard.
+- Improved stability by removing the native IME from text input.
+- Supports touchscreen, D-pad, and left analog stick navigation.
+- Added numbers, special characters, persistent SHIFT, and hold-to-delete.
+- Smooth animations and full compatibility with the selected color theme.
+- Keyboard interface translated into all eight supported languages.
+
+## New Catalog Filters
+
+- Added a new filtering panel for all four catalogs.
+- Filter Homebrew by category, installed status, and available updates.
+- Filter PS Vita, PSP, and PS1 games by genre and installation status.
+- Added Game Files, Data Files, and DLC filtering.
+- Filters can be combined with text searches.
+
+## Installed Games Detection
+
+- Improved detection of installed Homebrew and games.
+- Added support for detecting PS Vita, PSP, and PS1 installations.
+- Improved compatibility with Adrenaline, ISO, CSO, and EBOOT.PBP.
+- Added detection across supported storage devices.
+
+## Installation and Stability
+
+- Fixed incorrect ZIP/VPK detection for Game Files and Data Files.
+- Improved ZIP extraction safety and file protection.
+- Improved cancellation and retry handling.
+- Optimized storage space checks for different installation types.
+- Improved overall installation reliability.
+
+## Interface Improvements
+
+- Added a battery percentage indicator to the catalog header.
+- Battery information is also available in OLED protection mode.
+- Improved interface navigation and touchscreen alignment.
 - Updated translations across all eight supported languages.
-- Additional stability improvements, bug fixes, and catalog updates.
+- Additional bug fixes, performance improvements, and catalog updates.
+
+---
 
 ## Thank you for your continued support!
+
+Your feedback and testing help make PSVitaAlive better with every release.
 
 ---
 
@@ -36,4 +67,4 @@ enabled: true
 - DNS: 8 8 8 8 / 8 8 4 4
 - Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1)
 
-**Enjoy and report issues with session.log when possible. Thank you!**
+**Enjoy PSVitaAlive 02.13! Please report any issues with session.log when possible. Thank you!**
