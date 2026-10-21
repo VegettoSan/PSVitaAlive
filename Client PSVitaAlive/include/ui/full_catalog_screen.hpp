@@ -188,6 +188,7 @@ private:
     std::string searchQuery_;
     bool externalInputBlocked_ = false;
     unsigned imeDiagnosticFrames_ = 0;
+    int imeLastDialogResult_ = 0x7FFFFFFF;
     ContentFilter filterMode_ = ContentFilter::All;
     const char* filterCategory_ = ""; // points into compiled-in menu table (no allocation)
     size_t installFilterScanNext_ = 0; // status filters scan progressively

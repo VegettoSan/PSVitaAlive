@@ -140,6 +140,10 @@ public:
         resultAccepted_ = false;
         resultText_.clear();
         cooldownFrames_ = 0;
+        recoveryHoldStartUs_ = abortStartedUs_ = 0;
+        recoveryRequested_ = previousButtonMask_ = buttonReadErrorLogged_ = false;
+        statusPolls_ = 0;
+        nextStatusHeartbeatUs_ = sceKernelGetSystemTimeWide() + 2000000ULL;
         ++sessionId_;
         psvitaalive::ime_diagnostics::setSession(sessionId_);
         psvitaalive::ime_diagnostics::record("init_before", sessionId_, (int)param.type, (int)param.languagesForced, true);
@@ -181,7 +185,19 @@ public:
             return;
         }
 
+        // FullCatalogScreen blocks ordinary controls; peek hardware buttons
+        // directly so L+R+START can recover a hung native keyboard.
+        pollRecoveryButtons();
+        const uint64_t nowUs = sceKernelGetSystemTimeWide();
+        const bool heartbeat = nowUs >= nextStatusHeartbeatUs_;
+        if(heartbeat) ime_diagnosticsRecord("status_poll_before", (int)statusPolls_,
+                                            recoveryRequested_ ? 1 : 0);
         const SceCommonDialogStatus st = sceImeDialogGetStatus();
+        ++statusPolls_;
+        if(heartbeat) {
+            ime_diagnosticsRecord("status_poll_after", (int)st, (int)statusPolls_, true);
+            nextStatusHeartbeatUs_ = nowUs + 2000000ULL;
+        }
         if ((int)st != lastStatus_) {
             psvitaalive::ime_diagnostics::record("status_change", sessionId_, (int)st, lastStatus_, true);
             lastStatus_ = (int)st;
@@ -191,7 +207,7 @@ public:
             SceImeDialogResult result{};
             const int gr = sceImeDialogGetResult(&result);
             psvitaalive::ime_diagnostics::record("get_result_after", sessionId_, gr, (int)result.button, true);
-            resultAccepted_ = (gr >= 0 && result.button == SCE_IME_DIALOG_BUTTON_ENTER);
+            resultAccepted_ = (!recoveryRequested_ && gr >= 0 && result.button == SCE_IME_DIALOG_BUTTON_ENTER);
             resultText_ = resultAccepted_ ? utf16ToUtf8(inputBuf_) : std::string();
             psvitaalive::ime_diagnostics::record("term_before", sessionId_, resultAccepted_ ? 1 : 0, (int)resultText_.size(), true);
             const int tr = sceImeDialogTerm();
@@ -216,6 +232,16 @@ public:
             cooldownFrames_ = 0;
             psvitaalive::ime_diagnostics::record("unexpected_status_none", sessionId_, 0, 0, true);
             psvitaalive::diagnostics::log("[UI] IME returned NONE while running; entering cooldown");
+        }
+        if (state_ == State::Running && recoveryRequested_ && abortStartedUs_ != 0 &&
+            sceKernelGetSystemTimeWide() - abortStartedUs_ >= 8000000ULL) {
+            // Do not call Term while the SDK still reports RUNNING.
+            // Exit after logging if the firmware ignores the abort request.
+            ime_diagnosticsRecord("abort_timeout_exit", (int)st, (int)statusPolls_, true);
+            psvitaalive::diagnostics::log("[IME] abort failed to finish; emergency app exit");
+            psvitaalive::diagnostics::flush();
+            psvitaalive::ime_diagnostics::shutdown();
+            sceKernelExitProcess(0);
         }
     }
 
@@ -279,6 +305,46 @@ public:
     }
 
 private:
+    void ime_diagnosticsRecord(const char* name, int a = 0, int b = 0, bool memory = false) {
+        psvitaalive::ime_diagnostics::record(name, sessionId_, a, b, memory);
+    }
+
+    void pollRecoveryButtons() {
+        if (state_ != State::Running || recoveryRequested_) return;
+        SceCtrlData pad{};
+        const int read = sceCtrlPeekBufferPositive(0, &pad, 1);
+        if (read < 1) {
+            if (read < 0 && !buttonReadErrorLogged_) {
+                buttonReadErrorLogged_ = true;
+                ime_diagnosticsRecord("buttons_read_error", read);
+            }
+            recoveryHoldStartUs_ = 0;
+            previousButtonMask_ = false;
+            return;
+        }
+        const uint32_t combo = SCE_CTRL_LTRIGGER | SCE_CTRL_RTRIGGER | SCE_CTRL_START;
+        const bool held = (pad.buttons & combo) == combo;
+        const uint64_t nowUs = sceKernelGetSystemTimeWide();
+        if (!held) {
+            if (previousButtonMask_) ime_diagnosticsRecord("recovery_buttons_released");
+            previousButtonMask_ = false;
+            recoveryHoldStartUs_ = 0;
+            return;
+        }
+        if (!previousButtonMask_) {
+            recoveryHoldStartUs_ = nowUs;
+            previousButtonMask_ = true;
+            ime_diagnosticsRecord("recovery_buttons_held", read);
+        }
+        if (nowUs - recoveryHoldStartUs_ < 2000000ULL) return;
+        ime_diagnosticsRecord("abort_before", lastStatus_, 0, true);
+        const int ar = sceImeDialogAbort();
+        ime_diagnosticsRecord("abort_after", ar, 0, true);
+        psvitaalive::diagnostics::log("[IME] manual recovery L+R+START requested");
+        recoveryRequested_ = true;
+        abortStartedUs_ = sceKernelGetSystemTimeWide();
+    }
+
     enum class State { Idle, Running, Cooldown };
     static constexpr SceUInt32 kMaxLen = 128;
     // The official sample effectively gives CommonDialog at least one update
@@ -291,6 +357,13 @@ private:
     unsigned sessionId_ = 0;
     int cooldownFrames_ = 0;
     int lastStatus_ = -1;
+    uint64_t nextStatusHeartbeatUs_ = 0;
+    uint64_t recoveryHoldStartUs_ = 0;
+    uint64_t abortStartedUs_ = 0;
+    unsigned statusPolls_ = 0;
+    bool recoveryRequested_ = false;
+    bool previousButtonMask_ = false;
+    bool buttonReadErrorLogged_ = false;
     std::string resultText_;
     SceWChar16 inputBuf_[kMaxLen + 1]{};
     SceWChar16 initialBuf_[kMaxLen + 1]{};

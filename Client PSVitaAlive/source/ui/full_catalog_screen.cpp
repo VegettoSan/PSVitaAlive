@@ -70,14 +70,8 @@ inline void finishFrameWithCommonDialog() {
     vita2d_swap_buffers();
 }
 
-// During the native keyboard keep only CommonDialog and a plain background.
-// No catalog texture decode, animation or complex UI/GPU work in these frames.
-inline void drawImeLightFrame() {
-    vita2d_start_drawing();
-    vita2d_set_clear_color(RGBA8(0, 0, 0, 255));
-    vita2d_clear_screen();
-    finishFrameWithCommonDialog();
-}
+// Diagnostic keyboard frames are rendered without catalog textures in
+// FullCatalogScreen::drawImeDiagnosticFrame; normal frames stay unchanged.
 
 constexpr uint32_t NAV_DIRECTION_MASK =
     SCE_CTRL_UP | SCE_CTRL_DOWN | SCE_CTRL_LEFT | SCE_CTRL_RIGHT;
@@ -2883,6 +2877,7 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
 }
 void FullCatalogScreen::prepareForIme(){
     imeDiagnosticFrames_ = 0;
+    imeLastDialogResult_ = 0x7FFFFFFF;
     const unsigned session = ime_diagnostics::activeSession();
     ime_diagnostics::record("gpu_free_before", session, (int)textures_.size(), (int)deferredFreeTextures_.size(), true);
     // UI thread only, BEFORE sceImeDialogInit(): release catalog GPU textures
@@ -8702,16 +8697,29 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
 
 void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();finishFrameWithCommonDialog();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();drawWebQrOverlay();finishFrameWithCommonDialog();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishFrameWithCommonDialog();}void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}void FullCatalogScreen::drawImeDiagnosticFrame(){
     const unsigned frame = ++imeDiagnosticFrames_;
+    const unsigned session = ime_diagnostics::activeSession();
     const bool trace = frame <= 4 || frame == 8 || frame == 16 ||
                        frame == 32 || frame == 64 || frame % 120 == 0;
-    const unsigned session = ime_diagnostics::activeSession();
-    if (trace) ime_diagnostics::record("frame_before_common_dialog", session, (int)frame, 0, frame <= 4);
     const uint64_t startUs = sceKernelGetProcessTimeWide();
-    drawImeLightFrame();
+    if(trace) ime_diagnostics::record("draw_before", session, (int)frame);
+    vita2d_start_drawing();
+    vita2d_set_clear_color(RGBA8(0, 0, 0, 255));
+    vita2d_clear_screen();
+    vita2d_end_drawing();
+    if(trace) ime_diagnostics::record("draw_after", session, (int)frame);
+    if(trace) ime_diagnostics::record("common_update_before", session, (int)frame);
+    const int dialogResult = vita2d_common_dialog_update();
+    if(trace || dialogResult < 0 || dialogResult != imeLastDialogResult_) {
+        ime_diagnostics::record("common_update_after", session, dialogResult,
+                                (int)frame, trace || dialogResult < 0);
+        imeLastDialogResult_ = dialogResult;
+    }
+    if(trace) ime_diagnostics::record("swap_before", session, (int)frame);
+    vita2d_swap_buffers();
     const uint64_t endUs = sceKernelGetProcessTimeWide();
-    if (trace) ime_diagnostics::record("frame_after_common_dialog", session, (int)frame,
-                                       (int)(endUs >= startUs ? endUs - startUs : 0),
-                                       frame <= 4 || frame % 120 == 0);
+    if(trace) ime_diagnostics::record("swap_after", session, (int)frame,
+        (int)(endUs >= startUs ? endUs - startUs : 0),
+        frame <= 4 || frame % 120 == 0);
 }
 bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
