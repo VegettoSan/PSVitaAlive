@@ -21,8 +21,8 @@ add_subdirectory(psm_runtime_driver)
 
 set(SOURCES
   source/main.cpp
+  source/ui/search_keyboard.cpp
   source/diagnostic_logger.cpp
-  source/ime_diagnostics.cpp
   source/storage/storage_manager.cpp
   source/network/http_client.cpp
   source/network/parallel_archive_download.cpp
@@ -136,8 +136,6 @@ target_link_libraries(${PROJECT_NAME}
   SceLibJson_stub
   SceAppMgr_stub
   SceAppUtil_stub
-  SceCommonDialog_stub
-  SceIme_stub
   SceIofilemgr_stub
   SceLibKernel_stub
   SceSysmem_stub

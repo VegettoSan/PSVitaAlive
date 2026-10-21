@@ -2,6 +2,7 @@
 
 #include "ui/ui_types.hpp"
 #include "ui/image_cache.hpp"
+#include "ui/search_keyboard.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "update/update_checker.hpp"
@@ -67,10 +68,12 @@ public:
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
     void setCatalogChangeCallback(CatalogChangeFn callback);
     void setSearchCallback(SearchRequestFn callback);
-    /** Apply text returned asynchronously by the system IME. */
+    /** Native vita2d QWERTY search and ZIP path entry (no Sony IME). */
     void completeSearch(const std::string& query);
-    /** Block underlying catalog input while a system dialog owns controls/touch. */
-    void setExternalInputBlocked(bool blocked) { externalInputBlocked_ = blocked; }
+    void openSearchKeyboard(const std::string& query);
+    bool keyboardVisible() const { return keyboard_.active(); }
+    bool promptTextBlocking(const std::string& initial, const std::string& title,
+                            std::string& output);
     void setLinkActionCallback(LinkActionFn callback);
     void setSavedZipCallbacks(SavedZipListFn list, SavedZipRetryFn retry) {
         savedZipList_ = std::move(list); savedZipRetry_ = std::move(retry);
@@ -79,9 +82,6 @@ public:
     void setImageCache(ImageCache* cache);
     /** Free catalog icons/covers/screenshots before starting a heavy install worker. UI thread only. */
     void prepareForHeavyWork();
-    /** Drop GPU catalog images before opening the system IME; disk cache stays intact. */
-    void prepareForIme();
-    void drawImeDiagnosticFrame();
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
     CatalogType activeCatalog() const { return state_.catalog; }
@@ -186,9 +186,7 @@ private:
     bool ready_ = false;
 
     std::string searchQuery_;
-    bool externalInputBlocked_ = false;
-    unsigned imeDiagnosticFrames_ = 0;
-    int imeLastDialogResult_ = 0x7FFFFFFF;
+    SearchKeyboard keyboard_;
     ContentFilter filterMode_ = ContentFilter::All;
     const char* filterCategory_ = ""; // points into compiled-in menu table (no allocation)
     size_t installFilterScanNext_ = 0; // status filters scan progressively
