@@ -545,3 +545,9 @@ ARCHIVE_WARNING_STARTUP_2=Algunas descargas, iconos y capturas pueden no estar d
 ARCHIVE_WARNING_DOWNLOAD_1=Esta descarga no puede conectarse a Archive.org en este momento.
 ARCHIVE_WARNING_DOWNLOAD_2=El servicio externo podría tener problemas; no necesariamente es un error de PSVitaAlive. Usa otra fuente si está disponible o inténtalo más tarde.
 ARCHIVE_WARNING_OK=Entendido
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=No se pudo descargar
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=No pudimos conectarnos a Archive.org en este momento.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=Puede haber un problema temporal con el servicio o con tu conexión. Esto no significa necesariamente que PSVitaAlive esté fallando.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Prueba otro enlace de descarga o inténtalo más tarde.
