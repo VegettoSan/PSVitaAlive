@@ -127,7 +127,8 @@ public:
                             bool zipRecoveryAvailable = false,
                             const std::string& zipRecoveryPath = std::string(),
                             const std::string& zipRecoveryExtractPath = std::string(),
-                            bool zipRecoveryMayBeCorrupt = false);
+                            bool zipRecoveryMayBeCorrupt = false,
+                            bool archiveSourceUnavailable = false);
 
 private:
     UiState state_;
@@ -270,6 +271,8 @@ private:
     int installOutcome_ = 0;
     uint64_t installResultAutoCloseMs_ = 0; // 0 progress, 1 success, 2 error
     bool installLiveAreaOk_ = false;
+    // Structured failure source: never infer connectivity from localized text.
+    bool installArchiveSourceUnavailable_ = false;
     std::string installResultPath_;
     std::string installResultTitleId_;
     bool installZipRecoveryAvailable_ = false;
