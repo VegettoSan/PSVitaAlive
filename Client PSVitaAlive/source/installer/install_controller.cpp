@@ -347,6 +347,7 @@ void InstallController::acknowledgeResult() {
     needsReboot_.store(false);
     setInstallPath("");
     setTitleId("");
+    archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryPath_.clear();
@@ -389,6 +390,7 @@ bool InstallController::resolveZipRecovery(bool keep) {
         diagnostics::log("[Installer] ZIP recovery action=deleted path=" + zipRecoveryPath_);
     }
 
+    archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryJobId_.clear();
@@ -742,6 +744,7 @@ bool InstallController::requestInstall(
     activeZipDestination_ = zipDestination;
     activeFileName_ = fileName;
     activeDisplayTitle_ = niceTitle;
+    archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryPath_.clear();
@@ -886,6 +889,7 @@ InstallStatus InstallController::status() const {
     result.installPath = installPath_;
     result.titleId = titleId_;
     result.liveAreaOk = liveAreaOk_.load();
+    result.archiveSourceUnavailable = archiveSourceUnavailable_.load(std::memory_order_acquire);
     result.needsReboot = needsReboot_.load();
     result.zipRecoveryAvailable = zipRecoveryAvailable_.load();
     result.zipRecoveryMayBeCorrupt = zipRecoveryMayBeCorrupt_.load();
@@ -1170,6 +1174,13 @@ int InstallController::workerMain() {
     DownloadJob* job = downloads_.findJob(activeJobId_);
     if (!downloaded || !job || job->state != DownloadState::Completed) {
         const bool cancelled = job && job->state == DownloadState::Cancelled;
+        // Only show the service warning when the failing user download
+        // actually came from Archive.org and the HTTP client classified
+        // its resource as unavailable. Do not label VPK/ZIP/SSL/disk errors
+        // from other providers as an Archive outage.
+        const bool archiveFailure = !cancelled && job && job->sourceUnavailable &&
+            job->url.find("archive.org") != std::string::npos;
+        archiveSourceUnavailable_.store(archiveFailure, std::memory_order_release);
         const std::string error = cancelled ? ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadCancelled)
             : (job && !job->lastError.empty() ? job->lastError : ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadFailed));
         setStage(cancelled ? "Cancelled" : "Error");
