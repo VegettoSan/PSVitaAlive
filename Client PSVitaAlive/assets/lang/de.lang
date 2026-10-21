@@ -504,3 +504,16 @@ FILTERS_STATUS_HEADING=INSTALLATIONSSTATUS
 FILTERS_INSTALLED=Installiert
 FILTERS_UPDATES=Updates verfügbar
 FILTERS_VERSION_UNKNOWN=Version nicht erkannt
+
+# Built-in QWERTY keyboard UI (layout stays English).
+KEYBOARD_SEARCH_TITLE=Katalog durchsuchen
+KEYBOARD_ZIP_TITLE=ZIP-Zielpfad
+KEYBOARD_PLACEHOLDER=Text eingeben...
+KEYBOARD_NAV_HINT=Steuerkreuz: bewegen  |  X: wählen  |  Quadrat: löschen  |  Start: OK
+KEYBOARD_TOUCH_HINT=Touch oder Tasten  |  Löschen / Quadrat gedrückt halten
+KEYBOARD_SHIFT=UMSCH.
+KEYBOARD_DELETE=LÖSCH.
+KEYBOARD_CANCEL=ABBR.
+KEYBOARD_CONFIRM=OK
+KEYBOARD_SPACE=LEER
+KEYBOARD_MORE=MEHR
