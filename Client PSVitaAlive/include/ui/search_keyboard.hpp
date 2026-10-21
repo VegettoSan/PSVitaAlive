@@ -24,7 +24,8 @@ public:
     bool open(const std::string& initial, const std::string& title);
     bool active() const { return active_; }
     void update();
-    void draw(const UiFont* font, const KeyboardPalette& colors) const;
+    /** Render over the already-drawn catalog in a single vita2d frame. */
+    void drawOverlay(const UiFont* font, const KeyboardPalette& colors) const;
     bool takeResult(std::string& text, bool& accepted);
 
 private:
