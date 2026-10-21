@@ -8071,9 +8071,17 @@ if(installOutcome_==2){
     ::psvitaalive::ui::uiDrawText(&font_,x+28,y+242,installZipRecoveryMayBeCorrupt_?amber:DIM,0.68f,
         ellipsize(warning,76).c_str());
     // The raw zip_fread / libzip / deflate diagnostic is in session.log.
-    // A full technical entry path is not understandable on the Vita screen.
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+278,DIM,0.72f,
-        ::psvitaalive::L("INSTALL_ERR_ARCHIVE_WHY"));
+    // Wrap the friendly reason; never draw a long technical path offscreen.
+    {
+        const auto whyLines = wrapTextToWidth(&font_, 0.70f,
+            ::psvitaalive::L("INSTALL_ERR_ARCHIVE_WHY"), w - 56);
+        int wy = y + 278;
+        for (const auto& why : whyLines) {
+            if (wy > y + 315) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x + 28, wy, DIM, 0.70f, why.c_str());
+            wy += 24;
+        }
+    }
 
     const int by2=y+360,bh2=50,bw=250,gap=15,totalW=bw*3+gap*2;
     const int bx0=x+(w-totalW)/2,bx1=bx0+bw+gap,bx2=bx1+bw+gap;
