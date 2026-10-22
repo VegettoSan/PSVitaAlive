@@ -32,7 +32,7 @@ constexpr size_t kJoinBuffer = 1024 * 1024;
 // Sequential per-range writes with a bounded buffer reduce costly ux0 I/O.
 // A 256 KiB buffer per stream uses at most 1 MiB additional heap RAM.
 constexpr size_t kPartWriteBuffer = 256 * 1024;
-// Tiny cooperative yields during sustained ux0 writes/hash reads, without
+// Tiny cooperative yields during sustained ux0 disk writes, without
 // reducing the parallel connection count or changing transfer integrity.
 constexpr uint64_t kIoYieldStep = 4ULL * 1024ULL * 1024ULL;
 constexpr const char* kUserAgent =
@@ -504,9 +504,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
     }
 
     // Compressed ZIP/VPKs are consumed directly from their validated 206
-    // ranges. Never assemble or re-read them for a removed SHA-1 check.
+    // ranges. Do not assemble or re-read the archive after download.
     if (keepZipParts) {
-        diagnostics::log("[HTTP] segmented ZIP/VPK range lengths verified; join skipped; no SHA-1 pass");
+        diagnostics::log("[HTTP] segmented ZIP/VPK range lengths verified; join skipped");
         sendProgress(session, true);
         return ParallelArchiveOutcome::Segmented;
     }
