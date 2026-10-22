@@ -36,7 +36,8 @@ public:
         const std::string& destinationDir,
         ZipProgressFn onProgress = nullptr,
         ZipCancelFn shouldCancel = nullptr,
-        bool segmentedZip = false
+        bool segmentedZip = false,
+        const std::string& expectedSha1 = {}
     );
 
     const std::string& lastError() const { return lastError_; }
