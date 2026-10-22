@@ -22,7 +22,7 @@ struct HttpProgress {
     uint64_t total = 0;
     uint64_t absoluteDownloaded = 0;
     uint64_t bytesPerSecond = 0;
-    // Parallel transfer finished; either joining or verifying the complete payload.
+    // Parallel transfer finished; joining needed for non-ZIP payloads only.
     bool finalizing = false;
 };
 
