@@ -12,7 +12,7 @@ namespace psvitaalive {
 enum class ParallelArchiveOutcome {
     Skipped,
     Complete,
-    Segmented, // Verified ZIP parts, ready for virtual extraction.
+    Segmented, // Verified ZIP/VPK ranges, ready for virtual extraction.
     RetrySerial,
     Cancelled,
     IoError
@@ -30,7 +30,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool keepZipParts = false
 );
 
-// Assemble only on manual recovery after failed extraction.
+// Assemble saved ZIPs only for manual recovery; installs can read ranges.
 bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize);
 
 } // namespace psvitaalive
