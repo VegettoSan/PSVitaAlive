@@ -177,7 +177,7 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     return !job.url.empty();
 }
 
-std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip, bool deferVpkSha1) {
+std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip, bool deferArchiveSha1) {
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
@@ -186,7 +186,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     // authoritative remote total once Content-Length/Content-Range is observed.
     job.expectedSize = expectedSizeHint;
     job.preferSegmentedZip = preferSegmentedZip;
-    job.deferVpkSha1 = deferVpkSha1 && preferSegmentedZip;
+    job.deferArchiveSha1 = deferArchiveSha1 && preferSegmentedZip;
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -434,7 +434,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ifRangeValidator,
             job.expectedSize,
             job.preferSegmentedZip,
-            job.deferVpkSha1
+            job.deferArchiveSha1
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
