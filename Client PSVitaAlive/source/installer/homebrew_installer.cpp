@@ -489,8 +489,7 @@ InstallResult HomebrewInstaller::installVpk(
     InstallProgressFn onProgress,
     InstallCancelFn shouldCancel,
     bool deleteTempOnSuccess,
-    bool segmentedArchive,
-    const std::string& expectedSha1
+    bool segmentedArchive
 ) {
     lastError_.clear();
     lastTitleId_.clear();
@@ -592,8 +591,7 @@ InstallResult HomebrewInstaller::installVpk(
                 onProgress(p);
             },
             shouldCancel,
-            segmentedArchive,
-            expectedSha1
+            segmentedArchive
         );
         zipErr = zip.lastError();
         logLine(std::string("ZipExtractor result=") + std::to_string(static_cast<int>(zr)) +
