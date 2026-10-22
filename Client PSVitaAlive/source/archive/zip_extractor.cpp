@@ -1057,6 +1057,11 @@ ZipResult ZipExtractor::extract(
 
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    // Never hash libzip's initial random-access directory probes. Begin when
+    // compressed entries are actually read for extraction.
+    if (deferredSha1) digest.active = true;
+#endif
 
     // Limit UI handoffs while retaining byte-level progress inside large
     // entries. Cancellation is still checked for every extraction chunk.
