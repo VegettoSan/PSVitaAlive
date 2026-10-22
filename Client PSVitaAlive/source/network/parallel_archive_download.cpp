@@ -277,12 +277,20 @@ static bool joinParts(
 
 
 // Accept range responses only over HTTPS and from the expected Archive family.
-static bool usableArchiveFinalUrl(const char* rawUrl, bool archiveOnly) {
+// Non-Archive downloads remain HTTPS only. Archive's direct HTTP path is
+// restricted to its storage hosts, validated Range offsets and exact lengths.
+static bool isDirectHttp(const std::string& url) {
+    return url.compare(0, 7, "http://") == 0;
+}
+
+static bool usableArchiveFinalUrl(const char* rawUrl, bool requireHttp, bool archiveOnly) {
     if (!rawUrl) return false;
     const std::string url(rawUrl);
-    if (url.compare(0, 8, "https://") != 0) return false;
-    if (!archiveOnly) return true;
-    const size_t offset = 8;
+    const size_t offset = url.compare(0, 7, "http://") == 0 ? 7 :
+        (url.compare(0, 8, "https://") == 0 ? 8 : 0);
+    if (!offset || (requireHttp && offset != 7) ||
+        (!requireHttp && offset != 8)) return false;
+    if (!archiveOnly) return !requireHttp;
     const size_t end = url.find_first_of("/?#:", offset);
     const std::string host = url.substr(offset, end == std::string::npos ?
         std::string::npos : end - offset);
@@ -322,8 +330,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
     const size_t partCount = authoritativeSize < kFourWayBytes ? 2 : kParts;
-    // Without a whole-file digest, never use unencrypted HTTP for payloads.
-    if (url.compare(0, 8, "https://") != 0) return ParallelArchiveOutcome::Skipped;
+    // Only Archive.org's storage nodes are eligible for direct HTTP.
+    // The caller first validates them with an exact HTTP 206 Range probe.
+    if ((!archiveOnly && isDirectHttp(url)) ||
+        (url.compare(0, 8, "https://") != 0 && !isDirectHttp(url)))
+        return ParallelArchiveOutcome::Skipped;
 
     // Directly extracted ZIP/VPK containers do not need space for an
     // assembled duplicate. Joined formats keep the original conservative
@@ -385,11 +396,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
         curl_easy_setopt(p.easy, CURLOPT_NOSIGNAL, 1L);
         curl_easy_setopt(p.easy, CURLOPT_BUFFERSIZE, 64L * 1024L);
 #if LIBCURL_VERSION_NUM >= 0x075500
-        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS_STR, "https");
-        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS_STR, "https");
+        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS_STR, isDirectHttp(url) ? "http" : "https");
+        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS_STR, isDirectHttp(url) ? "http" : "https");
 #else
-        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS, (long)CURLPROTO_HTTPS);
-        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS, (long)CURLPROTO_HTTPS);
+        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS, (long)(isDirectHttp(url) ? CURLPROTO_HTTP : CURLPROTO_HTTPS));
+        curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS, (long)(isDirectHttp(url) ? CURLPROTO_HTTP : CURLPROTO_HTTPS));
 #endif
         curl_easy_setopt(p.easy, CURLOPT_WRITEFUNCTION, onWrite);
         curl_easy_setopt(p.easy, CURLOPT_WRITEDATA, &p);
@@ -435,7 +446,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
                     p.code = msg->data.result;
                     const char* reached = nullptr;
                     curl_easy_getinfo(p.easy, CURLINFO_EFFECTIVE_URL, &reached);
-                    if (!usableArchiveFinalUrl(reached, archiveOnly))
+                    if (!usableArchiveFinalUrl(reached, isDirectHttp(url), archiveOnly))
                         p.rangeError = true;
                     break;
                 }
