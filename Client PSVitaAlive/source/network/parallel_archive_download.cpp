@@ -682,6 +682,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
         : "[HTTP] parallel transfer complete; joining and verifying parts");
     bool checksumMismatch = false;
     if (keepZipParts) {
+        const uint64_t verifyStartedUs = monotonicUs();
+        diagnostics::log(isDirectHttp(url) && !expectedSha1.empty()
+            ? "[HTTP] segmented ZIP/VPK SHA-1 verification started (no join)"
+            : "[HTTP] segmented ZIP/VPK download completed (no SHA-1 read needed)");
         if (!verifySegmentedSha1(destination, partCount,
                                  isDirectHttp(url) ? expectedSha1 : std::string(),
                                  checksumMismatch, onProgress, authoritativeSize
@@ -696,7 +700,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
                                     : ParallelArchiveOutcome::IoError;
         }
         sendProgress(session, true);
-        diagnostics::log("[HTTP] segmented ZIP/VPK verified; join skipped");
+        diagnostics::log(std::string("[HTTP] segmented ZIP/VPK verified; join skipped; elapsed_verify_ms=") +
+            std::to_string((monotonicUs() - verifyStartedUs) / 1000ULL));
         return ParallelArchiveOutcome::Segmented;
     }
     if (!joinParts(destination, authoritativeSize,
