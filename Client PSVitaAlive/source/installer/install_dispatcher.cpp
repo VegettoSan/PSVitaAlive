@@ -84,7 +84,8 @@ InstallDispatchResult InstallDispatcher::installFile(
     const std::string& zipDestination,
     const std::string& rifPath,
     bool forceZipExtract,
-    bool segmentedZip
+    bool segmentedZip,
+    const std::string& deferredSha1
 ) {
     lastError_.clear();
     clearResultMeta();
