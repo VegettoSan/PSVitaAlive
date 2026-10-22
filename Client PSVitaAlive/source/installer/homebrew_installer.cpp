@@ -488,7 +488,8 @@ InstallResult HomebrewInstaller::installVpk(
     const std::string& vpkPath,
     InstallProgressFn onProgress,
     InstallCancelFn shouldCancel,
-    bool deleteTempOnSuccess
+    bool deleteTempOnSuccess,
+    bool segmentedArchive
 ) {
     lastError_.clear();
     lastTitleId_.clear();
