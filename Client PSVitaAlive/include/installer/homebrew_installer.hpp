@@ -46,7 +46,8 @@ public:
         InstallProgressFn onProgress = nullptr,
         InstallCancelFn shouldCancel = nullptr,
         bool deleteTempOnSuccess = true,
-        bool segmentedArchive = false
+        bool segmentedArchive = false,
+        const std::string& expectedSha1 = {}
     );
 
     const std::string& lastError() const { return lastError_; }
