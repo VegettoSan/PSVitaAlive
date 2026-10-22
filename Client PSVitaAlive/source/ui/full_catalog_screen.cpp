@@ -7880,7 +7880,9 @@ if (installProgressActive_ && installOutcome_ == 0 && gProtectionActive) {
     char progressLine[128];
     if (verifying) {
         sceClibSnprintf(progressLine, sizeof(progressLine), "%s",
-            ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS"));
+            installProgressMessage_.empty()
+                ? ::psvitaalive::L("DOWNLOAD_VERIFYING_SEGMENTS")
+                : installProgressMessage_.c_str());
     } else if (promoting) {
         sceClibSnprintf(progressLine, sizeof(progressLine), "%s: %s",
             ::psvitaalive::L("LABEL_ELAPSED"),
@@ -8347,7 +8349,9 @@ if (installProgressSpeed_ > 0 && total > current) eta = (total - current) / inst
 char info[180];
 if (stageFinalizing)
   sceClibSnprintf(info, sizeof(info), "%s",
-      ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS"));
+      installProgressMessage_.empty()
+          ? ::psvitaalive::L("DOWNLOAD_VERIFYING_SEGMENTS")
+          : installProgressMessage_.c_str());
 else if (installProgressStage_ == "Promoting") {
   const uint64_t elapsed = installPhaseStartedUs_ ?
       (sceKernelGetProcessTimeWide() - installPhaseStartedUs_) / 1000000ULL : 0;
@@ -8364,11 +8368,11 @@ else
       ::psvitaalive::L(::psvitaalive::TextId::LabelEta),
       formatEta(eta).c_str());
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 212, ACCENT, 0.86f, info);
-if (!installProgressMessage_.empty())
+if (!stageFinalizing && !installProgressMessage_.empty())
   ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
 const char* waitHint = nullptr;
 if (stageFinalizing)
-  waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS");
+  waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_HINT");
 else if (msgRetry && stageDownload)
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryConnection);
 else if (msgRetry && (stageInstall || stageExtract))
