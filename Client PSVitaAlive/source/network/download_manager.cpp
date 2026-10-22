@@ -186,6 +186,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     // authoritative remote total once Content-Length/Content-Range is observed.
     job.expectedSize = expectedSizeHint;
     job.preferSegmentedZip = preferSegmentedZip;
+    job.deferVpkSha1 = deferVpkSha1 && preferSegmentedZip;
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -432,9 +433,13 @@ bool DownloadManager::runJob(DownloadJob& job) {
             0,
             ifRangeValidator,
             job.expectedSize,
-            job.preferSegmentedZip
+            job.preferSegmentedZip,
+            job.deferVpkSha1
         );
-        if (hr == HttpResult::Ok) job.segmentedZip = http_.lastSegmentedZip();
+        if (hr == HttpResult::Ok) {
+            job.segmentedZip = http_.lastSegmentedZip();
+            job.deferredSha1 = http_.lastDeferredArchiveSha1();
+        }
         // Terminal 404/410 is a missing file, NOT an Archive.org outage.
         // A service warning requires repeated no-response failures (HTTP 0),
         // or an exhausted server-side 5xx response with no downloaded bytes.
