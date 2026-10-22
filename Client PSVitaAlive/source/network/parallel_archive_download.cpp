@@ -461,10 +461,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
     if (isDirectHttp(url) && expectedSha1.size() != 40)
         return ParallelArchiveOutcome::Skipped;
 
-    // Leave headroom for part assembly and installation. If storage is
-    // tight, retain the existing low-space-guarded single-stream path.
+    // Directly extracted ZIP/VPK containers do not need space for an
+    // assembled duplicate. Joined formats keep the original conservative
+    // staging budget; low-space cases fall back to the serial download path.
     uint64_t freeBytes = 0, capacity = 0;
-    const uint64_t extra = authoritativeSize - authoritativeSize / partCount;
+    const uint64_t extra = keepZipParts
+        ? 0 : (authoritativeSize - authoritativeSize / partCount);
     if (!StorageManager::queryUx0Space(freeBytes, capacity) ||
         extra > UINT64_MAX - kDiskReserve ||
         authoritativeSize > UINT64_MAX - extra - kDiskReserve ||
@@ -647,7 +649,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     // still require time. Publish a separate UI phase instead of freezing at 99%.
     sendProgress(session, false, true);
     diagnostics::log(keepZipParts
-        ? "[HTTP] parallel transfer complete; checking segmented ZIP"
+        ? "[HTTP] parallel transfer complete; checking segmented ZIP/VPK container"
         : "[HTTP] parallel transfer complete; joining and verifying parts");
     bool checksumMismatch = false;
     if (keepZipParts) {
@@ -665,7 +667,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
                                     : ParallelArchiveOutcome::IoError;
         }
         sendProgress(session, true);
-        diagnostics::log("[HTTP] segmented ZIP verified; join skipped");
+        diagnostics::log("[HTTP] segmented ZIP/VPK verified; join skipped");
         return ParallelArchiveOutcome::Segmented;
     }
     if (!joinParts(destination, authoritativeSize,
