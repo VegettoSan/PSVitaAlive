@@ -44,6 +44,8 @@ struct DownloadJob {
     bool resumable = true;
     bool preferSegmentedZip = false; // Opt-in: Game/Data ZIP or VPK direct extraction.
     bool segmentedZip = false; // Verified ZIP/VPK range parts ready for virtual reading.
+    bool deferVpkSha1 = false;
+    std::string deferredSha1; // must match before promoting staged VPK
     bool sourceUnavailable = false; // Failed before bytes or HTTP terminal response.
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =
