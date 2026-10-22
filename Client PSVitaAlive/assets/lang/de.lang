@@ -564,3 +564,7 @@ INSTALL_ERR_INSTALLER_WHY=Die Konsole konnte die Installation nicht abschließen
 INSTALL_ERR_INSTALLER_ACTION=Prüfe Anforderungen und Plugins. Melde den Fehler, falls er bleibt.
 INSTALL_ERR_OTHER_WHY=Ein unerwarteter Fehler hat den Vorgang verhindert.
 INSTALL_ERR_OTHER_ACTION=Versuche es erneut. Bei Wiederholung melde den Fehler mit session.log.
+
+# Segmented archive integrity check (distinct from joining parts)
+DOWNLOAD_VERIFYING_SEGMENTS=Dateiintegrität wird geprüft...
+DOWNLOAD_VERIFYING_HINT=Die Prüfung großer Dateien kann dauern. Bitte warten.
