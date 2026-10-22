@@ -44,7 +44,7 @@ struct DownloadJob {
     bool resumable = true;
     bool preferSegmentedZip = false; // Opt-in: Game/Data ZIP or VPK direct extraction.
     bool segmentedZip = false; // Verified ZIP/VPK range parts ready for virtual reading.
-    bool deferVpkSha1 = false;
+    bool deferArchiveSha1 = false;
     std::string deferredSha1; // must match before promoting staged VPK
     bool sourceUnavailable = false; // Failed before bytes or HTTP terminal response.
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
@@ -83,7 +83,7 @@ public:
 
     void setProgressCallback(DownloadProgressFn fn);
 
-    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false, bool deferVpkSha1 = false);
+    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false, bool deferArchiveSha1 = false);
     bool processQueue();
     void cancel(const std::string& jobId);
     int recoverJobs();
