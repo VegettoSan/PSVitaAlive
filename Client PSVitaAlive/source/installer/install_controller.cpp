@@ -1482,7 +1482,8 @@ int InstallController::workerMain() {
         const bool corruptArchive = looksLikeDamagedZipError(lastInstallError) ||
             lastInstallError.find("Unsupported compression") != std::string::npos ||
             lastInstallError.find("unsupported compression") != std::string::npos ||
-            lastInstallError.find("encryption") != std::string::npos;
+            lastInstallError.find("encryption") != std::string::npos ||
+            lastInstallError.find("SHA-1 mismatch") != std::string::npos;
         const bool hardPermanent =
             isPermanentInstallResult(result) ||
             corruptArchive ||
