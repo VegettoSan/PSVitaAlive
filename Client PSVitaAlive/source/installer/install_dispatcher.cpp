@@ -84,8 +84,7 @@ InstallDispatchResult InstallDispatcher::installFile(
     const std::string& zipDestination,
     const std::string& rifPath,
     bool forceZipExtract,
-    bool segmentedZip,
-    const std::string& deferredSha1
+    bool segmentedZip
 ) {
     lastError_.clear();
     clearResultMeta();
@@ -144,8 +143,7 @@ InstallDispatchResult InstallDispatcher::installFile(
             },
             shouldCancel,
             true,
-            segmentedZip,
-            deferredSha1
+            segmentedZip
         );
         lastTitleId_ = installer.lastTitleId();
         lastInstallPath_ = installer.lastInstallPath();
@@ -308,8 +306,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 },
                 shouldCancel,
                 true,
-                segmentedZip,
-                deferredSha1
+                segmentedZip
             );
             lastTitleId_ = installer.lastTitleId();
             lastInstallPath_ = installer.lastInstallPath();
