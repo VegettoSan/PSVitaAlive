@@ -63,8 +63,7 @@ public:
         const std::string& zipDestination = std::string(),
         const std::string& rifPath = std::string(),
         bool forceZipExtract = false,
-        bool segmentedZip = false,
-        const std::string& deferredSha1 = {}
+        bool segmentedZip = false
     );
 
     const std::string& lastError() const { return lastError_; }
