@@ -42,7 +42,8 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
   **Download All Visible** downloads everything in the current filtered list, after
   asking you to confirm.
 - **Recommended sources only** (on by default) collapses mirror copies of the same
-  file into one download, using the recommended copy when the catalog marks one.
+  file into one download. It uses the recommended copy when the catalog marks one,
+  otherwise the archive.org copy.
   Other regions, DLC, updates and extra files are always kept. Untick it to download
   every available link, including every mirror. The confirmation dialog shows which
   mode is active.

@@ -103,6 +103,13 @@ def build_lookups(authors_data, categories_data) -> dict:
     return {"authors": authors, "categories": categories}
 
 
+def source_rank(link: dict) -> tuple:
+    """Rank copies of one file. The highest rank is kept: the recommended copy first,
+    then archive.org, which is the default source. Ties keep the first copy listed."""
+    host = urlparse(link.get("url", "")).hostname or ""
+    return (bool(link.get("recommended")), host == "archive.org" or host.endswith(".archive.org"))
+
+
 def file_identity(link: dict) -> tuple:
     """Key that is equal for copies of one file and different for other files.
 
@@ -156,9 +163,9 @@ class CatalogEntry:
         """Return the links to download for this entry.
 
         With recommended_only, mirror copies of the same file are collapsed into
-        one link, keeping the recommended copy (otherwise the first one listed).
-        See file_identity for what counts as the same file. Other regions, DLC,
-        updates of other versions and extra files are never collapsed.
+        one link, keeping the best copy by source_rank. See file_identity for what
+        counts as the same file. Other regions, DLC, updates of other versions and
+        extra files are never collapsed.
         """
         links = self.downloadable_links()
         if not recommended_only:
@@ -167,7 +174,7 @@ class CatalogEntry:
         for link in links:
             key = file_identity(link)
             current = picked.get(key)
-            if current is None or (link.get("recommended") and not current.get("recommended")):
+            if current is None or source_rank(link) > source_rank(current):
                 picked[key] = link
         return list(picked.values())
 
@@ -640,7 +647,7 @@ class MainWindow(QMainWindow):
         self.recommended_only.setChecked(True)
         self.recommended_only.setToolTip(
             "When ticked, mirror copies of the same file are collapsed to one link, "
-            "preferring the recommended one. Other regions, DLC and updates are always kept. "
+            "preferring the recommended one, then archive.org. Other regions, DLC and updates are always kept. "
             "Untick to download every available link, including mirrors."
         )
         dl_row.addWidget(self.recommended_only)
