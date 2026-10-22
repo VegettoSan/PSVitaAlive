@@ -83,7 +83,7 @@ public:
 
     void setProgressCallback(DownloadProgressFn fn);
 
-    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false);
+    std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false, bool deferVpkSha1 = false);
     bool processQueue();
     void cancel(const std::string& jobId);
     int recoverJobs();
