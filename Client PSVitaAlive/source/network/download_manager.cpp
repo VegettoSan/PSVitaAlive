@@ -518,7 +518,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (!moved || (partsFound != 2 && partsFound != 4) ||
             bytes != job.expectedSize) {
             job.state = DownloadState::Failed;
-            job.lastError = "segmented ZIP finalization failed";
+            job.lastError = "segmented ZIP/VPK finalization failed";
             saveMetadata(job);
             for (unsigned i = 1; i <= 3; ++i) {
                 const std::string suffix = ".range" + std::to_string(i);
@@ -529,7 +529,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             return false;
         }
         job.downloadedSize = bytes;
-        diagnostics::log("[DownloadManager] segmented ZIP ready; no disk join");
+        diagnostics::log("[DownloadManager] segmented ZIP/VPK ready; no disk join");
     } else {
         const int64_t fs = st.fileSize(job.finalPath);
         job.downloadedSize = static_cast<uint64_t>(fs > 0 ? fs : 0);
