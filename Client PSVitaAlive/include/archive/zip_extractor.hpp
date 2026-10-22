@@ -40,6 +40,19 @@ public:
         const std::string& expectedSha1 = {}
     );
 
+    // Safe accelerated path for Game/Data ZIPs: extract to a unique folder
+    // on the same device, verify SHA-1 before commit, then move NEW files.
+    // Existing-file collisions and overdeep paths fall back to the proven
+    // pre-extraction integrity check + standard extractor.
+    ZipResult extractVerifiedDataZip(
+        const std::string& zipPath,
+        const std::string& destinationDir,
+        ZipProgressFn onProgress,
+        ZipCancelFn shouldCancel,
+        bool segmentedZip,
+        const std::string& expectedSha1
+    );
+
     const std::string& lastError() const { return lastError_; }
     /** Staged directory branches were moved; very deep child reads are not verified. */
     bool usedStagedMoves() const { return usedStagedMoves_; }
