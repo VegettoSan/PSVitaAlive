@@ -50,7 +50,7 @@ public:
         int maxAttemptsOverride = 0, // 0 = default (archive 10 / other 5); images can pass 4
         const std::string& ifRangeValidator = {}, // persisted ETag or Last-Modified for safe resume
         uint64_t archiveSelectionSizeHint = 0, // threshold hint only; remote headers remain authoritative
-        bool keepZipParts = false // opt-in for ZIP data extraction only
+        bool keepZipParts = false // opt-in for direct ZIP/VPK extraction
     );
 
     /**
