@@ -1632,6 +1632,7 @@ HttpResult HttpClient::downloadToFile(
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
+    lastDeferredArchiveSha1_.clear();
     lastSourceUnavailable_ = false;
     lastRangeAccepted_ = false;
     lastError_.clear();
@@ -1925,7 +1926,8 @@ HttpResult HttpClient::downloadToFile(
                 isArchive && validSha1Hex(archiveSha1) ? archiveSha1 : std::string(),
                 isArchive ? std::string() : rangeProbe.etag,
                 isArchive ? std::string() : rangeProbe.lastModified,
-                keepZipParts);
+                keepZipParts,
+                deferVpkSha1 && isArchive);
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
@@ -1935,6 +1937,11 @@ HttpResult HttpClient::downloadToFile(
                 if (parallel == ParallelArchiveOutcome::Complete ||
                     parallel == ParallelArchiveOutcome::Segmented) {
                     lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;
+                    if (lastSegmentedZip_ && deferVpkSha1 &&
+                        parallelUrl.compare(0, 7, "http://") == 0 &&
+                        validSha1Hex(archiveSha1)) {
+                        lastDeferredArchiveSha1_ = archiveSha1;
+                    }
                     lastStatus_ = 206;
                     return HttpResult::Ok;
                 }
