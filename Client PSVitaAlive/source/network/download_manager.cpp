@@ -285,7 +285,20 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ev.total = job.expectedSize ? job.expectedSize : job.downloadedSize;
             ev.bytesPerSecond = job.bytesPerSecond;
             ev.state = p.finalizing ? DownloadState::Verifying : DownloadState::Downloading;
-            if (p.finalizing) ev.message = ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS");
+            if (p.finalizing) {
+                ev.message = ::psvitaalive::L(job.preferSegmentedZip
+                    ? "DOWNLOAD_VERIFYING_SEGMENTS" : "DOWNLOAD_VERIFYING_PARTS");
+                // This is verification progress, not bytes downloaded.
+                // Keep job.downloadedSize and resume metadata tied to HTTP bytes.
+                if (p.integrityTotalBytes > 0) {
+                    const uint64_t checked = std::min<uint64_t>(
+                        p.integrityVerifiedBytes, p.integrityTotalBytes);
+                    const unsigned pct = static_cast<unsigned>(
+                        (checked / p.integrityTotalBytes) * 100ULL +
+                        ((checked % p.integrityTotalBytes) * 100ULL) / p.integrityTotalBytes);
+                    ev.message += " " + std::to_string(pct) + "%";
+                }
+            }
             onProgress_(ev);
         }
         if ((job.downloadedSize >= lastSaved && job.downloadedSize - lastSaved >= kMetadataSaveStep) ||
