@@ -22,8 +22,12 @@ struct HttpProgress {
     uint64_t total = 0;
     uint64_t absoluteDownloaded = 0;
     uint64_t bytesPerSecond = 0;
-    // Parallel Archive transfer finished; parts are being joined and verified.
+    // Parallel transfer finished; either joining or verifying the complete payload.
     bool finalizing = false;
+    // When nonzero, this is SHA-1 verification progress, NOT network progress.
+    // Keep absoluteDownloaded/total as network bytes for resume and size guards.
+    uint64_t integrityVerifiedBytes = 0;
+    uint64_t integrityTotalBytes = 0;
 };
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
