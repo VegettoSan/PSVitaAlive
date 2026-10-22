@@ -566,5 +566,5 @@ INSTALL_ERR_OTHER_WHY=Um erro inesperado impediu a conclusão da operação.
 INSTALL_ERR_OTHER_ACTION=Tenta novamente. Se continuar, envia um relatório com session.log.
 
 # Segmented archive integrity check (distinct from joining parts)
-DOWNLOAD_VERIFYING_SEGMENTS=A verificar a integridade do ficheiro...
-DOWNLOAD_VERIFYING_HINT=A verificação de ficheiros grandes pode demorar. Aguarda.
+DOWNLOAD_VERIFYING_SEGMENTS=A finalizar transferência...
+DOWNLOAD_VERIFYING_HINT=Juntar ficheiros grandes pode demorar. Aguarda.
