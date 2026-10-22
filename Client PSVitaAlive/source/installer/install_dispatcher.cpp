@@ -340,23 +340,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 : InstallDispatchResult::InstallFailed;
         }
         ZipExtractor extractor;
-        const bool verifyDuringSafeExtraction = segmentedZip &&
-            forceZipExtract && !deferredSha1.empty();
-        const ZipResult result = verifyDuringSafeExtraction
-            ? extractor.extractVerifiedDataZip(
-                path, zipDestination,
-                [&](const ZipProgress& zp) {
-                    if (!onProgress) return;
-                    InstallDispatchProgress p;
-                    p.stage = InstallDispatchProgress::Extracting;
-                    p.current = zp.bytesWritten;
-                    p.total = zp.bytesTotal;
-                    p.message = zp.currentEntry.empty() ? "Extracting and checking ZIP"
-                        : std::string("Extracting: ") + zp.currentEntry;
-                    onProgress(p);
-                },
-                shouldCancel, segmentedZip, deferredSha1)
-            : extractor.extract(
+        const ZipResult result = extractor.extract(
             path, zipDestination,
             [&](const ZipProgress& zp) {
                 if (!onProgress) return;

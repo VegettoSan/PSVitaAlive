@@ -28,7 +28,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& expectedEtag = {}, // For generic HTTPS probes
     const std::string& expectedModified = {},
     bool keepZipParts = false,
-    bool deferArchiveSha1 = false // only VPK; extracted into staging and checked before promote
+    bool deferVpkSha1 = false // only VPK; extracted into staging and checked before promote
 );
 
 // Assemble saved ZIPs only for manual recovery; installs can read ranges.

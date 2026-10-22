@@ -481,7 +481,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& expectedEtag,
     const std::string& expectedModified,
     bool keepZipParts,
-    bool deferArchiveSha1
+    bool deferVpkSha1
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
@@ -687,10 +687,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
         diagnostics::log(isDirectHttp(url) && !expectedSha1.empty()
             ? "[HTTP] segmented ZIP/VPK SHA-1 verification started (no join)"
             : "[HTTP] segmented ZIP/VPK download completed (no SHA-1 read needed)");
-        // Deferred SHA-1 is allowed for eligible VPKs or safe-staged Data ZIPs.
-        // The installer must validate the full digest before promoting or
-        // applying extracted bytes to user destinations.
-        if (!(deferArchiveSha1 && isDirectHttp(url) && expectedSha1.size() == 40) &&
+        // Only VPKs are deferred: they extract into a private staging directory
+        // and must match the metadata digest BEFORE promotion. Data ZIPs retain
+        // pre-extraction verification because they may overwrite user files.
+        if (!(deferVpkSha1 && isDirectHttp(url) && expectedSha1.size() == 40) &&
             !verifySegmentedSha1(destination, partCount,
                                  isDirectHttp(url) ? expectedSha1 : std::string(),
                                  checksumMismatch, onProgress, authoritativeSize
@@ -705,8 +705,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
                                     : ParallelArchiveOutcome::IoError;
         }
         sendProgress(session, true);
-        if (deferArchiveSha1 && isDirectHttp(url) && expectedSha1.size() == 40)
-            diagnostics::log("[HTTP] ZIP/VPK SHA-1 deferred to safe staged extraction; no pre-extraction read");
+        if (deferVpkSha1 && isDirectHttp(url) && expectedSha1.size() == 40)
+            diagnostics::log("[HTTP] VPK SHA-1 deferred to staged extraction; no pre-extraction read");
         diagnostics::log(std::string("[HTTP] segmented ZIP/VPK ranges ready; join skipped; elapsed_verify_ms=") +
             std::to_string((monotonicUs() - verifyStartedUs) / 1000ULL));
         return ParallelArchiveOutcome::Segmented;

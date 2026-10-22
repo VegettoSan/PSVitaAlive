@@ -1628,7 +1628,7 @@ HttpResult HttpClient::downloadToFile(
     const std::string& ifRangeValidator,
     uint64_t archiveSelectionSizeHint,
     bool keepZipParts,
-    bool deferArchiveSha1
+    bool deferVpkSha1
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1927,7 +1927,7 @@ HttpResult HttpClient::downloadToFile(
                 isArchive ? std::string() : rangeProbe.etag,
                 isArchive ? std::string() : rangeProbe.lastModified,
                 keepZipParts,
-                deferArchiveSha1 && isArchive);
+                deferVpkSha1 && isArchive);
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
@@ -1937,7 +1937,7 @@ HttpResult HttpClient::downloadToFile(
                 if (parallel == ParallelArchiveOutcome::Complete ||
                     parallel == ParallelArchiveOutcome::Segmented) {
                     lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;
-                    if (lastSegmentedZip_ && deferArchiveSha1 &&
+                    if (lastSegmentedZip_ && deferVpkSha1 &&
                         parallelUrl.compare(0, 7, "http://") == 0 &&
                         validSha1Hex(archiveSha1)) {
                         lastDeferredArchiveSha1_ = archiveSha1;

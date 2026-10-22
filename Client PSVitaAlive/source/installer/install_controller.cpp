@@ -741,8 +741,8 @@ bool InstallController::requestInstall(
         isZipExtraction, !zipDestination.empty());
     const std::string jobId = downloads_.enqueue(
         url, fileName, expectedBytes, keepSegmented,
-        keepSegmented && (isZipExtraction ||
-        FormatDetector::extensionOf(fileName) == "vpk"));
+        keepSegmented && !isZipExtraction &&
+        FormatDetector::extensionOf(fileName) == "vpk");
     diagnostics::log(std::string("[Installer] segmented container opt-in=") +
                      (keepSegmented ? "yes" : "no") + " file=" + fileName);
     if (jobId.empty()) {
