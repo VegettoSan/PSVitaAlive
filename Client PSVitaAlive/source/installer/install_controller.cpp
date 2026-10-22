@@ -731,9 +731,18 @@ bool InstallController::requestInstall(
 
     if (!http_.isInitialized() && !init()) return false;
 
-    const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes,
-        isZipExtraction && isDataOrGameFilesLinkType(linkType) &&
-        FormatDetector::extensionOf(fileName) == "zip");
+    // Verified parallel ranges may be extracted without an intermediate join
+    // for both typed Game/Data ZIP archives and installable VPK ZIP containers.
+    // All other formats (PKG/PSP/PS1/plugins/opaque names) retain their path.
+    const bool keepSegmented = shouldKeepSegmentedContainer(
+        FormatDetector::extensionOf(fileName),
+        wantBgdl, isPluginLinkType(linkType),
+        isDataOrGameFilesLinkType(linkType),
+        isZipExtraction, !zipDestination.empty());
+    const std::string jobId = downloads_.enqueue(
+        url, fileName, expectedBytes, keepSegmented);
+    diagnostics::log(std::string("[Installer] segmented container opt-in=") +
+                     (keepSegmented ? "yes" : "no") + " file=" + fileName);
     if (jobId.empty()) {
         setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
         diagnostics::log("[Installer] could not create download job");
