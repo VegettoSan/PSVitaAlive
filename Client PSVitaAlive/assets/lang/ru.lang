@@ -566,5 +566,5 @@ INSTALL_ERR_OTHER_WHY=Неожиданная ошибка прервала оп�
 INSTALL_ERR_OTHER_ACTION=Повторите попытку. Если ошибка повторится, отправьте session.log.
 
 # Segmented archive integrity check (distinct from joining parts)
-DOWNLOAD_VERIFYING_SEGMENTS=Проверка целостности файла...
-DOWNLOAD_VERIFYING_HINT=Проверка больших файлов может занять время. Подождите.
+DOWNLOAD_VERIFYING_SEGMENTS=Завершение загрузки...
+DOWNLOAD_VERIFYING_HINT=Объединение больших файлов может занять время. Подождите.
