@@ -177,7 +177,7 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     return !job.url.empty();
 }
 
-std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip) {
+std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip, bool deferVpkSha1) {
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
