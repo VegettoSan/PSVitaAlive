@@ -1817,9 +1817,10 @@ HttpResult HttpClient::downloadToFile(
                 parallelUrl = selectedArchiveHttpUrl;
                 httpDiagnostic("archive direct HTTP chosen from successful 206 speed benchmark (no SHA-1)");
             } else if (isArchive &&
+                       rangeProbe.total < ARCHIVE_SELECTOR_MIN_BYTES &&
                        activeUrl.compare(0, 8, "https://") == 0 &&
                        archiveEffectiveUrlUsable(activeUrl)) {
-                // Small files skip the 256 KiB benchmark: validate HTTP 206
+                // Only small files skip the 256 KiB benchmark: validate HTTP 206
                 // using the authoritative HTTPS Range total before switching.
                 const std::string directHttp = "http://" + activeUrl.substr(8);
                 ArchiveProbeResult httpProbe;
