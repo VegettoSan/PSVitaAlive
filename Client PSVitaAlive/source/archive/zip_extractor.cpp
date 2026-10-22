@@ -1620,7 +1620,7 @@ ZipResult ZipExtractor::extractVerifiedDataZip(
         }
         zip_stat_t stat{};
         zip_stat_init(&stat);
-        if (zip_stat_index(archive, i, 0) != 0 || !stat.name) {
+        if (zip_stat_index(archive, i, 0, &stat) != 0 || !stat.name) {
             safe = false; fallbackWhy = "missing ZIP entry metadata"; break;
         }
         const std::string name(stat.name);
