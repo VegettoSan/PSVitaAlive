@@ -177,7 +177,7 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     return !job.url.empty();
 }
 
-std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip, bool deferVpkSha1) {
+std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip) {
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
@@ -186,7 +186,6 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     // authoritative remote total once Content-Length/Content-Range is observed.
     job.expectedSize = expectedSizeHint;
     job.preferSegmentedZip = preferSegmentedZip;
-    job.deferVpkSha1 = deferVpkSha1 && preferSegmentedZip;
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -433,12 +432,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
             0,
             ifRangeValidator,
             job.expectedSize,
-            job.preferSegmentedZip,
-            job.deferVpkSha1
+            job.preferSegmentedZip
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
-            job.deferredSha1 = http_.lastDeferredArchiveSha1();
         }
         // Terminal 404/410 is a missing file, NOT an Archive.org outage.
         // A service warning requires repeated no-response failures (HTTP 0),
