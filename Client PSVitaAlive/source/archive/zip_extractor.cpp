@@ -9,6 +9,9 @@
 #include <psp2/io/stat.h>
 #include <psp2/io/dirent.h>
 #include <zip.h>
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+#include <openssl/sha.h>
+#endif
 
 #include <algorithm>
 #include <cstdint>
@@ -121,11 +124,91 @@ struct VitaZipPart {
     uint64_t size = 0;
 };
 
+// Optional VPK-only verification: hash compressed archive bytes as libzip
+// reads them for extraction, filling only gaps and the unconsumed ZIP tail.
+// This is never used for ZIP data that may overwrite existing user files.
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+struct ExtractSha1 {
+    SHA_CTX sha{};
+    std::vector<ZipRangeSpan> layout;
+    std::vector<std::string> paths;
+    SceUID readFd = -1;
+    size_t readPart = static_cast<size_t>(-1);
+    uint64_t hashed = 0;
+    uint64_t total = 0;
+    bool active = false;
+    bool failed = false;
+    unsigned char buffer[64 * 1024];
+
+    ExtractSha1() { SHA1_Init(&sha); }
+    ~ExtractSha1() { if (readFd >= 0) sceIoClose(readFd); }
+    bool gapUntil(uint64_t end) {
+        if (end > total || hashed > end) return false;
+        while (hashed < end) {
+            size_t part = findZipRange(layout, hashed);
+            if (part >= paths.size()) return failed = true, false;
+            if (readPart != part || readFd < 0) {
+                if (readFd >= 0) sceIoClose(readFd);
+                readFd = sceIoOpen(paths[part].c_str(), SCE_O_RDONLY, 0);
+                readPart = part;
+                if (readFd < 0) return failed = true, false;
+            }
+            const uint64_t within = hashed - layout[part].start;
+            const uint64_t left = layout[part].size - within;
+            const unsigned amount = static_cast<unsigned>(std::min<uint64_t>(
+                std::min<uint64_t>(end - hashed, left), sizeof(buffer)));
+            if (!amount || sceIoLseek(readFd, static_cast<SceOff>(within), SCE_SEEK_SET) < 0)
+                return failed = true, false;
+            int n = sceIoRead(readFd, buffer, amount);
+            if (n <= 0) return failed = true, false;
+            SHA1_Update(&sha, buffer, static_cast<size_t>(n));
+            hashed += static_cast<uint64_t>(n);
+        }
+        return true;
+    }
+    bool observe(uint64_t start, const unsigned char* bytes, size_t count) {
+        if (!active || !count || start + count <= hashed) return !failed;
+        if (start > hashed && !gapUntil(start)) return false;
+        const uint64_t skip = hashed > start ? hashed - start : 0;
+        if (skip < count) {
+            SHA1_Update(&sha, bytes + skip, count - static_cast<size_t>(skip));
+            hashed = start + count;
+        }
+        return !failed;
+    }
+    bool finish(const std::string& expectedHex) {
+        if (!gapUntil(total) || expectedHex.size() != 40) return false;
+        unsigned char digest[SHA_DIGEST_LENGTH];
+        SHA1_Final(digest, &sha);
+        const char* digits = "0123456789abcdef";
+        unsigned difference = 0;
+        for (size_t i = 0; i < SHA_DIGEST_LENGTH; ++i) {
+            const unsigned v1 = static_cast<unsigned char>(expectedHex[i * 2]);
+            const unsigned v2 = static_cast<unsigned char>(expectedHex[i * 2 + 1]);
+            auto hexVal = [](unsigned value) -> unsigned {
+                if (value >= '0' && value <= '9') return value - '0';
+                if (value >= 'a' && value <= 'f') return value - 'a' + 10;
+                if (value >= 'A' && value <= 'F') return value - 'A' + 10;
+                return 256;
+            };
+            const unsigned hi = hexVal(v1), lo = hexVal(v2);
+            if (hi > 15 || lo > 15) return false;
+            difference |= static_cast<unsigned>(digest[i]) ^ (hi * 16 + lo);
+        }
+        (void)digits;
+        return difference == 0;
+    }
+};
+#endif
+
 struct VitaZipFileSource {
     std::string path;
     bool segmented = false;
     std::vector<VitaZipPart> parts;
     std::vector<ZipRangeSpan> layout;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    ExtractSha1* digest = nullptr; // owned by ZipExtractor::extract, not libzip.
+#endif
     SceUID fd = -1;
     uint64_t size = 0;
     uint64_t pos = 0;
@@ -216,6 +299,13 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
                     s->lastZipError = ZIP_ER_READ;
                     return -1;
                 }
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                if (s->digest && !s->digest->observe(
+                        s->pos, out, static_cast<size_t>(n))) {
+                    s->lastZipError = ZIP_ER_READ;
+                    return -1;
+                }
+#endif
                 out += n;
                 len -= static_cast<zip_uint64_t>(n);
                 total += n;
@@ -458,7 +548,12 @@ static bool openSegmentLayout(const std::string& base,
     return true;
 }
 
-static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* outDetail, bool segmented = false) {
+static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* outDetail,
+                          bool segmented = false
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+                          , ExtractSha1* digest = nullptr
+#endif
+) {
     if (outErr) *outErr = 0;
     if (outDetail) outDetail->clear();
 
@@ -525,6 +620,16 @@ static zip_t* vitaZipOpen(const std::string& zipPath, int* outErr, std::string* 
     srcState->size = fileSize;
     srcState->segmented = segmented;
     srcState->parts = std::move(segmentParts);
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    if (digest && segmented) {
+        digest->total = fileSize;
+        for (const VitaZipPart& part : srcState->parts) {
+            digest->paths.push_back(part.path);
+            digest->layout.push_back({part.start, part.size});
+        }
+        srcState->digest = digest;
+    }
+#endif
     if (segmented) {
         std::vector<uint64_t> sizes;
         for (const VitaZipPart& part : srcState->parts) sizes.push_back(part.size);
@@ -588,7 +693,8 @@ ZipResult ZipExtractor::extract(
     const std::string& destinationDir,
     ZipProgressFn onProgress,
     ZipCancelFn shouldCancel,
-    bool segmentedZip
+    bool segmentedZip,
+    const std::string& expectedSha1
 ) {
     lastError_.clear();
     usedStagedMoves_ = false;
@@ -605,7 +711,18 @@ ZipResult ZipExtractor::extract(
 
     int zerr = 0;
     std::string openDetail;
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    ExtractSha1 digest;
+    const bool deferredSha1 = segmentedZip && !expectedSha1.empty();
+    zip_t* za = vitaZipOpen(zipPath, &zerr, &openDetail, segmentedZip,
+                            deferredSha1 ? &digest : nullptr);
+#else
+    if (!expectedSha1.empty()) {
+        setError("VPK SHA-1 verification unavailable with this TLS backend");
+        return ZipResult::IoError;
+    }
     zip_t* za = vitaZipOpen(zipPath, &zerr, &openDetail, segmentedZip);
+#endif
     if (!za) {
         char buf[320];
         sceClibSnprintf(buf, sizeof(buf),
@@ -1251,6 +1368,21 @@ ZipResult ZipExtractor::extract(
         reportProgress();
     }
 
+#ifndef PSVITAALIVE_CURL_MBEDTLS
+    if (outcome == ZipResult::Ok && deferredSha1) {
+        const uint64_t started = sceKernelGetProcessTimeWide();
+        const uint64_t fromExtraction = digest.hashed;
+        if (!digest.finish(expectedSha1)) {
+            setError("VPK compressed archive SHA-1 mismatch during extraction; package not promoted");
+            outcome = ZipResult::IoError;
+        }
+        diagnostics::log(std::string("[ZipExtractor] VPK SHA1 integrated with extraction: covered=") +
+                         std::to_string(fromExtraction) + "/" + std::to_string(digest.total) +
+                         " remaining_ms=" +
+                         std::to_string((sceKernelGetProcessTimeWide() - started) / 1000ULL) +
+                         (outcome == ZipResult::Ok ? " result=ok" : " result=failed"));
+    }
+#endif
     const int archiveCloseResult = zip_close(za);
     if (archiveCloseResult != 0) {
         if (outcome == ZipResult::Ok) {
