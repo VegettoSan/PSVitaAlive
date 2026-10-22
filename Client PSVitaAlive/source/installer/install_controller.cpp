@@ -740,9 +740,7 @@ bool InstallController::requestInstall(
         isDataOrGameFilesLinkType(linkType),
         isZipExtraction, !zipDestination.empty());
     const std::string jobId = downloads_.enqueue(
-        url, fileName, expectedBytes, keepSegmented,
-        keepSegmented && !isZipExtraction &&
-        FormatDetector::extensionOf(fileName) == "vpk");
+        url, fileName, expectedBytes, keepSegmented);
     diagnostics::log(std::string("[Installer] segmented container opt-in=") +
                      (keepSegmented ? "yes" : "no") + " file=" + fileName);
     if (jobId.empty()) {
@@ -1461,8 +1459,7 @@ int InstallController::workerMain() {
             activeZipDestination_,
             directRifPath,
             isDataOrGameFilesLinkType(activeLinkType_),
-            job->segmentedZip,
-            job->deferredSha1
+            job->segmentedZip
         );
 
         if (result == InstallDispatchResult::Ok ||
@@ -1482,8 +1479,7 @@ int InstallController::workerMain() {
         const bool corruptArchive = looksLikeDamagedZipError(lastInstallError) ||
             lastInstallError.find("Unsupported compression") != std::string::npos ||
             lastInstallError.find("unsupported compression") != std::string::npos ||
-            lastInstallError.find("encryption") != std::string::npos ||
-            lastInstallError.find("SHA-1 mismatch") != std::string::npos;
+            lastInstallError.find("encryption") != std::string::npos;
         const bool hardPermanent =
             isPermanentInstallResult(result) ||
             corruptArchive ||
