@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <cstdint>
 #include <cstring>
+#include <utility>
 #include <string>
 #include <vector>
 
@@ -138,6 +139,7 @@ struct ExtractSha1 {
     uint64_t total = 0;
     bool active = false;
     bool failed = false;
+    ZipCancelFn shouldCancel;
     unsigned char buffer[64 * 1024];
 
     ExtractSha1() { SHA1_Init(&sha); }
@@ -145,6 +147,7 @@ struct ExtractSha1 {
     bool gapUntil(uint64_t end) {
         if (end > total || hashed > end) return false;
         while (hashed < end) {
+            if (shouldCancel && shouldCancel()) return failed = true, false;
             size_t part = findZipRange(layout, hashed);
             if (part >= paths.size()) return failed = true, false;
             if (readPart != part || readFd < 0) {
@@ -714,6 +717,7 @@ ZipResult ZipExtractor::extract(
 #ifndef PSVITAALIVE_CURL_MBEDTLS
     ExtractSha1 digest;
     const bool deferredSha1 = segmentedZip && !expectedSha1.empty();
+    digest.shouldCancel = shouldCancel;
     zip_t* za = vitaZipOpen(zipPath, &zerr, &openDetail, segmentedZip,
                             deferredSha1 ? &digest : nullptr);
 #else
@@ -1478,6 +1482,279 @@ ZipResult ZipExtractor::extract(
             " bytes -> " + destinationDir);
     }
     return outcome;
+}
+
+// Restrict cleanup to the caller's unique private stage. Never recurse through
+// the actual extraction destination or any tree that could hold user files.
+static bool clearZipVerifiedStage(const std::string& root) {
+    StorageManager storage;
+    if (!storage.exists(root)) return true;
+    SceUID dir = sceIoDopen(root.c_str());
+    if (dir < 0) return false;
+    bool ok = true;
+    SceIoDirent entry{};
+    int result = 0;
+    while ((result = sceIoDread(dir, &entry)) > 0) {
+        if (!std::strcmp(entry.d_name, ".") || !std::strcmp(entry.d_name, ".."))
+            continue;
+        const std::string child = root + "/" + entry.d_name;
+        if (entry.d_stat.st_mode & SCE_S_IFDIR)
+            ok = clearZipVerifiedStage(child) && ok;
+        else
+            ok = storage.removeFile(child) && ok;
+    }
+    sceIoDclose(dir);
+    if (result < 0) ok = false;
+    if (ok) ok = storage.removeDirectory(root);
+    return ok;
+}
+
+// This mode is intentionally conservative: existing destination files and
+// deep paths retain the old hash-before-extract algorithm. No existing file
+// is overwritten in the deferred-check path, even if the archive is corrupt.
+// The fast commit uses same-device renames, not another 200 MB file copy.
+ZipResult ZipExtractor::extractVerifiedDataZip(
+    const std::string& zipPath,
+    const std::string& destinationDir,
+    ZipProgressFn onProgress,
+    ZipCancelFn shouldCancel,
+    bool segmentedZip,
+    const std::string& expectedSha1
+) {
+    if (!segmentedZip || expectedSha1.empty())
+        return extract(zipPath, destinationDir, onProgress, shouldCancel, segmentedZip);
+#ifdef PSVITAALIVE_CURL_MBEDTLS
+    setError("Deferred ZIP integrity requires SHA-1 backend");
+    return ZipResult::IoError;
+#else
+    lastError_.clear();
+    usedStagedMoves_ = false;
+    StorageManager st;
+    auto cancelled = [&]() { return shouldCancel && shouldCancel(); };
+
+    auto preverify = [&](const std::string& reason) -> ZipResult {
+        diagnostics::log("[ZipExtractor] staged ZIP fallback: " + reason);
+        std::vector<VitaZipPart> parts;
+        uint64_t total = 0;
+        std::string layoutError;
+        if (!openSegmentLayout(zipPath, parts, total, &layoutError)) {
+            setError("ZIP fallback layout invalid: " + layoutError);
+            return ZipResult::OpenFailed;
+        }
+        ExtractSha1 digest;
+        digest.shouldCancel = shouldCancel;
+        digest.total = total;
+        for (const VitaZipPart& part : parts) {
+            digest.paths.push_back(part.path);
+            digest.layout.push_back({part.start, part.size});
+        }
+        const uint64_t started = sceKernelGetProcessTimeWide();
+        const bool valid = digest.finish(expectedSha1);
+        diagnostics::log(std::string("[ZipExtractor] staged fallback SHA1 elapsed_ms=") +
+                         std::to_string((sceKernelGetProcessTimeWide() - started) / 1000ULL) +
+                         (valid ? " result=ok" : " result=failed"));
+        if (cancelled()) {
+            setError("ZIP verification cancelled");
+            return ZipResult::Cancelled;
+        }
+        if (!valid) {
+            setError("ZIP SHA-1 mismatch before replacing installed files");
+            return ZipResult::IoError;
+        }
+        return extract(zipPath, destinationDir, onProgress, shouldCancel, true);
+    };
+
+    const size_t colon = destinationDir.find(':');
+    const std::string device = colon == std::string::npos
+        ? std::string() : destinationDir.substr(0, colon + 1);
+    if ((device != "ux0:" && device != "uma0:") ||
+        !st.isDirectory(device + "data")) {
+        return preverify("destination device lacks same-volume temporary data folder");
+    }
+    const std::string baseName = device + "data/PSVA_ZIP_VERIFY_" +
+        std::to_string(static_cast<unsigned long long>(sceKernelGetProcessTimeWide()));
+    std::string stageRoot;
+    for (unsigned n = 0; n < 16; ++n) {
+        const std::string candidate = baseName + "_" + std::to_string(n);
+        if (!st.exists(candidate)) { stageRoot = candidate; break; }
+    }
+    if (stageRoot.empty()) {
+        setError("no unique ZIP verification staging path available");
+        return ZipResult::IoError;
+    }
+    const std::string stagePayload = stageRoot + "/payload";
+    const std::string destRoot = (!destinationDir.empty() &&
+                                  destinationDir.back() == '/')
+        ? destinationDir.substr(0, destinationDir.size() - 1) : destinationDir;
+
+    auto depth = [](const std::string& path) -> size_t {
+        size_t n = 0;
+        bool inside = false;
+        const size_t colonPos = path.find(':');
+        for (size_t k = colonPos == std::string::npos ? 0 : colonPos + 1;
+             k < path.size(); ++k) {
+            if (path[k] == '/' || path[k] == '\\') inside = false;
+            else if (!inside) { ++n; inside = true; }
+        }
+        return n;
+    };
+
+    int openError = 0;
+    std::string openDetails;
+    zip_t* archive = vitaZipOpen(zipPath, &openError, &openDetails, true);
+    if (!archive) {
+        setError("ZIP staged preflight cannot open archive: " + openDetails);
+        return ZipResult::OpenFailed;
+    }
+    const zip_int64_t count = zip_get_num_entries(archive, 0);
+    bool safe = count >= 0 && count <= 200000;
+    std::string fallbackWhy;
+    std::vector<std::pair<std::string, std::string>> files; // src stage -> final
+    std::vector<std::string> wantedDirs;
+    if (safe) files.reserve(static_cast<size_t>(count));
+    for (zip_int64_t i = 0; safe && i < count; ++i) {
+        if (cancelled()) {
+            zip_close(archive);
+            setError("ZIP extraction cancelled during preflight");
+            return ZipResult::Cancelled;
+        }
+        zip_stat_t stat{};
+        zip_stat_init(&stat);
+        if (zip_stat_index(archive, i, 0) != 0 || !stat.name) {
+            safe = false; fallbackWhy = "missing ZIP entry metadata"; break;
+        }
+        const std::string name(stat.name);
+        std::string finalPath, stagedPath;
+        if (!resolveSafePath(destRoot, name, finalPath) ||
+            !resolveSafePath(stagePayload, name, stagedPath)) {
+            zip_close(archive);
+            setError("unsafe ZIP entry path: " + name);
+            return ZipResult::UnsafePath;
+        }
+        if (depth(finalPath) > 10 || depth(stagedPath) > 10) {
+            safe = false; fallbackWhy = "deep ZIP paths need original extraction strategy"; break;
+        }
+        const bool isDir = !name.empty() && (name.back() == '/' || name.back() == '\\');
+        if (isDir) {
+            while (!finalPath.empty() && finalPath.back() == '/') finalPath.pop_back();
+            if (st.exists(finalPath) && !st.isDirectory(finalPath)) {
+                safe = false; fallbackWhy = "destination directory collides with a file"; break;
+            }
+            wantedDirs.push_back(finalPath);
+        } else {
+            if (st.exists(finalPath)) {
+                safe = false; fallbackWhy = "ZIP replaces existing files"; break;
+            }
+            files.push_back({stagedPath, finalPath});
+            const size_t slash = finalPath.find_last_of('/');
+            if (slash != std::string::npos)
+                wantedDirs.push_back(finalPath.substr(0, slash));
+        }
+    }
+    if (zip_close(archive) != 0) {
+        setError("ZIP staged preflight close failed");
+        return ZipResult::OpenFailed;
+    }
+    if (!safe)
+        return preverify(fallbackWhy.empty() ? "ZIP entry count or metadata unsupported" : fallbackWhy);
+
+    // Every future output is new. Stage/decompress and validate the *compressed*
+    // archive digest entirely outside the existing destination.
+    if (!st.createDirectories(stagePayload)) {
+        setError("cannot create safe ZIP temporary directory on same device");
+        return ZipResult::IoError;
+    }
+    diagnostics::log("[ZipExtractor] Data ZIP staged SHA1 extraction started files=" +
+                     std::to_string(files.size()) + " stage=" + stageRoot);
+    const uint64_t extractStarted = sceKernelGetProcessTimeWide();
+    const ZipResult extracted = extract(zipPath, stagePayload, onProgress, shouldCancel,
+                                        true, expectedSha1);
+    const std::string extractError = lastError_;
+    diagnostics::log(std::string("[ZipExtractor] Data ZIP staged SHA1 extract_ms=") +
+                     std::to_string((sceKernelGetProcessTimeWide() - extractStarted) / 1000ULL) +
+                     " status=" + std::to_string(static_cast<int>(extracted)));
+    if (extracted != ZipResult::Ok || cancelled()) {
+        if (!clearZipVerifiedStage(stageRoot))
+            diagnostics::log("[ZipExtractor] temporary staged extraction retained after error: " + stageRoot);
+        if (extracted == ZipResult::Ok) {
+            setError("ZIP extraction cancelled before commit");
+            return ZipResult::Cancelled;
+        }
+        setError(extractError);
+        return extracted;
+    }
+
+    // Restore only newly added files if any rename fails. Existing user files
+    // are never touched; if storage disappears mid-commit, keep the staging
+    // directory for manual recovery rather than deleting uncommitted bytes.
+    std::vector<std::string> createdDirs;
+    std::vector<std::pair<std::string, std::string>> moved;
+    std::vector<std::string> dirs;
+    for (const std::string& p : wantedDirs) {
+        std::string dir = p;
+        while (dir.size() > destRoot.size() &&
+               dir.compare(0, destRoot.size(), destRoot) == 0) {
+            dirs.push_back(dir);
+            const size_t slash = dir.find_last_of('/');
+            if (slash == std::string::npos) break;
+            dir.resize(slash);
+        }
+    }
+    std::sort(dirs.begin(), dirs.end(),
+        [](const std::string& a, const std::string& b) {
+            return a.size() == b.size() ? a < b : a.size() < b.size();
+        });
+    dirs.erase(std::unique(dirs.begin(), dirs.end()), dirs.end());
+
+    bool committed = true;
+    std::string commitError;
+    for (const std::string& dir : dirs) {
+        if (cancelled()) { committed = false; commitError = "ZIP commit cancelled"; break; }
+        if (st.isDirectory(dir)) continue;
+        if (st.exists(dir) || !st.createDirectories(dir)) {
+            committed = false; commitError = "ZIP commit cannot create " + dir; break;
+        }
+        createdDirs.push_back(dir);
+    }
+    if (committed) {
+        for (const auto& file : files) {
+            if (cancelled()) { committed = false; commitError = "ZIP commit cancelled"; break; }
+            if (st.exists(file.second)) {
+                committed = false;
+                commitError = "ZIP commit refused to overwrite existing file: " + file.second;
+                break;
+            }
+            if (sceIoRename(file.first.c_str(), file.second.c_str()) < 0) {
+                committed = false;
+                commitError = "ZIP staged file rename failed: " + file.second;
+                break;
+            }
+            moved.push_back(file);
+        }
+    }
+    if (!committed) {
+        bool rolledBack = true;
+        for (auto it = moved.rbegin(); it != moved.rend(); ++it)
+            if (sceIoRename(it->second.c_str(), it->first.c_str()) < 0)
+                rolledBack = false;
+        for (auto it = createdDirs.rbegin(); it != createdDirs.rend(); ++it)
+            if (!st.removeDirectory(*it)) rolledBack = false;
+        if (rolledBack) {
+            if (!clearZipVerifiedStage(stageRoot))
+                diagnostics::log("[ZipExtractor] failed to clean rolled-back stage " + stageRoot);
+        } else {
+            diagnostics::log("[ZipExtractor] rollback incomplete; preserve staged files at " + stageRoot);
+            commitError += " (rollback incomplete, staged files preserved)";
+        }
+        setError(commitError);
+        return cancelled() ? ZipResult::Cancelled : ZipResult::IoError;
+    }
+    if (!clearZipVerifiedStage(stageRoot))
+        diagnostics::log("[ZipExtractor] committed ZIP; empty stage cleanup pending: " + stageRoot);
+    diagnostics::log("[ZipExtractor] Data ZIP SHA1 verified and committed new files=" +
+                     std::to_string(files.size()) + " no join or second full read");
+    return ZipResult::Ok;
+#endif
 }
 
 } // namespace psvitaalive
