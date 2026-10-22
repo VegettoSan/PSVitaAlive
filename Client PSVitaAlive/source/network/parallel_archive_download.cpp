@@ -687,7 +687,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
         diagnostics::log(isDirectHttp(url) && !expectedSha1.empty()
             ? "[HTTP] segmented ZIP/VPK SHA-1 verification started (no join)"
             : "[HTTP] segmented ZIP/VPK download completed (no SHA-1 read needed)");
-        if (!verifySegmentedSha1(destination, partCount,
+        // Only VPKs are deferred: they extract into a private staging directory
+        // and must match the metadata digest BEFORE promotion. Data ZIPs retain
+        // pre-extraction verification because they may overwrite user files.
+        if (!(deferVpkSha1 && isDirectHttp(url) && expectedSha1.size() == 40) &&
+            !verifySegmentedSha1(destination, partCount,
                                  isDirectHttp(url) ? expectedSha1 : std::string(),
                                  checksumMismatch, onProgress, authoritativeSize
 #ifndef PSVITAALIVE_CURL_MBEDTLS
@@ -701,7 +705,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
                                     : ParallelArchiveOutcome::IoError;
         }
         sendProgress(session, true);
-        diagnostics::log(std::string("[HTTP] segmented ZIP/VPK verified; join skipped; elapsed_verify_ms=") +
+        if (deferVpkSha1 && isDirectHttp(url) && expectedSha1.size() == 40)
+            diagnostics::log("[HTTP] VPK SHA-1 deferred to staged extraction; no pre-extraction read");
+        diagnostics::log(std::string("[HTTP] segmented ZIP/VPK ranges ready; join skipped; elapsed_verify_ms=") +
             std::to_string((monotonicUs() - verifyStartedUs) / 1000ULL));
         return ParallelArchiveOutcome::Segmented;
     }
