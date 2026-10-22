@@ -500,7 +500,8 @@ InstallResult HomebrewInstaller::installVpk(
     promoterLoadedByUs_ = false;
 
     logLine("============================================================");
-    logLine(std::string("installVpk BEGIN path=") + vpkPath);
+    logLine(std::string("installVpk BEGIN path=") + vpkPath +
+            (segmentedArchive ? " source=segmented ZIP ranges" : " source=single file"));
 
     if (vpkPath.empty()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath)); return InstallResult::InvalidArgument; }
     StorageManager st;
@@ -550,6 +551,9 @@ InstallResult HomebrewInstaller::installVpk(
         onProgress(p);
     }
 
+    // The virtual ZIP source reads part0 + .range1..3 in order without
+    // concatenating them. Existing safety checks, extraction and promotion stay
+    // unchanged. The surrounding InstallController keeps ranges until success.
     // Extract with one automatic retry: transient RAM pressure / flaky deflate
     // on Vita sometimes fails the first pass; a clean second try often works.
     ZipResult zr = ZipResult::IoError;
@@ -586,7 +590,8 @@ InstallResult HomebrewInstaller::installVpk(
                 p.message = zp.currentEntry;
                 onProgress(p);
             },
-            shouldCancel
+            shouldCancel,
+            segmentedArchive
         );
         zipErr = zip.lastError();
         logLine(std::string("ZipExtractor result=") + std::to_string(static_cast<int>(zr)) +
