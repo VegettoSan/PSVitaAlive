@@ -1627,7 +1627,8 @@ HttpResult HttpClient::downloadToFile(
     int maxAttemptsOverride,
     const std::string& ifRangeValidator,
     uint64_t archiveSelectionSizeHint,
-    bool keepZipParts
+    bool keepZipParts,
+    bool deferVpkSha1
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
