@@ -740,7 +740,9 @@ bool InstallController::requestInstall(
         isDataOrGameFilesLinkType(linkType),
         isZipExtraction, !zipDestination.empty());
     const std::string jobId = downloads_.enqueue(
-        url, fileName, expectedBytes, keepSegmented);
+        url, fileName, expectedBytes, keepSegmented,
+        keepSegmented && !isZipExtraction &&
+        FormatDetector::extensionOf(fileName) == "vpk");
     diagnostics::log(std::string("[Installer] segmented container opt-in=") +
                      (keepSegmented ? "yes" : "no") + " file=" + fileName);
     if (jobId.empty()) {
@@ -1459,7 +1461,8 @@ int InstallController::workerMain() {
             activeZipDestination_,
             directRifPath,
             isDataOrGameFilesLinkType(activeLinkType_),
-            job->segmentedZip
+            job->segmentedZip,
+            job->deferredSha1
         );
 
         if (result == InstallDispatchResult::Ok ||
