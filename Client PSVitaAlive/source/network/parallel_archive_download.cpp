@@ -480,7 +480,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& expectedSha1,
     const std::string& expectedEtag,
     const std::string& expectedModified,
-    bool keepZipParts
+    bool keepZipParts,
+    bool deferVpkSha1
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
