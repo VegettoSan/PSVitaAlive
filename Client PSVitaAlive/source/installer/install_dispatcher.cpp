@@ -142,7 +142,8 @@ InstallDispatchResult InstallDispatcher::installFile(
                 onProgress(p);
             },
             shouldCancel,
-            true
+            true,
+            segmentedZip
         );
         lastTitleId_ = installer.lastTitleId();
         lastInstallPath_ = installer.lastInstallPath();
@@ -304,7 +305,8 @@ InstallDispatchResult InstallDispatcher::installFile(
                     onProgress(p);
                 },
                 shouldCancel,
-                true
+                true,
+                segmentedZip
             );
             lastTitleId_ = installer.lastTitleId();
             lastInstallPath_ = installer.lastInstallPath();
