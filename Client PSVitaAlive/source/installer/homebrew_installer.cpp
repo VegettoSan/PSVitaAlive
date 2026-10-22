@@ -592,7 +592,8 @@ InstallResult HomebrewInstaller::installVpk(
                 onProgress(p);
             },
             shouldCancel,
-            segmentedArchive
+            segmentedArchive,
+            expectedSha1
         );
         zipErr = zip.lastError();
         logLine(std::string("ZipExtractor result=") + std::to_string(static_cast<int>(zr)) +
