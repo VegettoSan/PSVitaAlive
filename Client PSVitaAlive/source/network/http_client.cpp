@@ -722,9 +722,12 @@ static bool rankArchiveAlternateUrls(
     std::vector<std::string>& urls,
     const HttpCancelFn& shouldCancel,
     uint64_t sizeHint,
-    uint64_t* validatedTotal = nullptr
+    uint64_t* validatedTotal = nullptr,
+    bool allowHttpBenchmark = false,
+    std::string* selectedHttpUrl = nullptr
 ) {
     if (validatedTotal) *validatedTotal = 0;
+    if (selectedHttpUrl) selectedHttpUrl->clear();
     if (urls.empty()) return false;
     {
         char beginMsg[280];
@@ -808,22 +811,45 @@ static bool rankArchiveAlternateUrls(
         return true;
     }
 
-    // Benchmark HTTPS storage nodes only.
-    archiveNodeDiagnostic("BENCHMARK_BEGIN mode=HTTPS each_probe=256KiB");
+    // Archive.org download accelerator: benchmark HTTP on Archive's own
+    // storage nodes; if all nodes fail, fall back to the HTTPS benchmarks.
+    // HTTP carries NO cryptographic authenticity guarantee without SHA-1.
+    bool useHttp = allowHttpBenchmark;
+    archiveNodeDiagnostic(useHttp
+        ? "BENCHMARK_BEGIN mode=HTTP each_probe=256KiB"
+        : "BENCHMARK_BEGIN mode=HTTPS each_probe=256KiB");
     std::vector<ArchiveProbeResult> probes;
     probes.reserve(urls.size());
-    for (const auto& candidate : urls) {
-        if (shouldCancel && shouldCancel()) return false;
-        ArchiveProbeResult probe;
-        probeArchiveStorageUrl(candidate, ARCHIVE_SELECTOR_PROBE_BYTES, shouldCancel, probe);
-        if (probe.effectiveUrl.compare(0, 8, "https://") != 0)
-            probe.ok = false;
-        probes.push_back(probe);
-    }
+    auto measure = [&](bool http) {
+        probes.clear();
+        for (const auto& candidate : urls) {
+            if (shouldCancel && shouldCancel()) return;
+            ArchiveProbeResult probe;
+            std::string request = candidate;
+            if (http && request.compare(0, 8, "https://") == 0)
+                request = "http://" + request.substr(8);
+            probeArchiveStorageUrl(request, ARCHIVE_SELECTOR_PROBE_BYTES, shouldCancel, probe);
+            if (http && (!probe.ok || probe.total == 0 ||
+                         probe.effectiveUrl.compare(0, 7, "http://") != 0 ||
+                         !archiveEffectiveUrlUsable(probe.effectiveUrl)))
+                probe.ok = false;
+            else if (!http && probe.effectiveUrl.compare(0, 8, "https://") != 0)
+                probe.ok = false;
+            probes.push_back(probe);
+        }
+    };
+    measure(useHttp);
+    if (shouldCancel && shouldCancel()) return false;
     bool anyOk = false;
     for (const auto& p : probes) if (p.ok) { anyOk = true; break; }
+    if (!anyOk && useHttp) {
+        archiveNodeDiagnostic("BENCHMARK_HTTP_UNAVAILABLE fallback=HTTPS");
+        useHttp = false;
+        measure(false);
+        for (const auto& p : probes) if (p.ok) { anyOk = true; break; }
+    }
     if (!anyOk) {
-        httpDiagnostic("archive selector: HTTPS speed probes failed; keep normal archive.org path");
+        httpDiagnostic("archive selector: speed probes failed; keep normal archive.org path");
         return false;
     }
 
@@ -882,7 +908,10 @@ static bool rankArchiveAlternateUrls(
     for (const auto& p : probes) {
         std::string chosenUrl = p.url;
         if (p.ok && archiveEffectiveUrlUsable(p.effectiveUrl)) chosenUrl = p.effectiveUrl;
-        // Failover may never downgrade payloads to unencrypted HTTP.
+        // Preserve encrypted URLs for serial failover: HTTP is only used
+        // for the separately validated parallel Archive.org fast path.
+        if (useHttp && chosenUrl.compare(0, 7, "http://") == 0)
+            chosenUrl = "https://" + chosenUrl.substr(7);
         if (chosenUrl.compare(0, 8, "https://") != 0) continue;
         const std::string chosenHost = archiveUrlHostLower(chosenUrl);
         bool duplicateHost = false;
@@ -920,6 +949,9 @@ static bool rankArchiveAlternateUrls(
         urls.front().c_str());
     httpDiagnostic(chosen);
     archiveNodeDiagnostic(std::string("SELECTED ") + chosen);
+    if (useHttp && selectedHttpUrl && probes.front().ok &&
+        probes.front().effectiveUrl.compare(0, 7, "http://") == 0)
+        *selectedHttpUrl = probes.front().effectiveUrl;
     if (validatedTotal && probes.front().ok)
         *validatedTotal = probes.front().total;
     return probes.front().ok;
@@ -1699,6 +1731,7 @@ HttpResult HttpClient::downloadToFile(
     // The node selector already made an authoritative 206 Range request.
     // Reuse that observed total instead of opening another HTTPS connection.
     uint64_t selectedArchiveTotal = 0;
+    std::string selectedArchiveHttpUrl;
 
     if (isArchive) {
         std::string archiveId, archiveFile;
@@ -1724,7 +1757,8 @@ HttpResult HttpClient::downloadToFile(
         if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
             archiveMetaTried = true;
             if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint,
-                                         &selectedArchiveTotal) && !archiveAltUrls.empty()) {
+                                         &selectedArchiveTotal, true,
+                                         &selectedArchiveHttpUrl) && !archiveAltUrls.empty()) {
                 activeUrl = archiveAltUrls.front();
                 archiveAltIndex = 1;
                 char selected[420];
@@ -1775,10 +1809,33 @@ HttpResult HttpClient::downloadToFile(
         }
         if (rangeReady && rangeProbe.total >= 1024ULL * 1024ULL) {
             std::string parallelUrl = isArchive ? activeUrl : rangeProbe.effectiveUrl;
-            // Never transfer unencrypted payloads through the parallel range path.
-            if (parallelUrl.compare(0, 8, "https://") != 0) {
+            // Restore Archive.org's measured direct-HTTP storage acceleration,
+            // without SHA-1. Never use it for generic catalog URLs.
+            if (isArchive && !selectedArchiveHttpUrl.empty() &&
+                archiveEffectiveUrlUsable(selectedArchiveHttpUrl) &&
+                selectedArchiveHttpUrl.compare(0, 7, "http://") == 0) {
+                parallelUrl = selectedArchiveHttpUrl;
+                httpDiagnostic("archive direct HTTP chosen from successful 206 speed benchmark (no SHA-1)");
+            } else if (isArchive &&
+                       activeUrl.compare(0, 8, "https://") == 0 &&
+                       archiveEffectiveUrlUsable(activeUrl)) {
+                // Small files skip the 256 KiB benchmark: validate HTTP 206
+                // using the authoritative HTTPS Range total before switching.
+                const std::string directHttp = "http://" + activeUrl.substr(8);
+                ArchiveProbeResult httpProbe;
+                if (probeArchiveStorageUrl(directHttp, 1, ctx.shouldCancel, httpProbe) &&
+                    httpProbe.total == rangeProbe.total &&
+                    httpProbe.effectiveUrl.compare(0, 7, "http://") == 0 &&
+                    archiveEffectiveUrlUsable(httpProbe.effectiveUrl)) {
+                    parallelUrl = httpProbe.effectiveUrl;
+                    httpDiagnostic("archive direct HTTP accepted by 206 size probe (no SHA-1)");
+                }
+            }
+            if (parallelUrl.compare(0, 8, "https://") != 0 &&
+                !(isArchive && parallelUrl.compare(0, 7, "http://") == 0 &&
+                  archiveEffectiveUrlUsable(parallelUrl))) {
                 rangeReady = false;
-                httpDiagnostic("parallel range skipped: source is not HTTPS");
+                httpDiagnostic("parallel range skipped: ineligible source");
             }
             sceIoClose(ctx.fd);
             ctx.fd = -1;
