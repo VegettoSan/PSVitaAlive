@@ -355,7 +355,8 @@ static bool joinParts(
 
 
 static bool verifySegmentedSha1(const std::string& base, size_t partCount,
-                                const std::string& expectedSha1, bool& mismatch
+                                const std::string& expectedSha1, bool& mismatch,
+                                const HttpProgressFn& onProgress, uint64_t totalBytes
 #ifndef PSVITAALIVE_CURL_MBEDTLS
                                 , const SHA_CTX* prehashedFirstPart
 #endif
@@ -363,6 +364,8 @@ static bool verifySegmentedSha1(const std::string& base, size_t partCount,
     mismatch = false;
     if (expectedSha1.empty()) return true;
 #ifdef PSVITAALIVE_CURL_MBEDTLS
+    (void)onProgress;
+    (void)totalBytes;
     return false;
 #else
     if (expectedSha1.size() != 40) return false;
@@ -370,6 +373,27 @@ static bool verifySegmentedSha1(const std::string& base, size_t partCount,
     SHA1_Init(&sha);
     const size_t begin = prehashedFirstPart ? 1 : 0;
     if (prehashedFirstPart) sha = *prehashedFirstPart;
+    uint64_t verifiedBytes = 0;
+    if (prehashedFirstPart) {
+        SceIoStat firstStat{};
+        if (sceIoGetstat(base.c_str(), &firstStat) < 0 || firstStat.st_size <= 0)
+            return false;
+        verifiedBytes = static_cast<uint64_t>(firstStat.st_size);
+    }
+    uint64_t lastReported = verifiedBytes;
+    auto reportVerified = [&]() {
+        if (!onProgress) return;
+        HttpProgress p;
+        p.total = totalBytes;
+        p.downloaded = totalBytes ? totalBytes - 1 : 0;
+        p.absoluteDownloaded = p.downloaded;
+        p.finalizing = true;
+        p.integrityVerifiedBytes = verifiedBytes;
+        p.integrityTotalBytes = totalBytes;
+        onProgress(p);
+        lastReported = verifiedBytes;
+    };
+    reportVerified();
     std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[kJoinBuffer]);
     if (!buf) return false;
     for (size_t i = begin; i < partCount; ++i) {
@@ -381,10 +405,15 @@ static bool verifySegmentedSha1(const std::string& base, size_t partCount,
             if (n < 0) { ok = false; break; }
             if (n == 0) break;
             SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
+            verifiedBytes += static_cast<uint64_t>(n);
+            if (verifiedBytes - lastReported >= 4ULL * 1024ULL * 1024ULL)
+                reportVerified();
         }
         sceIoClose(fd);
         if (!ok) return false;
     }
+    if (verifiedBytes != totalBytes) return false;
+    reportVerified();
     unsigned char digest[SHA_DIGEST_LENGTH];
     SHA1_Final(digest, &sha);
     static const char* hex = "0123456789abcdef";
@@ -655,7 +684,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     if (keepZipParts) {
         if (!verifySegmentedSha1(destination, partCount,
                                  isDirectHttp(url) ? expectedSha1 : std::string(),
-                                 checksumMismatch
+                                 checksumMismatch, onProgress, authoritativeSize
 #ifndef PSVITAALIVE_CURL_MBEDTLS
                                  , parts[0].streamingSha ? &parts[0].firstPartSha : nullptr
 #endif
