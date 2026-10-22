@@ -144,7 +144,8 @@ InstallDispatchResult InstallDispatcher::installFile(
             },
             shouldCancel,
             true,
-            segmentedZip
+            segmentedZip,
+            deferredSha1
         );
         lastTitleId_ = installer.lastTitleId();
         lastInstallPath_ = installer.lastInstallPath();
@@ -307,7 +308,8 @@ InstallDispatchResult InstallDispatcher::installFile(
                 },
                 shouldCancel,
                 true,
-                segmentedZip
+                segmentedZip,
+                deferredSha1
             );
             lastTitleId_ = installer.lastTitleId();
             lastInstallPath_ = installer.lastInstallPath();
