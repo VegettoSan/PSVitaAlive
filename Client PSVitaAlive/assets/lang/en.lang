@@ -423,10 +423,10 @@ ZIP_RECOVERY_DELETE_FAILED=Could not delete the recovered ZIP
 ZIP_RECOVERY_CHOOSE_ACTION=Choose Keep ZIP or Delete ZIP first.
 
 # Final download phase / install timer
-DOWNLOAD_VERIFYING_TITLE=Verifying download
-DOWNLOAD_VERIFYING_PARTS=Joining parts and checking file integrity...
-DOWNLOAD_VERIFYING_SEGMENTS=Checking file integrity...
-DOWNLOAD_VERIFYING_HINT=Large files may take a while to verify. Please wait.
+DOWNLOAD_VERIFYING_TITLE=Finishing download
+DOWNLOAD_VERIFYING_PARTS=Joining downloaded parts...
+DOWNLOAD_VERIFYING_SEGMENTS=Finishing download...
+DOWNLOAD_VERIFYING_HINT=Large files may take time to assemble. Please wait.
 LABEL_ELAPSED=Elapsed
 
 # QR / Web handoff
