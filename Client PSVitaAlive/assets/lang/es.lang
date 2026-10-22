@@ -423,10 +423,10 @@ ZIP_RECOVERY_DELETE_FAILED=No se pudo borrar el ZIP recuperado
 ZIP_RECOVERY_CHOOSE_ACTION=Primero elige Conservar ZIP o Borrar ZIP.
 
 # Final download phase / install timer
-DOWNLOAD_VERIFYING_TITLE=Verificando descarga
-DOWNLOAD_VERIFYING_PARTS=Uniendo partes y comprobando integridad...
-DOWNLOAD_VERIFYING_SEGMENTS=Comprobando integridad del archivo...
-DOWNLOAD_VERIFYING_HINT=La comprobación de archivos grandes puede tardar. Espera, por favor.
+DOWNLOAD_VERIFYING_TITLE=Finalizando descarga
+DOWNLOAD_VERIFYING_PARTS=Uniendo partes descargadas...
+DOWNLOAD_VERIFYING_SEGMENTS=Finalizando descarga...
+DOWNLOAD_VERIFYING_HINT=Los archivos grandes pueden tardar en unirse. Espera, por favor.
 LABEL_ELAPSED=Transcurrido
 
 # QR / Web handoff
