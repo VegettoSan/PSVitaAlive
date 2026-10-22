@@ -77,6 +77,14 @@ def safe_filename(url: str) -> str:
     return name[:200]
 
 
+HTML_EXTENSIONS = {".html", ".htm", ".xhtml"}
+
+
+def looks_like_html(chunk: bytes) -> bool:
+    head = chunk[:512].lstrip().lower()
+    return head.startswith((b"<!doctype html", b"<html", b"<head", b"<body"))
+
+
 # ── Data model ───────────────────────────────────────────────────────────────
 
 def build_lookups(authors_data, categories_data) -> dict:
@@ -93,6 +101,21 @@ def build_lookups(authors_data, categories_data) -> dict:
                               for s in c.get("subcategories", []) if s.get("id")},
         }
     return {"authors": authors, "categories": categories}
+
+
+def file_identity(link: dict) -> tuple:
+    """Key that is equal for copies of one file and different for other files.
+
+    A copy is a link with the same type, PlayStation content ID and exact byte
+    size. The content ID alone is not enough: an Update keeps its content ID across
+    versions, and its size tells the versions apart. Links without a known size
+    are keyed by URL, so they are never collapsed.
+    """
+    kind = link.get("type", "")
+    size = int(link.get("size") or 0)
+    if not size:
+        return (kind, link["url"])
+    return (kind, link.get("content_id", ""), size)
 
 
 class CatalogEntry:
@@ -132,22 +155,21 @@ class CatalogEntry:
     def selected_links(self, recommended_only: bool = True):
         """Return the links to download for this entry.
 
-        With recommended_only, mirror / alternate links are dropped wherever the
-        catalog marks a recommended link for the same type. Groups with no
-        recommended flag at all (e.g. Vita Updates and DLC) are kept whole, so
-        nothing is silently lost.
+        With recommended_only, mirror copies of the same file are collapsed into
+        one link, keeping the recommended copy (otherwise the first one listed).
+        See file_identity for what counts as the same file. Other regions, DLC,
+        updates of other versions and extra files are never collapsed.
         """
         links = self.downloadable_links()
         if not recommended_only:
             return links
-        groups: dict[str, list] = {}
+        picked: dict[tuple, dict] = {}
         for link in links:
-            groups.setdefault(link.get("type", ""), []).append(link)
-        chosen = []
-        for group in groups.values():
-            rec = [l for l in group if l.get("recommended")]
-            chosen.extend(rec if rec else group)
-        return chosen
+            key = file_identity(link)
+            current = picked.get(key)
+            if current is None or (link.get("recommended") and not current.get("recommended")):
+                picked[key] = link
+        return list(picked.values())
 
     def total_download_size(self) -> int:
         return sum(l.get("size", 0) or 0 for l in self.downloadable_links())
@@ -311,11 +333,15 @@ class FilterProxyModel(QSortFilterProxyModel):
 
 # ── Download worker ──────────────────────────────────────────────────────────
 
+OK, UNVERIFIED, FAILED, CANCELLED = "ok", "unverified", "failed", "cancelled"
+
+
 class DownloadSignals(QObject):
     progress = Signal(str, int, int)   # filename, downloaded, total
-    finished = Signal(str, bool)       # filename, success
+    finished = Signal(str, str)        # filename, one of OK / UNVERIFIED / FAILED / CANCELLED
     log = Signal(str)                  # log message
-    all_done = Signal()
+    # succeeded (including unverified), unverified, failed, cancelled
+    all_done = Signal(int, int, int, int)
 
 
 class DownloadWorker(QThread):
@@ -324,8 +350,11 @@ class DownloadWorker(QThread):
     Each file is written to "<name>.part" and only renamed into place after the
     byte count has been verified. A file is never reported as successful unless
     its size matches the catalog size (when known) and the server's
-    Content-Length (when it is sent unencoded). Existing files are only kept
-    when their size is known and matches; otherwise they are fetched again.
+    Content-Length (when it is sent unencoded). A response that is an HTML page
+    instead of the requested file is reported as failed. Existing files are only
+    kept when their size is known and matches; otherwise they are fetched again.
+    A file whose size is unknown and has no Content-Length cannot be checked for
+    completeness, so it is reported as unverified rather than as fully confirmed.
     """
 
     def __init__(self, tasks: list[dict], parent=None):
@@ -339,41 +368,69 @@ class DownloadWorker(QThread):
 
     def run(self):
         session = make_session()
-        for task in self.tasks:
+        counts = {OK: 0, UNVERIFIED: 0, FAILED: 0, CANCELLED: 0}
+        for index, task in enumerate(self.tasks):
             if self._cancel:
+                counts[CANCELLED] += len(self.tasks) - index
                 break
-            url = task["url"]
-            dest = Path(task["dest"])
-            expected = int(task.get("size") or 0)
-            fname = dest.name
-            self.signals.log.emit(f"Downloading: {task.get('name', fname)}")
+            status = self._process(session, task)
+            counts[status] += 1
+            self.signals.finished.emit(Path(task["dest"]).name, status)
 
+        self.signals.all_done.emit(
+            counts[OK] + counts[UNVERIFIED], counts[UNVERIFIED],
+            counts[FAILED], counts[CANCELLED],
+        )
+
+    def _process(self, session, task: dict) -> str:
+        url = task["url"]
+        dest = Path(task["dest"])
+        expected = int(task.get("size") or 0)
+        fname = dest.name
+        self.signals.log.emit(f"Downloading: {task.get('name', fname)}")
+        try:
             dest.parent.mkdir(parents=True, exist_ok=True)
             if expected and dest.is_file() and dest.stat().st_size == expected:
                 self.signals.log.emit(f"  Skipped (complete): {fname}")
-                self.signals.finished.emit(fname, True)
-                continue
+                return OK
 
             part = dest.with_name(dest.name + ".part")
-            ok, detail = self._fetch(session, url, part, expected, fname)
-            if ok:
-                os.replace(part, dest)
-                self.signals.log.emit(f"  Done: {fname} ({detail})")
-            else:
-                part.unlink(missing_ok=True)
-                if self._cancel:
+            allow_html = dest.suffix.lower() in HTML_EXTENSIONS
+            status, detail = self._fetch(session, url, part, expected, fname, allow_html)
+            if status in (FAILED, CANCELLED):
+                discard(part)
+                if status == CANCELLED:
                     self.signals.log.emit(f"  Cancelled: {fname}")
                 else:
                     self.signals.log.emit(f"  FAILED: {fname} — {detail}")
-            self.signals.finished.emit(fname, ok)
+                return status
 
-        self.signals.all_done.emit()
+            # The file is only moved to its final name once it is complete. If the
+            # move fails (e.g. the destination is locked), discard the partial copy.
+            try:
+                os.replace(part, dest)
+            except OSError as exc:
+                discard(part)
+                self.signals.log.emit(f"  FAILED: {fname} — could not move into place: {exc}")
+                return FAILED
 
-    def _fetch(self, session, url, part: Path, expected: int, fname: str):
-        """Stream url into part. Returns (ok, detail)."""
+            if status == UNVERIFIED:
+                self.signals.log.emit(f"  Done (size unknown, not verified): {fname} ({detail})")
+            else:
+                self.signals.log.emit(f"  Done: {fname} ({detail})")
+            return status
+        except Exception as exc:
+            self.signals.log.emit(f"  FAILED: {fname} — {exc}")
+            return FAILED
+
+    def _fetch(self, session, url, part: Path, expected: int, fname: str, allow_html: bool):
+        """Stream url into part. Returns (status, detail)."""
+        html_error = "server returned an HTML page instead of the file"
         try:
             with session.get(url, stream=True, timeout=(30, 300)) as r:
                 r.raise_for_status()
+                if not allow_html and "html" in r.headers.get("Content-Type", "").lower():
+                    return FAILED, html_error
                 encoding = r.headers.get("Content-Encoding", "identity").lower()
                 declared = None
                 if encoding in ("", "identity"):
@@ -384,20 +441,32 @@ class DownloadWorker(QThread):
                 with open(part, "wb") as f:
                     for chunk in r.iter_content(chunk_size=1 << 18):
                         if self._cancel:
-                            return False, "cancelled"
+                            return CANCELLED, "cancelled"
+                        if written == 0 and not allow_html and looks_like_html(chunk):
+                            return FAILED, html_error
                         f.write(chunk)
                         written += len(chunk)
                         self.signals.progress.emit(fname, written, total)
 
+            if written == 0:
+                return FAILED, "server returned an empty response"
             if expected and written != expected:
-                return False, f"size mismatch: got {human_size(written)}, expected {human_size(expected)}"
+                return FAILED, f"size mismatch: got {human_size(written)}, expected {human_size(expected)}"
             if declared and written != declared:
-                return False, f"incomplete: got {written} of {declared} bytes"
+                return FAILED, f"incomplete: got {written} of {declared} bytes"
             if not expected and not declared:
-                self.signals.log.emit("  Note: size unknown, completeness could not be verified")
-            return True, human_size(written)
+                return UNVERIFIED, human_size(written)
+            return OK, human_size(written)
         except Exception as exc:
-            return False, str(exc)
+            return FAILED, str(exc)
+
+
+def discard(path: Path):
+    """Remove a partial file, ignoring errors (it may be locked or already gone)."""
+    try:
+        path.unlink(missing_ok=True)
+    except OSError:
+        pass
 
 
 # ── Catalog loader (background thread) ───────────────────────────────────────
@@ -570,8 +639,9 @@ class MainWindow(QMainWindow):
         self.recommended_only = QCheckBox("Recommended sources only")
         self.recommended_only.setChecked(True)
         self.recommended_only.setToolTip(
-            "When ticked, mirror and alternate links are skipped wherever the catalog "
-            "marks a recommended link. Untick to download every available link."
+            "When ticked, mirror copies of the same file are collapsed to one link, "
+            "preferring the recommended one. Other regions, DLC and updates are always kept. "
+            "Untick to download every available link, including mirrors."
         )
         dl_row.addWidget(self.recommended_only)
 
@@ -860,17 +930,21 @@ class MainWindow(QMainWindow):
         else:
             self.status_bar.showMessage(f"{fname}: {human_size(downloaded)}")
 
-    def _on_dl_file_done(self, fname, success):
+    def _on_dl_file_done(self, fname, status):
         self._dl_done_count += 1
         self.progress_bar.setValue(self._dl_done_count)
 
-    def _on_dl_all_done(self):
+    def _on_dl_all_done(self, succeeded, unverified, failed, cancelled):
         self.progress_bar.setVisible(False)
         self.dl_selected_btn.setEnabled(True)
         self.dl_all_btn.setEnabled(True)
         self.cancel_btn.setEnabled(False)
-        self.status_bar.showMessage(f"Download complete: {self._dl_done_count}/{self._dl_total} files", 10000)
-        self.log_text.append(f"\nAll done — {self._dl_done_count}/{self._dl_total} files.")
+        summary = f"{succeeded} succeeded"
+        if unverified:
+            summary += f" ({unverified} with unknown size, not verified)"
+        summary += f", {failed} failed, {cancelled} cancelled, of {self._dl_total} files"
+        self.status_bar.showMessage(f"Download finished: {summary}", 10000)
+        self.log_text.append(f"\nAll done — {summary}.")
 
     def _cancel_download(self):
         if self._worker:

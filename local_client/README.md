@@ -41,11 +41,14 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
 - **Download Selected** downloads the files for the rows you have selected.
   **Download All Visible** downloads everything in the current filtered list, after
   asking you to confirm.
-- **Recommended sources only** (on by default) skips mirror and alternate links
-  when the catalog marks a recommended link for the same file type. Untick it to
-  download every available link, including mirrors. The confirmation dialog shows
-  which mode is active.
+- **Recommended sources only** (on by default) collapses mirror copies of the same
+  file into one download, using the recommended copy when the catalog marks one.
+  Other regions, DLC, updates and extra files are always kept. Untick it to download
+  every available link, including every mirror. The confirmation dialog shows which
+  mode is active.
 - **Cancel** stops after the current file. Unfinished files are removed.
+- When a batch finishes, the log and status bar show how many files succeeded, how
+  many failed, and how many were cancelled.
 - **Choose Folder** changes where files are saved. The default is
   `Downloads/PSVitaAlive_Archive` in your home folder.
 
@@ -55,8 +58,15 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
   once it is complete.
 - A file counts as successful only if its size matches the catalog size, and the
   server's reported length when one is sent.
+- If the catalog and the server both give no size, the file is saved but reported
+  as "not verified", since a cut-off transfer cannot be detected.
+- A response that is an HTML web page instead of the file is reported as failed. This
+  happens with some file-hosting pages, which return a web page rather than the file.
+- An empty response is reported as failed.
 - An existing file is kept only if its size matches the catalog. If the catalog has
   no size for it, the file is downloaded again.
+- If a finished file cannot be moved to its final name (for example because it is
+  open in another program), it is reported as failed and the partial copy is removed.
 - Failed or cancelled downloads leave no partial file behind.
 
 ## Troubleshooting
@@ -67,3 +77,4 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
 | Installing dependencies failed | Check your internet connection and run the installer again. If it keeps failing, delete the `.venv` folder next to the script and run it again. |
 | Author or category shows as an ID | The catalog metadata could not be downloaded. Use Refresh Catalogs once you're back online. |
 | A file failed with "size mismatch" | The catalog size and the server copy disagree. Try again later; if it persists, report it. |
+| A file failed with "server returned an HTML page" | The link opened a web page instead of the file, usually a file-hosting page. Untick "Recommended sources only" to try the other links for that entry, or report the link. |
