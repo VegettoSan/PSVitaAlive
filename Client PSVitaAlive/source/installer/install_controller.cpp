@@ -1208,12 +1208,19 @@ int InstallController::workerMain() {
     current_.store(0);
     total_.store(0);
     speed_.store(0);
-    // Slower SD2Vita / USB media may still be flushing the last blocks after rename.
-    // ZIP EOCD / ZIP64 locators live at EOF — reading too early can look "incomplete".
+    // With direct segmented ZIP/VPK, DownloadManager has already closed and
+    // renamed every range and checked the authoritative combined size.
+    // Avoid an unconditional 3-second delay on each successful transfer.
+    // Non-segmented/serial installs keep the conservative SD2Vita settle.
     setStage("Installing");
-    setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgFinalizingStorage));
-    diagnostics::log(std::string("[Installer] post-download storage settle before extract path=") + job->finalPath);
-    sceKernelDelayThread(3000 * 1000); // 3s settle — margin for slower SD2Vita/USB
+    if (job->segmentedZip) {
+        diagnostics::log(std::string("[Installer] segmented ZIP/VPK finalized; skipping 3s storage settle path=") +
+                         job->finalPath);
+    } else {
+        setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgFinalizingStorage));
+        diagnostics::log(std::string("[Installer] post-download storage settle before extract path=") + job->finalPath);
+        sceKernelDelayThread(3000 * 1000); // preserve legacy behavior for serial/joined files
+    }
     {
         // Touch the file end so the FS materializes size/metadata before zip_open.
         const SceUID fd = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
