@@ -5143,6 +5143,21 @@
     "icon": "https://github.com/largepelotas.png"
   },
   {
+    "id": "largevegetable",
+    "name": "LargeVegetable",
+    "avatar": "https://avatars.githubusercontent.com/u/345090473?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/LargeVegetable",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/345090473?v=4"
+  },
+  {
     "id": "lazyox199",
     "name": "LazyOx199",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
