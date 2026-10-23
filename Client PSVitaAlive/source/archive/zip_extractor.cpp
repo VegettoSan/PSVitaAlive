@@ -1,4 +1,5 @@
 #include "archive/zip_extractor.hpp"
+#include "archive/extraction_directory_cache.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
@@ -55,6 +56,26 @@ const char* compressionMethodName(zip_uint16_t method) {
         case 93: return "zstd";
         default: return "other";
     }
+}
+// Timing counters are stack-only and bounded: no allocation or per-entry log I/O.
+// The clock is measured *around* each operation, including filesystem waits.
+// zip_fread includes libzip decompression, input reads and CRC work.
+struct ZipOperationTiming {
+    uint64_t us = 0;
+    uint64_t calls = 0;
+};
+struct ZipIoTimings {
+    ZipOperationTiming directory, pathStat, zipStat, zipFileOpen, zipRead;
+    ZipOperationTiming ioOpen, ioWrite, zipFileClose, ioClose, replacement, cooperativeYield;
+};
+
+template <typename Fn>
+auto timedZipOperation(ZipOperationTiming& timing, Fn&& fn) -> decltype(fn()) {
+    const uint64_t before = sceKernelGetProcessTimeWide();
+    auto result = fn();
+    timing.us += sceKernelGetProcessTimeWide() - before;
+    ++timing.calls;
+    return result;
 }
 } // namespace
 
@@ -605,6 +626,7 @@ ZipResult ZipExtractor::extract(
 ) {
     lastError_.clear();
     usedStagedMoves_ = false;
+    const uint64_t extractStartUs = sceKernelGetProcessTimeWide();
     StorageManager st;
 
     // VitaDB extracts into an already-installed app folder (ux0:/app/TITLEID). On real
@@ -637,6 +659,7 @@ ZipResult ZipExtractor::extract(
 
     ZipProgress prog;
     prog.entriesTotal = static_cast<uint64_t>(numEntries);
+    const uint64_t preflightStartUs = sceKernelGetProcessTimeWide();
 
     // Pre-scan: sum uncompressed sizes, log large/unusual entries, then verify free space.
     uint64_t uncompressedTotal = 0;
@@ -951,8 +974,10 @@ ZipResult ZipExtractor::extract(
                      std::to_string(requiredDirs.size()) +
                      " staged_branches=" + std::to_string(staged.size()));
 
+    const uint64_t preflightUs = sceKernelGetProcessTimeWide() - preflightStartUs;
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
+    ZipIoTimings timing;
 
     // Limit UI handoffs while retaining byte-level progress inside large
     // entries. Cancellation is still checked for every extraction chunk.
@@ -968,10 +993,15 @@ ZipResult ZipExtractor::extract(
     };
     reportProgress(true);
 
-    // Consecutive ZIP entries very often share the same parent directory.
-    // Avoid a stat() plus recursive mkdir walk per tiny file.
+    // Bounded directory cache: useful even when small-file entries alternate
+    // between parents. Unverified parents still use the original stat/mkdir path.
+    ExtractionDirectoryCache ensuredParents;
     std::string lastEnsuredParent;
+    uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
+    uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
+    bool exclusiveCreationSupported = true;
     uint64_t bytesSinceYield = 0;
+    const uint64_t loopStartUs = sceKernelGetProcessTimeWide();
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         if (shouldCancel && shouldCancel()) {
@@ -982,7 +1012,9 @@ ZipResult ZipExtractor::extract(
 
         zip_stat_t zs;
         zip_stat_init(&zs);
-        if (zip_stat_index(za, i, 0, &zs) != 0) {
+        if (timedZipOperation(timing.zipStat, [&] {
+                return zip_stat_index(za, i, 0, &zs);
+            }) != 0) {
             setError(std::string("zip_stat_index failed: ") + zipArchiveError(za));
             outcome = ZipResult::InvalidEntry;
             break;
@@ -1004,10 +1036,18 @@ ZipResult ZipExtractor::extract(
         if (branch) outPath = branch->staging + originalPath.substr(branch->destination.size());
 
         if (isDir) {
-            if (!st.createDirectories(outPath) && !st.isDirectory(outPath)) {
-                setError(std::string("mkdir failed: ") + outPath);
-                outcome = ZipResult::IoError;
-                break;
+            if (outPath == lastEnsuredParent || ensuredParents.contains(outPath)) {
+                ++directoryCacheHits;
+            } else {
+                ++directoryCacheChecks;
+                if (!timedZipOperation(timing.directory, [&] {
+                        return st.createDirectories(outPath) || st.isDirectory(outPath);
+                    })) {
+                    setError(std::string("mkdir failed: ") + outPath);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                ensuredParents.remember(outPath);
             }
             lastEnsuredParent = outPath;
             ++prog.entriesDone;
@@ -1018,58 +1058,88 @@ ZipResult ZipExtractor::extract(
         const auto slash = outPath.find_last_of('/');
         if (slash != std::string::npos) {
             const std::string parent = outPath.substr(0, slash);
-            if (parent != lastEnsuredParent) {
-                if (!st.isDirectory(parent) && !st.createDirectories(parent)) {
+            if (parent == lastEnsuredParent || ensuredParents.contains(parent)) {
+                ++directoryCacheHits;
+            } else {
+                ++directoryCacheChecks;
+                if (!timedZipOperation(timing.directory, [&] {
+                        return st.isDirectory(parent) || st.createDirectories(parent);
+                    })) {
                     setError(std::string("mkdir failed: ") + parent);
                     outcome = ZipResult::IoError;
                     break;
                 }
-                lastEnsuredParent = parent;
+                ensuredParents.remember(parent);
             }
+            lastEnsuredParent = parent;
         }
 
-        zip_file_t* zf = zip_fopen_index(za, i, 0);
+        zip_file_t* zf = timedZipOperation(timing.zipFileOpen, [&] {
+            return zip_fopen_index(za, i, 0);
+        });
         if (!zf) {
             setError(std::string("zip_fopen_index failed: ") + name + " (" + zipArchiveError(za) + ")");
             outcome = ZipResult::InvalidEntry;
             break;
         }
 
-        // Existing files are NEVER truncated before a replacement has been
-        // extracted and verified. New files keep the fast direct-write path.
-        const bool replacingExisting = st.exists(outPath);
-        if (replacingExisting && st.isDirectory(outPath)) {
-            zip_fclose(zf);
-            setError("ZIP file destination is a directory: " + outPath);
-            outcome = ZipResult::InvalidEntry;
-            break;
-        }
+        // Create new files without a redundant getstat. EXCL must NOT truncate
+        // an existing file. If the filesystem rejects EXCL for a missing file,
+        // use the original checked path for this and all later entries.
+        SceUID fd = -1;
+        if (exclusiveCreationSupported)
+            fd = timedZipOperation(timing.ioOpen, [&] {
+                return sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
+            });
+
+        bool replacingExisting = false;
         std::string tempPath, backupPath, writePath = outPath;
-        if (replacingExisting) {
-            const std::string parent = outPath.substr(0, outPath.find_last_of('/'));
-            for (unsigned slot = 0; slot < 32; ++slot) {
-                const std::string suffix = std::to_string(static_cast<unsigned long long>(i)) +
-                    "_" + std::to_string(slot);
-                const std::string candidate = parent + "/._psva_" + suffix;
-                const std::string temp = candidate + ".tmp";
-                const std::string backup = candidate + ".bak";
-                if (!st.exists(temp) && !st.exists(backup)) {
-                    tempPath = temp;
-                    backupPath = backup;
-                    break;
-                }
-            }
-            if (tempPath.empty()) {
-                zip_fclose(zf);
-                setError("cannot reserve safe ZIP replacement paths: " + outPath);
-                outcome = ZipResult::IoError;
+        if (fd >= 0) {
+            ++exclusiveCreated;
+        } else {
+            replacingExisting = timedZipOperation(timing.pathStat, [&] {
+                return st.exists(outPath);
+            });
+            if (replacingExisting && st.isDirectory(outPath)) {
+                timedZipOperation(timing.zipFileClose, [&] { return zip_fclose(zf); });
+                setError("ZIP file destination is a directory: " + outPath);
+                outcome = ZipResult::InvalidEntry;
                 break;
             }
-            writePath = tempPath;
+            if (!replacingExisting && exclusiveCreationSupported) {
+                exclusiveCreationSupported = false;
+                ++exclusiveFallbacks;
+                diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
+            }
+            if (replacingExisting) {
+                ++existingFiles;
+                const std::string parent = outPath.substr(0, outPath.find_last_of('/'));
+                for (unsigned slot = 0; slot < 32; ++slot) {
+                    const std::string suffix = std::to_string(static_cast<unsigned long long>(i)) +
+                        "_" + std::to_string(slot);
+                    const std::string candidate = parent + "/._psva_" + suffix;
+                    const std::string temp = candidate + ".tmp";
+                    const std::string backup = candidate + ".bak";
+                    if (!st.exists(temp) && !st.exists(backup)) {
+                        tempPath = temp;
+                        backupPath = backup;
+                        break;
+                    }
+                }
+                if (tempPath.empty()) {
+                    timedZipOperation(timing.zipFileClose, [&] { return zip_fclose(zf); });
+                    setError("cannot reserve safe ZIP replacement paths: " + outPath);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                writePath = tempPath;
+            }
+            fd = timedZipOperation(timing.ioOpen, [&] {
+                return sceIoOpen(writePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+            });
         }
-        SceUID fd = sceIoOpen(writePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         if (fd < 0) {
-            zip_fclose(zf);
+            timedZipOperation(timing.zipFileClose, [&] { return zip_fclose(zf); });
             char err[480];
             sceClibSnprintf(err, sizeof(err),
                             "cannot create file: %s sceIoOpen=0x%08X parent_is_dir=%d",
@@ -1112,7 +1182,9 @@ ZipResult ZipExtractor::extract(
                 break;
             }
 
-            const zip_int64_t n = zip_fread(zf, buffer.data(), buffer.size());
+            const zip_int64_t n = timedZipOperation(timing.zipRead, [&] {
+                return zip_fread(zf, buffer.data(), buffer.size());
+            });
             if (n < 0) {
                 const unsigned method = (zs.valid & ZIP_STAT_COMP_METHOD) ? static_cast<unsigned>(zs.comp_method) : 0u;
                 char detail[360];
@@ -1137,7 +1209,9 @@ ZipResult ZipExtractor::extract(
 
             int written = 0;
             while (written < static_cast<int>(n)) {
-                const int w = sceIoWrite(fd, buffer.data() + written, static_cast<int>(n) - written);
+                const int w = timedZipOperation(timing.ioWrite, [&] {
+                    return sceIoWrite(fd, buffer.data() + written, static_cast<int>(n) - written);
+                });
                 if (w <= 0) {
                     uint64_t freeB = 0, totalB = 0;
                     const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
@@ -1167,12 +1241,16 @@ ZipResult ZipExtractor::extract(
                 bytesSinceYield = 0;
                 // This worker is not the UI thread. Yield without allocating
                 // extra buffers or relaxing any ZIP validation/cancel checks.
-                sceKernelDelayThread(1000);
+                timedZipOperation(timing.cooperativeYield, [&] {
+                    return sceKernelDelayThread(1000);
+                });
             }
         }
 
-        const int zipCloseResult = zip_fclose(zf);
-        const int ioCloseResult = sceIoClose(fd);
+        const int zipCloseResult = timedZipOperation(timing.zipFileClose, [&] { return zip_fclose(zf); });
+        const int ioCloseResult = timedZipOperation(timing.ioClose, [&] {
+            return sceIoClose(fd);
+        });
         if (fileOk && zipCloseResult != 0) {
             char detail[240];
             sceClibSnprintf(detail, sizeof(detail),
@@ -1233,7 +1311,9 @@ ZipResult ZipExtractor::extract(
                 outcome = ZipResult::Cancelled;
                 break;
             }
-            const int backedUp = sceIoRename(outPath.c_str(), backupPath.c_str());
+            const int backedUp = timedZipOperation(timing.replacement, [&] {
+                return sceIoRename(outPath.c_str(), backupPath.c_str());
+            });
             if (backedUp < 0) {
                 st.removeFile(tempPath);
                 setError("cannot back up existing ZIP destination: " + outPath +
@@ -1241,9 +1321,13 @@ ZipResult ZipExtractor::extract(
                 outcome = ZipResult::IoError;
                 break;
             }
-            const int promoted = sceIoRename(tempPath.c_str(), outPath.c_str());
+            const int promoted = timedZipOperation(timing.replacement, [&] {
+                return sceIoRename(tempPath.c_str(), outPath.c_str());
+            });
             if (promoted < 0) {
-                const int restored = sceIoRename(backupPath.c_str(), outPath.c_str());
+                const int restored = timedZipOperation(timing.replacement, [&] {
+                    return sceIoRename(backupPath.c_str(), outPath.c_str());
+                });
                 st.removeFile(tempPath);
                 setError("ZIP replacement rename failed: " + outPath +
                          " commit=" + std::to_string(promoted) +
@@ -1264,6 +1348,8 @@ ZipResult ZipExtractor::extract(
         reportProgress();
     }
 
+    const uint64_t loopEndUs = sceKernelGetProcessTimeWide();
+    const uint64_t loopUs = loopEndUs - loopStartUs;
     const int archiveCloseResult = zip_close(za);
     if (archiveCloseResult != 0) {
         if (outcome == ZipResult::Ok) {
@@ -1341,6 +1427,63 @@ ZipResult ZipExtractor::extract(
         } else {
             diagnostics::log("[ZipExtractor] staging kept for investigation: " + stagingBase);
         }
+    }
+    {
+        const uint64_t finalizeUs = sceKernelGetProcessTimeWide() - loopEndUs;
+        const uint64_t totalUs = sceKernelGetProcessTimeWide() - extractStartUs;
+        char times[768];
+        sceClibSnprintf(times, sizeof(times),
+            "[ZipTiming] total_us=%llu preflight_us=%llu loop_us=%llu finalize_us=%llu "
+            "dir_us=%llu path_stat_us=%llu zip_stat_us=%llu zip_open_us=%llu "
+            "zip_read_us=%llu io_open_us=%llu io_write_us=%llu "
+            "zip_fclose_us=%llu io_close_us=%llu rename_us=%llu yield_us=%llu",
+            (unsigned long long)totalUs,
+            (unsigned long long)preflightUs,
+            (unsigned long long)loopUs,
+            (unsigned long long)finalizeUs,
+            (unsigned long long)timing.directory.us,
+            (unsigned long long)timing.pathStat.us,
+            (unsigned long long)timing.zipStat.us,
+            (unsigned long long)timing.zipFileOpen.us,
+            (unsigned long long)timing.zipRead.us,
+            (unsigned long long)timing.ioOpen.us,
+            (unsigned long long)timing.ioWrite.us,
+            (unsigned long long)timing.zipFileClose.us,
+            (unsigned long long)timing.ioClose.us,
+            (unsigned long long)timing.replacement.us,
+            (unsigned long long)timing.cooperativeYield.us);
+        diagnostics::log(times);
+
+        char calls[512];
+        sceClibSnprintf(calls, sizeof(calls),
+            "[ZipTimingCalls] dir=%llu path_stat=%llu zip_stat=%llu zip_open=%llu "
+            "zip_read=%llu io_open=%llu io_write=%llu zip_fclose=%llu "
+            "io_close=%llu rename=%llu yield=%llu",
+            (unsigned long long)timing.directory.calls,
+            (unsigned long long)timing.pathStat.calls,
+            (unsigned long long)timing.zipStat.calls,
+            (unsigned long long)timing.zipFileOpen.calls,
+            (unsigned long long)timing.zipRead.calls,
+            (unsigned long long)timing.ioOpen.calls,
+            (unsigned long long)timing.ioWrite.calls,
+            (unsigned long long)timing.zipFileClose.calls,
+            (unsigned long long)timing.ioClose.calls,
+            (unsigned long long)timing.replacement.calls,
+            (unsigned long long)timing.cooperativeYield.calls);
+        diagnostics::log(calls);
+
+        char perf[320];
+        sceClibSnprintf(perf, sizeof(perf),
+            "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu status=%s",
+            (unsigned long long)prog.entriesDone,
+            (unsigned long long)directoryCacheHits,
+            (unsigned long long)directoryCacheChecks,
+            (unsigned long long)exclusiveCreated,
+            (unsigned long long)existingFiles,
+            (unsigned long long)exclusiveFallbacks,
+            toString(outcome));
+        diagnostics::log(perf);
     }
     if (outcome == ZipResult::Ok) {
         usedStagedMoves_ = !staged.empty();
