@@ -747,10 +747,35 @@ static bool rankArchiveAlternateUrls(
     uint64_t decisionSize = sizeHint;
     ArchiveProbeResult sizeProbe;
     size_t responsiveIndex = urls.size();
+
+    // One authoritative 206 probe should serve both small-file source
+    // selection and the later parallel download. Prefer Archive's direct
+    // HTTP storage node and fall back to HTTPS if it cannot serve the range.
+    // This avoids an HTTPS probe followed by the same-file HTTP probe.
+    auto probeSmallNode = [&](size_t index, ArchiveProbeResult& out) -> bool {
+        if (allowHttpBenchmark && urls[index].compare(0, 8, "https://") == 0) {
+            ArchiveProbeResult probe;
+            const std::string directHttp = "http://" + urls[index].substr(8);
+            if (probeArchiveStorageUrl(directHttp, 1, shouldCancel, probe) &&
+                probe.effectiveUrl.compare(0, 7, "http://") == 0 &&
+                archiveEffectiveUrlUsable(probe.effectiveUrl)) {
+                out = probe;
+                return true;
+            }
+        }
+        ArchiveProbeResult probe;
+        if (probeArchiveStorageUrl(urls[index], 1, shouldCancel, probe) &&
+            probe.effectiveUrl.compare(0, 8, "https://") == 0 &&
+            archiveEffectiveUrlUsable(probe.effectiveUrl)) {
+            out = probe;
+            return true;
+        }
+        return false;
+    };
     if (decisionSize == 0) {
         for (size_t i = 0; i < urls.size(); ++i) {
             if (shouldCancel && shouldCancel()) return false;
-            if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+            if (probeSmallNode(i, sizeProbe)) {
                 responsiveIndex = i;
                 break;
             }
@@ -780,12 +805,10 @@ static bool rankArchiveAlternateUrls(
     }
 
     if (decisionSize < ARCHIVE_SELECTOR_MIN_BYTES) {
-        // A catalog hint can decide that benchmarking is unnecessary, but we
-        // still validate one direct node before replacing the canonical URL.
         if (responsiveIndex == urls.size()) {
             for (size_t i = 0; i < urls.size(); ++i) {
                 if (shouldCancel && shouldCancel()) return false;
-                if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+                if (probeSmallNode(i, sizeProbe)) {
                     responsiveIndex = i;
                     break;
                 }
@@ -795,20 +818,36 @@ static bool rankArchiveAlternateUrls(
             httpDiagnostic("archive selector: no direct node passed validation probe; keep normal archive.org path");
             return false;
         }
-        if (archiveEffectiveUrlUsable(sizeProbe.effectiveUrl)) {
-            archiveNodeDiagnostic(std::string("SMALL_FILE_EFFECTIVE_URL requested=") + urls[responsiveIndex] +
-                " effective=" + sizeProbe.effectiveUrl);
-            urls[responsiveIndex] = sizeProbe.effectiveUrl;
+        // Catalog sizes are only hints. If the 206 response says the file
+        // is actually large, run the proper throughput benchmark instead.
+        if (sizeProbe.total >= ARCHIVE_SELECTOR_MIN_BYTES) {
+            decisionSize = sizeProbe.total;
+            archiveNodeDiagnostic("SMALL_HINT_OVERRIDDEN_BY_RANGE_TOTAL benchmark=required");
+        } else {
+            const bool http = sizeProbe.effectiveUrl.compare(0, 7, "http://") == 0;
+            if (archiveEffectiveUrlUsable(sizeProbe.effectiveUrl)) {
+                archiveNodeDiagnostic(std::string("SMALL_FILE_EFFECTIVE_URL requested=") +
+                    urls[responsiveIndex] + " effective=" + sizeProbe.effectiveUrl);
+                if (http) {
+                    if (selectedHttpUrl) *selectedHttpUrl = sizeProbe.effectiveUrl;
+                    // Serial fallback stays HTTPS even though 206 accelerated
+                    // transfers use the independently validated HTTP URL.
+                    urls[responsiveIndex] = "https://" + sizeProbe.effectiveUrl.substr(7);
+                } else {
+                    urls[responsiveIndex] = sizeProbe.effectiveUrl;
+                }
+            }
+            if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
+            char msg[320];
+            sceClibSnprintf(msg, sizeof(msg),
+                "archive selector: small file total=%llu protocol=%s; reuse successful 206 probe -> %s",
+                (unsigned long long)sizeProbe.total, http ? "HTTP" : "HTTPS",
+                urls.front().c_str());
+            httpDiagnostic(msg);
+            archiveNodeDiagnostic(std::string("BENCHMARK_SKIPPED reason=below_16MiB ") + msg);
+            if (validatedTotal) *validatedTotal = sizeProbe.total;
+            return true;
         }
-        if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
-        char msg[320];
-        sceClibSnprintf(msg, sizeof(msg),
-            "archive selector: small file decision=%llu; use responsive direct node without speed benchmark -> %s",
-            (unsigned long long)decisionSize, urls.front().c_str());
-        httpDiagnostic(msg);
-        archiveNodeDiagnostic(std::string("BENCHMARK_SKIPPED reason=below_16MiB ") + msg);
-        if (validatedTotal) *validatedTotal = sizeProbe.total;
-        return true;
     }
 
     // Archive.org download accelerator: benchmark HTTP on Archive's own
