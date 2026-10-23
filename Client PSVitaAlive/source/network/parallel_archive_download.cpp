@@ -448,6 +448,29 @@ ParallelArchiveOutcome downloadArchiveRanges(
                     curl_easy_getinfo(p.easy, CURLINFO_EFFECTIVE_URL, &reached);
                     if (!usableArchiveFinalUrl(reached, isDirectHttp(url), archiveOnly))
                         p.rangeError = true;
+                    // Lightweight one-shot per-range telemetry. This runs AFTER
+                    // curl_multi finishes; there is no logging inside onWrite()
+                    // or inside the network polling loop.
+                    const char* peerIp = nullptr;
+                    double elapsedSec = 0.0;
+                    double ttfbSec = 0.0;
+                    curl_easy_getinfo(p.easy, CURLINFO_PRIMARY_IP, &peerIp);
+                    curl_easy_getinfo(p.easy, CURLINFO_TOTAL_TIME, &elapsedSec);
+                    curl_easy_getinfo(p.easy, CURLINFO_STARTTRANSFER_TIME, &ttfbSec);
+                    const unsigned long long bps = elapsedSec > 0.0
+                        ? static_cast<unsigned long long>(p.received / elapsedSec) : 0ULL;
+                    char detail[650];
+                    sceClibSnprintf(detail, sizeof(detail),
+                        "[HTTP] range_diag part=%u bytes=%llu http=%ld curl=%d elapsed_ms=%llu ttfb_ms=%llu avg_Bps=%llu ip=%s effective=%.220s",
+                        static_cast<unsigned>(&p - parts.data()),
+                        (unsigned long long)p.received,
+                        p.status, static_cast<int>(p.code),
+                        (unsigned long long)(elapsedSec * 1000.0),
+                        (unsigned long long)(ttfbSec * 1000.0),
+                        bps,
+                        peerIp ? peerIp : "-",
+                        reached ? reached : "-");
+                    diagnostics::log(detail);
                     break;
                 }
             }
@@ -494,6 +517,22 @@ ParallelArchiveOutcome downloadArchiveRanges(
             }
         }
     }
+
+    // Measure the real transfer phase separately from metadata selection,
+    // post-download joining and extraction. No additional network requests.
+    const uint64_t transferUs = monotonicUs() - session.startUs;
+    const uint64_t aggregateBps = transferUs > 0
+        ? (session.received / transferUs) * 1000000ULL +
+          ((session.received % transferUs) * 1000000ULL) / transferUs
+        : 0;
+    char totals[240];
+    sceClibSnprintf(totals, sizeof(totals),
+        "[HTTP] range_total parts=%u bytes=%llu elapsed_ms=%llu avg_Bps=%llu",
+        static_cast<unsigned>(partCount),
+        (unsigned long long)session.received,
+        (unsigned long long)(transferUs / 1000ULL),
+        (unsigned long long)aggregateBps);
+    diagnostics::log(totals);
 
     bool ioError = setupIoError;
     for (const Part& p : parts) ioError = ioError || p.ioError;
