@@ -119,6 +119,10 @@ struct VitaZipPart {
     SceUID fd = -1;
     uint64_t start = 0;
     uint64_t size = 0;
+    // Physical read cursor for this part. libzip may seek the *virtual*
+    // archive many times, but consecutive reads should not seek the Vita
+    // file again when the underlying fd is already at the correct offset.
+    uint64_t fdPos = 0;
 };
 
 struct VitaZipFileSource {
@@ -156,6 +160,7 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
             for (VitaZipPart& part : s->parts) {
                 if (part.fd >= 0) sceIoClose(part.fd);
                 part.fd = sceIoOpen(part.path.c_str(), SCE_O_RDONLY, 0);
+                part.fdPos = 0;
                 if (part.fd < 0) {
                     s->lastSysError = static_cast<int>(part.fd);
                     s->lastZipError = ZIP_ER_OPEN;
@@ -206,9 +211,15 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
                 const uint64_t remaining = current->size - local;
                 const SceSize chunk = static_cast<SceSize>(std::min<uint64_t>(
                     std::min<uint64_t>(remaining, len), 512u * 1024u));
-                if (sceIoLseek(current->fd, static_cast<SceOff>(local), SCE_SEEK_SET) < 0) {
-                    s->lastZipError = ZIP_ER_SEEK;
-                    return -1;
+                // Keep the physical position separate from virtual seeks:
+                // libzip's ZIP_SOURCE_SEEK only changes s->pos. Only issue
+                // a syscall when the next read is actually non-contiguous.
+                if (current->fdPos != local) {
+                    if (sceIoLseek(current->fd, static_cast<SceOff>(local), SCE_SEEK_SET) < 0) {
+                        s->lastZipError = ZIP_ER_SEEK;
+                        return -1;
+                    }
+                    current->fdPos = local;
                 }
                 const int n = sceIoRead(current->fd, out, chunk);
                 if (n <= 0) {
@@ -220,6 +231,7 @@ static zip_int64_t vitaZipSourceCb(void* userdata, void* data, zip_uint64_t len,
                 len -= static_cast<zip_uint64_t>(n);
                 total += n;
                 s->pos += static_cast<uint64_t>(n);
+                current->fdPos += static_cast<uint64_t>(n);
             }
             return total;
         }
