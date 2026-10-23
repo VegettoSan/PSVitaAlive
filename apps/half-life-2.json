@@ -1,0 +1,48 @@
+{
+  "id": "half-life-2",
+  "title_id": "SRCV00001",
+  "name": "Half-Life 2",
+  "description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine",
+  "long_description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine",
+  "author_ids": [
+    "largevegetable"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "fps",
+    "shooter",
+    "strategy",
+    "engine-port",
+    "other"
+  ],
+  "version": "0.1.1",
+  "version_date": "2026-10-21",
+  "requirements": "- A PS Vita or PS TV running HENkaku or Ensō. Tested on a PS Vita on firmware 3.65, not yet on a PS TV; for other firmwares, see \"Known issues\".\n- kubridge v0.3.1_hotfix (bythos14's) as a kernel plugin.\n- libshacccg.suprx, extracted on your Vita with ShaRKBR33D.\nHalf-Life 2 from Steam, on the Pre-20th Anniversary build (the Steam beta steam_legacy). Files from the current anniversary build don't work.\n- About 3.9 GB free on ux0 for the hl2 and platform folders.",
+  "size": 21076378,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/half-life-2-for-ps-vita/hl2_vita%200.1.1.vpk",
+      "size": 21076378,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 3650722202,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/LargeVegetable/source-engine"
+    }
+  ],
+  "icon": "https://archive.org/download/half-life-2-for-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/half-life-2-for-ps-vita/bg.png"
+  ]
+}
