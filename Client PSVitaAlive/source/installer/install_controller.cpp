@@ -388,16 +388,16 @@ bool InstallController::resolveZipRecovery(bool keep) {
             const std::string target = uniqueRecoveryPath(st, dir, job->fileName);
             const std::string infoPath = target + ".info.txt";
             std::string info;
-            info += "PS Vita Alive Store - ZIP manual recovery\\n\\n";
-            info += "App: " + (activeDisplayTitle_.empty() ? pendingAppId_ : activeDisplayTitle_) + "\\n";
-            info += "App ID: " + (pendingAppId_.empty() ? std::string("-") : pendingAppId_) + "\\n";
-            info += "Title ID: " + (pendingTitleId_.empty() ? std::string("-") : pendingTitleId_) + "\\n";
-            info += "Archive: " + job->fileName + "\\n";
-            info += "Saved path: " + target + "\\n";
-            info += "Manual extraction target: " + zipRecoveryExtractPath_ + "\\n";
-            info += "Recovery decision: kept\\n";
+            info += "PS Vita Alive Store - ZIP manual recovery\n\n";
+            info += "App: " + (activeDisplayTitle_.empty() ? pendingAppId_ : activeDisplayTitle_) + "\n";
+            info += "App ID: " + (pendingAppId_.empty() ? std::string("-") : pendingAppId_) + "\n";
+            info += "Title ID: " + (pendingTitleId_.empty() ? std::string("-") : pendingTitleId_) + "\n";
+            info += "Archive: " + job->fileName + "\n";
+            info += "Saved path: " + target + "\n";
+            info += "Manual extraction target: " + zipRecoveryExtractPath_ + "\n";
+            info += "Recovery decision: kept\n";
             if (zipRecoveryMayBeCorrupt_.load())
-                info += "Warning: archive may be damaged/incomplete; manual extraction may also fail.\\n";
+                info += "Warning: archive may be damaged/incomplete; manual extraction may also fail.\n";
 
             // Metadata first: after an unexpected shutdown we may leave a tiny
             // orphan info file, but never a multi-GB untracked ZIP in /manual/.
