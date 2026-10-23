@@ -67,6 +67,45 @@
     ]
   },
   {
+    "id": "hungry-shark-evolution-vita",
+    "title_id": "HGSKE1178",
+    "name": "Hungry Shark Evolution Vita",
+    "description": "Hungry Shark Evolution Vita Port",
+    "long_description": "Swim, hunt, survive, and evolve on PlayStation Vita. This port brings the classic Hungry Shark Evolution experience to the handheld, with Vita controls and touchscreen support.\n\n- PSVitaAlive Store -",
+    "author_ids": [
+      "vegettosandev"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "source-port",
+      "other"
+    ],
+    "version": "01.00",
+    "version_date": "2026-10-23",
+    "requirements": "- For smoother gameplay and more consistent frame rates, overclocking your PS Vita is recommended, especially in more demanding areas of the game.\n- An unmodified Hungry Shark Evolution 6.4.2 (build 228) Android APK",
+    "size": 134217728,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK + Game Files",
+        "url": "https://archive.org/download/hungry-shark-evolution-vita/Hungry_Shark_Evolution_Vita_1.0.vpk",
+        "size": 134217728,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/VegettoSan/Hungry-Shark-Evolution-Ps-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/hungry-shark-evolution-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/hungry-shark-evolution-vita/shot0.png"
+    ]
+  },
+  {
     "id": "ssx-2012",
     "title_id": "SSXV00001",
     "name": "SSX (2012)",
