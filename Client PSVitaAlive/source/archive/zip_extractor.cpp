@@ -1,4 +1,5 @@
 #include "archive/zip_extractor.hpp"
+#include "archive/extraction_directory_cache.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
@@ -968,9 +969,13 @@ ZipResult ZipExtractor::extract(
     };
     reportProgress(true);
 
-    // Consecutive ZIP entries very often share the same parent directory.
-    // Avoid a stat() plus recursive mkdir walk per tiny file.
+    // Bounded directory cache: useful even when small-file entries alternate
+    // between parents. Unverified parents still use the original stat/mkdir path.
+    ExtractionDirectoryCache ensuredParents;
     std::string lastEnsuredParent;
+    uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
+    uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
+    bool exclusiveCreationSupported = true;
     uint64_t bytesSinceYield = 0;
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
@@ -1004,10 +1009,16 @@ ZipResult ZipExtractor::extract(
         if (branch) outPath = branch->staging + originalPath.substr(branch->destination.size());
 
         if (isDir) {
-            if (!st.createDirectories(outPath) && !st.isDirectory(outPath)) {
-                setError(std::string("mkdir failed: ") + outPath);
-                outcome = ZipResult::IoError;
-                break;
+            if (outPath == lastEnsuredParent || ensuredParents.contains(outPath)) {
+                ++directoryCacheHits;
+            } else {
+                ++directoryCacheChecks;
+                if (!st.createDirectories(outPath) && !st.isDirectory(outPath)) {
+                    setError(std::string("mkdir failed: ") + outPath);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                ensuredParents.remember(outPath);
             }
             lastEnsuredParent = outPath;
             ++prog.entriesDone;
@@ -1018,14 +1029,18 @@ ZipResult ZipExtractor::extract(
         const auto slash = outPath.find_last_of('/');
         if (slash != std::string::npos) {
             const std::string parent = outPath.substr(0, slash);
-            if (parent != lastEnsuredParent) {
+            if (parent == lastEnsuredParent || ensuredParents.contains(parent)) {
+                ++directoryCacheHits;
+            } else {
+                ++directoryCacheChecks;
                 if (!st.isDirectory(parent) && !st.createDirectories(parent)) {
                     setError(std::string("mkdir failed: ") + parent);
                     outcome = ZipResult::IoError;
                     break;
                 }
-                lastEnsuredParent = parent;
+                ensuredParents.remember(parent);
             }
+            lastEnsuredParent = parent;
         }
 
         zip_file_t* zf = zip_fopen_index(za, i, 0);
@@ -1035,39 +1050,55 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
-        // Existing files are NEVER truncated before a replacement has been
-        // extracted and verified. New files keep the fast direct-write path.
-        const bool replacingExisting = st.exists(outPath);
-        if (replacingExisting && st.isDirectory(outPath)) {
-            zip_fclose(zf);
-            setError("ZIP file destination is a directory: " + outPath);
-            outcome = ZipResult::InvalidEntry;
-            break;
-        }
+        // Create new files without a redundant getstat. EXCL must NOT truncate
+        // an existing file. If the filesystem rejects EXCL for a missing file,
+        // use the original checked path for this and all later entries.
+        SceUID fd = -1;
+        if (exclusiveCreationSupported)
+            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
+
+        bool replacingExisting = false;
         std::string tempPath, backupPath, writePath = outPath;
-        if (replacingExisting) {
-            const std::string parent = outPath.substr(0, outPath.find_last_of('/'));
-            for (unsigned slot = 0; slot < 32; ++slot) {
-                const std::string suffix = std::to_string(static_cast<unsigned long long>(i)) +
-                    "_" + std::to_string(slot);
-                const std::string candidate = parent + "/._psva_" + suffix;
-                const std::string temp = candidate + ".tmp";
-                const std::string backup = candidate + ".bak";
-                if (!st.exists(temp) && !st.exists(backup)) {
-                    tempPath = temp;
-                    backupPath = backup;
-                    break;
-                }
-            }
-            if (tempPath.empty()) {
+        if (fd >= 0) {
+            ++exclusiveCreated;
+        } else {
+            replacingExisting = st.exists(outPath);
+            if (replacingExisting && st.isDirectory(outPath)) {
                 zip_fclose(zf);
-                setError("cannot reserve safe ZIP replacement paths: " + outPath);
-                outcome = ZipResult::IoError;
+                setError("ZIP file destination is a directory: " + outPath);
+                outcome = ZipResult::InvalidEntry;
                 break;
             }
-            writePath = tempPath;
+            if (!replacingExisting && exclusiveCreationSupported) {
+                exclusiveCreationSupported = false;
+                ++exclusiveFallbacks;
+                diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
+            }
+            if (replacingExisting) {
+                ++existingFiles;
+                const std::string parent = outPath.substr(0, outPath.find_last_of('/'));
+                for (unsigned slot = 0; slot < 32; ++slot) {
+                    const std::string suffix = std::to_string(static_cast<unsigned long long>(i)) +
+                        "_" + std::to_string(slot);
+                    const std::string candidate = parent + "/._psva_" + suffix;
+                    const std::string temp = candidate + ".tmp";
+                    const std::string backup = candidate + ".bak";
+                    if (!st.exists(temp) && !st.exists(backup)) {
+                        tempPath = temp;
+                        backupPath = backup;
+                        break;
+                    }
+                }
+                if (tempPath.empty()) {
+                    zip_fclose(zf);
+                    setError("cannot reserve safe ZIP replacement paths: " + outPath);
+                    outcome = ZipResult::IoError;
+                    break;
+                }
+                writePath = tempPath;
+            }
+            fd = sceIoOpen(writePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         }
-        SceUID fd = sceIoOpen(writePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         if (fd < 0) {
             zip_fclose(zf);
             char err[480];
@@ -1341,6 +1372,20 @@ ZipResult ZipExtractor::extract(
         } else {
             diagnostics::log("[ZipExtractor] staging kept for investigation: " + stagingBase);
         }
+    }
+    {
+        char perf[320];
+        sceClibSnprintf(perf, sizeof(perf),
+            "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu status=%s",
+            (unsigned long long)prog.entriesDone,
+            (unsigned long long)directoryCacheHits,
+            (unsigned long long)directoryCacheChecks,
+            (unsigned long long)exclusiveCreated,
+            (unsigned long long)existingFiles,
+            (unsigned long long)exclusiveFallbacks,
+            toString(outcome));
+        diagnostics::log(perf);
     }
     if (outcome == ZipResult::Ok) {
         usedStagedMoves_ = !staged.empty();
