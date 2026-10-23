@@ -67,6 +67,62 @@
     ]
   },
   {
+    "id": "ssx-2012",
+    "title_id": "SSXV00001",
+    "name": "SSX (2012)",
+    "description": "Unofficial port of SSX (2012, Android) to the PS Vita",
+    "long_description": "An unofficial port of EA's SSX (the 2012 Android version, ssx-v0_0_8430.apk) to the PS Vita.\n\nThe game's own ARM code runs unmodified on the Vita through a so loader: this project provides everything Android would provide around it (the C library, OpenGL ES through vitaGL, the Java side of the app) and patches the game where the Vita needs it.",
+    "author_ids": [
+      "lukebrl"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "simulation",
+      "strategy",
+      "other"
+    ],
+    "version": "1.1.1",
+    "version_date": "2026-10-22",
+    "requirements": "- A PS Vita or PS TV with HENkaku / Ensō (any firmware they support).\n- kubridge: put kubridge.skprx in ur0:tai/ and add it under *KERNEL in ur0:tai/config.txt, then reboot.\n- libshacccg.suprx (the runtime shader compiler), extracted with ShaRKBR33D into ur0:data/.\n- The SSX APK, version 0.0.8430, from your own copy of the game. The data tool checks it.\n- About 2 GB free on ux0:.\n- Highly recommended: CapUnlocker (put capunlocker.skprx under *KERNEL in ur0:tai/config.txt, then reboot). The Vita normally keeps its 4th CPU core for the system; with CapUnlocker the port also runs the game's background work there, which leaves more CPU for the race and keeps it at full speed much more often (see Slow motion in races). The port works without it.",
+    "size": 2726298,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ssx-2012-ps-vita/ssx_vita%20v1.1.1.vpk",
+        "size": 2726298,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/ssx-2012-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1288490189,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4 (Recommended)",
+        "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/lukebrl/ssx-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/ssx-2012-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ssx-2012-ps-vita/Shot0.png"
+    ]
+  },
+  {
     "id": "nfs-most-wanted",
     "title_id": "NFSMWVITA",
     "name": "NFS Most Wanted",
