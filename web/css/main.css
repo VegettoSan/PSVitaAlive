@@ -1500,3 +1500,133 @@ input {
     .app-card, .category-card, .author-card { transition: none; }
     .app-card:hover, .category-card:hover, .author-card:hover { transform: none; }
 }
+
+/* PSVitaAlive client download: shared header and non-intrusive catalog CTA. */
+.header-inner {
+    gap: 20px;
+}
+
+.main-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 8px 15px;
+}
+
+.header-search {
+    flex: 0 1 200px;
+}
+
+.main-nav a.nav-client-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 7px 12px;
+    border: 1px solid var(--accent);
+    border-radius: 7px;
+    background: rgba(59, 255, 0, 0.07);
+    color: var(--accent);
+    font-size: .82rem;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.main-nav a.nav-client-download:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+.client-download-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+    margin: 20px 0 24px;
+    padding: 18px 22px;
+    border: 1px solid #555;
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    background: #242424;
+}
+
+.client-download-banner-copy {
+    min-width: 0;
+}
+
+.client-download-banner-copy strong {
+    display: block;
+    color: #fff;
+    font-size: .98rem;
+    line-height: 1.35;
+}
+
+.client-download-banner-copy p {
+    margin: 5px 0 0;
+    color: #c2c2c2;
+    font-size: .86rem;
+    line-height: 1.5;
+}
+
+.client-download-banner-action {
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 7px;
+    background: var(--accent);
+    color: #000;
+    font-size: .82rem;
+    font-weight: 800;
+    text-align: center;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.client-download-banner-action:hover {
+    background: #fff;
+    border-color: #fff;
+}
+
+@media (max-width: 1120px) {
+    .header-inner {
+        flex-wrap: wrap;
+        padding-block: 12px;
+        gap: 10px 18px;
+    }
+
+    .main-nav {
+        order: 3;
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .header-search {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .main-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 12px;
+    }
+
+    .main-nav a {
+        flex-shrink: 0;
+    }
+
+    .client-download-banner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px;
+    }
+
+    .client-download-banner-action {
+        width: 100%;
+    }
+}
