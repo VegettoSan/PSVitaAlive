@@ -27,8 +27,8 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20for%20PSVA.zip",
+      "name": "Game Files Fix",
+      "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
       "size": 1610612736,
       "extract_path": "ux0:data/"
     },
