@@ -3,7 +3,7 @@
   "title_id": "AUGUSTUS1",
   "name": "Augustus",
   "description": "Port of Augustus for PSVITA.",
-  "long_description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes. The aim of this project is to provide enhanced, customizable gameplay to Caesar 3 using project Julius UI enhancements.\nAugustus is able to load Caesar 3 and Julius saves, however saves made with Augustus will not work outside Augustus.",
+  "long_description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes. The aim of this project is to provide enhanced, customizable gameplay to Caesar 3 using project Julius UI enhancements.\nAugustus is able to load Caesar 3 and Julius saves, however saves made with Augustus will not work outside Augustus.\n\n- PsVitaAlive -",
   "author_ids": [
     "keriew",
     "devnoname120",

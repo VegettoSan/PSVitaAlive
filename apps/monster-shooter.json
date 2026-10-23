@@ -3,7 +3,7 @@
   "title_id": "MNST00001",
   "name": "Monster Shooter",
   "description": "PS Vita port of Monster Shooter (Gamelion, 2012) via so-loader.",
-  "long_description": "A native PS Vita port of Monster Shooter (Gamelion, 2012), the top-down twin-stick shooter where a kidnapped kitten is reason enough to clear a planet of monsters. This runs the original ARMv7 Android binary through a so-loader, with the game's own Claw Engine driving vitaGL underneath.",
+  "long_description": "A native PS Vita port of Monster Shooter (Gamelion, 2012), the top-down twin-stick shooter where a kidnapped kitten is reason enough to clear a planet of monsters. This runs the original ARMv7 Android binary through a so-loader, with the game's own Claw Engine driving vitaGL underneath.\n\n- PsVitaAlive -",
   "author_ids": [
     "federicoilgrandebardo"
   ],

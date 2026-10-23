@@ -3,7 +3,7 @@
   "title_id": "SMWAR0000",
   "name": "SuperMarioWar",
   "description": "Port of Super Mario War for PSVITA.",
-  "long_description": "Super Mario War is a Super Mario multiplayer game.\nThe goal is to stomp as many other Marios as possible to win the game.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Super Mario War is a Super Mario multiplayer game.\nThe goal is to stomp as many other Marios as possible to win the game.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

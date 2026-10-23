@@ -3,7 +3,7 @@
   "title_id": "DIVDOW001",
   "name": "Diver Down Vita",
   "description": "Port of Diver Down for PSVITA.",
-  "long_description": "Port of Diver Down for PSVITA.\nDiver Down is a stealth-platformer made for the Godot Wild Jam #2, where the theme was \"Hidden within\". Avoid the lights on 20 different stages using your mysterious Diver Down ability, that allows you to dive onto solids!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Diver Down for PSVITA.\nDiver Down is a stealth-platformer made for the Godot Wild Jam #2, where the theme was \"Hidden within\". Avoid the lights on 20 different stages using your mysterious Diver Down ability, that allows you to dive onto solids!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "vsm-gammer"
   ],

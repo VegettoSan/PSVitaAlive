@@ -3,7 +3,7 @@
   "title_id": "THIMBPARK",
   "name": "Thimbleweed Park Vita",
   "description": "Port of Thimbleweed Park for PSVITA.",
-  "long_description": "This is a wrapper/port of Thimbleweed Park for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "long_description": "This is a wrapper/port of Thimbleweed Park for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

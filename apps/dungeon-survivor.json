@@ -3,7 +3,7 @@
   "title_id": "DGSO12345",
   "name": "Dungeon Survivor",
   "description": "Roguelike game for PSVITA.",
-  "long_description": "Port of Dungeon Survivor, a basic 2D roguelike game where you have to survive as long as you can.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Dungeon Survivor, a basic 2D roguelike game where you have to survive as long as you can.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "luckthegamers"
   ],

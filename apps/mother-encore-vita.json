@@ -3,7 +3,7 @@
   "title_id": "MOTHER001",
   "name": "MOTHER Encore Vita",
   "description": "Port of MOTHER Encore for PSVita.",
-  "long_description": "A native PlayStation Vita port of MOTHER: Encore, the free fan-made reimagining of MOTHER 1, adapted from its original Godot Engine PC release.",
+  "long_description": "A native PlayStation Vita port of MOTHER: Encore, the free fan-made reimagining of MOTHER 1, adapted from its original Godot Engine PC release.\n\n- PsVitaAlive -",
   "author_ids": [
     "wolff"
   ],

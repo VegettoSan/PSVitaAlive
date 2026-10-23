@@ -3,7 +3,7 @@
   "title_id": "ELDRITCH1",
   "name": "Eldritch Vita",
   "description": "Port of Eldritch for PSVITA.",
-  "long_description": "Port of Eldritch for PSVita based on the Reanimated remaster of the game.\nEldritch is a first-person action game inspired by roguelikes, immersive sims, and H. P. Lovecraft.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Eldritch for PSVita based on the Reanimated remaster of the game.\nEldritch is a first-person action game inspired by roguelikes, immersive sims, and H. P. Lovecraft.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

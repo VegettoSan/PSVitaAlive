@@ -3,7 +3,7 @@
   "title_id": "VOYAGERQ3",
   "name": "vitaVoyager",
   "description": "Port of Star Trek Voyager: Elite Force",
-  "long_description": "vitaVoyager is a port of lilium-voyager, an ioquake3 fork made to be compatible with multiplayer mode of Star Trek Voyager: Elite Force.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "vitaVoyager is a port of lilium-voyager, an ioquake3 fork made to be compatible with multiplayer mode of Star Trek Voyager: Elite Force.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

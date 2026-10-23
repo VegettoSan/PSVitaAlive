@@ -3,7 +3,7 @@
   "title_id": "GHSTSHP01",
   "name": "Ghostship Vita",
   "description": "Port of Ghostship for PSVita.",
-  "long_description": "Ghostship is a sourceport of Super Mario 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.2 (Dutchman Charlie) with bugfixes from the in-development branch.",
+  "long_description": "Ghostship is a sourceport of Super Mario 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.2 (Dutchman Charlie) with bugfixes from the in-development branch.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

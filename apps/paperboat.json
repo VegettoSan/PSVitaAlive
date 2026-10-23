@@ -3,7 +3,7 @@
   "title_id": "PAPERBOAT",
   "name": "PaperBoat",
   "description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.",
-  "long_description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.",
+  "long_description": "This is a port of Paperboat (v.1.0.1 with some improvements from develop branch) for PSVita.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

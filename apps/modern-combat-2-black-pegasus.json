@@ -3,7 +3,7 @@
   "title_id": "MC2V00001",
   "name": "Modern Combat 2: Black Pegasus",
   "description": "Modern Combat 2 Black Pegasus Ps Vita Port",
-  "long_description": "Unofficial wrapper/port of Modern Combat 2: Black Pegasus for PlayStation Vita.\n\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, providing the JNI environment expected by the game, and translating OpenGL ES calls through vitaGL. In practice, this creates a lightweight Android-like environment where the original executable can run natively on the PS Vita.",
+  "long_description": "Unofficial wrapper/port of Modern Combat 2: Black Pegasus for PlayStation Vita.\n\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, providing the JNI environment expected by the game, and translating OpenGL ES calls through vitaGL. In practice, this creates a lightweight Android-like environment where the original executable can run natively on the PS Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "wolff"
   ],

@@ -3,7 +3,7 @@
   "title_id": "LANGO0002",
   "name": "Lango Vita",
   "description": "Port of Lango for PSVITA.",
-  "long_description": "Lango is a simple and open source project of an RPG game in the style of the Legendary Legends of Zelda, made on the Godot Engine with the intention of serving as an initial base for you to create your own game.",
+  "long_description": "Lango is a simple and open source project of an RPG game in the style of the Legendary Legends of Zelda, made on the Godot Engine with the intention of serving as an initial base for you to create your own game.\n\n- PsVitaAlive -",
   "author_ids": [
     "parallel-productions"
   ],

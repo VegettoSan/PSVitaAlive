@@ -3,7 +3,7 @@
   "title_id": "RSDK00001",
   "name": "Sonic CD",
   "description": "Port of Sonic CD for PSVITA/PSTV.",
-  "long_description": "Port of Sonic CD for PSVITA/PSTV based on the decompilation of Sonic CD 2011.\nThis specific decompilation is based on the PC remake with improvements & tweaks from the mobile remakes.",
+  "long_description": "Port of Sonic CD for PSVITA/PSTV based on the decompilation of Sonic CD 2011.\nThis specific decompilation is based on the PC remake with improvements & tweaks from the mobile remakes.\n\n- PsVitaAlive -",
   "author_ids": [
     "xeeynamo"
   ],

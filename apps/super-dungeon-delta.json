@@ -3,7 +3,7 @@
   "title_id": "DUNGEON01",
   "name": "Super Dungeon Delta",
   "description": "Super Dungeon Delta port for PSVITA.",
-  "long_description": "Super Dungeon Delve is retro style 2D dungeon crawl game. It was created as a learning project to learn and get started with with the Godot Engine. The game was inspired by rougelikes and the 80s Gauntlet arcade game, Gauntlet.\nThe scope was kept deliberately small, in order to achieve some sembalance of a finished/playable game",
+  "long_description": "Super Dungeon Delve is retro style 2D dungeon crawl game. It was created as a learning project to learn and get started with with the Godot Engine. The game was inspired by rougelikes and the 80s Gauntlet arcade game, Gauntlet.\nThe scope was kept deliberately small, in order to achieve some sembalance of a finished/playable game\n\n- PsVitaAlive -",
   "author_ids": [
     "parallel-productions"
   ],

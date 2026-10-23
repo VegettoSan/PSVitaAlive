@@ -3,7 +3,7 @@
   "title_id": "DSTROYVIT",
   "name": "Dstroy Vita",
   "description": "Port of Dstroy for PSVITA.",
-  "long_description": "Dstroy is a bomberman-like game. It was originally developped by FBS in 1995, on DOS.\nIt supports up to 2 players with PSVITA and up to 4 players with PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Dstroy is a bomberman-like game. It was originally developped by FBS in 1995, on DOS.\nIt supports up to 2 players with PSVITA and up to 4 players with PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

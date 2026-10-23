@@ -3,7 +3,7 @@
   "title_id": "WRLDOFGOO",
   "name": "World of Goo Vita",
   "description": "Port of World of Goo for PSVITA.",
-  "long_description": "This is a wrapper/port of World of Goo for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "long_description": "This is a wrapper/port of World of Goo for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

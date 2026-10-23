@@ -3,7 +3,7 @@
   "title_id": "CSPSP0001",
   "name": "CSPSV",
   "description": "Port of CSPSP for PSVita.",
-  "long_description": "CSPSP is a homebrew game for the Sony PSP, created in 2006 and updated through 2011. It is a 2d top-down shooter heavily based on Counter-Strike, with similar round-based team gameplay and weapon selection. It features fully multiplayer gameplay via community-hosted servers.",
+  "long_description": "CSPSP is a homebrew game for the Sony PSP, created in 2006 and updated through 2011. It is a 2d top-down shooter heavily based on Counter-Strike, with similar round-based team gameplay and weapon selection. It features fully multiplayer gameplay via community-hosted servers.\n\n- PsVitaAlive -",
   "author_ids": [
     "cello0314"
   ],

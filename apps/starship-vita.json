@@ -3,7 +3,7 @@
   "title_id": "STARSHIP1",
   "name": "Starship Vita",
   "description": "Port of Starship for PSVita.",
-  "long_description": "Starship is a sourceport of StarFox 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Centauri Alpha) with bugfixes from the in-development branch.",
+  "long_description": "Starship is a sourceport of StarFox 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Centauri Alpha) with bugfixes from the in-development branch.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

@@ -3,7 +3,7 @@
   "title_id": "BTTD00010",
   "name": "Dragon Ball Z: BT3",
   "description": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3, based on Tenkaichi3Decomp",
-  "long_description": "A native PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3 (PlayStation 2, USA release, SLUS-21678), based on z3xox's Tenkaichi3Decomp, the PC port built on the BT3-Decompiled decompilation. The game's own code is compiled for the Vita, with a renderer for the Vita's GPU (vitaGL), sound, touch and controls written for the handheld. It is not an emulator.",
+  "long_description": "A native PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3 (PlayStation 2, USA release, SLUS-21678), based on z3xox's Tenkaichi3Decomp, the PC port built on the BT3-Decompiled decompilation. The game's own code is compiled for the Vita, with a renderer for the Vita's GPU (vitaGL), sound, touch and controls written for the handheld. It is not an emulator.\n\n- PsVitaAlive -",
   "author_ids": [
     "arielxflores"
   ],

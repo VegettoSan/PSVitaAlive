@@ -3,7 +3,7 @@
   "title_id": "CBFD00064",
   "name": "Conker's Bad Fur Day",
   "description": "Conker's Bad Fur Day native PS Vita port",
-  "long_description": "Conker's Bad Fur Day (Rare, 2001) running natively on the PS Vita / PS TV. This is not an emulator: the N64 game was statically recompiled to C with N64Recomp (based on CBFD-Recompiled) and built for the Vita, with the N64's graphics drawn by a renderer written for the Vita's GPU (sceGxm) and the audio microcode running on the Vita's CPU.",
+  "long_description": "Conker's Bad Fur Day (Rare, 2001) running natively on the PS Vita / PS TV. This is not an emulator: the N64 game was statically recompiled to C with N64Recomp (based on CBFD-Recompiled) and built for the Vita, with the N64's graphics drawn by a renderer written for the Vita's GPU (sceGxm) and the audio microcode running on the Vita's CPU.\n\n- PsVitaAlive -",
   "author_ids": [
     "henrykun55"
   ],

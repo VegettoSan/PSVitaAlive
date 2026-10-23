@@ -3,7 +3,7 @@
   "title_id": "BULLY0000",
   "name": "Bully Vita",
   "description": "Port of Bully: Anniversary Edition for PSVITA.",
-  "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "long_description": "This is a wrapper/port of Bully: Anniversary Edition for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
   "author_ids": [
     "aap",
     "rinnegatamante",

@@ -3,7 +3,7 @@
   "title_id": "SMUM30622",
   "name": "Super Mario UniMaker",
   "description": "Port of Super Mario UniMaker for PSVITA.",
-  "long_description": "Super Mario UniMaker is a fan game of Super Mario Maker that lets you make your own Super Mario levels. You can Create/Play and Modify levels at your will ! Original game by NinStar.\nFor installing custom levels you need to take the '.unis' file and put it in the ux0:app/SMUM30622/games/courses/ folder.",
+  "long_description": "Super Mario UniMaker is a fan game of Super Mario Maker that lets you make your own Super Mario levels. You can Create/Play and Modify levels at your will ! Original game by NinStar.\nFor installing custom levels you need to take the '.unis' file and put it in the ux0:app/SMUM30622/games/courses/ folder.\n\n- PsVitaAlive -",
   "author_ids": [
     "megagameboy"
   ],

@@ -3,7 +3,7 @@
   "title_id": "HMRL00002",
   "name": "uMario Vita",
   "description": "Port of uMario for PSVITA.",
-  "long_description": "Port of uMario for PSVITA. uMario is a recreation of Super Mario Bros with widescreen patch and some added options.",
+  "long_description": "Port of uMario for PSVITA. uMario is a recreation of Super Mario Bros with widescreen patch and some added options.\n\n- PsVitaAlive -",
   "author_ids": [
     "hammerill"
   ],

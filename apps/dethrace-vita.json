@@ -3,7 +3,7 @@
   "title_id": "DETHRACE1",
   "name": "Dethrace Vita",
   "description": "Port of Dethrace for PSVITA.",
-  "long_description": "Port of Deathrace for PSVITA.\nDethrace is an attempt to learn how the 1997 driving/mayhem game Carmageddon works behind the scenes and rebuild it to run natively on modern systems.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Deathrace for PSVITA.\nDethrace is an attempt to learn how the 1997 driving/mayhem game Carmageddon works behind the scenes and rebuild it to run natively on modern systems.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

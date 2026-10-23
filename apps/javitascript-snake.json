@@ -3,7 +3,7 @@
   "title_id": "SNEK00001",
   "name": "JaVitaScript Snake",
   "description": "Port of patorjk's JavaScript Snake for PSVITA.",
-  "long_description": "Port of patorjk's JavaScript Snake for PSVITA.",
+  "long_description": "Port of patorjk's JavaScript Snake for PSVITA.\n\n- PsVitaAlive -",
   "author_ids": [
     "largepelotas"
   ],

@@ -3,7 +3,7 @@
   "title_id": "HXEN00001",
   "name": "vitaHexenII",
   "description": "Hexen II port for PSVITA.",
-  "long_description": "vitaHexenII is a port for PSVITA of Hexen II, a popular dark-fantasy fps created by Raven Software using a modified version of Quake Engine.\nIt's based on vitaQuake core and it shares a lot of features with it.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "vitaHexenII is a port for PSVITA of Hexen II, a popular dark-fantasy fps created by Raven Software using a modified version of Quake Engine.\nIt's based on vitaQuake core and it shares a lot of features with it.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

@@ -3,7 +3,7 @@
   "title_id": "GEMRB0001",
   "name": "GemRB",
   "description": "Port of GemRB for PSVITA/PSTV.",
-  "long_description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and Planescape: Torment games, their expansions and mods.",
+  "long_description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and Planescape: Torment games, their expansions and mods.\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

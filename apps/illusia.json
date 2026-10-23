@@ -3,7 +3,7 @@
   "title_id": "ILLU00001",
   "name": "Illusia",
   "description": "This is a wrapper/port of Illusia for the PS Vita.",
-  "long_description": "The port works by loading the Android ARMv6 executables from the Android release in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "long_description": "The port works by loading the Android ARMv6 executables from the Android release in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
   "author_ids": [
     "withlogic"
   ],

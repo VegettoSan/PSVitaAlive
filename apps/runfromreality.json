@@ -3,7 +3,7 @@
   "title_id": "RFLM32541",
   "name": "RunFromReality",
   "description": "Port of Run From Reality.",
-  "long_description": "Run From Reality is a 2D side-scroll endless running game where we as a player must pass through the very random obstacle to obtain the highest score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Run From Reality is a 2D side-scroll endless running game where we as a player must pass through the very random obstacle to obtain the highest score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "luckthegamers"
   ],

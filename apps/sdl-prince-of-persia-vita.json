@@ -3,7 +3,7 @@
   "title_id": "SPOP00001",
   "name": "SDL Prince of Persia Vita",
   "description": "Port of SDLPoP for the PS Vita.",
-  "long_description": "SDLPoP is an open-source project that aims to allow people to play the original Prince of Persia DOS games on modern systems without the use of tools like DosBox. It was originally created by disassembling the code of the original game to get the source.",
+  "long_description": "SDLPoP is an open-source project that aims to allow people to play the original Prince of Persia DOS games on modern systems without the use of tools like DosBox. It was originally created by disassembling the code of the original game to get the source.\n\n- PsVitaAlive -",
   "author_ids": [
     "usineur"
   ],

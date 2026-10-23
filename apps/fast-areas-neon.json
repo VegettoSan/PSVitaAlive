@@ -3,7 +3,7 @@
   "title_id": "NBDI56749",
   "name": "fast-areas NEON",
   "description": "Port of fast-areas NEON for PSVITA.",
-  "long_description": "Port of fast-areas NEON for PSVITA.\nGo as far as you can, don't touch any obstacles, or you will lose!",
+  "long_description": "Port of fast-areas NEON for PSVITA.\nGo as far as you can, don't touch any obstacles, or you will lose!\n\n- PsVitaAlive -",
   "author_ids": [
     "orbitalflagstudio"
   ],

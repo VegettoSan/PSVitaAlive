@@ -3,7 +3,7 @@
   "title_id": "PPMR00001",
   "name": "Paper Mario Vita",
   "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-  "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+  "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.\n\n- PsVitaAlive -",
   "author_ids": [
     "kaziema"
   ],

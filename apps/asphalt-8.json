@@ -3,7 +3,7 @@
   "title_id": "ASPHALT20",
   "name": "Asphalt 8 Vita",
   "description": "Native compatibility port of Asphalt 8 Android v2.0.0e for PlayStation Vita. Data-free; users supply exact game files.",
-  "long_description": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races",
+  "long_description": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races\n\n- PsVitaAlive -",
   "author_ids": [
     "spliffcurrybeats"
   ],

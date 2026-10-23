@@ -3,7 +3,7 @@
   "title_id": "FOUT00002",
   "name": "Fallout 2 CE",
   "description": "Port of Fallout 2 for PSVITA.",
-  "long_description": "Port of Fallout 2 for PSVITA based on a reverse engineering of the game called Fallout 2: Community Edition.",
+  "long_description": "Port of Fallout 2 for PSVITA based on a reverse engineering of the game called Fallout 2: Community Edition.\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

@@ -3,7 +3,7 @@
   "title_id": "DDLCLOVE0",
   "name": "DDLC-LOVE",
   "description": "Port of Doki Doki Literature Club for PSVITA.",
-  "long_description": "DDLC-LOVE is a Doki Doki Literature Club port programmed in Lua for the Nintendo Switch, 3DS, Sony PS Vita, PSP, and PS3!",
+  "long_description": "DDLC-LOVE is a Doki Doki Literature Club port programmed in Lua for the Nintendo Switch, 3DS, Sony PS Vita, PSP, and PS3!\n\n- PsVitaAlive -",
   "author_ids": [
     "lukezgd"
   ],

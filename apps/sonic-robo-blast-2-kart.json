@@ -3,7 +3,7 @@
   "title_id": "SRB2KART0",
   "name": "Sonic Robo Blast 2 Kart",
   "description": "port of SRB2Kart (Kart Krew), built on Rinnegatamante's vitaGL. Hardware OpenGL, ~60 FPS, online multiplayer.",
-  "long_description": "Hardware-accelerated OpenGL renderer, full online multiplayer (including the official Kart Krew master server), on-screen keyboard, LiveArea assets, and a Performance mode that targets 60 FPS.",
+  "long_description": "Hardware-accelerated OpenGL renderer, full online multiplayer (including the official Kart Krew master server), on-screen keyboard, LiveArea assets, and a Performance mode that targets 60 FPS.\n\n- PsVitaAlive -",
   "author_ids": [
     "esodland"
   ],

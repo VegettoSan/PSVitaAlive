@@ -3,7 +3,7 @@
   "title_id": "INKV00000",
   "name": "INK",
   "description": "INK port for PSVita",
-  "long_description": "INK is a fast-paced platformer about using colorful paint to uncover your surroundings. Defeat all enemies in the room and reach the goal! However, the terrain is invisible, so you need to discover the terrain by physically bumping into it, by performing a double jump or by, well, dying.\nPatch and install instructions in Release Page (Github).",
+  "long_description": "INK is a fast-paced platformer about using colorful paint to uncover your surroundings. Defeat all enemies in the room and reach the goal! However, the terrain is invisible, so you need to discover the terrain by physically bumping into it, by performing a double jump or by, well, dying.\nPatch and install instructions in Release Page (Github).\n\n- PsVitaAlive -",
   "author_ids": [
     "m1s3ry"
   ],

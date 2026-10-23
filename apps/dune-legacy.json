@@ -3,7 +3,7 @@
   "title_id": "DUNE00002",
   "name": "Dune Legacy",
   "description": "Port of Dune Legacy for PSVITA.",
-  "long_description": "Dune Legacy is an effort by a handful of developers to revitalize the first-ever real-time strategy game.\nIt tries to be as similar as possible to the original gameplay but to integrate user interface features most modern realtime-strategy games have like selecting multiple units",
+  "long_description": "Dune Legacy is an effort by a handful of developers to revitalize the first-ever real-time strategy game.\nIt tries to be as similar as possible to the original gameplay but to integrate user interface features most modern realtime-strategy games have like selecting multiple units\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

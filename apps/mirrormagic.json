@@ -3,7 +3,7 @@
   "title_id": "MIRROR000",
   "name": "mirrormagic",
   "description": "Mirrormagic port for PSVITA",
-  "long_description": "Mirrormagic is a game in the tradition of Deflektor and Mindbender written by Holger Schemel. You guide a laser beam by adjusting mirrors before the time limit runs out.",
+  "long_description": "Mirrormagic is a game in the tradition of Deflektor and Mindbender written by Holger Schemel. You guide a laser beam by adjusting mirrors before the time limit runs out.\n\n- PsVitaAlive -",
   "author_ids": [
     "rsn8887"
   ],

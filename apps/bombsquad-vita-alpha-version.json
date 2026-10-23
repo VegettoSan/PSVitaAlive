@@ -3,7 +3,7 @@
   "title_id": "BOMBS1762",
   "name": "BombSquad Vita (Alpha Version)",
   "description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer",
-  "long_description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer",
+  "long_description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer\n\n- PsVitaAlive -",
   "author_ids": [
     "spliffcurrybeats"
   ],

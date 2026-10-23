@@ -3,7 +3,7 @@
   "title_id": "MHDH00001",
   "name": "Vita MHDH",
   "description": "Port of Monster Hunter Dynamic Hunting for PSVita.",
-  "long_description": "This is a wrapper port of the Android version of Monster Hunter Dynamic Hunting a spin-off of the Main MH game series for Android & iOS. It has been released worldwide on June 1, 2011.",
+  "long_description": "This is a wrapper port of the Android version of Monster Hunter Dynamic Hunting a spin-off of the Main MH game series for Android & iOS. It has been released worldwide on June 1, 2011.\n\n- PsVitaAlive -",
   "author_ids": [
     "chatgpt-ai",
     "fatlenny"

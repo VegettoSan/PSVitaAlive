@@ -3,7 +3,7 @@
   "title_id": "PSVSGHD01",
   "name": "Shadow Guardian",
   "description": "This is a wrapper/port of Shadow Guardian HD for the PS Vita.",
-  "long_description": "The port works by loading the official Android ARMv7 libshadowguardian.so executable in memory, resolving its imports with custom stubs, and patching it to properly run on the PS Vita using a fake JNI environment and translating OpenGL ES 2.0 calls to vitaGL.",
+  "long_description": "The port works by loading the official Android ARMv7 libshadowguardian.so executable in memory, resolving its imports with custom stubs, and patching it to properly run on the PS Vita using a fake JNI environment and translating OpenGL ES 2.0 calls to vitaGL.\n\n- PsVitaAlive -",
   "author_ids": [
     "metalsyntax"
   ],

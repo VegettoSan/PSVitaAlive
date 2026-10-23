@@ -3,7 +3,7 @@
   "title_id": "MCPE00000",
   "name": "Minecraft PE",
   "description": "Port of Minecraft Pocket Edition Alpha 0.6.1 for PSVITA.",
-  "long_description": "Port of MCPE Alpha 0.6.1 to PSVita. The original game files are required and are not included.",
+  "long_description": "Port of MCPE Alpha 0.6.1 to PSVita. The original game files are required and are not included.\n\n- PsVitaAlive -",
   "author_ids": [
     "minecraftpe-vita"
   ],

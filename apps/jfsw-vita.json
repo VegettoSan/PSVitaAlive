@@ -3,7 +3,7 @@
   "title_id": "SHDWWRR32",
   "name": "jfsw-vita",
   "description": "Port of Shadow Warrior Classic for PSVITA/PSTV.",
-  "long_description": "jfsw-vita is a port of jfsw (JonoF's Shadow Warrior), a popular multiplatform source port of Shadow Warrior.\nIt supports both shareware and full game data files and since Shadow Warrior Classic became freeware starting from 2013 with the release of Shadow Warrior Classic Redux, this release will feature the full game for free.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "jfsw-vita is a port of jfsw (JonoF's Shadow Warrior), a popular multiplatform source port of Shadow Warrior.\nIt supports both shareware and full game data files and since Shadow Warrior Classic became freeware starting from 2013 with the release of Shadow Warrior Classic Redux, this release will feature the full game for free.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

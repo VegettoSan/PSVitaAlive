@@ -3,7 +3,7 @@
   "title_id": "GEVT00001",
   "name": "GE007Vita",
   "description": "A native PS Vita port of GoldenEye 007 (N64)",
-  "long_description": "A native PS Vita port of GoldenEye 007 (Rare, 1997, Nintendo 64). This is built on top of the GoldenEye 007 PC port, which compiles the original N64 game from the GoldenEye 007 decompilation, retargeted for Vita hardware. It runs the original N64 game from its reconstructed source code.",
+  "long_description": "A native PS Vita port of GoldenEye 007 (Rare, 1997, Nintendo 64). This is built on top of the GoldenEye 007 PC port, which compiles the original N64 game from the GoldenEye 007 decompilation, retargeted for Vita hardware. It runs the original N64 game from its reconstructed source code.\n\n- PsVitaAlive -",
   "author_ids": [
     "kaziema"
   ],

@@ -3,7 +3,7 @@
   "title_id": "LEGO00001",
   "name": "Lego Island",
   "description": "Port of LEGO Island for PSVITA.",
-  "long_description": "A portable version of LEGO Island (1997), built from the decompiled source. The original game files are required and are not included.",
+  "long_description": "A portable version of LEGO Island (1997), built from the decompiled source. The original game files are required and are not included.\n\n- PsVitaAlive -",
   "author_ids": [
     "isledecomp"
   ],

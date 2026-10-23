@@ -3,7 +3,7 @@
   "title_id": "PRYA22322",
   "name": "Pureya Vita",
   "description": "Port of Pureya for PSVITA.",
-  "long_description": "Pureya is a collection of arcade minigames that play with just 2 buttons.\nEvery 10 seconds, the game will jump from one random minigame to another.",
+  "long_description": "Pureya is a collection of arcade minigames that play with just 2 buttons.\nEvery 10 seconds, the game will jump from one random minigame to another.\n\n- PsVitaAlive -",
   "author_ids": [
     "patnosd"
   ],

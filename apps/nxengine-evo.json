@@ -3,7 +3,7 @@
   "title_id": "NXEV00001",
   "name": "NXENGINE-EVO",
   "description": "Port of Cave Story for PSVITA.",
-  "long_description": "NXEngine-evo, a refactored engine for Cave Story. The original game files are required and are not included.",
+  "long_description": "NXEngine-evo, a refactored engine for Cave Story. The original game files are required and are not included.\n\n- PsVitaAlive -",
   "author_ids": [
     "nxengine"
   ],

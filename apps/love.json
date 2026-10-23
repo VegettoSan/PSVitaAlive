@@ -3,7 +3,7 @@
   "title_id": "LOVEVITA0",
   "name": "LOVE",
   "description": "Port of LOVE for PSVITA.",
-  "long_description": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "hatoving"
   ],

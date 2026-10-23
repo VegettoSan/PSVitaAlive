@@ -3,7 +3,7 @@
   "title_id": "PCEXHUMED",
   "name": "vitaExhumed",
   "description": "PowerSlave/Exhumed port for PSVITA.",
-  "long_description": "vitaExhumed is a port of PCExhumed, an EDuke32 fork that supports PowerSlave/Exhumed games. PowerSlave, known as Exhumed in Europe, is a first-person shooter developed by Lobotomy Software and published by Playmates Interactive in 1996.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "vitaExhumed is a port of PCExhumed, an EDuke32 fork that supports PowerSlave/Exhumed games. PowerSlave, known as Exhumed in Europe, is a first-person shooter developed by Lobotomy Software and published by Playmates Interactive in 1996.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

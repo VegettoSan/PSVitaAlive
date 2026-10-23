@@ -3,7 +3,7 @@
   "title_id": "ISLD00004",
   "name": "Defendguin",
   "description": "Port of Defendguin for PSVITA/PSTV.",
-  "long_description": "Defendguin is a clone of the arcade game \"Defender,\" but with a Linux theme. Your mission is to defend little penguinoids from being captured and mutated.",
+  "long_description": "Defendguin is a clone of the arcade game \"Defender,\" but with a Linux theme. Your mission is to defend little penguinoids from being captured and mutated.\n\n- PsVitaAlive -",
   "author_ids": [
     "island-games"
   ],

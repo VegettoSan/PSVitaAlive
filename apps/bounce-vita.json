@@ -3,7 +3,7 @@
   "title_id": "BZERO0001",
   "name": "Bounce Vita",
   "description": "Port of the Nokia Bounce game for PSVita.",
-  "long_description": "Bounce Vita is a native PlayStation Vita port of the classic Nokia Bounce game. It is based on the open-source C reimplementation from amdray/bounce_zero, adapted for VitaSDK with Vita2D rendering, Vita controls, audio, persistent progress, and refreshed presentation assets.",
+  "long_description": "Bounce Vita is a native PlayStation Vita port of the classic Nokia Bounce game. It is based on the open-source C reimplementation from amdray/bounce_zero, adapted for VitaSDK with Vita2D rendering, Vita controls, audio, persistent progress, and refreshed presentation assets.\n\n- PsVitaAlive -",
   "author_ids": [
     "m-essa11"
   ],

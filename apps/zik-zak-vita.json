@@ -3,7 +3,7 @@
   "title_id": "ZIKZAK001",
   "name": "Zik-Zak Vita",
   "description": "Port of Zik-Zak for PSVITA.",
-  "long_description": "Port of Zik-Zak for PSVITA.\nZik-Zak is a thinking and reaction game. You follow a small green spaceship through an abstract world and try to reach the exit in each level. You can control the flying direction only indirectly by shooting the prisms. The ship ricochets according to the angle of incidence.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Zik-Zak for PSVITA.\nZik-Zak is a thinking and reaction game. You follow a small green spaceship through an abstract world and try to reach the exit in each level. You can control the flying direction only indirectly by shooting the prisms. The ship ricochets according to the angle of incidence.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

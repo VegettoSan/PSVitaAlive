@@ -3,7 +3,7 @@
   "title_id": "AEROFOIL1",
   "name": "Aerofoil Vita",
   "description": "Port of Aerofoil for PSVITA.",
-  "long_description": "This is a wrapper/port of Aerofoil, a sourceport of Glider Pro, for PSVITA.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.",
+  "long_description": "This is a wrapper/port of Aerofoil, a sourceport of Glider Pro, for PSVITA.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

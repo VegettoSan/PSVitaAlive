@@ -3,7 +3,7 @@
   "title_id": "JONOFDUKE",
   "name": "jfduke3d-vita",
   "description": "Port of JFDuke3D for PSVITA/PSTV.",
-  "long_description": "jfduke3d-vita is a port of JFDuke3D, a popular multi-platform source port of Duke Nukem 3D.\nIt supports both shareware and full game data files as well as full game data files of NAM.\nThis port implements both classic 8 bit renderer and the new 32 bit Polymost renderer with hardware acceleration through vitaGL.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "jfduke3d-vita is a port of JFDuke3D, a popular multi-platform source port of Duke Nukem 3D.\nIt supports both shareware and full game data files as well as full game data files of NAM.\nThis port implements both classic 8 bit renderer and the new 32 bit Polymost renderer with hardware acceleration through vitaGL.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

@@ -3,7 +3,7 @@
   "title_id": "OHCL00001",
   "name": "OpenHCL",
   "description": "Port of Hydra Castle Labyrinth for PSVITA.",
-  "long_description": "A multiplatform port of Hydra Castle Labyrinth through SDL.",
+  "long_description": "A multiplatform port of Hydra Castle Labyrinth through SDL.\n\n- PsVitaAlive -",
   "author_ids": [
     "jeffrulz345"
   ],

@@ -3,7 +3,7 @@
   "title_id": "CTRMAG001",
   "name": "Cut the Rope: Magic",
   "description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.",
-  "long_description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.\n\nGame data path: ux0:data/ctrm/",
+  "long_description": "Unofficial so-loader port of Cut the Rope: Magic (ZeptoLab / libctrm.so) for PlayStation Vita.\n\nGame data path: ux0:data/ctrm/\n\n- PsVitaAlive -",
   "author_ids": [
     "clyppe"
   ],

@@ -3,7 +3,7 @@
   "title_id": "PSVZ00002",
   "name": "Zenonia 2",
   "description": "PS Vita port/loader of the Android release of Zenonia 2, originally published by Gamevil for Android, built on soloader-boilerplate.",
-  "long_description": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!",
+  "long_description": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!\n\n- PsVitaAlive -",
   "author_ids": [
     "claude-ai",
     "metalsyntax"

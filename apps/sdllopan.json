@@ -3,7 +3,7 @@
   "title_id": "SDLLOPAN0",
   "name": "SDLLopan",
   "description": "Mahjongg game for PSVITA.",
-  "long_description": "A classic remake for Linux Lopan (a Mahjong clone) by Dave Ashley.\nLike other Mahjongg games, you try to remove all the pieces. To remove pieces you must select a pair of pieces with the same drawing.",
+  "long_description": "A classic remake for Linux Lopan (a Mahjong clone) by Dave Ashley.\nLike other Mahjongg games, you try to remove all the pieces. To remove pieces you must select a pair of pieces with the same drawing.\n\n- PsVitaAlive -",
   "author_ids": [
     "nop90"
   ],

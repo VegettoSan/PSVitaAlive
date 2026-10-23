@@ -3,7 +3,7 @@
   "title_id": "ISLD00005",
   "name": "Tux Football Vita",
   "description": "Port of Tux Football for PSVITA/PSTV.",
-  "long_description": "A PS Vita port of Tux Football. The game supports 2 players (PSTV), however, that mode is untested.",
+  "long_description": "A PS Vita port of Tux Football. The game supports 2 players (PSTV), however, that mode is untested.\n\n- PsVitaAlive -",
   "author_ids": [
     "island-games"
   ],
