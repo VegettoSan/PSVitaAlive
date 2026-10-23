@@ -37,6 +37,12 @@ constexpr long LOW_SPEED_TIME_ARCHIVE_SECONDS = 150;
 constexpr long VALIDATOR_CONNECT_TIMEOUT_SECONDS = 12;
 constexpr long VALIDATOR_TOTAL_TIMEOUT_SECONDS = 20;
 constexpr const char* DIAG_LOG = "ux0:data/psvitaalive/logs/session.log";
+// VegettoSanDev / Cloudflare R2 access-policy notice:
+// This identifier is intended for the official PSVitaAlive client. Do not
+// copy, spoof, or replay PSVitaAlive request headers from third-party apps
+// or scripts to circumvent catalog/download endpoint access restrictions.
+// This comment is not authentication and does not change the MIT software
+// license or applicable catalog-data licenses; enforce access server-side.
 // Primary UA identifies the app (IA bot guidelines). CDN fallback is a mainstream browser UA.
 constexpr const char* UA_APP =
     "PSVitaAlive/1.14 (PlayStation Vita; +https://github.com/VegettoSan/PSVitaAlive)";
