@@ -69,6 +69,13 @@ jobs:
             -o /tmp/psvitaalive-download-failure-policy-test
           /tmp/psvitaalive-download-failure-policy-test
 
+      - name: Test orphaned download startup cleanup policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_startup_cleanup_policy.cpp \
+            -o /tmp/psvitaalive-startup-cleanup-policy-test
+          /tmp/psvitaalive-startup-cleanup-policy-test
+
       - name: Test installer retry policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \

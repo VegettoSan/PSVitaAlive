@@ -1,5 +1,6 @@
 #include "localization/localization.hpp"
 #include "network/download_manager.hpp"
+#include "network/startup_cleanup_policy.hpp"
 #include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
 #include "diagnostic_logger.hpp"
@@ -104,6 +105,7 @@ bool DownloadManager::saveMetadata(const DownloadJob& job) const {
     sceClibSnprintf(
         body, sizeof(body),
         "{\n"
+        "  \"cleanup_protocol\": 2,\n"
         "  \"id\": \"%s\",\n"
         "  \"url\": \"%s\",\n"
         "  \"file_name\": \"%s\",\n"
@@ -586,53 +588,95 @@ bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
     return ok;
 }
 
-int DownloadManager::purgeIncompleteJobs() {
+int DownloadManager::purgeIncompleteJobs(const StartupCleanupProgressFn& onProgress) {
+    // Called before catalog/network workers start: no active job can be deleted.
     StorageManager st;
-    st.createDirectories(jobsRoot());
     const std::string root = jobsRoot();
-    SceUID uid = sceIoDopen(root.c_str());
+    if (!st.createDirectories(root)) {
+        diagnostics::log("[DownloadManager] startup cleanup: cannot open jobs root");
+        return 0;
+    }
+    const SceUID uid = sceIoDopen(root.c_str());
     if (uid < 0) return 0;
-    int purged = 0;
-    SceIoDirent ent;
+
+    // Only keep job directory names in RAM, never payload contents.
     std::vector<std::string> victims;
-    while (sceIoDread(uid, &ent) > 0) {
-        if (ent.d_name[0] == '.' || (ent.d_stat.st_mode & SCE_S_IFDIR) == 0) continue;
-        victims.push_back(ent.d_name);
+    SceIoDirent ent{};
+    int readResult = 0;
+    while ((readResult = sceIoDread(uid, &ent)) > 0) {
+        if (!SCE_S_ISDIR(ent.d_stat.st_mode)) continue;
+        const std::string id(ent.d_name);
+        if (id.compare(0, 4, "job_") != 0 || id.find("..") != std::string::npos)
+            continue;
+        victims.push_back(id);
     }
     sceIoDclose(uid);
+    if (readResult < 0)
+        diagnostics::log("[DownloadManager] startup cleanup: jobs scan incomplete");
 
-    for (const auto& id : victims) {
+    const uint64_t total = victims.size();
+    if (onProgress) onProgress(0, total, std::string(), false);
+
+    int purged = 0, failed = 0, preserved = 0;
+    for (size_t i = 0; i < victims.size(); ++i) {
+        const std::string& id = victims[i];
+        const std::string jobDir = root + "/" + id;
         DownloadJob job;
         job.id = id;
-        if (!ensureJobDirs(job)) continue;
+        job.metadataPath = jobDir + "/metadata.json";
         const bool hasMeta = loadMetadata(job);
-        if (hasMeta && job.state == DownloadState::Completed) continue;
-        if (st.exists(job.temporaryPath)) st.removeFile(job.temporaryPath);
-        if (st.exists(job.finalPath)) st.removeFile(job.finalPath);
-        if (st.exists(job.metadataPath)) st.removeFile(job.metadataPath);
-        const std::string jobDir = jobsRoot() + "/" + id;
-        SceUID d = sceIoDopen(jobDir.c_str());
-        if (d >= 0) {
-            SceIoDirent e2;
-            while (sceIoDread(d, &e2) > 0) {
-                if (e2.d_name[0] == '.') continue;
-                st.removeFile(jobDir + "/" + e2.d_name);
-            }
-            sceIoDclose(d);
+        std::string meta;
+        const bool hasRawMeta = st.readTextFile(job.metadataPath, meta);
+        const bool currentProtocol = hasRawMeta &&
+            meta.find("\"cleanup_protocol\": 2") != std::string::npos;
+        const bool explicitlyKept = st.exists(jobDir + "/.psva_keep_zip");
+        const StartupJobAction action = startupJobAction(
+            explicitlyKept, currentProtocol,
+            hasMeta && job.state == DownloadState::Completed,
+            hasMeta ? job.fileName : std::string());
+        if (action != StartupJobAction::Remove) {
+            ++preserved;
+            diagnostics::log(std::string("[DownloadManager] startup cleanup preserved ") +
+                (action == StartupJobAction::PreserveLegacyZip ? "legacy ZIP: " : "explicit keep: ") + jobDir);
+            if (onProgress) onProgress(i + 1, total, job.fileName, false);
+            continue;
         }
-        st.removeDirectory(jobDir);
-        ++purged;
+
+        const std::string shown = (hasMeta && !job.fileName.empty()) ? job.fileName : id;
+        if (onProgress) onProgress(i, total, shown, true);
+        SceUID dir = sceIoDopen(jobDir.c_str());
+        bool ok = dir >= 0;
+        if (dir >= 0) {
+            SceIoDirent child{};
+            int itemResult = 0;
+            while ((itemResult = sceIoDread(dir, &child)) > 0) {
+                if (std::strcmp(child.d_name, ".") == 0 ||
+                    std::strcmp(child.d_name, "..") == 0) continue;
+                const std::string file = jobDir + "/" + child.d_name;
+                // Never recursively erase unfamiliar nested directories.
+                if (SCE_S_ISDIR(child.d_stat.st_mode) || !st.removeFile(file)) {
+                    ok = false;
+                    diagnostics::log("[DownloadManager] startup cleanup could not remove " + file);
+                }
+            }
+            if (itemResult < 0) ok = false;
+            sceIoDclose(dir);
+        }
+        if (!st.removeDirectory(jobDir)) ok = false;
+        if (!ok || st.exists(jobDir)) {
+            ++failed;
+            diagnostics::log("[DownloadManager] startup cleanup incomplete: " + jobDir);
+        } else {
+            ++purged;
+        }
+        if (onProgress) onProgress(i + 1, total, shown, false);
     }
 
-    jobs_.erase(std::remove_if(jobs_.begin(), jobs_.end(), [](const DownloadJob& j) {
-        return j.state != DownloadState::Completed && j.state != DownloadState::Downloading;
-    }), jobs_.end());
-
-    if (purged > 0) {
-        char m[128];
-        sceClibSnprintf(m, sizeof(m), "[DownloadManager] purged %d incomplete job folders", purged);
-        sceClibPrintf("%s\n", m);
-    }
+    char summary[180];
+    sceClibSnprintf(summary, sizeof(summary),
+        "[DownloadManager] startup cleanup scanned=%llu removed=%d preserved=%d failed=%d",
+        (unsigned long long)total, purged, preserved, failed);
+    diagnostics::log(summary);
     return purged;
 }
 

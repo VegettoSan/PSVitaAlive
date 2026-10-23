@@ -66,6 +66,8 @@ public:
 
     bool init();
     void shutdown();
+    /** Run the visible startup orphan-download cleanup before catalog loading. */
+    int cleanupStartupDownloads(const StartupCleanupProgressFn& onProgress);
 
     bool requestInstall(
         const std::string& url,

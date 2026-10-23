@@ -439,6 +439,27 @@ int main(){
 
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
 
+    // Visible, offline-only startup maintenance. No catalog, image or download
+    // worker is running here; every orphan job is exclusively owned by cleanup.
+    screen.setCatalogLoading(true, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_LABEL"),
+                             0, 0, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_CHECKING"));
+    screen.updateAndDraw();
+    installer.cleanupStartupDownloads([&screen](
+        uint64_t completed, uint64_t total, const std::string& fileName, bool deleting) {
+        const char* label = ::psvitaalive::L(deleting
+            ? "STARTUP_DOWNLOAD_CLEANUP_DELETING"
+            : "STARTUP_DOWNLOAD_CLEANUP_CHECKING");
+        std::string message(label);
+        if (!fileName.empty())
+            message += " " + fileName.substr(0, 72);
+        screen.setCatalogLoading(true, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_LABEL"),
+                                 completed, total, message);
+        screen.updateAndDraw();
+    });
+    screen.setCatalogLoading(true, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_LABEL"),
+                             1, 1, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_READY"));
+    screen.updateAndDraw();
+
     // VitaShell pattern: remove temporary self-update helper bubble if present.
     psvitaalive::UpdateChecker::cleanupUpdaterBubble();
 
