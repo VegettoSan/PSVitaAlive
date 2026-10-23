@@ -423,8 +423,10 @@ ZIP_RECOVERY_DELETE_FAILED=Could not delete the recovered ZIP
 ZIP_RECOVERY_CHOOSE_ACTION=Choose Keep ZIP or Delete ZIP first.
 
 # Final download phase / install timer
-DOWNLOAD_VERIFYING_TITLE=Verifying download
-DOWNLOAD_VERIFYING_PARTS=Joining parts and checking file integrity...
+DOWNLOAD_VERIFYING_TITLE=Finishing download
+DOWNLOAD_VERIFYING_PARTS=Joining downloaded parts...
+DOWNLOAD_VERIFYING_SEGMENTS=Finishing download...
+DOWNLOAD_VERIFYING_HINT=Large files may take time to assemble. Please wait.
 LABEL_ELAPSED=Elapsed
 
 # QR / Web handoff
@@ -537,3 +539,50 @@ KEYBOARD_CANCEL=CANCEL
 KEYBOARD_CONFIRM=OK
 KEYBOARD_SPACE=SPACE
 KEYBOARD_MORE=MORE
+
+# Archive.org connectivity warnings (startup / failed user download)
+ARCHIVE_WARNING_TITLE=Archive.org connection problems
+ARCHIVE_WARNING_STARTUP_1=PSVitaAlive cannot reach Archive.org from your current connection.
+ARCHIVE_WARNING_STARTUP_2=Some downloads, icons and screenshots may be temporarily unavailable. This does not necessarily mean PSVitaAlive is at fault. Please try again later or wait for the external service to recover.
+ARCHIVE_WARNING_DOWNLOAD_1=This download cannot connect to Archive.org right now.
+ARCHIVE_WARNING_DOWNLOAD_2=The external service may be having problems; it is not necessarily a PSVitaAlive error. Please try another download source if available, or try again later.
+ARCHIVE_WARNING_OK=Understood
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Download unavailable
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=We couldn't connect to Archive.org right now.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=The service or your connection may be having temporary issues. This does not necessarily mean there is a problem with PSVitaAlive.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Try another download link, if available, or try again later.
+
+# Friendly error explanations for downloads, extraction and installation
+INSTALL_ERR_TITLE_DOWNLOAD=Download could not be completed
+INSTALL_ERR_TITLE_ARCHIVE=File could not be extracted
+INSTALL_ERR_TITLE_GENERAL=Operation could not be completed
+INSTALL_ERR_NETWORK_WHY=Could not connect to the download server.
+INSTALL_ERR_NETWORK_ACTION=Check your connection, try another link or try again later.
+INSTALL_ERR_HTTP_MISSING_WHY=The requested file is no longer available at this link.
+INSTALL_ERR_HTTP_MISSING_ACTION=Try a mirror or notify the catalog maintainer about the broken link.
+INSTALL_ERR_HTTP_DENIED_WHY=The server refused access to this file.
+INSTALL_ERR_HTTP_DENIED_ACTION=Try another source. The link may require permission or have expired.
+INSTALL_ERR_HTTP_BUSY_WHY=The server is busy or limiting requests.
+INSTALL_ERR_HTTP_BUSY_ACTION=Wait a few minutes before trying again.
+INSTALL_ERR_HTTP_SERVER_WHY=The server is having temporary problems.
+INSTALL_ERR_HTTP_SERVER_ACTION=Try another download source, or try again later.
+INSTALL_ERR_TLS_WHY=A secure connection to the server could not be established.
+INSTALL_ERR_TLS_ACTION=Check your console date and time, or try another download source.
+INSTALL_ERR_MEDIAFIRE_WHY=The file could not be retrieved from MediaFire.
+INSTALL_ERR_MEDIAFIRE_ACTION=Try another link or open the original source to check the download.
+INSTALL_ERR_SPACE_WHY=There is not enough free space to complete this operation.
+INSTALL_ERR_SPACE_ACTION=Free some space on the destination storage and try again.
+INSTALL_ERR_STORAGE_WHY=The console could not read or save the required files.
+INSTALL_ERR_STORAGE_ACTION=Check the destination storage and free space, then retry.
+INSTALL_ERR_ARCHIVE_WHY=The ZIP or VPK could not be read or extracted correctly.
+INSTALL_ERR_ARCHIVE_ACTION=The file may be incomplete, damaged or incompatible. Try another copy.
+INSTALL_ERR_UNSAFE_WHY=Extraction stopped to avoid unsafe paths or overwriting files.
+INSTALL_ERR_UNSAFE_ACTION=Check the destination folder. Your existing files were protected.
+INSTALL_ERR_FORMAT_WHY=This file does not have a supported format or structure.
+INSTALL_ERR_FORMAT_ACTION=Check that you selected the correct download type and file.
+INSTALL_ERR_INSTALLER_WHY=The console could not finish installing the application.
+INSTALL_ERR_INSTALLER_ACTION=Check the application's requirements and plugins. Report the issue if it persists.
+INSTALL_ERR_OTHER_WHY=Something unexpected prevented this operation from finishing.
+INSTALL_ERR_OTHER_ACTION=Try again. If it keeps happening, send a report with session.log.

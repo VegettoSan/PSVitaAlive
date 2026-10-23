@@ -6,6 +6,7 @@
 #include <curl/curl.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
+#include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
 
@@ -16,9 +17,6 @@
 #include <new>
 #include <string>
 #include <strings.h>
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-#include <openssl/sha.h>
-#endif
 
 namespace psvitaalive {
 namespace {
@@ -35,7 +33,7 @@ constexpr size_t kJoinBuffer = 1024 * 1024;
 // Sequential per-range writes with a bounded buffer reduce costly ux0 I/O.
 // A 256 KiB buffer per stream uses at most 1 MiB additional heap RAM.
 constexpr size_t kPartWriteBuffer = 256 * 1024;
-// Tiny cooperative yields during sustained ux0 writes/hash reads, without
+// Tiny cooperative yields during sustained ux0 disk writes, without
 // reducing the parallel connection count or changing transfer integrity.
 constexpr uint64_t kIoYieldStep = 4ULL * 1024ULL * 1024ULL;
 constexpr const char* kUserAgent =
@@ -59,10 +57,6 @@ struct Part {
     std::unique_ptr<unsigned char[]> writeBuffer;
     size_t buffered = 0;
     uint64_t bytesSinceYield = 0;
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-    SHA_CTX firstPartSha{};
-    bool streamingSha = false;
-#endif
     std::string path;
     std::string range;
     std::string etag;
@@ -136,7 +130,7 @@ static void sendProgress(Session& s, bool finished = false, bool finalizing = fa
     if (!finished && !finalizing && now - s.lastReportUs < 250000ULL) return;
     s.lastReportUs = now;
     HttpProgress p;
-    // Hold at 99% until the part files have been assembled and checked.
+    // Hold at 99% only when assembly is required; direct ZIP/VPK skips it.
     p.absoluteDownloaded = finished ? s.size
         : (s.received >= s.size ? s.size - 1 : s.received);
     p.downloaded = p.absoluteDownloaded;
@@ -180,12 +174,6 @@ static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
         p->rangeError = true;
         return 0;
     }
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-    // SHA-1 is an ordered streaming hash: the first range arrives in byte
-    // order, so hash it while downloading, overlapping this work with network
-    // IO. The remaining ranges are hashed later while appending in order.
-    if (p->streamingSha) SHA1_Update(&p->firstPartSha, data, n);
-#endif
     size_t copied = 0;
     while (copied < n) {
         if (p->buffered == kPartWriteBuffer && !flushPartBuffer(*p))
@@ -230,20 +218,13 @@ static bool writeAll(SceUID fd, const unsigned char* bytes, size_t n) {
     return true;
 }
 
-// Assemble sequentially to avoid sparse/random Vita filesystem writes.
-// For direct HTTP, calculate SHA-1 as the parts are read; this avoids
-// reopening and re-reading the whole payload after assembly.
+// Assemble sequentially when a non-ZIP payload still needs a single file.
 static bool joinParts(
     const std::string& base,
     uint64_t total,
-    const std::string& expectedSha1,
-    bool& checksumMismatch,
-    size_t partCount
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-    , const SHA_CTX* prehashedFirstPart
-#endif
+    size_t partCount,
+    bool preservePartsUntilComplete
 ) {
-    checksumMismatch = false;
     size_t joinChunk = kJoinBuffer;
     std::unique_ptr<unsigned char[]> buf(new (std::nothrow) unsigned char[joinChunk]);
     if (!buf) {
@@ -253,42 +234,6 @@ static bool joinParts(
         buf.reset(new (std::nothrow) unsigned char[joinChunk]);
     }
     if (!buf) return false;
-
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-    SHA_CTX sha{};
-    const bool hashRequired = !expectedSha1.empty();
-    if (hashRequired) {
-        if (prehashedFirstPart) {
-            sha = *prehashedFirstPart;
-            diagnostics::log("[HTTP] range0 SHA1 streamed during transfer; post-download reread skipped");
-        } else {
-            SHA1_Init(&sha);
-            // Fallback for download paths without a streaming SHA-1 context.
-            SceUID first = sceIoOpen(base.c_str(), SCE_O_RDONLY, 0);
-            if (first < 0) return false;
-            bool readOk = true;
-            const uint64_t hashStartedUs = sceKernelGetProcessTimeWide();
-            uint64_t bytesSinceYield = 0;
-            for (;;) {
-                const int n = sceIoRead(first, buf.get(), static_cast<unsigned int>(joinChunk));
-                if (n < 0) { readOk = false; break; }
-                if (n == 0) break;
-                SHA1_Update(&sha, buf.get(), static_cast<size_t>(n));
-                bytesSinceYield += static_cast<uint64_t>(n);
-                if (bytesSinceYield >= kIoYieldStep) {
-                    bytesSinceYield = 0;
-                    sceKernelDelayThread(1000);
-                }
-            }
-            sceIoClose(first);
-            diagnostics::log(std::string("[HTTP] range0 SHA1 read done elapsed_ms=") +
-                             std::to_string((sceKernelGetProcessTimeWide() - hashStartedUs) / 1000ULL));
-            if (!readOk) return false;
-        }
-    }
-#else
-    if (!expectedSha1.empty()) return false;
-#endif
 
     SceUID dst = sceIoOpen(base.c_str(), SCE_O_WRONLY | SCE_O_APPEND, 0777);
     if (dst < 0) return false;
@@ -312,12 +257,9 @@ static bool joinParts(
                 joinedSinceYield = 0;
                 sceKernelDelayThread(1000);
             }
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-            if (hashRequired) SHA1_Update(&sha, buf.get(), static_cast<size_t>(count));
-#endif
         }
         sceIoClose(src);
-        if (ok) sceIoRemove(file.c_str());
+        if (ok && !preservePartsUntilComplete) sceIoRemove(file.c_str());
     }
     sceIoClose(dst);
     diagnostics::log(std::string("[HTTP] ranges appended elapsed_ms=") +
@@ -325,33 +267,23 @@ static bool joinParts(
     SceIoStat stat{};
     if (!ok || sceIoGetstat(base.c_str(), &stat) < 0 ||
         static_cast<uint64_t>(stat.st_size) != total) return false;
-
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-    if (hashRequired) {
-        unsigned char digest[SHA_DIGEST_LENGTH];
-        SHA1_Final(digest, &sha);
-        static const char* hex = "0123456789abcdef";
-        for (size_t i = 0; i < SHA_DIGEST_LENGTH; ++i) {
-            unsigned char a = static_cast<unsigned char>(expectedSha1[i * 2]);
-            unsigned char b = static_cast<unsigned char>(expectedSha1[i * 2 + 1]);
-            if (a >= 'A' && a <= 'F') a = static_cast<unsigned char>(a + 32);
-            if (b >= 'A' && b <= 'F') b = static_cast<unsigned char>(b + 32);
-            if (a != static_cast<unsigned char>(hex[digest[i] >> 4]) ||
-                b != static_cast<unsigned char>(hex[digest[i] & 15])) {
-                checksumMismatch = true;
-                return false;
-            }
-        }
+    // Recovery must never delete a range before the complete archive exists.
+    if (preservePartsUntilComplete) {
+        for (size_t i = 1; i < partCount; ++i)
+            sceIoRemove(partPath(base, i).c_str());
     }
-#endif
+
     return true;
 }
 
+
+// Accept range responses only over HTTPS and from the expected Archive family.
+// Non-Archive downloads remain HTTPS only. Archive's direct HTTP path is
+// restricted to its storage hosts, validated Range offsets and exact lengths.
 static bool isDirectHttp(const std::string& url) {
     return url.compare(0, 7, "http://") == 0;
 }
 
-// Redirected parallel parts must remain on Archive's own storage hosts.
 static bool usableArchiveFinalUrl(const char* rawUrl, bool requireHttp, bool archiveOnly) {
     if (!rawUrl) return false;
     const std::string url(rawUrl);
@@ -359,7 +291,7 @@ static bool usableArchiveFinalUrl(const char* rawUrl, bool requireHttp, bool arc
         (url.compare(0, 8, "https://") == 0 ? 8 : 0);
     if (!offset || (requireHttp && offset != 7) ||
         (!requireHttp && offset != 8)) return false;
-    if (!archiveOnly) return !requireHttp; // non-Archive ranges require HTTPS
+    if (!archiveOnly) return !requireHttp;
     const size_t end = url.find_first_of("/?#:", offset);
     const std::string host = url.substr(offset, end == std::string::npos ?
         std::string::npos : end - offset);
@@ -392,22 +324,25 @@ ParallelArchiveOutcome downloadArchiveRanges(
     uint64_t authoritativeSize,
     const HttpProgressFn& onProgress,
     const HttpCancelFn& shouldCancel,
-    const std::string& expectedSha1,
     const std::string& expectedEtag,
-    const std::string& expectedModified
+    const std::string& expectedModified,
+    bool keepZipParts
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
     const size_t partCount = authoritativeSize < kFourWayBytes ? 2 : kParts;
-    if (!archiveOnly && isDirectHttp(url)) return ParallelArchiveOutcome::Skipped;
-    // Never accept a plain HTTP payload without an exact expected checksum.
-    if (isDirectHttp(url) && expectedSha1.size() != 40)
+    // Only Archive.org's storage nodes are eligible for direct HTTP.
+    // The caller first validates them with an exact HTTP 206 Range probe.
+    if ((!archiveOnly && isDirectHttp(url)) ||
+        (url.compare(0, 8, "https://") != 0 && !isDirectHttp(url)))
         return ParallelArchiveOutcome::Skipped;
 
-    // Leave headroom for part assembly and installation. If storage is
-    // tight, retain the existing low-space-guarded single-stream path.
+    // Directly extracted ZIP/VPK containers do not need space for an
+    // assembled duplicate. Joined formats keep the original conservative
+    // staging budget; low-space cases fall back to the serial download path.
     uint64_t freeBytes = 0, capacity = 0;
-    const uint64_t extra = authoritativeSize - authoritativeSize / partCount;
+    const uint64_t extra = keepZipParts
+        ? 0 : (authoritativeSize - authoritativeSize / partCount);
     if (!StorageManager::queryUx0Space(freeBytes, capacity) ||
         extra > UINT64_MAX - kDiskReserve ||
         authoritativeSize > UINT64_MAX - extra - kDiskReserve ||
@@ -430,12 +365,6 @@ ParallelArchiveOutcome downloadArchiveRanges(
     for (size_t i = 0; i < partCount; ++i) {
         Part& p = parts[i];
         p.session = &session;
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-        if (i == 0 && !expectedSha1.empty() && isDirectHttp(url)) {
-            SHA1_Init(&p.firstPartSha);
-            p.streamingSha = true;
-        }
-#endif
         p.start = i * chunk;
         p.end = (i + 1 == partCount) ? authoritativeSize - 1 : ((i + 1) * chunk - 1);
         p.path = partPath(destination, i);
@@ -455,7 +384,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
         curl_easy_setopt(p.easy, CURLOPT_RANGE, p.range.c_str());
         curl_easy_setopt(p.easy, CURLOPT_HTTPHEADER, p.headers);
         curl_easy_setopt(p.easy, CURLOPT_USERAGENT, kUserAgent);
-        curl_easy_setopt(p.easy, CURLOPT_SSL_VERIFYPEER, 0L);
+        curl_easy_setopt(p.easy, CURLOPT_SSL_VERIFYPEER, 0L); // Legacy Vita TLS policy; separate hardening needed
         curl_easy_setopt(p.easy, CURLOPT_SSL_VERIFYHOST, 0L);
         curl_easy_setopt(p.easy, CURLOPT_SSLVERSION, CURL_SSLVERSION_DEFAULT);
         curl_easy_setopt(p.easy, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -468,10 +397,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
         curl_easy_setopt(p.easy, CURLOPT_NOSIGNAL, 1L);
         curl_easy_setopt(p.easy, CURLOPT_BUFFERSIZE, 64L * 1024L);
 #if LIBCURL_VERSION_NUM >= 0x075500
-        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS_STR, "http,https");
+        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS_STR, isDirectHttp(url) ? "http" : "https");
         curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS_STR, isDirectHttp(url) ? "http" : "https");
 #else
-        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS, (long)(CURLPROTO_HTTP | CURLPROTO_HTTPS));
+        curl_easy_setopt(p.easy, CURLOPT_PROTOCOLS, (long)(isDirectHttp(url) ? CURLPROTO_HTTP : CURLPROTO_HTTPS));
         curl_easy_setopt(p.easy, CURLOPT_REDIR_PROTOCOLS, (long)(isDirectHttp(url) ? CURLPROTO_HTTP : CURLPROTO_HTTPS));
 #endif
         curl_easy_setopt(p.easy, CURLOPT_WRITEFUNCTION, onWrite);
@@ -520,6 +449,29 @@ ParallelArchiveOutcome downloadArchiveRanges(
                     curl_easy_getinfo(p.easy, CURLINFO_EFFECTIVE_URL, &reached);
                     if (!usableArchiveFinalUrl(reached, isDirectHttp(url), archiveOnly))
                         p.rangeError = true;
+                    // Lightweight one-shot per-range telemetry. This runs AFTER
+                    // curl_multi finishes; there is no logging inside onWrite()
+                    // or inside the network polling loop.
+                    const char* peerIp = nullptr;
+                    double elapsedSec = 0.0;
+                    double ttfbSec = 0.0;
+                    curl_easy_getinfo(p.easy, CURLINFO_PRIMARY_IP, &peerIp);
+                    curl_easy_getinfo(p.easy, CURLINFO_TOTAL_TIME, &elapsedSec);
+                    curl_easy_getinfo(p.easy, CURLINFO_STARTTRANSFER_TIME, &ttfbSec);
+                    const unsigned long long bps = elapsedSec > 0.0
+                        ? static_cast<unsigned long long>(p.received / elapsedSec) : 0ULL;
+                    char detail[650];
+                    sceClibSnprintf(detail, sizeof(detail),
+                        "[HTTP] range_diag part=%u bytes=%llu http=%ld curl=%d elapsed_ms=%llu ttfb_ms=%llu avg_Bps=%llu ip=%s effective=%.220s",
+                        static_cast<unsigned>(&p - parts.data()),
+                        (unsigned long long)p.received,
+                        p.status, static_cast<int>(p.code),
+                        (unsigned long long)(elapsedSec * 1000.0),
+                        (unsigned long long)(ttfbSec * 1000.0),
+                        bps,
+                        peerIp ? peerIp : "-",
+                        reached ? reached : "-");
+                    diagnostics::log(detail);
                     break;
                 }
             }
@@ -567,6 +519,22 @@ ParallelArchiveOutcome downloadArchiveRanges(
         }
     }
 
+    // Measure the real transfer phase separately from metadata selection,
+    // post-download joining and extraction. No additional network requests.
+    const uint64_t transferUs = monotonicUs() - session.startUs;
+    const uint64_t aggregateBps = transferUs > 0
+        ? (session.received / transferUs) * 1000000ULL +
+          ((session.received % transferUs) * 1000000ULL) / transferUs
+        : 0;
+    char totals[240];
+    sceClibSnprintf(totals, sizeof(totals),
+        "[HTTP] range_total parts=%u bytes=%llu elapsed_ms=%llu avg_Bps=%llu",
+        static_cast<unsigned>(partCount),
+        (unsigned long long)session.received,
+        (unsigned long long)(transferUs / 1000ULL),
+        (unsigned long long)aggregateBps);
+    diagnostics::log(totals);
+
     bool ioError = setupIoError;
     for (const Part& p : parts) ioError = ioError || p.ioError;
     closeParts(multi, parts);
@@ -586,29 +554,35 @@ ParallelArchiveOutcome downloadArchiveRanges(
         return ParallelArchiveOutcome::RetrySerial;
     }
 
-    // Network transfer has finished, but disk merge + digest verification
-    // still require time. Publish a separate UI phase instead of freezing at 99%.
+    // Compressed ZIP/VPKs are consumed directly from their validated 206
+    // ranges. Do not assemble or re-read the archive after download.
+    if (keepZipParts) {
+        diagnostics::log("[HTTP] segmented ZIP/VPK range lengths verified; join skipped");
+        sendProgress(session, true);
+        return ParallelArchiveOutcome::Segmented;
+    }
+
+    // Non-archive payloads may still require one contiguous file.
     sendProgress(session, false, true);
-    diagnostics::log("[HTTP] parallel transfer complete; joining and verifying parts");
-    bool checksumMismatch = false;
-    if (!joinParts(destination, authoritativeSize,
-                   isDirectHttp(url) ? expectedSha1 : std::string(),
-                   checksumMismatch, partCount
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-                   , parts[0].streamingSha ? &parts[0].firstPartSha : nullptr
-#endif
-                   )) {
+    diagnostics::log("[HTTP] parallel transfer complete; joining required non-ZIP payload");
+    if (!joinParts(destination, authoritativeSize, partCount, false)) {
         clearPartFiles(destination, true);
-        if (checksumMismatch) {
-            diagnostics::log("[HTTP] direct HTTP checksum mismatch; retry using HTTPS");
-            return ParallelArchiveOutcome::RetrySerial;
-        }
         diagnostics::log("[HTTP] parallel merge failed");
         return ParallelArchiveOutcome::IoError;
     }
     sendProgress(session, true);
-    diagnostics::log("[HTTP] parallel payload validated and joined");
+    diagnostics::log("[HTTP] parallel payload joined; file length verified");
     return ParallelArchiveOutcome::Complete;
+}
+
+bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize) {
+    SceIoStat stat{};
+    const size_t partCount = sceIoGetstat(partPath(base, 3).c_str(), &stat) >= 0 ? 4 : 2;
+    if (sceIoGetstat(partPath(base, 1).c_str(), &stat) < 0) return false;
+    const bool ok = joinParts(base, expectedSize, partCount, true);
+    diagnostics::log(ok ? "[HTTP] recovery ZIP materialized"
+                        : "[HTTP] recovery ZIP materialization failed");
+    return ok;
 }
 
 } // namespace psvitaalive

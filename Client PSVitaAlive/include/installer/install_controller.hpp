@@ -33,6 +33,7 @@ struct InstallStatus {
     std::string installPath;
     std::string titleId;
     bool liveAreaOk = false;
+    bool archiveSourceUnavailable = false; // Only failed Archive.org user downloads.
     /** Remaining ms before Completed auto-dismisses (0 = no auto-dismiss). */
     uint64_t resultAutoCloseRemainingMs = 0;
     /** True when a Plugin link finished and the user must reboot for taiHEN. */
@@ -174,6 +175,7 @@ private:
     std::atomic<bool> installCancelRequested_{false};
 
     // ZIP-only manual recovery. This is never populated for direct VPK/PKG/plugin jobs.
+    std::atomic<bool> archiveSourceUnavailable_{false};
     std::atomic<bool> zipRecoveryAvailable_{false};
     std::atomic<bool> zipRecoveryMayBeCorrupt_{false};
     std::string zipRecoveryPath_;

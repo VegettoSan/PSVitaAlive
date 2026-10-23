@@ -41,4 +41,19 @@ inline bool shouldExtractZipArchive(const std::string& extension,
     return detectedZipContainer;
 }
 
+// Opt in to verified, on-disk ranges for ZIP-container payloads only.
+// VPK files are ZIP containers; the VPK promoter still receives an extracted
+// *directory*, not range parts. Opaque/redirect names keep serial/join fallback.
+// PKG, PSP/PS1 payloads and plugins must retain their established code paths.
+inline bool shouldKeepSegmentedContainer(const std::string& extension,
+                                         bool systemBgdl, bool plugin,
+                                         bool gameOrDataFiles,
+                                         bool zipExtraction,
+                                         bool hasDestination) {
+    if (systemBgdl || plugin) return false;
+    if (gameOrDataFiles)
+        return zipExtraction && hasDestination && extension == "zip";
+    return !hasDestination && extension == "vpk";
+}
+
 } // namespace psvitaalive

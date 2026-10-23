@@ -22,7 +22,7 @@ struct HttpProgress {
     uint64_t total = 0;
     uint64_t absoluteDownloaded = 0;
     uint64_t bytesPerSecond = 0;
-    // Parallel Archive transfer finished; parts are being joined and verified.
+    // Parallel transfer finished; joining needed for non-ZIP payloads only.
     bool finalizing = false;
 };
 
@@ -49,7 +49,8 @@ public:
         HttpCancelFn shouldCancel = nullptr,
         int maxAttemptsOverride = 0, // 0 = default (archive 10 / other 5); images can pass 4
         const std::string& ifRangeValidator = {}, // persisted ETag or Last-Modified for safe resume
-        uint64_t archiveSelectionSizeHint = 0 // threshold hint only; remote headers remain authoritative
+        uint64_t archiveSelectionSizeHint = 0, // threshold hint only; remote headers remain authoritative
+        bool keepZipParts = false // opt-in for direct ZIP/VPK extraction
     );
 
     /**
@@ -85,6 +86,9 @@ public:
     int lastStatusCode() const { return lastStatus_; }
     const std::string& lastError() const { return lastError_; }
     bool lastRangeAccepted() const { return lastRangeAccepted_; }
+    bool lastSegmentedZip() const { return lastSegmentedZip_; }
+    // True when the current resource is unreachable or returned a terminal HTTP status.
+    bool lastSourceUnavailable() const { return lastSourceUnavailable_; }
     const std::string& lastEtag() const { return lastEtag_; }
     const std::string& lastModified() const { return lastModified_; }
 
@@ -92,6 +96,8 @@ private:
     bool initialized_ = false;
     int lastStatus_ = 0;
     bool lastRangeAccepted_ = false;
+    bool lastSegmentedZip_ = false;
+    bool lastSourceUnavailable_ = false;
     std::string lastError_;
     std::string lastEtag_;
     std::string lastModified_;

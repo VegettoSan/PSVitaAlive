@@ -2768,7 +2768,8 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     bool zipRecoveryAvailable,
     const std::string& zipRecoveryPath,
     const std::string& zipRecoveryExtractPath,
-    bool zipRecoveryMayBeCorrupt)
+    bool zipRecoveryMayBeCorrupt,
+    bool archiveSourceUnavailable)
 {
     installProgressActive_ = active;
     if (needsReboot && outcome == 1) {
@@ -2786,10 +2787,19 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
         installPhaseStartedUs_ = sceKernelGetProcessTimeWide();
     if (!active) installPhaseStartedUs_ = 0;
 
+    // Classify only when a terminal failure changes, not on every UI frame.
+    if (active && outcome == 2 &&
+        (installOutcome_ != 2 || installProgressMessage_ != message ||
+         installProgressStage_ != stage)) {
+        installFailureKind_ = classifyInstallFailure(message, stage);
+    } else if (!active || outcome == 0) {
+        installFailureKind_ = InstallFailureKind::Other;
+    }
     installProgressStage_ = stage;
     installProgressFile_ = fileName;
     installProgressMessage_ = message;
     installResultAutoCloseMs_ = resultAutoCloseRemainingMs;
+    installArchiveSourceUnavailable_ = archiveSourceUnavailable && active && outcome == 2;
 
     if (outcome != 0 && outcome != installOutcome_) savedZipProbeAtUs_ = 0;
     installOutcome_ = outcome;
@@ -3758,6 +3768,17 @@ void FullCatalogScreen::handleTouch() {
 
     SceTouchData td{};
     const int touchRet = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &td, 1);
+    if (archiveWarningVisible_) {
+        if (touchRet > 0 && td.reportNum > 0) {
+            touchDown_ = true;
+        } else if (touchDown_) {
+            touchDown_ = false;
+            archiveWarningVisible_ = false;
+            archiveWarningDownload_ = false;
+            diagnostics::log("[UI] Archive.org warning dismissed by touch");
+        }
+        return; // Never leak a modal touch into catalog/install actions.
+    }
     if (touchRet <= 0) {
         if (gProtectionTouchConsumeUntilRelease) gProtectionTouchConsumeUntilRelease = false;
         return;
@@ -4238,8 +4259,10 @@ void FullCatalogScreen::handleTouch() {
           }
           return;
       }
-      const bool spaceErr = isNonReportableInstallError(installProgressMessage_)
-                    || installProgressStage_ == "Space";
+      const bool spaceErr = installArchiveSourceUnavailable_ ||
+                    !shouldReportInstallFailure(installFailureKind_) ||
+                    isNonReportableInstallError(installProgressMessage_) ||
+                    installProgressStage_ == "Space";
                 if (spaceErr) {
                     const int bwClose = 280;
                     const int bxClose = ox + (ow - bwClose) / 2;
@@ -5407,6 +5430,19 @@ void FullCatalogScreen::handleInput(){
         sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
         analogSamplingEnabled = true;
     }
+    if (archiveWarningVisible_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        static uint32_t previousArchiveButtons = 0;
+        const uint32_t pressed = pad.buttons & ~previousArchiveButtons;
+        previousArchiveButtons = pad.buttons;
+        if (pressed & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) {
+            archiveWarningVisible_ = false;
+            archiveWarningDownload_ = false;
+            diagnostics::log("[UI] Archive.org warning dismissed");
+        }
+        return;
+    }
     if (pluginRebootModal_) {
         // Soft restart only — do not allow LiveArea exit or underlying UI.
         // Touch is handled exclusively in handleTouch() so it cannot leak through.
@@ -5579,7 +5615,7 @@ if(pressed&SCE_CTRL_START){
         return;
     }
     return;
-}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!installArchiveSourceUnavailable_&&shouldReportInstallFailure(installFailureKind_)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -7844,7 +7880,9 @@ if (installProgressActive_ && installOutcome_ == 0 && gProtectionActive) {
     char progressLine[128];
     if (verifying) {
         sceClibSnprintf(progressLine, sizeof(progressLine), "%s",
-            ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS"));
+            installProgressMessage_.empty()
+                ? ::psvitaalive::L("DOWNLOAD_VERIFYING_SEGMENTS")
+                : installProgressMessage_.c_str());
     } else if (promoting) {
         sceClibSnprintf(progressLine, sizeof(progressLine), "%s: %s",
             ::psvitaalive::L("LABEL_ELAPSED"),
@@ -8034,9 +8072,17 @@ if(installOutcome_==2){
         : ::psvitaalive::L("ZIP_RECOVERY_WARNING");
     ::psvitaalive::ui::uiDrawText(&font_,x+28,y+242,installZipRecoveryMayBeCorrupt_?amber:DIM,0.68f,
         ellipsize(warning,76).c_str());
-    if(!installProgressMessage_.empty()){
-      sceClibSnprintf(line,sizeof(line),"%s: %s",::psvitaalive::L(TID::LabelReason),ellipsize(installProgressMessage_,68).c_str());
-      ::psvitaalive::ui::uiDrawText(&font_,x+28,y+278,DIM,0.64f,line);
+    // The raw zip_fread / libzip / deflate diagnostic is in session.log.
+    // Wrap the friendly reason; never draw a long technical path offscreen.
+    {
+        const auto whyLines = wrapTextToWidth(&font_, 0.70f,
+            ::psvitaalive::L("INSTALL_ERR_ARCHIVE_WHY"), w - 56);
+        int wy = y + 278;
+        for (const auto& why : whyLines) {
+            if (wy > y + 315) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x + 28, wy, DIM, 0.70f, why.c_str());
+            wy += 24;
+        }
     }
 
     const int by2=y+360,bh2=50,bw=250,gap=15,totalW=bw*3+gap*2;
@@ -8060,28 +8106,89 @@ if(installOutcome_==2){
         ::psvitaalive::L("ZIP_RECOVERY_FOOTER"));
     return;
   }
-  ::psvitaalive::ui::uiDrawText(&font_,x+28,y+72,RED,1.28f,::psvitaalive::L(TID::InstallFailed));
-  std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,48);
-  {
-    char fl[160];
-    sceClibSnprintf(fl,sizeof(fl),"%s: %s",::psvitaalive::L(TID::LabelFile),file.c_str());
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+116,WHITE,0.92f,fl);
+  if (installArchiveSourceUnavailable_) {
+    // No raw libcurl codes, generic "check disk/format" advice or Report button
+    // for a known external connection failure. Detailed transport reason stays
+    // in session.log for maintainers and diagnostics.
+    ::psvitaalive::ui::uiDrawText(&font_, x+28, y+72, RED, 1.26f,
+                                 ::psvitaalive::L("ARCHIVE_DOWNLOAD_FRIENDLY_TITLE"));
+    const std::string file = installProgressFile_.empty()
+        ? std::string("-") : ellipsize(installProgressFile_, 48);
+    const std::string fileLine = std::string(::psvitaalive::L(TID::LabelFile)) +
+        ": " + file;
+    ::psvitaalive::ui::uiDrawText(&font_, x+28, y+116, WHITE, 0.92f,
+                                 fileLine.c_str());
+
+    int lineY = y + 172;
+    const char* paragraphs[] = {
+        ::psvitaalive::L("ARCHIVE_DOWNLOAD_FRIENDLY_REASON"),
+        ::psvitaalive::L("ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN"),
+        ::psvitaalive::L("ARCHIVE_DOWNLOAD_FRIENDLY_ACTION")
+    };
+    for (const char* paragraph : paragraphs) {
+        const auto lines = wrapTextToWidth(&font_, 0.88f,
+                                            paragraph ? paragraph : "", w - 66);
+        for (const auto& line : lines) {
+            if (lineY > y + 330) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x+28, lineY, TEXT, 0.88f,
+                                         line.c_str());
+            lineY += 27;
+        }
+        lineY += 12;
+    }
+
+    const int bwClose = 280, bhClose = 50;
+    const int bxClose = x + (w - bwClose) / 2, byClose = y + 370;
+    vita2d_draw_rectangle(bxClose, byClose, bwClose, bhClose, SURFACE2);
+    vita2d_draw_rectangle(bxClose, byClose, bwClose, 1, BORDER);
+    const char* clab = ::psvitaalive::L(TID::BtnOClose);
+    const float sc = 0.86f;
+    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
+    ::psvitaalive::ui::uiDrawText(&font_, bxClose + (bwClose - tw) / 2,
+                                 byClose + 34, WHITE, sc, clab);
+    ::psvitaalive::ui::uiDrawText(&font_, x+28, y+h-18, DIM, 0.70f,
+                                 ::psvitaalive::L(TID::CircleCloseHint));
+    return;
   }
-  ::psvitaalive::ui::uiDrawText(&font_,x+28,y+156,RED,0.90f,::psvitaalive::L(TID::LabelReason));
-  std::string err=installProgressMessage_.empty()?::psvitaalive::L(TID::UnknownError):installProgressMessage_;
-  const bool spaceErr = isNonReportableInstallError(err)
-      || installProgressStage_ == "Space";
-  ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,TEXT,0.84f,ellipsize(err,52).c_str());
-  if(err.size()>52)
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+222,TEXT,0.82f,ellipsize(err.substr(48),52).c_str());
-  const int hintY = (err.size()>52) ? 260 : 236;
-  if (spaceErr) {
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+hintY,DIM,0.78f,::psvitaalive::L(TID::FreeSpaceHint1));
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+hintY+30,DIM,0.76f,::psvitaalive::L(TID::FreeSpaceHint2));
-  } else {
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+hintY,DIM,0.78f,::psvitaalive::L(TID::CheckLogsHint1));
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+hintY+30,DIM,0.76f,::psvitaalive::L(TID::CheckLogsHint2));
-  }
+
+  // All known download, storage, extraction and install failures receive
+  // plain-language text. Unknown errors get a safe generic explanation,
+  // while the original technical message remains available to Report/logs.
+  using FK = InstallFailureKind;
+  const FK kind = installFailureKind_;
+  const char* titleKey = isDownloadFacingFailure(kind)
+      ? "INSTALL_ERR_TITLE_DOWNLOAD"
+      : ((kind == FK::ArchiveCorrupt || kind == FK::ArchiveUnsafe)
+         ? "INSTALL_ERR_TITLE_ARCHIVE" : "INSTALL_ERR_TITLE_GENERAL");
+  ::psvitaalive::ui::uiDrawText(&font_, x+28, y+72, RED, 1.18f,
+                               ::psvitaalive::L(titleKey));
+  const std::string file = installProgressFile_.empty()
+      ? std::string("-") : ellipsize(installProgressFile_, 48);
+  const std::string fileLabel = std::string(::psvitaalive::L(TID::LabelFile)) +
+      ": " + file;
+  ::psvitaalive::ui::uiDrawText(&font_, x+28, y+116, WHITE, 0.92f,
+                               fileLabel.c_str());
+  const std::string prefix = std::string("INSTALL_ERR_") +
+      installFailureLocalizationSuffix(kind);
+  const std::string reasonKey = prefix + "_WHY";
+  const std::string actionKey = prefix + "_ACTION";
+  int textY = y + 172;
+  auto drawFriendlyParagraph = [&](const char* text, unsigned color, float scale,
+                                   int maxY) {
+      const auto lines = wrapTextToWidth(&font_, scale, text ? text : "", w - 62);
+      for (const std::string& line : lines) {
+          if (textY > maxY) break;
+          ::psvitaalive::ui::uiDrawText(&font_, x+28, textY, color, scale,
+                                       line.c_str());
+          textY += 28;
+      }
+  };
+  drawFriendlyParagraph(::psvitaalive::L(reasonKey.c_str()), TEXT, 0.89f, y+240);
+  textY = std::max(textY + 15, y+254);
+  drawFriendlyParagraph(::psvitaalive::L(actionKey.c_str()), DIM, 0.84f, y+318);
+  const bool spaceErr = !shouldReportInstallFailure(kind) ||
+      isNonReportableInstallError(installProgressMessage_) ||
+      installProgressStage_ == "Space";
   const int by2=y+370,bh2=50;
   if (spaceErr) {
     // Only Close — space issues are expected user-side, not bug reports
@@ -8242,7 +8349,9 @@ if (installProgressSpeed_ > 0 && total > current) eta = (total - current) / inst
 char info[180];
 if (stageFinalizing)
   sceClibSnprintf(info, sizeof(info), "%s",
-      ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS"));
+      installProgressMessage_.empty()
+          ? ::psvitaalive::L("DOWNLOAD_VERIFYING_SEGMENTS")
+          : installProgressMessage_.c_str());
 else if (installProgressStage_ == "Promoting") {
   const uint64_t elapsed = installPhaseStartedUs_ ?
       (sceKernelGetProcessTimeWide() - installPhaseStartedUs_) / 1000000ULL : 0;
@@ -8259,11 +8368,11 @@ else
       ::psvitaalive::L(::psvitaalive::TextId::LabelEta),
       formatEta(eta).c_str());
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 212, ACCENT, 0.86f, info);
-if (!installProgressMessage_.empty())
+if (!stageFinalizing && !installProgressMessage_.empty())
   ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
 const char* waitHint = nullptr;
 if (stageFinalizing)
-  waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_PARTS");
+  waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_HINT");
 else if (msgRetry && stageDownload)
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryConnection);
 else if (msgRetry && (stageInstall || stageExtract))
@@ -8688,7 +8797,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter));
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();drawWebQrOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.
@@ -8771,6 +8880,72 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         perfWorstUs=0;
     }
     return !state_.requestExit;
+}
+
+
+void FullCatalogScreen::queueArchiveServiceWarning(bool fromDownload) {
+    if (archiveWarningVisible_) return; // The warning is already on screen.
+    archiveWarningPending_ = true;
+    if (fromDownload) archiveWarningDownload_ = true;
+}
+
+void FullCatalogScreen::openArchiveServiceWarningIfReady() {
+    if (!archiveWarningPending_ || archiveWarningVisible_) return;
+    // Never interrupt the theme -> news -> essential plugin sequence, an
+    // installation/error result, ZIP recovery, or an existing modal.
+    if (catalogLoading_ || catalogSplashAlpha_ > 0.01f || installProgressActive_ ||
+        themeSetupVisible_ || newsVisible_ || essentialPluginsModal_ ||
+        essentialInstallRunning_ || pluginRebootModal_ || pspSetupModal_ ||
+        filterModalOpen_ || webQrVisible_ || reportConfirmVisible_ ||
+        dataRequestConfirmVisible_ || keyboard_.active() ||
+        (installAllPhase_ != InstallAllPhase::Hidden &&
+         installAllPhase_ != InstallAllPhase::Running) ||
+        state_.mode == UiMode::SETTINGS || isTransitioning())
+        return;
+    archiveWarningPending_ = false;
+    archiveWarningVisible_ = true;
+    touchDown_ = false;
+    diagnostics::log(archiveWarningDownload_
+        ? "[UI] Archive.org download-unavailable notice opened"
+        : "[UI] Archive.org startup-unavailable notice opened");
+}
+
+void FullCatalogScreen::drawArchiveServiceOverlay() {
+    if (!archiveWarningVisible_ || !font_) return;
+    using ::psvitaalive::L;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 210));
+    const int w = 820, h = 390;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(x, y, w, h, SURFACE);
+    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 30, y + 48, WHITE, 1.13f,
+                                 L("ARCHIVE_WARNING_TITLE"));
+    int ty = y + 96;
+    const char* paragraphs[] = {
+        L(archiveWarningDownload_ ? "ARCHIVE_WARNING_DOWNLOAD_1"
+                                  : "ARCHIVE_WARNING_STARTUP_1"),
+        L(archiveWarningDownload_ ? "ARCHIVE_WARNING_DOWNLOAD_2"
+                                  : "ARCHIVE_WARNING_STARTUP_2")
+    };
+    for (const char* paragraph : paragraphs) {
+        auto lines = wrapTextToWidth(&font_, 0.89f, paragraph, w - 60);
+        for (const auto& line : lines) {
+            if (ty > y + h - 116) break;
+            ::psvitaalive::ui::uiDrawText(&font_, x + 30, ty, TEXT, 0.89f, line.c_str());
+            ty += 30;
+        }
+        ty += 18;
+    }
+    const int bw = 290, bh = 52;
+    const int bx = x + (w - bw) / 2, by = y + h - 78;
+    vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+    const char* label = L("ARCHIVE_WARNING_OK");
+    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.90f, label);
+    ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 36,
+                                 BG, 0.90f, label);
 }
 
 void FullCatalogScreen::drawPspSetupOverlay() {

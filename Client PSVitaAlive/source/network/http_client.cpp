@@ -1,5 +1,6 @@
 #include "network/http_client.hpp"
 #include "network/parallel_archive_download.hpp"
+#include "network/download_failure_policy.hpp"
 #include "diagnostic_logger.hpp"
 
 #include <curl/curl.h>
@@ -46,6 +47,11 @@ constexpr const char* UA_CDN_FALLBACK =
 // libcurl global state belongs to the whole process, not to individual HttpClient objects.
 // Multiple PSVitaAlive workers can own HttpClient instances at the same time.
 std::atomic<int> gCurlGlobalState{0}; // 0=not initialized, 1=initializing, 2=ready
+// Only failed Archive image requests share a short cooldown. This stops a
+// single image worker from spending minutes on dozens of unreachable icons;
+// actual downloads and other image hosts are never blocked by it.
+std::atomic<uint32_t> gArchiveImagePauseUntilSec{0};
+constexpr uint32_t ARCHIVE_IMAGE_COOLDOWN_SECONDS = 45;
 
 void httpDiagnostic(const char* message) {
     if (!message) return;
@@ -252,84 +258,6 @@ static void pushUniqueHost(std::vector<std::string>& hosts, const std::string& h
     hosts.push_back(host);
 }
 
-// Locate the checksum for exactly the requested file in Archive metadata.
-// Never infer a checksum from another file in the same item.
-static std::string archivePercentDecode(const std::string& value) {
-    std::string out;
-    out.reserve(value.size());
-    auto val = [](char c) -> int {
-        if (c >= '0' && c <= '9') return c - '0';
-        if (c >= 'a' && c <= 'f') return c - 'a' + 10;
-        if (c >= 'A' && c <= 'F') return c - 'A' + 10;
-        return -1;
-    };
-    for (size_t i = 0; i < value.size(); ++i) {
-        if (value[i] == '%' && i + 2 < value.size() &&
-            val(value[i + 1]) >= 0 && val(value[i + 2]) >= 0) {
-            out.push_back(static_cast<char>((val(value[i + 1]) << 4) | val(value[i + 2])));
-            i += 2;
-        } else {
-            out.push_back(value[i]);
-        }
-    }
-    return out;
-}
-
-static bool validSha1Hex(const std::string& value) {
-    if (value.size() != 40) return false;
-    for (char c : value) {
-        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') ||
-              (c >= 'A' && c <= 'F'))) return false;
-    }
-    return true;
-}
-
-static bool findArchiveFileSha1(
-    const std::string& json, const std::string& encodedFile, std::string& shaOut
-) {
-    shaOut.clear();
-    const std::string fileName = archivePercentDecode(encodedFile);
-    const size_t field = json.find("\"files\"");
-    if (field == std::string::npos) return false;
-    const size_t begin = json.find('[', field + 7);
-    if (begin == std::string::npos) return false;
-
-    // Scan direct objects in the files array, tracking strings and escapes so
-    // braces in metadata text cannot alter object boundaries.
-    bool inString = false, escaped = false;
-    int arrayDepth = 1, objectDepth = 0;
-    size_t objectBegin = std::string::npos;
-    for (size_t i = begin + 1; i < json.size() && arrayDepth > 0; ++i) {
-        const char ch = json[i];
-        if (inString) {
-            if (escaped) escaped = false;
-            else if (ch == '\\') escaped = true;
-            else if (ch == '"') inString = false;
-            continue;
-        }
-        if (ch == '"') { inString = true; continue; }
-        if (ch == '[') { ++arrayDepth; continue; }
-        if (ch == ']') { --arrayDepth; continue; }
-        if (arrayDepth != 1) continue;
-        if (ch == '{') {
-            if (objectDepth++ == 0) objectBegin = i;
-        } else if (ch == '}' && objectDepth > 0 && --objectDepth == 0 &&
-                   objectBegin != std::string::npos) {
-            const std::string item = json.substr(objectBegin, i - objectBegin + 1);
-            std::string name;
-            if (extractJsonStringField(item, "name", name) && name == fileName) {
-                std::string digest;
-                if (extractJsonStringField(item, "sha1", digest) && validSha1Hex(digest)) {
-                    shaOut = digest;
-                    return true;
-                }
-                return false;
-            }
-        }
-    }
-    return false;
-}
-
 // Parse the optional list of available Archive storage nodes, keeping the
 // metadata reader dependency-free and bounded. Hosts are validated below.
 static void archiveWorkableHosts(const std::string& json, std::vector<std::string>& out) {
@@ -380,11 +308,9 @@ static bool validArchiveStorageHost(const std::string& host) {
 // risky edge can win when it is actually faster from the user's own network.
 static bool buildArchiveAlternateUrls(
     const std::string& originalUrl,
-    std::vector<std::string>& outUrls,
-    std::string* archiveSha1 = nullptr
+    std::vector<std::string>& outUrls
 ) {
     outUrls.clear();
-    if (archiveSha1) archiveSha1->clear();
     std::string id, file;
     if (!parseArchiveDownloadParts(originalUrl, id, file)) {
         archiveNodeDiagnostic(std::string("CANDIDATE_BUILD parse_failed canonical=") + originalUrl);
@@ -395,7 +321,6 @@ static bool buildArchiveAlternateUrls(
     archiveNodeDiagnostic(std::string("CANONICAL_URL ") + originalUrl);
     std::string meta;
     if (!fetchArchiveMetadataJson(id, meta)) return false;
-    if (archiveSha1) findArchiveFileSha1(meta, file, *archiveSha1);
     std::string server, d1, d2, dir;
     extractJsonStringField(meta, "server", server);
     extractJsonStringField(meta, "d1", d1);
@@ -822,10 +747,35 @@ static bool rankArchiveAlternateUrls(
     uint64_t decisionSize = sizeHint;
     ArchiveProbeResult sizeProbe;
     size_t responsiveIndex = urls.size();
+
+    // One authoritative 206 probe should serve both small-file source
+    // selection and the later parallel download. Prefer Archive's direct
+    // HTTP storage node and fall back to HTTPS if it cannot serve the range.
+    // This avoids an HTTPS probe followed by the same-file HTTP probe.
+    auto probeSmallNode = [&](size_t index, ArchiveProbeResult& out) -> bool {
+        if (allowHttpBenchmark && urls[index].compare(0, 8, "https://") == 0) {
+            ArchiveProbeResult probe;
+            const std::string directHttp = "http://" + urls[index].substr(8);
+            if (probeArchiveStorageUrl(directHttp, 1, shouldCancel, probe) &&
+                probe.effectiveUrl.compare(0, 7, "http://") == 0 &&
+                archiveEffectiveUrlUsable(probe.effectiveUrl)) {
+                out = probe;
+                return true;
+            }
+        }
+        ArchiveProbeResult probe;
+        if (probeArchiveStorageUrl(urls[index], 1, shouldCancel, probe) &&
+            probe.effectiveUrl.compare(0, 8, "https://") == 0 &&
+            archiveEffectiveUrlUsable(probe.effectiveUrl)) {
+            out = probe;
+            return true;
+        }
+        return false;
+    };
     if (decisionSize == 0) {
         for (size_t i = 0; i < urls.size(); ++i) {
             if (shouldCancel && shouldCancel()) return false;
-            if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+            if (probeSmallNode(i, sizeProbe)) {
                 responsiveIndex = i;
                 break;
             }
@@ -855,12 +805,10 @@ static bool rankArchiveAlternateUrls(
     }
 
     if (decisionSize < ARCHIVE_SELECTOR_MIN_BYTES) {
-        // A catalog hint can decide that benchmarking is unnecessary, but we
-        // still validate one direct node before replacing the canonical URL.
         if (responsiveIndex == urls.size()) {
             for (size_t i = 0; i < urls.size(); ++i) {
                 if (shouldCancel && shouldCancel()) return false;
-                if (probeArchiveStorageUrl(urls[i], 1, shouldCancel, sizeProbe)) {
+                if (probeSmallNode(i, sizeProbe)) {
                     responsiveIndex = i;
                     break;
                 }
@@ -870,32 +818,45 @@ static bool rankArchiveAlternateUrls(
             httpDiagnostic("archive selector: no direct node passed validation probe; keep normal archive.org path");
             return false;
         }
-        if (archiveEffectiveUrlUsable(sizeProbe.effectiveUrl)) {
-            archiveNodeDiagnostic(std::string("SMALL_FILE_EFFECTIVE_URL requested=") + urls[responsiveIndex] +
-                " effective=" + sizeProbe.effectiveUrl);
-            urls[responsiveIndex] = sizeProbe.effectiveUrl;
+        // Catalog sizes are only hints. If the 206 response says the file
+        // is actually large, run the proper throughput benchmark instead.
+        if (sizeProbe.total >= ARCHIVE_SELECTOR_MIN_BYTES) {
+            decisionSize = sizeProbe.total;
+            archiveNodeDiagnostic("SMALL_HINT_OVERRIDDEN_BY_RANGE_TOTAL benchmark=required");
+        } else {
+            const bool http = sizeProbe.effectiveUrl.compare(0, 7, "http://") == 0;
+            if (archiveEffectiveUrlUsable(sizeProbe.effectiveUrl)) {
+                archiveNodeDiagnostic(std::string("SMALL_FILE_EFFECTIVE_URL requested=") +
+                    urls[responsiveIndex] + " effective=" + sizeProbe.effectiveUrl);
+                if (http) {
+                    if (selectedHttpUrl) *selectedHttpUrl = sizeProbe.effectiveUrl;
+                    // Serial fallback stays HTTPS even though 206 accelerated
+                    // transfers use the independently validated HTTP URL.
+                    urls[responsiveIndex] = "https://" + sizeProbe.effectiveUrl.substr(7);
+                } else {
+                    urls[responsiveIndex] = sizeProbe.effectiveUrl;
+                }
+            }
+            if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
+            char msg[320];
+            sceClibSnprintf(msg, sizeof(msg),
+                "archive selector: small file total=%llu protocol=%s; reuse successful 206 probe -> %s",
+                (unsigned long long)sizeProbe.total, http ? "HTTP" : "HTTPS",
+                urls.front().c_str());
+            httpDiagnostic(msg);
+            archiveNodeDiagnostic(std::string("BENCHMARK_SKIPPED reason=below_16MiB ") + msg);
+            if (validatedTotal) *validatedTotal = sizeProbe.total;
+            return true;
         }
-        if (responsiveIndex != 0) std::swap(urls[0], urls[responsiveIndex]);
-        char msg[320];
-        sceClibSnprintf(msg, sizeof(msg),
-            "archive selector: small file decision=%llu; use responsive direct node without speed benchmark -> %s",
-            (unsigned long long)decisionSize, urls.front().c_str());
-        httpDiagnostic(msg);
-        archiveNodeDiagnostic(std::string("BENCHMARK_SKIPPED reason=below_16MiB ") + msg);
-        if (validatedTotal) *validatedTotal = sizeProbe.total;
-        return true;
     }
 
-    // For checksummed payloads, benchmark the transport we will actually
-    // use. Measuring HTTPS nodes then downloading over HTTP can pick a slower
-    // replica due to TLS overhead and differences in Archive redirects.
-    bool useHttp = false;
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-    useHttp = allowHttpBenchmark;
-#endif
-    archiveNodeDiagnostic(useHttp ?
-        "BENCHMARK_BEGIN mode=HTTP each_probe=256KiB" :
-        "BENCHMARK_BEGIN mode=HTTPS each_probe=256KiB");
+    // Archive.org download accelerator: benchmark HTTP on Archive's own
+    // storage nodes; if all nodes fail, fall back to the HTTPS benchmarks.
+    // HTTP carries NO cryptographic authenticity guarantee without SHA-1.
+    bool useHttp = allowHttpBenchmark;
+    archiveNodeDiagnostic(useHttp
+        ? "BENCHMARK_BEGIN mode=HTTP each_probe=256KiB"
+        : "BENCHMARK_BEGIN mode=HTTPS each_probe=256KiB");
     std::vector<ArchiveProbeResult> probes;
     probes.reserve(urls.size());
     auto measure = [&](bool http) {
@@ -904,12 +865,14 @@ static bool rankArchiveAlternateUrls(
             if (shouldCancel && shouldCancel()) return;
             ArchiveProbeResult probe;
             std::string request = candidate;
-            if (http && candidate.compare(0, 8, "https://") == 0)
-                request = "http://" + candidate.substr(8);
+            if (http && request.compare(0, 8, "https://") == 0)
+                request = "http://" + request.substr(8);
             probeArchiveStorageUrl(request, ARCHIVE_SELECTOR_PROBE_BYTES, shouldCancel, probe);
             if (http && (!probe.ok || probe.total == 0 ||
                          probe.effectiveUrl.compare(0, 7, "http://") != 0 ||
                          !archiveEffectiveUrlUsable(probe.effectiveUrl)))
+                probe.ok = false;
+            else if (!http && probe.effectiveUrl.compare(0, 8, "https://") != 0)
                 probe.ok = false;
             probes.push_back(probe);
         }
@@ -984,10 +947,11 @@ static bool rankArchiveAlternateUrls(
     for (const auto& p : probes) {
         std::string chosenUrl = p.url;
         if (p.ok && archiveEffectiveUrlUsable(p.effectiveUrl)) chosenUrl = p.effectiveUrl;
-        // Never put plain HTTP into the serial retry/failover list, because
-        // only parallel transfers perform the full expected-checksum check.
+        // Preserve encrypted URLs for serial failover: HTTP is only used
+        // for the separately validated parallel Archive.org fast path.
         if (useHttp && chosenUrl.compare(0, 7, "http://") == 0)
             chosenUrl = "https://" + chosenUrl.substr(7);
+        if (chosenUrl.compare(0, 8, "https://") != 0) continue;
         const std::string chosenHost = archiveUrlHostLower(chosenUrl);
         bool duplicateHost = false;
         if (!chosenHost.empty()) {
@@ -1620,9 +1584,12 @@ HttpResult HttpClient::downloadToFile(
     HttpCancelFn shouldCancel,
     int maxAttemptsOverride,
     const std::string& ifRangeValidator,
-    uint64_t archiveSelectionSizeHint
+    uint64_t archiveSelectionSizeHint,
+    bool keepZipParts
 ) {
     lastStatus_ = 0;
+    lastSegmentedZip_ = false;
+    lastSourceUnavailable_ = false;
     lastRangeAccepted_ = false;
     lastError_.clear();
     lastEtag_.clear();
@@ -1640,6 +1607,19 @@ HttpResult HttpClient::downloadToFile(
     if (!isHttps && !isHttp) {
         setError("url must start with http:// or https://");
         return HttpResult::InvalidArgument;
+    }
+
+    const bool archiveImageRequest =
+        url.find("archive.org") != std::string::npos &&
+        destinationPath.find("/cache/images/v3/") != std::string::npos;
+    if (archiveImageRequest) {
+        const uint32_t now = static_cast<uint32_t>(sceKernelGetProcessTimeWide() / 1000000ULL);
+        if (gArchiveImagePauseUntilSec.load(std::memory_order_relaxed) > now) {
+            lastSourceUnavailable_ = true;
+            setError("Archive.org is not responding; image retry paused briefly");
+            httpDiagnostic("[HTTP] archive image skipped: temporary network cooldown");
+            return HttpResult::NetworkError;
+        }
     }
 
     char begin[900];
@@ -1780,13 +1760,13 @@ HttpResult HttpClient::downloadToFile(
     bool lastTlsLikeFail = false;
     // One-shot guard: if a Range request fails (curl 33), truncate and retry as full GET.
     bool rangeFallbackUsed = false;
+    UnreachableSourceDetector unreachableDetector;
     // archive.org: when a 302 lands on dn*/ca edges, OpenSSL 1.0.2 often fails TLS.
     // Build alternate item URLs from metadata once and rotate through them.
     std::vector<std::string> archiveAltUrls;
     size_t archiveAltIndex = 0;
     bool archiveMetaTried = false;
     std::string activeUrl = url;
-    std::string archiveSha1;
     // The node selector already made an authoritative 206 Range request.
     // Reuse that observed total instead of opening another HTTPS connection.
     uint64_t selectedArchiveTotal = 0;
@@ -1813,10 +1793,10 @@ HttpResult HttpClient::downloadToFile(
     // deliberately skip this selector to avoid metadata/probe overhead. Resumes also
     // keep the established URL first so validator/range semantics are unchanged.
     if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
-        if (buildArchiveAlternateUrls(url, archiveAltUrls, &archiveSha1)) {
+        if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
             archiveMetaTried = true;
             if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint,
-                                         &selectedArchiveTotal, validSha1Hex(archiveSha1),
+                                         &selectedArchiveTotal, true,
                                          &selectedArchiveHttpUrl) && !archiveAltUrls.empty()) {
                 activeUrl = archiveAltUrls.front();
                 archiveAltIndex = 1;
@@ -1868,20 +1848,21 @@ HttpResult HttpClient::downloadToFile(
         }
         if (rangeReady && rangeProbe.total >= 1024ULL * 1024ULL) {
             std::string parallelUrl = isArchive ? activeUrl : rangeProbe.effectiveUrl;
-#ifndef PSVITAALIVE_CURL_MBEDTLS
-            // Experimental fast path: only the Archive storage node selected by
-            // the existing HTTPS selector, never arbitrary catalog URLs.
-            // Metadata must provide the exact file's SHA-1; the complete HTTP
-            // download will be hashed on disk before returning success.
-            if (isArchive && validSha1Hex(archiveSha1) &&
-                !selectedArchiveHttpUrl.empty() &&
-                archiveEffectiveUrlUsable(selectedArchiveHttpUrl)) {
-                // 256 KiB benchmark already validated HTTP 206 and size.
+            // Restore Archive.org's measured direct-HTTP storage acceleration,
+            // without SHA-1. Never use it for generic catalog URLs.
+            if (isArchive && !selectedArchiveHttpUrl.empty() &&
+                archiveEffectiveUrlUsable(selectedArchiveHttpUrl) &&
+                selectedArchiveHttpUrl.compare(0, 7, "http://") == 0) {
                 parallelUrl = selectedArchiveHttpUrl;
-                httpDiagnostic("archive direct HTTP selected by transport benchmark; checksum required");
-            } else if (isArchive && validSha1Hex(archiveSha1) &&
-                activeUrl.compare(0, 8, "https://") == 0 &&
-                archiveEffectiveUrlUsable(activeUrl)) {
+                httpDiagnostic("archive direct HTTP chosen from successful 206 speed benchmark (no SHA-1)");
+            } else if (isArchive &&
+                       selectedArchiveTotal == 0 &&
+                       rangeProbe.total < ARCHIVE_SELECTOR_MIN_BYTES &&
+                       activeUrl.compare(0, 8, "https://") == 0 &&
+                       archiveEffectiveUrlUsable(activeUrl)) {
+                // Only when the metadata selector did NOT already probe this
+                // file. Never repeat a failed small-file HTTP 206 probe.
+                // Check HTTP against the authoritative HTTPS Range total.
                 const std::string directHttp = "http://" + activeUrl.substr(8);
                 ArchiveProbeResult httpProbe;
                 if (probeArchiveStorageUrl(directHttp, 1, ctx.shouldCancel, httpProbe) &&
@@ -1889,24 +1870,32 @@ HttpResult HttpClient::downloadToFile(
                     httpProbe.effectiveUrl.compare(0, 7, "http://") == 0 &&
                     archiveEffectiveUrlUsable(httpProbe.effectiveUrl)) {
                     parallelUrl = httpProbe.effectiveUrl;
-                    httpDiagnostic("archive direct HTTP accepted; checksum verification required");
+                    httpDiagnostic("archive direct HTTP accepted by 206 size probe (no SHA-1)");
                 }
             }
-#endif
+            if (parallelUrl.compare(0, 8, "https://") != 0 &&
+                !(isArchive && parallelUrl.compare(0, 7, "http://") == 0 &&
+                  archiveEffectiveUrlUsable(parallelUrl))) {
+                rangeReady = false;
+                httpDiagnostic("parallel range skipped: ineligible source");
+            }
             sceIoClose(ctx.fd);
             ctx.fd = -1;
-            const ParallelArchiveOutcome parallel = downloadArchiveRanges(
+            const ParallelArchiveOutcome parallel = rangeReady ? downloadArchiveRanges(
                 parallelUrl, destinationPath, rangeProbe.total,
                 ctx.onProgress, ctx.shouldCancel,
-                isArchive && validSha1Hex(archiveSha1) ? archiveSha1 : std::string(),
                 isArchive ? std::string() : rangeProbe.etag,
-                isArchive ? std::string() : rangeProbe.lastModified);
+                isArchive ? std::string() : rangeProbe.lastModified,
+                keepZipParts) : ParallelArchiveOutcome::RetrySerial;
             if (parallel == ParallelArchiveOutcome::Complete ||
+                parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::IoError) {
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
-                if (parallel == ParallelArchiveOutcome::Complete) {
+                if (parallel == ParallelArchiveOutcome::Complete ||
+                    parallel == ParallelArchiveOutcome::Segmented) {
+                    lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;
                     lastStatus_ = 206;
                     return HttpResult::Ok;
                 }
@@ -2211,6 +2200,17 @@ HttpResult HttpClient::downloadToFile(
         }
 
         if (result == CURLE_OK) {
+            // Even an HTTP 429/503 proves that the server responded; pre-response
+            // failures separated by a real response must never count together.
+            unreachableDetector.observe(false, false, false);
+            if (isPermanentDownloadHttpFailure(responseCode)) {
+                lastSourceUnavailable_ = true;
+                char permanentMsg[140];
+                sceClibSnprintf(permanentMsg, sizeof(permanentMsg),
+                    "[HTTP] resource unavailable HTTP %ld; skipping pointless retries", responseCode);
+                httpDiagnostic(permanentMsg);
+                break;
+            }
             const bool transientHttp =
                 responseCode == 408 || responseCode == 425 || responseCode == 429 ||
                 responseCode == 500 || responseCode == 502 || responseCode == 503 ||
@@ -2356,6 +2356,29 @@ HttpResult HttpClient::downloadToFile(
         lastFail = result;
         lastTlsLikeFail = tlsLikeFailure;
 
+        // Two consecutive failures without a usable HTTP response and before
+        // transferring any bytes strongly suggest an inaccessible source.
+        // Never short-circuit a partially downloaded file: it must retain the
+        // previous resume, alternate-host and SSL recovery mechanisms.
+        const bool connectionFailure =
+            result == CURLE_COULDNT_RESOLVE_HOST ||
+            result == CURLE_COULDNT_CONNECT ||
+            result == CURLE_OPERATION_TIMEDOUT;
+        const bool noUsableResponse = responseCode == 0 ||
+            (responseCode >= 300 && responseCode < 400);
+        if (unreachableDetector.observe(connectionFailure, noUsableResponse,
+                                        ctx.resumeOffset == 0 && ctx.downloaded == 0)) {
+            lastSourceUnavailable_ = true;
+            httpDiagnostic("[HTTP] source unreachable: two attempts without a response or bytes; stopping retries");
+            if (archiveImageRequest) {
+                const uint32_t now = static_cast<uint32_t>(sceKernelGetProcessTimeWide() / 1000000ULL);
+                gArchiveImagePauseUntilSec.store(now + ARCHIVE_IMAGE_COOLDOWN_SECONDS,
+                                                  std::memory_order_relaxed);
+                httpDiagnostic("[HTTP] Archive.org image cooldown activated for 45 seconds");
+            }
+            break;
+        }
+
         // archive.org edge failover: storage nodes can fail as TLS errors, plain
         // receive/send failures, timeouts, or half-open connections. Rotate away
         // from the edge for all transport-like failures, not only certificate text.
@@ -2466,6 +2489,14 @@ HttpResult HttpClient::downloadToFile(
         return HttpResult::IoError;
     }
     if (result != CURLE_OK) {
+        if (lastSourceUnavailable_) {
+            char unavailableMsg[256];
+            sceClibSnprintf(unavailableMsg, sizeof(unavailableMsg),
+                "source not responding (DNS/connect/timeout, curl %d); try another link",
+                static_cast<int>(result));
+            setError(unavailableMsg);
+            return HttpResult::NetworkError;
+        }
         if (isArchive) archiveNodeDiagnostic(std::string("OUTCOME error=curl_") + std::to_string(static_cast<int>(result)) + " " + curl_easy_strerror(result));
         char message[460];
         sceClibSnprintf(

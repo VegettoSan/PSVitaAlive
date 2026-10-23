@@ -517,3 +517,54 @@ KEYBOARD_CANCEL=ABBR.
 KEYBOARD_CONFIRM=OK
 KEYBOARD_SPACE=LEER
 KEYBOARD_MORE=MEHR
+
+# Archive.org connectivity warnings (startup / failed user download)
+ARCHIVE_WARNING_TITLE=Verbindungsprobleme mit Archive.org
+ARCHIVE_WARNING_STARTUP_1=PSVitaAlive kann Archive.org über deine aktuelle Verbindung nicht erreichen.
+ARCHIVE_WARNING_STARTUP_2=Einige Downloads, Symbole und Screenshots sind möglicherweise vorübergehend nicht verfügbar. Das bedeutet nicht unbedingt, dass PSVitaAlive fehlerhaft ist. Versuche es später erneut.
+ARCHIVE_WARNING_DOWNLOAD_1=Dieser Download kann Archive.org derzeit nicht erreichen.
+ARCHIVE_WARNING_DOWNLOAD_2=Der externe Dienst hat möglicherweise Probleme; PSVitaAlive ist nicht unbedingt die Ursache. Nutze nach Möglichkeit eine andere Quelle oder versuche es später erneut.
+ARCHIVE_WARNING_OK=Verstanden
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Download nicht verfügbar
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Wir können Archive.org derzeit nicht erreichen.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=Möglicherweise gibt es ein vorübergehendes Problem beim Dienst oder mit deiner Verbindung. Das bedeutet nicht unbedingt, dass PSVitaAlive fehlerhaft ist.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Versuche einen anderen Download-Link oder probiere es später erneut.
+
+# Friendly error explanations for downloads, extraction and installation
+INSTALL_ERR_TITLE_DOWNLOAD=Download fehlgeschlagen
+INSTALL_ERR_TITLE_ARCHIVE=Datei konnte nicht entpackt werden
+INSTALL_ERR_TITLE_GENERAL=Vorgang fehlgeschlagen
+INSTALL_ERR_NETWORK_WHY=Der Download-Server ist nicht erreichbar.
+INSTALL_ERR_NETWORK_ACTION=Prüfe deine Verbindung, wähle einen anderen Link oder versuche es später.
+INSTALL_ERR_HTTP_MISSING_WHY=Die angeforderte Datei ist unter diesem Link nicht mehr verfügbar.
+INSTALL_ERR_HTTP_MISSING_ACTION=Versuche einen Spiegelserver oder melde den defekten Link.
+INSTALL_ERR_HTTP_DENIED_WHY=Der Server verweigert den Zugriff auf die Datei.
+INSTALL_ERR_HTTP_DENIED_ACTION=Versuche eine andere Quelle. Der Link könnte abgelaufen sein.
+INSTALL_ERR_HTTP_BUSY_WHY=Der Server ist überlastet oder begrenzt Anfragen.
+INSTALL_ERR_HTTP_BUSY_ACTION=Warte einige Minuten und versuche es erneut.
+INSTALL_ERR_HTTP_SERVER_WHY=Der Server hat vorübergehende Probleme.
+INSTALL_ERR_HTTP_SERVER_ACTION=Probiere eine andere Downloadquelle oder versuche es später.
+INSTALL_ERR_TLS_WHY=Die sichere Verbindung zum Server ist fehlgeschlagen.
+INSTALL_ERR_TLS_ACTION=Prüfe Datum und Uhrzeit der Konsole oder verwende eine andere Quelle.
+INSTALL_ERR_MEDIAFIRE_WHY=Die Datei konnte nicht von MediaFire abgerufen werden.
+INSTALL_ERR_MEDIAFIRE_ACTION=Probiere einen anderen Link oder prüfe die Originalquelle.
+INSTALL_ERR_SPACE_WHY=Für diesen Vorgang ist nicht genügend Speicherplatz frei.
+INSTALL_ERR_SPACE_ACTION=Gib am Ziel Speicherplatz frei und versuche es erneut.
+INSTALL_ERR_STORAGE_WHY=Die Konsole konnte benötigte Dateien nicht lesen oder speichern.
+INSTALL_ERR_STORAGE_ACTION=Prüfe Zielspeicher und freien Platz und versuche es erneut.
+INSTALL_ERR_ARCHIVE_WHY=Die ZIP- oder VPK-Datei konnte nicht richtig entpackt werden.
+INSTALL_ERR_ARCHIVE_ACTION=Die Datei ist möglicherweise unvollständig oder beschädigt. Nutze eine andere Kopie.
+INSTALL_ERR_UNSAFE_WHY=Das Entpacken wurde wegen unsicherer Pfade oder Überschreiben gestoppt.
+INSTALL_ERR_UNSAFE_ACTION=Prüfe den Zielordner. Vorhandene Dateien wurden geschützt.
+INSTALL_ERR_FORMAT_WHY=Format oder Aufbau dieser Datei wird nicht unterstützt.
+INSTALL_ERR_FORMAT_ACTION=Prüfe Dateityp und ausgewählten Downloadlink.
+INSTALL_ERR_INSTALLER_WHY=Die Konsole konnte die Installation nicht abschließen.
+INSTALL_ERR_INSTALLER_ACTION=Prüfe Anforderungen und Plugins. Melde den Fehler, falls er bleibt.
+INSTALL_ERR_OTHER_WHY=Ein unerwarteter Fehler hat den Vorgang verhindert.
+INSTALL_ERR_OTHER_ACTION=Versuche es erneut. Bei Wiederholung melde den Fehler mit session.log.
+
+# Segmented archive integrity check (distinct from joining parts)
+DOWNLOAD_VERIFYING_SEGMENTS=Download wird abgeschlossen...
+DOWNLOAD_VERIFYING_HINT=Das Zusammenfügen großer Dateien kann dauern. Bitte warten.

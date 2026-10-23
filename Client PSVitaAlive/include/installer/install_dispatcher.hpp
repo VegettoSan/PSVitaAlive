@@ -62,7 +62,8 @@ public:
         InstallDispatchCancelFn shouldCancel = nullptr,
         const std::string& zipDestination = std::string(),
         const std::string& rifPath = std::string(),
-        bool forceZipExtract = false
+        bool forceZipExtract = false,
+        bool segmentedZip = false
     );
 
     const std::string& lastError() const { return lastError_; }

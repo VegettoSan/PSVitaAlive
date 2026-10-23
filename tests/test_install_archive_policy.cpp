@@ -25,5 +25,18 @@ int main() {
     assert(!shouldExtractZipArchive("php", true, true, false));
     // Explicit .vpk cannot masquerade as Game Files.
     assert(!shouldExtractZipArchive("vpk", true, true, true));
+
+    // A VPK contains ZIP entries: direct reads from two/four downloaded ranges
+    // may replace the costly file join, but only for true VPK install paths.
+    assert(shouldKeepSegmentedContainer("vpk", false, false, false, false, false));
+    assert(!shouldKeepSegmentedContainer("vpk", true, false, false, false, false)); // PKG BGDL
+    assert(!shouldKeepSegmentedContainer("vpk", false, true, false, false, false)); // plugin
+    assert(!shouldKeepSegmentedContainer("vpk", false, false, true, false, false)); // typed data
+    assert(!shouldKeepSegmentedContainer("vpk", false, false, false, false, true)); // explicit destination
+    assert(!shouldKeepSegmentedContainer("pkg", false, false, false, false, false));
+    assert(!shouldKeepSegmentedContainer("php", false, false, false, false, false));
+    assert(shouldKeepSegmentedContainer("zip", false, false, true, true, true));
+    assert(!shouldKeepSegmentedContainer("zip", false, false, true, false, true));
+    assert(!shouldKeepSegmentedContainer("zip", false, false, false, true, true));
     return 0;
 }

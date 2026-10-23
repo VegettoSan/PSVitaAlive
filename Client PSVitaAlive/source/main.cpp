@@ -24,6 +24,7 @@
 #include "catalog/catalog_manager.hpp"
 #include "catalog/catalog_trace.hpp"
 #include "update/startup_update_manager.hpp"
+#include "network/archive_service_probe.hpp"
 #include "update/update_checker.hpp"
 #include "installer/install_space_policy.hpp"
 
@@ -544,6 +545,9 @@ int main(){
     // ImageCache thumbnails/captures are deliberately excluded.
     using StorageInstallState = psvitaalive::InstallStatus::State;
     StorageInstallState previousStorageInstallState = installer.status().state;
+    psvitaalive::ArchiveServiceProbe archiveProbe;
+    bool archiveProbeStarted = false;
+    bool archiveProbeHandled = false;
 while(true){
         if(!screen.updateAndDraw()) break;        if(!screen.updateAndDraw()) break;
 
@@ -672,6 +676,13 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
         // one on any terminal install outcome (success/error/cancel/cleanup).
         // State-edge detection prevents refreshing on every UI frame.
         if (cur.state != previousStorageInstallState) {
+            if (cur.state == StorageInstallState::Failed &&
+                cur.archiveSourceUnavailable) {
+                // Defer the notice until the user acknowledges the existing
+                // install error dialog; never obscure failure details/recovery.
+                screen.queueArchiveServiceWarning(true);
+                psvitaalive::diagnostics::log("[ArchiveProbe] user download failed on Archive.org; notice queued");
+            }
             const bool downloaded = previousStorageInstallState == InstallState::Downloading
                                     && cur.state == InstallState::Installing;
             const bool finished = cur.state == InstallState::Completed
@@ -680,7 +691,7 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
             if (downloaded || finished) screen.requestUx0SpaceRefresh();
             previousStorageInstallState = cur.state;
         }
-        images.setNetworkPaused(screen.keyboardVisible()||cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt);
+        images.setNetworkPaused(screen.keyboardVisible()||cur.state==InstallState::Downloading||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt,cur.archiveSourceUnavailable);
         if(startupThemePending && !active && !screen.isThemeSetupVisible()){
             screen.openThemeSetupIfNeeded();
             if(!screen.isThemeSetupVisible()){
@@ -717,6 +728,31 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
                 startupEssentialPending=false;
             }
         }
+
+        // Only start the one-shot server probe after THE ENTIRE startup modal
+        // sequence (theme, news, recommended plugins) has finished.
+        // It runs in a bounded background thread; never in render/input work.
+        const bool startupDialogsFinished =
+            !startupCatalogs && !startupThemePending && !startupNewsPending &&
+            !startupEssentialPending &&
+            !screen.isThemeSetupVisible() && !screen.isNewsVisible() &&
+            !screen.isEssentialPluginsVisible() && !screen.isEssentialPluginsInstalling() &&
+            !screen.isPluginRebootModal();
+        if (startupDialogsFinished && !archiveProbeStarted) {
+            archiveProbeStarted = true;
+            if (archiveProbe.start())
+                psvitaalive::diagnostics::log("[ArchiveProbe] startup check launched");
+            else
+                psvitaalive::diagnostics::log("[ArchiveProbe] startup check unavailable");
+        }
+        if (archiveProbeStarted && !archiveProbeHandled &&
+            archiveProbe.result() != psvitaalive::ArchiveServiceProbe::Result::Pending) {
+            archiveProbeHandled = true;
+            if (archiveProbe.result() == psvitaalive::ArchiveServiceProbe::Result::Unreachable)
+                screen.queueArchiveServiceWarning(false);
+        }
+        if (startupDialogsFinished && !active)
+            screen.openArchiveServiceWarningIfReady();
     }
 
     screen.setInstallProgress(false,0,0,0,"","","",0,false,"","");screen.shutdown();installer.shutdown();catalogs.shutdown();images.shutdown();sceAppUtilShutdown();psvitaalive::diagnostics::log("PSVitaAlive session END");psvitaalive::diagnostics::shutdown();sceKernelExitProcess(0);return 0;

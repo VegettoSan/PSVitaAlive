@@ -517,3 +517,54 @@ KEYBOARD_CANCEL=ОТМЕНА
 KEYBOARD_CONFIRM=OK
 KEYBOARD_SPACE=ПРОБЕЛ
 KEYBOARD_MORE=ЕЩЁ
+
+# Archive.org connectivity warnings (startup / failed user download)
+ARCHIVE_WARNING_TITLE=Проблемы с подключением к Archive.org
+ARCHIVE_WARNING_STARTUP_1=PSVitaAlive не может подключиться к Archive.org через текущее соединение.
+ARCHIVE_WARNING_STARTUP_2=Некоторые загрузки, значки и снимки экрана могут быть недоступны. Это не обязательно ошибка PSVitaAlive. Повторите попытку позже или дождитесь восстановления внешнего сервиса.
+ARCHIVE_WARNING_DOWNLOAD_1=Сейчас не удаётся загрузить файл с Archive.org.
+ARCHIVE_WARNING_DOWNLOAD_2=Возможно, внешний сервис временно недоступен; это не обязательно ошибка PSVitaAlive. Попробуйте другой источник или повторите попытку позже.
+ARCHIVE_WARNING_OK=Понятно
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Загрузка недоступна
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Сейчас не удаётся подключиться к Archive.org.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=Возможно, временные проблемы у сервиса или с вашим подключением. Это не обязательно означает ошибку PSVitaAlive.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Попробуйте другую ссылку для загрузки или повторите попытку позже.
+
+# Friendly error explanations for downloads, extraction and installation
+INSTALL_ERR_TITLE_DOWNLOAD=Не удалось скачать
+INSTALL_ERR_TITLE_ARCHIVE=Не удалось распаковать файл
+INSTALL_ERR_TITLE_GENERAL=Не удалось завершить операцию
+INSTALL_ERR_NETWORK_WHY=Не удалось подключиться к серверу загрузки.
+INSTALL_ERR_NETWORK_ACTION=Проверьте соединение, попробуйте другую ссылку или повторите позже.
+INSTALL_ERR_HTTP_MISSING_WHY=Файл больше недоступен по этой ссылке.
+INSTALL_ERR_HTTP_MISSING_ACTION=Попробуйте другой источник или сообщите о неработающей ссылке.
+INSTALL_ERR_HTTP_DENIED_WHY=Сервер запретил доступ к файлу.
+INSTALL_ERR_HTTP_DENIED_ACTION=Попробуйте другой источник. Возможно, срок действия ссылки истёк.
+INSTALL_ERR_HTTP_BUSY_WHY=Сервер занят или ограничивает запросы.
+INSTALL_ERR_HTTP_BUSY_ACTION=Подождите несколько минут и повторите попытку.
+INSTALL_ERR_HTTP_SERVER_WHY=Временные проблемы на сервере.
+INSTALL_ERR_HTTP_SERVER_ACTION=Выберите другой источник или повторите попытку позже.
+INSTALL_ERR_TLS_WHY=Не удалось установить защищённое соединение.
+INSTALL_ERR_TLS_ACTION=Проверьте дату и время консоли или используйте другой источник.
+INSTALL_ERR_MEDIAFIRE_WHY=Не удалось получить файл с MediaFire.
+INSTALL_ERR_MEDIAFIRE_ACTION=Проверьте оригинальную ссылку или попробуйте другой источник.
+INSTALL_ERR_SPACE_WHY=Недостаточно свободного места для этой операции.
+INSTALL_ERR_SPACE_ACTION=Освободите место на целевом носителе и повторите попытку.
+INSTALL_ERR_STORAGE_WHY=Консоль не смогла прочитать или сохранить нужные файлы.
+INSTALL_ERR_STORAGE_ACTION=Проверьте носитель и свободное место, затем повторите попытку.
+INSTALL_ERR_ARCHIVE_WHY=ZIP или VPK не удалось правильно прочитать или распаковать.
+INSTALL_ERR_ARCHIVE_ACTION=Возможно, файл неполный, повреждён или несовместим. Попробуйте другую копию.
+INSTALL_ERR_UNSAFE_WHY=Распаковка остановлена из-за небезопасного пути или перезаписи.
+INSTALL_ERR_UNSAFE_ACTION=Проверьте целевую папку. Существующие файлы защищены.
+INSTALL_ERR_FORMAT_WHY=Формат или структура файла не поддерживается.
+INSTALL_ERR_FORMAT_ACTION=Проверьте, что выбран нужный тип файла и ссылка.
+INSTALL_ERR_INSTALLER_WHY=Консоль не смогла завершить установку.
+INSTALL_ERR_INSTALLER_ACTION=Проверьте требования и плагины. При повторении отправьте отчёт.
+INSTALL_ERR_OTHER_WHY=Неожиданная ошибка прервала операцию.
+INSTALL_ERR_OTHER_ACTION=Повторите попытку. Если ошибка повторится, отправьте session.log.
+
+# Segmented archive integrity check (distinct from joining parts)
+DOWNLOAD_VERIFYING_SEGMENTS=Завершение загрузки...
+DOWNLOAD_VERIFYING_HINT=Объединение больших файлов может занять время. Подождите.

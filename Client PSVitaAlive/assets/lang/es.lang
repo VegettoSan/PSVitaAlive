@@ -423,8 +423,10 @@ ZIP_RECOVERY_DELETE_FAILED=No se pudo borrar el ZIP recuperado
 ZIP_RECOVERY_CHOOSE_ACTION=Primero elige Conservar ZIP o Borrar ZIP.
 
 # Final download phase / install timer
-DOWNLOAD_VERIFYING_TITLE=Verificando descarga
-DOWNLOAD_VERIFYING_PARTS=Uniendo partes y comprobando integridad...
+DOWNLOAD_VERIFYING_TITLE=Finalizando descarga
+DOWNLOAD_VERIFYING_PARTS=Uniendo partes descargadas...
+DOWNLOAD_VERIFYING_SEGMENTS=Finalizando descarga...
+DOWNLOAD_VERIFYING_HINT=Los archivos grandes pueden tardar en unirse. Espera, por favor.
 LABEL_ELAPSED=Transcurrido
 
 # QR / Web handoff
@@ -537,3 +539,50 @@ KEYBOARD_CANCEL=CANCELAR
 KEYBOARD_CONFIRM=OK
 KEYBOARD_SPACE=ESPACIO
 KEYBOARD_MORE=MÁS
+
+# Archive.org connectivity warnings (startup / failed user download)
+ARCHIVE_WARNING_TITLE=Problemas de conexión con Archive.org
+ARCHIVE_WARNING_STARTUP_1=PSVitaAlive no puede conectarse a Archive.org desde tu conexión actual.
+ARCHIVE_WARNING_STARTUP_2=Algunas descargas, iconos y capturas pueden no estar disponibles. Esto no significa necesariamente que falle PSVitaAlive. Inténtalo más tarde o espera a que se restablezca el servicio externo.
+ARCHIVE_WARNING_DOWNLOAD_1=Esta descarga no puede conectarse a Archive.org en este momento.
+ARCHIVE_WARNING_DOWNLOAD_2=El servicio externo podría tener problemas; no necesariamente es un error de PSVitaAlive. Usa otra fuente si está disponible o inténtalo más tarde.
+ARCHIVE_WARNING_OK=Entendido
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=No se pudo descargar
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=No pudimos conectarnos a Archive.org en este momento.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=Puede haber un problema temporal con el servicio o con tu conexión. Esto no significa necesariamente que PSVitaAlive esté fallando.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Prueba otro enlace de descarga o inténtalo más tarde.
+
+# Friendly error explanations for downloads, extraction and installation
+INSTALL_ERR_TITLE_DOWNLOAD=No se pudo descargar
+INSTALL_ERR_TITLE_ARCHIVE=No se pudo extraer el archivo
+INSTALL_ERR_TITLE_GENERAL=No se pudo completar la operación
+INSTALL_ERR_NETWORK_WHY=No pudimos conectarnos al servidor de descarga.
+INSTALL_ERR_NETWORK_ACTION=Comprueba tu conexión, prueba otro enlace o inténtalo más tarde.
+INSTALL_ERR_HTTP_MISSING_WHY=El archivo solicitado ya no está disponible en ese enlace.
+INSTALL_ERR_HTTP_MISSING_ACTION=Prueba un enlace alternativo o avisa de que el enlace está roto.
+INSTALL_ERR_HTTP_DENIED_WHY=El servidor no permite acceder a este archivo.
+INSTALL_ERR_HTTP_DENIED_ACTION=Prueba otra fuente. El enlace puede haber caducado o requerir permisos.
+INSTALL_ERR_HTTP_BUSY_WHY=El servidor está ocupado o limita las descargas.
+INSTALL_ERR_HTTP_BUSY_ACTION=Espera unos minutos antes de volver a intentarlo.
+INSTALL_ERR_HTTP_SERVER_WHY=El servidor está teniendo problemas temporales.
+INSTALL_ERR_HTTP_SERVER_ACTION=Prueba otra fuente de descarga o inténtalo más tarde.
+INSTALL_ERR_TLS_WHY=No se pudo establecer una conexión segura con el servidor.
+INSTALL_ERR_TLS_ACTION=Comprueba la fecha y hora de la consola o utiliza otra fuente.
+INSTALL_ERR_MEDIAFIRE_WHY=No pudimos obtener el archivo desde MediaFire.
+INSTALL_ERR_MEDIAFIRE_ACTION=Prueba otro enlace o abre la fuente original para comprobar la descarga.
+INSTALL_ERR_SPACE_WHY=No hay suficiente espacio libre para completar esta operación.
+INSTALL_ERR_SPACE_ACTION=Libera espacio en la memoria de destino e inténtalo de nuevo.
+INSTALL_ERR_STORAGE_WHY=La consola no pudo leer o guardar los archivos necesarios.
+INSTALL_ERR_STORAGE_ACTION=Comprueba la memoria de destino y el espacio disponible antes de reintentar.
+INSTALL_ERR_ARCHIVE_WHY=No se pudo leer o extraer correctamente el ZIP o VPK.
+INSTALL_ERR_ARCHIVE_ACTION=El archivo puede estar incompleto, dañado o ser incompatible. Prueba otra copia.
+INSTALL_ERR_UNSAFE_WHY=Se detuvo la extracción para evitar rutas inseguras o sobrescribir archivos.
+INSTALL_ERR_UNSAFE_ACTION=Comprueba la carpeta de destino. Se han protegido los archivos existentes.
+INSTALL_ERR_FORMAT_WHY=El archivo no tiene un formato o estructura compatible.
+INSTALL_ERR_FORMAT_ACTION=Comprueba que elegiste el tipo de descarga y archivo correctos.
+INSTALL_ERR_INSTALLER_WHY=La consola no pudo terminar de instalar la aplicación.
+INSTALL_ERR_INSTALLER_ACTION=Revisa sus requisitos y plugins. Si continúa fallando, envía un reporte.
+INSTALL_ERR_OTHER_WHY=Un error inesperado impidió completar esta operación.
+INSTALL_ERR_OTHER_ACTION=Inténtalo de nuevo. Si persiste, envía un reporte con session.log.

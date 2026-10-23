@@ -5,6 +5,7 @@
 #include "ui/search_keyboard.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "ui/install_failure_presentation.hpp"
 #include "update/update_checker.hpp"
 
 #include <vita2d.h>
@@ -90,6 +91,10 @@ public:
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
     void setCatalogError(const std::string& error);
     void showToast(const std::string& message, uint64_t durationMs = 2600);
+    // Queue the Archive.org warning. It opens only when startup/install
+    // modals are no longer visible, never over an error/recovery dialog.
+    void queueArchiveServiceWarning(bool fromDownload);
+    void openArchiveServiceWarningIfReady();
     void setAppSettings(const ::psvitaalive::AppSettingsData& settings);
     void setPluginStatus(const ::psvitaalive::PluginStatus& plugins);
     using SettingsSaveFn = std::function<void(const ::psvitaalive::AppSettingsData&)>;
@@ -123,7 +128,8 @@ public:
                             bool zipRecoveryAvailable = false,
                             const std::string& zipRecoveryPath = std::string(),
                             const std::string& zipRecoveryExtractPath = std::string(),
-                            bool zipRecoveryMayBeCorrupt = false);
+                            bool zipRecoveryMayBeCorrupt = false,
+                            bool archiveSourceUnavailable = false);
 
 private:
     UiState state_;
@@ -207,6 +213,9 @@ private:
     bool installProgressActive_ = false;
     /** After Plugin install(s): force reboot dialog (blocks LiveArea exit). */
     bool pluginRebootModal_ = false;
+    bool archiveWarningVisible_ = false;
+    bool archiveWarningPending_ = false;
+    bool archiveWarningDownload_ = false;
     // QR/Web handoff: only the displayed symbol occupies VRAM.
     bool webQrVisible_ = false;
     std::string webQrUrl_;
@@ -263,6 +272,9 @@ private:
     int installOutcome_ = 0;
     uint64_t installResultAutoCloseMs_ = 0; // 0 progress, 1 success, 2 error
     bool installLiveAreaOk_ = false;
+    // Structured failure source: never infer connectivity from localized text.
+    bool installArchiveSourceUnavailable_ = false;
+    InstallFailureKind installFailureKind_ = InstallFailureKind::Other;
     std::string installResultPath_;
     std::string installResultTitleId_;
     bool installZipRecoveryAvailable_ = false;
@@ -370,6 +382,7 @@ private:
     void scrollWebQrHelp(int direction);
     void drawInstallAllOverlay();
     void drawPluginRebootOverlay();
+    void drawArchiveServiceOverlay();
     void drawEssentialPluginsOverlay();
     void closeEssentialPluginsPrompt(bool install);
     void drawPspSetupOverlay();

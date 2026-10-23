@@ -83,7 +83,8 @@ InstallDispatchResult InstallDispatcher::installFile(
     InstallDispatchCancelFn shouldCancel,
     const std::string& zipDestination,
     const std::string& rifPath,
-    bool forceZipExtract
+    bool forceZipExtract,
+    bool segmentedZip
 ) {
     lastError_.clear();
     clearResultMeta();
@@ -141,7 +142,8 @@ InstallDispatchResult InstallDispatcher::installFile(
                 onProgress(p);
             },
             shouldCancel,
-            true
+            true,
+            segmentedZip
         );
         lastTitleId_ = installer.lastTitleId();
         lastInstallPath_ = installer.lastInstallPath();
@@ -303,7 +305,8 @@ InstallDispatchResult InstallDispatcher::installFile(
                     onProgress(p);
                 },
                 shouldCancel,
-                true
+                true,
+                segmentedZip
             );
             lastTitleId_ = installer.lastTitleId();
             lastInstallPath_ = installer.lastInstallPath();
@@ -345,7 +348,8 @@ InstallDispatchResult InstallDispatcher::installFile(
                 p.message = zp.currentEntry.empty() ? "Extracting ZIP" : std::string("Extracting: ") + zp.currentEntry;
                 onProgress(p);
             },
-            shouldCancel
+            shouldCancel,
+            segmentedZip
         );
         lastInstallPath_ = zipDestination;
         lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote

@@ -517,3 +517,54 @@ KEYBOARD_CANCEL=ANNULLA
 KEYBOARD_CONFIRM=OK
 KEYBOARD_SPACE=SPAZIO
 KEYBOARD_MORE=ALTRO
+
+# Archive.org connectivity warnings (startup / failed user download)
+ARCHIVE_WARNING_TITLE=Problemi di connessione a Archive.org
+ARCHIVE_WARNING_STARTUP_1=PSVitaAlive non riesce a raggiungere Archive.org dalla tua connessione.
+ARCHIVE_WARNING_STARTUP_2=Alcuni download, icone e schermate potrebbero non essere disponibili. Non significa necessariamente che PSVitaAlive non funzioni. Riprova più tardi o attendi il ripristino del servizio esterno.
+ARCHIVE_WARNING_DOWNLOAD_1=Questo download non riesce a raggiungere Archive.org al momento.
+ARCHIVE_WARNING_DOWNLOAD_2=Il servizio esterno potrebbe avere problemi; non è necessariamente un errore di PSVitaAlive. Prova un'altra fonte, se disponibile, o riprova più tardi.
+ARCHIVE_WARNING_OK=Ho capito
+
+# User-friendly failed Archive.org download result
+ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Download non disponibile
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Non riusciamo a connetterci a Archive.org in questo momento.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=Il servizio o la tua connessione potrebbero avere problemi temporanei. Non significa necessariamente che PSVitaAlive non funzioni.
+ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Prova un altro link di download o riprova più tardi.
+
+# Friendly error explanations for downloads, extraction and installation
+INSTALL_ERR_TITLE_DOWNLOAD=Download non riuscito
+INSTALL_ERR_TITLE_ARCHIVE=Impossibile estrarre il file
+INSTALL_ERR_TITLE_GENERAL=Operazione non riuscita
+INSTALL_ERR_NETWORK_WHY=Impossibile collegarsi al server di download.
+INSTALL_ERR_NETWORK_ACTION=Controlla la connessione, usa un altro link o riprova più tardi.
+INSTALL_ERR_HTTP_MISSING_WHY=Il file richiesto non è più disponibile a questo indirizzo.
+INSTALL_ERR_HTTP_MISSING_ACTION=Prova un link alternativo o segnala il collegamento non valido.
+INSTALL_ERR_HTTP_DENIED_WHY=Il server non consente l'accesso al file.
+INSTALL_ERR_HTTP_DENIED_ACTION=Prova un'altra fonte. Il link potrebbe essere scaduto.
+INSTALL_ERR_HTTP_BUSY_WHY=Il server è occupato o limita le richieste.
+INSTALL_ERR_HTTP_BUSY_ACTION=Attendi alcuni minuti prima di riprovare.
+INSTALL_ERR_HTTP_SERVER_WHY=Il server sta avendo problemi temporanei.
+INSTALL_ERR_HTTP_SERVER_ACTION=Prova un'altra fonte di download o riprova più tardi.
+INSTALL_ERR_TLS_WHY=Non è stato possibile stabilire una connessione sicura.
+INSTALL_ERR_TLS_ACTION=Controlla data e ora della console oppure usa un'altra fonte.
+INSTALL_ERR_MEDIAFIRE_WHY=Impossibile recuperare il file da MediaFire.
+INSTALL_ERR_MEDIAFIRE_ACTION=Prova un altro link o verifica la fonte originale.
+INSTALL_ERR_SPACE_WHY=Non c'è abbastanza spazio libero per completare l'operazione.
+INSTALL_ERR_SPACE_ACTION=Libera spazio nella memoria di destinazione e riprova.
+INSTALL_ERR_STORAGE_WHY=La console non riesce a leggere o salvare i file richiesti.
+INSTALL_ERR_STORAGE_ACTION=Controlla la memoria di destinazione e lo spazio disponibile.
+INSTALL_ERR_ARCHIVE_WHY=Impossibile leggere o estrarre correttamente il file ZIP o VPK.
+INSTALL_ERR_ARCHIVE_ACTION=Potrebbe essere incompleto, danneggiato o incompatibile. Prova un'altra copia.
+INSTALL_ERR_UNSAFE_WHY=Estrazione interrotta per evitare percorsi non sicuri o sovrascritture.
+INSTALL_ERR_UNSAFE_ACTION=Controlla la cartella di destinazione. I file esistenti sono protetti.
+INSTALL_ERR_FORMAT_WHY=Il formato o la struttura del file non è supportato.
+INSTALL_ERR_FORMAT_ACTION=Controlla di aver scelto il tipo di download corretto.
+INSTALL_ERR_INSTALLER_WHY=La console non ha completato l'installazione.
+INSTALL_ERR_INSTALLER_ACTION=Controlla requisiti e plugin. Se persiste, segnala il problema.
+INSTALL_ERR_OTHER_WHY=Un errore imprevisto ha impedito di completare l'operazione.
+INSTALL_ERR_OTHER_ACTION=Riprova. Se continua, invia una segnalazione con session.log.
+
+# Segmented archive integrity check (distinct from joining parts)
+DOWNLOAD_VERIFYING_SEGMENTS=Finalizzazione download...
+DOWNLOAD_VERIFYING_HINT=L'unione dei file grandi può richiedere tempo. Attendi.

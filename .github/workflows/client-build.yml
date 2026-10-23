@@ -48,6 +48,20 @@ jobs:
             -o /tmp/psvitaalive-install-archive-policy-test
           /tmp/psvitaalive-install-archive-policy-test
 
+      - name: Test segmented ZIP 2/4-range layout and ZIP64 offsets
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_segmented_zip_layout.cpp \
+            -o /tmp/psvitaalive-segmented-zip-test
+          /tmp/psvitaalive-segmented-zip-test
+
+      - name: Test unreachable source and HTTP response policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_download_failure_policy.cpp \
+            -o /tmp/psvitaalive-download-failure-policy-test
+          /tmp/psvitaalive-download-failure-policy-test
+
       - name: Test installer retry policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
@@ -61,6 +75,39 @@ jobs:
             tests/test_install_space_policy.cpp \
             -o /tmp/psvitaalive-install-space-test
           /tmp/psvitaalive-install-space-test
+
+      - name: Test friendly install error classification
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_install_failure_presentation.cpp \
+            -o /tmp/psvitaalive-friendly-error-policy-test
+          /tmp/psvitaalive-friendly-error-policy-test
+
+      - name: Verify friendly error translations for all languages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          archive_keys = (
+              "ARCHIVE_DOWNLOAD_FRIENDLY_TITLE", "ARCHIVE_DOWNLOAD_FRIENDLY_REASON",
+              "ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN", "ARCHIVE_DOWNLOAD_FRIENDLY_ACTION",
+              "DOWNLOAD_VERIFYING_SEGMENTS", "DOWNLOAD_VERIFYING_HINT",
+          )
+          categories = ("NETWORK", "HTTP_MISSING", "HTTP_DENIED", "HTTP_BUSY",
+                        "HTTP_SERVER", "TLS", "MEDIAFIRE", "SPACE", "STORAGE",
+                        "ARCHIVE", "UNSAFE", "FORMAT", "INSTALLER", "OTHER")
+          keys = set(archive_keys)
+          keys.update(f"INSTALL_ERR_TITLE_{s}" for s in ("DOWNLOAD", "ARCHIVE", "GENERAL"))
+          for cat in categories:
+              keys.add(f"INSTALL_ERR_{cat}_WHY")
+              keys.add(f"INSTALL_ERR_{cat}_ACTION")
+          for code in ("en", "es", "fr", "de", "it", "pt-BR", "pt-PT", "ru"):
+              lines = (Path("Client PSVitaAlive/assets/lang") / (code + ".lang")).read_text(encoding="utf-8").splitlines()
+              for key in keys:
+                  values = [line[len(key) + 1:] for line in lines if line.startswith(key + "=")]
+                  if len(values) != 1 or not values[0].strip():
+                      raise SystemExit(f"{code}: key {key} must occur exactly once with nonempty text")
+          print(f"Verified {len(keys)} error keys in all 8 language packs")
+          PY
 
       - name: Build with official VitaSDK image
         shell: bash

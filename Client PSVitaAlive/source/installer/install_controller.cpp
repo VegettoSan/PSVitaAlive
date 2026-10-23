@@ -1,4 +1,5 @@
 #include "installer/install_controller.hpp"
+#include "network/parallel_archive_download.hpp"
 #include "update/installed_release_tracker.hpp"
 #include "localization/localization.hpp"
 #include "diagnostic_logger.hpp"
@@ -346,6 +347,7 @@ void InstallController::acknowledgeResult() {
     needsReboot_.store(false);
     setInstallPath("");
     setTitleId("");
+    archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryPath_.clear();
@@ -388,6 +390,7 @@ bool InstallController::resolveZipRecovery(bool keep) {
         diagnostics::log("[Installer] ZIP recovery action=deleted path=" + zipRecoveryPath_);
     }
 
+    archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryJobId_.clear();
@@ -728,7 +731,18 @@ bool InstallController::requestInstall(
 
     if (!http_.isInitialized() && !init()) return false;
 
-    const std::string jobId = downloads_.enqueue(url, fileName, expectedBytes);
+    // Verified parallel ranges may be extracted without an intermediate join
+    // for both typed Game/Data ZIP archives and installable VPK ZIP containers.
+    // All other formats (PKG/PSP/PS1/plugins/opaque names) retain their path.
+    const bool keepSegmented = shouldKeepSegmentedContainer(
+        FormatDetector::extensionOf(fileName),
+        wantBgdl, isPluginLinkType(linkType),
+        isDataOrGameFilesLinkType(linkType),
+        isZipExtraction, !zipDestination.empty());
+    const std::string jobId = downloads_.enqueue(
+        url, fileName, expectedBytes, keepSegmented);
+    diagnostics::log(std::string("[Installer] segmented container opt-in=") +
+                     (keepSegmented ? "yes" : "no") + " file=" + fileName);
     if (jobId.empty()) {
         setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
         diagnostics::log("[Installer] could not create download job");
@@ -739,6 +753,7 @@ bool InstallController::requestInstall(
     activeZipDestination_ = zipDestination;
     activeFileName_ = fileName;
     activeDisplayTitle_ = niceTitle;
+    archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
     zipRecoveryPath_.clear();
@@ -883,6 +898,7 @@ InstallStatus InstallController::status() const {
     result.installPath = installPath_;
     result.titleId = titleId_;
     result.liveAreaOk = liveAreaOk_.load();
+    result.archiveSourceUnavailable = archiveSourceUnavailable_.load(std::memory_order_acquire);
     result.needsReboot = needsReboot_.load();
     result.zipRecoveryAvailable = zipRecoveryAvailable_.load();
     result.zipRecoveryMayBeCorrupt = zipRecoveryMayBeCorrupt_.load();
@@ -1167,6 +1183,13 @@ int InstallController::workerMain() {
     DownloadJob* job = downloads_.findJob(activeJobId_);
     if (!downloaded || !job || job->state != DownloadState::Completed) {
         const bool cancelled = job && job->state == DownloadState::Cancelled;
+        // Only show the service warning when the failing user download
+        // actually came from Archive.org and the HTTP client classified
+        // its resource as unavailable. Do not label VPK/ZIP/SSL/disk errors
+        // from other providers as an Archive outage.
+        const bool archiveFailure = !cancelled && job && job->sourceUnavailable &&
+            job->url.find("archive.org") != std::string::npos;
+        archiveSourceUnavailable_.store(archiveFailure, std::memory_order_release);
         const std::string error = cancelled ? ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadCancelled)
             : (job && !job->lastError.empty() ? job->lastError : ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadFailed));
         setStage(cancelled ? "Cancelled" : "Error");
@@ -1185,12 +1208,19 @@ int InstallController::workerMain() {
     current_.store(0);
     total_.store(0);
     speed_.store(0);
-    // Slower SD2Vita / USB media may still be flushing the last blocks after rename.
-    // ZIP EOCD / ZIP64 locators live at EOF — reading too early can look "incomplete".
+    // With direct segmented ZIP/VPK, DownloadManager has already closed and
+    // renamed every range and checked the authoritative combined size.
+    // Avoid an unconditional 3-second delay on each successful transfer.
+    // Non-segmented/serial installs keep the conservative SD2Vita settle.
     setStage("Installing");
-    setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgFinalizingStorage));
-    diagnostics::log(std::string("[Installer] post-download storage settle before extract path=") + job->finalPath);
-    sceKernelDelayThread(3000 * 1000); // 3s settle — margin for slower SD2Vita/USB
+    if (job->segmentedZip) {
+        diagnostics::log(std::string("[Installer] segmented ZIP/VPK finalized; skipping 3s storage settle path=") +
+                         job->finalPath);
+    } else {
+        setState(InstallStatus::State::Installing, ::psvitaalive::L(::psvitaalive::TextId::InstMsgFinalizingStorage));
+        diagnostics::log(std::string("[Installer] post-download storage settle before extract path=") + job->finalPath);
+        sceKernelDelayThread(3000 * 1000); // preserve legacy behavior for serial/joined files
+    }
     {
         // Touch the file end so the FS materializes size/metadata before zip_open.
         const SceUID fd = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
@@ -1435,7 +1465,8 @@ int InstallController::workerMain() {
             [this]() { return installCancelRequested_.load(std::memory_order_acquire); },
             activeZipDestination_,
             directRifPath,
-            isDataOrGameFilesLinkType(activeLinkType_)
+            isDataOrGameFilesLinkType(activeLinkType_),
+            job->segmentedZip
         );
 
         if (result == InstallDispatchResult::Ok ||
@@ -1519,6 +1550,21 @@ int InstallController::workerMain() {
         // existing cleanup behavior.
         if (!cancelled && zipRecoveryCandidate) {
   StorageManager st;
+  // Recovery UI requires a single independently usable ZIP. Materialize only
+  // after direct segmented extraction has exhausted its normal retries.
+  const bool recoveryReady = !job->segmentedZip ||
+      materializeSegmentedZip(job->finalPath, job->expectedSize);
+  if (!recoveryReady) {
+      diagnostics::log("[Installer] failed to assemble segmented ZIP; keeping completed job for inspection");
+      setStage("Error");
+      setState(InstallStatus::State::Failed,
+          "ZIP extraction failed and manual ZIP assembly failed; original parts retained");
+      activeJobId_.clear();
+      resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+      workerDone_.store(true, std::memory_order_release);
+      return 0;
+  }
+  job->segmentedZip = false;
   const std::string key = sanitizeRecoveryComponent(
       !pendingTitleId_.empty() ? pendingTitleId_ : pendingAppId_, "unknown");
   const std::string recoveryDir = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
