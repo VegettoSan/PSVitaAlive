@@ -222,6 +222,11 @@ InstallController::InstallController() : downloads_(http_) {
 
 InstallController::~InstallController() { shutdown(); }
 
+int InstallController::cleanupStartupDownloads(const StartupCleanupProgressFn& onProgress) {
+    // No install/download worker has started while the loading overlay is active.
+    return downloads_.purgeIncompleteJobs(onProgress);
+}
+
 bool InstallController::init() {
     if (http_.isInitialized()) return true;
     settings_ = AppSettings::load();
@@ -244,12 +249,6 @@ bool InstallController::init() {
         else
             setMessage(::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloading));
     });
-    const int purged = downloads_.purgeIncompleteJobs();
-    if (purged > 0) {
-        char m[96];
-        sceClibSnprintf(m, sizeof(m), "[Installer] purged %d residual download jobs", purged);
-        diagnostics::log(m);
-    }
     setStage("Idle");
     setState(InstallStatus::State::Idle, ::psvitaalive::L(::psvitaalive::TextId::InstMsgReady));
     if (settings_.startupPluginDetection) {
@@ -359,33 +358,80 @@ void InstallController::acknowledgeResult() {
 }
 
 bool InstallController::resolveZipRecovery(bool keep) {
-    if (!zipRecoveryAvailable_.load()) return false;
-    if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Failed) return false;
+    if (!zipRecoveryAvailable_.load() ||
+        static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Failed)
+        return false;
 
     StorageManager st;
     if (keep) {
-        if (!zipRecoveryPath_.empty() && !st.exists(zipRecoveryPath_)) {
-  setMessage(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"));
-  diagnostics::log("[Installer] ZIP recovery keep failed: archive missing at " + zipRecoveryPath_);
-  return false;
+        if (zipRecoveryPath_.empty() || !st.exists(zipRecoveryPath_)) {
+            setMessage(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"));
+            diagnostics::log("[Installer] ZIP recovery keep failed: archive missing");
+            return false;
+        }
+        // A completed ZIP stays inside its transient job until the user chooses Keep.
+        // Only at this moment does it become a persistent /manual/ archive.
+        if (!zipRecoveryJobId_.empty()) {
+            const DownloadJob* job = downloads_.findJob(zipRecoveryJobId_);
+            if (!job) {
+                setMessage(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"));
+                return false;
+            }
+            const std::string key = sanitizeRecoveryComponent(
+                !pendingTitleId_.empty() ? pendingTitleId_ : pendingAppId_, "unknown");
+            const std::string dir = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
+            if (!st.createDirectories(dir)) {
+                setMessage(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"));
+                diagnostics::log("[Installer] ZIP recovery keep failed: cannot create " + dir);
+                return false;
+            }
+            const std::string target = uniqueRecoveryPath(st, dir, job->fileName);
+            const std::string infoPath = target + ".info.txt";
+            std::string info;
+            info += "PS Vita Alive Store - ZIP manual recovery\\n\\n";
+            info += "App: " + (activeDisplayTitle_.empty() ? pendingAppId_ : activeDisplayTitle_) + "\\n";
+            info += "App ID: " + (pendingAppId_.empty() ? std::string("-") : pendingAppId_) + "\\n";
+            info += "Title ID: " + (pendingTitleId_.empty() ? std::string("-") : pendingTitleId_) + "\\n";
+            info += "Archive: " + job->fileName + "\\n";
+            info += "Saved path: " + target + "\\n";
+            info += "Manual extraction target: " + zipRecoveryExtractPath_ + "\\n";
+            info += "Recovery decision: kept\\n";
+            if (zipRecoveryMayBeCorrupt_.load())
+                info += "Warning: archive may be damaged/incomplete; manual extraction may also fail.\\n";
+
+            // Metadata first: after an unexpected shutdown we may leave a tiny
+            // orphan info file, but never a multi-GB untracked ZIP in /manual/.
+            if (!st.writeTextFile(infoPath, info)) {
+                setMessage(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"));
+                diagnostics::log("[Installer] ZIP recovery keep failed: metadata write " + infoPath);
+                return false;
+            }
+            if (!st.rename(zipRecoveryPath_, target)) {
+                st.removeFile(infoPath);
+                setMessage(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"));
+                diagnostics::log("[Installer] ZIP recovery keep failed: move to " + target);
+                return false;
+            }
+            const std::string oldJobId = zipRecoveryJobId_;
+            zipRecoveryPath_ = target;
+            zipRecoveryInfoPath_ = infoPath;
+            zipRecoveryJobId_.clear();
+            if (!downloads_.cleanupCompletedJob(oldJobId))
+                diagnostics::log("[Installer] saved ZIP; transient metadata cleanup pending at startup");
         }
         diagnostics::log("[Installer] ZIP recovery action=kept path=" + zipRecoveryPath_);
-        // If the fallback still lives in the completed job directory, leave that
-        // completed job intact. Normal startup cleanup preserves completed jobs.
-        zipRecoveryJobId_.clear();
     } else {
         bool ok = true;
-        if (!zipRecoveryJobId_.empty()) {
-  ok = downloads_.cleanupCompletedJob(zipRecoveryJobId_);
-        } else if (!zipRecoveryPath_.empty() && st.exists(zipRecoveryPath_)) {
-  ok = st.removeFile(zipRecoveryPath_);
-        }
+        if (!zipRecoveryJobId_.empty())
+            ok = downloads_.cleanupCompletedJob(zipRecoveryJobId_);
+        else if (!zipRecoveryPath_.empty() && st.exists(zipRecoveryPath_))
+            ok = st.removeFile(zipRecoveryPath_);
         if (ok && !zipRecoveryInfoPath_.empty() && st.exists(zipRecoveryInfoPath_))
-  st.removeFile(zipRecoveryInfoPath_);
+            ok = st.removeFile(zipRecoveryInfoPath_);
         if (!ok) {
-  setMessage(::psvitaalive::L("ZIP_RECOVERY_DELETE_FAILED"));
-  diagnostics::log("[Installer] ZIP recovery delete failed path=" + zipRecoveryPath_);
-  return false;
+            setMessage(::psvitaalive::L("ZIP_RECOVERY_DELETE_FAILED"));
+            diagnostics::log("[Installer] ZIP recovery delete failed path=" + zipRecoveryPath_);
+            return false;
         }
         diagnostics::log("[Installer] ZIP recovery action=deleted path=" + zipRecoveryPath_);
     }
@@ -1549,79 +1595,36 @@ int InstallController::workerMain() {
         // plugin jobs, cancellations and incomplete network downloads keep their
         // existing cleanup behavior.
         if (!cancelled && zipRecoveryCandidate) {
-  StorageManager st;
-  // Recovery UI requires a single independently usable ZIP. Materialize only
-  // after direct segmented extraction has exhausted its normal retries.
-  const bool recoveryReady = !job->segmentedZip ||
-      materializeSegmentedZip(job->finalPath, job->expectedSize);
-  if (!recoveryReady) {
-      diagnostics::log("[Installer] failed to assemble segmented ZIP; keeping completed job for inspection");
-      setStage("Error");
-      setState(InstallStatus::State::Failed,
-          "ZIP extraction failed and manual ZIP assembly failed; original parts retained");
-      activeJobId_.clear();
-      resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-      workerDone_.store(true, std::memory_order_release);
-      return 0;
-  }
-  job->segmentedZip = false;
-  const std::string key = sanitizeRecoveryComponent(
-      !pendingTitleId_.empty() ? pendingTitleId_ : pendingAppId_, "unknown");
-  const std::string recoveryDir = std::string(StorageManager::BASE_DIR) + "/manual/" + key;
-  const bool dirOk = st.createDirectories(recoveryDir);
-  std::string recoveryPath = job->finalPath;
-  bool movedOut = false;
-  if (dirOk) {
-      const std::string candidate = uniqueRecoveryPath(st, recoveryDir, job->fileName);
-      if (st.rename(job->finalPath, candidate)) {
-          recoveryPath = candidate;
-          movedOut = true;
-      }
-  }
-
-  zipRecoveryPath_ = recoveryPath;
-  zipRecoveryExtractPath_ = activeZipDestination_;
-  zipRecoveryMayBeCorrupt_.store(looksLikeDamagedZipError(error));
-  zipRecoveryJobId_ = movedOut ? std::string() : activeJobId_;
-  zipRecoveryInfoPath_.clear();
-
-  if (movedOut) {
-      const std::string infoPath = recoveryPath + ".info.txt";
-      std::string info;
-      info += "PS Vita Alive Store - ZIP manual recovery\n\n";
-      info += "App: " + (activeDisplayTitle_.empty() ? pendingAppId_ : activeDisplayTitle_) + "\n";
-      info += "App ID: " + (pendingAppId_.empty() ? std::string("-") : pendingAppId_) + "\n";
-      info += "Title ID: " + (pendingTitleId_.empty() ? std::string("-") : pendingTitleId_) + "\n";
-      info += "Archive: " + job->fileName + "\n";
-      info += "Saved path: " + recoveryPath + "\n";
-      info += "Manual extraction target: " + activeZipDestination_ + "\n";
-      info += "Automatic extraction error: " + error + "\n";
-      if (zipRecoveryMayBeCorrupt_.load())
-          info += "Warning: archive may be damaged/incomplete; manual extraction may also fail.\n";
-      if (st.writeTextFile(infoPath, info)) zipRecoveryInfoPath_ = infoPath;
-
-      // The archive is now outside the job directory, so normal job
-      // metadata/temp cleanup cannot erase the preserved ZIP.
-      downloads_.cleanupCompletedJob(activeJobId_);
-      activeJobId_.clear();
-  } else {
-      diagnostics::log("[Installer] ZIP recovery rename failed; keeping completed job payload in place");
-  }
-
-  zipRecoveryAvailable_.store(true);
-
-  setStage("ZipRecovery");
-
-  setInstallPath(activeZipDestination_.c_str());
-
-  setState(InstallStatus::State::Failed, error.c_str());
-
-  diagnostics::log(std::string("[Installer] ZIP recovery available path=") + recoveryPath +
-      " target=" + activeZipDestination_ +
-      " may_be_corrupt=" + (zipRecoveryMayBeCorrupt_.load() ? "yes" : "no"));
+            // A complete ZIP may be offered for manual recovery, but is not
+            // saved in /manual/ until the user explicitly presses Keep.
+            const bool recoveryReady = !job->segmentedZip ||
+                materializeSegmentedZip(job->finalPath, job->expectedSize);
+            if (!recoveryReady) {
+                // No independent, usable ZIP exists. Drop incomplete assembly
+                // and every range; never strand a multi-GB failed recovery.
+                diagnostics::log("[Installer] failed to assemble recovery ZIP; removing job");
+                downloads_.cleanupCompletedJob(activeJobId_);
+                activeJobId_.clear();
+                setStage("Error");
+                setState(InstallStatus::State::Failed,
+                    "ZIP recovery assembly failed; incomplete temporary files removed");
+            } else {
+                job->segmentedZip = false;
+                zipRecoveryPath_ = job->finalPath;
+                zipRecoveryExtractPath_ = activeZipDestination_;
+                zipRecoveryInfoPath_.clear();
+                zipRecoveryJobId_ = activeJobId_;
+                zipRecoveryMayBeCorrupt_.store(looksLikeDamagedZipError(error));
+                zipRecoveryAvailable_.store(true);
+                setStage("ZipRecovery");
+                setInstallPath(activeZipDestination_.c_str());
+                setState(InstallStatus::State::Failed, error.c_str());
+                diagnostics::log("[Installer] ZIP recovery pending user decision path=" +
+                                 zipRecoveryPath_);
+            }
         } else {
-  downloads_.cleanupCompletedJob(activeJobId_);
-  activeJobId_.clear();
+            downloads_.cleanupCompletedJob(activeJobId_);
+            activeJobId_.clear();
         }
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
     } else {
