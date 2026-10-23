@@ -1,4 +1,4 @@
-# PSVitaAlive homebrew catalog — licensing and attribution
+# PSVitaAlive homebrew catalog — licensing, attribution and hosting access
 
 ## Purpose
 
@@ -60,7 +60,21 @@ Information may be discovered from creators and community sources, including [Vi
 
 PS Vita, PSP and PS1 **commercial-game catalogs**, license sidecars such as zRIF indexes, and all referenced third-party packages are **outside the license grant for new original homebrew catalog curation described here**. Respect each item's applicable rights and distribution terms.
 
-## 6. Software license
+## 6. VegettoSanDev / Cloudflare R2 service access policy
+
+**This section governs access to PSVitaAlive-operated hosting infrastructure, not copyright or database reuse rights in catalog content.** The project maintainer privately funds Cloudflare R2 storage, bandwidth-related infrastructure and associated services for PSVitaAlive Store. Publicly listing a download URL in a GitHub catalog is **not** an invitation to make third-party applications rely on that hosting service.
+
+- **Protected endpoints:** PSVitaAlive-operated Cloudflare R2-backed download/API endpoints, including `downloads.vegettosandev.com`, and any other VegettoSanDev-hosted R2 endpoints explicitly designated by the maintainer. This does not cover independent GitHub, Internet Archive, developer-hosted or other third-party URLs merely because they are present in the catalog.
+- **Authorized use:** The official PSVitaAlive Store client and official first-party PSVitaAlive/VegettoSanDev websites may request or download files from these endpoints as intended by the maintainer, including user-initiated downloads through those websites.
+- **Third-party use requires prior written authorization:** Other applications, stores, mirrors, bots and services must obtain explicit written permission from the PSVitaAlive maintainer **before** using the R2-backed endpoints for hotlinking, automated retrieval, proxies, bulk downloading or as their own download source. Merely copying a published URL, including one found in a GitHub JSON catalog, does not grant infrastructure access. A request for permission is not approval; approval may specify endpoints, duration, volume or other conditions.
+- **No circumvention:** Do not impersonate the official PSVitaAlive client, spoof its headers/identity, reuse access credentials or otherwise bypass endpoint access controls to obtain third-party service access. PSVitaAlive may apply and update server-side access restrictions or rate limits to protect its hosting resources.
+- **Other links remain governed by their existing terms:** This project does not impose this R2 service-use requirement on unrelated external URLs. The destination host's terms, the applicable catalog-data licenses and the original authors' rights continue to apply. A catalog link is not a grant of redistribution rights in any third-party download.
+
+**No change to existing open licenses:** This separate service-access notice does **not** revoke or narrow historical CC0 permissions, add conditions to CC BY 4.0 licensed catalog material, or amend the MIT software license. Copying or reusing legally licensed catalog records and URL text from an authorized source remains permitted under those existing terms; that permission does not itself include a commitment by PSVitaAlive to serve files or authorize consumption of its privately operated R2 endpoints. The notice does not assert ownership over third-party files or independently hosted links.
+
+To request special R2 endpoint access, contact the maintainer through this repository's GitHub Issues and obtain an **explicit written approval** before integrating the URLs. Endpoint restrictions are to be enforced by hosting configuration, not by this notice alone.
+
+## 7. Software license
 
 Client software, updater, build scripts, website tooling and other software covered by the repository's [MIT LICENSE](LICENSE) remain under **MIT**, unchanged by this catalog policy.
 
