@@ -3,7 +3,7 @@
   "title_id": "NAOH00001",
   "name": "NAOH: Arcade Collection",
   "description": "Arcade launcher for Marvel vs Capcom games.",
-  "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.",
+  "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.\n\n- PsVitaAlive -",
   "author_ids": [
     "kiddrwxssj"
   ],

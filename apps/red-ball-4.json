@@ -3,7 +3,7 @@
   "title_id": "RDBL40001",
   "name": "Red Ball 4 PS Vita",
   "description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.",
-  "long_description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.",
+  "long_description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.\n\n- PsVitaAlive -",
   "author_ids": [
     "clyppe"
   ],

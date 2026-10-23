@@ -3,7 +3,7 @@
   "title_id": "OPENJAZZ1",
   "name": "OpenJazz",
   "description": "Jazz Jackrabbit port for PSVITA",
-  "long_description": "OpenJazz is a free, open-source version of the classic Jazz Jackrabbitâ„¢ games. OpenJazz can be compiled on a wide range of operating systems, including Windows 98/Me/XP and Linux. To play, you will need the files from one of the original games.",
+  "long_description": "OpenJazz is a free, open-source version of the classic Jazz Jackrabbitâ„¢ games. OpenJazz can be compiled on a wide range of operating systems, including Windows 98/Me/XP and Linux. To play, you will need the files from one of the original games.\n\n- PsVitaAlive -",
   "author_ids": [
     "usineur"
   ],

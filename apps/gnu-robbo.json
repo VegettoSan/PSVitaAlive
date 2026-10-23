@@ -3,7 +3,7 @@
   "title_id": "ROBB00001",
   "name": "GNU Robbo",
   "description": "Atari XL/XE Robbo port.",
-  "long_description": "GNU Robbo is a free open source reimplementation of game designed by Janusz Pelc and published by LK Avalon in 1989 for the Atari XL/XE computers. A success on the Polish domestic market, it was later ported to other computer platforms and also released in the United States as The Adventures of Robbo.",
+  "long_description": "GNU Robbo is a free open source reimplementation of game designed by Janusz Pelc and published by LK Avalon in 1989 for the Atari XL/XE computers. A success on the Polish domestic market, it was later ported to other computer platforms and also released in the United States as The Adventures of Robbo.\n\n- PsVitaAlive -",
   "author_ids": [
     "bomblik"
   ],

@@ -3,7 +3,7 @@
   "title_id": "ABCD96285",
   "name": "Slither.io Vita",
   "description": "Port of Slither Snake for PSVITA.",
-  "long_description": "Port of Slither Snake for PSVITA.\nSlither Snake is a clone of Slither.io made in Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Slither Snake for PSVITA.\nSlither Snake is a clone of Slither.io made in Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "spanishfreddy"
   ],

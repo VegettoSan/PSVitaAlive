@@ -3,7 +3,7 @@
   "title_id": "IMSCARED0",
   "name": "IMSCARED",
   "description": "Port of IMSCARED for PSVITA.",
-  "long_description": "IMSCARED is a metahorror game that protagonizes the player, putting him in a surreal first-person experience. Find keys, open doors and search for the exit to this nightmare. But I need to let you know, it will try to deceive You as many times as it can. Read the github page on how to get the game working.",
+  "long_description": "IMSCARED is a metahorror game that protagonizes the player, putting him in a surreal first-person experience. Find keys, open doors and search for the exit to this nightmare. But I need to let you know, it will try to deceive You as many times as it can. Read the github page on how to get the game working.\n\n- PsVitaAlive -",
   "author_ids": [
     "hatoving"
   ],

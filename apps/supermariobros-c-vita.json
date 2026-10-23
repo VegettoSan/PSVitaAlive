@@ -3,7 +3,7 @@
   "title_id": "SMBV00001",
   "name": "SuperMarioBros C Vita",
   "description": "Port of Super Mario Bros for PSVita.",
-  "long_description": "Port of super Mario Bros based off the decompilation of the original NES game.",
+  "long_description": "Port of super Mario Bros based off the decompilation of the original NES game.\n\n- PsVitaAlive -",
   "author_ids": [
     "gustavo3211"
   ],

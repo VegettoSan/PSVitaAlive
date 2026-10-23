@@ -3,7 +3,7 @@
   "title_id": "ACGC00001",
   "name": "Animal Crossing Vita",
   "description": "Port of Animal Crossing for PSVita.",
-  "long_description": "Port of Animal Crossing for the Nintendo Gamecube, based on the decompilation and PC port.",
+  "long_description": "Port of Animal Crossing for the Nintendo Gamecube, based on the decompilation and PC port.\n\n- PsVitaAlive -",
   "author_ids": [
     "bren"
   ],

@@ -3,7 +3,7 @@
   "title_id": "FF3000000",
   "name": "FF3-Vita",
   "description": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
-  "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar",
+  "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar\n\n- PsVitaAlive -",
   "author_ids": [
     "frangarcj",
     "rinnegatamante",

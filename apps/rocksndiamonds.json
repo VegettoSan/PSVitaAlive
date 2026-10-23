@@ -3,7 +3,7 @@
   "title_id": "ROCKS0000",
   "name": "rocksndiamonds",
   "description": "Rocks'n'Diamonds port for PSVITA.",
-  "long_description": "Rocks'n'Diamonds is a scrolling tile-based computer puzzle game that can be described as a combined Boulder Dash, Supaplex, Emerald Mine, and Sokoban clone. It is a free software game under the GPLv2 license created by Artsoft Entertainment and designed by Holger Schemel. For additional level packs, see the release notes at https://github.com/rsn8887/rocksndiamonds/releases/latest",
+  "long_description": "Rocks'n'Diamonds is a scrolling tile-based computer puzzle game that can be described as a combined Boulder Dash, Supaplex, Emerald Mine, and Sokoban clone. It is a free software game under the GPLv2 license created by Artsoft Entertainment and designed by Holger Schemel. For additional level packs, see the release notes at https://github.com/rsn8887/rocksndiamonds/releases/latest\n\n- PsVitaAlive -",
   "author_ids": [
     "rsn8887"
   ],

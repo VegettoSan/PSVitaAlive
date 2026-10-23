@@ -3,7 +3,7 @@
   "title_id": "TLOL00020",
   "name": "The Legend of Lumina Vita",
   "description": "Port of The Legend of Lumina for PSVITA.",
-  "long_description": "Port of The Legend of Lumina for PSVITA.\nExplore an ancient forest, push blocks to solve puzzles, and uncover a way to lift the curse on your homeland.\nOriginally developed in Godot for the KB Games ZeldaJam 2022, The Legend of Lumina is a block-pushing puzzle game with Metroidvania-style progression, set in a peaceful forest environment.",
+  "long_description": "Port of The Legend of Lumina for PSVITA.\nExplore an ancient forest, push blocks to solve puzzles, and uncover a way to lift the curse on your homeland.\nOriginally developed in Godot for the KB Games ZeldaJam 2022, The Legend of Lumina is a block-pushing puzzle game with Metroidvania-style progression, set in a peaceful forest environment.\n\n- PsVitaAlive -",
   "author_ids": [
     "rocroverss"
   ],

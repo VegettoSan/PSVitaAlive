@@ -3,7 +3,7 @@
   "title_id": "NFSR00001",
   "name": "NFS II SE Recompiled",
   "description": "Need For Speed 2 SE Port for PS Vita",
-  "long_description": "A PS Vita adaptation of Need for Speed II: Special Edition, based on zaps166's NFSIISE wrapper and ARM-compatible C++ core. Original Glide rendering is handled through vitaGL with native Cg shaders. This is an unofficial community port, not a new game engine written from scratch.",
+  "long_description": "A PS Vita adaptation of Need for Speed II: Special Edition, based on zaps166's NFSIISE wrapper and ARM-compatible C++ core. Original Glide rendering is handled through vitaGL with native Cg shaders. This is an unofficial community port, not a new game engine written from scratch.\n\n- PsVitaAlive -",
   "author_ids": [
     "veitorman"
   ],

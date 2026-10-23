@@ -3,7 +3,7 @@
   "title_id": "DBTB01178",
   "name": "Dragon Ball Tap Battle",
   "description": "Dragón Ball Tap Battle Port PS Vita",
-  "long_description": "A native PlayStation Vita port of Dragon Ball Tap Battle built with VitaSDK, vitaGL, and the original game core compiled privately for Vita.",
+  "long_description": "A native PlayStation Vita port of Dragon Ball Tap Battle built with VitaSDK, vitaGL, and the original game core compiled privately for Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "vegettosandev"
   ],

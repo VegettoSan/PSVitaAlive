@@ -3,7 +3,7 @@
   "title_id": "WLOGICSPW",
   "name": "SDL Sopwith Vita",
   "description": "Port of Sopwith for PSVita.",
-  "long_description": "SDL Sopwith is a port of the game Sopwith, which was originally by BMB Compuscience Canada. The original author David L. Clark has kindly released the source code under the GNU GPL.",
+  "long_description": "SDL Sopwith is a port of the game Sopwith, which was originally by BMB Compuscience Canada. The original author David L. Clark has kindly released the source code under the GNU GPL.\n\n- PsVitaAlive -",
   "author_ids": [
     "withlogic"
   ],

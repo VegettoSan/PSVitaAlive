@@ -3,7 +3,7 @@
   "title_id": "DVLX00001",
   "name": "devilutionX",
   "description": "Port of Diablo for PSVITA/PSTV.",
-  "long_description": "A port of Diablo for PSVita based on the devilutionX project, a reverse engineereed implementation of the original Diablo release for PC.",
+  "long_description": "A port of Diablo for PSVita based on the devilutionX project, a reverse engineereed implementation of the original Diablo release for PC.\n\n- PsVitaAlive -",
   "author_ids": [
     "devilutionx-team",
     "gokuhs"

@@ -3,7 +3,7 @@
   "title_id": "SSAM10002",
   "name": "Serious Sam TSE Vita",
   "description": "Port of Serious Sam: The Second Encounter for PSVita.",
-  "long_description": "Port of Serious Sam: The Second Encounter for PSVita based off the sourcecode release from Croteam.",
+  "long_description": "Port of Serious Sam: The Second Encounter for PSVita based off the sourcecode release from Croteam.\n\n- PsVitaAlive -",
   "author_ids": [
     "fgsfds"
   ],

@@ -3,7 +3,7 @@
   "title_id": "CCLESTVIT",
   "name": "ccleste-vita",
   "description": "Port of Celeste Classic for PSVITA.",
-  "long_description": "This is a port for PSVITA/PSTV of a C source port of the original celeste (Celeste classic) for the PICO-8, designed to be portable.\nCeleste is a platform game in which players control a girl named Madeline as she makes her way up a mountain while avoiding various deadly obstacles.",
+  "long_description": "This is a port for PSVITA/PSTV of a C source port of the original celeste (Celeste classic) for the PICO-8, designed to be portable.\nCeleste is a platform game in which players control a girl named Madeline as she makes her way up a mountain while avoiding various deadly obstacles.\n\n- PsVitaAlive -",
   "author_ids": [
     "decomius"
   ],

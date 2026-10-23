@@ -3,7 +3,7 @@
   "title_id": "RVGL00001",
   "name": "RVGL",
   "description": "Port of RVGL for PSVITA.",
-  "long_description": "This is a native port of RVGL.\nRVGL is a cross-platform rewrite / port of Re-Volt that runs natively on a wide variety of platforms. It's powered entirely by modern, open source components.",
+  "long_description": "This is a native port of RVGL.\nRVGL is a cross-platform rewrite / port of Re-Volt that runs natively on a wide variety of platforms. It's powered entirely by modern, open source components.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

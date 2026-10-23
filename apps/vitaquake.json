@@ -3,7 +3,7 @@
   "title_id": "QUAK00001",
   "name": "vitaQuake",
   "description": "Quake I port.",
-  "long_description": "vitaQuake is a port of Quake for PSVITA. It's based on glQuake but has several features from different source ports such as ProQuake and similars.\nAt the moment vitaQuake has unique features like Dualshock rumbling when player get hit, an fps counter. It supports also double analogs for comfortable gameplay, online and locale multiplayer with featured servers, soundtracks support, sounds support and a lot more stuffs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "vitaQuake is a port of Quake for PSVITA. It's based on glQuake but has several features from different source ports such as ProQuake and similars.\nAt the moment vitaQuake has unique features like Dualshock rumbling when player get hit, an fps counter. It supports also double analogs for comfortable gameplay, online and locale multiplayer with featured servers, soundtracks support, sounds support and a lot more stuffs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

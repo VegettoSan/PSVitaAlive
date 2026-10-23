@@ -3,7 +3,7 @@
   "title_id": "ROWS00001",
   "name": "4Rows",
   "description": "Connect4 game for PSVITA.",
-  "long_description": "4Rows is the port of the \"Four in a row\"/\"Connect4\" sample homebrew provided with the very first PSP Lua Interpreter.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "4Rows is the port of the \"Four in a row\"/\"Connect4\" sample homebrew provided with the very first PSP Lua Interpreter.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

@@ -3,7 +3,7 @@
   "title_id": "ISLD00002",
   "name": "Slime-vBall",
   "description": "Port of slime-vball for PSVITA/PSTV.",
-  "long_description": "Port of slime-vball for PSVITA/PSTV.\nslime-vball is a clone of the slime volleyball game http://oneslime.net/ in C and SDL.",
+  "long_description": "Port of slime-vball for PSVITA/PSTV.\nslime-vball is a clone of the slime volleyball game http://oneslime.net/ in C and SDL.\n\n- PsVitaAlive -",
   "author_ids": [
     "island-games"
   ],

@@ -3,7 +3,7 @@
   "title_id": "BUBB13579",
   "name": "Everybody's Bubbles",
   "description": "Port of UnityBubbleGame for PSVITA.",
-  "long_description": "Everybody's Bubbles is a port of an opensource chinese game inspired to Candy Crush available for Android and iOS. You have to make the highest possible score in 60 seconds by tapping bubbles with same colors in group of 3 or more.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Everybody's Bubbles is a port of an opensource chinese game inspired to Candy Crush available for Android and iOS. You have to make the highest possible score in 60 seconds by tapping bubbles with same colors in group of 3 or more.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

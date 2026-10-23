@@ -3,7 +3,7 @@
   "title_id": "ROTT00001",
   "name": "rottexpr-vita",
   "description": "Port of Rise of the Triad for PSVITA.",
-  "long_description": "Port of rottexpr, a source port of Rise of the Triad with improvements and new features based off of the icculus Rise of the Triad source port release.",
+  "long_description": "Port of rottexpr, a source port of Rise of the Triad with improvements and new features based off of the icculus Rise of the Triad source port release.\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

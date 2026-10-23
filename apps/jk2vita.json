@@ -3,7 +3,7 @@
   "title_id": "JK2VITA01",
   "name": "JK2VITA",
   "description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita.",
-  "long_description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita based over OpenJK.",
+  "long_description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita based over OpenJK.\n\n- PsVitaAlive -",
   "author_ids": [
     "ndrw"
   ],

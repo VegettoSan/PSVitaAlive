@@ -3,7 +3,7 @@
   "title_id": "MINITVITA",
   "name": "Minit",
   "description": "Port of Minit for PSVITA/PSTV.",
-  "long_description": "Minit is a collaboration between Kitty Calis, Jan Willem Nijman, Jukio Kallio & Dominik Johann.",
+  "long_description": "Minit is a collaboration between Kitty Calis, Jan Willem Nijman, Jukio Kallio & Dominik Johann.\n\n- PsVitaAlive -",
   "author_ids": [
     "m1s3ry"
   ],

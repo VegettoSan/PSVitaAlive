@@ -3,7 +3,7 @@
   "title_id": "LSWCS0000",
   "name": "LSWTCS Vita",
   "description": "Port of Lego Star Wars: The Complete Saga for PSVITA.",
-  "long_description": "This is a wrapper/port of Lego Star Wars: The Complete Saga Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "This is a wrapper/port of Lego Star Wars: The Complete Saga Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "gm666q"
   ],

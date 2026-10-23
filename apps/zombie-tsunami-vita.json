@@ -3,7 +3,7 @@
   "title_id": "ZTSU00001",
   "name": "Zombie Tsunami Vita",
   "description": "Port of Zombie Tsunami for PSVita.",
-  "long_description": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.",
+  "long_description": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.\n\n- PsVitaAlive -",
   "author_ids": [
     "chatgpt-ai",
     "wolff"

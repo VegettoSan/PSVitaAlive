@@ -3,7 +3,7 @@
   "title_id": "SONICR001",
   "name": "Sonic R",
   "description": "A reimplementation of Sonic R for the PlayStation Vita.",
-  "long_description": "A reimplementation of Sonic R for the PlayStation Vita.",
+  "long_description": "A reimplementation of Sonic R for the PlayStation Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "fr3dsp"
   ],

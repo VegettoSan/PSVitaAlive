@@ -3,7 +3,7 @@
   "title_id": "PYHD00001",
   "name": "Party Hard Vita",
   "description": "Port of Party Hard for PSVita.",
-  "long_description": "Port of Party Hard for PSVita.\nParty Hard is an action stealth video game developed by Pinokl Games and published by tinyBuild.",
+  "long_description": "Port of Party Hard for PSVita.\nParty Hard is an action stealth video game developed by Pinokl Games and published by tinyBuild.\n\n- PsVitaAlive -",
   "author_ids": [
     "daniemun"
   ],

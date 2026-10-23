@@ -3,7 +3,7 @@
   "title_id": "SONIC0001",
   "name": "Sonic 1 Vita",
   "description": "Port of Sonic 1 for PSVITA.",
-  "long_description": "A port of the first Sonic game (Sonic The Hedgehog) based on a full decompilation of the original game.",
+  "long_description": "A port of the first Sonic game (Sonic The Hedgehog) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
   "author_ids": [
     "sonicmastr"
   ],

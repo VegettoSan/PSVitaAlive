@@ -3,7 +3,7 @@
   "title_id": "VITAWOLFE",
   "name": "vitaWolfen",
   "description": "",
-  "long_description": "vitaWolfen is a port for PSVITA of the classic old school FPS Wolfenstein 3D (formerly WOLF3D). It's based on Wolf4SDL and supports both full game and its expansion (missionpacks included).\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "vitaWolfen is a port for PSVITA of the classic old school FPS Wolfenstein 3D (formerly WOLF3D). It's based on Wolf4SDL and supports both full game and its expansion (missionpacks included).\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

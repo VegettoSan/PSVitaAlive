@@ -3,7 +3,7 @@
   "title_id": "ALSA50001",
   "name": "Alisa Vita",
   "description": "Port of Alisa: Developer's Cut for PSVita.",
-  "long_description": "This is a port of Alisa: Developer's Cut for PSVita.\nAlisa is a indie survival horror game heavily inspired by the classics of this genre like the original Resident Evil.",
+  "long_description": "This is a port of Alisa: Developer's Cut for PSVita.\nAlisa is a indie survival horror game heavily inspired by the classics of this genre like the original Resident Evil.\n\n- PsVitaAlive -",
   "author_ids": [
     "bythos",
     "rinnegatamante",

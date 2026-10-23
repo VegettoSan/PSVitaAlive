@@ -3,7 +3,7 @@
   "title_id": "BARO00001",
   "name": "Barony Vita",
   "description": "Port of Barony for PSVita.",
-  "long_description": "Port of Barony by Turning Wheel for Playstation Vita.",
+  "long_description": "Port of Barony by Turning Wheel for Playstation Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "bren"
   ],

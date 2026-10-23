@@ -3,7 +3,7 @@
   "title_id": "KOTR00001",
   "name": "KOTOR",
   "description": "Star Wars: Knights of the Old Republic on the PlayStation Vita.",
-  "long_description": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.",
+  "long_description": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.\n\n- PsVitaAlive -",
   "author_ids": [
     "scoobydouche"
   ],

@@ -3,7 +3,7 @@
   "title_id": "SSXV00001",
   "name": "SSX (2012)",
   "description": "Unofficial port of SSX (2012, Android) to the PS Vita",
-  "long_description": "An unofficial port of EA's SSX (the 2012 Android version, ssx-v0_0_8430.apk) to the PS Vita.\n\nThe game's own ARM code runs unmodified on the Vita through a so loader: this project provides everything Android would provide around it (the C library, OpenGL ES through vitaGL, the Java side of the app) and patches the game where the Vita needs it.",
+  "long_description": "An unofficial port of EA's SSX (the 2012 Android version, ssx-v0_0_8430.apk) to the PS Vita.\n\nThe game's own ARM code runs unmodified on the Vita through a so loader: this project provides everything Android would provide around it (the C library, OpenGL ES through vitaGL, the Java side of the app) and patches the game where the Vita needs it.\n\n- PsVitaAlive -",
   "author_ids": [
     "lukebrl"
   ],

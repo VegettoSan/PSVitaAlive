@@ -3,7 +3,7 @@
   "title_id": "POPC00001",
   "name": "Prince of Persia Classic",
   "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
-  "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics",
+  "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics\n\n- PsVitaAlive -",
   "author_ids": [
     "claude-ai",
     "metalsyntax"

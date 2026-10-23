@@ -3,7 +3,7 @@
   "title_id": "FARAWAY01",
   "name": "Faraway Space",
   "description": "Port of Faraway Space for PSVITA.",
-  "long_description": "A 3D arcade shooter made with Godot 3.4 ported to PSVita.\nIn current state expect framerate drops and occasional crashes.",
+  "long_description": "A 3D arcade shooter made with Godot 3.4 ported to PSVita.\nIn current state expect framerate drops and occasional crashes.\n\n- PsVitaAlive -",
   "author_ids": [
     "parallel-productions"
   ],

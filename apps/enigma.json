@@ -3,7 +3,7 @@
   "title_id": "ENIGMA000",
   "name": "Enigma",
   "description": "Enigma port for PSVITA",
-  "long_description": "Vita port of Enigma, a skill/puzzle game inspired by Oxyd on the Atari ST and Rock'n'Roll on the Amiga.",
+  "long_description": "Vita port of Enigma, a skill/puzzle game inspired by Oxyd on the Atari ST and Rock'n'Roll on the Amiga.\n\n- PsVitaAlive -",
   "author_ids": [
     "rsn8887"
   ],

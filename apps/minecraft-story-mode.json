@@ -3,7 +3,7 @@
   "title_id": "MCSM00001",
   "name": "Minecraft: Story Mode",
   "description": "Minecraft: Story Mode Season 1 port.",
-  "long_description": "Port of Minecraft: Story Mode Season 1 for PSVITA, based on the Android release. The game data has to be supplied by the user and converted with the MCSM Vita Data Builder available on the release page.",
+  "long_description": "Port of Minecraft: Story Mode Season 1 for PSVITA, based on the Android release. The game data has to be supplied by the user and converted with the MCSM Vita Data Builder available on the release page.\n\n- PsVitaAlive -",
   "author_ids": [
     "lezergan"
   ],

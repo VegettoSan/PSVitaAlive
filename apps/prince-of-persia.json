@@ -3,7 +3,7 @@
   "title_id": "PRINCEPER",
   "name": "Prince Of Persia",
   "description": "Classic Prince of Persia port.",
-  "long_description": "An open-source port of Prince of Persia for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "An open-source port of Prince of Persia for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "cpasjuste"
   ],

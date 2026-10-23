@@ -3,7 +3,7 @@
   "title_id": "WLOGICHAH",
   "name": "Hex-A-Hop Vita",
   "description": "Port of Hex-A-Hop for PSVita.",
-  "long_description": "Hex-A-Hop is a hexagonal puzzle game where the goal is to destroy all the green tiles on a level. The catch? You can only step on each tile once. As you progress, the game introduces complex mechanics that turn simple movement into a brain-teasing challenge.",
+  "long_description": "Hex-A-Hop is a hexagonal puzzle game where the goal is to destroy all the green tiles on a level. The catch? You can only step on each tile once. As you progress, the game introduces complex mechanics that turn simple movement into a brain-teasing challenge.\n\n- PsVitaAlive -",
   "author_ids": [
     "withlogic"
   ],

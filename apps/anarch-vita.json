@@ -3,7 +3,7 @@
   "title_id": "ANARCHPSV",
   "name": "Anarch Vita",
   "description": "Port of Anarch for PSVITA.",
-  "long_description": "Port of Anarch for PSVITA.\nAnarch is an extremely small, completely public domain, no-dependency, no-file, portable suckless anarcho-pacifist from-scratch 90s-style Doom clone that runs everywhere, made for the benefit of all living beings.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Anarch for PSVITA.\nAnarch is an extremely small, completely public domain, no-dependency, no-file, portable suckless anarcho-pacifist from-scratch 90s-style Doom clone that runs everywhere, made for the benefit of all living beings.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "sugardrenaline"
   ],

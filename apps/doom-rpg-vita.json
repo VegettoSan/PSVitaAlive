@@ -3,7 +3,7 @@
   "title_id": "DOOMRPG00",
   "name": "Doom RPG Vita",
   "description": "Port of Doom RPG for PSVITA.",
-  "long_description": "This is a PS Vita port of the reverse engineered Doom RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.",
+  "long_description": "This is a PS Vita port of the reverse engineered Doom RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.\n\n- PsVitaAlive -",
   "author_ids": [
     "jakubito"
   ],

@@ -3,7 +3,7 @@
   "title_id": "LIER01337",
   "name": "OpenVitaLiero",
   "description": "Port of OpenLiero for PSVita.",
-  "long_description": "Earthworm simulation game based on a real physical model. Features: 2 worms, 40 weapons, great playability. Four game modes: Kill'em All, Game of Tag, Capture the Flag and Simple CtF!",
+  "long_description": "Earthworm simulation game based on a real physical model. Features: 2 worms, 40 weapons, great playability. Four game modes: Kill'em All, Game of Tag, Capture the Flag and Simple CtF!\n\n- PsVitaAlive -",
   "author_ids": [
     "ak1m1223"
   ],

@@ -3,7 +3,7 @@
   "title_id": "QUAKE0002",
   "name": "vitaQuakeII",
   "description": "Quake II port for PSVITA.",
-  "long_description": "Quake II port for PSVITA with network support (both LAN and multiplayer), savestates, soundtrack, sounds and all standard features of Quake II.\nThe port is fully hardware accelerated and supports high res textures pack and official mission packs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Quake II port for PSVITA with network support (both LAN and multiplayer), savestates, soundtrack, sounds and all standard features of Quake II.\nThe port is fully hardware accelerated and supports high res textures pack and official mission packs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

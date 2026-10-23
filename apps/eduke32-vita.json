@@ -3,7 +3,7 @@
   "title_id": "EDUKE0032",
   "name": "EDuke32 Vita",
   "description": "Port of EDuke32 for PSVITA",
-  "long_description": "Port of EDuke32, a Duke Nukem 3D source port, for PSVITA. It supports also add-on packs, mods and all other EDuke32 regular features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of EDuke32, a Duke Nukem 3D source port, for PSVITA. It supports also add-on packs, mods and all other EDuke32 regular features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

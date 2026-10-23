@@ -3,7 +3,7 @@
   "title_id": "KHDD00358",
   "name": "Kingdom Hearts 358/2 Days",
   "description": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
-  "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.",
+  "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
   "author_ids": [
     "ggdrn"
   ],

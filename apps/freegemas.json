@@ -3,7 +3,7 @@
   "title_id": "FGEM00001",
   "name": "Freegemas",
   "description": "Port of Freegemas for PSVITA.",
-  "long_description": "A port of Freegemas for PSVITA/PSTV. Freegemas is an open source clone of the well known Bejeweled.",
+  "long_description": "A port of Freegemas for PSVITA/PSTV. Freegemas is an open source clone of the well known Bejeweled.\n\n- PsVitaAlive -",
   "author_ids": [
     "sharkwouter"
   ],

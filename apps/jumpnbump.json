@@ -3,7 +3,7 @@
   "title_id": "JUMPNBUMP",
   "name": "JumpNBump",
   "description": "Port of JumpNBump for PSVITA.",
-  "long_description": "Jump'n'Bump is a simple but addictive multiplayer game. The goal is to stomp as many other rabbits as possible to win the game.",
+  "long_description": "Jump'n'Bump is a simple but addictive multiplayer game. The goal is to stomp as many other rabbits as possible to win the game.\n\n- PsVitaAlive -",
   "author_ids": [
     "rsn8887"
   ],

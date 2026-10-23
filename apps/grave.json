@@ -3,7 +3,7 @@
   "title_id": "HBGMSGRV1",
   "name": "Grave",
   "description": "Port of Grave for PSVITA/PSTV.",
-  "long_description": "A port of Grave, an entry for the Ludum Dare 33 Game Jam by uheartbeast.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "A port of Grave, an entry for the Ludum Dare 33 Game Jam by uheartbeast.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "xanderten50"
   ],

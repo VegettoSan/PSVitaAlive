@@ -3,7 +3,7 @@
   "title_id": "PLSP00001",
   "name": "X-Racer",
   "description": "Port of X-Racer for PSVITA.",
-  "long_description": "X-Racer is an endless arcade race game originally created by Deer Cat.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "X-Racer is an endless arcade race game originally created by Deer Cat.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "parkinglotstudio"
   ],

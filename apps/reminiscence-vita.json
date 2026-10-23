@@ -3,7 +3,7 @@
   "title_id": "SOMO00001",
   "name": "REminiscence Vita",
   "description": "Flashback port for PSVITA.",
-  "long_description": "Classic game reimplementation of Flashback for PSVITA.",
+  "long_description": "Classic game reimplementation of Flashback for PSVITA.\n\n- PsVitaAlive -",
   "author_ids": [
     "enrique-somolinos-perez"
   ],

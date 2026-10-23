@@ -3,7 +3,7 @@
   "title_id": "OMWV00001",
   "name": "OpenMW Vita",
   "description": "Port of Morrowind for PSVita.",
-  "long_description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.",
+  "long_description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.\n\n- PsVitaAlive -",
   "author_ids": [
     "kingtorro"
   ],

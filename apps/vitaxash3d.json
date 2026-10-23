@@ -3,7 +3,7 @@
   "title_id": "XASH00001",
   "name": "vitaXash3D",
   "description": "Xash3D port for PSVITA.",
-  "long_description": "Xash3D is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\nAt the moment vitaXash3D is capable of running Half Life, Counter Strike and their mods.",
+  "long_description": "Xash3D is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\nAt the moment vitaXash3D is capable of running Half Life, Counter Strike and their mods.\n\n- PsVitaAlive -",
   "author_ids": [
     "fgsfds"
   ],

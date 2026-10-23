@@ -3,7 +3,7 @@
   "title_id": "SSB64VITA",
   "name": "Battleship Vita",
   "description": "Port of Battleship for PSVita.",
-  "long_description": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.",
+  "long_description": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.\n\n- PsVitaAlive -",
   "author_ids": [
     "robin994"
   ],

@@ -3,7 +3,7 @@
   "title_id": "SONIC0002",
   "name": "Sonic 2 Vita",
   "description": "Port of Sonic 2 for PSVITA/PSTV.",
-  "long_description": "A port of the second Sonic game (Sonic The Hedgehog 2) based on a full decompilation of the original game.",
+  "long_description": "A port of the second Sonic game (Sonic The Hedgehog 2) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
   "author_ids": [
     "sonicmastr"
   ],

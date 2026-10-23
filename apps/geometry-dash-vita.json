@@ -3,7 +3,7 @@
   "title_id": "GEOMETRYD",
   "name": "Geometry Dash Vita",
   "description": "Port of Geometry Dash for PSVITA.",
-  "long_description": "Port of the Android release of Geometry Dash for the PS Vita. Jump and fly your way through danger in this rhythm-based action platformer!\nPrepare for a near impossible challenge in the world of Geometry Dash. Push your skills to the limit as you jump, fly and flip your way through dangerous passages and spiky obstacles.",
+  "long_description": "Port of the Android release of Geometry Dash for the PS Vita. Jump and fly your way through danger in this rhythm-based action platformer!\nPrepare for a near impossible challenge in the world of Geometry Dash. Push your skills to the limit as you jump, fly and flip your way through dangerous passages and spiky obstacles.\n\n- PsVitaAlive -",
   "author_ids": [
     "hatoving"
   ],

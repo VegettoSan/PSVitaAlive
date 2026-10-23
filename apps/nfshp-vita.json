@@ -3,7 +3,7 @@
   "title_id": "NFSHP0000",
   "name": "NFSHP Vita",
   "description": "Port of Need for Speed: Hot Pursuit for PSVITA.",
-  "long_description": "This is a wrapper/port of Need for Speed: Hot Pursuit Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "long_description": "This is a wrapper/port of Need for Speed: Hot Pursuit Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
   "author_ids": [
     "electry"
   ],

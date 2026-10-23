@@ -3,7 +3,7 @@
   "title_id": "ASPHALT05",
   "name": "Asphalt 5",
   "description": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
-  "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.",
+  "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.\n\n- PsVitaAlive -",
   "author_ids": [
     "metalsyntax"
   ],

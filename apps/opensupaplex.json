@@ -3,7 +3,7 @@
   "title_id": "OSPX00001",
   "name": "OpenSupaplex",
   "description": "Port of Supaplex for PSVITA.",
-  "long_description": "OpenSupaplex is an open-source reimplementation of Supaplex by sergiou87. Supaplex is a video game created by Philip Jespersen and Michael Stopp, two Swiss students, and published by Digital Integration in 1991. It is an extended clone of Boulder Dash.",
+  "long_description": "OpenSupaplex is an open-source reimplementation of Supaplex by sergiou87. Supaplex is a video game created by Philip Jespersen and Michael Stopp, two Swiss students, and published by Digital Integration in 1991. It is an extended clone of Boulder Dash.\n\n- PsVitaAlive -",
   "author_ids": [
     "sergiou87"
   ],

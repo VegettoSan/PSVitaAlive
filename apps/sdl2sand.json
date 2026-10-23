@@ -3,7 +3,7 @@
   "title_id": "SDLSAND01",
   "name": "SDL2Sand",
   "description": "Port of SDL2Sand for PSVITA.",
-  "long_description": "SDL2Sand is another implementation of the now-classic Falling Sand Game, old-school and minimalistic. The game simulates different particles (such as sand, water, oil or fire) interacting with each other. Freedom is given to the player to experiment with different materials in a sandbox environment.",
+  "long_description": "SDL2Sand is another implementation of the now-classic Falling Sand Game, old-school and minimalistic. The game simulates different particles (such as sand, water, oil or fire) interacting with each other. Freedom is given to the player to experiment with different materials in a sandbox environment.\n\n- PsVitaAlive -",
   "author_ids": [
     "gl33ntwine"
   ],

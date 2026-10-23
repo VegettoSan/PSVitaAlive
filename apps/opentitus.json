@@ -3,7 +3,7 @@
   "title_id": "OPENTITUS",
   "name": "OpenTitus",
   "description": "Titus port for PSVITA.",
-  "long_description": "A port of the game engine behind the DOS versions of Titus the Fox.",
+  "long_description": "A port of the game engine behind the DOS versions of Titus the Fox.\n\n- PsVitaAlive -",
   "author_ids": [
     "usineur"
   ],

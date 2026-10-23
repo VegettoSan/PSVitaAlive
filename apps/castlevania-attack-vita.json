@@ -3,7 +3,7 @@
   "title_id": "CAST00011",
   "name": "Castlevania Attack Vita",
   "description": "Port of Castlevania Attack for PSVita.",
-  "long_description": "Castlevania Attack is a combination of Castlevania and Tetris Attack. This Godot demo contains three fully playable levels.",
+  "long_description": "Castlevania Attack is a combination of Castlevania and Tetris Attack. This Godot demo contains three fully playable levels.\n\n- PsVitaAlive -",
   "author_ids": [
     "rocroverss"
   ],

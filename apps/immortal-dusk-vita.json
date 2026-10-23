@@ -3,7 +3,7 @@
   "title_id": "IMMDUSK01",
   "name": "Immortal Dusk Vita",
   "description": "Port of Immortal Dusk for PSVita.",
-  "long_description": "Native PlayStation Vita port of Gamevil's classic action RPG.\nPowered by dynamic ARM shared library loading (.so loader) and FalsoJNI.",
+  "long_description": "Native PlayStation Vita port of Gamevil's classic action RPG.\nPowered by dynamic ARM shared library loading (.so loader) and FalsoJNI.\n\n- PsVitaAlive -",
   "author_ids": [
     "metalsyntax"
   ],

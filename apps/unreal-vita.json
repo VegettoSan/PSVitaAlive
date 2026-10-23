@@ -3,7 +3,7 @@
   "title_id": "UNRL00001",
   "name": "Unreal Vita",
   "description": "Port of Unreal for PSVita.",
-  "long_description": "Port of Unreal for PSVita based on the reconstructed sourcecode of the Unreal Engine 1 v200.\nUnreal is a first-person shooter video game developed by Epic MegaGames and Digital Extremes and published by GT Interactive for Microsoft Windows in May 1998.",
+  "long_description": "Port of Unreal for PSVita based on the reconstructed sourcecode of the Unreal Engine 1 v200.\nUnreal is a first-person shooter video game developed by Epic MegaGames and Digital Extremes and published by GT Interactive for Microsoft Windows in May 1998.\n\n- PsVitaAlive -",
   "author_ids": [
     "fgsfds"
   ],

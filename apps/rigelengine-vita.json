@@ -3,7 +3,7 @@
   "title_id": "DUKENKEM2",
   "name": "RigelEngine Vita",
   "description": "Port of Duke Nukem II for PSVITA.",
-  "long_description": "RigelEngine Vita is a port of RigelEngine, a reconstruction of Duke Nukem II source code with several enhancements (for example widescreen support, high framerate support and smoother animations) and mods support.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "RigelEngine Vita is a port of RigelEngine, a reconstruction of Duke Nukem II source code with several enhancements (for example widescreen support, high framerate support and smoother animations) and mods support.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

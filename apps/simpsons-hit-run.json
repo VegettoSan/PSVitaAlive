@@ -3,7 +3,7 @@
   "title_id": "ROADRAGE2",
   "name": "Simpsons Hit & Run",
   "description": "Switch port of The Simpsons: Hit & Run original source code from 2003",
-  "long_description": "This is a port of The Simpsons Hit & Run to the Nintendo Switch and PS Vita based on the leaked source code. The full game should be playable, including local multiplayer in the bonus game. The port is however still incomplete, so some glitches can be observed and some visual effects are missing compared to the PC version.",
+  "long_description": "This is a port of The Simpsons Hit & Run to the Nintendo Switch and PS Vita based on the leaked source code. The full game should be playable, including local multiplayer in the bonus game. The port is however still incomplete, so some glitches can be observed and some visual effects are missing compared to the PC version.\n\n- PsVitaAlive -",
   "author_ids": [
     "zenoarrows"
   ],

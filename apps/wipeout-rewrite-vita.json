@@ -3,7 +3,7 @@
   "title_id": "WIPEOUT95",
   "name": "Wipeout Rewrite Vita",
   "description": "Port of Wipeout Rewrite for PSVITA.",
-  "long_description": "Port of Wipeout Rewrite for PSVITA.\nWipeout Rewrite is a reimplementation of the 1995 Wipeout game for modern systems featuring high resolution, 60 FPS support, a modernized renderer, CRT post-processing effect and many more features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Wipeout Rewrite for PSVITA.\nWipeout Rewrite is a reimplementation of the 1995 Wipeout game for modern systems featuring high resolution, 60 FPS support, a modernized renderer, CRT post-processing effect and many more features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

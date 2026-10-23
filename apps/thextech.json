@@ -3,7 +3,7 @@
   "title_id": "THEXTECH0",
   "name": "TheXTech",
   "description": "Port of Super Mario Bros X for PSVITA.",
-  "long_description": "Port of an old VB6 engine, purely written in C++. It completely reproduces the old SMBX 1.3 engine (aside from it's Editor), includes many of its logical bugs (critical bugs that lead the game to crash or freeze got fixed).",
+  "long_description": "Port of an old VB6 engine, purely written in C++. It completely reproduces the old SMBX 1.3 engine (aside from it's Editor), includes many of its logical bugs (critical bugs that lead the game to crash or freeze got fixed).\n\n- PsVitaAlive -",
   "author_ids": [
     "thextech-team"
   ],

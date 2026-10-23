@@ -3,7 +3,7 @@
   "title_id": "WRAP00001",
   "name": "Candy Wrapper Vita",
   "description": "Port of Candy Wrapper for PSVITA.",
-  "long_description": "Candy Wrapper in an arcade action screen-wrapping game inspired by Bubble Bobble!\nCandy Wrapper was originally made within 24 hours for the 100 Lines of Code GameMaker Jam!",
+  "long_description": "Candy Wrapper in an arcade action screen-wrapping game inspired by Bubble Bobble!\nCandy Wrapper was originally made within 24 hours for the 100 Lines of Code GameMaker Jam!\n\n- PsVitaAlive -",
   "author_ids": [
     "davidcralph"
   ],

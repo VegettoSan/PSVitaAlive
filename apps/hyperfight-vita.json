@@ -3,7 +3,7 @@
   "title_id": "HYFT01234",
   "name": "HYPERFIGHT Vita",
   "description": "Port of HYPERFIGHT for PSVITA.",
-  "long_description": "Port of HYPERFIGHT for PSVITA.\nHYPERFIGHT is a 2D one-hit fighting game, made with Godot 3.2 and GodotSteam.",
+  "long_description": "Port of HYPERFIGHT for PSVITA.\nHYPERFIGHT is a 2D one-hit fighting game, made with Godot 3.2 and GodotSteam.\n\n- PsVitaAlive -",
   "author_ids": [
     "anashalideen"
   ],

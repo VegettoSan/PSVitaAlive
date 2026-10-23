@@ -3,7 +3,7 @@
   "title_id": "IDOL00001",
   "name": "GoldenIdol-Vita",
   "description": "Port of The Case of the Golden Idol for PSVita.",
-  "long_description": "A port of The Case of the Golden Idol for the PlayStation Vita, adapted from the original Godot Engine PC release.",
+  "long_description": "A port of The Case of the Golden Idol for the PlayStation Vita, adapted from the original Godot Engine PC release.\n\n- PsVitaAlive -",
   "author_ids": [
     "wolff"
   ],
