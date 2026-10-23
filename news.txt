@@ -1,5 +1,5 @@
-id: 2026-10-21-0001
-title: PSVitaAlive 02.13 is here!
+id: 2026-10-23-0001
+title: PSVitaAlive 02.14 is here!
 enabled: true
 
 ---
@@ -12,53 +12,62 @@ enabled: true
 
 ---
 
-# What's New in 02.13
+# What's New in 02.14
 
-## New Built-in Keyboard
+## Faster Downloads
 
-- Completely replaced the native PS Vita keyboard with a custom QWERTY keyboard.
-- Improved stability by removing the native IME from text input.
-- Supports touchscreen, D-pad, and left analog stick navigation.
-- Added numbers, special characters, persistent SHIFT, and hold-to-delete.
-- Smooth animations and full compatibility with the selected color theme.
-- Keyboard interface translated into all eight supported languages.
+- Improved parallel downloading for VPK, ZIP, Game Files, and Data Files.
+- Added direct extraction of compatible segmented ZIP/VPK downloads.
+- Reduced unnecessary file assembly and processing.
+- Improved Archive.org server selection and download stability.
+- Optimized large downloads and automatic fallback handling.
 
-## New Catalog Filters
+## Faster ZIP/VPK Extraction
 
-- Added a new filtering panel for all four catalogs.
-- Filter Homebrew by category, installed status, and available updates.
-- Filter PS Vita, PSP, and PS1 games by genre and installation status.
-- Added Game Files, Data Files, and DLC filtering.
-- Filters can be combined with text searches.
+- Improved extraction performance for archives containing many small files.
+- Added optimized directory caching to reduce filesystem operations.
+- Improved file creation and extraction efficiency.
+- Maintained safe file replacement, CRC checks, and ZIP64 compatibility.
+- Tested extraction improvements on real PS Vita hardware.
 
-## Installed Games Detection
+## Archive.org Connection Warnings
 
-- Improved detection of installed Homebrew and games.
-- Added support for detecting PS Vita, PSP, and PS1 installations.
-- Improved compatibility with Adrenaline, ISO, CSO, and EBOOT.PBP.
-- Added detection across supported storage devices.
+- Added automatic Archive.org connectivity checks.
+- Added warnings when external download services cannot be reached.
+- Improved detection of unavailable files and download sources.
+- Reduced unnecessary retries for unreachable servers.
+- Added recommendations to try alternative download links.
 
-## Installation and Stability
+## Better Error Messages
 
-- Fixed incorrect ZIP/VPK detection for Game Files and Data Files.
-- Improved ZIP extraction safety and file protection.
-- Improved cancellation and retry handling.
-- Optimized storage space checks for different installation types.
-- Improved overall installation reliability.
+- Added clearer explanations for download and installation failures.
+- Improved messages for network, HTTP, TLS, and MediaFire errors.
+- Added specific warnings for corrupted archives and storage problems.
+- Improved troubleshooting instructions.
+- Updated error messages across all eight supported languages.
 
-## Interface Improvements
+## Website Improvements
 
-- Added a battery percentage indicator to the catalog header.
-- Battery information is also available in OLED protection mode.
-- Improved interface navigation and touchscreen alignment.
-- Updated translations across all eight supported languages.
-- Additional bug fixes, performance improvements, and catalog updates.
+- Refreshed application cards and catalog layouts.
+- Improved Homebrew, PS Vita, PSP, and PS1 browsing.
+- Redesigned application details and developer profiles.
+- Improved download links and recommended download indicators.
+- Enhanced mobile responsiveness and navigation.
+
+## Additional Improvements
+
+- Improved download and installation stability.
+- Reduced unnecessary filesystem operations.
+- Expanded automated regression tests.
+- Added new Homebrew and developer profiles.
+- Updated catalog information and download links.
+- Additional performance improvements and bug fixes.
 
 ---
 
 ## Thank you for your continued support!
 
-Your feedback and testing help make PSVitaAlive better with every release.
+Your feedback, testing, and bug reports help improve PSVitaAlive with every release.
 
 ---
 
@@ -66,5 +75,7 @@ Your feedback and testing help make PSVitaAlive better with every release.
 - iTLS-ENSO (full) recommended for HTTPS
 - DNS: 8 8 8 8 / 8 8 4 4
 - Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1)
+- If Archive.org is unavailable, try another download source or retry later.
+- Report installation issues with session.log when possible.
 
-**Enjoy PSVitaAlive 02.13! Please report any issues with session.log when possible. Thank you!**
+**Enjoy PSVitaAlive 02.14! Thank you for helping keep the PlayStation Vita community alive!**
