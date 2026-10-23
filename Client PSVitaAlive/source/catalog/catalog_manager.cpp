@@ -102,6 +102,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         status_.message = "Switching catalog — please wait...";
         status_.error.clear();
         status_.softRefresh = false;
+        status_.refreshPhase = RefreshPhase::None;
         sceKernelUnlockMutex(mutex_, 1);
         diagnostics::log(std::string("[CatalogManager] supersede in-flight load -> ") + label(catalog));
         return true;
@@ -121,6 +122,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         status_.message = "Ready (memory cache)";
         status_.error.clear();
         status_.softRefresh = false;
+        status_.refreshPhase = RefreshPhase::None;
         requestedCatalog_ = catalog;
         requestPending_ = false;
         sceKernelUnlockMutex(mutex_, 1);
@@ -136,6 +138,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
     status_.label = label(catalog);
     status_.message = ::psvitaalive::L(::psvitaalive::TextId::LoadingCatalogLocalCache);
     status_.error.clear();
+    status_.refreshPhase = RefreshPhase::None;
     requestPending_ = true;
     requestedCatalog_ = catalog;
     sceKernelUnlockMutex(mutex_, 1);
@@ -291,6 +294,8 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     status_.softRefresh = true;
     status_.state = State::Ready;
     status_.message = "Updating catalog from network — please wait...";
+    status_.refreshPhase = RefreshPhase::Downloading;
+    ++status_.refreshSerial;
     status_.current = 0;
     status_.total = 0;
     sceKernelUnlockMutex(mutex_, 1);
@@ -318,6 +323,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
             http.shutdown();
             sceKernelLockMutex(mutex_,1,nullptr);
             status_.softRefresh=false;
+            status_.refreshPhase=RefreshPhase::None;
             status_.message=::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
             sceKernelUnlockMutex(mutex_,1);
             diagnostics::log(std::string("[CatalogManager] byte-identical remote, skip JSON/hot-swap: ")+label(catalog));
@@ -325,6 +331,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         }
         sceKernelLockMutex(mutex_,1,nullptr);
         status_.message="Processing updated catalog...";
+        status_.refreshPhase=RefreshPhase::Applying;
         status_.current=0;status_.total=0;
         sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
@@ -347,6 +354,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     http.shutdown();
     sceKernelLockMutex(mutex_, 1, nullptr);
     status_.softRefresh = false;
+    status_.refreshPhase = RefreshPhase::None;
     status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
     sceKernelUnlockMutex(mutex_, 1);
     return false;
@@ -393,6 +401,11 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
     }
 
     setStatus(State::Loading, catalog, "Downloading catalog...");
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    status_.refreshPhase = RefreshPhase::Downloading;
+    ++status_.refreshSerial;
+    status_.current = status_.total = 0;
+    sceKernelUnlockMutex(mutex_, 1);
     diagnostics::log(std::string("[CatalogManager] downloading: ") + label(catalog));
     const HttpResult result = http.downloadToFile(
         url, temp, 0,
@@ -407,6 +420,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
     if (result == HttpResult::Ok) {
         sceKernelLockMutex(mutex_,1,nullptr);
         status_.message="Processing downloaded catalog...";
+        status_.refreshPhase=RefreshPhase::Applying;
         status_.current=0;status_.total=0;
         sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
@@ -417,6 +431,9 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
                 http.fetchRemoteValidators(url, etag, modified);
                 writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
                 outItems = std::move(fresh);
+                sceKernelLockMutex(mutex_, 1, nullptr);
+                status_.refreshPhase = RefreshPhase::Updated;
+                sceKernelUnlockMutex(mutex_, 1);
                 diagnostics::log(std::string("[CatalogManager] downloaded and cached: ") + label(catalog));
                 http.shutdown();
                 return true;
@@ -424,6 +441,9 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
         }
     }
     sceIoRemove(temp.c_str());
+    sceKernelLockMutex(mutex_, 1, nullptr);
+    status_.refreshPhase = RefreshPhase::None;
+    sceKernelUnlockMutex(mutex_, 1);
     if (haveCache && CatalogParser::parseFile(path, outItems) && !outItems.empty()) {
         diagnostics::log(std::string("[CatalogManager] refresh failed; retained valid cache: ") +
                          label(catalog));
@@ -458,6 +478,8 @@ void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::Catal
     status_.message = message ? message : ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
     status_.error.clear();
     status_.softRefresh = softRefresh;
+    if (message && std::strcmp(message, "Catalog updated") == 0)
+        status_.refreshPhase = RefreshPhase::Updated;
 }
 
 int CatalogManager::workerEntry(SceSize args, void* argp) {
@@ -486,6 +508,7 @@ int CatalogManager::workerMain() {
             status_.message = ::psvitaalive::L(::psvitaalive::TextId::LoadingCatalogLocalCache);
             status_.error.clear();
             status_.softRefresh = false;
+            status_.refreshPhase = RefreshPhase::None;
             status_.current = 0;
             status_.total = 0;
         }
@@ -508,6 +531,7 @@ int CatalogManager::workerMain() {
                 status_.label = label(requestedCatalog_);
                 status_.message = "Switching catalog — please wait...";
                 status_.softRefresh = false;
+                status_.refreshPhase = RefreshPhase::None;
             }
             sceKernelUnlockMutex(mutex_, 1);
             return stale;
@@ -571,6 +595,7 @@ int CatalogManager::workerMain() {
             status_.label = label(requestedCatalog_);
             status_.message = "Switching catalog — please wait...";
             status_.softRefresh = false;
+            status_.refreshPhase = RefreshPhase::None;
             sceKernelUnlockMutex(mutex_, 1);
             continue;
         }
@@ -583,6 +608,7 @@ int CatalogManager::workerMain() {
             status_.message = "Unable to load catalog";
             status_.error = "Remote catalog and cache unavailable";
             status_.softRefresh = false;
+            status_.refreshPhase = RefreshPhase::None;
         }
         sceKernelUnlockMutex(mutex_, 1);
     }

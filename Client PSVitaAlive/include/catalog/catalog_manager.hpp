@@ -15,6 +15,7 @@ namespace psvitaalive {
 class CatalogManager {
 public:
     enum class State { Idle, Loading, Ready, Failed };
+    enum class RefreshPhase { None, Downloading, Applying, Updated };
 
     struct Status {
         State state = State::Idle;
@@ -27,6 +28,9 @@ public:
         /** True while a background soft refresh runs after cache was already shown.
          *  UI must NOT treat this as a hard lock (tabs stay usable). */
         bool softRefresh = false;
+        /** Only active for an actual remote payload transfer, not cache checks. */
+        RefreshPhase refreshPhase = RefreshPhase::None;
+        unsigned refreshSerial = 0;
     };
 
     CatalogManager();

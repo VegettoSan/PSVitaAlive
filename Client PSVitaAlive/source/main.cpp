@@ -648,9 +648,7 @@ while(true){
                     screen.setCatalogLoading(true,psvitaalive::ui::catalogName(readyCatalog),0,0,"Loading next catalog — please wait...");
                 }else{
                     screen.setCatalogLoading(false,psvitaalive::ui::catalogName(readyCatalog),1,1,"Ready");
-                    const auto st = catalogs.status();
-                    if(st.message == "Catalog updated")
-                        screen.showToast("Catalog updated", 1800);
+                    // The shared catalog sync indicator owns the update toast.
                 }
             }
         }
@@ -668,6 +666,52 @@ while(true){
                     csBusy.message.empty()?fallback:csBusy.message);
             } else {
                 screen.setCatalogLoading(false, "", 0, 0, "");
+            }
+        }
+
+        // Only actual transfers trigger the thin divider and the three sync toasts.
+        // The existing cache-first path, tabs and install/download UI remain untouched.
+        {
+            using Phase = psvitaalive::CatalogManager::RefreshPhase;
+            static unsigned seenSerial = 0;
+            static Phase lastToastPhase = Phase::None;
+            static uint64_t completedAtMs = 0;
+            const auto sync = catalogs.status();
+            const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+            if (sync.refreshSerial != seenSerial) {
+                seenSerial = sync.refreshSerial;
+                lastToastPhase = Phase::None;
+                completedAtMs = 0;
+            }
+            const bool visibleCatalog = !startupCatalogs &&
+                sync.catalog == screen.activeCatalog();
+            if (visibleCatalog && sync.refreshPhase != lastToastPhase) {
+                if (sync.refreshPhase == Phase::Downloading)
+                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_DOWNLOADING"), 2400);
+                else if (sync.refreshPhase == Phase::Applying)
+                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_APPLYING"), 2400);
+                else if (sync.refreshPhase == Phase::Updated)
+                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_UPDATED"), 2400);
+                lastToastPhase = sync.refreshPhase;
+            }
+            if (sync.refreshPhase == Phase::Updated && completedAtMs == 0)
+                completedAtMs = nowMs;
+            if (sync.refreshPhase != Phase::Updated) completedAtMs = 0;
+
+            if (!visibleCatalog) {
+                screen.setCatalogSyncProgress(false, 0.f);
+            } else if (sync.refreshPhase == Phase::Downloading) {
+                const float progress = sync.total > 0
+                    ? 0.9f * std::min(1.0, (double)sync.current / (double)sync.total)
+                    : 0.f;
+                screen.setCatalogSyncProgress(true, progress, sync.total == 0);
+            } else if (sync.refreshPhase == Phase::Applying) {
+                // Parsing has no byte-level progress callback: hold at downloaded 90%.
+                screen.setCatalogSyncProgress(true, 0.9f);
+            } else {
+                const bool complete = sync.refreshPhase == Phase::Updated &&
+                    nowMs - completedAtMs < 750ULL;
+                screen.setCatalogSyncProgress(complete, complete ? 1.f : 0.f);
             }
         }
 

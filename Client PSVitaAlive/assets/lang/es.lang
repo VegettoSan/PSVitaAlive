@@ -586,3 +586,6 @@ INSTALL_ERR_INSTALLER_WHY=La consola no pudo terminar de instalar la aplicación
 INSTALL_ERR_INSTALLER_ACTION=Revisa sus requisitos y plugins. Si continúa fallando, envía un reporte.
 INSTALL_ERR_OTHER_WHY=Un error inesperado impidió completar esta operación.
 INSTALL_ERR_OTHER_ACTION=Inténtalo de nuevo. Si persiste, envía un reporte con session.log.
+CATALOG_SYNC_DOWNLOADING=Descargando catálogo...
+CATALOG_SYNC_APPLYING=Aplicando catálogo...
+CATALOG_SYNC_UPDATED=Catálogo actualizado.
