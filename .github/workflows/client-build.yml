@@ -55,6 +55,13 @@ jobs:
             -o /tmp/psvitaalive-segmented-zip-test
           /tmp/psvitaalive-segmented-zip-test
 
+      - name: Test bounded ZIP extraction directory cache
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_extraction_directory_cache.cpp \
+            -o /tmp/psvitaalive-extraction-cache-test
+          /tmp/psvitaalive-extraction-cache-test
+
       - name: Test unreachable source and HTTP response policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \

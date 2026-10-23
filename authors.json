@@ -686,6 +686,21 @@
     "icon": "https://github.com/argarak.png"
   },
   {
+    "id": "arielxflores",
+    "name": "arielxflores",
+    "avatar": "https://avatars.githubusercontent.com/u/59953353?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/arielxflores",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/59953353?v=4"
+  },
+  {
     "id": "arkanite",
     "name": "Arkanite",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
