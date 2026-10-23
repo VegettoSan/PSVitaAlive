@@ -1,6 +1,8 @@
-# Experimental ZIP small-file extraction — PS Vita hardware test
+# Registro histórico: experimento de extracción ZIP con archivos pequeños
 
-Branch: `experiment/zip-small-files-cache-20261022`. Not for release. Never merge without hardware validation.
+**Validado parcialmente en PS Vita física el 23 de octubre de 2026.** La integración aprobada a `main` está documentada en [ZIP_SMALL_FILES_OPTIMIZATION_20261023.md](ZIP_SMALL_FILES_OPTIMIZATION_20261023.md), que contiene las medidas reales, el alcance, las limitaciones y las pruebas pendientes.
+
+Branch original: `experiment/zip-small-files-cache-20261022`. La lista inferior es el plan inicial de pruebas y se conserva como registro histórico; no significa que todos esos casos estén ya verificados.
 
 This patch only changes the PS Vita client's ZIP/VPK extraction path:
 - Bounded 256-entry per-extraction directory cache, reducing repeated `sceIoGetstat` calls when ZIP entries alternate between parent folders.
