@@ -43,6 +43,9 @@ struct CatalogLink {
     std::string section;
     /** Plugin links: exact line to append under section (e.g. ur0:tai/foo.suprx). */
     std::string line;
+    /** Metadata only; no install behavior. Missing JSON field = Unspecified. */
+    enum class PluginRequirement : unsigned char { Unspecified, Optional, Required };
+    PluginRequirement pluginRequirement = PluginRequirement::Unspecified;
     bool recommended = false;
 };
 
