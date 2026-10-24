@@ -471,6 +471,12 @@ def validate_links(
                 errors,
             )
 
+        if "required" in link:
+            if str(link.get("type", "")).strip().lower() not in {"plugin", "plugins"}:
+                add_error(errors, f"{item_path}.required", "only Plugin links may declare required")
+            elif not isinstance(link["required"], bool):
+                add_error(errors, f"{item_path}.required", "must be boolean")
+
         if "recommended" in link:
             if not isinstance(
                 link["recommended"],
