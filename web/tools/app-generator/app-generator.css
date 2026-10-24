@@ -1024,3 +1024,23 @@ input.id-locked {
         transition: none;
     }
 }
+
+/* Destination hints remain hidden for Plugin so its existing controls stay intact. */
+.link-extract-wrap .link-extract-label {
+    display: block;
+    color: #ddd;
+    font-size: .86rem;
+    font-weight: 650;
+    margin-bottom: 7px;
+}
+.link-extract-wrap .link-extract-hint {
+    display: block;
+    margin-top: 7px;
+    font-size: .82rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+.link-extract-wrap .link-extract-label[hidden],
+.link-extract-wrap .link-extract-hint[hidden] {
+    display: none;
+}
