@@ -571,3 +571,8 @@ DOWNLOAD_VERIFYING_HINT=Объединение больших файлов мо�
 CATALOG_SYNC_DOWNLOADING=Загрузка каталога...
 CATALOG_SYNC_APPLYING=Применение каталога...
 CATALOG_SYNC_UPDATED=Каталог обновлён.
+
+# Plugin-link classification (informational only)
+PLUGIN_REQUIREMENT_REQUIRED=Обязателен
+PLUGIN_REQUIREMENT_OPTIONAL=Необязателен
+PLUGIN_REQUIREMENT_UNSPECIFIED=Не указано
