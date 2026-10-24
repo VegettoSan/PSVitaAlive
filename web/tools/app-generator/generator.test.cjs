@@ -54,22 +54,23 @@ const context = {
     }
 };
 const api = vm.runInNewContext(executable +
-    "\n({ linkNeedsExtractPath, syncLinkExtractPathVisibility, collectLinks, validateApp })", context);
+    "\n({ linkNeedsExtractPath, linkSupportsSize, syncLinkExtractPathVisibility, collectLinks, validateApp })", context);
 
 function visibilityRow(type) {
     const typeEl = { value: type };
     const input = { value: "ux0:data/", title: "" };
     const wrap = { hidden: false, style: {}, querySelector: () => input };
+    const sizeWrap = { hidden: false, style: {} };
     const pluginFields = { style: {} };
     const secSel = { value: "*KERNEL" };
     const custom = { style: {} };
     const elements = {
         ".link-type": typeEl, ".link-extract-wrap": wrap,
         ".link-plugin-fields": pluginFields, ".link-plugin-section": secSel,
-        ".link-plugin-section-custom": custom
+        ".link-plugin-section-custom": custom, ".link-size-field": sizeWrap
     };
     return {
-        dataset: {}, typeEl, input, wrap, pluginFields,
+        dataset: {}, typeEl, input, wrap, sizeWrap, pluginFields,
         querySelector: selector => elements[selector] || null,
         querySelectorAll: () => []
     };
@@ -96,6 +97,33 @@ test("only ZIP types and Plugin expose a destination", () => {
     assert.equal(plugin.pluginFields.style.display, "");
 });
 
+test("size control is only available for downloadable links", () => {
+    const downloadTypes = ["Download", "Mirror", "PKG", "DLC", "Update", "Patch",
+        "Mod", "Mod Pack", "Data Files", "Game Files", "Plugin"];
+    const informationalTypes = ["Repository", "Official Website", "Documentation", "Issues", "Community", "Other"];
+    for (const type of downloadTypes) {
+        assert.equal(api.linkSupportsSize(type), true, type);
+        const row = visibilityRow(type);
+        api.syncLinkExtractPathVisibility(row);
+        assert.equal(row.sizeWrap.hidden, false, type);
+    }
+    for (const type of informationalTypes) {
+        assert.equal(api.linkSupportsSize(type), false, type);
+        const row = visibilityRow(type);
+        api.syncLinkExtractPathVisibility(row);
+        assert.equal(row.sizeWrap.hidden, true, type);
+        assert.equal(row.sizeWrap.style.display, "none", type);
+    }
+    const row = visibilityRow("Download");
+    api.syncLinkExtractPathVisibility(row);
+    row.typeEl.value = "Community";
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.sizeWrap.hidden, true);
+    row.typeEl.value = "Game Files";
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.sizeWrap.hidden, false);
+});
+
 test("ZIP and Plugin destinations survive type changes independently", () => {
     const row = visibilityRow("Download");
     api.syncLinkExtractPathVisibility(row);
@@ -117,10 +145,10 @@ test("ZIP and Plugin destinations survive type changes independently", () => {
     assert.equal(row.wrap.hidden, true);
 });
 
-function outputRow(type, url = "https://example.org/file.zip", extractPath = "ux0:data/") {
+function outputRow(type, url = "https://example.org/file.zip", extractPath = "ux0:data/", size = "") {
     const elements = {
         ".link-type": { value: type }, ".link-name": { value: "Link" },
-        ".link-url": { value: url }, ".link-size-value": { value: "" },
+        ".link-url": { value: url }, ".link-size-value": { value: size },
         ".link-size-unit": { value: "MB" },
         ".link-extract-path": { value: extractPath },
         ".link-plugin-section": { value: "*KERNEL" },
@@ -147,6 +175,22 @@ test("unrelated links omit extract_path while Plugin retains its schema", () => 
     assert.equal(links[4].section, "*KERNEL");
     assert.equal(links[4].line, "ur0:tai/sample.skprx");
     assert.equal(links[4].required, true);
+});
+
+test("per-link size is emitted only for downloadable types, even when hidden fields contain data", () => {
+    currentRows = [
+        outputRow("Repository", "https://example.org/source", "", "12"),
+        outputRow("Community", "https://example.org/chat", "", "13"),
+        outputRow("Download", "https://example.org/main.vpk", "", "14"),
+        outputRow("Mirror", "https://example.org/mirror.vpk", "", "15"),
+        outputRow("Plugin", "https://example.org/plugin.skprx", "ur0:tai/", "16")
+    ];
+    const links = api.collectLinks();
+    assert.equal(Object.hasOwn(links[0], "size"), false);
+    assert.equal(Object.hasOwn(links[1], "size"), false);
+    assert.equal(links[2].size, 14 * 1048576);
+    assert.equal(links[3].size, 15 * 1048576);
+    assert.equal(links[4].size, 16 * 1048576);
 });
 
 test("validation identifies the missing main size and correct link field", () => {
