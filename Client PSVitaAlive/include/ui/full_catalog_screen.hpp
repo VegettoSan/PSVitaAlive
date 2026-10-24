@@ -233,7 +233,10 @@ private:
     int webQrHelpScroll_ = 0;
     int webQrHelpMaxScroll_ = 0;
     int webQrUrlScrollLine_ = 0;
-    bool installAllHadPlugin_ = false;
+    /** True only after an Install All plugin job actually completes successfully. */
+    bool installAllPluginInstalled_ = false;
+    /** Defer reboot until the last Install All result is acknowledged (including failures). */
+    bool installAllRebootPending_ = false;
 
     // Startup: recommend missing critical plugins (kubridge, fd_fix, libshacccg)
     bool essentialPluginsModal_ = false;
@@ -409,7 +412,7 @@ private:
     void closeInstallAllWizard(bool cancel);
     void installAllAdvancePick();
     void installAllStartQueue();
-    void installAllTryAdvanceFromProgress(int outcome);
+    void installAllTryAdvanceFromProgress(int outcome, bool needsReboot);
     bool itemSupportsInstallAll(const CatalogItem& item) const;
     void collectInstallAllOptions(const CatalogItem& item, const char* kind, std::vector<int>& out) const;
     void drawLoadingOverlay();
