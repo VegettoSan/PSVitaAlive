@@ -1538,8 +1538,18 @@ bool isPluginAlreadyInstalled(const CatalogLink& l) {
     const std::string path = pluginInstallFilePath(l);
     if (path.empty()) return false;
     SceIoStat st{};
-    if (sceIoGetstat(path.c_str(), &st) < 0) return false;
-    return st.st_size > 0;
+    if (sceIoGetstat(path.c_str(), &st) < 0 || st.st_size <= 0) return false;
+    // A file left behind by AutoPlugin is not an enabled taiHEN plugin.
+    // "none" (or an omitted section) deliberately installs file-only plugins.
+    std::string section = l.section;
+    const size_t first = section.find_first_not_of(" \t\r\n");
+    if (first == std::string::npos) return true;
+    section = section.substr(first, section.find_last_not_of(" \t\r\n") - first + 1);
+    for (char& ch : section)
+        ch = static_cast<char>(std::tolower(static_cast<unsigned char>(ch)));
+    if (section == "none") return true;
+    if (l.line.empty()) return false;
+    return ::psvitaalive::TaiConfigEditor::configContainsLine(l.line);
 }
 
 bool itemHasPluginLinks(const CatalogItem& it) {
@@ -2808,7 +2818,10 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     installArchiveSourceUnavailable_ = archiveSourceUnavailable && active && outcome == 2;
 
     if (outcome != 0 && outcome != installOutcome_) savedZipProbeAtUs_ = 0;
+    const bool pluginFinishedNow = active && outcome == 1 && installOutcome_ != 1 && needsReboot;
     installOutcome_ = outcome;
+    // Update the cached badges only on a completed plugin job, never per frame.
+    if (pluginFinishedNow) refreshDetailPluginStatus();
     installLiveAreaOk_ = liveAreaOk;
     protectionUpdateForJob(active, outcome, stage);
     installResultPath_ = installPath;
@@ -3496,9 +3509,10 @@ int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h){
 void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0)+1+savedZipCountFor(catalogView()[i]);
     if(focusCount==0){state_.linkFocus=-1;state_.linkNavigation=false;}
     else if(state_.linkFocus>=focusCount)state_.linkFocus=focusCount-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
-void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
+void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;if(state_.mode==UiMode::SPLIT_DETAIL)refreshDetailPluginStatus();}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
     int i=selectedIndex();
     if(i<0)return;
+    refreshDetailPluginStatus();
     const auto idxs=downloadLinkIndices(catalogView()[i]);
     const bool hasAll=primaryActionFor(catalogView()[i])!=PrimaryAction::None;
     // QR is always selectable, even when the item has no normal links.
@@ -3744,7 +3758,19 @@ void FullCatalogScreen::changeCatalog(int d){
     setActiveCatalog(n);
     catalogLoading_=false;
 }
-bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL;}void FullCatalogScreen::startOpeningDetail(){if(state_.mode!=UiMode::FULL_CATALOG||catalogLoading_||installProgressActive_||selectedIndex()<0)return;state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::OPENING_DETAIL;}void FullCatalogScreen::startClosingDetail(){
+bool FullCatalogScreen::isTransitioning()const{return state_.mode==UiMode::OPENING_DETAIL||state_.mode==UiMode::CLOSING_DETAIL;}
+void FullCatalogScreen::refreshDetailPluginStatus() {
+    detailPluginInstalled_.clear();
+    const int i = selectedIndex();
+    if (i < 0 || i >= static_cast<int>(catalogView().size())) return;
+    const auto& links = catalogView()[i].linkDetails;
+    detailPluginInstalled_.resize(links.size(), false);
+    for (size_t n = 0; n < links.size(); ++n) {
+        if (isPluginTypeLink(links[n]))
+            detailPluginInstalled_[n] = isPluginAlreadyInstalled(links[n]);
+    }
+}
+void FullCatalogScreen::startOpeningDetail(){if(state_.mode!=UiMode::FULL_CATALOG||catalogLoading_||installProgressActive_||selectedIndex()<0)return;refreshDetailPluginStatus();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;state_.transitionStart=sceKernelGetProcessTimeWide();state_.mode=UiMode::OPENING_DETAIL;}void FullCatalogScreen::startClosingDetail(){
     if(state_.mode!=UiMode::SPLIT_DETAIL)return;
     exitLinkNavigation();
     state_.transitionStart=sceKernelGetProcessTimeWide();
@@ -7089,7 +7115,9 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const CatalogLink& l = it.linkDetails[row.detailIndex];
         const bool f = state_.linkNavigation && state_.linkFocus == (row.focusIndex + focusOff);
         const bool can = actionableLink(l);
-        const bool pluginDone = isPluginTypeLink(l) && isPluginAlreadyInstalled(l);
+        const bool pluginDone = isPluginTypeLink(l) && row.detailIndex >= 0 &&
+            static_cast<size_t>(row.detailIndex) < detailPluginInstalled_.size() &&
+            detailPluginInstalled_[row.detailIndex];
         vita2d_draw_rectangle(x, ry, w, LINK_ROW_H, f ? ACCENT : SURFACE2);
         vita2d_draw_rectangle(x, ry, w, 1, f ? ACCENT : BORDER);
         const unsigned mc = f ? BG : (can ? WHITE : TEXT);

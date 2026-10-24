@@ -287,6 +287,8 @@ private:
     // Preserves the normal detail position while the temporary link-navigation
     // viewport is active.
     int detailScrollBeforeLinkMode_ = 0;
+    // Snapshot plugin link statuses outside the render loop (indexed by linkDetails).
+    std::vector<bool> detailPluginInstalled_;
 
     /** One rendered line of the News modal (Markdown-lite). */
     struct NewsDrawLine {
@@ -431,6 +433,7 @@ private:
     void touchTexture(const std::string& path);
     void evictTextureIfNeeded(const std::string& namespaceName);
 
+    void refreshDetailPluginStatus();
     void startOpeningDetail();
     void startClosingDetail();
     void updateTransition();
