@@ -2790,9 +2790,12 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     installProgressActive_ = active;
     if (needsReboot && outcome == 1) {
         if (essentialInstallRunning_) {
-            // Sequential essential-plugin installs: reboot only after the last one.
+            // Sequential essential-plugin installs keep their existing reboot flow.
             essentialPluginsTryAdvanceFromProgress(outcome);
-        } else {
+        } else if (installAllPhase_ != InstallAllPhase::Running &&
+                   !installAllRebootPending_) {
+            // Individual plugin install: reboot as before. Install All must wait
+            // for its entire queue AND for the final result to be acknowledged.
             pluginRebootModal_ = true;
         }
     }
@@ -2837,9 +2840,15 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     }
 
     // Install All queue: advance on Completed, abort tracking on fail/cancel
-    installAllTryAdvanceFromProgress(outcome);
+    installAllTryAdvanceFromProgress(outcome, needsReboot);
     if (essentialInstallRunning_ && outcome != 1) {
         essentialPluginsTryAdvanceFromProgress(outcome);
+    }
+    if (!active && installAllRebootPending_) {
+        // Error/success/cancellation result was dismissed; safe to offer restart.
+        installAllRebootPending_ = false;
+        pluginRebootModal_ = true;
+        diagnostics::log("[UI] Install All completed plugin(s) — reboot prompt after result");
     }
     updateMediaTextureSuspension();
 }
@@ -7530,6 +7539,8 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllQueueIndex_ = 0;
     installAllLastOutcome_ = -1;
     installAllFinishedToast_ = false;
+    installAllPluginInstalled_ = false;
+    installAllRebootPending_ = false;
     installAllFocus_ = 0;
     installAllPhase_ = InstallAllPhase::Confirm;
     exitLinkNavigation();
@@ -7539,7 +7550,12 @@ void FullCatalogScreen::openInstallAllWizard() {
 void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     if (installAllPhase_ == InstallAllPhase::Hidden) return;
     if (cancel && installAllPhase_ == InstallAllPhase::Running) {
-        // Running installs are cancelled via installCancel_; just drop queue
+        // A start failure or cancellation must not lose a completed plugin.
+        if (installAllPluginInstalled_) {
+            installAllRebootPending_ = true;
+            installAllPluginInstalled_ = false;
+        }
+        // Running installs are cancelled via installCancel_; just drop queue.
         installAllQueue_.clear();
         installAllQueueLabels_.clear();
     }
@@ -7626,7 +7642,7 @@ void FullCatalogScreen::installAllStartQueue() {
     pushIdx(installAllChosenDownload_, ::psvitaalive::L(::psvitaalive::TextId::LabelAppVpk));
     pushIdx(installAllChosenGameFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
     pushIdx(installAllChosenDataFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
-    installAllHadPlugin_ = false;
+    installAllPluginInstalled_ = false;
     for (size_t i = 0; i < item.linkDetails.size(); ++i) {
         if (!isPluginTypeLink(item.linkDetails[i])) continue;
         if (item.linkDetails[i].url.empty()) continue;
@@ -7637,7 +7653,6 @@ void FullCatalogScreen::installAllStartQueue() {
         }
         installAllQueue_.push_back(item.linkDetails[i]);
         installAllQueueLabels_.push_back(item.linkDetails[i].name.empty() ? ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin) : item.linkDetails[i].name);
-        installAllHadPlugin_ = true;
     }
 
     if (installAllQueue_.empty()) {
@@ -7678,17 +7693,21 @@ void FullCatalogScreen::installAllStartQueue() {
     }
 }
 
-void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome) {
+void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needsReboot) {
     if (installAllPhase_ != InstallAllPhase::Running) return;
     if (outcome == installAllLastOutcome_) return;
     const int prev = installAllLastOutcome_;
     installAllLastOutcome_ = outcome;
 
     if (outcome == 2 || outcome == 3) {
-        // Failed or cancelled — stop queue; keep result panel for user
+        // Failed/cancelled: preserve the result screen before offering reboot.
         diagnostics::log(std::string("[UI] Install All stopped at step ")
                          + std::to_string(installAllQueueIndex_ + 1)
                          + (outcome == 3 ? " (cancelled)" : " (failed)"));
+        if (installAllPluginInstalled_) {
+            installAllRebootPending_ = true;
+            installAllPluginInstalled_ = false;
+        }
         installAllQueue_.clear();
         installAllQueueLabels_.clear();
         installAllPhase_ = InstallAllPhase::Hidden;
@@ -7697,6 +7716,12 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome) {
     }
 
     if (outcome != 1) return;
+    // Track a successful plugin install, not merely a plugin queued for download.
+    if (installAllQueueIndex_ < installAllQueue_.size() &&
+        isPluginTypeLink(installAllQueue_[installAllQueueIndex_]) && needsReboot) {
+        installAllPluginInstalled_ = true;
+        diagnostics::log("[UI] Install All plugin installed — postpone reboot until queue ends");
+    }
     // Completed current step
     if (installAllQueueIndex_ + 1 < installAllQueue_.size()) {
         // Auto-ack success and start next (do not wait for user)
@@ -7724,9 +7749,10 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome) {
     // Last step completed — keep success panel; toast when user dismisses
     installAllFinishedToast_ = true;
     diagnostics::log("[UI] Install All finished all steps");
-    if (installAllHadPlugin_) {
-        pluginRebootModal_ = true;
-        diagnostics::log("[UI] Install All included plugins — show reboot modal");
+    if (installAllPluginInstalled_) {
+        installAllRebootPending_ = true;
+        installAllPluginInstalled_ = false;
+        diagnostics::log("[UI] Install All installed plugins — reboot after success acknowledgement");
     }
     // Clear running phase so further outcome updates don't re-enter
     installAllPhase_ = InstallAllPhase::Hidden;
