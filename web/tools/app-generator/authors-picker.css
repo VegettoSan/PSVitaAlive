@@ -429,3 +429,64 @@
         padding-right: 16px;
     }
 }
+
+/* Local author JSON import, reusable across application drafts. */
+.author-picker-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    margin-top: 12px;
+}
+.author-import-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 9px 14px;
+    box-sizing: border-box;
+    border: 1px solid rgba(59, 255, 0, .5);
+    border-radius: 10px;
+    color: var(--accent, #3bff00);
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+}
+.author-import-button:hover,
+.author-import-button:focus-within {
+    background: rgba(59, 255, 0, .08);
+    outline: 2px solid rgba(59, 255, 0, .5);
+    outline-offset: 2px;
+}
+.author-import-button input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.author-import-help {
+    font-size: .84rem;
+    line-height: 1.5;
+    color: var(--text-secondary, #aaa);
+    flex: 1 1 200px;
+}
+.author-import-status {
+    margin: 7px 0 0;
+    color: var(--accent, #3bff00);
+    font-size: .88rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.author-import-status:empty {
+    display: none;
+}
+.author-import-status.import-error {
+    color: #ffb4b4;
+}
+@media (max-width: 480px) {
+    .author-import-button { width: 100%; }
+}

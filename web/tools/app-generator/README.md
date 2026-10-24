@@ -68,3 +68,30 @@ Layout uses a dedicated CSS grid area so controls are not collapsed on desktop.
 8. Verify links and error navigation on a narrow mobile viewport and using keyboard Tab/Enter.
 
 Repository scripts and GitHub Actions remain authoritative for final data validation. The generator does not edit the generated catalog files.
+
+
+## Conditional per-link file size
+
+The application-level **Main file size (VPK)** remains required. The per-link \`size\` is optional and stores an integer number of bytes.
+
+- File size is displayed only for **Download**, **Mirror**, **PKG**, **DLC**, **Update**, **Patch**, **Mod**, **Mod Pack**, **Data Files**, **Game Files**, and **Plugin**.
+- **Repository**, **Official Website**, **Documentation**, **Issues**, **Community** and **Other** never show a size and never serialize a stale hidden \`size\`.
+- Switching to an informational link hides its size, and switching back to a downloadable type restores the typed value during that editing session. Importing older JSONs does not change their canonical source files.
+- Existing extraction behavior for ZIP-oriented types and plugin-specific taiHEN configuration stays unchanged.
+
+## Import unpublished author JSON profiles
+
+Inside **Authors & category**, select **Import author JSON** and choose one or more files saved from \`authors/*.json\`. The generator checks the imported profile, prevents conflicting IDs/names, and selects it. Previously imported profiles remain available during this browser session.
+
+Select **Create another JSON** to begin another application while keeping selected imported authors, so the same \`author_ids\` can be reused. The generated application references the imported ID. **It does not re-download an imported author JSON** on every app export: the original file already exists on the contributor's computer and must be submitted to \`authors/\` separately if unpublished.
+
+New authors created in the generator (rather than imported) continue to be included in the app download until submitted. This is a browser-session helper, not a shared database or an additional generated catalog. Author registration and final validation still occur through GitHub Actions.
+
+### Additional checks
+
+1. Enter a size for Download; change to Repository or Community and confirm that the size disappears and is omitted from exported JSON.
+2. Switch back to Download, Game Files, Plugin and Mirror; confirm that the input reappears, its value is retained and sizes are converted to bytes.
+3. Import an unpublished author JSON, check its chip/ID selection, download an app and ensure only the app JSON is downloaded (the imported author file must not be duplicated).
+4. Choose Create another JSON, check that the imported author remains selected, and generate a second app referencing the same ID.
+5. Try importing the same author again, an app JSON, malformed JSON and profiles with conflicting ID/name; verify informative feedback and no duplicate author options.
+6. Confirm the old create-new-author flow still exports an author JSON alongside the app, and official authors continue to behave as before.

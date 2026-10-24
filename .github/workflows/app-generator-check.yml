@@ -28,5 +28,6 @@ jobs:
           node-version: "20"
       - name: Check syntax
         run: node --check web/tools/app-generator/app-generator.js
+          node --check web/tools/app-generator/authors-picker.js
       - name: Run offline generator regression tests
-        run: node --test web/tools/app-generator/generator.test.cjs
+        run: node --test web/tools/app-generator/*.test.cjs

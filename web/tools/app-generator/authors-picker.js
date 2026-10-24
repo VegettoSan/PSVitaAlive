@@ -8,6 +8,9 @@
     if (!select) return;
 
     const createdAuthors = new Map();
+    // Imported files already exist on the contributor's PC; never export them
+    // again as new author JSON files when downloading an application.
+    const importedAuthors = new Map();
 
     function getOptions() {
         return [...select.options];
@@ -271,11 +274,15 @@
         const note = $("author-create-note");
         if (!note) return;
         const selectedCreated = selectedIds().filter(id => createdAuthors.has(id));
-        if (!selectedCreated.length) {
-            note.textContent = "";
-            return;
+        const selectedImported = selectedIds().filter(id => importedAuthors.has(id));
+        const notes = [];
+        if (selectedCreated.length) {
+            notes.push(`New author profile(s): ${selectedCreated.join(", ")}. Download includes ${selectedCreated.length} new author JSON(s).`);
         }
-        note.textContent = `New author profile${selectedCreated.length > 1 ? "s" : ""}: ${selectedCreated.join(", ")}. The final download will include ${selectedCreated.length} author JSON file${selectedCreated.length > 1 ? "s" : ""} plus the application JSON.`;
+        if (selectedImported.length) {
+            notes.push(`Imported author(s): ${selectedImported.join(", ")}. The app references their IDs; existing author JSON files are not downloaded again. Submit the original files to authors/ if not published.`);
+        }
+        note.textContent = notes.join(" ");
     }
 
     function isHttpUrl(value) {
@@ -285,6 +292,113 @@
         } catch {
             return false;
         }
+    }
+
+    function parseImportedAuthorProfile(value) {
+        if (!value || typeof value !== "object" || Array.isArray(value)) {
+            throw new Error("Expected an author JSON object (not an app or an array).");
+        }
+        if (typeof value.id !== "string" || !/^[a-z0-9_-]+$/.test(value.id)) {
+            throw new Error("Author ID must use lowercase letters, numbers, hyphens or underscores.");
+        }
+        if (typeof value.name !== "string" || !value.name.trim()) {
+            throw new Error("Missing author name.");
+        }
+        if (Object.hasOwn(value, "title_id") || Object.hasOwn(value, "author_ids")) {
+            throw new Error("This looks like an application JSON. Import a file from authors/.");
+        }
+        for (const field of ["avatar", "bio", "icon"]) {
+            if (value[field] !== undefined && typeof value[field] !== "string") {
+                throw new Error("Author " + field + " must be text.");
+            }
+        }
+        for (const field of ["avatar", "icon"]) {
+            if (value[field] && !isHttpUrl(value[field])) {
+                throw new Error("Author " + field + " must use http:// or https://.");
+            }
+        }
+        if (value.links !== undefined && !Array.isArray(value.links)) {
+            throw new Error("Author links must be an array.");
+        }
+        let recommended = 0;
+        (value.links || []).forEach((link, index) => {
+            if (!link || typeof link !== "object" || Array.isArray(link) ||
+                typeof link.type !== "string" || !link.type.trim() ||
+                typeof link.name !== "string" || !link.name.trim() ||
+                typeof link.url !== "string" || !isHttpUrl(link.url)) {
+                throw new Error("Author link " + (index + 1) + " needs a type, name and valid URL.");
+            }
+            if (link.recommended !== undefined && typeof link.recommended !== "boolean") {
+                throw new Error("Author link " + (index + 1) + ": recommended must be true or false.");
+            }
+            if (link.recommended) recommended++;
+        });
+        if (recommended > 1) throw new Error("Only one author link may be recommended.");
+        return value;
+    }
+
+    function registerImportedAuthor(author) {
+        const existingOption = getOptions().find(option => option.value === author.id);
+        const byName = getExistingAuthorByName(author.name);
+        if (existingOption) {
+            const existingName = String(existingOption.textContent || "").split(" — ")[0].trim();
+            if (normalizeAuthorName(existingName) !== normalizeAuthorName(author.name)) {
+                throw new Error("Author ID " + author.id + " already belongs to '" + existingName + "'.");
+            }
+            if (createdAuthors.has(author.id)) {
+                throw new Error("Author '" + author.name + "' is already a new draft in this session.");
+            }
+            if (!importedAuthors.has(author.id)) {
+                // Author already published in authors.json: use the official profile.
+                syncHiddenSelect([...new Set([...selectedIds(), author.id])]);
+                renderSelected();
+                return "Already published: selected " + author.name + " (" + author.id + ").";
+            }
+            // Reimporting the same author is idempotent; don't create another record.
+            syncHiddenSelect([...new Set([...selectedIds(), author.id])]);
+            renderSelected();
+            return "Already imported: selected " + author.name + " (" + author.id + ").";
+        }
+        if (byName && byName.id !== author.id) {
+            throw new Error("Author name '" + author.name + "' already uses ID " + byName.id + ".");
+        }
+
+        importedAuthors.set(author.id, author);
+        const option = document.createElement("option");
+        option.value = author.id;
+        option.textContent = author.name.trim() + " — " + author.id;
+        select.appendChild(option);
+        syncHiddenSelect([...new Set([...selectedIds(), author.id])]);
+        renderSelected();
+        return "Imported and selected " + author.name + " (" + author.id + ").";
+    }
+
+    async function importAuthorFiles(event) {
+        const input = event.target;
+        const files = [...(input.files || [])];
+        if (!files.length) return;
+        const feedback = $("author-import-status");
+        const notices = [];
+        let failures = 0;
+        for (const file of files) {
+            try {
+                if (file.size > 1024 * 1024) throw new Error("Author JSON exceeds 1 MB.");
+                const data = JSON.parse(await file.text());
+                const author = parseImportedAuthorProfile(data);
+                notices.push(registerImportedAuthor(author));
+            } catch (error) {
+                failures++;
+                notices.push(file.name + ": " + error.message);
+            }
+        }
+        if (feedback) {
+            feedback.textContent = notices.join(" ");
+            feedback.classList.toggle("import-error", failures > 0);
+        }
+        input.value = "";
+        renderResults($("author-search")?.value || "");
+        updateCreateNote();
+        if (typeof window.updatePreview === "function") window.updatePreview();
     }
 
     function downloadBlob(filename, object) {
@@ -308,7 +422,21 @@
     }
 
     window.getCreatedAuthorProfiles = () => selectedIds().map(id => createdAuthors.get(id)).filter(Boolean);
-    window.isCreatedAuthor = (id) => createdAuthors.has(id);
+    window.isCreatedAuthor = (id) => createdAuthors.has(id) || importedAuthors.has(id);
+    window.getSelectedImportedAuthorIds = () => selectedIds().filter(id => importedAuthors.has(id));
+    window.restoreImportedAuthorSelection = (ids) => {
+        syncHiddenSelect((ids || []).filter(id => importedAuthors.has(id) && getOptions().some(o => o.value === id)));
+        renderSelected();
+    };
+    window.restoreLocalAuthorOptions = () => {
+        for (const author of [...createdAuthors.values(), ...importedAuthors.values()]) {
+            if (getOptions().some(option => option.value === author.id)) continue;
+            const option = document.createElement("option");
+            option.value = author.id;
+            option.textContent = author.name + " — " + author.id;
+            select.appendChild(option);
+        }
+    };
     window.clearCreatedAuthors = () => {
         createdAuthors.forEach((_, id) => {
             const option = getOptions().find(item => item.value === id);
@@ -334,6 +462,13 @@
                 <input id="author-search" class="author-search" type="search" autocomplete="off" placeholder="Search authors by name or ID..." aria-label="Search authors">
             </div>
             <div id="author-results" class="author-results" role="listbox"></div>
+            <div class="author-picker-actions">
+                <label class="author-import-button">Import author JSON
+                    <input type="file" id="import-author-json" accept=".json,application/json" multiple aria-label="Import author JSON file">
+                </label>
+                <span class="author-import-help">Reuse an existing authors/*.json file before it is published.</span>
+            </div>
+            <p id="author-import-status" class="author-import-status" role="status" aria-live="polite"></p>
             <p id="author-create-note" class="author-create-note"></p>
             <div id="new-author-dialog" class="new-author-dialog" hidden>
                 <div class="new-author-dialog-card" role="dialog" aria-modal="true" aria-labelledby="new-author-title">
@@ -356,6 +491,7 @@
             </div>`;
 
         $("author-search").addEventListener("input", event => renderResults(event.target.value));
+        $("import-author-json").addEventListener("change", importAuthorFiles);
         $("cancel-author").addEventListener("click", closeCreateDialog);
         $("save-author").addEventListener("click", createLocalAuthor);
         $("download-author").addEventListener("click", downloadCreatedAuthorJson);
