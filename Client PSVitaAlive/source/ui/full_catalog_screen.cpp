@@ -2793,7 +2793,7 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
             // Sequential essential-plugin installs keep their existing reboot flow.
             essentialPluginsTryAdvanceFromProgress(outcome);
         } else if (installAllPhase_ != InstallAllPhase::Running &&
-                   !installAllRebootPending_) {
+                   installAllPhase_ != InstallAllPhase::Summary) {
             // Individual plugin install: reboot as before. Install All must wait
             // for its entire queue AND for the final result to be acknowledged.
             pluginRebootModal_ = true;
@@ -2839,18 +2839,12 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
         if (isInstallStateFilter()) rebuildFilteredItems();
     }
 
-    // Install All queue: advance on Completed, abort tracking on fail/cancel
+    // Install All records every terminal outcome; recoverable ZIP failures pause the queue.
     installAllTryAdvanceFromProgress(outcome, needsReboot);
     if (essentialInstallRunning_ && outcome != 1) {
         essentialPluginsTryAdvanceFromProgress(outcome);
     }
-    if (!active && installAllRebootPending_) {
-        // Error/success/cancellation result was dismissed; safe to offer restart.
-        installAllRebootPending_ = false;
-        pluginRebootModal_ = true;
-        diagnostics::log("[UI] Install All completed plugin(s) — reboot prompt after result");
-    }
-    updateMediaTextureSuspension();
+remove old modal display    updateMediaTextureSuspension();
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
@@ -4255,6 +4249,29 @@ void FullCatalogScreen::handleTouch() {
             if (touchMoved_) return;
             const int ow = 820, oh = 460;
             const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+            if (installAllPhase_ == InstallAllPhase::Summary) {
+                const int sw = 900, sh = 508;
+                const int sx = (SCREEN_W - sw) / 2, sy = (SCREEN_H - sh) / 2;
+                const int bw = 370, bh = 50, by = sy + sh - 74;
+                if (hit(x, y, sx + (sw - bw) / 2, by, bw, bh)) {
+                    if (installAllPluginInstalled_) {
+                        diagnostics::log("[UI] Install All summary: restart requested by touch");
+                        scePowerRequestColdReset();
+                    } else closeInstallAllWizard(false);
+                    return;
+                }
+                const int rowTop = sy + 106, rowH = 58, visible = 4;
+                const int start = std::max(0, installAllSummarySelected_ - visible + 1);
+                for (int n = 0; n < visible; ++n) {
+                    const int index = start + n;
+                    if (index >= static_cast<int>(installAllResults_.size())) break;
+                    if (hit(x, y, sx + 22, rowTop + n * rowH, sw - 44, rowH - 4)) {
+                        installAllSummarySelected_ = index;
+                        return;
+                    }
+                }
+                return;
+            }
             if (installAllPhase_ == InstallAllPhase::Confirm) {
                 const int bw = 240, bh = 50;
                 const int by = oy + oh - 68;
@@ -4329,12 +4346,22 @@ void FullCatalogScreen::handleTouch() {
           const int bx1 = bx0 + bw + gap;
           const int bx2 = bx1 + bw + gap;
           if (hit(x, y, bx0 - 8, resultBy - 8, bw + 16, bh + 16)) {
-              const bool ok = installZipRecovery_ ? installZipRecovery_(true) : false;
+              if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
+                  installAllResolveRecovery(true);
+                  return;
+              }
+              std::string keptPath;
+              const bool ok = installZipRecovery_ ? installZipRecovery_(true, keptPath) : false;
               showToast(::psvitaalive::L(ok ? "ZIP_RECOVERY_KEPT" : "ZIP_RECOVERY_KEEP_FAILED"), 3200);
               return;
           }
           if (hit(x, y, bx1 - 8, resultBy - 8, bw + 16, bh + 16)) {
-              const bool ok = installZipRecovery_ ? installZipRecovery_(false) : false;
+              if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
+                  installAllResolveRecovery(false);
+                  return;
+              }
+              std::string ignoredPath;
+              const bool ok = installZipRecovery_ ? installZipRecovery_(false, ignoredPath) : false;
               showToast(::psvitaalive::L(ok ? "ZIP_RECOVERY_DELETED" : "ZIP_RECOVERY_DELETE_FAILED"), 3200);
               return;
           }
@@ -5650,7 +5677,8 @@ if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);st
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
         // Finish Install All (including the reboot prompt) before leaving the client.
-        if (installAllPhase_ == InstallAllPhase::Running || installAllRebootPending_) {
+        if (installAllPhase_ == InstallAllPhase::Running ||
+            installAllPhase_ == InstallAllPhase::Summary) {
             showToast(::psvitaalive::L(::psvitaalive::TextId::LockedFinishJob), 2800);
             return;
         }
@@ -5680,6 +5708,22 @@ if(pressed&SCE_CTRL_START){
         }
         return;
     }if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running){
+        if (installAllPhase_ == InstallAllPhase::Summary) {
+            if ((nav & SCE_CTRL_UP) && installAllSummarySelected_ > 0)
+                --installAllSummarySelected_;
+            if ((nav & SCE_CTRL_DOWN) &&
+                installAllSummarySelected_ + 1 < static_cast<int>(installAllResults_.size()))
+                ++installAllSummarySelected_;
+            if (pressed & SCE_CTRL_CROSS) {
+                if (installAllPluginInstalled_) {
+                    diagnostics::log("[UI] Install All summary: restart requested");
+                    scePowerRequestColdReset();
+                } else closeInstallAllWizard(false);
+            } else if ((pressed & SCE_CTRL_CIRCLE) && !installAllPluginInstalled_) {
+                closeInstallAllWizard(false);
+            }
+            return;
+        }
         if (installAllPhase_ == InstallAllPhase::PickPlugin) {
             if (nav & SCE_CTRL_LEFT) installAllFocus_ = 0;
             if (nav & SCE_CTRL_RIGHT) installAllFocus_ = 1;
@@ -5716,13 +5760,23 @@ if(pressed&SCE_CTRL_START){
         return;
     }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
-        const bool ok=installZipRecovery_?installZipRecovery_(true):false;
+        if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
+            installAllResolveRecovery(true);
+            return;
+        }
+        std::string path;
+        const bool ok=installZipRecovery_?installZipRecovery_(true,path):false;
         if(ok)showToast(::psvitaalive::L("ZIP_RECOVERY_KEPT"),3000);
         else showToast(::psvitaalive::L("ZIP_RECOVERY_KEEP_FAILED"),3400);
         return;
     }
     if(pressed&SCE_CTRL_CROSS){
-        const bool ok=installZipRecovery_?installZipRecovery_(false):false;
+        if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
+            installAllResolveRecovery(false);
+            return;
+        }
+        std::string path;
+        const bool ok=installZipRecovery_?installZipRecovery_(false,path):false;
         if(ok)showToast(::psvitaalive::L("ZIP_RECOVERY_DELETED"),2800);
         else showToast(::psvitaalive::L("ZIP_RECOVERY_DELETE_FAILED"),3400);
         return;
@@ -7622,8 +7676,12 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllPluginPickIndex_ = 0;
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
+    installAllQueueResultIndices_.clear();
+    installAllResults_.clear();
     installAllQueueIndex_ = 0;
     installAllLastOutcome_ = -1;
+    installAllWaitingRecovery_ = false;
+    installAllSummarySelected_ = 0;
     installAllFinishedToast_ = false;
     installAllPluginInstalled_ = false;
     installAllRebootPending_ = false;
@@ -7635,21 +7693,20 @@ void FullCatalogScreen::openInstallAllWizard() {
 
 void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     if (installAllPhase_ == InstallAllPhase::Hidden) return;
-    if (cancel && installAllPhase_ == InstallAllPhase::Running) {
-        // A start failure or cancellation must not lose a completed plugin.
-        if (installAllPluginInstalled_) {
-            installAllRebootPending_ = true;
-            installAllPluginInstalled_ = false;
-        }
-        // Running installs are cancelled via installCancel_; just drop queue.
-        installAllQueue_.clear();
-        installAllQueueLabels_.clear();
-    }
+    // A running job is never discarded via this close method. Explicit
+    // cancellation is processed by installAllTryAdvanceFromProgress().
+    if (installAllPhase_ == InstallAllPhase::Running) return;
     installAllPhase_ = InstallAllPhase::Hidden;
     installAllOptions_.clear();
     installAllPluginCandidates_.clear();
     installAllChosenPlugins_.clear();
+    installAllQueue_.clear();
+    installAllQueueLabels_.clear();
+    installAllQueueResultIndices_.clear();
+    installAllResults_.clear();
     installAllPluginPickIndex_ = 0;
+    installAllWaitingRecovery_ = false;
+    installAllPluginInstalled_ = false;
     installAllItemIndex_ = -1;
     if (cancel) diagnostics::log("[UI] Install All wizard cancelled");
 }
@@ -7721,6 +7778,8 @@ void FullCatalogScreen::installAllAdvancePick() {
         if (!isPluginTypeLink(link) || link.url.empty()) continue;
         if (isPluginAlreadyInstalled(link)) {
             diagnostics::log("[UI] Install All skip installed plugin (no prompt): " + pluginInstallFilePath(link));
+            installAllResults_.push_back({link.name.empty() ? link.type : link.name,
+                pluginInstallFilePath(link), InstallAllResultState::AlreadyInstalled});
             continue;
         }
         installAllPluginCandidates_.push_back(static_cast<int>(i));
@@ -7750,6 +7809,8 @@ void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
     }
     const CatalogLink& link = item.linkDetails[selected];
     if (install) installAllChosenPlugins_.push_back(selected);
+    else installAllResults_.push_back({link.name.empty() ? link.type : link.name,
+        ::psvitaalive::L("ALL_REPORT_USER_SKIPPED"), InstallAllResultState::Skipped});
     diagnostics::log(std::string("[UI] Install All plugin choice: ") +
                      (install ? "install " : "skip ") + link.name);
     ++installAllPluginPickIndex_;
@@ -7787,6 +7848,7 @@ void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
     else showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall), 2200);
 }
 
+
 void FullCatalogScreen::installAllStartQueue() {
     if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
         closeInstallAllWizard(true);
@@ -7795,139 +7857,188 @@ void FullCatalogScreen::installAllStartQueue() {
     const CatalogItem& item = catalogView()[installAllItemIndex_];
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
+    installAllQueueResultIndices_.clear();
 
     auto pushIdx = [&](int di, const char* label) {
         if (di < 0 || di >= (int)item.linkDetails.size()) return;
-        installAllQueue_.push_back(item.linkDetails[di]);
+        const CatalogLink& link = item.linkDetails[di];
+        installAllQueue_.push_back(link);
         installAllQueueLabels_.push_back(label);
+        const std::string name = link.name.empty() ? label : link.name;
+        installAllQueueResultIndices_.push_back(installAllResults_.size());
+        installAllResults_.push_back({name, "", InstallAllResultState::Pending});
     };
     pushIdx(installAllChosenDownload_, ::psvitaalive::L(::psvitaalive::TextId::LabelAppVpk));
     pushIdx(installAllChosenGameFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
     pushIdx(installAllChosenDataFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
     installAllPluginInstalled_ = false;
-    // Only explicitly approved plugin links enter the queue.
     for (int di : installAllChosenPlugins_) {
         if (di < 0 || di >= (int)item.linkDetails.size()) continue;
         const CatalogLink& link = item.linkDetails[di];
         if (!isPluginTypeLink(link) || link.url.empty()) continue;
         if (isPluginAlreadyInstalled(link)) {
-            diagnostics::log("[UI] Install All approved plugin became installed: " + pluginInstallFilePath(link));
+            installAllResults_.push_back({link.name.empty() ? link.type : link.name,
+                pluginInstallFilePath(link), InstallAllResultState::AlreadyInstalled});
             continue;
         }
-        installAllQueue_.push_back(link);
-        installAllQueueLabels_.push_back(link.name.empty()
-            ? ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin) : link.name);
+        pushIdx(di, ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin));
     }
     installAllPluginCandidates_.clear();
     installAllChosenPlugins_.clear();
     installAllPluginPickIndex_ = 0;
-
-    if (installAllQueue_.empty()) {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastNothingToInstall), 1600);
-        closeInstallAllWizard(true);
-        return;
-    }
-
-    // Pre-flight free-space estimate (2.1x sum of known sizes)
-    uint64_t needSum = 0;
-    for (const auto& l : installAllQueue_) {
-        uint64_t b = parseUiSizeBytes(l.size);
-        if (b == 0) b = parseUiSizeBytes(item.size);
-        needSum += b;
-    }
-    if (needSum > 0) {
-        // Soft check only in log; InstallController enforces hard check per job
-        diagnostics::log(std::string("[UI] Install All estimated payload bytes=") + std::to_string(needSum));
-    }
-
     installAllQueueIndex_ = 0;
     installAllLastOutcome_ = -1;
-    installAllPhase_ = InstallAllPhase::Running;
-    diagnostics::log(std::string("[UI] Install All start steps=") + std::to_string(installAllQueue_.size())
-                     + " app=" + item.name);
+    installAllWaitingRecovery_ = false;
 
-    if (!linkAction_) {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastInstallUnavailable), 1600);
-        closeInstallAllWizard(true);
+    uint64_t needSum = 0;
+    for (const auto& link : installAllQueue_) {
+        uint64_t bytes = parseUiSizeBytes(link.size);
+        if (!bytes) bytes = parseUiSizeBytes(item.size);
+        needSum += bytes;
+    }
+    diagnostics::log("[UI] Install All estimated payload bytes=" + std::to_string(needSum));
+    diagnostics::log("[UI] Install All queued " + std::to_string(installAllQueue_.size()) +
+                     " jobs, including selected plugins");
+    installAllPhase_ = InstallAllPhase::Running;
+    installAllStartNextStep();
+}
+
+void FullCatalogScreen::installAllStartNextStep() {
+    if (installAllPhase_ != InstallAllPhase::Running || installAllWaitingRecovery_) return;
+    if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
+        installAllFinishReport(true);
         return;
     }
-    const CatalogLink& first = installAllQueue_[0];
-    diagnostics::log(std::string("[UI] Install All step 1/") + std::to_string(installAllQueue_.size())
-                     + " " + installAllQueueLabels_[0] + " url=" + first.url);
-    if (!linkAction_(item, first)) {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall), 1800);
-        closeInstallAllWizard(true);
+    const CatalogItem& item = catalogView()[installAllItemIndex_];
+    // A synchronous start refusal is a failure of this step, not the batch.
+    while (installAllQueueIndex_ < installAllQueue_.size()) {
+        const size_t index = installAllQueueIndex_;
+        if (index >= installAllQueueResultIndices_.size() ||
+            installAllQueueResultIndices_[index] >= installAllResults_.size()) {
+            installAllFinishReport(true);
+            return;
+        }
+        const CatalogLink& link = installAllQueue_[index];
+        diagnostics::log("[UI] Install All step " + std::to_string(index + 1) + "/" +
+                         std::to_string(installAllQueue_.size()) + " " +
+                         installAllQueueLabels_[index] + " url=" + link.url);
+        installAllLastOutcome_ = -1;
+        if (linkAction_ && linkAction_(item, link)) return;
+        InstallAllResult& result = installAllResults_[installAllQueueResultIndices_[index]];
+        result.state = InstallAllResultState::Failed;
+        result.detail = ::psvitaalive::L("ALL_REPORT_START_FAILED");
+        diagnostics::log("[UI] Install All failed to start step, continuing: " + result.name);
+        if (installAcknowledge_) installAcknowledge_();
+        ++installAllQueueIndex_;
     }
+    installAllFinishReport();
+}
+
+void FullCatalogScreen::installAllFinishReport(bool aborted) {
+    if (installAllPhase_ != InstallAllPhase::Running) return;
+    if (aborted) {
+        for (auto& result : installAllResults_) {
+            if (result.state == InstallAllResultState::Pending) {
+                result.state = InstallAllResultState::NotAttempted;
+                result.detail = ::psvitaalive::L("ALL_REPORT_NOT_ATTEMPTED");
+            }
+        }
+    }
+    if (installAcknowledge_) installAcknowledge_();
+    installAllPhase_ = InstallAllPhase::Summary;
+    installAllSummarySelected_ = 0;
+    installAllWaitingRecovery_ = false;
+    installAllLastOutcome_ = -1;
+    installAllQueue_.clear();
+    installAllQueueLabels_.clear();
+    installAllQueueResultIndices_.clear();
+    installAllItemIndex_ = -1;
+    diagnostics::log("[UI] Install All summary ready: " +
+                     std::to_string(installAllResults_.size()) +
+                     " results, reboot=" + std::to_string(installAllPluginInstalled_ ? 1 : 0));
+}
+
+void FullCatalogScreen::installAllResolveRecovery(bool keep) {
+    if (installAllPhase_ != InstallAllPhase::Running ||
+        !installAllWaitingRecovery_ ||
+        installAllQueueIndex_ >= installAllQueueResultIndices_.size()) return;
+    std::string savedPath;
+    const bool ok = installZipRecovery_ && installZipRecovery_(keep, savedPath);
+    if (!ok) {
+        showToast(::psvitaalive::L(keep ? "ZIP_RECOVERY_KEEP_FAILED" : "ZIP_RECOVERY_DELETE_FAILED"), 3400);
+        return;
+    }
+    InstallAllResult& result = installAllResults_[installAllQueueResultIndices_[installAllQueueIndex_]];
+    result.state = keep ? InstallAllResultState::Kept : InstallAllResultState::Deleted;
+    result.detail = keep ? savedPath : ::psvitaalive::L("ALL_REPORT_FILE_REMOVED");
+    diagnostics::log(std::string("[UI] Install All ZIP extraction failed; archive ") +
+                     (keep ? "kept at " + savedPath : "deleted"));
+    showToast(::psvitaalive::L(keep ? "ZIP_RECOVERY_KEPT" : "ZIP_RECOVERY_DELETED"), 2700);
+    // Installer acknowledges recovery on success. Advance only when its
+    // status becomes Idle on the following UI cycle.
 }
 
 void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needsReboot) {
     if (installAllPhase_ != InstallAllPhase::Running) return;
-    if (outcome == installAllLastOutcome_) return;
-    const int prev = installAllLastOutcome_;
-    installAllLastOutcome_ = outcome;
-
-    if (outcome == 2 || outcome == 3) {
-        // Failed/cancelled: preserve the result screen before offering reboot.
-        diagnostics::log(std::string("[UI] Install All stopped at step ")
-                         + std::to_string(installAllQueueIndex_ + 1)
-                         + (outcome == 3 ? " (cancelled)" : " (failed)"));
-        if (installAllPluginInstalled_) {
-            installAllRebootPending_ = true;
-            installAllPluginInstalled_ = false;
+    if (installAllWaitingRecovery_) {
+        if (outcome == 0 && !installProgressActive_ &&
+            installAllQueueIndex_ < installAllQueueResultIndices_.size()) {
+            // The user has kept/deleted the archive; the installer is now idle.
+            installAllWaitingRecovery_ = false;
+            ++installAllQueueIndex_;
+            installAllStartNextStep();
         }
-        installAllQueue_.clear();
-        installAllQueueLabels_.clear();
-        installAllPhase_ = InstallAllPhase::Hidden;
-        installAllItemIndex_ = -1;
         return;
     }
-
-    if (outcome != 1) return;
-    // Track a successful plugin install, not merely a plugin queued for download.
-    if (installAllQueueIndex_ < installAllQueue_.size() &&
-        isPluginTypeLink(installAllQueue_[installAllQueueIndex_]) && needsReboot) {
-        installAllPluginInstalled_ = true;
-        diagnostics::log("[UI] Install All plugin installed — postpone reboot until queue ends");
+    if (outcome == 0 || outcome == installAllLastOutcome_) return;
+    installAllLastOutcome_ = outcome;
+    if (installAllQueueIndex_ >= installAllQueueResultIndices_.size()) {
+        installAllFinishReport(true);
+        return;
     }
-    // Completed current step
-    if (installAllQueueIndex_ + 1 < installAllQueue_.size()) {
-        // Auto-ack success and start next (do not wait for user)
-        if (installAcknowledge_) installAcknowledge_();
-        ++installAllQueueIndex_;
-        installAllLastOutcome_ = -1;
-        if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
-            closeInstallAllWizard(true);
+    const size_t index = installAllQueueIndex_;
+    InstallAllResult& result = installAllResults_[installAllQueueResultIndices_[index]];
+    const CatalogLink& link = installAllQueue_[index];
+
+    if (outcome == 1) {
+        // An install-success callback is authoritative for this job only.
+        // LiveArea verification is separate: never infer it from downloaded bytes.
+        result.state = isDownloadTypeLink(link) && installLiveAreaOk_
+            ? InstallAllResultState::Verified : InstallAllResultState::Completed;
+        if (isPluginTypeLink(link)) {
+            result.detail = link.line.empty() ? pluginInstallFilePath(link) : link.line;
+            if (needsReboot) installAllPluginInstalled_ = true;
+        } else if (isGameFilesTypeLink(link) || isDataFilesTypeLink(link)) {
+            result.detail = link.extractPath.empty() ? installResultPath_ : link.extractPath;
+        } else {
+            result.detail = installResultTitleId_.empty() ? installResultPath_ : installResultTitleId_;
+        }
+        diagnostics::log("[UI] Install All completed step: " + result.name);
+    } else if (outcome == 2) {
+        // ZIP recovery must remain interactive until the user decides Keep/Delete.
+        if (installZipRecoveryAvailable_) {
+            installAllWaitingRecovery_ = true;
+            result.detail = installProgressMessage_;
+            diagnostics::log("[UI] Install All paused for ZIP Keep/Delete: " + result.name);
             return;
         }
-        const CatalogItem& item = catalogView()[installAllItemIndex_];
-        const CatalogLink& next = installAllQueue_[installAllQueueIndex_];
-        diagnostics::log(std::string("[UI] Install All step ")
-                         + std::to_string(installAllQueueIndex_ + 1) + "/"
-                         + std::to_string(installAllQueue_.size()) + " "
-                         + installAllQueueLabels_[installAllQueueIndex_]
-                         + " url=" + next.url);
-        if (!linkAction_ || !linkAction_(item, next)) {
-            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastInstallAllStopped), 2200);
-            closeInstallAllWizard(true);
-        }
+        result.state = InstallAllResultState::Failed;
+        result.detail = installProgressStage_ + ": " + installProgressMessage_;
+        diagnostics::log("[UI] Install All failed step, continuing: " + result.name +
+                         " reason=" + result.detail);
+    } else if (outcome == 3) {
+        // Deliberate user cancellation ends the batch; ordinary errors do not.
+        result.state = InstallAllResultState::Cancelled;
+        result.detail = installProgressMessage_;
+        diagnostics::log("[UI] Install All explicitly cancelled at: " + result.name);
+        installAllFinishReport(true);
         return;
-    }
+    } else return;
 
-    // Last step completed — keep success panel; toast when user dismisses
-    installAllFinishedToast_ = true;
-    diagnostics::log("[UI] Install All finished all steps");
-    if (installAllPluginInstalled_) {
-        installAllRebootPending_ = true;
-        installAllPluginInstalled_ = false;
-        diagnostics::log("[UI] Install All installed plugins — reboot after success acknowledgement");
-    }
-    // Clear running phase so further outcome updates don't re-enter
-    installAllPhase_ = InstallAllPhase::Hidden;
-    installAllQueue_.clear();
-    installAllItemIndex_ = -1;
-    (void)prev;
+    if (installAcknowledge_) installAcknowledge_();
+    ++installAllQueueIndex_;
+    installAllStartNextStep();
 }
-
 
 void FullCatalogScreen::drawPluginChoiceOverlay() {
     const CatalogItem* item = nullptr;
@@ -8006,7 +8117,101 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
         ::psvitaalive::L("PLUGIN_CONFIRM_NAV"));
 }
 
+
+void FullCatalogScreen::drawInstallAllSummary() {
+    if (installAllPhase_ != InstallAllPhase::Summary) return;
+    const int w = 900, h = 508;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 205));
+    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 1, w, 1, BORDER);
+    vita2d_draw_rectangle(x, y, 1, h, BORDER);
+    vita2d_draw_rectangle(x + w - 1, y, 1, h, BORDER);
+
+    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 43, ACCENT, 1.14f,
+        ::psvitaalive::L("ALL_REPORT_TITLE"));
+    int successes = 0, issues = 0;
+    for (const auto& entry : installAllResults_) {
+        if (entry.state == InstallAllResultState::Verified ||
+            entry.state == InstallAllResultState::Completed) ++successes;
+        if (entry.state == InstallAllResultState::Failed ||
+            entry.state == InstallAllResultState::Kept ||
+            entry.state == InstallAllResultState::Deleted ||
+            entry.state == InstallAllResultState::Cancelled ||
+            entry.state == InstallAllResultState::NotAttempted) ++issues;
+    }
+    const std::string tally = std::string(::psvitaalive::L("ALL_REPORT_OK_COUNT")) +
+        ": " + std::to_string(successes) + "   " +
+        ::psvitaalive::L("ALL_REPORT_ISSUES_COUNT") + ": " + std::to_string(issues);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 76, TEXT, 0.84f, tally.c_str());
+
+    const int visible = 4, rowTop = y + 106, rowH = 58;
+    const int start = std::max(0, installAllSummarySelected_ - visible + 1);
+    for (int n = 0; n < visible; ++n) {
+        const int index = start + n;
+        if (index >= static_cast<int>(installAllResults_.size())) break;
+        const InstallAllResult& entry = installAllResults_[index];
+        const int rx = x + 22, ry = rowTop + n * rowH, rw = w - 44;
+        const bool focused = index == installAllSummarySelected_;
+        vita2d_draw_rectangle(rx, ry, rw, rowH - 4, SURFACE);
+        vita2d_draw_rectangle(rx, ry, focused ? 3 : 1, rowH - 4, focused ? ACCENT : BORDER);
+        const char* state = ::psvitaalive::L("ALL_REPORT_PENDING");
+        switch (entry.state) {
+            case InstallAllResultState::Completed: state = ::psvitaalive::L("ALL_REPORT_COMPLETED"); break;
+            case InstallAllResultState::Verified: state = ::psvitaalive::L("ALL_REPORT_VERIFIED"); break;
+            case InstallAllResultState::Failed: state = ::psvitaalive::L("ALL_REPORT_FAILED"); break;
+            case InstallAllResultState::Kept: state = ::psvitaalive::L("ALL_REPORT_KEPT"); break;
+            case InstallAllResultState::Deleted: state = ::psvitaalive::L("ALL_REPORT_DELETED"); break;
+            case InstallAllResultState::Skipped: state = ::psvitaalive::L("ALL_REPORT_SKIPPED"); break;
+            case InstallAllResultState::AlreadyInstalled: state = ::psvitaalive::L("ALL_REPORT_ALREADY"); break;
+            case InstallAllResultState::Cancelled: state = ::psvitaalive::L("ALL_REPORT_CANCELLED"); break;
+            case InstallAllResultState::NotAttempted: state = ::psvitaalive::L("ALL_REPORT_NOT_ATTEMPTED"); break;
+            default: break;
+        }
+        ::psvitaalive::ui::uiDrawText(&font_, rx + 14, ry + 20, TEXT,
+            0.83f, ellipsize(entry.name, 38).c_str());
+        const int statusWidth = ::psvitaalive::ui::uiTextWidth(&font_, 0.69f, state);
+        ::psvitaalive::ui::uiDrawText(&font_, rx + rw - statusWidth - 14, ry + 20,
+            focused ? ACCENT : DIM, 0.69f, state);
+        // The focused diagnostic or saved ZIP path scrolls horizontally.
+        const std::string detail = entry.detail.empty()
+            ? std::string(::psvitaalive::L("ALL_REPORT_NO_DETAIL")) : entry.detail;
+        drawMarqueeText(&font_, rx + 14, ry + 43, rw - 28, DIM, 0.68f, detail, focused);
+    }
+    if (installAllResults_.size() > static_cast<size_t>(visible)) {
+        const std::string page = std::to_string(installAllSummarySelected_ + 1) +
+            " / " + std::to_string(installAllResults_.size());
+        const int pw = ::psvitaalive::ui::uiTextWidth(&font_, 0.66f, page.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_, x + w - pw - 27, y + 84, DIM, 0.66f, page.c_str());
+    }
+    const int explainY = y + 367;
+    if (installAllPluginInstalled_) {
+        ::psvitaalive::ui::uiDrawText(&font_, x + 27, explainY, WHITE, 0.76f,
+            ::psvitaalive::L("ALL_REPORT_REBOOT_1"));
+        ::psvitaalive::ui::uiDrawText(&font_, x + 27, explainY + 25, DIM, 0.74f,
+            ::psvitaalive::L("ALL_REPORT_REBOOT_2"));
+    } else {
+        ::psvitaalive::ui::uiDrawText(&font_, x + 27, explainY, DIM, 0.78f,
+            ::psvitaalive::L("ALL_REPORT_CONTINUE_HINT"));
+    }
+
+    const int bw = 370, bh = 50, bx = x + (w - bw) / 2, by = y + h - 74;
+    vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+    const char* action = ::psvitaalive::L(
+        installAllPluginInstalled_ ? "ALL_REPORT_RESTART" : "ALL_REPORT_CONTINUE");
+    const float scale = 0.89f;
+    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, action);
+    ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 34, BG, scale, action);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 22, y + h - 9, DIM, 0.56f,
+        ::psvitaalive::L("ALL_REPORT_NAV"));
+}
+
 void FullCatalogScreen::drawInstallAllOverlay() {
+    if (installAllPhase_ == InstallAllPhase::Summary) {
+        drawInstallAllSummary();
+        return;
+    }
     if (installAllPhase_ == InstallAllPhase::Hidden ||
         installAllPhase_ == InstallAllPhase::Running ||
         installAllPhase_ == InstallAllPhase::PickPlugin) return;

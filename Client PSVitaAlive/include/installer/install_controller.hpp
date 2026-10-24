@@ -85,7 +85,7 @@ public:
     /** User dismissed the success/error result panel (or UI timeout). */
     void acknowledgeResult();
     /** Resolve a pending ZIP extraction recovery. keep=true preserves it; false deletes it. */
-    bool resolveZipRecovery(bool keep);
+    bool resolveZipRecovery(bool keep, std::string* savedPath = nullptr);
     /** Existing preserved manual ZIP associated with a catalog app, with no network. */
     bool hasSavedZip(const std::string& appId, const std::string& titleId) const;
     /** Validated recovery ZIPs belonging to one app, sorted by display name. */

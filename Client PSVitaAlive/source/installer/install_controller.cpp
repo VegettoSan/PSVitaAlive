@@ -357,7 +357,8 @@ void InstallController::acknowledgeResult() {
     setState(InstallStatus::State::Idle, ::psvitaalive::L(::psvitaalive::TextId::InstMsgReady));
 }
 
-bool InstallController::resolveZipRecovery(bool keep) {
+bool InstallController::resolveZipRecovery(bool keep, std::string* savedPath) {
+    if (savedPath) savedPath->clear();
     if (!zipRecoveryAvailable_.load() ||
         static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Failed)
         return false;
@@ -436,6 +437,8 @@ bool InstallController::resolveZipRecovery(bool keep) {
         diagnostics::log("[Installer] ZIP recovery action=deleted path=" + zipRecoveryPath_);
     }
 
+    // Return the final, persistent manual archive path only after Keep succeeds.
+    if (keep && savedPath) *savedPath = zipRecoveryPath_;
     archiveSourceUnavailable_.store(false);
     zipRecoveryAvailable_.store(false);
     zipRecoveryMayBeCorrupt_.store(false);
