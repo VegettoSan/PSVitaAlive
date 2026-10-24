@@ -204,6 +204,23 @@ function renderLinks(app) {
                     linkData
                 );
 
+            const isPlugin = /^(plugin|plugins)$/i.test(getHomebrewLinkType(linkData).trim());
+            let requirementBadge = null;
+            if (isPlugin) {
+                requirementBadge = document.createElement("span");
+                requirementBadge.className = "app-link-card-requirement";
+                if (linkData.required === true) {
+                    requirementBadge.classList.add("required");
+                    requirementBadge.textContent = "Required";
+                } else if (linkData.required === false) {
+                    requirementBadge.classList.add("optional");
+                    requirementBadge.textContent = "Optional";
+                } else {
+                    requirementBadge.classList.add("unspecified");
+                    requirementBadge.textContent = "Not specified";
+                }
+            }
+
             const name =
                 document.createElement(
                     "span"
@@ -226,6 +243,7 @@ function renderLinks(app) {
             const header = document.createElement("div");
             header.className = "app-link-card-header";
             header.appendChild(type);
+            if (requirementBadge) header.appendChild(requirementBadge);
 
             if (isRecommended) {
                 const recommended = document.createElement("span");
@@ -275,8 +293,6 @@ function renderLinks(app) {
 
             // Only show destinations explicitly present on this link.
             // A Plugin uses the destination to copy its .skprx/.suprx file.
-            const isPlugin =
-                getHomebrewLinkType(linkData).trim().toLowerCase() === "plugin";
             const extractPath = typeof linkData.extract_path === "string"
                 ? linkData.extract_path.trim() : "";
             const pluginSection = isPlugin && typeof linkData.section === "string"
