@@ -635,3 +635,20 @@ ALL_REPORT_NAV=Up/Down: browse results   X: confirm
 ALL_REPORT_START_FAILED=Could not start this installation
 ALL_REPORT_USER_SKIPPED=Skipped by user
 ALL_REPORT_FILE_REMOVED=Downloaded ZIP deleted; not extracted
+
+# Install All 10s ZIP auto-save + final manual ZIP choices
+ZIP_RECOVERY_AUTO_KEEP=Auto-keep ZIP in
+ZIP_RECOVERY_AUTO_KEEP_FAILED=Auto-save failed. Choose Keep or Delete manually.
+ALL_REPORT_AUTO_KEPT=ZIP kept automatically
+ALL_REPORT_ZIP_CHOOSE=Confirm the selected saved ZIP:
+ALL_REPORT_ZIP_SELECT=Select a saved ZIP above to review it.
+ALL_REPORT_KEEP_ZIP=Keep ZIP
+ALL_REPORT_DELETE_ZIP=Delete ZIP
+ALL_REPORT_ZIP_NAV=Up/Down: choose ZIP   Triangle: keep   Square: delete   X: finish
+ALL_REPORT_DELETE_CONFIRM_TITLE=Delete this saved ZIP?
+ALL_REPORT_DELETE_CONFIRM_WARNING=This permanently removes the ZIP. You cannot undo this action.
+ALL_REPORT_DELETE_CONFIRM_YES=Delete ZIP
+ALL_REPORT_DELETE_CONFIRM_NO=Cancel
+ALL_REPORT_KEEP_CONFIRMED=ZIP kept. You can still delete it here.
+ALL_REPORT_DELETE_FAILED=Could not delete this ZIP safely.
+ALL_REPORT_ZIP_DELETED=Saved ZIP deleted.

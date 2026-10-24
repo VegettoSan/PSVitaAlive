@@ -613,3 +613,20 @@ ALL_REPORT_NAV=Haut/Bas : parcourir   X : valider
 ALL_REPORT_START_FAILED=Impossible de démarrer l'installation
 ALL_REPORT_USER_SKIPPED=Ignoré par l'utilisateur
 ALL_REPORT_FILE_REMOVED=ZIP supprimé, sans extraction
+
+# Install All 10s ZIP auto-save + final manual ZIP choices
+ZIP_RECOVERY_AUTO_KEEP=Conservation auto du ZIP dans
+ZIP_RECOVERY_AUTO_KEEP_FAILED=Échec de conservation auto. Choisissez garder ou supprimer.
+ALL_REPORT_AUTO_KEPT=ZIP conservé automatiquement
+ALL_REPORT_ZIP_CHOOSE=Confirmer le choix pour ce ZIP :
+ALL_REPORT_ZIP_SELECT=Sélectionnez un ZIP conservé ci-dessus.
+ALL_REPORT_KEEP_ZIP=Conserver ZIP
+ALL_REPORT_DELETE_ZIP=Supprimer ZIP
+ALL_REPORT_ZIP_NAV=Haut/Bas : ZIP   Triangle : garder   Carré : supprimer   X : terminer
+ALL_REPORT_DELETE_CONFIRM_TITLE=Supprimer ce ZIP conservé ?
+ALL_REPORT_DELETE_CONFIRM_WARNING=Le ZIP sera définitivement supprimé. Action irréversible.
+ALL_REPORT_DELETE_CONFIRM_YES=Supprimer ZIP
+ALL_REPORT_DELETE_CONFIRM_NO=Annuler
+ALL_REPORT_KEEP_CONFIRMED=ZIP conservé. Vous pouvez encore le supprimer ici.
+ALL_REPORT_DELETE_FAILED=Impossible de supprimer ce ZIP en sécurité.
+ALL_REPORT_ZIP_DELETED=ZIP conservé supprimé.

@@ -342,6 +342,11 @@ int main(){
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
     screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep, std::string& savedPath){ const bool resolved=installer.resolveZipRecovery(keep, &savedPath); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
+    screen.setDeleteSavedZipCallback([&installer, &screen](const std::string& appId, const std::string& titleId, const std::string& archivePath){
+        const bool removed=installer.deleteSavedZip(appId,titleId,archivePath);
+        if(removed) screen.requestUx0SpaceRefresh();
+        return removed;
+    });
     screen.setSavedZipCallbacks(
         [&installer](const psvitaalive::ui::CatalogItem& item) {
             std::vector<psvitaalive::ui::FullCatalogScreen::SavedZipOption> options;

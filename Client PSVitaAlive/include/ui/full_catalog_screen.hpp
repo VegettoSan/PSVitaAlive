@@ -45,6 +45,8 @@ public:
     using InstallCancelFn = std::function<void()>;
     using InstallAcknowledgeFn = std::function<void()>;
     using InstallZipRecoveryFn = std::function<bool(bool keep, std::string& savedPath)>;
+    using DeleteSavedZipFn = std::function<bool(const std::string& appId,
+        const std::string& titleId, const std::string& archivePath)>;
     using CatalogChangeFn = std::function<bool(CatalogType)>;
     using SearchRequestFn = std::function<void(const std::string&)>;
     using LinkActionFn = std::function<bool(const CatalogItem&, const CatalogLink&)>;
@@ -67,6 +69,7 @@ public:
     void setInstallCancelCallback(InstallCancelFn callback);
     void setInstallAcknowledgeCallback(InstallAcknowledgeFn callback);
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
+    void setDeleteSavedZipCallback(DeleteSavedZipFn callback) { deleteSavedZip_ = callback; }
     void setCatalogChangeCallback(CatalogChangeFn callback);
     void setSearchCallback(SearchRequestFn callback);
     /** Native vita2d QWERTY search and ZIP path entry (no Sony IME). */
@@ -167,6 +170,7 @@ private:
     InstallCancelFn installCancel_;
     InstallAcknowledgeFn installAcknowledge_;
     InstallZipRecoveryFn installZipRecovery_;
+    DeleteSavedZipFn deleteSavedZip_;
     CatalogChangeFn catalogChange_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
@@ -425,6 +429,7 @@ private:
     void installAllStartNextStep();
     void installAllFinishReport(bool aborted = false);
     void installAllResolveRecovery(bool keep);
+    void installAllSummaryZipChoice(bool keep);
     void installAllTryAdvanceFromProgress(int outcome, bool needsReboot);
     void drawInstallAllSummary();
     bool itemSupportsInstallAll(const CatalogItem& item) const;
@@ -567,18 +572,30 @@ private:
     size_t installAllQueueIndex_ = 0;
     int installAllLastOutcome_ = -1;       // edge-detect terminal jobs
     bool installAllWaitingRecovery_ = false;
+    bool installAllRecoveryResolved_ = false;
+    bool installAllRecoveryAutoAttempted_ = false;
+    bool installAllRecoveryAutoFailed_ = false;
+    uint64_t installAllRecoveryStartUs_ = 0;
+    static constexpr uint64_t INSTALL_ALL_ZIP_KEEP_TIMEOUT_US = 10000000ULL;
     enum class InstallAllResultState { Pending, Completed, Verified, Failed, Kept, Deleted,
                                        Skipped, AlreadyInstalled, Cancelled, NotAttempted };
     struct InstallAllResult {
         std::string name;
         std::string detail;
+        std::string savedZipPath; // validated persistent manual ZIP path (not displayed message)
         InstallAllResultState state;
+        bool autoKept = false;
+        bool keepConfirmed = false;
         InstallAllResult(const std::string& n, const std::string& d, InstallAllResultState s)
             : name(n), detail(d), state(s) {}
     };
     std::vector<InstallAllResult> installAllResults_;
     std::vector<size_t> installAllQueueResultIndices_;
     int installAllSummarySelected_ = 0;
+    bool installAllSummaryDeleteConfirm_ = false;
+    int installAllSummaryDeleteFocus_ = 1; // 0 Delete ZIP, 1 Cancel (safe default)
+    std::string installAllReportAppId_;
+    std::string installAllReportTitleId_;
     bool installAllFinishedToast_ = false;
 
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)

@@ -513,6 +513,31 @@ std::vector<SavedZipArchive> InstallController::savedZips(
     return results;
 }
 
+bool InstallController::deleteSavedZip(const std::string& appId,
+                                       const std::string& titleId,
+                                       const std::string& archivePath) {
+    // Trust only archives returned by the existing app/title-bound metadata scan.
+    if (archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
+    const auto archives = savedZips(appId, titleId);
+    const auto it = std::find_if(archives.begin(), archives.end(),
+        [&](const SavedZipArchive& z) { return z.archivePath == archivePath; });
+    if (it == archives.end()) {
+        diagnostics::log("[Installer] refused manual ZIP deletion: path not owned by app");
+        return false;
+    }
+    StorageManager st;
+    if (!st.removeFile(it->archivePath)) {
+        diagnostics::log("[Installer] failed to delete saved manual ZIP: " + it->archivePath);
+        return false;
+    }
+    // The archive is gone; a tiny orphan metadata file must not turn a real
+    // deletion into a reported failure. Attempt metadata cleanup separately.
+    if (!st.removeFile(it->infoPath))
+        diagnostics::log("[Installer] saved ZIP deleted; metadata cleanup pending: " + it->infoPath);
+    diagnostics::log("[Installer] deleted saved manual ZIP: " + archivePath);
+    return true;
+}
+
 bool InstallController::hasSavedZip(const std::string& appId, const std::string& titleId) const {
     return !savedZips(appId, titleId).empty();
 }

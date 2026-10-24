@@ -613,3 +613,20 @@ ALL_REPORT_NAV=Hoch/Runter: Ergebnisse   X: bestätigen
 ALL_REPORT_START_FAILED=Installation konnte nicht gestartet werden
 ALL_REPORT_USER_SKIPPED=Vom Benutzer übersprungen
 ALL_REPORT_FILE_REMOVED=ZIP gelöscht und nicht entpackt
+
+# Install All 10s ZIP auto-save + final manual ZIP choices
+ZIP_RECOVERY_AUTO_KEEP=ZIP automatisch behalten in
+ZIP_RECOVERY_AUTO_KEEP_FAILED=Automatisches Speichern fehlgeschlagen. Bitte selbst wählen.
+ALL_REPORT_AUTO_KEPT=ZIP automatisch behalten
+ALL_REPORT_ZIP_CHOOSE=Was soll mit dieser ZIP geschehen?
+ALL_REPORT_ZIP_SELECT=Oben eine gespeicherte ZIP zur Prüfung auswählen.
+ALL_REPORT_KEEP_ZIP=ZIP behalten
+ALL_REPORT_DELETE_ZIP=ZIP löschen
+ALL_REPORT_ZIP_NAV=Hoch/Runter: ZIP   Dreieck: behalten   Quadrat: löschen   X: fertig
+ALL_REPORT_DELETE_CONFIRM_TITLE=Gespeicherte ZIP löschen?
+ALL_REPORT_DELETE_CONFIRM_WARNING=Die ZIP wird endgültig gelöscht. Dies kann nicht rückgängig gemacht werden.
+ALL_REPORT_DELETE_CONFIRM_YES=ZIP löschen
+ALL_REPORT_DELETE_CONFIRM_NO=Abbrechen
+ALL_REPORT_KEEP_CONFIRMED=ZIP behalten. Sie kann hier noch gelöscht werden.
+ALL_REPORT_DELETE_FAILED=ZIP konnte nicht sicher gelöscht werden.
+ALL_REPORT_ZIP_DELETED=Gespeicherte ZIP gelöscht.

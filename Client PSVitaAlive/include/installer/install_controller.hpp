@@ -90,6 +90,9 @@ public:
     bool hasSavedZip(const std::string& appId, const std::string& titleId) const;
     /** Validated recovery ZIPs belonging to one app, sorted by display name. */
     std::vector<SavedZipArchive> savedZips(const std::string& appId, const std::string& titleId) const;
+    /** Delete only an owned, validated manual recovery ZIP and its metadata. */
+    bool deleteSavedZip(const std::string& appId, const std::string& titleId,
+                        const std::string& archivePath);
     /** Re-extract a selected preserved ZIP via the standard background installer worker. */
     bool requestSavedZipExtraction(const std::string& appId, const std::string& titleId,
                                    const std::string& archivePath);

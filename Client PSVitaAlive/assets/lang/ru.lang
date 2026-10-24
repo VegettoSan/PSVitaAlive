@@ -613,3 +613,20 @@ ALL_REPORT_NAV=Вверх/вниз: список   X: подтвердить
 ALL_REPORT_START_FAILED=Не удалось начать установку
 ALL_REPORT_USER_SKIPPED=Пропущено пользователем
 ALL_REPORT_FILE_REMOVED=ZIP удалён без распаковки
+
+# Install All 10s ZIP auto-save + final manual ZIP choices
+ZIP_RECOVERY_AUTO_KEEP=Автоматически сохранить ZIP через
+ZIP_RECOVERY_AUTO_KEEP_FAILED=Не удалось сохранить автоматически. Выберите действие.
+ALL_REPORT_AUTO_KEPT=ZIP сохранён автоматически
+ALL_REPORT_ZIP_CHOOSE=Подтвердите действие с ZIP:
+ALL_REPORT_ZIP_SELECT=Выберите сохранённый ZIP выше для проверки.
+ALL_REPORT_KEEP_ZIP=Сохранить ZIP
+ALL_REPORT_DELETE_ZIP=Удалить ZIP
+ALL_REPORT_ZIP_NAV=Вверх/вниз: ZIP   Треугольник: сохранить   Квадрат: удалить   X: завершить
+ALL_REPORT_DELETE_CONFIRM_TITLE=Удалить сохранённый ZIP?
+ALL_REPORT_DELETE_CONFIRM_WARNING=ZIP будет удалён безвозвратно. Это действие нельзя отменить.
+ALL_REPORT_DELETE_CONFIRM_YES=Удалить ZIP
+ALL_REPORT_DELETE_CONFIRM_NO=Отмена
+ALL_REPORT_KEEP_CONFIRMED=ZIP сохранён. Здесь его всё ещё можно удалить.
+ALL_REPORT_DELETE_FAILED=Не удалось безопасно удалить ZIP.
+ALL_REPORT_ZIP_DELETED=Сохранённый ZIP удалён.
