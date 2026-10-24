@@ -2844,7 +2844,7 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     if (essentialInstallRunning_ && outcome != 1) {
         essentialPluginsTryAdvanceFromProgress(outcome);
     }
-remove old modal display    updateMediaTextureSuspension();
+    updateMediaTextureSuspension();
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
