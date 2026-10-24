@@ -16,6 +16,8 @@
 
 Limitation: only kubridge has an outdated-size rule. Other plugins never “update” once the file exists.
 
+**Detection bug resolved (2026-10-23):** catalog Plugin links now require an active exact `config.txt` entry when a taiHEN section is declared; an orphan `.skprx` does not count as installed. This is separate from the **planned** remote version/hash update feature. See [technical record and Vita hardware validation](PLUGIN_DETECTION_CONFIG_20261023.md).
+
 ## Problem to solve
 
 When a recommended plugin binary changes (e.g. new kubridge, new fd_fix):
@@ -121,3 +123,4 @@ Preferred order:
 | Date | Note |
 |------|------|
 | 2026-09-09 | Analysis written; **deferred** — no client code for remote manifest yet. Kubridge TheFlow→bythos size check already shipped separately. |
+| 2026-10-23 | Catalog-plugin orphan-file detection fixed in `bd131a9`; Build PS Vita Client passed and the user confirmed the original AutoPlugin case on hardware. Remote manifest remains deferred. |

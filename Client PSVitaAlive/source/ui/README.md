@@ -169,6 +169,8 @@ Update-state semantics, receipt compatibility and Vita `APP_VER` normalization a
 - Post-install **Restart required** modal blocks background touch until soft reset
 - Essential plugins modal: large type, pulsing **Install plugins** border
 
+Catalog plugin detection now requires a **nonempty file + its active exact `config.txt` line** when a section is declared; `section: none` remains file-only. Badges use a cached per-detail snapshot rather than filesystem calls per frame. The AutoPlugin orphan-file fix was **validated on real PS Vita**; details and regression checklist: [taiHEN plugin detection correction](../../../docs/PLUGIN_DETECTION_CONFIG_20261023.md).
+
 ## Settings INFO
 
 INFO panel documents each focused option (install method, PSP target/media, language, font, theme, plugins, images, updates). SYSTEM block lists plugin detection status with larger type.

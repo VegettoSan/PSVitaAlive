@@ -235,7 +235,7 @@ Handled inside `InstallController` worker (not VPK promote, not BGDL):
 2. Ensure `extract_path` exists (`StorageManager::createDirectories`).
 3. Copy binary to `extract_path` + basename (from `line` or URL).
 4. `TaiConfigEditor::appendLineToSection(section, line)`:
-   - Resolves active config (`ux0:tai/config.txt` preferred, else `ur0`).
+   - Resolves config from `ur0:tai/config.txt` (or `ur0:/tai/config.txt`); `ux0:tai/config.txt` is intentionally ignored by the current implementation.
    - `section == none` / empty → skip config (success).
    - Exact line already present → no-op success.
    - Section missing → create header at EOF, then append line.
@@ -248,6 +248,8 @@ Files:
 | `tai_config_editor.cpp` | Append-only config.txt editor; `configContainsLine` for detection |
 | `plugin_detector.cpp` | Startup scan for NoNpDrm / NoPspEmuDrm |
 | `install_controller.cpp` | Plugin branch + sequential jobs from UI |
+
+For the `Installed` UI rules (binario + active config line, except file-only links), deferred badge snapshot, limits and real-device validation, see [plugin detection fix (2026-10-23)](../../../docs/PLUGIN_DETECTION_CONFIG_20261023.md).
 
 ## PSP/PS1 Adrenaline (`psp_pkg_unpack`)
 
