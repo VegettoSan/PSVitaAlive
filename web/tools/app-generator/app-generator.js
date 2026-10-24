@@ -53,6 +53,17 @@
         "Patch"
     ]);
 
+    // Only links that point to downloadable files may carry a per-link size.
+    // Mirror is an alternative download; informational URLs do not have a size.
+    const FILE_SIZE_TYPES = new Set([
+        "Download", "Mirror", "PKG", "DLC", "Update",
+        "Patch", "Mod", "Mod Pack", "Data Files", "Game Files", "Plugin"
+    ]);
+
+    function linkSupportsSize(type) {
+        return FILE_SIZE_TYPES.has(String(type || ""));
+    }
+
     const PLUGIN_SECTIONS = [
         { id: "*main", label: "*main" },
         { id: "*KERNEL", label: "*KERNEL" },
@@ -200,6 +211,12 @@
         wrap.hidden = !show;
         wrap.style.display = show ? "" : "none";
         row.dataset.lastLinkType = type;
+        const sizeWrap = row.querySelector(".link-size-field");
+        if (sizeWrap) {
+            const showSize = linkSupportsSize(type);
+            sizeWrap.hidden = !showSize;
+            sizeWrap.style.display = showSize ? "" : "none";
+        }
         row.querySelectorAll(".link-extract-label, .link-extract-hint").forEach(el => { el.hidden = isPlugin; });
 
         const pluginFields = row.querySelector(".link-plugin-fields");
@@ -253,11 +270,14 @@
 
     function populateAuthors() {
         const select = $("authors");
+        const previousSelection = [...select.selectedOptions].map(option => option.value);
         select.innerHTML = state.authors
             .slice()
             .sort((a, b) => String(a.name || a.id).localeCompare(String(b.name || b.id)))
             .map(author => `<option value="${escapeHtml(author.id)}">${escapeHtml(author.name || author.id)} — ${escapeHtml(author.id)}</option>`)
             .join("");
+        if (typeof window.restoreLocalAuthorOptions === "function") window.restoreLocalAuthorOptions();
+        [...select.options].forEach(option => { option.selected = previousSelection.includes(option.value); });
         if (typeof window.refreshAuthorPicker === "function") window.refreshAuthorPicker();
     }
 
@@ -343,6 +363,7 @@
             extractPath = (type === "Plugin") ? "ur0:tai/" : "ux0:data/";
         }
         const showExtract = linkNeedsExtractPath(type);
+        const showSize = linkSupportsSize(type);
         const isPlugin = type === "Plugin";
         let pluginSection = value.section || "*KERNEL";
         let pluginSectionCustom = "";
@@ -360,7 +381,7 @@
             <select class="link-type" aria-label="Link type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
             <input class="link-name" type="text" aria-label="Link name" placeholder="Name" value="${escapeHtml(name)}">
             <input class="link-url url-field" type="url" aria-label="Link URL" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
-            <div class="size-unit-field link-size-field">
+            <div class="size-unit-field link-size-field" ${showSize ? "" : "hidden"} style="${showSize ? "" : "display:none"}">
                 <input class="link-size-value" type="number" aria-label="Link size" min="0" step="any" placeholder="Size" value="${escapeHtml(sizeParts.value)}">
                 <select class="link-size-unit" aria-label="Size unit">${sizeUnitOptionsHtml(sizeParts.unit)}</select>
             </div>
@@ -493,7 +514,7 @@
                 sizeValEl ? sizeValEl.value : "",
                 sizeUnitEl ? sizeUnitEl.value : "MB"
             );
-            if (sizeBytes !== null && sizeBytes > 0) result.size = sizeBytes;
+            if (linkSupportsSize(result.type) && sizeBytes !== null && sizeBytes > 0) result.size = sizeBytes;
             if (linkNeedsExtractPath(result.type) || result.type === "Plugin") {
                 const pathEl = row.querySelector(".link-extract-path");
                 const extractPath = pathEl ? pathEl.value.trim() : "";
@@ -641,7 +662,7 @@
             }
             const sizeInput = rows[i]?.querySelector(".link-size-value");
             const unitInput = rows[i]?.querySelector(".link-size-unit");
-            if (sizeInput && sizeInput.value.trim()) {
+            if (linkSupportsSize(link.type) && sizeInput && sizeInput.value.trim()) {
                 const bytes = parseSizeToBytes(sizeInput.value, unitInput?.value);
                 if (!Number.isSafeInteger(bytes) || bytes <= 0) {
                     add("Link " + (i + 1) + ": size must be greater than zero (choose the correct unit).", prefix + "size");
@@ -763,8 +784,15 @@
     }
 
     function resetForm() {
+        // Imported author JSONs remain available, selected and reusable during
+        // this browser session, even when starting the next application.
+        const importedSelection = typeof window.getSelectedImportedAuthorIds === "function"
+            ? window.getSelectedImportedAuthorIds() : [];
         if (typeof window.clearCreatedAuthors === "function") window.clearCreatedAuthors();
         $("app-form").reset();
+        if (typeof window.restoreImportedAuthorSelection === "function") {
+            window.restoreImportedAuthorSelection(importedSelection);
+        }
         state.lastDownloadedSnapshot = null;
         const downloadStatus = $("download-status");
         if (downloadStatus) { downloadStatus.hidden = true; downloadStatus.textContent = ""; }
