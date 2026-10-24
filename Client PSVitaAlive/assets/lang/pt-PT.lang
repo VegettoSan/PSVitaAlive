@@ -571,3 +571,8 @@ DOWNLOAD_VERIFYING_HINT=Juntar ficheiros grandes pode demorar. Aguarda.
 CATALOG_SYNC_DOWNLOADING=A transferir catálogo...
 CATALOG_SYNC_APPLYING=A aplicar catálogo...
 CATALOG_SYNC_UPDATED=Catálogo atualizado.
+
+# Plugin-link classification (informational only)
+PLUGIN_REQUIREMENT_REQUIRED=Obrigatório
+PLUGIN_REQUIREMENT_OPTIONAL=Opcional
+PLUGIN_REQUIREMENT_UNSPECIFIED=Não especificado
