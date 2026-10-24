@@ -5578,6 +5578,11 @@ if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);st
     if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
+        // Finish Install All (including the reboot prompt) before leaving the client.
+        if (installAllPhase_ == InstallAllPhase::Running || installAllRebootPending_) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::LockedFinishJob), 2800);
+            return;
+        }
         if(installProgressActive_ && installOutcome_==0){
             showToast(::psvitaalive::L(::psvitaalive::TextId::LockedCannotExit), 2800);
             return;
