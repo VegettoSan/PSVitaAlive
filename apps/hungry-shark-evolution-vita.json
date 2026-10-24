@@ -27,6 +27,15 @@
       "recommended": true
     },
     {
+      "type": "Plugin",
+      "name": "CapUnlocker 1.4 (Recommended)",
+      "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+      "size": 5222,
+      "extract_path": "ur0:tai/",
+      "section": "*KERNEL",
+      "line": "ur0:tai/CapUnlocker.skprx"
+    },
+    {
       "type": "Repository",
       "name": "Github",
       "url": "https://github.com/VegettoSan/Hungry-Shark-Evolution-Ps-Vita"
