@@ -1044,3 +1044,9 @@ input.id-locked {
 .link-extract-wrap .link-extract-hint[hidden] {
     display: none;
 }
+
+/* Informational links never show a size input. Hidden values are not exported. */
+.repeat-item.link-item .link-size-field[hidden],
+.repeat-item.link-item .link-size-field[style*="display: none"] {
+    display: none !important;
+}
