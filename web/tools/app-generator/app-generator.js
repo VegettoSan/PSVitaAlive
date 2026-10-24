@@ -200,6 +200,7 @@
         wrap.hidden = !show;
         wrap.style.display = show ? "" : "none";
         row.dataset.lastLinkType = type;
+        row.querySelectorAll(".link-extract-label, .link-extract-hint").forEach(el => { el.hidden = isPlugin; });
 
         const pluginFields = row.querySelector(".link-plugin-fields");
         if (pluginFields) pluginFields.style.display = isPlugin ? "" : "none";
@@ -321,7 +322,7 @@
         if (list.children.length >= 5) return;
         const row = document.createElement("div");
         row.className = "repeat-item screenshot-item";
-        row.innerHTML = `<input class="screenshot-url" type="url" placeholder="https://example.org/screenshot.png" value="${escapeHtml(value)}"><button type="button" class="remove-button">Remove</button>`;
+        row.innerHTML = `<input class="screenshot-url" type="url" aria-label="Screenshot URL" placeholder="https://example.org/screenshot.png" value="${escapeHtml(value)}"><button type="button" class="remove-button">Remove</button>`;
         row.querySelector(".remove-button").addEventListener("click", () => { row.remove(); updatePreview(); });
         row.querySelector("input").addEventListener("input", updatePreview);
         list.appendChild(row);
@@ -356,15 +357,17 @@
         const recommended = value.recommended === true || (isFirst && value.recommended === undefined);
         row.innerHTML = `
             <span class="drag-handle" title="Drag to reorder" aria-label="Drag to reorder">⋮⋮</span>
-            <select class="link-type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
-            <input class="link-name" type="text" placeholder="Name" value="${escapeHtml(name)}">
-            <input class="link-url url-field" type="url" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
+            <select class="link-type" aria-label="Link type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
+            <input class="link-name" type="text" aria-label="Link name" placeholder="Name" value="${escapeHtml(name)}">
+            <input class="link-url url-field" type="url" aria-label="Link URL" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
             <div class="size-unit-field link-size-field">
-                <input class="link-size-value" type="number" min="0" step="any" placeholder="Size" value="${escapeHtml(sizeParts.value)}">
+                <input class="link-size-value" type="number" aria-label="Link size" min="0" step="any" placeholder="Size" value="${escapeHtml(sizeParts.value)}">
                 <select class="link-size-unit" aria-label="Size unit">${sizeUnitOptionsHtml(sizeParts.unit)}</select>
             </div>
             <div class="link-extract-wrap" ${showExtract ? "" : "hidden"} style="${showExtract ? "" : "display:none"}">
+                <span class="link-extract-label">ZIP extraction destination (PS Vita)</span>
                 <input class="link-extract-path" type="text" aria-label="Destination path on PS Vita" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
+                <small class="link-extract-hint">Used only for Data Files, Game Files, Mod, Mod Pack and Patch. Example: ux0:data/</small>
             </div>
             <div class="link-plugin-fields" style="${isPlugin ? "" : "display:none;"}">
                 <div class="plugin-field">
@@ -652,8 +655,9 @@
         if (app.screenshots && (app.screenshots.length < 1 || app.screenshots.length > 5)) {
             add("Screenshots: provide between 1 and 5 images.", "screenshots-list");
         }
-        (app.screenshots || []).forEach((url, i) => {
-            if (!validUrl(url)) add("Screenshot " + (i + 1) + ": enter a valid URL.", "screenshot:" + i);
+        [...document.querySelectorAll(".screenshot-url")].forEach((input, i) => {
+            const url = input.value.trim();
+            if (url && !validUrl(url)) add("Screenshot " + (i + 1) + ": enter a valid URL.", "screenshot:" + i);
         });
         ["source_url", "release_page", "data_url"].forEach(key => {
             if (app[key] && !validUrl(app[key])) add(key + ": enter a valid http:// or https:// URL.", key);
