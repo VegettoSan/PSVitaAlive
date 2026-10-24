@@ -13,8 +13,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.3.0",
-  "version_date": "2026-10-16",
+  "version": "1.4.0",
+  "version_date": "2026-10-22",
   "requirements": "- A PS Vita or PS TV with HENkaku / Ensō and VitaShell.\n- ur0:data/libshacccg.suprx, the Vita's shader compiler. Extract it once with ShaRKF00D.\n- About 3 GB free on ux0: for the game files.",
   "size": 2306867,
   "status": "Verified",
@@ -28,9 +28,9 @@
     },
     {
       "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20for%20PSVA.zip",
-      "size": 3006477107,
+      "name": "Game Files Fix v2",
+      "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip",
+      "size": 1932735283,
       "extract_path": "ux0:data/"
     },
     {
