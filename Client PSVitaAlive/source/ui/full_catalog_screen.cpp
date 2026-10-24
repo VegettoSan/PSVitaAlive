@@ -7127,6 +7127,16 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const int badgeW = pluginDone ? 72 : (l.recommended ? 96 : 0);
         { const int titleMaxW = std::max(40, w - 20 - badgeW - 8); drawMarqueeText(&font_, x + 10, ry + 17, titleMaxW, mc, 0.80f, title, f); }
         std::string meta = linkSectionMetaLabel(row.section);
+        if (isPluginTypeLink(l)) {
+            using Requirement = CatalogLink::PluginRequirement;
+            const char* label = l.pluginRequirement == Requirement::Required
+                ? ::psvitaalive::L("PLUGIN_REQUIREMENT_REQUIRED")
+                : (l.pluginRequirement == Requirement::Optional
+                    ? ::psvitaalive::L("PLUGIN_REQUIREMENT_OPTIONAL")
+                    : ::psvitaalive::L("PLUGIN_REQUIREMENT_UNSPECIFIED"));
+            // Put requirement first so it remains visible on Vita's narrow link rows.
+            meta = std::string(label) + "  •  " + meta;
+        }
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
         if (pluginDone)
             meta += std::string("  •  ") + (f ? ::psvitaalive::L(::psvitaalive::TextId::MetaAlreadyInstalled)
