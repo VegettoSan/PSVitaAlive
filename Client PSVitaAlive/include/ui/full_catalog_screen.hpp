@@ -217,6 +217,7 @@ private:
     bool pluginRebootModal_ = false;
     // Confirmation for a single catalog Plugin link (independent of Install All).
     bool pluginChoiceModal_ = false;
+    bool pluginChoiceAwaitRelease_ = false; // prevent held X/O from activating underlying UI
     int pluginChoiceItemIndex_ = -1;
     int pluginChoiceLinkIndex_ = -1;
     int pluginChoiceFocus_ = 0; // 0 Install, 1 Skip

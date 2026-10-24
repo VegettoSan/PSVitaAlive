@@ -5624,6 +5624,14 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
+    // Modal X/O presses have their own edge detector. Consume a held confirm/
+    // cancel button until release to avoid immediately re-opening the link.
+    if (pluginChoiceAwaitRelease_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        if (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
+        pluginChoiceAwaitRelease_ = false;
+    }
 if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;if(webQrVisible_){
     if(pressed&(SCE_CTRL_CIRCLE|SCE_CTRL_CROSS))closeWebQrModal();
     else if(nav&SCE_CTRL_UP)scrollWebQrHelp(-49);
@@ -7758,6 +7766,7 @@ void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
     const int itemIndex = pluginChoiceItemIndex_;
     const int linkIndex = pluginChoiceLinkIndex_;
     pluginChoiceModal_ = false;
+    pluginChoiceAwaitRelease_ = true;
     pluginChoiceItemIndex_ = -1;
     pluginChoiceLinkIndex_ = -1;
     if (!install) {
