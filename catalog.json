@@ -49,7 +49,8 @@
         "size": 5222,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/CapUnlocker.skprx"
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": false
       },
       {
         "type": "Repository",
@@ -101,7 +102,8 @@
         "size": 5222,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/CapUnlocker.skprx"
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": true
       },
       {
         "type": "Repository",
@@ -207,7 +209,8 @@
         "size": 5222,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/CapUnlocker.skprx"
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": true
       },
       {
         "type": "Repository",
@@ -858,7 +861,8 @@
         "size": 5222,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/CapUnlocker.skprx"
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": true
       },
       {
         "type": "Repository",
@@ -1558,7 +1562,8 @@
         "size": 19149,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:/tai/ttbr_remap.skprx"
+        "line": "ur0:/tai/ttbr_remap.skprx",
+        "required": true
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
@@ -2913,7 +2918,8 @@
         "size": 24269,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/azaharnative.skprx"
+        "line": "ur0:tai/azaharnative.skprx",
+        "required": true
       },
       {
         "type": "Plugin",
@@ -2922,7 +2928,8 @@
         "size": 5222,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/CapUnlocker.skprx"
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": true
       },
       {
         "type": "Repository",
@@ -18155,7 +18162,8 @@
         "size": 3379,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/ioplus.skprx"
+        "line": "ur0:tai/ioplus.skprx",
+        "required": true
       },
       {
         "type": "Official Website",
@@ -19228,7 +19236,8 @@
         "size": 3379,
         "extract_path": "ur0:tai/",
         "section": "*KERNEL",
-        "line": "ur0:tai/ioplus.skprx"
+        "line": "ur0:tai/ioplus.skprx",
+        "required": true
       },
       {
         "type": "Official Website",
