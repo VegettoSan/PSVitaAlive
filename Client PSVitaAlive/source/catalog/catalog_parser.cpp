@@ -263,7 +263,7 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                 detail.extractPath = "ur0:tai/";
             }
             // Presence matters: false means Optional; missing means Unspecified.
-            if (isPlugin && link["required"]) {
+            if (isPlugin && link["required"].getType() == sce::Json::ValueType::BoolValue) {
                 detail.pluginRequirement = link["required"].getBoolean()
                     ? ui::CatalogLink::PluginRequirement::Required
                     : ui::CatalogLink::PluginRequirement::Optional;
