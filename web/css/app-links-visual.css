@@ -331,3 +331,28 @@
 @media (max-width: 380px) {
     .app-link-card-detail { grid-template-columns: 1fr; gap: 1px; }
 }
+
+/* Plugin requirement is informational and independent of Recommended. */
+.app-link-card-requirement {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: #ddd;
+    background: var(--surface);
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.app-link-card-requirement.required {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+.app-link-card-requirement.optional,
+.app-link-card-requirement.unspecified {
+    color: #ccc;
+    border-color: #666;
+}
