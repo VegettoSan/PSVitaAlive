@@ -810,3 +810,237 @@ input.id-locked {
 .field-help-box li {
     margin: 4px 0;
 }
+
+
+/* Generator workflow: fast section navigation and actionable validation. */
+.form-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: rgba(12, 12, 14, 0.92);
+}
+.form-nav-label {
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+    color: var(--text-secondary);
+    margin: 0 8px;
+}
+.form-navigation a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 7px 11px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: #ddd;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 650;
+    transition: border-color .15s ease, background .15s ease;
+}
+.form-navigation a:hover,
+.form-navigation a:focus-visible {
+    border-color: var(--accent);
+    color: #fff;
+    background: rgba(59, 255, 0, .07);
+}
+.form-navigation .form-nav-check {
+    margin-left: auto;
+    border-color: rgba(59, 255, 0, .4);
+    color: var(--accent);
+}
+#app-form {
+    min-width: 0;
+}
+#app-form .form-card {
+    scroll-margin-top: 24px;
+    transition: border-color .15s ease;
+}
+#app-form .form-card:focus-within,
+#app-form .repeat-item:focus-within {
+    border-color: rgba(59, 255, 0, .65);
+}
+#app-form .form-card.has-errors:not(:focus-within) {
+    border-color: rgba(255, 140, 140, .38);
+}
+#app-form .form-card .card-heading {
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    margin-bottom: 19px;
+    padding-bottom: 12px;
+}
+#app-form .card-heading p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: .9rem;
+    line-height: 1.55;
+}
+#app-form .field small,
+#app-form .subcategory-help {
+    display: block;
+    color: var(--text-secondary);
+    font-size: .83rem;
+    line-height: 1.5;
+    margin-top: 6px;
+}
+#app-form .is-invalid-field:not(.repeat-item):not(.subcategory-picker):not(.author-picker-box) {
+    border-color: #ff9a9a !important;
+    box-shadow: 0 0 0 1px rgba(255, 154, 154, .23);
+}
+#app-form .is-invalid-field:is(.subcategory-picker, .repeat-item, .author-picker-box, .repeat-list) {
+    outline: 1px solid #ff9a9a;
+    outline-offset: 3px;
+    border-radius: 8px;
+}
+.final-check-heading {
+    padding: 6px 2px 0;
+}
+.final-check-heading h2 {
+    margin: 8px 0;
+    color: #fff;
+    font-size: 1.35rem;
+}
+.final-check-heading p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.55;
+    font-size: .91rem;
+}
+#validation-summary {
+    scroll-margin-top: 22px;
+    margin-top: 0;
+    padding: 18px 20px;
+}
+.validation-summary.valid {
+    border-color: rgba(59, 255, 0, .6);
+    background: rgba(59, 255, 0, .045);
+}
+.validation-summary.invalid {
+    border-color: rgba(255, 154, 154, .5);
+    background: rgba(255, 105, 105, .035);
+}
+.validation-summary > strong {
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+}
+.validation-summary > p {
+    margin: 7px 0 0;
+    color: var(--text-secondary);
+    font-size: .88rem;
+}
+.validation-summary.invalid ul {
+    display: grid;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin-top: 14px;
+}
+.validation-summary.invalid li {
+    margin: 0;
+}
+.validation-jump {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-height: 42px;
+    padding: 11px 14px 11px 35px;
+    text-align: left;
+    border: 1px solid rgba(255, 154, 154, .26);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, .025);
+    color: #ffb4b4;
+    font: inherit;
+    line-height: 1.4;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+}
+.validation-jump::before {
+    content: "↗";
+    position: absolute;
+    left: 13px;
+    font-weight: 800;
+}
+.validation-jump:hover,
+.validation-jump:focus-visible {
+    border-color: var(--accent);
+    background: rgba(59, 255, 0, .055);
+    color: #fff;
+    outline-offset: 2px;
+}
+.download-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 0;
+}
+.download-row .button {
+    min-height: 46px;
+}
+.download-status {
+    border: 1px solid rgba(59, 255, 0, .55);
+    border-radius: 10px;
+    background: rgba(59, 255, 0, .045);
+    color: #ddffd5;
+    font-size: .9rem;
+    line-height: 1.5;
+    padding: 13px 16px;
+}
+.download-status[hidden] {
+    display: none;
+}
+@media (max-width: 600px) {
+    .form-navigation {
+        gap: 5px;
+        padding: 10px;
+    }
+    .form-nav-label {
+        width: 100%;
+        margin: 0 3px 3px;
+    }
+    .form-navigation a {
+        min-height: 40px;
+        padding: 8px 10px;
+    }
+    .form-navigation .form-nav-check {
+        margin-left: 0;
+    }
+    .download-row .button {
+        width: 100%;
+    }
+    .validation-summary.invalid ul {
+        gap: 10px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    #app-form .form-card,
+    .form-navigation a {
+        transition: none;
+    }
+}
+
+/* Destination hints remain hidden for Plugin so its existing controls stay intact. */
+.link-extract-wrap .link-extract-label {
+    display: block;
+    color: #ddd;
+    font-size: .86rem;
+    font-weight: 650;
+    margin-bottom: 7px;
+}
+.link-extract-wrap .link-extract-hint {
+    display: block;
+    margin-top: 7px;
+    font-size: .82rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+.link-extract-wrap .link-extract-label[hidden],
+.link-extract-wrap .link-extract-hint[hidden] {
+    display: none;
+}

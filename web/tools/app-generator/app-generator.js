@@ -50,8 +50,7 @@
         "Game Files",
         "Mod",
         "Mod Pack",
-        "Patch",
-        "Plugin"
+        "Patch"
     ]);
 
     const PLUGIN_SECTIONS = [
@@ -173,27 +172,38 @@
         const typeEl = row.querySelector(".link-type");
         const wrap = row.querySelector(".link-extract-wrap");
         if (!typeEl || !wrap) return;
-        const show = linkNeedsExtractPath(typeEl.value);
-        wrap.hidden = !show;
-        wrap.style.display = show ? "" : "none";
-        const isPlugin = typeEl.value === "Plugin";
-        if (!show) {
-            const input = wrap.querySelector(".link-extract-path");
-            if (input) input.dataset.savedValue = input.value;
-        } else {
-            const input = wrap.querySelector(".link-extract-path");
-            if (input && !input.value && input.dataset.savedValue) {
-                input.value = input.dataset.savedValue;
-            } else if (input && !input.value) {
-                input.value = isPlugin ? "ur0:tai/" : "ux0:data/";
-            } else if (input && isPlugin && (input.value === "ux0:data/" || !input.value)) {
-                input.value = "ur0:tai/";
+
+        const type = typeEl.value;
+        const isPlugin = type === "Plugin";
+        const show = linkNeedsExtractPath(type) || isPlugin;
+        const input = wrap.querySelector(".link-extract-path");
+        const previousType = row.dataset.lastLinkType;
+
+        // Preserve ZIP and plugin destinations separately when users change link types.
+        // A hidden path must never leak into an unrelated link's generated JSON.
+        if (input && previousType && previousType !== type) {
+            if (previousType === "Plugin") {
+                row.dataset.pluginExtractPath = input.value;
+            } else if (linkNeedsExtractPath(previousType)) {
+                row.dataset.zipExtractPath = input.value;
+            }
+            if (show) {
+                input.value = isPlugin
+                    ? (row.dataset.pluginExtractPath || "ur0:tai/")
+                    : (row.dataset.zipExtractPath || "ux0:data/");
             }
         }
-        const pluginFields = row.querySelector(".link-plugin-fields");
-        if (pluginFields) {
-            pluginFields.style.display = isPlugin ? "" : "none";
+        if (input) {
+            if (show && !input.value) input.value = isPlugin ? "ur0:tai/" : "ux0:data/";
+            input.title = isPlugin ? "Plugin file destination" : "ZIP extraction destination";
         }
+        wrap.hidden = !show;
+        wrap.style.display = show ? "" : "none";
+        row.dataset.lastLinkType = type;
+        row.querySelectorAll(".link-extract-label, .link-extract-hint").forEach(el => { el.hidden = isPlugin; });
+
+        const pluginFields = row.querySelector(".link-plugin-fields");
+        if (pluginFields) pluginFields.style.display = isPlugin ? "" : "none";
         const secSel = row.querySelector(".link-plugin-section");
         const secCustom = row.querySelector(".link-plugin-section-custom");
         if (secSel && secCustom) {
@@ -312,7 +322,7 @@
         if (list.children.length >= 5) return;
         const row = document.createElement("div");
         row.className = "repeat-item screenshot-item";
-        row.innerHTML = `<input class="screenshot-url" type="url" placeholder="https://example.org/screenshot.png" value="${escapeHtml(value)}"><button type="button" class="remove-button">Remove</button>`;
+        row.innerHTML = `<input class="screenshot-url" type="url" aria-label="Screenshot URL" placeholder="https://example.org/screenshot.png" value="${escapeHtml(value)}"><button type="button" class="remove-button">Remove</button>`;
         row.querySelector(".remove-button").addEventListener("click", () => { row.remove(); updatePreview(); });
         row.querySelector("input").addEventListener("input", updatePreview);
         list.appendChild(row);
@@ -347,15 +357,17 @@
         const recommended = value.recommended === true || (isFirst && value.recommended === undefined);
         row.innerHTML = `
             <span class="drag-handle" title="Drag to reorder" aria-label="Drag to reorder">⋮⋮</span>
-            <select class="link-type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
-            <input class="link-name" type="text" placeholder="Name" value="${escapeHtml(name)}">
-            <input class="link-url url-field" type="url" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
+            <select class="link-type" aria-label="Link type">${DOWNLOAD_TYPES.map(item => `<option value="${escapeHtml(item)}" ${item === type ? "selected" : ""}>${escapeHtml(item)}</option>`).join("")}</select>
+            <input class="link-name" type="text" aria-label="Link name" placeholder="Name" value="${escapeHtml(name)}">
+            <input class="link-url url-field" type="url" aria-label="Link URL" placeholder="https://example.org/download.vpk" value="${escapeHtml(url)}">
             <div class="size-unit-field link-size-field">
-                <input class="link-size-value" type="number" min="0" step="any" placeholder="Size" value="${escapeHtml(sizeParts.value)}">
+                <input class="link-size-value" type="number" aria-label="Link size" min="0" step="any" placeholder="Size" value="${escapeHtml(sizeParts.value)}">
                 <select class="link-size-unit" aria-label="Size unit">${sizeUnitOptionsHtml(sizeParts.unit)}</select>
             </div>
             <div class="link-extract-wrap" ${showExtract ? "" : "hidden"} style="${showExtract ? "" : "display:none"}">
-                <input class="link-extract-path" type="text" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
+                <span class="link-extract-label">ZIP extraction destination (PS Vita)</span>
+                <input class="link-extract-path" type="text" aria-label="Destination path on PS Vita" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
+                <small class="link-extract-hint">Used only for Data Files, Game Files, Mod, Mod Pack and Patch. Example: ux0:data/</small>
             </div>
             <div class="link-plugin-fields" style="${isPlugin ? "" : "display:none;"}">
                 <div class="plugin-field">
@@ -482,7 +494,7 @@
                 sizeUnitEl ? sizeUnitEl.value : "MB"
             );
             if (sizeBytes !== null && sizeBytes > 0) result.size = sizeBytes;
-            if (linkNeedsExtractPath(result.type)) {
+            if (linkNeedsExtractPath(result.type) || result.type === "Plugin") {
                 const pathEl = row.querySelector(".link-extract-path");
                 const extractPath = pathEl ? pathEl.value.trim() : "";
                 if (extractPath) result.extract_path = extractPath;
@@ -570,52 +582,123 @@
 
     function validateApp(app) {
         const errors = [];
-        const requiredStrings = ["id", "title_id", "name", "description", "long_description", "version", "version_date", "requirements", "status"];
-        requiredStrings.forEach(key => {
-            if (!String(app[key] || "").trim()) errors.push(`${key} is required.`);
-        });
+        const add = (message, target) => errors.push({ message, target });
+        const labels = {
+            id: "Internal ID", title_id: "Title ID", name: "Name",
+            description: "Short description", long_description: "Long description",
+            version: "Version", version_date: "Version date",
+            requirements: "Requirements", status: "Status"
+        };
 
-        if (app.id && !/^[a-z0-9_-]+$/.test(app.id)) errors.push("id may only contain lowercase letters, numbers, hyphens and underscores.");
-        if (app.id && state.mode === "create" && state.catalog.some(item => item.id === app.id)) errors.push(`The ID '${app.id}' already exists in catalog.json. Switch to Edit mode to update it.`);
-        if (app.title_id && state.mode === "create" && state.catalog.some(item => item.title_id === app.title_id)) errors.push(`The Title ID '${app.title_id}' already exists in catalog.json. Switch to Edit mode to update it.`);
-        if (!Array.isArray(app.author_ids) || !app.author_ids.length) errors.push("Select at least one author.");
-        if (state.ready) {
-            const isLocalAuthor = (id) => typeof window.isCreatedAuthor === "function" && window.isCreatedAuthor(id);
-            const missingAuthors = app.author_ids.filter(id => !state.authors.some(author => author.id === id) && !isLocalAuthor(id));
-            if (missingAuthors.length) errors.push(`Author profiles missing from authors/: ${missingAuthors.join(", ")}.`);
-            if (!app.category_id || !state.categories.some(category => category.id === app.category_id)) errors.push("Select an official category.");
-            const category = state.categories.find(item => item.id === app.category_id);
-            const allowed = new Set((category?.subcategories || []).map(item => item.id));
-            if (!app.subcategory_ids.length) errors.push("Select at least one subcategory.");
-            app.subcategory_ids.forEach(id => { if (!allowed.has(id)) errors.push(`Subcategory '${id}' does not belong to the selected category.`); });
-        } else if (!app.category_id) {
-            errors.push("Select a category.");
+        Object.keys(labels).forEach(key => {
+            if (!String(app[key] || "").trim()) {
+                add(labels[key] + " is required.", key === "id" && state.mode === "create" ? "name" : key);
+            }
+        });
+        if (app.id && !/^[a-z0-9_-]+$/.test(app.id)) add("Internal ID may only use lowercase letters, numbers, hyphens and underscores.", "id");
+        if (app.id && state.mode === "create" && state.catalog.some(item => item.id === app.id)) {
+            add("Internal ID '" + app.id + "' already exists. Use Edit mode for an existing entry.", "name");
+        }
+        if (app.title_id && state.mode === "create" && state.catalog.some(item => item.title_id === app.title_id)) {
+            add("Title ID '" + app.title_id + "' already exists in the catalog.", "title_id");
         }
 
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(app.version_date)) errors.push("version_date must use YYYY-MM-DD.");
-        if (!Number.isInteger(app.size) || app.size <= 0) errors.push("size must be a positive integer in bytes.");
-        if (!["Verified", "Legacy", "Archive"].includes(app.status)) errors.push("status must be Verified, Legacy or Archive.");
-        if (!Array.isArray(app.links) || !app.links.length) errors.push("At least one link is required.");
+        if (!Array.isArray(app.author_ids) || !app.author_ids.length) add("Authors: select at least one author.", "authors");
+        if (state.ready) {
+            const isLocalAuthor = id => typeof window.isCreatedAuthor === "function" && window.isCreatedAuthor(id);
+            const missing = app.author_ids.filter(id => !state.authors.some(a => a.id === id) && !isLocalAuthor(id));
+            if (missing.length) add("Authors: missing profiles for " + missing.join(", ") + ".", "authors");
+            if (!app.category_id || !state.categories.some(c => c.id === app.category_id)) {
+                add("Category: choose an official category.", "category");
+            }
+            const category = state.categories.find(c => c.id === app.category_id);
+            const allowed = new Set((category?.subcategories || []).map(c => c.id));
+            if (!app.subcategory_ids.length) add("Subcategories: select at least one.", "subcategories");
+            app.subcategory_ids.forEach(id => {
+                if (!allowed.has(id)) add("Subcategory '" + id + "' does not belong to this category.", "subcategories");
+            });
+        } else if (!app.category_id) {
+            add("Category: select a category.", "category");
+        }
+
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(app.version_date)) add("Version date must use YYYY-MM-DD.", "version_date");
+        if (!Number.isSafeInteger(app.size) || app.size <= 0) {
+            add("File size is missing or invalid. Enter the VPK size and select B, KB, MB or GB.", "size");
+        }
+        if (!["Verified", "Legacy", "Archive"].includes(app.status)) add("Choose a valid status.", "status");
+
+        const rows = [...document.querySelectorAll(".link-item")];
+        if (!app.links.length) add("Links: add at least one link.", "links-list");
         let recommended = 0;
-        app.links.forEach((link, index) => {
-            if (!link.type) errors.push(`Link ${index + 1}: type is required.`);
-            if (!link.name) errors.push(`Link ${index + 1}: name is required.`);
-            if (!validUrl(link.url)) errors.push(`Link ${index + 1}: URL must use http:// or https://.`);
-            if (Object.prototype.hasOwnProperty.call(link, "required")) {
-                if (link.type !== "Plugin" || typeof link.required !== "boolean") {
-                    errors.push(`Link ${index + 1}: required must be true/false on a Plugin link only.`);
+        app.links.forEach((link, i) => {
+            const prefix = "link:" + i + ":";
+            if (!link.type) add("Link " + (i + 1) + ": select a type.", prefix + "type");
+            if (!link.name) add("Link " + (i + 1) + ": enter a name.", prefix + "name");
+            if (!validUrl(link.url)) add("Link " + (i + 1) + ": enter a valid http:// or https:// URL.", prefix + "url");
+            if (Object.prototype.hasOwnProperty.call(link, "required") &&
+                (link.type !== "Plugin" || typeof link.required !== "boolean")) {
+                add("Link " + (i + 1) + ": the required flag is only allowed on Plugin links.", prefix + "type");
+            }
+            const sizeInput = rows[i]?.querySelector(".link-size-value");
+            const unitInput = rows[i]?.querySelector(".link-size-unit");
+            if (sizeInput && sizeInput.value.trim()) {
+                const bytes = parseSizeToBytes(sizeInput.value, unitInput?.value);
+                if (!Number.isSafeInteger(bytes) || bytes <= 0) {
+                    add("Link " + (i + 1) + ": size must be greater than zero (choose the correct unit).", prefix + "size");
                 }
             }
             if (link.recommended) recommended++;
         });
-        if (recommended > 1) errors.push("At most one link may be recommended.");
+        if (recommended > 1) add("Links: only one link may be Recommended.", "links-list");
 
-        if (app.icon && !validUrl(app.icon)) errors.push("Icon must be an http:// or https:// URL.");
-        if (app.screenshots && (app.screenshots.length < 1 || app.screenshots.length > 5)) errors.push("Screenshots must contain between 1 and 5 images.");
-        (app.screenshots || []).forEach((url, index) => { if (!validUrl(url)) errors.push(`Screenshot ${index + 1}: URL must use http:// or https://.`); });
-        ["source_url", "release_page", "data_url"].forEach(key => { if (app[key] && !validUrl(app[key])) errors.push(`${key} must be an http:// or https:// URL.`); });
-
+        if (app.icon && !validUrl(app.icon)) add("Icon URL must start with http:// or https://.", "icon");
+        if (app.screenshots && (app.screenshots.length < 1 || app.screenshots.length > 5)) {
+            add("Screenshots: provide between 1 and 5 images.", "screenshots-list");
+        }
+        [...document.querySelectorAll(".screenshot-url")].forEach((input, i) => {
+            const url = input.value.trim();
+            if (url && !validUrl(url)) add("Screenshot " + (i + 1) + ": enter a valid URL.", "screenshot:" + i);
+        });
+        ["source_url", "release_page", "data_url"].forEach(key => {
+            if (app[key] && !validUrl(app[key])) add(key + ": enter a valid http:// or https:// URL.", key);
+        });
         return errors;
+    }
+
+    function issueElement(target) {
+        if (target === "authors") return $("author-search") || $("author-picker") || $("authors");
+        if (target === "subcategories") return $("subcategory-picker");
+        const link = /^link:(\d+):(type|name|url|size)$/.exec(target);
+        if (link) {
+            const row = document.querySelectorAll(".link-item")[Number(link[1])];
+            const selectors = {
+                type: ".link-type", name: ".link-name", url: ".link-url", size: ".link-size-value"
+            };
+            return row?.querySelector(selectors[link[2]]) || row || null;
+        }
+        const screenshot = /^screenshot:(\d+)$/.exec(target);
+        if (screenshot) return document.querySelectorAll(".screenshot-url")[Number(screenshot[1])] || $("screenshots-list");
+        return $(target);
+    }
+
+    function navigateToIssue(target) {
+        const element = issueElement(target);
+        if (!element) return;
+        const details = element.closest("details");
+        if (details) details.open = true;
+        const area = element.closest(".repeat-item, .field, .subcategory-block") || element;
+        area.scrollIntoView({ behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+        const control = element.matches("input, select, textarea, button")
+            ? element : element.querySelector("input:not([type=hidden]), button, select, textarea");
+        if (control && !control.hidden && control.getAttribute("aria-hidden") !== "true") {
+            control.focus({ preventScroll: true });
+        }
+    }
+
+    function clearIssueHighlights() {
+        document.querySelectorAll("#app-form .is-invalid-field").forEach(el => el.classList.remove("is-invalid-field"));
+        document.querySelectorAll("#app-form [aria-invalid='true']").forEach(el => el.removeAttribute("aria-invalid"));
+        document.querySelectorAll("#app-form .form-card.has-errors").forEach(el => el.classList.remove("has-errors"));
     }
 
     function getCreatedAuthors() {
@@ -634,13 +717,37 @@
         const box = $("validation-summary");
         const errors = validateApp(app);
         updateDownloadButton();
+        clearIssueHighlights();
         if (!errors.length) {
             box.className = "validation-summary valid";
-            box.innerHTML = "<p><strong>✓ Ready.</strong> The generated object satisfies the client-side rules used by the current catalog validator.</p>";
+            box.innerHTML = "<p><strong>✓ Ready to download.</strong> Client-side checks passed. GitHub Actions will perform the final repository validation.</p>";
             $("download-json").disabled = false;
         } else {
             box.className = "validation-summary invalid";
-            box.innerHTML = `<strong>Fix ${errors.length} issue${errors.length === 1 ? "" : "s"} before downloading.</strong><ul>${errors.map(error => `<li>${escapeHtml(error)}</li>`).join("")}</ul>`;
+            box.innerHTML = "";
+            const heading = document.createElement("strong");
+            heading.textContent = errors.length + " issue" + (errors.length === 1 ? "" : "s") + " to fix before downloading";
+            const hint = document.createElement("p");
+            hint.textContent = "Select any issue to jump directly to the field that needs attention.";
+            const list = document.createElement("ul");
+            errors.forEach(error => {
+                const item = document.createElement("li");
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "validation-jump";
+                button.dataset.target = error.target;
+                button.textContent = error.message;
+                item.appendChild(button);
+                list.appendChild(item);
+                const element = issueElement(error.target);
+                if (element) {
+                    element.classList.add("is-invalid-field");
+                    if (element.matches("input, textarea, select")) element.setAttribute("aria-invalid", "true");
+                    const card = element.closest(".form-card");
+                    if (card) card.classList.add("has-errors");
+                }
+            });
+            box.append(heading, hint, list);
             $("download-json").disabled = true;
         }
         return errors;
@@ -649,6 +756,8 @@
     function updatePreview() {
         syncIdFromName();
         const app = collectApp();
+        const status = $("download-status");
+        if (status && state.lastDownloadedSnapshot && JSON.stringify(app) !== state.lastDownloadedSnapshot) status.hidden = true;
         $("json-preview").textContent = JSON.stringify(app, null, 2);
         updateValidation(app);
     }
@@ -656,6 +765,9 @@
     function resetForm() {
         if (typeof window.clearCreatedAuthors === "function") window.clearCreatedAuthors();
         $("app-form").reset();
+        state.lastDownloadedSnapshot = null;
+        const downloadStatus = $("download-status");
+        if (downloadStatus) { downloadStatus.hidden = true; downloadStatus.textContent = ""; }
         $("screenshots-list").innerHTML = "";
         $("links-list").innerHTML = "";
         $("category").value = "";
@@ -721,10 +833,16 @@
 
     function downloadJson() {
         const app = collectApp();
-        if (validateApp(app).length) return;
+        if (updateValidation(app).length) { navigateToIssue(validateApp(app)[0].target); return; }
         const authors = getCreatedAuthors();
         authors.forEach(author => downloadBlob(`${author.id}.json`, author));
         downloadBlob(`${app.id}.json`, app);
+        state.lastDownloadedSnapshot = JSON.stringify(app);
+        const status = $("download-status");
+        if (status) {
+            status.hidden = false;
+            status.textContent = "JSON prepared for download: " + app.id + ".json" + (authors.length ? " (plus " + authors.length + " author JSON file(s))." : ".") + " Add the files to apps/ and authors/ as appropriate; GitHub Actions validates them after submission.";
+        }
     }
 
     async function copyJson() {
@@ -738,6 +856,19 @@
         }
     }
 
+
+    function startNewApp() {
+        const draft = collectApp();
+        const hasData = Boolean(draft.name || draft.title_id || draft.description ||
+            draft.long_description || draft.requirements ||
+            draft.links.some(link => link.name || link.url) || getCreatedAuthors().length);
+        if (hasData && state.lastDownloadedSnapshot !== JSON.stringify(draft) &&
+            !window.confirm("Create a new JSON? Unsaved changes to this form will be lost.")) return;
+        setMode("create");
+        resetForm();
+        $("name").scrollIntoView({ behavior: "smooth", block: "center" });
+        $("name").focus({ preventScroll: true });
+    }
 
     function setMode(mode) {
         state.mode = mode === "edit" ? "edit" : "create";
@@ -767,9 +898,11 @@
         $("category").addEventListener("change", () => updateSubcategories());
         $("add-screenshot").addEventListener("click", () => addScreenshotRow());
         $("add-link").addEventListener("click", () => addLinkRow());
-        $("reset-form").addEventListener("click", () => {
-            setMode("create");
-            resetForm();
+        $("reset-form").addEventListener("click", startNewApp);
+        $("create-another").addEventListener("click", startNewApp);
+        $("validation-summary").addEventListener("click", event => {
+            const button = event.target.closest(".validation-jump");
+            if (button) navigateToIssue(button.dataset.target);
         });
         $("download-json").addEventListener("click", downloadJson);
         $("copy-json").addEventListener("click", copyJson);

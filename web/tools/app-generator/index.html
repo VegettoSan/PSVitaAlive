@@ -42,9 +42,19 @@
             <div id="load-status" class="notice" role="status">Loading PS Vita Alive Store categories, authors and catalog...</div>
         </div>
 
+        <nav class="form-navigation" aria-label="Jump to generator section">
+            <span class="form-nav-label">GO TO SECTION</span>
+            <a href="#section-identity">01 Identity</a>
+            <a href="#section-authors">02 Authors &amp; category</a>
+            <a href="#section-release">03 Release</a>
+            <a href="#section-media">04 Media</a>
+            <a href="#section-links">05 Links</a>
+            <a class="form-nav-check" href="#validation-summary">Final check</a>
+        </nav>
+
         <div class="generator-layout">
-            <form id="app-form" novalidate>
-                <section class="form-card">
+            <form id="app-form" class="form-stack" novalidate>
+                <section class="form-card" id="section-identity">
                     <div class="card-heading"><h2>1. Identity</h2><p>Basic identity of the homebrew entry. In <strong>Create</strong> mode the Internal ID is generated from the name and cannot be edited.</p></div>
                     <div class="field-grid">
                         <div class="field full"><label for="name">Name <span>*</span></label><input id="name" name="name" required placeholder="My Cool App"><small>Display name shown in the store and website. Use the official title when possible.</small></div>
@@ -55,7 +65,7 @@
                     </div>
                 </section>
 
-                <section class="form-card">
+                <section class="form-card" id="section-authors">
                     <div class="card-heading"><h2>2. Authors & category</h2><p>Search authors by name or ID, select as many individual profiles as needed, or create a new author reference. Subcategories are restricted to the selected official category.</p></div>
                     <div class="field-grid">
                         <div class="field full">
@@ -77,13 +87,13 @@
                     </div>
                 </section>
 
-                <section class="form-card">
+                <section class="form-card" id="section-release">
                     <div class="card-heading"><h2>3. Release</h2><p>Release information used by the catalog and update logic.</p></div>
                     <div class="field-grid">
                         <div class="field"><label for="version">Version <span>*</span></label><input id="version" name="version" required placeholder="1.0.0"><small>Version string of this release (e.g. <code>1.2.0</code> or <code>v3</code>), matching the download when possible.</small></div>
                         <div class="field"><label for="version_date">Version date <span>*</span></label><input id="version_date" name="version_date" type="date" required><small>Release date of this version (YYYY-MM-DD).</small></div>
                         <div class="field full"><label for="requirements">Requirements <span>*</span></label><textarea id="requirements" name="requirements" required rows="5" placeholder="Firmware, plugins, notes… (line breaks allowed)"></textarea><small>What the user needs: firmware, plugins (NoNpDrm, etc.), storage, or “None”. Line breaks are allowed.</small></div>
-                        <div class="field"><label for="size">File size <span>*</span></label>
+                        <div class="field"><label for="size">Main file size (VPK) <span>*</span></label>
                             <div class="size-unit-field app-size-field">
                                 <input id="size" name="size" type="number" min="0" step="any" required placeholder="16">
                                 <select id="size_unit" name="size_unit" aria-label="Size unit">
@@ -99,7 +109,7 @@
                     </div>
                 </section>
 
-                <section class="form-card">
+                <section class="form-card" id="section-media">
                     <div class="card-heading"><h2>4. Media</h2><p>Public <strong>direct image URLs</strong> only (must open the image itself, not an HTML page). Preferred: PNG. Good hosts: GitHub raw, Archive.org, Imgur direct links.</p></div>
                     <div class="field-grid">
                         <div class="field full"><label for="icon">Icon URL</label><input id="icon" name="icon" type="url" placeholder="https://archive.org/download/.../icon0.png"><small>Optional. Direct link to the app icon (ideally <code>icon0.png</code>, ~128×128). Leave empty to use the category fallback. Do <strong>not</strong> use GitHub “blob” page links — use <code>raw.githubusercontent.com</code> or Archive.org file URLs.</small></div>
@@ -107,7 +117,7 @@
                     </div>
                 </section>
 
-                <section class="form-card">
+                <section class="form-card" id="section-links">
                     <div class="card-heading"><h2>5. Links</h2><p>Download and reference links. Drag ⋮⋮ to reorder. Mark <strong>one</strong> link as Recommended (main install button).</p></div>
                     <div class="notice info field-help-box">
                         <strong>Link types</strong>
@@ -116,6 +126,7 @@
                             <li><strong>Data Files / Game Files</strong> — extra .zip data extracted on the Vita. Set <code>extract_path</code> (usually <code>ux0:data/</code>).</li>
                             <li><strong>Mod / Mod Pack / Patch</strong> — mods or patches; also use <code>extract_path</code> when they are zips.</li>
                             <li><strong>PKG / DLC / Update</strong> — package content (games catalogs / updates).</li>
+                            <li><strong>Plugin</strong> — keeps its own taiHEN configuration and destination path.</li>
                             <li><strong>Mirror / Repository / Official Website / Documentation / Issues / Community / Other</strong> — informational links (not installed by the client as the main payload).</li>
                         </ul>
                         <p style="margin:8px 0 0"><strong>Size:</strong> optional per link; pick B/KB/MB/GB — JSON stores bytes. <strong>URLs:</strong> must be public <code>http://</code> or <code>https://</code> direct file links when possible (GitHub Releases, Archive.org, MediaFire, etc.).</p>
@@ -124,7 +135,7 @@
                     <button id="add-link" type="button" class="small-button">+ Add link</button>
                 </section>
 
-                <details class="form-card advanced-card">
+                <details class="form-card advanced-card" id="section-optional">
                     <summary>6. Optional metadata</summary>
                     <div class="field-grid advanced-grid">
                         <div class="field full"><label for="release_page">Release page</label><input id="release_page" type="url" placeholder="https://github.com/user/repo/releases"><small>Human-readable page for this version (GitHub Releases, blog post, etc.).</small></div>
@@ -140,8 +151,17 @@
                     </div>
                 </details>
 
-                <div id="validation-summary" class="validation-summary" aria-live="polite"></div>
-                <div class="download-row"><button id="download-json" type="button" class="button primary-button" disabled>Download app.json</button></div>
+                <div class="final-check-heading">
+                    <span class="hero-label">FINAL CHECK</span>
+                    <h2>Review &amp; download</h2>
+                    <p>Any missing or invalid fields will be listed below. Select an issue to return to the exact field.</p>
+                </div>
+                <div id="validation-summary" class="validation-summary" aria-live="polite" aria-label="Form validation results"></div>
+                <div class="download-row">
+                    <button id="download-json" type="button" class="button primary-button" disabled>Download app.json</button>
+                    <button id="create-another" type="button" class="button secondary-button">Create another JSON</button>
+                </div>
+                <div id="download-status" class="download-status" role="status" hidden></div>
             </form>
 
             <aside class="preview-panel">
