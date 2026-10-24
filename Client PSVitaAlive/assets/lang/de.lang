@@ -571,3 +571,8 @@ DOWNLOAD_VERIFYING_HINT=Das Zusammenfügen großer Dateien kann dauern. Bitte wa
 CATALOG_SYNC_DOWNLOADING=Katalog wird heruntergeladen...
 CATALOG_SYNC_APPLYING=Katalog wird angewendet...
 CATALOG_SYNC_UPDATED=Katalog aktualisiert.
+
+# Plugin-link classification (informational only)
+PLUGIN_REQUIREMENT_REQUIRED=Erforderlich
+PLUGIN_REQUIREMENT_OPTIONAL=Optional
+PLUGIN_REQUIREMENT_UNSPECIFIED=Nicht angegeben
