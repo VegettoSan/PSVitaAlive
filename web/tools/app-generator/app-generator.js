@@ -341,6 +341,7 @@
             pluginSection = "custom";
         }
         const pluginLine = value.line || "";
+        const pluginRequirement = value.required === true ? "true" : value.required === false ? "false" : "";
         // First link defaults to recommended when not explicitly set.
         const isFirst = list.querySelectorAll(".link-item").length === 0;
         const recommended = value.recommended === true || (isFirst && value.recommended === undefined);
@@ -366,6 +367,14 @@
                 <div class="plugin-field plugin-field-line">
                     <span class="plugin-field-label">Config line (appended to section)</span>
                     <input class="link-plugin-line" type="text" placeholder="ur0:tai/plugin.suprx" value="${escapeHtml(pluginLine)}">
+                </div>
+                <div class="plugin-field">
+                    <span class="plugin-field-label">Requirement</span>
+                    <select class="link-plugin-required" aria-label="Plugin requirement">
+                        <option value="" ${pluginRequirement === "" ? "selected" : ""}>Not specified (legacy)</option>
+                        <option value="true" ${pluginRequirement === "true" ? "selected" : ""}>Required</option>
+                        <option value="false" ${pluginRequirement === "false" ? "selected" : ""}>Optional</option>
+                    </select>
                 </div>
                 <input class="link-plugin-section-custom" type="text" placeholder="Custom section e.g. *NPXS10015" value="${escapeHtml(pluginSectionCustom)}" style="${pluginSection === "custom" ? "" : "display:none;"}">
             </div>
@@ -490,6 +499,8 @@
                 const lineEl = row.querySelector(".link-plugin-line");
                 const line = lineEl ? lineEl.value.trim() : "";
                 if (line) result.line = line;
+                const requirementChoice = row.querySelector(".link-plugin-required").value;
+                if (requirementChoice !== "") result.required = requirementChoice === "true";
             }
             if (row.querySelector(".link-recommended").checked) result.recommended = true;
             return result;
@@ -590,6 +601,11 @@
             if (!link.type) errors.push(`Link ${index + 1}: type is required.`);
             if (!link.name) errors.push(`Link ${index + 1}: name is required.`);
             if (!validUrl(link.url)) errors.push(`Link ${index + 1}: URL must use http:// or https://.`);
+            if (Object.prototype.hasOwnProperty.call(link, "required")) {
+                if (link.type !== "Plugin" || typeof link.required !== "boolean") {
+                    errors.push(`Link ${index + 1}: required must be true/false on a Plugin link only.`);
+                }
+            }
             if (link.recommended) recommended++;
         });
         if (recommended > 1) errors.push("At most one link may be recommended.");
