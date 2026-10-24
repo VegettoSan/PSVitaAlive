@@ -7704,6 +7704,7 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
     installAllResults_.clear();
+    installAllJobItem_ = CatalogItem{};
     installAllPluginPickIndex_ = 0;
     installAllWaitingRecovery_ = false;
     installAllPluginInstalled_ = false;
@@ -7855,6 +7856,7 @@ void FullCatalogScreen::installAllStartQueue() {
         return;
     }
     const CatalogItem& item = catalogView()[installAllItemIndex_];
+    installAllJobItem_ = item;
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
@@ -7905,11 +7907,9 @@ void FullCatalogScreen::installAllStartQueue() {
 
 void FullCatalogScreen::installAllStartNextStep() {
     if (installAllPhase_ != InstallAllPhase::Running || installAllWaitingRecovery_) return;
-    if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
-        installAllFinishReport(true);
-        return;
-    }
-    const CatalogItem& item = catalogView()[installAllItemIndex_];
+    // The active catalog/filter can rebuild after a successful VPK. Never use
+    // its old selection index to launch later steps for a different app.
+    const CatalogItem& item = installAllJobItem_;
     // A synchronous start refusal is a failure of this step, not the batch.
     while (installAllQueueIndex_ < installAllQueue_.size()) {
         const size_t index = installAllQueueIndex_;
@@ -7952,6 +7952,7 @@ void FullCatalogScreen::installAllFinishReport(bool aborted) {
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
+    installAllJobItem_ = CatalogItem{};
     installAllItemIndex_ = -1;
     diagnostics::log("[UI] Install All summary ready: " +
                      std::to_string(installAllResults_.size()) +

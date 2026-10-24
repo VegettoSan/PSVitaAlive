@@ -560,6 +560,8 @@ private:
     std::vector<int> installAllPluginCandidates_;
     std::vector<int> installAllChosenPlugins_;
     size_t installAllPluginPickIndex_ = 0;
+    /** Stable app metadata for the active batch if the installed/updates filter changes. */
+    CatalogItem installAllJobItem_;
     std::vector<CatalogLink> installAllQueue_;
     std::vector<std::string> installAllQueueLabels_;
     size_t installAllQueueIndex_ = 0;
