@@ -3,7 +3,7 @@
   "title_id": "SUPERTUX1",
   "name": "SuperTux Classic",
   "description": "Port of SuperTux for PSVITA.",
-  "long_description": "Port of SuperTux for PSVITA.",
+  "long_description": "Port of SuperTux for PSVITA.\n\n- PsVitaAlive -",
   "author_ids": [
     "theherogac"
   ],

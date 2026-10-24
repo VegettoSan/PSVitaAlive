@@ -3,7 +3,7 @@
   "title_id": "KEROBLAST",
   "name": "Kero Blaster Vita",
   "description": "Port of Kero Blaster for PSVITA.",
-  "long_description": "Port of Kero Blaster for PSVITA based on the mobile (Android) version of the game.",
+  "long_description": "Port of Kero Blaster for PSVITA based on the mobile (Android) version of the game.\n\n- PsVitaAlive -",
   "author_ids": [
     "kaaass"
   ],

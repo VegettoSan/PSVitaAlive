@@ -3,7 +3,7 @@
   "title_id": "KOTR00002",
   "name": "KOTOR II",
   "description": "Star Wars: Knights of the Old Republic II loader for PlayStation Vita",
-  "long_description": "This is an experimental native loader for the Android release of KOTOR II. It loads the original ARM shared libraries from a user-supplied copy of the game, maps their platform APIs to Vita implementations, renders through vitaGL, and provides a custom FMOD audio backend over sceAudiodec and sceAudioOut.",
+  "long_description": "This is an experimental native loader for the Android release of KOTOR II. It loads the original ARM shared libraries from a user-supplied copy of the game, maps their platform APIs to Vita implementations, renders through vitaGL, and provides a custom FMOD audio backend over sceAudiodec and sceAudioOut.\n\n- PsVitaAlive -",
   "author_ids": [
     "pyjabox"
   ],

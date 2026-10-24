@@ -3,7 +3,7 @@
   "title_id": "JUKI00088",
   "name": "Jump King Vita",
   "description": "Port of a clone of Jump King for PSVITA.",
-  "long_description": "This is a Godot-made clone of Jump King, with core gameplay that closely resembles the original. \nMost entities and some foliage missing, along with music and the babe at the end.",
+  "long_description": "This is a Godot-made clone of Jump King, with core gameplay that closely resembles the original. \nMost entities and some foliage missing, along with music and the babe at the end.\n\n- PsVitaAlive -",
   "author_ids": [
     "kalekki",
     "rocroverss"

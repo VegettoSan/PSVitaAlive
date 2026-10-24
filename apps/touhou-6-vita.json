@@ -3,7 +3,7 @@
   "title_id": "TOHO06REV",
   "name": "Touhou 6 Vita",
   "description": "Port of Touhou 6 for PSVita.",
-  "long_description": "This is a port of Touhou Koumakyou - the Embodiment of Scarlet Devil to the Playstation Vita using GensokyoClub's portable EoSD decompilation.",
+  "long_description": "This is a port of Touhou Koumakyou - the Embodiment of Scarlet Devil to the Playstation Vita using GensokyoClub's portable EoSD decompilation.\n\n- PsVitaAlive -",
   "author_ids": [
     "wavy667"
   ],

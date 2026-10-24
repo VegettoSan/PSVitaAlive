@@ -3,7 +3,7 @@
   "title_id": "MCPEDEMO0",
   "name": "Minecraft PE DEMO",
   "description": "",
-  "long_description": "Port of the DEMO verison of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.",
+  "long_description": "Port of the DEMO verison of Minecraft Pocket Edition 0.6.1 alpha to PlayStation Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "minecraftpe-vita"
   ],

@@ -3,7 +3,7 @@
   "title_id": "PPOP00001",
   "name": "PanelPop",
   "description": "PanelPop port for PSVITA/PSTV.",
-  "long_description": "A Panel de Pon / Tetris Attack / Puzzle League clone.",
+  "long_description": "A Panel de Pon / Tetris Attack / Puzzle League clone.\n\n- PsVitaAlive -",
   "author_ids": [
     "sharkwouter"
   ],

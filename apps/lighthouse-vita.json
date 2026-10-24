@@ -3,7 +3,7 @@
   "title_id": "BANJO0064",
   "name": "Lighthouse Vita",
   "description": "Port of Lighthouse for PSVita.",
-  "long_description": "Lighthouse Vita is a native port of Banjo Kazooie for PSVita based on Lighthouse, the PC port of the decompilation of Banjo Kazooie. It features several enhancements, new features, romhacks support, mods support, built-in randomizer, and much much more.",
+  "long_description": "Lighthouse Vita is a native port of Banjo Kazooie for PSVita based on Lighthouse, the PC port of the decompilation of Banjo Kazooie. It features several enhancements, new features, romhacks support, mods support, built-in randomizer, and much much more.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

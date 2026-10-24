@@ -3,7 +3,7 @@
   "title_id": "CARS00001",
   "name": "Cars Vita",
   "description": "Port of Cars for PSVITA.",
-  "long_description": "Port of Cars, a game made by CST1229 in GameMaker Studio, for PSVITA.\nIt's a game based off a Formula 1 game for old flip phones.",
+  "long_description": "Port of Cars, a game made by CST1229 in GameMaker Studio, for PSVITA.\nIt's a game based off a Formula 1 game for old flip phones.\n\n- PsVitaAlive -",
   "author_ids": [
     "siulpop"
   ],

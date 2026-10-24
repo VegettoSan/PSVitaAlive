@@ -3,7 +3,7 @@
   "title_id": "BOMB00001",
   "name": "Mad Bomber Vita",
   "description": "Port of Mad Bomber for PSVITA/PSTV.",
-  "long_description": "Mad Bomber is a clone of the excellent 1981 Atari 2600 video game \"Kaboom!\" by Larry Kaplan of Activision. (Kaboom! was originally going to be an Atari-produced 2600 port of their 1978 arcade game, \"Avalanche.\")",
+  "long_description": "Mad Bomber is a clone of the excellent 1981 Atari 2600 video game \"Kaboom!\" by Larry Kaplan of Activision. (Kaboom! was originally going to be an Atari-produced 2600 port of their 1978 arcade game, \"Avalanche.\")\n\n- PsVitaAlive -",
   "author_ids": [
     "sonicmastr"
   ],

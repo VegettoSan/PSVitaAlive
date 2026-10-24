@@ -3,7 +3,7 @@
   "title_id": "RSDK00002",
   "name": "Sonic 1",
   "description": "Port of Sonic The Hedgehog for PSVITA.",
-  "long_description": "A port of the first game of Sonic (Sonic The Hedgehog) based on a full decompilation of the original game.",
+  "long_description": "A port of the first game of Sonic (Sonic The Hedgehog) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
   "author_ids": [
     "xeeynamo"
   ],

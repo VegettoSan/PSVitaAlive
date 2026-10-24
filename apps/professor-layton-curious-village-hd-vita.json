@@ -3,7 +3,7 @@
   "title_id": "LAYTON001",
   "name": "Professor Layton: Curious Village HD Vita",
   "description": "Port of Professor Layton: Curious Village HD for PSVITA.",
-  "long_description": "This is a wrapper/port of Professor Layton: Curious Village HD for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "long_description": "This is a wrapper/port of Professor Layton: Curious Village HD for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

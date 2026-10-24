@@ -3,7 +3,7 @@
   "title_id": "MAXP00000",
   "name": "Max Payne",
   "description": "Port of Max Payne for PSVITA.",
-  "long_description": "Port of Max Payne for PSVITA/PSTV based on the Android mobile version.",
+  "long_description": "Port of Max Payne for PSVITA/PSTV based on the Android mobile version.\n\n- PsVitaAlive -",
   "author_ids": [
     "fgsfds",
     "theflow"

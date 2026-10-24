@@ -3,7 +3,7 @@
   "title_id": "DRFT00001",
   "name": "The Drifter",
   "description": "The Drifter on the PS Vita",
-  "long_description": "The Drifter on a PS Vita. A pipeline takes the PC release (Unity 2020.3) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.",
+  "long_description": "The Drifter on a PS Vita. A pipeline takes the PC release (Unity 2020.3) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "xob0t"
   ],

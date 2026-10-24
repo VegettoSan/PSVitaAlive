@@ -3,7 +3,7 @@
   "title_id": "APRL00001",
   "name": "Super Mario BOOM",
   "description": "Port of Super Mario BOOM for PSVITA.",
-  "long_description": "This is a port of Super Mario BOOM for the PS Vita.\nSuper Mario BOOM is a non-serious Mario fan game project that was created to be an April fools joke in 2016 and now in 2023 with this port.\nThe gag in this game is that everything violently explodes when something happens.\nOriginal game by HypernovaTX.",
+  "long_description": "This is a port of Super Mario BOOM for the PS Vita.\nSuper Mario BOOM is a non-serious Mario fan game project that was created to be an April fools joke in 2016 and now in 2023 with this port.\nThe gag in this game is that everything violently explodes when something happens.\nOriginal game by HypernovaTX.\n\n- PsVitaAlive -",
   "author_ids": [
     "megagameboy"
   ],

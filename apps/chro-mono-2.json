@@ -3,7 +3,7 @@
   "title_id": "CHROMONO2",
   "name": "chro.mono 2",
   "description": "Port of chro.mono 2 for PSVITA.",
-  "long_description": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "thp"
   ],

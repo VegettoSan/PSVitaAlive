@@ -3,7 +3,7 @@
   "title_id": "WAGC00001",
   "name": "Wagic the Homebrew Vita",
   "description": "Port of Wagic the Homebrew for PSVita.",
-  "long_description": "Native port of Wagic the Homebrew for PlayStation Vita. Supports card art and touch controls.",
+  "long_description": "Native port of Wagic the Homebrew for PlayStation Vita. Supports card art and touch controls.\n\n- PsVitaAlive -",
   "author_ids": [
     "bren"
   ],

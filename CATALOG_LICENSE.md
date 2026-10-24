@@ -1,4 +1,4 @@
-# PSVitaAlive homebrew catalog — licensing and attribution
+# PSVitaAlive homebrew catalog — licensing, attribution and hosting access
 
 ## Purpose
 
@@ -60,7 +60,19 @@ Information may be discovered from creators and community sources, including [Vi
 
 PS Vita, PSP and PS1 **commercial-game catalogs**, license sidecars such as zRIF indexes, and all referenced third-party packages are **outside the license grant for new original homebrew catalog curation described here**. Respect each item's applicable rights and distribution terms.
 
-## 6. Software license
+## 6. Cloudflare R2 hosting — intended use and access requests
+
+PSVitaAlive Store is a free, community-driven project. Its Cloudflare R2 storage and related hosting services are paid for personally by the maintainer and are provided primarily for **the official PSVitaAlive client and PSVitaAlive/VegettoSanDev websites**, including downloads initiated by their users. As demand grows, storage, request volume and associated services may increase operating costs. We appreciate the community's help in keeping these resources sustainable.
+
+Some catalog entries may contain URLs hosted on PSVitaAlive's R2 infrastructure (for example, `downloads.vegettosandev.com`). These links are shared so PSVitaAlive and its official websites can deliver files to their users. **Please do not incorporate these R2 URLs as a download source in other apps, stores, mirrors or automated services without first asking for permission.** Even when a URL appears in a public GitHub JSON catalog, using PSVitaAlive's hosting for another service can generate additional costs for the maintainer.
+
+**Interested in using these R2 links?** Please open a GitHub Issue to discuss your use case and request explicit written approval before integrating them. We are happy to consider reasonable requests and find an arrangement that works for everyone. To help protect the service, access controls or usage limits may be applied; please respect them rather than trying to work around them.
+
+**Other catalog links are not affected.** Links hosted by GitHub, Internet Archive, original developers or other independent services remain subject to their existing terms and the rights of their respective owners. This R2 hosting request does not restrict reuse of catalog metadata otherwise allowed by its applicable license, nor does listing a third-party file grant rights to redistribute that file.
+
+**Existing licenses remain unchanged:** Historical CC0 permissions are irrevocable; new original material covered by CC BY 4.0 retains the rights granted under that license; and project software remains MIT-licensed. This section concerns access to a separately operated hosting service, **not** ownership of catalog facts, URL text, third-party files or a new condition on CC0, CC BY 4.0 or MIT reuse rights.
+
+## 7. Software license
 
 Client software, updater, build scripts, website tooling and other software covered by the repository's [MIT LICENSE](LICENSE) remain under **MIT**, unchanged by this catalog policy.
 

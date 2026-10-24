@@ -3,7 +3,7 @@
   "title_id": "SPACEPINB",
   "name": "Space Cadet Pinball Vita",
   "description": "Port of Space Cadet for PSVITA.",
-  "long_description": "Port of Space Cadet, popular pinball game bundled with Windows XP.",
+  "long_description": "Port of Space Cadet, popular pinball game bundled with Windows XP.\n\n- PsVitaAlive -",
   "author_ids": [
     "axiom"
   ],

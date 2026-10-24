@@ -3,7 +3,7 @@
   "title_id": "LEAP00001",
   "name": "Leap of Faith",
   "description": "Port of Leap of Faith for PSVITA.",
-  "long_description": "Platformer game made with GameMaker for the Game Maker's Toolkit Jam 2018 by HeartLamp.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Platformer game made with GameMaker for the Game Maker's Toolkit Jam 2018 by HeartLamp.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "markus95"
   ],

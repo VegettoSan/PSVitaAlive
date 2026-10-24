@@ -3,7 +3,7 @@
   "title_id": "SSAM10001",
   "name": "Serious Sam TFE Vita",
   "description": "Port of Serious Sam: The First Encounter for PSVita.",
-  "long_description": "Port of Serious Sam: The First Encounter for PSVita based on the opensourced code from Croteam.",
+  "long_description": "Port of Serious Sam: The First Encounter for PSVita based on the opensourced code from Croteam.\n\n- PsVitaAlive -",
   "author_ids": [
     "fgsfds"
   ],

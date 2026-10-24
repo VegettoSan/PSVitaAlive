@@ -3,7 +3,7 @@
   "title_id": "DESTINIA1",
   "name": "DESTINIA Vita",
   "description": "Port of Destinia for PSVita.",
-  "long_description": "DESTINIA is an acclaimed 2D action-RPG originally released by Gamevil and Morisoft for mobile devices. This port runs the compiled C shared library (libdestinia_jni.so) from the Android version natively on the PlayStation Vita's ARM Cortex-A9 processor using a dynamic loader (soloader) and Android environment emulation (FalsoJNI).",
+  "long_description": "DESTINIA is an acclaimed 2D action-RPG originally released by Gamevil and Morisoft for mobile devices. This port runs the compiled C shared library (libdestinia_jni.so) from the Android version natively on the PlayStation Vita's ARM Cortex-A9 processor using a dynamic loader (soloader) and Android environment emulation (FalsoJNI).\n\n- PsVitaAlive -",
   "author_ids": [
     "metalsyntax"
   ],

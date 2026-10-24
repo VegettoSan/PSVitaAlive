@@ -3,7 +3,7 @@
   "title_id": "BGDM00099",
   "name": "Bugdom",
   "description": "Port of Bugdom for the PSVITA.",
-  "long_description": "This is a port of Pangea Software's Bugdom to PlayStation Vita, based on the modern version of Bugdom written by Iliyas Jorio. Bugdom is a 1999 platform video game originally created by Pangea Software for Mac OS 9.",
+  "long_description": "This is a port of Pangea Software's Bugdom to PlayStation Vita, based on the modern version of Bugdom written by Iliyas Jorio. Bugdom is a 1999 platform video game originally created by Pangea Software for Mac OS 9.\n\n- PsVitaAlive -",
   "author_ids": [
     "ywnico"
   ],

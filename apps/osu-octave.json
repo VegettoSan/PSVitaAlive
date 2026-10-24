@@ -3,7 +3,7 @@
   "title_id": "OSU000001",
   "name": "osu!octave",
   "description": "osu!standard client for PSVITA.",
-  "long_description": "osu!octave is a free and open source rhythm game designed to play osu!standard beatmaps, optimized for best performance and playability on PlayStation Vita.",
+  "long_description": "osu!octave is a free and open source rhythm game designed to play osu!standard beatmaps, optimized for best performance and playability on PlayStation Vita.\n\n- PsVitaAlive -",
   "author_ids": [
     "gl33ntwine"
   ],

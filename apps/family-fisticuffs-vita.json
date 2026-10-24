@@ -3,7 +3,7 @@
   "title_id": "GDOT29102",
   "name": "Family Fisticuffs Vita",
   "description": "Port of Family Fisticuffs for PSVITA.",
-  "long_description": "A game about breaking apart people trying to come back together made in Godot for the LoJam 2022.",
+  "long_description": "A game about breaking apart people trying to come back together made in Godot for the LoJam 2022.\n\n- PsVitaAlive -",
   "author_ids": [
     "alim395"
   ],

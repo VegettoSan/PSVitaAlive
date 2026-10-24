@@ -3,7 +3,7 @@
   "title_id": "GDOT32494",
   "name": "Parkour Labs",
   "description": "Port of Parkour Labs for PSVITA.",
-  "long_description": "A port of the Steam game Parkour Labs, a hard parkour videogame similar to CSGO: Surf.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "A port of the Steam game Parkour Labs, a hard parkour videogame similar to CSGO: Surf.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "soykhaler"
   ],

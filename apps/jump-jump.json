@@ -3,7 +3,7 @@
   "title_id": "JUMP55345",
   "name": "Jump Jump",
   "description": "Jump Jump port for PSVITA.",
-  "long_description": "Port of Jump Jump, a minimalistic platform game, for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Jump Jump, a minimalistic platform game, for PSVITA.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "luckthegamers"
   ],

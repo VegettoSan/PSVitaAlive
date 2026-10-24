@@ -3,7 +3,7 @@
   "title_id": "LAYTON002",
   "name": "Professor Layton: Pandora's Box HD Vita",
   "description": "Port of Professor Layton: Pandora's Box HD for PSVITA.",
-  "long_description": "This is a wrapper/port of Professor Layton: Pandora's Box HD for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "This is a wrapper/port of Professor Layton: Pandora's Box HD for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

@@ -3,7 +3,7 @@
   "title_id": "SPAGHETTI",
   "name": "Spaghetti Kart Vita",
   "description": "Port of Spaghetti Kart for PSVita.",
-  "long_description": "Spaghetti Kart is a sourceport of Mario Kart 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Bolognese Alfa) with bugfixes from the in-development branch.",
+  "long_description": "Spaghetti Kart is a sourceport of Mario Kart 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Bolognese Alfa) with bugfixes from the in-development branch.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

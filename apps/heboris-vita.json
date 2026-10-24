@@ -3,7 +3,7 @@
   "title_id": "HBRS00000",
   "name": "Heboris-Vita",
   "description": "Port of Heboris for PSVITA.",
-  "long_description": "Vita port of Heboris, a Tetris clone.\nThis port is based on the Heboris SDL2 source code.",
+  "long_description": "Vita port of Heboris, a Tetris clone.\nThis port is based on the Heboris SDL2 source code.\n\n- PsVitaAlive -",
   "author_ids": [
     "l0wigh"
   ],

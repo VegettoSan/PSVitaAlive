@@ -3,7 +3,7 @@
   "title_id": "BERM00001",
   "name": "Bermuda Vita",
   "description": "Bermuda Syndrome port for PSVITA.",
-  "long_description": "This is a Vita port of the game Bermuda Syndrome, using the reverse engine made by Gregory Montoir. To play, you will need the files from the original game. Further instructions can be found at https://github.com/usineur/bermuda/releases/latest",
+  "long_description": "This is a Vita port of the game Bermuda Syndrome, using the reverse engine made by Gregory Montoir. To play, you will need the files from the original game. Further instructions can be found at https://github.com/usineur/bermuda/releases/latest\n\n- PsVitaAlive -",
   "author_ids": [
     "usineur"
   ],

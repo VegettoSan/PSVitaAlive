@@ -3,7 +3,7 @@
   "title_id": "OPRCT0002",
   "name": "OpenRCT2-CE Vita",
   "description": "Port of OpenRCT2 for PSVITA.",
-  "long_description": "Port of OpenRCT2 for PSVITA.\nOpenRCT2 is an open-source re-implementation of RollerCoaster Tycoon 2. A construction and management simulation video game that simulates amusement park management.",
+  "long_description": "Port of OpenRCT2 for PSVITA.\nOpenRCT2 is an open-source re-implementation of RollerCoaster Tycoon 2. A construction and management simulation video game that simulates amusement park management.\n\n- PsVitaAlive -",
   "author_ids": [
     "technicaljicama"
   ],

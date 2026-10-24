@@ -3,7 +3,7 @@
   "title_id": "UNSI22233",
   "name": "Unsighted Vita",
   "description": "Port of Unsighted for PSVITA.",
-  "long_description": "Port of Unsighted for PSVITA.\nThe game is a Metroidvania adventure game in which players assume the role of Alma, an automaton who has amnesia in the aftermath of a war between humans and robots.",
+  "long_description": "Port of Unsighted for PSVITA.\nThe game is a Metroidvania adventure game in which players assume the role of Alma, an automaton who has amnesia in the aftermath of a war between humans and robots.\n\n- PsVitaAlive -",
   "author_ids": [
     "patnosd"
   ],

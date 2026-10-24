@@ -3,7 +3,7 @@
   "title_id": "HODEVITA1",
   "name": "hode",
   "description": "Port of Heart of Darkness for PSVITA.",
-  "long_description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.",
+  "long_description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.\n\n- PsVitaAlive -",
   "author_ids": [
     "usineur"
   ],

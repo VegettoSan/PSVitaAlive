@@ -3,7 +3,7 @@
   "title_id": "LATESHIFT",
   "name": "Late Shift Vita",
   "description": "Port of Late Shift for PSVITA.",
-  "long_description": "This is a complete rewrite from scratch of the FMV game Late Shift from CtrlMovie studio. It runs on OpenFMV engine, an FMV game engine wrote from scratch to mimic Wales Interactive engine used for their FMV games.\nLate Shift is a high stakes FMV crime thriller. Forced into a brutal London heist, your choices matter in this interactive cinematic experience with adaptable storylines that lead to one of seven conclusions. Your decisions are you.",
+  "long_description": "This is a complete rewrite from scratch of the FMV game Late Shift from CtrlMovie studio. It runs on OpenFMV engine, an FMV game engine wrote from scratch to mimic Wales Interactive engine used for their FMV games.\nLate Shift is a high stakes FMV crime thriller. Forced into a brutal London heist, your choices matter in this interactive cinematic experience with adaptable storylines that lead to one of seven conclusions. Your decisions are you.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

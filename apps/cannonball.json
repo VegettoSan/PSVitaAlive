@@ -3,7 +3,7 @@
   "title_id": "CANNONBAL",
   "name": "Cannonball",
   "description": "OutRun engine for PSVITA.",
-  "long_description": "PSVita port of Cannonball, an enhanced Outrun engine by djyt.",
+  "long_description": "PSVita port of Cannonball, an enhanced Outrun engine by djyt.\n\n- PsVitaAlive -",
   "author_ids": [
     "rsn8887"
   ],

@@ -3,7 +3,7 @@
   "title_id": "GDOT00001",
   "name": "Maximilien Adventure",
   "description": "Port of Parkour Labs for PSVITA.",
-  "long_description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.",
+  "long_description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.\n\n- PsVitaAlive -",
   "author_ids": [
     "soykhaler",
     "sonicmastr"

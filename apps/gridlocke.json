@@ -3,7 +3,7 @@
   "title_id": "GRILOK001",
   "name": "GRIDLOCKE",
   "description": "Port of Gridlocke for PSVITA.",
-  "long_description": "Port of Gridlocke for PSVITA.\nGridlocke is a roguelike deckbuilder tactics game. Assume the role of a hired tactician and side with one of three different factions each with unique decks, abilities, and upgrade options as you progress throughout the campaign. Guiding your chosen faction to victory against the enemy's armies will require a combination of careful deckbuilding, strategical placement, and resource management.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Port of Gridlocke for PSVITA.\nGridlocke is a roguelike deckbuilder tactics game. Assume the role of a hired tactician and side with one of three different factions each with unique decks, abilities, and upgrade options as you progress throughout the campaign. Guiding your chosen faction to victory against the enemy's armies will require a combination of careful deckbuilding, strategical placement, and resource management.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "vsm-gammer"
   ],

@@ -2733,7 +2733,13 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
     detailScrollBeforeLinkMode_=0;
     state_.linkFocus=-1;
     state_.linkNavigation=false;
-}void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){
+}
+void FullCatalogScreen::setCatalogSyncProgress(bool active, float progress, bool indeterminate) {
+    catalogSyncActive_ = active;
+    catalogSyncIndeterminate_ = active && indeterminate;
+    catalogSyncProgress_ = std::max(0.f, std::min(1.f, progress));
+}
+void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t cur,uint64_t tot,const std::string&msg){
     if(catalogLoading_ != l) {
         PSVA_TRACE_EVENT("ui_loading_toggle",
             std::string("loading=")+(l?"1":"0")+" label="+lab);
@@ -5733,6 +5739,24 @@ void FullCatalogScreen::drawTabs(int w){
             ::psvitaalive::ui::uiDrawText(&font_, x + 12, HEADER_H + 24, ACCENT, sc, label);
         } else {
             ::psvitaalive::ui::uiDrawText(&font_, x + 12, HEADER_H + 24, a ? ACCENT : TEXT, a ? 0.86f : 0.76f, name);
+        }
+    }
+    // Reuse the bottom edge of the tabs as a progress divider: no layout changes.
+    if (catalogSyncActive_) {
+        constexpr int lineH = 2;
+        const int y = HEADER_H + TABS_H - lineH;
+        vita2d_draw_rectangle(0, y, w, lineH, withAlpha(ACCENT, 45));
+        if (catalogSyncIndeterminate_) {
+            // Unknown Content-Length: moving segment, never a fabricated percentage.
+            const int segment = std::max(36, w / 5);
+            const int x = (int)((sceKernelGetProcessTimeWide() / 1500ULL) %
+                                (uint64_t)(w + segment)) - segment;
+            const int left = std::max(0, x);
+            const int right = std::min(w, x + segment);
+            if (right > left) vita2d_draw_rectangle(left, y, right - left, lineH, ACCENT);
+        } else {
+            const int fill = (int)(w * catalogSyncProgress_);
+            if (fill > 0) vita2d_draw_rectangle(0, y, fill, lineH, ACCENT);
         }
     }
 }

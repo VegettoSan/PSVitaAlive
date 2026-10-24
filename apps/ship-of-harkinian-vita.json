@@ -3,7 +3,7 @@
   "title_id": "SHIPOFHAR",
   "name": "Ship of Harkinian Vita",
   "description": "Port of Ship of Harkinian for PSVita.",
-  "long_description": "Ship of Harkinian is a sourceport of The Legend of Zelda: Ocarina of Time based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on a custom old version (more or less Khan Charlie (6.1.2)).",
+  "long_description": "Ship of Harkinian is a sourceport of The Legend of Zelda: Ocarina of Time based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on a custom old version (more or less Khan Charlie (6.1.2)).\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

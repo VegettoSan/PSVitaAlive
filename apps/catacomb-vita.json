@@ -3,7 +3,7 @@
   "title_id": "CTCB00000",
   "name": "Catacomb Vita",
   "description": "Port of Catacomb II for PSVita.",
-  "long_description": "Vita port of Catacomb II (also known as The Catacomb).\nThis port is based on the Catacomb SDL2 source code",
+  "long_description": "Vita port of Catacomb II (also known as The Catacomb).\nThis port is based on the Catacomb SDL2 source code\n\n- PsVitaAlive -",
   "author_ids": [
     "l0wigh"
   ],

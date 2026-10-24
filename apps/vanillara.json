@@ -3,7 +3,7 @@
   "title_id": "VCRA00001",
   "name": "VanillaRA",
   "description": "Port of C&C: Red Alert for PSVITA.",
-  "long_description": "Vanilla Conquer is a fully portable version of the first-generation C&C engine and can run both Tiberian Dawn and Red Alert on multiple platforms.\nThis is the Red Alert executable (formerly VanillaRA).\nThe focus of Vanilla Conquer is to keep the default out-of-box experience faithful to what the games were back when they were released and work as a drop-in replacement for the original executables while also providing bug fixes, compatibility and quality of life improvements.",
+  "long_description": "Vanilla Conquer is a fully portable version of the first-generation C&C engine and can run both Tiberian Dawn and Red Alert on multiple platforms.\nThis is the Red Alert executable (formerly VanillaRA).\nThe focus of Vanilla Conquer is to keep the default out-of-box experience faithful to what the games were back when they were released and work as a drop-in replacement for the original executables while also providing bug fixes, compatibility and quality of life improvements.\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

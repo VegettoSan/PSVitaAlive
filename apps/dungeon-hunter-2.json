@@ -3,7 +3,7 @@
   "title_id": "PSVDH0002",
   "name": "Dungeon Hunter 2",
   "description": "Dungeon Hunter 2 native port for PS Vita via so-loader",
-  "long_description": "A native port of Gameloft's Dungeon Hunter 2 (Android) to the PlayStation Vita, built on TheFloW's so-loader technique: the original Android .so libraries are relocated and run directly on the Vita, with a from-scratch FalsoJNI-based bridge standing in for the parts of the Android runtime the game calls into (rendering surface, touch input, asset loading, audio), rendering through vitaGL built from source.",
+  "long_description": "A native port of Gameloft's Dungeon Hunter 2 (Android) to the PlayStation Vita, built on TheFloW's so-loader technique: the original Android .so libraries are relocated and run directly on the Vita, with a from-scratch FalsoJNI-based bridge standing in for the parts of the Android runtime the game calls into (rendering surface, touch input, asset loading, audio), rendering through vitaGL built from source.\n\n- PsVitaAlive -",
   "author_ids": [
     "metalsyntax"
   ],

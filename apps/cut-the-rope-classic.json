@@ -3,7 +3,7 @@
   "title_id": "CTROPE001",
   "name": "Cut the Rope Classic",
   "description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.",
-  "long_description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.\n\nGame data (ux0:data/ctr)",
+  "long_description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.\n\nGame data (ux0:data/ctr)\n\n- PsVitaAlive -",
   "author_ids": [
     "clyppe"
   ],

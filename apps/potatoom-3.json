@@ -3,7 +3,7 @@
   "title_id": "DHEWM3ES2",
   "name": "LDhewm3 ReARMed",
   "description": "Port of Doom 3 for PSVITA.",
-  "long_description": "LDhewm3 ReARMed is a port of Doom 3, popular FPS made by idSoftware with idTech 4 engine.\nThis port is based over a heavily modified version of dhewm3 that adds basic multithreading support to idTech 4 optimized furtherly to squeeze as much performances as possible.",
+  "long_description": "LDhewm3 ReARMed is a port of Doom 3, popular FPS made by idSoftware with idTech 4 engine.\nThis port is based over a heavily modified version of dhewm3 that adds basic multithreading support to idTech 4 optimized furtherly to squeeze as much performances as possible.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

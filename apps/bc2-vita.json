@@ -3,7 +3,7 @@
   "title_id": "BC2000000",
   "name": "BC2 Vita",
   "description": "Port of Battlefield: Bad Company 2 Mobile for PSVITA.",
-  "long_description": "This is a wrapper/port of Battlefield: Bad Company 2 Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "long_description": "This is a wrapper/port of Battlefield: Bad Company 2 Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
   "author_ids": [
     "aap",
     "theflow",

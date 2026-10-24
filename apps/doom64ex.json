@@ -3,7 +3,7 @@
   "title_id": "DOOM64EX1",
   "name": "Doom64EX",
   "description": "Port of Doom64EX for PSVITA/PSTV.",
-  "long_description": "Doom64EX Vita is a port of Doom64EX for the PSVITA/PSTV.\nDoom64EX is a reverse-engineering project aimed to recreate Doom64 as close as possible with additional modding features.",
+  "long_description": "Doom64EX Vita is a port of Doom64EX for the PSVITA/PSTV.\nDoom64EX is a reverse-engineering project aimed to recreate Doom64 as close as possible with additional modding features.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

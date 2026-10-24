@@ -3,7 +3,7 @@
   "title_id": "ARXL00001",
   "name": "Arx Libertatis",
   "description": "Port of Arx Fatalis to PSVita.",
-  "long_description": "Arx Libertatis is an open-source reimplementation of the Arx Fatalis engine, ported to PS Vita via vitaGL. Explore the dungeons of Arx as you fight, sneak, and cast your way through a full-length RPG with an immersive underground world.",
+  "long_description": "Arx Libertatis is an open-source reimplementation of the Arx Fatalis engine, ported to PS Vita via vitaGL. Explore the dungeons of Arx as you fight, sneak, and cast your way through a full-length RPG with an immersive underground world.\n\n- PsVitaAlive -",
   "author_ids": [
     "kingtorro"
   ],

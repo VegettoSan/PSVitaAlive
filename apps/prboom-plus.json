@@ -3,7 +3,7 @@
   "title_id": "FGS000667",
   "name": "PrBoom Plus",
   "description": "PrBoom Plus port for PSVITA/PSTV.",
-  "long_description": "PrBoom Plus is a Doom source port developed from the original PrBoom project.\nIt has completely hardware accelerated renderer and supports several advanced features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "PrBoom Plus is a Doom source port developed from the original PrBoom project.\nIt has completely hardware accelerated renderer and supports several advanced features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "fgsfds"
   ],

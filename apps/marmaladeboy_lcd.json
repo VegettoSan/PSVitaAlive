@@ -3,7 +3,7 @@
   "title_id": "BUNKAI007",
   "name": "MarmaladeBoy_LCD",
   "description": "Clone of MarmeladeBoy LCD console for PSVITA.",
-  "long_description": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "bunkai"
   ],

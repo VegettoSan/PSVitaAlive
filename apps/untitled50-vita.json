@@ -3,7 +3,7 @@
   "title_id": "UNTIROCRO",
   "name": "UNTITLED50 Vita",
   "description": "Port of UNTITLED50 for PSVita.",
-  "long_description": "Untitled_50 is a prototype Engine-less game made entirely in SDL and ImGui made by DavideScarano and ported by Rocroverss to PSVita.",
+  "long_description": "Untitled_50 is a prototype Engine-less game made entirely in SDL and ImGui made by DavideScarano and ported by Rocroverss to PSVita.\n\n- PsVitaAlive -",
   "author_ids": [
     "rocroverss"
   ],

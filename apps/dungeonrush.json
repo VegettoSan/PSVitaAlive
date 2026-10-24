@@ -3,7 +3,7 @@
   "title_id": "DUNGEON00",
   "name": "DungeonRush",
   "description": "Port of Dungeon Rush for PSVita.",
-  "long_description": "Port of Dungeon Rush for PSVita.\nDungeon Rush is a game inspired by Snake.",
+  "long_description": "Port of Dungeon Rush for PSVita.\nDungeon Rush is a game inspired by Snake.\n\n- PsVitaAlive -",
   "author_ids": [
     "xfangfang"
   ],

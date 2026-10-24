@@ -3,7 +3,7 @@
   "title_id": "TMBRAIDER",
   "name": "Tomb Raider 1 & 2 Classic Collection",
   "description": "Port of Tomb Raider 1/Tomb Raider 2 Classic for PSVITA.",
-  "long_description": "This is a wrapper/port of Tomb Raider 1 Classic and Tomb Raider 2 Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "long_description": "This is a wrapper/port of Tomb Raider 1 Classic and Tomb Raider 2 Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

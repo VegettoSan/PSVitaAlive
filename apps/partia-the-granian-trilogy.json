@@ -3,7 +3,7 @@
   "title_id": "PARTIAVGL",
   "name": "Partia: The Granian Trilogy",
   "description": "Port of Partia 1, Partia 2 and Partia 3 for PSVITA.",
-  "long_description": "This is a wrapper/port of Portia 1, Portia 2 and Porta 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.",
+  "long_description": "This is a wrapper/port of Portia 1, Portia 2 and Porta 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

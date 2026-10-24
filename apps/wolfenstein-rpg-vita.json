@@ -3,7 +3,7 @@
   "title_id": "WOLFENRPG",
   "name": "Wolfenstein RPG Vita",
   "description": "Port of Wolfenstein RPG for PSVITA.",
-  "long_description": "This is a PS Vita port of the reverse engineered Wolfenstein RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "This is a PS Vita port of the reverse engineered Wolfenstein RPG by [GEC]. All credits go to the GEC team, this project would not exist without their hard work.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

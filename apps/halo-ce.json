@@ -3,7 +3,7 @@
   "title_id": "HCEV00001",
   "name": "Halo CE",
   "description": "Halo: Combat Evolved for the PS Vita (decomp port)",
-  "long_description": "A native PlayStation Vita port of Halo: Combat Evolved, built from the decompilation of the Xbox game. It is not an emulator: the game's own code is compiled for the Vita's ARM processor, and its Direct3D rendering is translated to the Vita's GPU.",
+  "long_description": "A native PlayStation Vita port of Halo: Combat Evolved, built from the decompilation of the Xbox game. It is not an emulator: the game's own code is compiled for the Vita's ARM processor, and its Direct3D rendering is translated to the Vita's GPU.\n\n- PsVitaAlive -",
   "author_ids": [
     "birchwoodgod"
   ],

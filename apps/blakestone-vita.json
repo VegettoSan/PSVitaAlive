@@ -3,7 +3,7 @@
   "title_id": "BSTONE012",
   "name": "BlakeStone-Vita",
   "description": "Blake Stone port for PSVITA",
-  "long_description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.\nThis build has a corrected LZH save system and minor fixes, and allows on-screen keyboard input for save games and high scores.",
+  "long_description": "Port of Blake Stone: Aliens of Gold and Blake Stone: Planet Strike for PSVITA/PSTV.\nThis build has a corrected LZH save system and minor fixes, and allows on-screen keyboard input for save games and high scores.\n\n- PsVitaAlive -",
   "author_ids": [
     "01y",
     "andiweli"

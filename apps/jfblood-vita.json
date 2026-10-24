@@ -3,7 +3,7 @@
   "title_id": "JFBLOOD01",
   "name": "jfblood-vita",
   "description": "Port of Blood for PSVITA/PSTV.",
-  "long_description": "jfblood-vita is a port of NBlood (a sourceport of Blood made by nukeykt) based on a backport of the matter to JFBuild made by BSzili.\nBlood is a 3D video game developed by Monolith Productions and published by GT Interactive and it was developed using Ken Silverman's Build engine.\nThe game follows the story of Caleb, an undead early 20th century gunslinger seeking revenge against the dark god Tchernobog.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "jfblood-vita is a port of NBlood (a sourceport of Blood made by nukeykt) based on a backport of the matter to JFBuild made by BSzili.\nBlood is a 3D video game developed by Monolith Productions and published by GT Interactive and it was developed using Ken Silverman's Build engine.\nThe game follows the story of Caleb, an undead early 20th century gunslinger seeking revenge against the dark god Tchernobog.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

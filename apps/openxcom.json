@@ -3,7 +3,7 @@
   "title_id": "XCOM00001",
   "name": "OpenXcom",
   "description": "Port of OpenXcom for PSVITA.",
-  "long_description": "OpenXcom is an open-source clone of the popular \"UFO: Enemy Unknown\" (\"X-COM: UFO Defense\" in the USA release) and \"X-COM: Terror From the Deep\" videogames by Microprose, licensed under the GPL and written in C++ / SDL.",
+  "long_description": "OpenXcom is an open-source clone of the popular \"UFO: Enemy Unknown\" (\"X-COM: UFO Defense\" in the USA release) and \"X-COM: Terror From the Deep\" videogames by Microprose, licensed under the GPL and written in C++ / SDL.\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

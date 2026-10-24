@@ -3,7 +3,7 @@
   "title_id": "RR3VITA01",
   "name": "Real Racing 3",
   "description": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
-  "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.",
+  "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.\n\n- PsVitaAlive -",
   "author_ids": [
     "chuta7x"
   ],

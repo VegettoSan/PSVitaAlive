@@ -3,7 +3,7 @@
   "title_id": "DERA00002",
   "name": "dRally Vita",
   "description": "Port of Death Rally for PSVITA.",
-  "long_description": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.",
+  "long_description": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.\n\n- PsVitaAlive -",
   "author_ids": [
     "enrique-somolinos-perez"
   ],

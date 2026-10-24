@@ -3,7 +3,7 @@
   "title_id": "FLPR12345",
   "name": "Flipper Volcano Vita",
   "description": "Port of Flipper Volcano for PSVita.",
-  "long_description": "Simple port of Flipper Volcano by Sokpop for Playstation Vita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "Simple port of Flipper Volcano by Sokpop for Playstation Vita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "bren"
   ],

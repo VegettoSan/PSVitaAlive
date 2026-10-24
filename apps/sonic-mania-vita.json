@@ -3,7 +3,7 @@
   "title_id": "MANIA0001",
   "name": "Sonic Mania Vita",
   "description": "Port of Sonic Mania for PSVITA.",
-  "long_description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.",
+  "long_description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.\n\n- PsVitaAlive -",
   "author_ids": [
     "sonicmastr"
   ],

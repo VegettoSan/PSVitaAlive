@@ -89,6 +89,8 @@ public:
     /** Refresh the active catalog without losing user selection, search or scroll. */
     void refreshCatalogItems(std::vector<CatalogItem> items);
     void setCatalogLoading(bool loading, const std::string& label, uint64_t current, uint64_t total, const std::string& message);
+    /** Thin theme-colored progress rule under the existing catalog tabs. */
+    void setCatalogSyncProgress(bool active, float progress, bool indeterminate = false);
     void setCatalogError(const std::string& error);
     void showToast(const std::string& message, uint64_t durationMs = 2600);
     // Queue the Archive.org warning. It opens only when startup/install
@@ -346,6 +348,9 @@ private:
     int detailCrossfadeFrom_ = -1;
     float tabIndicatorX_ = 0.f;
     float tabIndicatorReady_ = 0.f;
+    bool catalogSyncActive_ = false;
+    bool catalogSyncIndeterminate_ = false;
+    float catalogSyncProgress_ = 0.f;
     float contentFade_ = 1.f;
     std::string toastMessage_;
     uint64_t toastExpiresMs_ = 0;

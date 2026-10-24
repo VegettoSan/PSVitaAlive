@@ -3,7 +3,7 @@
   "title_id": "CHIAKI001",
   "name": "Vitaki",
   "description": "PS5 streaming application for PSVita.",
-  "long_description": "Port of Chiaki, an application allowing to stream PS5 to other devices.",
+  "long_description": "Port of Chiaki, an application allowing to stream PS5 to other devices.\n\n- PsVitaAlive -",
   "author_ids": [
     "ywnico",
     "aagaming"

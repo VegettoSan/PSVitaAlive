@@ -3,7 +3,7 @@
   "title_id": "JFTEKWAR1",
   "name": "jftekwar-vita",
   "description": "Port of William Shatner's Tekwar for PSVITA.",
-  "long_description": "jftekwar-vita is a port of jftekwar (JonoF's Tekwar), an unpolished multiplatform source port of Tekwar.\nThe software is served as-is, expect some bugs since the original source port never got polished to match jfsw/jfduke3d quality.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "jftekwar-vita is a port of jftekwar (JonoF's Tekwar), an unpolished multiplatform source port of Tekwar.\nThe software is served as-is, expect some bugs since the original source port never got polished to match jfsw/jfduke3d quality.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

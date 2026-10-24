@@ -3,7 +3,7 @@
   "title_id": "ABCD12354",
   "name": "Destroy The Dot",
   "description": "Port of Destroy The Dot for PSVita.",
-  "long_description": "Port of Destroy The Dot for PSVita.\nDestroy all BLACK DOT before they disappear but don't touch the RED DOT.",
+  "long_description": "Port of Destroy The Dot for PSVita.\nDestroy all BLACK DOT before they disappear but don't touch the RED DOT.\n\n- PsVitaAlive -",
   "author_ids": [
     "orbitalflagstudio"
   ],

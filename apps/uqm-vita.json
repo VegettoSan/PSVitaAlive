@@ -3,7 +3,7 @@
   "title_id": "UQMC00001",
   "name": "uqm-vita",
   "description": "Port of Ur-Quan Masters for PSVITA.",
-  "long_description": "uqm-vita is a port of the Ur-Quan Masters project to the PS Vita system.\nThe Ur-Quan Masters is a volunteer project that brings the classic game Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢ to modern systems. The code from the Ur-Quan Masters project is derived from code written by Toys for Bob, Inc. for the 3DO version of Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢.",
+  "long_description": "uqm-vita is a port of the Ur-Quan Masters project to the PS Vita system.\nThe Ur-Quan Masters is a volunteer project that brings the classic game Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢ to modern systems. The code from the Ur-Quan Masters project is derived from code written by Toys for Bob, Inc. for the 3DO version of Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢.\n\n- PsVitaAlive -",
   "author_ids": [
     "argarak"
   ],

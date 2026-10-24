@@ -3,7 +3,7 @@
   "title_id": "RSDK00003",
   "name": "Sonic 2",
   "description": "Port of Sonic The Hedgehog 2 for PSVITA.",
-  "long_description": "A port of the second game of Sonic (Sonic The Hedgehog 2) based on a full decompilation of the original game.",
+  "long_description": "A port of the second game of Sonic (Sonic The Hedgehog 2) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
   "author_ids": [
     "xeeynamo"
   ],

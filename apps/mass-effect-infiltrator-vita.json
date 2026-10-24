@@ -3,7 +3,7 @@
   "title_id": "MASSEFFEC",
   "name": "Mass Effect Infiltrator Vita",
   "description": "Port of Mass Effect Infiltrator for PSVITA.",
-  "long_description": "A loader for an iOS/Android-exclusive Third-Person Shooter with RPG Elements released as a tie-in game to Mass Effect 3. Please read the installation instructions on GitHub.",
+  "long_description": "A loader for an iOS/Android-exclusive Third-Person Shooter with RPG Elements released as a tie-in game to Mass Effect 3. Please read the installation instructions on GitHub.\n\n- PsVitaAlive -",
   "author_ids": [
     "gl33ntwine"
   ],

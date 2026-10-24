@@ -3,7 +3,7 @@
   "title_id": "BTD500001",
   "name": "Bloons TD 5 Vita",
   "description": "Port of Bloons TD 5 for PSVita.",
-  "long_description": "An unofficial PlayStation Vita loader for the Android ARMv7 release of Bloons TD 5.",
+  "long_description": "An unofficial PlayStation Vita loader for the Android ARMv7 release of Bloons TD 5.\n\n- PsVitaAlive -",
   "author_ids": [
     "claude-ai",
     "reallootfury"

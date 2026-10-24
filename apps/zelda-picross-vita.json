@@ -3,7 +3,7 @@
   "title_id": "ZELDAPIC1",
   "name": "Zelda Picross Vita",
   "description": "Port of Zelda Picross for PSVITA/PSTV.",
-  "long_description": "This is a port of Zelda Picross for the PS Vita, based on the original game made by Vincent Jouillat from here: http://www.zeldaroth.fr/us/dlpicross.php",
+  "long_description": "This is a port of Zelda Picross for the PS Vita, based on the original game made by Vincent Jouillat from here: http://www.zeldaroth.fr/us/dlpicross.php\n\n- PsVitaAlive -",
   "author_ids": [
     "hatoving"
   ],

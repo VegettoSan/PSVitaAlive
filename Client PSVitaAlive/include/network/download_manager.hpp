@@ -65,6 +65,8 @@ struct DownloadProgressEvent {
 };
 
 using DownloadProgressFn = std::function<void(const DownloadProgressEvent&)>;
+/** Startup scan: completed work / total work, current payload name, deleting phase. */
+using StartupCleanupProgressFn = std::function<void(uint64_t, uint64_t, const std::string&, bool)>;
 
 /**
  * DownloadManager
@@ -89,8 +91,8 @@ public:
     /** Remove final payload, metadata and the empty job directory. */
     bool cleanupCompletedJob(const std::string& jobId);
 
-    /** Delete incomplete/failed/cancelled job folders left on disk (startup + after errors). */
-    int purgeIncompleteJobs();
+    /** Delete abandoned jobs at startup; only explicitly kept/legacy ambiguous ZIPs survive. */
+    int purgeIncompleteJobs(const StartupCleanupProgressFn& onProgress = {});
 
     const std::vector<DownloadJob>& jobs() const { return jobs_; }
     DownloadJob* findJob(const std::string& id);

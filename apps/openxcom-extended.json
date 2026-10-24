@@ -3,7 +3,7 @@
   "title_id": "OXCE00001",
   "name": "OpenXcom Extended",
   "description": "Port of OpenXcom Extended for PSVITA.",
-  "long_description": "Port of OpenXcom Extended for PSVITA.\nOpenXcom Extended is an improved version of OpenXcom.",
+  "long_description": "Port of OpenXcom Extended for PSVITA.\nOpenXcom Extended is an improved version of OpenXcom.\n\n- PsVitaAlive -",
   "author_ids": [
     "northfear"
   ],

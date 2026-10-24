@@ -3,7 +3,7 @@
   "title_id": "TICR00002",
   "name": "Tiny Crate Vita",
   "description": "Port of Tiny Crate for PSVITA.",
-  "long_description": "Tiny Crate is a cute little precision platformer with puzzle elements!\nLift and toss crates to traverse over spike pits and reach higher ground!\nWeigh down buttons to create platforms and solve the puzzle!",
+  "long_description": "Tiny Crate is a cute little precision platformer with puzzle elements!\nLift and toss crates to traverse over spike pits and reach higher ground!\nWeigh down buttons to create platforms and solve the puzzle!\n\n- PsVitaAlive -",
   "author_ids": [
     "thatoneham",
     "harmony-honey"

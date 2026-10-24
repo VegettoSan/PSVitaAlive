@@ -3,7 +3,7 @@
   "title_id": "PICKRV016",
   "name": "Pickr VITA",
   "description": "Port of Pickr3ds for PSVITA.",
-  "long_description": "PickrVITA is a port of the game Pickr3DS by BernardoGiordano. The original idea was founded by Sean M. Tracey. The objective of the game is to tap the odd colour found on the screen until you run out of lives. Unlike Sean M. Tracey's game, PickrVITA can only be played in timer mode.",
+  "long_description": "PickrVITA is a port of the game Pickr3DS by BernardoGiordano. The original idea was founded by Sean M. Tracey. The objective of the game is to tap the odd colour found on the screen until you run out of lives. Unlike Sean M. Tracey's game, PickrVITA can only be played in timer mode.\n\n- PsVitaAlive -",
   "author_ids": [
     "joel16"
   ],

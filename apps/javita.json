@@ -3,7 +3,7 @@
   "title_id": "JAVITA001",
   "name": "JAVITA",
   "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
-  "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.",
+  "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.\n\n- PsVitaAlive -",
   "author_ids": [
     "ndrw"
   ],

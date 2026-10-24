@@ -3,7 +3,7 @@
   "title_id": "DEFD20485",
   "name": "2048-Vita",
   "description": "2048 port for PSVITA.",
-  "long_description": "A simple port of 2048 for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "long_description": "A simple port of 2048 for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
   "author_ids": [
     "fantahourglass"
   ],

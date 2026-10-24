@@ -3,7 +3,7 @@
   "title_id": "CTR000004",
   "name": "CTR: High Octane",
   "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
-  "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.",
+  "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.\n\n- PsVitaAlive -",
   "author_ids": [
     "rinnegatamante"
   ],

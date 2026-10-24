@@ -3,7 +3,7 @@
   "title_id": "COIV00001",
   "name": "Castle of Illusion",
   "description": "PS Vita port of the Android version of Castle of Illusion (2013).",
-  "long_description": "A heavily AI-assisted port of the Android version of Castle of Illusion Starring Mickey Mouse, using vitaGL. Includes physical controls, custom LiveArea artwork, and a prepared shader cache to avoid the original lengthy shader-compilation waits.",
+  "long_description": "A heavily AI-assisted port of the Android version of Castle of Illusion Starring Mickey Mouse, using vitaGL. Includes physical controls, custom LiveArea artwork, and a prepared shader cache to avoid the original lengthy shader-compilation waits.\n\n- PsVitaAlive -",
   "author_ids": [
     "jwfeniello"
   ],

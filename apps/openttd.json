@@ -3,7 +3,7 @@
   "title_id": "ANGU00001",
   "name": "OpenTTD",
   "description": "Transport Tycoon Deluxe port.",
-  "long_description": "OpenTTD is an open source simulation game based upon Transport Tycoon Deluxe. Please note the game takes ~60 seconds to load.",
+  "long_description": "OpenTTD is an open source simulation game based upon Transport Tycoon Deluxe. Please note the game takes ~60 seconds to load.\n\n- PsVitaAlive -",
   "author_ids": [
     "angguss"
   ],

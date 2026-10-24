@@ -3,7 +3,7 @@
   "title_id": "EXULT0042",
   "name": "Exult Vita",
   "description": "Port of Ultima 7 for PSVITA.",
-  "long_description": "Ultima 7, an RPG from the early 1990's, still has a huge following. But, being a DOS game with a very nonstandard memory manager, it is difficult to run it on the latest computers. Exult is a project to create an Ultima 7 game engine that runs on modern operating systems, capable of using the data and graphics files that come with the game.",
+  "long_description": "Ultima 7, an RPG from the early 1990's, still has a huge following. But, being a DOS game with a very nonstandard memory manager, it is difficult to run it on the latest computers. Exult is a project to create an Ultima 7 game engine that runs on modern operating systems, capable of using the data and graphics files that come with the game.\n\n- PsVitaAlive -",
   "author_ids": [
     "einmueller"
   ],
