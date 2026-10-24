@@ -215,6 +215,12 @@ private:
     bool installProgressActive_ = false;
     /** After Plugin install(s): force reboot dialog (blocks LiveArea exit). */
     bool pluginRebootModal_ = false;
+    // Confirmation for a single catalog Plugin link (independent of Install All).
+    bool pluginChoiceModal_ = false;
+    int pluginChoiceItemIndex_ = -1;
+    int pluginChoiceLinkIndex_ = -1;
+    int pluginChoiceFocus_ = 0; // 0 Install, 1 Skip
+
     bool archiveWarningVisible_ = false;
     bool archiveWarningPending_ = false;
     bool archiveWarningDownload_ = false;
@@ -391,6 +397,9 @@ private:
     void drawWebQrOverlay();
     void scrollWebQrHelp(int direction);
     void drawInstallAllOverlay();
+    void drawPluginChoiceOverlay();
+    void resolveIndividualPluginChoice(bool install);
+    void installAllAdvancePluginPick(bool install);
     void drawPluginRebootOverlay();
     void drawArchiveServiceOverlay();
     void drawEssentialPluginsOverlay();
@@ -531,6 +540,7 @@ private:
         PickDownload,
         PickGameFiles,
         PickDataFiles,
+        PickPlugin,
         Running
     };
     InstallAllPhase installAllPhase_ = InstallAllPhase::Hidden;
@@ -540,6 +550,10 @@ private:
     int installAllChosenDownload_ = -1;
     int installAllChosenGameFiles_ = -1;
     int installAllChosenDataFiles_ = -1;
+    // Explicit consent for each non-installed Plugin link, before any queued job.
+    std::vector<int> installAllPluginCandidates_;
+    std::vector<int> installAllChosenPlugins_;
+    size_t installAllPluginPickIndex_ = 0;
     std::vector<CatalogLink> installAllQueue_;
     std::vector<std::string> installAllQueueLabels_;
     size_t installAllQueueIndex_ = 0;

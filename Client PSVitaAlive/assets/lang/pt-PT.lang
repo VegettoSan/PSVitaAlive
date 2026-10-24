@@ -576,3 +576,15 @@ CATALOG_SYNC_UPDATED=Catálogo atualizado.
 PLUGIN_REQUIREMENT_REQUIRED=Obrigatório
 PLUGIN_REQUIREMENT_OPTIONAL=Opcional
 PLUGIN_REQUIREMENT_UNSPECIFIED=Não especificado
+
+# Per-plugin install consent (individual and Install All)
+PLUGIN_CONFIRM_TITLE=Instalar este plugin?
+PLUGIN_CONFIRM_REQUIRED_1=O programador marcou este plugin como obrigatório para o port.
+PLUGIN_CONFIRM_REQUIRED_2=Sem ele, o port poderá não funcionar corretamente.
+PLUGIN_CONFIRM_OPTIONAL_1=O programador recomenda este plugin, mas é opcional.
+PLUGIN_CONFIRM_OPTIONAL_2=Podes ignorá-lo e continuar a instalação do port.
+PLUGIN_CONFIRM_UNKNOWN_1=O programador não indicou se este plugin é obrigatório.
+PLUGIN_CONFIRM_UNKNOWN_2=Podes instalá-lo ou ignorá-lo.
+PLUGIN_CONFIRM_INSTALL=Instalar plugin
+PLUGIN_CONFIRM_SKIP=Ignorar plugin
+PLUGIN_CONFIRM_NAV=Esq./Dir.: escolher   X: confirmar   O: ignorar

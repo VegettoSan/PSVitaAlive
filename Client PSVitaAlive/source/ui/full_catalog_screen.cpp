@@ -3659,6 +3659,21 @@ void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int 
             return;
         }
     }
+    // Catalog Plugin links require explicit consent even for required plugins.
+    // Startup essential-plugin installs use a separate trusted workflow.
+    if (isPluginTypeLink(l)) {
+        if (isPluginAlreadyInstalled(l)) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
+            return;
+        }
+        pluginChoiceItemIndex_ = itemIndex;
+        pluginChoiceLinkIndex_ = linkDetailIndex;
+        pluginChoiceFocus_ = l.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1;
+        pluginChoiceModal_ = true;
+        touchDown_ = false;
+        diagnostics::log("[UI] Plugin consent requested (single): " + l.name);
+        return;
+    }
     if (linkAction_(item, l)) exitLinkNavigation();
 }
 
@@ -3956,6 +3971,33 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
+    // Per-link plugin consent: do not pass touches to the underlying controls.
+    if (pluginChoiceModal_) {
+        if (td.reportNum > 0) {
+            const int x = mapX(td.report[0].x), y = mapY(td.report[0].y);
+            if (!touchDown_) {
+                touchDown_ = true;
+                touchStartX_ = x;
+                touchStartY_ = y;
+                touchMoved_ = false;
+            } else if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18) {
+                touchMoved_ = true;
+            }
+        } else if (touchDown_) {
+            const int x = touchStartX_, y = touchStartY_;
+            const bool moved = touchMoved_;
+            touchDown_ = false;
+            if (!moved) {
+                const int w = 820, h = 460;
+                const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
+                const int bw = 300, bh = 55, by = oy + h - 96;
+                if (hit(x, y, ox + 28, by, bw, bh)) resolveIndividualPluginChoice(true);
+                else if (hit(x, y, ox + w - 28 - bw, by, bw, bh)) resolveIndividualPluginChoice(false);
+            }
+        }
+        return;
+    }
+
     // Essential plugins prompt
     if (essentialPluginsModal_) {
         if (td.reportNum <= 0) {
@@ -4220,6 +4262,12 @@ void FullCatalogScreen::handleTouch() {
                 const int bxCancel = ox + ow - 28 - bw;
                 if (hit(x, y, bxOk - 12, by - 12, bw + 24, bh + 24)) { installAllFocus_ = 0; installAllAdvancePick(); return; }
                 if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) { closeInstallAllWizard(true); return; }
+                return;
+            }
+            if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+                const int bw = 300, bh = 55, by = oy + oh - 96;
+                if (hit(x, y, ox + 28, by, bw, bh)) installAllAdvancePluginPick(true);
+                else if (hit(x, y, ox + ow - 28 - bw, by, bw, bh)) installAllAdvancePluginPick(false);
                 return;
             }
             if (installAllItemIndex_ >= 0 && installAllItemIndex_ < (int)catalogView().size()) {
@@ -5498,6 +5546,21 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
+    if (pluginChoiceModal_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0, &pad, 1);
+        static uint32_t prevPluginButtons = 0, prevPluginAnalog = 0;
+        const uint32_t pressed = pad.buttons & ~prevPluginButtons;
+        const uint32_t analog = leftStickNavMask(pad);
+        const uint32_t direction = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevPluginAnalog);
+        prevPluginButtons = pad.buttons;
+        prevPluginAnalog = analog;
+        if (direction & SCE_CTRL_LEFT) pluginChoiceFocus_ = 0;
+        if (direction & SCE_CTRL_RIGHT) pluginChoiceFocus_ = 1;
+        if (pressed & SCE_CTRL_CIRCLE) resolveIndividualPluginChoice(false);
+        else if (pressed & SCE_CTRL_CROSS) resolveIndividualPluginChoice(pluginChoiceFocus_ == 0);
+        return;
+    }
     if (essentialPluginsModal_) {
         SceCtrlData pad{};
         sceCtrlPeekBufferPositive(0, &pad, 1);
@@ -5609,6 +5672,13 @@ if(pressed&SCE_CTRL_START){
         }
         return;
     }if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running){
+        if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+            if (nav & SCE_CTRL_LEFT) installAllFocus_ = 0;
+            if (nav & SCE_CTRL_RIGHT) installAllFocus_ = 1;
+            if (pressed & SCE_CTRL_CIRCLE) { installAllAdvancePluginPick(false); return; }
+            if (pressed & SCE_CTRL_CROSS) { installAllAdvancePluginPick(installAllFocus_ == 0); return; }
+            return;
+        }
         if(pressed&SCE_CTRL_CIRCLE){closeInstallAllWizard(true);return;}
         if(installAllPhase_==InstallAllPhase::Confirm){
             if(nav&SCE_CTRL_LEFT||nav&SCE_CTRL_RIGHT||nav&SCE_CTRL_UP||nav&SCE_CTRL_DOWN){
@@ -7522,7 +7592,7 @@ void FullCatalogScreen::collectInstallAllOptions(const CatalogItem& item, const 
 }
 
 void FullCatalogScreen::openInstallAllWizard() {
-    if (installProgressActive_ || catalogLoading_) {
+    if (installProgressActive_ || catalogLoading_ || pluginChoiceModal_) {
         showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1600);
         return;
     }
@@ -7539,6 +7609,9 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllChosenDownload_ = -1;
     installAllChosenGameFiles_ = -1;
     installAllChosenDataFiles_ = -1;
+    installAllPluginCandidates_.clear();
+    installAllChosenPlugins_.clear();
+    installAllPluginPickIndex_ = 0;
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
     installAllQueueIndex_ = 0;
@@ -7566,6 +7639,9 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     }
     installAllPhase_ = InstallAllPhase::Hidden;
     installAllOptions_.clear();
+    installAllPluginCandidates_.clear();
+    installAllChosenPlugins_.clear();
+    installAllPluginPickIndex_ = 0;
     installAllItemIndex_ = -1;
     if (cancel) diagnostics::log("[UI] Install All wizard cancelled");
 }
@@ -7627,7 +7703,79 @@ void FullCatalogScreen::installAllAdvancePick() {
     if (autoOrPrompt(needGame, installAllChosenGameFiles_, InstallAllPhase::PickGameFiles, "game")) return;
     if (autoOrPrompt(needData, installAllChosenDataFiles_, InstallAllPhase::PickDataFiles, "data")) return;
 
+    // All source choices are resolved. Ask about every not-yet-installed plugin
+    // BEFORE starting any download. "requirements" remains informative only.
+    installAllPluginCandidates_.clear();
+    installAllChosenPlugins_.clear();
+    installAllPluginPickIndex_ = 0;
+    for (size_t i = 0; i < item.linkDetails.size(); ++i) {
+        const CatalogLink& link = item.linkDetails[i];
+        if (!isPluginTypeLink(link) || link.url.empty()) continue;
+        if (isPluginAlreadyInstalled(link)) {
+            diagnostics::log("[UI] Install All skip installed plugin (no prompt): " + pluginInstallFilePath(link));
+            continue;
+        }
+        installAllPluginCandidates_.push_back(static_cast<int>(i));
+    }
+    if (!installAllPluginCandidates_.empty()) {
+        installAllPhase_ = InstallAllPhase::PickPlugin;
+        const CatalogLink& first = item.linkDetails[installAllPluginCandidates_[0]];
+        installAllFocus_ = first.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1;
+        diagnostics::log("[UI] Install All plugin selection: " + std::to_string(installAllPluginCandidates_.size()) + " candidate(s)");
+        return;
+    }
     installAllStartQueue();
+}
+
+void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
+    if (installAllPhase_ != InstallAllPhase::PickPlugin) return;
+    if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size() ||
+        installAllPluginPickIndex_ >= installAllPluginCandidates_.size()) {
+        closeInstallAllWizard(true);
+        return;
+    }
+    const CatalogItem& item = catalogView()[installAllItemIndex_];
+    const int selected = installAllPluginCandidates_[installAllPluginPickIndex_];
+    if (selected < 0 || selected >= (int)item.linkDetails.size()) {
+        closeInstallAllWizard(true);
+        return;
+    }
+    const CatalogLink& link = item.linkDetails[selected];
+    if (install) installAllChosenPlugins_.push_back(selected);
+    diagnostics::log(std::string("[UI] Install All plugin choice: ") +
+                     (install ? "install " : "skip ") + link.name);
+    ++installAllPluginPickIndex_;
+    if (installAllPluginPickIndex_ < installAllPluginCandidates_.size()) {
+        const CatalogLink& next = item.linkDetails[installAllPluginCandidates_[installAllPluginPickIndex_]];
+        installAllFocus_ = next.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1;
+        return;
+    }
+    installAllStartQueue();
+}
+
+void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
+    if (!pluginChoiceModal_) return;
+    const int itemIndex = pluginChoiceItemIndex_;
+    const int linkIndex = pluginChoiceLinkIndex_;
+    pluginChoiceModal_ = false;
+    pluginChoiceItemIndex_ = -1;
+    pluginChoiceLinkIndex_ = -1;
+    if (!install) {
+        diagnostics::log("[UI] Single plugin install skipped by user");
+        return;
+    }
+    if (installProgressActive_ || itemIndex < 0 || itemIndex >= (int)catalogView().size()) return;
+    const CatalogItem& item = catalogView()[itemIndex];
+    if (linkIndex < 0 || linkIndex >= (int)item.linkDetails.size()) return;
+    const CatalogLink& link = item.linkDetails[linkIndex];
+    if (!isPluginTypeLink(link) || !actionableLink(link) || !linkAction_) return;
+    if (isPluginAlreadyInstalled(link)) {
+        showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
+        return;
+    }
+    diagnostics::log("[UI] Single plugin install confirmed: " + link.name);
+    if (linkAction_(item, link)) exitLinkNavigation();
+    else showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall), 2200);
 }
 
 void FullCatalogScreen::installAllStartQueue() {
@@ -7648,17 +7796,22 @@ void FullCatalogScreen::installAllStartQueue() {
     pushIdx(installAllChosenGameFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
     pushIdx(installAllChosenDataFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
     installAllPluginInstalled_ = false;
-    for (size_t i = 0; i < item.linkDetails.size(); ++i) {
-        if (!isPluginTypeLink(item.linkDetails[i])) continue;
-        if (item.linkDetails[i].url.empty()) continue;
-        if (isPluginAlreadyInstalled(item.linkDetails[i])) {
-            diagnostics::log(std::string("[UI] Install All skip installed plugin: ")
-                             + pluginInstallFilePath(item.linkDetails[i]));
+    // Only explicitly approved plugin links enter the queue.
+    for (int di : installAllChosenPlugins_) {
+        if (di < 0 || di >= (int)item.linkDetails.size()) continue;
+        const CatalogLink& link = item.linkDetails[di];
+        if (!isPluginTypeLink(link) || link.url.empty()) continue;
+        if (isPluginAlreadyInstalled(link)) {
+            diagnostics::log("[UI] Install All approved plugin became installed: " + pluginInstallFilePath(link));
             continue;
         }
-        installAllQueue_.push_back(item.linkDetails[i]);
-        installAllQueueLabels_.push_back(item.linkDetails[i].name.empty() ? ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin) : item.linkDetails[i].name);
+        installAllQueue_.push_back(link);
+        installAllQueueLabels_.push_back(link.name.empty()
+            ? ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin) : link.name);
     }
+    installAllPluginCandidates_.clear();
+    installAllChosenPlugins_.clear();
+    installAllPluginPickIndex_ = 0;
 
     if (installAllQueue_.empty()) {
         showToast(::psvitaalive::L(::psvitaalive::TextId::ToastNothingToInstall), 1600);
@@ -7766,8 +7919,88 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needs
     (void)prev;
 }
 
+
+void FullCatalogScreen::drawPluginChoiceOverlay() {
+    const CatalogItem* item = nullptr;
+    const CatalogLink* link = nullptr;
+    int focus = 0;
+    size_t step = 0, total = 0;
+    if (pluginChoiceModal_) {
+        if (pluginChoiceItemIndex_ < 0 || pluginChoiceItemIndex_ >= (int)catalogView().size()) return;
+        item = &catalogView()[pluginChoiceItemIndex_];
+        if (pluginChoiceLinkIndex_ < 0 || pluginChoiceLinkIndex_ >= (int)item->linkDetails.size()) return;
+        link = &item->linkDetails[pluginChoiceLinkIndex_];
+        focus = pluginChoiceFocus_;
+    } else if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+        if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size() ||
+            installAllPluginPickIndex_ >= installAllPluginCandidates_.size()) return;
+        item = &catalogView()[installAllItemIndex_];
+        const int di = installAllPluginCandidates_[installAllPluginPickIndex_];
+        if (di < 0 || di >= (int)item->linkDetails.size()) return;
+        link = &item->linkDetails[di];
+        focus = installAllFocus_;
+        step = installAllPluginPickIndex_ + 1;
+        total = installAllPluginCandidates_.size();
+    } else return;
+
+    const int w = 820, h = 460;
+    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
+    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 185));
+    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+    vita2d_draw_rectangle(x, y + h - 1, w, 1, BORDER);
+    vita2d_draw_rectangle(x, y, 1, h, BORDER);
+    vita2d_draw_rectangle(x + w - 1, y, 1, h, BORDER);
+
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 42, ACCENT, 1.16f,
+        ::psvitaalive::L("PLUGIN_CONFIRM_TITLE"));
+    if (total > 0) {
+        const std::string position = std::string(::psvitaalive::L(::psvitaalive::TextId::MetaPlugin)) +
+            " " + std::to_string(step) + " / " + std::to_string(total);
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.73f, position.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_, x + w - tw - 28, y + 40, DIM, 0.73f, position.c_str());
+    }
+    const std::string name = link->name.empty() ? link->type : link->name;
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 91, WHITE, 0.99f,
+        ellipsize(name, 47).c_str());
+    using Requirement = CatalogLink::PluginRequirement;
+    const bool required = link->pluginRequirement == Requirement::Required;
+    const bool optional = link->pluginRequirement == Requirement::Optional;
+    const char* status = ::psvitaalive::L(required ? "PLUGIN_REQUIREMENT_REQUIRED" :
+        optional ? "PLUGIN_REQUIREMENT_OPTIONAL" : "PLUGIN_REQUIREMENT_UNSPECIFIED");
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 133, required ? ACCENT : DIM,
+        0.82f, status);
+    const char* line1 = ::psvitaalive::L(required ? "PLUGIN_CONFIRM_REQUIRED_1" :
+        optional ? "PLUGIN_CONFIRM_OPTIONAL_1" : "PLUGIN_CONFIRM_UNKNOWN_1");
+    const char* line2 = ::psvitaalive::L(required ? "PLUGIN_CONFIRM_REQUIRED_2" :
+        optional ? "PLUGIN_CONFIRM_OPTIONAL_2" : "PLUGIN_CONFIRM_UNKNOWN_2");
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 187, TEXT, 0.79f, line1);
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 220, TEXT, 0.79f, line2);
+
+    const int bw = 300, bh = 55, by = y + h - 96;
+    const int bxInstall = x + 28, bxSkip = x + w - 28 - bw;
+    const char* buttons[] = {
+        ::psvitaalive::L("PLUGIN_CONFIRM_INSTALL"),
+        ::psvitaalive::L("PLUGIN_CONFIRM_SKIP")
+    };
+    const int buttonXs[] = {bxInstall, bxSkip};
+    for (int i = 0; i < 2; ++i) {
+        const bool selected = focus == i;
+        vita2d_draw_rectangle(buttonXs[i], by, bw, bh, selected ? ACCENT : SURFACE);
+        vita2d_draw_rectangle(buttonXs[i], by, bw, 1, selected ? ACCENT : BORDER);
+        const float sc = 0.85f;
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, buttons[i]);
+        ::psvitaalive::ui::uiDrawText(&font_, buttonXs[i] + (bw - tw) / 2, by + 37,
+            selected ? BG : WHITE, sc, buttons[i]);
+    }
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 18, DIM, 0.68f,
+        ::psvitaalive::L("PLUGIN_CONFIRM_NAV"));
+}
+
 void FullCatalogScreen::drawInstallAllOverlay() {
-    if (installAllPhase_ == InstallAllPhase::Hidden || installAllPhase_ == InstallAllPhase::Running) return;
+    if (installAllPhase_ == InstallAllPhase::Hidden ||
+        installAllPhase_ == InstallAllPhase::Running ||
+        installAllPhase_ == InstallAllPhase::PickPlugin) return;
     if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) return;
     const CatalogItem& item = catalogView()[installAllItemIndex_];
 
@@ -8890,7 +9123,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter));
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.

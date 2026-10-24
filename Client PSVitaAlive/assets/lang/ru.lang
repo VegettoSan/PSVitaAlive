@@ -576,3 +576,15 @@ CATALOG_SYNC_UPDATED=Каталог обновлён.
 PLUGIN_REQUIREMENT_REQUIRED=Обязателен
 PLUGIN_REQUIREMENT_OPTIONAL=Необязателен
 PLUGIN_REQUIREMENT_UNSPECIFIED=Не указано
+
+# Per-plugin install consent (individual and Install All)
+PLUGIN_CONFIRM_TITLE=Установить этот плагин?
+PLUGIN_CONFIRM_REQUIRED_1=Разработчик отметил этот плагин как обязательный для порта.
+PLUGIN_CONFIRM_REQUIRED_2=Без него порт может работать неправильно.
+PLUGIN_CONFIRM_OPTIONAL_1=Разработчик рекомендует этот плагин, но он необязателен.
+PLUGIN_CONFIRM_OPTIONAL_2=Его можно пропустить и продолжить установку порта.
+PLUGIN_CONFIRM_UNKNOWN_1=Разработчик не указал, обязателен ли этот плагин.
+PLUGIN_CONFIRM_UNKNOWN_2=Вы можете установить или пропустить его.
+PLUGIN_CONFIRM_INSTALL=Установить плагин
+PLUGIN_CONFIRM_SKIP=Пропустить плагин
+PLUGIN_CONFIRM_NAV=Влево/вправо: выбор   X: подтвердить   O: пропустить

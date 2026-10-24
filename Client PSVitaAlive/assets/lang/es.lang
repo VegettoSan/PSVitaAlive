@@ -598,3 +598,15 @@ STARTUP_DOWNLOAD_CLEANUP_READY=Revisión de descargas finalizada.
 PLUGIN_REQUIREMENT_REQUIRED=Obligatorio
 PLUGIN_REQUIREMENT_OPTIONAL=Opcional
 PLUGIN_REQUIREMENT_UNSPECIFIED=Sin especificar
+
+# Per-plugin install consent (individual and Install All)
+PLUGIN_CONFIRM_TITLE=¿Instalar este plugin?
+PLUGIN_CONFIRM_REQUIRED_1=El desarrollador marcó este plugin como obligatorio para el port.
+PLUGIN_CONFIRM_REQUIRED_2=Sin él, el port podría no funcionar correctamente.
+PLUGIN_CONFIRM_OPTIONAL_1=El desarrollador recomienda este plugin, pero es opcional.
+PLUGIN_CONFIRM_OPTIONAL_2=Puedes omitirlo y continuar instalando el port.
+PLUGIN_CONFIRM_UNKNOWN_1=El desarrollador no indicó si este plugin es obligatorio.
+PLUGIN_CONFIRM_UNKNOWN_2=Puedes instalarlo u omitirlo.
+PLUGIN_CONFIRM_INSTALL=Instalar plugin
+PLUGIN_CONFIRM_SKIP=Omitir plugin
+PLUGIN_CONFIRM_NAV=Izq./Der.: elegir   X: confirmar   O: omitir
