@@ -72,7 +72,7 @@
                             <label for="authors">Authors <span>*</span></label>
                             <select id="authors" multiple size="6" required></select>
                             <div id="author-picker"></div>
-                            <small>Type a name or ID to filter the official author list. Selected authors appear as chips and can be removed individually.</small>
+                            <small>Search existing authors, create a new author, or import an unpublished <code>authors/*.json</code> profile to reuse its ID in multiple app files. Imported author JSON files remain on your computer and are not generated again.</small>
                         </div>
                         <div class="field full category-block">
                             <label for="category">Category <span>*</span></label>
@@ -129,7 +129,7 @@
                             <li><strong>Plugin</strong> — keeps its own taiHEN configuration and destination path.</li>
                             <li><strong>Mirror / Repository / Official Website / Documentation / Issues / Community / Other</strong> — informational links (not installed by the client as the main payload).</li>
                         </ul>
-                        <p style="margin:8px 0 0"><strong>Size:</strong> optional per link; pick B/KB/MB/GB — JSON stores bytes. <strong>URLs:</strong> must be public <code>http://</code> or <code>https://</code> direct file links when possible (GitHub Releases, Archive.org, MediaFire, etc.).</p>
+                        <p style="margin:8px 0 0"><strong>Size:</strong> available only for file downloads (including mirrors, PKG, DLC, updates and plugins); optional per link, stored in bytes. Repository, community and other reference links have no size. <strong>URLs:</strong> must be public <code>http://</code> or <code>https://</code> direct file links when possible (GitHub Releases, Archive.org, MediaFire, etc.).</p>
                     </div>
                     <div id="links-list" class="repeat-list"></div>
                     <button id="add-link" type="button" class="small-button">+ Add link</button>
