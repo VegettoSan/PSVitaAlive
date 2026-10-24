@@ -593,3 +593,8 @@ STARTUP_DOWNLOAD_CLEANUP_LABEL=Storage maintenance
 STARTUP_DOWNLOAD_CLEANUP_CHECKING=Checking leftover downloads...
 STARTUP_DOWNLOAD_CLEANUP_DELETING=Removing leftover download:
 STARTUP_DOWNLOAD_CLEANUP_READY=Download cleanup finished.
+
+# Plugin-link classification (informational only)
+PLUGIN_REQUIREMENT_REQUIRED=Required
+PLUGIN_REQUIREMENT_OPTIONAL=Optional
+PLUGIN_REQUIREMENT_UNSPECIFIED=Not specified
