@@ -48,7 +48,8 @@
       "size": 5222,
       "extract_path": "ur0:tai/",
       "section": "*KERNEL",
-      "line": "ur0:tai/CapUnlocker.skprx"
+      "line": "ur0:tai/CapUnlocker.skprx",
+      "required": false
     },
     {
       "type": "Repository",

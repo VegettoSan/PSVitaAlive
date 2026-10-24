@@ -40,7 +40,8 @@
       "size": 19149,
       "extract_path": "ur0:tai/",
       "section": "*KERNEL",
-      "line": "ur0:/tai/ttbr_remap.skprx"
+      "line": "ur0:/tai/ttbr_remap.skprx",
+      "required": true
     }
   ],
   "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
