@@ -1,0 +1,42 @@
+{
+  "id": "ducktales-remastered",
+  "title_id": "DUK000000",
+  "name": "DuckTales Remastered",
+  "description": "DuckTales Remastered Ps Vita Port",
+  "long_description": "DuckTales Remastered Ps Vita Port",
+  "author_ids": [
+    "technicaljicama"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "puzzle",
+    "source-port"
+  ],
+  "version": "0.0.1",
+  "version_date": "2026-10-21",
+  "requirements": "- no data",
+  "size": 1782579,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/ducktales-remastered-ps-vita/DuckTales%20v0.0.1.vpk",
+      "size": 1782579,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/ducktales-remastered-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 607125504,
+      "extract_path": "ux0:data/"
+    }
+  ],
+  "icon": "https://archive.org/download/ducktales-remastered-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/ducktales-remastered-ps-vita/shot0.png"
+  ]
+}

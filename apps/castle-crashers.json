@@ -1,0 +1,46 @@
+{
+  "id": "castle-crashers",
+  "title_id": "CCRV00001",
+  "name": "Castle Crashers",
+  "description": "Castle Crashers Ps Vita Port",
+  "long_description": "Castle Crashers Ps Vita Port",
+  "author_ids": [
+    "sirjahjah"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "platformer",
+    "source-port"
+  ],
+  "version": "0.0.2",
+  "version_date": "2026-10-24",
+  "requirements": "- no data",
+  "size": 675533,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/castle-crashers-ps-vita/castle%20crashers%20v0.0.2.vpk",
+      "size": 675533,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/castle-crashers-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 255747686,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Community",
+      "name": "Reddit Post",
+      "url": "https://www.reddit.com/r/vitahacks/comments/1xe9i7a/release_castle_crashers_vita_edition/"
+    }
+  ],
+  "icon": "https://archive.org/download/castle-crashers-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/castle-crashers-ps-vita/shot0.png"
+  ]
+}
