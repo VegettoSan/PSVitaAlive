@@ -40,6 +40,31 @@ inline uint64_t preflightRequiredSpaceBytes(uint64_t payload, InstallSpaceMode m
     return q * 21ULL + r;
 }
 
+// Combined Install All budget. Catalog sizes describe compressed download bytes;
+// the ZIP extractor still checks true uncompressed growth before extracting.
+// largestExtra is the maximum Game/Data candidate in the catalog. If BOTH a
+// Game Files and a Data Files payload are selected, selectedExtraSum is larger
+// and protects the combined installation from an undersized MAX-only estimate.
+// A 25% reserve + 128 MiB accommodates transient files and filesystem churn.
+// The 2.1x VPK minimum retains the original direct-package install safeguard.
+inline uint64_t installAllRequiredSpaceBytes(
+    uint64_t appBytes, uint64_t largestExtraBytes,
+    uint64_t selectedExtraSumBytes, uint64_t pluginsBytes = 0) {
+    const uint64_t extraBytes = largestExtraBytes > selectedExtraSumBytes
+        ? largestExtraBytes : selectedExtraSumBytes;
+    const uint64_t payload = saturatingSpaceAdd(
+        saturatingSpaceAdd(appBytes, extraBytes), pluginsBytes);
+    if (!payload) return 0;
+    constexpr uint64_t BASE_RESERVE = 128ULL * 1024 * 1024;
+    const uint64_t conservative = saturatingSpaceAdd(
+        saturatingSpaceAdd(payload, payload / 4), BASE_RESERVE);
+    const uint64_t vpkFloor = saturatingSpaceAdd(
+        saturatingSpaceAdd(preflightRequiredSpaceBytes(appBytes, InstallSpaceMode::DirectPackage),
+                           extraBytes),
+        saturatingSpaceAdd(pluginsBytes, BASE_RESERVE));
+    return conservative > vpkFloor ? conservative : vpkFloor;
+}
+
 // Top-level app.size describes the PRIMARY download, never a secondary Data ZIP.
 inline uint64_t chooseSelectedLinkSizeBytes(uint64_t linkBytes, uint64_t appBytes,
                                              const std::string& linkUrl,

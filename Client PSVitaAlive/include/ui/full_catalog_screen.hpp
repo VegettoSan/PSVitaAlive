@@ -562,10 +562,14 @@ private:
         PickGameFiles,
         PickDataFiles,
         PickPlugin,
+        SpaceWarning,  // unified pre-download capacity error (no job started)
         Running,
         Summary
     };
     InstallAllPhase installAllPhase_ = InstallAllPhase::Hidden;
+    uint64_t installAllRequiredBytes_ = 0;
+    uint64_t installAllFreeBytes_ = 0;
+    bool installAllSpaceProbeFailed_ = false;
     int installAllFocus_ = 0;              // focus inside current wizard list / buttons
     int installAllItemIndex_ = -1;         // index into catalogView() when wizard opened
     std::vector<int> installAllOptions_;   // linkDetail indices for current pick phase

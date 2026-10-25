@@ -7,6 +7,8 @@
 #include "ui/qr_code.hpp"
 #include "ui/web_qr_guide.hpp"
 #include "installer/app_settings.hpp"
+#include "installer/install_space_policy.hpp"
+#include "storage/storage_manager.hpp"
 #include "installer/plugin_detector.hpp"
 #include "installer/tai_config_editor.hpp"
 #include "localization/localization.hpp"
@@ -4398,6 +4400,10 @@ void FullCatalogScreen::handleTouch() {
                 }
                 return;
             }
+            if (installAllPhase_ == InstallAllPhase::SpaceWarning) {
+                closeInstallAllWizard(true); // no download was ever enqueued
+                return;
+            }
             if (installAllPhase_ == InstallAllPhase::Confirm) {
                 const int bw = 240, bh = 50;
                 const int by = oy + oh - 68;
@@ -5892,6 +5898,11 @@ if(pressed&SCE_CTRL_START){
             } else if ((pressed & SCE_CTRL_CIRCLE) && !installAllPluginInstalled_) {
                 closeInstallAllWizard(false);
             }
+            return;
+        }
+        if (installAllPhase_ == InstallAllPhase::SpaceWarning) {
+            if (pressed & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE))
+                closeInstallAllWizard(true);
             return;
         }
         if (installAllPhase_ == InstallAllPhase::PickPlugin) {
@@ -7857,6 +7868,9 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllReportTitleId_.clear();
     installAllSummaryDeleteConfirm_ = false;
     installAllSummaryDeleteFocus_ = 1;
+    installAllRequiredBytes_ = 0;
+    installAllFreeBytes_ = 0;
+    installAllSpaceProbeFailed_ = false;
     installAllRecoveryStartUs_ = 0;
     installAllRecoveryResolved_ = false;
     installAllRecoveryAutoAttempted_ = false;
@@ -7892,6 +7906,9 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     installAllReportAppId_.clear();
     installAllReportTitleId_.clear();
     installAllSummaryDeleteConfirm_ = false;
+    installAllRequiredBytes_ = 0;
+    installAllFreeBytes_ = 0;
+    installAllSpaceProbeFailed_ = false;
     installAllRecoveryStartUs_ = 0;
     installAllRecoveryResolved_ = false;
     installAllRecoveryAutoAttempted_ = false;
@@ -8093,13 +8110,60 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllRecoveryAutoAttempted_ = false;
     installAllRecoveryAutoFailed_ = false;
 
-    uint64_t needSum = 0;
-    for (const auto& link : installAllQueue_) {
-        uint64_t bytes = parseUiSizeBytes(link.size);
-        if (!bytes) bytes = parseUiSizeBytes(item.size);
-        needSum += bytes;
+    // App size + largest Game/Data Files candidate + reserve, BEFORE starting
+    // any download. The prior needSum was log-only and wrongly substituted
+    // item.size for a Data/Game Files link without its own size.
+    uint64_t appBytes = parseUiSizeBytes(item.size);
+    const auto validIndex = [&](int i) {
+        return i >= 0 && i < static_cast<int>(item.linkDetails.size());
+    };
+    if (validIndex(installAllChosenDownload_)) {
+        const uint64_t selected = parseUiSizeBytes(item.linkDetails[installAllChosenDownload_].size);
+        if (selected) appBytes = selected;
     }
-    diagnostics::log("[UI] Install All estimated payload bytes=" + std::to_string(needSum));
+    uint64_t largestExtra = 0;
+    for (const auto& link : item.linkDetails) {
+        if (!isGameFilesTypeLink(link) && !isDataFilesTypeLink(link)) continue;
+        largestExtra = std::max(largestExtra, parseUiSizeBytes(link.size));
+    }
+    uint64_t selectedExtraSum = 0;
+    for (int index : {installAllChosenGameFiles_, installAllChosenDataFiles_}) {
+        if (!validIndex(index)) continue;
+        selectedExtraSum = ::psvitaalive::saturatingSpaceAdd(
+            selectedExtraSum, parseUiSizeBytes(item.linkDetails[index].size));
+    }
+    uint64_t pluginBytes = 0;
+    for (const auto& link : installAllQueue_) {
+        if (!isPluginTypeLink(link)) continue;
+        pluginBytes = ::psvitaalive::saturatingSpaceAdd(pluginBytes, parseUiSizeBytes(link.size));
+    }
+    installAllRequiredBytes_ = ::psvitaalive::installAllRequiredSpaceBytes(
+        appBytes, largestExtra, selectedExtraSum, pluginBytes);
+    installAllFreeBytes_ = 0;
+    installAllSpaceProbeFailed_ = false;
+    if (installAllRequiredBytes_) {
+        uint64_t total = 0;
+        if (!::psvitaalive::StorageManager::queryUx0Space(installAllFreeBytes_, total)) {
+            installAllSpaceProbeFailed_ = true;
+            installAllPhase_ = InstallAllPhase::SpaceWarning;
+            diagnostics::log("[UI] Install All blocked: cannot read actual ux0 free space");
+            return;
+        }
+        if (installAllFreeBytes_ < installAllRequiredBytes_) {
+            installAllPhase_ = InstallAllPhase::SpaceWarning;
+            diagnostics::log("[UI] Install All blocked: required=" +
+                std::to_string(installAllRequiredBytes_) + " free=" +
+                std::to_string(installAllFreeBytes_) + " app=" + std::to_string(appBytes) +
+                " largest_extra=" + std::to_string(largestExtra) +
+                " selected_extra_total=" + std::to_string(selectedExtraSum));
+            return;
+        }
+    }
+    diagnostics::log("[UI] Install All budget OK required=" +
+        std::to_string(installAllRequiredBytes_) + " free=" +
+        std::to_string(installAllFreeBytes_) + " app=" + std::to_string(appBytes) +
+        " largest_extra=" + std::to_string(largestExtra) +
+        " selected_extra_total=" + std::to_string(selectedExtraSum));
     diagnostics::log("[UI] Install All queued " + std::to_string(installAllQueue_.size()) +
                      " jobs, including selected plugins");
     installAllPhase_ = InstallAllPhase::Running;
@@ -8553,6 +8617,33 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     vita2d_draw_rectangle(ox, oy + oh - 1, ow, 1, BORDER);
     vita2d_draw_rectangle(ox, oy, 1, oh, BORDER);
     vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
+
+    if (installAllPhase_ == InstallAllPhase::SpaceWarning) {
+        const char* title = ::psvitaalive::L("ALL_SPACE_TITLE");
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 44, ACCENT, 1.15f, title);
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 90, WHITE, 0.86f,
+            ellipsize(item.name, 42).c_str());
+        const char* explain = ::psvitaalive::L(installAllSpaceProbeFailed_
+            ? "ALL_SPACE_READ_FAILED" : "ALL_SPACE_EXPLANATION");
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 143, TEXT, 0.78f, explain);
+        if (!installAllSpaceProbeFailed_) {
+            const std::string needed = std::string(::psvitaalive::L("ALL_SPACE_REQUIRED")) +
+                ": " + formatBytesShort(installAllRequiredBytes_);
+            const std::string free = std::string(::psvitaalive::L("ALL_SPACE_AVAILABLE")) +
+                ": " + formatBytesShort(installAllFreeBytes_);
+            const std::string shortBy = std::string(::psvitaalive::L("ALL_SPACE_MISSING")) +
+                ": " + formatBytesShort(installAllRequiredBytes_ - installAllFreeBytes_);
+            ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 205, WHITE, 0.90f, needed.c_str());
+            ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 250, WHITE, 0.90f, free.c_str());
+            ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 295, ACCENT, 0.90f, shortBy.c_str());
+        }
+        const int bw = 310, bh = 54, bx = ox + (ow - bw)/2, by = oy + oh - 80;
+        vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+        const char* label = ::psvitaalive::L("ALL_SPACE_CLOSE");
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.89f, label);
+        ::psvitaalive::ui::uiDrawText(&font_, bx+(bw-tw)/2, by+36, BG, 0.89f, label);
+        return;
+    }
 
     if (installAllPhase_ == InstallAllPhase::Confirm) {
         ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 42, ACCENT, 1.22f, ::psvitaalive::L(::psvitaalive::TextId::InstallAll));
