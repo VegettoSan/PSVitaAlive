@@ -741,25 +741,75 @@ ZipResult ZipExtractor::extract(
     {
         uint64_t freeB = 0, totalB = 0;
         const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
-        // Margin: 32 MiB + 5% of uncompressed for FS overhead.
-        const uint64_t margin = (32ULL * 1024ULL * 1024ULL) + (uncompressedTotal / 20ULL);
-        const uint64_t required = uncompressedTotal > (~0ULL - margin) ? ~0ULL : uncompressedTotal + margin;
+
+        // Direct replacement truncates the old file first, so those occupied
+        // bytes are reusable. Only pay the extra stat cost on a space-constrained
+        // install; otherwise keep the fast existing pre-scan.
+        uint64_t estimatedGrowth = uncompressedTotal;
+        const uint64_t fullMargin = (32ULL * 1024ULL * 1024ULL) + (uncompressedTotal / 20ULL);
+        const uint64_t fullRequired = uncompressedTotal > (~0ULL - fullMargin)
+            ? ~0ULL : uncompressedTotal + fullMargin;
+        if (haveSpace && freeB < fullRequired) {
+            std::unordered_set<std::string> creditedPaths;
+            for (zip_int64_t i = 0; i < numEntries; ++i) {
+                if (shouldCancel && shouldCancel()) {
+                    setError("cancelled");
+                    zip_close(za);
+                    return ZipResult::Cancelled;
+                }
+                zip_stat_t zs;
+                zip_stat_init(&zs);
+                if (zip_stat_index(za, i, 0, &zs) != 0 || !zs.name ||
+                    !(zs.valid & ZIP_STAT_SIZE) || zs.size == 0) continue;
+                const std::string name(zs.name);
+                if (name.empty() || name.back() == '/' || name.back() == '\\') continue;
+                std::string outPath;
+                if (!resolveSafePath(destinationDir, name, outPath)) continue;
+                const std::string comparable = comparableVitaPath(outPath);
+                if (archiveSourcePaths.find(comparable) != archiveSourcePaths.end())
+                    continue; // The later path preflight rejects source collisions.
+                // Deep descendants are extracted to a separate staging tree, not
+                // overlaid on the existing destination. Never count their old
+                // bytes as reusable or underestimate the necessary free space.
+                const size_t colon = comparable.find(':');
+                if (colon == std::string::npos ||
+                    std::count(comparable.begin() + colon + 1, comparable.end(), '/') >= 10)
+                    continue;
+                if (!creditedPaths.insert(comparable).second || st.isDirectory(outPath))
+                    continue;
+                const int64_t oldSize = st.fileSize(outPath);
+                if (oldSize > 0) {
+                    const uint64_t credit = std::min(static_cast<uint64_t>(zs.size),
+                                                     static_cast<uint64_t>(oldSize));
+                    estimatedGrowth -= std::min(credit, estimatedGrowth);
+                }
+            }
+        }
+
+        // Reserve space for *net-new* bytes, plus conservative filesystem
+        // overhead. No additional full-size copy is needed for ordinary
+        // overwrites; deep staging still needs its full payload once.
+        const uint64_t margin = (32ULL * 1024ULL * 1024ULL) + (estimatedGrowth / 20ULL);
+        const uint64_t required = estimatedGrowth > (~0ULL - margin)
+            ? ~0ULL : estimatedGrowth + margin;
         char spaceMsg[320];
         sceClibSnprintf(
             spaceMsg, sizeof(spaceMsg),
-            "[ZipExtractor] precheck archive=%llu uncomp=%llu required~=%llu free=%llu",
+            "[ZipExtractor] precheck archive=%llu uncomp=%llu growth~=%llu required~=%llu free=%llu",
             (unsigned long long)archiveDiskSize,
             (unsigned long long)uncompressedTotal,
+            (unsigned long long)estimatedGrowth,
             (unsigned long long)required,
             (unsigned long long)(haveSpace ? freeB : 0ULL));
         diagnostics::log(spaceMsg);
         if (haveSpace && uncompressedTotal > 0 && freeB < required) {
-            char err[360];
+            char err[400];
             sceClibSnprintf(
                 err, sizeof(err),
-                "not enough free space: archive=%llu uncomp=%llu required~=%llu free=%llu",
+                "not enough free space: archive=%llu uncomp=%llu growth~=%llu required~=%llu free=%llu",
                 (unsigned long long)archiveDiskSize,
                 (unsigned long long)uncompressedTotal,
+                (unsigned long long)estimatedGrowth,
                 (unsigned long long)required,
                 (unsigned long long)freeB);
             setError(err);
@@ -1261,7 +1311,7 @@ ZipResult ZipExtractor::extract(
             // Never delete a pre-existing destination on error: an in-place
             // overwrite may be partial, but deleting it would lose more data.
             if (!replacingExisting) st.removeFile(outPath);
-            else diagnostics::log("[ZipExtractor] in-place overwrite failed; existing file may be incomplete: " + outPath);
+            else setError(lastError_ + " | existing destination may be incomplete: " + outPath);
             break;
         }
 
@@ -1276,7 +1326,7 @@ ZipResult ZipExtractor::extract(
                 (unsigned long long)writtenTotal);
             setError(detail);
             if (!replacingExisting) st.removeFile(outPath);
-            else diagnostics::log("[ZipExtractor] in-place overwrite size mismatch; existing file may be incomplete: " + outPath);
+            else setError(lastError_ + " | existing destination may be incomplete: " + outPath);
             outcome = ZipResult::IoError;
             break;
         }
