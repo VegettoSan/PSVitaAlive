@@ -101,6 +101,52 @@
     ]
   },
   {
+    "id": "castle-crashers",
+    "title_id": "CCRV00001",
+    "name": "Castle Crashers",
+    "description": "Castle Crashers Ps Vita Port",
+    "long_description": "Castle Crashers Ps Vita Port",
+    "author_ids": [
+      "sirjahjah"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "source-port"
+    ],
+    "version": "0.0.2",
+    "version_date": "2026-10-24",
+    "requirements": "- no data",
+    "size": 675533,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/castle-crashers-ps-vita/castle%20crashers%20v0.0.2.vpk",
+        "size": 675533,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/castle-crashers-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 255747686,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Community",
+        "name": "Reddit Post",
+        "url": "https://www.reddit.com/r/vitahacks/comments/1xe9i7a/release_castle_crashers_vita_edition/"
+      }
+    ],
+    "icon": "https://archive.org/download/castle-crashers-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/castle-crashers-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "title_id": "BTTD00010",
     "name": "Dragon Ball Z: BT3",
@@ -218,6 +264,53 @@
     ]
   },
   {
+    "id": "wonder-boy-the-dragon-s-trap",
+    "title_id": "WBDT00001",
+    "name": "Wonder Boy: The Dragon's Trap",
+    "description": "Wonder Boy: The Dragon's Trap on PS Vita",
+    "long_description": "Wonder Boy: The Dragon's Trap on PS Vita, with physical controls, an on-device APK/OBB importer, and support for switching between modern and retro graphics and audio.",
+    "author_ids": [
+      "cynostial"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "version": "0.35rc1",
+    "version_date": "2026-10-23",
+    "requirements": "- no data",
+    "size": 9961472,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/wonderboy%20v0.35-rc1.vpk",
+        "size": 9961472,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1992294,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Cynostial/wonderboy-vita"
+      }
+    ],
+    "screenshots": [
+      "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/icon0.png",
+      "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/pic0.png"
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+  },
+  {
     "id": "mario-kart-wii",
     "title_id": "MKWV00001",
     "name": "Mario Kart Wii",
@@ -322,6 +415,48 @@
     "icon": "https://archive.org/download/ssx-2012-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/ssx-2012-ps-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "ducktales-remastered",
+    "title_id": "DUK000000",
+    "name": "DuckTales Remastered",
+    "description": "DuckTales Remastered Ps Vita Port",
+    "long_description": "DuckTales Remastered Ps Vita Port",
+    "author_ids": [
+      "technicaljicama"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "version": "0.0.1",
+    "version_date": "2026-10-21",
+    "requirements": "- no data",
+    "size": 1782579,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ducktales-remastered-ps-vita/DuckTales%20v0.0.1.vpk",
+        "size": 1782579,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/ducktales-remastered-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 607125504,
+        "extract_path": "ux0:data/"
+      }
+    ],
+    "icon": "https://archive.org/download/ducktales-remastered-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ducktales-remastered-ps-vita/shot0.png"
     ]
   },
   {
