@@ -1156,6 +1156,10 @@ ZipResult ZipExtractor::extract(
         if (exclusiveCreationSupported)
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
 
+        // Only a successful exclusive open proves the file was absent.
+        // If EXCL is unsupported and getstat is inconclusive, preserve the
+        // output on failure rather than risking deletion of user data.
+        const bool definitelyNewFile = fd >= 0;
         bool replacingExisting = false;
         if (fd >= 0) {
             ++exclusiveCreated;
@@ -1312,10 +1316,10 @@ ZipResult ZipExtractor::extract(
         }
 
         if (!fileOk) {
-            // Never delete a pre-existing destination on error: an in-place
-            // overwrite may be partial, but deleting it would lose more data.
-            if (!replacingExisting) st.removeFile(outPath);
-            else setError(lastError_ + " | existing destination may be incomplete: " + outPath);
+            // Never delete unless EXCL proved this file was newly created:
+            // an in-place overwrite may be partial, but deleting is worse.
+            if (definitelyNewFile) st.removeFile(outPath);
+            else setError(lastError_ + " | destination may be incomplete: " + outPath);
             break;
         }
 
@@ -1329,8 +1333,8 @@ ZipResult ZipExtractor::extract(
                 (unsigned long long)zs.size,
                 (unsigned long long)writtenTotal);
             setError(detail);
-            if (!replacingExisting) st.removeFile(outPath);
-            else setError(lastError_ + " | existing destination may be incomplete: " + outPath);
+            if (definitelyNewFile) st.removeFile(outPath);
+            else setError(lastError_ + " | destination may be incomplete: " + outPath);
             outcome = ZipResult::IoError;
             break;
         }
