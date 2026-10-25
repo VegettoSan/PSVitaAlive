@@ -8077,7 +8077,11 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
 
-    auto pushIdx = [&](int di, const char* label) {
+    // Budget each actual queue entry when it is enqueued, never unselected
+    // catalog alternatives. The same path handles manual and automatic picks.
+    ::psvitaalive::InstallAllSpaceBudget spaceBudget;
+    using LinkKind = ::psvitaalive::InstallAllSpaceLinkKind;
+    auto pushIdx = [&](int di, const char* label, LinkKind kind) {
         if (di < 0 || di >= (int)item.linkDetails.size()) return;
         const CatalogLink& link = item.linkDetails[di];
         installAllQueue_.push_back(link);
@@ -8085,10 +8089,19 @@ void FullCatalogScreen::installAllStartQueue() {
         const std::string name = link.name.empty() ? label : link.name;
         installAllQueueResultIndices_.push_back(installAllResults_.size());
         installAllResults_.push_back({name, "", InstallAllResultState::Pending});
+
+        uint64_t bytes = parseUiSizeBytes(link.size);
+        if (kind == LinkKind::App) {
+            // item.size is a hint only for the matching primary download URL.
+            // Never assign it to a different mirror or to Game/Data Files.
+            bytes = ::psvitaalive::chooseSelectedLinkSizeBytes(
+                bytes, parseUiSizeBytes(item.size), link.url, item.downloadUrl);
+        }
+        ::psvitaalive::addInstallAllSpaceEntry(spaceBudget, kind, bytes);
     };
-    pushIdx(installAllChosenDownload_, ::psvitaalive::L(::psvitaalive::TextId::LabelAppVpk));
-    pushIdx(installAllChosenGameFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
-    pushIdx(installAllChosenDataFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
+    pushIdx(installAllChosenDownload_, ::psvitaalive::L(::psvitaalive::TextId::LabelAppVpk), LinkKind::App);
+    pushIdx(installAllChosenGameFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles), LinkKind::Extra);
+    pushIdx(installAllChosenDataFiles_, ::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles), LinkKind::Extra);
     installAllPluginInstalled_ = false;
     for (int di : installAllChosenPlugins_) {
         if (di < 0 || di >= (int)item.linkDetails.size()) continue;
@@ -8096,7 +8109,7 @@ void FullCatalogScreen::installAllStartQueue() {
         if (!isPluginTypeLink(link) || link.url.empty()) continue;
         // The user explicitly selected Install/Reinstall. Existing status
         // must not silently remove an approved plugin from the job queue.
-        pushIdx(di, ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin));
+        pushIdx(di, ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin), LinkKind::Plugin);
     }
     installAllPluginCandidates_.clear();
     installAllPluginCandidateInstalled_.clear();
@@ -8110,35 +8123,14 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllRecoveryAutoAttempted_ = false;
     installAllRecoveryAutoFailed_ = false;
 
-    // App size + largest Game/Data Files candidate + reserve, BEFORE starting
-    // any download. The prior needSum was log-only and wrongly substituted
-    // item.size for a Data/Game Files link without its own size.
-    uint64_t appBytes = parseUiSizeBytes(item.size);
-    const auto validIndex = [&](int i) {
-        return i >= 0 && i < static_cast<int>(item.linkDetails.size());
-    };
-    if (validIndex(installAllChosenDownload_)) {
-        const uint64_t selected = parseUiSizeBytes(item.linkDetails[installAllChosenDownload_].size);
-        if (selected) appBytes = selected;
+    // The queue is final: check exactly its app, selected Game/Data Files and
+    // explicitly approved plugins, with the existing staging/safety reserve.
+    installAllRequiredBytes_ = ::psvitaalive::installAllQueueRequiredSpaceBytes(spaceBudget);
+    if (spaceBudget.unknownSizeCount) {
+        diagnostics::log("[UI] Install All warning: " +
+            std::to_string(spaceBudget.unknownSizeCount) +
+            " selected link(s) lack a usable size; capacity is an estimate");
     }
-    uint64_t largestExtra = 0;
-    for (const auto& link : item.linkDetails) {
-        if (!isGameFilesTypeLink(link) && !isDataFilesTypeLink(link)) continue;
-        largestExtra = std::max(largestExtra, parseUiSizeBytes(link.size));
-    }
-    uint64_t selectedExtraSum = 0;
-    for (int index : {installAllChosenGameFiles_, installAllChosenDataFiles_}) {
-        if (!validIndex(index)) continue;
-        selectedExtraSum = ::psvitaalive::saturatingSpaceAdd(
-            selectedExtraSum, parseUiSizeBytes(item.linkDetails[index].size));
-    }
-    uint64_t pluginBytes = 0;
-    for (const auto& link : installAllQueue_) {
-        if (!isPluginTypeLink(link)) continue;
-        pluginBytes = ::psvitaalive::saturatingSpaceAdd(pluginBytes, parseUiSizeBytes(link.size));
-    }
-    installAllRequiredBytes_ = ::psvitaalive::installAllRequiredSpaceBytes(
-        appBytes, largestExtra, selectedExtraSum, pluginBytes);
     installAllFreeBytes_ = 0;
     installAllSpaceProbeFailed_ = false;
     if (installAllRequiredBytes_) {
@@ -8153,17 +8145,21 @@ void FullCatalogScreen::installAllStartQueue() {
             installAllPhase_ = InstallAllPhase::SpaceWarning;
             diagnostics::log("[UI] Install All blocked: required=" +
                 std::to_string(installAllRequiredBytes_) + " free=" +
-                std::to_string(installAllFreeBytes_) + " app=" + std::to_string(appBytes) +
-                " largest_extra=" + std::to_string(largestExtra) +
-                " selected_extra_total=" + std::to_string(selectedExtraSum));
+                std::to_string(installAllFreeBytes_) + " app=" + std::to_string(spaceBudget.appBytes) +
+                " selected_extra=" + std::to_string(spaceBudget.extraBytes) +
+                " selected_app=" + std::to_string(spaceBudget.appBytes) +
+                " selected_plugins=" + std::to_string(spaceBudget.pluginBytes) +
+                " unknown_sizes=" + std::to_string(spaceBudget.unknownSizeCount));
             return;
         }
     }
     diagnostics::log("[UI] Install All budget OK required=" +
         std::to_string(installAllRequiredBytes_) + " free=" +
-        std::to_string(installAllFreeBytes_) + " app=" + std::to_string(appBytes) +
-        " largest_extra=" + std::to_string(largestExtra) +
-        " selected_extra_total=" + std::to_string(selectedExtraSum));
+        std::to_string(installAllFreeBytes_) + " app=" + std::to_string(spaceBudget.appBytes) +
+        " selected_extra=" + std::to_string(spaceBudget.extraBytes) +
+        " selected_app=" + std::to_string(spaceBudget.appBytes) +
+        " selected_plugins=" + std::to_string(spaceBudget.pluginBytes) +
+        " unknown_sizes=" + std::to_string(spaceBudget.unknownSizeCount));
     diagnostics::log("[UI] Install All queued " + std::to_string(installAllQueue_.size()) +
                      " jobs, including selected plugins");
     installAllPhase_ = InstallAllPhase::Running;

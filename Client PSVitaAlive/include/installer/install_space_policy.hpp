@@ -40,18 +40,12 @@ inline uint64_t preflightRequiredSpaceBytes(uint64_t payload, InstallSpaceMode m
     return q * 21ULL + r;
 }
 
-// Combined Install All budget. Catalog sizes describe compressed download bytes;
-// the ZIP extractor still checks true uncompressed growth before extracting.
-// largestExtra is the maximum Game/Data candidate in the catalog. If BOTH a
-// Game Files and a Data Files payload are selected, selectedExtraSum is larger
-// and protects the combined installation from an undersized MAX-only estimate.
-// A 25% reserve + 128 MiB accommodates transient files and filesystem churn.
-// The 2.1x VPK minimum retains the original direct-package install safeguard.
+// Install All uses ONLY the links enqueued for this installation. This is a
+// compressed-download estimate; ZipExtractor still checks the true expanded
+// size before writing data. The 25% + 128 MiB margin and the old 2.1x VPK
+// staging floor are deliberately unchanged.
 inline uint64_t installAllRequiredSpaceBytes(
-    uint64_t appBytes, uint64_t largestExtraBytes,
-    uint64_t selectedExtraSumBytes, uint64_t pluginsBytes = 0) {
-    const uint64_t extraBytes = largestExtraBytes > selectedExtraSumBytes
-        ? largestExtraBytes : selectedExtraSumBytes;
+    uint64_t appBytes, uint64_t extraBytes, uint64_t pluginsBytes = 0) {
     const uint64_t payload = saturatingSpaceAdd(
         saturatingSpaceAdd(appBytes, extraBytes), pluginsBytes);
     if (!payload) return 0;
@@ -63,6 +57,32 @@ inline uint64_t installAllRequiredSpaceBytes(
                            extraBytes),
         saturatingSpaceAdd(pluginsBytes, BASE_RESERVE));
     return conservative > vpkFloor ? conservative : vpkFloor;
+}
+
+// A queue entry is added only after an actionable link is selected (automatically
+// or manually). Keep the classification explicit; an ordinary "Download" link
+// can have a game/data-sounding name, and category alternatives aren't queued.
+enum class InstallAllSpaceLinkKind { App, Extra, Plugin };
+
+struct InstallAllSpaceBudget {
+    uint64_t appBytes = 0;
+    uint64_t extraBytes = 0;
+    uint64_t pluginBytes = 0;
+    unsigned unknownSizeCount = 0; // Missing catalog hints cannot prove capacity.
+};
+
+inline void addInstallAllSpaceEntry(InstallAllSpaceBudget& budget,
+                                   InstallAllSpaceLinkKind kind, uint64_t bytes) {
+    if (!bytes) ++budget.unknownSizeCount;
+    uint64_t* sum = &budget.extraBytes;
+    if (kind == InstallAllSpaceLinkKind::App) sum = &budget.appBytes;
+    else if (kind == InstallAllSpaceLinkKind::Plugin) sum = &budget.pluginBytes;
+    *sum = saturatingSpaceAdd(*sum, bytes);
+}
+
+inline uint64_t installAllQueueRequiredSpaceBytes(const InstallAllSpaceBudget& budget) {
+    return installAllRequiredSpaceBytes(
+        budget.appBytes, budget.extraBytes, budget.pluginBytes);
 }
 
 // Top-level app.size describes the PRIMARY download, never a secondary Data ZIP.

@@ -11,15 +11,17 @@ missing `link.size`, producing incorrect totals.
 
 At the end of Install All selection, before any requestInstall():
 
-- Primary app download bytes = selected Download link's `size` when available,
-  otherwise the top-level app `size`.
-- Largest extra = maximum known `size` among *all* Game Files and Data Files
-  catalog links, including alternative choices.
-- Selected extra total = sum of the selected Game Files and Data Files sizes,
-  in case both distinct extras are queued and installed.
-- Plugin bytes = sum of known sizes for the explicitly selected plugins.
-- Combined base = app bytes + max(largest extra, selected extra total)
-  + selected plugin bytes (saturating uint64 arithmetic).
+- Each selected link (automatic or manually chosen) contributes its declared
+  `size` *when it actually enters the Install All queue*. Unselected
+  alternatives contribute nothing.
+- Primary app bytes = size of the queued Download link. Only when it matches
+  the application's primary download URL can its missing size fall back to the
+  top-level `item.size`. No VPK queued means zero primary app bytes.
+- Extra bytes = sum of the *queued* Game Files and Data Files links. When both
+  are included, both contribute; alternative mirrors not selected do not.
+- Plugin bytes = sum of explicitly approved and queued plugin sizes.
+- Combined base = app bytes + queued extra bytes + queued plugin bytes
+  (saturating uint64 arithmetic).
 - Required space = maximum of
   (combined base + 25% + 128MiB reserve) and
   (2.1x primary app bytes + extras + plugins + 128MiB reserve).
@@ -30,9 +32,9 @@ localized Space Warning with required/free/deficit and a Close button. If the
 probe fails, it also blocks Install All instead of blindly assuming free space.
 After freeing storage, reopen Install All to recalculate.
 
-This policy is stricter than the bare primary + largest extra requirement when
-both Game and Data Files are selected (both will occupy storage). It retains
-the older VPK transient-install budget and only affects Install All preflight;
+This supersedes the earlier "largest extra across the whole catalog" estimate,
+which overestimated installs using smaller manual/automatic selections. It
+retains the VPK transient-install budget. Only Install All's preflight changes;
 single-item VPK/ZIP/PKG/plugin checks are unchanged.
 
 ## Important limitations
@@ -50,7 +52,8 @@ No generated catalog or JSON schema changes are required.
 
 ## Test coverage
 
-`tests/test_install_space_policy.cpp` checks max-extra selection, both-extra
-sum, VPK staging floor, plugin payload, zero/unknown and uint64 overflow. The
+`tests/test_install_space_policy.cpp` checks automatic/manual selections,
+unselected larger alternatives, both-extra sum, no-app queues, VPK staging
+floor, approved plugins, zero/unknown sizes and uint64 overflow. The
 existing CI job compiles and executes it with host C++ and then VitaSDK compiles
 the full client. Real-hardware verification with large ZIPs remains advisable.
