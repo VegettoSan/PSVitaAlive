@@ -1,5 +1,59 @@
 [
   {
+    "id": "super-mario-galaxy",
+    "title_id": "SMGV00001",
+    "name": "Super Mario Galaxy",
+    "description": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
+    "long_description": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
+    "author_ids": [
+      "cboc-vita-lab"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-25",
+    "requirements": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
+    "size": 6186598,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/smg-vita/Galaxy-Vita%20v1.0.vpk",
+        "size": 7235174,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2469606195,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Mod",
+        "name": "HD Textures",
+        "url": "https://archive.org/download/smg-vita/hdtex.pack",
+        "size": 4718592,
+        "extract_path": "ux0:data/smg/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/smg-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/smg-vita/shot0.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "title_id": "BTTD00010",
     "name": "Dragon Ball Z: BT3",
