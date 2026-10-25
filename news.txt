@@ -1,10 +1,10 @@
-id: 2026-10-23-0001
-title: PSVitaAlive 02.14 is here!
+id: 2026-10-25-0001
+title: PSVitaAlive 02.15 is here!
 enabled: true
 
 ---
 
-# Thanks for using PS Vita Alive Store.
+# Thanks for using PS Vita Alive Store!
 
 ---
 
@@ -12,55 +12,54 @@ enabled: true
 
 ---
 
-# What's New in 02.14
+# What's New in 02.15
 
-## Faster Downloads
+## Improved Plugin Management
 
-- Improved parallel downloading for VPK, ZIP, Game Files, and Data Files.
-- Added direct extraction of compatible segmented ZIP/VPK downloads.
-- Reduced unnecessary file assembly and processing.
-- Improved Archive.org server selection and download stability.
-- Optimized large downloads and automatic fallback handling.
+- Added confirmation before installing individual plugins.
+- Plugins are now classified as Required, Optional, or Not Specified.
+- Added the option to reinstall already detected plugins when their version cannot be verified.
+- Improved plugin detection using active taiHEN configuration.
+- Safer plugin replacement with backup and recovery protection.
 
-## Faster ZIP/VPK Extraction
+## Better Install All Experience
 
-- Improved extraction performance for archives containing many small files.
-- Added optimized directory caching to reduce filesystem operations.
-- Improved file creation and extraction efficiency.
-- Maintained safe file replacement, CRC checks, and ZIP64 compatibility.
-- Tested extraction improvements on real PS Vita hardware.
+- Improved installation of VPK, Game Files, Data Files, and plugins.
+- Install All now continues processing remaining steps when an individual installation fails.
+- Added a detailed installation summary showing successful, failed, and skipped operations.
+- Improved plugin installation confirmations and restart handling.
+- Fixed issues affecting installation queues when catalog filters change.
 
-## Archive.org Connection Warnings
+## Automatic ZIP Recovery
 
-- Added automatic Archive.org connectivity checks.
-- Added warnings when external download services cannot be reached.
-- Improved detection of unavailable files and download sources.
-- Reduced unnecessary retries for unreachable servers.
-- Added recommendations to try alternative download links.
+- Added automatic ZIP preservation after supported extraction failures.
+- Recoverable ZIP files are automatically saved after a 10-second countdown.
+- Install All can continue processing remaining downloads after successful recovery.
+- Added options to keep or safely delete recovered ZIP files.
+- Improved recovery protection to prevent accidental file deletion.
 
-## Better Error Messages
+## Optimized ZIP/VPK Extraction
 
-- Added clearer explanations for download and installation failures.
-- Improved messages for network, HTTP, TLS, and MediaFire errors.
-- Added specific warnings for corrupted archives and storage problems.
-- Improved troubleshooting instructions.
-- Updated error messages across all eight supported languages.
+- Improved extraction performance when replacing existing files.
+- Reduced unnecessary temporary copies and storage usage.
+- Improved free-space calculations for file replacements.
+- Added protection against filename collisions and source archive overwrites.
+- Improved handling of extraction failures and incomplete files.
 
-## Website Improvements
+## Startup Cleanup & Catalog Updates
 
-- Refreshed application cards and catalog layouts.
-- Improved Homebrew, PS Vita, PSP, and PS1 browsing.
-- Redesigned application details and developer profiles.
-- Improved download links and recommended download indicators.
-- Enhanced mobile responsiveness and navigation.
+- Added automatic cleanup of abandoned downloads during startup.
+- Improved protection for previously saved ZIP archives.
+- Added visible progress during storage maintenance.
+- Added catalog synchronization progress indicators.
+- Improved notifications when catalog updates are downloaded and applied.
 
 ## Additional Improvements
 
-- Improved download and installation stability.
-- Reduced unnecessary filesystem operations.
-- Expanded automated regression tests.
-- Added new Homebrew and developer profiles.
-- Updated catalog information and download links.
+- Improved overall installation reliability.
+- Updated messages across all eight supported languages.
+- Improved plugin installation safety and user control.
+- Better error handling and filesystem protection.
 - Additional performance improvements and bug fixes.
 
 ---
@@ -72,10 +71,11 @@ Your feedback, testing, and bug reports help improve PSVitaAlive with every rele
 ---
 
 ### Tips:
-- iTLS-ENSO (full) recommended for HTTPS
-- DNS: 8 8 8 8 / 8 8 4 4
-- Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1)
+- iTLS-ENSO (full) recommended for HTTPS.
+- DNS: 8 8 8 8 / 8 8 4 4.
+- Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1).
+- Restart your PS Vita after installing system plugins.
 - If Archive.org is unavailable, try another download source or retry later.
 - Report installation issues with session.log when possible.
 
-**Enjoy PSVitaAlive 02.14! Thank you for helping keep the PlayStation Vita community alive!**
+**Enjoy PSVitaAlive 02.15! Thank you for helping keep the PlayStation Vita community alive!**
