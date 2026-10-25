@@ -86,6 +86,10 @@ std::string comparableVitaPath(const std::string& path) {
         if (i) normalized += '/';
         normalized += parts[i];
     }
+    // FAT-backed Vita partitions may match ASCII filenames case-insensitively.
+    // Treat case variants as the same source file when checking for collisions.
+    for (char& c : normalized)
+        if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
     return normalized;
 }
 } // namespace
