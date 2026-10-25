@@ -1,5 +1,52 @@
 [
   {
+    "id": "resident-evil-4-gc",
+    "title_id": "BIOHAZ004",
+    "name": "Resident Evil 4 GC",
+    "description": "Resident Evil 4 GC Ps Vita",
+    "long_description": "Resident Evil 4 GC Ps Vita",
+    "author_ids": [
+      "tfarclegnakrad"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "source-port",
+      "other"
+    ],
+    "version": "00.00",
+    "version_date": "2026-10-25",
+    "requirements": "- A decrypted libshacccg.suprx at ur0:data/libshacccg.suprx.\n- Your own uncompressed GameCube disc 1 image of the G4BE08 November 25, 2004 debug prototype. A retail image is not interchangeable, even if it has the same six-character Disc ID.",
+    "size": 15309210,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/resident-evil-4-gc-ps-vita/BIOHAZ004.vpk",
+        "size": 15309210,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Disc 1",
+        "url": "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1503238554,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Official Website",
+        "name": "Reddit Post",
+        "url": "https://www.reddit.com/u/TfarclegnaKrad/s/yrxClZ43rJ"
+      }
+    ],
+    "icon": "https://archive.org/download/resident-evil-4-gc-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/resident-evil-4-gc-ps-vita/pic0.png"
+    ]
+  },
+  {
     "id": "super-mario-galaxy",
     "title_id": "SMGV00001",
     "name": "Super Mario Galaxy",
