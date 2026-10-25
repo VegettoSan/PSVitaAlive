@@ -8215,6 +8215,12 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
          optional ? "PLUGIN_CONFIRM_OPTIONAL_2" : "PLUGIN_CONFIRM_UNKNOWN_2"));
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 187, TEXT, 0.79f, line1);
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 220, TEXT, 0.79f, line2);
+    // Installed-plugin consent explains why this catalog copy is provided.
+    // Keep other required/optional/unknown consent dialogs unchanged.
+    if (installed) {
+        ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 253, TEXT, 0.79f,
+            ::psvitaalive::L("PLUGIN_REINSTALL_MESSAGE_3"));
+    }
 
     const int bw = 300, bh = 55, by = y + h - 96;
     const int bxInstall = x + 28, bxSkip = x + w - 28 - bw;

@@ -633,7 +633,8 @@ ALL_REPORT_ZIP_DELETED=ZIP guardado excluído.
 
 # Installed catalog plugin: version unknown, optional reinstall
 PLUGIN_REINSTALL_TITLE=Plugin já instalado
-PLUGIN_REINSTALL_MESSAGE_1=O plugin está instalado, mas não podemos confirmar a versão.
-PLUGIN_REINSTALL_MESSAGE_2=Reinstale o do catálogo ou mantenha o plugin atual.
+PLUGIN_REINSTALL_MESSAGE_1=O plugin está instalado, mas sua versão é desconhecida.
+PLUGIN_REINSTALL_MESSAGE_2=O catálogo oferece o plugin indicado para este app.
+PLUGIN_REINSTALL_MESSAGE_3=Se o jogo falhar, reinstale o plugin por aqui.
 PLUGIN_REINSTALL_BUTTON=Reinstalar plugin
 PLUGIN_REINSTALL_META=X Reinstalar
