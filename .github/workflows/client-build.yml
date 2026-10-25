@@ -55,6 +55,13 @@ jobs:
             -o /tmp/psvitaalive-segmented-zip-test
           /tmp/psvitaalive-segmented-zip-test
 
+      - name: Test saved ZIP .001/.002 binary range naming
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_saved_zip_parts.cpp \
+            -o /tmp/psvitaalive-saved-zip-parts
+          /tmp/psvitaalive-saved-zip-parts
+
       - name: Test bounded ZIP extraction directory cache
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
@@ -105,6 +112,11 @@ jobs:
               "ARCHIVE_DOWNLOAD_FRIENDLY_TITLE", "ARCHIVE_DOWNLOAD_FRIENDLY_REASON",
               "ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN", "ARCHIVE_DOWNLOAD_FRIENDLY_ACTION",
               "DOWNLOAD_VERIFYING_SEGMENTS", "DOWNLOAD_VERIFYING_HINT",
+              "ZIP_SAVED_ACTION_TITLE", "ZIP_SAVED_ACTION_QUESTION",
+              "ZIP_SAVED_ACTION_RETRY", "ZIP_SAVED_ACTION_DELETE",
+              "ZIP_SAVED_ACTION_CANCEL", "ZIP_SAVED_CONFIRM_DELETE",
+              "ZIP_SAVED_CONFIRM_BUTTON", "ZIP_SAVED_COMPLETE_META",
+              "ZIP_SAVED_PARTS_META", "ZIP_SAVED_DELETE_FAILED", "ZIP_SAVED_DELETED",
           )
           categories = ("NETWORK", "HTTP_MISSING", "HTTP_DENIED", "HTTP_BUSY",
                         "HTTP_SERVER", "TLS", "MEDIAFIRE", "SPACE", "STORAGE",

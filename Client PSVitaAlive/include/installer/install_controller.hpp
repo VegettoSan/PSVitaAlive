@@ -57,6 +57,7 @@ struct SavedZipArchive {
     std::string archivePath; // exact validated path, not caller-supplied
     std::string target;
     std::string infoPath;
+    unsigned partCount = 1; // 1=complete ZIP, 2/4=raw byte ranges
 };
 
 class InstallController {
@@ -186,8 +187,11 @@ private:
     std::string zipRecoveryPath_;
     std::string zipRecoveryInfoPath_;
     std::string zipRecoveryExtractPath_;
-    std::string zipRecoveryJobId_; // non-empty only if rename out of the job dir failed
+    std::string zipRecoveryJobId_; // nonempty only if relocation needs retry
+    unsigned zipRecoveryPartCount_ = 1;
+    bool persistPendingZipRecovery();
     bool savedZipMode_ = false;
+    unsigned savedZipPartCount_ = 1;
     std::string savedZipPath_;
     std::string savedZipTarget_;
     std::string savedZipInfoPath_;

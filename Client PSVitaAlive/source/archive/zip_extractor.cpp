@@ -1,6 +1,7 @@
 #include "archive/zip_extractor.hpp"
 #include "archive/extraction_directory_cache.hpp"
 #include "archive/segmented_zip_layout.hpp"
+#include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
 
@@ -462,7 +463,9 @@ static bool openSegmentLayout(const std::string& base,
     // Only two- and four-range layouts are produced by our downloader.
     // Reject gaps, extra ranges, zero lengths and noncontiguous sizes.
     for (size_t i = 0; i < 4; ++i) {
-        const std::string path = i == 0 ? base : base + ".range" + std::to_string(i);
+        const std::string path = i == 0 ? base :
+            (savedZipIsFirstPart(base) ? savedZipPartPath(base, i) :
+             base + ".range" + std::to_string(i));
         const SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
         if (fd < 0) {
             if (i == 2 && parts.size() == 2) break;
@@ -488,7 +491,8 @@ static bool openSegmentLayout(const std::string& base,
     }
     if (parts.size() == 2) {
         SceIoStat extra{};
-        if (sceIoGetstat((base + ".range3").c_str(), &extra) >= 0) {
+        if (sceIoGetstat((savedZipIsFirstPart(base) ?
+                          savedZipPartPath(base, 3) : base + ".range3").c_str(), &extra) >= 0) {
             if (detail) *detail = "unexpected fourth ZIP range";
             return false;
         }
@@ -680,7 +684,9 @@ ZipResult ZipExtractor::extract(
     archiveSourcePaths.insert(comparableVitaPath(zipPath));
     if (segmentedZip) {
         for (int n = 1; n <= 3; ++n)
-            archiveSourcePaths.insert(comparableVitaPath(zipPath + ".range" + std::to_string(n)));
+            archiveSourcePaths.insert(comparableVitaPath(
+                savedZipIsFirstPart(zipPath) ? savedZipPartPath(zipPath, n) :
+                zipPath + ".range" + std::to_string(n)));
     }
 
     // Pre-scan: sum uncompressed sizes, log large/unusual entries, then verify free space.

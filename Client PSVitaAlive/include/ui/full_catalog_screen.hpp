@@ -53,6 +53,7 @@ public:
     struct SavedZipOption {
         std::string fileName;
         std::string archivePath;
+        unsigned partCount = 1;
     };
     using SavedZipListFn = std::function<std::vector<SavedZipOption>(const CatalogItem&)>;
     using SavedZipRetryFn = std::function<bool(const CatalogItem&, const std::string&)>;
@@ -179,6 +180,15 @@ private:
     std::string savedZipProbeKey_;
     uint64_t savedZipProbeAtUs_ = 0;
     std::vector<SavedZipOption> savedZipProbeResult_;
+    bool savedZipActionVisible_ = false;
+    bool savedZipActionAwaitRelease_ = false;
+    bool savedZipActionDeleteConfirm_ = false;
+    int savedZipActionFocus_ = 0; // retry, delete, cancel
+    std::string savedZipActionAppId_, savedZipActionTitleId_;
+    std::string savedZipActionPath_, savedZipActionName_;
+    unsigned savedZipActionParts_ = 1;
+    void resolveSavedZipAction(int action);
+    void drawSavedZipActionOverlay();
     const std::vector<SavedZipOption>& savedZipsFor(const CatalogItem& item);
     bool hasSavedZipFor(const CatalogItem& item);
     int savedZipCountFor(const CatalogItem& item);

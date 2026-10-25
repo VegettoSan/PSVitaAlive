@@ -351,7 +351,7 @@ int main(){
         [&installer](const psvitaalive::ui::CatalogItem& item) {
             std::vector<psvitaalive::ui::FullCatalogScreen::SavedZipOption> options;
             for (const auto& archive : installer.savedZips(item.id, item.titleId))
-                options.push_back({archive.fileName, archive.archivePath});
+                options.push_back({archive.fileName, archive.archivePath, archive.partCount});
             return options;
         },
         [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
