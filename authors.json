@@ -1876,6 +1876,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "cynostial",
+    "name": "Cynostial",
+    "avatar": "https://avatars.githubusercontent.com/u/27498538?v=4",
+    "bio": "I ship",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Cynostial",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/27498538?v=4"
+  },
+  {
     "id": "d3fau4",
     "name": "D3fau4",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -8259,6 +8274,21 @@
       }
     ],
     "icon": "https://github.com/sinusinu.png"
+  },
+  {
+    "id": "sirjahjah",
+    "name": "sirjahjah",
+    "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Community",
+        "name": "Reddit",
+        "url": "https://www.reddit.com/user/sirjahjah/",
+        "recommended": true
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
     "id": "siul-animation-studios",
