@@ -221,6 +221,7 @@ private:
     bool pluginRebootModal_ = false;
     // Confirmation for a single catalog Plugin link (independent of Install All).
     bool pluginChoiceModal_ = false;
+    bool pluginChoiceWasInstalled_ = false; // installed does not establish version
     bool pluginChoiceAwaitRelease_ = false; // prevent held X/O from activating underlying UI
     int pluginChoiceItemIndex_ = -1;
     int pluginChoiceLinkIndex_ = -1;
@@ -561,8 +562,9 @@ private:
     int installAllChosenDownload_ = -1;
     int installAllChosenGameFiles_ = -1;
     int installAllChosenDataFiles_ = -1;
-    // Explicit consent for each non-installed Plugin link, before any queued job.
+    // Ask about every catalog Plugin link, even when already installed.
     std::vector<int> installAllPluginCandidates_;
+    std::vector<bool> installAllPluginCandidateInstalled_;
     std::vector<int> installAllChosenPlugins_;
     size_t installAllPluginPickIndex_ = 0;
     /** Stable app metadata for the active batch if the installed/updates filter changes. */

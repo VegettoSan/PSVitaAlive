@@ -3590,11 +3590,6 @@ void FullCatalogScreen::activateFocusedLink(){
     const int linkDetailIndex = idxs[li];
     const CatalogLink&l=item.linkDetails[linkDetailIndex];
     if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
-    if(isPluginTypeLink(l) && isPluginAlreadyInstalled(l)){
-        showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
-        diagnostics::log(std::string("[UI] plugin already installed: ")+pluginInstallFilePath(l));
-        return;
-    }
     if ((state_.catalog == CatalogType::PspGames || state_.catalog == CatalogType::Ps1Games)
         && !settingsEdit_.pspSetupDone) {
         openPspSetupWizard(false, i, linkDetailIndex);
@@ -3656,16 +3651,16 @@ void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int 
     // Catalog Plugin links require explicit consent even for required plugins.
     // Startup essential-plugin installs use a separate trusted workflow.
     if (isPluginTypeLink(l)) {
-        if (isPluginAlreadyInstalled(l)) {
-            showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
-            return;
-        }
+        pluginChoiceWasInstalled_ = isPluginAlreadyInstalled(l);
         pluginChoiceItemIndex_ = itemIndex;
         pluginChoiceLinkIndex_ = linkDetailIndex;
-        pluginChoiceFocus_ = l.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1;
+        // Do not default to overwriting an installed plugin, even if required.
+        pluginChoiceFocus_ = pluginChoiceWasInstalled_ ? 1
+            : (l.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
         pluginChoiceModal_ = true;
         touchDown_ = false;
-        diagnostics::log("[UI] Plugin consent requested (single): " + l.name);
+        diagnostics::log(std::string("[UI] Plugin consent requested (single): ") +
+                         l.name + (pluginChoiceWasInstalled_ ? " (installed, version unknown)" : ""));
         return;
     }
     if (linkAction_(item, l)) exitLinkNavigation();
@@ -7318,7 +7313,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         }
         if (!sizeLabel.empty()) meta += "  •  " + sizeLabel;
         if (pluginDone)
-            meta += std::string("  •  ") + (f ? ::psvitaalive::L(::psvitaalive::TextId::MetaAlreadyInstalled)
+            meta += std::string("  •  ") + (f ? ::psvitaalive::L("PLUGIN_REINSTALL_META")
                                               : ::psvitaalive::L(::psvitaalive::TextId::MetaInstalled));
         else if (can)
             meta += std::string("  •  ") + (f ? ::psvitaalive::L(::psvitaalive::TextId::MetaXInstall)
@@ -7705,6 +7700,7 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllChosenGameFiles_ = -1;
     installAllChosenDataFiles_ = -1;
     installAllPluginCandidates_.clear();
+    installAllPluginCandidateInstalled_.clear();
     installAllChosenPlugins_.clear();
     installAllPluginPickIndex_ = 0;
     installAllQueue_.clear();
@@ -7740,6 +7736,7 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     installAllPhase_ = InstallAllPhase::Hidden;
     installAllOptions_.clear();
     installAllPluginCandidates_.clear();
+    installAllPluginCandidateInstalled_.clear();
     installAllChosenPlugins_.clear();
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
@@ -7817,26 +7814,27 @@ void FullCatalogScreen::installAllAdvancePick() {
     if (autoOrPrompt(needGame, installAllChosenGameFiles_, InstallAllPhase::PickGameFiles, "game")) return;
     if (autoOrPrompt(needData, installAllChosenDataFiles_, InstallAllPhase::PickDataFiles, "data")) return;
 
-    // All source choices are resolved. Ask about every not-yet-installed plugin
-    // BEFORE starting any download. "requirements" remains informative only.
+    // All source choices are resolved. Every plugin gets an install/skip
+    // decision, even if installed. Existing versions cannot be verified.
+    // Ask BEFORE starting downloads; requirements remains informative only.
     installAllPluginCandidates_.clear();
+    installAllPluginCandidateInstalled_.clear();
     installAllChosenPlugins_.clear();
     installAllPluginPickIndex_ = 0;
     for (size_t i = 0; i < item.linkDetails.size(); ++i) {
         const CatalogLink& link = item.linkDetails[i];
         if (!isPluginTypeLink(link) || link.url.empty()) continue;
-        if (isPluginAlreadyInstalled(link)) {
-            diagnostics::log("[UI] Install All skip installed plugin (no prompt): " + pluginInstallFilePath(link));
-            installAllResults_.push_back({link.name.empty() ? link.type : link.name,
-                pluginInstallFilePath(link), InstallAllResultState::AlreadyInstalled});
-            continue;
-        }
+        const bool installed = isPluginAlreadyInstalled(link);
         installAllPluginCandidates_.push_back(static_cast<int>(i));
+        installAllPluginCandidateInstalled_.push_back(installed);
+        diagnostics::log(std::string("[UI] Install All plugin candidate: ") +
+                         link.name + (installed ? " (installed; offer reinstall)" : " (not installed)"));
     }
     if (!installAllPluginCandidates_.empty()) {
         installAllPhase_ = InstallAllPhase::PickPlugin;
         const CatalogLink& first = item.linkDetails[installAllPluginCandidates_[0]];
-        installAllFocus_ = first.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1;
+        installAllFocus_ = installAllPluginCandidateInstalled_[0] ? 1
+            : (first.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
         diagnostics::log("[UI] Install All plugin selection: " + std::to_string(installAllPluginCandidates_.size()) + " candidate(s)");
         return;
     }
@@ -7857,15 +7855,22 @@ void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
         return;
     }
     const CatalogLink& link = item.linkDetails[selected];
+    const bool previouslyInstalled =
+        installAllPluginPickIndex_ < installAllPluginCandidateInstalled_.size() &&
+        installAllPluginCandidateInstalled_[installAllPluginPickIndex_];
     if (install) installAllChosenPlugins_.push_back(selected);
     else installAllResults_.push_back({link.name.empty() ? link.type : link.name,
-        ::psvitaalive::L("ALL_REPORT_USER_SKIPPED"), InstallAllResultState::Skipped});
+        previouslyInstalled ? pluginInstallFilePath(link) :
+            ::psvitaalive::L("ALL_REPORT_USER_SKIPPED"),
+        previouslyInstalled ? InstallAllResultState::AlreadyInstalled : InstallAllResultState::Skipped});
     diagnostics::log(std::string("[UI] Install All plugin choice: ") +
                      (install ? "install " : "skip ") + link.name);
     ++installAllPluginPickIndex_;
     if (installAllPluginPickIndex_ < installAllPluginCandidates_.size()) {
         const CatalogLink& next = item.linkDetails[installAllPluginCandidates_[installAllPluginPickIndex_]];
-        installAllFocus_ = next.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1;
+        installAllFocus_ = (installAllPluginPickIndex_ < installAllPluginCandidateInstalled_.size() &&
+                            installAllPluginCandidateInstalled_[installAllPluginPickIndex_]) ? 1
+            : (next.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
         return;
     }
     installAllStartQueue();
@@ -7876,6 +7881,7 @@ void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
     const int itemIndex = pluginChoiceItemIndex_;
     const int linkIndex = pluginChoiceLinkIndex_;
     pluginChoiceModal_ = false;
+    pluginChoiceWasInstalled_ = false;
     pluginChoiceAwaitRelease_ = true;
     pluginChoiceItemIndex_ = -1;
     pluginChoiceLinkIndex_ = -1;
@@ -7888,11 +7894,8 @@ void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
     if (linkIndex < 0 || linkIndex >= (int)item.linkDetails.size()) return;
     const CatalogLink& link = item.linkDetails[linkIndex];
     if (!isPluginTypeLink(link) || !actionableLink(link) || !linkAction_) return;
-    if (isPluginAlreadyInstalled(link)) {
-        showToast(::psvitaalive::L(::psvitaalive::TextId::AlreadyInstalled), 2800);
-        return;
-    }
-    diagnostics::log("[UI] Single plugin install confirmed: " + link.name);
+    // Explicit consent to reinstall overrides the existing-file shortcut.
+    diagnostics::log("[UI] Single plugin install/reinstall confirmed: " + link.name);
     if (linkAction_(item, link)) exitLinkNavigation();
     else showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall), 2200);
 }
@@ -7928,14 +7931,12 @@ void FullCatalogScreen::installAllStartQueue() {
         if (di < 0 || di >= (int)item.linkDetails.size()) continue;
         const CatalogLink& link = item.linkDetails[di];
         if (!isPluginTypeLink(link) || link.url.empty()) continue;
-        if (isPluginAlreadyInstalled(link)) {
-            installAllResults_.push_back({link.name.empty() ? link.type : link.name,
-                pluginInstallFilePath(link), InstallAllResultState::AlreadyInstalled});
-            continue;
-        }
+        // The user explicitly selected Install/Reinstall. Existing status
+        // must not silently remove an approved plugin from the job queue.
         pushIdx(di, ::psvitaalive::L(::psvitaalive::TextId::MetaPlugin));
     }
     installAllPluginCandidates_.clear();
+    installAllPluginCandidateInstalled_.clear();
     installAllChosenPlugins_.clear();
     installAllPluginPickIndex_ = 0;
     installAllQueueIndex_ = 0;
@@ -8157,12 +8158,14 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
     const CatalogLink* link = nullptr;
     int focus = 0;
     size_t step = 0, total = 0;
+    bool installed = false;
     if (pluginChoiceModal_) {
         if (pluginChoiceItemIndex_ < 0 || pluginChoiceItemIndex_ >= (int)catalogView().size()) return;
         item = &catalogView()[pluginChoiceItemIndex_];
         if (pluginChoiceLinkIndex_ < 0 || pluginChoiceLinkIndex_ >= (int)item->linkDetails.size()) return;
         link = &item->linkDetails[pluginChoiceLinkIndex_];
         focus = pluginChoiceFocus_;
+        installed = pluginChoiceWasInstalled_;
     } else if (installAllPhase_ == InstallAllPhase::PickPlugin) {
         if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size() ||
             installAllPluginPickIndex_ >= installAllPluginCandidates_.size()) return;
@@ -8171,6 +8174,8 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
         if (di < 0 || di >= (int)item->linkDetails.size()) return;
         link = &item->linkDetails[di];
         focus = installAllFocus_;
+        installed = installAllPluginPickIndex_ < installAllPluginCandidateInstalled_.size() &&
+            installAllPluginCandidateInstalled_[installAllPluginPickIndex_];
         step = installAllPluginPickIndex_ + 1;
         total = installAllPluginCandidates_.size();
     } else return;
@@ -8185,7 +8190,7 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
     vita2d_draw_rectangle(x + w - 1, y, 1, h, BORDER);
 
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 42, ACCENT, 1.16f,
-        ::psvitaalive::L("PLUGIN_CONFIRM_TITLE"));
+        ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_TITLE" : "PLUGIN_CONFIRM_TITLE"));
     if (total > 0) {
         const std::string position = std::string(::psvitaalive::L(::psvitaalive::TextId::MetaPlugin)) +
             " " + std::to_string(step) + " / " + std::to_string(total);
@@ -8202,17 +8207,19 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
         optional ? "PLUGIN_REQUIREMENT_OPTIONAL" : "PLUGIN_REQUIREMENT_UNSPECIFIED");
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 133, required ? ACCENT : DIM,
         0.82f, status);
-    const char* line1 = ::psvitaalive::L(required ? "PLUGIN_CONFIRM_REQUIRED_1" :
-        optional ? "PLUGIN_CONFIRM_OPTIONAL_1" : "PLUGIN_CONFIRM_UNKNOWN_1");
-    const char* line2 = ::psvitaalive::L(required ? "PLUGIN_CONFIRM_REQUIRED_2" :
-        optional ? "PLUGIN_CONFIRM_OPTIONAL_2" : "PLUGIN_CONFIRM_UNKNOWN_2");
+    const char* line1 = ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_MESSAGE_1" :
+        (required ? "PLUGIN_CONFIRM_REQUIRED_1" :
+         optional ? "PLUGIN_CONFIRM_OPTIONAL_1" : "PLUGIN_CONFIRM_UNKNOWN_1"));
+    const char* line2 = ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_MESSAGE_2" :
+        (required ? "PLUGIN_CONFIRM_REQUIRED_2" :
+         optional ? "PLUGIN_CONFIRM_OPTIONAL_2" : "PLUGIN_CONFIRM_UNKNOWN_2"));
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 187, TEXT, 0.79f, line1);
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 220, TEXT, 0.79f, line2);
 
     const int bw = 300, bh = 55, by = y + h - 96;
     const int bxInstall = x + 28, bxSkip = x + w - 28 - bw;
     const char* buttons[] = {
-        ::psvitaalive::L("PLUGIN_CONFIRM_INSTALL"),
+        ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_BUTTON" : "PLUGIN_CONFIRM_INSTALL"),
         ::psvitaalive::L("PLUGIN_CONFIRM_SKIP")
     };
     const int buttonXs[] = {bxInstall, bxSkip};

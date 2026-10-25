@@ -652,3 +652,10 @@ ALL_REPORT_DELETE_CONFIRM_NO=Cancel
 ALL_REPORT_KEEP_CONFIRMED=ZIP kept. You can still delete it here.
 ALL_REPORT_DELETE_FAILED=Could not delete this ZIP safely.
 ALL_REPORT_ZIP_DELETED=Saved ZIP deleted.
+
+# Installed catalog plugin: version unknown, optional reinstall
+PLUGIN_REINSTALL_TITLE=Plugin already installed
+PLUGIN_REINSTALL_MESSAGE_1=A plugin is installed, but its version cannot be verified.
+PLUGIN_REINSTALL_MESSAGE_2=Reinstall the catalog copy, or keep your current plugin.
+PLUGIN_REINSTALL_BUTTON=Reinstall plugin
+PLUGIN_REINSTALL_META=X Reinstall

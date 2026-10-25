@@ -1335,48 +1335,102 @@ int InstallController::workerMain() {
             return 0;
         }
 
-        // Copy downloaded file → final plugin path (overwrite if present).
-        {
-            sceIoRemove(destPath.c_str());
-            const SceUID in = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
-            if (in < 0) {
-                setStage("Error");
-                setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenPlugin));
-                workerDone_.store(true);
-                return 0;
-            }
-            const SceUID out = sceIoOpen(destPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
-            if (out < 0) {
-                sceIoClose(in);
-                setStage("Error");
-                setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotWritePlugin));
-                workerDone_.store(true);
-                return 0;
-            }
-            char buf[8 * 1024];
-            for (;;) {
-                const int n = sceIoRead(in, buf, sizeof(buf));
-                if (n < 0) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgPluginCopyRead)); workerDone_.store(true); return 0; }
-                if (n == 0) break;
-                const int w = sceIoWrite(out, buf, n);
-                if (w != n) { sceIoClose(in); sceIoClose(out); setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgPluginCopyWrite)); workerDone_.store(true); return 0; }
-            }
+
+        // Stage the fully downloaded plugin in the destination directory first.
+        // The previous plugin must remain intact if read/write/size checks fail.
+        const std::string stagePath = destPath + ".psvitaalive.new";
+        const std::string backupPath = destPath + ".psvitaalive.bak";
+        const bool replacing = st.exists(destPath);
+
+        auto failPluginInstall = [&](const std::string& message) {
+            setStage("Error");
+            setState(InstallStatus::State::Failed, message.c_str());
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            diagnostics::log("[Installer] plugin install failed: " + message);
+            workerDone_.store(true, std::memory_order_release);
+        };
+
+        // A leftover backup could be the user's only intact plugin after a
+        // power loss. Never delete or overwrite it automatically.
+        if (st.exists(backupPath)) {
+            failPluginInstall("Existing plugin backup found. Check the .psvitaalive.bak file in VitaShell.");
+            return 0;
+        }
+        if (st.exists(stagePath) && !st.removeFile(stagePath)) {
+            failPluginInstall("Could not remove stale plugin staging file");
+            return 0;
+        }
+        const int64_t expectedBytes = st.fileSize(job->finalPath);
+        if (expectedBytes <= 0) {
+            failPluginInstall(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenPlugin));
+            return 0;
+        }
+
+        const SceUID in = sceIoOpen(job->finalPath.c_str(), SCE_O_RDONLY, 0);
+        if (in < 0) {
+            failPluginInstall(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotOpenPlugin));
+            return 0;
+        }
+        const SceUID out = sceIoOpen(stagePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0666);
+        if (out < 0) {
             sceIoClose(in);
-            sceIoClose(out);
+            failPluginInstall(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotWritePlugin));
+            return 0;
+        }
+        bool copyOk = true, readFailed = false;
+        char buf[8 * 1024];
+        for (;;) {
+            const int n = sceIoRead(in, buf, sizeof(buf));
+            if (n < 0) { copyOk = false; readFailed = true; break; }
+            if (n == 0) break;
+            if (sceIoWrite(out, buf, n) != n) { copyOk = false; break; }
+        }
+        if (sceIoClose(in) < 0) copyOk = false;
+        if (sceIoClose(out) < 0) copyOk = false;
+        if (!copyOk || st.fileSize(stagePath) != expectedBytes) {
+            st.removeFile(stagePath);
+            failPluginInstall(::psvitaalive::L(readFailed
+                ? ::psvitaalive::TextId::InstMsgPluginCopyRead
+                : ::psvitaalive::TextId::InstMsgPluginCopyWrite));
+            return 0;
+        }
+
+        // Only now move the existing file aside. If activation or tai config
+        // editing fails, restore it; avoid leaving half-copied kernel plugins.
+        if (replacing && !st.rename(destPath, backupPath)) {
+            st.removeFile(stagePath);
+            failPluginInstall("Could not back up the existing plugin");
+            return 0;
+        }
+        if (!st.rename(stagePath, destPath)) {
+            if (replacing && !st.rename(backupPath, destPath))
+                diagnostics::log("[Installer] URGENT: restore plugin backup manually from " + backupPath);
+            st.removeFile(stagePath);
+            failPluginInstall("Could not activate the new plugin file");
+            return 0;
         }
         diagnostics::log(std::string("[Installer] plugin file installed: ") + destPath);
         setInstallPath(destPath.c_str());
 
-        // Append line exactly as authored (may reference ux0: paths; config file itself is ur0).
+        // Append line exactly as authored. Existing lines are already handled
+        // idempotently by TaiConfigEditor (no duplicated config entries).
         std::string cfgErr;
         if (!TaiConfigEditor::appendLineToSection(activePluginSection_, activePluginLine_, &cfgErr)) {
-            setStage("Error");
             const std::string msg = cfgErr.empty() ? "Failed to update tai config.txt" : cfgErr;
-            setState(InstallStatus::State::Failed, msg.c_str());
-            diagnostics::log(std::string("[Installer] plugin config edit failed: ") + msg);
-            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
-            workerDone_.store(true);
+            // Do not keep a new plugin that failed to activate through taiHEN.
+            if (replacing) {
+                if (!st.removeFile(destPath) || !st.rename(backupPath, destPath))
+                    diagnostics::log("[Installer] URGENT: restore plugin backup manually from " + backupPath);
+            } else if (!st.removeFile(destPath)) {
+                diagnostics::log("[Installer] failed to remove unconfigured plugin: " + destPath);
+            }
+            failPluginInstall(msg);
             return 0;
+        }
+        if (replacing && !st.removeFile(backupPath)) {
+            // Plugin is installed, but keep the backup rather than failing a
+            // successful installation or deleting any unrelated file.
+            diagnostics::log("[Installer] previous plugin backup cleanup pending: " + backupPath);
         }
 
         needsReboot_.store(true);

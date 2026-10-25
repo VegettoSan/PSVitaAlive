@@ -630,3 +630,10 @@ ALL_REPORT_DELETE_CONFIRM_NO=Отмена
 ALL_REPORT_KEEP_CONFIRMED=ZIP сохранён. Здесь его всё ещё можно удалить.
 ALL_REPORT_DELETE_FAILED=Не удалось безопасно удалить ZIP.
 ALL_REPORT_ZIP_DELETED=Сохранённый ZIP удалён.
+
+# Installed catalog plugin: version unknown, optional reinstall
+PLUGIN_REINSTALL_TITLE=Плагин уже установлен
+PLUGIN_REINSTALL_MESSAGE_1=Плагин найден, но его версию нельзя проверить.
+PLUGIN_REINSTALL_MESSAGE_2=Переустановите из каталога или оставьте текущий.
+PLUGIN_REINSTALL_BUTTON=Переустановить
+PLUGIN_REINSTALL_META=X Переустановить

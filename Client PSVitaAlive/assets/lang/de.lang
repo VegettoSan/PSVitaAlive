@@ -630,3 +630,10 @@ ALL_REPORT_DELETE_CONFIRM_NO=Abbrechen
 ALL_REPORT_KEEP_CONFIRMED=ZIP behalten. Sie kann hier noch gelöscht werden.
 ALL_REPORT_DELETE_FAILED=ZIP konnte nicht sicher gelöscht werden.
 ALL_REPORT_ZIP_DELETED=Gespeicherte ZIP gelöscht.
+
+# Installed catalog plugin: version unknown, optional reinstall
+PLUGIN_REINSTALL_TITLE=Plugin bereits installiert
+PLUGIN_REINSTALL_MESSAGE_1=Das Plugin ist installiert. Die Version ist nicht überprüfbar.
+PLUGIN_REINSTALL_MESSAGE_2=Installiere die Katalogversion neu oder behalte die aktuelle.
+PLUGIN_REINSTALL_BUTTON=Plugin neu installieren
+PLUGIN_REINSTALL_META=X Neu installieren
