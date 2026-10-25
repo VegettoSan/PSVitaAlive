@@ -15,6 +15,7 @@
 #include <cstdint>
 #include <cstring>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 namespace psvitaalive {
@@ -56,6 +57,36 @@ const char* compressionMethodName(zip_uint16_t method) {
         case 93: return "zstd";
         default: return "other";
     }
+}
+
+// Normalize Vita device paths for comparisons only. ZIP entries can contain
+// harmless "./" segments, so compare canonical paths before allowing an
+// in-place overwrite of the source archive (or any downloaded range).
+std::string comparableVitaPath(const std::string& path) {
+    const size_t colon = path.find(':');
+    if (colon == std::string::npos) return path;
+    std::vector<std::string> parts;
+    size_t start = colon + 1;
+    while (start < path.size()) {
+        while (start < path.size() && (path[start] == '/' || path[start] == '\\')) ++start;
+        if (start == path.size()) break;
+        size_t end = start;
+        while (end < path.size() && path[end] != '/' && path[end] != '\\') ++end;
+        const std::string part = path.substr(start, end - start);
+        if (part == "..") {
+            if (parts.empty()) return std::string();
+            parts.pop_back();
+        } else if (part != ".") {
+            parts.push_back(part);
+        }
+        start = end;
+    }
+    std::string normalized = path.substr(0, colon + 1);
+    for (size_t i = 0; i < parts.size(); ++i) {
+        if (i) normalized += '/';
+        normalized += parts[i];
+    }
+    return normalized;
 }
 } // namespace
 
@@ -639,6 +670,15 @@ ZipResult ZipExtractor::extract(
     ZipProgress prog;
     prog.entriesTotal = static_cast<uint64_t>(numEntries);
 
+    // Never overwrite the archive we are actively reading. The same protection
+    // covers every part of a segmented download, regardless of ZIP/VPK routing.
+    std::unordered_set<std::string> archiveSourcePaths;
+    archiveSourcePaths.insert(comparableVitaPath(zipPath));
+    if (segmentedZip) {
+        for (int n = 1; n <= 3; ++n)
+            archiveSourcePaths.insert(comparableVitaPath(zipPath + ".range" + std::to_string(n)));
+    }
+
     // Pre-scan: sum uncompressed sizes, log large/unusual entries, then verify free space.
     uint64_t uncompressedTotal = 0;
     const uint64_t archiveDiskSize = diskFileSize64(zipPath);
@@ -793,6 +833,11 @@ ZipResult ZipExtractor::extract(
             return ZipResult::UnsafePath;
         }
         const bool isDir = !name.empty() && (name.back() == '/' || name.back() == '\\');
+        if (!isDir && archiveSourcePaths.find(comparableVitaPath(path)) != archiveSourcePaths.end()) {
+            setError("ZIP entry would overwrite the source archive: " + name);
+            zip_close(za);
+            return ZipResult::UnsafePath;
+        }
         if (isDir) {
             while (!path.empty() && path.back() == '/') path.pop_back();
             requiredDirs.push_back(path);
@@ -1050,15 +1095,14 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
-        // Create new files without a redundant getstat. EXCL must NOT truncate
-        // an existing file. If the filesystem rejects EXCL for a missing file,
-        // use the original checked path for this and all later entries.
+        // Create new files with EXCL first to distinguish them from existing
+        // files without an extra stat call. All existing files are overwritten
+        // directly with TRUNC: no .tmp/.bak copies, for every ZIP/VPK caller.
         SceUID fd = -1;
         if (exclusiveCreationSupported)
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
 
         bool replacingExisting = false;
-        std::string tempPath, backupPath, writePath = outPath;
         if (fd >= 0) {
             ++exclusiveCreated;
         } else {
@@ -1074,37 +1118,15 @@ ZipResult ZipExtractor::extract(
                 ++exclusiveFallbacks;
                 diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
             }
-            if (replacingExisting) {
-                ++existingFiles;
-                const std::string parent = outPath.substr(0, outPath.find_last_of('/'));
-                for (unsigned slot = 0; slot < 32; ++slot) {
-                    const std::string suffix = std::to_string(static_cast<unsigned long long>(i)) +
-                        "_" + std::to_string(slot);
-                    const std::string candidate = parent + "/._psva_" + suffix;
-                    const std::string temp = candidate + ".tmp";
-                    const std::string backup = candidate + ".bak";
-                    if (!st.exists(temp) && !st.exists(backup)) {
-                        tempPath = temp;
-                        backupPath = backup;
-                        break;
-                    }
-                }
-                if (tempPath.empty()) {
-                    zip_fclose(zf);
-                    setError("cannot reserve safe ZIP replacement paths: " + outPath);
-                    outcome = ZipResult::IoError;
-                    break;
-                }
-                writePath = tempPath;
-            }
-            fd = sceIoOpen(writePath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+            if (replacingExisting) ++existingFiles;
+            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         }
         if (fd < 0) {
             zip_fclose(zf);
             char err[480];
             sceClibSnprintf(err, sizeof(err),
                             "cannot create file: %s sceIoOpen=0x%08X parent_is_dir=%d",
-                            writePath.c_str(), static_cast<unsigned>(fd),
+                            outPath.c_str(), static_cast<unsigned>(fd),
                             slash != std::string::npos && st.isDirectory(outPath.substr(0, slash)) ? 1 : 0);
             setError(err);
             outcome = ZipResult::IoError;
@@ -1236,8 +1258,10 @@ ZipResult ZipExtractor::extract(
         }
 
         if (!fileOk) {
-            // A failed overwrite removes only the temporary output.
-            st.removeFile(writePath);
+            // Never delete a pre-existing destination on error: an in-place
+            // overwrite may be partial, but deleting it would lose more data.
+            if (!replacingExisting) st.removeFile(outPath);
+            else diagnostics::log("[ZipExtractor] in-place overwrite failed; existing file may be incomplete: " + outPath);
             break;
         }
 
@@ -1251,40 +1275,10 @@ ZipResult ZipExtractor::extract(
                 (unsigned long long)zs.size,
                 (unsigned long long)writtenTotal);
             setError(detail);
-            st.removeFile(writePath);
+            if (!replacingExisting) st.removeFile(outPath);
+            else diagnostics::log("[ZipExtractor] in-place overwrite size mismatch; existing file may be incomplete: " + outPath);
             outcome = ZipResult::IoError;
             break;
-        }
-
-        if (replacingExisting) {
-            // CRC, ZIP stream close and expected-size verification all passed.
-            if (shouldCancel && shouldCancel()) {
-                st.removeFile(tempPath);
-                setError("cancelled before ZIP file replacement");
-                outcome = ZipResult::Cancelled;
-                break;
-            }
-            const int backedUp = sceIoRename(outPath.c_str(), backupPath.c_str());
-            if (backedUp < 0) {
-                st.removeFile(tempPath);
-                setError("cannot back up existing ZIP destination: " + outPath +
-                         " sceIoRename=" + std::to_string(backedUp));
-                outcome = ZipResult::IoError;
-                break;
-            }
-            const int promoted = sceIoRename(tempPath.c_str(), outPath.c_str());
-            if (promoted < 0) {
-                const int restored = sceIoRename(backupPath.c_str(), outPath.c_str());
-                st.removeFile(tempPath);
-                setError("ZIP replacement rename failed: " + outPath +
-                         " commit=" + std::to_string(promoted) +
-                         " restore=" + std::to_string(restored) +
-                         (restored < 0 ? " (original preserved at " + backupPath + ")" : ""));
-                outcome = ZipResult::IoError;
-                break;
-            }
-            if (!st.removeFile(backupPath))
-                diagnostics::log("[ZipExtractor] overwrite complete, old backup retained at " + backupPath);
         }
 
         if (branch) {
