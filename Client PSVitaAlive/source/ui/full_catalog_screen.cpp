@@ -8064,6 +8064,9 @@ void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
 }
 
 
+// Keep this infrequent queue-building path size-optimized; frame/render paths
+// keep the project's existing performance-oriented compiler flags.
+__attribute__((optimize("Os")))
 void FullCatalogScreen::installAllStartQueue() {
     if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
         closeInstallAllWizard(true);
@@ -8143,23 +8146,15 @@ void FullCatalogScreen::installAllStartQueue() {
         }
         if (installAllFreeBytes_ < installAllRequiredBytes_) {
             installAllPhase_ = InstallAllPhase::SpaceWarning;
-            diagnostics::log("[UI] Install All blocked: required=" +
+            diagnostics::log("[UI] Install All insufficient space required=" +
                 std::to_string(installAllRequiredBytes_) + " free=" +
-                std::to_string(installAllFreeBytes_) + " app=" + std::to_string(spaceBudget.appBytes) +
-                " selected_extra=" + std::to_string(spaceBudget.extraBytes) +
-                " selected_app=" + std::to_string(spaceBudget.appBytes) +
-                " selected_plugins=" + std::to_string(spaceBudget.pluginBytes) +
-                " unknown_sizes=" + std::to_string(spaceBudget.unknownSizeCount));
+                std::to_string(installAllFreeBytes_));
             return;
         }
     }
     diagnostics::log("[UI] Install All budget OK required=" +
         std::to_string(installAllRequiredBytes_) + " free=" +
-        std::to_string(installAllFreeBytes_) + " app=" + std::to_string(spaceBudget.appBytes) +
-        " selected_extra=" + std::to_string(spaceBudget.extraBytes) +
-        " selected_app=" + std::to_string(spaceBudget.appBytes) +
-        " selected_plugins=" + std::to_string(spaceBudget.pluginBytes) +
-        " unknown_sizes=" + std::to_string(spaceBudget.unknownSizeCount));
+        std::to_string(installAllFreeBytes_));
     diagnostics::log("[UI] Install All queued " + std::to_string(installAllQueue_.size()) +
                      " jobs, including selected plugins");
     installAllPhase_ = InstallAllPhase::Running;
