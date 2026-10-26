@@ -1,6 +1,6 @@
 #include "storage/storage_maintenance.hpp"
 #include "storage/storage_manager.hpp"
-#include "network/startup_cleanup_policy.hpp"
+#include "storage/storage_cleanup_policy.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
@@ -138,8 +138,7 @@ void scanTmp(UsageSnapshot& snap) {
     StorageManager st;
     for(const auto& name:entries(kTmp)) {
         // Strict allowlist: do not delete a user-created file merely because it lives under tmp/.
-        if(name!="nested_source.vpk" && name!="nested_vpk_stage" && name!="work.bin" &&
-           !(starts(name,"pkg_") && ends(name,".pkg"))) continue;
+        if(!isOwnedTempName(name)) continue;
         const std::string path=std::string(kTmp)+"/"+name;
         if(st.exists(path)) add(snap,path,"Temporary: "+name,false);
     }
@@ -189,15 +188,7 @@ bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     return ok;
 }
 bool StorageMaintenance::removeOwnedZipStage(const std::string& path) {
-    const std::string ux="ux0:data/PSVA_ZIP_STAGE_";
-    const std::string uma="uma0:data/PSVA_ZIP_STAGE_";
-    const size_t begin=starts(path,ux.c_str())?ux.size():
-        (starts(path,uma.c_str())?uma.size():0);
-    if(!begin || begin>=path.size()) return false;
-    for(size_t i=begin;i<path.size();++i) {
-        const char c=path[i];
-        if(!((c>='0' && c<='9') || c=='_')) return false;
-    }
+    if(!isOwnedZipStagePath(path)) return false;
     return eraseTree(path);
 }
 uint32_t StorageMaintenance::cleanupTransient() {
