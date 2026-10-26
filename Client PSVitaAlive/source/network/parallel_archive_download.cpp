@@ -468,14 +468,54 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool setupOk = true;
     bool setupIoError = false;
     const uint64_t chunk = authoritativeSize / partCount;
+
+    // A checkpoint authorizes reuse only when a new, independently obtained
+    // HTTP 206 probe proves the same resource size and strong validator.
+    RangeCheckpoint checkpoint;
+    const std::string validator = strongValidator(probeEtag, probeModified);
+    bool prefixesValid = false;
+    const bool checkpointFound = readCheckpoint(destination, checkpoint);
+    const bool reuse = checkpointFound &&
+        checkpoint.total == authoritativeSize && checkpoint.count == partCount &&
+        checkpoint.segmented == static_cast<unsigned>(keepZipParts ? 1 : 0) &&
+        !resourceIdentity.empty() && !validator.empty() &&
+        checkpoint.identity == identityHash(resourceIdentity, validator) &&
+        savedPrefixes(destination, authoritativeSize, partCount, prefixesValid) <= authoritativeSize &&
+        prefixesValid;
+    if (!reuse && checkpointFound) {
+        diagnostics::log("[HTTP] parallel checkpoint rejected (size/resource/validator/length changed); clean restart");
+        clearPartFiles(destination, true);
+    }
+    if (reuse) {
+        session.received = savedPrefixes(destination, authoritativeSize, partCount, prefixesValid);
+        diagnostics::log("[HTTP] parallel verified checkpoint; reuse_bytes=" +
+                         std::to_string(session.received));
+        sendProgress(session);
+    }
+    const uint64_t previouslySaved = session.received;
     for (size_t i = 0; i < partCount; ++i) {
         Part& p = parts[i];
         p.session = &session;
-        p.start = i * chunk;
+        p.originStart = i * chunk;
         p.end = (i + 1 == partCount) ? authoritativeSize - 1 : ((i + 1) * chunk - 1);
         p.path = partPath(destination, i);
+        SceIoStat oldStat{};
+        if (reuse && sceIoGetstat(p.path.c_str(), &oldStat) >= 0 && oldStat.st_size > 0)
+            p.saved = static_cast<uint64_t>(oldStat.st_size);
+        p.start = parallelNextByte(p.originStart, p.saved);
+        if (!parallelRangePending(p.originStart, p.end, p.saved)) {
+            p.skipped = true;
+            p.done = true;
+            p.status = 206;
+            p.validRange = true;
+            p.etag = probeEtag;
+            p.lastModified = probeModified;
+            diagnostics::log("[HTTP] parallel complete cached segment part=" + std::to_string(i));
+            continue;
+        }
         p.range = std::to_string(p.start) + "-" + std::to_string(p.end);
-        p.fd = sceIoOpen(p.path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+        p.fd = sceIoOpen(p.path.c_str(),
+            SCE_O_WRONLY | SCE_O_CREAT | (p.saved > 0 ? SCE_O_APPEND : SCE_O_TRUNC), 0777);
         if (p.fd < 0) { setupIoError = true; setupOk = false; break; }
         p.writeBuffer.reset(new (std::nothrow) unsigned char[kPartWriteBuffer]);
         if (!p.writeBuffer) { setupOk = false; break; }
@@ -584,14 +624,14 @@ ParallelArchiveOutcome downloadArchiveRanges(
         }
         for (size_t i = 0; i < partCount; ++i) {
             const Part& p = parts[i];
-            if (!p.done || p.code != CURLE_OK || p.status != 206 ||
-                !p.validRange || p.rangeError || p.ioError ||
-                p.received != p.end - p.start + 1) {
+            if ((!p.skipped && (!p.done || p.code != CURLE_OK ||
+                p.received != p.end - p.start + 1)) ||
+                p.status != 206 || !p.validRange || p.rangeError || p.ioError) {
                 networkOk = false;
             }
         }
-        // Only commit buffered tails after all four byte ranges have finished.
-        // Any incomplete response is discarded instead of being assembled.
+        // Flush completed buffers. After interruptions we also flush safe
+        // prefixes before checkpointing, so on-disk lengths are authoritative.
         if (networkOk) {
             for (size_t i = 0; i < partCount; ++i) {
                 Part& p = parts[i];
@@ -628,9 +668,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
     // Measure the real transfer phase separately from metadata selection,
     // post-download joining and extraction. No additional network requests.
     const uint64_t transferUs = monotonicUs() - session.startUs;
+    const uint64_t transferredThisAttempt = session.received - previouslySaved;
     const uint64_t aggregateBps = transferUs > 0
-        ? (session.received / transferUs) * 1000000ULL +
-          ((session.received % transferUs) * 1000000ULL) / transferUs
+        ? (transferredThisAttempt / transferUs) * 1000000ULL +
+          ((transferredThisAttempt % transferUs) * 1000000ULL) / transferUs
         : 0;
     char totals[240];
     sceClibSnprintf(totals, sizeof(totals),
