@@ -2603,6 +2603,19 @@ int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
     (void)args;
     FullCatalogScreen* self = *reinterpret_cast<FullCatalogScreen**>(argp);
     if (!self) return 0;
+    if(self->feedbackSending_) {
+        ::psvitaalive::ManualFeedbackRequest req;
+        req.title=self->feedbackTitle_;
+        req.body=self->feedbackBody_;
+        req.suggestion=self->feedbackSuggestion_;
+        const auto res=::psvitaalive::sendManualFeedback(req);
+        self->reportOk_.store(res.ok);
+        sceClibSnprintf(self->reportResultMsg_,sizeof(self->reportResultMsg_),"%s",
+                        res.message.c_str());
+        self->reportDone_.store(true);
+        self->reportBusy_.store(false);
+        return 0;
+    }
     ::psvitaalive::ErrorReportRequest req;
     req.title = self->reportTitle_;
     req.context = self->reportContext_;
@@ -2644,6 +2657,10 @@ void FullCatalogScreen::pollReportWorker() {
         reportThread_ = -1;
     }
     const bool ok = reportOk_.load();
+    if(feedbackSending_) {
+        feedbackSending_=false;
+        if(ok) closeReportConfirm(); // clears the form only after success
+    }
     reportUiState_ = ok ? 2 : 3;
     sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "%s", reportResultMsg_);
     reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
@@ -10372,8 +10389,19 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
     if(keyboard_.active()){
         keyboard_.update();
         std::string result; bool accepted=false;
-        if(keyboard_.takeResult(result,accepted) && accepted)
-            completeSearch(result);
+        if(keyboard_.takeResult(result,accepted)) {
+            const int target=feedbackKeyboardField_;
+            feedbackKeyboardField_=0;
+            if(accepted && target==1 && reportConfirmVisible_) {
+                feedbackTitle_=result;
+            } else if(accepted && target==2 && reportConfirmVisible_) {
+                feedbackBody_=result;
+                refreshFeedbackWrap();
+                feedbackScrollY_=0;
+            } else if(accepted && target==0) {
+                completeSearch(result);
+            }
+        }
         if(keyboard_.active()){
             draw();
             return !state_.requestExit;
