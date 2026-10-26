@@ -289,8 +289,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 uint64_t freeB = 0, totalB = 0;
                 // HTTP 206 can reuse partial bytes; HTTP 200 after a
                 // rejected resume replaces them, so deduct *nothing* then.
-                const uint64_t alreadyOnDisk = savedParallel > 0
-                    ? std::max(savedParallel, p.absoluteDownloaded)
+                const uint64_t alreadyOnDisk = p.parallelCheckpointReused
+                    ? p.absoluteDownloaded
                     : (p.downloaded == 0 ? p.absoluteDownloaded : offset);
                 const uint64_t needed = remainingInstallSpaceBytes(
                     p.total, alreadyOnDisk, job.spaceMode);
