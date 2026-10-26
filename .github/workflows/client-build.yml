@@ -55,6 +55,13 @@ jobs:
             -o /tmp/psvitaalive-http-range-size-test
           /tmp/psvitaalive-http-range-size-test
 
+      - name: Test resumable 2/4-range segment offsets and 64-bit bounds
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_parallel_resume_policy.cpp \
+            -o /tmp/psvitaalive-parallel-resume-test
+          /tmp/psvitaalive-parallel-resume-test
+
       - name: Test segmented ZIP 2/4-range layout and ZIP64 offsets
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
