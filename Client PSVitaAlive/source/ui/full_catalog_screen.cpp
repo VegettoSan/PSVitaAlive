@@ -4708,16 +4708,37 @@ void FullCatalogScreen::handleTouch() {
     // --- Install All wizard overlay ---
     if (installAllPhase_ != InstallAllPhase::Hidden && installAllPhase_ != InstallAllPhase::Running) {
         if (td.reportNum > 0) {
+            const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
             if (!touchDown_) {
                 touchDown_ = true;
-                touchStartX_ = mapX(td.report[0].x);
-                touchStartY_ = mapY(td.report[0].y);
+                touchStartX_ = px;
+                touchStartY_ = py;
+                touchLastY_ = py;
                 touchMoved_ = false;
+                touchAccumY_ = 0.f;
+            } else if(installAllPhase_==InstallAllPhase::Summary) {
+                if(std::abs(px-touchStartX_)>17 || std::abs(py-touchStartY_)>17)
+                    touchMoved_=true;
+                if(touchMoved_ && py>=(SCREEN_H-508)/2+103 &&
+                   py<(SCREEN_H-508)/2+328) {
+                    touchAccumY_+=float(touchLastY_-py);
+                    const int count=static_cast<int>(installAllResults_.size());
+                    while(touchAccumY_>75.f && installAllSummarySelected_<count-1) {
+                        ++installAllSummarySelected_;
+                        touchAccumY_-=75.f;
+                    }
+                    while(touchAccumY_<-75.f && installAllSummarySelected_>0) {
+                        --installAllSummarySelected_;
+                        touchAccumY_+=75.f;
+                    }
+                }
+                touchLastY_=py;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
-            if (touchMoved_) return;
+            touchAccumY_=0.f;
+            if (touchMoved_) {touchMoved_=false;return;}
             const int ow = 820, oh = 460;
             const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
             if (installAllPhase_ == InstallAllPhase::Summary) {
@@ -4733,15 +4754,15 @@ void FullCatalogScreen::handleTouch() {
                         installAllSummaryDeleteConfirm_ = false;
                     return;
                 }
-                if (hit(x, y, sx + 25, sy + 345, 400, 40)) {
+                if (hit(x, y, sx + 25, sy + 352, 400, 40)) {
                     installAllSummaryZipChoice(true);
                     return;
                 }
-                if (hit(x, y, sx + 475, sy + 345, 400, 40)) {
+                if (hit(x, y, sx + 475, sy + 352, 400, 40)) {
                     installAllSummaryZipChoice(false);
                     return;
                 }
-                const int bw = 370, bh = 44, by = sy + 444;
+                const int bw = 370, bh = 42, by = sy + 448;
                 if (hit(x, y, sx + (sw - bw) / 2, by, bw, bh)) {
                     if (installAllPluginInstalled_) {
                         diagnostics::log("[UI] Install All summary: restart requested by touch");
@@ -4749,15 +4770,20 @@ void FullCatalogScreen::handleTouch() {
                     } else closeInstallAllWizard(false);
                     return;
                 }
-                const int rowTop = sy + 100, rowH = 53, visible = 4;
+                const int rowTop = sy + 103, rowH = 75, visible = 3;
                 const int start = std::max(0, installAllSummarySelected_ - visible + 1);
                 for (int n = 0; n < visible; ++n) {
                     const int index = start + n;
                     if (index >= static_cast<int>(installAllResults_.size())) break;
-                    if (hit(x, y, sx + 22, rowTop + n * rowH, sw - 44, rowH - 4)) {
-                        installAllSummarySelected_ = index;
-                        return;
+                    const int rx=sx+22,ry=rowTop+n*rowH,rw=sw-44;
+                    if (!hit(x, y, rx, ry, rw, rowH - 5)) continue;
+                    installAllSummarySelected_ = index;
+                    // The red inline Reportar button is part of THIS failed
+                    // file's row. No extra popup or catalog selection changes.
+                    if(hit(x,y,rx+rw-136-12,ry+36,136,32)) {
+                        sendInstallAllResultReport(index);
                     }
+                    return;
                 }
                 return;
             }
@@ -6318,6 +6344,12 @@ if(pressed&SCE_CTRL_START){
                 ++installAllSummarySelected_;
             if (pressed & SCE_CTRL_TRIANGLE) { installAllSummaryZipChoice(true); return; }
             if (pressed & SCE_CTRL_SQUARE) { installAllSummaryZipChoice(false); return; }
+            // SELECT reports the highlighted failed step; SQUARE and TRIANGLE
+            // preserve the existing saved-ZIP delete/keep controller shortcuts.
+            if (pressed & SCE_CTRL_SELECT) {
+                sendInstallAllResultReport(installAllSummarySelected_);
+                return;
+            }
             if (pressed & SCE_CTRL_CROSS) {
                 if (installAllPluginInstalled_) {
                     diagnostics::log("[UI] Install All summary: restart requested");
