@@ -48,6 +48,13 @@ jobs:
             -o /tmp/psvitaalive-install-archive-policy-test
           /tmp/psvitaalive-install-archive-policy-test
 
+      - name: Test HTTP 206 resume size and Content-Range guard
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_http_range_size_policy.cpp \
+            -o /tmp/psvitaalive-http-range-size-test
+          /tmp/psvitaalive-http-range-size-test
+
       - name: Test segmented ZIP 2/4-range layout and ZIP64 offsets
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
