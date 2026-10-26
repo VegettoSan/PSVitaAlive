@@ -188,6 +188,18 @@ bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     }
     return ok;
 }
+bool StorageMaintenance::removeOwnedZipStage(const std::string& path) {
+    const std::string ux="ux0:data/PSVA_ZIP_STAGE_";
+    const std::string uma="uma0:data/PSVA_ZIP_STAGE_";
+    const size_t begin=starts(path,ux.c_str())?ux.size():
+        (starts(path,uma.c_str())?uma.size():0);
+    if(!begin || begin>=path.size()) return false;
+    for(size_t i=begin;i<path.size();++i) {
+        const char c=path[i];
+        if(!((c>='0' && c<='9') || c=='_')) return false;
+    }
+    return eraseTree(path);
+}
 uint32_t StorageMaintenance::cleanupTransient() {
     const UsageSnapshot snap=scan(false);
     uint32_t removed=0;
