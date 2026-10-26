@@ -1069,7 +1069,11 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
     const std::string contentLength = headerValue(buffer, bytes, "Content-Length:");
     if (!contentLength.empty()) {
         unsigned long long value = 0;
-        if (std::sscanf(contentLength.c_str(), "%llu", &value) == 1)
+        // A 206 Content-Length is the RESPONSE BODY length, not the file size.
+        // Only Content-Range can supply the authoritative whole-resource total.
+        // Header order varies by CDN; never overwrite that total on a 206.
+        if (std::sscanf(contentLength.c_str(), "%llu", &value) == 1 &&
+            ctx->responseCode != 206 && !ctx->totalFromContentRange)
             ctx->total = static_cast<uint64_t>(value);
     }
 
@@ -1216,9 +1220,11 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
             ctx->downloaded = 0;
             ctx->restartedFromZero = true;
             httpDiagnostic("server ignored Range (HTTP 200); restarted download from zero");
-        } else if (ctx->resumeOffset > 0 && responseCode == 206) {
-            // Require a valid Content-Range that starts exactly at resumeOffset.
-            if (ctx->rangeMismatch || !ctx->rangeValid) {
+        } else if (responseCode == 206) {
+            // A 206 must describe exactly the requested range, including a
+            // zero-offset request. Never append or accept an ambiguous body.
+            if (ctx->rangeMismatch || !ctx->rangeValid ||
+                ctx->rangeStart != ctx->resumeOffset) {
                 httpDiagnostic("HTTP 206 with invalid/mismatched Content-Range; aborting body to avoid corruption");
                 ctx->rangeMismatch = true;
                 return 0; // abort this transfer; caller will clean-restart
@@ -1227,6 +1233,16 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
     }
 
     if (ctx->rangeMismatch) {
+        return 0;
+    }
+    // Reject a CDN that sends more bytes than its declared 206 range;
+    // the caller's one-time clean-restart handles the mismatch safely.
+    if (responseCode == 206 &&
+        (ctx->downloaded > ctx->rangeEnd - ctx->rangeStart + 1 ||
+         static_cast<uint64_t>(bytes) >
+             (ctx->rangeEnd - ctx->rangeStart + 1) - ctx->downloaded)) {
+        ctx->rangeMismatch = true;
+        httpDiagnostic("HTTP 206 response exceeds Content-Range; refusing extra bytes");
         return 0;
     }
 
