@@ -9778,8 +9778,9 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
     // UX0 is one large touch target, not a tiny chip. Keep the free-space
     // summary prominent on line 1 and dedicate nearly all line 2 to the
     // action label; a bright filled button is easier to recognize on Vita.
-    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, ACCENT);
-    vita2d_draw_rectangle(panelX + 2, panelY + 2, panelW - 4, panelH - 4, SURFACE);
+    // Keep only the large themed call-to-action. An extra accent outline
+    // around the entire UX0 card felt visually crowded on real PS Vita.
+    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
 
     ::psvitaalive::ui::uiDrawText(font, panelX + 11, panelY + 19,
         ACCENT, 0.79f, "UX0");
