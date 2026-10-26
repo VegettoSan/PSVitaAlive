@@ -1931,7 +1931,7 @@ HttpResult HttpClient::downloadToFile(
                 httpDiagnostic("parallel range skipped: ineligible source");
             }
             // A successful 206 probe exposes total bytes before range files open.
-            if (rangeReady && ctx.sizeHeaderPreflight && ctx.onProgress) {
+            if (rangeReady && savedParallel == 0 && ctx.sizeHeaderPreflight && ctx.onProgress) {
                 HttpProgress p;
                 p.total = rangeProbe.total;
                 p.absoluteDownloaded = savedParallel;
