@@ -2503,6 +2503,14 @@ void FullCatalogScreen::pollReportWorker() {
     reportUiState_ = ok ? 2 : 3;
     sceClibSnprintf(reportUiMsg_, sizeof(reportUiMsg_), "%s", reportResultMsg_);
     reportUiUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 3500ULL;
+    if (installAllReportSendingIndex_ >= 0) {
+        if (ok && installAllReportSendingGeneration_ == installAllReportGeneration_ &&
+            installAllPhase_ == InstallAllPhase::Summary &&
+            installAllReportSendingIndex_ < (int)installAllResults_.size()) {
+            installAllResults_[installAllReportSendingIndex_].reported = true;
+        }
+        installAllReportSendingIndex_ = -1;
+    }
     showToast(ok ? (reportResultMsg_[0] ? reportResultMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ToastReportSent))
                  : (reportResultMsg_[0] ? reportResultMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ToastReportFailed)),
               2200);
@@ -2510,18 +2518,22 @@ void FullCatalogScreen::pollReportWorker() {
                      " msg=" + reportResultMsg_);
 }
 
-void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::string& context) {
+void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::string& context,
+                                           const ReportTargetOverrides* target) {
     if (reportUiState_ == 1 || reportBusy_.load()) return;
     if (reportThread_ >= 0) return;
 
     // Hard block: user-fixable space / offline errors must never hit Discord.
     // Covers install overlay Report, SQUARE shortcut, and footer Report chip.
     {
-        const bool spaceBlocked = (installProgressStage_ == "Space")
-            || isInsufficientSpaceError(installProgressMessage_)
+        const bool ongoingInstall = installProgressActive_ &&
+            installAllPhase_ != InstallAllPhase::Summary;
+        const bool spaceBlocked = (ongoingInstall && installProgressStage_ == "Space")
+            || (ongoingInstall && isInsufficientSpaceError(installProgressMessage_))
             || isInsufficientSpaceError(context)
             || isInsufficientSpaceError(title);
-        const bool otherNonReportable = isNonReportableInstallError(installProgressMessage_)
+        const bool otherNonReportable =
+            (ongoingInstall && isNonReportableInstallError(installProgressMessage_))
             || isNonReportableInstallError(context)
             || isNonReportableInstallError(title);
         if (spaceBlocked || otherNonReportable) {
@@ -2553,6 +2565,14 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
             reportAppTitleId_ = installResultTitleId_;
         if (!installProgressFile_.empty())
             reportFileName_ = installProgressFile_;
+    }
+    // Install All summary reports target the immutable batch, not a possibly
+    // changed selected catalog card or the final step's stale progress fields.
+    if(target) {
+        reportAppName_ = target->appName;
+        reportAppTitleId_ = target->titleId;
+        reportAppVersion_ = target->version;
+        reportFileName_ = target->fileName;
     }
     reportUiState_ = 1;
     reportUiUntilMs_ = 0;
@@ -8274,6 +8294,10 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllResults_.clear();
     installAllReportAppId_.clear();
     installAllReportTitleId_.clear();
+    installAllReportAppName_.clear();
+    installAllReportAppVersion_.clear();
+    installAllReportSendingIndex_ = -1;
+    ++installAllReportGeneration_;
     installAllSummaryDeleteConfirm_ = false;
     installAllSummaryDeleteFocus_ = 1;
     installAllRequiredBytes_ = 0;
@@ -8484,6 +8508,8 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllJobItem_ = item;
     installAllReportAppId_ = item.id;
     installAllReportTitleId_ = item.titleId;
+    installAllReportAppName_ = item.name;
+    installAllReportAppVersion_ = item.version;
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
@@ -8594,6 +8620,8 @@ void FullCatalogScreen::installAllStartNextStep() {
         InstallAllResult& result = installAllResults_[installAllQueueResultIndices_[index]];
         result.state = InstallAllResultState::Failed;
         result.detail = ::psvitaalive::L("ALL_REPORT_START_FAILED");
+        result.failureReason = result.detail;
+        result.fileName = link.name.empty() ? link.type : link.name;
         diagnostics::log("[UI] Install All failed to start step, continuing: " + result.name);
         if (installAcknowledge_) installAcknowledge_();
         ++installAllQueueIndex_;
@@ -8654,6 +8682,48 @@ void FullCatalogScreen::installAllResolveRecovery(bool keep) {
     // status becomes Idle on the following UI cycle.
 }
 
+
+
+bool FullCatalogScreen::canReportInstallAllResult(int index) const {
+    if(installAllPhase_ != InstallAllPhase::Summary || index<0 ||
+       index >= static_cast<int>(installAllResults_.size())) return false;
+    const InstallAllResult& entry = installAllResults_[index];
+    // "Kept" and "Deleted" are extraction failures whose recovery decision
+    // must never obscure the original reason for a later bug report.
+    const bool failed = entry.state == InstallAllResultState::Failed ||
+        entry.state == InstallAllResultState::Kept ||
+        entry.state == InstallAllResultState::Deleted;
+    const std::string& why = entry.failureReason.empty() ? entry.detail : entry.failureReason;
+    return failed && !entry.reported && !why.empty() &&
+        !isNonReportableInstallError(why) && !isInsufficientSpaceError(why);
+}
+void FullCatalogScreen::sendInstallAllResultReport(int index) {
+    if(!canReportInstallAllResult(index)) return;
+    if(reportBusy_.load() || reportThread_>=0 || reportUiState_==1) {
+        showToast(::psvitaalive::L("ALL_REPORT_SENDING"),1800);
+        return;
+    }
+    const InstallAllResult& entry = installAllResults_[index];
+    const std::string why = entry.failureReason.empty() ? entry.detail : entry.failureReason;
+    // Do not send download URLs, other batch steps or local ZIP saved paths.
+    // The reporter's normal diagnostics/policies continue to apply.
+    const std::string context = "Install All step " + std::to_string(index+1) +
+        "/" + std::to_string(installAllResults_.size()) +
+        " | step=" + entry.name + " | error=" + why;
+    ReportTargetOverrides target;
+    target.appName = installAllReportAppName_;
+    target.titleId = installAllReportTitleId_;
+    target.version = installAllReportAppVersion_;
+    target.fileName = entry.fileName.empty() ? entry.name : entry.fileName;
+    trySendErrorReport("Install All step failed",context,&target);
+    if(reportUiState_==1) {
+        installAllReportSendingIndex_=index;
+        installAllReportSendingGeneration_=installAllReportGeneration_;
+    } else if(reportUiState_==2) {
+        // Synchronous fallback when the worker could not be created.
+        installAllResults_[index].reported=true;
+    }
+}
 
 void FullCatalogScreen::installAllSummaryZipChoice(bool keep) {
     if (installAllPhase_ != InstallAllPhase::Summary ||
@@ -8744,11 +8814,15 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needs
             installAllRecoveryAutoAttempted_ = false;
             installAllRecoveryAutoFailed_ = false;
             result.detail = installProgressMessage_;
+            result.failureReason = installProgressMessage_;
+            result.fileName = installProgressFile_;
             diagnostics::log("[UI] Install All paused for ZIP Keep/Delete: " + result.name);
             return;
         }
         result.state = InstallAllResultState::Failed;
         result.detail = installProgressStage_ + ": " + installProgressMessage_;
+        result.failureReason = result.detail;
+        result.fileName = installProgressFile_;
         diagnostics::log("[UI] Install All failed step, continuing: " + result.name +
                          " reason=" + result.detail);
     } else if (outcome == 3) {
