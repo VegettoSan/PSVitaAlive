@@ -54,6 +54,16 @@ ErrorReportResult sendErrorReport(
     const std::string& context = std::string()
 );
 
+/** User-written feedback from the main Report button: no diagnostics,
+ * logs, file identifiers, selected app or device info are attached.
+ */
+struct ManualFeedbackRequest {
+    std::string title;
+    std::string body;
+    bool suggestion = false;
+};
+ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req);
+
 /** Milliseconds until another report is allowed (rate limit). 0 = can send now. */
 uint64_t errorReportCooldownRemainingMs();
 
