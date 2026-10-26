@@ -687,7 +687,7 @@ STORAGE_CONFIRM_ALL=Inklusive ZIPs. X/△: bestätigen, O: abbrechen
 # User-written Report / Suggestion (no diagnostic logs)
 FEEDBACK_HEADING=Probleme und Vorschläge
 FEEDBACK_HELP_1=Problem entdeckt oder eine Idee für PSVitaAlive?
-FEEDBACK_HELP_2=Nachricht schreiben. Keine Logs oder Spieldaten.
+FEEDBACK_HELP_2=Beschreibe das Problem oder deine Verbesserungsidee.
 FEEDBACK_PROBLEM=Problem
 FEEDBACK_SUGGESTION=Vorschlag
 FEEDBACK_TITLE_LABEL=Titel
@@ -699,7 +699,7 @@ FEEDBACK_BODY_KEYBOARD=Beschreibung (max. 700)
 FEEDBACK_SEND=An PSVitaAlive senden
 FEEDBACK_CANCEL=Abbrechen
 FEEDBACK_SENDING=Senden...
-FEEDBACK_NAV_HINT=Hoch/Runter: wählen   X: editieren   Links/Rechts: scrollen   O: zu
+FEEDBACK_NAV_HINT=L/R: Typ   Hoch/Runter: wählen   X: bearbeiten   Links/Rechts: scrollen   O: zu
 FEEDBACK_FIELDS_REQUIRED=Titel und Beschreibung eingeben.
 FEEDBACK_COOLDOWN=Bitte vor dem nächsten Senden warten.
 FEEDBACK_SEND_FAILED=Senden konnte nicht starten.
