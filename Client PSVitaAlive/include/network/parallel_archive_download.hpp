@@ -26,8 +26,16 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const HttpCancelFn& shouldCancel,
     const std::string& expectedEtag = {}, // For generic HTTPS probes
     const std::string& expectedModified = {},
-    bool keepZipParts = false
+    bool keepZipParts = false,
+    const HttpCancelFn& shouldPause = {},
+    const std::string& resourceIdentity = {},
+    const std::string& probeEtag = {},
+    const std::string& probeModified = {},
+    unsigned retryIndex = 0
 );
+
+// Returns saved validated-prefix bytes from a parallel checkpoint (0 if absent).
+uint64_t parallelSavedBytes(const std::string& destination);
 
 // Assemble saved ZIPs only for manual recovery; installs can read ranges.
 bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize);
