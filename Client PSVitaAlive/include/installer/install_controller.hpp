@@ -18,6 +18,7 @@ struct InstallStatus {
     enum class State {
         Idle = 0,
         Downloading,
+        Paused, // Download worker stopped; resume reuses the same saved .part job.
         Installing,
         Completed,
         Failed,
@@ -83,6 +84,10 @@ public:
         const std::string& pluginLine = std::string()
     );
     void cancel();
+    /** Testing-only cooperative stop; preserves serial partial bytes. */
+    bool pauseDownload();
+    /** Restart the same download job after the old worker has exited. */
+    bool resumeDownload();
     /** User dismissed the success/error result panel (or UI timeout). */
     void acknowledgeResult();
     /** Resolve a pending ZIP extraction recovery. keep=true preserves it; false deletes it. */
