@@ -680,6 +680,7 @@ ALL_SPACE_MISSING=Espacio adicional necesario
 ALL_SPACE_CLOSE=Cerrar
 
 # Footer storage management (catalog/images/config are never deleted)
+STORAGE_OPEN_HINT=Gestionar
 STORAGE_TITLE=Administrar almacenamiento
 STORAGE_WORKING=Analizando espacio / eliminando archivos...
 STORAGE_WAIT=Mantén PSVitaAlive abierto.
