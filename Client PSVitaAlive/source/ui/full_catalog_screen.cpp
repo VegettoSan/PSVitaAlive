@@ -9649,21 +9649,50 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
             ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - FOOTER_H + 36, TEXT, 0.52f, hlines[1].c_str());
         }
     }
-    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
+    // UX0 is a real touch target (same panel hitbox in handleTouch). Draw
+    // a restrained button border + localized Manage affordance so users can
+    // discover the storage menu without losing free/total capacity details.
+    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, ACCENT_SOFT);
+    vita2d_draw_rectangle(panelX + 1, panelY + 1, panelW - 2, panelH - 2, SURFACE);
     vita2d_draw_rectangle(panelX, panelY, 3, panelH, ACCENT);
 
+    // Second row: total capacity on the left, compact CTA on the right.
+    // The 220px card and existing News/Report hitboxes remain unchanged.
+    const int manageX = panelX + 122;
+    const int manageY = panelY + 22;
+    const int manageW = 90;
+    const int manageH = 17;
+    vita2d_draw_rectangle(manageX, manageY, manageW, manageH, ACCENT);
+    vita2d_draw_rectangle(manageX + 1, manageY + 1, manageW - 2, manageH - 2, SURFACE2);
+
+    const char* manageLabel = ::psvitaalive::L("STORAGE_OPEN_HINT");
+    float manageScale = 0.57f;
+    // Some translated labels are wider; fit without clipping or per-frame allocations.
+    while (manageScale > 0.46f &&
+           ::psvitaalive::ui::uiTextWidth(font, manageScale, manageLabel) > manageW - 24)
+        manageScale -= 0.02f;
+    const int manageTextW = ::psvitaalive::ui::uiTextWidth(font, manageScale, manageLabel);
+    ::psvitaalive::ui::uiDrawText(font, manageX + 5 + (manageW - 23 - manageTextW) / 2,
+        manageY + 12, ACCENT, manageScale, manageLabel);
+    // ASCII chevron works across all Vita languages without a new icon texture.
+    ::psvitaalive::ui::uiDrawText(font, manageX + manageW - 14, manageY + 12,
+        ACCENT, 0.62f, ">");
+
     if (!sp.ok) {
-        ::psvitaalive::ui::uiDrawText(font, panelX + 12, panelY + 22, DIM, 0.68f, "ux0 n/a");
+        ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 18,
+            DIM, 0.67f, "UX0 --");
+        ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 34,
+            DIM, 0.57f, "--");
         return;
     }
-    // Line 1: UX0 + free space (primary info)
+    // Primary row: UX0 + free space.
     ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 18, ACCENT, 0.70f, "UX0");
     char line[48];
     sceClibSnprintf(line, sizeof(line), "%s free", formatBytesShort(sp.freeBytes).c_str());
     ::psvitaalive::ui::uiDrawText(font, panelX + 52, panelY + 18, WHITE, 0.70f, line);
-    // Line 2: total capacity
-    sceClibSnprintf(line, sizeof(line), "of %s total", formatBytesShort(sp.totalBytes).c_str());
-    ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 34, TEXT, 0.62f, line);
+    // Shorter phrasing makes room for the visible Manage button.
+    sceClibSnprintf(line, sizeof(line), "%s total", formatBytesShort(sp.totalBytes).c_str());
+    ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 34, TEXT, 0.58f, line);
 
     const int barX = panelX + 10, barY = panelY + panelH - 10, barW = panelW - 20, barH = 6;
     vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
