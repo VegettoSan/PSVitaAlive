@@ -40,6 +40,16 @@ inline uint64_t preflightRequiredSpaceBytes(uint64_t payload, InstallSpaceMode m
     return q * 21ULL + r;
 }
 
+// Once the HTTP response exposes an authoritative size, re-check the
+// remaining space before its body is written. Existing bytes in a resumable
+// job are already on disk and must not be counted twice.
+inline uint64_t remainingInstallSpaceBytes(uint64_t remoteBytes,
+                                           uint64_t existingBytes,
+                                           InstallSpaceMode mode) {
+    const uint64_t required = preflightRequiredSpaceBytes(remoteBytes, mode);
+    return existingBytes >= required ? 0 : required - existingBytes;
+}
+
 // Install All uses ONLY the links enqueued for this installation. This is a
 // compressed-download estimate; ZipExtractor still checks the true expanded
 // size before writing data. The 25% + 128 MiB margin and the old 2.1x VPK

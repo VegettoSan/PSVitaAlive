@@ -887,7 +887,7 @@ bool InstallController::requestInstall(
         isDataOrGameFilesLinkType(linkType),
         isZipExtraction, !zipDestination.empty());
     const std::string jobId = downloads_.enqueue(
-        url, fileName, expectedBytes, keepSegmented);
+        url, fileName, expectedBytes, keepSegmented, budgetMode);
     diagnostics::log(std::string("[Installer] segmented container opt-in=") +
                      (keepSegmented ? "yes" : "no") + " file=" + fileName);
     if (jobId.empty()) {

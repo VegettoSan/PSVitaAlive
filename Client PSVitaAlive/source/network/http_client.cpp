@@ -433,6 +433,7 @@ struct TransferContext {
     std::string lastModified;
     HttpProgressFn onProgress;
     HttpCancelFn shouldCancel;
+    bool sizeHeaderPreflight = false;
     std::string path;
 };
 
@@ -1117,6 +1118,22 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
         }
     }
 
+    // Final 200/206 response headers: verify the authoritative size before
+    // libcurl invokes the payload writer; no additional HTTP request is needed.
+    if (ctx->sizeHeaderPreflight && ctx->onProgress && ctx->total > 0 &&
+        (ctx->responseCode == 200 || ctx->responseCode == 206) &&
+        ((bytes == 2 && buffer[0] == '\r' && buffer[1] == '\n') ||
+         (bytes == 1 && buffer[0] == '\n'))) {
+        HttpProgress p;
+        p.total = ctx->total;
+        p.absoluteDownloaded = ctx->responseCode == 206 ? ctx->resumeOffset : 0;
+        ctx->onProgress(p);
+        if (ctx->shouldCancel && ctx->shouldCancel()) {
+            ctx->cancelled = true;
+            return 0;
+        }
+    }
+
     const std::string etag = headerValue(buffer, bytes, "ETag:");
     if (!etag.empty()) ctx->etag = etag;
     const std::string modified = headerValue(buffer, bytes, "Last-Modified:");
@@ -1595,7 +1612,8 @@ HttpResult HttpClient::downloadToFile(
     int maxAttemptsOverride,
     const std::string& ifRangeValidator,
     uint64_t archiveSelectionSizeHint,
-    bool keepZipParts
+    bool keepZipParts,
+    bool checkSizeAtHeaders
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1647,6 +1665,7 @@ HttpResult HttpClient::downloadToFile(
     ctx.resumeOffset = resumeOffset;
     ctx.onProgress = std::move(onProgress);
     ctx.shouldCancel = std::move(shouldCancel);
+    ctx.sizeHeaderPreflight = checkSizeAtHeaders;
     ctx.path = destinationPath;
     ctx.pendingWrite.reset(new (std::nothrow) char[SERIAL_WRITE_BUFFER_SIZE]);
     if (!ctx.pendingWrite)
@@ -1888,6 +1907,19 @@ HttpResult HttpClient::downloadToFile(
                   archiveEffectiveUrlUsable(parallelUrl))) {
                 rangeReady = false;
                 httpDiagnostic("parallel range skipped: ineligible source");
+            }
+            // A successful 206 probe exposes total bytes before range files open.
+            if (rangeReady && ctx.sizeHeaderPreflight && ctx.onProgress) {
+                HttpProgress p;
+                p.total = rangeProbe.total;
+                ctx.onProgress(p);
+                if (ctx.shouldCancel && ctx.shouldCancel()) {
+                    sceIoClose(ctx.fd);
+                    curl_slist_free_all(headers);
+                    curl_easy_cleanup(curl);
+                    setError("not enough free space before parallel download");
+                    return HttpResult::Cancelled;
+                }
             }
             sceIoClose(ctx.fd);
             ctx.fd = -1;

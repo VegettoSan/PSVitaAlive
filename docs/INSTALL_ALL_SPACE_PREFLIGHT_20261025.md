@@ -26,11 +26,29 @@ At the end of Install All selection, before any requestInstall():
   (combined base + 25% + 128MiB reserve) and
   (2.1x primary app bytes + extras + plugins + 128MiB reserve).
 
-A fresh on-demand `StorageManager::queryUx0Space()` measures free bytes. If
-free < required, **no job is started** and the wizard shows a persistent
-localized Space Warning with required/free/deficit and a Close button. If the
-probe fails, it also blocks Install All instead of blindly assuming free space.
-After freeing storage, reopen Install All to recalculate.
+When every queued link has a size, a fresh on-demand
+`StorageManager::queryUx0Space()` measures free bytes for the combined
+budget. If free < required, **no job is started** and the wizard shows the
+localized Space Warning with required/free/deficit. A failed capacity probe
+also blocks this initial combined check.
+
+**If any selected link lacks a usable size**, the entire batch switches to
+individual preflight. The existing `InstallController` policy checks known
+sizes immediately before each step. For both known and unknown sizes, the
+existing `HttpClient` header handler now forwards a final HTTP 200/206
+`Content-Length` / `Content-Range` total to `DownloadManager` **before
+the first payload byte is written**. `DownloadManager` reuses the
+`preflightRequiredSpaceBytes` policy and actual `ux0:` availability;
+insufficient space aborts the transfer and reports a normal space error.
+A successful adaptive 206 Range probe likewise checks space before starting
+the 2/4-part downloader. MediaFire resolution and provider redirects remain
+within the existing paths, with no additional HEAD/GET round-trip.
+
+If a server omits authoritative lengths, no pre-body size guarantee is
+possible; the existing 32 MiB runtime checks and minimum 16 MiB reserve stay
+active. A catalog size remains a hint, never a substitute for actual HTTP
+lengths when present. An HTTP 200 replacement of a resumable partial file
+does not credit the old partial's disk usage.
 
 This supersedes the earlier "largest extra across the whole catalog" estimate,
 which overestimated installs using smaller manual/automatic selections. It
@@ -53,7 +71,8 @@ No generated catalog or JSON schema changes are required.
 ## Test coverage
 
 `tests/test_install_space_policy.cpp` checks automatic/manual selections,
-unselected larger alternatives, both-extra sum, no-app queues, VPK staging
-floor, approved plugins, zero/unknown sizes and uint64 overflow. The
+unselected alternatives, both-extra sum, no-app queues, VPK staging floor,
+per-file HTTP size budgets, resumed-download credit, approved plugins,
+zero/unknown sizes and uint64 overflow. The
 existing CI job compiles and executes it with host C++ and then VitaSDK compiles
 the full client. Real-hardware verification with large ZIPs remains advisable.

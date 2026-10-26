@@ -179,7 +179,7 @@ bool DownloadManager::loadMetadata(DownloadJob& job) const {
     return !job.url.empty();
 }
 
-std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip) {
+std::string DownloadManager::enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint, bool preferSegmentedZip, InstallSpaceMode spaceMode) {
     DownloadJob job;
     job.id = makeJobId();
     job.url = url;
@@ -188,6 +188,7 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     // authoritative remote total once Content-Length/Content-Range is observed.
     job.expectedSize = expectedSizeHint;
     job.preferSegmentedZip = preferSegmentedZip;
+    job.spaceMode = spaceMode;
     job.state = DownloadState::Queued;
     if (!ensureJobDirs(job)) return {};
     saveMetadata(job);
@@ -235,6 +236,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     bool sizeLimitHit = false;
     bool diskSpaceHit = false;
     bool remoteTotalKnown = false;
+    uint64_t headerCheckedTotal = 0;
     uint64_t lastSaved = offset;
     uint64_t lastSpaceCheck = 0;
     constexpr uint64_t kMetadataSaveStep = 8ULL * 1024ULL * 1024ULL;
@@ -248,6 +250,25 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (p.total > 0) {
             job.expectedSize = p.total;
             remoteTotalKnown = true;
+            // HttpClient also reports the final 200/206 headers before writing
+            // a byte. Reuse the existing mode-specific preflight for that size.
+            if (!diskSpaceHit && headerCheckedTotal != p.total) {
+                headerCheckedTotal = p.total;
+                uint64_t freeB = 0, totalB = 0;
+                // HTTP 206 can reuse partial bytes; HTTP 200 after a
+                // rejected resume replaces them, so deduct *nothing* then.
+                const uint64_t alreadyOnDisk =
+                    p.downloaded == 0 ? p.absoluteDownloaded : offset;
+                const uint64_t needed = remainingInstallSpaceBytes(
+                    p.total, alreadyOnDisk, job.spaceMode);
+                if (!StorageManager::queryUx0Space(freeB, totalB) || freeB < needed) {
+                    diskSpaceHit = true;
+                    job.cancelRequested->store(true, std::memory_order_release);
+                    diagnostics::log("[DownloadManager] HTTP size preflight blocked need=" +
+                        std::to_string(needed) + " free=" + std::to_string(freeB) +
+                        " remote=" + std::to_string(p.total));
+                }
+            }
         }
         const uint64_t limit = remoteTotalKnown ? sizeHardLimit(job.expectedSize) : 0;
         if (limit > 0 && job.downloadedSize > limit) {
@@ -406,6 +427,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             sizeLimitHit = false;
             diskSpaceHit = false;
             remoteTotalKnown = false;
+            headerCheckedTotal = 0;
             lastSpaceCheck = 0;
             // Never clear the cancellation when preparing a new attempt.
         }
@@ -425,7 +447,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             0,
             ifRangeValidator,
             job.expectedSize,
-            job.preferSegmentedZip
+            job.preferSegmentedZip,
+            true // pre-body size notification; no second HEAD/GET request
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();

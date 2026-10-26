@@ -8128,12 +8128,15 @@ void FullCatalogScreen::installAllStartQueue() {
 
     // The queue is final: check exactly its app, selected Game/Data Files and
     // explicitly approved plugins, with the existing staging/safety reserve.
-    installAllRequiredBytes_ = ::psvitaalive::installAllQueueRequiredSpaceBytes(spaceBudget);
-    if (spaceBudget.unknownSizeCount) {
-        diagnostics::log("[UI] Install All warning: " +
-            std::to_string(spaceBudget.unknownSizeCount) +
-            " selected link(s) lack a usable size; capacity is an estimate");
-    }
+    // A single missing selected size switches the whole queue to individual
+    // checks. Each request checks known hints, then real HTTP 200/206 headers
+    // before writing, using the DownloadManager's existing safety policy.
+    const bool individual = spaceBudget.unknownSizeCount != 0;
+    installAllRequiredBytes_ = individual ? 0 :
+        ::psvitaalive::installAllQueueRequiredSpaceBytes(spaceBudget);
+    if (individual)
+        diagnostics::log("[UI] Install All individual space preflight: missing size in " +
+            std::to_string(spaceBudget.unknownSizeCount) + " queued link(s)");
     installAllFreeBytes_ = 0;
     installAllSpaceProbeFailed_ = false;
     if (installAllRequiredBytes_) {

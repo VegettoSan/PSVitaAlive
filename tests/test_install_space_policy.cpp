@@ -89,5 +89,25 @@ int main() {
            30 * MiB + (30 * MiB / 4) + 128 * MiB);
     assert(installAllRequiredSpaceBytes(std::numeric_limits<uint64_t>::max(), 42) ==
            std::numeric_limits<uint64_t>::max());
+
+    // The same per-link budget is applied once the server reports the real
+    // Content-Length/Content-Range; no second HTTP fetch is required.
+    assert(remainingInstallSpaceBytes(100 * MiB, 0, InstallSpaceMode::DirectPackage)
+           == 210 * MiB);
+    assert(remainingInstallSpaceBytes(100 * MiB, 25 * MiB,
+                                      InstallSpaceMode::DirectPackage) == 185 * MiB);
+    assert(remainingInstallSpaceBytes(100 * MiB, 0, InstallSpaceMode::ZipArchive)
+           == 137 * MiB);
+    assert(remainingInstallSpaceBytes(100 * MiB, 100 * MiB, InstallSpaceMode::ZipArchive)
+           == 37 * MiB);
+    assert(remainingInstallSpaceBytes(100 * MiB, 200 * MiB, InstallSpaceMode::ZipArchive)
+           == 0);
+    assert(remainingInstallSpaceBytes(0, 0, InstallSpaceMode::DirectPackage) == 0);
+    assert(remainingInstallSpaceBytes(std::numeric_limits<uint64_t>::max(), 42,
+                                      InstallSpaceMode::DirectPackage) ==
+           std::numeric_limits<uint64_t>::max() - 42);
+    // Missing metadata is detected by the existing queue budget.
+    assert(missing.unknownSizeCount != 0);
+    assert(manual.unknownSizeCount == 0);
     return 0;
 }
