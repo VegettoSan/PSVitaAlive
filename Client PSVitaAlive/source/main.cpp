@@ -465,6 +465,7 @@ int main(){
     });
     // PSVitaAlive-owned abandoned staging only; saved ZIPs remain untouched.
     psvitaalive::storage::StorageMaintenance::cleanupTransient();
+    screen.requestUx0SpaceRefresh();
 
     screen.setCatalogLoading(true, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_LABEL"),
                              1, 1, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_READY"));
