@@ -2516,6 +2516,9 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
 
     const char* types[]={::psvitaalive::L("FEEDBACK_PROBLEM"),
                          ::psvitaalive::L("FEEDBACK_SUGGESTION")};
+    // PS Vita shoulder shortcuts for report type (touch remains available).
+    ::psvitaalive::ui::uiDrawText(&font_,x+417,y+141,DIM,.78f,
+        "L / R");
     for(int i=0;i<2;++i) {
         const int bx=x+24+i*185,by=y+116,bw=175,bh=36;
         const bool selected=(feedbackSuggestion_==(i==1));
@@ -6502,6 +6505,23 @@ if(pressed&SCE_CTRL_START){
         state_.requestExit=true;
         return;
     }if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
+        // The shoulder buttons belong to an open modal, never to the
+        // catalog underneath it. In the written-feedback dialog they select
+        // the report category regardless of the currently focused field.
+        if(reportConfirmVisible_) {
+            if(!feedbackSending_) {
+                if(pressed&SCE_CTRL_LTRIGGER) feedbackSuggestion_=false;
+                else if(pressed&SCE_CTRL_RTRIGGER) feedbackSuggestion_=true;
+            }
+            return;
+        }
+        const bool modalOpen =
+            newsVisible_ || themeSetupVisible_ || dataRequestConfirmVisible_ ||
+            filterModalOpen_ || essentialPluginsModal_ || pluginRebootModal_ ||
+            pluginChoiceModal_ || pspSetupModal_ || webQrVisible_ ||
+            savedZipActionVisible_ || archiveWarningVisible_ || storageVisible_ ||
+            installAllPhase_!=InstallAllPhase::Hidden;
+        if(modalOpen) return;
         const bool canSwitch=!catalogLoading_&&!installProgressActive_&&!isTransitioning()
             &&catalogSwitchCooldownFrames_<=0&&deferredFreeTextures_.empty();
         if(canSwitch){
