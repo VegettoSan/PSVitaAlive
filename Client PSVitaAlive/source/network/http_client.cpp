@@ -1630,7 +1630,8 @@ HttpResult HttpClient::downloadToFile(
     const std::string& ifRangeValidator,
     uint64_t archiveSelectionSizeHint,
     bool keepZipParts,
-    bool checkSizeAtHeaders
+    bool checkSizeAtHeaders,
+    HttpCancelFn shouldPause
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1689,7 +1690,11 @@ HttpResult HttpClient::downloadToFile(
         diagnostics::log("[HTTP] serial write buffer unavailable; using direct writes");
 
     int flags = SCE_O_WRONLY | SCE_O_CREAT;
-    flags |= (resumeOffset > 0) ? SCE_O_APPEND : SCE_O_TRUNC;
+    // Do not truncate range 0 before the parallel checkpoint has had a
+    // chance to validate its existing segments against the new HTTP probe.
+    const uint64_t savedParallel = resumeOffset == 0
+        ? parallelSavedBytes(destinationPath) : 0;
+    flags |= (resumeOffset > 0 || savedParallel > 0) ? SCE_O_APPEND : SCE_O_TRUNC;
     ctx.fd = sceIoOpen(destinationPath.c_str(), flags, 0777);
     if (ctx.fd < 0) {
         curl_easy_cleanup(curl);
@@ -1877,7 +1882,7 @@ HttpResult HttpClient::downloadToFile(
         ArchiveProbeResult rangeProbe;
         bool rangeReady = false;
         if (isArchive && selectedArchiveTotal > 0 &&
-            archiveEffectiveUrlUsable(activeUrl)) {
+            savedParallel == 0 && archiveEffectiveUrlUsable(activeUrl)) {
             rangeProbe.total = selectedArchiveTotal;
             rangeReady = true;
         } else {
@@ -1929,6 +1934,8 @@ HttpResult HttpClient::downloadToFile(
             if (rangeReady && ctx.sizeHeaderPreflight && ctx.onProgress) {
                 HttpProgress p;
                 p.total = rangeProbe.total;
+                p.absoluteDownloaded = savedParallel;
+                p.downloaded = savedParallel;
                 ctx.onProgress(p);
                 if (ctx.shouldCancel && ctx.shouldCancel()) {
                     sceIoClose(ctx.fd);
@@ -1945,10 +1952,12 @@ HttpResult HttpClient::downloadToFile(
                 ctx.onProgress, ctx.shouldCancel,
                 isArchive ? std::string() : rangeProbe.etag,
                 isArchive ? std::string() : rangeProbe.lastModified,
-                keepZipParts) : ParallelArchiveOutcome::RetrySerial;
+                keepZipParts, shouldPause, url,
+                rangeProbe.etag, rangeProbe.lastModified) : ParallelArchiveOutcome::RetrySerial;
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
+                parallel == ParallelArchiveOutcome::Paused ||
                 parallel == ParallelArchiveOutcome::IoError) {
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
@@ -1958,15 +1967,18 @@ HttpResult HttpClient::downloadToFile(
                     lastStatus_ = 206;
                     return HttpResult::Ok;
                 }
-                if (parallel == ParallelArchiveOutcome::Cancelled) {
-                    setError("cancelled");
+                if (parallel == ParallelArchiveOutcome::Cancelled ||
+                    parallel == ParallelArchiveOutcome::Paused) {
+                    setError(parallel == ParallelArchiveOutcome::Paused
+                        ? "paused" : "cancelled");
                     return HttpResult::Cancelled;
                 }
                 setError("parallel download storage error");
                 return HttpResult::IoError;
             }
-            // The helper removed all staging parts on network failure. Reset
-            // the UI bytes and restore the original retry/failover machinery.
+            // Any unsupported probe or exhausted parallel retry must start a
+            // fresh serial file, never append to an arbitrary saved segment.
+            discardParallelSavedRanges(destinationPath);
             ctx.fd = sceIoOpen(destinationPath.c_str(),
                                SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
             if (ctx.fd < 0) {
