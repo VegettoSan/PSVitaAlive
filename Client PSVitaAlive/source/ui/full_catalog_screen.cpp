@@ -49,6 +49,8 @@
 namespace psvitaalive::ui { namespace {
 
 // Shared header/modal geometry: touch and rendering MUST use the same values.
+// Shared UX0 footer width: render, News/Report placement and touch must match.
+constexpr int UX0_FOOTER_PANEL_W = 280;
 constexpr int FILTER_CHIP_W = 192;
 constexpr int FILTER_CHIP_Y = 8;
 constexpr int FILTER_CHIP_H = 36;
@@ -2048,7 +2050,7 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
 
 void FullCatalogScreen::drawNewsChip() {
     // Left of Report chip (which is left of ux0 panel)
-    const int panelW = 220;
+    const int panelW = UX0_FOOTER_PANEL_W;
     const int panelX = SCREEN_W - panelW - 6;
     const int chipW = 100;
     const int chipH = FOOTER_H - 8;
@@ -2165,7 +2167,7 @@ void FullCatalogScreen::drawNewsOverlay() {
 }
 
 void FullCatalogScreen::drawReportChip() {
-    const int panelW = 220;
+    const int panelW = UX0_FOOTER_PANEL_W;
     const int panelX = SCREEN_W - panelW - 6;
     const int chipW = 100;
     const int chipH = FOOTER_H - 8;
@@ -4926,14 +4928,15 @@ void FullCatalogScreen::handleTouch() {
     }
 
     // UX0 capacity card is also the Storage Management entry point.
-    if (hit(x,y,SCREEN_W-226,SCREEN_H-FOOTER_H+2,220,FOOTER_H-4)) {
+    if (hit(x, y, SCREEN_W - UX0_FOOTER_PANEL_W - 6,
+            SCREEN_H - FOOTER_H + 2, UX0_FOOTER_PANEL_W, FOOTER_H - 4)) {
         openStorageMenu();
         return;
     }
 
     // Footer News + Report chips (left of ux0 space panel)
     {
-        const int panelW = 220;
+        const int panelW = UX0_FOOTER_PANEL_W;
         const int panelX = SCREEN_W - panelW - 6;
         const int reportW = 100;
         const int newsW = 100;
@@ -9631,7 +9634,7 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
 
     const Ux0SpaceInfo sp = queryUx0Space();
     // Wider panel + larger type for readability on real Vita screens.
-    const int panelW = 220;
+    const int panelW = UX0_FOOTER_PANEL_W;
     const int panelH = FOOTER_H - 4;
     const int panelX = SCREEN_W - panelW - 6;
     const int panelY = SCREEN_H - FOOTER_H + 2;
@@ -9649,61 +9652,62 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
             ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - FOOTER_H + 36, TEXT, 0.52f, hlines[1].c_str());
         }
     }
-    // UX0 is a real touch target (same panel hitbox in handleTouch). Draw
-    // a restrained button border + localized Manage affordance so users can
-    // discover the storage menu without losing free/total capacity details.
-    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, ACCENT_SOFT);
-    vita2d_draw_rectangle(panelX + 1, panelY + 1, panelW - 2, panelH - 2, SURFACE);
-    vita2d_draw_rectangle(panelX, panelY, 3, panelH, ACCENT);
+    // UX0 is one large touch target, not a tiny chip. Keep the free-space
+    // summary prominent on line 1 and dedicate nearly all line 2 to the
+    // action label; a bright filled button is easier to recognize on Vita.
+    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, ACCENT);
+    vita2d_draw_rectangle(panelX + 2, panelY + 2, panelW - 4, panelH - 4, SURFACE);
 
-    // Second row: total capacity on the left, compact CTA on the right.
-    // The 220px card and existing News/Report hitboxes remain unchanged.
-    const int manageX = panelX + 122;
-    const int manageY = panelY + 22;
-    const int manageW = 90;
-    const int manageH = 17;
-    vita2d_draw_rectangle(manageX, manageY, manageW, manageH, ACCENT);
-    vita2d_draw_rectangle(manageX + 1, manageY + 1, manageW - 2, manageH - 2, SURFACE2);
+    ::psvitaalive::ui::uiDrawText(font, panelX + 11, panelY + 19,
+        ACCENT, 0.79f, "UX0");
 
-    const char* manageLabel = ::psvitaalive::L("STORAGE_OPEN_HINT");
-    float manageScale = 0.57f;
-    // Some translated labels are wider; fit without clipping or per-frame allocations.
-    while (manageScale > 0.46f &&
-           ::psvitaalive::ui::uiTextWidth(font, manageScale, manageLabel) > manageW - 24)
-        manageScale -= 0.02f;
-    const int manageTextW = ::psvitaalive::ui::uiTextWidth(font, manageScale, manageLabel);
-    ::psvitaalive::ui::uiDrawText(font, manageX + 5 + (manageW - 23 - manageTextW) / 2,
-        manageY + 12, ACCENT, manageScale, manageLabel);
-    // ASCII chevron works across all Vita languages without a new icon texture.
-    ::psvitaalive::ui::uiDrawText(font, manageX + manageW - 14, manageY + 12,
-        ACCENT, 0.62f, ">");
-
-    if (!sp.ok) {
-        ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 18,
-            DIM, 0.67f, "UX0 --");
-        ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 34,
-            DIM, 0.57f, "--");
-        return;
+    if (sp.ok) {
+        char summary[72];
+        sceClibSnprintf(summary, sizeof(summary), "%s free / %s",
+            formatBytesShort(sp.freeBytes).c_str(),
+            formatBytesShort(sp.totalBytes).c_str());
+        // The accessible capacity line stays in one row across all card sizes.
+        float summaryScale = 0.78f;
+        while (summaryScale > 0.64f &&
+               ::psvitaalive::ui::uiTextWidth(font, summaryScale, summary) > panelW - 70)
+            summaryScale -= 0.02f;
+        ::psvitaalive::ui::uiDrawText(font, panelX + 62, panelY + 19,
+            WHITE, summaryScale, summary);
+    } else {
+        ::psvitaalive::ui::uiDrawText(font, panelX + 62, panelY + 19,
+            DIM, 0.75f, "--");
     }
-    // Primary row: UX0 + free space.
-    ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 18, ACCENT, 0.70f, "UX0");
-    char line[48];
-    sceClibSnprintf(line, sizeof(line), "%s free", formatBytesShort(sp.freeBytes).c_str());
-    ::psvitaalive::ui::uiDrawText(font, panelX + 52, panelY + 18, WHITE, 0.70f, line);
-    // Shorter phrasing makes room for the visible Manage button.
-    sceClibSnprintf(line, sizeof(line), "%s total", formatBytesShort(sp.totalBytes).c_str());
-    ::psvitaalive::ui::uiDrawText(font, panelX + 10, panelY + 34, TEXT, 0.58f, line);
 
-    const int barX = panelX + 10, barY = panelY + panelH - 10, barW = panelW - 20, barH = 6;
+    // High-contrast call to action: 262x23 on the Vita's 960px screen.
+    // Use the whole UX0 card as touch target; no separate narrow hitbox.
+    const int ctaX = panelX + 9, ctaY = panelY + 23;
+    const int ctaW = panelW - 18, ctaH = 23;
+    vita2d_draw_rectangle(ctaX, ctaY, ctaW, ctaH, ACCENT);
+    const char* ctaLabel = ::psvitaalive::L("STORAGE_OPEN_HINT");
+    float ctaScale = 0.86f;
+    const int textMaxW = ctaW - 43;
+    while (ctaScale > 0.64f &&
+           ::psvitaalive::ui::uiTextWidth(font, ctaScale, ctaLabel) > textMaxW)
+        ctaScale -= 0.02f;
+    const int textW = ::psvitaalive::ui::uiTextWidth(font, ctaScale, ctaLabel);
+    ::psvitaalive::ui::uiDrawText(font,
+        ctaX + 11 + (textMaxW - textW) / 2, ctaY + 17,
+        BG, ctaScale, ctaLabel);
+    ::psvitaalive::ui::uiDrawText(font,
+        ctaX + ctaW - 25, ctaY + 17, BG, 0.90f, ">");
+
+    // Preserve the original UX0 usage bar, but make it a compact bottom
+    // accent to avoid reducing the label's readable height.
+    const int barX = panelX + 9, barY = panelY + panelH - 3;
+    const int barW = panelW - 18, barH = 2;
     vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
-    float used = 0.f;
-    if (sp.totalBytes > 0)
-        used = 1.f - (float)((double)sp.freeBytes / (double)sp.totalBytes);
-    if (used < 0.f) used = 0.f;
-    if (used > 1.f) used = 1.f;
-    const unsigned fill = used > 0.90f ? RGBA8(0xE0, 0x32, 0x32, 255)
-                        : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
-    vita2d_draw_rectangle(barX, barY, std::max(1, (int)(barW * used)), barH, fill);
+    if (sp.ok && sp.totalBytes > 0) {
+        float used = 1.f - (float)((double)sp.freeBytes / (double)sp.totalBytes);
+        used = std::max(0.f, std::min(1.f, used));
+        const unsigned fill = used > 0.90f ? RGBA8(0xE0, 0x32, 0x32, 255)
+                            : (used > 0.75f ? RGBA8(0xFF, 0xB0, 0x20, 255) : ACCENT);
+        vita2d_draw_rectangle(barX, barY, (int)(barW * used), barH, fill);
+    }
 }
 
 
