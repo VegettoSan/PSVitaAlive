@@ -7,6 +7,7 @@
 #include <vita2d.h>
 
 #include <algorithm>
+#include <psp2/kernel/clib.h>
 #include <cmath>
 #include <cstdlib>
 
@@ -34,7 +35,21 @@ constexpr int kRowTop = 178;
 constexpr int kRowHeight = 57;
 constexpr int kRowGap = 9;
 constexpr uint64_t kAnimationUs = 230000ULL;
-constexpr size_t kMaxInputBytes = 128;
+size_t utf8Chars(const std::string& s) {
+    size_t n=0;
+    for(unsigned char c:s) if((c&0xC0)!=0x80) ++n;
+    return n;
+}
+std::string limitUtf8(const std::string& s,size_t limit) {
+    if(utf8Chars(s)<=limit) return s;
+    size_t i=0,chars=0;
+    while(i<s.size() && chars<limit) {
+        ++i;
+        while(i<s.size() && ((unsigned char)s[i]&0xC0)==0x80) ++i;
+        ++chars;
+    }
+    return s.substr(0,i);
+}
 
 uint64_t timeUs() { return sceKernelGetSystemTimeWide(); }
 float smooth(float t) {
@@ -48,9 +63,11 @@ void centered(const UiFont* font, int x, int y, int w, unsigned color,
 }
 } // namespace
 
-bool SearchKeyboard::open(const std::string& initial, const std::string& title) {
+bool SearchKeyboard::open(const std::string& initial, const std::string& title,
+                          size_t maxCharacters) {
     if (active_) return false;
-    input_ = initial.substr(0, kMaxInputBytes);
+    maxCharacters_ = std::max<size_t>(1,std::min<size_t>(700,maxCharacters));
+    input_ = limitUtf8(initial,maxCharacters_);
     title_ = title.empty() ? ::psvitaalive::L("KEYBOARD_SEARCH_TITLE") : title;
     numbers_ = more_ = shift_ = false;
     closing_ = accepted_ = ready_ = eraseHeld_ = false;
@@ -194,7 +211,7 @@ void SearchKeyboard::activate(int index, uint64_t now) {
     const Key k = keys_[index];
     switch (k.action) {
     case Action::Character:
-        if (input_.size() < kMaxInputBytes) {
+        if (utf8Chars(input_) < maxCharacters_) {
             char ch = k.character;
             if (shift_ && ch >= 'a' && ch <= 'z') ch = (char)(ch - 32);
             input_.push_back(ch);
@@ -205,7 +222,7 @@ void SearchKeyboard::activate(int index, uint64_t now) {
     case Action::Numbers: numbers_ = true; more_ = false; rebuild(); break;
     case Action::Letters: numbers_ = false; more_ = false; rebuild(); break;
     case Action::More: more_ = !more_; rebuild(); break;
-    case Action::Space: if (input_.size() < kMaxInputBytes) input_.push_back(' '); break;
+    case Action::Space: if (utf8Chars(input_) < maxCharacters_) input_.push_back(' '); break;
     case Action::Backspace: eraseOne(); nextEraseUs_ = now + 420000ULL; break;
     case Action::Confirm: finish(true, now); break;
     case Action::Cancel: finish(false, now); break;
@@ -348,9 +365,16 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
     const int inputY = panelY + 48;
     vita2d_draw_rectangle(inputX, inputY, inputW, 59, colors.border);
     vita2d_draw_rectangle(inputX + 2, inputY + 2, inputW - 4, 55, colors.surface2);
-    std::string visible = input_;
-    while (!visible.empty() && uiTextWidth(font, .89f, visible.c_str()) > inputW - 50)
+    // Cap the measured preview even when composing a long feedback paragraph.
+    const size_t tailStart=input_.size()>120?input_.size()-120:0;
+    std::string visible=input_.substr(tailStart);
+    while (!visible.empty() && ((unsigned char)visible[0]&0xC0)==0x80)
         visible.erase(visible.begin());
+    while (!visible.empty() && uiTextWidth(font, .89f, visible.c_str()) > inputW - 55) {
+        visible.erase(visible.begin());
+        while (!visible.empty() && ((unsigned char)visible[0]&0xC0)==0x80)
+            visible.erase(visible.begin());
+    }
     if (visible.empty()) visible = ::psvitaalive::L("KEYBOARD_PLACEHOLDER");
     else if (!closing_ && ((now / 500000ULL) & 1) == 0) visible.push_back('|');
     uiDrawText(font, inputX + 15, inputY + 37, colors.text, .89f, visible.c_str());
@@ -359,7 +383,17 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
     float hintScale = .63f;
     while(hintScale > .42f && uiTextWidth(font,hintScale,navHint) > inputW)
         hintScale -= .03f;
+    char counter[36];
+    sceClibSnprintf(counter,sizeof(counter),"%u/%u",
+                    (unsigned)utf8Chars(input_),(unsigned)maxCharacters_);
+    const int countW=uiTextWidth(font,.74f,counter);
+    while(hintScale>.40f &&
+          uiTextWidth(font,hintScale,navHint)>inputW-countW-20)
+        hintScale-=.02f;
     uiDrawText(font, inputX, progressY, colors.dim, hintScale, navHint);
+    uiDrawText(font, inputX+inputW-countW,progressY,
+               utf8Chars(input_)>=maxCharacters_?colors.accent:colors.text,
+               .74f,counter);
 
     for (int i = 0; i < (int)keys_.size(); ++i) {
         const Key& k = keys_[i];

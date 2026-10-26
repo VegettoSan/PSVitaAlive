@@ -545,6 +545,22 @@ private:
 
     // Discord error report UI (webhook)
     bool reportConfirmVisible_ = false;
+    // User-written feedback from the footer Report chip, isolated from
+    // automatic diagnostic reporting and its log-collection pipeline.
+    std::string feedbackTitle_;
+    std::string feedbackBody_;
+    std::vector<std::string> feedbackWrapped_;
+    bool feedbackSuggestion_ = false;
+    bool feedbackSending_ = false;
+    int feedbackFocus_ = 1; // 0 kind, 1 title, 2 description, 3 send, 4 close
+    int feedbackKeyboardField_ = 0; // 0 search, 1 title, 2 description
+    int feedbackScrollY_ = 0;
+    void openFeedbackKeyboard(int field);
+    void refreshFeedbackWrap();
+    void sendManualFeedbackFromForm();
+    void activateFeedbackFocus();
+    void clampFeedbackScroll();
+
     int reportUiState_ = 0;          // 0 idle, 1 sending, 2 sent, 3 failed
     uint64_t reportUiUntilMs_ = 0;
     char reportUiMsg_[48] = {};
@@ -560,7 +576,11 @@ private:
     char reportResultMsg_[64] = {};
     SceUID reportThread_ = -1;
     static int reportWorkerEntry(SceSize args, void* argp);
-    void trySendErrorReport(const std::string& title, const std::string& context);
+    struct ReportTargetOverrides {
+        std::string appName, titleId, version, fileName;
+    };
+    void trySendErrorReport(const std::string& title, const std::string& context,
+                            const ReportTargetOverrides* target = nullptr);
     void pollReportWorker();
     void drawReportChip();
     void drawReportConfirmOverlay();
@@ -630,6 +650,9 @@ private:
     struct InstallAllResult {
         std::string name;
         std::string detail;
+        std::string failureReason; // never overwritten by ZIP keep/delete decision
+        std::string fileName;      // failing stage's file, not current catalog selection
+        bool reported = false;
         std::string savedZipPath; // validated persistent manual ZIP path (not displayed message)
         InstallAllResultState state;
         bool autoKept = false;
@@ -640,11 +663,18 @@ private:
     std::vector<InstallAllResult> installAllResults_;
     std::vector<size_t> installAllQueueResultIndices_;
     int installAllSummarySelected_ = 0;
+    int installAllReportSendingIndex_ = -1;
+    uint32_t installAllReportGeneration_ = 0;
+    uint32_t installAllReportSendingGeneration_ = 0;
+    std::string installAllReportAppName_;
+    std::string installAllReportAppVersion_;
     bool installAllSummaryDeleteConfirm_ = false;
     int installAllSummaryDeleteFocus_ = 1; // 0 Delete ZIP, 1 Cancel (safe default)
     std::string installAllReportAppId_;
     std::string installAllReportTitleId_;
     bool installAllFinishedToast_ = false;
+    bool canReportInstallAllResult(int index) const;
+    void sendInstallAllResultReport(int index);
 
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)
     ::psvitaalive::UpdateChecker::Result selfUpdateInfo_{};
