@@ -148,7 +148,8 @@ void scanDeepStages(UsageSnapshot& snap,const char* root) {
     for(const auto& name:entries(root)) {
         if(!starts(name,"PSVA_ZIP_STAGE_")) continue;
         const std::string path=std::string(root)+"/"+name;
-        if(st.isDirectory(path)) add(snap,path,"ZIP staging: "+name,false);
+        if(isOwnedZipStagePath(path) && st.isDirectory(path))
+            add(snap,path,"ZIP staging: "+name,false);
     }
 }
 } // namespace
