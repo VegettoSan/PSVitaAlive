@@ -2526,14 +2526,16 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
     // Hard block: user-fixable space / offline errors must never hit Discord.
     // Covers install overlay Report, SQUARE shortcut, and footer Report chip.
     {
-        const bool ongoingInstall = installProgressActive_ &&
-            installAllPhase_ != InstallAllPhase::Summary;
-        const bool spaceBlocked = (ongoingInstall && installProgressStage_ == "Space")
-            || (ongoingInstall && isInsufficientSpaceError(installProgressMessage_))
+        // Preserve the original guard for all existing report entry points.
+        // Only summary reports have a complete, immutable per-step context,
+        // and must not inherit the LAST step's unrelated progress message.
+        const bool useLiveProgress = target == nullptr;
+        const bool spaceBlocked = (useLiveProgress && installProgressStage_ == "Space")
+            || (useLiveProgress && isInsufficientSpaceError(installProgressMessage_))
             || isInsufficientSpaceError(context)
             || isInsufficientSpaceError(title);
         const bool otherNonReportable =
-            (ongoingInstall && isNonReportableInstallError(installProgressMessage_))
+            (useLiveProgress && isNonReportableInstallError(installProgressMessage_))
             || isNonReportableInstallError(context)
             || isNonReportableInstallError(title);
         if (spaceBlocked || otherNonReportable) {
