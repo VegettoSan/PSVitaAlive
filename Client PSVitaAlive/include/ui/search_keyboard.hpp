@@ -21,7 +21,8 @@ struct KeyboardPalette {
 
 class SearchKeyboard {
 public:
-    bool open(const std::string& initial, const std::string& title);
+    bool open(const std::string& initial, const std::string& title,
+              size_t maxCharacters = 128);
     bool active() const { return active_; }
     void update();
     /** Render over the already-drawn catalog in a single vita2d frame. */
@@ -55,6 +56,7 @@ private:
     std::vector<Key> keys_;
     std::string input_;
     std::string title_;
+    size_t maxCharacters_ = 128;
     bool active_ = false;
     bool closing_ = false;
     bool accepted_ = false;
