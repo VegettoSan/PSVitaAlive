@@ -1,6 +1,6 @@
 # PSVitaAlive — reporte final de Install All: legibilidad y reportes por paso
 
-**Estado:** prototipo en la rama `test/install-all-summary-report-ui-20261026`, pendiente de prueba en Vita/Vita3K y aprobación del mantenedor. No fusionar en `main` antes de esa validación.
+**Estado:** integrado en `main` el 26 de octubre de 2026 mediante [PR #55](https://github.com/VegettoSan/PSVitaAlive/pull/55), que incorpora los PR #53 y #54. El build del conjunto pasó en VitaSDK; sigue recomendándose la validación funcional en PS Vita real.
 
 ## Objetivo
 
@@ -59,4 +59,4 @@ El sistema utiliza el trabajador de reportes ya existente, sin introducir depend
 9. Cuando Install All instala un plugin y exige reinicio, mantener el botón de reinicio y no abandonar accidentalmente el reporte.
 10. Confirmar que no se alteraron el guardado automático de ZIP ni la arquitectura del catálogo.
 
-**Regla de integración:** cambios solo en rama de prueba hasta validar en hardware real y aprobar su fusión.
+**Integración realizada:** el código ya forma parte de `main` por solicitud del mantenedor; mantener las pruebas de regresión indicadas para futuras versiones.

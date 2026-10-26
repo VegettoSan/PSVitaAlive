@@ -1,6 +1,6 @@
 # Reportes de PSVitaAlive — integración de PR #53 + #54
 
-**Fecha de integración prevista:** 26 de octubre de 2026. **Fuente:** cambios de [PR #53](https://github.com/VegettoSan/PSVitaAlive/pull/53) y [PR #54](https://github.com/VegettoSan/PSVitaAlive/pull/54) reunidos en una rama combinada.
+**Integrado en `main`:** 26 de octubre de 2026 mediante [PR #55](https://github.com/VegettoSan/PSVitaAlive/pull/55), commit `ea261c5f2e4e42f58d1dadcbfa01fef87c74ce8c`. **Fuente:** cambios de [PR #53](https://github.com/VegettoSan/PSVitaAlive/pull/53) y [PR #54](https://github.com/VegettoSan/PSVitaAlive/pull/54) reunidos en una rama combinada.
 
 ## Qué hace cada función
 

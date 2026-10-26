@@ -1,6 +1,6 @@
 # PSVitaAlive — reportes escritos y sugerencias desde el footer
 
-**Estado:** rama experimental `test/manual-feedback-form-20261026`. **No fusionar en `main` hasta prueba en PS Vita real.**
+**Estado:** integrado en `main` el 26 de octubre de 2026 mediante [PR #55](https://github.com/VegettoSan/PSVitaAlive/pull/55), junto con el PR #53. El build conjunto fue correcto; el formulario y Discord todavía deben comprobarse en PS Vita real.
 
 ## Alcance
 
