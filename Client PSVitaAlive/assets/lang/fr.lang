@@ -679,3 +679,24 @@ STORAGE_EMPTY=Aucun fichier à nettoyer
 STORAGE_PROTECTED=Information seule · Suppression impossible
 STORAGE_CLEAN_ALL=Tout nettoyer
 STORAGE_CONFIRM_ALL=ZIP conservés inclus. X/△ : confirmer, O : annuler
+
+# User-written Report / Suggestion (no diagnostic logs)
+FEEDBACK_HEADING=Rapports et suggestions
+FEEDBACK_HELP_1=Un problème ou une idée pour PSVitaAlive ?
+FEEDBACK_HELP_2=Rédigez votre message, sans journaux ni données de jeu.
+FEEDBACK_PROBLEM=Problème
+FEEDBACK_SUGGESTION=Suggestion
+FEEDBACK_TITLE_LABEL=Titre
+FEEDBACK_TITLE_PLACEHOLDER=Touchez pour écrire un titre...
+FEEDBACK_BODY_LABEL=Description
+FEEDBACK_BODY_PLACEHOLDER=Touchez pour écrire un message...
+FEEDBACK_TITLE_KEYBOARD=Titre (max. 64)
+FEEDBACK_BODY_KEYBOARD=Description (max. 700)
+FEEDBACK_SEND=Envoyer à PSVitaAlive
+FEEDBACK_CANCEL=Annuler
+FEEDBACK_SENDING=Envoi...
+FEEDBACK_NAV_HINT=Haut/Bas : choisir   X : éditer   Gauche/Droite : défiler   O : fermer
+FEEDBACK_FIELDS_REQUIRED=Saisissez un titre et une description.
+FEEDBACK_COOLDOWN=Attendez avant d'envoyer un autre message.
+FEEDBACK_SEND_FAILED=Impossible de démarrer l'envoi.
+FEEDBACK_CLOSE_FIRST=Fermez le rapport avant de quitter.
