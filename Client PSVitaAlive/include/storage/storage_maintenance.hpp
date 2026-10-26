@@ -27,7 +27,7 @@ struct UsageSnapshot {
 // Catalog, image cache, config, logs, and installed applications are excluded.
 class StorageMaintenance {
 public:
-    static UsageSnapshot scan();
+    static UsageSnapshot scan(bool includeReadOnlyCache = true);
     // Refuses to delete a path that no longer appears in a fresh owned-file scan.
     static bool removeSelected(const UsageItem& selected);
     // Remove abandoned temporary work, never saved ZIPs or unknown user files.
