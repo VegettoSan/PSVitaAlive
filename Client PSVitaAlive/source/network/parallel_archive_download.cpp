@@ -49,6 +49,7 @@ struct Session {
     uint64_t startUs = 0;
     uint64_t lastReportUs = 0;
     bool stopped = false;
+    bool reusedCheckpoint = false;
 };
 
 struct Part {
@@ -143,6 +144,7 @@ static void sendProgress(Session& s, bool finished = false, bool finalizing = fa
     const uint64_t elapsed = now > s.startUs ? now - s.startUs : 1;
     p.bytesPerSecond = finalizing ? 0 : (s.received / (elapsed / 1000ULL + 1)) * 1000ULL;
     p.finalizing = finalizing;
+    p.parallelCheckpointReused = s.reusedCheckpoint;
     (*s.progress)(p);
 }
 
@@ -491,6 +493,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
         clearPartFiles(destination, true);
     }
     if (reuse) {
+        session.reusedCheckpoint = true;
         session.received = savedPrefixes(destination, authoritativeSize, partCount, prefixesValid);
         diagnostics::log("[HTTP] parallel verified checkpoint; reuse_bytes=" +
                          std::to_string(session.received));
