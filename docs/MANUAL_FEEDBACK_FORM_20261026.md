@@ -62,3 +62,13 @@ Se modifica **únicamente el botón Reportar del footer del cliente**, que antes
 11. Validar búsqueda y teclado anterior con 128 caracteres; verificar que no se filtran controles mientras el teclado está abierto.
 
 No modificar archivos generados de catálogo ni la arquitectura oficial `apps/ + authors/ + categories/ → Actions → catalog.json + authors.json + categories.json`.
+
+## Ajustes de interfaz y navegación — 26 de octubre de 2026
+
+La descripción visible de la ventana habla únicamente de su propósito: **comunicar problemas o proponer mejoras a PSVitaAlive**. Los detalles técnicos sobre la omisión de logs siguen documentados aquí y en el código, pero **no aparecen como explicación en la interfaz**.
+
+**L** selecciona **Problema** y **R** selecciona **Sugerencia** desde cualquier campo enfocado (salvo cuando hay un envío en curso). También sigue disponible la selección táctil. Las indicaciones inferiores muestran estos controles en los ocho idiomas.
+
+Con cualquier ventana modal abierta, los gatillos **L/R no cambian de catálogo**. El evento se consume por el diálogo o se ignora. Esto incluye el resumen final de instalación, confirmaciones, solicitudes, noticias, filtros, QR y demás cuadros de diálogo. Mientras se edita con el teclado en pantalla, el teclado sigue siendo dueño de la entrada.
+
+**Regresiones recomendadas:** comprobar L y R con cada ventana abierta; verificar que vuelven a cambiar de catálogo al cerrarla; comprobar que los gatillos seleccionan el tipo desde cualquier foco en el formulario y que durante el envío no cambian el tipo; probar la modalidad táctil, controles y los ocho idiomas.
