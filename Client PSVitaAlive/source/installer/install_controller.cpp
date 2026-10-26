@@ -242,8 +242,11 @@ bool InstallController::init() {
         total_.store(event.total);
         speed_.store(event.bytesPerSecond);
         setFileName(event.fileName.c_str());
-        setStage(event.state == DownloadState::Verifying ? "Verifying" : "Downloading");
-        state_.store(static_cast<int>(InstallStatus::State::Downloading));
+        const bool paused = event.state == DownloadState::Paused;
+        setStage(paused ? "Paused" :
+                 (event.state == DownloadState::Verifying ? "Verifying" : "Downloading"));
+        state_.store(static_cast<int>(paused ? InstallStatus::State::Paused :
+                                     InstallStatus::State::Downloading));
         // Prefer explicit status from DownloadManager (retries); else generic line.
         if (!event.message.empty())
             setMessage(event.message.c_str());
@@ -304,8 +307,83 @@ void InstallController::setSettings(const AppSettingsData& s) {
         " media=" + AppSettings::toString(settings_.pspMediaFormat));
 }
 
+bool InstallController::pauseDownload() {
+    if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Downloading ||
+        activeBgdlJob_ || activeJobId_.empty() ||
+        workerThread_ < 0 || workerDone_.load(std::memory_order_acquire))
+        return false;
+    // Cooperative HTTP abort. DownloadManager decides whether a validated
+    // serial .part can be resumed; incomplete parallel ranges are discarded.
+    if (!downloads_.pause(activeJobId_)) return false;
+    setStage("Pausing");
+    setMessage("Pausing download safely...");
+    diagnostics::log("[Installer] pause requested job=" + activeJobId_);
+    return true;
+}
+
+bool InstallController::resumeDownload() {
+    if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Paused ||
+        activeJobId_.empty() || !workerDone_.load(std::memory_order_acquire))
+        return false;
+    if (workerThread_ >= 0) {
+        sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
+        sceKernelDeleteThread(workerThread_);
+        workerThread_ = -1;
+    }
+    if (!downloads_.resume(activeJobId_)) return false;
+    installCancelRequested_.store(false, std::memory_order_release);
+    archiveSourceUnavailable_.store(false, std::memory_order_release);
+    speed_.store(0);
+    setStage("Downloading");
+    setState(InstallStatus::State::Downloading, "Resuming saved download...");
+    workerDone_.store(false, std::memory_order_release);
+    workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
+        0x10000100, 512 * 1024, 0, 0, nullptr);
+    if (workerThread_ < 0) {
+        workerDone_.store(true, std::memory_order_release);
+        setStage("Error");
+        setState(InstallStatus::State::Failed, "Could not create download resume worker");
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        return false;
+    }
+    InstallController* self = this;
+    if (sceKernelStartThread(workerThread_, sizeof(self), &self) < 0) {
+        sceKernelDeleteThread(workerThread_);
+        workerThread_ = -1;
+        workerDone_.store(true, std::memory_order_release);
+        setStage("Error");
+        setState(InstallStatus::State::Failed, "Could not start download resume worker");
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        return false;
+    }
+    diagnostics::log("[Installer] resumed existing job=" + activeJobId_);
+    return true;
+}
+
 void InstallController::cancel() {
     const auto currentState = static_cast<InstallStatus::State>(state_.load());
+    if (currentState == InstallStatus::State::Paused &&
+        workerDone_.load(std::memory_order_acquire) && !activeJobId_.empty()) {
+        if (workerThread_ >= 0) {
+            sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
+            sceKernelDeleteThread(workerThread_);
+            workerThread_ = -1;
+        }
+        downloads_.cleanupCompletedJob(activeJobId_);
+        activeJobId_.clear();
+        activeZrif_.clear();
+        activeContentId_.clear();
+        current_.store(0);
+        speed_.store(0);
+        setStage("Cancelled");
+        setState(InstallStatus::State::Cancelled,
+                 ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadCancelled));
+        resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+        diagnostics::log("[Installer] paused download cancelled and cleaned");
+        return;
+    }
     if (currentState == InstallStatus::State::Downloading && !activeJobId_.empty()) {
         installCancelRequested_.store(true, std::memory_order_release);
         downloads_.cancel(activeJobId_);
@@ -681,7 +759,8 @@ bool InstallController::busy() const {
     if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
         return true;
     const auto s = static_cast<InstallStatus::State>(state_.load());
-    return s == InstallStatus::State::Downloading || s == InstallStatus::State::Installing;
+    return s == InstallStatus::State::Downloading || s == InstallStatus::State::Paused ||
+           s == InstallStatus::State::Installing;
 }
 
 void InstallController::setPendingCatalogMeta(const std::string& appId, const std::string& version,
@@ -1336,6 +1415,16 @@ int InstallController::workerMain() {
 
     const bool downloaded = downloads_.processQueue();
     DownloadJob* job = downloads_.findJob(activeJobId_);
+    if (!downloaded && job && job->state == DownloadState::Paused) {
+        current_.store(job->downloadedSize);
+        total_.store(job->expectedSize);
+        speed_.store(0);
+        setStage("Paused");
+        setState(InstallStatus::State::Paused, "Download paused. Square: resume / Circle: cancel");
+        diagnostics::log("[Installer] download paused without installation job=" + activeJobId_);
+        workerDone_.store(true, std::memory_order_release);
+        return 0; // Do not clear the job, partial file, install metadata or queue.
+    }
     if (!downloaded || !job || job->state != DownloadState::Completed) {
         const bool cancelled = job && job->state == DownloadState::Cancelled;
         // Only show the service warning when the failing user download
