@@ -3055,6 +3055,7 @@ void FullCatalogScreen::openStorageMenu() {
     storageVisible_ = true;
     storageConfirm_ = false;
     storageFocus_ = 0;
+    storageScrollY_ = 0;
     touchDown_ = false;
     startStorageOperation(-1);
 }
@@ -3092,11 +3093,15 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
     bool ok = true;
     // Operations are requested only when InstallController is idle, and
     // this overlay prevents new installs until the worker finishes.
-    if (self->storageAction_ == -2) {
+    if (self->storageAction_ == -2 || self->storageAction_ == -3 ||
+        self->storageAction_ == -4) {
         const auto existing = self->storageSnapshot_.items;
-        for (const auto& item : existing)
+        for (const auto& item : existing) {
+            if (self->storageAction_ == -3 && item.savedZip) continue;
+            if (self->storageAction_ == -4 && !item.savedZip) continue;
             if (!::psvitaalive::storage::StorageMaintenance::removeSelected(item))
                 ok = false;
+        }
     } else if (self->storageAction_ >= 0) {
         const size_t index = static_cast<size_t>(self->storageAction_);
         if (index < self->storageSnapshot_.items.size()) {
@@ -3109,6 +3114,48 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
     self->storageWorkerDone_.store(true, std::memory_order_release);
     return 0;
 }
+// Four always-visible categories; individual files appear beneath their owner
+// without ever exposing catalog/image/cache/config paths as deletion targets.
+void FullCatalogScreen::rebuildStorageRows() {
+    storageRows_.clear();
+    storageRows_.reserve(storageSnapshot_.items.size() + 4);
+    storageRows_.push_back({0,-1}); // temporary files
+    for(size_t i=0;i<storageSnapshot_.items.size();++i)
+        if(!storageSnapshot_.items[i].savedZip)
+            storageRows_.push_back({4,static_cast<int>(i)});
+    storageRows_.push_back({1,-1}); // saved ZIP
+    for(size_t i=0;i<storageSnapshot_.items.size();++i)
+        if(storageSnapshot_.items[i].savedZip)
+            storageRows_.push_back({4,static_cast<int>(i)});
+    storageRows_.push_back({2,-1}); // catalog, read-only
+    storageRows_.push_back({3,-1}); // images, read-only
+    if(storageFocus_>=static_cast<int>(storageRows_.size()))
+        storageFocus_=std::max(0,static_cast<int>(storageRows_.size())-1);
+    clampStorageScroll();
+}
+int FullCatalogScreen::storageContentHeight() const {
+    int h=0;
+    for(const auto& row:storageRows_) h+=row.kind==4?46:68;
+    return h;
+}
+void FullCatalogScreen::clampStorageScroll() {
+    constexpr int viewportHeight=286;
+    storageScrollY_=std::max(0,std::min(storageScrollY_,
+        std::max(0,storageContentHeight()-viewportHeight)));
+}
+void FullCatalogScreen::ensureStorageFocusVisible() {
+    constexpr int viewportHeight=286;
+    int offset=0;
+    for(int i=0;i<storageFocus_ && i<static_cast<int>(storageRows_.size());++i)
+        offset+=storageRows_[i].kind==4?46:68;
+    const int rowHeight=storageFocus_>=0 &&
+        storageFocus_<static_cast<int>(storageRows_.size()) &&
+        storageRows_[storageFocus_].kind==4?46:68;
+    if(offset<storageScrollY_) storageScrollY_=offset;
+    else if(offset+rowHeight>storageScrollY_+viewportHeight)
+        storageScrollY_=offset+rowHeight-viewportHeight;
+    clampStorageScroll();
+}
 void FullCatalogScreen::pollStorageOperation() {
     if (storageWorker_ < 0 || !storageWorkerDone_.load(std::memory_order_acquire)) return;
     sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
@@ -3119,74 +3166,122 @@ void FullCatalogScreen::pollStorageOperation() {
             ? "STORAGE_REMOVED" : "STORAGE_REMOVE_FAILED"), 2600);
         requestUx0SpaceRefresh();
     }
-    const int maxFocus = static_cast<int>(storageSnapshot_.items.size());
-    storageFocus_ = std::min(storageFocus_, maxFocus);
+    rebuildStorageRows();
     storageConfirm_ = false;
 }
 void FullCatalogScreen::executeStorageSelection() {
     if (storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_())) return;
+    if (storageFocus_ < 0 || storageFocus_ >= static_cast<int>(storageRows_.size()))
+        return;
+    const StorageDisplayRow row = storageRows_[storageFocus_];
+    int action=-1;
+    if (row.kind==0 && storageSnapshot_.temporaryBytes>0) action=-3;
+    else if (row.kind==1 && storageSnapshot_.savedZipBytes>0) action=-4;
+    else if (row.kind==4 && row.itemIndex>=0 &&
+             row.itemIndex<static_cast<int>(storageSnapshot_.items.size())) {
+        action=row.itemIndex;
+    }
+    if(action==-1) {
+        // Empty categories and read-only caches have no delete operation.
+        showToast(::psvitaalive::L(row.kind>=2 && row.kind<=3 ?
+            "STORAGE_PROTECTED" : "STORAGE_EMPTY"),2000);
+        storageConfirm_=false;
+        return;
+    }
     if (!storageConfirm_) {
         storageConfirm_ = true;
         return;
     }
     storageConfirm_ = false;
-    startStorageOperation(storageFocus_ == 0 ? -2 : storageFocus_ - 1);
+    startStorageOperation(action);
 }
 void FullCatalogScreen::drawStorageOverlay() {
     if (!storageVisible_) return;
-    const int w=856,h=500,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+    constexpr int w=856,h=500;
+    const int x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+    constexpr int viewportH=286;
+    const int listTop=y+149;
+    const int listBottom=listTop+viewportH;
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
     vita2d_draw_rectangle(x,y,w,h,PANEL);
     vita2d_draw_rectangle(x,y,w,3,ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+40,WHITE,.94f,
+    ::psvitaalive::ui::uiDrawText(&font_,x+26,y+44,WHITE,1.00f,
         ::psvitaalive::L("STORAGE_TITLE"));
-    const bool loading = storageWorker_ >= 0;
-    if (loading) {
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+120,ACCENT,.83f,
+    if (storageWorker_ >= 0) {
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+134,ACCENT,.88f,
             ::psvitaalive::L("STORAGE_WORKING"));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+164,DIM,.64f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,TEXT,.77f,
             ::psvitaalive::L("STORAGE_WAIT"));
         return;
     }
     const auto& snap=storageSnapshot_;
-    char line[240];
-    sceClibSnprintf(line,sizeof(line),"%s  %s",
-        ::psvitaalive::L("STORAGE_TOTAL"),formatBytesShort(snap.totalBytes()).c_str());
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+77,ACCENT,.78f,line);
-    sceClibSnprintf(line,sizeof(line),"%s: %s   %s: %s",
-        ::psvitaalive::L("STORAGE_TEMP"),formatBytesShort(snap.temporaryBytes).c_str(),
-        ::psvitaalive::L("STORAGE_ZIPS"),formatBytesShort(snap.savedZipBytes).c_str());
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+108,TEXT,.66f,line);
-    sceClibSnprintf(line,sizeof(line),"%s: %s   %s: %s",
-        ::psvitaalive::L("STORAGE_CATALOG_PROTECTED"),formatBytesShort(snap.catalogBytes).c_str(),
-        ::psvitaalive::L("STORAGE_IMAGES_PROTECTED"),formatBytesShort(snap.imageBytes).c_str());
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+136,DIM,.64f,line);
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+165,DIM,.62f,
+    // Summary and list are separate visual regions; no concatenated labels.
+    vita2d_draw_rectangle(x+21,y+60,w-42,70,SURFACE);
+    ::psvitaalive::ui::uiDrawText(&font_,x+39,y+89,ACCENT,.78f,
+        ::psvitaalive::L("STORAGE_TOTAL"));
+    ::psvitaalive::ui::uiDrawText(&font_,x+39,y+117,WHITE,.91f,
+        formatBytesShort(snap.totalBytes()).c_str());
+    ::psvitaalive::ui::uiDrawText(&font_,x+255,y+100,DIM,.70f,
         ::psvitaalive::L("STORAGE_SELECT_HINT"));
-    const int maxVisible=7,rowY=y+181,rowH=36,total=static_cast<int>(snap.items.size())+1;
-    const int start=std::max(0,std::min(storageFocus_-maxVisible+1,std::max(0,total-maxVisible)));
-    for(int n=0;n<maxVisible && start+n<total;++n) {
-        const int i=start+n,cy=rowY+n*rowH;
-        if(i==storageFocus_) vita2d_draw_rectangle(x+18,cy,w-36,rowH-3,SURFACE2);
-        std::string label;
-        uint64_t bytes=0;
-        if(i==0) {
-            label=::psvitaalive::L("STORAGE_REMOVE_ALL");
-            bytes=snap.temporaryBytes+snap.savedZipBytes;
+    // Draw only rows fully inside the viewport; the scrollbar/controls
+    // remain anchored and the scroll can grow to hundreds of owned ZIPs.
+    int cy=listTop-storageScrollY_;
+    for(size_t i=0;i<storageRows_.size();++i) {
+        const auto& row=storageRows_[i];
+        const int rh=row.kind==4?46:68;
+        if(cy+rh<=listTop) {cy+=rh;continue;}
+        if(cy>=listBottom) break;
+        // Skip partial rows to avoid text bleeding into summary/footer.
+        // Navigation snaps to the relevant entry when possible.
+        if(cy<listTop || cy+rh>listBottom) {cy+=rh;continue;}
+        const int bx=x+21,bw=w-59;
+        const bool active=static_cast<int>(i)==storageFocus_;
+        vita2d_draw_rectangle(bx,cy,bw,rh-5,active?SURFACE2:SURFACE);
+        if(active) vita2d_draw_rectangle(bx,cy,4,rh-5,ACCENT);
+        if(row.kind==4) {
+            const auto& item=snap.items[static_cast<size_t>(row.itemIndex)];
+            std::string lab=item.label;
+            while(lab.size()>6 &&
+                  ::psvitaalive::ui::uiTextWidth(&font_,.74f,lab.c_str())>bw-187)
+                lab.resize(lab.size()-1);
+            ::psvitaalive::ui::uiDrawText(&font_,bx+26,cy+30,
+                active?WHITE:TEXT,.74f,lab.c_str());
+            ::psvitaalive::ui::uiDrawText(&font_,bx+bw-125,cy+30,
+                active?ACCENT:WHITE,.75f,formatBytesShort(item.bytes).c_str());
         } else {
-            const auto& item=snap.items[static_cast<size_t>(i-1)];
-            label=item.label;
-            bytes=item.bytes;
+            const char* title=row.kind==0?::psvitaalive::L("STORAGE_TEMP"):
+                row.kind==1?::psvitaalive::L("STORAGE_ZIPS"):
+                row.kind==2?::psvitaalive::L("STORAGE_CATALOG_PROTECTED"):
+                            ::psvitaalive::L("STORAGE_IMAGES_PROTECTED");
+            const uint64_t bytes=row.kind==0?snap.temporaryBytes:
+                row.kind==1?snap.savedZipBytes:
+                row.kind==2?snap.catalogBytes:snap.imageBytes;
+            ::psvitaalive::ui::uiDrawText(&font_,bx+20,cy+29,
+                active?WHITE:TEXT,.84f,title);
+            ::psvitaalive::ui::uiDrawText(&font_,bx+bw-145,cy+29,
+                active?ACCENT:WHITE,.86f,formatBytesShort(bytes).c_str());
+            const char* action=(row.kind>=2)?::psvitaalive::L("STORAGE_PROTECTED"):
+                bytes==0?::psvitaalive::L("STORAGE_EMPTY"):
+                ::psvitaalive::L("STORAGE_CLEAR_SECTION");
+            ::psvitaalive::ui::uiDrawText(&font_,bx+20,cy+53,
+                (row.kind<2 && bytes>0)?ACCENT:DIM,.74f,action);
         }
-        if(label.size()>65) label=label.substr(0,62)+"...";
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,cy+25,
-            i==storageFocus_?ACCENT:TEXT,.64f,label.c_str());
-        ::psvitaalive::ui::uiDrawText(&font_,x+w-135,cy+25,
-            i==storageFocus_?WHITE:DIM,.64f,formatBytesShort(bytes).c_str());
+        cy+=rh;
     }
-    const char* help=storageConfirm_ ? ::psvitaalive::L("STORAGE_CONFIRM")
-        : ::psvitaalive::L("STORAGE_CONTROLS");
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+h-22,storageConfirm_?ACCENT:DIM,.68f,help);
+    const int totalH=storageContentHeight();
+    if(totalH>viewportH) {
+        const int trackX=x+w-31;
+        vita2d_draw_rectangle(trackX,listTop,4,viewportH,BORDER);
+        const int thumbH=std::max(32,(viewportH*viewportH)/totalH);
+        const int thumbY=listTop+(storageScrollY_*(viewportH-thumbH))/
+            std::max(1,totalH-viewportH);
+        vita2d_draw_rectangle(trackX,thumbY,4,thumbH,ACCENT);
+    }
+    vita2d_draw_rectangle(x+21,listBottom+8,w-42,1,BORDER);
+    const char* help=storageConfirm_?::psvitaalive::L("STORAGE_CONFIRM"):
+        ::psvitaalive::L("STORAGE_CONTROLS");
+    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+h-27,
+        storageConfirm_?ACCENT:TEXT,.76f,help);
 }
 
 void FullCatalogScreen::shutdown(){
