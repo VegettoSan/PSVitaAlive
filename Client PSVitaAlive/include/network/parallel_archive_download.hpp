@@ -34,6 +34,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
     unsigned retryIndex = 0
 );
 
+// Delete only the staging range files and their own checkpoint. Never delete a completed install payload.
+void discardParallelSavedRanges(const std::string& destination);
+
 // Returns saved validated-prefix bytes from a parallel checkpoint (0 if absent).
 uint64_t parallelSavedBytes(const std::string& destination);
 
