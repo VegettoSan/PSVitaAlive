@@ -24,6 +24,7 @@ struct HttpProgress {
     uint64_t bytesPerSecond = 0;
     // Parallel transfer finished; joining needed for non-ZIP payloads only.
     bool finalizing = false;
+    bool parallelCheckpointReused = false; // verified same remote version
 };
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
