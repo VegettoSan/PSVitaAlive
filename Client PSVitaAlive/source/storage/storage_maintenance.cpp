@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cstring>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace psvitaalive { namespace storage {
@@ -162,6 +163,9 @@ UsageSnapshot StorageMaintenance::scan() {
     scanDeepStages(snap,"ux0:data");
     scanDeepStages(snap,"uma0:data");
     scanSaved(snap);
+    // Display caches for transparency without offering to delete them.
+    snap.catalogBytes=measure("ux0:data/psvitaalive/cache/catalog");
+    snap.imageBytes=measure("ux0:data/psvitaalive/cache/images");
     return snap;
 }
 bool StorageMaintenance::removeSelected(const UsageItem& selected) {
