@@ -4096,12 +4096,23 @@ void FullCatalogScreen::handleTouch() {
         if (td.reportNum > 0) {
             const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
             if (!touchDown_) {
-                touchDown_=true;touchStartX_=px;touchStartY_=py;touchMoved_=false;
-            } else if(std::abs(px-touchStartX_)>16 || std::abs(py-touchStartY_)>16) touchMoved_=true;
+                touchDown_=true;touchStartX_=px;touchStartY_=py;touchLastY_=py;touchMoved_=false;
+            } else {
+                touchLastY_=py;
+                if(std::abs(px-touchStartX_)>16 || std::abs(py-touchStartY_)>16)
+                    touchMoved_=true;
+            }
         } else if (touchDown_) {
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
             touchDown_=false;touchMoved_=false;
+            if (moved && storageWorker_<0) {
+                const int maxFocus=static_cast<int>(storageSnapshot_.items.size());
+                const int step=(touchStartY_-touchLastY_)/36;
+                if(step!=0) storageFocus_=std::max(0,std::min(maxFocus,storageFocus_+step));
+                storageConfirm_=false;
+                return;
+            }
             if (!moved && storageWorker_<0) {
                 const int x=(SCREEN_W-856)/2,y=(SCREEN_H-500)/2;
                 const int total=static_cast<int>(storageSnapshot_.items.size())+1;
