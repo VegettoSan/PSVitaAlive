@@ -517,8 +517,15 @@ private:
     std::function<bool()> storageInstallerBusy_;
     bool storageVisible_ = false;
     bool storageConfirm_ = false;
-    int storageFocus_ = 0;  // 0 = clear all eligible, 1..N = individual owned item
-    int storageAction_ = -1; // -1 scan, -2 delete all, >=0 delete item index
+    struct StorageDisplayRow {
+        // 0: temporaries, 1: saved ZIP, 2: catalog, 3: images, 4: file
+        int kind = 0;
+        int itemIndex = -1;
+    };
+    std::vector<StorageDisplayRow> storageRows_;
+    int storageFocus_ = 0; // index into storageRows_ (always includes four categories)
+    int storageScrollY_ = 0; // pixel scroll, shared by touch and controller
+    int storageAction_ = -1; // -1 scan, -2 all, -3 temp, -4 saved ZIP, >=0 file index
     std::atomic<bool> storageWorkerDone_{false};
     std::atomic<bool> storageWorkerOk_{false};
     SceUID storageWorker_ = -1;
@@ -526,6 +533,10 @@ private:
     void openStorageMenu();
     void startStorageOperation(int action);
     void pollStorageOperation();
+    void rebuildStorageRows();
+    int storageContentHeight() const;
+    void clampStorageScroll();
+    void ensureStorageFocusVisible();
     void executeStorageSelection();
     void drawStorageOverlay();
     static int storageWorkerEntry(SceSize args, void* argp);
