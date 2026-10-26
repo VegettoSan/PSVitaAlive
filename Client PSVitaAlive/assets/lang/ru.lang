@@ -658,7 +658,7 @@ ALL_SPACE_MISSING=Нужно освободить
 ALL_SPACE_CLOSE=Закрыть
 
 # Footer storage management (catalog/images/config are never deleted)
-STORAGE_OPEN_HINT=Управлять
+STORAGE_OPEN_HINT=Управление памятью
 STORAGE_TITLE=Управление памятью
 STORAGE_WORKING=Проверка памяти / удаление файлов...
 STORAGE_WAIT=Не закрывайте PSVitaAlive.
