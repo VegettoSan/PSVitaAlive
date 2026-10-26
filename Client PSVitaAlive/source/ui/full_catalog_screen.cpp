@@ -4190,39 +4190,47 @@ void FullCatalogScreen::handleTouch() {
     };
 
     if (storageVisible_) {
-        if (td.reportNum > 0) {
+        constexpr int w=856,h=500,viewportH=286;
+        const int ox=(SCREEN_W-w)/2,oy=(SCREEN_H-h)/2;
+        const int listTop=oy+149,listBottom=listTop+viewportH;
+        if (td.reportNum>0) {
             const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
-            if (!touchDown_) {
-                touchDown_=true;touchStartX_=px;touchStartY_=py;touchLastY_=py;touchMoved_=false;
+            if(!touchDown_) {
+                touchDown_=true;
+                touchStartX_=px;touchStartY_=py;touchLastY_=py;touchMoved_=false;
             } else {
-                touchLastY_=py;
-                if(std::abs(px-touchStartX_)>16 || std::abs(py-touchStartY_)>16)
+                if(std::abs(px-touchStartX_)>13 || std::abs(py-touchStartY_)>13)
                     touchMoved_=true;
+                if(touchMoved_ && storageWorker_<0 &&
+                   touchStartY_>=listTop && touchStartY_<listBottom) {
+                    storageScrollY_+=touchLastY_-py;
+                    clampStorageScroll();
+                    storageConfirm_=false;
+                }
+                touchLastY_=py;
             }
-        } else if (touchDown_) {
+        } else if(touchDown_) {
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
             touchDown_=false;touchMoved_=false;
-            if (moved && storageWorker_<0) {
-                const int maxFocus=static_cast<int>(storageSnapshot_.items.size());
-                const int step=(touchStartY_-touchLastY_)/36;
-                if(step!=0) storageFocus_=std::max(0,std::min(maxFocus,storageFocus_+step));
-                storageConfirm_=false;
-                return;
-            }
-            if (!moved && storageWorker_<0) {
-                const int x=(SCREEN_W-856)/2,y=(SCREEN_H-500)/2;
-                const int total=static_cast<int>(storageSnapshot_.items.size())+1;
-                const int start=std::max(0,std::min(storageFocus_-6,std::max(0,total-7)));
-                if(hit(px,py,x+18,y+181,820,252)) {
-                    const int index=start+(py-y-181)/36;
-                    if(index>=0 && index<total) {
-                        if(index==storageFocus_) executeStorageSelection();
-                        else {storageFocus_=index;storageConfirm_=false;}
+            if(moved || storageWorker_>=0) return;
+            if(hit(px,py,ox+21,listTop,w-42,viewportH)) {
+                int rowY=listTop-storageScrollY_;
+                for(size_t i=0;i<storageRows_.size();++i) {
+                    const int rh=storageRows_[i].kind==4?46:68;
+                    if(py>=rowY && py<rowY+rh) {
+                        if(static_cast<int>(i)==storageFocus_) executeStorageSelection();
+                        else {
+                            storageFocus_=static_cast<int>(i);
+                            storageConfirm_=false;
+                        }
+                        break;
                     }
-                } else if(hit(px,py,x+20,y+458,810,40)) {
-                    storageConfirm_=false;storageVisible_=false;
+                    rowY+=rh;
                 }
+            } else if(hit(px,py,ox+20,oy+h-58,w-40,55)) {
+                storageConfirm_=false;
+                storageVisible_=false;
             }
         }
         return;
@@ -5971,26 +5979,46 @@ void FullCatalogScreen::handleInput(){
     if (storageVisible_) {
         SceCtrlData pad{};
         sceCtrlPeekBufferPositive(0,&pad,1);
-        static uint32_t previousStorageButtons=0;
-        const uint32_t pressed=pad.buttons & ~previousStorageButtons;
-        previousStorageButtons=pad.buttons;
+        static uint32_t prevStorageButtons=0,prevStorageAnalog=0;
+        static uint64_t storageRepeatAt=0;
+        const uint32_t pressed=pad.buttons & ~prevStorageButtons;
+        const uint32_t analog=leftStickNavMask(pad);
+        const uint32_t direct=(pressed & NAV_DIRECTION_MASK) |
+                              (analog & ~prevStorageAnalog);
+        const uint32_t held=(pad.buttons & NAV_DIRECTION_MASK)|analog;
+        const uint64_t now=sceKernelGetProcessTimeWide();
+        uint32_t repeat=0;
+        if(!held) storageRepeatAt=0;
+        else if(direct) storageRepeatAt=now+330000ULL;
+        else if(storageRepeatAt && now>=storageRepeatAt) {
+            repeat=held;
+            storageRepeatAt=now+130000ULL;
+        }
+        prevStorageButtons=pad.buttons;
+        prevStorageAnalog=analog;
         if(pressed & SCE_CTRL_CIRCLE) {
             if(storageConfirm_) storageConfirm_=false;
             else if(storageWorker_<0) storageVisible_=false;
             return;
         }
         if(storageWorker_>=0) return;
-        const int maxFocus=static_cast<int>(storageSnapshot_.items.size());
-        if(pressed & (SCE_CTRL_UP|SCE_CTRL_LEFT)) {
-            storageFocus_=std::max(0,storageFocus_-1);storageConfirm_=false;
+        const uint32_t nav=direct|repeat;
+        if(nav & (SCE_CTRL_UP|SCE_CTRL_LEFT)) {
+            const int step=(nav&SCE_CTRL_LEFT)?4:1;
+            storageFocus_=std::max(0,storageFocus_-step);
+            storageConfirm_=false;
+            ensureStorageFocusVisible();
         }
-        if(pressed & (SCE_CTRL_DOWN|SCE_CTRL_RIGHT)) {
-            storageFocus_=std::min(maxFocus,storageFocus_+1);storageConfirm_=false;
+        if(nav & (SCE_CTRL_DOWN|SCE_CTRL_RIGHT)) {
+            const int step=(nav&SCE_CTRL_RIGHT)?4:1;
+            storageFocus_=std::min(static_cast<int>(storageRows_.size())-1,
+                                   storageFocus_+step);
+            storageConfirm_=false;
+            ensureStorageFocusVisible();
         }
         if(pressed & SCE_CTRL_CROSS) executeStorageSelection();
         return;
     }
-
     // Modal has its own button edge handling, including held-X release guard.
     if (savedZipActionVisible_) {
         SceCtrlData pad{};
