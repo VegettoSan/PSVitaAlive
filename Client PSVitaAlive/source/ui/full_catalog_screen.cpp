@@ -8751,6 +8751,9 @@ void FullCatalogScreen::sendInstallAllResultReport(int index) {
     target.titleId = installAllReportTitleId_;
     target.version = installAllReportAppVersion_;
     target.fileName = entry.fileName.empty() ? entry.name : entry.fileName;
+    // Reset the previous step's completed chip state. Otherwise an early
+    // rejection from the existing policy could be misread as this step sent.
+    reportUiState_=0;
     trySendErrorReport("Install All step failed",context,&target);
     if(reportUiState_==1) {
         installAllReportSendingIndex_=index;
