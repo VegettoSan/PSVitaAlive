@@ -3257,12 +3257,13 @@ void FullCatalogScreen::drawStorageOverlay() {
         if(active) vita2d_draw_rectangle(bx,cy,4,rh-5,ACCENT);
         if(row.kind==4) {
             const auto& item=snap.items[static_cast<size_t>(row.itemIndex)];
-            std::string lab=item.label;
-            while(lab.size()>6 &&
-                  ::psvitaalive::ui::uiTextWidth(&font_,.74f,lab.c_str())>bw-187)
-                lab.resize(lab.size()-1);
+            // GPU clip preserves UTF-8 filenames and avoids per-frame string
+            // resizing/measure loops on the Vita render thread.
+            vita2d_set_clip_rectangle(bx+22,std::max(cy,listTop),
+                bx+bw-152,std::min(cy+rh-5,listBottom));
             ::psvitaalive::ui::uiDrawText(&font_,bx+26,cy+30,
-                active?WHITE:TEXT,.74f,lab.c_str());
+                active?WHITE:TEXT,.74f,item.label.c_str());
+            vita2d_set_clip_rectangle(x+21,listTop,x+w-34,listBottom);
             ::psvitaalive::ui::uiDrawText(&font_,bx+bw-125,cy+30,
                 active?ACCENT:WHITE,.75f,formatBytesShort(item.bytes).c_str());
         } else {
