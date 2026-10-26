@@ -2257,7 +2257,7 @@ void FullCatalogScreen::closeReportConfirm() {
 }
 void FullCatalogScreen::clampFeedbackScroll() {
     const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
-    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,118-contentH)*-1));
+    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,contentH-118)));
 }
 void FullCatalogScreen::refreshFeedbackWrap() {
     feedbackWrapped_=wrapTextToWidth(&font_,.81f,feedbackBody_,758);
