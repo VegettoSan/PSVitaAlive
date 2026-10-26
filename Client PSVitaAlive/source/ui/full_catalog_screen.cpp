@@ -3040,7 +3040,159 @@ void FullCatalogScreen::requestUx0SpaceRefresh() {
     signalUx0SnapshotRefresh();
 }
 
+
+void FullCatalogScreen::openStorageMenu() {
+    if (storageVisible_ || installAllPhase_ != InstallAllPhase::Hidden ||
+        (installProgressActive_ && installOutcome_ == 0) || catalogLoading_ ||
+        newsVisible_ || reportConfirmVisible_ || dataRequestConfirmVisible_ ||
+        themeSetupVisible_ || pluginRebootModal_ || essentialPluginsModal_ ||
+        savedZipActionVisible_ || (storageInstallerBusy_ && storageInstallerBusy_())) {
+        showToast(::psvitaalive::L("STORAGE_BUSY"), 2200);
+        return;
+    }
+    storageVisible_ = true;
+    storageConfirm_ = false;
+    storageFocus_ = 0;
+    touchDown_ = false;
+    startStorageOperation(-1);
+}
+void FullCatalogScreen::startStorageOperation(int action) {
+    if (storageWorker_ >= 0) {
+        if (!storageWorkerDone_.load(std::memory_order_acquire)) return;
+        sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
+        sceKernelDeleteThread(storageWorker_);
+        storageWorker_ = -1;
+    }
+    if (action != -1 && storageInstallerBusy_ && storageInstallerBusy_()) {
+        showToast(::psvitaalive::L("STORAGE_BUSY"), 2300);
+        return;
+    }
+    storageAction_ = action;
+    storageWorkerDone_.store(false, std::memory_order_release);
+    storageWorkerOk_.store(false, std::memory_order_release);
+    storageWorker_ = sceKernelCreateThread("PSVAStorageScan",
+        &FullCatalogScreen::storageWorkerEntry, 0x10000110, 96 * 1024, 0, 0, nullptr);
+    if (storageWorker_ < 0) {
+        storageWorkerDone_.store(true, std::memory_order_release);
+        return;
+    }
+    FullCatalogScreen* self = this;
+    if (sceKernelStartThread(storageWorker_, sizeof(self), &self) < 0) {
+        sceKernelDeleteThread(storageWorker_);
+        storageWorker_ = -1;
+        storageWorkerDone_.store(true, std::memory_order_release);
+    }
+}
+int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
+    FullCatalogScreen* self = nullptr;
+    if (argp) std::memcpy(&self, argp, sizeof(self));
+    if (!self) return -1;
+    bool ok = true;
+    // Operations are requested only when InstallController is idle, and
+    // this overlay prevents new installs until the worker finishes.
+    if (self->storageAction_ == -2) {
+        const auto existing = self->storageSnapshot_.items;
+        for (const auto& item : existing)
+            if (!::psvitaalive::storage::StorageMaintenance::removeSelected(item))
+                ok = false;
+    } else if (self->storageAction_ >= 0) {
+        const size_t index = static_cast<size_t>(self->storageAction_);
+        if (index < self->storageSnapshot_.items.size()) {
+            ok = ::psvitaalive::storage::StorageMaintenance::removeSelected(
+                self->storageSnapshot_.items[index]);
+        } else ok = false;
+    }
+    self->storageSnapshot_ = ::psvitaalive::storage::StorageMaintenance::scan();
+    self->storageWorkerOk_.store(ok, std::memory_order_release);
+    self->storageWorkerDone_.store(true, std::memory_order_release);
+    return 0;
+}
+void FullCatalogScreen::pollStorageOperation() {
+    if (storageWorker_ < 0 || !storageWorkerDone_.load(std::memory_order_acquire)) return;
+    sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
+    sceKernelDeleteThread(storageWorker_);
+    storageWorker_ = -1;
+    if (storageAction_ != -1) {
+        showToast(::psvitaalive::L(storageWorkerOk_.load(std::memory_order_acquire)
+            ? "STORAGE_REMOVED" : "STORAGE_REMOVE_FAILED"), 2600);
+        requestUx0SpaceRefresh();
+    }
+    const int maxFocus = static_cast<int>(storageSnapshot_.items.size());
+    storageFocus_ = std::min(storageFocus_, maxFocus);
+    storageConfirm_ = false;
+}
+void FullCatalogScreen::executeStorageSelection() {
+    if (storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_())) return;
+    if (!storageConfirm_) {
+        storageConfirm_ = true;
+        return;
+    }
+    storageConfirm_ = false;
+    startStorageOperation(storageFocus_ == 0 ? -2 : storageFocus_ - 1);
+}
+void FullCatalogScreen::drawStorageOverlay() {
+    if (!storageVisible_ || !font_) return;
+    const int w=856,h=500,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
+    vita2d_draw_rectangle(x,y,w,h,PANEL);
+    vita2d_draw_rectangle(x,y,w,3,ACCENT);
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+40,WHITE,.94f,
+        ::psvitaalive::L("STORAGE_TITLE"));
+    const bool loading = storageWorker_ >= 0;
+    if (loading) {
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+120,ACCENT,.83f,
+            ::psvitaalive::L("STORAGE_WORKING"));
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+164,DIM,.64f,
+            ::psvitaalive::L("STORAGE_WAIT"));
+        return;
+    }
+    const auto& snap=storageSnapshot_;
+    char line[240];
+    sceClibSnprintf(line,sizeof(line),"%s  %s",
+        ::psvitaalive::L("STORAGE_TOTAL"),formatBytesShort(snap.totalBytes()).c_str());
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+77,ACCENT,.78f,line);
+    sceClibSnprintf(line,sizeof(line),"%s: %s   %s: %s",
+        ::psvitaalive::L("STORAGE_TEMP"),formatBytesShort(snap.temporaryBytes).c_str(),
+        ::psvitaalive::L("STORAGE_ZIPS"),formatBytesShort(snap.savedZipBytes).c_str());
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+108,TEXT,.66f,line);
+    sceClibSnprintf(line,sizeof(line),"%s: %s   %s: %s",
+        ::psvitaalive::L("STORAGE_CATALOG_PROTECTED"),formatBytesShort(snap.catalogBytes).c_str(),
+        ::psvitaalive::L("STORAGE_IMAGES_PROTECTED"),formatBytesShort(snap.imageBytes).c_str());
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+136,DIM,.64f,line);
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+165,DIM,.62f,
+        ::psvitaalive::L("STORAGE_SELECT_HINT"));
+    const int maxVisible=7,rowY=y+181,rowH=36,total=static_cast<int>(snap.items.size())+1;
+    const int start=std::max(0,std::min(storageFocus_-maxVisible+1,std::max(0,total-maxVisible)));
+    for(int n=0;n<maxVisible && start+n<total;++n) {
+        const int i=start+n,cy=rowY+n*rowH;
+        if(i==storageFocus_) vita2d_draw_rectangle(x+18,cy,w-36,rowH-3,SURFACE2);
+        std::string label;
+        uint64_t bytes=0;
+        if(i==0) {
+            label=::psvitaalive::L("STORAGE_REMOVE_ALL");
+            bytes=snap.temporaryBytes+snap.savedZipBytes;
+        } else {
+            const auto& item=snap.items[static_cast<size_t>(i-1)];
+            label=item.label;
+            bytes=item.bytes;
+        }
+        if(label.size()>65) label=label.substr(0,62)+"...";
+        ::psvitaalive::ui::uiDrawText(&font_,x+30,cy+25,
+            i==storageFocus_?ACCENT:TEXT,.64f,label.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_,x+w-135,cy+25,
+            i==storageFocus_?WHITE:DIM,.64f,formatBytesShort(bytes).c_str());
+    }
+    const char* help=storageConfirm_ ? ::psvitaalive::L("STORAGE_CONFIRM")
+        : ::psvitaalive::L("STORAGE_CONTROLS");
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+h-22,storageConfirm_?ACCENT:DIM,.68f,help);
+}
+
 void FullCatalogScreen::shutdown(){
+    if (storageWorker_ >= 0) {
+        sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
+        sceKernelDeleteThread(storageWorker_);
+        storageWorker_ = -1;
+    }
     closeWebQrModal();
     stopUx0SnapshotWorker();
     gProtectionMascotStartPending = false;
@@ -3940,6 +4092,34 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
+    if (storageVisible_) {
+        if (td.reportNum > 0) {
+            const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
+            if (!touchDown_) {
+                touchDown_=true;touchStartX_=px;touchStartY_=py;touchMoved_=false;
+            } else if(std::abs(px-touchStartX_)>16 || std::abs(py-touchStartY_)>16) touchMoved_=true;
+        } else if (touchDown_) {
+            const int px=touchStartX_,py=touchStartY_;
+            const bool moved=touchMoved_;
+            touchDown_=false;touchMoved_=false;
+            if (!moved && storageWorker_<0) {
+                const int x=(SCREEN_W-856)/2,y=(SCREEN_H-500)/2;
+                const int total=static_cast<int>(storageSnapshot_.items.size())+1;
+                const int start=std::max(0,std::min(storageFocus_-6,std::max(0,total-7)));
+                if(hit(px,py,x+18,y+181,820,252)) {
+                    const int index=start+(py-y-181)/36;
+                    if(index>=0 && index<total) {
+                        if(index==storageFocus_) executeStorageSelection();
+                        else {storageFocus_=index;storageConfirm_=false;}
+                    }
+                } else if(hit(px,py,x+20,y+458,810,40)) {
+                    storageConfirm_=false;storageVisible_=false;
+                }
+            }
+        }
+        return;
+    }
+
     // Saved ZIP actions own touch input; never pass a tap to the catalog.
     if (savedZipActionVisible_) {
         if (td.reportNum > 0) {
@@ -4732,6 +4912,12 @@ void FullCatalogScreen::handleTouch() {
             return;
         }
         return; // consume other touches while modal is open
+    }
+
+    // UX0 capacity card is also the Storage Management entry point.
+    if (hit(x,y,SCREEN_W-226,SCREEN_H-FOOTER_H+2,220,FOOTER_H-4)) {
+        openStorageMenu();
+        return;
     }
 
     // Footer News + Report chips (left of ux0 space panel)
@@ -5673,6 +5859,29 @@ void FullCatalogScreen::drawSettings() {
 }
 
 void FullCatalogScreen::handleInput(){
+    if (storageVisible_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0,&pad,1);
+        static uint32_t previousStorageButtons=0;
+        const uint32_t pressed=pad.buttons & ~previousStorageButtons;
+        previousStorageButtons=pad.buttons;
+        if(pressed & SCE_CTRL_CIRCLE) {
+            if(storageConfirm_) storageConfirm_=false;
+            else if(storageWorker_<0) storageVisible_=false;
+            return;
+        }
+        if(storageWorker_>=0) return;
+        const int maxFocus=static_cast<int>(storageSnapshot_.items.size());
+        if(pressed & (SCE_CTRL_UP|SCE_CTRL_LEFT)) {
+            storageFocus_=std::max(0,storageFocus_-1);storageConfirm_=false;
+        }
+        if(pressed & (SCE_CTRL_DOWN|SCE_CTRL_RIGHT)) {
+            storageFocus_=std::min(maxFocus,storageFocus_+1);storageConfirm_=false;
+        }
+        if(pressed & SCE_CTRL_CROSS) executeStorageSelection();
+        return;
+    }
+
     // Modal has its own button edge handling, including held-X release guard.
     if (savedZipActionVisible_) {
         SceCtrlData pad{};
@@ -5820,7 +6029,13 @@ void FullCatalogScreen::handleInput(){
         if (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
         pluginChoiceAwaitRelease_ = false;
     }
-if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;if(webQrVisible_){
+if(isTransitioning())return;SceCtrlData p{};sceCtrlPeekBufferPositive(0,&p,1);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;
+if ((p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
+        (SCE_CTRL_SELECT | SCE_CTRL_SQUARE) &&
+    (pressed & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE))) {
+    openStorageMenu(); return; // controller / PS TV access to the UX0 footer
+}
+if(webQrVisible_){
     if(pressed&(SCE_CTRL_CIRCLE|SCE_CTRL_CROSS))closeWebQrModal();
     else if(nav&SCE_CTRL_UP)scrollWebQrHelp(-49);
     else if(nav&SCE_CTRL_DOWN)scrollWebQrHelp(49);
@@ -9781,6 +9996,7 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     // updating input, animations or new image textures underneath.
     if(keyboard_.active())
         keyboard_.drawOverlay(&font_, {BG,SURFACE,SURFACE2,BORDER,TEXT,DIM,ACCENT});
+    if(storageVisible_) drawStorageOverlay();
     finishFrame();
 }
 void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
@@ -9805,6 +10021,7 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
     }
     pollReportWorker();
     pollDataRequestWorker();
+    pollStorageOperation();
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
     // Expire toast
