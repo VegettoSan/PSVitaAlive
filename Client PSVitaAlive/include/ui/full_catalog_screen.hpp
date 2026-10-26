@@ -545,6 +545,22 @@ private:
 
     // Discord error report UI (webhook)
     bool reportConfirmVisible_ = false;
+    // User-written feedback from the footer Report chip, isolated from
+    // automatic diagnostic reporting and its log-collection pipeline.
+    std::string feedbackTitle_;
+    std::string feedbackBody_;
+    std::vector<std::string> feedbackWrapped_;
+    bool feedbackSuggestion_ = false;
+    bool feedbackSending_ = false;
+    int feedbackFocus_ = 1; // 0 kind, 1 title, 2 description, 3 send, 4 close
+    int feedbackKeyboardField_ = 0; // 0 search, 1 title, 2 description
+    int feedbackScrollY_ = 0;
+    void openFeedbackKeyboard(int field);
+    void refreshFeedbackWrap();
+    void sendManualFeedbackFromForm();
+    void activateFeedbackFocus();
+    void clampFeedbackScroll();
+
     int reportUiState_ = 0;          // 0 idle, 1 sending, 2 sent, 3 failed
     uint64_t reportUiUntilMs_ = 0;
     char reportUiMsg_[48] = {};
