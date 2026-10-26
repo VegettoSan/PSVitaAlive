@@ -8932,118 +8932,142 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
 
 void FullCatalogScreen::drawInstallAllSummary() {
     if (installAllPhase_ != InstallAllPhase::Summary) return;
-    const int w = 900, h = 508;
-    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 205));
-    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 1, w, 1, BORDER);
-    vita2d_draw_rectangle(x, y, 1, h, BORDER);
-    vita2d_draw_rectangle(x + w - 1, y, 1, h, BORDER);
-
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 38, ACCENT, 1.12f,
+    constexpr int w=900,h=508,visible=3,rowH=75;
+    const int x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+    constexpr int buttonW=136,buttonH=32;
+    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,205));
+    vita2d_draw_rectangle(x,y,w,h,SURFACE2);
+    vita2d_draw_rectangle(x,y,w,3,ACCENT);
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+43,ACCENT,1.18f,
         ::psvitaalive::L("ALL_REPORT_TITLE"));
-    int successes = 0, issues = 0;
-    bool anyKept = false;
-    for (const auto& entry : installAllResults_) {
-        if (entry.state == InstallAllResultState::Verified ||
-            entry.state == InstallAllResultState::Completed) ++successes;
-        if (entry.state == InstallAllResultState::Failed ||
-            entry.state == InstallAllResultState::Kept ||
-            entry.state == InstallAllResultState::Deleted ||
-            entry.state == InstallAllResultState::Cancelled ||
-            entry.state == InstallAllResultState::NotAttempted) ++issues;
-        if (entry.state == InstallAllResultState::Kept &&
-            !entry.savedZipPath.empty()) anyKept = true;
-    }
-    const std::string tally = std::string(::psvitaalive::L("ALL_REPORT_OK_COUNT")) +
-        ": " + std::to_string(successes) + "   " +
-        ::psvitaalive::L("ALL_REPORT_ISSUES_COUNT") + ": " + std::to_string(issues);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 75, TEXT, 0.82f, tally.c_str());
 
-    const int visible = 4, rowTop = y + 100, rowH = 53;
-    const int start = std::max(0, installAllSummarySelected_ - visible + 1);
-    for (int n = 0; n < visible; ++n) {
-        const int index = start + n;
-        if (index >= static_cast<int>(installAllResults_.size())) break;
-        const InstallAllResult& entry = installAllResults_[index];
-        const int rx = x + 22, ry = rowTop + n * rowH, rw = w - 44;
-        const bool focused = index == installAllSummarySelected_;
-        vita2d_draw_rectangle(rx, ry, rw, rowH - 4, SURFACE);
-        vita2d_draw_rectangle(rx, ry, focused ? 3 : 1, rowH - 4,
-                             focused ? ACCENT : BORDER);
-        const char* state = ::psvitaalive::L("ALL_REPORT_PENDING");
-        switch (entry.state) {
-            case InstallAllResultState::Completed: state = ::psvitaalive::L("ALL_REPORT_COMPLETED"); break;
-            case InstallAllResultState::Verified: state = ::psvitaalive::L("ALL_REPORT_VERIFIED"); break;
-            case InstallAllResultState::Failed: state = ::psvitaalive::L("ALL_REPORT_FAILED"); break;
+    int successes=0,issues=0;
+    bool anyKept=false;
+    for(const auto& e:installAllResults_) {
+        if(e.state==InstallAllResultState::Verified ||
+           e.state==InstallAllResultState::Completed) ++successes;
+        if(e.state==InstallAllResultState::Failed ||
+           e.state==InstallAllResultState::Kept ||
+           e.state==InstallAllResultState::Deleted ||
+           e.state==InstallAllResultState::Cancelled ||
+           e.state==InstallAllResultState::NotAttempted) ++issues;
+        if(e.state==InstallAllResultState::Kept && !e.savedZipPath.empty())
+            anyKept=true;
+    }
+    // Separate counters: avoid the old single line of tiny crowded text.
+    char countText[90];
+    sceClibSnprintf(countText,sizeof(countText),"%s: %d",
+        ::psvitaalive::L("ALL_REPORT_OK_COUNT"),successes);
+    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+83,WHITE,.82f,countText);
+    sceClibSnprintf(countText,sizeof(countText),"%s: %d",
+        ::psvitaalive::L("ALL_REPORT_ISSUES_COUNT"),issues);
+    ::psvitaalive::ui::uiDrawText(&font_,x+300,y+83,
+        issues?RGBA8(0xF5,0x96,0x59,255):TEXT,.82f,countText);
+    const int start=std::max(0,installAllSummarySelected_-visible+1);
+    if(installAllResults_.size()>static_cast<size_t>(visible)) {
+        const std::string page=std::to_string(installAllSummarySelected_+1)+
+            " / "+std::to_string(installAllResults_.size());
+        const int pw=::psvitaalive::ui::uiTextWidth(&font_,.73f,page.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_,x+w-pw-27,y+83,DIM,.73f,page.c_str());
+    }
+    const int rowTop=y+103;
+    for(int n=0;n<visible;++n) {
+        const int index=start+n;
+        if(index>=static_cast<int>(installAllResults_.size())) break;
+        const InstallAllResult& entry=installAllResults_[index];
+        const bool focused=index==installAllSummarySelected_;
+        const int rx=x+22,ry=rowTop+n*rowH,rw=w-44;
+        vita2d_draw_rectangle(rx,ry,rw,rowH-5,SURFACE);
+        if(focused) vita2d_draw_rectangle(rx,ry,4,rowH-5,ACCENT);
+        const char* state=::psvitaalive::L("ALL_REPORT_PENDING");
+        switch(entry.state) {
+            case InstallAllResultState::Completed: state=::psvitaalive::L("ALL_REPORT_COMPLETED");break;
+            case InstallAllResultState::Verified: state=::psvitaalive::L("ALL_REPORT_VERIFIED");break;
+            case InstallAllResultState::Failed: state=::psvitaalive::L("ALL_REPORT_FAILED");break;
             case InstallAllResultState::Kept:
-                state = ::psvitaalive::L(entry.autoKept ? "ALL_REPORT_AUTO_KEPT" : "ALL_REPORT_KEPT");
-                break;
-            case InstallAllResultState::Deleted: state = ::psvitaalive::L("ALL_REPORT_DELETED"); break;
-            case InstallAllResultState::Skipped: state = ::psvitaalive::L("ALL_REPORT_SKIPPED"); break;
-            case InstallAllResultState::AlreadyInstalled: state = ::psvitaalive::L("ALL_REPORT_ALREADY"); break;
-            case InstallAllResultState::Cancelled: state = ::psvitaalive::L("ALL_REPORT_CANCELLED"); break;
-            case InstallAllResultState::NotAttempted: state = ::psvitaalive::L("ALL_REPORT_NOT_ATTEMPTED"); break;
-            default: break;
+                state=::psvitaalive::L(entry.autoKept?"ALL_REPORT_AUTO_KEPT":"ALL_REPORT_KEPT");break;
+            case InstallAllResultState::Deleted: state=::psvitaalive::L("ALL_REPORT_DELETED");break;
+            case InstallAllResultState::Skipped: state=::psvitaalive::L("ALL_REPORT_SKIPPED");break;
+            case InstallAllResultState::AlreadyInstalled: state=::psvitaalive::L("ALL_REPORT_ALREADY");break;
+            case InstallAllResultState::Cancelled: state=::psvitaalive::L("ALL_REPORT_CANCELLED");break;
+            case InstallAllResultState::NotAttempted: state=::psvitaalive::L("ALL_REPORT_NOT_ATTEMPTED");break;
+            default:break;
         }
-        const int statusWidth = ::psvitaalive::ui::uiTextWidth(&font_, 0.67f, state);
-        ::psvitaalive::ui::uiDrawText(&font_, rx + 14, ry + 19, TEXT,
-            0.82f, ellipsize(entry.name, statusWidth > 190 ? 30 : 38).c_str());
-        ::psvitaalive::ui::uiDrawText(&font_, rx + rw - statusWidth - 14, ry + 19,
-            focused ? ACCENT : DIM, 0.67f, state);
-        const std::string detail = entry.detail.empty()
-            ? std::string(::psvitaalive::L("ALL_REPORT_NO_DETAIL")) : entry.detail;
-        drawMarqueeText(&font_, rx + 14, ry + 40, rw - 28, DIM, 0.65f, detail, focused);
-    }
-    if (installAllResults_.size() > static_cast<size_t>(visible)) {
-        const std::string page = std::to_string(installAllSummarySelected_ + 1) +
-            " / " + std::to_string(installAllResults_.size());
-        const int pw = ::psvitaalive::ui::uiTextWidth(&font_, 0.63f, page.c_str());
-        ::psvitaalive::ui::uiDrawText(&font_, x + w - pw - 24, y + 90, DIM, 0.63f, page.c_str());
-    }
+        // The title and its status are separate, sizeable text columns.
+        const int statusW=::psvitaalive::ui::uiTextWidth(&font_,.76f,state);
+        vita2d_set_clip_rectangle(rx+14,ry+2,
+                                  rx+rw-std::min(275,statusW+30),ry+32);
+        ::psvitaalive::ui::uiDrawText(&font_,rx+16,ry+27,
+            focused?WHITE:TEXT,.89f,entry.name.c_str());
+        vita2d_disable_clipping();
+        ::psvitaalive::ui::uiDrawText(&font_,rx+rw-statusW-15,ry+26,
+            (entry.state==InstallAllResultState::Failed)?RGBA8(0xF5,0x96,0x59,255):
+            (focused?ACCENT:DIM),.76f,state);
 
-    const bool chosenKept = installAllSummarySelected_ >= 0 &&
-        installAllSummarySelected_ < static_cast<int>(installAllResults_.size()) &&
-        installAllResults_[installAllSummarySelected_].state == InstallAllResultState::Kept &&
+        const std::string detail=entry.detail.empty()?
+            std::string(::psvitaalive::L("ALL_REPORT_NO_DETAIL")):entry.detail;
+        const bool sending=index==installAllReportSendingIndex_ &&
+            reportBusy_.load();
+        const bool reported=entry.reported;
+        const bool reportable=canReportInstallAllResult(index);
+        const bool showReport=sending || reported || reportable;
+        const int bx=rx+rw-buttonW-12,by=ry+36;
+        const int detailRight=showReport?bx-9:rx+rw-12;
+        vita2d_set_clip_rectangle(rx+14,ry+33,detailRight,ry+rowH-6);
+        ::psvitaalive::ui::uiDrawText(&font_,rx+16,ry+57,DIM,.76f,detail.c_str());
+        vita2d_disable_clipping();
+        if(showReport) {
+            const unsigned fill=reported?SURFACE2:
+                sending?BORDER:RGBA8(0xAD,0x36,0x41,255);
+            vita2d_draw_rectangle(bx,by,buttonW,buttonH,fill);
+            const char* lab=::psvitaalive::L(reported?"ALL_REPORT_SENT":
+                sending?"ALL_REPORT_SENDING":"ALL_REPORT_ACTION_REPORT");
+            float scale=.79f;
+            while(scale>.59f &&
+                  ::psvitaalive::ui::uiTextWidth(&font_,scale,lab)>buttonW-10)
+                scale-=.02f;
+            const int tw=::psvitaalive::ui::uiTextWidth(&font_,scale,lab);
+            ::psvitaalive::ui::uiDrawText(&font_,bx+(buttonW-tw)/2,
+                by+22,reported?ACCENT:WHITE,scale,lab);
+        }
+    }
+    // Keep ZIP-recovery actions from the existing flow; reporting does not
+    // confirm, delete, or otherwise modify a saved manual ZIP.
+    const bool chosenKept=installAllSummarySelected_>=0 &&
+        installAllSummarySelected_<static_cast<int>(installAllResults_.size()) &&
+        installAllResults_[installAllSummarySelected_].state==InstallAllResultState::Kept &&
         !installAllResults_[installAllSummarySelected_].savedZipPath.empty();
-    if (anyKept) {
-        const int bx0 = x + 25, bx1 = x + 475, by = y + 345, bw = 400, bh = 40;
-        ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 333, DIM, 0.62f,
-            ::psvitaalive::L(chosenKept ? "ALL_REPORT_ZIP_CHOOSE" : "ALL_REPORT_ZIP_SELECT"));
-        vita2d_draw_rectangle(bx0, by, bw, bh, chosenKept ? ACCENT : SURFACE);
-        vita2d_draw_rectangle(bx1, by, bw, bh,
-                              chosenKept ? RGBA8(0xAA, 0x37, 0x42, 255) : SURFACE);
-        const char* keepLabel = ::psvitaalive::L("ALL_REPORT_KEEP_ZIP");
-        const char* deleteLabel = ::psvitaalive::L("ALL_REPORT_DELETE_ZIP");
-        const float scale = 0.78f;
-        const int kw = ::psvitaalive::ui::uiTextWidth(&font_, scale, keepLabel);
-        const int dw = ::psvitaalive::ui::uiTextWidth(&font_, scale, deleteLabel);
-        ::psvitaalive::ui::uiDrawText(&font_, bx0 + (bw - kw) / 2, by + 27,
-            chosenKept ? BG : DIM, scale, keepLabel);
-        ::psvitaalive::ui::uiDrawText(&font_, bx1 + (bw - dw) / 2, by + 27,
-            chosenKept ? WHITE : DIM, scale, deleteLabel);
+    if(anyKept) {
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+343,DIM,.72f,
+            ::psvitaalive::L(chosenKept?"ALL_REPORT_ZIP_CHOOSE":"ALL_REPORT_ZIP_SELECT"));
+        const int bx0=x+25,bx1=x+475,by=y+352,bw=400,bh=40;
+        vita2d_draw_rectangle(bx0,by,bw,bh,chosenKept?ACCENT:SURFACE);
+        vita2d_draw_rectangle(bx1,by,bw,bh,
+            chosenKept?RGBA8(0xAA,0x37,0x42,255):SURFACE);
+        const char* keepLab=::psvitaalive::L("ALL_REPORT_KEEP_ZIP");
+        const char* deleteLab=::psvitaalive::L("ALL_REPORT_DELETE_ZIP");
+        const int keepW=::psvitaalive::ui::uiTextWidth(&font_,.80f,keepLab);
+        const int deleteW=::psvitaalive::ui::uiTextWidth(&font_,.80f,deleteLab);
+        ::psvitaalive::ui::uiDrawText(&font_,bx0+(bw-keepW)/2,by+27,
+            chosenKept?BG:DIM,.80f,keepLab);
+        ::psvitaalive::ui::uiDrawText(&font_,bx1+(bw-deleteW)/2,by+27,
+            chosenKept?WHITE:DIM,.80f,deleteLab);
     }
-
-    if (installAllPluginInstalled_) {
-        ::psvitaalive::ui::uiDrawText(&font_, x + 27, y + 403, WHITE, 0.71f,
+    if(installAllPluginInstalled_) {
+        ::psvitaalive::ui::uiDrawText(&font_,x+27,y+412,WHITE,.77f,
             ::psvitaalive::L("ALL_REPORT_REBOOT_1"));
-        ::psvitaalive::ui::uiDrawText(&font_, x + 27, y + 423, DIM, 0.69f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+27,y+434,DIM,.72f,
             ::psvitaalive::L("ALL_REPORT_REBOOT_2"));
     } else {
-        ::psvitaalive::ui::uiDrawText(&font_, x + 27, y + 409, DIM, 0.74f,
-            ::psvitaalive::L("ALL_REPORT_CONTINUE_HINT"));
+        ::psvitaalive::ui::uiDrawText(&font_,x+27,y+417,TEXT,.78f,
+            ::psvitaalive::L("ALL_REPORT_SELECT_REPORT_HINT"));
     }
-
-    const int bw = 370, bh = 44, bx = x + (w - bw) / 2, by = y + 444;
-    vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
-    const char* action = ::psvitaalive::L(
-        installAllPluginInstalled_ ? "ALL_REPORT_RESTART" : "ALL_REPORT_CONTINUE");
-    const float scale = 0.86f;
-    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, action);
-    ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 29, BG, scale, action);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 22, y + h - 8, DIM, 0.55f,
-        ::psvitaalive::L(anyKept ? "ALL_REPORT_ZIP_NAV" : "ALL_REPORT_NAV"));
+    const int bw=370,bh=42,bx=x+(w-bw)/2,by=y+448;
+    vita2d_draw_rectangle(bx,by,bw,bh,ACCENT);
+    const char* action=::psvitaalive::L(
+        installAllPluginInstalled_?"ALL_REPORT_RESTART":"ALL_REPORT_CONTINUE");
+    const int aw=::psvitaalive::ui::uiTextWidth(&font_,.90f,action);
+    ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-aw)/2,by+29,BG,.90f,action);
 
     if (installAllSummaryDeleteConfirm_) {
         const int dw = 700, dh = 245, dx = (SCREEN_W - dw) / 2;
@@ -9070,6 +9094,7 @@ void FullCatalogScreen::drawInstallAllSummary() {
                 btnY + 31, focused ? BG : WHITE, 0.78f, lab);
         }
     }
+
 }
 
 void FullCatalogScreen::drawInstallAllOverlay() {
