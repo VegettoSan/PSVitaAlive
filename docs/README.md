@@ -23,7 +23,13 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `docs/MULTILANGUAGE.md` | Current UI localization architecture, packaged languages, system/manual selection, English fallback, startup ordering and keyboard UI labels |
 | `docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md` | **Accepted architecture decision:** hardware IME/PAF failure history; rationale for replacing Sony IME; built-in QWERTY/touch/gamepad controls, themed modal, ZIP input, localization, system-library distinction and tests |
 | `docs/NETWORK_TLS.md` | libcurl / OpenSSL / Archive.org TLS failover / optional mbedTLS; TLS-specific companion to `DOWNLOAD_RESILIENCE.md` |
+| [`docs/AUDITORIA_FUNCIONAL_20261025.md`](AUDITORIA_FUNCIONAL_20261025.md) | **Auditoría actual de funcionalidades**: implementación comprobada por código, cambios de conducta, documentación desfasada, límites y pruebas pendientes |
+| [`docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md`](INSTALL_ALL_SPACE_PREFLIGHT_20261025.md) | **Install All**: suma de enlaces seleccionados, modo individual por tamaños ausentes, cabeceras HTTP previas al cuerpo, seguridad y validación |
+| [`docs/SAVED_ZIP_SEGMENTS_20261025.md`](SAVED_ZIP_SEGMENTS_20261025.md) | **ZIP guardados**: ZIP completo o rangos `.001`...`.004`, reextracción offline, borrar/cancelar y confirmaciones |
+| [`docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md`](ZIP_SOBREESCRITURA_SEGURA_20261025.md) | Reutilización de espacio al sobreescribir entradas ZIP y advertencias sobre archivos truncados / staging |
+| [`docs/PLUGIN_DETECTION_CONFIG_20261023.md`](PLUGIN_DETECTION_CONFIG_20261023.md) | Detección real de plugins taiHEN (archivo + config) y límites |
 | `docs/PLUGIN_UPDATES.md` | **Planned** remote plugin update system (manifest / versioned Plugin links) — deferred |
+| [`docs/WEB_QR_HANDOFF_PLAN.md`](WEB_QR_HANDOFF_PLAN.md) | QR/web handoff **ya integrado en main**; documento conserva planificación histórica y pruebas pendientes |
 | `docs/UPDATE_DETECTION.md` | Installed/update version detection notes |
 | `Client PSVitaAlive/README.md` | Native client overview, runtime data and subsystem behaviour |
 | `Client PSVitaAlive/source/catalog/README.md` | Multi-catalog cache, zRIF sidecar and image-cache tagging responsibilities |
@@ -58,6 +64,29 @@ startup maintenance + FullCatalogScreen progress
 ```
 
 Do not add cache-only fields to the public catalog JSON schema. The cache metadata remains an in-memory client implementation detail.
+
+## Regla de documentación de instalaciones y espacio (estado vigente)
+
+- Para `Install All`, el cálculo conjunto suma **solo los enlaces añadidos a
+  la cola**, incluidos ambos Game Files/Data Files si están seleccionados.
+- Si falta el tamaño de cualquiera de ellos, la cola cambia a revisión
+  **individual**. El descargador reutiliza las cabeceras HTTP antes de
+  escribir y conserva el guardia de espacio durante la descarga.
+- El tamaño del ZIP descargado **no** sustituye su espacio descomprimido: el
+  extractor comprueba el crecimiento real al abrir el archivo.
+- El flujo de recuperación de ZIP puede conservar un ZIP completo o 2/4 rangos
+  crudos y presenta reextraer/eliminar/cancelar; no debe perder compatibilidad
+  con formatos guardados por versiones anteriores.
+- Mantener sincronizados
+  [espacio](INSTALL_ALL_SPACE_PREFLIGHT_20261025.md),
+  [recuperación](SAVED_ZIP_SEGMENTS_20261025.md),
+  [sobrescritura](ZIP_SOBREESCRITURA_SEGURA_20261025.md),
+  [cliente](../Client%20PSVitaAlive/README.md),
+  [red](../Client%20PSVitaAlive/source/network/README.md) e
+  [instalador](../Client%20PSVitaAlive/source/installer/README.md).
+- Afirmaciones «compila en CI» y «probado en PS Vita real» son distintas.
+  Documentar ambas por separado. Revisar el inventario en
+  [AUDITORIA_FUNCIONAL_20261025.md](AUDITORIA_FUNCIONAL_20261025.md).
 
 ## Download / archive documentation rule
 
@@ -110,3 +139,15 @@ See [ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md](ZIP_RECOVERY_AND_RANGE_ASSEMBL
 - [Investigación futura: versiones instaladas externamente](FUTURE_EXTERNAL_VERSION_IDENTIFICATION_20261019.md): APP_VER/VERSION, recibos, VitaDB MD5, huellas por release y límites. **Solo documentado, no implementado.**
 
 - [Estabilidad del instalador — fase 2 (2026-10-19)](INSTALLER_PHASE2_SPACE_PREFLIGHT_20261019.md): preflight según destino/tipo, tamaños correctos de enlaces y límites pendientes.
+
+## Correcciones y referencias posteriores (25 octubre 2026)
+
+El comportamiento actual de `Install All` se describe en
+[INSTALL_ALL_SPACE_PREFLIGHT_20261025.md](INSTALL_ALL_SPACE_PREFLIGHT_20261025.md);
+los límites de sobreescritura de archivos existentes en
+[ZIP_SOBREESCRITURA_SEGURA_20261025.md](ZIP_SOBREESCRITURA_SEGURA_20261025.md).
+La gestión actual de ZIP completos y segmentados guardados está en
+[SAVED_ZIP_SEGMENTS_20261025.md](SAVED_ZIP_SEGMENTS_20261025.md).
+Los documentos de fechas anteriores se conservan como historial, no
+como especificación preferente frente al código y estos registros.
+

@@ -30,7 +30,14 @@ VitaHomebrewDB and any other explicitly enabled external sources are inputs for 
 
 VitaDB is retained only as a historical/legacy reference at this stage. Removing its automatic feed does not automatically remove existing VitaDB-derived records or links from `apps/`.
 
-This project's homebrew catalog compilation is under **CC0 1.0** as described in `../CATALOG_LICENSE.md` (free use, attribution optional). Upstream and third-party rights remain separate and must be respected.
+**Catalog licensing is now mixed.** Historical PSVitaAlive homebrew catalog
+material dedicated under **CC0 1.0** remains CC0 irrevocably; *new original*
+rights-covered contributions published after the 18 October 2026 transition
+may be under **CC BY 4.0**, requiring attribution when those licensed rights
+are exercised. Factual data and referenced third-party work do not
+automatically become PSVitaAlive property or carry either license solely by
+appearing in a JSON record. See the authoritative
+[CATALOG_LICENSE.md](../CATALOG_LICENSE.md).
 
 ## Migration of existing records
 

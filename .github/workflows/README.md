@@ -6,6 +6,9 @@
 |----------|------|
 | `validate.yml` | Validate catalog structure and policies on changes |
 | `pages.yml` | GitHub Pages / static site publication |
+| `client-build.yml` | Host C++ policy tests + translations + **VitaSDK 2026.08** client build; uploads a VPK smoke-test artifact |
+| `app-generator-check.yml` | JS syntax and offline unit tests for the browser App JSON generator |
+| `internet-archive-diagnostics.yml` | Diagnoses Internet Archive endpoints (see workflow triggers/steps) |
 
 Exact job names and triggers live in the YAML files; this README only describes intent.
 

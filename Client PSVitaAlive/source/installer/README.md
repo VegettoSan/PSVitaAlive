@@ -303,7 +303,15 @@ Preferred recovery path:
 ux0:data/psvitaalive/manual/<title_id-or-app_id>/<archive>.zip
 ```
 
-The move stays on `ux0:` and therefore uses `StorageManager::rename` rather than duplicating a potentially multi-GB archive. The UI exposes Keep ZIP / Delete ZIP / Report actions and the intended manual extraction destination. Direct VPK, ZIP-as-VPK, PKG, plugin, cancelled and incomplete-download paths keep their previous cleanup semantics.
+The move stays on `ux0:` and therefore uses `StorageManager::rename`
+rather than duplicating a potentially multi-GB archive. The failed-install UI
+exposes Keep/Delete/Report; the **Saved ZIP Files** detail menu now also
+supports complete `.zip` archives and 2/4 ordered raw-byte-range
+`.zip.001`...`.004` archives, with a separate **Retry extraction /
+Delete / Cancel** menu and explicit delete confirmation. Offline retry does
+not concatenate the archive in RAM. Direct VPK, ZIP-as-VPK, PKG, plugin,
+cancelled and incomplete-download paths retain their own cleanup semantics.
+See [saved ZIP range recovery](../../../docs/SAVED_ZIP_SEGMENTS_20261025.md).
 
 
 ## ZIP subdirectory-depth mitigation and recovery cleanup (October 2026)
@@ -315,3 +323,17 @@ The move stays on `ux0:` and therefore uses `StorageManager::rename` rather than
 On success **including successful deep-folder moves**, the installer deletes the selected saved archive and its `.info.txt` sidecar; normal completed ZIP jobs are cleaned too. On error the archive and any staging work are retained. Nonempty destination branches are not overwritten or recursively merged; report the limitation rather than deleting other data. Delete failures are logged and surfaced without claiming disk space was freed. This behavior does not retroactively clean ZIPs retained by previous builds.
 
 Full procedure and diagnostics: [ZIP recovery technical record](../../../docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).
+
+## Install All space policy (current)
+
+The wizard adds only selected VPK, Game Files, Data Files and approved plugins
+to its queue. When all queued links supply sizes, it preflights the combined
+download budget and safety reserve. If any queued size is unknown, it
+preflights **individually** before each download; the HTTP response's final
+200/206 headers provide the total, if present, before data is written. The
+established VPK staging multiplier, ZIP space policies and the extractor's
+uncompressed-growth check still apply. This does **not** guarantee the
+uncompressed size from the remote ZIP Content-Length.
+
+See [current detailed space guide](../../../docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md)
+and [safe ZIP overwrite](../../../docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md).

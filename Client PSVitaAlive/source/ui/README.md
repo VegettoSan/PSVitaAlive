@@ -165,7 +165,9 @@ Update-state semantics, receipt compatibility and Vita `APP_VER` normalization a
 ## Plugin UI
 
 - Link row: **Installed** badge when file (+ config line when required) already present; press → toast, no re-download
-- Install All skips already-installed plugins
+- Install All offers an explicit **Install/Reinstall or Skip** decision for **each**
+  catalog Plugin link, including a link detected as already installed; merely
+  finding a binary/config line does not verify its version.
 - Post-install **Restart required** modal blocks background touch until soft reset
 - Essential plugins modal: large type, pulsing **Install plugins** border
 
@@ -192,3 +194,17 @@ The optional **Saved ZIP** block appears only when `InstallController` discovers
 The discovery list is cached for five seconds on the UI thread to avoid repeated filesystem scans every frame. Selecting a row passes that exact archive path back to the installer, which checks it against current validated recovery metadata before starting the offline worker. After successful extraction the ZIP/metadata is removed and the cached list refreshes. Failure retains the files for retry.
 
 See [ZIP recovery and folder relocation](../../../docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).
+
+## Install All and Saved ZIP actions (current)
+
+`Install All` builds its queue from **chosen** links, not the largest
+alternative in the catalog. When any selected link has no size, the queue
+switches to per-download storage checks; when all sizes exist, it first
+checks the combined budget. Insufficient space appears as a dedicated
+localized overlay. [Technical contract](../../../docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md).
+
+Saved ZIP rows may represent a complete ZIP or 2/4 raw byte-range files.
+Selecting one shows **Retry extraction / Delete / Cancel**; deletion needs a
+separate confirmation and covers every range and metadata. Offline retry
+preserves the archive after failure and cleans it after success.
+[Archive format and recovery](../../../docs/SAVED_ZIP_SEGMENTS_20261025.md).

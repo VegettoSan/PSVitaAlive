@@ -37,6 +37,23 @@ The standard failed-install dialog retains the existing Keep/Delete/Report
 actions. The selected archive is moved to persistent storage immediately
 after extraction failure; confirmation of Keep does not copy it again.
 
+## Install All: protección automática del ZIP
+
+Si una descarga ZIP **terminó correctamente**, pero su extracción falla
+durante `Install All`, el asistente muestra el flujo de recuperación. Si
+queda esperando la elección del usuario **10 segundos**, intenta una sola vez
+**conservar el ZIP automáticamente** y continúa con la siguiente etapa cuando
+esa conservación queda resuelta. El informe distingue el ZIP
+autoconservado del guardado confirmado por la persona.
+
+Si la conservación automática falla, no vuelve a intentarlo en bucle y la
+decisión permanece **manual**. Esta protección solo aplica al contexto
+`Install All` y a errores de extracción ZIP recuperables, no a descargas
+incompletas ni a cancelaciones voluntarias.
+
+**Código:** `FullCatalogScreen::updateAndDraw`,
+`installAllResolveRecovery`, `InstallController::persistPendingZipRecovery`.
+
 ## External tools
 
 The `.001` etc. files are *raw ordered byte ranges*, not independently
@@ -55,6 +72,20 @@ startup cleanup does not destroy it if a relocation fails. Successful
 relocation moves all parts using same-volume renames. Any failed move triggers
 reverse-order rollback. This path is instrumented and must be validated
 against simulated rename failures on hardware/emulation.
+
+## Known recovery boundaries
+
+The `.psva_keep_zip` marker prevents the ordinary startup purge from
+intentionally deleting a transient job while moving ranges. This alone does
+**not** prove that a power loss in the middle of a failed relocation will
+recreate a visible `Saved ZIP Files` entry automatically; the source may
+still remain under `downloads/jobs/` awaiting manual recovery. The
+rollback/cleanup behavior under power-off and filesystem errors needs a
+failure-injection test on actual devices or an emulator.
+
+For existing targets that are overwritten during ZIP extraction, an error
+may leave a partial destination file; see
+[ZIP_SOBREESCRITURA_SEGURA_20261025.md](ZIP_SOBREESCRITURA_SEGURA_20261025.md).
 
 ## Regression checklist
 

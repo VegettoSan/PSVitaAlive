@@ -423,6 +423,28 @@ Prefer real-hardware validation for long-transfer and storage timing behaviour. 
 
 ---
 
+## Current HTTP-header storage gate (25 October 2026)
+
+The download manager now uses the already existing final HTTP 200/206
+response headers to re-run a **per-transfer, format-aware disk budget before
+writing the first payload byte**, when the remote total is available.
+`HttpClient::headerCallback` sends the authoritative total through the
+existing progress callback, and `DownloadManager` evaluates it against
+`StorageManager::queryUx0Space` plus
+`preflightRequiredSpaceBytes`. The 2/4-range path similarly checks the
+successful 206 probe before opening its parts.
+
+This adds **no second HEAD request**. MediaFire still resolves its page URL
+through the existing resolver. Unknown remote totals retain the periodic
+32 MiB / 16 MiB runtime guard. A remote size is the downloaded file size,
+not the sum of uncompressed ZIP entries.
+
+**Install All selection:** if all queued links have size hints, a combined
+queue budget is checked first; if any lacks a usable size, each queued
+download is checked individually. Refer to
+[INSTALL_ALL_SPACE_PREFLIGHT_20261025.md](INSTALL_ALL_SPACE_PREFLIGHT_20261025.md)
+for current policy and known limits.
+
 ## Related files
 
 Implementation:

@@ -161,11 +161,20 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 - **Image cache v3**: images download on demand; changing an image URL replaces only that resource; startup checks disk use and, only when cache is over **200 MiB**, removes oldest complete files down to about **40 MiB** with localized progress — see [docs/IMAGE_CACHE.md](docs/IMAGE_CACHE.md)
 - Downloads (MediaFire CDN resolution, Archive.org fastest-edge selection + failover, GitHub, …) with retries on slow networks and SSL connect errors
 - Install: **VPK** (including nested `.vpk` inside a release ZIP), **ZIP** extract (`extract_path` or quick paths; large / >2 GB archives; EOCD/ZIP64 retries), licensed **Vita PKG** via system **BGDL**, **PSP/PS1 PKG** via BGDL (LiveArea) or **Adrenaline unpack** (Folder/ISO via pkg2zip-style pipeline)
-- **Manual ZIP recovery on extraction failure:** a fully downloaded data ZIP can be kept under `ux0:data/psvitaalive/manual/<title_id-or-app_id>/` for manual extraction, or explicitly deleted; direct VPK failures keep their existing cleanup path
+- **Manual ZIP recovery on extraction failure:** completed data ZIPs may be
+  preserved as one `.zip` or as raw `.zip.001`...`.004` byte ranges under
+  `ux0:data/psvitaalive/manual/<title_id-or-app_id>/`. Selecting a saved
+  archive offers **Retry extraction / Delete / Cancel**, with a separate
+  deletion confirmation; retry is offline. Direct VPK failures keep their
+  own cleanup path. See [saved ZIP formats](docs/SAVED_ZIP_SEGMENTS_20261025.md).
 - **Plugin** catalog links: download to `extract_path`, append line to taiHEN `config.txt` (section-aware, append-only), reboot prompt
 - **Essential plugins** prompt after theme + News: detects missing **kubridge**, **fd_fix** (file + config line) and **libshacccg** (file only); one-tap install + reboot
 - **Plugin updates (planned):** remote manifest + size/hash checks — see [docs/PLUGIN_UPDATES.md](docs/PLUGIN_UPDATES.md) (not implemented yet)
-- Free-space check before large downloads (~2.1× payload)
+- **Space protection for Install All:** when all selected links have sizes, check
+  the sum of the **actual queue** + safety reserve; if one lacks a size,
+  check **each job individually** using the real HTTP 200/206 total before
+  payload writes (when supplied by the server). ZIP extraction has its own
+  uncompressed-growth preflight. See [current space policy](docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md).
 - During download/install/extract: **screen forced on**, **PS button locked**, soft power-off menu locked (see [Downloads & installations](#downloads--installations-ps-vita-client))
 - Voluntary **Download cancelled** UI (no false “Installation failed” / no Report)
 - Self-update from [Releases](https://github.com/VegettoSan/PSVitaAlive/releases) (see below)
@@ -266,7 +275,11 @@ These are [Google Public DNS](https://developers.google.com/speed/public-dns). O
 
 ### Storage and power
 
-- Prefer a healthy **SD2Vita / USB** setup with enough free space. The client checks free space at about **~2.1×** the expected download size before starting large jobs.
+- Prefer a healthy **SD2Vita / USB** setup with enough free space. Storage
+  checks depend on link type and stage: VPK/direct packages retain the 2.1×
+  staging floor, ZIP downloads use a different preflight, and `Install All`
+  accounts for selected links with a 25% + 128 MiB safety reserve. Real HTTP
+  size and extracted ZIP growth can require additional checks.
 - The client image cache is bounded at startup: it is left alone at or below **200 MiB**, and if larger it is trimmed to roughly **40 MiB** by deleting oldest complete cached images. This does not affect installed apps or downloaded install payloads.
 - Keep the Vita **plugged in** for multi-GB **Game Files** / VPK installs when possible.
 - Do **not** force power-off (hold power 10–30s) during an active download or extract — that truncates files and produces incomplete ZIPs.
@@ -455,3 +468,13 @@ If any are missing, a modal offers **Install plugins** or **Remind me later**. I
 - In the app detail, the **Saved ZIP** section lists **one named button per recovered ZIP** belonging to that app. It is hidden when no validated recovery ZIP exists. Each button re-extracts only the selected ZIP, offline.
 - On successful extraction **and** completion of every pending folder move, PSVitaAlive removes the corresponding downloaded or recovered ZIP and its companion metadata to free storage. On failure, keep archives and staged data for recovery. Previously retained archives from older builds are not purged automatically.
 - Technical reference: [ZIP recovery, folder relocation and validation](docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md). Reinstalling into a nonempty deep destination remains deliberately conservative: the installer will not destructively merge directories.
+
+- **Current saved archives:** serial ZIP and 2/4 raw-byte-range `.zip.001`
+  archives are both supported. The user chooses Retry / Delete / Cancel; Delete
+  needs separate confirmation. See [current saved ZIP guide](docs/SAVED_ZIP_SEGMENTS_20261025.md).
+- **ZIP overwrite policy:** ordinary files may be replaced in place and their
+  previously used bytes credited in low-space checks. If an existing file is
+  truncated and extraction fails, it may remain incomplete; this is not
+  a transactional rollback. See [ZIP overwrite safety](docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md).
+- **Documentation inventory:** [current implementation audit](docs/AUDITORIA_FUNCIONAL_20261025.md)
+  distinguishes working code, future plans, CI results and hardware tests.

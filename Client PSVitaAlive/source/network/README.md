@@ -81,9 +81,21 @@ ux0: free-space recheck step:      ~32 MiB
 runtime free-space reserve:         16 MiB
 ```
 
-Catalog/provider sizes remain hints until the server exposes an authoritative total through `Content-Length` / `Content-Range`.
+Catalog/provider sizes remain hints until the server exposes an authoritative
+total through `Content-Length` / `Content-Range`. Only then is the hard
+size-overrun guard enabled.
 
-Only then is the hard size-overrun guard enabled.
+**Current HTTP-header space preflight (25 Oct 2026):** for downloads started
+by `InstallController`, `HttpClient` reuses the final HTTP 200/206 header
+callback to notify `DownloadManager` of the authoritative size *before
+writing payload bytes*. `DownloadManager` applies the existing per-format
+`preflightRequiredSpaceBytes` using a new `ux0:` space reading.
+The adaptive downloader also checks the size from the successful 206 probe
+before launching 2/4 ranges. No new HEAD/GET roundtrip or network worker is
+necessary. If the server omits size, the 32 MiB / 16 MiB runtime guard remains
+the fallback. For a resumed partial, only safely reusable bytes are credited.
+The actual uncompressed ZIP preflight still runs at extraction time.
+See [Install All space/current modes](../../../docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md).
 
 ## Retry layers
 

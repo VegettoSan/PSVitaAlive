@@ -31,7 +31,11 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
   - **PSP/PS1 PKG**: LiveArea BGDL **or** Adrenaline unpack (pkg2zip-style → `ux0:pspemu`, Folder or ISO from Settings)
   - **Plugin** links: download → copy to `extract_path` → append `line` to taiHEN `config.txt` under `section` (or skip config if `none`)
 - **Essential plugins** (kubridge, fd_fix, libshacccg) checked after theme setup + News; install queue + reboot modal
-- Free-space check before download (~2.1× expected size)
+- Free-space protection by content type: 2.1× for VPK/direct packages,
+  individual HTTP-header preflight for each transfer, and real uncompressed
+  ZIP-growth preflight. `Install All` checks the **selected queue** jointly
+  if all link sizes are known, otherwise switches to individual checks.
+  See [current storage policy](../docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md).
 - **Job safety (Downloading / Installing):**
   - Keep-awake thread: `sceKernelPowerTick` — disable auto-suspend **and** keep OLED on (no dim / no off)
   - `sceShellUtilLock(PS_BTN)` + `POWEROFF_MENU` so the user cannot leave to LiveArea or open the soft power-off menu mid-job
@@ -383,7 +387,14 @@ Catalog entries may declare:
 | `section` | `*KERNEL` / `*main` / `*ALL` / custom header, or `none` to skip config |
 | `line` | Exact text appended at the end of that section (duplicate lines are not re-added) |
 
-**Install All** installs Plugin links **after** VPK / Game Files / Data Files. Plugins already present on disk (and, for taiHEN plugins, already listed in `config.txt`) are skipped; the UI shows an **Installed** badge and a toast if the user presses the link again.
+**Install All** processes Plugin links **after** VPK / Game Files / Data Files.
+It **asks about each Plugin link even if already installed**, offering an
+explicit Install/Reinstall versus Skip choice (existing version is not
+generally provable from presence). Skipped existing plugins are reported as
+already installed. The individual Plugin link also uses an explicit choice
+when the binary is present; the Installed badge is not a version guarantee.
+See [plugin detection](../docs/PLUGIN_DETECTION_CONFIG_20261023.md) and
+[future versioning proposal](../docs/PLUGIN_UPDATES.md).
 
 After plugin install(s), a full-screen **Restart required** modal blocks LiveArea exit and underlying touch until the user confirms soft reset (`scePowerRequestColdReset`). Message includes the **hold L at boot** recovery hint.
 
@@ -495,3 +506,15 @@ Catalog image work is paused while vertical navigation is physically held, while
 - Application detail shows an individual button (actual archive filename) for **every matching saved recovery ZIP**. The section disappears when none exist. Archive selection is checked against the app's stored App ID and Title ID before starting offline extraction.
 - Upon successful extraction and all moves, delete **only the selected ZIP** and its metadata; normal completed download jobs likewise clean up their payload. Keep recovery files on failure. Automatic deletion cannot retroactively remove older already-saved ZIPs.
 - Additional specifics: [ZIP recovery and folder staging](../docs/ZIP_RECOVERY_AND_RANGE_ASSEMBLY_20261018.md).
+
+- The current recovery store supports **one full ZIP** or **2/4 ordered raw
+  range files** `.zip.001`...`.004`. Selecting a saved entry prompts
+  **Retry extraction / Delete / Cancel**, with another confirmation for Delete.
+  Offline retries never re-download a preserved ZIP. Full format and hardware
+  caveats: [saved ZIP recovery](../docs/SAVED_ZIP_SEGMENTS_20261025.md).
+- Normal ZIP destination files may be **overwritten in place** to reuse
+  allocated bytes under low-space conditions. If a previously existing
+  destination gets truncated and extraction fails, its partial contents may
+  remain: [overwrite safety and regression tests](../docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md).
+- Complete state, cross-module references and unverified cases:
+  [implementation audit](../docs/AUDITORIA_FUNCIONAL_20261025.md).

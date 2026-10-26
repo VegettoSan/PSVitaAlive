@@ -1,10 +1,48 @@
 # PSVitaAlive — QR / Web handoff desde el cliente
 
-> **Estado:** implementación en `feature/external-download-qr-modal`, pendiente de CI y pruebas físicas.
+> **Estado actual (auditado el 25-10-2026):** la función **ya está
+> implementada en `main`**: `webPageUrl()`, `makeWebQrGuide()`,
+> `ensureWebQrPng()` y modal `FullCatalogScreen`. Los tests de URL y
+> guía dinámica se ejecutan en el workflow **Build PS Vita Client**, que
+> compiló el commit `cb43ae4`. **No implica** validación del nuevo QR
+> en PS Vita real en todas las redes/dispositivos.
+>
+> **Nota histórica:** el texto que sigue nació como plan de una rama previa.
+> Para mantenerlo útil, las recomendaciones formuladas como «debería» no
+> sustituyen el comportamiento verificable del código de `main`.
 >
 > **Objetivo:** permitir que, desde la ficha de una aplicación o juego en el cliente de PS Vita, el usuario abra un modal con un código QR y la URL de la ficha equivalente en la web de PSVitaAlive para continuar la descarga desde un teléfono o PC.
 >
 > **Regla principal:** esta función es una capa de cliente. No modifica la arquitectura oficial del catálogo, no añade campos nuevos a los JSON públicos y no introduce una nueva fuente de verdad.
+
+---
+
+## Estado técnico contrastado con `main` (25-10-2026)
+
+- URL de Homebrew: `app.html?title_id=<title_id>`; de juegos:
+  `game.html?catalog=psvita|psp|ps1&id=<id>`, con validación y
+  percent-encoding de los IDs. Código:
+  `Client PSVitaAlive/source/ui/web_page_link.cpp`.
+- La guía de instrucciones se genera dinámicamente a partir de los enlaces
+  del elemento, diferenciando VPK, Game Files, Data Files, ISO, PBP, PKG
+  y rutas de extracción utilizables. Código:
+  `Client PSVitaAlive/source/ui/web_qr_guide.cpp`.
+- El QR se genera **localmente** con `qrcodegen` y PNG, sin solicitar una
+  imagen a un servicio externo. Su PNG se guarda bajo
+  `ux0:data/psvitaalive/cache/images/v3/<bucket>/qr_<hash>.png`;
+  participa del mantenimiento normal del caché de imágenes.
+  Código: `Client PSVitaAlive/source/ui/qr_code.cpp`.
+- La UI abre y cierra el modal sobre la ficha, con URL visible y guía;
+  no cambia JSON públicos ni descarga binarios desde el teléfono.
+- Pruebas de host: `tests/test_web_page_link.cpp`,
+  `tests/test_web_qr_guide.cpp`; compilación VitaSDK:
+  [workflow aprobado](https://github.com/VegettoSan/PSVitaAlive/actions/runs/40250988724).
+
+### Pruebas manuales aún útiles
+
+Comprobar en Vita real escaneo de QR con móviles, selección táctil y botones,
+Unicode/IDs escapados, juegos de las tres plataformas, datos sin enlace
+descargable, borrado del caché y conectividad de GitHub Pages.
 
 ---
 

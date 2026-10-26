@@ -11,10 +11,10 @@
 | Essential plugins (startup modal) | Hardcoded list: `kubridge`, `fd_fix`, `libshacccg` + fixed URLs |
 | “Installed” check | File present + (for taiHEN) line present in `config.txt` |
 | Kubridge special case | File **size** fingerprint: TheFlow v0.1 = `5075` bytes → treated as **missing**; bythos14 v0.3.1 Hotfix = `11630` bytes → OK |
-| Install All | Installs Plugin links after VPK / Game Files / Data Files; skips if already “installed” |
+| Install All | After VPK / Game Files / Data Files, **asks for Install/Reinstall or Skip for every Plugin link**, even when already present; does not silently exclude approved reinstalls |
 | VPK / ZIP / PKG flows | Unrelated; must stay untouched |
 
-Limitation: only kubridge has an outdated-size rule. Other plugins never “update” once the file exists.
+Limitation: only kubridge has an outdated-size rule. Other plugins do not receive an **automatic version comparison**; however, users can explicitly choose **Reinstall** for existing catalog plugins. This is not the planned remote manifest/version check.
 
 **Detection bug resolved (2026-10-23):** catalog Plugin links now require an active exact `config.txt` entry when a taiHEN section is declared; an orphan `.skprx` does not count as installed. This is separate from the **planned** remote version/hash update feature. See [technical record and Vita hardware validation](PLUGIN_DETECTION_CONFIG_20261023.md).
 
