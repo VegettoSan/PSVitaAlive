@@ -8369,6 +8369,8 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     installAllJobItem_ = CatalogItem{};
     installAllReportAppId_.clear();
     installAllReportTitleId_.clear();
+    installAllReportAppName_.clear();
+    installAllReportAppVersion_.clear();
     installAllSummaryDeleteConfirm_ = false;
     installAllRequiredBytes_ = 0;
     installAllFreeBytes_ = 0;
@@ -9046,7 +9048,11 @@ void FullCatalogScreen::drawInstallAllSummary() {
         const int bx=rx+rw-buttonW-12,by=ry+36;
         const int detailRight=showReport?bx-9:rx+rw-12;
         vita2d_set_clip_rectangle(rx+14,ry+33,detailRight,ry+rowH-6);
-        ::psvitaalive::ui::uiDrawText(&font_,rx+16,ry+57,DIM,.76f,detail.c_str());
+        // Long extraction errors remain readable on focus instead of being
+        // silently truncated. The marquee is clipped to THIS step's detail.
+        drawMarqueeText(&font_,rx+16,ry+57,
+            std::max(20,detailRight-(rx+18)),DIM,.76f,detail,focused,
+            rx+14,ry+33,detailRight,ry+rowH-6);
         vita2d_disable_clipping();
         if(showReport) {
             const unsigned fill=reported?SURFACE2:
