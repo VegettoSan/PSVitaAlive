@@ -1,4 +1,5 @@
 #include "network/parallel_archive_download.hpp"
+#include "network/parallel_resume_policy.hpp"
 
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
@@ -10,6 +11,7 @@
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/threadmgr.h>
 
+#include <algorithm>
 #include <array>
 #include <cstdio>
 #include <cstring>
@@ -62,6 +64,8 @@ struct Part {
     std::string etag;
     std::string lastModified;
     uint64_t start = 0;
+    uint64_t originStart = 0;
+    uint64_t saved = 0;
     uint64_t end = 0;
     uint64_t received = 0;
     long status = 0;
@@ -70,6 +74,7 @@ struct Part {
     bool rangeError = false;
     bool added = false;
     bool done = false;
+    bool skipped = false; // full segment already saved, still verified against fresh probe
     CURLcode code = CURLE_OK;
     char error[CURL_ERROR_SIZE] = {};
 };
@@ -203,10 +208,97 @@ static std::string partPath(const std::string& base, size_t part) {
     return part == 0 ? base : base + ".range" + std::to_string(part);
 }
 
+static std::string checkpointPath(const std::string& base) {
+    return base + ".range.resume";
+}
 static void clearPartFiles(const std::string& base, bool includeFirst) {
     for (size_t i = includeFirst ? 0 : 1; i < kParts; ++i)
         sceIoRemove(partPath(base, i).c_str());
+    sceIoRemove(checkpointPath(base).c_str());
 }
+
+// Compact checkpoint: resource identity is FNV-1a over canonical URL + a
+// strong ETag (or Last-Modified). File lengths provide per-part offsets;
+// never trust a checkpoint without a fresh matching HTTP 206 probe.
+struct RangeCheckpoint {
+    uint64_t total = 0;
+    unsigned count = 0;
+    unsigned segmented = 0;
+    uint64_t identity = 0;
+};
+static uint64_t identityHash(const std::string& url, const std::string& validator) {
+    uint64_t h = 14695981039346656037ULL;
+    for (unsigned char c : url + "\n" + validator) {
+        h ^= static_cast<uint64_t>(c);
+        h *= 1099511628211ULL;
+    }
+    return h;
+}
+static std::string strongValidator(const std::string& etag,
+                                   const std::string& modified) {
+    if (!etag.empty() && etag.compare(0, 2, "W/") != 0)
+        return "E:" + etag;
+    return modified.empty() ? std::string() : "M:" + modified;
+}
+static bool readCheckpoint(const std::string& base, RangeCheckpoint& meta) {
+    const std::string path = checkpointPath(base);
+    const SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
+    if (fd < 0) return false;
+    char data[192] = {};
+    const int n = sceIoRead(fd, data, sizeof(data) - 1);
+    sceIoClose(fd);
+    unsigned long long total = 0, identity = 0;
+    unsigned count = 0, segmented = 0;
+    if (n <= 0 || std::sscanf(data, "PSVARANGE2 %llu %u %u %llu",
+        &total, &count, &segmented, &identity) != 4 ||
+        total < kMinimumBytes || (count != 2 && count != 4) ||
+        segmented > 1 || identity == 0) return false;
+    meta.total = static_cast<uint64_t>(total);
+    meta.count = count;
+    meta.segmented = segmented;
+    meta.identity = static_cast<uint64_t>(identity);
+    return true;
+}
+static bool saveCheckpoint(const std::string& base, const RangeCheckpoint& meta) {
+    char data[192];
+    const int n = sceClibSnprintf(data, sizeof(data),
+        "PSVARANGE2 %llu %u %u %llu\n",
+        (unsigned long long)meta.total, meta.count, meta.segmented,
+        (unsigned long long)meta.identity);
+    if (n <= 0 || n >= static_cast<int>(sizeof(data))) return false;
+    const std::string path = checkpointPath(base);
+    const SceUID fd = sceIoOpen(path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+    if (fd < 0) return false;
+    const int wrote = sceIoWrite(fd, data, static_cast<unsigned int>(n));
+    sceIoClose(fd);
+    if (wrote != n) {
+        sceIoRemove(path.c_str());
+        return false;
+    }
+    return true;
+}
+static uint64_t savedPrefixes(const std::string& base, uint64_t total,
+                              size_t partCount, bool& valid) {
+    valid = (total >= kMinimumBytes && (partCount == 2 || partCount == 4));
+    if (!valid) return 0;
+    const uint64_t chunk = total / partCount;
+    uint64_t sum = 0;
+    for (size_t i = 0; i < partCount; ++i) {
+        const uint64_t start = i * chunk;
+        const uint64_t end = (i + 1 == partCount) ? total - 1 : (i + 1) * chunk - 1;
+        SceIoStat stat{};
+        const bool exists = sceIoGetstat(partPath(base, i).c_str(), &stat) >= 0;
+        if (exists && stat.st_size < 0) { valid = false; return 0; }
+        const uint64_t bytes = exists ? static_cast<uint64_t>(stat.st_size) : 0;
+        if (!parallelSavedPrefixValid(start, end, bytes)) {
+            valid = false;
+            return 0;
+        }
+        sum += bytes;
+    }
+    return sum;
+}
+
 
 static bool writeAll(SceUID fd, const unsigned char* bytes, size_t n) {
     size_t pos = 0;
@@ -316,7 +408,15 @@ static void closeParts(CURLM* multi, std::array<Part, kParts>& parts) {
     if (multi) curl_multi_cleanup(multi);
 }
 
-} // namespace
+ } // namespace
+
+uint64_t parallelSavedBytes(const std::string& destination) {
+    RangeCheckpoint ck;
+    if (!readCheckpoint(destination, ck)) return 0;
+    bool valid = false;
+    const uint64_t bytes = savedPrefixes(destination, ck.total, ck.count, valid);
+    return valid ? bytes : 0;
+}
 
 ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& url,
@@ -326,7 +426,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const HttpCancelFn& shouldCancel,
     const std::string& expectedEtag,
     const std::string& expectedModified,
-    bool keepZipParts
+    bool keepZipParts,
+    const HttpCancelFn& shouldPause,
+    const std::string& resourceIdentity,
+    const std::string& probeEtag,
+    const std::string& probeModified,
+    unsigned retryIndex
 ) {
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
@@ -343,10 +448,11 @@ ParallelArchiveOutcome downloadArchiveRanges(
     uint64_t freeBytes = 0, capacity = 0;
     const uint64_t extra = keepZipParts
         ? 0 : (authoritativeSize - authoritativeSize / partCount);
+    const uint64_t cachedBytes = parallelSavedBytes(destination);
     if (!StorageManager::queryUx0Space(freeBytes, capacity) ||
         extra > UINT64_MAX - kDiskReserve ||
         authoritativeSize > UINT64_MAX - extra - kDiskReserve ||
-        freeBytes < authoritativeSize + extra + kDiskReserve) {
+        freeBytes < authoritativeSize - std::min(authoritativeSize, cachedBytes) + extra + kDiskReserve) {
         diagnostics::log("[HTTP] range download skipped: insufficient staging space");
         return ParallelArchiveOutcome::Skipped;
     }
