@@ -18,7 +18,9 @@ struct UsageSnapshot {
     std::vector<UsageItem> items;
     uint64_t temporaryBytes = 0;
     uint64_t savedZipBytes = 0;
-    uint64_t totalBytes() const { return temporaryBytes + savedZipBytes; }
+    uint64_t catalogBytes = 0; // read-only
+    uint64_t imageBytes = 0;   // read-only
+    uint64_t totalBytes() const { return temporaryBytes + savedZipBytes + catalogBytes + imageBytes; }
 };
 
 // Only PSVitaAlive-owned temporary files and deliberately saved ZIP archives.
