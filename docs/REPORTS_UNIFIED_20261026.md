@@ -51,3 +51,14 @@ Los reportes automáticos de descarga/instalación/extracción **continúan usan
 10. Asegurar que PS TV puede navegar los dos diálogos sin pantalla táctil.
 
 **Validación de hardware:** pendiente hasta que el mantenedor pruebe el VPK integrado y confirme el resultado. La compilación exitosa de GitHub Actions verifica el build, no sustituye las pruebas reales.
+
+## Corrección posterior: controles L/R y texto del formulario (26-10-2026)
+
+Por observación del mantenedor en una PS Vita real, se ajustaron los siguientes comportamientos:
+
+- La descripción visible del formulario explica brevemente que se puede informar sobre un problema o sugerir mejoras, sin texto técnico sobre diagnósticos ni archivos de log.
+- Los gatillos **L/R** cambian directamente entre **Problema/Sugerencia** dentro del formulario del footer, desde cualquier foco cuando no se está enviando.
+- Con otras ventanas abiertas, L/R se consumen antes del cambio de catálogo. Al cerrar el cuadro, vuelve a funcionar la navegación normal de catálogos.
+- La indicación inferior del formulario y los ocho paquetes de idiomas describen los nuevos controles.
+
+**Verificación:** probar el menú principal y las pantallas con diálogos de reportes, Install All, noticias, filtros, mantenimiento UX0 y solicitudes, tanto con mandos físicos como touch. Estos cambios de entrada no alteran el formato ni la recopilación de los reportes automáticos, y no añaden logs a los reportes escritos.
