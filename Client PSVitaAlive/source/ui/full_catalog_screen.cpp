@@ -3242,15 +3242,15 @@ void FullCatalogScreen::drawStorageOverlay() {
         ::psvitaalive::L("STORAGE_SELECT_HINT"));
     // Draw only rows fully inside the viewport; the scrollbar/controls
     // remain anchored and the scroll can grow to hundreds of owned ZIPs.
+    // Clip scroll contents to the list. Without clipping, partially visible
+    // rows create gaps or can paint over the header and footer on real Vita.
+    vita2d_set_clip_rectangle(x+21,listTop,x+w-34,listBottom);
     int cy=listTop-storageScrollY_;
     for(size_t i=0;i<storageRows_.size();++i) {
         const auto& row=storageRows_[i];
         const int rh=row.kind==4?46:68;
         if(cy+rh<=listTop) {cy+=rh;continue;}
         if(cy>=listBottom) break;
-        // Skip partial rows to avoid text bleeding into summary/footer.
-        // Navigation snaps to the relevant entry when possible.
-        if(cy<listTop || cy+rh>listBottom) {cy+=rh;continue;}
         const int bx=x+21,bw=w-59;
         const bool active=static_cast<int>(i)==storageFocus_;
         vita2d_draw_rectangle(bx,cy,bw,rh-5,active?SURFACE2:SURFACE);
@@ -3285,6 +3285,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         }
         cy+=rh;
     }
+    vita2d_disable_clipping();
     const int totalH=storageContentHeight();
     if(totalH>viewportH) {
         const int trackX=x+w-31;
@@ -4259,12 +4260,14 @@ void FullCatalogScreen::handleTouch() {
                 for(size_t i=0;i<storageRows_.size();++i) {
                     const int rh=storageRows_[i].kind==4?46:68;
                     if(py>=rowY && py<rowY+rh) {
-                        if(static_cast<int>(i)==storageFocus_) executeStorageSelection();
-                        else {
+                        if(static_cast<int>(i)!=storageFocus_) {
                             storageFocus_=static_cast<int>(i);
                             storageConfirm_=false;
                             storagePendingAction_=-1;
                         }
+                        // First tap arms deletion (when eligible), second
+                        // tap confirms. Empty/protected rows remain harmless.
+                        executeStorageSelection();
                         break;
                     }
                     rowY+=rh;
@@ -6065,7 +6068,10 @@ void FullCatalogScreen::handleInput(){
             storagePendingAction_=-1;
             ensureStorageFocusVisible();
         }
-        if(pressed & SCE_CTRL_CROSS) executeStorageSelection();
+        if(pressed & SCE_CTRL_CROSS) {
+            if(storageConfirm_ && storagePendingAction_==-2) executeStorageAll();
+            else executeStorageSelection();
+        }
         return;
     }
     // Modal has its own button edge handling, including held-X release guard.
