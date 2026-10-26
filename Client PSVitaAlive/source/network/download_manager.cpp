@@ -196,6 +196,32 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     return job.id;
 }
 
+bool DownloadManager::pause(const std::string& jobId) {
+    DownloadJob* job = findJob(jobId);
+    if (!job || (job->state != DownloadState::Downloading &&
+                 job->state != DownloadState::Preparing) ||
+        job->cancelRequested->load(std::memory_order_acquire))
+        return false;
+    job->pauseRequested->store(true, std::memory_order_release);
+    diagnostics::log("[DownloadManager] pause requested job=" + jobId);
+    return true;
+}
+
+bool DownloadManager::resume(const std::string& jobId) {
+    DownloadJob* job = findJob(jobId);
+    if (!job || job->state != DownloadState::Paused ||
+        job->cancelRequested->load(std::memory_order_acquire))
+        return false;
+    // The caller must join the previous worker before resetting these flags.
+    job->pauseRequested->store(false, std::memory_order_release);
+    job->state = DownloadState::Queued;
+    job->lastError.clear();
+    saveMetadata(*job);
+    diagnostics::log("[DownloadManager] resume queued job=" + jobId +
+                     " offset=" + std::to_string(job->downloadedSize));
+    return true;
+}
+
 void DownloadManager::cancel(const std::string& jobId) {
     if (auto* j = findJob(jobId)) {
         j->cancelRequested->store(true, std::memory_order_release);
@@ -322,7 +348,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
         }
     };
     auto cancelFn = [&]() -> bool {
-        return job.cancelRequested->load(std::memory_order_acquire);
+        return job.cancelRequested->load(std::memory_order_acquire) ||
+               job.pauseRequested->load(std::memory_order_acquire);
     };
 
     std::string effectiveUrl = job.url;
@@ -502,6 +529,32 @@ bool DownloadManager::runJob(DownloadJob& job) {
         saveMetadata(job);
         st.removeFile(job.finalPath);
         diagnostics::log("[DownloadManager] aborted: exceeded expected size with margin");
+        return false;
+    }
+    if (job.pauseRequested->load(std::memory_order_acquire) &&
+        !job.cancelRequested->load(std::memory_order_acquire)) {
+        // HttpClient has returned and flushed its serial buffer. Preserve the
+        // actual file length (not an unflushed progress counter) for Range resume.
+        // Parallel transfers intentionally discard unfinished segments; the
+        // next attempt safely restarts at zero rather than mixing range files.
+        const int64_t bytes = st.fileSize(job.temporaryPath);
+        job.downloadedSize = bytes > 0 ? static_cast<uint64_t>(bytes) : 0;
+        job.bytesPerSecond = 0;
+        job.state = DownloadState::Paused;
+        job.lastError.clear();
+        saveMetadata(job);
+        if (onProgress_) {
+            DownloadProgressEvent ev;
+            ev.jobId = job.id;
+            ev.fileName = job.fileName;
+            ev.downloaded = job.downloadedSize;
+            ev.total = job.expectedSize;
+            ev.state = DownloadState::Paused;
+            ev.message = "Download paused";
+            onProgress_(ev);
+        }
+        diagnostics::log("[DownloadManager] paused job=" + job.id +
+                         " saved_bytes=" + std::to_string(job.downloadedSize));
         return false;
     }
     if (hr == HttpResult::Cancelled || cancelFn()) {
