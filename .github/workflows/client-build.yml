@@ -76,6 +76,13 @@ jobs:
             -o /tmp/psvitaalive-download-failure-policy-test
           /tmp/psvitaalive-download-failure-policy-test
 
+      - name: Verify ownership restrictions for storage cleanup
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_storage_cleanup_policy.cpp \
+            -o /tmp/psvitaalive-storage-policy-test
+          /tmp/psvitaalive-storage-policy-test
+
       - name: Test orphaned download startup cleanup policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
