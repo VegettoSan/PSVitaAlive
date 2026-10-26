@@ -517,6 +517,7 @@ private:
     std::function<bool()> storageInstallerBusy_;
     bool storageVisible_ = false;
     bool storageConfirm_ = false;
+    int storagePendingAction_ = -1; // double-confirm the exact cleanup action
     struct StorageDisplayRow {
         // 0: temporaries, 1: saved ZIP, 2: catalog, 3: images, 4: file
         int kind = 0;
@@ -538,6 +539,7 @@ private:
     void clampStorageScroll();
     void ensureStorageFocusVisible();
     void executeStorageSelection();
+    void executeStorageAll();
     void drawStorageOverlay();
     static int storageWorkerEntry(SceSize args, void* argp);
 
