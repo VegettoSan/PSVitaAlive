@@ -684,8 +684,73 @@ ParallelArchiveOutcome downloadArchiveRanges(
 
     bool ioError = setupIoError;
     for (const Part& p : parts) ioError = ioError || p.ioError;
+
+    // An interrupted libcurl multi transfer may still have up to 256 KiB
+    // buffered per live part. Flush those bytes before closing the FDs;
+    // on-disk lengths, not in-memory progress counters, define resume offsets.
+    if (session.stopped || !networkOk) {
+        for (Part& p : parts) {
+            if (p.fd >= 0 && p.buffered > 0 && !p.ioError &&
+                !p.rangeError && p.status == 206 && p.validRange) {
+                if (!flushPartBuffer(p)) ioError = true;
+            }
+        }
+    }
+    for (const Part& p : parts) ioError = ioError || p.ioError;
+
+    std::string captureEtag = probeEtag;
+    std::string captureModified = probeModified;
+    if (captureEtag.empty() && captureModified.empty()) {
+        for (const Part& p : parts) {
+            if (!p.skipped && p.status == 206 && p.validRange &&
+                (!p.etag.empty() || !p.lastModified.empty())) {
+                captureEtag = p.etag;
+                captureModified = p.lastModified;
+                break;
+            }
+        }
+    }
+    const std::string captureValidator = strongValidator(captureEtag, captureModified);
+    bool rangeSafe = !ioError && !resourceIdentity.empty() &&
+                     !captureValidator.empty();
+    for (const Part& p : parts) {
+        if (p.ioError || p.rangeError ||
+            (p.received > 0 && (p.status != 206 || !p.validRange))) {
+            rangeSafe = false;
+            break;
+        }
+        // Every preserved received prefix must belong to the same content
+        // version. Do not combine bytes when any active server gives a
+        // different or missing validator.
+        if (!p.skipped && p.received > 0 &&
+            strongValidator(p.etag, p.lastModified) != captureValidator) {
+            rangeSafe = false;
+            break;
+        }
+    }
     closeParts(multi, parts);
-    if (session.stopped || isCancelled(session)) {
+    bool diskPrefixesValid = false;
+    const uint64_t onDisk = savedPrefixes(
+        destination, authoritativeSize, partCount, diskPrefixesValid);
+    rangeSafe = rangeSafe && diskPrefixesValid && onDisk <= authoritativeSize;
+    const RangeCheckpoint checkpointOut{
+        authoritativeSize, static_cast<unsigned>(partCount),
+        static_cast<unsigned>(keepZipParts ? 1 : 0),
+        rangeSafe ? identityHash(resourceIdentity, captureValidator) : 0ULL
+    };
+    const bool interrupted = session.stopped || isCancelled(session);
+    const bool paused = interrupted && shouldPause && shouldPause();
+    bool saved = false;
+    if ((paused || (!networkOk && !interrupted)) && rangeSafe)
+        saved = saveCheckpoint(destination, checkpointOut);
+
+    if (interrupted) {
+        if (paused) {
+            if (!saved) clearPartFiles(destination, true);
+            diagnostics::log(std::string("[HTTP] parallel pause checkpoint bytes=") +
+                             std::to_string(saved ? onDisk : 0));
+            return ParallelArchiveOutcome::Paused;
+        }
         clearPartFiles(destination, true);
         diagnostics::log("[HTTP] parallel download cancelled");
         return ParallelArchiveOutcome::Cancelled;
@@ -696,10 +761,21 @@ ParallelArchiveOutcome downloadArchiveRanges(
         return ParallelArchiveOutcome::IoError;
     }
     if (!networkOk) {
+        if (saved && retryIndex < 2) {
+            diagnostics::log("[HTTP] parallel retry only incomplete segments attempt=" +
+                             std::to_string(retryIndex + 2));
+            sceKernelDelayThread(300000);
+            return downloadArchiveRanges(url, destination, authoritativeSize,
+                onProgress, shouldCancel, expectedEtag, expectedModified,
+                keepZipParts, shouldPause, resourceIdentity,
+                captureEtag, captureModified, retryIndex + 1);
+        }
         clearPartFiles(destination, true);
-        diagnostics::log("[HTTP] parallel ranges unavailable; falling back to serial");
+        diagnostics::log("[HTTP] parallel ranges exhausted; safe serial fallback");
         return ParallelArchiveOutcome::RetrySerial;
     }
+    // Completed range files no longer need the checkpoint.
+    sceIoRemove(checkpointPath(destination).c_str());
 
     // Compressed ZIP/VPKs are consumed directly from their validated 206
     // ranges. Do not assemble or re-read the archive after download.
