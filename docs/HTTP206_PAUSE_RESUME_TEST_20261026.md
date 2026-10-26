@@ -25,7 +25,8 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 - Pausing cooperatively stops the active libcurl operation; the worker returns normally and the serial write buffer is flushed.
 - For serial downloads, the `payload.part` length is persisted and **SQUARE / Resume** uses the *same* DownloadManager job with a new 64-bit HTTP Range request; no new install is enqueued.
 - **CIRCLE / Cancel** while paused deliberately removes the temporary job/files. Pause is never reported as Install Failed or Cancelled.
-- An interrupted **2/4-range** transfer cannot safely reuse unfinished segments with the existing implementation. Its partial range files are cleaned by the established fallback; Resume performs a fresh transfer from zero (with the same eligibility checks). This is deliberate: preserving unsafe fragments risks corruption.
+- An interrupted **2/4-range** transfer now saves its *flushed, contiguous prefixes* separately for every range when a stable ETag or Last-Modified validator is available. Resume reprobes the resource, verifies the size/validator and requests only missing bytes. Completed segments are skipped. Checkpoint is kept in `payload.part.range.resume` until completion or explicit cancel. On validator mismatch, missing/invalid checkpoint, or a server refusing correct HTTP 206 ranges, the partials are deliberately discarded and the original serial fallback remains the safety net.
+- Automatic multi-range retries (up to two new rounds) first attempt to continue the unfinished pieces; exhausted or unsafe ranges fall back to serial cleanly. This feature is retained when the experimental button is removed from the mainline proposal.
 - Pauses last **only while PSVitaAlive remains running**. On the next launch, the unchanged startup orphan-download cleanup removes abandoned job files.
 - Pausing is not available for system BGDL, self-update, installation/extraction, ZIP recovery or plugins outside the native Downloading stage.
 - No extra background worker is introduced. Resume joins the completed previous worker before launching a replacement on the same job.
@@ -37,12 +38,16 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 2. Direct serial HTTP 200 file: pause after measurable progress, confirm progress stops and the partial file remains; resume, verify a 206 starts at the saved offset and final exact size matches.
 3. Repeat pause/resume twice during one serial transfer; confirm no double appending or incorrect percentage.
 4. Force/observe a server that ignores Range (resumed 200) and a mismatched 206; confirm clean restart without false install success.
-5. Pause a 2/4-range eligible ZIP/VPK; expect pause state with **0 reusable bytes** and a clean fresh download after Resume. Verify extraction/install integrity.
+5. Pause a 2/4-range eligible ZIP/VPK with a stable server validator; expect **nonzero reused bytes per part**, independent Range starts and skipped already-complete parts. Verify extraction/install integrity. If the server provides no stable validator or changes the resource, confirm safe restart rather than unsafe append.
 6. Cancel while paused; verify job and partials are removed and no installation runs.
 7. Test Download All sequence: pausing a step must not mark it Failed or advance to the next step.
 8. Repeat a direct HTTP PSP/PS1 transfer like the failing report (not Sony Vita BGDL); inspect `content-range`, `HTTP RESULT`, `DownloadManager` and `Installer` markers in session.log.
 9. Regression-check MediaFire, Archive.org, GitHub Releases, direct ZIP/VPK, install/extract, TLS retry, insufficient space and cancellation.
 10. Test normal user-facing text and touch/SQUARE controls in Spanish and English. Other languages currently fall back to English for the new strings.
+
+## Parallel checkpoint safety
+
+The metadata binds canonical source URL, authoritative total, number of segments, ZIP/VPK extraction mode, and a strong ETag or a Last-Modified validator. Per-file lengths must fit their assigned intervals; libcurl 206 responses must agree with exact pending offsets and the cached validator. Checkpoints are private temporary installation inputs and intentionally do not survive the existing next-launch cleanup. The pause/resume button is diagnostic-only and must be removed before an approved `main` merge; automatic safe recovery stays.
 
 ## Expected log markers
 
@@ -52,6 +57,8 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 [Installer] download paused without installation job=...
 [DownloadManager] resume queued job=... offset=...
 [Installer] resumed existing job=...
+[HTTP] parallel verified checkpoint; reuse_bytes=...
+[HTTP] parallel retry only incomplete segments attempt=...
 HTTP BEGIN ... resume=...
 content-range start=... end=... total=... resume=...
 HTTP RESULT curl=... status=206 ... absolute=... total=...
