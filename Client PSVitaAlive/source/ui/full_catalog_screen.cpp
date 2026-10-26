@@ -2975,9 +2975,11 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     const std::string& zipRecoveryPath,
     const std::string& zipRecoveryExtractPath,
     bool zipRecoveryMayBeCorrupt,
-    bool archiveSourceUnavailable)
+    bool archiveSourceUnavailable,
+    bool pauseSupported)
 {
     installProgressActive_ = active;
+    installPauseSupported_ = active && pauseSupported && outcome == 0;
     if (needsReboot && outcome == 1) {
         if (essentialInstallRunning_) {
             // Sequential essential-plugin installs keep their existing reboot flow.
@@ -5138,9 +5140,19 @@ void FullCatalogScreen::handleTouch() {
                     showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled), 2800);
                 }
             } else {
-                const int cancelW = 520;
-                const int cancelX = ox + (ow - cancelW) / 2;
-                if (!hit(x, y, cancelX - 12, runningBy - 12, cancelW + 24, 50 + 24)) return;
+                const bool showPause = installPauseSupported_;
+                const int buttonX = ox + (ow - 520) / 2;
+                if (showPause && hit(x, y, buttonX - 8, runningBy - 8, 250 + 16, 50 + 16)) {
+                    if (installProgressStage_ == "Paused") {
+                        if (installResume_) installResume_();
+                    } else if (installProgressStage_ == "Downloading") {
+                        if (installPause_) installPause_();
+                    }
+                    return;
+                }
+                const int cancelX = showPause ? buttonX + 270 : buttonX;
+                const int cancelW = showPause ? 250 : 520;
+                if (!hit(x, y, cancelX - 8, runningBy - 8, cancelW + 16, 50 + 16)) return;
                 if (installCancel_) installCancel_();
             }
         }
@@ -6655,6 +6667,14 @@ if(pressed&SCE_CTRL_START){
     if(pressed&SCE_CTRL_CIRCLE){
         showToast(::psvitaalive::L("ZIP_RECOVERY_CHOOSE_ACTION"),2800);
         return;
+    }
+    return;
+}if(installProgressActive_ && installOutcome_ == 0 && installPauseSupported_ &&
+    (pressed & SCE_CTRL_SQUARE)) {
+    if (installProgressStage_ == "Paused") {
+        if (installResume_) installResume_();
+    } else if (installProgressStage_ == "Downloading") {
+        if (installPause_) installPause_();
     }
     return;
 }if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!installArchiveSourceUnavailable_&&shouldReportInstallFailure(installFailureKind_)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
@@ -10008,6 +10028,7 @@ if(catalogLoading_){
     title = ::psvitaalive::L(TID::StageDownloading);
   else if (installProgressStage_ == "Installing" || installProgressStage_ == "Promoting" || installProgressStage_ == "Cleaning") title = ::psvitaalive::L(TID::StageInstalling);
   else if (installProgressStage_ == "Verifying") title = ::psvitaalive::L("DOWNLOAD_VERIFYING_TITLE");
+  else if (installProgressStage_ == "Paused") title = ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
   else if (installProgressStage_ == "Retrying") title = ::psvitaalive::L(TID::StageRetrying);
   else if (installProgressStage_ == "Network") title = ::psvitaalive::L(TID::StageNetwork);
   else if (installProgressStage_ == "Space") title = ::psvitaalive::L(TID::StageSpace);
@@ -10066,11 +10087,12 @@ const bool stageDownload =
     installProgressStage_ == "Verifying" ||
     installProgressStage_ == "BGDL" ||
     installProgressStage_ == "Cancelling" ||
+    installProgressStage_ == "Paused" ||
     installProgressStage_.empty());
 const bool indeterminate =
-    msgRetry || stageFinalizing ||
+    (installProgressStage_ != "Paused") && (msgRetry || stageFinalizing ||
     total == 0 ||
-    (current == 0 && installProgressSpeed_ == 0 && (stageDownload || stageInstall || stageExtract));
+    (current == 0 && installProgressSpeed_ == 0 && (stageDownload || stageInstall || stageExtract)));
 if (indeterminate) {
   const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1400) / 1400.f;
   const float uu = (t < 0.5f) ? (t * 2.f) : (2.f - t * 2.f);
@@ -10120,7 +10142,9 @@ else
 if (!stageFinalizing && !installProgressMessage_.empty())
   ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
 const char* waitHint = nullptr;
-if (stageFinalizing)
+if (installProgressStage_ == "Paused")
+  waitHint = ::psvitaalive::L("DOWNLOAD_PAUSED_HINT");
+else if (stageFinalizing)
   waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_HINT");
 else if (msgRetry && stageDownload)
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryConnection);
@@ -10142,6 +10166,13 @@ else
 // LOCKED banner — tall + large type, no overlap with button below.
 {
   const int lbX = x + 20, lbY = y + 308, lbW = w - 40, lbH = 78;
+  const bool isPaused = installProgressStage_ == "Paused";
+  if (isPaused) {
+    vita2d_draw_rectangle(lbX, lbY, lbW, lbH, SURFACE2);
+    vita2d_draw_rectangle(lbX, lbY, lbW, 3, BORDER);
+    ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 38, TEXT, 0.88f,
+        ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE"));
+  } else {
   vita2d_draw_rectangle(lbX, lbY, lbW, lbH, RGBA8(0x40, 0x10, 0x10, 255));
   vita2d_draw_rectangle(lbX, lbY, lbW, 3, RED);
   vita2d_draw_rectangle(lbX, lbY + lbH - 3, lbW, 3, RED);
@@ -10151,10 +10182,26 @@ else
       ::psvitaalive::L(::psvitaalive::TextId::LockedBanner1));
   ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 56, WHITE, 0.84f,
       ::psvitaalive::L(::psvitaalive::TextId::LockedBanner2));
+  }
 }
-const int cancelW = 520, cancelH = 50;
-const int cancelX = x + (w - cancelW) / 2;
+const int cancelH = 50;
+const bool showPause = installPauseSupported_;
+const int pauseX = x + (w - 520) / 2;
+const int pauseW = 250;
+const int cancelW = showPause ? 250 : 520;
+const int cancelX = showPause ? pauseX + 270 : pauseX;
 const int cancelY = y + 410;
+if (showPause) {
+  vita2d_draw_rectangle(pauseX, cancelY, pauseW, cancelH, SURFACE2);
+  vita2d_draw_rectangle(pauseX, cancelY, pauseW, 2, ACCENT);
+  vita2d_draw_rectangle(pauseX, cancelY + cancelH - 2, pauseW, 2, ACCENT);
+  const char* plab = ::psvitaalive::L(
+      installProgressStage_ == "Paused" ? "DOWNLOAD_RESUME_BUTTON" : "DOWNLOAD_PAUSE_BUTTON");
+  const float psc = 0.72f;
+  const int ptw = ::psvitaalive::ui::uiTextWidth(&font_, psc, plab);
+  ::psvitaalive::ui::uiDrawText(&font_, pauseX + (pauseW - ptw) / 2,
+                                cancelY + 32, WHITE, psc, plab);
+}
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, cancelH, SURFACE2);
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, 2, BORDER);
 vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
@@ -10165,7 +10212,7 @@ vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
   ::psvitaalive::ui::uiDrawText(&font_, cancelX + (cancelW - ctw) / 2, cancelY + 34, WHITE, csc, clab);
 }
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 18, DIM, 0.70f,
-    ::psvitaalive::L(::psvitaalive::TextId::ProgressFooterHint));
+    ::psvitaalive::L(showPause ? "DOWNLOAD_PAUSE_FOOTER" : "PROGRESS_FOOTER_HINT"));
 }
 
 void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints) {
