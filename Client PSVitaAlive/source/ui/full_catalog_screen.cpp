@@ -3054,6 +3054,7 @@ void FullCatalogScreen::openStorageMenu() {
     }
     storageVisible_ = true;
     storageConfirm_ = false;
+    storagePendingAction_ = -1;
     storageFocus_ = 0;
     storageScrollY_ = 0;
     touchDown_ = false;
@@ -3168,6 +3169,7 @@ void FullCatalogScreen::pollStorageOperation() {
     }
     rebuildStorageRows();
     storageConfirm_ = false;
+    storagePendingAction_ = -1;
 }
 void FullCatalogScreen::executeStorageSelection() {
     if (storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_())) return;
@@ -3178,22 +3180,37 @@ void FullCatalogScreen::executeStorageSelection() {
     if (row.kind==0 && storageSnapshot_.temporaryBytes>0) action=-3;
     else if (row.kind==1 && storageSnapshot_.savedZipBytes>0) action=-4;
     else if (row.kind==4 && row.itemIndex>=0 &&
-             row.itemIndex<static_cast<int>(storageSnapshot_.items.size())) {
+             row.itemIndex<static_cast<int>(storageSnapshot_.items.size()))
         action=row.itemIndex;
-    }
     if(action==-1) {
-        // Empty categories and read-only caches have no delete operation.
         showToast(::psvitaalive::L(row.kind>=2 && row.kind<=3 ?
             "STORAGE_PROTECTED" : "STORAGE_EMPTY"),2000);
         storageConfirm_=false;
+        storagePendingAction_=-1;
         return;
     }
-    if (!storageConfirm_) {
+    if (!storageConfirm_ || storagePendingAction_!=action) {
         storageConfirm_ = true;
+        storagePendingAction_ = action;
         return;
     }
     storageConfirm_ = false;
+    storagePendingAction_=-1;
     startStorageOperation(action);
+}
+void FullCatalogScreen::executeStorageAll() {
+    if (storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_()))
+        return;
+    if(storageSnapshot_.temporaryBytes+storageSnapshot_.savedZipBytes==0)
+        return;
+    if(!storageConfirm_ || storagePendingAction_!=-2) {
+        storagePendingAction_=-2;
+        storageConfirm_=true;
+        return;
+    }
+    storageConfirm_=false;
+    storagePendingAction_=-1;
+    startStorageOperation(-2);
 }
 void FullCatalogScreen::drawStorageOverlay() {
     if (!storageVisible_) return;
@@ -3278,10 +3295,27 @@ void FullCatalogScreen::drawStorageOverlay() {
         vita2d_draw_rectangle(trackX,thumbY,4,thumbH,ACCENT);
     }
     vita2d_draw_rectangle(x+21,listBottom+8,w-42,1,BORDER);
-    const char* help=storageConfirm_?::psvitaalive::L("STORAGE_CONFIRM"):
+
+    const bool hasCleanable=snap.temporaryBytes+snap.savedZipBytes>0;
+    if(hasCleanable) {
+        const int bw=191,bh=35,bx=x+w-bw-27,by=y+h-53;
+        vita2d_draw_rectangle(bx,by,bw,bh,ACCENT);
+        const char* lab=::psvitaalive::L("STORAGE_CLEAN_ALL");
+        const int tw=::psvitaalive::ui::uiTextWidth(&font_,.74f,lab);
+        ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-tw)/2,by+24,
+            BG,.74f,lab);
+    }
+    const char* help=storageConfirm_?
+        ::psvitaalive::L(storagePendingAction_==-2 ?
+            "STORAGE_CONFIRM_ALL" : "STORAGE_CONFIRM"):
         ::psvitaalive::L("STORAGE_CONTROLS");
+    float helpScale=storageConfirm_?.71f:.72f;
+    const int hintMaxW=hasCleanable?580:w-57;
+    while(helpScale>.55f &&
+          ::psvitaalive::ui::uiTextWidth(&font_,helpScale,help)>hintMaxW)
+        helpScale-=.02f;
     ::psvitaalive::ui::uiDrawText(&font_,x+28,y+h-27,
-        storageConfirm_?ACCENT:TEXT,.76f,help);
+        storageConfirm_?ACCENT:TEXT,helpScale,help);
 }
 
 void FullCatalogScreen::shutdown(){
@@ -4206,6 +4240,7 @@ void FullCatalogScreen::handleTouch() {
                     storageScrollY_+=touchLastY_-py;
                     clampStorageScroll();
                     storageConfirm_=false;
+                    storagePendingAction_=-1;
                 }
                 touchLastY_=py;
             }
@@ -4214,6 +4249,11 @@ void FullCatalogScreen::handleTouch() {
             const bool moved=touchMoved_;
             touchDown_=false;touchMoved_=false;
             if(moved || storageWorker_>=0) return;
+            if(storageSnapshot_.temporaryBytes+storageSnapshot_.savedZipBytes>0 &&
+               hit(px,py,ox+w-218,oy+h-53,191,35)) {
+                executeStorageAll();
+                return;
+            }
             if(hit(px,py,ox+21,listTop,w-42,viewportH)) {
                 int rowY=listTop-storageScrollY_;
                 for(size_t i=0;i<storageRows_.size();++i) {
@@ -4223,6 +4263,7 @@ void FullCatalogScreen::handleTouch() {
                         else {
                             storageFocus_=static_cast<int>(i);
                             storageConfirm_=false;
+                            storagePendingAction_=-1;
                         }
                         break;
                     }
@@ -5997,16 +6038,23 @@ void FullCatalogScreen::handleInput(){
         prevStorageButtons=pad.buttons;
         prevStorageAnalog=analog;
         if(pressed & SCE_CTRL_CIRCLE) {
-            if(storageConfirm_) storageConfirm_=false;
-            else if(storageWorker_<0) storageVisible_=false;
+            if(storageConfirm_) {
+                storageConfirm_=false;
+                storagePendingAction_=-1;
+            } else if(storageWorker_<0) storageVisible_=false;
             return;
         }
         if(storageWorker_>=0) return;
+        if(pressed & SCE_CTRL_TRIANGLE) {
+            executeStorageAll();
+            return;
+        }
         const uint32_t nav=direct|repeat;
         if(nav & (SCE_CTRL_UP|SCE_CTRL_LEFT)) {
             const int step=(nav&SCE_CTRL_LEFT)?4:1;
             storageFocus_=std::max(0,storageFocus_-step);
             storageConfirm_=false;
+            storagePendingAction_=-1;
             ensureStorageFocusVisible();
         }
         if(nav & (SCE_CTRL_DOWN|SCE_CTRL_RIGHT)) {
@@ -6014,6 +6062,7 @@ void FullCatalogScreen::handleInput(){
             storageFocus_=std::min(static_cast<int>(storageRows_.size())-1,
                                    storageFocus_+step);
             storageConfirm_=false;
+            storagePendingAction_=-1;
             ensureStorageFocusVisible();
         }
         if(pressed & SCE_CTRL_CROSS) executeStorageSelection();
