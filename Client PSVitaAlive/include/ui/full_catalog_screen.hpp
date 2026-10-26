@@ -44,6 +44,7 @@ public:
     using InstallRequestFn = std::function<bool(const CatalogItem&)>;
     using InstallStatusFn = std::function<std::string()>;
     using InstallCancelFn = std::function<void()>;
+    using InstallPauseFn = std::function<bool()>;
     using InstallAcknowledgeFn = std::function<void()>;
     using InstallZipRecoveryFn = std::function<bool(bool keep, std::string& savedPath)>;
     using DeleteSavedZipFn = std::function<bool(const std::string& appId,
@@ -69,6 +70,9 @@ public:
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
     void setInstallCancelCallback(InstallCancelFn callback);
+    void setInstallPauseCallbacks(InstallPauseFn pause, InstallPauseFn resume) {
+        installPause_ = std::move(pause); installResume_ = std::move(resume);
+    }
     void setStorageBusyCallback(std::function<bool()> callback) { storageInstallerBusy_ = std::move(callback); }
     void setInstallAcknowledgeCallback(InstallAcknowledgeFn callback);
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
@@ -137,7 +141,8 @@ public:
                             const std::string& zipRecoveryPath = std::string(),
                             const std::string& zipRecoveryExtractPath = std::string(),
                             bool zipRecoveryMayBeCorrupt = false,
-                            bool archiveSourceUnavailable = false);
+                            bool archiveSourceUnavailable = false,
+                            bool pauseSupported = false);
 
 private:
     UiState state_;
@@ -171,6 +176,8 @@ private:
     InstallRequestFn installRequest_;
     InstallStatusFn installStatusText_;
     InstallCancelFn installCancel_;
+    InstallPauseFn installPause_;
+    InstallPauseFn installResume_;
     InstallAcknowledgeFn installAcknowledge_;
     InstallZipRecoveryFn installZipRecovery_;
     DeleteSavedZipFn deleteSavedZip_;
@@ -293,6 +300,7 @@ private:
     uint64_t installProgressCurrent_ = 0;
     uint64_t installProgressTotal_ = 0;
     uint64_t installProgressSpeed_ = 0;
+    bool installPauseSupported_ = false;
     // UI-only clock for indeterminate Promoter phases (elapsed, not guessed ETA).
     uint64_t installPhaseStartedUs_ = 0;
     std::string installProgressStage_;
