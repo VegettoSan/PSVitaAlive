@@ -4386,6 +4386,47 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
+    // Dedicated footer feedback form; finger drag scrolls the description
+    // while taps on the inputs reuse the Vita2D search keyboard.
+    if(reportConfirmVisible_) {
+        const int fx=(SCREEN_W-860)/2,fy=(SCREEN_H-508)/2;
+        if(td.reportNum>0) {
+            const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
+            if(!touchDown_) {
+                touchDown_=true;
+                touchStartX_=px;touchStartY_=py;touchLastY_=py;touchMoved_=false;
+            } else {
+                if(std::abs(px-touchStartX_)>14 || std::abs(py-touchStartY_)>14)
+                    touchMoved_=true;
+                if(touchMoved_ && hit(touchStartX_,touchStartY_,
+                                       fx+24,fy+274,812,153)) {
+                    feedbackScrollY_+=touchLastY_-py;
+                    clampFeedbackScroll();
+                }
+                touchLastY_=py;
+            }
+        } else if(touchDown_) {
+            const int px=touchStartX_,py=touchStartY_;
+            const bool moved=touchMoved_;
+            touchDown_=false;touchMoved_=false;
+            if(moved || feedbackSending_) return;
+            if(hit(px,py,fx+24,fy+116,175,36)) {
+                feedbackFocus_=0;feedbackSuggestion_=false;
+            } else if(hit(px,py,fx+209,fy+116,175,36)) {
+                feedbackFocus_=0;feedbackSuggestion_=true;
+            } else if(hit(px,py,fx+24,fy+187,812,47)) {
+                openFeedbackKeyboard(1);
+            } else if(hit(px,py,fx+24,fy+274,812,153)) {
+                openFeedbackKeyboard(2);
+            } else if(hit(px,py,fx+24,fy+447,380,43)) {
+                feedbackFocus_=3;sendManualFeedbackFromForm();
+            } else if(hit(px,py,fx+860-24-270,fy+447,270,43)) {
+                closeReportConfirm();
+            }
+        }
+        return;
+    }
+
     if (storageVisible_) {
         constexpr int w=856,h=500,viewportH=286;
         const int ox=(SCREEN_W-w)/2,oy=(SCREEN_H-h)/2;
@@ -5212,25 +5253,6 @@ void FullCatalogScreen::handleTouch() {
         if (hit(x, y, bxSend - 12, by - 12, bw + 24, bh + 24)) {
             closeDataRequestConfirm();
             trySendDataRequest();
-            return;
-        }
-        return; // consume other touches while modal is open
-    }
-
-    // Report confirmation modal touch
-    if (reportConfirmVisible_) {
-        const int mw = 560, mh = 260;
-        const int mx = (SCREEN_W - mw) / 2, my = (SCREEN_H - mh) / 2;
-        const int by = my + mh - 56, bh = 40, bw = 180, gap = 24;
-        const int bxCancel = mx + (mw - (bw * 2 + gap)) / 2;
-        const int bxReport = bxCancel + bw + gap;
-        if (hit(x, y, bxCancel - 12, by - 12, bw + 24, bh + 24)) {
-            closeReportConfirm();
-            return;
-        }
-        if (hit(x, y, bxReport - 12, by - 12, bw + 24, bh + 24)) {
-            closeReportConfirm();
-            trySendErrorReport("Manual report from UI", "User confirmed report from footer");
             return;
         }
         return; // consume other touches while modal is open
@@ -6409,6 +6431,10 @@ if(webQrVisible_){
 if (installAllPhase_ == InstallAllPhase::Summary && (pressed & SCE_CTRL_SELECT)) return;
 if(pressed&SCE_CTRL_SELECT){openSettings();return;}
 if(pressed&SCE_CTRL_START){
+        if(reportConfirmVisible_) {
+            showToast(::psvitaalive::L("FEEDBACK_CLOSE_FIRST"),2000);
+            return;
+        }
         // Finish Install All (including the reboot prompt) before leaving the client.
         if (installAllPhase_ == InstallAllPhase::Running ||
             installAllPhase_ == InstallAllPhase::Summary) {
@@ -6508,7 +6534,21 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         return;
-    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeReportConfirm();trySendErrorReport("Manual report from UI","User confirmed report from footer");return;}return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
+    }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){
+    if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}
+    if(feedbackSending_) return;
+    if(nav&SCE_CTRL_UP) feedbackFocus_=std::max(0,feedbackFocus_-1);
+    if(nav&SCE_CTRL_DOWN) feedbackFocus_=std::min(4,feedbackFocus_+1);
+    if(feedbackFocus_==0 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)))
+        feedbackSuggestion_=!!(nav&SCE_CTRL_RIGHT);
+    else if(feedbackFocus_==2) {
+        if(nav&SCE_CTRL_LEFT) feedbackScrollY_-=27;
+        if(nav&SCE_CTRL_RIGHT) feedbackScrollY_+=27;
+        clampFeedbackScroll();
+    }
+    if(pressed&SCE_CTRL_CROSS) activateFeedbackFocus();
+    return;
+}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
         if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
             installAllResolveRecovery(true);
