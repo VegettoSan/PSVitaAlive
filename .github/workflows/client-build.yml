@@ -126,7 +126,7 @@ jobs:
               "ZIP_SAVED_PARTS_META", "ZIP_SAVED_DELETE_FAILED", "ZIP_SAVED_DELETED",
               "ALL_SPACE_TITLE", "ALL_SPACE_EXPLANATION", "ALL_SPACE_READ_FAILED",
               "ALL_SPACE_REQUIRED", "ALL_SPACE_AVAILABLE", "ALL_SPACE_MISSING",
-              "ALL_SPACE_CLOSE",
+              "ALL_SPACE_CLOSE", "STORAGE_OPEN_HINT",
           )
           categories = ("NETWORK", "HTTP_MISSING", "HTTP_DENIED", "HTTP_BUSY",
                         "HTTP_SERVER", "TLS", "MEDIAFIRE", "SPACE", "STORAGE",
