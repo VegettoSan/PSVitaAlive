@@ -15,6 +15,7 @@ enum class ParallelArchiveOutcome {
     Segmented, // Verified ZIP/VPK ranges, ready for virtual extraction.
     RetrySerial,
     Cancelled,
+    Paused, // Safe range checkpoint retained for user testing.
     IoError
 };
 
