@@ -410,6 +410,10 @@ static void closeParts(CURLM* multi, std::array<Part, kParts>& parts) {
 
  } // namespace
 
+void discardParallelSavedRanges(const std::string& destination) {
+    clearPartFiles(destination, true);
+}
+
 uint64_t parallelSavedBytes(const std::string& destination) {
     RangeCheckpoint ck;
     if (!readCheckpoint(destination, ck)) return 0;
