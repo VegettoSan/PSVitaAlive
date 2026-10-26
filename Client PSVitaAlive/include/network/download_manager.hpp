@@ -50,6 +50,9 @@ struct DownloadJob {
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =
         std::make_shared<std::atomic<bool>>(false);
+    // Separate from cancel: a paused serial .part is kept for safe Range resume.
+    std::shared_ptr<std::atomic<bool>> pauseRequested =
+        std::make_shared<std::atomic<bool>>(false);
 
     int lastHttpStatus = 0;
     std::string lastError;
@@ -88,6 +91,9 @@ public:
     std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false, InstallSpaceMode spaceMode = InstallSpaceMode::DirectPackage);
     bool processQueue();
     void cancel(const std::string& jobId);
+    bool pause(const std::string& jobId);
+    /** Only call after the previous worker has finished. Requeues the SAME job. */
+    bool resume(const std::string& jobId);
     int recoverJobs();
 
     /** Remove final payload, metadata and the empty job directory. */
