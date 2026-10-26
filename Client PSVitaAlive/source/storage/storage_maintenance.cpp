@@ -154,7 +154,7 @@ void scanDeepStages(UsageSnapshot& snap,const char* root) {
 }
 } // namespace
 
-UsageSnapshot StorageMaintenance::scan() {
+UsageSnapshot StorageMaintenance::scan(bool includeReadOnlyCache) {
     UsageSnapshot snap;
     scanJobs(snap);
     scanTmp(snap);
@@ -164,13 +164,15 @@ UsageSnapshot StorageMaintenance::scan() {
     scanDeepStages(snap,"uma0:data");
     scanSaved(snap);
     // Display caches for transparency without offering to delete them.
-    snap.catalogBytes=measure("ux0:data/psvitaalive/cache/catalog");
-    snap.imageBytes=measure("ux0:data/psvitaalive/cache/images");
+    if (includeReadOnlyCache) {
+        snap.catalogBytes=measure("ux0:data/psvitaalive/cache/catalog");
+        snap.imageBytes=measure("ux0:data/psvitaalive/cache/images");
+    }
     return snap;
 }
 bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     // A fresh inventory checks both ownership and the exact set of known paths.
-    const UsageSnapshot fresh=scan();
+    const UsageSnapshot fresh=scan(false);
     const auto it=std::find_if(fresh.items.begin(),fresh.items.end(),
         [&](const UsageItem& item) {
             return item.path==selected.path && item.savedZip==selected.savedZip &&
@@ -187,7 +189,7 @@ bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     return ok;
 }
 uint32_t StorageMaintenance::cleanupTransient() {
-    const UsageSnapshot snap=scan();
+    const UsageSnapshot snap=scan(false);
     uint32_t removed=0;
     for(const auto& item:snap.items) {
         if(!item.savedZip && removeSelected(item)) ++removed;
