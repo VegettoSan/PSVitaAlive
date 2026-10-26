@@ -1,5 +1,6 @@
 #include "localization/localization.hpp"
 #include "network/download_manager.hpp"
+#include "network/parallel_archive_download.hpp"
 #include "network/startup_cleanup_policy.hpp"
 #include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
@@ -247,7 +248,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
         const int64_t sz = st.fileSize(job.temporaryPath);
         if (sz > 0) offset = static_cast<uint64_t>(sz);
     }
-    job.downloadedSize = offset;
+    // A paused 2/4-range download has multiple partial files. The first
+    // segment's size is NOT a whole-file serial resume offset.
+    const uint64_t savedParallel = parallelSavedBytes(job.temporaryPath);
+    if (savedParallel > 0) offset = 0; // let HttpClient validate the checkpoint
+    job.downloadedSize = savedParallel > 0 ? savedParallel : offset;
     job.state = DownloadState::Downloading;
     saveMetadata(job);
     activeJobId_ = job.id;
@@ -264,7 +269,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     bool diskSpaceHit = false;
     bool remoteTotalKnown = false;
     uint64_t headerCheckedTotal = 0;
-    uint64_t lastSaved = offset;
+    uint64_t lastSaved = job.downloadedSize;
     uint64_t lastSpaceCheck = 0;
     constexpr uint64_t kMetadataSaveStep = 8ULL * 1024ULL * 1024ULL;
     constexpr uint64_t kSpaceCheckStep = 32ULL * 1024ULL * 1024ULL;
@@ -284,8 +289,9 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 uint64_t freeB = 0, totalB = 0;
                 // HTTP 206 can reuse partial bytes; HTTP 200 after a
                 // rejected resume replaces them, so deduct *nothing* then.
-                const uint64_t alreadyOnDisk =
-                    p.downloaded == 0 ? p.absoluteDownloaded : offset;
+                const uint64_t alreadyOnDisk = savedParallel > 0
+                    ? std::max(savedParallel, p.absoluteDownloaded)
+                    : (p.downloaded == 0 ? p.absoluteDownloaded : offset);
                 const uint64_t needed = remainingInstallSpaceBytes(
                     p.total, alreadyOnDisk, job.spaceMode);
                 if (!StorageManager::queryUx0Space(freeB, totalB) || freeB < needed) {
@@ -476,7 +482,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ifRangeValidator,
             job.expectedSize,
             job.preferSegmentedZip,
-            true // pre-body size notification; no second HEAD/GET request
+            true, // pre-body size notification; no second HEAD/GET request
+            [&]() -> bool {
+                return job.pauseRequested->load(std::memory_order_acquire) &&
+                       !job.cancelRequested->load(std::memory_order_acquire);
+            }
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
@@ -536,10 +546,12 @@ bool DownloadManager::runJob(DownloadJob& job) {
         !job.cancelRequested->load(std::memory_order_acquire)) {
         // HttpClient has returned and flushed its serial buffer. Preserve the
         // actual file length (not an unflushed progress counter) for Range resume.
-        // Parallel transfers intentionally discard unfinished segments; the
-        // next attempt safely restarts at zero rather than mixing range files.
+        // Parallel saved bytes are counted across *all* verified-prefix files.
+        // For serial downloads, the single payload.part remains authoritative.
+        const uint64_t partBytes = parallelSavedBytes(job.temporaryPath);
         const int64_t bytes = st.fileSize(job.temporaryPath);
-        job.downloadedSize = bytes > 0 ? static_cast<uint64_t>(bytes) : 0;
+        job.downloadedSize = partBytes > 0 ? partBytes :
+            (bytes > 0 ? static_cast<uint64_t>(bytes) : 0);
         job.bytesPerSecond = 0;
         job.state = DownloadState::Paused;
         job.lastError.clear();
@@ -654,6 +666,8 @@ bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
         if (st.exists(job->temporaryPath + suffix)) ok = st.removeFile(job->temporaryPath + suffix) && ok;
         if (st.exists(job->finalPath + suffix)) ok = st.removeFile(job->finalPath + suffix) && ok;
     }
+    if (st.exists(job->temporaryPath + ".range.resume"))
+        ok = st.removeFile(job->temporaryPath + ".range.resume") && ok;
     if (st.exists(job->metadataPath)) ok = st.removeFile(job->metadataPath) && ok;
     const std::string jobDir = jobsRoot() + "/" + job->id;
     if (st.exists(jobDir) && st.isDirectory(jobDir)) ok = st.removeDirectory(jobDir) && ok;
