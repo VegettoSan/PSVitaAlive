@@ -2502,45 +2502,101 @@ void FullCatalogScreen::pollDataRequestWorker() {
 
 
 void FullCatalogScreen::drawReportConfirmOverlay() {
-    if (!reportConfirmVisible_ || !font_) return;
-    const unsigned BLACK = RGBA8(0, 0, 0, 255);
-    const unsigned RED = RGBA8(0xE0, 0x32, 0x32, 255);
-    const int w = 560, h = 260;
-    const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-    vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 160));
-    vita2d_draw_rectangle(x, y, w, h, PANEL);
-    vita2d_draw_rectangle(x, y, w, 3, RED);
-    vita2d_draw_rectangle(x, y + 3, 3, h - 6, RED);
-    vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
-    vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    if(!reportConfirmVisible_ || !font_) return;
+    const int w=860,h=508,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
+    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,195));
+    vita2d_draw_rectangle(x,y,w,h,PANEL);
+    vita2d_draw_rectangle(x,y,w,3,ACCENT);
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+42,ACCENT,1.10f,
+        ::psvitaalive::L("FEEDBACK_HEADING"));
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+76,TEXT,.78f,
+        ::psvitaalive::L("FEEDBACK_HELP_1"));
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+99,DIM,.73f,
+        ::psvitaalive::L("FEEDBACK_HELP_2"));
 
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 40, RED, 0.86f, ::psvitaalive::L(::psvitaalive::TextId::ReportTitle));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 78, WHITE, 0.80f, ::psvitaalive::L(::psvitaalive::TextId::ReportSubtitle));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 112, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::ReportBody1));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 138, TEXT, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::ReportBody2));
-
-    const int by = y + h - 56, bh = 40, bw = 180, gap = 24;
-    const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
-    const int bxReport = bxCancel + bw + gap;
-
-    // Cancel (outline)
-    vita2d_draw_rectangle(bxCancel, by, bw, bh, SURFACE2);
-    vita2d_draw_rectangle(bxCancel, by, bw, 1, BORDER);
-    vita2d_draw_rectangle(bxCancel, by + bh - 1, bw, 1, BORDER);
-    {
-        const char* lab = "O  Cancel";
-        const float sc = 0.62f;
-        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
-        ::psvitaalive::ui::uiDrawText(&font_, bxCancel + (bw - tw) / 2, by + 27, WHITE, sc, lab);
+    const char* types[]={::psvitaalive::L("FEEDBACK_PROBLEM"),
+                         ::psvitaalive::L("FEEDBACK_SUGGESTION")};
+    for(int i=0;i<2;++i) {
+        const int bx=x+24+i*185,by=y+116,bw=175,bh=36;
+        const bool selected=(feedbackSuggestion_==(i==1));
+        vita2d_draw_rectangle(bx,by,bw,bh,selected?ACCENT:SURFACE);
+        if(feedbackFocus_==0 && selected)
+            vita2d_draw_rectangle(bx,by,bw,2,WHITE);
+        const float sc=.80f;
+        const int tw=::psvitaalive::ui::uiTextWidth(&font_,sc,types[i]);
+        ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-tw)/2,by+25,
+            selected?BG:TEXT,sc,types[i]);
     }
-    // Report (red CTA)
-    vita2d_draw_rectangle(bxReport, by, bw, bh, RED);
-    {
-        const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnXReport);
-        const float sc = 0.74f;
-        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
-        ::psvitaalive::ui::uiDrawText(&font_, bxReport + (bw - tw) / 2, by + 27, WHITE, sc, lab);
+
+    char count[32];
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+178,WHITE,.83f,
+        ::psvitaalive::L("FEEDBACK_TITLE_LABEL"));
+    sceClibSnprintf(count,sizeof(count),"%u/64",(unsigned)feedbackTitle_.size());
+    ::psvitaalive::ui::uiDrawText(&font_,x+w-91,y+178,DIM,.72f,count);
+    const int fieldX=x+24,fieldW=w-48;
+    vita2d_draw_rectangle(fieldX,y+187,fieldW,47,
+        feedbackFocus_==1?ACCENT:BORDER);
+    vita2d_draw_rectangle(fieldX+2,y+189,fieldW-4,43,SURFACE2);
+    vita2d_set_clip_rectangle(fieldX+12,y+190,fieldX+fieldW-14,y+230);
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,y+218,
+        feedbackTitle_.empty()?DIM:WHITE,.84f,
+        feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
+                               feedbackTitle_.c_str());
+    vita2d_disable_clipping();
+
+    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+266,WHITE,.84f,
+        ::psvitaalive::L("FEEDBACK_BODY_LABEL"));
+    sceClibSnprintf(count,sizeof(count),"%u/700",(unsigned)feedbackBody_.size());
+    ::psvitaalive::ui::uiDrawText(&font_,x+w-104,y+266,DIM,.72f,count);
+    const int bx=x+24,by=y+274,bw=w-48,bh=153;
+    vita2d_draw_rectangle(bx,by,bw,bh,feedbackFocus_==2?ACCENT:BORDER);
+    vita2d_draw_rectangle(bx+2,by+2,bw-4,bh-4,SURFACE2);
+    const int clipTop=by+10,clipBot=by+bh-9;
+    vita2d_set_clip_rectangle(bx+13,clipTop,bx+bw-24,clipBot);
+    if(feedbackBody_.empty()) {
+        ::psvitaalive::ui::uiDrawText(&font_,bx+17,by+35,DIM,.78f,
+            ::psvitaalive::L("FEEDBACK_BODY_PLACEHOLDER"));
+    } else {
+        int ty=by+33-feedbackScrollY_;
+        for(const auto& line:feedbackWrapped_) {
+            if(ty>=clipTop-15 && ty<=clipBot+27)
+                ::psvitaalive::ui::uiDrawText(&font_,bx+17,ty,TEXT,.81f,line.c_str());
+            ty+=27;
+            if(ty>clipBot+35) break;
+        }
     }
+    vita2d_disable_clipping();
+    const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
+    if(contentH>118) {
+        const int trackX=bx+bw-13,trackY=by+9,trackH=bh-18;
+        const int thumbH=std::max(22,(trackH*118)/contentH);
+        vita2d_draw_rectangle(trackX,trackY,4,trackH,BORDER);
+        const int pos=(feedbackScrollY_*(trackH-thumbH))/std::max(1,contentH-118);
+        vita2d_draw_rectangle(trackX,trackY+pos,4,thumbH,ACCENT);
+    }
+    const int actionY=y+447,actionH=43;
+    const int sendX=x+24,sendW=380,cancelX=x+w-24-270,cancelW=270;
+    vita2d_draw_rectangle(sendX,actionY,sendW,actionH,
+        feedbackFocus_==3?ACCENT:SURFACE2);
+    vita2d_draw_rectangle(cancelX,actionY,cancelW,actionH,
+        feedbackFocus_==4?ACCENT:SURFACE2);
+    const char* sendText=::psvitaalive::L(feedbackSending_?
+        "FEEDBACK_SENDING":"FEEDBACK_SEND");
+    const char* cancelText=::psvitaalive::L("FEEDBACK_CANCEL");
+    float ss=.84f;
+    while(ss>.58f && ::psvitaalive::ui::uiTextWidth(&font_,ss,sendText)>sendW-20)
+        ss-=.03f;
+    float cs=.82f;
+    while(cs>.58f && ::psvitaalive::ui::uiTextWidth(&font_,cs,cancelText)>cancelW-20)
+        cs-=.03f;
+    ::psvitaalive::ui::uiDrawText(&font_,
+        sendX+(sendW-::psvitaalive::ui::uiTextWidth(&font_,ss,sendText))/2,
+        actionY+29,feedbackFocus_==3?BG:WHITE,ss,sendText);
+    ::psvitaalive::ui::uiDrawText(&font_,
+        cancelX+(cancelW-::psvitaalive::ui::uiTextWidth(&font_,cs,cancelText))/2,
+        actionY+29,feedbackFocus_==4?BG:WHITE,cs,cancelText);
+    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+h-8,DIM,.59f,
+        ::psvitaalive::L("FEEDBACK_NAV_HINT"));
 }
 
 int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
