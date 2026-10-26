@@ -39,34 +39,52 @@ std::vector<std::string> entries(const std::string& dir) {
     sceIoDclose(d);
     return v;
 }
-uint64_t measure(const std::string& root) {
+uint64_t measureTree(const std::string& path,unsigned depth,uint32_t& visited) {
+    if(depth>kMaxDepth || ++visited>200000) return 0;
     StorageManager st;
-    if(!st.exists(root)) return 0;
-    struct Node { std::string path; unsigned depth; };
-    std::vector<Node> stack{{root,0}};
-    uint64_t bytes=0;
-    uint32_t seen=0;
-    while(!stack.empty() && ++seen<200000) {
-        Node node=std::move(stack.back()); stack.pop_back();
-        if(!st.isDirectory(node.path)) {
-            const int64_t sz=st.fileSize(node.path);
-            if(sz>0) bytes+=static_cast<uint64_t>(sz);
-            continue;
-        }
-        if(node.depth>=kMaxDepth) continue;
-        for(const auto& n:entries(node.path)) stack.push_back({node.path+"/"+n,node.depth+1});
+    if(!st.isDirectory(path)) {
+        const int64_t sz=st.fileSize(path);
+        return sz>0?static_cast<uint64_t>(sz):0;
     }
+    SceUID d=sceIoDopen(path.c_str());
+    if(d<0) return 0;
+    uint64_t bytes=0;
+    SceIoDirent e{};
+    while(sceIoDread(d,&e)>0 && visited<200000) {
+        if(!safeName(e.d_name)) continue;
+        const uint64_t part=measureTree(path+"/"+e.d_name,depth+1,visited);
+        bytes=part>UINT64_MAX-bytes?UINT64_MAX:bytes+part;
+    }
+    sceIoDclose(d);
     return bytes;
+}
+uint64_t measure(const std::string& root) {
+    uint32_t visited=0;
+    return measureTree(root,0,visited);
 }
 bool eraseTree(const std::string& root,unsigned depth=0) {
     StorageManager st;
     if(!st.exists(root)) return true;
     if(!st.isDirectory(root)) return st.removeFile(root);
     if(depth>=kMaxDepth) return false;
-    bool ok=true;
-    for(const auto& name:entries(root))
-        if(!eraseTree(root+"/"+name,depth+1)) ok=false;
-    return ok && st.removeDirectory(root);
+    // Vita filesystem directory enumeration can skip an entry after a delete;
+    // rescan until empty, not merely the first 4096 file names.
+    for(unsigned pass=0;pass<20;pass++) {
+        const SceUID d=sceIoDopen(root.c_str());
+        if(d<0) return false;
+        SceIoDirent e{};
+        bool found=false, ok=true;
+        int rc=0;
+        while((rc=sceIoDread(d,&e))>0) {
+            if(!safeName(e.d_name)) continue;
+            found=true;
+            if(!eraseTree(root+"/"+e.d_name,depth+1)) ok=false;
+        }
+        sceIoDclose(d);
+        if(rc<0 || !ok) return false;
+        if(!found) return st.removeDirectory(root);
+    }
+    return false;
 }
 void add(UsageSnapshot& snap,const std::string& path,const std::string& label,bool saved,
          const std::vector<std::string>& paths={}) {
