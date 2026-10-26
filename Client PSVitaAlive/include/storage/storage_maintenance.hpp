@@ -32,6 +32,8 @@ public:
     static bool removeSelected(const UsageItem& selected);
     // Remove abandoned temporary work, never saved ZIPs or unknown user files.
     static uint32_t cleanupTransient();
+    // Only numeric PSVitaAlive-generated PSVA_ZIP_STAGE directories are eligible.
+    static bool removeOwnedZipStage(const std::string& path);
 };
 } // namespace storage
 } // namespace psvitaalive
