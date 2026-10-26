@@ -10206,8 +10206,13 @@ vita2d_draw_rectangle(cancelX, cancelY, cancelW, cancelH, SURFACE2);
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, 2, BORDER);
 vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
 {
-  const char* clab = ::psvitaalive::L(::psvitaalive::TextId::CircleCancelDownload);
-  const float csc = 0.88f;
+  const char* clab = showPause
+      ? ::psvitaalive::L("DOWNLOAD_CANCEL_BUTTON")
+      : ::psvitaalive::L(::psvitaalive::TextId::CircleCancelDownload);
+  float csc = 0.88f;
+  while (csc > 0.58f &&
+         ::psvitaalive::ui::uiTextWidth(&font_, csc, clab) > cancelW - 16)
+      csc -= 0.05f;
   const int ctw = ::psvitaalive::ui::uiTextWidth(&font_, csc, clab);
   ::psvitaalive::ui::uiDrawText(&font_, cancelX + (cancelW - ctw) / 2, cancelY + 34, WHITE, csc, clab);
 }
