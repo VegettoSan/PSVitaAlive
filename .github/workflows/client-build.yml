@@ -76,6 +76,13 @@ jobs:
             -o /tmp/psvitaalive-download-failure-policy-test
           /tmp/psvitaalive-download-failure-policy-test
 
+      - name: Verify ownership restrictions for storage cleanup
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_storage_cleanup_policy.cpp \
+            -o /tmp/psvitaalive-storage-policy-test
+          /tmp/psvitaalive-storage-policy-test
+
       - name: Test orphaned download startup cleanup policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
@@ -119,7 +126,10 @@ jobs:
               "ZIP_SAVED_PARTS_META", "ZIP_SAVED_DELETE_FAILED", "ZIP_SAVED_DELETED",
               "ALL_SPACE_TITLE", "ALL_SPACE_EXPLANATION", "ALL_SPACE_READ_FAILED",
               "ALL_SPACE_REQUIRED", "ALL_SPACE_AVAILABLE", "ALL_SPACE_MISSING",
-              "ALL_SPACE_CLOSE",
+              "ALL_SPACE_CLOSE", "STORAGE_OPEN_HINT",
+              "STORAGE_CLEAR_SECTION", "STORAGE_EMPTY", "STORAGE_PROTECTED",
+              "STORAGE_CLEAN_ALL", "STORAGE_CONFIRM_ALL",
+              "STORAGE_SELECT_HINT", "STORAGE_CONTROLS",
           )
           categories = ("NETWORK", "HTTP_MISSING", "HTTP_DENIED", "HTTP_BUSY",
                         "HTTP_SERVER", "TLS", "MEDIAFIRE", "SPACE", "STORAGE",

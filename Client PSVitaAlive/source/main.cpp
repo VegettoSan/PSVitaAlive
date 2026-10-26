@@ -16,6 +16,7 @@
 #include <vector>
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
+#include "storage/storage_maintenance.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/install_archive_policy.hpp"
 #include "ui/ui_font.hpp"
@@ -340,6 +341,7 @@ int main(){
         screen.openSearchKeyboard(current);
     });
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
+    screen.setStorageBusyCallback([&installer](){ return installer.busy(); });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
     screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep, std::string& savedPath){ const bool resolved=installer.resolveZipRecovery(keep, &savedPath); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
     screen.setDeleteSavedZipCallback([&installer, &screen](const std::string& appId, const std::string& titleId, const std::string& archivePath){
@@ -461,6 +463,10 @@ int main(){
                                  completed, total, message);
         screen.updateAndDraw();
     });
+    // PSVitaAlive-owned abandoned staging only; saved ZIPs remain untouched.
+    psvitaalive::storage::StorageMaintenance::cleanupTransient();
+    screen.requestUx0SpaceRefresh();
+
     screen.setCatalogLoading(true, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_LABEL"),
                              1, 1, ::psvitaalive::L("STARTUP_DOWNLOAD_CLEANUP_READY"));
     screen.updateAndDraw();

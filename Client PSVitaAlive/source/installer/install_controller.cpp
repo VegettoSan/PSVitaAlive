@@ -1428,6 +1428,10 @@ int InstallController::workerMain() {
             setState(InstallStatus::State::Failed, message.c_str());
             resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
             diagnostics::log("[Installer] plugin install failed: " + message);
+            // A failed plugin install must not retain the successfully downloaded
+            // binary inside downloads/jobs/ until the next application startup.
+            if (!activeJobId_.empty()) downloads_.cleanupCompletedJob(activeJobId_);
+            activeJobId_.clear();
             workerDone_.store(true, std::memory_order_release);
         };
 

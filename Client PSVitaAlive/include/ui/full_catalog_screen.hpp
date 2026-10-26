@@ -5,6 +5,7 @@
 #include "ui/search_keyboard.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "storage/storage_maintenance.hpp"
 #include "ui/install_failure_presentation.hpp"
 #include "update/update_checker.hpp"
 
@@ -68,6 +69,7 @@ public:
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
     void setInstallCancelCallback(InstallCancelFn callback);
+    void setStorageBusyCallback(std::function<bool()> callback) { storageInstallerBusy_ = std::move(callback); }
     void setInstallAcknowledgeCallback(InstallAcknowledgeFn callback);
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
     void setDeleteSavedZipCallback(DeleteSavedZipFn callback) { deleteSavedZip_ = callback; }
@@ -510,6 +512,36 @@ private:
     float settingsScrollY_ = 0.f; // adaptive list scroll (px)
     float settingsInfoScrollY_ = 0.f; // INFO panel text scroll (px)
     float settingsInfoMaxScroll_ = 0.f;
+
+    // Footer UX0 storage management: worker-owned scan/delete, never on render thread.
+    std::function<bool()> storageInstallerBusy_;
+    bool storageVisible_ = false;
+    bool storageConfirm_ = false;
+    int storagePendingAction_ = -1; // double-confirm the exact cleanup action
+    struct StorageDisplayRow {
+        // 0: temporaries, 1: saved ZIP, 2: catalog, 3: images, 4: file
+        int kind = 0;
+        int itemIndex = -1;
+    };
+    std::vector<StorageDisplayRow> storageRows_;
+    int storageFocus_ = 0; // index into storageRows_ (always includes four categories)
+    int storageScrollY_ = 0; // pixel scroll, shared by touch and controller
+    int storageAction_ = -1; // -1 scan, -2 all, -3 temp, -4 saved ZIP, >=0 file index
+    std::atomic<bool> storageWorkerDone_{false};
+    std::atomic<bool> storageWorkerOk_{false};
+    SceUID storageWorker_ = -1;
+    ::psvitaalive::storage::UsageSnapshot storageSnapshot_;
+    void openStorageMenu();
+    void startStorageOperation(int action);
+    void pollStorageOperation();
+    void rebuildStorageRows();
+    int storageContentHeight() const;
+    void clampStorageScroll();
+    void ensureStorageFocusVisible();
+    void executeStorageSelection();
+    void executeStorageAll();
+    void drawStorageOverlay();
+    static int storageWorkerEntry(SceSize args, void* argp);
 
     // Discord error report UI (webhook)
     bool reportConfirmVisible_ = false;

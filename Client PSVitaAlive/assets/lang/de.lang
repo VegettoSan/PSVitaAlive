@@ -656,3 +656,26 @@ ALL_SPACE_REQUIRED=Benötigt (mit Sicherheitsreserve)
 ALL_SPACE_AVAILABLE=Verfügbar auf ux0
 ALL_SPACE_MISSING=Zusätzlich benötigter Speicher
 ALL_SPACE_CLOSE=Schließen
+
+# Footer storage management (catalog/images/config are never deleted)
+STORAGE_OPEN_HINT=Speicher verwalten
+STORAGE_TITLE=Speicherverwaltung
+STORAGE_WORKING=Speicher wird geprüft / Dateien werden gelöscht...
+STORAGE_WAIT=Bitte PSVitaAlive geöffnet lassen.
+STORAGE_TOTAL=PSVitaAlive gesamt
+STORAGE_TEMP=Temporäre Dateien
+STORAGE_ZIPS=Gespeicherte ZIPs
+STORAGE_CATALOG_PROTECTED=Kataloge (geschützt)
+STORAGE_IMAGES_PROTECTED=Bilder (geschützt)
+STORAGE_SELECT_HINT=Bereich oder Datei wählen. Konfiguration geschützt.
+STORAGE_REMOVE_ALL=Alle freigegebenen Dateien löschen
+STORAGE_CONFIRM=Erneut X zum endgültigen Löschen; O abbrechen.
+STORAGE_CONTROLS=Hoch/Runter: wählen   X: löschen   Dreieck: alle   O: schließen
+STORAGE_BUSY=Zuerst Installation beenden.
+STORAGE_REMOVED=Dateien gelöscht. Speicher aktualisiert.
+STORAGE_REMOVE_FAILED=Nicht alle Dateien konnten gelöscht werden.
+STORAGE_CLEAR_SECTION=X: Diesen Bereich leeren
+STORAGE_EMPTY=Keine Dateien zum Löschen
+STORAGE_PROTECTED=Nur Informationen · Nicht löschbar
+STORAGE_CLEAN_ALL=Alles leeren
+STORAGE_CONFIRM_ALL=Inklusive ZIPs. X/△: bestätigen, O: abbrechen

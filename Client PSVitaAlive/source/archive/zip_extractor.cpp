@@ -4,6 +4,7 @@
 #include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
+#include "storage/storage_maintenance.hpp"
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
@@ -924,6 +925,13 @@ ZipResult ZipExtractor::extract(
 
     std::vector<StagedBranch> staged;
     std::string stagingBase;
+    struct OwnedStageCleanup {
+        std::string& path;
+        ~OwnedStageCleanup() {
+            if(!path.empty() && !::psvitaalive::storage::StorageMaintenance::removeOwnedZipStage(path))
+                diagnostics::log("[ZipExtractor] owned staging cleanup failed: "+path);
+        }
+    } ownedStageCleanup{stagingBase};
     auto findBranch = [&](const std::string& path) -> const StagedBranch* {
         for (const StagedBranch& branch : staged)
             if (withinBranch(path, branch.destination)) return &branch;
@@ -1059,6 +1067,10 @@ ZipResult ZipExtractor::extract(
 
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
+    // Track only files this extraction actually creates, never pre-existing
+    // user files. On failure reclaim successful early entries as well, without
+    // requiring a second full archive copy or a RAM-resident ZIP.
+    std::vector<std::string> newlyCreatedFiles;
 
     // Limit UI handoffs while retaining byte-level progress inside large
     // entries. Cancellation is still checked for every extraction chunk.
@@ -1185,6 +1197,8 @@ ZipResult ZipExtractor::extract(
             if (replacingExisting) ++existingFiles;
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         }
+        if (fd >= 0 && (definitelyNewFile || !replacingExisting))
+            newlyCreatedFiles.push_back(outPath);
         if (fd < 0) {
             zip_fclose(zf);
             char err[480];
@@ -1419,6 +1433,14 @@ ZipResult ZipExtractor::extract(
                              " (deep-child accessibility unverified)");
         }
     }
+    if (outcome != ZipResult::Ok) {
+        uint64_t removedFiles=0;
+        for(auto it=newlyCreatedFiles.rbegin();it!=newlyCreatedFiles.rend();++it) {
+            if(st.exists(*it) && st.removeFile(*it)) ++removedFiles;
+        }
+        diagnostics::log("[ZipExtractor] removed newly created output after failed extraction files="+
+            std::to_string(removedFiles));
+    }
     if (!staged.empty()) {
         if (outcome == ZipResult::Ok) {
             // Only known-empty staging parents are removed. Never recursively
@@ -1428,7 +1450,7 @@ ZipResult ZipExtractor::extract(
             st.removeDirectory(stagingBase);
             diagnostics::log("[ZipExtractor] staged folders moved; runtime file access remains unverified");
         } else {
-            diagnostics::log("[ZipExtractor] staging kept for investigation: " + stagingBase);
+            diagnostics::log("[ZipExtractor] temporary staging will be reclaimed after extraction failure: " + stagingBase);
         }
     }
     {
