@@ -198,9 +198,10 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
 
 bool DownloadManager::pause(const std::string& jobId) {
     DownloadJob* job = findJob(jobId);
-    if (!job || (job->state != DownloadState::Downloading &&
-                 job->state != DownloadState::Preparing) ||
-        job->cancelRequested->load(std::memory_order_acquire))
+    // InstallController owns the active-worker/state check. Do not read
+    // worker-written DownloadJob::state from the UI thread (data race).
+    if (!job || job->cancelRequested->load(std::memory_order_acquire) ||
+        job->pauseRequested->load(std::memory_order_acquire))
         return false;
     job->pauseRequested->store(true, std::memory_order_release);
     diagnostics::log("[DownloadManager] pause requested job=" + jobId);
