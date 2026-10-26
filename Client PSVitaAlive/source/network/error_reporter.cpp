@@ -564,6 +564,81 @@ std::string buildCopyableReportText(
 
 } // namespace
 
+// Manual feedback is deliberately a separate payload from automated diagnostic
+// reports: NO buildLogBlock(), log reads, app details or device identifiers.
+ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req) {
+    ErrorReportResult out;
+    const uint64_t cool=errorReportCooldownRemainingMs();
+    if(cool>0) {
+        char msg[64];
+        sceClibSnprintf(msg,sizeof(msg),"Wait %llu s",
+                        (unsigned long long)((cool+999)/1000ULL));
+        out.message=msg;
+        return out;
+    }
+    const auto valid=[](const std::string& s,size_t maxChars) {
+        size_t chars=0; bool nonblank=false;
+        for(unsigned char c:s) {
+            if((c&0xC0)!=0x80) ++chars;
+            if(c!=' ' && c!='\t' && c!='\r' && c!='\n') nonblank=true;
+        }
+        return nonblank && chars<=maxChars && s.size()<=maxChars*4;
+    };
+    if(!valid(req.title,64) || !valid(req.body,700)) {
+        out.message="Enter title and description";
+        return out;
+    }
+    const std::string ver=clientVersionString();
+    const std::string when=isoTimestampUtc();
+    const char* type=req.suggestion?"SUGGESTION":"PROBLEM REPORT";
+    const char* tag=req.suggestion?"#suggestion":"#user_report";
+    // No logging of users' freeform messages, either.
+    std::string payload;
+    payload.reserve(req.title.size()+req.body.size()+600);
+    payload+="{\"username\":\"PSVitaAlive Feedback\",";
+    payload+="\"allowed_mentions\":{\"parse\":[]},";
+    payload+="\"content\":\"";
+    payload+=jsonEscape(std::string("#feedback ")+tag);
+    payload+="\",\"embeds\":[{\"title\":\"";
+    payload+=jsonEscape(std::string(req.suggestion?"💡 ":"📝 ")+req.title);
+    payload+="\",\"description\":\"";
+    payload+=jsonEscape(req.body);
+    payload+="\",\"color\":";
+    payload+=req.suggestion?"3066993":"3447003";
+    payload+=",\"fields\":[{\"name\":\"Type\",\"value\":\"";
+    payload+=type;
+    payload+="\",\"inline\":true},{\"name\":\"Client version\",\"value\":\"";
+    payload+=jsonEscape(std::string("v")+ver);
+    payload+="\",\"inline\":true},{\"name\":\"Submitted (UTC)\",\"value\":\"";
+    payload+=jsonEscape(when);
+    payload+="\",\"inline\":false}],\"footer\":{\"text\":\"PSVitaAlive · user feedback · no logs\"}";
+    if(when.size()>10 && when.find('T')!=std::string::npos) {
+        payload+=",\"timestamp\":\"";
+        payload+=jsonEscape(when);
+        payload+="\"";
+    }
+    payload+="}]}";
+    HttpClient http;
+    if(http.init()!=HttpResult::Ok) {
+        out.message="HTTP init failed";
+        return out;
+    }
+    const HttpResult hr=http.postJson(kDiscordWebhookUrl,payload);
+    const int code=http.lastStatusCode();
+    const std::string httpError=http.lastError();
+    http.shutdown();
+    if(hr==HttpResult::Ok || code==200 || code==204) {
+        g_lastReportMs=sceKernelGetProcessTimeWide()/1000ULL;
+        out.ok=true;
+        out.message="Feedback sent";
+        diagnostics::log("[Feedback] user message sent without logs");
+    } else {
+        out.message=httpError.empty()?"Send failed":truncate(httpError,40);
+        diagnostics::log("[Feedback] send failed status="+std::to_string(code));
+    }
+    return out;
+}
+
 uint64_t errorReportCooldownRemainingMs() {
     if (g_lastReportMs == 0) return 0;
     const uint64_t now = sceKernelGetProcessTimeWide() / 1000ULL;
