@@ -2228,13 +2228,101 @@ void FullCatalogScreen::drawReportChip() {
 
 
 void FullCatalogScreen::openReportConfirm() {
-    if (reportUiState_ == 1 || reportBusy_.load()) return;
-    if (newsVisible_ || themeSetupVisible_) return;
-    reportConfirmVisible_ = true;
+    if(reportUiState_==1 || reportBusy_.load() || reportThread_>=0 ||
+       reportConfirmVisible_ || keyboard_.active()) return;
+    if(newsVisible_ || themeSetupVisible_ || installProgressActive_ ||
+       catalogLoading_ || storageVisible_ || dataRequestConfirmVisible_ ||
+       installAllPhase_!=InstallAllPhase::Hidden || isTransitioning()) return;
+    feedbackTitle_.clear();
+    feedbackBody_.clear();
+    feedbackWrapped_.clear();
+    feedbackSuggestion_=false;
+    feedbackSending_=false;
+    feedbackFocus_=1;
+    feedbackKeyboardField_=0;
+    feedbackScrollY_=0;
+    touchDown_=false;
+    reportConfirmVisible_=true;
 }
-
 void FullCatalogScreen::closeReportConfirm() {
-    reportConfirmVisible_ = false;
+    // Never discard an in-flight message; let the normal worker finish.
+    if(feedbackSending_) return;
+    reportConfirmVisible_=false;
+    feedbackTitle_.clear();
+    feedbackBody_.clear();
+    feedbackWrapped_.clear();
+    feedbackScrollY_=0;
+    feedbackKeyboardField_=0;
+    touchDown_=false;
+}
+void FullCatalogScreen::clampFeedbackScroll() {
+    const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
+    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,118-contentH)*-1));
+}
+void FullCatalogScreen::refreshFeedbackWrap() {
+    feedbackWrapped_=wrapTextToWidth(&font_,.81f,feedbackBody_,758);
+    clampFeedbackScroll();
+}
+void FullCatalogScreen::openFeedbackKeyboard(int field) {
+    if(!reportConfirmVisible_ || feedbackSending_ || keyboard_.active()) return;
+    const bool title=field==1;
+    if(keyboard_.open(title?feedbackTitle_:feedbackBody_,
+                      ::psvitaalive::L(title?"FEEDBACK_TITLE_KEYBOARD":"FEEDBACK_BODY_KEYBOARD"),
+                      title?64:700)) {
+        feedbackKeyboardField_=field;
+        feedbackFocus_=field;
+    }
+}
+void FullCatalogScreen::sendManualFeedbackFromForm() {
+    if(!reportConfirmVisible_ || feedbackSending_ || reportBusy_.load() ||
+       reportThread_>=0) return;
+    const auto nonblank=[](const std::string& v) {
+        return v.find_first_not_of(" \t\r\n")!=std::string::npos;
+    };
+    if(!nonblank(feedbackTitle_) || !nonblank(feedbackBody_)) {
+        showToast(::psvitaalive::L("FEEDBACK_FIELDS_REQUIRED"),2800);
+        return;
+    }
+    const uint64_t cool=::psvitaalive::errorReportCooldownRemainingMs();
+    if(cool>0) {
+        showToast(::psvitaalive::L("FEEDBACK_COOLDOWN"),2400);
+        return;
+    }
+    feedbackSending_=true;
+    reportBusy_.store(true);
+    reportDone_.store(false);
+    reportOk_.store(false);
+    reportUiState_=1;
+    reportResultMsg_[0]=0;
+    reportThread_=sceKernelCreateThread("PSVA_Feedback",reportWorkerEntry,
+                                       0x10000100,0x10000,0,0,nullptr);
+    if(reportThread_<0) {
+        feedbackSending_=false;
+        reportBusy_.store(false);
+        reportUiState_=3;
+        showToast(::psvitaalive::L("FEEDBACK_SEND_FAILED"),2400);
+        return;
+    }
+    FullCatalogScreen* self=this;
+    if(sceKernelStartThread(reportThread_,sizeof(self),&self)<0) {
+        sceKernelDeleteThread(reportThread_);
+        reportThread_=-1;
+        feedbackSending_=false;
+        reportBusy_.store(false);
+        reportUiState_=3;
+        showToast(::psvitaalive::L("FEEDBACK_SEND_FAILED"),2400);
+    }
+}
+void FullCatalogScreen::activateFeedbackFocus() {
+    if(feedbackSending_) return;
+    switch(feedbackFocus_) {
+    case 0: feedbackSuggestion_=!feedbackSuggestion_; break;
+    case 1: openFeedbackKeyboard(1); break;
+    case 2: openFeedbackKeyboard(2); break;
+    case 3: sendManualFeedbackFromForm(); break;
+    case 4: closeReportConfirm(); break;
+    default:break;
+    }
 }
 
 
