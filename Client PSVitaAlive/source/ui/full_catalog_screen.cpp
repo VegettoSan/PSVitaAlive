@@ -3131,7 +3131,7 @@ void FullCatalogScreen::executeStorageSelection() {
     startStorageOperation(storageFocus_ == 0 ? -2 : storageFocus_ - 1);
 }
 void FullCatalogScreen::drawStorageOverlay() {
-    if (!storageVisible_ || !font_) return;
+    if (!storageVisible_) return;
     const int w=856,h=500,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
     vita2d_draw_rectangle(x,y,w,h,PANEL);
