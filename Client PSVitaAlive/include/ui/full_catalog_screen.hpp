@@ -560,7 +560,11 @@ private:
     char reportResultMsg_[64] = {};
     SceUID reportThread_ = -1;
     static int reportWorkerEntry(SceSize args, void* argp);
-    void trySendErrorReport(const std::string& title, const std::string& context);
+    struct ReportTargetOverrides {
+        std::string appName, titleId, version, fileName;
+    };
+    void trySendErrorReport(const std::string& title, const std::string& context,
+                            const ReportTargetOverrides* target = nullptr);
     void pollReportWorker();
     void drawReportChip();
     void drawReportConfirmOverlay();
@@ -630,6 +634,9 @@ private:
     struct InstallAllResult {
         std::string name;
         std::string detail;
+        std::string failureReason; // never overwritten by ZIP keep/delete decision
+        std::string fileName;      // failing stage's file, not current catalog selection
+        bool reported = false;
         std::string savedZipPath; // validated persistent manual ZIP path (not displayed message)
         InstallAllResultState state;
         bool autoKept = false;
@@ -640,11 +647,18 @@ private:
     std::vector<InstallAllResult> installAllResults_;
     std::vector<size_t> installAllQueueResultIndices_;
     int installAllSummarySelected_ = 0;
+    int installAllReportSendingIndex_ = -1;
+    uint32_t installAllReportGeneration_ = 0;
+    uint32_t installAllReportSendingGeneration_ = 0;
+    std::string installAllReportAppName_;
+    std::string installAllReportAppVersion_;
     bool installAllSummaryDeleteConfirm_ = false;
     int installAllSummaryDeleteFocus_ = 1; // 0 Delete ZIP, 1 Cancel (safe default)
     std::string installAllReportAppId_;
     std::string installAllReportTitleId_;
     bool installAllFinishedToast_ = false;
+    bool canReportInstallAllResult(int index) const;
+    void sendInstallAllResultReport(int index);
 
     // Self-update (GitHub Releases → in-place extract to ux0:app/TITLEID)
     ::psvitaalive::UpdateChecker::Result selfUpdateInfo_{};
