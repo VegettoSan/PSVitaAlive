@@ -1837,7 +1837,8 @@ HttpResult HttpClient::downloadToFile(
             (fastResumeServer_.compare(0, 7, "http://") == 0
                 ? resumeEdgeProbe.effectiveUrl.compare(0, 7, "http://") == 0
                 : resumeEdgeProbe.effectiveUrl.compare(0, 8, "https://") == 0)) {
-            activeUrl = fastResumeServer_;
+            // Keep activeUrl on the canonical HTTPS fallback. Only the
+            // validated parallel ranges use the cached direct storage edge.
             resumeEdgeVerified = true;
             httpDiagnostic("[HTTP] fast resume edge accepted after fresh 206 probe; full selector skipped");
         } else {
