@@ -4642,9 +4642,10 @@ void FullCatalogScreen::handleTouch() {
     if (pluginRebootModal_) {
         if (td.reportNum <= 0) {
             if (touchDown_ && !touchMoved_) {
-                const int w = 720, h = 320;
+                // Must match drawPluginRebootOverlay() exactly.
+                const int w = 820, h = 408;
                 const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
-                const int bx = ox + 28, by = oy + h - 72, bw = w - 56, bh = 56;
+                const int bx = ox + 28, by = oy + h - 84, bw = w - 56, bh = 54;
                 if (hit(touchStartX_, touchStartY_, bx, by, bw, bh)) {
                     diagnostics::log("[UI] Plugin reboot modal: soft reset (touch release)");
                     scePowerRequestColdReset();
@@ -9487,10 +9488,21 @@ void FullCatalogScreen::drawInstallAllSummary() {
             chosenKept?WHITE:DIM,.80f,deleteLab);
     }
     if(installAllPluginInstalled_) {
-        ::psvitaalive::ui::uiDrawText(&font_,x+27,y+412,WHITE,.77f,
-            ::psvitaalive::L("ALL_REPORT_REBOOT_1"));
-        ::psvitaalive::ui::uiDrawText(&font_,x+27,y+434,DIM,.72f,
-            ::psvitaalive::L("ALL_REPORT_REBOOT_2"));
+        // With limited space below three result rows and optional ZIP actions,
+        // reuse the existing two-line summary area for reboot AND L recovery.
+        // The Restart button and its gamepad/touch hitboxes stay fixed.
+        vita2d_draw_rectangle(x+22,y+397,w-44,45,SURFACE);
+        vita2d_draw_rectangle(x+22,y+397,4,45,ACCENT);
+        auto drawSummaryLine = [&](int baseline, unsigned color, float scale,
+                                   const char* value) {
+            const int maxWidth = w - 70;
+            while (scale > 0.60f &&
+                   ::psvitaalive::ui::uiTextWidth(&font_, scale, value) > maxWidth)
+                scale -= 0.02f;
+            ::psvitaalive::ui::uiDrawText(&font_,x+35,baseline,color,scale,value);
+        };
+        drawSummaryLine(y+415,WHITE,.74f,::psvitaalive::L("ALL_REPORT_REBOOT_1"));
+        drawSummaryLine(y+438,ACCENT,.74f,::psvitaalive::L("ALL_REPORT_REBOOT_2"));
     } else {
         ::psvitaalive::ui::uiDrawText(&font_,x+27,y+417,TEXT,.78f,
             ::psvitaalive::L("ALL_REPORT_SELECT_REPORT_HINT"));
@@ -10785,38 +10797,53 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
 
 void FullCatalogScreen::drawPluginRebootOverlay() {
     if (!pluginRebootModal_) return;
-    // Dim full screen
+    // Shared by the individual plugin path and the essential-plugin queue.
+    // Keep the touch hitbox in handleTouch() in sync with this panel.
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 200));
-    const int w = 720, h = 320;
+    const int w = 820, h = 408;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
     vita2d_draw_rectangle(x, y, w, h, SURFACE);
     vita2d_draw_rectangle(x, y, w, 4, ACCENT);
     vita2d_draw_rectangle(x, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
     vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 42, WHITE, 0.92f,
-        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootTitle));
-    const char* lines[] = {
-        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine1),
-        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine2),
-        "",
-        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine3),
-        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine4),
+
+    // Fit each translated line within the console's 960px display;
+    // the dialog is infrequent, so no per-frame global caches are needed.
+    auto drawFitted = [&](int tx, int ty, unsigned color, float scale,
+                          const char* value, int maxWidth) {
+        if (!value) return;
+        while (scale > 0.60f &&
+               ::psvitaalive::ui::uiTextWidth(&font_, scale, value) > maxWidth)
+            scale -= 0.02f;
+        ::psvitaalive::ui::uiDrawText(&font_, tx, ty, color, scale, value);
     };
-    int ty = y + 78;
-    for (const char* ln : lines) {
-        ::psvitaalive::ui::uiDrawText(&font_, x + 28, ty, TEXT, 0.68f, ln);
-        ty += 26;
-    }
-    const int bw = w - 56, bh = 56;
-    const int bx = x + 28, by = y + h - 72;
+    drawFitted(x + 28, y + 45, WHITE, 1.00f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootTitle), w - 56);
+    drawFitted(x + 28, y + 91, TEXT, 0.81f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine1), w - 56);
+    drawFitted(x + 28, y + 123, TEXT, 0.81f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine2), w - 56);
+
+    // Recovery instructions must remain obvious before the user presses Restart.
+    vita2d_draw_rectangle(x + 24, y + 148, w - 48, 128, SURFACE2);
+    vita2d_draw_rectangle(x + 24, y + 148, 4, 128, ACCENT);
+    drawFitted(x + 42, y + 179, ACCENT, 0.85f,
+        ::psvitaalive::L("PLUGIN_REBOOT_SAFETY_TITLE"), w - 84);
+    drawFitted(x + 42, y + 213, WHITE, 0.76f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine3), w - 84);
+    drawFitted(x + 42, y + 245, TEXT, 0.76f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine4), w - 84);
+
+    const int bw = w - 56, bh = 54;
+    const int bx = x + 28, by = y + h - 84;
     vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
     const char* lab = ::psvitaalive::L(::psvitaalive::TextId::PluginRebootButton);
     const float sc = 0.88f;
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
-    ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 38, BG, sc, lab);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 18, DIM, 0.55f,
-        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter));
+    ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 36, BG, sc, lab);
+    drawFitted(x + 28, y + h - 15, DIM, 0.55f,
+        ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter), w - 56);
 }
 
 void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
