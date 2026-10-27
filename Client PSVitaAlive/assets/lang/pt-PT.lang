@@ -710,3 +710,4 @@ NET_LINK_DISCONNECTED=Wi-Fi desligado ou sem ligação. Ativa-o e liga-te a uma 
 NET_LINK_CONNECTING=A estabelecer ligação à rede. Tenta novamente quando o Wi-Fi estiver pronto.
 NET_PAUSED_DISCONNECTED=Transferência guardada. Wi-Fi desligado: volta a ligar e retoma.
 NET_PAUSED_SOURCE_UNREACHABLE=Transferência guardada. Há rede, mas a fonte não responde. Verifica a internet e retoma.
+NET_CONNECTED_SOURCE_UNREACHABLE=A consola está ligada à rede, mas não foi possível aceder à Internet ou à fonte de transferência.
