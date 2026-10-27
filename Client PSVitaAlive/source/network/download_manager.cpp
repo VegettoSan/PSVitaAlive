@@ -536,15 +536,14 @@ bool DownloadManager::runJob(DownloadJob& job) {
             job.pauseRequested->store(true, std::memory_order_release);
             diagnostics::log("[DownloadManager] network interrupted; validated range checkpoint retained");
         }
-        // Terminal 404/410 is a missing file, NOT an Archive.org outage.
-        // A service warning requires repeated no-response failures (HTTP 0),
-        // or an exhausted server-side 5xx response with no downloaded bytes.
-        // Existing 404 handling still skips redundant outer retries.
+        // DNS/connect failure with HTTP 0 is NOT evidence that a provider is
+        // down: a disconnected router or unavailable internet looks identical.
+        // Only an actual server-side 5xx may justify the source warning.
+        // Existing 404/410 handling still skips redundant outer retries.
         const int serviceHttpStatus = http_.lastStatusCode();
-        job.sourceUnavailable = isArchiveUrl && (
-            (http_.lastSourceUnavailable() && serviceHttpStatus == 0) ||
-            (serviceHttpStatus >= 500 && serviceHttpStatus <= 599 &&
-             hr != HttpResult::Ok && job.downloadedSize == 0));
+        job.sourceUnavailable = isArchiveUrl &&
+            serviceHttpStatus >= 500 && serviceHttpStatus <= 599 &&
+            hr != HttpResult::Ok && job.downloadedSize == 0;
         if (job.sourceUnavailable)
             diagnostics::log("[DownloadManager] Archive.org service connection issue classified");
         if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
