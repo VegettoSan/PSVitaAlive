@@ -177,22 +177,6 @@ std::string uniqueRecoveryPath(StorageManager& st, const std::string& dir, const
 
 namespace {
 
-/** True when Wi-Fi/Ethernet is fully connected. Fail-open if NetCtl unavailable. */
-bool networkIsConnected() {
-    int state = 0;
-    // VitaSDK: sceNetCtlInetGetState + SCE_NETCTL_STATE_*
-    int r = sceNetCtlInetGetState(&state);
-    if (r < 0) {
-        // Not initialized yet — try init once (safe if already inited elsewhere).
-        sceNetCtlInit();
-        r = sceNetCtlInetGetState(&state);
-    }
-    if (r < 0) {
-        // Unknown: do not block downloads on emulator/edge cases.
-        return true;
-    }
-    return state == SCE_NETCTL_STATE_CONNECTED;
-}
 
 } // namespace
 
@@ -820,7 +804,7 @@ bool InstallController::requestInstall(
     }
 
     // Downloads need network; extraction/install of an already-downloaded file does not.
-    if (!networkIsConnected()) {
+    if (const char* offline = downloadPreflightStatusKey(queryLinkConnectivity())) {
         setFileName(fileName.c_str());
         setStage("Network");
         setInstallPath("");
@@ -830,7 +814,7 @@ bool InstallController::requestInstall(
         total_.store(expectedBytes);
         speed_.store(0);
         resultShownAtMs_.store(0);
-        setState(InstallStatus::State::Failed, ::psvitaalive::L("NET_LINK_DISCONNECTED"));
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(offline));
         diagnostics::log("[Installer] blocked: no network connection before download");
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         return true; // accepted as a finished failed request so UI shows the modal
