@@ -704,3 +704,9 @@ FEEDBACK_FIELDS_REQUIRED=Saisissez un titre et une description.
 FEEDBACK_COOLDOWN=Attendez avant d'envoyer un autre message.
 FEEDBACK_SEND_FAILED=Impossible de démarrer l'envoi.
 FEEDBACK_CLOSE_FIRST=Fermez le rapport avant de quitter.
+
+# Offline link / safe recovery messages
+NET_LINK_DISCONNECTED=Wi-Fi désactivé ou déconnecté. Activez-le et connectez-vous à un réseau avant de télécharger.
+NET_LINK_CONNECTING=Connexion au réseau en cours. Réessayez une fois le Wi-Fi prêt.
+NET_PAUSED_DISCONNECTED=Téléchargement sauvegardé. Reconnectez le Wi-Fi, puis touchez Reprendre.
+NET_PAUSED_SOURCE_UNREACHABLE=Téléchargement sauvegardé. Réseau présent, mais source injoignable. Vérifiez internet et reprenez.
