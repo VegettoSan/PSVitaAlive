@@ -783,8 +783,14 @@ ParallelArchiveOutcome downloadArchiveRanges(
                 keepZipParts, shouldPause, resourceIdentity,
                 captureEtag, captureModified, retryIndex + 1);
         }
+        if (saved) {
+            diagnostics::log("[HTTP] parallel network retries exhausted; valid checkpoint preserved for reconnection");
+            return ParallelArchiveOutcome::NetworkInterrupted;
+        }
+        // A validator/range mismatch makes reuse unsafe; preserve the legacy
+        // clean serial fallback instead of stitching inconsistent bytes.
         clearPartFiles(destination, true);
-        diagnostics::log("[HTTP] parallel ranges exhausted; safe serial fallback");
+        diagnostics::log("[HTTP] parallel ranges exhausted without safe checkpoint; serial fallback");
         return ParallelArchiveOutcome::RetrySerial;
     }
     // Completed range files no longer need the checkpoint.
