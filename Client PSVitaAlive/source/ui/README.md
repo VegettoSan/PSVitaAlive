@@ -162,6 +162,17 @@ This prevents localized labels such as `ACTUALIZACIÓN`, `AGGIORNAMENTO` or `О�
 
 Update-state semantics, receipt compatibility and Vita `APP_VER` normalization are documented in [`../../../docs/UPDATE_DETECTION.md`](../../../docs/UPDATE_DETECTION.md).
 
+## Recuperación de arranque tras instalar plugins (27 octubre 2026)
+
+La instrucción de recuperación con **L** se muestra antes de reiniciar en los dos flujos:
+
+- **Instalación individual (y cola de esenciales):** la ventana existente `drawPluginRebootOverlay()` es ahora de 820 × 408, con un bloque destacado que explica qué hacer si la PS Vita no inicia o entra en bucle. Mantener **L** al encender (o al iniciar h-encore, según configuración) omite temporalmente los plugins taiHEN. No se modificó el reinicio por `scePowerRequestColdReset()` ni el bloqueo de navegación.
+- **Install All:** `drawInstallAllSummary()` muestra «reinicio requerido» y, justo antes del botón fijo, una línea breve de recuperación con **L**, solo si `installAllPluginInstalled_` es verdadero. La zona de resultados, ZIP guardados, botones de informe y pulsación de reinicio mantienen posiciones y hitboxes.
+- Las instrucciones de la ventana individual son `PLUGIN_REBOOT_SAFETY_TITLE` y `PLUGIN_REBOOT_LINE3/4`; Install All utiliza `ALL_REPORT_REBOOT_2`. Están localizadas en los ocho `.lang`. La escala se adapta al ancho disponible sin crear modal ni scroll adicional.
+- El gesto **L** desactiva la carga de plugins de forma temporal: no borra archivos, ni modifica automáticamente `tai/config.txt`. Si el sistema inicia así, revisar los plugins añadidos.
+
+Fuente: [AutoPlugin II, advertencia de arranque](https://github.com/ONElua/AutoPlugin2/blob/master/AUTOPLUG2/lang/ENGLISH_US.lua) y [Vita Hacks Guide, pantalla negra al iniciar](https://vita.hacks.guide/troubleshooting). Validar la pantalla en PS Vita real y comprobar que no hay textos cortados en idiomas/fuentes distintos. La compilación en GitHub Actions no sustituye esa prueba.
+
 ## Plugin UI
 
 ## Avisos de plugins del catálogo (2026-10-27)
