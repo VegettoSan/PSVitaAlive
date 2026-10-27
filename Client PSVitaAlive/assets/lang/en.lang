@@ -746,3 +746,4 @@ NET_LINK_DISCONNECTED=Wi-Fi is off or not connected. Turn it on and connect to a
 NET_LINK_CONNECTING=Connecting to the network. Please retry when Wi-Fi is ready.
 NET_PAUSED_DISCONNECTED=Download saved. Wi-Fi disconnected: connect again, then tap Resume.
 NET_PAUSED_SOURCE_UNREACHABLE=Download saved. Network is connected, but the download source did not respond. Check internet access and tap Resume.
+NET_CONNECTED_SOURCE_UNREACHABLE=Connected to a network, but Internet access or this download source could not be reached.
