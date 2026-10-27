@@ -1,6 +1,7 @@
 #pragma once
 
 #include <psp2/net/netctl.h>
+#include <atomic>
 
 namespace psvitaalive {
 
@@ -18,8 +19,11 @@ inline LinkConnectivity queryLinkConnectivity() {
     int state = SCE_NETCTL_STATE_DISCONNECTED;
     int result = sceNetCtlInetGetState(&state);
     if (result < 0) {
-        // NetCtl can be uninitialized on early startup or in emulators.
-        sceNetCtlInit();
+        // NetCtl might not have been initialized yet. Attempt one initialization
+        // per process, never every 500ms from the libcurl cancellation callback.
+        static std::atomic<bool> initAttempted{false};
+        if (!initAttempted.exchange(true, std::memory_order_acq_rel))
+            sceNetCtlInit();
         result = sceNetCtlInetGetState(&state);
     }
     if (result < 0) return LinkConnectivity::Unknown;
