@@ -29,6 +29,7 @@ struct HttpProgress {
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
 using HttpCancelFn = std::function<bool()>;
+using HttpStatusFn = std::function<void(const char*)>; // localized key emitted during slow probes
 
 class HttpClient {
 public:
@@ -53,7 +54,8 @@ public:
         uint64_t archiveSelectionSizeHint = 0, // threshold hint only; remote headers remain authoritative
         bool keepZipParts = false, // opt-in for direct ZIP/VPK extraction
         bool checkSizeAtHeaders = false, // notify progress before payload writes
-        HttpCancelFn shouldPause = nullptr // used only to preserve range checkpoints
+        HttpCancelFn shouldPause = nullptr, // used only to preserve range checkpoints
+        HttpStatusFn onStatus = nullptr // intermediate connection / recovery phase
     );
 
     /**
@@ -104,6 +106,12 @@ private:
     std::string lastError_;
     std::string lastEtag_;
     std::string lastModified_;
+    // Ephemeral per-job Archive.org storage edge. Never persisted and only
+    // reused after a fresh range probe of the same URL/size/checkpoint.
+    std::string fastResumeSourceUrl_;
+    std::string fastResumeDestination_;
+    std::string fastResumeServer_;
+    uint64_t fastResumeSize_ = 0;
 
     int tplHttp_ = -1;
     int tplSsl_ = -1;
