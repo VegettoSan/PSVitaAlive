@@ -6431,6 +6431,8 @@ void FullCatalogScreen::handleInput(){
         const uint32_t direction = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevPluginAnalog);
         prevPluginButtons = pad.buttons;
         prevPluginAnalog = analog;
+        if (direction & SCE_CTRL_UP) pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+        if (direction & SCE_CTRL_DOWN) pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
         if (direction & SCE_CTRL_LEFT) pluginChoiceFocus_ = 0;
         if (direction & SCE_CTRL_RIGHT) pluginChoiceFocus_ = 1;
         if (pressed & SCE_CTRL_CIRCLE) resolveIndividualPluginChoice(false);
@@ -8755,6 +8757,7 @@ void FullCatalogScreen::installAllAdvancePick() {
         const CatalogLink& first = item.linkDetails[installAllPluginCandidates_[0]];
         installAllFocus_ = installAllPluginCandidateInstalled_[0] ? 1
             : (first.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
+        refreshPluginChoiceConflicts(first);
         diagnostics::log("[UI] Install All plugin selection: " + std::to_string(installAllPluginCandidates_.size()) + " candidate(s)");
         return;
     }
@@ -8788,6 +8791,7 @@ void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
     ++installAllPluginPickIndex_;
     if (installAllPluginPickIndex_ < installAllPluginCandidates_.size()) {
         const CatalogLink& next = item.linkDetails[installAllPluginCandidates_[installAllPluginPickIndex_]];
+        refreshPluginChoiceConflicts(next);
         installAllFocus_ = (installAllPluginPickIndex_ < installAllPluginCandidateInstalled_.size() &&
                             installAllPluginCandidateInstalled_[installAllPluginPickIndex_]) ? 1
             : (next.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
