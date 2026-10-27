@@ -77,6 +77,8 @@ Si aparece un catálogo declarativo futuro, deberá validarse y entregarse por e
 - [ ] Probar en PS Vita real: solo `kuio`; ambos `kuio`/`v-kaio`; CoreUnlocker antiguo; ningún plugin; línea comentada; fichero ausente; nombre en distinta capitalización; instalador individual; Install All; reinstalación; modalidades táctil y cruceta; pantalla a 960 × 544; ocho idiomas.
 - [ ] Confirmar que no hay superposición en fuentes alternativas de PS Vita y que el contenido no ejecuta acciones al arrastrar.
 
+**Investigación posterior (27-10-2026):** se identificó que el workflow de CI sustituía OpenSSL 1.1.1 de la imagen VitaSDK por OpenSSL 1.0.2, provocando un fallo de enlace en libcurl independiente de estos cambios de UI. Se corrigió el workflow en `main` con [commit `d30c9a1`](https://github.com/VegettoSan/PSVitaAlive/commit/d30c9a1d7bdb5357db57a61aaa68ab9e0510afae). Ver [diagnóstico y validación](VITASDK_OPENSSL_LINKER_FIX_20261027.md). Hasta un CI verde nuevo, **no** considerar comprobado el VPK final.
+
 El resultado del workflow no demuestra por sí mismo que haya fallo en esta funcionalidad; tampoco permite declarar completada una compilación ni una prueba de hardware.
 
 ## 8. Reversión

@@ -9,7 +9,7 @@ For the complete download pipeline — retries, Range validation, MediaFire re-r
 ## Default stack (production today)
 
 - **libcurl** from VitaSDK (8.x-class package)
-- **OpenSSL 1.0.2** Vita port as the normal TLS backend
+- **OpenSSL matching libcurl's VitaSDK build** as the normal TLS backend. The official `vitasdk/vitasdk:2026.08` CI image (observed 27 October 2026) includes **OpenSSL 1.1.1**, while older VitaSDK installations can be based on the 1.0.2 port. Never mix these generations with an incompatible `libcurl.a`; see [VitaSDK linker diagnosis and fix](VITASDK_OPENSSL_LINKER_FIX_20261027.md).
 - App sets `CURLOPT_SSL_VERIFYPEER/HOST = 0` on device because the Vita environment does not provide a modern CA setup that is reliable for this client path
 
 This works for GitHub and many hosts. Some **Internet Archive** storage nodes, especially `dn*` / `.ca.archive.org` edges, can fail TLS handshakes or drop connections on the Vita OpenSSL stack.

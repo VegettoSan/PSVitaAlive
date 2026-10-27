@@ -124,7 +124,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 )
 
 option(PSVITAALIVE_USE_MBEDTLS_CURL
-  "Link curl against mbedTLS instead of OpenSSL 1.0.2 (requires curl-mbedtls package)"
+  "Link curl against mbedTLS instead of the VitaSDK-bundled OpenSSL (requires curl-mbedtls package)"
   OFF)
 
 target_link_libraries(${PROJECT_NAME}
@@ -161,7 +161,6 @@ target_link_libraries(${PROJECT_NAME}
   bz2
   z
   curl
-  pthread
   m
 )
 
@@ -173,6 +172,18 @@ else()
   message(STATUS "PSVitaAlive TLS: OpenSSL (stock VitaSDK)")
   target_link_libraries(${PROJECT_NAME} ssl crypto)
 endif()
+
+# VitaSDK uses static archives. In the 2026.08 image, both OpenSSL 1.1.1 and
+# GCC libstdc++ (C++ static-local guards) reference pthread_once/rwlock APIs.
+# Scan stdc++ and pthread as a small linker group AFTER the TLS archives.
+# Do not add -pthread globally: that caused duplicate pthread definitions
+# with this GCC/VitaSDK toolchain. This changes link resolution only.
+target_link_libraries(${PROJECT_NAME}
+  "-Wl,--start-group"
+  stdc++
+  pthread
+  "-Wl,--end-group"
+)
 
 # ---------------------------------------------------------------------------
 # PSVitaAlive Updater (TITLE_ID PSVAUPDT1)

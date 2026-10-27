@@ -431,7 +431,7 @@ Public databases and community work (including projects associated with VitaDB, 
 
 ## Client networking notes (v01.18+)
 
-- Downloads use libcurl **8.x** on VitaSDK; stock OpenSSL is **1.0.2**-class. Peer verify is off by design on device (CA store limitations).
+- Downloads use libcurl **8.x** on VitaSDK; the linked OpenSSL must match that libcurl build (**1.1.1** in the official `vitasdk/vitasdk:2026.08` CI image observed on 27 October 2026; some older SDK environments used 1.0.2). Peer verify is currently off on device (CA store limitations). See [OpenSSL/libcurl CI linker regression](docs/VITASDK_OPENSSL_LINKER_FIX_20261027.md).
 - **Internet Archive**: automatic **edge failover** via item metadata when TLS fails on `dn*` / `.ca.archive.org` nodes (prefer `ia*` / `.us.archive.org` edges). See client logs and optional `docs/NETWORK_TLS.md`.
 - Retries on `CURLE_SSL_CONNECT_ERROR` (35) and related connect failures; host hints for GitLab / Archive / GitHub.
 - **PSP / PS1 target** in Settings: **LiveArea** = PKG via system BGDL (bubble). **Adrenaline** = pkg2zip-style unpack to `ux0:pspemu` (**no** LiveArea bubble). Vita **VPK** / Vita **PKG** paths are unchanged.
