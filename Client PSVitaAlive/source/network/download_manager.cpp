@@ -388,7 +388,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             job.lastError = ::psvitaalive::L("INSTALL_ERR_MEDIAFIRE_WHY");
             saveMetadata(job);
             activeJobId_.clear();
-            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + job.lastError);
+            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + mfErr);
             return false;
         }
         effectiveUrl = direct;
