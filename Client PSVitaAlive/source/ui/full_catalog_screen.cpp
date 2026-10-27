@@ -5157,7 +5157,11 @@ void FullCatalogScreen::handleTouch() {
                     showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled), 2800);
                 }
             } else {
-                const bool showPause = installPauseSupported_;
+                // Keep the two touch zones stable while an async pause is
+                // settling; otherwise Cancel would temporarily expand over
+                // the just-tapped Pause area.
+                const bool showPause = installPauseSupported_ ||
+                    (installOutcome_ == 0 && installProgressStage_ == "Pausing");
                 const int buttonX = ox + (ow - DOWNLOAD_TOUCH_GROUP_W) / 2;
                 if (showPause && hit(x, y, buttonX - 8, runningBy - 8,
                                      DOWNLOAD_TOUCH_PAUSE_W + 16, bh + 16)) {
@@ -10207,7 +10211,9 @@ else
   }
 }
 const int cancelH = DOWNLOAD_TOUCH_BUTTON_H;
-const bool showPause = installPauseSupported_;
+const bool pausing = installProgressStage_ == "Pausing";
+const bool showPause = installPauseSupported_ ||
+    (installOutcome_ == 0 && pausing);
 const int pauseX = x + (w - DOWNLOAD_TOUCH_GROUP_W) / 2;
 const int pauseW = DOWNLOAD_TOUCH_PAUSE_W;
 const int cancelW = showPause ? DOWNLOAD_TOUCH_PAUSE_W : DOWNLOAD_TOUCH_GROUP_W;
@@ -10217,19 +10223,20 @@ const int cancelY = y + DOWNLOAD_TOUCH_Y;
 if (showPause) {
   // Distinct bright button: touch action stays available while physical
   // navigation/exit remains safely locked during an active download.
-  vita2d_draw_rectangle(pauseX, cancelY, pauseW, cancelH, ACCENT);
-  vita2d_draw_rectangle(pauseX, cancelY, pauseW, 3, WHITE);
-  vita2d_draw_rectangle(pauseX, cancelY + cancelH - 3, pauseW, 3, WHITE);
+  vita2d_draw_rectangle(pauseX, cancelY, pauseW, cancelH, pausing ? SURFACE2 : ACCENT);
+  vita2d_draw_rectangle(pauseX, cancelY, pauseW, 3, pausing ? BORDER : WHITE);
+  vita2d_draw_rectangle(pauseX, cancelY + cancelH - 3, pauseW, 3, pausing ? BORDER : WHITE);
+  const unsigned buttonTextColor = pausing ? DIM : BG;
   const bool paused = installProgressStage_ == "Paused";
   // Simple drawn icon, no image assets or dynamic allocations.
   if (paused) {
     ::psvitaalive::ui::uiDrawText(&font_, pauseX + 20, cancelY + 31,
-                                  BG, 1.05f, ">");
+                                  buttonTextColor, 1.05f, ">");
   } else {
-    vita2d_draw_rectangle(pauseX + 20, cancelY + 13, 6, 22, BG);
-    vita2d_draw_rectangle(pauseX + 30, cancelY + 13, 6, 22, BG);
+    vita2d_draw_rectangle(pauseX + 20, cancelY + 13, 6, 22, buttonTextColor);
+    vita2d_draw_rectangle(pauseX + 30, cancelY + 13, 6, 22, buttonTextColor);
   }
-  const char* plab = ::psvitaalive::L(
+  const char* plab = pausing ? "..." : ::psvitaalive::L(
       paused ? "DOWNLOAD_RESUME_BUTTON" : "DOWNLOAD_PAUSE_BUTTON");
   float psc = 0.83f;
   while (psc > 0.60f &&
@@ -10237,13 +10244,13 @@ if (showPause) {
       psc -= 0.04f;
   const int ptw = ::psvitaalive::ui::uiTextWidth(&font_, psc, plab);
   const int textX = pauseX + 46 + (pauseW - 60 - ptw) / 2;
-  ::psvitaalive::ui::uiDrawText(&font_, textX, cancelY + 23, BG, psc, plab);
+  ::psvitaalive::ui::uiDrawText(&font_, textX, cancelY + 23, buttonTextColor, psc, plab);
   // Bilingual tactile cue for this disposable testing-only control.
-  constexpr const char* touchHint = "TOCAR / TAP";
+  const char* touchHint = pausing ? "..." : "TOCAR / TAP";
   const int htw = ::psvitaalive::ui::uiTextWidth(&font_, 0.56f, touchHint);
   ::psvitaalive::ui::uiDrawText(&font_,
       pauseX + 46 + (pauseW - 60 - htw) / 2, cancelY + 42,
-      BG, 0.56f, touchHint);
+      buttonTextColor, 0.56f, touchHint);
 }
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, cancelH, SURFACE2);
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, 2, BORDER);
