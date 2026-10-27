@@ -271,6 +271,32 @@ void logHit(const char* label, const Hit& h) {
 
 } // namespace
 
+std::vector<std::string> PluginDetector::activeKernelPluginBasenames() {
+    std::vector<std::string> names;
+    // Exactly the active ur0 config, matching the existing detector policy.
+    const char* primary = pathExists("ur0:tai/config.txt") ? "ur0:tai/config.txt"
+        : pathExists("ur0:/tai/config.txt") ? "ur0:/tai/config.txt" : nullptr;
+    if (!primary) return names;
+    std::string config;
+    if (!readWholeFile(primary, config)) return names;
+    std::vector<ConfigEntry> entries;
+    parseConfigText(config, entries);
+    for (const ConfigEntry& e : entries) {
+        // Only active kernel plugins, not title-specific user modules or orphaned files.
+        if (e.section != "KERNEL" || e.path.empty() || !pathExists(e.path.c_str()))
+            continue;
+        if (e.basename.size() < 6 ||
+            e.basename.compare(e.basename.size() - 6, 6, ".skprx") != 0)
+            continue;
+        bool duplicate = false;
+        for (const std::string& name : names) {
+            if (name == e.basename) { duplicate = true; break; }
+        }
+        if (!duplicate) names.push_back(e.basename);
+    }
+    return names;
+}
+
 PluginStatus PluginDetector::scan() {
     PluginStatus st;
     diagnostics::log("[PluginDetector] scan begin (AutoPlugin2-style parser)");
