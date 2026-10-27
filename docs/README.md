@@ -28,6 +28,8 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | [`docs/SAVED_ZIP_SEGMENTS_20261025.md`](SAVED_ZIP_SEGMENTS_20261025.md) | **ZIP guardados**: ZIP completo o rangos `.001`...`.004`, reextracción offline, borrar/cancelar y confirmaciones |
 | [`docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md`](ZIP_SOBREESCRITURA_SEGURA_20261025.md) | Reutilización de espacio al sobreescribir entradas ZIP y advertencias sobre archivos truncados / staging |
 | [`docs/PLUGIN_DETECTION_CONFIG_20261023.md`](PLUGIN_DETECTION_CONFIG_20261023.md) | Detección real de plugins taiHEN (archivo + config) y límites |
+| [`docs/CATALOG_PLUGIN_CONFLICTS_20261027.md`](CATALOG_PLUGIN_CONFLICTS_20261027.md) | **Avisos de conflictos entre enlaces Plugin del catálogo**: ventana existente con contenido desplazable, reglas y fuentes, límites de detección y pruebas/CI pendientes |
+
 | `docs/PLUGIN_UPDATES.md` | **Planned** remote plugin update system (manifest / versioned Plugin links) — deferred |
 | [`docs/WEB_QR_HANDOFF_PLAN.md`](WEB_QR_HANDOFF_PLAN.md) | QR/web handoff **ya integrado en main**; documento conserva planificación histórica y pruebas pendientes |
 | `docs/UPDATE_DETECTION.md` | Installed/update version detection notes |
