@@ -91,7 +91,7 @@ static void find_psp_sfo(const aes128_key* key, const aes128_key* ps3_key, const
     }
 }
 
-static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned out_path_sz)
+static int do_unpack(const char* pkg_arg, const char* partition, int as_iso, char* out_path, unsigned out_path_sz)
 {
     uint64_t pkg_size;
     sys_file pkg = sys_open(pkg_arg, &pkg_size);
@@ -242,7 +242,7 @@ static int do_unpack(const char* pkg_arg, int as_iso, char* out_path, unsigned o
     sys_close(pkg);
     if (out_path && out_path_sz) {
         if (primary[0]) {
-            snprintf(out_path, out_path_sz, "%s%s", "ux0:", primary); /* prefix shown for UI; real prefix applied in sys */
+            snprintf(out_path, out_path_sz, "%s%s", partition, primary); /* report the actual mounted destination */
         } else {
             out_path[0] = 0;
         }
@@ -294,7 +294,7 @@ int psp_pkg_unpack_to_pspemu(const char* pkg_path, const char* partition, int as
         sys_output_done();
         return -1;
     }
-    do_unpack(pkg_path, as_iso ? 1 : 0, out_path, out_path_sz);
+    do_unpack(pkg_path, partition ? partition : "ux0:", as_iso ? 1 : 0, out_path, out_path_sz);
     pkg2zip_setjmp_end();
     sys_output_done();
     return 0;
