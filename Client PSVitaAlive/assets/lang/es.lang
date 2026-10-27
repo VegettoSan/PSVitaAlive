@@ -746,3 +746,4 @@ NET_LINK_DISCONNECTED=El Wi-Fi está apagado o desconectado. Actívalo y conéct
 NET_LINK_CONNECTING=Conectando a la red. Inténtalo cuando el Wi-Fi esté listo.
 NET_PAUSED_DISCONNECTED=Descarga guardada. Wi-Fi desconectado: vuelve a conectarte y pulsa Reanudar.
 NET_PAUSED_SOURCE_UNREACHABLE=Descarga guardada. Hay red, pero la fuente no responde. Comprueba internet y pulsa Reanudar.
+NET_CONNECTED_SOURCE_UNREACHABLE=La consola está conectada a una red, pero no se pudo acceder a Internet o a esta fuente de descarga.
