@@ -226,3 +226,13 @@ Selecting one shows **Retry extraction / Delete / Cancel**; deletion needs a
 separate confirmation and covers every range and metadata. Offline retry
 preserves the archive after failure and cleans it after success.
 [Archive format and recovery](../../../docs/SAVED_ZIP_SEGMENTS_20261025.md).
+
+
+### Prueba de compilación del aviso de reinicio con L
+
+La compilación de referencia debe ejecutar el workflow `Build PS Vita Client`
+sobre un commit que incluya los cambios de `main` del 27-10-2026 en
+`drawPluginRebootOverlay()`, `drawInstallAllSummary()` y los ocho archivos
+`.lang`. El éxito exige enlazado de VitaSDK, generación de
+`PSVitaAlive.vpk` y publicación del artefacto. La prueba visual en consola
+real sigue siendo independiente.
