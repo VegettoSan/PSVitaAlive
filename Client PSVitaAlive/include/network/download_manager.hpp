@@ -46,6 +46,7 @@ struct DownloadJob {
     bool preferSegmentedZip = false; // Opt-in: Game/Data ZIP or VPK direct extraction.
     bool segmentedZip = false; // Verified ZIP/VPK range parts ready for virtual reading.
     bool sourceUnavailable = false; // Failed before bytes or HTTP terminal response.
+    bool pausedForConnectivity = false; // Runtime-only; manual pause remains distinct.
     InstallSpaceMode spaceMode = InstallSpaceMode::DirectPackage; // runtime preflight only
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =
