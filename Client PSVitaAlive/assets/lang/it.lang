@@ -710,3 +710,4 @@ NET_LINK_DISCONNECTED=Wi-Fi spento o non connesso. Attivalo e collegati a una re
 NET_LINK_CONNECTING=Connessione alla rete in corso. Riprova quando il Wi-Fi è pronto.
 NET_PAUSED_DISCONNECTED=Download salvato. Wi-Fi scollegato: riconnetti e tocca Riprendi.
 NET_PAUSED_SOURCE_UNREACHABLE=Download salvato. Rete connessa ma fonte irraggiungibile. Controlla internet e riprendi.
+NET_CONNECTED_SOURCE_UNREACHABLE=La console è connessa alla rete, ma Internet o questa fonte di download non sono raggiungibili.
