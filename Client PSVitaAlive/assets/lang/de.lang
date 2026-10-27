@@ -704,3 +704,9 @@ FEEDBACK_FIELDS_REQUIRED=Titel und Beschreibung eingeben.
 FEEDBACK_COOLDOWN=Bitte vor dem nächsten Senden warten.
 FEEDBACK_SEND_FAILED=Senden konnte nicht starten.
 FEEDBACK_CLOSE_FIRST=Vor Beenden Bericht schließen.
+
+# Offline link / safe recovery messages
+NET_LINK_DISCONNECTED=WLAN ist aus oder nicht verbunden. Aktiviere WLAN und verbinde dich vor dem Download.
+NET_LINK_CONNECTING=Verbindung zum Netzwerk wird hergestellt. Bitte danach erneut versuchen.
+NET_PAUSED_DISCONNECTED=Download gespeichert. WLAN getrennt: neu verbinden und Fortsetzen wählen.
+NET_PAUSED_SOURCE_UNREACHABLE=Download gespeichert. Netzwerk verbunden, Quelle antwortet nicht. Internet prüfen und fortsetzen.
