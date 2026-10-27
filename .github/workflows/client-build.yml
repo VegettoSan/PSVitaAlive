@@ -190,6 +190,9 @@ jobs:
           print(f"Verified {len(keys)} error keys in all 8 language packs")
           PY
 
+      - name: Verify generic UI messages are provider-neutral
+        run: python3 tests/test_provider_neutral_ui_copy.py
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |
