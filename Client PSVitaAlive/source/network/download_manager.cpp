@@ -385,7 +385,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) || direct.empty()) {
             job.state = DownloadState::Failed;
             // Preserve provider details in diagnostics, not end-user messages.
-            job.lastError = ::psvitaalive::L("INSTALL_ERR_MEDIAFIRE_WHY");
+            job.lastError = "download link resolution failed";
             saveMetadata(job);
             activeJobId_.clear();
             diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + mfErr);
