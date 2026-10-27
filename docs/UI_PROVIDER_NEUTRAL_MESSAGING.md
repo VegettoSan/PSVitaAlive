@@ -49,9 +49,11 @@ no en el servicio.
   genéricos.
 - La interfaz no debe ganar un mensaje nuevo por cada proveedor incorporado.
 
-## Seguridad y alcance experimental
+## Seguridad y alcance de producción
 
 La modificación es exclusivamente de textos y presentación de fallos;
-no cambia rutas de descarga, clasificación HTTP 206, resolución de
+no modifica por sí misma rutas de descarga, clasificación HTTP 206, resolución de
 proveedores, protección OLED, bloqueo durante instalaciones, actualización
-automática ni catálogos. No modificar `main` sin validación de la rama.
+automática ni catálogos. Los cambios de conectividad y recuperación se documentan
+por separado en `HTTP206_WIFI_INTERRUPTION_RECOVERY_20261026.md`. La regla de textos
+neutrales queda vigente para futuras integraciones en `main`.
