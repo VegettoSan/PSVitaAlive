@@ -26,6 +26,7 @@
 #include "catalog/catalog_trace.hpp"
 #include "update/startup_update_manager.hpp"
 #include "network/archive_service_probe.hpp"
+#include "network/connectivity_state.hpp"
 #include "update/update_checker.hpp"
 #include "installer/install_space_policy.hpp"
 
@@ -365,7 +366,12 @@ int main(){
             if (started) screen.requestUx0SpaceRefresh();
             return started;
         });
-    screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
+    screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){
+    if (const char* blocked = psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
+        screen.showToast(psvitaalive::L(blocked), 5600);
+        return false; // Before opening any ZIP destination or error modal.
+    }
+    psvitaalive::diagnostics::log("[UI] INSTALL REQUEST name="+item.name+" title_id="+item.titleId+" url="+item.downloadUrl);
     if(item.downloadUrl.empty()||item.downloadFileName.empty())return false;
         std::string zrif;std::string ltype;std::string cid;std::string extractPath;
         for(const auto&L:item.linkDetails){if(L.url==item.downloadUrl){zrif=L.zrif;ltype=L.type;cid=L.contentId;extractPath=L.extractPath;break;}}
@@ -398,6 +404,10 @@ int main(){
         const bool isPlugin=(type=="Plugin"||type=="plugin"||type=="Plugins"||type=="plugins");
         const bool actionable=isPlugin||(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||type=="Data Files"||type=="Game Files"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos||link.url.find(".suprx")!=std::string::npos||link.url.find(".skprx")!=std::string::npos);
         if(!actionable){psvitaalive::diagnostics::log(std::string("[UI] link is informational only: ")+link.url);return false;}
+        if (const char* blocked = psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
+            screen.showToast(psvitaalive::L(blocked), 5600);
+            return false; // Never open a download/extraction dialog while disconnected.
+        }
         psvitaalive::ui::CatalogItem requestItem=item;requestItem.downloadUrl=link.url;requestItem.downloadFileName=fileNameFromUrl(link.url,item.id);
         // Plugin: keep a stable on-device name (e.g. kubridge.skprx) even if the remote
         // URL uses a versioned filename like "kubridge v0.3.1 hotfix.skprx".
