@@ -124,7 +124,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 )
 
 option(PSVITAALIVE_USE_MBEDTLS_CURL
-  "Link curl against mbedTLS instead of OpenSSL 1.0.2 (requires curl-mbedtls package)"
+  "Link curl against mbedTLS instead of the VitaSDK-bundled OpenSSL (requires curl-mbedtls package)"
   OFF)
 
 target_link_libraries(${PROJECT_NAME}
