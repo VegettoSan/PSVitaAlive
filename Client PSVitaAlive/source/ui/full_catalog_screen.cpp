@@ -22,6 +22,7 @@
 #endif
 #include "diagnostic_logger.hpp"
 #include "network/error_reporter.hpp"
+#include "network/connectivity_state.hpp"
 #include "network/http_client.hpp"
 #include "network/news_manager.hpp"
 #include <psp2/ctrl.h>
@@ -5167,7 +5168,9 @@ void FullCatalogScreen::handleTouch() {
                                      DOWNLOAD_TOUCH_PAUSE_W + 16, bh + 16)) {
                     bool handled = false;
                     if (installProgressStage_ == "Paused") {
-                        handled = installResume_ && installResume_();
+                        const char* offline = downloadPreflightStatusKey(queryLinkConnectivity());
+                        if (offline) showToast(::psvitaalive::L(offline), 4300);
+                        else handled = installResume_ && installResume_();
                         diagnostics::log(handled ? "[UI] touch resume accepted" : "[UI] touch resume not ready");
                     } else if (installProgressStage_ == "Downloading") {
                         handled = installPause_ && installPause_();
@@ -6698,7 +6701,9 @@ if(pressed&SCE_CTRL_START){
 }if(installProgressActive_ && installOutcome_ == 0 && installPauseSupported_ &&
     (pressed & SCE_CTRL_SQUARE)) {
     if (installProgressStage_ == "Paused") {
-        if (installResume_) installResume_();
+        const char* offline = downloadPreflightStatusKey(queryLinkConnectivity());
+        if (offline) showToast(::psvitaalive::L(offline), 4300);
+        else if (installResume_) installResume_();
     } else if (installProgressStage_ == "Downloading") {
         if (installPause_) installPause_();
     }
