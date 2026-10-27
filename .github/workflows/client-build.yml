@@ -208,17 +208,14 @@ jobs:
               VDPM="$VITASDK/bin/vdpm"
               test -x "$VDPM"
 
-              # The 2026.08 image currently contains openssl-1.1.1 while the
-              # official curl/libzip packages declare the legacy `openssl`
-              # (Vita OpenSSL 1.0.2) dependency. Use vdpm by absolute VitaSDK path
-              # so CI does not depend on login-shell PATH rewriting.
-              "$VDPM" pacman -- -Rdd --noconfirm openssl-1.1.1 || true
-              VDPM_NONINTERACTIVE=1 "$VDPM" install openssl
-
-              echo "Installed network package metadata:"
-              "$VDPM" info openssl || true
-              "$VDPM" info curl || true
-              "$VDPM" info libzip || true
+              # The official 2026.08 image includes OpenSSL 1.1.1 and a curl
+              # archive using its API (BIO_get_data, OPENSSL_init_ssl, etc.).
+              # DO NOT replace it with Vita OpenSSL 1.0.2: libcurl then links
+              # against missing symbols even though all source files compile.
+              # Preserve the mutually compatible libraries shipped in the image.
+              "$VDPM" pacman -- -Q openssl-1.1.1
+              test -s "$VITASDK/arm-vita-eabi/lib/libssl.a"
+              test -s "$VITASDK/arm-vita-eabi/lib/libcrypto.a"
 
               # CMake already links pthread explicitly. Injecting an additional
               # -pthread through CMAKE_EXE_LINKER_FLAGS duplicates libpthread with
