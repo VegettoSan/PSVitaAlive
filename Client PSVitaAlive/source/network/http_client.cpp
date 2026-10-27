@@ -1,4 +1,5 @@
 #include "network/http_client.hpp"
+#include "network/http_range_size_policy.hpp"
 #include "network/parallel_archive_download.hpp"
 #include "network/download_failure_policy.hpp"
 #include "diagnostic_logger.hpp"
@@ -1069,7 +1070,11 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
     const std::string contentLength = headerValue(buffer, bytes, "Content-Length:");
     if (!contentLength.empty()) {
         unsigned long long value = 0;
-        if (std::sscanf(contentLength.c_str(), "%llu", &value) == 1)
+        // A 206 Content-Length is the RESPONSE BODY length, not the file size.
+        // Only Content-Range can supply the authoritative whole-resource total.
+        // Header order varies by CDN; never overwrite that total on a 206.
+        if (std::sscanf(contentLength.c_str(), "%llu", &value) == 1 &&
+            contentLengthIsFileTotal(ctx->responseCode, ctx->totalFromContentRange))
             ctx->total = static_cast<uint64_t>(value);
     }
 
@@ -1216,9 +1221,12 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
             ctx->downloaded = 0;
             ctx->restartedFromZero = true;
             httpDiagnostic("server ignored Range (HTTP 200); restarted download from zero");
-        } else if (ctx->resumeOffset > 0 && responseCode == 206) {
-            // Require a valid Content-Range that starts exactly at resumeOffset.
-            if (ctx->rangeMismatch || !ctx->rangeValid) {
+        } else if (responseCode == 206) {
+            // A 206 must describe exactly the requested range, including a
+            // zero-offset request. Never append or accept an ambiguous body.
+            if (ctx->rangeMismatch || !ctx->rangeValid ||
+                !resumedContentRangeValid(ctx->resumeOffset, ctx->rangeStart,
+                                          ctx->rangeEnd, ctx->total)) {
                 httpDiagnostic("HTTP 206 with invalid/mismatched Content-Range; aborting body to avoid corruption");
                 ctx->rangeMismatch = true;
                 return 0; // abort this transfer; caller will clean-restart
@@ -1227,6 +1235,15 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
     }
 
     if (ctx->rangeMismatch) {
+        return 0;
+    }
+    // Reject a CDN that sends more bytes than its declared 206 range;
+    // the caller's one-time clean-restart handles the mismatch safely.
+    if (responseCode == 206 &&
+        !rangeBodyFits(ctx->rangeStart, ctx->rangeEnd, ctx->downloaded,
+                       static_cast<uint64_t>(bytes))) {
+        ctx->rangeMismatch = true;
+        httpDiagnostic("HTTP 206 response exceeds Content-Range; refusing extra bytes");
         return 0;
     }
 
@@ -1613,7 +1630,9 @@ HttpResult HttpClient::downloadToFile(
     const std::string& ifRangeValidator,
     uint64_t archiveSelectionSizeHint,
     bool keepZipParts,
-    bool checkSizeAtHeaders
+    bool checkSizeAtHeaders,
+    HttpCancelFn shouldPause,
+    HttpStatusFn onStatus
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1644,7 +1663,7 @@ HttpResult HttpClient::downloadToFile(
         const uint32_t now = static_cast<uint32_t>(sceKernelGetProcessTimeWide() / 1000000ULL);
         if (gArchiveImagePauseUntilSec.load(std::memory_order_relaxed) > now) {
             lastSourceUnavailable_ = true;
-            setError("Archive.org is not responding; image retry paused briefly");
+            setError("Image download source temporarily unavailable; retry paused");
             httpDiagnostic("[HTTP] archive image skipped: temporary network cooldown");
             return HttpResult::NetworkError;
         }
@@ -1672,7 +1691,11 @@ HttpResult HttpClient::downloadToFile(
         diagnostics::log("[HTTP] serial write buffer unavailable; using direct writes");
 
     int flags = SCE_O_WRONLY | SCE_O_CREAT;
-    flags |= (resumeOffset > 0) ? SCE_O_APPEND : SCE_O_TRUNC;
+    // Do not truncate range 0 before the parallel checkpoint has had a
+    // chance to validate its existing segments against the new HTTP probe.
+    const uint64_t savedParallel = resumeOffset == 0
+        ? parallelSavedBytes(destinationPath) : 0;
+    flags |= (resumeOffset > 0 || savedParallel > 0) ? SCE_O_APPEND : SCE_O_TRUNC;
     ctx.fd = sceIoOpen(destinationPath.c_str(), flags, 0777);
     if (ctx.fd < 0) {
         curl_easy_cleanup(curl);
@@ -1796,6 +1819,33 @@ HttpResult HttpClient::downloadToFile(
     size_t archiveAltIndex = 0;
     bool archiveMetaTried = false;
     std::string activeUrl = url;
+    // Reuse the previous working storage edge only within the same in-memory
+    // job, and only when a real range checkpoint exists. A *fresh* HTTP 206
+    // probe is mandatory before trusting the stored segments.
+    ArchiveProbeResult resumeEdgeProbe;
+    bool resumeEdgeVerified = false;
+    const bool canTryResumeEdge = isArchive && savedParallel > 0 &&
+        fastResumeSourceUrl_ == url &&
+        fastResumeDestination_ == destinationPath &&
+        fastResumeSize_ > 0 && !fastResumeServer_.empty() &&
+        archiveEffectiveUrlUsable(fastResumeServer_);
+    if (canTryResumeEdge && (!ctx.shouldCancel || !ctx.shouldCancel())) {
+        if (onStatus) onStatus("HTTP_STAGE_VERIFYING_SAVED");
+        if (probeArchiveStorageUrl(fastResumeServer_, 1, ctx.shouldCancel, resumeEdgeProbe) &&
+            resumeEdgeProbe.total == fastResumeSize_ &&
+            archiveEffectiveUrlUsable(resumeEdgeProbe.effectiveUrl) &&
+            (fastResumeServer_.compare(0, 7, "http://") == 0
+                ? resumeEdgeProbe.effectiveUrl.compare(0, 7, "http://") == 0
+                : resumeEdgeProbe.effectiveUrl.compare(0, 8, "https://") == 0)) {
+            // Keep activeUrl on the canonical HTTPS fallback. Only the
+            // validated parallel ranges use the cached direct storage edge.
+            resumeEdgeVerified = true;
+            httpDiagnostic("[HTTP] fast resume edge accepted after fresh 206 probe; full selector skipped");
+        } else {
+            httpDiagnostic("[HTTP] fast resume edge probe failed; retrying normal Archive selector");
+            if (onStatus) onStatus("HTTP_STAGE_FINDING_SERVER");
+        }
+    }
     // The node selector already made an authoritative 206 Range request.
     // Reuse that observed total instead of opening another HTTPS connection.
     uint64_t selectedArchiveTotal = 0;
@@ -1821,7 +1871,9 @@ HttpResult HttpClient::downloadToFile(
     // bytes. maxAttemptsOverride != 0 is used by small image/cache requests, which
     // deliberately skip this selector to avoid metadata/probe overhead. Resumes also
     // keep the established URL first so validator/range semantics are unchanged.
-    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
+    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0 &&
+        !resumeEdgeVerified) {
+        if (onStatus) onStatus("HTTP_STAGE_FINDING_SERVER");
         if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
             archiveMetaTried = true;
             if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint,
@@ -1859,11 +1911,16 @@ HttpResult HttpClient::downloadToFile(
          archiveSelectionSizeHint >= 1024ULL * 1024ULL)) {
         ArchiveProbeResult rangeProbe;
         bool rangeReady = false;
-        if (isArchive && selectedArchiveTotal > 0 &&
-            archiveEffectiveUrlUsable(activeUrl)) {
+        if (resumeEdgeVerified) {
+            rangeProbe = resumeEdgeProbe;
+            rangeReady = true; // already made the required fresh exact 206 probe
+        } else if (isArchive && selectedArchiveTotal > 0 &&
+            savedParallel == 0 && archiveEffectiveUrlUsable(activeUrl)) {
             rangeProbe.total = selectedArchiveTotal;
             rangeReady = true;
         } else {
+            if (onStatus) onStatus(savedParallel > 0
+                ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_VERIFYING_FILE");
             rangeReady = probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe);
         }
         // Never use the fast path for generic URLs without stable content
@@ -1875,11 +1932,33 @@ HttpResult HttpClient::downloadToFile(
             rangeReady = rangeReady && haveValidator &&
                 rangeProbe.effectiveUrl.compare(0, 8, "https://") == 0;
         }
+        // A temporary offline/transport failure must never open a serial file
+        // over a previously checkpointed parallel payload. Keep the exact
+        // recorded segments until a new successful HTTP 206 validates them.
+        // Cancellation is handled through the ordinary safe pause path.
+        if (savedParallel > 0 && (!rangeReady || rangeProbe.total < 1024ULL * 1024ULL)) {
+            curl_slist_free_all(headers);
+            sceIoClose(ctx.fd);
+            ctx.fd = -1;
+            curl_easy_cleanup(curl);
+            if (ctx.shouldCancel && ctx.shouldCancel()) {
+                setError("connection interrupted; saved download paused");
+                return HttpResult::Cancelled;
+            }
+            setError("connection interrupted; parallel checkpoint retained");
+            httpDiagnostic("[HTTP] 206 verification unavailable; keeping existing checkpoint and avoiding serial truncation");
+            return HttpResult::NetworkError;
+        }
         if (rangeReady && rangeProbe.total >= 1024ULL * 1024ULL) {
             std::string parallelUrl = isArchive ? activeUrl : rangeProbe.effectiveUrl;
+            if (resumeEdgeVerified) {
+                // A previously validated HTTP edge is reused as-is; do not
+                // silently switch its protocol or origin while resuming.
+                parallelUrl = fastResumeServer_;
+            }
             // Restore Archive.org's measured direct-HTTP storage acceleration,
             // without SHA-1. Never use it for generic catalog URLs.
-            if (isArchive && !selectedArchiveHttpUrl.empty() &&
+            if (!resumeEdgeVerified && isArchive && !selectedArchiveHttpUrl.empty() &&
                 archiveEffectiveUrlUsable(selectedArchiveHttpUrl) &&
                 selectedArchiveHttpUrl.compare(0, 7, "http://") == 0) {
                 parallelUrl = selectedArchiveHttpUrl;
@@ -1909,9 +1988,11 @@ HttpResult HttpClient::downloadToFile(
                 httpDiagnostic("parallel range skipped: ineligible source");
             }
             // A successful 206 probe exposes total bytes before range files open.
-            if (rangeReady && ctx.sizeHeaderPreflight && ctx.onProgress) {
+            if (rangeReady && savedParallel == 0 && ctx.sizeHeaderPreflight && ctx.onProgress) {
                 HttpProgress p;
                 p.total = rangeProbe.total;
+                p.absoluteDownloaded = savedParallel;
+                p.downloaded = savedParallel;
                 ctx.onProgress(p);
                 if (ctx.shouldCancel && ctx.shouldCancel()) {
                     sceIoClose(ctx.fd);
@@ -1921,6 +2002,8 @@ HttpResult HttpClient::downloadToFile(
                     return HttpResult::Cancelled;
                 }
             }
+            if (rangeReady && onStatus) onStatus(savedParallel > 0
+                ? "HTTP_STAGE_RECOVERING_PARTS" : "HTTP_STAGE_CONNECTING");
             sceIoClose(ctx.fd);
             ctx.fd = -1;
             const ParallelArchiveOutcome parallel = rangeReady ? downloadArchiveRanges(
@@ -1928,11 +2011,26 @@ HttpResult HttpClient::downloadToFile(
                 ctx.onProgress, ctx.shouldCancel,
                 isArchive ? std::string() : rangeProbe.etag,
                 isArchive ? std::string() : rangeProbe.lastModified,
-                keepZipParts) : ParallelArchiveOutcome::RetrySerial;
+                keepZipParts, shouldPause, url,
+                rangeProbe.etag, rangeProbe.lastModified) : ParallelArchiveOutcome::RetrySerial;
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
+                parallel == ParallelArchiveOutcome::Paused ||
+                parallel == ParallelArchiveOutcome::NetworkInterrupted ||
                 parallel == ParallelArchiveOutcome::IoError) {
+                if (isArchive && rangeReady &&
+                    (parallel == ParallelArchiveOutcome::Paused ||
+                     parallel == ParallelArchiveOutcome::NetworkInterrupted ||
+                     parallel == ParallelArchiveOutcome::Complete ||
+                     parallel == ParallelArchiveOutcome::Segmented)) {
+                    // Only the validated checkpoint may reuse this in-memory
+                    // edge on the next resume. Cache is per source and job path.
+                    fastResumeSourceUrl_ = url;
+                    fastResumeDestination_ = destinationPath;
+                    fastResumeServer_ = parallelUrl;
+                    fastResumeSize_ = rangeProbe.total;
+                }
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
                 if (parallel == ParallelArchiveOutcome::Complete ||
@@ -1941,15 +2039,32 @@ HttpResult HttpClient::downloadToFile(
                     lastStatus_ = 206;
                     return HttpResult::Ok;
                 }
-                if (parallel == ParallelArchiveOutcome::Cancelled) {
-                    setError("cancelled");
+                if (parallel == ParallelArchiveOutcome::NetworkInterrupted) {
+                    setError("connection interrupted; partial download saved");
+                    return HttpResult::NetworkError;
+                }
+                if (parallel == ParallelArchiveOutcome::Cancelled ||
+                    parallel == ParallelArchiveOutcome::Paused) {
+                    setError(parallel == ParallelArchiveOutcome::Paused
+                        ? "paused" : "cancelled");
                     return HttpResult::Cancelled;
                 }
                 setError("parallel download storage error");
                 return HttpResult::IoError;
             }
-            // The helper removed all staging parts on network failure. Reset
-            // the UI bytes and restore the original retry/failover machinery.
+            // If a refreshed CDN URL is no longer eligible for verified
+            // parallel ranges, preserve the previously saved checkpoint.
+            // No byte of the old transfer may be appended to an unverified
+            // serial response. The next explicit retry can probe again.
+            if (savedParallel > 0 && !rangeReady) {
+                curl_slist_free_all(headers);
+                curl_easy_cleanup(curl);
+                setError("connection verification unavailable; partial download saved");
+                return HttpResult::NetworkError;
+            }
+            // Unsupported new sources or truly invalid prior ranges follow
+            // the original safe clean-serial fallback, not unsafe append.
+            discardParallelSavedRanges(destinationPath);
             ctx.fd = sceIoOpen(destinationPath.c_str(),
                                SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
             if (ctx.fd < 0) {

@@ -48,6 +48,27 @@ jobs:
             -o /tmp/psvitaalive-install-archive-policy-test
           /tmp/psvitaalive-install-archive-policy-test
 
+      - name: Test HTTP 206 resume size and Content-Range guard
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_http_range_size_policy.cpp \
+            -o /tmp/psvitaalive-http-range-size-test
+          /tmp/psvitaalive-http-range-size-test
+
+      - name: Test resumed-transfer speed excludes cached bytes
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_transfer_speed_policy.cpp \
+            -o /tmp/psvitaalive-transfer-speed-test
+          /tmp/psvitaalive-transfer-speed-test
+
+      - name: Test resumable 2/4-range segment offsets and 64-bit bounds
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_parallel_resume_policy.cpp \
+            -o /tmp/psvitaalive-parallel-resume-test
+          /tmp/psvitaalive-parallel-resume-test
+
       - name: Test segmented ZIP 2/4-range layout and ZIP64 offsets
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
@@ -168,6 +189,9 @@ jobs:
                       raise SystemExit(f"{code}: key {key} must occur exactly once with nonempty text")
           print(f"Verified {len(keys)} error keys in all 8 language packs")
           PY
+
+      - name: Verify generic UI messages are provider-neutral
+        run: python3 tests/test_provider_neutral_ui_copy.py
 
       - name: Build with official VitaSDK image
         shell: bash

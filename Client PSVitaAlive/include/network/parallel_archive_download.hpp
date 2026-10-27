@@ -15,6 +15,8 @@ enum class ParallelArchiveOutcome {
     Segmented, // Verified ZIP/VPK ranges, ready for virtual extraction.
     RetrySerial,
     Cancelled,
+    Paused, // Safe range checkpoint retained for user testing.
+    NetworkInterrupted, // Safe checkpoint retained; never destroy for serial fallback.
     IoError
 };
 
@@ -26,8 +28,19 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const HttpCancelFn& shouldCancel,
     const std::string& expectedEtag = {}, // For generic HTTPS probes
     const std::string& expectedModified = {},
-    bool keepZipParts = false
+    bool keepZipParts = false,
+    const HttpCancelFn& shouldPause = {},
+    const std::string& resourceIdentity = {},
+    const std::string& probeEtag = {},
+    const std::string& probeModified = {},
+    unsigned retryIndex = 0
 );
+
+// Delete only the staging range files and their own checkpoint. Never delete a completed install payload.
+void discardParallelSavedRanges(const std::string& destination);
+
+// Returns saved validated-prefix bytes from a parallel checkpoint (0 if absent).
+uint64_t parallelSavedBytes(const std::string& destination);
 
 // Assemble saved ZIPs only for manual recovery; installs can read ranges.
 bool materializeSegmentedZip(const std::string& base, uint64_t expectedSize);

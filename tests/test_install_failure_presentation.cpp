@@ -12,6 +12,7 @@ int main() {
     assert(k("HTTP status 429") == InstallFailureKind::HttpBusy);
     assert(k("HTTP status 503") == InstallFailureKind::HttpServer);
     assert(k("MediaFire resolve failed") == InstallFailureKind::MediaFire);
+    assert(k("download link resolution failed") == InstallFailureKind::MediaFire);
     assert(k("not enough free space while downloading") == InstallFailureKind::Space);
     assert(k("any error", "Space") == InstallFailureKind::Space);
     assert(k("zip_fread failed entry=sce_sys/param.sfo method=8") == InstallFailureKind::ArchiveCorrupt);

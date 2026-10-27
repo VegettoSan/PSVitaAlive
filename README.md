@@ -304,7 +304,7 @@ HTTP downloads and ZIP extraction run **inside the client process** (libcurl + w
 
 - TCP streams stop and file handles can become invalid
 - Partial ZIP files often lack a valid **EOCD / ZIP64** end-of-central-directory marker
-- The next install attempt fails with **`zip_open` / incomplete archive** errors (download must be redone)
+- Without a safe resume checkpoint, a truncated ZIP may fail with **`zip_open` / incomplete archive** errors; the DownloadManager now keeps verifiable partial data during same-session pause and Wi-Fi interruption, but still refuses unsafe reuse
 
 To reduce that class of failure, while a job is in **Downloading** or **Installing** state the client:
 
@@ -328,9 +328,18 @@ During an active job the progress overlay states explicitly that:
 
 - The **screen stays on**
 - **PS button and power menu are disabled**
-- Only **CIRCLE** (cancel) is expected until the job finishes
+- **SQUARE** or the highlighted **front-touch Pause/Resume** button is available while the client-managed HTTP download is active or paused; **CIRCLE** cancels and removes temporary parts
 
-Toasts reinforce the same message if Settings, exit, or catalog switch are attempted.
+Toasts reinforce the same message if Settings, exit, or catalog switch are attempted. The OLED wake-first tap and all shell/power safety restrictions remain intact.
+
+### Pause, resume and Wi-Fi interruption recovery
+
+- During native HTTP downloads, **SQUARE / front-touch Pause** safely saves the current job; **SQUARE / front-touch Resume** verifies the server and resumes only the missing bytes. The button remains a **permanent user-facing feature**.
+- For eligible **2/4-range HTTP 206** transfers the client saves validated per-range prefixes and a checkpoint; it does not need to redownload the whole ZIP/VPK after a normal pause. Serial downloads use the same job and 64-bit Range resume when safe.
+- When Wi-Fi disconnects during a transfer, the client requests a safe pause and preserves validated bytes. Reconnect Wi-Fi and **press Resume** to continue. Resuming is not promised automatically.
+- Before a new download or Install All wizard, a disconnected or still-connecting console receives a localized notice. Having a network link **does not guarantee Internet connectivity**, so failures remain provider-neutral until a real HTTP response shows otherwise.
+- Paused partials are retained **only while PSVitaAlive remains open**; an app relaunch triggers the existing orphan-job cleanup. The native HTTP pause does **not** control BGDL/system PKG installations, extraction or the client self-updater.
+- Technical reference: [Pause / resume and Wi-Fi recovery](docs/DESCARGAS_PAUSA_REANUDACION_Y_CONECTIVIDAD.md), [HTTP 206 safeguards](docs/HTTP206_PAUSE_RESUME_TEST_20261026.md) and [provider-neutral UI wording](docs/UI_PROVIDER_NEUTRAL_MESSAGING.md).
 
 ### PSP DLC and Adrenaline media
 
@@ -338,11 +347,11 @@ PSP **DLC** installs from the client require **LiveArea** target **or** Adrenali
 
 ### Practical recommendations during large installs
 
-1. Start the download and **leave the client in the foreground** until it finishes or you cancel with CIRCLE.
+1. Start the download and **leave the client in the foreground**; you may temporarily pause/restart eligible HTTP jobs using SQUARE or touch, without closing the client.
 2. Do not rely on turning the screen off to “save battery” during Game Files — the client keeps the screen on on purpose.
 3. Prefer a stable Wi-Fi link and the DNS settings above; flaky DNS is a common cause of stalled HTTPS.
 4. Ensure **iTLS-Enso (full)** is installed if catalogs or CDNs fail TLS handshake.
-5. After a failure mentioning incomplete ZIP / `zip_open`, **delete the partial file** (cancel already tries to clean the job) and retry on a better connection.
+5. After an incomplete ZIP / `zip_open` failure, do **not** reuse unverifiable parts; cancel/clean the failed job before retrying with a stable source. A paused **verified** checkpoint is different and can safely be resumed within the same session.
 6. For commercial PKG, after “Queued…”, finish the install from **LiveArea notifications** — that path is system BGDL and can continue differently from in-app HTTP ZIP downloads.
 
 ## Contributing data

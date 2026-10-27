@@ -1,5 +1,7 @@
 #include "localization/localization.hpp"
 #include "network/download_manager.hpp"
+#include "network/parallel_archive_download.hpp"
+#include "network/connectivity_state.hpp"
 #include "network/startup_cleanup_policy.hpp"
 #include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
@@ -196,6 +198,33 @@ std::string DownloadManager::enqueue(const std::string& url, const std::string& 
     return job.id;
 }
 
+bool DownloadManager::pause(const std::string& jobId) {
+    DownloadJob* job = findJob(jobId);
+    // InstallController owns the active-worker/state check. Do not read
+    // worker-written DownloadJob::state from the UI thread (data race).
+    if (!job || job->cancelRequested->load(std::memory_order_acquire) ||
+        job->pauseRequested->load(std::memory_order_acquire))
+        return false;
+    job->pauseRequested->store(true, std::memory_order_release);
+    diagnostics::log("[DownloadManager] pause requested job=" + jobId);
+    return true;
+}
+
+bool DownloadManager::resume(const std::string& jobId) {
+    DownloadJob* job = findJob(jobId);
+    if (!job || job->state != DownloadState::Paused ||
+        job->cancelRequested->load(std::memory_order_acquire))
+        return false;
+    // The caller must join the previous worker before resetting these flags.
+    job->pauseRequested->store(false, std::memory_order_release);
+    job->state = DownloadState::Queued;
+    job->lastError.clear();
+    saveMetadata(*job);
+    diagnostics::log("[DownloadManager] resume queued job=" + jobId +
+                     " offset=" + std::to_string(job->downloadedSize));
+    return true;
+}
+
 void DownloadManager::cancel(const std::string& jobId) {
     if (auto* j = findJob(jobId)) {
         j->cancelRequested->store(true, std::memory_order_release);
@@ -220,7 +249,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
         const int64_t sz = st.fileSize(job.temporaryPath);
         if (sz > 0) offset = static_cast<uint64_t>(sz);
     }
-    job.downloadedSize = offset;
+    // A paused 2/4-range download has multiple partial files. The first
+    // segment's size is NOT a whole-file serial resume offset.
+    const uint64_t savedParallel = parallelSavedBytes(job.temporaryPath);
+    if (savedParallel > 0) offset = 0; // let HttpClient validate the checkpoint
+    job.downloadedSize = savedParallel > 0 ? savedParallel : offset;
     job.state = DownloadState::Downloading;
     saveMetadata(job);
     activeJobId_ = job.id;
@@ -237,7 +270,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     bool diskSpaceHit = false;
     bool remoteTotalKnown = false;
     uint64_t headerCheckedTotal = 0;
-    uint64_t lastSaved = offset;
+    uint64_t lastSaved = job.downloadedSize;
     uint64_t lastSpaceCheck = 0;
     constexpr uint64_t kMetadataSaveStep = 8ULL * 1024ULL * 1024ULL;
     constexpr uint64_t kSpaceCheckStep = 32ULL * 1024ULL * 1024ULL;
@@ -257,8 +290,9 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 uint64_t freeB = 0, totalB = 0;
                 // HTTP 206 can reuse partial bytes; HTTP 200 after a
                 // rejected resume replaces them, so deduct *nothing* then.
-                const uint64_t alreadyOnDisk =
-                    p.downloaded == 0 ? p.absoluteDownloaded : offset;
+                const uint64_t alreadyOnDisk = p.parallelCheckpointReused
+                    ? p.absoluteDownloaded
+                    : (p.downloaded == 0 ? p.absoluteDownloaded : offset);
                 const uint64_t needed = remainingInstallSpaceBytes(
                     p.total, alreadyOnDisk, job.spaceMode);
                 if (!StorageManager::queryUx0Space(freeB, totalB) || freeB < needed) {
@@ -321,8 +355,41 @@ bool DownloadManager::runJob(DownloadJob& job) {
             lastSaved = job.downloadedSize;
         }
     };
+    bool automaticNetworkPause = false;
+    uint64_t nextLinkCheckUs = 0;
     auto cancelFn = [&]() -> bool {
-        return job.cancelRequested->load(std::memory_order_acquire);
+        if (!job.cancelRequested->load(std::memory_order_acquire) &&
+            !job.pauseRequested->load(std::memory_order_acquire)) {
+            // Check NetCtl at most twice per second; no network requests or
+            // filesystem work are performed inside a libcurl callback.
+            const uint64_t now = sceKernelGetProcessTimeWide();
+            if (now >= nextLinkCheckUs) {
+                nextLinkCheckUs = now + 500000ULL;
+                if (linkUnavailable(queryLinkConnectivity())) {
+                    automaticNetworkPause = true;
+                    job.pauseRequested->store(true, std::memory_order_release);
+                    diagnostics::log("[DownloadManager] link disconnected; requesting safe checkpoint pause");
+                }
+            }
+        }
+        return job.cancelRequested->load(std::memory_order_acquire) ||
+               job.pauseRequested->load(std::memory_order_acquire);
+    };
+    // Emit lightweight connection-phase feedback without pretending that
+    // any additional bytes have arrived. The actual progress counter remains
+    // the sum of the existing validated part files.
+    auto statusFn = [&](const char* localizationKey) {
+        job.bytesPerSecond = 0;
+        if (!onProgress_ || !localizationKey) return;
+        DownloadProgressEvent ev;
+        ev.jobId = job.id;
+        ev.fileName = job.fileName;
+        ev.downloaded = job.downloadedSize;
+        ev.total = job.expectedSize;
+        ev.bytesPerSecond = 0;
+        ev.state = DownloadState::Downloading;
+        ev.message = ::psvitaalive::L(localizationKey);
+        onProgress_(ev);
     };
 
     std::string effectiveUrl = job.url;
@@ -334,10 +401,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
         uint64_t mfSize = 0;
         if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) || direct.empty()) {
             job.state = DownloadState::Failed;
-            job.lastError = mfErr.empty() ? "MediaFire resolve failed" : mfErr;
+            // Preserve provider details in diagnostics, not end-user messages.
+            job.lastError = "download link resolution failed";
             saveMetadata(job);
             activeJobId_.clear();
-            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + job.lastError);
+            diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + mfErr);
             return false;
         }
         effectiveUrl = direct;
@@ -438,6 +506,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (offset > 0 && job.validatorUrl == effectiveUrl) {
             ifRangeValidator = !job.etag.empty() ? job.etag : job.lastModified;
         }
+        statusFn(savedParallel > 0 && outer == 0
+            ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_CONNECTING");
         hr = http_.downloadToFile(
             effectiveUrl,
             job.temporaryPath,
@@ -448,20 +518,32 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ifRangeValidator,
             job.expectedSize,
             job.preferSegmentedZip,
-            true // pre-body size notification; no second HEAD/GET request
+            true, // pre-body size notification; no second HEAD/GET request
+            [&]() -> bool {
+                return job.pauseRequested->load(std::memory_order_acquire) &&
+                       !job.cancelRequested->load(std::memory_order_acquire);
+            },
+            statusFn
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
         }
-        // Terminal 404/410 is a missing file, NOT an Archive.org outage.
-        // A service warning requires repeated no-response failures (HTTP 0),
-        // or an exhausted server-side 5xx response with no downloaded bytes.
-        // Existing 404 handling still skips redundant outer retries.
+        // Keep safe partials after an exhausted range-network interruption.
+        // This never changes explicit cancellation or on-disk integrity rules.
+        if (hr == HttpResult::NetworkError && !cancelFn() &&
+            parallelSavedBytes(job.temporaryPath) > 0) {
+            automaticNetworkPause = true;
+            job.pauseRequested->store(true, std::memory_order_release);
+            diagnostics::log("[DownloadManager] network interrupted; validated range checkpoint retained");
+        }
+        // DNS/connect failure with HTTP 0 is NOT evidence that a provider is
+        // down: a disconnected router or unavailable internet looks identical.
+        // Only an actual server-side 5xx may justify the source warning.
+        // Existing 404/410 handling still skips redundant outer retries.
         const int serviceHttpStatus = http_.lastStatusCode();
-        job.sourceUnavailable = isArchiveUrl && (
-            (http_.lastSourceUnavailable() && serviceHttpStatus == 0) ||
-            (serviceHttpStatus >= 500 && serviceHttpStatus <= 599 &&
-             hr != HttpResult::Ok && job.downloadedSize == 0));
+        job.sourceUnavailable = isArchiveUrl &&
+            serviceHttpStatus >= 500 && serviceHttpStatus <= 599 &&
+            hr != HttpResult::Ok && job.downloadedSize == 0;
         if (job.sourceUnavailable)
             diagnostics::log("[DownloadManager] Archive.org service connection issue classified");
         if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
@@ -497,11 +579,43 @@ bool DownloadManager::runJob(DownloadJob& job) {
         job.state = DownloadState::Failed;
         // Usually a bad mid-retry append or a wrong Content-Length; MediaFire is only one cause.
         job.lastError = mediafire
-            ? "download exceeded expected size (possible MediaFire error page)"
+            ? "download exceeded expected size (unexpected response from download source)"
             : "download exceeded expected size (interrupted transfer; please retry)";
         saveMetadata(job);
         st.removeFile(job.finalPath);
         diagnostics::log("[DownloadManager] aborted: exceeded expected size with margin");
+        return false;
+    }
+    if (job.pauseRequested->load(std::memory_order_acquire) &&
+        !job.cancelRequested->load(std::memory_order_acquire)) {
+        job.pausedForConnectivity = automaticNetworkPause;
+        // HttpClient has returned and flushed its serial buffer. Preserve the
+        // actual file length (not an unflushed progress counter) for Range resume.
+        // Parallel saved bytes are counted across *all* verified-prefix files.
+        // For serial downloads, the single payload.part remains authoritative.
+        const uint64_t partBytes = parallelSavedBytes(job.temporaryPath);
+        const int64_t bytes = st.fileSize(job.temporaryPath);
+        job.downloadedSize = partBytes > 0 ? partBytes :
+            (bytes > 0 ? static_cast<uint64_t>(bytes) : 0);
+        job.bytesPerSecond = 0;
+        job.state = DownloadState::Paused;
+        job.lastError.clear();
+        saveMetadata(job);
+        if (onProgress_) {
+            DownloadProgressEvent ev;
+            ev.jobId = job.id;
+            ev.fileName = job.fileName;
+            ev.downloaded = job.downloadedSize;
+            ev.total = job.expectedSize;
+            ev.state = DownloadState::Paused;
+            ev.message = automaticNetworkPause
+                ? ::psvitaalive::L(linkUnavailable(queryLinkConnectivity())
+                    ? "NET_PAUSED_DISCONNECTED" : "NET_PAUSED_SOURCE_UNREACHABLE")
+                : ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
+            onProgress_(ev);
+        }
+        diagnostics::log("[DownloadManager] paused job=" + job.id +
+                         " saved_bytes=" + std::to_string(job.downloadedSize));
         return false;
     }
     if (hr == HttpResult::Cancelled || cancelFn()) {
@@ -600,6 +714,8 @@ bool DownloadManager::cleanupCompletedJob(const std::string& jobId) {
         if (st.exists(job->temporaryPath + suffix)) ok = st.removeFile(job->temporaryPath + suffix) && ok;
         if (st.exists(job->finalPath + suffix)) ok = st.removeFile(job->finalPath + suffix) && ok;
     }
+    if (st.exists(job->temporaryPath + ".range.resume"))
+        ok = st.removeFile(job->temporaryPath + ".range.resume") && ok;
     if (st.exists(job->metadataPath)) ok = st.removeFile(job->metadataPath) && ok;
     const std::string jobDir = jobsRoot() + "/" + job->id;
     if (st.exists(jobDir) && st.isDirectory(jobDir)) ok = st.removeDirectory(jobDir) && ok;

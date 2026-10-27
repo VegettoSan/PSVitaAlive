@@ -22,6 +22,7 @@
 #endif
 #include "diagnostic_logger.hpp"
 #include "network/error_reporter.hpp"
+#include "network/connectivity_state.hpp"
 #include "network/http_client.hpp"
 #include "network/news_manager.hpp"
 #include <psp2/ctrl.h>
@@ -62,6 +63,15 @@ constexpr int FILTER_MODAL_W = 764;
 constexpr int FILTER_MODAL_H = 448;
 constexpr int FILTER_MODAL_ROW_H = 62;
 constexpr int FILTER_MODAL_VISIBLE = 5;
+// Experimental download-only touch action. Keep a single layout definition
+// shared by touch hit-testing and progress-overlay rendering.
+constexpr int DOWNLOAD_TOUCH_PANEL_W = 900;
+constexpr int DOWNLOAD_TOUCH_PANEL_H = 508;
+constexpr int DOWNLOAD_TOUCH_GROUP_W = 520;
+constexpr int DOWNLOAD_TOUCH_PAUSE_W = 250;
+constexpr int DOWNLOAD_TOUCH_GAP = 20;
+constexpr int DOWNLOAD_TOUCH_BUTTON_H = 50;
+constexpr int DOWNLOAD_TOUCH_Y = 410;
 constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
 // The catalog and its embedded keyboard render with vita2d only.
@@ -2975,9 +2985,11 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     const std::string& zipRecoveryPath,
     const std::string& zipRecoveryExtractPath,
     bool zipRecoveryMayBeCorrupt,
-    bool archiveSourceUnavailable)
+    bool archiveSourceUnavailable,
+    bool pauseSupported)
 {
     installProgressActive_ = active;
+    installPauseSupported_ = active && pauseSupported && outcome == 0;
     if (needsReboot && outcome == 1) {
         if (essentialInstallRunning_) {
             // Sequential essential-plugin installs keep their existing reboot flow.
@@ -3001,8 +3013,12 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
         (installOutcome_ != 2 || installProgressMessage_ != message ||
          installProgressStage_ != stage)) {
         installFailureKind_ = classifyInstallFailure(message, stage);
+        // Link ready means the console obtained a network connection; it
+        // does NOT prove that Internet access or this source is available.
+        installFailureNetworkLinked_ = queryLinkConnectivity() == LinkConnectivity::Ready;
     } else if (!active || outcome == 0) {
         installFailureKind_ = InstallFailureKind::Other;
+        installFailureNetworkLinked_ = false;
     }
     installProgressStage_ = stage;
     installProgressFile_ = fileName;
@@ -4186,6 +4202,12 @@ void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int 
     if (linkDetailIndex < 0 || linkDetailIndex >= (int)item.linkDetails.size()) return;
     const CatalogLink& l = item.linkDetails[linkDetailIndex];
     if (!linkAction_ || !actionableLink(l)) return;
+    // Download-capable links include plugins that normally open a consent
+    // dialog; warn offline users before showing any of those dialogs.
+    if (const char* offline = downloadPreflightStatusKey(queryLinkConnectivity())) {
+        showToast(::psvitaalive::L(offline), 5600);
+        return;
+    }
 
     if (state_.catalog == CatalogType::PspGames && isDlcTypeLink(l)
         && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline
@@ -5042,18 +5064,26 @@ void FullCatalogScreen::handleTouch() {
     // (Tapping the whole card used to cancel mid-download → "Download cancelled".)
     if (installProgressActive_) {
         if (td.reportNum > 0) {
+            const int tx = mapX(td.report[0].x);
+            const int ty = mapY(td.report[0].y);
             if (!touchDown_) {
                 touchDown_ = true;
-                touchStartX_ = mapX(td.report[0].x);
-                touchStartY_ = mapY(td.report[0].y);
+                touchStartX_ = tx;
+                touchStartY_ = ty;
                 touchMoved_ = false;
+            } else if (std::abs(tx - touchStartX_) > 18 ||
+                       std::abs(ty - touchStartY_) > 18) {
+                // Never treat a swipe across the progress dialog as a tap.
+                touchMoved_ = true;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
             touchDown_ = false;
-            if (touchMoved_) return;
-            const int ow = 900, oh = 508, ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-            const int resultBy = oy + 360, runningBy = oy + 410, bh = 50;
+            if (touchMoved_) { touchMoved_ = false; return; }
+            const int ow = DOWNLOAD_TOUCH_PANEL_W, oh = DOWNLOAD_TOUCH_PANEL_H;
+            const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
+            const int resultBy = oy + 360, runningBy = oy + DOWNLOAD_TOUCH_Y;
+            const int bh = DOWNLOAD_TOUCH_BUTTON_H;
             if (installOutcome_ == 3) {
                 // Cancelled: only Close (centered), no Report
                 const int bwClose = 280;
@@ -5138,9 +5168,30 @@ void FullCatalogScreen::handleTouch() {
                     showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled), 2800);
                 }
             } else {
-                const int cancelW = 520;
-                const int cancelX = ox + (ow - cancelW) / 2;
-                if (!hit(x, y, cancelX - 12, runningBy - 12, cancelW + 24, 50 + 24)) return;
+                // Keep the two touch zones stable while an async pause is
+                // settling; otherwise Cancel would temporarily expand over
+                // the just-tapped Pause area.
+                const bool showPause = installPauseSupported_ ||
+                    (installOutcome_ == 0 && installProgressStage_ == "Pausing");
+                const int buttonX = ox + (ow - DOWNLOAD_TOUCH_GROUP_W) / 2;
+                if (showPause && hit(x, y, buttonX - 8, runningBy - 8,
+                                     DOWNLOAD_TOUCH_PAUSE_W + 16, bh + 16)) {
+                    bool handled = false;
+                    if (installProgressStage_ == "Paused") {
+                        const char* offline = downloadPreflightStatusKey(queryLinkConnectivity());
+                        if (offline) showToast(::psvitaalive::L(offline), 4300);
+                        else handled = installResume_ && installResume_();
+                        diagnostics::log(handled ? "[UI] touch resume accepted" : "[UI] touch resume not ready");
+                    } else if (installProgressStage_ == "Downloading") {
+                        handled = installPause_ && installPause_();
+                        diagnostics::log(handled ? "[UI] touch pause accepted" : "[UI] touch pause not ready");
+                    }
+                    return; // Touch is never forwarded to Cancel or catalog actions.
+                }
+                const int cancelX = showPause
+                    ? buttonX + DOWNLOAD_TOUCH_PAUSE_W + DOWNLOAD_TOUCH_GAP : buttonX;
+                const int cancelW = showPause ? DOWNLOAD_TOUCH_PAUSE_W : DOWNLOAD_TOUCH_GROUP_W;
+                if (!hit(x, y, cancelX - 8, runningBy - 8, cancelW + 16, bh + 16)) return;
                 if (installCancel_) installCancel_();
             }
         }
@@ -6655,6 +6706,16 @@ if(pressed&SCE_CTRL_START){
     if(pressed&SCE_CTRL_CIRCLE){
         showToast(::psvitaalive::L("ZIP_RECOVERY_CHOOSE_ACTION"),2800);
         return;
+    }
+    return;
+}if(installProgressActive_ && installOutcome_ == 0 && installPauseSupported_ &&
+    (pressed & SCE_CTRL_SQUARE)) {
+    if (installProgressStage_ == "Paused") {
+        const char* offline = downloadPreflightStatusKey(queryLinkConnectivity());
+        if (offline) showToast(::psvitaalive::L(offline), 4300);
+        else if (installResume_) installResume_();
+    } else if (installProgressStage_ == "Downloading") {
+        if (installPause_) installPause_();
     }
     return;
 }if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!installArchiveSourceUnavailable_&&shouldReportInstallFailure(installFailureKind_)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
@@ -8526,6 +8587,12 @@ void FullCatalogScreen::openInstallAllWizard() {
         showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1600);
         return;
     }
+    // Do not show installation-choice/setup dialogs while the device does
+    // not have a network link. ZIP extraction of local saved files is separate.
+    if (const char* offline = downloadPreflightStatusKey(queryLinkConnectivity())) {
+        showToast(::psvitaalive::L(offline), 5600);
+        return;
+    }
     const int i = selectedIndex();
     if (i < 0) return;
     const CatalogItem& item = catalogView()[i];
@@ -9932,7 +9999,13 @@ if(installOutcome_==2){
           textY += 28;
       }
   };
-  drawFriendlyParagraph(::psvitaalive::L(reasonKey.c_str()), TEXT, 0.89f, y+240);
+  // When NetCtl says the device has a network link, distinguish this
+  // failure from Wi-Fi being switched off or unassociated. Internet reachability
+  // cannot be inferred from NetCtl alone, so avoid asserting a provider outage.
+  const char* friendlyWhy = (kind == FK::Network && installFailureNetworkLinked_)
+      ? ::psvitaalive::L("NET_CONNECTED_SOURCE_UNREACHABLE")
+      : ::psvitaalive::L(reasonKey.c_str());
+  drawFriendlyParagraph(friendlyWhy, TEXT, 0.89f, y+240);
   textY = std::max(textY + 15, y+254);
   drawFriendlyParagraph(::psvitaalive::L(actionKey.c_str()), DIM, 0.84f, y+318);
   const bool spaceErr = !shouldReportInstallFailure(kind) ||
@@ -10008,6 +10081,7 @@ if(catalogLoading_){
     title = ::psvitaalive::L(TID::StageDownloading);
   else if (installProgressStage_ == "Installing" || installProgressStage_ == "Promoting" || installProgressStage_ == "Cleaning") title = ::psvitaalive::L(TID::StageInstalling);
   else if (installProgressStage_ == "Verifying") title = ::psvitaalive::L("DOWNLOAD_VERIFYING_TITLE");
+  else if (installProgressStage_ == "Paused") title = ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
   else if (installProgressStage_ == "Retrying") title = ::psvitaalive::L(TID::StageRetrying);
   else if (installProgressStage_ == "Network") title = ::psvitaalive::L(TID::StageNetwork);
   else if (installProgressStage_ == "Space") title = ::psvitaalive::L(TID::StageSpace);
@@ -10066,11 +10140,12 @@ const bool stageDownload =
     installProgressStage_ == "Verifying" ||
     installProgressStage_ == "BGDL" ||
     installProgressStage_ == "Cancelling" ||
+    installProgressStage_ == "Paused" ||
     installProgressStage_.empty());
 const bool indeterminate =
-    msgRetry || stageFinalizing ||
+    (installProgressStage_ != "Paused") && (msgRetry || stageFinalizing ||
     total == 0 ||
-    (current == 0 && installProgressSpeed_ == 0 && (stageDownload || stageInstall || stageExtract));
+    (current == 0 && installProgressSpeed_ == 0 && (stageDownload || stageInstall || stageExtract)));
 if (indeterminate) {
   const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1400) / 1400.f;
   const float uu = (t < 0.5f) ? (t * 2.f) : (2.f - t * 2.f);
@@ -10117,10 +10192,23 @@ else
       ::psvitaalive::L(::psvitaalive::TextId::LabelEta),
       formatEta(eta).c_str());
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 212, ACCENT, 0.86f, info);
-if (!stageFinalizing && !installProgressMessage_.empty())
-  ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
+if (!stageFinalizing && !installProgressMessage_.empty()) {
+  const bool preparingNetwork =
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_CONNECTING") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_FINDING_SERVER") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_VERIFYING_FILE") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_VERIFYING_SAVED") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_RECOVERING_PARTS");
+  // The elapsed connection/verification phase is intentionally prominent:
+  // users must never mistake a 206 safety probe for a stalled download.
+  ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244,
+      preparingNetwork ? ACCENT : DIM, preparingNetwork ? 0.87f : 0.78f,
+      ellipsize(installProgressMessage_, preparingNetwork ? 66 : 58).c_str());
+}
 const char* waitHint = nullptr;
-if (stageFinalizing)
+if (installProgressStage_ == "Paused")
+  waitHint = ::psvitaalive::L("DOWNLOAD_PAUSED_HINT");
+else if (stageFinalizing)
   waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_HINT");
 else if (msgRetry && stageDownload)
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintRetryConnection);
@@ -10142,6 +10230,13 @@ else
 // LOCKED banner — tall + large type, no overlap with button below.
 {
   const int lbX = x + 20, lbY = y + 308, lbW = w - 40, lbH = 78;
+  const bool isPaused = installProgressStage_ == "Paused";
+  if (isPaused) {
+    vita2d_draw_rectangle(lbX, lbY, lbW, lbH, SURFACE2);
+    vita2d_draw_rectangle(lbX, lbY, lbW, 3, BORDER);
+    ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 38, TEXT, 0.88f,
+        ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE"));
+  } else {
   vita2d_draw_rectangle(lbX, lbY, lbW, lbH, RGBA8(0x40, 0x10, 0x10, 255));
   vita2d_draw_rectangle(lbX, lbY, lbW, 3, RED);
   vita2d_draw_rectangle(lbX, lbY + lbH - 3, lbW, 3, RED);
@@ -10151,21 +10246,66 @@ else
       ::psvitaalive::L(::psvitaalive::TextId::LockedBanner1));
   ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 56, WHITE, 0.84f,
       ::psvitaalive::L(::psvitaalive::TextId::LockedBanner2));
+  }
 }
-const int cancelW = 520, cancelH = 50;
-const int cancelX = x + (w - cancelW) / 2;
-const int cancelY = y + 410;
+const int cancelH = DOWNLOAD_TOUCH_BUTTON_H;
+const bool pausing = installProgressStage_ == "Pausing";
+const bool showPause = installPauseSupported_ ||
+    (installOutcome_ == 0 && pausing);
+const int pauseX = x + (w - DOWNLOAD_TOUCH_GROUP_W) / 2;
+const int pauseW = DOWNLOAD_TOUCH_PAUSE_W;
+const int cancelW = showPause ? DOWNLOAD_TOUCH_PAUSE_W : DOWNLOAD_TOUCH_GROUP_W;
+const int cancelX = showPause
+    ? pauseX + DOWNLOAD_TOUCH_PAUSE_W + DOWNLOAD_TOUCH_GAP : pauseX;
+const int cancelY = y + DOWNLOAD_TOUCH_Y;
+if (showPause) {
+  // Distinct bright button: touch action stays available while physical
+  // navigation/exit remains safely locked during an active download.
+  vita2d_draw_rectangle(pauseX, cancelY, pauseW, cancelH, pausing ? SURFACE2 : ACCENT);
+  vita2d_draw_rectangle(pauseX, cancelY, pauseW, 3, pausing ? BORDER : WHITE);
+  vita2d_draw_rectangle(pauseX, cancelY + cancelH - 3, pauseW, 3, pausing ? BORDER : WHITE);
+  const unsigned buttonTextColor = pausing ? DIM : BG;
+  const bool paused = installProgressStage_ == "Paused";
+  // Simple drawn icon, no image assets or dynamic allocations.
+  if (paused) {
+    ::psvitaalive::ui::uiDrawText(&font_, pauseX + 20, cancelY + 31,
+                                  buttonTextColor, 1.05f, ">");
+  } else {
+    vita2d_draw_rectangle(pauseX + 20, cancelY + 13, 6, 22, buttonTextColor);
+    vita2d_draw_rectangle(pauseX + 30, cancelY + 13, 6, 22, buttonTextColor);
+  }
+  const char* plab = pausing ? "..." : ::psvitaalive::L(
+      paused ? "DOWNLOAD_RESUME_BUTTON" : "DOWNLOAD_PAUSE_BUTTON");
+  float psc = 0.83f;
+  while (psc > 0.60f &&
+         ::psvitaalive::ui::uiTextWidth(&font_, psc, plab) > pauseW - 66)
+      psc -= 0.04f;
+  const int ptw = ::psvitaalive::ui::uiTextWidth(&font_, psc, plab);
+  const int textX = pauseX + 46 + (pauseW - 60 - ptw) / 2;
+  ::psvitaalive::ui::uiDrawText(&font_, textX, cancelY + 23, buttonTextColor, psc, plab);
+  // Bilingual tactile cue for this disposable testing-only control.
+  const char* touchHint = pausing ? "..." : "TOCAR / TAP";
+  const int htw = ::psvitaalive::ui::uiTextWidth(&font_, 0.56f, touchHint);
+  ::psvitaalive::ui::uiDrawText(&font_,
+      pauseX + 46 + (pauseW - 60 - htw) / 2, cancelY + 42,
+      buttonTextColor, 0.56f, touchHint);
+}
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, cancelH, SURFACE2);
 vita2d_draw_rectangle(cancelX, cancelY, cancelW, 2, BORDER);
 vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
 {
-  const char* clab = ::psvitaalive::L(::psvitaalive::TextId::CircleCancelDownload);
-  const float csc = 0.88f;
+  const char* clab = showPause
+      ? ::psvitaalive::L("DOWNLOAD_CANCEL_BUTTON")
+      : ::psvitaalive::L(::psvitaalive::TextId::CircleCancelDownload);
+  float csc = 0.88f;
+  while (csc > 0.58f &&
+         ::psvitaalive::ui::uiTextWidth(&font_, csc, clab) > cancelW - 16)
+      csc -= 0.05f;
   const int ctw = ::psvitaalive::ui::uiTextWidth(&font_, csc, clab);
   ::psvitaalive::ui::uiDrawText(&font_, cancelX + (cancelW - ctw) / 2, cancelY + 34, WHITE, csc, clab);
 }
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 18, DIM, 0.70f,
-    ::psvitaalive::L(::psvitaalive::TextId::ProgressFooterHint));
+    ::psvitaalive::L(showPause ? "DOWNLOAD_PAUSE_FOOTER" : "PROGRESS_FOOTER_HINT"));
 }
 
 void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints) {

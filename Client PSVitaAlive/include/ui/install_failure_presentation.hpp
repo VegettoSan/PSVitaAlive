@@ -53,7 +53,10 @@ inline InstallFailureKind classifyInstallFailure(const std::string& message,
         failureAny(m,"archive may be corrupt","zip64","eocd","invalid zip") ||
         failureAny(m,"zip_get_num_entries failed","crc error","invalid compressed data","zlib error"))
         return InstallFailureKind::ArchiveCorrupt;
-    if (failureAny(m,"mediafire","download exceeded expected size")) return InstallFailureKind::MediaFire;
+    // Legacy enum label stays internal; generic link-resolver errors must
+    // preserve the same translated user-friendly error category.
+    if (failureAny(m,"mediafire","download exceeded expected size",
+                   "download link resolution failed")) return InstallFailureKind::MediaFire;
     // HTTP 404/410 are a missing *resource*, not a whole service outage.
     if (failureAny(m,"http status 404","http status 410","http 404","http 410"))
         return InstallFailureKind::HttpMissing;

@@ -38,7 +38,7 @@ HINT_PSP_MEDIA=Pasta=EBOOT em GAME; ISO=pspemu/ISO
 HINT_LANGUAGE=Sistema segue o idioma da Vita quando disponível
 HINT_COLOR_THEME=X / toque: abrir seletor de tema
 HINT_WARN_PLUGINS=Toast no arranque se faltar NoNpDrm
-HINT_SELF_UPDATE=Verifica GitHub Releases por um VPK mais recente
+HINT_SELF_UPDATE=Verifica se existe uma versão oficial mais recente do cliente
 CATALOG_HOMEBREW=Homebrew
 CATALOG_VITA_GAMES=Jogos PS Vita
 CATALOG_PSP=PSP
@@ -71,9 +71,9 @@ INFO_COLOR_THEME_3=popular. Report stays red.
 INFO_WARN_PLUGINS_1=Show a toast at startup when
 INFO_WARN_PLUGINS_2=NoNpDrm / NoPspEmuDrm are
 INFO_WARN_PLUGINS_3=missing from taiHEN config.
-INFO_SELF_UPDATE_1=Checks GitHub Releases for a
-INFO_SELF_UPDATE_2=newer PSVitaAlive.vpk and can
-INFO_SELF_UPDATE_3=install it in-place (VitaDB style).
+INFO_SELF_UPDATE_1=Verifica o canal oficial de
+INFO_SELF_UPDATE_2=atualizações e permite instalar
+INFO_SELF_UPDATE_3=uma versão mais recente na consola.
 STATUS_OK=OK
 STATUS_MISSING=missing
 LOCAL_VERSION=Local
@@ -260,7 +260,7 @@ TOAST_REPORT_SENT=Report sent
 TOAST_REPORT_FAILED=Report failed
 TOAST_REPORT_FAILED_START=Report failed to start
 TOAST_UPDATE_THREAD_FAILED=Update thread failed
-TOAST_CHECKING_UPDATES=Checking GitHub for updates...
+TOAST_CHECKING_UPDATES=A procurar atualizações...
 TOAST_UPDATE_AVAILABLE_PREFIX=Update
 TOAST_UPDATE_AVAILABLE_SUFFIX= available — press X to install
 TOAST_UP_TO_DATE_PREFIX=Already up to date (v
@@ -519,16 +519,16 @@ KEYBOARD_SPACE=ESPAÇO
 KEYBOARD_MORE=MAIS
 
 # Archive.org connectivity warnings (startup / failed user download)
-ARCHIVE_WARNING_TITLE=Problemas de ligação ao Archive.org
-ARCHIVE_WARNING_STARTUP_1=O PSVitaAlive não consegue aceder ao Archive.org através da ligação atual.
+ARCHIVE_WARNING_TITLE=Problema de ligação a uma fonte externa
+ARCHIVE_WARNING_STARTUP_1=Uma fonte externa de conteúdo não está a responder através da tua ligação.
 ARCHIVE_WARNING_STARTUP_2=Algumas transferências, ícones e capturas podem estar indisponíveis. Isto não significa necessariamente que o PSVitaAlive tenha uma falha. Tenta mais tarde ou aguarda a recuperação do serviço externo.
-ARCHIVE_WARNING_DOWNLOAD_1=Esta transferência não consegue aceder ao Archive.org neste momento.
+ARCHIVE_WARNING_DOWNLOAD_1=Esta fonte de transferência não está a responder neste momento.
 ARCHIVE_WARNING_DOWNLOAD_2=O serviço externo pode estar com problemas; não é necessariamente um erro do PSVitaAlive. Usa outra fonte, se disponível, ou tenta mais tarde.
 ARCHIVE_WARNING_OK=Entendido
 
 # User-friendly failed Archive.org download result
 ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Transferência indisponível
-ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Não foi possível aceder ao Archive.org neste momento.
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Não foi possível contactar esta fonte de transferência.
 ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=O serviço ou a tua ligação pode estar com problemas temporários. Isto não significa necessariamente que o PSVitaAlive esteja a falhar.
 ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Usa outro link de transferência, se existir, ou tenta mais tarde.
 
@@ -548,7 +548,7 @@ INSTALL_ERR_HTTP_SERVER_WHY=O servidor está com problemas temporários.
 INSTALL_ERR_HTTP_SERVER_ACTION=Usa outra fonte ou tenta novamente mais tarde.
 INSTALL_ERR_TLS_WHY=Não foi possível estabelecer uma ligação segura.
 INSTALL_ERR_TLS_ACTION=Verifica a data e hora da consola ou experimenta outra fonte.
-INSTALL_ERR_MEDIAFIRE_WHY=Não foi possível obter o ficheiro do MediaFire.
+INSTALL_ERR_MEDIAFIRE_WHY=Não foi possível obter o ficheiro através do link selecionado.
 INSTALL_ERR_MEDIAFIRE_ACTION=Tenta outro link ou verifica a fonte original.
 INSTALL_ERR_SPACE_WHY=Não há espaço livre suficiente para concluir a operação.
 INSTALL_ERR_SPACE_ACTION=Liberta espaço no armazenamento de destino e tenta novamente.
@@ -704,3 +704,10 @@ FEEDBACK_FIELDS_REQUIRED=Introduza título e descrição.
 FEEDBACK_COOLDOWN=Aguarde antes de enviar outra mensagem.
 FEEDBACK_SEND_FAILED=Não foi possível iniciar o envio.
 FEEDBACK_CLOSE_FIRST=Feche o relatório antes de sair.
+
+# Offline link / safe recovery messages
+NET_LINK_DISCONNECTED=Wi-Fi desligado ou sem ligação. Ativa-o e liga-te a uma rede antes de transferir.
+NET_LINK_CONNECTING=A estabelecer ligação à rede. Tenta novamente quando o Wi-Fi estiver pronto.
+NET_PAUSED_DISCONNECTED=Transferência guardada. Wi-Fi desligado: volta a ligar e retoma.
+NET_PAUSED_SOURCE_UNREACHABLE=Transferência guardada. Há rede, mas a fonte não responde. Verifica a internet e retoma.
+NET_CONNECTED_SOURCE_UNREACHABLE=A consola está ligada à rede, mas não foi possível aceder à Internet ou à fonte de transferência.
