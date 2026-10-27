@@ -313,6 +313,7 @@ private:
     // Structured failure source: never infer connectivity from localized text.
     bool installArchiveSourceUnavailable_ = false;
     InstallFailureKind installFailureKind_ = InstallFailureKind::Other;
+    bool installFailureNetworkLinked_ = false; // Captured once per failure, not polled per frame.
     std::string installResultPath_;
     std::string installResultTitleId_;
     bool installZipRecoveryAvailable_ = false;
