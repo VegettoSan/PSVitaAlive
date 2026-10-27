@@ -81,6 +81,17 @@ Si aparece un catálogo declarativo futuro, deberá validarse y entregarse por e
 
 El resultado del workflow no demuestra por sí mismo que haya fallo en esta funcionalidad; tampoco permite declarar completada una compilación ni una prueba de hardware.
 
+## 7.b Advertencia de recuperación durante reinicio (27 octubre 2026)
+
+Es una modificación **de la interfaz de reinicio, no del detector de conflictos**:
+
+- `drawPluginRebootOverlay()`: panel más grande, texto de recuperación con **L** en un recuadro destacado antes de `Reiniciar PS Vita`. Sigue siendo la misma ventana y se utiliza tras instalación individual o cola de esenciales. Touch coincide con geometría actualizada.
+- `drawInstallAllSummary()`: conserva el resumen, sus botones y acciones de ZIP, pero utiliza `ALL_REPORT_REBOOT_2` para explicar el arranque sin plugins en caso de bootloop. Solo se muestra si realmente se instaló un plugin.
+- La recomendación coincide con [AutoPlugin II](https://github.com/ONElua/AutoPlugin2/blob/master/AUTOPLUG2/lang/SPANISH.lua) y [Vita Hacks Guide](https://vita.hacks.guide/troubleshooting). Con Enso mantener **L** en el arranque; con h-encore mantenerla al ejecutar el exploit para omitir plugins. La acción es temporal, no borra la configuración.
+- Texto localizado en ocho idiomas y ajustado al ancho del panel. No se modifica el catálogo, los plugins, ni la lógica de reinicio.
+
+**Pendientes de hardware:** comprobar la visibilidad completa del texto, el área táctil del botón individual, el texto de Install All y distintas fuentes. Las pruebas en hardware y la compilación son validaciones independientes.
+
 ## 8. Reversión
 
 El cambio puede revertirse como PR: no realiza migración de datos, no toca ni los binarios de plugins, ni `config.txt`, ni el instalador. Volver al diálogo previo solo elimina la advertencia visual y su lectura puntual.
