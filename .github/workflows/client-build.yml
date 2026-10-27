@@ -55,6 +55,13 @@ jobs:
             -o /tmp/psvitaalive-http-range-size-test
           /tmp/psvitaalive-http-range-size-test
 
+      - name: Test resumed-transfer speed excludes cached bytes
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_transfer_speed_policy.cpp \
+            -o /tmp/psvitaalive-transfer-speed-test
+          /tmp/psvitaalive-transfer-speed-test
+
       - name: Test resumable 2/4-range segment offsets and 64-bit bounds
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
