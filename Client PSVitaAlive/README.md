@@ -215,7 +215,7 @@ See the root [README — Recommended setup](../README.md#recommended-setup-real-
 
 ## Network / TLS (libcurl)
 
-Default stack: **VitaSDK libcurl + OpenSSL 1.0.2** (EOL). Certificate verification is disabled on device (no usable system CA store).
+Default stack: **VitaSDK libcurl + the OpenSSL library packaged with the selected VitaSDK build**. The official `vitasdk/vitasdk:2026.08` CI image includes **OpenSSL 1.1.1**; older VitaSDK installations may use an OpenSSL 1.0.2-era build and need a matching libcurl. Certificate verification is disabled in the current device code path (no reliable CA store). Do not replace OpenSSL independently of libcurl; see [CI linker regression and fix](../docs/VITASDK_OPENSSL_LINKER_FIX_20261027.md).
 
 ### Archive.org resilience
 
