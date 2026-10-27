@@ -44,6 +44,34 @@ La opción predeterminada de CMake sigue enlazando las bibliotecas `ssl` y `cryp
 
 La comprobación `vdpm ... -Q` hará fallar claramente el job si una futura imagen flotante deja de incluir la versión compatible conocida, en lugar de cambiar el paquete por la fuerza.
 
+## 2.b Segunda dependencia de enlace (descubierta tras corregir OpenSSL)
+
+El nuevo build del PR [#60](https://github.com/VegettoSan/PSVitaAlive/pull/60) con OpenSSL 1.1.1 pasó los símbolos OpenSSL que antes fallaban, pero se detuvo en la **misma fase final de enlace** por nuevos símbolos sin resolver:
+
+- `libstdc++.a(guard.o)` → `pthread_once`;
+- `libcrypto.a(threads_pthread.o)` → `pthread_rwlock_init`, `pthread_rwlock_rdlock`, `pthread_rwlock_wrlock`, `pthread_rwlock_unlock`, `pthread_rwlock_destroy`, `pthread_once` y `pthread_atfork`.
+
+Evidencia: [workflow run 40531759991, build de PR #60](https://github.com/VegettoSan/PSVitaAlive/actions/runs/40531759991). No hay referencias sin resolver a OpenSSL en este segundo intento. El cliente compiló sus fuentes y llegó al enlazador (95 %).
+
+**Causa adicional:** los archivos `libcrypto.a` y `libstdc++.a` de la imagen usan pthread; el `pthread` estático se especificaba antes de ambos en `target_link_libraries()` y el enlazador GNU suele inspeccionar los archivos `.a` de izquierda a derecha una sola vez. El soporte OpenSSL 1.0.2 usado antiguamente no exponía esta combinación de referencias.
+
+**Cambio mínimo de CMake en PR #60:** se conserva **una única** referencia a la biblioteca `pthread`, movida detrás de OpenSSL y junto con `stdc++` al grupo:
+
+```cmake
+target_link_libraries(${PROJECT_NAME}
+  "-Wl,--start-group"
+  stdc++
+  pthread
+  "-Wl,--end-group"
+)
+```
+
+El grupo se coloca **después** de `ssl crypto` / `mbedtls mbedx509 mbedcrypto`. Así el enlazador puede resolver el pequeño ciclo de dependencias de estos archivos estáticos. No cambia el comportamiento del código C++, el modelo de hilos ni el TLS; tampoco añade `-pthread` global o una segunda biblioteca `pthread` que pueda ocasionar definiciones duplicadas.
+
+**Validación:** se necesita otra ejecución nueva del CI del PR tras este commit y confirmar que produce `PSVitaAlive.vpk` antes de fusionar.
+
+---
+
 ## 3. Qué NO cambia
 
 - No se modifican las peticiones de red, el tratamiento HTTPS, Range o las verificaciones de tamaño/checksum.
