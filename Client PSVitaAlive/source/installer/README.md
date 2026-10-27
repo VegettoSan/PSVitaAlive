@@ -339,3 +339,13 @@ uncompressed size from the remote ZIP Content-Length.
 
 See [current detailed space guide](../../../docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md)
 and [safe ZIP overwrite](../../../docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md).
+
+
+## ZIP protegido antes de extraer (2026-10-27)
+
+Los ZIP de datos completos, incluso 2/4 rangos, se guardan usando
+`persistPendingZipRecovery()` **antes** del extractor. La extracción correcta
+elimina ZIP, partes y sidecar; error, cancelación o corte de energía conservan
+el archivo para un nuevo intento offline. Un journal en `.psva_keep_zip`
+protege los renombrados interrumpidos por apagados bruscos. Véase
+`docs/ZIP_RECOVERY_POWER_LOSS_20261027.md`.

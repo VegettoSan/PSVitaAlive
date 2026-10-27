@@ -12,6 +12,7 @@
 #include "installer/app_settings.hpp"
 #include "installer/install_archive_policy.hpp"
 #include "installer/saved_zip_parts.hpp"
+#include "installer/zip_recovery_journal.hpp"
 #include "installer/install_retry_policy.hpp"
 #include "installer/install_space_policy.hpp"
 #include "installer/refresh_manager.hpp"
@@ -172,6 +173,67 @@ std::string uniqueRecoveryPath(StorageManager& st, const std::string& dir, const
     }
     return dir + "/" + stem + "_recovered" + ext;
 }
+// After extraction succeeds, remove ZIP/ranges and the corresponding sidecar.
+// If a deletion fails, the remaining files stay available for manual cleanup.
+bool removeSavedZipArchive(const std::string& first, const std::string& info, unsigned parts) {
+    if (parts != 1 && parts != 2 && parts != 4) return false;
+    StorageManager st;
+    bool ok = true;
+    for (unsigned p=0; p<parts; ++p) {
+        const std::string path = parts==1 ? first : savedZipPartPath(first,p);
+        if (path.empty() || (st.exists(path) && !st.removeFile(path))) ok=false;
+    }
+    if (ok && st.exists(info)) ok=st.removeFile(info);
+    return ok;
+}
+// A power cut may interrupt moving .001/.002/.003/.004 into manual/.
+// The journal is installed before the first move. Finish any remaining
+// renames before the regular startup orphan-job purge.
+void recoverInterruptedZipMoves() {
+    StorageManager st;
+    const std::string root=std::string(StorageManager::BASE_DIR)+"/downloads/jobs";
+    const SceUID dir=sceIoDopen(root.c_str());
+    if (dir<0) return;
+    SceIoDirent ent{};
+    while (sceIoDread(dir,&ent)>0) {
+        const std::string id(ent.d_name);
+        if (!SCE_S_ISDIR(ent.d_stat.st_mode) ||
+            id.compare(0,4,"job_")!=0 || id.find("..")!=std::string::npos ||
+            id.find('/')!=std::string::npos) continue;
+        const std::string jobDir=root+"/"+id;
+        const std::string marker=jobDir+"/.psva_keep_zip";
+        if (!st.exists(marker)) continue;
+        std::string data;
+        ZipRecoveryTransaction t;
+        if (!st.readTextFile(marker,data) ||
+            !parseZipRecoveryTransaction(data,jobDir,t)) continue;
+        const std::string info=t.base+".info.txt";
+        bool complete=true;
+        for (unsigned p=0;p<t.parts;++p) {
+            const std::string src=p==0?t.source:t.source+".range"+std::to_string(p);
+            const std::string dst=t.parts==1?t.base:t.base+".00"+std::to_string(p+1);
+            if ((st.fileSize(src)>0)==(st.fileSize(dst)>0)) { complete=false;break; }
+        }
+        if (!complete) {
+            diagnostics::log("[Installer] ambiguous ZIP save transaction kept: "+jobDir);
+            continue;
+        }
+        if (!st.exists(info) && !st.writeTextFile(info,t.info)) continue;
+        for (unsigned p=0;p<t.parts;++p) {
+            const std::string src=p==0?t.source:t.source+".range"+std::to_string(p);
+            const std::string dst=t.parts==1?t.base:t.base+".00"+std::to_string(p+1);
+            if (st.fileSize(dst)>0) continue;
+            if (!st.rename(src,dst)) { complete=false;break; }
+        }
+        if (complete) {
+            st.removeFile(marker);
+            diagnostics::log("[Installer] interrupted ZIP save recovered: "+t.base);
+        } else {
+            diagnostics::log("[Installer] interrupted ZIP save remains protected: "+jobDir);
+        }
+    }
+    sceIoDclose(dir);
+}
 }
 
 
@@ -209,7 +271,8 @@ InstallController::InstallController() : downloads_(http_) {
 InstallController::~InstallController() { shutdown(); }
 
 int InstallController::cleanupStartupDownloads(const StartupCleanupProgressFn& onProgress) {
-    // No install/download worker has started while the loading overlay is active.
+    // Complete power-loss ZIP renames before the automatic job purge.
+    recoverInterruptedZipMoves();
     return downloads_.purgeIncompleteJobs(onProgress);
 }
 
@@ -485,6 +548,15 @@ bool InstallController::persistPendingZipRecovery() {
                 "They are not independent ZIP volumes.\n";
     if (zipRecoveryMayBeCorrupt_.load())
         info += "Warning: archive may be damaged/incomplete; manual extraction may also fail.\n";
+    // Commit the recovery journal before writing the sidecar/moving any range.
+    ZipRecoveryTransaction tx;
+    tx.source=job->finalPath;
+    tx.base=base;
+    tx.parts=parts;
+    tx.info=info;
+    const std::string marker=job->metadataPath.substr(
+        0,job->metadataPath.find_last_of('/'))+"/.psva_keep_zip";
+    if (!st.writeTextFile(marker,serializeZipRecoveryTransaction(tx))) return false;
     if (!st.writeTextFile(infoPath, info)) return false;
     size_t moved = 0;
     for (; moved < moves.size(); ++moved) {
@@ -1294,14 +1366,7 @@ int InstallController::workerSavedZipMain() {
         const bool staged = dispatcher_.lastZipUsedStagedMoves();
         // All ZIP entries and whole-directory relocations completed successfully.
         // Delete only the selected archive; other recovery ZIPs of the app stay.
-        StorageManager st;
-        bool removed = true;
-        for (unsigned p = 0; p < savedZipPartCount_; ++p) {
-            const std::string part = savedZipPartCount_ == 1 ? path :
-                savedZipPartPath(path, p);
-            removed = st.removeFile(part) && removed;
-        }
-        if (removed) st.removeFile(infoPath);
+        const bool removed=removeSavedZipArchive(path,infoPath,savedZipPartCount_);
         diagnostics::log(std::string("[Installer] offline ZIP result moved_deep_folders=") +
                          (staged ? "yes" : "no") +
                          " archive_deleted=" + (removed ? "yes" : "no") +
@@ -1633,10 +1698,41 @@ int InstallController::workerMain() {
         " format=" + toString(downloadedPayload.format) +
         " extract_path=" + (activeZipDestination_.empty() ? "-" : activeZipDestination_));
 
+    // Snapshot job-owned values before the existing persistence function
+    // moves the completed ZIP/ranges and frees the download job.
+    std::string installArchivePath=job->finalPath;
+    const bool installArchiveSegmented=job->segmentedZip;
+    const unsigned savedArchiveParts=installArchiveSegmented
+        ? (StorageManager().exists(job->finalPath+".range3") ? 4u : 2u) : 1u;
+    bool savedBeforeExtraction=false;
+    if (zipRecoveryCandidate) {
+        zipRecoveryPath_=job->finalPath;
+        zipRecoveryExtractPath_=activeZipDestination_;
+        zipRecoveryInfoPath_.clear();
+        zipRecoveryJobId_=activeJobId_;
+        zipRecoveryPartCount_=savedArchiveParts;
+        setStage("SavingZip");
+        setState(InstallStatus::State::Installing,
+                 "Protecting completed ZIP before extraction...");
+        if (!persistPendingZipRecovery()) {
+            // Never extract without a durable recovery copy. Any interrupted
+            // renames remain guarded by the transaction marker until startup.
+            setStage("ZipRecovery");
+            setState(InstallStatus::State::Failed,
+                     "Could not protect completed ZIP; restart PSVitaAlive to recover it.");
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide()/1000ULL);
+            workerDone_.store(true,std::memory_order_release);
+            return 0;
+        }
+        savedBeforeExtraction=true;
+        installArchivePath=zipRecoveryPath_;
+        activeJobId_.clear();
+        diagnostics::log("[Installer] ZIP protected before extraction: "+installArchivePath);
+    }
     std::string directRifPath;
     {
         const DetectResult& dr = downloadedPayload;
-        const std::string ext = FormatDetector::extensionOf(job->finalPath);
+        const std::string ext = FormatDetector::extensionOf(installArchivePath);
         const bool isPkg = (dr.format == FileFormat::Pkg) || (ext == "pkg");
         if (isPkg) {
             std::string zrif = activeZrif_;
@@ -1722,7 +1818,7 @@ int InstallController::workerMain() {
         dispatcher_.setPspMediaFormat(settings_.pspMediaFormat);
     dispatcher_.setPspStorage(settings_.pspStorage);
         result = dispatcher_.installFile(
-            job->finalPath,
+            installArchivePath,
             [&](const InstallDispatchProgress& progress) {
                 current_.store(progress.current);
                 total_.store(progress.total);
@@ -1764,7 +1860,7 @@ int InstallController::workerMain() {
             activeZipDestination_,
             directRifPath,
             isDataOrGameFilesLinkType(activeLinkType_),
-            job->segmentedZip
+            installArchiveSegmented
         );
 
         if (result == InstallDispatchResult::Ok ||
@@ -1846,30 +1942,15 @@ int InstallController::workerMain() {
         // failed in the extraction phase is valuable user data; direct VPK/PKG,
         // plugin jobs, cancellations and incomplete network downloads keep their
         // existing cleanup behavior.
-        if (!cancelled && zipRecoveryCandidate) {
-            zipRecoveryPartCount_ = job->segmentedZip
-                ? (StorageManager().exists(job->finalPath + ".range3") ? 4u : 2u) : 1u;
-            zipRecoveryPath_ = job->finalPath;
-            zipRecoveryExtractPath_ = activeZipDestination_;
-            zipRecoveryInfoPath_.clear();
-            zipRecoveryJobId_ = activeJobId_;
-            zipRecoveryMayBeCorrupt_.store(looksLikeDamagedZipError(error));
-            // Mark completed ranges before attempting any relocation.
-            StorageManager recoveryStorage;
-            const size_t metaSlash = job->metadataPath.find_last_of('/');
-            if (metaSlash != std::string::npos) {
-                const std::string marker = job->metadataPath.substr(0, metaSlash) + "/.psva_keep_zip";
-                if (!recoveryStorage.writeTextFile(marker, "ZIP recovery pending"))
-                    diagnostics::log("[Installer] URGENT: could not mark pending ZIP recovery");
+        if (zipRecoveryCandidate && savedBeforeExtraction) {
+            zipRecoveryMayBeCorrupt_.store(!cancelled && looksLikeDamagedZipError(error));
+            zipRecoveryAvailable_.store(!cancelled);
+            if (!cancelled) {
+                setStage("ZipRecovery");
+                setInstallPath(activeZipDestination_.c_str());
+                setState(InstallStatus::State::Failed,error.c_str());
             }
-            if (!persistPendingZipRecovery())
-                diagnostics::log("[Installer] ZIP relocation pending; retaining original ranges");
-            zipRecoveryAvailable_.store(true);
-            setStage("ZipRecovery");
-            setInstallPath(activeZipDestination_.c_str());
-            setState(InstallStatus::State::Failed, error.c_str());
-            diagnostics::log("[Installer] ZIP recovery pending user decision path=" +
-                             zipRecoveryPath_);
+            diagnostics::log("[Installer] ZIP preserved for retry: "+installArchivePath);
         } else {
             downloads_.cleanupCompletedJob(activeJobId_);
             activeJobId_.clear();
@@ -1943,18 +2024,29 @@ int InstallController::workerMain() {
         }
         if (dispatcher_.lastZipUsedStagedMoves()) {
             sceClibSnprintf(okMsg, sizeof(okMsg),
-                            "ZIP folders moved. Deep files may be unreadable; ZIP kept.");
+                            "ZIP folders moved; deep files may be unreadable.");
         }
         diagnostics::log(std::string("[Installer] installation completed path=") +
             dispatcher_.lastInstallPath() + " titleId=" + dispatcher_.lastTitleId() +
             " liveArea=" + (dispatcher_.lastLiveAreaOk() ? "yes" : "no") +
             " verify=" + verifyMsg +
             " attempts=" + std::to_string(attemptsUsed));
-        // Successful ZIP extraction (including completed staged directory
-        // moves) can now free the job's original archive immediately. Recovery
-        // archives are kept only when the extraction or move fails.
-        downloads_.cleanupCompletedJob(activeJobId_);
-        activeJobId_.clear();
+        // Only confirmed successful extraction deletes a persisted data ZIP.
+        if (savedBeforeExtraction) {
+            const bool removed=removeSavedZipArchive(
+                installArchivePath,zipRecoveryInfoPath_,savedArchiveParts);
+            diagnostics::log(std::string("[Installer] successful ZIP archive cleanup=")+
+                             (removed?"removed":"failed; manual cleanup available"));
+            if (!removed)
+                sceClibSnprintf(okMsg,sizeof(okMsg),"ZIP extracted; archive cleanup pending.");
+            zipRecoveryPath_.clear();
+            zipRecoveryInfoPath_.clear();
+            zipRecoveryExtractPath_.clear();
+            zipRecoveryJobId_.clear();
+        } else {
+            downloads_.cleanupCompletedJob(activeJobId_);
+            activeJobId_.clear();
+        }
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         setStage("Completed");
         setState(InstallStatus::State::Completed, okMsg);
