@@ -1663,7 +1663,7 @@ HttpResult HttpClient::downloadToFile(
         const uint32_t now = static_cast<uint32_t>(sceKernelGetProcessTimeWide() / 1000000ULL);
         if (gArchiveImagePauseUntilSec.load(std::memory_order_relaxed) > now) {
             lastSourceUnavailable_ = true;
-            setError("Archive.org is not responding; image retry paused briefly");
+            setError("Image download source temporarily unavailable; retry paused");
             httpDiagnostic("[HTTP] archive image skipped: temporary network cooldown");
             return HttpResult::NetworkError;
         }
