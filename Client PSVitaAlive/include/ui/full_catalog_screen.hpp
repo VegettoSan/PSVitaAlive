@@ -246,6 +246,10 @@ private:
     int pluginChoiceItemIndex_ = -1;
     int pluginChoiceLinkIndex_ = -1;
     int pluginChoiceFocus_ = 0; // 0 Install, 1 Skip
+    // Only catalog Plugin links use these read-only compatibility notices.
+    std::vector<std::string> pluginChoiceConflicts_;
+    int pluginChoiceScrollLine_ = 0;
+    int pluginChoiceMaxScrollLine_ = 0;
 
     bool archiveWarningVisible_ = false;
     bool archiveWarningPending_ = false;
@@ -426,6 +430,7 @@ private:
     void scrollWebQrHelp(int direction);
     void drawInstallAllOverlay();
     void drawPluginChoiceOverlay();
+    void refreshPluginChoiceConflicts(const CatalogLink& link);
     void resolveIndividualPluginChoice(bool install);
     void installAllAdvancePluginPick(bool install);
     void drawPluginRebootOverlay();
