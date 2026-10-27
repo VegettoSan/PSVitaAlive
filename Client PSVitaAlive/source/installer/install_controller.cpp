@@ -1,5 +1,6 @@
 #include "installer/install_controller.hpp"
 #include "network/parallel_archive_download.hpp"
+#include "network/connectivity_state.hpp"
 #include "update/installed_release_tracker.hpp"
 #include "localization/localization.hpp"
 #include "diagnostic_logger.hpp"
@@ -322,6 +323,12 @@ bool InstallController::pauseDownload() {
 }
 
 bool InstallController::resumeDownload() {
+    // Do not destroy/requeue an intact checkpoint while the device has no
+    // network link. The user may retry from the same saved bytes later.
+    if (downloadPreflightStatusKey(queryLinkConnectivity())) {
+        diagnostics::log("[Installer] resume blocked: network link disconnected or connecting");
+        return false;
+    }
     if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Paused ||
         activeJobId_.empty() || !workerDone_.load(std::memory_order_acquire))
         return false;
@@ -823,7 +830,7 @@ bool InstallController::requestInstall(
         total_.store(expectedBytes);
         speed_.store(0);
         resultShownAtMs_.store(0);
-        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgNoInternet));
+        setState(InstallStatus::State::Failed, ::psvitaalive::L("NET_LINK_DISCONNECTED"));
         diagnostics::log("[Installer] blocked: no network connection before download");
         resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
         return true; // accepted as a finished failed request so UI shows the modal
@@ -1420,7 +1427,10 @@ int InstallController::workerMain() {
         total_.store(job->expectedSize);
         speed_.store(0);
         setStage("Paused");
-        setState(InstallStatus::State::Paused, "Download paused. Square: resume / Circle: cancel");
+        setState(InstallStatus::State::Paused, job->pausedForConnectivity
+            ? ::psvitaalive::L(linkUnavailable(queryLinkConnectivity())
+                ? "NET_PAUSED_DISCONNECTED" : "NET_PAUSED_SOURCE_UNREACHABLE")
+            : ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE"));
         diagnostics::log("[Installer] download paused without installation job=" + activeJobId_);
         workerDone_.store(true, std::memory_order_release);
         return 0; // Do not clear the job, partial file, install metadata or queue.
