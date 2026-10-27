@@ -1631,7 +1631,8 @@ HttpResult HttpClient::downloadToFile(
     uint64_t archiveSelectionSizeHint,
     bool keepZipParts,
     bool checkSizeAtHeaders,
-    HttpCancelFn shouldPause
+    HttpCancelFn shouldPause,
+    HttpStatusFn onStatus
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1818,6 +1819,32 @@ HttpResult HttpClient::downloadToFile(
     size_t archiveAltIndex = 0;
     bool archiveMetaTried = false;
     std::string activeUrl = url;
+    // Reuse the previous working storage edge only within the same in-memory
+    // job, and only when a real range checkpoint exists. A *fresh* HTTP 206
+    // probe is mandatory before trusting the stored segments.
+    ArchiveProbeResult resumeEdgeProbe;
+    bool resumeEdgeVerified = false;
+    const bool canTryResumeEdge = isArchive && savedParallel > 0 &&
+        fastResumeSourceUrl_ == url &&
+        fastResumeDestination_ == destinationPath &&
+        fastResumeSize_ > 0 && !fastResumeServer_.empty() &&
+        archiveEffectiveUrlUsable(fastResumeServer_);
+    if (canTryResumeEdge && (!ctx.shouldCancel || !ctx.shouldCancel())) {
+        if (onStatus) onStatus("HTTP_STAGE_VERIFYING_SAVED");
+        if (probeArchiveStorageUrl(fastResumeServer_, 1, ctx.shouldCancel, resumeEdgeProbe) &&
+            resumeEdgeProbe.total == fastResumeSize_ &&
+            archiveEffectiveUrlUsable(resumeEdgeProbe.effectiveUrl) &&
+            (fastResumeServer_.compare(0, 7, "http://") == 0
+                ? resumeEdgeProbe.effectiveUrl.compare(0, 7, "http://") == 0
+                : resumeEdgeProbe.effectiveUrl.compare(0, 8, "https://") == 0)) {
+            activeUrl = fastResumeServer_;
+            resumeEdgeVerified = true;
+            httpDiagnostic("[HTTP] fast resume edge accepted after fresh 206 probe; full selector skipped");
+        } else {
+            httpDiagnostic("[HTTP] fast resume edge probe failed; retrying normal Archive selector");
+            if (onStatus) onStatus("HTTP_STAGE_FINDING_SERVER");
+        }
+    }
     // The node selector already made an authoritative 206 Range request.
     // Reuse that observed total instead of opening another HTTPS connection.
     uint64_t selectedArchiveTotal = 0;
@@ -1843,7 +1870,9 @@ HttpResult HttpClient::downloadToFile(
     // bytes. maxAttemptsOverride != 0 is used by small image/cache requests, which
     // deliberately skip this selector to avoid metadata/probe overhead. Resumes also
     // keep the established URL first so validator/range semantics are unchanged.
-    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0) {
+    if (isArchive && resumeOffset == 0 && maxAttemptsOverride == 0 &&
+        !resumeEdgeVerified) {
+        if (onStatus) onStatus("HTTP_STAGE_FINDING_SERVER");
         if (buildArchiveAlternateUrls(url, archiveAltUrls)) {
             archiveMetaTried = true;
             if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint,
@@ -1881,11 +1910,16 @@ HttpResult HttpClient::downloadToFile(
          archiveSelectionSizeHint >= 1024ULL * 1024ULL)) {
         ArchiveProbeResult rangeProbe;
         bool rangeReady = false;
-        if (isArchive && selectedArchiveTotal > 0 &&
+        if (resumeEdgeVerified) {
+            rangeProbe = resumeEdgeProbe;
+            rangeReady = true; // already made the required fresh exact 206 probe
+        } else if (isArchive && selectedArchiveTotal > 0 &&
             savedParallel == 0 && archiveEffectiveUrlUsable(activeUrl)) {
             rangeProbe.total = selectedArchiveTotal;
             rangeReady = true;
         } else {
+            if (onStatus) onStatus(savedParallel > 0
+                ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_VERIFYING_FILE");
             rangeReady = probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe);
         }
         // Never use the fast path for generic URLs without stable content
@@ -1899,9 +1933,14 @@ HttpResult HttpClient::downloadToFile(
         }
         if (rangeReady && rangeProbe.total >= 1024ULL * 1024ULL) {
             std::string parallelUrl = isArchive ? activeUrl : rangeProbe.effectiveUrl;
+            if (resumeEdgeVerified) {
+                // A previously validated HTTP edge is reused as-is; do not
+                // silently switch its protocol or origin while resuming.
+                parallelUrl = fastResumeServer_;
+            }
             // Restore Archive.org's measured direct-HTTP storage acceleration,
             // without SHA-1. Never use it for generic catalog URLs.
-            if (isArchive && !selectedArchiveHttpUrl.empty() &&
+            if (!resumeEdgeVerified && isArchive && !selectedArchiveHttpUrl.empty() &&
                 archiveEffectiveUrlUsable(selectedArchiveHttpUrl) &&
                 selectedArchiveHttpUrl.compare(0, 7, "http://") == 0) {
                 parallelUrl = selectedArchiveHttpUrl;
@@ -1945,6 +1984,8 @@ HttpResult HttpClient::downloadToFile(
                     return HttpResult::Cancelled;
                 }
             }
+            if (rangeReady && onStatus) onStatus(savedParallel > 0
+                ? "HTTP_STAGE_RECOVERING_PARTS" : "HTTP_STAGE_CONNECTING");
             sceIoClose(ctx.fd);
             ctx.fd = -1;
             const ParallelArchiveOutcome parallel = rangeReady ? downloadArchiveRanges(
@@ -1959,6 +2000,17 @@ HttpResult HttpClient::downloadToFile(
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::Paused ||
                 parallel == ParallelArchiveOutcome::IoError) {
+                if (isArchive && rangeReady &&
+                    (parallel == ParallelArchiveOutcome::Paused ||
+                     parallel == ParallelArchiveOutcome::Complete ||
+                     parallel == ParallelArchiveOutcome::Segmented)) {
+                    // Only the validated checkpoint may reuse this in-memory
+                    // edge on the next resume. Cache is per source and job path.
+                    fastResumeSourceUrl_ = url;
+                    fastResumeDestination_ = destinationPath;
+                    fastResumeServer_ = parallelUrl;
+                    fastResumeSize_ = rangeProbe.total;
+                }
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
                 if (parallel == ParallelArchiveOutcome::Complete ||
