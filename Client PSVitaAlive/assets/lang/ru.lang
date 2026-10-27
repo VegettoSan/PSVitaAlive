@@ -704,3 +704,9 @@ FEEDBACK_FIELDS_REQUIRED=Введите заголовок и описание.
 FEEDBACK_COOLDOWN=Подождите перед повторной отправкой.
 FEEDBACK_SEND_FAILED=Не удалось начать отправку.
 FEEDBACK_CLOSE_FIRST=Закройте отчёт перед выходом.
+
+# Offline link / safe recovery messages
+NET_LINK_DISCONNECTED=Wi-Fi выключен или сеть не подключена. Включите Wi-Fi и подключитесь к сети.
+NET_LINK_CONNECTING=Подключение к сети. Повторите попытку после соединения.
+NET_PAUSED_DISCONNECTED=Загрузка сохранена. Wi-Fi отключён: подключитесь и нажмите Продолжить.
+NET_PAUSED_SOURCE_UNREACHABLE=Загрузка сохранена. Сеть есть, но источник не отвечает. Проверьте интернет и продолжите.
