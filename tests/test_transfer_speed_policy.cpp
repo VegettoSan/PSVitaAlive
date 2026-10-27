@@ -15,8 +15,8 @@ int main() {
     assert(speed.observe(1000000, 0) == 0);
     assert(speed.observe(1300000, 0) == 0);
     assert(speed.observe(2000000, 0) == 0);
-    assert(speed.observe(3000000, 1048576) == 524288);
-    assert(speed.observe(3500000, 1048576) == 524288);
+    assert(speed.observe(3000000, 1048576) == 1048576);
+    assert(speed.observe(3500000, 1048576) == 1048576);
     assert(speed.observe(4000000, 2097152) > 524288);
     // New HTTP transfer session uses a new sampler.
     TransferSpeedSampler next;
