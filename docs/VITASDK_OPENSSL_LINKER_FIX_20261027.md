@@ -68,7 +68,7 @@ target_link_libraries(${PROJECT_NAME}
 
 El grupo se coloca **después** de `ssl crypto` / `mbedtls mbedx509 mbedcrypto`. Así el enlazador puede resolver el pequeño ciclo de dependencias de estos archivos estáticos. No cambia el comportamiento del código C++, el modelo de hilos ni el TLS; tampoco añade `-pthread` global o una segunda biblioteca `pthread` que pueda ocasionar definiciones duplicadas.
 
-**Validación:** se necesita otra ejecución nueva del CI del PR tras este commit y confirmar que produce `PSVitaAlive.vpk` antes de fusionar.
+**Validación completada:** [Build PS Vita Client #508 — success](https://github.com/VegettoSan/PSVitaAlive/actions/runs/40532684582). El job compiló, enlazó, generó `PSVitaAlive.vpk` y subió el artefacto. El [PR #60](https://github.com/VegettoSan/PSVitaAlive/pull/60) fue fusionado en `main` mediante [commit `151a224`](https://github.com/VegettoSan/PSVitaAlive/commit/151a22465265ea00707566ea05d2d4a2f64ab541).
 
 ---
 
@@ -79,18 +79,18 @@ El grupo se coloca **después** de `ssl crypto` / `mbedtls mbedx509 mbedcrypto`.
 - No se editan `apps/`, `authors/`, `categories/`, ni los JSON `catalog.json`, `authors.json`, `categories.json` generados por Actions.
 - No se desactivan errores de compilación, no se ignora el estado de enlace, no se eliminan bibliotecas del proyecto.
 
-## 4. Confirmaciones pendientes o históricas
+## 4. Verificación final y límites
 
 | Control | Estado |
 | --- | --- |
 | Raíz del fallo anterior identificada por log | Confirmada |
-| Corrección limitada al workflow de CI en `main` | Aplicada |
-| Unit tests que preceden al paso VitaSDK | Se ejecutaron durante el build fallido |
-| Compilación y enlazado completos del cliente con la corrección | **Requiere nuevo CI verde** |
-| VPK producido y adjuntado por GitHub Actions | **Requiere nuevo CI verde** |
+| Corrección del workflow OpenSSL en `main` | Aplicada: [`d30c9a1`](https://github.com/VegettoSan/PSVitaAlive/commit/d30c9a1d7bdb5357db57a61aaa68ab9e0510afae) |
+| Unit tests que preceden al paso VitaSDK | Correctos en la ejecución final |
+| Compilación y enlazado completos del cliente con ambos ajustes | **Éxito**: [CI 40532684582](https://github.com/VegettoSan/PSVitaAlive/actions/runs/40532684582) |
+| VPK producido y adjuntado por GitHub Actions | **Éxito**: artefacto `PSVitaAlive-image-throughput-16abd03c10d57cd7094652d72ac80a946b51a110` (ZIP de ~10,1 MB) |
 | Comportamiento TLS de la nueva compilación en una PS Vita física | No probado aquí |
 
-Una vez haya un nuevo build verde, anexar enlace de esa ejecución y distinguirlo expresamente de una prueba en hardware.
+El [artefacto de la compilación](https://github.com/VegettoSan/PSVitaAlive/actions/runs/40532684582#artifacts) fue publicado correctamente. El éxito de CI confirma que genera un VPK y supera los tests existentes, **no** confirma por sí mismo su funcionamiento en una PS Vita real. Las comprobaciones de conexiones TLS/MediaFire/Archive.org en hardware siguen pendientes.
 
 ## 5. Reproducción y mantenimiento
 
