@@ -384,7 +384,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
         uint64_t mfSize = 0;
         if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) || direct.empty()) {
             job.state = DownloadState::Failed;
-            job.lastError = mfErr.empty() ? "MediaFire resolve failed" : mfErr;
+            // Preserve provider details in diagnostics, not end-user messages.
+            job.lastError = ::psvitaalive::L("INSTALL_ERR_MEDIAFIRE_WHY");
             saveMetadata(job);
             activeJobId_.clear();
             diagnostics::log(std::string("[DownloadManager] MediaFire resolve failed: ") + job.lastError);
@@ -554,7 +555,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         job.state = DownloadState::Failed;
         // Usually a bad mid-retry append or a wrong Content-Length; MediaFire is only one cause.
         job.lastError = mediafire
-            ? "download exceeded expected size (possible MediaFire error page)"
+            ? "download exceeded expected size (unexpected response from download source)"
             : "download exceeded expected size (interrupted transfer; please retry)";
         saveMetadata(job);
         st.removeFile(job.finalPath);
