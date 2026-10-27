@@ -1,5 +1,6 @@
 #include "network/parallel_archive_download.hpp"
 #include "network/parallel_resume_policy.hpp"
+#include "network/transfer_speed_policy.hpp"
 
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
@@ -50,6 +51,8 @@ struct Session {
     uint64_t lastReportUs = 0;
     bool stopped = false;
     bool reusedCheckpoint = false;
+    uint64_t initialReceived = 0;
+    TransferSpeedSampler speed;
 };
 
 struct Part {
@@ -141,8 +144,11 @@ static void sendProgress(Session& s, bool finished = false, bool finalizing = fa
         : (s.received >= s.size ? s.size - 1 : s.received);
     p.downloaded = p.absoluteDownloaded;
     p.total = s.size;
-    const uint64_t elapsed = now > s.startUs ? now - s.startUs : 1;
-    p.bytesPerSecond = finalizing ? 0 : (s.received / (elapsed / 1000ULL + 1)) * 1000ULL;
+    // Bytes from older paused sessions are progress, NOT transfer speed.
+    const uint64_t newBytes = s.received >= s.initialReceived
+        ? s.received - s.initialReceived : 0;
+    p.bytesPerSecond = finalizing || finished ? 0
+        : s.speed.observe(now, newBytes);
     p.finalizing = finalizing;
     p.parallelCheckpointReused = s.reusedCheckpoint;
     (*s.progress)(p);
@@ -500,6 +506,9 @@ ParallelArchiveOutcome downloadArchiveRanges(
         sendProgress(session);
     }
     const uint64_t previouslySaved = session.received;
+    session.initialReceived = previouslySaved;
+    session.speed.sampleUs = monotonicUs();
+    session.speed.sampleBytes = 0;
     for (size_t i = 0; i < partCount; ++i) {
         Part& p = parts[i];
         p.session = &session;
@@ -676,10 +685,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     // post-download joining and extraction. No additional network requests.
     const uint64_t transferUs = monotonicUs() - session.startUs;
     const uint64_t transferredThisAttempt = session.received - previouslySaved;
-    const uint64_t aggregateBps = transferUs > 0
-        ? (transferredThisAttempt / transferUs) * 1000000ULL +
-          ((transferredThisAttempt % transferUs) * 1000000ULL) / transferUs
-        : 0;
+    const uint64_t aggregateBps = transferRateBps(transferredThisAttempt, transferUs);
     char totals[240];
     sceClibSnprintf(totals, sizeof(totals),
         "[HTTP] range_total parts=%u bytes=%llu elapsed_ms=%llu avg_Bps=%llu",
