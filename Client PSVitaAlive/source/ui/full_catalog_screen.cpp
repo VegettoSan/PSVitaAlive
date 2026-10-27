@@ -4979,6 +4979,22 @@ void FullCatalogScreen::handleTouch() {
                     }
                 }
                 touchLastY_=py;
+            } else if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+                if (std::abs(px - touchStartX_) > 18 || std::abs(py - touchStartY_) > 18)
+                    touchMoved_ = true;
+                if (touchMoved_ && py >= (SCREEN_H - 460) / 2 + 113 &&
+                    py <= (SCREEN_H - 460) / 2 + 340) {
+                    touchAccumY_ += static_cast<float>(touchLastY_ - py);
+                    while (touchAccumY_ >= 24.f) {
+                        pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
+                        touchAccumY_ -= 24.f;
+                    }
+                    while (touchAccumY_ <= -24.f) {
+                        pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+                        touchAccumY_ += 24.f;
+                    }
+                }
+                touchLastY_ = py;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
