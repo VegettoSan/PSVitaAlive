@@ -16,6 +16,7 @@ enum class ParallelArchiveOutcome {
     RetrySerial,
     Cancelled,
     Paused, // Safe range checkpoint retained for user testing.
+    NetworkInterrupted, // Safe checkpoint retained; never destroy for serial fallback.
     IoError
 };
 
