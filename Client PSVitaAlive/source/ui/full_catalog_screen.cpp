@@ -10165,8 +10165,19 @@ else
       ::psvitaalive::L(::psvitaalive::TextId::LabelEta),
       formatEta(eta).c_str());
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 212, ACCENT, 0.86f, info);
-if (!stageFinalizing && !installProgressMessage_.empty())
-  ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244, DIM, 0.78f, ellipsize(installProgressMessage_, 58).c_str());
+if (!stageFinalizing && !installProgressMessage_.empty()) {
+  const bool preparingNetwork =
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_CONNECTING") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_FINDING_SERVER") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_VERIFYING_FILE") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_VERIFYING_SAVED") ||
+      installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_RECOVERING_PARTS");
+  // The elapsed connection/verification phase is intentionally prominent:
+  // users must never mistake a 206 safety probe for a stalled download.
+  ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244,
+      preparingNetwork ? ACCENT : DIM, preparingNetwork ? 0.87f : 0.78f,
+      ellipsize(installProgressMessage_, preparingNetwork ? 66 : 58).c_str());
+}
 const char* waitHint = nullptr;
 if (installProgressStage_ == "Paused")
   waitHint = ::psvitaalive::L("DOWNLOAD_PAUSED_HINT");
