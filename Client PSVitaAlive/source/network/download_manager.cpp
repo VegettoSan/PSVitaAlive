@@ -1,6 +1,7 @@
 #include "localization/localization.hpp"
 #include "network/download_manager.hpp"
 #include "network/parallel_archive_download.hpp"
+#include "network/connectivity_state.hpp"
 #include "network/startup_cleanup_policy.hpp"
 #include "network/mediafire_resolver.hpp"
 #include "storage/storage_manager.hpp"
@@ -354,7 +355,23 @@ bool DownloadManager::runJob(DownloadJob& job) {
             lastSaved = job.downloadedSize;
         }
     };
+    bool automaticNetworkPause = false;
+    uint64_t nextLinkCheckUs = 0;
     auto cancelFn = [&]() -> bool {
+        if (!job.cancelRequested->load(std::memory_order_acquire) &&
+            !job.pauseRequested->load(std::memory_order_acquire)) {
+            // Check NetCtl at most twice per second; no network requests or
+            // filesystem work are performed inside a libcurl callback.
+            const uint64_t now = sceKernelGetProcessTimeWide();
+            if (now >= nextLinkCheckUs) {
+                nextLinkCheckUs = now + 500000ULL;
+                if (linkUnavailable(queryLinkConnectivity())) {
+                    automaticNetworkPause = true;
+                    job.pauseRequested->store(true, std::memory_order_release);
+                    diagnostics::log("[DownloadManager] link disconnected; requesting safe checkpoint pause");
+                }
+            }
+        }
         return job.cancelRequested->load(std::memory_order_acquire) ||
                job.pauseRequested->load(std::memory_order_acquire);
     };
@@ -511,6 +528,14 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
         }
+        // Keep safe partials after an exhausted range-network interruption.
+        // This never changes explicit cancellation or on-disk integrity rules.
+        if (hr == HttpResult::NetworkError && !cancelFn() &&
+            parallelSavedBytes(job.temporaryPath) > 0) {
+            automaticNetworkPause = true;
+            job.pauseRequested->store(true, std::memory_order_release);
+            diagnostics::log("[DownloadManager] network interrupted; validated range checkpoint retained");
+        }
         // Terminal 404/410 is a missing file, NOT an Archive.org outage.
         // A service warning requires repeated no-response failures (HTTP 0),
         // or an exhausted server-side 5xx response with no downloaded bytes.
@@ -564,6 +589,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     }
     if (job.pauseRequested->load(std::memory_order_acquire) &&
         !job.cancelRequested->load(std::memory_order_acquire)) {
+        job.pausedForConnectivity = automaticNetworkPause;
         // HttpClient has returned and flushed its serial buffer. Preserve the
         // actual file length (not an unflushed progress counter) for Range resume.
         // Parallel saved bytes are counted across *all* verified-prefix files.
@@ -583,7 +609,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ev.downloaded = job.downloadedSize;
             ev.total = job.expectedSize;
             ev.state = DownloadState::Paused;
-            ev.message = "Download paused";
+            ev.message = automaticNetworkPause
+                ? ::psvitaalive::L(linkUnavailable(queryLinkConnectivity())
+                    ? "NET_PAUSED_DISCONNECTED" : "NET_PAUSED_SOURCE_UNREACHABLE")
+                : ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
             onProgress_(ev);
         }
         diagnostics::log("[DownloadManager] paused job=" + job.id +
