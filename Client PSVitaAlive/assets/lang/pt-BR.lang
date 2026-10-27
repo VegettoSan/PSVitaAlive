@@ -38,7 +38,7 @@ HINT_PSP_MEDIA=Pasta=EBOOT em GAME; ISO=pspemu/ISO
 HINT_LANGUAGE=Sistema segue o idioma do Vita quando disponível
 HINT_COLOR_THEME=X / toque: abrir seletor de tema
 HINT_WARN_PLUGINS=Toast na inicialização se faltar NoNpDrm
-HINT_SELF_UPDATE=Verifica GitHub Releases por um VPK mais novo
+HINT_SELF_UPDATE=Verifica se existe uma versão oficial mais recente do cliente
 CATALOG_HOMEBREW=Homebrew
 CATALOG_VITA_GAMES=Jogos PS Vita
 CATALOG_PSP=PSP
@@ -71,9 +71,9 @@ INFO_COLOR_THEME_3=popular. Report stays red.
 INFO_WARN_PLUGINS_1=Show a toast at startup when
 INFO_WARN_PLUGINS_2=NoNpDrm / NoPspEmuDrm are
 INFO_WARN_PLUGINS_3=missing from taiHEN config.
-INFO_SELF_UPDATE_1=Checks GitHub Releases for a
-INFO_SELF_UPDATE_2=newer PSVitaAlive.vpk and can
-INFO_SELF_UPDATE_3=install it in-place (VitaDB style).
+INFO_SELF_UPDATE_1=Verifica o canal oficial de
+INFO_SELF_UPDATE_2=atualizações e permite instalar
+INFO_SELF_UPDATE_3=uma versão mais recente no console.
 STATUS_OK=OK
 STATUS_MISSING=missing
 LOCAL_VERSION=Local
@@ -260,7 +260,7 @@ TOAST_REPORT_SENT=Report sent
 TOAST_REPORT_FAILED=Report failed
 TOAST_REPORT_FAILED_START=Report failed to start
 TOAST_UPDATE_THREAD_FAILED=Update thread failed
-TOAST_CHECKING_UPDATES=Checking GitHub for updates...
+TOAST_CHECKING_UPDATES=Buscando atualizações...
 TOAST_UPDATE_AVAILABLE_PREFIX=Update
 TOAST_UPDATE_AVAILABLE_SUFFIX= available — press X to install
 TOAST_UP_TO_DATE_PREFIX=Already up to date (v
@@ -519,16 +519,16 @@ KEYBOARD_SPACE=ESPAÇO
 KEYBOARD_MORE=MAIS
 
 # Archive.org connectivity warnings (startup / failed user download)
-ARCHIVE_WARNING_TITLE=Problemas de conexão com Archive.org
-ARCHIVE_WARNING_STARTUP_1=O PSVitaAlive não consegue acessar o Archive.org pela sua conexão atual.
+ARCHIVE_WARNING_TITLE=Problema de conexão com uma fonte externa
+ARCHIVE_WARNING_STARTUP_1=Uma fonte externa de conteúdo não está respondendo pela sua conexão.
 ARCHIVE_WARNING_STARTUP_2=Alguns downloads, ícones e capturas podem ficar indisponíveis. Isso não significa necessariamente um problema no PSVitaAlive. Tente novamente mais tarde ou aguarde o serviço externo voltar.
-ARCHIVE_WARNING_DOWNLOAD_1=Este download não consegue acessar o Archive.org no momento.
+ARCHIVE_WARNING_DOWNLOAD_1=Esta fonte de download não está respondendo no momento.
 ARCHIVE_WARNING_DOWNLOAD_2=O serviço externo pode estar com problemas; não é necessariamente um erro do PSVitaAlive. Use outra fonte, se disponível, ou tente mais tarde.
 ARCHIVE_WARNING_OK=Entendi
 
 # User-friendly failed Archive.org download result
 ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Download indisponível
-ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Não foi possível acessar o Archive.org neste momento.
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Não foi possível acessar esta fonte de download.
 ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=O serviço ou sua conexão pode estar com problemas temporários. Isso não significa necessariamente que o PSVitaAlive esteja com defeito.
 ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Use outro link de download, se houver, ou tente mais tarde.
 
@@ -548,7 +548,7 @@ INSTALL_ERR_HTTP_SERVER_WHY=O servidor está enfrentando problemas temporários.
 INSTALL_ERR_HTTP_SERVER_ACTION=Use outra fonte ou tente novamente mais tarde.
 INSTALL_ERR_TLS_WHY=Não foi possível estabelecer uma conexão segura.
 INSTALL_ERR_TLS_ACTION=Verifique a data e a hora do console ou tente outra fonte.
-INSTALL_ERR_MEDIAFIRE_WHY=Não foi possível obter o arquivo pelo MediaFire.
+INSTALL_ERR_MEDIAFIRE_WHY=Não foi possível obter o arquivo pelo link selecionado.
 INSTALL_ERR_MEDIAFIRE_ACTION=Tente outro link ou verifique a fonte original.
 INSTALL_ERR_SPACE_WHY=Não há espaço livre suficiente para concluir a operação.
 INSTALL_ERR_SPACE_ACTION=Libere espaço no armazenamento de destino e tente novamente.
