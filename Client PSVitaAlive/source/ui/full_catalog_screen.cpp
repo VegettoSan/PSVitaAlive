@@ -4202,6 +4202,12 @@ void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int 
     if (linkDetailIndex < 0 || linkDetailIndex >= (int)item.linkDetails.size()) return;
     const CatalogLink& l = item.linkDetails[linkDetailIndex];
     if (!linkAction_ || !actionableLink(l)) return;
+    // Download-capable links include plugins that normally open a consent
+    // dialog; warn offline users before showing any of those dialogs.
+    if (const char* offline = downloadPreflightStatusKey(queryLinkConnectivity())) {
+        showToast(::psvitaalive::L(offline), 5600);
+        return;
+    }
 
     if (state_.catalog == CatalogType::PspGames && isDlcTypeLink(l)
         && settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline
