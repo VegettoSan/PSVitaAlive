@@ -8,7 +8,7 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parents[1] / "Client PSVitaAlive" / "assets" / "lang"
-PROVIDERS = re.compile(r"archive\\.org|mediafire|github|vitadb", re.IGNORECASE)
+PROVIDERS = re.compile(r"archive\.org|mediafire|github|vitadb", re.IGNORECASE)
 GENERIC_PREFIXES = (
     "HTTP_STAGE_", "ARCHIVE_WARNING_", "ARCHIVE_DOWNLOAD_FRIENDLY_",
     "INSTALL_ERR_", "HINT_SELF_UPDATE", "INFO_SELF_UPDATE_",
