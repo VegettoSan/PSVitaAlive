@@ -66,3 +66,22 @@ HTTP RESULT curl=... status=206 ... absolute=... total=...
 ```
 
 **Do not merge into main until** the build passes and hardware/Vita3K logs demonstrate both successful resume and no regressions.
+
+## Archive.org resume performance and UI status (experimental, 2026-10-26)
+
+The October 26 real Vita `session.log` confirmed three 4-range checkpoint resumes and a complete 255779755-byte Archive ZIP extraction. Each old resume repeated 3 storage-node probes (~16–18 seconds before the multi-range network started).
+
+- **Resume fast path:** keep the previously selected storage edge in this HttpClient instance, keyed by exact canonical URL and job destination. Attempt a *new exact 1-byte HTTP 206 probe* of that edge at each resume. Only skip the expensive multi-node ranking if size, allowed host and protocol match. The range worker itself still validates the saved checkpoint identity and every pending part. If this one-byte probe fails, the original full node selector and serial fallback remain in place. The hint is not saved to disk.
+- **Progress:** while searching or verifying the server, the UI now shows localized messages and retains the saved-byte progress rather than appearing idle. The pause/cancel and OLED/shell safety rules have not been changed.
+- **Speed:** count only newly transferred bytes from the current HTTP session, never the saved checkpoint total. Calculate a smoothed rate on 750ms-or-longer windows. The existing diagnostic `range_total avg_Bps` remains the measured mean over bytes actually transferred this attempt.
+- **Initial selector:** intentionally unchanged pending on-device A/B timing tests; no guessed shortcut to bypass current Archive.org node ranking.
+
+### Recheck on PS Vita
+
+1. Install this experimental VPK without merging into `main`.
+2. Start the same ~243.93 MiB Archive.org ZIP, pause near 30%, resume.
+3. In `session.log`, check `fast resume edge accepted after fresh 206 probe; full selector skipped` and `parallel verified checkpoint; reuse_bytes=`.
+4. Observe visible Spanish/English status messages while waiting, and stable speed during the first few seconds.
+5. Repeat near 60% and 85%. Compare timestamp gaps between `[Installer] resumed existing job` and `[HTTP] starting 4-range` with the previous 16–18 seconds.
+6. Test connection failure during resume: the log should say `fast resume edge probe failed; retrying normal Archive selector` before using the pre-existing fallback. Verify final download size and extraction integrity.
+7. Confirm manual pause UI is removed before any `main` merge; automatic safe range recovery remains.
