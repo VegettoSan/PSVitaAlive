@@ -20,6 +20,11 @@ Limitation: only kubridge has an outdated-size rule. Other plugins do not receiv
 
 ## Problem to solve
 
+## Conflictos de plugins del catálogo (función independiente, 2026-10-27)
+
+La advertencia **de compatibilidad** al instalar enlaces `type: Plugin` es una función separada del sistema futuro de actualizaciones/manifest. Detecta determinados plugins `*KERNEL` activos y pone la advertencia al comienzo de la ventana existente con scroll. Solo aplica a ioPlus/CapUnlocker según las reglas investigadas, no al flujo esencial. No calcula versiones ni descarga manifest. Véase [CATALOG_PLUGIN_CONFLICTS_20261027.md](CATALOG_PLUGIN_CONFLICTS_20261027.md). La ejecución inicial de CI pasó la validación de catálogos, pero falló al enlazar libcurl/OpenSSL; la compilación completa/hardware permanecen pendientes de comprobación.
+
+
 When a recommended plugin binary changes (e.g. new kubridge, new fd_fix):
 
 1. Users who already have the old file are **not** prompted again.

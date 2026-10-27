@@ -30,6 +30,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
   - Licensed commercial **Vita PKG via system BGDL**
   - **PSP/PS1 PKG**: LiveArea BGDL **or** Adrenaline unpack (pkg2zip-style → `ux0:pspemu`, Folder or ISO from Settings)
   - **Plugin** links: download → copy to `extract_path` → append `line` to taiHEN `config.txt` under `section` (or skip config if `none`)
+- **Aviso contextual de compatibilidad para enlaces `Plugin` del catálogo:** se integra arriba de Requerido/Opcional en la misma ventana individual/Install All; detecta plugins kernel configurados, permite scroll y no cambia el flujo de esenciales. Detalles, evidencia, límites y pruebas: [`../docs/CATALOG_PLUGIN_CONFLICTS_20261027.md`](../docs/CATALOG_PLUGIN_CONFLICTS_20261027.md).
 - **Essential plugins** (kubridge, fd_fix, libshacccg) checked after theme setup + News; install queue + reboot modal
 - Free-space protection by content type: 2.1× for VPK/direct packages,
   individual HTTP-header preflight for each transfer, and real uncompressed

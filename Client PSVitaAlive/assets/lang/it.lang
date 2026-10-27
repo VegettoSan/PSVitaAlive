@@ -579,6 +579,10 @@ PLUGIN_REQUIREMENT_UNSPECIFIED=Non specificato
 
 # Per-plugin install consent (individual and Install All)
 PLUGIN_CONFIRM_TITLE=Installare questo plugin?
+PLUGIN_CONFLICT_HEADING=Possibile conflitto tra plugin
+PLUGIN_CONFLICT_DETECTED=Rilevato sulla console:
+PLUGIN_CONFLICT_WARNING=Insieme questi plugin potrebbero causare incompatibilità o funzioni duplicate.
+PLUGIN_CONFLICT_SCROLL=Su/Giù o scorri per leggere
 PLUGIN_CONFIRM_REQUIRED_1=Lo sviluppatore ha indicato questo plugin come obbligatorio.
 PLUGIN_CONFIRM_REQUIRED_2=Senza di esso, il port potrebbe non funzionare correttamente.
 PLUGIN_CONFIRM_OPTIONAL_1=Lo sviluppatore consiglia questo plugin, ma è facoltativo.

@@ -164,6 +164,13 @@ Update-state semantics, receipt compatibility and Vita `APP_VER` normalization a
 
 ## Plugin UI
 
+## Avisos de plugins del catálogo (2026-10-27)
+
+La ventana `drawPluginChoiceOverlay()` ahora muestra primero los avisos de posibles conflictos basados en plugins kernel **configurados y existentes**; después conserva Requerido/Opcional/Reinstalar. El contenido es desplazable con Arriba/Abajo o gesto táctil, con una indicación cuando hay overflow. Los botones Instalar/Reinstalar y Omitir no se desplazan. Esto funciona en instalaciones individuales e `Install All`, pero **no** altera el diálogo de plugins esenciales, ni bloquea la instalación. Las reglas iniciales solo se aplican a ioPlus y CapUnlocker, sin advertencias especulativas para TTBR o azaharnative. Nombres detectados una vez por decisión, sin lectura del sistema de archivos en cada frame.
+
+Documento de mantenimiento, investigación, límites y validación: [CATALOG_PLUGIN_CONFLICTS_20261027.md](../../../docs/CATALOG_PLUGIN_CONFLICTS_20261027.md). **La compilación de CI inicial falló en libcurl/OpenSSL al enlazar**; la validación del catálogo sí pasó, y falta confirmar en PS Vita real.
+
+
 - Link row: **Installed** badge when file (+ config line when required) already present; press → toast, no re-download
 - Install All offers an explicit **Install/Reinstall or Skip** decision for **each**
   catalog Plugin link, including a link detected as already installed; merely

@@ -4237,6 +4237,7 @@ void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int 
         // Do not default to overwriting an installed plugin, even if required.
         pluginChoiceFocus_ = pluginChoiceWasInstalled_ ? 1
             : (l.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
+        refreshPluginChoiceConflicts(l);
         pluginChoiceModal_ = true;
         touchDown_ = false;
         diagnostics::log(std::string("[UI] Plugin consent requested (single): ") +
@@ -4665,22 +4666,38 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // Per-link plugin consent: do not pass touches to the underlying controls.
+    // Per-link plugin consent: touches never pass to the catalog underneath.
     if (pluginChoiceModal_) {
         if (td.reportNum > 0) {
             const int x = mapX(td.report[0].x), y = mapY(td.report[0].y);
             if (!touchDown_) {
                 touchDown_ = true;
                 touchStartX_ = x;
-                touchStartY_ = y;
+                touchStartY_ = touchLastY_ = y;
                 touchMoved_ = false;
-            } else if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18) {
-                touchMoved_ = true;
+                touchAccumY_ = 0.f;
+            } else {
+                if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18)
+                    touchMoved_ = true;
+                if (touchMoved_ && y >= (SCREEN_H - 460) / 2 + 113 &&
+                    y <= (SCREEN_H - 460) / 2 + 340) {
+                    touchAccumY_ += static_cast<float>(touchLastY_ - y);
+                    while (touchAccumY_ >= 24.f) {
+                        pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
+                        touchAccumY_ -= 24.f;
+                    }
+                    while (touchAccumY_ <= -24.f) {
+                        pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+                        touchAccumY_ += 24.f;
+                    }
+                }
+                touchLastY_ = y;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
             const bool moved = touchMoved_;
             touchDown_ = false;
+            touchAccumY_ = 0.f;
             if (!moved) {
                 const int w = 820, h = 460;
                 const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
@@ -4962,6 +4979,22 @@ void FullCatalogScreen::handleTouch() {
                     }
                 }
                 touchLastY_=py;
+            } else if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+                if (std::abs(px - touchStartX_) > 18 || std::abs(py - touchStartY_) > 18)
+                    touchMoved_ = true;
+                if (touchMoved_ && py >= (SCREEN_H - 460) / 2 + 113 &&
+                    py <= (SCREEN_H - 460) / 2 + 340) {
+                    touchAccumY_ += static_cast<float>(touchLastY_ - py);
+                    while (touchAccumY_ >= 24.f) {
+                        pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
+                        touchAccumY_ -= 24.f;
+                    }
+                    while (touchAccumY_ <= -24.f) {
+                        pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+                        touchAccumY_ += 24.f;
+                    }
+                }
+                touchLastY_ = py;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
@@ -6430,6 +6463,8 @@ void FullCatalogScreen::handleInput(){
         const uint32_t direction = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevPluginAnalog);
         prevPluginButtons = pad.buttons;
         prevPluginAnalog = analog;
+        if (direction & SCE_CTRL_UP) pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+        if (direction & SCE_CTRL_DOWN) pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
         if (direction & SCE_CTRL_LEFT) pluginChoiceFocus_ = 0;
         if (direction & SCE_CTRL_RIGHT) pluginChoiceFocus_ = 1;
         if (pressed & SCE_CTRL_CIRCLE) resolveIndividualPluginChoice(false);
@@ -6626,6 +6661,8 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+            if (nav & SCE_CTRL_UP) pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+            if (nav & SCE_CTRL_DOWN) pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
             if (nav & SCE_CTRL_LEFT) installAllFocus_ = 0;
             if (nav & SCE_CTRL_RIGHT) installAllFocus_ = 1;
             if (pressed & SCE_CTRL_CIRCLE) { installAllAdvancePluginPick(false); return; }
@@ -8754,6 +8791,7 @@ void FullCatalogScreen::installAllAdvancePick() {
         const CatalogLink& first = item.linkDetails[installAllPluginCandidates_[0]];
         installAllFocus_ = installAllPluginCandidateInstalled_[0] ? 1
             : (first.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
+        refreshPluginChoiceConflicts(first);
         diagnostics::log("[UI] Install All plugin selection: " + std::to_string(installAllPluginCandidates_.size()) + " candidate(s)");
         return;
     }
@@ -8787,6 +8825,7 @@ void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
     ++installAllPluginPickIndex_;
     if (installAllPluginPickIndex_ < installAllPluginCandidates_.size()) {
         const CatalogLink& next = item.linkDetails[installAllPluginCandidates_[installAllPluginPickIndex_]];
+        refreshPluginChoiceConflicts(next);
         installAllFocus_ = (installAllPluginPickIndex_ < installAllPluginCandidateInstalled_.size() &&
                             installAllPluginCandidateInstalled_[installAllPluginPickIndex_]) ? 1
             : (next.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
@@ -9166,6 +9205,39 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needs
     installAllStartNextStep();
 }
 
+
+void FullCatalogScreen::refreshPluginChoiceConflicts(const CatalogLink& link) {
+    pluginChoiceConflicts_.clear();
+    pluginChoiceScrollLine_ = 0;
+    pluginChoiceMaxScrollLine_ = 0;
+    // Catalog Plugin links only: the essential-plugin flow is untouched.
+    if (!isPluginTypeLink(link)) return;
+    std::string plugin = pluginInstallFilePath(link);
+    const size_t slash = plugin.find_last_of("/\\");
+    if (slash != std::string::npos) plugin = plugin.substr(slash + 1);
+    for (char& c : plugin)
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    if (plugin != "ioplus.skprx" && plugin != "capunlocker.skprx") return;
+    const std::vector<std::string> active =
+        ::psvitaalive::PluginDetector::activeKernelPluginBasenames();
+    auto has = [&](const char* name) {
+        for (const std::string& found : active)
+            if (found == name) return true;
+        return false;
+    };
+    if (plugin == "ioplus.skprx") {
+        // Reported issue with kuio in some configurations.
+        if (has("kuio.skprx")) pluginChoiceConflicts_.push_back("kuio.skprx");
+        // v-kaio provides overlapping ioPlus functionality.
+        if (has("kaio.skprx") || has("v-kaio.skprx"))
+            pluginChoiceConflicts_.push_back("v-kaio");
+    } else {
+        // Legacy predecessor of CapUnlocker: avoid duplicate functionality.
+        if (has("coreunlocker80000h.skprx"))
+            pluginChoiceConflicts_.push_back("CoreUnlocker80000H");
+    }
+}
+
 void FullCatalogScreen::drawPluginChoiceOverlay() {
     const CatalogItem* item = nullptr;
     const CatalogLink* link = nullptr;
@@ -9213,26 +9285,56 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
     const std::string name = link->name.empty() ? link->type : link->name;
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 91, WHITE, 0.99f,
         ellipsize(name, 47).c_str());
+
+    // The warning is FIRST, then the existing required/optional/reinstall text.
+    // Only this content viewport scrolls; button hitboxes stay fixed.
+    struct ChoiceLine { std::string text; unsigned color; float scale; };
+    std::vector<ChoiceLine> rows;
+    auto appendWrapped = [&](const std::string& value, unsigned color, float scale) {
+        const auto parts = wrapTextToWidth(&font_, scale, value, w - 76);
+        for (const std::string& part : parts) rows.push_back({part, color, scale});
+    };
+    if (!pluginChoiceConflicts_.empty()) {
+        appendWrapped(::psvitaalive::L("PLUGIN_CONFLICT_HEADING"), ACCENT, 0.83f);
+        appendWrapped(::psvitaalive::L("PLUGIN_CONFLICT_DETECTED"), WHITE, 0.76f);
+        for (const std::string& other : pluginChoiceConflicts_)
+            appendWrapped(std::string("- ") + other, WHITE, 0.78f);
+        appendWrapped(::psvitaalive::L("PLUGIN_CONFLICT_WARNING"), TEXT, 0.74f);
+        rows.push_back({"", TEXT, 0.73f});
+    }
+
     using Requirement = CatalogLink::PluginRequirement;
     const bool required = link->pluginRequirement == Requirement::Required;
     const bool optional = link->pluginRequirement == Requirement::Optional;
     const char* status = ::psvitaalive::L(required ? "PLUGIN_REQUIREMENT_REQUIRED" :
         optional ? "PLUGIN_REQUIREMENT_OPTIONAL" : "PLUGIN_REQUIREMENT_UNSPECIFIED");
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 133, required ? ACCENT : DIM,
-        0.82f, status);
+    appendWrapped(status, required ? ACCENT : DIM, 0.82f);
     const char* line1 = ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_MESSAGE_1" :
         (required ? "PLUGIN_CONFIRM_REQUIRED_1" :
          optional ? "PLUGIN_CONFIRM_OPTIONAL_1" : "PLUGIN_CONFIRM_UNKNOWN_1"));
     const char* line2 = ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_MESSAGE_2" :
         (required ? "PLUGIN_CONFIRM_REQUIRED_2" :
          optional ? "PLUGIN_CONFIRM_OPTIONAL_2" : "PLUGIN_CONFIRM_UNKNOWN_2"));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 187, TEXT, 0.79f, line1);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 220, TEXT, 0.79f, line2);
-    // Installed-plugin consent explains why this catalog copy is provided.
-    // Keep other required/optional/unknown consent dialogs unchanged.
-    if (installed) {
-        ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 253, TEXT, 0.79f,
-            ::psvitaalive::L("PLUGIN_REINSTALL_MESSAGE_3"));
+    appendWrapped(line1, TEXT, 0.76f);
+    appendWrapped(line2, TEXT, 0.76f);
+    if (installed)
+        appendWrapped(::psvitaalive::L("PLUGIN_REINSTALL_MESSAGE_3"), TEXT, 0.76f);
+
+    constexpr int visibleRows = 7;
+    constexpr int rowHeight = 26;
+    pluginChoiceMaxScrollLine_ = std::max(0, static_cast<int>(rows.size()) - visibleRows);
+    pluginChoiceScrollLine_ = std::max(0, std::min(pluginChoiceScrollLine_, pluginChoiceMaxScrollLine_));
+    for (int row = 0; row < visibleRows; ++row) {
+        const int idx = pluginChoiceScrollLine_ + row;
+        if (idx >= static_cast<int>(rows.size())) break;
+        if (!rows[idx].text.empty())
+            ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 145 + row * rowHeight,
+                rows[idx].color, rows[idx].scale, rows[idx].text.c_str());
+    }
+    if (pluginChoiceMaxScrollLine_ > 0) {
+        const std::string hint = ::psvitaalive::L("PLUGIN_CONFLICT_SCROLL");
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.69f, hint.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_, x + (w - tw) / 2, y + 336, DIM, 0.69f, hint.c_str());
     }
 
     const int bw = 300, bh = 55, by = y + h - 96;
