@@ -1,6 +1,6 @@
 # PSVitaAlive: recuperación segura de descargas al perder conectividad
 
-Estado: **experimental** en `fix/http206-resume-pause-test-20261026`. No fusionar con `main` antes de pruebas reales.
+Estado: **aprobado para `main` por el mantenedor el 26 de octubre de 2026**, tras pruebas satisfactorias en PS Vita real. Este documento permanece como referencia técnica de implementación y casos de regresión.
 
 ## Problema reproducido
 
@@ -28,7 +28,7 @@ Durante un archivo de ~243.93 MiB, al apagar Wi-Fi a ~40%, cuatro rangos HTTP 20
 6. El botón Reanudar comprueba NetCtl; al volver la red, el HTTP 206 vuelve a validar tamaño, ETag/Last-Modified, identidad de contenido y posiciones de cada rango.
 7. Los archivos parcialmente descargados se mantienen **solo durante esta sesión**; el saneamiento al iniciar la aplicación sigue eliminando trabajos incompletos abandonados. No se ha implementado persistencia a través de reinicio.
 
-## Criterios antes de integrar
+## Casos de regresión y validación de futuras versiones
 
 - Iniciar descarga sin Wi-Fi: notificación antes de mostrar el instalador.
 - Wi-Fi conectando: aviso temporal sin iniciar trabajo nuevo.
