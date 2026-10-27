@@ -710,3 +710,4 @@ NET_LINK_DISCONNECTED=WLAN ist aus oder nicht verbunden. Aktiviere WLAN und verb
 NET_LINK_CONNECTING=Verbindung zum Netzwerk wird hergestellt. Bitte danach erneut versuchen.
 NET_PAUSED_DISCONNECTED=Download gespeichert. WLAN getrennt: neu verbinden und Fortsetzen wählen.
 NET_PAUSED_SOURCE_UNREACHABLE=Download gespeichert. Netzwerk verbunden, Quelle antwortet nicht. Internet prüfen und fortsetzen.
+NET_CONNECTED_SOURCE_UNREACHABLE=Die Konsole ist mit einem Netzwerk verbunden, aber Internet oder Downloadquelle sind nicht erreichbar.
