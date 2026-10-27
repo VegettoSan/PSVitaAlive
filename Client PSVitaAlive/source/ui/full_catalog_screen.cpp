@@ -4666,22 +4666,38 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // Per-link plugin consent: do not pass touches to the underlying controls.
+    // Per-link plugin consent: touches never pass to the catalog underneath.
     if (pluginChoiceModal_) {
         if (td.reportNum > 0) {
             const int x = mapX(td.report[0].x), y = mapY(td.report[0].y);
             if (!touchDown_) {
                 touchDown_ = true;
                 touchStartX_ = x;
-                touchStartY_ = y;
+                touchStartY_ = touchLastY_ = y;
                 touchMoved_ = false;
-            } else if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18) {
-                touchMoved_ = true;
+                touchAccumY_ = 0.f;
+            } else {
+                if (std::abs(x - touchStartX_) > 18 || std::abs(y - touchStartY_) > 18)
+                    touchMoved_ = true;
+                if (touchMoved_ && y >= (SCREEN_H - 460) / 2 + 113 &&
+                    y <= (SCREEN_H - 460) / 2 + 340) {
+                    touchAccumY_ += static_cast<float>(touchLastY_ - y);
+                    while (touchAccumY_ >= 24.f) {
+                        pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
+                        touchAccumY_ -= 24.f;
+                    }
+                    while (touchAccumY_ <= -24.f) {
+                        pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+                        touchAccumY_ += 24.f;
+                    }
+                }
+                touchLastY_ = y;
             }
         } else if (touchDown_) {
             const int x = touchStartX_, y = touchStartY_;
             const bool moved = touchMoved_;
             touchDown_ = false;
+            touchAccumY_ = 0.f;
             if (!moved) {
                 const int w = 820, h = 460;
                 const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
@@ -6629,6 +6645,8 @@ if(pressed&SCE_CTRL_START){
             return;
         }
         if (installAllPhase_ == InstallAllPhase::PickPlugin) {
+            if (nav & SCE_CTRL_UP) pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
+            if (nav & SCE_CTRL_DOWN) pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
             if (nav & SCE_CTRL_LEFT) installAllFocus_ = 0;
             if (nav & SCE_CTRL_RIGHT) installAllFocus_ = 1;
             if (pressed & SCE_CTRL_CIRCLE) { installAllAdvancePluginPick(false); return; }
