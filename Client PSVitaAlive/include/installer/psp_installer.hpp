@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <functional>
 #include <string>
+#include "installer/app_settings.hpp"
 
 namespace psvitaalive {
 
@@ -36,6 +37,7 @@ using PspInstallCancelFn = std::function<bool()>;
  */
 class PspInstaller {
 public:
+    void setStorage(PspStorage s) { storage_ = s; }
     /** ISO/CSO → ux0:pspemu/ISO/<filename> */
     PspInstallResult installIsoCso(
         const std::string& path,
@@ -54,6 +56,7 @@ public:
     const std::string& lastInstallPath() const { return lastInstallPath_; }
 
 private:
+    PspStorage storage_ = PspStorage::Ux0;
     std::string lastError_;
     std::string lastInstallPath_;
     void setError(const std::string& msg);

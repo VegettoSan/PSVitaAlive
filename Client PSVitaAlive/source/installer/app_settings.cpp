@@ -59,6 +59,8 @@ InstallMethod AppSettings::parseInstallMethod(const std::string& s) { if (s == "
 PspTarget AppSettings::parsePspTarget(const std::string& s) { return s == "livearea" ? PspTarget::LiveArea : PspTarget::Adrenaline; }
 const char* AppSettings::toString(PspMediaFormat f) { return f == PspMediaFormat::Iso ? "iso" : "folder"; }
 PspMediaFormat AppSettings::parsePspMediaFormat(const std::string& s) { return s == "iso" ? PspMediaFormat::Iso : PspMediaFormat::Folder; }
+const char* AppSettings::toString(PspStorage s) { return s == PspStorage::Uma0 ? "uma0:" : "ux0:"; }
+PspStorage AppSettings::parsePspStorage(const std::string& s) { return s == "uma0:" || s == "uma0" ? PspStorage::Uma0 : PspStorage::Ux0; }
 
 const char* AppSettings::toString(ColorTheme t) {
     switch (t) {
@@ -126,6 +128,7 @@ AppSettingsData AppSettings::load() {
     if (containsKey(json, "install_method", v)) data.installMethod = parseInstallMethod(v);
     if (containsKey(json, "psp_target", v)) data.pspTarget = parsePspTarget(v);
     if (containsKey(json, "psp_media_format", v)) data.pspMediaFormat = parsePspMediaFormat(v);
+    if (containsKey(json, "psp_storage", v)) data.pspStorage = parsePspStorage(v);
     if (containsKey(json, "color_theme", v)) data.colorTheme = parseColorTheme(v);
     if (containsKey(json, "language_mode", v)) data.languageMode = parseLanguageMode(v);
     if (containsKey(json, "language", v) && !v.empty()) data.language = v;
@@ -171,8 +174,8 @@ bool AppSettings::save(const AppSettingsData& data) {
     StorageManager st; st.createDirectories(StorageManager::BASE_DIR);
     char json[2304];
     sceClibSnprintf(json, sizeof(json),
-        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"theme_setup_done\": %s,\n  \"psp_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\",\n  \"ui_font_file\": \"%s\",\n  \"ui_font_scale\": %d,\n  \"mascot_selection\": \"%s\"\n}\n",
-        toString(data.installMethod), toString(data.pspTarget), toString(data.pspMediaFormat), toString(data.colorTheme),
+        "{\n  \"install_method\": \"%s\",\n  \"psp_target\": \"%s\",\n  \"psp_media_format\": \"%s\",\n  \"psp_storage\": \"%s\",\n  \"color_theme\": \"%s\",\n  \"warn_missing_plugins\": %s,\n  \"theme_setup_done\": %s,\n  \"psp_setup_done\": %s,\n  \"startup_plugin_detection\": %s,\n  \"startup_update_check\": %s,\n  \"language_mode\": \"%s\",\n  \"language\": \"%s\",\n  \"ui_font_style\": \"%s\",\n  \"ui_font_file\": \"%s\",\n  \"ui_font_scale\": %d,\n  \"mascot_selection\": \"%s\"\n}\n",
+        toString(data.installMethod), toString(data.pspTarget), toString(data.pspMediaFormat), toString(data.pspStorage), toString(data.colorTheme),
         data.warnMissingPlugins ? "true" : "false", data.themeSetupDone ? "true" : "false",
         data.pspSetupDone ? "true" : "false",
         data.startupPluginDetection ? "true" : "false", data.startupUpdateCheck ? "true" : "false", toString(data.languageMode), data.language.c_str(),

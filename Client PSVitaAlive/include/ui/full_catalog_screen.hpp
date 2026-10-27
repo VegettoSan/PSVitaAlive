@@ -281,9 +281,10 @@ private:
 
     // First PSP/PS1 download: install method wizard (once).
     bool pspSetupModal_ = false;
-    int pspSetupFocus_ = 0; // 0 LiveArea, 1 Adrenaline, 2 Folder, 3 ISO, 4 Confirm, 5 Cancel
+    int pspSetupFocus_ = 0; // 0 LiveArea, 1 Adrenaline, 2 Folder, 3 ISO, 4 ux0, 5 uma0, 6 Confirm, 7 Cancel
     ::psvitaalive::PspTarget pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline;
     ::psvitaalive::PspMediaFormat pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder;
+    ::psvitaalive::PspStorage pspSetupStorage_ = ::psvitaalive::PspStorage::Ux0;
     bool pspSetupPendingInstallAll_ = false;
     int pspSetupPendingItemIndex_ = -1;
     int pspSetupPendingLinkIndex_ = -1; // index into item.linkDetails

@@ -1269,6 +1269,7 @@ int InstallController::workerSavedZipMain() {
     uint64_t startedUs = 0;
     dispatcher_.setPspTarget(settings_.pspTarget);
     dispatcher_.setPspMediaFormat(settings_.pspMediaFormat);
+    dispatcher_.setPspStorage(settings_.pspStorage);
     const InstallDispatchResult result = dispatcher_.installFile(
         path,
         [&](const InstallDispatchProgress& progress) {
@@ -1719,6 +1720,7 @@ int InstallController::workerMain() {
 
         dispatcher_.setPspTarget(settings_.pspTarget);
         dispatcher_.setPspMediaFormat(settings_.pspMediaFormat);
+    dispatcher_.setPspStorage(settings_.pspStorage);
         result = dispatcher_.installFile(
             job->finalPath,
             [&](const InstallDispatchProgress& progress) {

@@ -129,6 +129,7 @@ const char* pkg2zip_last_error(void);
 |-----|--------|---------|
 | `psp_target` | `adrenaline` \| `livearea` | `adrenaline` |
 | `psp_media_format` | `folder` \| `iso` | `folder` |
+| `psp_storage` | `ux0:` \| `uma0:` | `ux0:` |
 
 ### Logs
 
@@ -274,6 +275,7 @@ Relevant keys for UI personalisation:
 | `language` | `en`, `es` | Used when mode is manual |
 | `psp_target` | `adrenaline`, `livearea` | PSP/PS1 PKG routing |
 | `psp_media_format` | `folder`, `iso` | Adrenaline layout only |
+| `psp_storage` | `ux0:`, `uma0:` | Adrenaline install partition only; UMA must be mounted |
 
 Installer behaviour is driven by install method, PSP target/media, and catalog link types — not by theme/font.
 

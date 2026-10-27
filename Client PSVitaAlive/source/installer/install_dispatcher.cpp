@@ -90,6 +90,15 @@ InstallDispatchResult InstallDispatcher::installFile(
     clearResultMeta();
     if (path.empty()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgEmptyPath)); return InstallDispatchResult::InvalidArgument; }
     StorageManager st;
+    // The selected Adrenaline mount never affects LiveArea routing.
+    const PspStorage directStorage = pspTarget_ == PspTarget::Adrenaline ? pspStorage_ : PspStorage::Ux0;
+    auto ensurePspStorage = [&]() -> bool {
+        if (directStorage == PspStorage::Uma0 && !st.isDirectory("uma0:")) {
+            setError("Adrenaline destination uma0: is not mounted. Mount the storage or select ux0: in Settings.");
+            return false;
+        }
+        return true;
+    };
     if (!st.exists(path)) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgFileNotFound)); return InstallDispatchResult::IoError; }
     if (shouldCancel && shouldCancel()) { setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCancelled)); return InstallDispatchResult::Cancelled; }
 
@@ -180,6 +189,7 @@ InstallDispatchResult InstallDispatcher::installFile(
             diagnostics::log(std::string("[InstallDispatcher] PKG probe is_psp_psx=") +
                 std::to_string(isPspPsx) + " path=" + path);
             if (isPspPsx == 1) {
+                if (!ensurePspStorage()) return InstallDispatchResult::IoError;
                 if (onProgress) {
                     InstallDispatchProgress p;
                     p.stage = InstallDispatchProgress::Installing;
@@ -203,7 +213,9 @@ InstallDispatchResult InstallDispatcher::installFile(
                     p.message = asIso ? "Unpacking PKG (ISO mode)" : "Unpacking PKG (folder mode)";
                     onProgress(p);
                 }
-                const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), "ux0:", asIso, installed, sizeof(installed));
+                const char* partition = AppSettings::toString(directStorage);
+                diagnostics::log(std::string("[InstallDispatcher] Adrenaline destination=") + partition);
+                const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), partition, asIso, installed, sizeof(installed));
                 pkg2zip_set_progress_callback(nullptr);
                 g_pkg2zipProgressFn = InstallDispatchProgressFn();
                 diagnostics::log(std::string("[InstallDispatcher] unpack returned ") + std::to_string(ur));
@@ -215,7 +227,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 }
                 lastLiveAreaOk_ = false;
                 lastTitleId_.clear();
-                lastInstallPath_ = installed[0] ? installed : "ux0:pspemu";
+                lastInstallPath_ = installed[0] ? installed : std::string(AppSettings::toString(directStorage)) + "pspemu";
                 if (onProgress) {
                     InstallDispatchProgress p;
                     p.stage = InstallDispatchProgress::Completed;
@@ -376,7 +388,9 @@ InstallDispatchResult InstallDispatcher::installFile(
     }
 
     if (detected.format == FileFormat::Pbp) {
+        if (!ensurePspStorage()) return InstallDispatchResult::IoError;
         PspInstaller psp;
+        psp.setStorage(directStorage);
         const PspInstallResult pr = psp.installPbp(path,
             [&](const PspInstallProgress& pp) {
                 if (!onProgress) return;
@@ -396,7 +410,9 @@ InstallDispatchResult InstallDispatcher::installFile(
         return InstallDispatchResult::Ok;
     }
     if (detected.format == FileFormat::Iso || detected.format == FileFormat::Cso) {
+        if (!ensurePspStorage()) return InstallDispatchResult::IoError;
         PspInstaller psp;
+        psp.setStorage(directStorage);
         const PspInstallResult pr = psp.installIsoCso(path,
             [&](const PspInstallProgress& pp) {
                 if (!onProgress) return;

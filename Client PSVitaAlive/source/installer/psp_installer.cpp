@@ -14,8 +14,6 @@
 namespace psvitaalive {
 
 namespace {
-constexpr const char* ISO_DIR = "ux0:pspemu/ISO";
-constexpr const char* GAME_DIR = "ux0:pspemu/PSP/GAME";
 
 std::string baseName(const std::string& path) {
     const auto slash = path.find_last_of("/\\");
@@ -142,13 +140,14 @@ PspInstallResult PspInstaller::installIsoCso(
         return PspInstallResult::Unsupported;
     }
 
-    if (!st.createDirectories(ISO_DIR)) {
+    const std::string isoDir = std::string(AppSettings::toString(storage_)) + "pspemu/ISO";
+    if (!st.createDirectories(isoDir)) {
         setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
         return PspInstallResult::IoError;
     }
 
     const std::string name = baseName(path);
-    const std::string dest = std::string(ISO_DIR) + "/" + name;
+    const std::string dest = isoDir + "/" + name;
     if (onProgress) {
         PspInstallProgress p;
         p.stage = PspInstallProgress::Preparing;
@@ -196,7 +195,7 @@ PspInstallResult PspInstaller::installPbp(
     }
 
     const std::string id = sanitizeId(stripExt(baseName(path)));
-    const std::string gameDir = std::string(GAME_DIR) + "/" + id;
+    const std::string gameDir = std::string(AppSettings::toString(storage_)) + "pspemu/PSP/GAME/" + id;
     if (!st.createDirectories(gameDir)) {
         setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgCannotCreateDir));
         return PspInstallResult::IoError;

@@ -13,6 +13,7 @@ COLOR_THEME=Tema de color
 INSTALL_METHOD=Método de instalación
 PSP_PS1_TARGET=Destino PSP / PS1
 PSP_MEDIA_ADRENALINE=Medio PSP (Adrenaline)
+PSP_STORAGE_DESTINATION=Almacenamiento Adrenaline
 WARN_MISSING_PLUGINS=Avisar plugins faltantes
 CHECK_FOR_UPDATES=Buscar actualizaciones
 AUTO=Auto
@@ -35,6 +36,12 @@ SETTINGS_SAVE_BACK=O / SELECT: Guardar y volver
 HINT_INSTALL_METHOD=Auto: BGDL para PKG cuando esté disponible
 HINT_PSP_TARGET=LiveArea=burbuja PKG; Adrenaline=desempaquetar a pspemu
 HINT_PSP_MEDIA=Carpeta=EBOOT en GAME; ISO=pspemu/ISO
+HINT_PSP_STORAGE=Elige ux0: o uma0: para Adrenaline
+PSP_STORAGE_UX0_DESC=Almacenamiento principal
+PSP_STORAGE_UMA0_DESC=Almacenamiento secundario (debe montarse)
+INFO_PSP_STORAGE_1=Solo Adrenaline: partición de destino.
+INFO_PSP_STORAGE_2=ux0: por defecto; uma0: si está montada.
+INFO_PSP_STORAGE_3=LiveArea mantiene la ruta de instalación actual.
 HINT_LANGUAGE=Sistema usa el idioma de la Vita si está soportado
 HINT_COLOR_THEME=X / toque: abrir selector de paleta
 HINT_WARN_PLUGINS=Aviso al inicio si falta NoNpDrm
@@ -58,7 +65,7 @@ INFO_INSTALL_METHOD_2=Auto usa BGDL para PKG si
 INFO_INSTALL_METHOD_3=Shell lo permite; si no, Directo.
 INFO_PSP_TARGET_1=LiveArea: PKG PSP/PS1 con BGDL
 INFO_PSP_TARGET_2=(burbuja). Adrenaline: sin burbuja;
-INFO_PSP_TARGET_3=el PKG se desempaqueta en ux0:pspemu.
+INFO_PSP_TARGET_3=el PKG se extrae en el pspemu elegido.
 INFO_PSP_MEDIA_1=Solo diseño PSP en Adrenaline.
 INFO_PSP_MEDIA_2=Carpeta = EBOOT.PBP en GAME (defecto).
 INFO_PSP_MEDIA_3=ISO = convertir a pspemu/ISO.

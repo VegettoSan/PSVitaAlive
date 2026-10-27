@@ -16,6 +16,9 @@ enum class PspTarget {
 };
 
 /** Adrenaline PSP PKG layout (PKGj-style). Folder = EBOOT.PBP under GAME; Iso = converted ISO. */
+/** Adrenaline install partition. LiveArea always uses its existing system path. */
+enum class PspStorage { Ux0 = 0, Uma0 };
+
 enum class PspMediaFormat {
     Folder = 0,  // default — pspemu/PSP/GAME/<ID>/EBOOT.PBP
     Iso          // pspemu/ISO/*.iso
@@ -96,6 +99,7 @@ struct AppSettingsData {
     InstallMethod installMethod = InstallMethod::Auto;
     PspTarget pspTarget = PspTarget::Adrenaline;
     PspMediaFormat pspMediaFormat = PspMediaFormat::Folder;
+    PspStorage pspStorage = PspStorage::Ux0;
     ColorTheme colorTheme = ColorTheme::NeonLime;
     bool warnMissingPlugins = true;
     bool themeSetupDone = false;
@@ -122,6 +126,7 @@ public:
     static const char* toString(InstallMethod m);
     static const char* toString(PspTarget t);
     static const char* toString(PspMediaFormat f);
+    static const char* toString(PspStorage s);
     static const char* toString(ColorTheme t);
     static const char* toString(LanguageMode m);
     static const char* toString(UiFontStyle f);
@@ -129,6 +134,7 @@ public:
     static InstallMethod parseInstallMethod(const std::string& s);
     static PspTarget parsePspTarget(const std::string& s);
     static PspMediaFormat parsePspMediaFormat(const std::string& s);
+    static PspStorage parsePspStorage(const std::string& s);
     static ColorTheme parseColorTheme(const std::string& s);
     static LanguageMode parseLanguageMode(const std::string& s);
     static UiFontStyle parseUiFontStyle(const std::string& s);

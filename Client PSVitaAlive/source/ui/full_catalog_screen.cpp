@@ -4187,6 +4187,7 @@ void FullCatalogScreen::openPspSetupWizard(bool forInstallAll, int itemIndex, in
     pspSetupPendingLinkIndex_ = linkDetailIndex;
     pspSetupTarget_ = settingsEdit_.pspTarget;
     pspSetupMedia_ = settingsEdit_.pspMediaFormat;
+    pspSetupStorage_ = settingsEdit_.pspStorage;
     pspSetupFocus_ = (pspSetupTarget_ == ::psvitaalive::PspTarget::LiveArea) ? 0 : 1;
     diagnostics::log("[UI] PSP/PS1 setup wizard opened");
 }
@@ -4270,11 +4271,14 @@ void FullCatalogScreen::closePspSetupWizard(bool confirm) {
     settingsEdit_.pspTarget = pspSetupTarget_;
     settingsEdit_.pspMediaFormat = (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline)
         ? pspSetupMedia_ : settingsEdit_.pspMediaFormat;
+    if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline)
+        settingsEdit_.pspStorage = pspSetupStorage_;
     settingsEdit_.pspSetupDone = true;
     if (settingsSave_) settingsSave_(settingsEdit_);
     diagnostics::log(std::string("[UI] PSP/PS1 setup saved target=")
                      + ::psvitaalive::AppSettings::toString(settingsEdit_.pspTarget)
-                     + " media=" + ::psvitaalive::AppSettings::toString(settingsEdit_.pspMediaFormat));
+                     + " media=" + ::psvitaalive::AppSettings::toString(settingsEdit_.pspMediaFormat)
+                     + " storage=" + ::psvitaalive::AppSettings::toString(settingsEdit_.pspStorage));
 
     const bool forAll = pspSetupPendingInstallAll_;
     const int itemIndex = pspSetupPendingItemIndex_;
@@ -4743,43 +4747,52 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // First-time PSP/PS1 install method wizard
+    // First-time PSP/PS1 install method wizard: same card geometry as render.
     if (pspSetupModal_) {
         if (td.reportNum <= 0) {
             if (touchDown_ && !touchMoved_) {
                 const int w = 936, h = 532;
                 const int ox = (SCREEN_W - w) / 2, oy = (SCREEN_H - h) / 2;
-                const int gap = 12;
-                const int pad = 20;
+                const int gap = 12, pad = 20;
                 const int boxW = (w - pad * 2 - gap) / 2;
-                const int rowY = oy + 98;
-                const int boxH = 108;
-                if (hit(touchStartX_, touchStartY_, ox + pad, rowY, boxW, boxH)) {
+                const int introCount = static_cast<int>(std::min<size_t>(2,
+                    wrapTextToWidth(&font_, 0.90f, ::psvitaalive::L(::psvitaalive::TextId::PspSetupIntro), w - pad * 2).size()));
+                const int rowY = oy + 56 + 24 * introCount + 10;
+                const int targetH = 108;
+                const int mediaY = rowY + targetH + 12;
+                const int mediaH = 88;
+                const int storageY = mediaY + mediaH + 12;
+                const int storageH = 54;
+                const int px = touchStartX_, py = touchStartY_;
+                if (hit(px, py, ox + pad, rowY, boxW, targetH)) {
                     pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea;
                     pspSetupFocus_ = 0;
-                } else if (hit(touchStartX_, touchStartY_, ox + pad + boxW + gap, rowY, boxW, boxH)) {
+                } else if (hit(px, py, ox + pad + boxW + gap, rowY, boxW, targetH)) {
                     pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline;
                     pspSetupFocus_ = 1;
-                } else if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline) {
-                    const int mediaY = rowY + boxH + 10;
-                    const int mh = 88;
-                    if (hit(touchStartX_, touchStartY_, ox + pad, mediaY, boxW, mh)) {
-                        pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder;
-                        pspSetupFocus_ = 2;
-                    } else if (hit(touchStartX_, touchStartY_, ox + pad + boxW + gap, mediaY, boxW, mh)) {
-                        pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso;
-                        pspSetupFocus_ = 3;
-                    }
+                } else if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline &&
+                           hit(px, py, ox + pad, mediaY, boxW, mediaH)) {
+                    pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder;
+                    pspSetupFocus_ = 2;
+                } else if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline &&
+                           hit(px, py, ox + pad + boxW + gap, mediaY, boxW, mediaH)) {
+                    pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso;
+                    pspSetupFocus_ = 3;
+                } else if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline &&
+                           hit(px, py, ox + pad, storageY, boxW, storageH)) {
+                    pspSetupStorage_ = ::psvitaalive::PspStorage::Ux0;
+                    pspSetupFocus_ = 4;
+                } else if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline &&
+                           hit(px, py, ox + pad + boxW + gap, storageY, boxW, storageH)) {
+                    pspSetupStorage_ = ::psvitaalive::PspStorage::Uma0;
+                    pspSetupFocus_ = 5;
                 }
                 const int btnH = 58, btnGap = 14;
                 const int btnY = oy + h - 74;
                 const int btnW = (w - pad * 2 - btnGap) / 2;
                 const int x0 = ox + pad, x1 = x0 + btnW + btnGap;
-                if (hit(touchStartX_, touchStartY_, x0, btnY, btnW, btnH)) {
-                    closePspSetupWizard(true);
-                } else if (hit(touchStartX_, touchStartY_, x1, btnY, btnW, btnH)) {
-                    closePspSetupWizard(false);
-                }
+                if (hit(px, py, x0, btnY, btnW, btnH)) closePspSetupWizard(true);
+                else if (hit(px, py, x1, btnY, btnW, btnH)) closePspSetupWizard(false);
             }
             touchDown_ = false;
             return;
@@ -5242,20 +5255,24 @@ void FullCatalogScreen::handleTouch() {
         const int sideX = listX + listW + 12;
         struct Meta { bool sectionStart; const char* section; };
         // Must match opts[10] section breaks in drawSettings.
-        Meta meta[10] = {
-            {true, "INSTALL"}, {false, ""}, {false, ""},
+        Meta meta[11] = {
+            {true, "INSTALL"}, {false, ""}, {false, ""}, {false, ""},
             {true, "INTERFACE"}, {false, ""}, {false, ""}, {false, ""}, {false, ""}, {false, ""},
             {true, "UPDATES"}
         };
-        int rowY[10];
+        int rowY[11];
         int y = contentTop - static_cast<int>(settingsScrollY_);
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 11; ++i) {
+            if (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline && (i == 2 || i == 3)) {
+                rowY[i] = -10000;
+                continue;
+            }
             if (meta[i].sectionStart && meta[i].section[0]) y += 22;
             rowY[i] = y;
             y += 52 + 8;
         }
         const int rowH = 52;
-        const int measured = 10 * (52 + 8) + 3 * 22;
+        const int measured = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline ? 11 : 9) * (52 + 8) + 3 * 22;
         const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
@@ -5277,15 +5294,17 @@ void FullCatalogScreen::handleTouch() {
                 // Same as main catalog: drag steps move focus like D-Pad up/down
                 if (touchMoved_) {
                     constexpr float kScrollPx = 48.f;
-                    constexpr int kRows = 10;
+                    constexpr int kRows = 11;
                     touchAccumY_ += static_cast<float>(dy);
                     while (touchAccumY_ <= -kScrollPx) {
                         touchAccumY_ += kScrollPx;
-                        settingsFocus_ = (settingsFocus_ + 1) % kRows;
+                        do { settingsFocus_ = (settingsFocus_ + 1) % kRows; }
+                        while (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
                     }
                     while (touchAccumY_ >= kScrollPx) {
                         touchAccumY_ -= kScrollPx;
-                        settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
+                        do { settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows; }
+                        while (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
                     }
                     (void)maxScroll; // auto-scroll in drawSettings follows focus
                 }
@@ -5294,7 +5313,7 @@ void FullCatalogScreen::handleTouch() {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
             // Allow slight finger jitter — still treat as tap if not a long drag
-            for (int i = 0; i < 10; ++i) {
+            for (int i = 0; i < 11; ++i) {
                 if (hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
                     else settingsFocus_ = i;
@@ -5841,9 +5860,14 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         settingsEdit_.pspTarget = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline)
             ? ::psvitaalive::PspTarget::LiveArea : ::psvitaalive::PspTarget::Adrenaline;
     } else if (row == 2) {
+        if (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline) return;
         settingsEdit_.pspMediaFormat = (settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Folder)
             ? ::psvitaalive::PspMediaFormat::Iso : ::psvitaalive::PspMediaFormat::Folder;
     } else if (row == 3) {
+        if (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline) return;
+        settingsEdit_.pspStorage = settingsEdit_.pspStorage == ::psvitaalive::PspStorage::Ux0
+            ? ::psvitaalive::PspStorage::Uma0 : ::psvitaalive::PspStorage::Ux0;
+    } else if (row == 4) {
         // Language: System → each available language → System …
         auto& loc = ::psvitaalive::LocalizationManager::instance();
         std::vector<::psvitaalive::Language> langs = loc.availableLanguages();
@@ -5872,7 +5896,7 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         diagnostics::log(std::string("[UI] language set mode=") +
                          ::psvitaalive::AppSettings::toString(settingsEdit_.languageMode) +
                          " code=" + settingsEdit_.language);
-    } else if (row == 4) {
+    } else if (row == 5) {
         // Dynamic list: Default + every *.pgf found in app0:font/ and ux0:.../fonts/
         std::vector<std::string> fonts = ::psvitaalive::ui::listAvailableUiFonts();
         // entries: index 0 = Default (empty file), then each basename
@@ -5906,33 +5930,36 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
             diagnostics::log(std::string("[UI] font file=") +
                              (settingsEdit_.uiFontFile.empty() ? "(default)" : settingsEdit_.uiFontFile));
         }
-    } else if (row == 5) {
+    } else if (row == 6) {
         int pct = settingsEdit_.uiFontScalePct + (delta > 0 ? 5 : -5);
         if (pct < 50) pct = 50;
         if (pct > 150) pct = 150;
         settingsEdit_.uiFontScalePct = pct;
         ::psvitaalive::ui::setUiFontScalePercent(pct);
-    } else if (row == 6) {
+    } else if (row == 7) {
         (void)delta;
         openThemePicker(); // same palette window as first-run setup
-    } else if (row == 7) {
+    } else if (row == 8) {
         settingsEdit_.mascotSelection = gProtectionMascotManager.cycleSelection(
             settingsEdit_.mascotSelection.empty() ? "random" : settingsEdit_.mascotSelection, delta);
-    } else if (row == 8) {
-        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
     } else if (row == 9) {
+        settingsEdit_.warnMissingPlugins = !settingsEdit_.warnMissingPlugins;
+    } else if (row == 10) {
         triggerSelfUpdateAction();
     }
 }
 
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
-    constexpr int kRows = 10;
+    constexpr int kRows = 11;
+    const bool adrenaline = settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline;
     if (nav & SCE_CTRL_UP) {
-        settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows;
+        do { settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows; }
+        while (!adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
         settingsInfoScrollY_ = 0.f;
     }
     if (nav & SCE_CTRL_DOWN) {
-        settingsFocus_ = (settingsFocus_ + 1) % kRows;
+        do { settingsFocus_ = (settingsFocus_ + 1) % kRows; }
+        while (!adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
         settingsInfoScrollY_ = 0.f;
     }
     if ((nav & SCE_CTRL_LEFT) || (pressed & SCE_CTRL_SQUARE)) {
@@ -5983,6 +6010,7 @@ void FullCatalogScreen::drawSettings() {
         return settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline
             ? ::psvitaalive::L(TID::Adrenaline) : ::psvitaalive::L(TID::LiveArea);
     };
+    auto storageLabel = [&]() -> std::string { return ::psvitaalive::AppSettings::toString(settingsEdit_.pspStorage); };
     auto mediaFormatLabel = [&]() -> std::string {
         return settingsEdit_.pspMediaFormat == ::psvitaalive::PspMediaFormat::Iso
             ? ::psvitaalive::L(TID::Iso) : ::psvitaalive::L(TID::Folder);
@@ -6047,10 +6075,11 @@ void FullCatalogScreen::drawSettings() {
             default: return ::psvitaalive::L(TID::FontDefault);
         }
     };
-    Opt opts[10] = {
+    Opt opts[11] = {
         {::psvitaalive::L(TID::SectionInstall), ::psvitaalive::L(TID::InstallMethod), methodLabel(), ::psvitaalive::L(TID::HintInstallMethod), true},
         {"", ::psvitaalive::L(TID::PspPs1Target), pspLabel(), ::psvitaalive::L(TID::HintPspTarget), false},
         {"", ::psvitaalive::L(TID::PspMediaAdrenaline), mediaFormatLabel(), ::psvitaalive::L(TID::HintPspMedia), false},
+        {"", ::psvitaalive::L("PSP_STORAGE_DESTINATION"), storageLabel(), ::psvitaalive::L("HINT_PSP_STORAGE"), false},
         {::psvitaalive::L(TID::SectionInterface), ::psvitaalive::L(TID::Language), languageLabel(), ::psvitaalive::L(TID::HintLanguage), true},
         {"", ::psvitaalive::L(TID::UiFont), fontLabel(), ::psvitaalive::L(TID::HintUiFont), false},
         {"", ::psvitaalive::L(TID::UiFontSize), (std::to_string(settingsEdit_.uiFontScalePct) + "%"), ::psvitaalive::L(TID::HintUiFontSize), false},
@@ -6070,8 +6099,10 @@ void FullCatalogScreen::drawSettings() {
     const int sectionH = 22;
     const int rowGap = 8;
 
+    const bool showAdrenalineRows = settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline;
     int measured = 0;
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 11; ++i) {
+        if (!showAdrenalineRows && (i == 2 || i == 3)) continue;
         if (opts[i].sectionStart && opts[i].section[0]) measured += sectionH;
         measured += rowH + rowGap;
     }
@@ -6082,7 +6113,8 @@ void FullCatalogScreen::drawSettings() {
 
     {
         int fy = 0;
-        for (int i = 0; i <= settingsFocus_ && i < 10; ++i) {
+        for (int i = 0; i <= settingsFocus_ && i < 11; ++i) {
+            if (!showAdrenalineRows && (i == 2 || i == 3)) continue;
             if (opts[i].sectionStart && opts[i].section[0]) fy += sectionH;
             if (i < settingsFocus_) fy += rowH + rowGap;
         }
@@ -6099,9 +6131,10 @@ void FullCatalogScreen::drawSettings() {
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(listX, contentTop, listX + listW, listClipBottom);
 
-    int rowY[10] = {};
+    int rowY[11] = {};
     int y = contentTop - static_cast<int>(settingsScrollY_);
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 11; ++i) {
+        if (!showAdrenalineRows && (i == 2 || i == 3)) continue;
         if (opts[i].sectionStart && opts[i].section[0]) {
             ::psvitaalive::ui::uiDrawText(&font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
             y += sectionH;
@@ -6168,36 +6201,41 @@ void FullCatalogScreen::drawSettings() {
             body3 = ::psvitaalive::L(TID::InfoPspMedia3);
             break;
         case 3:
+            body1 = ::psvitaalive::L("INFO_PSP_STORAGE_1");
+            body2 = ::psvitaalive::L("INFO_PSP_STORAGE_2");
+            body3 = ::psvitaalive::L("INFO_PSP_STORAGE_3");
+            break;
+        case 4:
             body1 = ::psvitaalive::L(TID::InfoLanguage1);
             body2 = ::psvitaalive::L(TID::InfoLanguage2);
             body3 = ::psvitaalive::L(TID::InfoLanguage3);
             break;
-        case 4:
+        case 5:
             body1 = ::psvitaalive::L(TID::InfoFont1);
             body2 = ::psvitaalive::L(TID::InfoFont2);
             body3 = ::psvitaalive::L(TID::InfoFont3);
             break;
-        case 5:
+        case 6:
             body1 = ::psvitaalive::L(TID::InfoFontSize1);
             body2 = ::psvitaalive::L(TID::InfoFontSize2);
             body3 = ::psvitaalive::L(TID::InfoFontSize3);
             break;
-        case 6:
+        case 7:
             body1 = ::psvitaalive::L(TID::InfoColorTheme1);
             body2 = ::psvitaalive::L(TID::InfoColorTheme2);
             body3 = ::psvitaalive::L(TID::InfoColorTheme3);
             break;
-        case 7:
+        case 8:
             body1 = ::psvitaalive::L("INFO_MASCOT_1");
             body2 = ::psvitaalive::L("INFO_MASCOT_2");
             body3 = ::psvitaalive::L("INFO_MASCOT_3");
             break;
-        case 8:
+        case 9:
             body1 = ::psvitaalive::L(TID::InfoWarnPlugins1);
             body2 = ::psvitaalive::L(TID::InfoWarnPlugins2);
             body3 = ::psvitaalive::L(TID::InfoWarnPlugins3);
             break;
-        case 9:
+        case 10:
             body1 = ::psvitaalive::L(TID::InfoSelfUpdate1);
             body2 = ::psvitaalive::L(TID::InfoSelfUpdate2);
             body3 = ::psvitaalive::L(TID::InfoSelfUpdate3);
@@ -6254,7 +6292,7 @@ void FullCatalogScreen::drawSettings() {
             if (!pluginsStatus_.configPathUsed.empty()) {
                 pushWrapped(pluginsStatus_.configPathUsed.c_str(), DIM, 0.60f, 18);
             }
-            if (settingsFocus_ == 9) {
+            if (settingsFocus_ == 10) {
                 char ver[96];
                 sceClibSnprintf(ver, sizeof(ver), "%s: v%s",
                                 ::psvitaalive::L(TID::LocalVersion), PSVITAALIVE_VERSION);
@@ -6498,39 +6536,43 @@ void FullCatalogScreen::handleInput(){
         const uint32_t navPressed = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogPsp);
         prevButtonsPsp = pad.buttons;
         prevAnalogPsp = analog;
+        const bool adrenaline = pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline;
         if (pressed & SCE_CTRL_CIRCLE) { closePspSetupWizard(false); return; }
         if (navPressed & SCE_CTRL_LEFT) {
             if (pspSetupFocus_ == 1) { pspSetupFocus_ = 0; pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea; }
             else if (pspSetupFocus_ == 3) { pspSetupFocus_ = 2; pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder; }
-            else if (pspSetupFocus_ == 5) pspSetupFocus_ = 4;
+            else if (pspSetupFocus_ == 5) { pspSetupFocus_ = 4; pspSetupStorage_ = ::psvitaalive::PspStorage::Ux0; }
+            else if (pspSetupFocus_ == 7) pspSetupFocus_ = 6;
             return;
         }
         if (navPressed & SCE_CTRL_RIGHT) {
             if (pspSetupFocus_ == 0) { pspSetupFocus_ = 1; pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline; }
             else if (pspSetupFocus_ == 2) { pspSetupFocus_ = 3; pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso; }
-            else if (pspSetupFocus_ == 4) pspSetupFocus_ = 5;
+            else if (pspSetupFocus_ == 4) { pspSetupFocus_ = 5; pspSetupStorage_ = ::psvitaalive::PspStorage::Uma0; }
+            else if (pspSetupFocus_ == 6) pspSetupFocus_ = 7;
             return;
         }
         if (navPressed & SCE_CTRL_UP) {
-            if (pspSetupFocus_ >= 4)
-                pspSetupFocus_ = (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline) ? 2 : 0;
+            if (pspSetupFocus_ >= 6) pspSetupFocus_ = adrenaline ? (pspSetupStorage_ == ::psvitaalive::PspStorage::Uma0 ? 5 : 4) : 0;
+            else if (pspSetupFocus_ >= 4) pspSetupFocus_ = pspSetupMedia_ == ::psvitaalive::PspMediaFormat::Iso ? 3 : 2;
             else if (pspSetupFocus_ >= 2) pspSetupFocus_ = 1;
             return;
         }
         if (navPressed & SCE_CTRL_DOWN) {
-            if (pspSetupFocus_ <= 1) {
-                if (pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline) pspSetupFocus_ = 2;
-                else pspSetupFocus_ = 4;
-            } else if (pspSetupFocus_ <= 3) pspSetupFocus_ = 4;
+            if (pspSetupFocus_ <= 1) pspSetupFocus_ = adrenaline ? (pspSetupMedia_ == ::psvitaalive::PspMediaFormat::Iso ? 3 : 2) : 6;
+            else if (pspSetupFocus_ <= 3) pspSetupFocus_ = pspSetupStorage_ == ::psvitaalive::PspStorage::Uma0 ? 5 : 4;
+            else if (pspSetupFocus_ <= 5) pspSetupFocus_ = 6;
             return;
         }
         if (pressed & SCE_CTRL_CROSS) {
-            if (pspSetupFocus_ == 0) { pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea; pspSetupFocus_ = 4; }
+            if (pspSetupFocus_ == 0) { pspSetupTarget_ = ::psvitaalive::PspTarget::LiveArea; pspSetupFocus_ = 6; }
             else if (pspSetupFocus_ == 1) { pspSetupTarget_ = ::psvitaalive::PspTarget::Adrenaline; pspSetupFocus_ = 2; }
             else if (pspSetupFocus_ == 2) { pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Folder; pspSetupFocus_ = 4; }
             else if (pspSetupFocus_ == 3) { pspSetupMedia_ = ::psvitaalive::PspMediaFormat::Iso; pspSetupFocus_ = 4; }
-            else if (pspSetupFocus_ == 4) closePspSetupWizard(true);
-            else if (pspSetupFocus_ == 5) closePspSetupWizard(false);
+            else if (pspSetupFocus_ == 4) { pspSetupStorage_ = ::psvitaalive::PspStorage::Ux0; pspSetupFocus_ = 6; }
+            else if (pspSetupFocus_ == 5) { pspSetupStorage_ = ::psvitaalive::PspStorage::Uma0; pspSetupFocus_ = 6; }
+            else if (pspSetupFocus_ == 6) closePspSetupWizard(true);
+            else if (pspSetupFocus_ == 7) closePspSetupWizard(false);
             return;
         }
         return;
@@ -11047,7 +11089,7 @@ void FullCatalogScreen::drawPspSetupOverlay() {
     const int btnH = 58, btnGap = 14;
     const int btnY = y + h - 74;
     const int footerBandTop = btnY - 78;
-    const int contentMaxY = footerBandTop - 10;
+    const int contentMaxY = btnY - 58;
 
     ::psvitaalive::ui::uiDrawText(&font_, x + pad, y + 32, WHITE, 1.22f, ::psvitaalive::L(TID::PspSetupTitle));
 
@@ -11104,6 +11146,21 @@ void FullCatalogScreen::drawPspSetupOverlay() {
                        ::psvitaalive::L(TID::PspSetupIsoTitle), ::psvitaalive::L(TID::PspSetupIsoDesc), 2);
         }
         ty += mediaH + 12;
+        const int storageH = 54;
+        if (ty + storageH <= contentMaxY) {
+            auto drawStorage = [&](int sx, bool selected, bool focused, const char* mount, const char* description) {
+                const unsigned border = focused ? ACCENT : (selected ? withAlpha(ACCENT, 180) : BORDER);
+                vita2d_draw_rectangle(sx, ty, boxW, storageH, border);
+                vita2d_draw_rectangle(sx + 2, ty + 2, boxW - 4, storageH - 4, selected ? SURFACE2 : SURFACE);
+                if (selected) vita2d_draw_rectangle(sx + 3, ty + 3, 4, storageH - 6, ACCENT);
+                ::psvitaalive::ui::uiDrawText(&font_, sx + 14, ty + 24, selected ? ACCENT : WHITE, 1.00f, mount);
+                ::psvitaalive::ui::uiDrawText(&font_, sx + 14, ty + 44, DIM, 0.72f, description);
+            };
+            drawStorage(x + pad, pspSetupStorage_ == ::psvitaalive::PspStorage::Ux0,
+                        pspSetupFocus_ == 4, "ux0:", ::psvitaalive::L("PSP_STORAGE_UX0_DESC"));
+            drawStorage(x + pad + boxW + gap, pspSetupStorage_ == ::psvitaalive::PspStorage::Uma0,
+                        pspSetupFocus_ == 5, "uma0:", ::psvitaalive::L("PSP_STORAGE_UMA0_DESC"));
+        }
     }
 
     // Footer texts bottom-anchored above buttons (no overlap with cards).
@@ -11134,8 +11191,8 @@ void FullCatalogScreen::drawPspSetupOverlay() {
 
     const int btnW = (w - pad * 2 - btnGap) / 2;
     const int x0 = x + pad, x1 = x0 + btnW + btnGap;
-    const bool confOn = (pspSetupFocus_ == 4);
-    const bool canOn = (pspSetupFocus_ == 5);
+    const bool confOn = (pspSetupFocus_ == 6);
+    const bool canOn = (pspSetupFocus_ == 7);
     vita2d_draw_rectangle(x0, btnY, btnW, btnH, confOn ? ACCENT : BORDER);
     vita2d_draw_rectangle(x0 + 2, btnY + 2, btnW - 4, btnH - 4, confOn ? ACCENT : SURFACE2);
     {
@@ -11145,12 +11202,12 @@ void FullCatalogScreen::drawPspSetupOverlay() {
         ::psvitaalive::ui::uiDrawText(&font_, x0 + (btnW - tw) / 2, btnY + 36, confOn ? BG : WHITE, sc, lab);
     }
     vita2d_draw_rectangle(x1, btnY, btnW, btnH, canOn ? ACCENT : BORDER);
-    vita2d_draw_rectangle(x1 + 2, btnY + 2, btnW - 4, btnH - 4, SURFACE2);
+    vita2d_draw_rectangle(x1 + 2, btnY + 2, btnW - 4, btnH - 4, canOn ? ACCENT : SURFACE2);
     {
         const char* lab = ::psvitaalive::L(TID::PspSetupCancel);
         const float sc = 1.00f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
-        ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 36, WHITE, sc, lab);
+        ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 36, canOn ? BG : WHITE, sc, lab);
     }
     ::psvitaalive::ui::uiDrawText(&font_, x + pad, y + h - 12, DIM, 0.72f, ::psvitaalive::L(TID::PspSetupNavHint));
 }

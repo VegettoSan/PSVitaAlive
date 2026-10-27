@@ -77,6 +77,8 @@ public:
     PspTarget pspTarget() const { return pspTarget_; }
     void setPspMediaFormat(PspMediaFormat f) { pspMediaFormat_ = f; }
     PspMediaFormat pspMediaFormat() const { return pspMediaFormat_; }
+    void setPspStorage(PspStorage s) { pspStorage_ = s; }
+    PspStorage pspStorage() const { return pspStorage_; }
 
 private:
     std::string lastError_;
@@ -86,6 +88,7 @@ private:
     bool lastZipUsedStagedMoves_ = false;
     PspTarget pspTarget_ = PspTarget::Adrenaline;
     PspMediaFormat pspMediaFormat_ = PspMediaFormat::Folder;
+    PspStorage pspStorage_ = PspStorage::Ux0;
 
     void setError(const std::string& message);
     void clearResultMeta();
