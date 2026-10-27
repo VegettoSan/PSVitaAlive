@@ -2000,6 +2000,7 @@ HttpResult HttpClient::downloadToFile(
                 parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::Paused ||
+                parallel == ParallelArchiveOutcome::NetworkInterrupted ||
                 parallel == ParallelArchiveOutcome::IoError) {
                 if (isArchive && rangeReady &&
                     (parallel == ParallelArchiveOutcome::Paused ||
