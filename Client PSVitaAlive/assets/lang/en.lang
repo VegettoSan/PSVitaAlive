@@ -38,7 +38,7 @@ HINT_PSP_MEDIA=Folder=EBOOT in GAME; ISO=pspemu/ISO
 HINT_LANGUAGE=System follows Vita language when supported
 HINT_COLOR_THEME=X / tap: open color palette picker
 HINT_WARN_PLUGINS=Startup toast if NoNpDrm is missing
-HINT_SELF_UPDATE=Checks GitHub Releases for a newer client VPK
+HINT_SELF_UPDATE=Checks for a newer official client version
 CATALOG_HOMEBREW=Homebrew
 CATALOG_VITA_GAMES=Ps Vita Games
 CATALOG_PSP=PSP
@@ -71,9 +71,9 @@ INFO_COLOR_THEME_3=popular. Report stays red.
 INFO_WARN_PLUGINS_1=Show a toast at startup when
 INFO_WARN_PLUGINS_2=NoNpDrm / NoPspEmuDrm are
 INFO_WARN_PLUGINS_3=missing from taiHEN config.
-INFO_SELF_UPDATE_1=Checks GitHub Releases for a
-INFO_SELF_UPDATE_2=newer PSVitaAlive.vpk and can
-INFO_SELF_UPDATE_3=install it in-place (VitaDB style).
+INFO_SELF_UPDATE_1=Checks the official update channel
+INFO_SELF_UPDATE_2=for a newer PSVitaAlive VPK and
+INFO_SELF_UPDATE_3=can install it directly on the console.
 STATUS_OK=OK
 STATUS_MISSING=missing
 LOCAL_VERSION=Local
@@ -271,7 +271,7 @@ TOAST_REPORT_SENT=Report sent
 TOAST_REPORT_FAILED=Report failed
 TOAST_REPORT_FAILED_START=Report failed to start
 TOAST_UPDATE_THREAD_FAILED=Update thread failed
-TOAST_CHECKING_UPDATES=Checking GitHub for updates...
+TOAST_CHECKING_UPDATES=Checking for updates...
 TOAST_UPDATE_AVAILABLE_PREFIX=Update 
 TOAST_UPDATE_AVAILABLE_SUFFIX= available — press X to install
 TOAST_UP_TO_DATE_PREFIX=Already up to date (v
@@ -548,17 +548,17 @@ KEYBOARD_SPACE=SPACE
 KEYBOARD_MORE=MORE
 
 # Archive.org connectivity warnings (startup / failed user download)
-ARCHIVE_WARNING_TITLE=Archive.org connection problems
-ARCHIVE_WARNING_STARTUP_1=PSVitaAlive cannot reach Archive.org from your current connection.
-ARCHIVE_WARNING_STARTUP_2=Some downloads, icons and screenshots may be temporarily unavailable. This does not necessarily mean PSVitaAlive is at fault. Please try again later or wait for the external service to recover.
-ARCHIVE_WARNING_DOWNLOAD_1=This download cannot connect to Archive.org right now.
-ARCHIVE_WARNING_DOWNLOAD_2=The external service may be having problems; it is not necessarily a PSVitaAlive error. Please try another download source if available, or try again later.
+ARCHIVE_WARNING_TITLE=External source connection problem
+ARCHIVE_WARNING_STARTUP_1=An external content source is not responding on your connection.
+ARCHIVE_WARNING_STARTUP_2=Some downloads, icons or screenshots may be temporarily unavailable. The external source or your connection could be affected. Try again later.
+ARCHIVE_WARNING_DOWNLOAD_1=This download source is not responding right now.
+ARCHIVE_WARNING_DOWNLOAD_2=The external source or your connection may be having temporary issues. Try another download link if available, or retry later.
 ARCHIVE_WARNING_OK=Understood
 
 # User-friendly failed Archive.org download result
 ARCHIVE_DOWNLOAD_FRIENDLY_TITLE=Download unavailable
-ARCHIVE_DOWNLOAD_FRIENDLY_REASON=We couldn't connect to Archive.org right now.
-ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=The service or your connection may be having temporary issues. This does not necessarily mean there is a problem with PSVitaAlive.
+ARCHIVE_DOWNLOAD_FRIENDLY_REASON=Could not reach this download source right now.
+ARCHIVE_DOWNLOAD_FRIENDLY_EXPLAIN=The external source or your connection may be temporarily unavailable.
 ARCHIVE_DOWNLOAD_FRIENDLY_ACTION=Try another download link, if available, or try again later.
 
 # Friendly error explanations for downloads, extraction and installation
@@ -577,8 +577,8 @@ INSTALL_ERR_HTTP_SERVER_WHY=The server is having temporary problems.
 INSTALL_ERR_HTTP_SERVER_ACTION=Try another download source, or try again later.
 INSTALL_ERR_TLS_WHY=A secure connection to the server could not be established.
 INSTALL_ERR_TLS_ACTION=Check your console date and time, or try another download source.
-INSTALL_ERR_MEDIAFIRE_WHY=The file could not be retrieved from MediaFire.
-INSTALL_ERR_MEDIAFIRE_ACTION=Try another link or open the original source to check the download.
+INSTALL_ERR_MEDIAFIRE_WHY=The selected download link could not provide this file.
+INSTALL_ERR_MEDIAFIRE_ACTION=Try another link or check the original file source.
 INSTALL_ERR_SPACE_WHY=There is not enough free space to complete this operation.
 INSTALL_ERR_SPACE_ACTION=Free some space on the destination storage and try again.
 INSTALL_ERR_STORAGE_WHY=The console could not read or save the required files.
@@ -736,7 +736,7 @@ FEEDBACK_CLOSE_FIRST=Close your report before exiting.
 
 # Download connection and checkpoint status (experimental)
 HTTP_STAGE_CONNECTING=Connecting to download server...
-HTTP_STAGE_FINDING_SERVER=Finding the best Archive.org server...
+HTTP_STAGE_FINDING_SERVER=Finding an available download server...
 HTTP_STAGE_VERIFYING_FILE=Verifying download server and file...
 HTTP_STAGE_VERIFYING_SAVED=Checking saved parts against the server...
 HTTP_STAGE_RECOVERING_PARTS=Resuming verified download parts...
