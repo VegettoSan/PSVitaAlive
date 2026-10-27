@@ -3013,8 +3013,12 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
         (installOutcome_ != 2 || installProgressMessage_ != message ||
          installProgressStage_ != stage)) {
         installFailureKind_ = classifyInstallFailure(message, stage);
+        // Link ready means the console obtained a network connection; it
+        // does NOT prove that Internet access or this source is available.
+        installFailureNetworkLinked_ = queryLinkConnectivity() == LinkConnectivity::Ready;
     } else if (!active || outcome == 0) {
         installFailureKind_ = InstallFailureKind::Other;
+        installFailureNetworkLinked_ = false;
     }
     installProgressStage_ = stage;
     installProgressFile_ = fileName;
@@ -9989,7 +9993,13 @@ if(installOutcome_==2){
           textY += 28;
       }
   };
-  drawFriendlyParagraph(::psvitaalive::L(reasonKey.c_str()), TEXT, 0.89f, y+240);
+  // When NetCtl says the device has a network link, distinguish this
+  // failure from Wi-Fi being switched off or unassociated. Internet reachability
+  // cannot be inferred from NetCtl alone, so avoid asserting a provider outage.
+  const char* friendlyWhy = (kind == FK::Network && installFailureNetworkLinked_)
+      ? ::psvitaalive::L("NET_CONNECTED_SOURCE_UNREACHABLE")
+      : ::psvitaalive::L(reasonKey.c_str());
+  drawFriendlyParagraph(friendlyWhy, TEXT, 0.89f, y+240);
   textY = std::max(textY + 15, y+254);
   drawFriendlyParagraph(::psvitaalive::L(actionKey.c_str()), DIM, 0.84f, y+318);
   const bool spaceErr = !shouldReportInstallFailure(kind) ||
