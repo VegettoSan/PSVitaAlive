@@ -1,7 +1,7 @@
-# Experimental HTTP 206 resume fix + pause/resume (26 October 2026)
+# HTTP 206 seguro, pausa y reanudación de descargas (26 de octubre de 2026)
 
 **Branch:** `fix/http206-resume-pause-test-20261026`  
-**Status:** experimental; do not merge into `main` or publish until validated on real PS Vita and Vita3K.
+**Estado:** validado por el mantenedor en PS Vita real y aprobado para integración en `main` el 26 de octubre de 2026. El botón **Pausar/Reanudar es permanente**. Mantener este documento como referencia de pruebas y diagnóstico; una compilación exitosa no sustituye las pruebas específicas de cada fuente.
 
 ## Problem and scope
 
@@ -19,7 +19,7 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 - Existing one-time clean restart for invalid `Content-Range` and exact final file size checks remain in place.
 - A small pure C++ header and `tests/test_http_range_size_policy.cpp` cover both header orders, wrong starts, overflowing ranges and the report's byte values.
 
-## Pause / Resume (test implementation)
+## Pause / Resume (permanent client feature)
 
 - In the **native in-app Downloading phase**, the brightly highlighted **TOCAR / TAP** button requests **Pause** from front touch; the same area becomes **Resume** after the worker stops. Hardware SQUARE remains available but is not necessary. This does not unlock navigation, catalog switching, extraction, installation, or shell/PS safety controls.
 - The OLED protection display intentionally consumes the **first tap to wake** the full progress UI; touch the bright Pause button **after** the normal dialog reappears. This preserves the existing accidental-tap safety policy.
@@ -27,11 +27,11 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 - For serial downloads, the `payload.part` length is persisted and **SQUARE / Resume** uses the *same* DownloadManager job with a new 64-bit HTTP Range request; no new install is enqueued.
 - **CIRCLE / Cancel** while paused deliberately removes the temporary job/files. Pause is never reported as Install Failed or Cancelled.
 - An interrupted **2/4-range** transfer now saves its *flushed, contiguous prefixes* separately for every range when a stable ETag or Last-Modified validator is available. Resume reprobes the resource, verifies the size/validator and requests only missing bytes. Completed segments are skipped. Checkpoint is kept in `payload.part.range.resume` until completion or explicit cancel. On validator mismatch, missing/invalid checkpoint, or a server refusing correct HTTP 206 ranges, the partials are deliberately discarded and the original serial fallback remains the safety net.
-- Automatic multi-range retries (up to two new rounds) first attempt to continue the unfinished pieces; exhausted or unsafe ranges fall back to serial cleanly. This feature is retained when the experimental button is removed from the mainline proposal.
+- Automatic multi-range retries (up to two new rounds) first attempt to continue unfinished pieces. If network retry exhaustion leaves a valid checkpoint, retain its ranges and surface a connectivity pause; **do not** fall back to serial in a way that destroys safe partial data. A missing/mismatched validator or invalid range uses the existing conservative integrity fallback. The **manual touch and SQUARE buttons remain enabled on main**.
 - Pauses last **only while PSVitaAlive remains running**. On the next launch, the unchanged startup orphan-download cleanup removes abandoned job files.
 - Pausing is not available for system BGDL, self-update, installation/extraction, ZIP recovery or plugins outside the native Downloading stage.
 - No extra background worker is introduced. Resume joins the completed previous worker before launching a replacement on the same job.
-- No main branch, catalog generator, generated JSON or website files are changed.
+- This change belongs exclusively to the native PS Vita client and its tests/docs. Catalog source data, generated JSON, GitHub Pages and serverless infrastructure are not modified.
 
 ## On-device validation checklist
 
@@ -48,7 +48,7 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 
 ## Parallel checkpoint safety
 
-The metadata binds canonical source URL, authoritative total, number of segments, ZIP/VPK extraction mode, and a strong ETag or a Last-Modified validator. Per-file lengths must fit their assigned intervals; libcurl 206 responses must agree with exact pending offsets and the cached validator. Checkpoints are private temporary installation inputs and intentionally do not survive the existing next-launch cleanup. The pause/resume button is diagnostic-only and must be removed before an approved `main` merge; automatic safe recovery stays.
+The metadata binds canonical source URL, authoritative total, number of segments, ZIP/VPK extraction mode, and a strong ETag or a Last-Modified validator. Per-file lengths must fit their assigned intervals; libcurl 206 responses must agree with exact pending offsets and the cached validator. Checkpoints are private temporary installation inputs and intentionally do not survive the existing next-launch cleanup. The pause/resume button is part of the approved user experience in `main`: it supports SQUARE and front touch, while preserving the OLED wake-first tap, installation protections and safe checkpoint validation.
 
 ## Expected log markers
 
@@ -65,7 +65,7 @@ content-range start=... end=... total=... resume=...
 HTTP RESULT curl=... status=206 ... absolute=... total=...
 ```
 
-**Do not merge into main until** the build passes and hardware/Vita3K logs demonstrate both successful resume and no regressions.
+**Integración autorizada:** el mantenedor reportó resultados correctos en PS Vita real para pausa/reanudación, interrupción Wi-Fi y recuperación. La CI del cliente y la validación de catálogo pasan. Los escenarios no observados en estos reportes siguen requiriendo pruebas de regresión cuando se cambie la implementación.
 
 ## Archive.org resume performance and UI status (experimental, 2026-10-26)
 
@@ -78,10 +78,10 @@ The October 26 real Vita `session.log` confirmed three 4-range checkpoint resume
 
 ### Recheck on PS Vita
 
-1. Install this experimental VPK without merging into `main`.
+1. Instalar la compilación actual del cliente y probar las reanudaciones en PS Vita real.
 2. Start the same ~243.93 MiB Archive.org ZIP, pause near 30%, resume.
 3. In `session.log`, check `fast resume edge accepted after fresh 206 probe; full selector skipped` and `parallel verified checkpoint; reuse_bytes=`.
 4. Observe visible Spanish/English status messages while waiting, and stable speed during the first few seconds.
 5. Repeat near 60% and 85%. Compare timestamp gaps between `[Installer] resumed existing job` and `[HTTP] starting 4-range` with the previous 16–18 seconds.
 6. Test connection failure during resume: the log should say `fast resume edge probe failed; retrying normal Archive selector` before using the pre-existing fallback. Verify final download size and extraction integrity.
-7. Confirm manual pause UI is removed before any `main` merge; automatic safe range recovery remains.
+7. Confirmar que el botón táctil y SQUARE para Pausar/Reanudar **siguen visibles y funcionales** después de la fusión a `main`.
