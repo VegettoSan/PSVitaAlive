@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace psvitaalive {
 
@@ -32,6 +33,9 @@ struct PluginStatus {
 class PluginDetector {
 public:
     static PluginStatus scan();
+    /** Non-commented, existing kernel plugin files from the active ur0 tai config.
+     * Read once when a catalog Plugin consent window opens, never every frame. */
+    static std::vector<std::string> activeKernelPluginBasenames();
 };
 
 } // namespace psvitaalive
