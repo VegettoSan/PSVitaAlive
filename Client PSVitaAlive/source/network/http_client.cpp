@@ -2052,8 +2052,18 @@ HttpResult HttpClient::downloadToFile(
                 setError("parallel download storage error");
                 return HttpResult::IoError;
             }
-            // Any unsupported probe or exhausted parallel retry must start a
-            // fresh serial file, never append to an arbitrary saved segment.
+            // If a refreshed CDN URL is no longer eligible for verified
+            // parallel ranges, preserve the previously saved checkpoint.
+            // No byte of the old transfer may be appended to an unverified
+            // serial response. The next explicit retry can probe again.
+            if (savedParallel > 0 && !rangeReady) {
+                curl_slist_free_all(headers);
+                curl_easy_cleanup(curl);
+                setError("connection verification unavailable; partial download saved");
+                return HttpResult::NetworkError;
+            }
+            // Unsupported new sources or truly invalid prior ranges follow
+            // the original safe clean-serial fallback, not unsafe append.
             discardParallelSavedRanges(destinationPath);
             ctx.fd = sceIoOpen(destinationPath.c_str(),
                                SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
