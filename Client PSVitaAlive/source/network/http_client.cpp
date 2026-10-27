@@ -1923,11 +1923,20 @@ HttpResult HttpClient::downloadToFile(
                 ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_VERIFYING_FILE");
             rangeReady = probeArchiveStorageUrl(activeUrl, 1, ctx.shouldCancel, rangeProbe);
         }
+        // Never use the fast path for generic URLs without stable content
+        // identity: concurrent ranges may otherwise represent different files.
+        if (!isArchive) {
+            const bool haveValidator =
+                (!rangeProbe.etag.empty() && rangeProbe.etag.compare(0, 2, "W/") != 0) ||
+                !rangeProbe.lastModified.empty();
+            rangeReady = rangeReady && haveValidator &&
+                rangeProbe.effectiveUrl.compare(0, 8, "https://") == 0;
+        }
         // A temporary offline/transport failure must never open a serial file
         // over a previously checkpointed parallel payload. Keep the exact
         // recorded segments until a new successful HTTP 206 validates them.
         // Cancellation is handled through the ordinary safe pause path.
-        if (savedParallel > 0 && !rangeReady) {
+        if (savedParallel > 0 && (!rangeReady || rangeProbe.total < 1024ULL * 1024ULL)) {
             curl_slist_free_all(headers);
             sceIoClose(ctx.fd);
             ctx.fd = -1;
@@ -1939,15 +1948,6 @@ HttpResult HttpClient::downloadToFile(
             setError("connection interrupted; parallel checkpoint retained");
             httpDiagnostic("[HTTP] 206 verification unavailable; keeping existing checkpoint and avoiding serial truncation");
             return HttpResult::NetworkError;
-        }
-        // Never use the fast path for generic URLs without stable content
-        // identity: concurrent ranges may otherwise represent different files.
-        if (!isArchive) {
-            const bool haveValidator =
-                (!rangeProbe.etag.empty() && rangeProbe.etag.compare(0, 2, "W/") != 0) ||
-                !rangeProbe.lastModified.empty();
-            rangeReady = rangeReady && haveValidator &&
-                rangeProbe.effectiveUrl.compare(0, 8, "https://") == 0;
         }
         if (rangeReady && rangeProbe.total >= 1024ULL * 1024ULL) {
             std::string parallelUrl = isArchive ? activeUrl : rangeProbe.effectiveUrl;
