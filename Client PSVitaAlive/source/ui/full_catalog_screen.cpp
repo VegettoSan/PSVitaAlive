@@ -4237,6 +4237,7 @@ void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int 
         // Do not default to overwriting an installed plugin, even if required.
         pluginChoiceFocus_ = pluginChoiceWasInstalled_ ? 1
             : (l.pluginRequirement == CatalogLink::PluginRequirement::Required ? 0 : 1);
+        refreshPluginChoiceConflicts(l);
         pluginChoiceModal_ = true;
         touchDown_ = false;
         diagnostics::log(std::string("[UI] Plugin consent requested (single): ") +
@@ -9164,6 +9165,39 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needs
     if (installAcknowledge_) installAcknowledge_();
     ++installAllQueueIndex_;
     installAllStartNextStep();
+}
+
+
+void FullCatalogScreen::refreshPluginChoiceConflicts(const CatalogLink& link) {
+    pluginChoiceConflicts_.clear();
+    pluginChoiceScrollLine_ = 0;
+    pluginChoiceMaxScrollLine_ = 0;
+    // Catalog Plugin links only: the essential-plugin flow is untouched.
+    if (!isPluginTypeLink(link)) return;
+    std::string plugin = pluginInstallFilePath(link);
+    const size_t slash = plugin.find_last_of("/\\");
+    if (slash != std::string::npos) plugin = plugin.substr(slash + 1);
+    for (char& c : plugin)
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    if (plugin != "ioplus.skprx" && plugin != "capunlocker.skprx") return;
+    const std::vector<std::string> active =
+        ::psvitaalive::PluginDetector::activeKernelPluginBasenames();
+    auto has = [&](const char* name) {
+        for (const std::string& found : active)
+            if (found == name) return true;
+        return false;
+    };
+    if (plugin == "ioplus.skprx") {
+        // Reported issue with kuio in some configurations.
+        if (has("kuio.skprx")) pluginChoiceConflicts_.push_back("kuio.skprx");
+        // v-kaio provides overlapping ioPlus functionality.
+        if (has("kaio.skprx") || has("v-kaio.skprx"))
+            pluginChoiceConflicts_.push_back("v-kaio");
+    } else {
+        // Legacy predecessor of CapUnlocker: avoid duplicate functionality.
+        if (has("coreunlocker80000h.skprx"))
+            pluginChoiceConflicts_.push_back("CoreUnlocker80000H");
+    }
 }
 
 void FullCatalogScreen::drawPluginChoiceOverlay() {
