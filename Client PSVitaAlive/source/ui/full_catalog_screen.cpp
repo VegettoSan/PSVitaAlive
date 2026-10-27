@@ -8577,6 +8577,12 @@ void FullCatalogScreen::openInstallAllWizard() {
         showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1600);
         return;
     }
+    // Do not show installation-choice/setup dialogs while the device does
+    // not have a network link. ZIP extraction of local saved files is separate.
+    if (const char* offline = downloadPreflightStatusKey(queryLinkConnectivity())) {
+        showToast(::psvitaalive::L(offline), 5600);
+        return;
+    }
     const int i = selectedIndex();
     if (i < 0) return;
     const CatalogItem& item = catalogView()[i];
