@@ -23,6 +23,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | `docs/MULTILANGUAGE.md` | Current UI localization architecture, packaged languages, system/manual selection, English fallback, startup ordering and keyboard UI labels |
 | `docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md` | **Accepted architecture decision:** hardware IME/PAF failure history; rationale for replacing Sony IME; built-in QWERTY/touch/gamepad controls, themed modal, ZIP input, localization, system-library distinction and tests |
 | `docs/NETWORK_TLS.md` | libcurl / OpenSSL / Archive.org TLS failover / optional mbedTLS; TLS-specific companion to `DOWNLOAD_RESILIENCE.md` |
+| [`docs/VITASDK_OPENSSL_LINKER_FIX_20261027.md`](VITASDK_OPENSSL_LINKER_FIX_20261027.md) | **27 Oct 2026 VitaSDK CI linker failure:** incompatible libcurl/OpenSSL 1.0.2 downgrade, corrected workflow and validation checklist |
 | [`docs/AUDITORIA_FUNCIONAL_20261025.md`](AUDITORIA_FUNCIONAL_20261025.md) | **Auditoría actual de funcionalidades**: implementación comprobada por código, cambios de conducta, documentación desfasada, límites y pruebas pendientes |
 | [`docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md`](INSTALL_ALL_SPACE_PREFLIGHT_20261025.md) | **Install All**: suma de enlaces seleccionados, modo individual por tamaños ausentes, cabeceras HTTP previas al cuerpo, seguridad y validación |
 | [`docs/SAVED_ZIP_SEGMENTS_20261025.md`](SAVED_ZIP_SEGMENTS_20261025.md) | **ZIP guardados**: ZIP completo o rangos `.001`...`.004`, reextracción offline, borrar/cancelar y confirmaciones |
