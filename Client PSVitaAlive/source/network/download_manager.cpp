@@ -358,6 +358,22 @@ bool DownloadManager::runJob(DownloadJob& job) {
         return job.cancelRequested->load(std::memory_order_acquire) ||
                job.pauseRequested->load(std::memory_order_acquire);
     };
+    // Emit lightweight connection-phase feedback without pretending that
+    // any additional bytes have arrived. The actual progress counter remains
+    // the sum of the existing validated part files.
+    auto statusFn = [&](const char* localizationKey) {
+        job.bytesPerSecond = 0;
+        if (!onProgress_ || !localizationKey) return;
+        DownloadProgressEvent ev;
+        ev.jobId = job.id;
+        ev.fileName = job.fileName;
+        ev.downloaded = job.downloadedSize;
+        ev.total = job.expectedSize;
+        ev.bytesPerSecond = 0;
+        ev.state = DownloadState::Downloading;
+        ev.message = ::psvitaalive::L(localizationKey);
+        onProgress_(ev);
+    };
 
     std::string effectiveUrl = job.url;
     const bool mediafire = isMediaFireUrl(job.url);
@@ -472,6 +488,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (offset > 0 && job.validatorUrl == effectiveUrl) {
             ifRangeValidator = !job.etag.empty() ? job.etag : job.lastModified;
         }
+        statusFn(savedParallel > 0 && outer == 0
+            ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_CONNECTING");
         hr = http_.downloadToFile(
             effectiveUrl,
             job.temporaryPath,
@@ -486,7 +504,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             [&]() -> bool {
                 return job.pauseRequested->load(std::memory_order_acquire) &&
                        !job.cancelRequested->load(std::memory_order_acquire);
-            }
+            },
+            statusFn
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
