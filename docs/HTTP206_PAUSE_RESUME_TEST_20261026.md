@@ -21,7 +21,8 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 
 ## Pause / Resume (test implementation)
 
-- In the **native in-app Downloading phase**, a visible button and **SQUARE** request **Pause**.
+- In the **native in-app Downloading phase**, the brightly highlighted **TOCAR / TAP** button requests **Pause** from front touch; the same area becomes **Resume** after the worker stops. Hardware SQUARE remains available but is not necessary. This does not unlock navigation, catalog switching, extraction, installation, or shell/PS safety controls.
+- The OLED protection display intentionally consumes the **first tap to wake** the full progress UI; touch the bright Pause button **after** the normal dialog reappears. This preserves the existing accidental-tap safety policy.
 - Pausing cooperatively stops the active libcurl operation; the worker returns normally and the serial write buffer is flushed.
 - For serial downloads, the `payload.part` length is persisted and **SQUARE / Resume** uses the *same* DownloadManager job with a new 64-bit HTTP Range request; no new install is enqueued.
 - **CIRCLE / Cancel** while paused deliberately removes the temporary job/files. Pause is never reported as Install Failed or Cancelled.
@@ -43,7 +44,7 @@ The 8 MiB size guard, free-space checks, encrypted/official PKG BGDL handling, 2
 7. Test Download All sequence: pausing a step must not mark it Failed or advance to the next step.
 8. Repeat a direct HTTP PSP/PS1 transfer like the failing report (not Sony Vita BGDL); inspect `content-range`, `HTTP RESULT`, `DownloadManager` and `Installer` markers in session.log.
 9. Regression-check MediaFire, Archive.org, GitHub Releases, direct ZIP/VPK, install/extract, TLS retry, insufficient space and cancellation.
-10. Test normal user-facing text and touch/SQUARE controls in Spanish and English. Other languages currently fall back to English for the new strings.
+10. Test the bright tactile button during a running download and after pausing, using **front touch only**; verify its hitbox never cancels and a swipe across it does not activate it. Check that OLED protection still needs one wake tap and physical-navigation safety still blocks exit/catalog switching. Verify UI in Spanish and English. Other languages currently fall back to English for new translations.
 
 ## Parallel checkpoint safety
 
