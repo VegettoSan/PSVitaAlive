@@ -2004,6 +2004,7 @@ HttpResult HttpClient::downloadToFile(
                 parallel == ParallelArchiveOutcome::IoError) {
                 if (isArchive && rangeReady &&
                     (parallel == ParallelArchiveOutcome::Paused ||
+                     parallel == ParallelArchiveOutcome::NetworkInterrupted ||
                      parallel == ParallelArchiveOutcome::Complete ||
                      parallel == ParallelArchiveOutcome::Segmented)) {
                     // Only the validated checkpoint may reuse this in-memory
@@ -2020,6 +2021,10 @@ HttpResult HttpClient::downloadToFile(
                     lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;
                     lastStatus_ = 206;
                     return HttpResult::Ok;
+                }
+                if (parallel == ParallelArchiveOutcome::NetworkInterrupted) {
+                    setError("connection interrupted; partial download saved");
+                    return HttpResult::NetworkError;
                 }
                 if (parallel == ParallelArchiveOutcome::Cancelled ||
                     parallel == ParallelArchiveOutcome::Paused) {
