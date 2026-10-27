@@ -9247,26 +9247,56 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
     const std::string name = link->name.empty() ? link->type : link->name;
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 91, WHITE, 0.99f,
         ellipsize(name, 47).c_str());
+
+    // The warning is FIRST, then the existing required/optional/reinstall text.
+    // Only this content viewport scrolls; button hitboxes stay fixed.
+    struct ChoiceLine { std::string text; unsigned color; float scale; };
+    std::vector<ChoiceLine> rows;
+    auto appendWrapped = [&](const std::string& value, unsigned color, float scale) {
+        const auto parts = wrapTextToWidth(&font_, scale, value, w - 76);
+        for (const std::string& part : parts) rows.push_back({part, color, scale});
+    };
+    if (!pluginChoiceConflicts_.empty()) {
+        appendWrapped(::psvitaalive::L("PLUGIN_CONFLICT_HEADING"), ACCENT, 0.83f);
+        appendWrapped(::psvitaalive::L("PLUGIN_CONFLICT_DETECTED"), WHITE, 0.76f);
+        for (const std::string& other : pluginChoiceConflicts_)
+            appendWrapped(std::string("- ") + other, WHITE, 0.78f);
+        appendWrapped(::psvitaalive::L("PLUGIN_CONFLICT_WARNING"), TEXT, 0.74f);
+        rows.push_back({"", TEXT, 0.73f});
+    }
+
     using Requirement = CatalogLink::PluginRequirement;
     const bool required = link->pluginRequirement == Requirement::Required;
     const bool optional = link->pluginRequirement == Requirement::Optional;
     const char* status = ::psvitaalive::L(required ? "PLUGIN_REQUIREMENT_REQUIRED" :
         optional ? "PLUGIN_REQUIREMENT_OPTIONAL" : "PLUGIN_REQUIREMENT_UNSPECIFIED");
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 133, required ? ACCENT : DIM,
-        0.82f, status);
+    appendWrapped(status, required ? ACCENT : DIM, 0.82f);
     const char* line1 = ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_MESSAGE_1" :
         (required ? "PLUGIN_CONFIRM_REQUIRED_1" :
          optional ? "PLUGIN_CONFIRM_OPTIONAL_1" : "PLUGIN_CONFIRM_UNKNOWN_1"));
     const char* line2 = ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_MESSAGE_2" :
         (required ? "PLUGIN_CONFIRM_REQUIRED_2" :
          optional ? "PLUGIN_CONFIRM_OPTIONAL_2" : "PLUGIN_CONFIRM_UNKNOWN_2"));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 187, TEXT, 0.79f, line1);
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 220, TEXT, 0.79f, line2);
-    // Installed-plugin consent explains why this catalog copy is provided.
-    // Keep other required/optional/unknown consent dialogs unchanged.
-    if (installed) {
-        ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 253, TEXT, 0.79f,
-            ::psvitaalive::L("PLUGIN_REINSTALL_MESSAGE_3"));
+    appendWrapped(line1, TEXT, 0.76f);
+    appendWrapped(line2, TEXT, 0.76f);
+    if (installed)
+        appendWrapped(::psvitaalive::L("PLUGIN_REINSTALL_MESSAGE_3"), TEXT, 0.76f);
+
+    constexpr int visibleRows = 7;
+    constexpr int rowHeight = 26;
+    pluginChoiceMaxScrollLine_ = std::max(0, static_cast<int>(rows.size()) - visibleRows);
+    pluginChoiceScrollLine_ = std::max(0, std::min(pluginChoiceScrollLine_, pluginChoiceMaxScrollLine_));
+    for (int row = 0; row < visibleRows; ++row) {
+        const int idx = pluginChoiceScrollLine_ + row;
+        if (idx >= static_cast<int>(rows.size())) break;
+        if (!rows[idx].text.empty())
+            ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 145 + row * rowHeight,
+                rows[idx].color, rows[idx].scale, rows[idx].text.c_str());
+    }
+    if (pluginChoiceMaxScrollLine_ > 0) {
+        const std::string hint = ::psvitaalive::L("PLUGIN_CONFLICT_SCROLL");
+        const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.69f, hint.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_, x + (w - tw) / 2, y + 336, DIM, 0.69f, hint.c_str());
     }
 
     const int bw = 300, bh = 55, by = y + h - 96;
