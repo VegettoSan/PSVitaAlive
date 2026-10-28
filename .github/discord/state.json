@@ -240,6 +240,9 @@
     "ASPHALT05": {
       "version": "1.2.0"
     },
+    "ASPHALT06": {
+      "version": "0.2.1"
+    },
     "ASPHALT20": {
       "version": "0.3"
     },
@@ -361,7 +364,7 @@
       "version": "V1.45"
     },
     "BIO4AF000": {
-      "version": "v.1.1"
+      "version": "1.5"
     },
     "BIOHAZ004": {
       "version": "00.00"
@@ -2283,6 +2286,9 @@
     "RECK69420": {
       "version": "v.1.0"
     },
+    "REDG00001": {
+      "version": "1.0"
+    },
     "REDRIVER2": {
       "version": "v.1.0"
     },
@@ -2297,6 +2303,9 @@
     },
     "REMGR0001": {
       "version": "v.1.10"
+    },
+    "REMV00001": {
+      "version": "0.1"
     },
     "RENPYHIKE": {
       "version": "v.1.1"
