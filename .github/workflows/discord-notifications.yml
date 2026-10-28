@@ -7,6 +7,12 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      test_webhooks:
+        description: "Send one clearly labeled TEST message to each of the 3 Discord channels"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -19,7 +25,7 @@ jobs:
   notify-catalog:
     # Privileged job: ignore PR-triggered runs and always checkout trusted main.
     if: >-
-      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_dispatch' && inputs.test_webhooks != true) ||
       (github.event_name == 'workflow_run' &&
        github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.head_branch == 'main' &&
@@ -57,6 +63,29 @@ jobs:
             if [ "$attempt" -eq 5 ]; then exit 1; fi
             sleep 3
           done
+
+  test-webhooks:
+    # Opt-in only: never runs on catalog changes or official releases.
+    if: github.event_name == 'workflow_dispatch' && inputs.test_webhooks == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test Discord notification logic
+        run: python -m unittest discover -s tests -p 'test_discord*.py' -v
+      - name: Send one TEST message to each Discord channel
+        env:
+          DISCORD_RELEASE_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK_URL }}
+          DISCORD_NEW_HOMEBREW_WEBHOOK_URL: ${{ secrets.DISCORD_NEW_HOMEBREW_WEBHOOK_URL }}
+          DISCORD_HOMEBREW_UPDATES_WEBHOOK_URL: ${{ secrets.DISCORD_HOMEBREW_UPDATES_WEBHOOK_URL }}
+        run: python -m scripts.discord_webhook_test
 
   notify-release:
     if: github.event_name == 'release'
