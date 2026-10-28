@@ -517,7 +517,7 @@
       "version": "v.1.0"
     },
     "CBFD00064": {
-      "version": "1.1.0"
+      "version": "1.3.0"
     },
     "CBSH01599": {
       "version": "v.0.1"
@@ -973,7 +973,7 @@
       "version": "5_FranBowCH4"
     },
     "FF3000000": {
-      "version": "v.1.2.3"
+      "version": "v.1.2.5"
     },
     "FF4000000": {
       "version": "v.1.3.1"
@@ -1378,7 +1378,7 @@
       "version": "v.1.0.0"
     },
     "INOTIA3PV": {
-      "version": "v.1.0.0"
+      "version": "v.1.0.2"
     },
     "INSC12345": {
       "version": "alpha.1"
@@ -1423,7 +1423,7 @@
       "version": "v.1.0"
     },
     "JAVITA001": {
-      "version": "v.1.0.1"
+      "version": "v.1.1.0"
     },
     "JAZZ20000": {
       "version": "3.8.0"
@@ -1492,7 +1492,7 @@
       "version": "v.1.1"
     },
     "KHDD00358": {
-      "version": "0.7.0"
+      "version": "1.0.0"
     },
     "KKRBROCRO": {
       "version": "v.1.0"
@@ -1507,10 +1507,10 @@
       "version": "v.1.0"
     },
     "KOTR00001": {
-      "version": "0.4.2"
+      "version": "0.5.0"
     },
     "KOTR00002": {
-      "version": "0.5.6"
+      "version": "0.5.7"
     },
     "KPMN12352": {
       "version": "v.1.0"
@@ -1714,7 +1714,7 @@
       "version": "v.0.10.5"
     },
     "MH3WII001": {
-      "version": "0.1"
+      "version": "0.2.2"
     },
     "MHDH00001": {
       "version": "v.1.1"
@@ -1753,7 +1753,7 @@
       "version": "v.1.00"
     },
     "MKWV00001": {
-      "version": "1.4.0"
+      "version": "1.4.2"
     },
     "MLCL00002": {
       "version": "v.1.0"
@@ -1789,7 +1789,7 @@
       "version": "v.0.2b"
     },
     "MSCN00003": {
-      "version": "01.00"
+      "version": "1.1"
     },
     "MSWEEPER1": {
       "version": "v.1.2.1"
@@ -1855,7 +1855,7 @@
       "version": "v.1.0"
     },
     "NFSMWVITA": {
-      "version": "1.3.0"
+      "version": "1.3.5"
     },
     "NFSR00001": {
       "version": "1.00"
@@ -1877,6 +1877,9 @@
     },
     "NMDG54882": {
       "version": "v.1.0"
+    },
+    "NMHD00001": {
+      "version": "1.0"
     },
     "NOBOR0001": {
       "version": "v.0.911"
@@ -1930,7 +1933,7 @@
       "version": "v.1.0"
     },
     "OMWV00001": {
-      "version": "v.2.2"
+      "version": "2.4.1"
     },
     "ONAR00001": {
       "version": "v.1.0"
@@ -2113,7 +2116,7 @@
       "version": "v.1.3"
     },
     "POPC00001": {
-      "version": "01.45"
+      "version": "01.50"
     },
     "POPPYKART": {
       "version": "v.1.0"
@@ -2206,7 +2209,7 @@
       "version": "v.1.0"
     },
     "PSVTIG001": {
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     "PSVZ00002": {
       "version": "v.1.20"
@@ -2596,7 +2599,7 @@
       "version": "v.0.1"
     },
     "SMGV00001": {
-      "version": "1.0"
+      "version": "1.1"
     },
     "SMLA00001": {
       "version": "v.3.9.6"
@@ -2719,7 +2722,7 @@
       "version": "2.1"
     },
     "SRCV00001": {
-      "version": "0.1.1"
+      "version": "0.1.2"
     },
     "SSAM10001": {
       "version": "psvita2"
@@ -3133,7 +3136,7 @@
       "version": "01.00"
     },
     "VMDK00001": {
-      "version": "01.01"
+      "version": "1.4.1"
     },
     "VOID00001": {
       "version": "v.0.1.0"
