@@ -200,6 +200,12 @@ jobs:
       - name: Verify generic UI messages are provider-neutral
         run: python3 tests/test_provider_neutral_ui_copy.py
 
+      - name: Test Discord feedback forum thread-name helper
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_feedback_forum.cpp -o /tmp/psvitaalive-feedback-forum-test
+          /tmp/psvitaalive-feedback-forum-test
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |
