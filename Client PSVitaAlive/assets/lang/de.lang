@@ -716,3 +716,11 @@ NET_LINK_CONNECTING=Verbindung zum Netzwerk wird hergestellt. Bitte danach erneu
 NET_PAUSED_DISCONNECTED=Download gespeichert. WLAN getrennt: neu verbinden und Fortsetzen wählen.
 NET_PAUSED_SOURCE_UNREACHABLE=Download gespeichert. Netzwerk verbunden, Quelle antwortet nicht. Internet prüfen und fortsetzen.
 NET_CONNECTED_SOURCE_UNREACHABLE=Die Konsole ist mit einem Netzwerk verbunden, aber Internet oder Downloadquelle sind nicht erreichbar.
+
+# PSVitaAlive Discord QR invitation
+DISCORD_QR_TITLE=PSVitaAlive Discord
+DISCORD_QR_GUIDE_TITLE=WERDE TEIL DER COMMUNITY
+DISCORD_QR_HEADING=Offizieller PSVitaAlive-Discord-Server
+DISCORD_QR_BODY=Scanne den QR-Code mit deinem Handy oder nutze den Einladungslink unten, um unserem Discord beizutreten.
+DISCORD_QR_EXTRA=Triff PS-Vita-Fans, teile Homebrew und erhalte Hilfe aus der Community.
+DISCORD_QR_URL_LABEL=DISCORD-EINLADUNG

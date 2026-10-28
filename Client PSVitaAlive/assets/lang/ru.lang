@@ -716,3 +716,11 @@ NET_LINK_CONNECTING=Подключение к сети. Повторите по�
 NET_PAUSED_DISCONNECTED=Загрузка сохранена. Wi-Fi отключён: подключитесь и нажмите Продолжить.
 NET_PAUSED_SOURCE_UNREACHABLE=Загрузка сохранена. Сеть есть, но источник не отвечает. Проверьте интернет и продолжите.
 NET_CONNECTED_SOURCE_UNREACHABLE=Консоль подключена к сети, но интернет или источник загрузки недоступен.
+
+# PSVitaAlive Discord QR invitation
+DISCORD_QR_TITLE=Discord PSVitaAlive
+DISCORD_QR_GUIDE_TITLE=ПРИСОЕДИНЯЙТЕСЬ К СООБЩЕСТВУ
+DISCORD_QR_HEADING=Официальный сервер Discord PSVitaAlive
+DISCORD_QR_BODY=Отсканируйте QR-код телефоном или используйте ссылку-приглашение ниже, чтобы присоединиться к нашему Discord.
+DISCORD_QR_EXTRA=Общайтесь с владельцами PS Vita, делитесь homebrew и получайте помощь.
+DISCORD_QR_URL_LABEL=ПРИГЛАШЕНИЕ В DISCORD

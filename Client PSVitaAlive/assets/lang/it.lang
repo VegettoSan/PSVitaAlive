@@ -716,3 +716,11 @@ NET_LINK_CONNECTING=Connessione alla rete in corso. Riprova quando il Wi-Fi è p
 NET_PAUSED_DISCONNECTED=Download salvato. Wi-Fi scollegato: riconnetti e tocca Riprendi.
 NET_PAUSED_SOURCE_UNREACHABLE=Download salvato. Rete connessa ma fonte irraggiungibile. Controlla internet e riprendi.
 NET_CONNECTED_SOURCE_UNREACHABLE=La console è connessa alla rete, ma Internet o questa fonte di download non sono raggiungibili.
+
+# PSVitaAlive Discord QR invitation
+DISCORD_QR_TITLE=Discord PSVitaAlive
+DISCORD_QR_GUIDE_TITLE=UNISCITI ALLA COMMUNITY
+DISCORD_QR_HEADING=Server Discord ufficiale PSVitaAlive
+DISCORD_QR_BODY=Scansiona il codice QR con il telefono oppure usa il link d'invito qui sotto per unirti al nostro Discord.
+DISCORD_QR_EXTRA=Incontra altri appassionati di PS Vita, condividi homebrew e chiedi aiuto.
+DISCORD_QR_URL_LABEL=INVITO DISCORD

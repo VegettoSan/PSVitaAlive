@@ -716,3 +716,11 @@ NET_LINK_CONNECTING=A estabelecer ligação à rede. Tenta novamente quando o Wi
 NET_PAUSED_DISCONNECTED=Transferência guardada. Wi-Fi desligado: volta a ligar e retoma.
 NET_PAUSED_SOURCE_UNREACHABLE=Transferência guardada. Há rede, mas a fonte não responde. Verifica a internet e retoma.
 NET_CONNECTED_SOURCE_UNREACHABLE=A consola está ligada à rede, mas não foi possível aceder à Internet ou à fonte de transferência.
+
+# PSVitaAlive Discord QR invitation
+DISCORD_QR_TITLE=Discord PSVitaAlive
+DISCORD_QR_GUIDE_TITLE=JUNTA-TE À COMUNIDADE
+DISCORD_QR_HEADING=Servidor Discord oficial do PSVitaAlive
+DISCORD_QR_BODY=Lê o código QR com o telemóvel ou utiliza a ligação de convite abaixo para entrar no nosso Discord.
+DISCORD_QR_EXTRA=Conhece fãs da PS Vita, partilha homebrew e pede ajuda à comunidade.
+DISCORD_QR_URL_LABEL=CONVITE DISCORD
