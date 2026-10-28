@@ -1,0 +1,46 @@
+{
+  "id": "9mm-hd",
+  "title_id": "NMHD00001",
+  "name": "9mm HD",
+  "description": "PS Vita port of 9mm HD (Android), running the original ARMv7 binary with native controls",
+  "long_description": "This is a wrapper/port of 9mm HD Android for the PS Vita.\n\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+  "author_ids": [
+    "iwannagooutside"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "shooter",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-07-27",
+  "requirements": "- kubridge.skprx\n- fd_fix.skprx\n- libshacccg.suprx\n- Game Files Android",
+  "size": 1992294,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/9mm-hd-ps-vita-port/9mm%20v1.0.vpk",
+      "size": 1992294,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/9mm-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 2147483648,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/iwannagooutside/9mm-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/9mm-hd-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/9mm-hd-ps-vita-port/shot0.png"
+  ]
+}
