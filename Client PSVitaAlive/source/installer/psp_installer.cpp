@@ -106,7 +106,8 @@ PspInstallResult PspInstaller::copyFile(
             p.current = copied;
             p.total = total > 0 ? static_cast<uint64_t>(total) : 0;
             p.message = "Copying to pspemu";
-            p.installPath = dst;
+            // Destination was already published once at Preparing, before copying.
+            // Avoid allocating/copying the path for each 64 KiB progress callback.
             onProgress(p);
         }
     }
