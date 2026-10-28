@@ -30,7 +30,7 @@
       "type": "Game Files",
       "name": "Game Files",
       "url": "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1992294,
+      "size": 2040109466,
       "extract_path": "ux0:data/"
     },
     {
@@ -39,9 +39,8 @@
       "url": "https://github.com/Cynostial/wonderboy-vita"
     }
   ],
+  "icon": "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/icon0.png",
   "screenshots": [
-    "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/icon0.png",
     "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/pic0.png"
-  ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+  ]
 }
