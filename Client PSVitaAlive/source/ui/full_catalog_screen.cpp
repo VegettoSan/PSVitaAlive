@@ -6885,19 +6885,22 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     // Square is drawn geometrically: it works even if a .pgf font lacks '□'.
     // The label gets its own clipping strip and scrolls if localized text overflows.
     if (showContentFilter) {
-        // Display the exact active localized filter, reusing the menu's static options.
+        // No filter selected: keep the familiar "Filters" button label.
+        // Otherwise display the active localized category/status with marquee.
         const char* activeFilterLabel = ::psvitaalive::L("FILTERS_MENU_TITLE");
-        int filterCount = 0;
-        const FilterOption* filterOptions = filterOptionsForCatalog(filterCount);
-        for (int i = 0; i < filterCount; ++i) {
-            const FilterOption& option = filterOptions[i];
-            if (option.mode == ContentFilter::Heading || option.mode != filterMode_)
-                continue;
-            if ((option.mode == ContentFilter::Category || option.mode == ContentFilter::Genre) &&
-                std::strcmp(option.category, filterCategory_) != 0)
-                continue;
-            activeFilterLabel = filterOptionLabel(option);
-            break;
+        if (filterMode_ != ContentFilter::All) {
+            int filterCount = 0;
+            const FilterOption* filterOptions = filterOptionsForCatalog(filterCount);
+            for (int i = 0; i < filterCount; ++i) {
+                const FilterOption& option = filterOptions[i];
+                if (option.mode == ContentFilter::Heading || option.mode != filterMode_)
+                    continue;
+                if ((option.mode == ContentFilter::Category || option.mode == ContentFilter::Genre) &&
+                    std::strcmp(option.category, filterCategory_) != 0)
+                    continue;
+                activeFilterLabel = filterOptionLabel(option);
+                break;
+            }
         }
         const unsigned chipBg = filterMode_ != ContentFilter::All ? SURFACE : SURFACE2;
         const unsigned chipFg = filterMode_ != ContentFilter::All ? WHITE : ACCENT;
