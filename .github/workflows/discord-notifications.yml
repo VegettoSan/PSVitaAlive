@@ -1,0 +1,92 @@
+name: PSVitaAlive Discord Notifications
+
+on:
+  workflow_run:
+    workflows: ["Validate and Generate Local Catalog"]
+    types: [completed]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: psvitaalive-discord-notifications
+  cancel-in-progress: false
+
+jobs:
+  notify-catalog:
+    # Privileged job: ignore PR-triggered runs and always checkout trusted main.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       (github.event.workflow_run.event == 'push' ||
+        github.event.workflow_run.event == 'schedule' ||
+        github.event.workflow_run.event == 'workflow_dispatch'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test notification logic
+        run: python -m unittest discover -s tests -p test_discord_notifications.py -v
+      - name: Announce confirmed catalog changes
+        env:
+          DISCORD_NEW_HOMEBREW_WEBHOOK_URL: ${{ secrets.DISCORD_NEW_HOMEBREW_WEBHOOK_URL }}
+          DISCORD_HOMEBREW_UPDATES_WEBHOOK_URL: ${{ secrets.DISCORD_HOMEBREW_UPDATES_WEBHOOK_URL }}
+        run: python scripts/discord_notifications.py --mode catalog --state .github/discord/state.json
+      - name: Persist notification state on main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/discord/state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(discord): record notified catalog state [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            if [ "$attempt" -eq 5 ]; then exit 1; fi
+            sleep 3
+          done
+
+  notify-release:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test notification logic
+        run: python -m unittest discover -s tests -p test_discord_notifications.py -v
+      - name: Announce published official release
+        env:
+          DISCORD_RELEASE_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK_URL }}
+        run: python scripts/discord_notifications.py --mode release --state .github/discord/state.json --event "$GITHUB_EVENT_PATH"
+      - name: Persist notification state on main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/discord/state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "chore(discord): record notified PSVitaAlive release [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then exit 0; fi
+            git rebase --abort || true
+            if [ "$attempt" -eq 5 ]; then exit 1; fi
+            sleep 3
+          done
