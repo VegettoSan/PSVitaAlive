@@ -52,7 +52,7 @@ Repo-root [`news.txt`](../news.txt) drives the in-client News modal (id / title 
 
 ## Discord community
 
-The footer on all six public pages links to the [official PSVitaAlive Discord server](https://discord.gg/YnYSkFumFN). It uses Discord purple independently of the site's color theme. See [`docs/DISCORD_COMMUNITY_QR_20261027.md`](../docs/DISCORD_COMMUNITY_QR_20261027.md).
+The footer on all six public pages links to the [official PSVitaAlive Discord server](https://discord.gg/byn8FDuDrw). It uses Discord purple independently of the site's color theme. See [`docs/DISCORD_COMMUNITY_QR_20261027.md`](../docs/DISCORD_COMMUNITY_QR_20261027.md).
 
 ## App generator
 

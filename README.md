@@ -237,7 +237,7 @@ Open PS Vita Alive Store
 
 **Releases:** https://github.com/VegettoSan/PSVitaAlive/releases  
 **Website:** https://vegettosan.github.io/PSVitaAlive/  
-**Official Discord:** [Join the PSVitaAlive community](https://discord.gg/YnYSkFumFN)
+**Official Discord:** [Join the PSVitaAlive community](https://discord.gg/byn8FDuDrw)
 
 ---
 

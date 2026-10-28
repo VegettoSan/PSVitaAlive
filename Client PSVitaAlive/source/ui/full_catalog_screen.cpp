@@ -2991,6 +2991,16 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     bool archiveSourceUnavailable,
     bool pauseSupported)
 {
+    // Keep the catalog behind a result dialog stable until it closes.
+    // A terminal installer status may be polled for hundreds of UI frames.
+    const bool newTerminalResult = active && (outcome == 1 || outcome == 2) &&
+        (!installProgressActive_ || installOutcome_ != outcome || installResultTitleId_ != titleId);
+    if (newTerminalResult && !titleId.empty() &&
+        std::find(pendingInstallStatusRefreshIds_.begin(),
+                  pendingInstallStatusRefreshIds_.end(), titleId) ==
+                  pendingInstallStatusRefreshIds_.end()) {
+        pendingInstallStatusRefreshIds_.push_back(titleId);
+    }
     installProgressActive_ = active;
     installPauseSupported_ = active && pauseSupported && outcome == 0;
     if (needsReboot && outcome == 1) {
@@ -3042,9 +3052,12 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     installZipRecoveryPath_ = zipRecoveryPath;
     installZipRecoveryExtractPath_ = zipRecoveryExtractPath;
     installZipRecoveryMayBeCorrupt_ = zipRecoveryMayBeCorrupt;
-    // Refresh local install badges after a finished install attempt
-    if (!titleId.empty() && (outcome == 1 || outcome == 2)) {
-        invalidateInstallStatus(titleId);
+    // Re-probe installed badges only once the result overlay has closed.
+    // Rebuilding an Updates filter on every Completed frame causes flicker.
+    if (!active && !pendingInstallStatusRefreshIds_.empty()) {
+        for (const std::string& completedTitleId : pendingInstallStatusRefreshIds_)
+            invalidateInstallStatus(completedTitleId);
+        pendingInstallStatusRefreshIds_.clear();
         if (isInstallStateFilter()) rebuildFilteredItems();
     }
 
@@ -8101,7 +8114,7 @@ void FullCatalogScreen::openDiscordQrModal() {
         filterModalOpen_ || state_.mode == UiMode::SETTINGS) return;
     closeWebQrModal();
     webQrDiscord_ = true;
-    webQrUrl_ = "https://discord.gg/YnYSkFumFN";
+    webQrUrl_ = "https://discord.gg/byn8FDuDrw";
     webQrVisible_ = true;
     touchDown_ = touchMoved_ = false;
     webQrHelpScroll_ = webQrHelpMaxScroll_ = webQrUrlScrollLine_ = 0;

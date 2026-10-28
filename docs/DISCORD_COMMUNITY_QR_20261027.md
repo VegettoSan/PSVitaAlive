@@ -2,7 +2,7 @@
 
 **Fecha:** 2026-10-27  
 **Integración prevista:** `main`  
-**Invitación oficial:** https://discord.gg/YnYSkFumFN
+**Invitación oficial:** https://discord.gg/byn8FDuDrw
 
 ## Objetivo
 
@@ -27,7 +27,7 @@ Sustituir solo el botón **Noticias** del pie del catálogo del cliente por **Di
 ## Verificaciones recomendadas
 
 1. Probar el botón Discord en cada tema; comprobar que sigue morado y responde al toque.
-2. Abrirlo desde lista y detalle: verificar QR, URL exacta `https://discord.gg/YnYSkFumFN` y apertura correcta desde el móvil.
+2. Abrirlo desde lista y detalle: verificar QR, URL exacta `https://discord.gg/byn8FDuDrw` y apertura correcta desde el móvil.
 3. Cerrar por toque y con X/O; confirmar que se devuelve el control al catálogo y que la textura se libera correctamente.
 4. Abrir el QR de una aplicación y comprobar que mantiene los colores del tema y la guía de instalación.
 5. Cambiar entre ocho idiomas y comprobar las traducciones, navegación y límites de texto.

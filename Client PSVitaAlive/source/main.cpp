@@ -593,7 +593,7 @@ int main(){
     bool archiveProbeStarted = false;
     bool archiveProbeHandled = false;
 while(true){
-        if(!screen.updateAndDraw()) break;        if(!screen.updateAndDraw()) break;
+        if (!screen.updateAndDraw()) break;
 
         // After a few frames, surface plugin warnings safely.        // After a few frames, surface plugin warnings safely.
         if (pluginWarnPending) {

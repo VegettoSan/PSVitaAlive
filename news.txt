@@ -63,7 +63,7 @@ This update brings new download controls, safer installation recovery, improved 
 - Added Discord links to the website and GitHub repository.
 - Automatic startup news announcements remain available.
 
-Join us: https://discord.gg/YnYSkFumFN
+Join us: https://discord.gg/byn8FDuDrw
 
 ## Improved QR Code Readability
 

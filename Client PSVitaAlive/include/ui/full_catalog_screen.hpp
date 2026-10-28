@@ -228,6 +228,8 @@ private:
 
     bool catalogLoading_ = false;
     std::unordered_map<std::string, LocalInstallInfo> installStatusCache_;
+    // Install results awaiting one badge refresh after the result overlay closes.
+    std::vector<std::string> pendingInstallStatusRefreshIds_;
     std::string catalogLoadingLabel_;
     std::string catalogLoadingMessage_;
     uint64_t catalogLoadingCurrent_ = 0;
