@@ -13,8 +13,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.4.0",
-  "version_date": "2026-10-22",
+  "version": "1.4.2",
+  "version_date": "2026-10-24",
   "requirements": "- A PS Vita or PS TV with HENkaku / Ensō and VitaShell.\n- ur0:data/libshacccg.suprx, the Vita's shader compiler. Extract it once with ShaRKF00D.\n- About 3 GB free on ux0: for the game files.",
   "size": 2306867,
   "status": "Verified",
@@ -22,7 +22,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/mkwiita/mkw%20v1.3.0.vpk",
+      "url": "https://archive.org/download/mkwiita/mkw%20v1.4.2.vpk",
       "size": 2306867,
       "recommended": true
     },

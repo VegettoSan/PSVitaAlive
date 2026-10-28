@@ -14,17 +14,17 @@
     "platformer",
     "other"
   ],
-  "version": "1.1.0",
-  "version_date": "2026-10-14",
+  "version": "1.3.0",
+  "version_date": "2026-10-24",
   "requirements": "- A PS Vita or PS TV with HENkaku/Ensō and VitaShell.\n- libshacccg.suprx (the runtime shader compiler) in ur0:data/. If you already play other ports you have it. Otherwise, extract it with ShaRKBR33D.\n- The US ROM of Conker's Bad Fur Day",
-  "size": 8493466,
+  "size": 8598323,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/conker-vita/conker%20v1.1.0.vpk",
-      "size": 8493466,
+      "url": "https://archive.org/download/conker-vita/conker%20v1.3.0.vpk",
+      "size": 8598323,
       "recommended": true
     },
     {

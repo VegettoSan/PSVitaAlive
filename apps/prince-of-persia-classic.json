@@ -18,17 +18,17 @@
     "rpg",
     "strategy"
   ],
-  "version": "01.45",
-  "version_date": "2026-10-06",
+  "version": "01.50",
+  "version_date": "2026-10-22",
   "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "size": 3145728,
+  "size": 4372562,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/ppc-psvita/popclassic-v01.45.vpk",
-      "size": 3145728,
+      "url": "https://archive.org/download/ppc-psvita/popclassic-v01.50.vpk",
+      "size": 3323986,
       "recommended": true
     },
     {

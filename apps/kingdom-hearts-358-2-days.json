@@ -14,17 +14,17 @@
     "source-port",
     "game-engine"
   ],
-  "version": "0.7.0",
-  "version_date": "2026-10-10",
+  "version": "1.0.0",
+  "version_date": "2026-10-21",
   "requirements": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
-  "size": 3670016,
+  "size": 3984589,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/kh-days-vita/khdays-vita-0.7.0.vpk",
-      "size": 3670016,
+      "url": "https://archive.org/download/kh-days-vita/khdays-vita-1.0.0.vpk",
+      "size": 3984589,
       "recommended": true
     },
     {

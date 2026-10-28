@@ -14,8 +14,8 @@
     "strategy",
     "other"
   ],
-  "version": "0.5.6",
-  "version_date": "2026-10-15",
+  "version": "0.5.7",
+  "version_date": "2026-10-16",
   "requirements": "- A Vita or PS TV capable of running HENkaku/taiHEN.\n- kubridge.skprx installed and enabled as a taiHEN plugin.\n- libshacccg.suprx in ur0:data/ for runtime shader compilation.\n- About 4 GB free on ux0: for the tested game data. The exact requirement depends on the Android release and optional restored-content files.",
   "size": 2097152,
   "status": "Verified",
@@ -23,7 +23,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/VitaKotor2/KOTOR2%20v0.5.6.vpk",
+      "url": "https://archive.org/download/VitaKotor2/KOTOR2%20v0.5.7.vpk",
       "size": 2097152,
       "recommended": true
     },

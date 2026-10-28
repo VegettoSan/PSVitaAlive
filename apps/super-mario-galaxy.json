@@ -14,16 +14,16 @@
     "puzzle",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-25",
+  "version": "1.1",
+  "version_date": "2026-10-26",
   "requirements": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-  "size": 6186598,
+  "size": 7235174,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/smg-vita/Galaxy-Vita%20v1.0.vpk",
+      "url": "https://archive.org/download/smg-vita/Galaxy-Vita%20v1.1.vpk",
       "size": 7235174,
       "recommended": true
     },
@@ -47,8 +47,10 @@
       "url": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
     }
   ],
-  "icon": "https://archive.org/download/smg-vita/icon0.png",
+  "icon": "https://archive.org/download/smg-vita/New%20icon0.png",
   "screenshots": [
-    "https://archive.org/download/smg-vita/shot0.png"
+    "https://archive.org/download/smg-vita/shot0.png",
+    "https://archive.org/download/smg-vita/shot.png",
+    "https://archive.org/download/smg-vita/shot1.png"
   ]
 }

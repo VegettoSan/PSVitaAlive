@@ -15,16 +15,17 @@
     "strategy",
     "other"
   ],
-  "version": "v.1.2.3",
-  "version_date": "2026-06-11",
+  "version": "v.1.2.5",
+  "version_date": "2026-10-24",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 18180211,
+  "size": 18245222,
   "status": "Legacy",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ff3-vita/ff3-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-ff3-vita/FF3%20v1.2.5.vpk",
+      "size": 18245222,
       "recommended": true
     },
     {
