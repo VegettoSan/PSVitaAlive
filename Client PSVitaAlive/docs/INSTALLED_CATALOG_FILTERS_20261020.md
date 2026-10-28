@@ -34,3 +34,14 @@
 
 This is a source change. VitaSDK CI compilation and Vita/Vita3K runtime tests
 are independent checks, not automatically certified by a GitHub file commit.
+
+## Follow-up in version 02.17 (28 October 2026)
+
+The existing multi-device scanner now stores **which mount matched** each PSP ISO/CSO and PSP/PS1 PBP ID, not only the IDs.
+
+- `InstalledGameIndex::locationFor()` exposes that mount; the installed badge can show **Installed ux0**, **Installed uma0**, etc., with the existing clipping and marquee so the card dimensions do not change.
+- Accessible `ux0`, `uma0`, `imc0` and `xmc0` PSP paths can be indexed. A recognized ID/path is still required; arbitrary filenames must not cause false installed status.
+- A successful PSP/PS1 install sets a deferred index-refresh flag. The actual invalidation happens when the completion dialog closes, not every frame. LiveArea `ux0:app` remains separate.
+- The chosen Adrenaline destination is `ux0:` or `uma0:` (if mounted); the other mount labels are for detecting existing installations.
+
+**Device regression:** install PSP/PS1 content on `uma0`, compare the destination during and after installation, confirm the mount label, then test `ux0`, ISO/PBP and unmounted partitions. [02.17 behavior](../../docs/RELEASE_02_17_TECHNICAL_20261028.md).

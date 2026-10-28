@@ -29,6 +29,18 @@ A title **cannot reliably promote itself** while it is running. The client there
 4. Hands off to PSVAUPDT1
 5. PSVAUPDT1 promotes the staged client, launches **PSVAS1178**, and is removed later
 
+## Release 02.17 and automated publication
+
+The latest stable tag is [`02.17`](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17); its SFO has `APP_VER=02.17` and `TITLE_ID=PSVAS1178`. The client uses the **GitHub `tag_name`** rather than the release title/body to decide whether a new version is available.
+
+Publication (distinct from in-client updating):
+
+1. `.github/workflows/client-build.yml` executes native tests and the official VitaSDK build on push to `main`.
+2. After a successful push build, `.github/workflows/publish-client-release.yml` checks for matching `docs/releases/<VITA_VERSION>.md`, rejects an existing orphan tag and leaves any existing release untouched.
+3. The publishing workflow downloads the **exact successful CI artifact**, validates its ZIP CRC and `sce_sys/param.sfo` (version and Title ID), calculates SHA-256, and publishes `PSVitaAlive.vpk` plus `PSVitaAlive.vpk.sha256` under the matching stable tag.
+
+This workflow does not change the runtime helper `PSVAUPDT1`, create a server or manually modify generated catalogs. [Release versioning safeguards](../../../docs/self-update-versioning.md) · [02.17 notes](../../../docs/releases/02.17.md).
+
 ## Files
 
 | File | Role |

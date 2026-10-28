@@ -17,8 +17,17 @@ Detailed cross-module behaviour lives in:
 | `download_manager.cpp` | Job state, `.part`/final files, resume metadata, provider retries, size/free-space guards, progress events |
 | `mediafire_resolver.cpp` | Resolve MediaFire page URLs to short-lived direct CDN URLs and obtain size hints |
 | `curl_lifecycle.cpp` | Process-global libcurl lifecycle protection |
-| `error_reporter.cpp` | Optional diagnostic/error reporting transport |
+| `error_reporter.cpp` | Separate automated diagnostics and user-written Problem/Suggestion feedback routed to Discord forums |
 | `news_manager.cpp` | News fetch path |
+
+## Discord reporting paths (02.17)
+
+- `sendErrorReport()` continues to use the automated diagnostic route with its scoped logs; do not redirect it to public forums.
+- `sendManualFeedback()` uses one of two Discord **Forum** webhooks (Problem or Suggestion) and supplies `thread_name` for a new individual post. `include/network/feedback_forum.hpp` normalizes the thread title.
+- Manual messages carry title, description, client version and user-reported date; they **do not** attach device logs, other installed Title IDs, selected-app context or device identifiers. The existing 45-second cooldown remains.
+- Webhook URLs compiled into public VPKs can be extracted; rotation/rebuild may be necessary in case of abuse. Discord Forum channels must accept `thread_name` and not require tags absent from the request.
+
+[Discord forum routing contract](../../../docs/DISCORD_FEEDBACK_FORUMS_20261028.md) · [Manual feedback UI](../../../docs/MANUAL_FEEDBACK_FORM_20261026.md).
 
 ## Download ownership
 

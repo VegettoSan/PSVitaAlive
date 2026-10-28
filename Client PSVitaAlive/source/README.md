@@ -40,6 +40,16 @@ Native C++ sources for the PS Vita client.
 - In-app download/extract jobs must unlock shell locks on every terminal path (success, fail, cancel, shutdown).
 
 
+## 02.17 responsibilities and performance rules
+
+- `ui/full_catalog_screen.cpp`: catalog cards omit `versionDate` but the detail view retains it. An inactive filter renders the localized **Filters** label; an active filter renders its localized option with marquee. Display uses the existing card width and clips.
+- `ui/installed_game_index.hpp`: retains the mount for detected PSP/PS1 ISO/CSO/PBP IDs on available `ux0`, `uma0`, `imc0` and `xmc0`; the UI reports that mount without scanning every frame.
+- `installer/psp_installer.cpp`, `installer/install_dispatcher.cpp`, `installer/install_controller.cpp`: propagate destination paths for PSP/PS1 progress and final confirmation. The path is not copied with every file-progress tick.
+- `network/error_reporter.cpp`: manual Problem/Suggestion submissions use Discord forums; automated diagnostics keep their independent webhook and error-log path.
+- Release metadata comes from `../CMakeLists.txt`; the GitHub release is made from the exact successful CI VPK by `.github/workflows/publish-client-release.yml`, not from manually edited catalog files.
+
+[02.17 implementation reference](../../docs/RELEASE_02_17_TECHNICAL_20261028.md).
+
 ## Localization
 
 `localization/` — `LocalizationManager`, `TextId`, loads `app0:lang/*.lang`.  

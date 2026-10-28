@@ -72,3 +72,9 @@ La descripción visible de la ventana habla únicamente de su propósito: **comu
 Con cualquier ventana modal abierta, los gatillos **L/R no cambian de catálogo**. El evento se consume por el diálogo o se ignora. Esto incluye el resumen final de instalación, confirmaciones, solicitudes, noticias, filtros, QR y demás cuadros de diálogo. Mientras se edita con el teclado en pantalla, el teclado sigue siendo dueño de la entrada.
 
 **Regresiones recomendadas:** comprobar L y R con cada ventana abierta; verificar que vuelven a cambiar de catálogo al cerrarla; comprobar que los gatillos seleccionan el tipo desde cualquier foco en el formulario y que durante el envío no cambian el tipo; probar la modalidad táctil, controles y los ocho idiomas.
+
+## Envío actualizado desde la 02.17 (2026-10-28)
+
+El texto «mismo webhook» del apartado **Formato de Discord** describe la primera implementación del **26 de octubre**, conservada aquí como historial. Desde la versión **02.17**, `sendManualFeedback()` utiliza webhooks de **foros separados** para Problema y Sugerencia y crea un hilo con `thread_name`. Los errores automáticos siguen en su canal de diagnóstico independiente.
+
+El formulario continúa sin adjuntar logs ni datos del dispositivo, y conserva sus límites, teclado y cooldown. La especificación vigente está en [DISCORD_FEEDBACK_FORUMS_20261028.md](DISCORD_FEEDBACK_FORUMS_20261028.md).

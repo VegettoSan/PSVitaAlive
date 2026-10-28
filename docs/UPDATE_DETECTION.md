@@ -68,6 +68,14 @@ Update detection and card presentation remain separate concerns. `queryLocalInst
 
 The previous second badge over the lower-left icon corner and the hardcoded `ON` / `UPD` abbreviations were removed. Card title width reserves the badge area, and long localized text uses clipping/marquee rather than overlapping app information.
 
+### PSP/PS1 mount labels in 02.17
+
+The installed-game index now associates recognized PSP ISO/CSO and PSP/PS1 PBP IDs with their detected mount. An installed badge can display the localized Installed text plus `ux0`, `uma0`, `imc0` or `xmc0` when available. It reuses the existing constrained badge width and marquee; LiveArea detection remains a separate path.
+
+- `ui/installed_game_index.hpp` provides `locationFor(catalogType, primaryId, alternateId)` for supported PSP/PS1 layouts.
+- A completed PSP/PS1 installation causes a **deferred** index invalidation when the result dialog closes, not a device scan on every frame.
+- **Presence does not prove an installed game version.** Commercial catalogs continue to represent installed status, not commercial update availability.
+
 ### Badge marquee clipping contract
 
 Localized labels such as Spanish `ACTUALIZACIÓN`, Italian `AGGIORNAMENTO`, Russian `ОБНОВЛЕНИЕ`, etc. may exceed the badge's inner width and therefore use the existing horizontal marquee.
@@ -105,3 +113,9 @@ For catalog rendering:
 4. Confirm background, glow and marquee text remain inside the panel.
 5. Repeat in full catalog and split-detail modes.
 6. Confirm short `Installed`/`Update` labels and normal title marquee behavior are unchanged.
+
+## Catalog card metadata in version 02.17
+
+Cards show only `v<version>` in the bottom-left when the catalog contains a version; they no longer append `versionDate`. Size and Game Files/Data Files chips remain on the right. The **detail panel retains the version date**, and catalog date sorting is unchanged.
+
+This display change does **not** change Homebrew release receipts, Vita `APP_VER` interpretation, catalog matching or `UpdateAvailable` decisions. [02.17 technical notes](RELEASE_02_17_TECHNICAL_20261028.md).

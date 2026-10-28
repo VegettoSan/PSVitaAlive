@@ -53,3 +53,9 @@ As with the older diagnostic webhook, the forum webhook URLs are compiled into t
 8. Check that neither forum requires tags if posts fail with Discord HTTP 400.
 
 No generated catalogs are modified by this feature.
+
+## Release state — 02.17 (28 October 2026)
+
+This integration is included in the stable [PSVitaAlive 02.17 release](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17). The C++ host test and VitaSDK build passed, proving **source and build integration**; real Discord Forum permissions and network delivery are separate runtime checks.
+
+When rotating webhooks or changing `#bug-reports` / `#feature-requests`, recheck `thread_name`, the channel webhook target, and whether **Require Tag** is enabled. Keep all automatic diagnostic/error reporting on its existing separate destination. [Current network README](../Client%20PSVitaAlive/source/network/README.md).

@@ -1,7 +1,7 @@
 # PSVitaAlive — Comunidad Discord y acceso con QR
 
 **Fecha:** 2026-10-27  
-**Integración prevista:** `main`  
+**Estado:** integrado en `main` y publicado en [02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17)  
 **Invitación oficial:** https://discord.gg/byn8FDuDrw
 
 ## Objetivo
@@ -48,3 +48,9 @@ La URL visible bajo el QR utiliza **una sola presentación compartida** para las
 - Hasta **tres líneas** visibles por vez, ajustadas al espacio entre el QR y el botón Cerrar. Los enlaces largos se parten según su ancho real en píxeles y siguen navegables con **izquierda/derecha**; el indicador se alinea a la derecha sin cubrir la etiqueta.
 - El cálculo del ajuste de texto se hace al **abrir** cada modalidad QR y reutiliza las líneas en memoria durante el dibujo; no cambia los PNG, el caché ni el uso de red.
 - Probar en una PS Vita real y Vita3K con enlaces cortos de Discord y enlaces largos de Homebrew, PS Vita, PSP y PS1, incluyendo cada estilo de fuente y los ocho idiomas.
+
+## Estado de la release 02.17 (28 octubre 2026)
+
+La invitación oficial actual `https://discord.gg/byn8FDuDrw` está incluida en el VPK y en los enlaces públicos. La ventana sigue generando el QR localmente, sin servicio externo.
+
+Los nuevos foros de feedback para Problema/Sugerencia son independientes de este acceso QR y de los reportes de error automáticos; ver [guía de foros](DISCORD_FEEDBACK_FORUMS_20261028.md). El anuncio `news.txt` informa de 02.17 y el mecanismo de noticias automáticas al iniciar no se ha eliminado.

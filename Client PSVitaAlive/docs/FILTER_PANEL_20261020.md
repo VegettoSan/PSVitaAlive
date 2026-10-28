@@ -97,3 +97,13 @@ Un género futuro no aparece automáticamente en la lista; sus juegos seguirán 
 - [PR #40 — historial de revisión y código fusionado](https://github.com/VegettoSan/PSVitaAlive/pull/40)
 - [Build PS Vita Client — éxito en CI](https://github.com/VegettoSan/PSVitaAlive/actions/runs/39455491958)
 - [Validate and Generate Local Catalog — éxito en CI](https://github.com/VegettoSan/PSVitaAlive/actions/runs/39455491807)
+
+## Actualización de etiqueta en 02.17 — 28 octubre 2026
+
+La implementación original del 20 de octubre se mantiene. El botón superior ahora comunica su selección:
+
+- Con `ContentFilter::All` (es decir, tras elegir «Mostrar todo»), muestra **«Filtros»** mediante la clave localizada `FILTERS_MENU_TITLE`, nunca «Mostrar todo».
+- Con otro filtro activo, toma la etiqueta de `filterOptionsForCatalog()` / `filterOptionLabel()` y la desplaza con `drawFilterMarqueeText()` si es más larga que el espacio visible.
+- Se conservan ancho, zona táctil, □, modo catálogo completo, opciones fijas, categorías y búsqueda combinada. No se introduce trabajo de red ni se amplía el coste de memoria.
+
+**Regresión:** probar estado inicial → filtro seleccionado → «Mostrar todo» en cada catálogo e idioma, incluidos textos largos, búsqueda y cambio de pestaña. [Referencia técnica 02.17](../../docs/RELEASE_02_17_TECHNICAL_20261028.md).
