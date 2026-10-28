@@ -38,5 +38,9 @@
       "name": "Github",
       "url": "https://github.com/MetalSyntax/Asphalt-6-Vita"
     }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
+  "screenshots": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
   ]
 }
