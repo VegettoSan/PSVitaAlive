@@ -156,6 +156,7 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 
 - Catalogs: Homebrew, Vita Games, PSP, PS1
 - Search, Settings (**PSP/PS1 target**, **PSP media** Folder/ISO, **color theme** + first-run picker with preview/confirm and **smooth palette cross-fade**, **UI font** styles, **language** System/manual), touch + controls; News modal (from `news.txt`); optional Discord error **Report**
+- **Discord QR**: a theme-independent purple footer button opens the existing offline QR window with the official invitation link; startup news from `news.txt` still works. See [Discord community guide](docs/DISCORD_COMMUNITY_QR_20261027.md).
 - **Built-in keyboard (replaces Sony IME for text entry):** QWERTY English keys + numbers/symbols, D-pad / **left stick** / touch, persistent SHIFT, hold-to-delete, translated labels and selected-theme backdrop. Used for searches **and custom ZIP extraction paths**; see [the decision and technical guide](docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
 - **Multilanguage UI**: currently packaged `en`, `es`, `fr`, `de`, `it`, `pt-PT`, `pt-BR`, `ru`; unavailable/missing keys fall back to English; catalog text stays unchanged — see [docs/MULTILANGUAGE.md](docs/MULTILANGUAGE.md)
 - **Image cache v3**: images download on demand; changing an image URL replaces only that resource; startup checks disk use and, only when cache is over **200 MiB**, removes oldest complete files down to about **40 MiB** with localized progress — see [docs/IMAGE_CACHE.md](docs/IMAGE_CACHE.md)
@@ -235,7 +236,8 @@ Open PS Vita Alive Store
 - Details: [`Client PSVitaAlive/README.md`](Client%20PSVitaAlive/README.md) and [`Client PSVitaAlive/source/update/README.md`](Client%20PSVitaAlive/source/update/README.md)
 
 **Releases:** https://github.com/VegettoSan/PSVitaAlive/releases  
-**Website:** https://vegettosan.github.io/PSVitaAlive/
+**Website:** https://vegettosan.github.io/PSVitaAlive/  
+**Official Discord:** [Join the PSVitaAlive community](https://discord.gg/YnYSkFumFN)
 
 ---
 

@@ -32,6 +32,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | [`docs/CATALOG_PLUGIN_CONFLICTS_20261027.md`](CATALOG_PLUGIN_CONFLICTS_20261027.md) | **Avisos de conflictos entre enlaces Plugin del catálogo**: ventana existente con contenido desplazable, reglas y fuentes, límites de detección y pruebas/CI pendientes |
 
 | `docs/PLUGIN_UPDATES.md` | **Planned** remote plugin update system (manifest / versioned Plugin links) — deferred |
+| [`docs/DISCORD_COMMUNITY_QR_20261027.md`](DISCORD_COMMUNITY_QR_20261027.md) | Botón Discord en cliente, invitación QR offline, colores fijos y enlaces desde web |
 | [`docs/WEB_QR_HANDOFF_PLAN.md`](WEB_QR_HANDOFF_PLAN.md) | QR/web handoff **ya integrado en main**; documento conserva planificación histórica y pruebas pendientes |
 | `docs/UPDATE_DETECTION.md` | Installed/update version detection notes |
 | `Client PSVitaAlive/README.md` | Native client overview, runtime data and subsystem behaviour |

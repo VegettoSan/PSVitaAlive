@@ -870,6 +870,27 @@ input {
 }
 
 
+.site-footer .discord-join-link {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    padding: 9px 15px;
+    border-radius: 8px;
+    background: #5865f2;
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.site-footer .discord-join-link:hover,
+.site-footer .discord-join-link:focus-visible {
+    background: #7983f5;
+    color: #ffffff;
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {

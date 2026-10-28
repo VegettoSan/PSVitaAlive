@@ -50,6 +50,10 @@ Both tools are static and compatible with GitHub Pages; they do not require a ba
 
 Repo-root [`news.txt`](../news.txt) drives the in-client News modal (id / title / body). Bump the `id` when publishing a new announcement so users see it once.
 
+## Discord community
+
+The footer on all six public pages links to the [official PSVitaAlive Discord server](https://discord.gg/YnYSkFumFN). It uses Discord purple independently of the site's color theme. See [`docs/DISCORD_COMMUNITY_QR_20261027.md`](../docs/DISCORD_COMMUNITY_QR_20261027.md).
+
 ## App generator
 
 [`tools/app-generator/`](tools/app-generator/) — form UI for contributors: auto Internal ID, size units, link types including **Plugin** (`section` / `line` / `extract_path`), `extract_path` for ZIP-oriented types.
