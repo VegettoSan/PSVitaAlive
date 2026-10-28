@@ -50,7 +50,7 @@
 namespace psvitaalive::ui { namespace {
 
 // Shared header/modal geometry: touch and rendering MUST use the same values.
-// Shared UX0 footer width: render, News/Report placement and touch must match.
+// Shared UX0 footer width: render, Discord/Report placement and touch must match.
 constexpr int UX0_FOOTER_PANEL_W = 280;
 constexpr int FILTER_CHIP_W = 192;
 constexpr int FILTER_CHIP_Y = 8;
@@ -2058,30 +2058,26 @@ void FullCatalogScreen::runNewsCheck(bool forceShow) {
     }
 }
 
-void FullCatalogScreen::drawNewsChip() {
-    // Left of Report chip (which is left of ux0 panel)
-    const int panelW = UX0_FOOTER_PANEL_W;
-    const int panelX = SCREEN_W - panelW - 6;
-    const int chipW = 100;
-    const int chipH = FOOTER_H - 8;
-    const int reportW = 100;
+void FullCatalogScreen::drawDiscordChip() {
+    // Geometry matches the existing footer hitbox.
+    const int panelX = SCREEN_W - UX0_FOOTER_PANEL_W - 6;
+    const int chipW = 100, reportW = 100, chipH = FOOTER_H - 8;
     const int chipX = panelX - reportW - 8 - chipW - 8;
     const int chipY = SCREEN_H - FOOTER_H + 4;
     if (!font_) return;
-    // Match Install All CTA: SURFACE2 fill + soft green border pulse
-    const float pulse = 0.40f + 0.60f * focusPulse();
-    const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
-    const unsigned borderCol = withAlpha(ACCENT, borderA > 255 ? 255 : borderA);
-    const unsigned fill = SURFACE2;
-    const int bwPulse = 2 + (int)(1.5f * pulse);
-    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, borderCol);
-    vita2d_draw_rectangle(chipX + bwPulse, chipY + bwPulse,
-                          chipW - bwPulse * 2, chipH - bwPulse * 2, fill);
-    const char* lab = ::psvitaalive::L(::psvitaalive::TextId::ChipNews);
+    // Discord's palette remains fixed regardless of the UI color theme.
+    const unsigned blurple = RGBA8(0x58, 0x65, 0xF2, 255);
+    const unsigned edge = RGBA8(0x79, 0x83, 0xF5, 255);
+    const unsigned white = RGBA8(255, 255, 255, 255);
+    const int borderW = 2 + static_cast<int>(focusPulse());
+    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, edge);
+    vita2d_draw_rectangle(chipX + borderW, chipY + borderW,
+                          chipW - borderW * 2, chipH - borderW * 2, blurple);
+    const char* label = "Discord";
     const float scale = 0.70f;
-    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, lab);
-    const int th = 20;
-    ::psvitaalive::ui::uiDrawText(&font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, ACCENT, scale, lab);
+    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, label);
+    ::psvitaalive::ui::uiDrawText(&font_, chipX + (chipW - tw)/2,
+        chipY + (chipH + 20)/2 - 2, white, scale, label);
 }
 
 void FullCatalogScreen::drawNewsOverlay() {
@@ -5420,7 +5416,7 @@ void FullCatalogScreen::handleTouch() {
         return;
     }
 
-    // Footer News + Report chips (left of ux0 space panel)
+    // Footer Discord + Report chips (left of ux0 space panel)
     {
         const int panelW = UX0_FOOTER_PANEL_W;
         const int panelX = SCREEN_W - panelW - 6;
@@ -5431,7 +5427,7 @@ void FullCatalogScreen::handleTouch() {
         const int newsX = reportX - newsW - 8;
         const int chipY = SCREEN_H - FOOTER_H + 4;
         if (hit(x, y, newsX, chipY, newsW, chipH)) {
-            runNewsCheck(true);
+            openDiscordQrModal();
             return;
         }
         if (hit(x, y, reportX, chipY, reportW, chipH)) {
@@ -8090,12 +8086,58 @@ void FullCatalogScreen::openWebQrModal() {
         diagnostics::log(std::string("[WebQR] generation/load failed: ") + reason);
     }
 }
+void FullCatalogScreen::openDiscordQrModal() {
+    // Reuse the existing offline QR generator, layout and GPU texture lifecycle.
+    if (installProgressActive_ || catalogLoading_ || newsVisible_ ||
+        themeSetupVisible_ || reportConfirmVisible_ || dataRequestConfirmVisible_ ||
+        storageVisible_ || essentialPluginsModal_ || pluginRebootModal_ ||
+        filterModalOpen_ || state_.mode == UiMode::SETTINGS) return;
+    closeWebQrModal();
+    webQrDiscord_ = true;
+    webQrUrl_ = "https://discord.gg/YnYSkFumFN";
+    webQrVisible_ = true;
+    touchDown_ = touchMoved_ = false;
+    webQrHelpScroll_ = webQrHelpMaxScroll_ = webQrUrlScrollLine_ = 0;
+    webQrUrlLines_ = wrapTextToWidth(&font_, 0.65f, webQrUrl_, WEB_QR_LEFT_W - 8);
+    const auto appendLines = [&](const char* key, bool heading) {
+        const float scale = heading ? 0.82f : 0.72f;
+        for (const auto& line : wrapTextToWidth(&font_, scale,
+                 ::psvitaalive::L(key), WEB_QR_HELP_W - 26))
+            webQrHelpLines_.push_back({line, heading, heading ? 26 : 22});
+    };
+    appendLines("DISCORD_QR_HEADING", true);
+    webQrHelpLines_.push_back({"", false, 12});
+    appendLines("DISCORD_QR_BODY", false);
+    webQrHelpLines_.push_back({"", false, 12});
+    appendLines("DISCORD_QR_EXTRA", false);
+    int textHeight = 0;
+    for (const auto& line : webQrHelpLines_) textHeight += line.advance;
+    webQrHelpMaxScroll_ = std::max(0, textHeight + 4 - WEB_QR_HELP_VIEW_H);
+    std::string reason;
+    if (ensureWebQrPng(webQrUrl_, webQrPath_, reason)) {
+        webQrTexture_ = vita2d_load_PNG_file(webQrPath_.c_str());
+        if (!webQrTexture_) {
+            sceIoRemove(webQrPath_.c_str());
+            if (ensureWebQrPng(webQrUrl_, webQrPath_, reason))
+                webQrTexture_ = vita2d_load_PNG_file(webQrPath_.c_str());
+        }
+    }
+    if (webQrTexture_) {
+        vita2d_texture_set_filters(webQrTexture_, SCE_GXM_TEXTURE_FILTER_POINT,
+                                  SCE_GXM_TEXTURE_FILTER_POINT);
+        diagnostics::log("[DiscordQR] invite QR loaded");
+    } else {
+        diagnostics::log(std::string("[DiscordQR] generation/load failed: ") + reason);
+    }
+}
+
 void FullCatalogScreen::closeWebQrModal() {
     if (webQrTexture_) {
         scheduleTextureFree(webQrTexture_); // never free while GPU may still render previous frame
         webQrTexture_ = nullptr;
     }
     webQrVisible_ = false;
+    webQrDiscord_ = false;
     webQrUrl_.clear();
     webQrPath_.clear();
     webQrHelpLines_.clear();
@@ -8104,14 +8146,15 @@ void FullCatalogScreen::closeWebQrModal() {
 }
 void FullCatalogScreen::drawWebQrOverlay() {
     if (!webQrVisible_) return;
+    const unsigned qrAccent = webQrDiscord_ ? RGBA8(0x58, 0x65, 0xF2, 255) : ACCENT;
     vita2d_disable_clipping();
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0,0,0,222));
     vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, WEB_QR_MODAL_H, PANEL);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, 3, ACCENT);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, ACCENT);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X + WEB_QR_MODAL_W - 3, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, ACCENT);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y + WEB_QR_MODAL_H - 3, WEB_QR_MODAL_W, 3, ACCENT);
-    const char* title = ::psvitaalive::L("WEB_QR_TITLE");
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, 3, qrAccent);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, qrAccent);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X + WEB_QR_MODAL_W - 3, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, qrAccent);
+    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y + WEB_QR_MODAL_H - 3, WEB_QR_MODAL_W, 3, qrAccent);
+    const char* title = ::psvitaalive::L(webQrDiscord_ ? "DISCORD_QR_TITLE" : "WEB_QR_TITLE");
     const int titleW = ::psvitaalive::ui::uiTextWidth(&font_, 0.90f, title);
     ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-titleW)/2, 40, WHITE, 0.90f, title);
 
@@ -8133,8 +8176,8 @@ void FullCatalogScreen::drawWebQrOverlay() {
             ey += 22;
         }
     }
-    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X + 2, 390, ACCENT, 0.76f,
-                                 ::psvitaalive::L("WEB_QR_URL_LABEL"));
+    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X + 2, 390, qrAccent, 0.76f,
+                                 ::psvitaalive::L(webQrDiscord_ ? "DISCORD_QR_URL_LABEL" : "WEB_QR_URL_LABEL"));
     const int urlEnd = std::min((int)webQrUrlLines_.size(), webQrUrlScrollLine_ + WEB_QR_URL_VISIBLE_LINES);
     for (int i = webQrUrlScrollLine_; i < urlEnd; ++i) {
         const int y = 410 + (i-webQrUrlScrollLine_) * 17;
@@ -8145,8 +8188,8 @@ void FullCatalogScreen::drawWebQrOverlay() {
                                      ::psvitaalive::L("WEB_QR_URL_SCROLL"));
 
     // The instructions alone are clipped and scrolled; QR and URL stay fixed.
-    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 80, ACCENT, 0.82f,
-                                 ::psvitaalive::L("WEB_QR_GUIDE_TITLE"));
+    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 80, qrAccent, 0.82f,
+                                 ::psvitaalive::L(webQrDiscord_ ? "DISCORD_QR_GUIDE_TITLE" : "WEB_QR_GUIDE_TITLE"));
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(WEB_QR_HELP_X, WEB_QR_HELP_TOP,
                               WEB_QR_HELP_X + WEB_QR_HELP_W, WEB_QR_HELP_BOTTOM);
@@ -8166,14 +8209,14 @@ void FullCatalogScreen::drawWebQrOverlay() {
         const int knobH = std::max(28, trackH*trackH/(trackH+webQrHelpMaxScroll_));
         const int knobY = WEB_QR_HELP_TOP + webQrHelpScroll_*(trackH-knobH)/webQrHelpMaxScroll_;
         vita2d_draw_rectangle(trackX,WEB_QR_HELP_TOP,4,trackH,SURFACE2);
-        vita2d_draw_rectangle(trackX,knobY,4,knobH,ACCENT);
+        vita2d_draw_rectangle(trackX,knobY,4,knobH,qrAccent);
         ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 486, DIM, 0.60f,
                                      ::psvitaalive::L("WEB_QR_SCROLL_HELP"));
     }
-    vita2d_draw_rectangle(WEB_QR_BTN_X, WEB_QR_BTN_Y, WEB_QR_BTN_W, WEB_QR_BTN_H, ACCENT);
+    vita2d_draw_rectangle(WEB_QR_BTN_X, WEB_QR_BTN_Y, WEB_QR_BTN_W, WEB_QR_BTN_H, qrAccent);
     const char* close = ::psvitaalive::L("WEB_QR_CLOSE");
     const int closeW = ::psvitaalive::ui::uiTextWidth(&font_, 0.73f, close);
-    ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-closeW)/2, WEB_QR_BTN_Y + 25, BG, 0.73f, close);
+    ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-closeW)/2, WEB_QR_BTN_Y + 25, webQrDiscord_ ? WHITE : BG, 0.73f, close);
 }
 
 void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
@@ -10888,7 +10931,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter), w - 56);
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawNewsChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawDiscordChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.

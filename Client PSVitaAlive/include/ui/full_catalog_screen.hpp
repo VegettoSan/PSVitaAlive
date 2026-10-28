@@ -114,7 +114,7 @@ public:
     void setSettingsSaveCallback(SettingsSaveFn callback);
     void openSettings();
     void closeSettings(bool save);
-    /** Fetch news.txt after startup (or reopen from footer). Non-blocking failure. */
+    /** Fetch news.txt after startup. Non-blocking failure. */
     void runNewsCheck(bool forceShow);
     bool isNewsVisible() const { return newsVisible_; }
     bool isNewsCheckDone() const { return newsCheckedOnce_; }
@@ -256,6 +256,7 @@ private:
     bool archiveWarningDownload_ = false;
     // QR/Web handoff: only the displayed symbol occupies VRAM.
     bool webQrVisible_ = false;
+    bool webQrDiscord_ = false; // Same offline QR overlay with Discord colors.
     std::string webQrUrl_;
     std::string webQrPath_;
     vita2d_texture* webQrTexture_ = nullptr;
@@ -426,6 +427,7 @@ private:
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void openWebQrModal();
+    void openDiscordQrModal();
     void closeWebQrModal();
     void drawWebQrOverlay();
     void scrollWebQrHelp(int direction);
@@ -464,7 +466,7 @@ private:
     bool itemSupportsInstallAll(const CatalogItem& item) const;
     void collectInstallAllOptions(const CatalogItem& item, const char* kind, std::vector<int>& out) const;
     void drawLoadingOverlay();
-    void drawNewsChip();
+    void drawDiscordChip();
     void drawNewsOverlay();
     void closeNewsModal(bool markSeen);
     void drawThemeSetupOverlay();
