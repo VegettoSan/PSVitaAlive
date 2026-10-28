@@ -10499,7 +10499,8 @@ if ((stageInstall || stageExtract) &&
     installResultPath_.find(":pspemu/") != std::string::npos) {
     const std::string targetLine = std::string(::psvitaalive::L(::psvitaalive::TextId::LabelPath))
         + ": " + installResultPath_;
-    drawFitted(x + 28, y + 299, TEXT, 0.70f, targetLine.c_str(), w - 56);
+    drawFilterMarqueeText(&font_, x + 28, y + 299, w - 56,
+        y + 282, y + 304, TEXT, 0.70f, targetLine.c_str(), true);
 }
 // LOCKED banner — tall + large type, no overlap with button below.
 {
