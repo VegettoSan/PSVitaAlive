@@ -1,81 +1,97 @@
-id: 2026-10-25-0001
-title: PSVitaAlive 02.15 is here!
+id: 2026-10-27-0001
+title: PSVitaAlive 02.16 is here!
 enabled: true
 
 ---
 
-# Thanks for using PS Vita Alive Store!
+# PSVitaAlive 02.16 is now available!
+
+This update brings new download controls, safer installation recovery, improved storage management, and several interface improvements.
 
 ---
 
-### Not all Homebrew / Ports have Game Files yet. Please be patient as more files are gradually added to the catalog.
+# What's New in 02.16
+
+## Download Pause & Resume
+
+- Pause and resume downloads using Square or touchscreen controls.
+- Improved Wi-Fi interruption detection and recovery.
+- Preserve validated download progress during the current session.
+- Improved HTTP 206 validation for safer resumed downloads.
+- Better network error messages and connection checks.
+
+## Storage Management
+
+- Added a new storage management interface accessible from UX0.
+- Inspect and safely delete temporary downloads and preserved archives.
+- Added individual cleanup options and confirmation dialogs.
+- Improved protection against accidental file deletion.
+- Added SELECT + Square access for PS TV users.
+
+## Improved ZIP & Installation Recovery
+
+- Improved recovery of completed and segmented ZIP archives.
+- Added safer ZIP preservation before extraction.
+- Improved recovery after interrupted installations or unexpected shutdowns.
+- More accurate Install All storage requirements.
+- Reduced unnecessary repeated downloads.
+
+## Plugin Compatibility & Recovery
+
+- Added compatibility warnings for certain catalog plugins.
+- Improved detection of active kernel plugins.
+- Added clearer plugin recovery instructions, including holding L during boot.
+- Improved compatibility notices and translations.
+
+## PSP & PS1 Improvements
+
+- Added UX0 and UMA0 destination selection for Adrenaline installations.
+- Improved PSP setup guidance and destination settings.
+- Fixed reporting of the actual PSP/PS1 installation partition.
+
+## Better Reports & Feedback
+
+- Improved Install All results with clearer information for each step.
+- Added individual reporting for failed installation steps.
+- Added a new feedback form for problems and suggestions.
+- Improved navigation, scrolling, and error messages.
+
+## Official Discord Integration
+
+- Replaced the footer News button with a new Discord button.
+- Added a QR code to join the official PSVitaAlive Discord community.
+- Added Discord links to the website and GitHub repository.
+- Automatic startup news announcements remain available.
+
+Join us: https://discord.gg/YnYSkFumFN
+
+## Improved QR Code Readability
+
+- Increased URL text size by approximately 42%.
+- Added high-contrast backgrounds for better visibility.
+- Improved long-link navigation and line spacing.
+- Applied improvements to both application and Discord QR codes.
+
+## Additional Fixes
+
+- Improved modal navigation and interface stability.
+- Fixed VitaSDK OpenSSL and pthread linking issues.
+- Updated translations across all eight supported languages.
+- Added more automated tests and reliability improvements.
 
 ---
 
-# What's New in 02.15
+## Important Notes
 
-## Improved Plugin Management
-
-- Added confirmation before installing individual plugins.
-- Plugins are now classified as Required, Optional, or Not Specified.
-- Added the option to reinstall already detected plugins when their version cannot be verified.
-- Improved plugin detection using active taiHEN configuration.
-- Safer plugin replacement with backup and recovery protection.
-
-## Better Install All Experience
-
-- Improved installation of VPK, Game Files, Data Files, and plugins.
-- Install All now continues processing remaining steps when an individual installation fails.
-- Added a detailed installation summary showing successful, failed, and skipped operations.
-- Improved plugin installation confirmations and restart handling.
-- Fixed issues affecting installation queues when catalog filters change.
-
-## Automatic ZIP Recovery
-
-- Added automatic ZIP preservation after supported extraction failures.
-- Recoverable ZIP files are automatically saved after a 10-second countdown.
-- Install All can continue processing remaining downloads after successful recovery.
-- Added options to keep or safely delete recovered ZIP files.
-- Improved recovery protection to prevent accidental file deletion.
-
-## Optimized ZIP/VPK Extraction
-
-- Improved extraction performance when replacing existing files.
-- Reduced unnecessary temporary copies and storage usage.
-- Improved free-space calculations for file replacements.
-- Added protection against filename collisions and source archive overwrites.
-- Improved handling of extraction failures and incomplete files.
-
-## Startup Cleanup & Catalog Updates
-
-- Added automatic cleanup of abandoned downloads during startup.
-- Improved protection for previously saved ZIP archives.
-- Added visible progress during storage maintenance.
-- Added catalog synchronization progress indicators.
-- Improved notifications when catalog updates are downloaded and applied.
-
-## Additional Improvements
-
-- Improved overall installation reliability.
-- Updated messages across all eight supported languages.
-- Improved plugin installation safety and user control.
-- Better error handling and filesystem protection.
-- Additional performance improvements and bug fixes.
-
----
-
-## Thank you for your continued support!
-
-Your feedback, testing, and bug reports help improve PSVitaAlive with every release.
-
----
-
-### Tips:
-- iTLS-ENSO (full) recommended for HTTPS.
-- DNS: 8 8 8 8 / 8 8 4 4.
-- Keep NoNpDrm (and NoPspEmuDrm if you use LiveArea PSP/PS1).
+- Paused downloads can only be resumed during the current application session.
 - Restart your PS Vita after installing system plugins.
-- If Archive.org is unavailable, try another download source or retry later.
-- Report installation issues with session.log when possible.
+- Hold L during startup if you need to bypass problematic plugins.
+- Preserved ZIP archives can be managed from the storage interface.
 
-**Enjoy PSVitaAlive 02.15! Thank you for helping keep the PlayStation Vita community alive!**
+---
+
+## Thank You!
+
+Thank you for supporting PSVitaAlive and helping improve the project through your feedback and bug reports.
+
+**Enjoy PSVitaAlive 02.16!**
