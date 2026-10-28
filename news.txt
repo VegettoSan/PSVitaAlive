@@ -1,97 +1,55 @@
-id: 2026-10-27-0001
-title: PSVitaAlive 02.16 is here!
+id: 2026-10-28-0217
+title: PSVitaAlive 02.17 is here!
 enabled: true
 
 ---
 
-# PSVitaAlive 02.16 is now available!
+# PSVitaAlive 02.17 is now available!
 
-This update brings new download controls, safer installation recovery, improved storage management, and several interface improvements.
-
----
-
-# What's New in 02.16
-
-## Download Pause & Resume
-
-- Pause and resume downloads using Square or touchscreen controls.
-- Improved Wi-Fi interruption detection and recovery.
-- Preserve validated download progress during the current session.
-- Improved HTTP 206 validation for safer resumed downloads.
-- Better network error messages and connection checks.
-
-## Storage Management
-
-- Added a new storage management interface accessible from UX0.
-- Inspect and safely delete temporary downloads and preserved archives.
-- Added individual cleanup options and confirmation dialogs.
-- Improved protection against accidental file deletion.
-- Added SELECT + Square access for PS TV users.
-
-## Improved ZIP & Installation Recovery
-
-- Improved recovery of completed and segmented ZIP archives.
-- Added safer ZIP preservation before extraction.
-- Improved recovery after interrupted installations or unexpected shutdowns.
-- More accurate Install All storage requirements.
-- Reduced unnecessary repeated downloads.
-
-## Plugin Compatibility & Recovery
-
-- Added compatibility warnings for certain catalog plugins.
-- Improved detection of active kernel plugins.
-- Added clearer plugin recovery instructions, including holding L during boot.
-- Improved compatibility notices and translations.
-
-## PSP & PS1 Improvements
-
-- Added UX0 and UMA0 destination selection for Adrenaline installations.
-- Improved PSP setup guidance and destination settings.
-- Fixed reporting of the actual PSP/PS1 installation partition.
-
-## Better Reports & Feedback
-
-- Improved Install All results with clearer information for each step.
-- Added individual reporting for failed installation steps.
-- Added a new feedback form for problems and suggestions.
-- Improved navigation, scrolling, and error messages.
-
-## Official Discord Integration
-
-- Replaced the footer News button with a new Discord button.
-- Added a QR code to join the official PSVitaAlive Discord community.
-- Added Discord links to the website and GitHub repository.
-- Automatic startup news announcements remain available.
-
-Join us: https://discord.gg/byn8FDuDrw
-
-## Improved QR Code Readability
-
-- Increased URL text size by approximately 42%.
-- Added high-contrast backgrounds for better visibility.
-- Improved long-link navigation and line spacing.
-- Applied improvements to both application and Discord QR codes.
-
-## Additional Fixes
-
-- Improved modal navigation and interface stability.
-- Fixed VitaSDK OpenSSL and pthread linking issues.
-- Updated translations across all eight supported languages.
-- Added more automated tests and reliability improvements.
+A focused update bringing a cleaner interface, better PSP/PS1 installation information, and several reliability fixes. Thanks for testing these changes on real PS Vita hardware!
 
 ---
 
-## Important Notes
+## A Cleaner Catalog
 
-- Paused downloads can only be resumed during the current application session.
-- Restart your PS Vita after installing system plugins.
-- Hold L during startup if you need to bypass problematic plugins.
-- Preserved ZIP archives can be managed from the storage interface.
+- Release dates have been removed from app and game cards to reduce clutter.
+- The version, download size, status and installed indicators remain visible.
+- Release dates are still available inside each application's details.
+- The filter button shows the active filter name, with scrolling text for longer labels.
+- With no active filter, the button now simply says **Filters**.
+
+## PSP and PS1 Storage Improvements
+
+- Installation progress shows where PSP/PS1 games are being saved.
+- The completed installation screen shows the resulting destination.
+- Installed badges can identify the storage device, such as **Installed ux0** or **Installed uma0**.
+- Detection covers supported PSP/PS1 paths on ux0, uma0, imc0 and xmc0.
+- Better install status refresh and clearer completion messages.
+
+## Stability Fixes
+
+- Fixed flickering when an app finishes installing from the **Update** button.
+- Removed an unnecessary duplicate UI render.
+- Reduced work during large PSP/PS1 file copies.
+- Downloads and Install All keep their existing behavior.
+
+## Discord Community
+
+- The Discord button and QR now use the updated invitation.
+- The manual feedback system can send problem reports and suggestions to their dedicated forums.
+
+Join our community: https://discord.gg/byn8FDuDrw
+
+---
+
+## Update Now
+
+You can install **PSVitaAlive 02.17** from the official GitHub Release, or use the built-in updater if you already have the client installed.
+
+Release and VPK: https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17
 
 ---
 
 ## Thank You!
 
-Thank you for supporting PSVitaAlive and helping improve the project through your feedback and bug reports.
-
-**Enjoy PSVitaAlive 02.16!**
+Thank you for helping us keep PSVitaAlive free, compatible and easy to use. Enjoy version 02.17!
