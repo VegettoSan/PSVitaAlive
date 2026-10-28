@@ -15,16 +15,17 @@
     "shooter",
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2026-06-06",
+  "version": "1.5",
+  "version_date": "2026-10-26",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 3232760,
-  "status": "Legacy",
+  "size": 3250586,
+  "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-biohazard4-vita/biohazard4-vita.vpk",
+      "url": "https://archive.org/download/psvitaalive-biohazard4-vita/BIOHAZARD4%20v1.5.vpk",
+      "size": 3250586,
       "recommended": true
     },
     {
