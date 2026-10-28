@@ -11,6 +11,8 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 | Build system | CMake + VitaSDK |
 | Rendering | vita2d (no Dear ImGui) |
 
+**Latest stable release:** [02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17) · `VITA_VERSION=02.17` · `PSVAS1178`. [Automated release rules](../docs/self-update-versioning.md).
+
 ## Features (high level)
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
@@ -28,7 +30,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
   - **ZIP** extract (`extract_path` from catalog or quick-path UI), including **large / >2 GB** archives (libzip + custom `sceIo` source); EOCD/ZIP64 incomplete retries with delay
   - Pre-open ZIP integrity check (EOCD / ZIP64 marker) to fail incomplete downloads early
   - Licensed commercial **Vita PKG via system BGDL**
-  - **PSP/PS1 PKG**: LiveArea BGDL **or** Adrenaline unpack (pkg2zip-style → `ux0:pspemu`, Folder or ISO from Settings)
+  - **PSP/PS1 PKG**: LiveArea BGDL **or** Adrenaline unpack (pkg2zip-style → configured `ux0:pspemu` / `uma0:pspemu`, Folder or ISO from Settings)
   - **Plugin** links: download → copy to `extract_path` → append `line` to taiHEN `config.txt` under `section` (or skip config if `none`)
 - **Aviso contextual de compatibilidad para enlaces `Plugin` del catálogo:** se integra arriba de Requerido/Opcional en la misma ventana individual/Install All; detecta plugins kernel configurados, permite scroll y no cambia el flujo de esenciales. Detalles, evidencia, límites y pruebas: [`../docs/CATALOG_PLUGIN_CONFLICTS_20261027.md`](../docs/CATALOG_PLUGIN_CONFLICTS_20261027.md).
 - **Aviso de recuperación tras instalar plugins:** tanto el modal de reinicio individual como el resumen de Install All muestran qué hacer ante un arranque fallido: mantener **L** mientras arranca PS Vita (o al iniciar h-encore) para omitir temporalmente los plugins taiHEN. No cambia la instalación ni el reinicio. [Mantenimiento de UI](source/ui/README.md).
@@ -48,6 +50,15 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 - Plugin detection (AutoPlugin2-style parser; prefer **ur0:tai** over ux0); Settings **INFO → SYSTEM** shows NoNpDrm, NoPspEmuDrm, kubridge, fd_fix, libshacccg. Filesystem-backed plugin checks are snapshotted once when Settings opens, so the render loop does not repeatedly read `ur0:tai/config.txt` or probe plugin files.
 - Brand logo / loading splash can use monochrome assets tinted by the active theme
 - Logs: `session.log` (asynchronous, bounded report-oriented worker), `install.log` (installer), `updater.log`. The former verbose `archive_nodes.log` is retired; see [`../docs/ASYNC_REPORT_LOGGER_20261012.md`](../docs/ASYNC_REPORT_LOGGER_20261012.md).
+
+## Changes in 02.17 — 28 October 2026
+
+- **UI:** remove date from catalog cards only; keep version/size/status/file badges and the date in details. Show localized **Filters** when none selected and active filter label with marquee otherwise.
+- **PSP/PS1:** index accessible `ux0`, `uma0`, `imc0` and `xmc0` locations; show a mount suffix on installed badges without widening them. Display the destination during installation and at completion. Refresh index after closing the successful result dialog.
+- **Performance:** remove accidental duplicate `updateAndDraw()`, avoid recurring install-badge refresh and per-chunk destination-string allocations.
+- **Community:** updated Discord QR/invite and manually submitted Problem/Suggestion threads in separate Discord forums; automatic error reports remain independent.
+
+**Validation boundary:** the maintainer tested the functional changes on a real PS Vita in the earlier test VPK. The official 02.17 VPK was rebuilt and metadata/CRC checked by GitHub Actions; that does not replace testing this exact final artifact on a console. [Technical record](../docs/RELEASE_02_17_TECHNICAL_20261028.md).
 
 ## Built-in keyboard — current text-entry path
 
@@ -261,7 +272,7 @@ See the root [README.md](../README.md) for the full link-type matrix.
 | Payload | Handler | Destination |
 |---------|---------|-------------|
 | **VPK** (Vita only) | HomebrewInstaller + Promoter | LiveArea bubble (`ux0:app/<TITLEID>`) — **unchanged** |
-| **ISO / CSO / PBP** | PspInstaller | `ux0:pspemu/...` (Adrenaline) |
+| **ISO / CSO / PBP** | PspInstaller | Selected `ux0:pspemu/...` or `uma0:pspemu/...` (Adrenaline) |
 | Data **ZIP** | ZipExtractor | Catalog `extract_path` or user path |
 | **Vita PKG** | BGDL / VitaInstaller (promoter) | LiveArea / system install — **never** Adrenaline unpack |
 | **PSP / PS1 official PKG** + Settings **LiveArea** | BGDL + synthetic RIF (PKGj-style) | LiveArea bubble (NoPspEmuDrm recommended) |
@@ -418,7 +429,7 @@ Missing items open a large-type modal (**Install plugins** with pulsing border, 
 When Settings → **PSP / PS1 target** is **Adrenaline**:
 
 - PSP/PS1 **PKG** downloads are **not** queued to system BGDL.
-- Content is unpacked with an embedded **pkg2zip-style** pipeline (`third_party/pkg2zip/`) into `ux0:pspemu`.
+- Content is unpacked with an embedded **pkg2zip-style** pipeline (`third_party/pkg2zip/`) into the configured `ux0:pspemu` or `uma0:pspemu`.
 - **PSP media**: **Folder** (default, EBOOT.PBP under GAME) or **ISO**.
 - Only packages whose probed content type is PSP/PSX use this path; **Vita game PKGs always use BGDL/promote**, never pspemu unpack.
 

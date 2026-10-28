@@ -14,6 +14,12 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | Location | Topic |
 |----------|--------|
 | Root `README.md` | Project overview, public JSON API, multi-catalog, recommended Vita setup, download/install locks, commercial PKG routing, client feature summary |
+| [`docs/RELEASE_02_17_TECHNICAL_20261028.md`](RELEASE_02_17_TECHNICAL_20261028.md) | **Estado vigente en 02.17:** tarjetas, filtros, PSP/PS1, Discord, estabilidad, build y verificación |
+| [`docs/releases/02.17.md`](releases/02.17.md) | Body oficial de la release 02.17 |
+| [`docs/self-update-versioning.md`](self-update-versioning.md) | Versiones basadas en `tag_name`; publicación controlada por VitaSDK/SFO/CRC/SHA-256 |
+| [`docs/DISCORD_FEEDBACK_FORUMS_20261028.md`](DISCORD_FEEDBACK_FORUMS_20261028.md) | Foros Discord para Problemas y Sugerencias, sin mezclar diagnósticos automáticos |
+| [`Client PSVitaAlive/docs/FILTER_PANEL_20261020.md`](../Client%20PSVitaAlive/docs/FILTER_PANEL_20261020.md) | Etiqueta `Filtros` sin selección y nombre del filtro activo en 02.17 |
+| [`Client PSVitaAlive/docs/INSTALLED_CATALOG_FILTERS_20261020.md`](../Client%20PSVitaAlive/docs/INSTALLED_CATALOG_FILTERS_20261020.md) | Índice multiunidad y badge de almacenamiento PSP/PS1 en 02.17 |
 | `docs/BGDL_PREPARATION_FRAME.md` | **BGDL preparation-frame handoff**: keep ShellSvc enqueue on the main thread while presenting a visible Preparing overlay first |
 | `docs/ADAPTIVE_DOWNLOAD_PIPELINE_20261018.md` | **Adaptive transfer and ZIP/VPK optimizations (18 October 2026):** thresholds, HTTP validators/checksums, buffering, progress UI, measurements and regression tests |
 | `docs/INSTALL_ALL_WORKER_CRASH_FIX_20261018.md` | **Install All SIGABRT regression:** dump evidence, worker-lifecycle synchronization, VPK→ZIP transition and extraction render-yield mitigation |
@@ -30,7 +36,6 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | [`docs/ZIP_SOBREESCRITURA_SEGURA_20261025.md`](ZIP_SOBREESCRITURA_SEGURA_20261025.md) | Reutilización de espacio al sobreescribir entradas ZIP y advertencias sobre archivos truncados / staging |
 | [`docs/PLUGIN_DETECTION_CONFIG_20261023.md`](PLUGIN_DETECTION_CONFIG_20261023.md) | Detección real de plugins taiHEN (archivo + config) y límites |
 | [`docs/CATALOG_PLUGIN_CONFLICTS_20261027.md`](CATALOG_PLUGIN_CONFLICTS_20261027.md) | **Avisos de conflictos entre enlaces Plugin del catálogo**: ventana existente con contenido desplazable, reglas y fuentes, límites de detección y pruebas/CI pendientes |
-
 | `docs/PLUGIN_UPDATES.md` | **Planned** remote plugin update system (manifest / versioned Plugin links) — deferred |
 | [`docs/DISCORD_COMMUNITY_QR_20261027.md`](DISCORD_COMMUNITY_QR_20261027.md) | Botón Discord en cliente, invitación QR offline, colores fijos y enlaces desde web |
 | [`docs/WEB_QR_HANDOFF_PLAN.md`](WEB_QR_HANDOFF_PLAN.md) | QR/web handoff **ya integrado en main**; documento conserva planificación histórica y pruebas pendientes |
@@ -155,3 +160,8 @@ La gestión actual de ZIP completos y segmentados guardados está en
 Los documentos de fechas anteriores se conservan como historial, no
 como especificación preferente frente al código y estos registros.
 
+## Estado vigente desde PSVitaAlive 02.17 (28 octubre 2026)
+
+Los cambios de tarjetas, filtros, índice PSP/PS1, rutas de instalación, Discord y estabilidad están descritos en [la referencia técnica 02.17](RELEASE_02_17_TECHNICAL_20261028.md). Se conservan los documentos fechados anteriores como historial, sin presentarlos como la especificación más reciente.
+
+La release 02.17 incluye `APP_VER=02.17`, `TITLE_ID=PSVAS1178`, VPK y SHA-256 publicados desde un build exitoso en GitHub Actions. La funcionalidad se probó en consola con el VPK de ensayo previo; la compilación final tiene verificación CI independiente. Los archivos JSON generados no se modifican manualmente.

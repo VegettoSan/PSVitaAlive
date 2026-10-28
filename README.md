@@ -10,6 +10,8 @@
 
 PS Vita Alive Store helps users discover, download and install content on PlayStation Vita. Infrastructure stays free and server-less: **GitHub**, **GitHub Actions** and **GitHub Pages**.
 
+**Latest stable client: [PSVitaAlive 02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17)** · [Download VPK](https://github.com/VegettoSan/PSVitaAlive/releases/download/02.17/PSVitaAlive.vpk) · Title ID `PSVAS1178`. The in-app updater checks GitHub Releases. [02.17 technical notes](docs/RELEASE_02_17_TECHNICAL_20261028.md).
+
 ---
 
 ## Repository layout
@@ -75,14 +77,16 @@ Commercial packages are routed by **platform** and **Settings → PSP / PS1 targ
 |-------------------|-----------------|------|
 | **Vita Games** PKG | *(any)* | System **BGDL** + zRIF/RIF → LiveArea (unchanged) |
 | **PSP / PS1** PKG | **LiveArea** | System **BGDL** → LiveArea bubble (NoPspEmuDrm recommended) |
-| **PSP / PS1** PKG | **Adrenaline** | Direct download + **pkg2zip-style unpack** → `ux0:pspemu` (**no** LiveArea bubble) |
+| **PSP / PS1** PKG | **Adrenaline** | Direct download + **pkg2zip-style unpack** → selected `ux0:pspemu` or `uma0:pspemu` (**no** LiveArea bubble) |
 
 **Adrenaline media format** (Settings → **PSP media**):
 
 | Value | Default | Result |
 |-------|---------|--------|
-| **Folder** | yes | PSP → `ux0:pspemu/PSP/GAME/<ID>/EBOOT.PBP`; PS1 → same GAME layout |
-| **ISO** | | PSP → `ux0:pspemu/ISO/<title> [<ID>].iso` (EBOOT→ISO conversion) |
+| **Folder** | yes | PSP → `<mount>:pspemu/PSP/GAME/<ID>/EBOOT.PBP`; PS1 → same GAME layout |
+| **ISO** | | PSP → `<mount>:pspemu/ISO/<title> [<ID>].iso` (EBOOT→ISO conversion) |
+
+The `<mount>` prefix uses the selected Adrenaline storage device (`ux0` by default, or mounted `uma0`). In **02.17**, the install dialog shows this destination; installed PSP/PS1 badges can also show the detected device (`ux0`, `uma0`, `imc0`, or `xmc0`).
 
 The client **probes PKG `content_type`** before unpacking: only PSP/PSX packages use the Adrenaline path. **Vita Game PKGs never go through pspemu unpack**, even if Adrenaline is selected.
 
@@ -182,6 +186,16 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 - Plugin detection (prefer `ur0:tai`); Settings INFO shows NoNpDrm / NoPspEmuDrm / kubridge / fd_fix / libshacccg status
 - Session logs under `ux0:data/psvitaalive/logs/`
 
+#### Client changes in 02.17
+
+- **Cards:** show version, author, size, status and file indicators without the release date; that date remains in details and sorting.
+- **Filters:** display the localized **Filters** caption when inactive, otherwise the selected option; long labels use marquee.
+- **PSP / PS1:** installation progress and completion identify the destination; the installed badge identifies the detected storage device with marquee in the original card width.
+- **Stability:** corrected UI flicker after updates, removed a duplicate draw/update and reduced disk-index invalidations.
+- **Discord:** current invite QR and public links, plus separate forum threads for manually written problems/suggestions (automatic reports remain independent).
+
+[Implementation, CI and test scope](docs/RELEASE_02_17_TECHNICAL_20261028.md) · [Official notes](docs/releases/02.17.md).
+
 #### Why PSVitaAlive uses its own keyboard
 
 Repeated openings of the native Sony IME produced reproducible crashes on real PS Vita hardware. Multiple PS Vita dumps pointed to `SceCommonDialogPafMain` in `ScePaf` (module offset `0x13D8`), although the original trigger was **not conclusively identified**. Experiments with IME language/type, trace overhead, texture release and image-worker synchronization did not yield a reliable fix. The supported input path is now an **in-app vita2d modal** integrated with the theme and current interface language (character layout stays English QWERTY). This change does not remove unrelated Sony install/updater modules or the `SceCommonDialog_stub` link needed by `vita2d`.
@@ -234,6 +248,8 @@ Open PS Vita Alive Store
 - Toggleable (startup config / settings); safe path uses **PSVAUPDT1** because a Vita app cannot reliably promote **itself** while running.
 - Manual fallback VPK: `ux0:data/psvitaalive/update/PSVitaAlive.vpk`
 - Details: [`Client PSVitaAlive/README.md`](Client%20PSVitaAlive/README.md) and [`Client PSVitaAlive/source/update/README.md`](Client%20PSVitaAlive/source/update/README.md)
+
+**Publication:** `publish-client-release.yml` creates a new tag/release from the **exact successful VitaSDK CI artifact**, after checking `APP_VER`, Title ID and ZIP integrity; it also attaches a SHA-256 file. Publishing requires matching `docs/releases/<version>.md` and never edits generated catalogs. [Versioning contract](docs/self-update-versioning.md).
 
 **Releases:** https://github.com/VegettoSan/PSVitaAlive/releases  
 **Website:** https://vegettosan.github.io/PSVitaAlive/  

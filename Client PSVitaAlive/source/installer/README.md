@@ -142,6 +142,12 @@ Useful lines in `install.log` / `session.log`:
 [InstallDispatcher] Adrenaline PKG unpack OK path=...
 ```
 
+### PSP/PS1 destination reporting (02.17)
+
+`PspInstaller` supplies the target ISO/CSO/PBP file path with the initial **Preparing** progress report, rather than allocating/copying the string every 64 KiB. `InstallDispatcher` forwards `installPath` and, for PKG unpacking, provides the `pspemu` destination folder. `InstallController` passes it to the UI. The completion panel shows the actual final path; success messages for `:pspemu` destinations are **not** generic ZIP extraction messages.
+
+The game installation index is refreshed after a successful PSP/PS1 job when the result closes, not per frame. Both `ux0:` and mounted `uma0:` are supported targets. [Technical record](../../../docs/RELEASE_02_17_TECHNICAL_20261028.md).
+
 ## Homebrew VPK notes
 
 - Prefer the same shallow promote directory used by successful device tests (`ux0:data/psva_vpk`)
@@ -222,8 +228,8 @@ Must not:
 
 | Target | Vita VPK | PSP/PS1 PKG | ISO/CSO/PBP |
 |--------|----------|-------------|-------------|
-| **LiveArea** | Promote (unchanged) | BGDL → LiveArea bubble | `ux0:pspemu` |
-| **Adrenaline** | Promote (unchanged — VPK is Vita-only) | **No BGDL**; pkg2zip-based unpack to `ux0:pspemu` (ISO for PSP, EBOOT for PSX) | `ux0:pspemu` |
+| **LiveArea** | Promote (unchanged) | BGDL → LiveArea bubble | Selected `ux0:pspemu` or `uma0:pspemu` |
+| **Adrenaline** | Promote (unchanged — VPK is Vita-only) | **No BGDL**; pkg2zip-based unpack to configured `psp_storage` (ISO for PSP, EBOOT for PSX) | Selected `ux0:pspemu` or `uma0:pspemu` |
 
 Do **not** route Vita VPK through Adrenaline-only logic.
 

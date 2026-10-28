@@ -19,12 +19,12 @@ If a tag does not contain exactly one dotted numeric version, the client must fa
 
 Before this rule, the updater collected version-like numbers from `tag_name`, release `name`, and release `body`, then selected the numerically highest candidate. A number such as `64` in release notes could therefore override a real version such as `02.04` and cause the client to repeatedly download and install the same release.
 
-## Future safeguards — not implemented yet
+## Publication safeguards — implemented for 02.17 (28 October 2026)
 
-When release automation is revisited, consider adding validation that:
+[`publish-client-release.yml`](../.github/workflows/publish-client-release.yml) listens for **successful push builds on main** and requires a valid `NN.NN` version in `Client PSVitaAlive/CMakeLists.txt`, plus human-written notes in `docs/releases/NN.NN.md`.
 
-1. the GitHub Release tag matches the client `VITA_VERSION` in `Client PSVitaAlive/CMakeLists.txt`;
-2. the published VPK reports the same internal version as the release tag;
-3. malformed or ambiguous release tags are rejected before publication.
+It downloads the *exact* successful VitaSDK CI `PSVitaAlive.vpk`, validates its ZIP CRC, checks `sce_sys/param.sfo` for matching **APP_VER** and `TITLE_ID=PSVAS1178`, calculates SHA-256, and publishes the latest stable GitHub Release under that version tag. An existing release is left intact; a pre-existing tag without a release blocks publication.
 
-These checks are documentation only for now; no release workflow or GitHub Actions behavior is changed by this note.
+The publisher's `NN.NN` format restriction is stricter than the **runtime updater's** existing backward-compatible `tag_name` parser (which accepts certain other dotted numeric formats). The runtime version comparison remains based exclusively on the tag, never the release body.
+
+**Verified publication:** [02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17) · [workflow policy](../.github/workflows/README.md). The release artifact passed CI metadata/integrity checks; hardware validation of this exact versioned binary remains a separate step.

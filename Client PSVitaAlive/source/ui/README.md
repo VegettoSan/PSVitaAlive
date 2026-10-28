@@ -162,6 +162,16 @@ This prevents localized labels such as `ACTUALIZACIÓN`, `AGGIORNAMENTO` or `О�
 
 Update-state semantics, receipt compatibility and Vita `APP_VER` normalization are documented in [`../../../docs/UPDATE_DETECTION.md`](../../../docs/UPDATE_DETECTION.md).
 
+## Catalog UI updates in 02.17
+
+- Card metadata now renders just `v<version>` at bottom-left (when present), no `versionDate`. Author, status, size, Game/Data Files indicators and badge remain. Detail view and date sorting still use the original date.
+- Filter-chip label defaults to localized `FILTERS_MENU_TITLE` (**Filters**) when `ContentFilter::All` is active; any other selection displays the localized option name using `drawFilterMarqueeText`. Width/hitbox and static filter option lists are unchanged.
+- PSP/PS1 game-install badges add the indexed mount name (for example **Installed uma0**) inside the original badge dimensions. Existing clipping and marquee prevent text overflow.
+- Installed-game index invalidation is deferred until a successful PSP/PS1 result dialog closes; no per-frame filesystem rescan. Update completion no longer causes duplicate drawing or repeated badge invalidation.
+- PSP/PS1 install progress and completion can show `pspemu` destinations rather than a generic ZIP extraction label.
+
+[Technical release record](../../../docs/RELEASE_02_17_TECHNICAL_20261028.md).
+
 ## Recuperación de arranque tras instalar plugins (27 octubre 2026)
 
 La instrucción de recuperación con **L** se muestra antes de reiniciar en los dos flujos:
