@@ -7918,8 +7918,9 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
         ellipsize(it.author.empty() ? ::psvitaalive::L(::psvitaalive::TextId::UnknownAuthor) : it.author, compact ? 16 : 18).c_str());
     ::psvitaalive::ui::uiDrawText(&font_, tx, y + (compact ? 64 : 72) + oy, colorForStatus(it.status), compact ? 0.72f : 0.80f,
         ellipsize(it.status, 14).c_str());
-    // Version / date bottom-left; size always bottom-right when known (all catalogs).
-    std::string meta = (it.version.empty() ? "" : "v" + it.version) + (it.versionDate.empty() ? "" : "  " + it.versionDate);
+    // Keep only the version on catalog cards. The release date remains
+    // available in the detail view; size and file-type chips stay unchanged.
+    std::string meta = it.version.empty() ? "" : "v" + it.version;
     if (!meta.empty())
         ::psvitaalive::ui::uiDrawText(&font_, x + 10 + ox, y + h - (compact ? 10 : 12) + oy, DIM, compact ? 0.66f : 0.72f, ellipsize(meta, compact ? 16 : 18).c_str());
     {
