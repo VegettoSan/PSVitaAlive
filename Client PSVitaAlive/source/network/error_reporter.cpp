@@ -1,4 +1,5 @@
 #include "network/error_reporter.hpp"
+#include "network/feedback_forum.hpp"
 #include "network/http_client.hpp"
 #include "diagnostic_logger.hpp"
 
@@ -21,6 +22,15 @@ namespace {
 constexpr const char* kDiscordWebhookUrl =
     "https://discord.com/api/webhooks/1540832184774959268/"
     "XPinil0HHmwzje7MOMXjXi0iQEHf7lHQtmZZILre3AbXMTxRLnObpYwX5yGhqzrdROWr";
+
+// User-written messages go to public Discord forums as individual posts.
+// Like the existing diagnostic webhook, these URLs are embedded in the VPK.
+constexpr const char* kFeedbackProblemWebhookUrl =
+    "https://discord.com/api/webhooks/1565126501815287828/"
+    "nJDUU-m6flk-w9eXfcwKyEroOWLP6oRFoPuGgdE4Sx9EWi6yjREXaMt-zV8wfA9b_4FO";
+constexpr const char* kFeedbackSuggestionWebhookUrl =
+    "https://discord.com/api/webhooks/1565127059745939600/"
+    "BnSsDn4kOJPgnEm9eZb8X-VABstgmDAeDl8QMFWvlXUNMcBLRW2zIV3FV50n0kRwPNGg";
 
 constexpr uint64_t kCooldownMs = 45000ULL;
 constexpr size_t kSessionTailBytes = 48 * 1024;
@@ -595,7 +605,9 @@ ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req) {
     // No logging of users' freeform messages, either.
     std::string payload;
     payload.reserve(req.title.size()+req.body.size()+600);
-    payload+="{\"username\":\"PSVitaAlive Feedback\",";
+    payload+="{\"thread_name\":\"";
+    payload+=jsonEscape(feedbackForumThreadName(req.title,req.suggestion));
+    payload+="\",\"username\":\"PSVitaAlive Feedback\",";
     payload+="\"allowed_mentions\":{\"parse\":[]},";
     payload+="\"content\":\"";
     payload+=jsonEscape(std::string("#feedback ")+tag);
@@ -623,7 +635,8 @@ ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req) {
         out.message="HTTP init failed";
         return out;
     }
-    const HttpResult hr=http.postJson(kDiscordWebhookUrl,payload);
+    const char* targetWebhook = req.suggestion ? kFeedbackSuggestionWebhookUrl : kFeedbackProblemWebhookUrl;
+    const HttpResult hr=http.postJson(targetWebhook,payload);
     const int code=http.lastStatusCode();
     const std::string httpError=http.lastError();
     http.shutdown();
