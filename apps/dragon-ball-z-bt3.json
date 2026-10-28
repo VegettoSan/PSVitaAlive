@@ -14,8 +14,8 @@
     "source-port",
     "other"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-23",
+  "version": "1.1",
+  "version_date": "2026-10-28",
   "requirements": "- A PS Vita running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (see this guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core. Without it the game runs, but heavy scenes are slower.\n- About 3 GB free on ux0: for the game files",
   "size": 2621440,
   "status": "Verified",
@@ -23,7 +23,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Tenkaichi3Decomp-Vita%20v1.0.vpk",
+      "url": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Tenkaichi3Decomp-Vita%20v1.1.vpk",
       "size": 2621440,
       "recommended": true
     },
