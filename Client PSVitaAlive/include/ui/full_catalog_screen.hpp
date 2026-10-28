@@ -38,6 +38,7 @@ enum class LocalInstallState {
 struct LocalInstallInfo {
     LocalInstallState state = LocalInstallState::Unknown;
     std::string installedVersion;
+    const char* installedMount = nullptr; // cached ux0/uma0/imc0/xmc0 for PSP/PS1 only
 };
 
 class FullCatalogScreen {

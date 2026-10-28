@@ -24,6 +24,7 @@ struct PspInstallProgress {
     uint64_t current = 0;
     uint64_t total = 0;
     std::string message;
+    std::string installPath; // Exact pspemu destination while copying
 };
 
 using PspInstallProgressFn = std::function<void(const PspInstallProgress&)>;

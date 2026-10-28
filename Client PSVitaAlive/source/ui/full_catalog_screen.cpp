@@ -6875,6 +6875,20 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     // Square is drawn geometrically: it works even if a .pgf font lacks '□'.
     // The label gets its own clipping strip and scrolls if localized text overflows.
     if (showContentFilter) {
+        // Display the exact active localized filter, reusing the menu's static options.
+        const char* activeFilterLabel = ::psvitaalive::L("FILTERS_MENU_TITLE");
+        int filterCount = 0;
+        const FilterOption* filterOptions = filterOptionsForCatalog(filterCount);
+        for (int i = 0; i < filterCount; ++i) {
+            const FilterOption& option = filterOptions[i];
+            if (option.mode == ContentFilter::Heading || option.mode != filterMode_)
+                continue;
+            if ((option.mode == ContentFilter::Category || option.mode == ContentFilter::Genre) &&
+                std::strcmp(option.category, filterCategory_) != 0)
+                continue;
+            activeFilterLabel = filterOptionLabel(option);
+            break;
+        }
         const unsigned chipBg = filterMode_ != ContentFilter::All ? SURFACE : SURFACE2;
         const unsigned chipFg = filterMode_ != ContentFilter::All ? WHITE : ACCENT;
         vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, FILTER_CHIP_H, chipBg);
@@ -6890,7 +6904,7 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         vita2d_draw_rectangle(sx + side - 2, sy, 2, side, chipFg);
         drawFilterMarqueeText(&font_, gdX + 43, FILTER_CHIP_Y + 26,
             gdW - 54, FILTER_CHIP_Y + 3, FILTER_CHIP_Y + FILTER_CHIP_H - 3,
-            chipFg, 0.89f, ::psvitaalive::L("FILTERS_MENU_TITLE"), true);
+            chipFg, 0.89f, activeFilterLabel, true);
     }
     {
         const std::string clock = currentTimeLabel();
@@ -7604,8 +7618,11 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
     if (state_.catalog != CatalogType::Homebrew) {
         // Games: presence-only detection. Never evaluate installed SFO versions.
         LocalInstallInfo game;
-        game.state = index.contains(state_.catalog, tid, item.alternateTitleIds)
-            ? LocalInstallState::Installed : LocalInstallState::NotInstalled;
+        const char* mount = index.locationFor(state_.catalog, tid, item.alternateTitleIds);
+        game.state = mount ? LocalInstallState::Installed : LocalInstallState::NotInstalled;
+        if (state_.catalog == CatalogType::PspGames ||
+            state_.catalog == CatalogType::Ps1Games)
+            game.installedMount = mount;
         return game;
     }
     // Fast negative for Homebrew status filters: only actually installed
@@ -7751,10 +7768,15 @@ bool isInstallBadgeState(const LocalInstallInfo& info) {
         || info.state == LocalInstallState::InstalledUnknown;
 }
 
-const char* installBadgeLabel(const LocalInstallInfo& info) {
-    return info.state == LocalInstallState::UpdateAvailable
+const char* installBadgeLabel(const LocalInstallInfo& info,
+                              char* buffer, size_t size) {
+    const char* label = info.state == LocalInstallState::UpdateAvailable
         ? ::psvitaalive::L(::psvitaalive::TextId::BadgeUpdate)
         : ::psvitaalive::L(::psvitaalive::TextId::BadgeInstalled);
+    if (info.state != LocalInstallState::Installed || !info.installedMount)
+        return label;
+    sceClibSnprintf(buffer, size, "%s %s", label, info.installedMount);
+    return buffer;
 }
 
 int installBadgeWidth(const ::psvitaalive::ui::UiFont* font, const LocalInstallInfo& info, bool compact) {
@@ -7763,7 +7785,9 @@ int installBadgeWidth(const ::psvitaalive::ui::UiFont* font, const LocalInstallI
     const int padX = compact ? 6 : 7;
     const int minW = compact ? 70 : 76;
     const int maxW = compact ? 124 : 112;
-    const int tw = ::psvitaalive::ui::uiTextWidth(font, scale, installBadgeLabel(info));
+    char buffer[128];
+    const int tw = ::psvitaalive::ui::uiTextWidth(font, scale,
+        installBadgeLabel(info, buffer, sizeof(buffer)));
     return std::max(minW, std::min(maxW, tw + padX * 2));
 }
 } // namespace
@@ -7774,7 +7798,8 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
 
     const bool upd = (info.state == LocalInstallState::UpdateAvailable);
     const bool unk = (info.state == LocalInstallState::InstalledUnknown);
-    const char* label = installBadgeLabel(info);
+    char labelBuffer[128];
+    const char* label = installBadgeLabel(info, labelBuffer, sizeof(labelBuffer));
     const unsigned bg = upd ? RGBA8(0xE0, 0x8A, 0x10, 255)
                             : (unk ? RGBA8(0x70, 0x78, 0x88, 255) : ACCENT);
     const unsigned fg = upd ? WHITE : (unk ? WHITE : BG);
@@ -9967,8 +9992,10 @@ vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
 
 if(installOutcome_==1){
   using TID = ::psvitaalive::TextId;
+  // PSP/PS1 media copied to pspemu is an installation, not a ZIP extraction.
+  const bool pspMedia = installResultPath_.find(":pspemu/") != std::string::npos;
   const bool zipExtract =
-      !installLiveAreaOk_ &&
+      !pspMedia && !installLiveAreaOk_ &&
       installResultTitleId_.empty() &&
       !installResultPath_.empty() &&
       (installResultPath_.find("ux0:app/") != 0);
@@ -10467,6 +10494,13 @@ else
 ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 276,
     (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
     0.80f, waitHint);
+// Show the destination while PSP/PS1 media is actually being installed.
+if ((stageInstall || stageExtract) &&
+    installResultPath_.find(":pspemu/") != std::string::npos) {
+    const std::string targetLine = std::string(::psvitaalive::L(::psvitaalive::TextId::LabelPath))
+        + ": " + installResultPath_;
+    drawFitted(x + 28, y + 299, TEXT, 0.70f, targetLine.c_str(), w - 56);
+}
 // LOCKED banner — tall + large type, no overlap with button below.
 {
   const int lbX = x + 20, lbY = y + 308, lbW = w - 40, lbH = 78;

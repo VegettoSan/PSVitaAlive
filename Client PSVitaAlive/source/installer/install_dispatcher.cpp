@@ -25,6 +25,7 @@ namespace {
 
 // pkg2zip runs on the installer worker thread; forward % to InstallController via onProgress.
 InstallDispatchProgressFn g_pkg2zipProgressFn;
+std::string g_pkg2zipInstallPath;
 
 extern "C" void psvitaalive_pkg2zip_progress(int percent, const char* phase) {
     if (!g_pkg2zipProgressFn) return;
@@ -35,6 +36,7 @@ extern "C" void psvitaalive_pkg2zip_progress(int percent, const char* phase) {
     p.current = static_cast<uint64_t>(percent);
     p.total = 100;
     p.message = (phase && phase[0]) ? phase : "Unpacking PKG";
+    p.installPath = g_pkg2zipInstallPath;
     g_pkg2zipProgressFn(p);
 }
 
@@ -200,6 +202,9 @@ InstallDispatchResult InstallDispatcher::installFile(
                 installed[0] = 0;
                 diagnostics::log(std::string("[InstallDispatcher] Adrenaline PKG unpack begin path=") + path);
                 const int asIso = (pspMediaFormat_ == PspMediaFormat::Iso) ? 1 : 0;
+                // PKG unpacker chooses the final file name; expose its real target folder.
+                g_pkg2zipInstallPath = std::string(AppSettings::toString(directStorage))
+                    + "pspemu/" + (asIso ? "ISO/" : "PSP/GAME/");
                 diagnostics::log(std::string("[InstallDispatcher] Adrenaline media format=") +
                     AppSettings::toString(pspMediaFormat_));
                 diagnostics::log("[InstallDispatcher] calling psp_pkg_unpack_to_pspemu");
@@ -211,6 +216,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                     p.current = 0;
                     p.total = 100;
                     p.message = asIso ? "Unpacking PKG (ISO mode)" : "Unpacking PKG (folder mode)";
+                    p.installPath = g_pkg2zipInstallPath;
                     onProgress(p);
                 }
                 const char* partition = AppSettings::toString(directStorage);
@@ -218,6 +224,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 const int ur = psp_pkg_unpack_to_pspemu(path.c_str(), partition, asIso, installed, sizeof(installed));
                 pkg2zip_set_progress_callback(nullptr);
                 g_pkg2zipProgressFn = InstallDispatchProgressFn();
+                g_pkg2zipInstallPath.clear();
                 diagnostics::log(std::string("[InstallDispatcher] unpack returned ") + std::to_string(ur));
                 if (ur != 0) {
                     const char* err = pkg2zip_last_error();
@@ -398,6 +405,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 p.stage = InstallDispatchProgress::Installing;
                 p.current = pp.current; p.total = pp.total;
                 p.message = pp.message.empty() ? "Installing PBP" : pp.message;
+                p.installPath = pp.installPath;
                 onProgress(p);
             }, shouldCancel);
         lastInstallPath_ = psp.lastInstallPath(); lastLiveAreaOk_ = false;
@@ -420,6 +428,7 @@ InstallDispatchResult InstallDispatcher::installFile(
                 p.stage = InstallDispatchProgress::Installing;
                 p.current = pp.current; p.total = pp.total;
                 p.message = pp.message.empty() ? "Installing ISO/CSO" : pp.message;
+                p.installPath = pp.installPath;
                 onProgress(p);
             }, shouldCancel);
         lastInstallPath_ = psp.lastInstallPath(); lastLiveAreaOk_ = false;

@@ -106,6 +106,7 @@ PspInstallResult PspInstaller::copyFile(
             p.current = copied;
             p.total = total > 0 ? static_cast<uint64_t>(total) : 0;
             p.message = "Copying to pspemu";
+            p.installPath = dst;
             onProgress(p);
         }
     }
@@ -152,6 +153,7 @@ PspInstallResult PspInstaller::installIsoCso(
         PspInstallProgress p;
         p.stage = PspInstallProgress::Preparing;
         p.message = "Preparing Adrenaline ISO folder";
+        p.installPath = dest;
         onProgress(p);
     }
 
@@ -206,6 +208,7 @@ PspInstallResult PspInstaller::installPbp(
         PspInstallProgress p;
         p.stage = PspInstallProgress::Preparing;
         p.message = "Preparing PSP GAME folder";
+        p.installPath = dest;
         onProgress(p);
     }
 

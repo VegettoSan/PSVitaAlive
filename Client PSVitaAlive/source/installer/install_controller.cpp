@@ -1855,6 +1855,7 @@ int InstallController::workerMain() {
                     }
                 }
                 if (!progress.message.empty()) setMessage(progress.message.c_str());
+                if (!progress.installPath.empty()) setInstallPath(progress.installPath.c_str());
             },
             [this]() { return installCancelRequested_.load(std::memory_order_acquire); },
             activeZipDestination_,

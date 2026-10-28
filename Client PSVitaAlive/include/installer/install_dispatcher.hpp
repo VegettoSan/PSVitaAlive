@@ -37,6 +37,7 @@ struct InstallDispatchProgress {
     uint64_t total = 0;
 
     std::string message;
+    std::string installPath; // Destination forwarded to the controller/UI
 };
 
 using InstallDispatchProgressFn =
