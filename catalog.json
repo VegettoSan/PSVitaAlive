@@ -1,5 +1,45 @@
 [
   {
+    "id": "insurgency-beta",
+    "title_id": "VITACQ001",
+    "name": "Insurgency BETA",
+    "description": "Insurgency: VITA - Multiplayer Beta",
+    "long_description": "Insurgency: VITA - Multiplayer Beta\n\n- PsVitaAlive -",
+    "author_ids": [
+      "onedumbfox"
+    ],
+    "category_id": "games",
+    "subcategory_ids": [
+      "shooter",
+      "strategy"
+    ],
+    "version": "4",
+    "version_date": "2026-10-26",
+    "requirements": "- No Data",
+    "size": 688809574,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK  + Game Files",
+        "url": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
+        "size": 688809574,
+        "recommended": true
+      },
+      {
+        "type": "Community",
+        "name": "Post Reddit",
+        "url": "https://www.reddit.com/r/vitahacks/comments/1x7eotu/insurgency_vita_multiplayer_beta_feature_update/"
+      }
+    ],
+    "icon": "https://archive.org/download/insurgency-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/insurgency-vita/shot0.png",
+      "https://archive.org/download/insurgency-vita/shot1.png",
+      "https://archive.org/download/insurgency-vita/shot2.png"
+    ]
+  },
+  {
     "id": "resident-evil-4-gc",
     "title_id": "BIOHAZ004",
     "name": "Resident Evil 4 GC",
@@ -732,46 +772,6 @@
     "icon": "https://archive.org/download/ladxhd-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/ladxhd-vita/Shot0.png"
-    ]
-  },
-  {
-    "id": "insurgency-beta",
-    "title_id": "VITACQ001",
-    "name": "Insurgency BETA",
-    "description": "Insurgency: VITA - Multiplayer Beta",
-    "long_description": "Insurgency: VITA - Multiplayer Beta\n\n- PsVitaAlive -",
-    "author_ids": [
-      "onedumbfox"
-    ],
-    "category_id": "games",
-    "subcategory_ids": [
-      "shooter",
-      "strategy"
-    ],
-    "version": "BETA",
-    "version_date": "2026-10-16",
-    "requirements": "- No Data",
-    "size": 720896000,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK  + Game Files",
-        "url": "https://archive.org/download/insurgency-vita/insurgency_patch2.vpk",
-        "size": 720896000,
-        "recommended": true
-      },
-      {
-        "type": "Community",
-        "name": "Post Reddit",
-        "url": "https://www.reddit.com/r/vitahacks/comments/1x7eotu/insurgency_vita_multiplayer_beta_feature_update/"
-      }
-    ],
-    "icon": "https://archive.org/download/insurgency-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/insurgency-vita/shot0.png",
-      "https://archive.org/download/insurgency-vita/shot1.png",
-      "https://archive.org/download/insurgency-vita/shot2.png"
     ]
   },
   {
