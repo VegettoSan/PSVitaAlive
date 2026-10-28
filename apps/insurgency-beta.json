@@ -12,17 +12,17 @@
     "shooter",
     "strategy"
   ],
-  "version": "BETA",
-  "version_date": "2026-10-16",
+  "version": "4",
+  "version_date": "2026-10-26",
   "requirements": "- No Data",
-  "size": 720896000,
+  "size": 688809574,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK  + Game Files",
-      "url": "https://archive.org/download/insurgency-vita/insurgency_patch2.vpk",
-      "size": 720896000,
+      "url": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
+      "size": 688809574,
       "recommended": true
     },
     {
