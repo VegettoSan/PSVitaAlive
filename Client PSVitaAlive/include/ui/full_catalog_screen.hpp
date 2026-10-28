@@ -231,6 +231,7 @@ private:
     std::unordered_map<std::string, LocalInstallInfo> installStatusCache_;
     // Install results awaiting one badge refresh after the result overlay closes.
     std::vector<std::string> pendingInstallStatusRefreshIds_;
+    bool pendingGameInstallRefresh_ = false; // PSP/PS1 installs may not supply a Title ID
     std::string catalogLoadingLabel_;
     std::string catalogLoadingMessage_;
     uint64_t catalogLoadingCurrent_ = 0;

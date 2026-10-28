@@ -3001,6 +3001,12 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
                   pendingInstallStatusRefreshIds_.end()) {
         pendingInstallStatusRefreshIds_.push_back(titleId);
     }
+    // Adrenaline ISO/PBP/PKG installs often have no dispatcher Title ID.
+    // Refresh the cached mount index once the result is dismissed.
+    if (newTerminalResult && outcome == 1 &&
+        (state_.catalog == CatalogType::PspGames ||
+         state_.catalog == CatalogType::Ps1Games))
+        pendingGameInstallRefresh_ = true;
     installProgressActive_ = active;
     installPauseSupported_ = active && pauseSupported && outcome == 0;
     if (needsReboot && outcome == 1) {
@@ -3054,7 +3060,11 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     installZipRecoveryMayBeCorrupt_ = zipRecoveryMayBeCorrupt;
     // Re-probe installed badges only once the result overlay has closed.
     // Rebuilding an Updates filter on every Completed frame causes flicker.
-    if (!active && !pendingInstallStatusRefreshIds_.empty()) {
+    if (!active && (pendingGameInstallRefresh_ ||
+                    !pendingInstallStatusRefreshIds_.empty())) {
+        if (pendingGameInstallRefresh_)
+            installedGameIndex().invalidate();
+        pendingGameInstallRefresh_ = false;
         for (const std::string& completedTitleId : pendingInstallStatusRefreshIds_)
             invalidateInstallStatus(completedTitleId);
         pendingInstallStatusRefreshIds_.clear();
@@ -9993,7 +10003,7 @@ vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
 if(installOutcome_==1){
   using TID = ::psvitaalive::TextId;
   // PSP/PS1 media copied to pspemu is an installation, not a ZIP extraction.
-  const bool pspMedia = installResultPath_.find(":pspemu/") != std::string::npos;
+  const bool pspMedia = installResultPath_.find(":pspemu") != std::string::npos;
   const bool zipExtract =
       !pspMedia && !installLiveAreaOk_ &&
       installResultTitleId_.empty() &&

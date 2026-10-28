@@ -1982,7 +1982,8 @@ int InstallController::workerMain() {
         }
         {
             const std::string& p = dispatcher_.lastInstallPath();
-            const bool zipLike = !dispatcher_.lastLiveAreaOk() && !p.empty() &&
+            const bool pspMedia = p.find(":pspemu") != std::string::npos;
+            const bool zipLike = !pspMedia && !dispatcher_.lastLiveAreaOk() && !p.empty() &&
                 (p.find("ux0:data") != std::string::npos ||
                  p.find("ux0:repatch") != std::string::npos ||
                  p.find("ux0:app/") == std::string::npos);
