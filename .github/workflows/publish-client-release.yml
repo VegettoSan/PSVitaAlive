@@ -1,0 +1,126 @@
+name: Publish PSVitaAlive Release
+
+# Publish a new client version only after the normal VitaSDK build and tests pass.
+on:
+  workflow_run:
+    workflows: ["Build PS Vita Client"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: psvitaalive-client-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.event == 'push' &&
+          github.event.workflow_run.head_branch == 'main' &&
+          github.event.workflow_run.head_repository.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the exact successfully built revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+
+      - name: Validate version and release request
+        id: meta
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          version="$(grep '^set(VITA_VERSION "' "Client PSVitaAlive/CMakeLists.txt" | cut -d '"' -f2)"
+          if [[ ! "$version" =~ ^[0-9][0-9][.][0-9][0-9]$ ]]; then
+            echo "Invalid or missing VITA_VERSION: $version" >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if [[ ! -s "docs/releases/$version.md" ]]; then
+            echo "No notes for $version; normal development build, not a release."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if gh release view "$version" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $version already exists; leaving it unchanged."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git ls-remote --tags origin "refs/tags/$version" | grep -q .; then
+            echo "Tag $version exists without a release; refusing to overwrite." >&2
+            exit 1
+          fi
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+
+      - name: Download exact successful CI artifact
+        if: steps.meta.outputs.publish == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          set -euo pipefail
+          mkdir -p release-asset
+          gh run download "$RUN_ID" -R "$GITHUB_REPOSITORY" -n "PSVitaAlive-image-throughput-$SOURCE_SHA" -D release-asset
+          test -s release-asset/PSVitaAlive.vpk
+
+      - name: Validate VPK Title ID, version, integrity and SHA-256
+        if: steps.meta.outputs.publish == 'true'
+        shell: bash
+        env:
+          RELEASE_VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          import struct
+          import zipfile
+          from pathlib import Path
+
+          path = Path("release-asset/PSVitaAlive.vpk")
+          with zipfile.ZipFile(path) as archive:
+              bad = archive.testzip()
+              if bad:
+                  raise SystemExit(f"Corrupt VPK entry: {bad}")
+              sfo = archive.read("sce_sys/param.sfo")
+          magic, _, keys_off, values_off, count = struct.unpack_from("<4sIIII", sfo)
+          if magic != bytes([0, 80, 83, 70]) or count > 128:
+              raise SystemExit("Invalid PARAM.SFO")
+          metadata = {}
+          for i in range(count):
+              key_offset, _, length, _, value_offset = struct.unpack_from("<HHIII", sfo, 20 + 16 * i)
+              key = sfo[keys_off + key_offset:].split(bytes([0]), 1)[0].decode("ascii")
+              value = sfo[values_off + value_offset:values_off + value_offset + length]
+              metadata[key] = value.rstrip(bytes([0])).decode("utf-8", errors="replace")
+          expected = os.environ["RELEASE_VERSION"]
+          if metadata.get("APP_VER") != expected or metadata.get("TITLE_ID") != "PSVAS1178":
+              raise SystemExit(f"VPK version/Title ID mismatch: {metadata.get('APP_VER')} / {metadata.get('TITLE_ID')}")
+          print(f"Verified PSVitaAlive {expected} (PSVAS1178), {path.stat().st_size} bytes")
+          PY
+          (cd release-asset && sha256sum PSVitaAlive.vpk > PSVitaAlive.vpk.sha256)
+
+      - name: Create official GitHub Release
+        if: steps.meta.outputs.publish == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.meta.outputs.version }}
+          SOURCE_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          gh release create "$RELEASE_VERSION" \
+            release-asset/PSVitaAlive.vpk \
+            release-asset/PSVitaAlive.vpk.sha256 \
+            -R "$GITHUB_REPOSITORY" \
+            --target "$SOURCE_SHA" \
+            --title "PsVita Alive Store $RELEASE_VERSION" \
+            --notes-file "docs/releases/$RELEASE_VERSION.md" \
+            --latest
