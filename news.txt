@@ -1,55 +1,49 @@
-id: 2026-10-28-0217
-title: PSVitaAlive 02.17 is here!
+id: 2026-10-28-0217-final
+title: PSVitaAlive 02.17 - Update Highlights
 enabled: true
 
 ---
 
-# PSVitaAlive 02.17 is now available!
+# PSVitaAlive 02.17 is available!
 
-A focused update bringing a cleaner interface, better PSP/PS1 installation information, and several reliability fixes. Thanks for testing these changes on real PS Vita hardware!
-
----
-
-## A Cleaner Catalog
-
-- Release dates have been removed from app and game cards to reduce clutter.
-- The version, download size, status and installed indicators remain visible.
-- Release dates are still available inside each application's details.
-- The filter button shows the active filter name, with scrolling text for longer labels.
-- With no active filter, the button now simply says **Filters**.
-
-## PSP and PS1 Storage Improvements
-
-- Installation progress shows where PSP/PS1 games are being saved.
-- The completed installation screen shows the resulting destination.
-- Installed badges can identify the storage device, such as **Installed ux0** or **Installed uma0**.
-- Detection covers supported PSP/PS1 paths on ux0, uma0, imc0 and xmc0.
-- Better install status refresh and clearer completion messages.
-
-## Stability Fixes
-
-- Fixed flickering when an app finishes installing from the **Update** button.
-- Removed an unnecessary duplicate UI render.
-- Reduced work during large PSP/PS1 file copies.
-- Downloads and Install All keep their existing behavior.
-
-## Discord Community
-
-- The Discord button and QR now use the updated invitation.
-- The manual feedback system can send problem reports and suggestions to their dedicated forums.
-
-Join our community: https://discord.gg/byn8FDuDrw
+The latest stable release makes the store cleaner, improves PSP and PS1 installation feedback, and fixes visual issues reported by the community.
 
 ---
 
-## Update Now
+## A Cleaner Store
 
-You can install **PSVitaAlive 02.17** from the official GitHub Release, or use the built-in updater if you already have the client installed.
+- App and game cards now show the version without the extra release date. You can still find the date in each item's details.
+- The filter button says **Filters** when no filter is selected.
+- With a filter active, its name appears on the button and scrolls if needed.
+- App sizes, statuses, installation badges, and Game/Data Files tags are still displayed.
 
-Release and VPK: https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17
+## PSP & PS1 Improvements
+
+- See the destination path while installing a PSP or PS1 game and again when installation completes.
+- Installed badges show the detected storage device, such as **Installed ux0** or **Installed uma0**.
+- The scanner also checks compatible game locations on imc0 and xmc0 when available.
+- Clearer installation results and a better refresh after installing games.
+
+## Stability & Performance
+
+- Fixed screen flicker after completing an app update.
+- Reduced unnecessary screen redraws and operations during PSP/PS1 file copies.
+
+## Discord & Feedback
+
+- Updated the Discord invitation and in-app QR code.
+- Problem reports and suggestions can now go to their respective Discord forum threads.
+
+Discord: https://discord.gg/byn8FDuDrw
 
 ---
 
-## Thank You!
+## Get Version 02.17
 
-Thank you for helping us keep PSVitaAlive free, compatible and easy to use. Enjoy version 02.17!
+Download the official VPK from GitHub Releases, or use PSVitaAlive's built-in updater if you already have the app.
+
+https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17
+
+---
+
+Thank you for supporting PSVitaAlive and helping us improve the store for everyone!
