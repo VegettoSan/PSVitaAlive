@@ -38,3 +38,13 @@ Sustituir solo el botón **Noticias** del pie del catálogo del cliente por **Di
 ## Mantenimiento
 
 La invitación puede cambiar o revocarse. Si cambia, actualizar la URL de `openDiscordQrModal()`, los enlaces de la web y de los README. El generador QR existente guarda el código por URL, por lo que generará uno nuevo si cambia. No depende de un servidor QR externo.
+
+## Legibilidad del enlace — 2026-10-27
+
+La URL visible bajo el QR utiliza **una sola presentación compartida** para las fichas de aplicaciones/juegos y el servidor de Discord:
+
+- Escala de fuente incrementada de `0.65f` a `0.92f` (~42 % más), con espacio vertical de **25 píxeles** por línea.
+- Panel de fondo oscuro fijo, texto blanco y borde del acento correspondiente: Discord morado o color elegido para el resto de QR.
+- Hasta **tres líneas** visibles por vez, ajustadas al espacio entre el QR y el botón Cerrar. Los enlaces largos se parten según su ancho real en píxeles y siguen navegables con **izquierda/derecha**; el indicador se alinea a la derecha sin cubrir la etiqueta.
+- El cálculo del ajuste de texto se hace al **abrir** cada modalidad QR y reutiliza las líneas en memoria durante el dibujo; no cambia los PNG, el caché ni el uso de red.
+- Probar en una PS Vita real y Vita3K con enlaces cortos de Discord y enlaces largos de Homebrew, PS Vita, PSP y PS1, incluyendo cada estilo de fuente y los ocho idiomas.

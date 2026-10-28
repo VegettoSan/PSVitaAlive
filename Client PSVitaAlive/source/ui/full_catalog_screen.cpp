@@ -1159,7 +1159,14 @@ constexpr int WEB_QR_BTN_X = 356;
 constexpr int WEB_QR_BTN_Y = 494;
 constexpr int WEB_QR_BTN_W = 248;
 constexpr int WEB_QR_BTN_H = 35;
-constexpr int WEB_QR_URL_VISIBLE_LINES = 5;
+// Three clearly readable URL lines fit below the QR; long URLs scroll horizontally
+// via LEFT/RIGHT as before, one wrapped line at a time.
+constexpr int WEB_QR_URL_VISIBLE_LINES = 3;
+constexpr float WEB_QR_URL_FONT_SCALE = 0.92f;
+constexpr int WEB_QR_URL_TEXT_X = WEB_QR_LEFT_X + 12;
+constexpr int WEB_QR_URL_TEXT_W = WEB_QR_LEFT_W - 24;
+constexpr int WEB_QR_URL_FIRST_Y = 423;
+constexpr int WEB_QR_URL_LINE_H = 25;
 }
 
 constexpr int FULL_CARD_H=136,SPLIT_CARD_H=118,DETAIL_HEADER_H=108,LINE_H=24,DETAIL_SECTION_H=30,DETAIL_META_H=28,DETAIL_SECTION_GAP=16,TRANSITION_MS=340,LINK_ROW_H=46,LINK_GAP=6,SCREENSHOT_ROW_H=250;
@@ -8027,7 +8034,7 @@ void FullCatalogScreen::openWebQrModal() {
 
     // Prepare both text columns once. No wrapping, link classification or
     // allocation runs in the frame renderer while the modal is open.
-    webQrUrlLines_ = wrapTextToWidth(&font_, 0.65f, webQrUrl_, WEB_QR_LEFT_W - 8);
+    webQrUrlLines_ = wrapTextToWidth(&font_, WEB_QR_URL_FONT_SCALE, webQrUrl_, WEB_QR_URL_TEXT_W);
     const auto steps = makeWebQrGuide(state_.catalog, item);
     auto appendLines = [&](const std::string& text, bool heading) {
         const float scale = heading ? 0.82f : 0.72f;
@@ -8098,7 +8105,7 @@ void FullCatalogScreen::openDiscordQrModal() {
     webQrVisible_ = true;
     touchDown_ = touchMoved_ = false;
     webQrHelpScroll_ = webQrHelpMaxScroll_ = webQrUrlScrollLine_ = 0;
-    webQrUrlLines_ = wrapTextToWidth(&font_, 0.65f, webQrUrl_, WEB_QR_LEFT_W - 8);
+    webQrUrlLines_ = wrapTextToWidth(&font_, WEB_QR_URL_FONT_SCALE, webQrUrl_, WEB_QR_URL_TEXT_W);
     const auto appendLines = [&](const char* key, bool heading) {
         const float scale = heading ? 0.82f : 0.72f;
         for (const auto& line : wrapTextToWidth(&font_, scale,
@@ -8176,16 +8183,37 @@ void FullCatalogScreen::drawWebQrOverlay() {
             ey += 22;
         }
     }
-    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X + 2, 390, qrAccent, 0.76f,
-                                 ::psvitaalive::L(webQrDiscord_ ? "DISCORD_QR_URL_LABEL" : "WEB_QR_URL_LABEL"));
-    const int urlEnd = std::min((int)webQrUrlLines_.size(), webQrUrlScrollLine_ + WEB_QR_URL_VISIBLE_LINES);
+    // Shared high-contrast URL card: readable on both Discord and every app QR,
+    // including when the selected theme uses a light surface color.
+    vita2d_draw_rectangle(WEB_QR_LEFT_X, 373, WEB_QR_LEFT_W, 114, qrAccent);
+    vita2d_draw_rectangle(WEB_QR_LEFT_X + 2, 375, WEB_QR_LEFT_W - 4, 110,
+                          RGBA8(0x12, 0x14, 0x1B, 255));
+    const char* urlLabel = ::psvitaalive::L(
+        webQrDiscord_ ? "DISCORD_QR_URL_LABEL" : "WEB_QR_URL_LABEL");
+    const bool urlCanScroll = (int)webQrUrlLines_.size() > WEB_QR_URL_VISIBLE_LINES;
+    const char* scrollHint = ::psvitaalive::L("WEB_QR_URL_SCROLL");
+    const float hintScale = 0.56f;
+    const int hintW = urlCanScroll
+        ? ::psvitaalive::ui::uiTextWidth(&font_, hintScale, scrollHint) : 0;
+    const int labelMaxW = WEB_QR_URL_TEXT_W - (urlCanScroll ? hintW + 10 : 0);
+    float labelScale = 0.78f;
+    while (labelScale > 0.54f &&
+           ::psvitaalive::ui::uiTextWidth(&font_, labelScale, urlLabel) > labelMaxW)
+        labelScale -= 0.02f;
+    ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_URL_TEXT_X, 396, qrAccent,
+                                 labelScale, urlLabel);
+    if (urlCanScroll)
+        ::psvitaalive::ui::uiDrawText(&font_,
+            WEB_QR_LEFT_X + WEB_QR_LEFT_W - 12 - hintW, 396,
+            WHITE, hintScale, scrollHint);
+    const int urlEnd = std::min((int)webQrUrlLines_.size(),
+                                webQrUrlScrollLine_ + WEB_QR_URL_VISIBLE_LINES);
     for (int i = webQrUrlScrollLine_; i < urlEnd; ++i) {
-        const int y = 410 + (i-webQrUrlScrollLine_) * 17;
-        ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X+2, y, WHITE, 0.65f, webQrUrlLines_[i].c_str());
+        const int y = WEB_QR_URL_FIRST_Y +
+                      (i - webQrUrlScrollLine_) * WEB_QR_URL_LINE_H;
+        ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_URL_TEXT_X, y,
+            WHITE, WEB_QR_URL_FONT_SCALE, webQrUrlLines_[i].c_str());
     }
-    if ((int)webQrUrlLines_.size() > WEB_QR_URL_VISIBLE_LINES)
-        ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_LEFT_X+205, 390, DIM, 0.56f,
-                                     ::psvitaalive::L("WEB_QR_URL_SCROLL"));
 
     // The instructions alone are clipped and scrolled; QR and URL stay fixed.
     ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 80, qrAccent, 0.82f,
