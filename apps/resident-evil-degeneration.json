@@ -1,0 +1,46 @@
+{
+  "id": "resident-evil-degeneration",
+  "title_id": "REDG00001",
+  "name": "Resident Evil Degeneration",
+  "description": "Unofficial PS Vita port of the Android version of Resident Evil Degeneration (Capcom).",
+  "long_description": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES) replaced by Vita code. No game files are included. You need your own copy of the Android APK.",
+  "author_ids": [
+    "papileno"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "shooter",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-24",
+  "requirements": "- no data",
+  "size": 942797,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/resident-evil-degeneration-ps-vita/redegeneration%20v1.0.vpk",
+      "size": 942797,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/resident-evil-degeneration-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 20027802,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Official Website",
+      "name": "Github",
+      "url": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Degeneration"
+    }
+  ],
+  "icon": "https://archive.org/download/resident-evil-degeneration-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/resident-evil-degeneration-ps-vita/Shot0.png"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "asphalt-6",
+  "title_id": "ASPHALT06",
+  "name": "Asphalt 6",
+  "description": "Android to PS Vita port of Gameloft's Asphalt 6",
+  "long_description": "Asphalt 6: Adrenaline is Gameloft's arcade racing game, originally released for Android as Asphalt-6-Adrenaline-v1.3.3-offline.apk (package com.gameloft.android.ANMP.GloftA6HP).",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing",
+    "simulation",
+    "source-port"
+  ],
+  "version": "0.2.1",
+  "version_date": "2026-09-26",
+  "requirements": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (required — the engine compiles its GLSL shaders at runtime).",
+  "size": 2306867,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/asphalt-6-ps-vita/asphalt6%20v0.2.1.vpk",
+      "size": 3355443,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/asphalt-6-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 948227277,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/MetalSyntax/Asphalt-6-Vita"
+    }
+  ]
+}
