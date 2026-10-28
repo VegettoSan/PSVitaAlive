@@ -1,5 +1,187 @@
 [
   {
+    "id": "nfs-most-wanted",
+    "title_id": "NFSMWVITA",
+    "name": "NFS Most Wanted",
+    "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "germanalvarez15"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "source-port"
+    ],
+    "version": "1.3.5",
+    "version_date": "2026-10-27",
+    "requirements": "- No Data",
+    "size": 4613734,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.5.vpk",
+        "size": 4613734,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Fix",
+        "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+        "size": 1610612736,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Gihub",
+        "url": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "the-impossible-game",
+    "title_id": "PSVTIG001",
+    "name": "The Impossible Game",
+    "description": "Android to PS Vita port of The Impossible Game originally published by Fluke Games (FlukeDude)",
+    "long_description": "The Impossible Game is FlukeDude's rhythm-platformer, originally released for Android as 05133-the-impossible-1.5.2.apk (package com.flukedude.impossiblegame). This port runs the compiled native library (libimpossible.so — a small, self-contained proprietary engine that handles cube physics, collisions, procedural level generation, and rendering) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI). The UI and audio layers, which were Java on Android, have been fully reimplemented natively in C (menu.c, audio.c, texture.c, save.c) for zero-latency input and native performance.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "puzzle",
+      "strategy"
+    ],
+    "version": "1.2.0",
+    "version_date": "2026-10-27",
+    "requirements": "- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (required by vitaGL's fixed-function shader compiler).",
+    "size": 864358,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/theimpossiblegame%20v1.2.0.vpk",
+        "size": 864358,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
+        "size": 1992294,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/The-Impossible-Game-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/the-impossible-game-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "vitamediadeck",
+    "title_id": "VMDK00001",
+    "name": "VitaMediaDeck",
+    "description": "Private PS Vita media library and playback application",
+    "long_description": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
+    "author_ids": [
+      "spyro-98"
+    ],
+    "category_id": "media",
+    "subcategory_ids": [
+      "audio",
+      "music-player",
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "version": "1.4.1",
+    "version_date": "2026-10-27",
+    "requirements": "- No Data",
+    "size": 6081741,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.4.1.vpk",
+        "size": 6081741,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/spyro-98/VitaMediaDeck"
+      }
+    ],
+    "icon": "https://archive.org/download/vita-media-deck/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vita-media-deck/shot0.jpeg",
+      "https://archive.org/download/vita-media-deck/shot1.jpeg",
+      "https://archive.org/download/vita-media-deck/shot2.jpeg"
+    ]
+  },
+  {
+    "id": "half-life-2",
+    "title_id": "SRCV00001",
+    "name": "Half-Life 2",
+    "description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine",
+    "long_description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine\n\n- PsVitaAlive -",
+    "author_ids": [
+      "largevegetable"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "fps",
+      "shooter",
+      "strategy",
+      "engine-port",
+      "other"
+    ],
+    "version": "0.1.2",
+    "version_date": "2026-10-26",
+    "requirements": "- A PS Vita or PS TV running HENkaku or Ensō. Tested on a PS Vita on firmware 3.65, not yet on a PS TV; for other firmwares, see \"Known issues\".\n- kubridge v0.3.1_hotfix (bythos14's) as a kernel plugin.\n- libshacccg.suprx, extracted on your Vita with ShaRKBR33D.\nHalf-Life 2 from Steam, on the Pre-20th Anniversary build (the Steam beta steam_legacy). Files from the current anniversary build don't work.\n- About 3.9 GB free on ux0 for the hl2 and platform folders.",
+    "size": 21076378,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/half-life-2-for-ps-vita/hl2_vita%20v0.1.2.vpk",
+        "size": 21076378,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 3650722202,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/LargeVegetable/source-engine"
+      }
+    ],
+    "icon": "https://archive.org/download/half-life-2-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/half-life-2-for-ps-vita/bg.png"
+    ]
+  },
+  {
     "id": "insurgency-beta",
     "title_id": "VITACQ001",
     "name": "Insurgency BETA",
@@ -38,6 +220,116 @@
       "https://archive.org/download/insurgency-vita/shot1.png",
       "https://archive.org/download/insurgency-vita/shot2.png"
     ]
+  },
+  {
+    "id": "super-mario-galaxy",
+    "title_id": "SMGV00001",
+    "name": "Super Mario Galaxy",
+    "description": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
+    "long_description": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
+    "author_ids": [
+      "cboc-vita-lab"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "version": "1.1",
+    "version_date": "2026-10-26",
+    "requirements": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
+    "size": 7235174,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/smg-vita/Galaxy-Vita%20v1.1.vpk",
+        "size": 7235174,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2469606195,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Mod",
+        "name": "HD Textures",
+        "url": "https://archive.org/download/smg-vita/hdtex.pack",
+        "size": 4718592,
+        "extract_path": "ux0:data/smg/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/smg-vita/New%20icon0.png",
+    "screenshots": [
+      "https://archive.org/download/smg-vita/shot0.png",
+      "https://archive.org/download/smg-vita/shot.png",
+      "https://archive.org/download/smg-vita/shot1.png"
+    ]
+  },
+  {
+    "id": "javita",
+    "title_id": "JAVITA001",
+    "name": "JAVITA",
+    "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
+    "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "ndrw"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "fps",
+      "shooter",
+      "strategy",
+      "other"
+    ],
+    "version": "v.1.1.0",
+    "version_date": "2026-10-25",
+    "requirements": "- Game Data Files: PC",
+    "size": 4404019,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/javita-ps-vita/JAVITA_1.1.0.vpk",
+        "size": 4404019,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/javita-ps-vita/Game%20Files.zip",
+        "size": 1181116006,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/NDRWhun/JAVITA"
+      }
+    ],
+    "icon": "https://archive.org/download/javita-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/javita-ps-vita/shot0.png"
+    ],
+    "source_name": "VitaDB",
+    "source_id": "1481",
+    "source_url": "https://github.com/NDRWhun/JAVITA",
+    "release_page": "https://github.com/NDRWhun/JAVITA/releases",
+    "updated_at": "2026-08-22T15:39"
   },
   {
     "id": "resident-evil-4-gc",
@@ -87,58 +379,114 @@
     ]
   },
   {
-    "id": "super-mario-galaxy",
-    "title_id": "SMGV00001",
-    "name": "Super Mario Galaxy",
-    "description": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
-    "long_description": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
+    "id": "ff3-vita",
+    "title_id": "FF3000000",
+    "name": "FF3-Vita",
+    "description": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
+    "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar\n\n- PsVitaAlive -",
     "author_ids": [
-      "cboc-vita-lab"
+      "frangarcj",
+      "rinnegatamante",
+      "theflow"
     ],
     "category_id": "ports",
     "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
+      "rpg",
+      "strategy",
+      "other"
     ],
-    "version": "1.0",
-    "version_date": "2026-10-25",
-    "requirements": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-    "size": 6186598,
-    "status": "Verified",
+    "version": "v.1.2.5",
+    "version_date": "2026-10-24",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+    "size": 18245222,
+    "status": "Legacy",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/smg-vita/Galaxy-Vita%20v1.0.vpk",
-        "size": 7235174,
+        "url": "https://archive.org/download/psvitaalive-ff3-vita/FF3%20v1.2.5.vpk",
+        "size": 18245222,
         "recommended": true
       },
       {
         "type": "Game Files",
-        "name": "Game Files USA",
-        "url": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 2469606195,
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
+        "size": 356096410,
         "extract_path": "ux0:data/"
       },
       {
-        "type": "Mod",
-        "name": "HD Textures",
-        "url": "https://archive.org/download/smg-vita/hdtex.pack",
-        "size": 4718592,
-        "extract_path": "ux0:data/smg/"
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/frangarcj/ff3_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-ff3-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-ff3-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-ff3-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-ff3-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-ff3-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-ff3-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "725",
+    "source_url": "https://github.com/frangarcj/ff3_vita",
+    "release_page": "https://github.com/frangarcj/ff3_vita/releases",
+    "updated_at": "2026-08-13T15:34"
+  },
+  {
+    "id": "openmw-vita",
+    "title_id": "OMWV00001",
+    "name": "OpenMW Vita",
+    "description": "Port of Morrowind for PSVita.",
+    "long_description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "kingtorro"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "other"
+    ],
+    "version": "2.4.1",
+    "version_date": "2026-10-24",
+    "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
+    "size": 175217050,
+    "status": "Legacy",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-openmw-vita/openmw-vita.vpk",
+        "size": 175217050,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-openmw-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1073741824,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
+        "name": "Repositorio",
+        "url": "https://github.com/TheLostPantheon/openmw"
       }
     ],
-    "icon": "https://archive.org/download/smg-vita/icon0.png",
+    "icon": "https://archive.org/download/psvitaalive-openmw-vita/icon0.png",
     "screenshots": [
-      "https://archive.org/download/smg-vita/shot0.png"
-    ]
+      "https://archive.org/download/psvitaalive-openmw-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-openmw-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-openmw-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-openmw-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-openmw-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1390",
+    "source_url": "https://github.com/TheLostPantheon/openmw",
+    "release_page": "https://github.com/TheLostPantheon/openmw/releases",
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "castle-crashers",
@@ -184,6 +532,197 @@
     "icon": "https://archive.org/download/castle-crashers-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/castle-crashers-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "conker-s-bad-fur-day",
+    "title_id": "CBFD00064",
+    "name": "Conker's Bad Fur Day",
+    "description": "Conker's Bad Fur Day native PS Vita port",
+    "long_description": "Conker's Bad Fur Day (Rare, 2001) running natively on the PS Vita / PS TV. This is not an emulator: the N64 game was statically recompiled to C with N64Recomp (based on CBFD-Recompiled) and built for the Vita, with the N64's graphics drawn by a renderer written for the Vita's GPU (sceGxm) and the audio microcode running on the Vita's CPU.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "henrykun55"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "platformer",
+      "other"
+    ],
+    "version": "1.3.0",
+    "version_date": "2026-10-24",
+    "requirements": "- A PS Vita or PS TV with HENkaku/Ensō and VitaShell.\n- libshacccg.suprx (the runtime shader compiler) in ur0:data/. If you already play other ports you have it. Otherwise, extract it with ShaRKBR33D.\n- The US ROM of Conker's Bad Fur Day",
+    "size": 8598323,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/conker-vita/conker%20v1.3.0.vpk",
+        "size": 8598323,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/conker-vita/Game%20Files.zip",
+        "size": 67108864,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/HenryKun55/conker-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/conker-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/conker-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "kotor",
+    "title_id": "KOTR00001",
+    "name": "KOTOR",
+    "description": "Star Wars: Knights of the Old Republic on the PlayStation Vita.",
+    "long_description": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "scoobydouche"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy"
+    ],
+    "version": "0.5.0",
+    "version_date": "2026-10-24",
+    "requirements": "- A Vita or PS TV on firmware that can run HENkaku / taiHEN\n- kubridge.skprx installed as a taiHEN plugin\n- libshacccg.suprx in ur0:data/ — the runtime shader compiler. Use this installer if you don't have it. Without it the game hangs on a black screen at the first shader compile, with no error message.\n- Roughly 2.7 GB free on ux0:",
+    "size": 2726298,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/VitaKotor/KOTOR%20v0.5.0.vpk",
+        "size": 2726298,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/VitaKotor/Game%20Files.zip",
+        "size": 2576980378,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ScoobyDouche/VitaKotor"
+      }
+    ],
+    "icon": "https://archive.org/download/VitaKotor/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/VitaKotor/shot0.png"
+    ]
+  },
+  {
+    "id": "mario-kart-wii",
+    "title_id": "MKWV00001",
+    "name": "Mario Kart Wii",
+    "description": "A native PlayStation Vita port of MiniBandit's MKW-3DS",
+    "long_description": "A native PlayStation Vita port of MiniBandit's MKW-3DS, a 1:1 recreation of Mario Kart Wii for the Nintendo 3DS. It's a port of that 3DS recreation, not of the Wii game: no Wii code runs.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "boomannotjeff"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.4.2",
+    "version_date": "2026-10-24",
+    "requirements": "- A PS Vita or PS TV with HENkaku / Ensō and VitaShell.\n- ur0:data/libshacccg.suprx, the Vita's shader compiler. Extract it once with ShaRKF00D.\n- About 3 GB free on ux0: for the game files.",
+    "size": 2306867,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/mkwiita/mkw%20v1.4.2.vpk",
+        "size": 2306867,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Fix v2",
+        "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip",
+        "size": 1932735283,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/boomannotjeff/mkwiita"
+      }
+    ],
+    "icon": "https://archive.org/download/mkwiita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/mkwiita/shot0.png",
+      "https://archive.org/download/mkwiita/shot1.png",
+      "https://archive.org/download/mkwiita/shot2.png",
+      "https://archive.org/download/mkwiita/shot3.png",
+      "https://archive.org/download/mkwiita/shot4.png"
+    ]
+  },
+  {
+    "id": "mario-strikers-charged",
+    "title_id": "MSCN00003",
+    "name": "Mario Strikers Charged",
+    "description": "Mario Strikers Charged for PS Vita.",
+    "long_description": "A native PS Vita port of Mario Strikers Charged, with Vita controls, audio and graphics support.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "cboc-vita-lab"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "version": "1.1",
+    "version_date": "2026-10-24",
+    "requirements": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
+    "size": 3984589,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Strikers-Charged-Vita%20v1.1.vpk",
+        "size": 3984589,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1932735283,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/mario-strikers-charged-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
+      "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
     ]
   },
   {
@@ -304,6 +843,63 @@
     ]
   },
   {
+    "id": "monster-hunter-tri",
+    "title_id": "MH3WII001",
+    "name": "Monster Hunter Tri",
+    "description": "Monster Hunter Tri for the PS Vita.",
+    "long_description": "A static recompilation of Monster Hunter Tri (Wii) to native ARM code. The game's PowerPC code is translated to C++ and linked with a native runtime that replaces the Wii's hardware and system software: there is no emulator, interpreter or JIT. Rendering goes through native GXM on the PS Vita and OpenGL ES 3.0 on Linux; a WebAssembly build draws through WebGPU.\n\nThe repository contains no game code or data. You need your own copy of the European disc (RMHP08, \"Monster Hunter Tri (Europe) (En,Fr,De,Es,It)\") as an ISO or RVZ image. WIA images are recognized too, but untested and possibly unstable. Other regions are not supported.\n\nHow the port reaches full speed on a 444 MHz Cortex-A9, written so that the techniques carry over to other Wii games: docs/optimizations.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "grarak"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.2.2",
+    "version_date": "2026-10-23",
+    "requirements": "- kubridge.skprx (0.3.1 or newer)\n- CapUnlocker.skprx",
+    "size": 18769510,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/monster-hunter-tri-ps-vita/mh3-vita%20v0.2.2.vpk",
+        "size": 18769510,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
+        "size": 2469606195,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4",
+        "url": "https://archive.org/download/azahar-vita-/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Grarak/mh3-wii"
+      }
+    ],
+    "icon": "https://archive.org/download/monster-hunter-tri-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/monster-hunter-tri-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "wonder-boy-the-dragon-s-trap",
     "title_id": "WBDT00001",
     "name": "Wonder Boy: The Dragon's Trap",
@@ -351,53 +947,61 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
   },
   {
-    "id": "mario-kart-wii",
-    "title_id": "MKWV00001",
-    "name": "Mario Kart Wii",
-    "description": "A native PlayStation Vita port of MiniBandit's MKW-3DS",
-    "long_description": "A native PlayStation Vita port of MiniBandit's MKW-3DS, a 1:1 recreation of Mario Kart Wii for the Nintendo 3DS. It's a port of that 3DS recreation, not of the Wii game: no Wii code runs.\n\n- PsVitaAlive -",
+    "id": "prince-of-persia-classic",
+    "title_id": "POPC00001",
+    "name": "Prince of Persia Classic",
+    "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
+    "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics\n\n- PsVitaAlive -",
     "author_ids": [
-      "boomannotjeff"
+      "claude-ai",
+      "metalsyntax"
     ],
     "category_id": "ports",
     "subcategory_ids": [
-      "racing",
-      "strategy",
-      "source-port"
+      "action",
+      "adventure",
+      "arcade",
+      "platformer",
+      "puzzle",
+      "rpg",
+      "strategy"
     ],
-    "version": "1.4.0",
+    "version": "01.50",
     "version_date": "2026-10-22",
-    "requirements": "- A PS Vita or PS TV with HENkaku / Ensō and VitaShell.\n- ur0:data/libshacccg.suprx, the Vita's shader compiler. Extract it once with ShaRKF00D.\n- About 3 GB free on ux0: for the game files.",
-    "size": 2306867,
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 4372562,
     "status": "Verified",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/mkwiita/mkw%20v1.3.0.vpk",
-        "size": 2306867,
+        "url": "https://archive.org/download/ppc-psvita/popclassic-v01.50.vpk",
+        "size": 3323986,
         "recommended": true
       },
       {
         "type": "Game Files",
-        "name": "Game Files Fix v2",
-        "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip",
-        "size": 1932735283,
+        "name": "Game Data Files ZIP - MediaFire",
+        "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
+        "size": 81699799,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Data Files ZIP",
+        "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+        "size": 81699799,
         "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/boomannotjeff/mkwiita"
+        "name": "Repositorio",
+        "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
       }
     ],
-    "icon": "https://archive.org/download/mkwiita/icon0.png",
+    "icon": "https://archive.org/download/ppc-psvita/icon0.png",
     "screenshots": [
-      "https://archive.org/download/mkwiita/shot0.png",
-      "https://archive.org/download/mkwiita/shot1.png",
-      "https://archive.org/download/mkwiita/shot2.png",
-      "https://archive.org/download/mkwiita/shot3.png",
-      "https://archive.org/download/mkwiita/shot4.png"
+      "https://archive.org/download/ppc-psvita/pic0.png"
     ]
   },
   {
@@ -500,144 +1104,50 @@
     ]
   },
   {
-    "id": "half-life-2",
-    "title_id": "SRCV00001",
-    "name": "Half-Life 2",
-    "description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine",
-    "long_description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine\n\n- PsVitaAlive -",
+    "id": "kingdom-hearts-358-2-days",
+    "title_id": "KHDD00358",
+    "name": "Kingdom Hearts 358/2 Days",
+    "description": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
+    "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
     "author_ids": [
-      "largevegetable"
+      "ggdrn"
     ],
     "category_id": "ports",
     "subcategory_ids": [
-      "fps",
-      "shooter",
-      "strategy",
-      "engine-port",
-      "other"
+      "adventure",
+      "rpg",
+      "source-port",
+      "game-engine"
     ],
-    "version": "0.1.1",
+    "version": "1.0.0",
     "version_date": "2026-10-21",
-    "requirements": "- A PS Vita or PS TV running HENkaku or Ensō. Tested on a PS Vita on firmware 3.65, not yet on a PS TV; for other firmwares, see \"Known issues\".\n- kubridge v0.3.1_hotfix (bythos14's) as a kernel plugin.\n- libshacccg.suprx, extracted on your Vita with ShaRKBR33D.\nHalf-Life 2 from Steam, on the Pre-20th Anniversary build (the Steam beta steam_legacy). Files from the current anniversary build don't work.\n- About 3.9 GB free on ux0 for the hl2 and platform folders.",
-    "size": 21076378,
+    "requirements": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
+    "size": 3984589,
     "status": "Verified",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/half-life-2-for-ps-vita/hl2_vita%200.1.1.vpk",
-        "size": 21076378,
+        "url": "https://archive.org/download/kh-days-vita/khdays-vita-1.0.0.vpk",
+        "size": 3984589,
         "recommended": true
       },
       {
         "type": "Game Files",
         "name": "Game Files",
-        "url": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 3650722202,
+        "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
+        "size": 268435456,
         "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
         "name": "Github",
-        "url": "https://github.com/LargeVegetable/source-engine"
+        "url": "https://github.com/ggdrn/KH-DAYS-VITA"
       }
     ],
-    "icon": "https://archive.org/download/half-life-2-for-ps-vita/icon0.png",
+    "icon": "https://archive.org/download/kh-days-vita/icon0.png",
     "screenshots": [
-      "https://archive.org/download/half-life-2-for-ps-vita/bg.png"
-    ]
-  },
-  {
-    "id": "nfs-most-wanted",
-    "title_id": "NFSMWVITA",
-    "name": "NFS Most Wanted",
-    "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-    "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "germanalvarez15"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "racing",
-      "source-port"
-    ],
-    "version": "1.3.0",
-    "version_date": "2026-10-20",
-    "requirements": "- No Data",
-    "size": 4613734,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.0.vpk",
-        "size": 4613734,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Fix",
-        "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-        "size": 1610612736,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Gihub",
-        "url": "https://github.com/germanalvarez15/nfsmw-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/nfsmw-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "mario-strikers-charged",
-    "title_id": "MSCN00003",
-    "name": "Mario Strikers Charged",
-    "description": "Mario Strikers Charged for PS Vita.",
-    "long_description": "A native PS Vita port of Mario Strikers Charged, with Vita controls, audio and graphics support.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "cboc-vita-lab"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "strategy",
-      "source-port",
-      "other"
-    ],
-    "version": "01.00",
-    "version_date": "2026-10-19",
-    "requirements": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
-    "size": 3879731,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Strikers%20v01.00%2020261019.vpk",
-        "size": 3879731,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 1932735283,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/mario-strikers-charged-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
-      "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
+      "https://archive.org/download/kh-days-vita/shot0.png"
     ]
   },
   {
@@ -684,6 +1194,47 @@
     "icon": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/real-racing-3-port-for-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "inotia-3-children-of-carnia",
+    "title_id": "INOTIA3PV",
+    "name": "Inotia 3: Children of Carnia",
+    "description": "PS Vita port of the classic ARPG Inotia 3: Children of Carnia, originally published by Com2uS for Android, built on soloader-boilerplate.",
+    "long_description": "An unofficial, native Android-to-PS Vita wrapper port of Inotia 3: Children of Carnia (originally developed by Com2uS). This port utilizes so-loader technology, FalsoJNI, and vitaGL to load the official ARMv6 shared library (libgame.so) directly in native PS Vita RAM.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy"
+    ],
+    "version": "v.1.0.2",
+    "version_date": "2026-10-18",
+    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "size": 1001403,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/inotia3%20v1.0.2.vpk",
+        "size": 1001370,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/MetalSyntax/Inotia3-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
+      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
     ]
   },
   {
@@ -790,8 +1341,8 @@
       "strategy",
       "other"
     ],
-    "version": "0.5.6",
-    "version_date": "2026-10-15",
+    "version": "0.5.7",
+    "version_date": "2026-10-16",
     "requirements": "- A Vita or PS TV capable of running HENkaku/taiHEN.\n- kubridge.skprx installed and enabled as a taiHEN plugin.\n- libshacccg.suprx in ur0:data/ for runtime shader compilation.\n- About 4 GB free on ux0: for the tested game data. The exact requirement depends on the Android release and optional restored-content files.",
     "size": 2097152,
     "status": "Verified",
@@ -799,7 +1350,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/VitaKotor2/KOTOR2%20v0.5.6.vpk",
+        "url": "https://archive.org/download/VitaKotor2/KOTOR2%20v0.5.7.vpk",
         "size": 2097152,
         "recommended": true
       },
@@ -819,53 +1370,6 @@
     "icon": "https://archive.org/download/VitaKotor2/icon0.png",
     "screenshots": [
       "https://archive.org/download/VitaKotor2/shot0.png"
-    ]
-  },
-  {
-    "id": "conker-s-bad-fur-day",
-    "title_id": "CBFD00064",
-    "name": "Conker's Bad Fur Day",
-    "description": "Conker's Bad Fur Day native PS Vita port",
-    "long_description": "Conker's Bad Fur Day (Rare, 2001) running natively on the PS Vita / PS TV. This is not an emulator: the N64 game was statically recompiled to C with N64Recomp (based on CBFD-Recompiled) and built for the Vita, with the N64's graphics drawn by a renderer written for the Vita's GPU (sceGxm) and the audio microcode running on the Vita's CPU.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "henrykun55"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "platformer",
-      "other"
-    ],
-    "version": "1.1.0",
-    "version_date": "2026-10-14",
-    "requirements": "- A PS Vita or PS TV with HENkaku/Ensō and VitaShell.\n- libshacccg.suprx (the runtime shader compiler) in ur0:data/. If you already play other ports you have it. Otherwise, extract it with ShaRKBR33D.\n- The US ROM of Conker's Bad Fur Day",
-    "size": 8493466,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/conker-vita/conker%20v1.1.0.vpk",
-        "size": 8493466,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/conker-vita/Game%20Files.zip",
-        "size": 67108864,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/HenryKun55/conker-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/conker-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/conker-vita/Shot0.png"
     ]
   },
   {
@@ -1055,63 +1559,6 @@
     ]
   },
   {
-    "id": "monster-hunter-tri",
-    "title_id": "MH3WII001",
-    "name": "Monster Hunter Tri",
-    "description": "Monster Hunter Tri for the PS Vita.",
-    "long_description": "A static recompilation of Monster Hunter Tri (Wii) to native ARM code. The game's PowerPC code is translated to C++ and linked with a native runtime that replaces the Wii's hardware and system software: there is no emulator, interpreter or JIT. Rendering goes through native GXM on the PS Vita and OpenGL ES 3.0 on Linux; a WebAssembly build draws through WebGPU.\n\nThe repository contains no game code or data. You need your own copy of the European disc (RMHP08, \"Monster Hunter Tri (Europe) (En,Fr,De,Es,It)\") as an ISO or RVZ image. WIA images are recognized too, but untested and possibly unstable. Other regions are not supported.\n\nHow the port reaches full speed on a 444 MHz Cortex-A9, written so that the techniques carry over to other Wii games: docs/optimizations.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "grarak"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "strategy",
-      "source-port"
-    ],
-    "version": "0.1",
-    "version_date": "2026-10-12",
-    "requirements": "- kubridge.skprx (0.3.1 or newer)\n- CapUnlocker.skprx",
-    "size": 18350080,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/monster-hunter-tri-ps-vita/mh3-vita%20v0.1.vpk",
-        "size": 18350080,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
-        "size": 2469606195,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Plugin",
-        "name": "CapUnlocker 1.4",
-        "url": "https://archive.org/download/azahar-vita-/CapUnlocker.skprx",
-        "size": 5222,
-        "extract_path": "ur0:tai/",
-        "section": "*KERNEL",
-        "line": "ur0:tai/CapUnlocker.skprx",
-        "required": true
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/Grarak/mh3-wii"
-      }
-    ],
-    "icon": "https://archive.org/download/monster-hunter-tri-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/monster-hunter-tri-ps-vita/shot0.png"
-    ]
-  },
-  {
     "id": "sonic-r",
     "title_id": "SONICR001",
     "name": "Sonic R",
@@ -1203,99 +1650,6 @@
     "icon": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/pic0.png"
-    ]
-  },
-  {
-    "id": "kingdom-hearts-358-2-days",
-    "title_id": "KHDD00358",
-    "name": "Kingdom Hearts 358/2 Days",
-    "description": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
-    "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "ggdrn"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "rpg",
-      "source-port",
-      "game-engine"
-    ],
-    "version": "0.7.0",
-    "version_date": "2026-10-10",
-    "requirements": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
-    "size": 3670016,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/kh-days-vita/khdays-vita-0.7.0.vpk",
-        "size": 3670016,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
-        "size": 268435456,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/ggdrn/KH-DAYS-VITA"
-      }
-    ],
-    "icon": "https://archive.org/download/kh-days-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/kh-days-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "kotor",
-    "title_id": "KOTR00001",
-    "name": "KOTOR",
-    "description": "Star Wars: Knights of the Old Republic on the PlayStation Vita.",
-    "long_description": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "scoobydouche"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "strategy"
-    ],
-    "version": "0.4.2",
-    "version_date": "2026-10-10",
-    "requirements": "- A Vita or PS TV on firmware that can run HENkaku / taiHEN\n- kubridge.skprx installed as a taiHEN plugin\n- libshacccg.suprx in ur0:data/ — the runtime shader compiler. Use this installer if you don't have it. Without it the game hangs on a black screen at the first shader compile, with no error message.\n- Roughly 2.7 GB free on ux0:",
-    "size": 2726298,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/VitaKotor/KOTOR%20v0.4.2.vpk",
-        "size": 2726298,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/VitaKotor/Game%20Files.zip",
-        "size": 2576980378,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/ScoobyDouche/VitaKotor"
-      }
-    ],
-    "icon": "https://archive.org/download/VitaKotor/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/VitaKotor/shot0.png"
     ]
   },
   {
@@ -1839,64 +2193,6 @@
     "icon": "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/icon0.png",
     "screenshots": [
       "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/pic0.png"
-    ]
-  },
-  {
-    "id": "prince-of-persia-classic",
-    "title_id": "POPC00001",
-    "name": "Prince of Persia Classic",
-    "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
-    "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics\n\n- PsVitaAlive -",
-    "author_ids": [
-      "claude-ai",
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "arcade",
-      "platformer",
-      "puzzle",
-      "rpg",
-      "strategy"
-    ],
-    "version": "01.45",
-    "version_date": "2026-10-06",
-    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-    "size": 3145728,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/ppc-psvita/popclassic-v01.45.vpk",
-        "size": 3145728,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP - MediaFire",
-        "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
-        "size": 81699799,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Data Files ZIP",
-        "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
-        "size": 81699799,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
-      }
-    ],
-    "icon": "https://archive.org/download/ppc-psvita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/ppc-psvita/pic0.png"
     ]
   },
   {
@@ -2677,52 +2973,6 @@
     ]
   },
   {
-    "id": "the-impossible-game",
-    "title_id": "PSVTIG001",
-    "name": "The Impossible Game",
-    "description": "Android to PS Vita port of The Impossible Game originally published by Fluke Games (FlukeDude)",
-    "long_description": "The Impossible Game is FlukeDude's rhythm-platformer, originally released for Android as 05133-the-impossible-1.5.2.apk (package com.flukedude.impossiblegame). This port runs the compiled native library (libimpossible.so — a small, self-contained proprietary engine that handles cube physics, collisions, procedural level generation, and rendering) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI). The UI and audio layers, which were Java on Android, have been fully reimplemented natively in C (menu.c, audio.c, texture.c, save.c) for zero-latency input and native performance.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "platformer",
-      "puzzle",
-      "strategy"
-    ],
-    "version": "1.1.0",
-    "version_date": "2026-09-20",
-    "requirements": "- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (required by vitaGL's fixed-function shader compiler).",
-    "size": 800461,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/theimpossiblegame%20v1.1.0.vpk",
-        "size": 800461,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
-        "size": 1992294,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/The-Impossible-Game-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/the-impossible-game-ps-vita-port/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
-    ]
-  },
-  {
     "id": "bully-vita",
     "title_id": "BULLY0000",
     "name": "Bully Vita",
@@ -3375,49 +3625,6 @@
     "source_url": "https://github.com/Brendonm17/Barony-Vita",
     "release_page": "https://github.com/Brendonm17/Barony-Vita/releases",
     "updated_at": "2026-08-13T15:34"
-  },
-  {
-    "id": "vitamediadeck",
-    "title_id": "VMDK00001",
-    "name": "VitaMediaDeck",
-    "description": "Private PS Vita media library and playback application",
-    "long_description": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
-    "author_ids": [
-      "spyro-98"
-    ],
-    "category_id": "media",
-    "subcategory_ids": [
-      "audio",
-      "music-player",
-      "video",
-      "video-player",
-      "streaming"
-    ],
-    "version": "01.01",
-    "version_date": "2026-09-02",
-    "requirements": "- No Data",
-    "size": 5033165,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.2.0.vpk",
-        "size": 5033165,
-        "recommended": true
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/spyro-98/VitaMediaDeck"
-      }
-    ],
-    "icon": "https://archive.org/download/vita-media-deck/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/vita-media-deck/shot0.jpeg",
-      "https://archive.org/download/vita-media-deck/shot1.jpeg",
-      "https://archive.org/download/vita-media-deck/shot2.jpeg"
-    ]
   },
   {
     "id": "lighthouse-vita",
@@ -4083,60 +4290,6 @@
       "https://archive.org/download/soul-knight-psvita/shot0.png",
       "https://archive.org/download/soul-knight-psvita/shot1.png"
     ]
-  },
-  {
-    "id": "javita",
-    "title_id": "JAVITA001",
-    "name": "JAVITA",
-    "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
-    "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "ndrw"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "fps",
-      "shooter",
-      "strategy",
-      "other"
-    ],
-    "version": "v.1.0.1",
-    "version_date": "2026-08-27",
-    "requirements": "- Game Data Files: PC",
-    "size": 3818914,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/javita-ps-vita/JAVITA_1.0.1.vpk",
-        "size": 3818914,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/javita-ps-vita/Game%20Files.zip",
-        "size": 1181116006,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/NDRWhun/JAVITA"
-      }
-    ],
-    "icon": "https://archive.org/download/javita-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/javita-ps-vita/shot0.png"
-    ],
-    "source_name": "VitaDB",
-    "source_id": "1481",
-    "source_url": "https://github.com/NDRWhun/JAVITA",
-    "release_page": "https://github.com/NDRWhun/JAVITA/releases",
-    "updated_at": "2026-08-22T15:39"
   },
   {
     "id": "batman-the-dark-knight-rises",
@@ -6249,66 +6402,6 @@
     "updated_at": "2026-08-13T15:34:48.719516+00:00"
   },
   {
-    "id": "openmw-vita",
-    "title_id": "OMWV00001",
-    "name": "OpenMW Vita",
-    "description": "Port of Morrowind for PSVita.",
-    "long_description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "kingtorro"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.2.2",
-    "version_date": "2026-08-12",
-    "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-    "size": 168380572,
-    "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-openmw-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-openmw-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-openmw-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-openmw-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-openmw-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-openmw-vita/shot_05.png"
-    ],
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-openmw-vita/openmw-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheLostPantheon/openmw/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.1.1"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/TheLostPantheon/openmw"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheLostPantheon/openmw/releases/tag/v2.2"
-      }
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1390",
-    "source_url": "https://github.com/TheLostPantheon/openmw",
-    "release_page": "https://github.com/TheLostPantheon/openmw/releases",
-    "updated_at": "2026-08-13T15:34:48.325950+00:00"
-  },
-  {
     "id": "minecraft-story-mode",
     "title_id": "MCSM00001",
     "name": "Minecraft: Story Mode",
@@ -6362,51 +6455,6 @@
     "source_url": "https://github.com/LeZergan/mcsm-vita",
     "release_page": "https://github.com/LeZergan/mcsm-vita/releases",
     "updated_at": "2026-08-13T15:34:48.324263+00:00"
-  },
-  {
-    "id": "inotia-3-children-of-carnia",
-    "title_id": "INOTIA3PV",
-    "name": "Inotia 3: Children of Carnia",
-    "description": "PS Vita port of the classic ARPG Inotia 3: Children of Carnia, originally published by Com2uS for Android, built on soloader-boilerplate.",
-    "long_description": "An unofficial, native Android-to-PS Vita wrapper port of Inotia 3: Children of Carnia (originally developed by Com2uS). This port utilizes so-loader technology, FalsoJNI, and vitaGL to load the official ARMv6 shared library (libgame.so) directly in native PS Vita RAM.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "claude-ai",
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "rpg",
-      "strategy"
-    ],
-    "version": "v.1.0.0",
-    "version_date": "2026-08-12",
-    "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-    "size": 1001403,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/inotia-3-children-of-carnia.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/MetalSyntax/Inotia3-vita/releases"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/MetalSyntax/Inotia3-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
-      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
-    ]
   },
   {
     "id": "vitaforge",
@@ -7582,6 +7630,52 @@
     "source_url": "https://github.com/WolffsRoom/DeltaruneVita",
     "release_page": "https://github.com/WolffsRoom/DeltaruneVita/releases",
     "updated_at": "2026-08-13T15:34:48.325121+00:00"
+  },
+  {
+    "id": "9mm-hd",
+    "title_id": "NMHD00001",
+    "name": "9mm HD",
+    "description": "PS Vita port of 9mm HD (Android), running the original ARMv7 binary with native controls",
+    "long_description": "This is a wrapper/port of 9mm HD Android for the PS Vita.\n\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.",
+    "author_ids": [
+      "iwannagooutside"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-07-27",
+    "requirements": "- kubridge.skprx\n- fd_fix.skprx\n- libshacccg.suprx\n- Game Files Android",
+    "size": 1992294,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/9mm-hd-ps-vita-port/9mm%20v1.0.vpk",
+        "size": 1992294,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/9mm-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 2147483648,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/iwannagooutside/9mm-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/9mm-hd-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/9mm-hd-ps-vita-port/shot0.png"
+    ]
   },
   {
     "id": "minotaur",
@@ -9491,62 +9585,6 @@
     "source_url": "https://brunu.itch.io/wrecking-wave",
     "release_page": "https://brunu.itch.io/wrecking-wave",
     "updated_at": "2026-08-13T15:34:48.340454+00:00"
-  },
-  {
-    "id": "ff3-vita",
-    "title_id": "FF3000000",
-    "name": "FF3-Vita",
-    "description": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
-    "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar\n\n- PsVitaAlive -",
-    "author_ids": [
-      "frangarcj",
-      "rinnegatamante",
-      "theflow"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "rpg",
-      "strategy",
-      "other"
-    ],
-    "version": "v.1.2.3",
-    "version_date": "2026-06-11",
-    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-    "size": 18180211,
-    "status": "Legacy",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-ff3-vita/ff3-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
-        "size": 356096410,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/frangarcj/ff3_vita"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-ff3-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-ff3-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-ff3-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-ff3-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-ff3-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-ff3-vita/shot_05.png"
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "725",
-    "source_url": "https://github.com/frangarcj/ff3_vita",
-    "release_page": "https://github.com/frangarcj/ff3_vita/releases",
-    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "super-hexagon-vita",
