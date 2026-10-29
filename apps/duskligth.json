@@ -13,31 +13,24 @@
     "adventure",
     "strategy"
   ],
-  "version": "0.7.1",
-  "version_date": "2026-09-21",
+  "version": "1.0.1",
+  "version_date": "2026-10-22",
   "requirements": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
-  "size": 14499709,
+  "size": 21600666,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-0-7-1.vpk",
-      "size": 14499709,
+      "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-1-0-1.vpk",
+      "size": 21600666,
       "recommended": true
-    },
-    {
-      "type": "Game Files",
-      "name": "Game Files USA - Mediafire",
-      "url": "https://www.mediafire.com/file/3589zi9b58vli2v/Game+Files.zip/file",
-      "size": 1300301349,
-      "extract_path": "ux0:data/"
     },
     {
       "type": "Game Files",
       "name": "Game Files USA",
       "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
-      "size": 1300301349,
+      "size": 1395864371,
       "extract_path": "ux0:data/"
     },
     {
@@ -46,6 +39,11 @@
       "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
       "size": 1050148864,
       "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Official Website",
+      "name": "itch.io",
+      "url": "https://capitanbarbacoa.itch.io/duskgxm?download"
     }
   ],
   "icon": "https://archive.org/download/duskligth-ps-vita/icon0.png",
