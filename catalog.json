@@ -118,6 +118,65 @@
     ]
   },
   {
+    "id": "nitronic-rush",
+    "title_id": "NRSH00001",
+    "name": "Nitronic Rush",
+    "description": "PS Vita port of Nitronic Rush, DigiPen's free futuristic racing game",
+    "long_description": "A native PS Vita port of Nitronic Rush (2011), the free futuristic racing game made by Team Nitronic, a student team at DigiPen Institute of Technology. The game is rebuilt in C on VitaSDK and vitaGL: it loads the PC version's own levels, models, textures, sounds and menus, and its handling, level objects, camera and race rules follow the PC game's code. It is not an emulator.",
+    "author_ids": [
+      "arielxflores"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-28",
+    "requirements": "- A PS Vita or PS TV running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game load sounds on the Vita's fourth CPU core. Without it the game still runs.\n- About 400 MB free on ux0:",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/nitronic-rush-for-the-ps-vita/NitronicRush-Vita%20v1.0.vpk",
+        "size": 1258291,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 407791206,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4 (Recommended)",
+        "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": false
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/arielxflores/NitronicRush-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/nitronic-rush-for-the-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot0.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot1.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot2.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot3.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot4.jpg"
+    ]
+  },
+  {
     "id": "resident-evil-code-veronica-x",
     "title_id": "RECVX0001",
     "name": "Resident Evil Code: Veronica X",
