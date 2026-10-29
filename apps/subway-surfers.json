@@ -1,0 +1,39 @@
+{
+  "id": "subway-surfers",
+  "title_id": "SUSU01010",
+  "name": "Subway Surfers",
+  "description": "Subway Surfers Ps Vita Port",
+  "long_description": "Subway Surfers Ps Vita Port",
+  "author_ids": [
+    "marcellus00"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "platformer",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-28",
+  "requirements": "- No data",
+  "size": 5033165,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK + Game Files",
+      "url": "https://archive.org/download/subway-surfers-ps-vita/Subway%20Surfers.vpk",
+      "size": 5033165,
+      "recommended": true
+    },
+    {
+      "type": "Community",
+      "name": "Reddit Post",
+      "url": "https://www.reddit.com/r/vitahacks/comments/1n7eo1m/another_port_of_subway_surfers_more_content_and/"
+    }
+  ],
+  "icon": "https://archive.org/download/subway-surfers-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/subway-surfers-ps-vita/shot0.png"
+  ]
+}
