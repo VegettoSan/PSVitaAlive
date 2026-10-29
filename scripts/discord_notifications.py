@@ -74,7 +74,8 @@ def discord_icon_url(value):
     if not isinstance(value, str):
         return None
     url = value.strip()
-    if not url or len(url) > 2048 or any(ord(char) < 32 or ord(char) == 127 for char in url):
+    if (not url or len(url) > 2048 or "\\" in url
+            or any(ord(char) < 32 or ord(char) == 127 for char in url)):
         return None
     try:
         parsed = urllib.parse.urlsplit(url)
