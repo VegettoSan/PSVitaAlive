@@ -859,7 +859,7 @@
       "version": "v1.0.2-vita"
     },
     "DUSKGXM01": {
-      "version": "0.7.1"
+      "version": "1.0.1"
     },
     "DVDS42069": {
       "version": "v.1.0"
@@ -989,6 +989,9 @@
     },
     "FFDIMEN01": {
       "version": "v.1.2"
+    },
+    "FFSQ00007": {
+      "version": "0.09.00"
     },
     "FGEM00001": {
       "version": "v.22.02"
@@ -2208,8 +2211,14 @@
     "PSVNOVA02": {
       "version": "1.0"
     },
+    "PSVRT0001": {
+      "version": "1.0.1"
+    },
     "PSVSGHD01": {
       "version": "1.4.0"
+    },
+    "PSVSOTROA": {
+      "version": "1.0.2"
     },
     "PSVSPHSIM": {
       "version": "v.1.0"
