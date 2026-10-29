@@ -17,6 +17,42 @@ class DiscordNotificationTests(unittest.TestCase):
         apps[0]["version"] = "1.1"
         self.assertEqual(dn.changes(old, dn.snapshot(apps), apps)[1][0][1], "1.0")
 
+    def test_embeds_use_original_app_icon_for_new_and_updated(self):
+        icon = "https://archive.org/download/psvitaalive-wordle-sdl/icon0.png"
+        app = {"title_id": "WORDLESDL", "name": "Wordle SDL",
+               "version": "1.2", "icon": icon}
+        new = dn.app_embed(app)
+        updated = dn.app_embed(app, "1.1")
+        for embed in (new, updated):
+            self.assertEqual(embed["thumbnail"], {"url": icon})
+            self.assertEqual(embed["url"], dn.SITE + "WORDLESDL")
+        self.assertIn("New Homebrew", new["title"])
+        self.assertIn("Homebrew Updated", updated["title"])
+
+    def test_missing_or_invalid_icon_does_not_break_announcement(self):
+        app = {"title_id": "TEST00001", "version": "1.0"}
+        invalid = (None, "", "not-a-url", "../icon.png",
+                   "file:///tmp/icon.png", "javascript:alert(1)",
+                   "https://user:pass@example.org/icon.png",
+                   "https://example.org/icon.png\\nUnsafe",
+                   "https://example.org/" + "a" * 2050,
+                   ["https://example.org/icon.png"])
+        for icon in invalid:
+            app["icon"] = icon
+            with self.subTest(icon=repr(icon)[:80]):
+                self.assertNotIn("thumbnail", dn.app_embed(app))
+                self.assertNotIn("thumbnail", dn.app_embed(app, "0.9"))
+        self.assertEqual(
+            dn.app_embed({"title_id": "TEST00001", "icon": "http://example.org/a.png"})["thumbnail"],
+            {"url": "http://example.org/a.png"},
+        )
+
+    def test_icon_changes_alone_do_not_reannounce(self):
+        old = {"TEST00001": {"version": "1.0"}}
+        apps = [{"title_id": "TEST00001", "version": "1.0",
+                 "icon": "https://example.org/new-icon.png"}]
+        self.assertEqual(dn.changes(old, dn.snapshot(apps), apps), ([], []))
+
     def test_reject_invalid_catalog(self):
         with self.assertRaises(ValueError):
             dn.snapshot([])
