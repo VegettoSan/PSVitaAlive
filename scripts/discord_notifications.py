@@ -69,6 +69,24 @@ def limited(value, maximum=250):
     return value[:maximum - 1] + "…" if len(value) > maximum else value
 
 
+def discord_icon_url(value):
+    """Return a usable public image URL without affecting notification delivery."""
+    if not isinstance(value, str):
+        return None
+    url = value.strip()
+    if (not url or len(url) > 2048 or "\\" in url
+            or any(ord(char) < 32 or ord(char) == 127 for char in url)):
+        return None
+    try:
+        parsed = urllib.parse.urlsplit(url)
+        if (parsed.scheme not in ("https", "http") or not parsed.hostname
+                or parsed.username is not None or parsed.password is not None):
+            return None
+    except ValueError:
+        return None
+    return url
+
+
 def app_embed(app, old_version=None):
     title_id = app["title_id"]
     name = limited(app.get("name") or title_id, 180)
@@ -85,7 +103,11 @@ def app_embed(app, old_version=None):
         content += f"\nRelease date: {limited(app['version_date'], 35)}"
     if description:
         content += f"\n\n{description}"
-    return {"title": title, "description": content, "url": url, "color": 3931904}
+    embed = {"title": title, "description": content, "url": url, "color": 3931904}
+    icon = discord_icon_url(app.get("icon"))
+    if icon:
+        embed["thumbnail"] = {"url": icon}
+    return embed
 
 
 def webhook_url(kind):
