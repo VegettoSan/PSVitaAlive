@@ -610,6 +610,54 @@
     "updated_at": "2026-08-22T15:39"
   },
   {
+    "id": "final-fantasy-vii",
+    "title_id": "FFSQ00007",
+    "name": "FINAL FANTASY VII",
+    "description": "Port de Final Fantasy VII - Android Legacy para o VITA",
+    "long_description": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
+    "author_ids": [
+      "ggdrn"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.09.00",
+    "version_date": "2026-10-25",
+    "requirements": "- No data",
+    "size": 3145728,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v0.09.00.vpk",
+        "size": 3145728,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2040109466,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ggdrn/METEOR-VII-VITA"
+      }
+    ],
+    "icon": "https://archive.org/download/meteor-vii-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/meteor-vii-vita/shot0.png",
+      "https://archive.org/download/meteor-vii-vita/shot1.png"
+    ]
+  },
+  {
     "id": "resident-evil-4-gc",
     "title_id": "BIOHAZ004",
     "name": "Resident Evil 4 GC",
@@ -1248,6 +1296,60 @@
     ]
   },
   {
+    "id": "duskligth",
+    "title_id": "DUSKGXM01",
+    "name": "DuskLigth TLOZ:TLP",
+    "description": "Port The Legend of Zelda: Twilight Princess Ps Vita",
+    "long_description": "Port The Legend of Zelda: Twilight Princess Ps Vita\n\n- PsVitaAlive -",
+    "author_ids": [
+      "capitanbarbacoa"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy"
+    ],
+    "version": "1.0.1",
+    "version_date": "2026-10-22",
+    "requirements": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
+    "size": 21600666,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-1-0-1.vpk",
+        "size": 21600666,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
+        "size": 1395864371,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
+        "size": 1050148864,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Official Website",
+        "name": "itch.io",
+        "url": "https://capitanbarbacoa.itch.io/duskgxm?download"
+      }
+    ],
+    "icon": "https://archive.org/download/duskligth-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/duskligth-ps-vita/bg.png",
+      "https://archive.org/download/duskligth-ps-vita/0.jpg"
+    ]
+  },
+  {
     "id": "prince-of-persia-classic",
     "title_id": "POPC00001",
     "name": "Prince of Persia Classic",
@@ -1624,6 +1726,51 @@
     "icon": "https://archive.org/download/ladxhd-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/ladxhd-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "raging-thunder",
+    "title_id": "PSVRT0001",
+    "name": "Raging Thunder",
+    "description": "Android to PS Vita port of Raging Thunder",
+    "long_description": "Unofficial port of Raging Thunder (Polarbit, Android) to the PS Vita, running the original ARM game library through a native loader (TheFloW's so-loader + FalsoJNI) with rendering via vitaGL.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "rpg",
+      "source-port"
+    ],
+    "version": "1.0.1",
+    "version_date": "2026-10-17",
+    "requirements": "- HENkaku / Enso\tAny recent firmware with homebrew support\n- kubridge.skprx\tRequired, loaded in taiHEN config (*KERNEL)\n- libshacccg.suprx\tRequired at ur0:data/libshacccg.suprx (via ShaRKBR33D)",
+    "size": 922317,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/raging-thunder-ps-vita-port/ragingthunder%20v1.0.1.vpk",
+        "size": 922317,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/raging-thunder-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 3984589,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Raging-Thunder-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/raging-thunder-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/raging-thunder-ps-vita-port/shot0.png"
     ]
   },
   {
@@ -2676,6 +2823,53 @@
     ]
   },
   {
+    "id": "sacred-odyssey",
+    "title_id": "PSVSOTROA",
+    "name": "Sacred Odyssey",
+    "description": "Android to PS Vita port of Gameloft's Sacred Odyssey",
+    "long_description": "Native port of Sacred Odyssey: Rise of Ayden (Android, com.gameloft.android.ANMP.GloftSOHP.ML, Gameloft Glitch engine) to the PS Vita. Runs the original libsacredodyssey.so unmodified through a SoLoader + FalsoJNI bridge — no game logic was reimplemented, only the Android/JNI/OpenGL ES layer underneath it.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0.2",
+    "version_date": "2026-09-29",
+    "requirements": "- A PS Vita or PSTV on Henkaku/Ensō (or h-encore²/rejuvenate on recent firmware).\n- kubridge installed (kubridge.skprx) — explicitly checked at boot, see source/utils/init.c.\n- libshacccg.suprx installed (required by any homebrew using vitaGL/SceShaccCg to compile GLSL shaders at runtime).",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/sacredodyssey%20v1.0.2.vpk",
+        "size": 1258291,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 670983782,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Sacred-Odyssey-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/shot0.png"
+    ]
+  },
+  {
     "id": "asphalt-5",
     "title_id": "ASPHALT05",
     "name": "Asphalt 5",
@@ -3112,62 +3306,6 @@
       "https://archive.org/download/nfs2-se-ps-vita/shot1.jpg",
       "https://archive.org/download/nfs2-se-ps-vita/shot2.jpg",
       "https://archive.org/download/nfs2-se-ps-vita/shot3.jpg"
-    ]
-  },
-  {
-    "id": "duskligth",
-    "title_id": "DUSKGXM01",
-    "name": "DuskLigth TLOZ:TLP",
-    "description": "Port The Legend of Zelda: Twilight Princess Ps Vita",
-    "long_description": "Port The Legend of Zelda: Twilight Princess Ps Vita\n\n- PsVitaAlive -",
-    "author_ids": [
-      "capitanbarbacoa"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "adventure",
-      "strategy"
-    ],
-    "version": "0.7.1",
-    "version_date": "2026-09-21",
-    "requirements": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
-    "size": 14499709,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-0-7-1.vpk",
-        "size": 14499709,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files USA - Mediafire",
-        "url": "https://www.mediafire.com/file/3589zi9b58vli2v/Game+Files.zip/file",
-        "size": 1300301349,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files USA",
-        "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
-        "size": 1300301349,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Spanish",
-        "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
-        "size": 1050148864,
-        "extract_path": "ux0:data/"
-      }
-    ],
-    "icon": "https://archive.org/download/duskligth-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/duskligth-ps-vita/bg.png",
-      "https://archive.org/download/duskligth-ps-vita/0.jpg"
     ]
   },
   {
