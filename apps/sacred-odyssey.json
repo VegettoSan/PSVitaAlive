@@ -1,0 +1,47 @@
+{
+  "id": "sacred-odyssey",
+  "title_id": "PSVSOTROA",
+  "name": "Sacred Odyssey",
+  "description": "Android to PS Vita port of Gameloft's Sacred Odyssey",
+  "long_description": "Native port of Sacred Odyssey: Rise of Ayden (Android, com.gameloft.android.ANMP.GloftSOHP.ML, Gameloft Glitch engine) to the PS Vita. Runs the original libsacredodyssey.so unmodified through a SoLoader + FalsoJNI bridge — no game logic was reimplemented, only the Android/JNI/OpenGL ES layer underneath it.",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "rpg",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.0.2",
+  "version_date": "2026-09-29",
+  "requirements": "- A PS Vita or PSTV on Henkaku/Ensō (or h-encore²/rejuvenate on recent firmware).\n- kubridge installed (kubridge.skprx) — explicitly checked at boot, see source/utils/init.c.\n- libshacccg.suprx installed (required by any homebrew using vitaGL/SceShaccCg to compile GLSL shaders at runtime).",
+  "size": 1258291,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/sacredodyssey%20v1.0.2.vpk",
+      "size": 1258291,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 670983782,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/MetalSyntax/Sacred-Odyssey-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/shot0.png"
+  ]
+}
