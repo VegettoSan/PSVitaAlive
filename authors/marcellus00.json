@@ -1,0 +1,15 @@
+{
+  "id": "marcellus00",
+  "name": "marcellus00",
+  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "bio": "Dev",
+  "links": [
+    {
+      "type": "Community",
+      "name": "Reddit",
+      "url": "https://www.reddit.com/user/marcellus00/",
+      "recommended": true
+    }
+  ],
+  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+}
