@@ -1276,7 +1276,7 @@
       "version": "v.1.0.0-Vita"
     },
     "HCEV00001": {
-      "version": "1.1.0"
+      "version": "1.1.1"
     },
     "HCR000000": {
       "version": "beta2"
@@ -2804,6 +2804,9 @@
     },
     "SUPO27496": {
       "version": "v.1.6"
+    },
+    "SUSU01010": {
+      "version": "1.0"
     },
     "SV2ESPJCR": {
       "version": "1.1"
