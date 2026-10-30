@@ -16802,16 +16802,8 @@
     "version": "v.1.0-vita",
     "version_date": "2025-07-23",
     "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "size": 2719702,
+    "size": 2720006,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-into-the-breach/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-into-the-breach/shot_01.png",
-      "https://archive.org/download/psvitaalive-into-the-breach/shot_02.png",
-      "https://archive.org/download/psvitaalive-into-the-breach/shot_03.png",
-      "https://archive.org/download/psvitaalive-into-the-breach/shot_04.png",
-      "https://archive.org/download/psvitaalive-into-the-breach/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -16820,14 +16812,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases/tag/v.1.0"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-into-the-breach/Game%20Files%20for%20PSVA.zip",
+        "size": 517891686,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
@@ -16835,11 +16824,19 @@
         "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-into-the-breach/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-into-the-breach/shot_01.png",
+      "https://archive.org/download/psvitaalive-into-the-breach/shot_02.png",
+      "https://archive.org/download/psvitaalive-into-the-breach/shot_03.png",
+      "https://archive.org/download/psvitaalive-into-the-breach/shot_04.png",
+      "https://archive.org/download/psvitaalive-into-the-breach/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1289",
     "source_url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita",
     "release_page": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases",
-    "updated_at": "2026-08-13T15:34:48.401921+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "slendrina-the-cellar",
@@ -34140,8 +34137,8 @@
     "long_description": "Port of This War of Mine and This War of Mine: Stores - Father's Promise for PSVITA based on the mobile (Android) version of the game.\n\n- PsVitaAlive -",
     "author_ids": [
       "aap",
-      "theflow",
-      "rinnegatamante"
+      "rinnegatamante",
+      "theflow"
     ],
     "category_id": "ports",
     "subcategory_ids": [
@@ -34150,16 +34147,8 @@
     "version": "v.1.0",
     "version_date": "2022-03-30",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-    "size": 1110257,
+    "size": 1110442,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-twom-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-twom-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-twom-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-twom-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-twom-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-twom-vita/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -34168,14 +34157,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheOfficialFloW/twom_vita/releases"
-      },
-      {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/TheOfficialFloW/twom_vita/releases/tag/v1.0"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 574305075,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
@@ -34183,11 +34169,19 @@
         "url": "https://github.com/TheOfficialFloW/twom_vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-twom-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-twom-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-twom-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-twom-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-twom-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-twom-vita/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "802",
     "source_url": "https://github.com/TheOfficialFloW/twom_vita",
     "release_page": "https://github.com/TheOfficialFloW/twom_vita/releases",
-    "updated_at": "2026-08-13T15:34:48.553506+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "vita-kohana",
