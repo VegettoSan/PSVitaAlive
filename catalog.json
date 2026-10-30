@@ -1,5 +1,50 @@
 [
   {
+    "id": "nfs-most-wanted",
+    "title_id": "NFSMWVITA",
+    "name": "NFS Most Wanted",
+    "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "germanalvarez15"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "source-port"
+    ],
+    "version": "1.3.7",
+    "version_date": "2026-10-29",
+    "requirements": "- No Data",
+    "size": 3166700,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.7.vpk",
+        "size": 3166700,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Fix",
+        "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+        "size": 1610612736,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Gihub",
+        "url": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
     "id": "resident-evil-code-veronica-x",
     "title_id": "RECVX0001",
     "name": "Resident Evil Code: Veronica X",
@@ -168,6 +213,55 @@
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
+    ]
+  },
+  {
+    "id": "gun-bros",
+    "title_id": "BROS00001",
+    "name": "Gun Bros",
+    "description": "Port of Gun Bros Psvita",
+    "long_description": "Gun Bros is a top-down twin-stick shooter developed by Glu Mobile. Play as Percy or Francis Gun and fight endless waves of enemies using a wide variety of weapons and gear. The game combines fast-paced shooting with character and equipment upgrades\n\n- PsVitaAlive -",
+    "author_ids": [
+      "rocroverss"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "arcade",
+      "shooter"
+    ],
+    "version": "1.03",
+    "version_date": "2026-10-28",
+    "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder.\n- Install libshacccg.suprx to ur0:/data/ or ur0:/data/external/. If you do not have it, follow a libshacccg extraction guide.\n- The game runs correctly at the default 444 MHz CPU clock. For the best performance, however, it's recommended to install PSVshell and overclock the Vita to 500 MHz.",
+    "size": 3355443,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.03.vpk",
+        "size": 3355443,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
+        "size": 226072986,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Rocroverss/Gun-Bros-Psvita"
+      }
+    ],
+    "icon": "https://archive.org/download/gun-bros-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/gun-bros-ps-vita/bg0.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot0.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot1.png",
+      "https://archive.org/download/gun-bros-ps-vita/shot2.png"
     ]
   },
   {
@@ -363,51 +457,6 @@
     "icon": "https://archive.org/download/subway-surfers-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/subway-surfers-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "nfs-most-wanted",
-    "title_id": "NFSMWVITA",
-    "name": "NFS Most Wanted",
-    "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-    "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "germanalvarez15"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "racing",
-      "source-port"
-    ],
-    "version": "1.3.5",
-    "version_date": "2026-10-27",
-    "requirements": "- No Data",
-    "size": 4613734,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.5.vpk",
-        "size": 4613734,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Fix",
-        "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-        "size": 1610612736,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Gihub",
-        "url": "https://github.com/germanalvarez15/nfsmw-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/nfsmw-vita/shot0.png"
     ]
   },
   {
@@ -1828,55 +1877,6 @@
     "screenshots": [
       "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
       "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
-    ]
-  },
-  {
-    "id": "gun-bros",
-    "title_id": "BROS00001",
-    "name": "Gun Bros",
-    "description": "Port of Gun Bros Psvita",
-    "long_description": "Gun Bros is a top-down twin-stick shooter developed by Glu Mobile. Play as Percy or Francis Gun and fight endless waves of enemies using a wide variety of weapons and gear. The game combines fast-paced shooting with character and equipment upgrades\n\n- PsVitaAlive -",
-    "author_ids": [
-      "rocroverss"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "arcade",
-      "shooter"
-    ],
-    "version": "1.01",
-    "version_date": "2026-10-17",
-    "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder.\n- Install libshacccg.suprx to ur0:/data/ or ur0:/data/external/. If you do not have it, follow a libshacccg extraction guide.\n- The game runs correctly at the default 444 MHz CPU clock. For the best performance, however, it's recommended to install PSVshell and overclock the Vita to 500 MHz.",
-    "size": 3355443,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.01.vpk",
-        "size": 3355443,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
-        "size": 226072986,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Rocroverss/Gun-Bros-Psvita"
-      }
-    ],
-    "icon": "https://archive.org/download/gun-bros-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/gun-bros-ps-vita/bg0.png",
-      "https://archive.org/download/gun-bros-ps-vita/shot0.png",
-      "https://archive.org/download/gun-bros-ps-vita/shot1.png",
-      "https://archive.org/download/gun-bros-ps-vita/shot2.png"
     ]
   },
   {
@@ -20304,16 +20304,8 @@
     "version": "v.0.1",
     "version_date": "2024-09-18",
     "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "size": 1523489,
+    "size": 1523581,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-lswtcs-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_05.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -20322,9 +20314,11 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/gm666q/lswtcs-vita/releases"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-lswtcs-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1395864371,
+        "extract_path": "ux0:data/"
       },
       {
         "type": "Repository",
@@ -20332,11 +20326,19 @@
         "url": "https://github.com/gm666q/lswtcs-vita"
       }
     ],
+    "icon": "https://archive.org/download/psvitaalive-lswtcs-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-lswtcs-vita/shot_05.png"
+    ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1233",
     "source_url": "https://github.com/gm666q/lswtcs-vita",
     "release_page": "https://github.com/gm666q/lswtcs-vita/releases",
-    "updated_at": "2026-08-13T15:34:48.431179+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "breadtopia",
