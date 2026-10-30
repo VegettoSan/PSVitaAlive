@@ -1,5 +1,70 @@
 [
   {
+    "id": "resident-evil-code-veronica-x",
+    "title_id": "RECVX0001",
+    "name": "Resident Evil Code: Veronica X",
+    "description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
+    "long_description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.1",
+    "version_date": "2026-10-29",
+    "requirements": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
+    "size": 2831155,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/recvx-vita%20v1.1.vpk",
+        "size": 2831155,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20Spanish.zip",
+        "size": 2254857830,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files English",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20English.zip",
+        "size": 2254857830,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Data Files",
+        "name": "Shader Cache",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Shaders%20Files.zip",
+        "size": 84582,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Rinnegatamante/recvx_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/resident-evil-code-veronica-x-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot0.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot1.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot2.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot3.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot4.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "title_id": "BTTD00010",
     "name": "Dragon Ball Z: BT3",
@@ -174,78 +239,6 @@
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot2.jpg",
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot3.jpg",
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot4.jpg"
-    ]
-  },
-  {
-    "id": "resident-evil-code-veronica-x",
-    "title_id": "RECVX0001",
-    "name": "Resident Evil Code: Veronica X",
-    "description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
-    "long_description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "shooter",
-      "strategy",
-      "source-port"
-    ],
-    "version": "1.0",
-    "version_date": "2026-10-28",
-    "requirements": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
-    "size": 2831155,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "ShaRKF00D Required (Shader Repair)",
-        "url": "https://github.com/OsirizX/ShaRKF00D/releases/download/1.3/ShaRKF00D.vpk",
-        "size": 212089,
-        "recommended": false
-      },
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/recvx-vita%20v1.0.vpk",
-        "size": 2831155,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Spanish",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20Spanish.zip",
-        "size": 2254857830,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files English",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20English.zip",
-        "size": 2254857830,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Data Files",
-        "name": "Shader Cache",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Shaders%20Files.zip",
-        "size": 84582,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/Rinnegatamante/recvx_vita"
-      }
-    ],
-    "icon": "https://archive.org/download/resident-evil-code-veronica-x-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot0.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot1.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot2.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot3.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot4.png"
     ]
   },
   {
