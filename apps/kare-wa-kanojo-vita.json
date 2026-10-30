@@ -11,15 +11,11 @@
   "subcategory_ids": [
     "other"
   ],
-  "version": "v.1.00",
+  "version": "1.00",
   "version_date": "2026-05-15",
   "requirements": "- Game Data Files: PC",
-  "size": 14380556,
+  "size": 14380171,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/shot_01.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -28,19 +24,25 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port"
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 136419738,
+      "extract_path": "ux0:app/"
     },
     {
       "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port/releases/tag/v01.00"
+      "name": "Repository",
+      "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port"
     }
+  ],
+  "icon": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/shot_01.png"
   ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1400",
   "source_url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
   "release_page": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
-  "updated_at": "2026-08-13T15:34:48.347435+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
