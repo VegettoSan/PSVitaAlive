@@ -65,6 +65,44 @@
     ]
   },
   {
+    "id": "vitalatro",
+    "title_id": "VLTR00001",
+    "name": "Vitalatro",
+    "description": "Balatro Port Ps Vita",
+    "long_description": "Balatro Port Ps Vita",
+    "author_ids": [
+      "thebardockgames"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1.0",
+    "version_date": "2026-10-29",
+    "requirements": "- No Data",
+    "size": 25585254,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK + Game Files",
+        "url": "https://archive.org/download/vitalatro/Vitalatro%20v1.0.vpk",
+        "size": 25585254,
+        "recommended": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/thebardockgames/vitalatro"
+      }
+    ],
+    "icon": "https://archive.org/download/vitalatro/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/vitalatro/Shot0.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "title_id": "BTTD00010",
     "name": "Dragon Ball Z: BT3",
@@ -239,6 +277,53 @@
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot2.jpg",
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot3.jpg",
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot4.jpg"
+    ]
+  },
+  {
+    "id": "star-fox-adventures",
+    "title_id": "STFX00001",
+    "name": "Star Fox Adventures",
+    "description": "Star Fox Adventures for PS Vita: a native port",
+    "long_description": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
+    "author_ids": [
+      "tchisholm20"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1.0",
+    "version_date": "2026-10-28",
+    "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
+    "size": 5767168,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.0.vpk",
+        "size": 5767168,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1468006,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/tchisholm20/starfox-adventures-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -469,6 +554,52 @@
     "source_id": "1402",
     "source_url": "https://gitee.com/Moqi01/bio4",
     "updated_at": "2026-08-13T15:34"
+  },
+  {
+    "id": "buckshot-roulette",
+    "title_id": "BSHT00016",
+    "name": "Buckshot Roulette",
+    "description": "A native C++ port(able) of Buckshot Roulette. General Release of Liability on the Vita",
+    "long_description": "Affectionately shortened to BSHT-Vita, with BSHT-PSP soon! (im aware bsht might be shorthand for bullshit but bear w me)\n\nThis is a native port of the goat Mike Klubnika's Buckshot Roulette to the PS Vita. 60 fps bayybbeeeeeee",
+    "author_ids": [
+      "voidchecksam"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0.2",
+    "version_date": "2026-10-26",
+    "requirements": "- No Data",
+    "size": 2831155,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/BuckshotRoulettePortable-BSHT-v1.0.2.vpk",
+        "size": 2831155,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 232469299,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/voidchecksam/BuckshotRoulettePortable-BSHT"
+      }
+    ],
+    "icon": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/shot0.png"
+    ]
   },
   {
     "id": "half-life-2",
@@ -10676,15 +10807,11 @@
     "subcategory_ids": [
       "other"
     ],
-    "version": "v.1.00",
+    "version": "1.00",
     "version_date": "2026-05-15",
     "requirements": "- Game Data Files: PC",
-    "size": 14380556,
+    "size": 14380171,
     "status": "Legacy",
-    "icon": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/shot_01.png"
-    ],
     "links": [
       {
         "type": "Download",
@@ -10693,21 +10820,27 @@
         "recommended": true
       },
       {
-        "type": "Official Website",
-        "name": "Repository",
-        "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port"
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 136419738,
+        "extract_path": "ux0:app/"
       },
       {
         "type": "Official Website",
-        "name": "Release Page",
-        "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port/releases/tag/v01.00"
+        "name": "Repository",
+        "url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port"
       }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-kare-wa-kanojo-vita/shot_01.png"
     ],
     "source_name": "VitaHomebrewDB",
     "source_id": "1400",
     "source_url": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
     "release_page": "https://github.com/PuppetHuggerDX/Kare-wa-Kanojo-PS-Vita-Port",
-    "updated_at": "2026-08-13T15:34:48.347435+00:00"
+    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "vita-pong",

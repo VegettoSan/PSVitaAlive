@@ -8882,6 +8882,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "tchisholm20",
+    "name": "tchisholm20",
+    "avatar": "https://avatars.githubusercontent.com/u/59560447?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/tchisholm20",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/59560447?v=4"
+  },
+  {
     "id": "team-molecule",
     "name": "Team Molecule",
     "avatar": "https://github.com/TeamMolecule.png",
@@ -9030,6 +9045,21 @@
       }
     ],
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "thebardockgames",
+    "name": "thebardockgames",
+    "avatar": "https://avatars.githubusercontent.com/u/71587854?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/thebardockgames",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/71587854?v=4"
   },
   {
     "id": "thecrystalorg",
@@ -9534,6 +9564,21 @@
       }
     ],
     "icon": "https://avatars.githubusercontent.com/u/37808063?v=4"
+  },
+  {
+    "id": "voidchecksam",
+    "name": "voidchecksam",
+    "avatar": "https://avatars.githubusercontent.com/u/146993325?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/voidchecksam",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/146993325?v=4"
   },
   {
     "id": "voxel",
