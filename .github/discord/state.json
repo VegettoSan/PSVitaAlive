@@ -444,6 +444,9 @@
     "BROS00001": {
       "version": "1.01"
     },
+    "BSHT00016": {
+      "version": "1.0.2"
+    },
     "BSTONE012": {
       "version": "v0.5.1"
     },
@@ -2440,7 +2443,7 @@
       "version": "v.1.0"
     },
     "RPYKWKFAN": {
-      "version": "v.1.00"
+      "version": "1.00"
     },
     "RR2VITA01": {
       "version": "1.0.0"
@@ -2789,6 +2792,9 @@
     },
     "STFD00001": {
       "version": "v.0.2"
+    },
+    "STFX00001": {
+      "version": "0.1.0"
     },
     "STHV01991": {
       "version": "Demo"
@@ -3161,6 +3167,9 @@
     },
     "VLLY22132": {
       "version": "v.1.0.1"
+    },
+    "VLTR00001": {
+      "version": "0.1.0"
     },
     "VMAP00001": {
       "version": "01.00"
