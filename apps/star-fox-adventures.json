@@ -1,0 +1,47 @@
+{
+  "id": "star-fox-adventures",
+  "title_id": "STFX00001",
+  "name": "Star Fox Adventures",
+  "description": "Star Fox Adventures for PS Vita: a native port",
+  "long_description": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
+  "author_ids": [
+    "tchisholm20"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "version": "0.1.0",
+  "version_date": "2026-10-28",
+  "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
+  "size": 5767168,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.0.vpk",
+      "size": 5767168,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1468006,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/tchisholm20/starfox-adventures-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
+  ]
+}

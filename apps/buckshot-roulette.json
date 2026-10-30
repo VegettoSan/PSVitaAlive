@@ -1,0 +1,46 @@
+{
+  "id": "buckshot-roulette",
+  "title_id": "BSHT00016",
+  "name": "Buckshot Roulette",
+  "description": "A native C++ port(able) of Buckshot Roulette. General Release of Liability on the Vita",
+  "long_description": "Affectionately shortened to BSHT-Vita, with BSHT-PSP soon! (im aware bsht might be shorthand for bullshit but bear w me)\n\nThis is a native port of the goat Mike Klubnika's Buckshot Roulette to the PS Vita. 60 fps bayybbeeeeeee",
+  "author_ids": [
+    "voidchecksam"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.0.2",
+  "version_date": "2026-10-26",
+  "requirements": "- No Data",
+  "size": 2831155,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/BuckshotRoulettePortable-BSHT-v1.0.2.vpk",
+      "size": 2831155,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 232469299,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/voidchecksam/BuckshotRoulettePortable-BSHT"
+    }
+  ],
+  "icon": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/shot0.png"
+  ]
+}

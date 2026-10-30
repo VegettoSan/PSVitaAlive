@@ -1,0 +1,38 @@
+{
+  "id": "vitalatro",
+  "title_id": "VLTR00001",
+  "name": "Vitalatro",
+  "description": "Balatro Port Ps Vita",
+  "long_description": "Balatro Port Ps Vita",
+  "author_ids": [
+    "thebardockgames"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "strategy",
+    "source-port"
+  ],
+  "version": "0.1.0",
+  "version_date": "2026-10-29",
+  "requirements": "- No Data",
+  "size": 25585254,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK + Game Files",
+      "url": "https://archive.org/download/vitalatro/Vitalatro%20v1.0.vpk",
+      "size": 25585254,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/thebardockgames/vitalatro"
+    }
+  ],
+  "icon": "https://archive.org/download/vitalatro/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/vitalatro/Shot0.png"
+  ]
+}
