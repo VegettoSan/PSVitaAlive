@@ -14,16 +14,8 @@
   "version": "v.0.1",
   "version_date": "2024-09-18",
   "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1523489,
+  "size": 1523581,
   "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-lswtcs-vita/icon0.png",
-  "screenshots": [
-    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_04.png",
-    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_05.png"
-  ],
   "links": [
     {
       "type": "Download",
@@ -32,9 +24,11 @@
       "recommended": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/gm666q/lswtcs-vita/releases"
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/psvitaalive-lswtcs-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1395864371,
+      "extract_path": "ux0:data/"
     },
     {
       "type": "Repository",
@@ -42,9 +36,17 @@
       "url": "https://github.com/gm666q/lswtcs-vita"
     }
   ],
+  "icon": "https://archive.org/download/psvitaalive-lswtcs-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-lswtcs-vita/shot_05.png"
+  ],
   "source_name": "VitaHomebrewDB",
   "source_id": "1233",
   "source_url": "https://github.com/gm666q/lswtcs-vita",
   "release_page": "https://github.com/gm666q/lswtcs-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.431179+00:00"
+  "updated_at": "2026-08-13T15:34"
 }
