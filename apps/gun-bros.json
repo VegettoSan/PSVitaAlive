@@ -13,8 +13,8 @@
     "arcade",
     "shooter"
   ],
-  "version": "1.01",
-  "version_date": "2026-10-17",
+  "version": "1.03",
+  "version_date": "2026-10-28",
   "requirements": "- Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder.\n- Install libshacccg.suprx to ur0:/data/ or ur0:/data/external/. If you do not have it, follow a libshacccg extraction guide.\n- The game runs correctly at the default 444 MHz CPU clock. For the best performance, however, it's recommended to install PSVshell and overclock the Vita to 500 MHz.",
   "size": 3355443,
   "status": "Verified",
@@ -22,7 +22,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.01.vpk",
+      "url": "https://archive.org/download/gun-bros-ps-vita/Gun_Bros%20v1.03.vpk",
       "size": 3355443,
       "recommended": true
     },
