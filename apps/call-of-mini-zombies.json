@@ -1,0 +1,47 @@
+{
+  "id": "call-of-mini-zombies",
+  "title_id": "COMZ42069",
+  "name": "Call of Mini Zombies",
+  "description": "Call of Mini Zombies Ps Vita Port",
+  "long_description": "Call of Mini Zombies Ps Vita Port",
+  "author_ids": [
+    "aj170"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "shooter",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.01",
+  "version_date": "2026-05-11",
+  "requirements": "IMPORTANT:\ncreate a folder called \"comZombiesOffline\" in ux0:data\nshould look like ux0:/data/comZombiesOffline/",
+  "size": 182976512,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK + Game Files",
+      "url": "https://archive.org/download/call-of-mini-zombies-ps-vita/CoMZombies_v1.01.vpk",
+      "size": 182976512,
+      "recommended": true
+    },
+    {
+      "type": "Data Files",
+      "name": "Folder Required",
+      "url": "https://archive.org/download/call-of-mini-zombies-ps-vita/Data%20Files%20for%20PSVA.zip",
+      "size": 432,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/AJ170/COMZombies-PSVita-Port"
+    }
+  ],
+  "icon": "https://archive.org/download/call-of-mini-zombies-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/call-of-mini-zombies-ps-vita/shot0.png"
+  ]
+}
