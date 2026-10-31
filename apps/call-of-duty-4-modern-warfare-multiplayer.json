@@ -15,8 +15,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-30",
+  "version": "1.01",
+  "version_date": "2026-10-31",
   "requirements": "- No Data",
   "size": 4299162,
   "status": "Verified",
@@ -24,7 +24,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v0.1.vpk",
+      "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v1.01.vpk",
       "size": 4299162,
       "recommended": true
     },

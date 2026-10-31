@@ -28,6 +28,12 @@
       "recommended": true
     },
     {
+      "type": "Download",
+      "name": "VPK LiveArea By BetterWinds",
+      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1%20LiveArea%20By%20BetterWinds%20.vpk",
+      "size": 5662310
+    },
+    {
       "type": "Game Files",
       "name": "Game Files En,Fr,De,Es,It",
       "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
@@ -40,8 +46,8 @@
       "url": "https://github.com/menaman123/TwinsanityEvolved"
     }
   ],
+  "icon": "https://archive.org/download/codmw-ps-vita-port/icon0.png",
   "screenshots": [
     "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
-  ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+  ]
 }
