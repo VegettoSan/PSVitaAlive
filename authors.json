@@ -6049,6 +6049,21 @@
     "icon": "https://github.com/memory-hunter.png"
   },
   {
+    "id": "menaman123",
+    "name": "menaman123",
+    "avatar": "https://avatars.githubusercontent.com/u/53198002?v=4",
+    "bio": "love to build cool things",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/menaman123",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/53198002?v=4"
+  },
+  {
     "id": "metalsyntax",
     "name": "MetalSyntax",
     "avatar": "https://avatars.githubusercontent.com/u/25257337?v=4",

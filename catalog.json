@@ -236,6 +236,100 @@
     ]
   },
   {
+    "id": "twinsanityevolved",
+    "title_id": "TWEV00001",
+    "name": "TwinsanityEvolved",
+    "description": "Native Ps Vita port of Crash Twinsanity",
+    "long_description": "Native Ps Vita port of Crash Twinsanity",
+    "author_ids": [
+      "menaman123"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "version": "0.9.1",
+    "version_date": "2026-10-30",
+    "requirements": "- ur0:data/libshacccg.suprx",
+    "size": 5347738,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1.vpk",
+        "size": 5347738,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files En,Fr,De,Es,It",
+        "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2516582,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/menaman123/TwinsanityEvolved"
+      }
+    ],
+    "screenshots": [
+      "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+  },
+  {
+    "id": "pikmin",
+    "title_id": "NECTAR001",
+    "name": "Pikmin",
+    "description": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
+    "long_description": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
+    "author_ids": [
+      "bren"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "source-port",
+      "other"
+    ],
+    "version": "0.0.1",
+    "version_date": "2026-10-29",
+    "requirements": "HENkaku/Ensō, game ID GPIE01 (revision 1), about 1.5 GB free on ux0:.",
+    "size": 3670016,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/open-nectar/Pikmin-Vita-v0.0.1.vpk",
+        "size": 3670016,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip",
+        "size": 555220992,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Brendonm17/Open-Nectar-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/open-nectar/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/open-nectar/shot.png",
+      "https://archive.org/download/open-nectar/shot0.png",
+      "https://archive.org/download/open-nectar/shot1.png"
+    ]
+  },
+  {
     "id": "resident-evil-code-veronica-x",
     "title_id": "RECVX0001",
     "name": "Resident Evil Code: Veronica X",
