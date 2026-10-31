@@ -1526,6 +1526,21 @@
     "icon": "https://avatars.githubusercontent.com/u/319663347?v=4"
   },
   {
+    "id": "cigflavoredgum",
+    "name": "CigFlavoredGum",
+    "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Community",
+        "name": "Reddit",
+        "url": "https://www.reddit.com/user/CigFlavoredGum/",
+        "recommended": false
+      }
+    ],
+    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "claude-ai",
     "name": "Claude AI",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",

@@ -1,5 +1,53 @@
 [
   {
+    "id": "call-of-duty-4-modern-warfare-multiplayer",
+    "title_id": "CODVIT001",
+    "name": "Call Of Duty 4: Modern Warfare Multiplayer",
+    "description": "Call Of Duty 4: Modern Warfare Port Ps Vita",
+    "long_description": "Call Of Duty 4: Modern Warfare Port Ps Vita",
+    "author_ids": [
+      "cigflavoredgum"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-30",
+    "requirements": "- No Data",
+    "size": 4299162,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v0.1.vpk",
+        "size": 4299162,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/codmw-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 2684354560,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Community",
+        "name": "Reddit",
+        "url": "https://www.reddit.com/r/VitaPiracy/comments/1xjw2wy/comment/19rww30gbsi8z/?context=3"
+      }
+    ],
+    "icon": "https://archive.org/download/codmw-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/codmw-ps-vita-port/shot0.png"
+    ]
+  },
+  {
     "id": "final-fantasy-vii",
     "title_id": "FFSQ00007",
     "name": "FINAL FANTASY VII",
@@ -11075,6 +11123,53 @@
     "source_url": "https://github.com/Rinnegatamante/hazard-vita",
     "release_page": "https://github.com/Rinnegatamante/hazard-vita/releases",
     "updated_at": "2026-08-13T15:34:48.347972+00:00"
+  },
+  {
+    "id": "call-of-mini-zombies",
+    "title_id": "COMZ42069",
+    "name": "Call of Mini Zombies",
+    "description": "Call of Mini Zombies Ps Vita Port",
+    "long_description": "Call of Mini Zombies Ps Vita Port",
+    "author_ids": [
+      "aj170"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.01",
+    "version_date": "2026-05-11",
+    "requirements": "IMPORTANT:\ncreate a folder called \"comZombiesOffline\" in ux0:data\nshould look like ux0:/data/comZombiesOffline/",
+    "size": 182976512,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK + Game Files",
+        "url": "https://archive.org/download/call-of-mini-zombies-ps-vita/CoMZombies_v1.01.vpk",
+        "size": 182976512,
+        "recommended": true
+      },
+      {
+        "type": "Data Files",
+        "name": "Folder Required",
+        "url": "https://archive.org/download/call-of-mini-zombies-ps-vita/Data%20Files%20for%20PSVA.zip",
+        "size": 432,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/AJ170/COMZombies-PSVita-Port"
+      }
+    ],
+    "icon": "https://archive.org/download/call-of-mini-zombies-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/call-of-mini-zombies-ps-vita/shot0.png"
+    ]
   },
   {
     "id": "sudokul",
