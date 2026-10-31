@@ -1,0 +1,47 @@
+{
+  "id": "pikmin",
+  "title_id": "NECTAR001",
+  "name": "Pikmin",
+  "description": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
+  "long_description": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
+  "author_ids": [
+    "bren"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "source-port",
+    "other"
+  ],
+  "version": "0.0.1",
+  "version_date": "2026-10-29",
+  "requirements": "HENkaku/Ensō, game ID GPIE01 (revision 1), about 1.5 GB free on ux0:.",
+  "size": 3670016,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/open-nectar/Pikmin-Vita-v0.0.1.vpk",
+      "size": 3670016,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files USA",
+      "url": "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip",
+      "size": 555220992,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/Brendonm17/Open-Nectar-Vita"
+    }
+  ],
+  "icon": "https://archive.org/download/open-nectar/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/open-nectar/shot.png",
+    "https://archive.org/download/open-nectar/shot0.png",
+    "https://archive.org/download/open-nectar/shot1.png"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "twinsanityevolved",
+  "title_id": "TWEV00001",
+  "name": "TwinsanityEvolved",
+  "description": "Native Ps Vita port of Crash Twinsanity",
+  "long_description": "Native Ps Vita port of Crash Twinsanity",
+  "author_ids": [
+    "menaman123"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "puzzle",
+    "source-port"
+  ],
+  "version": "0.9.1",
+  "version_date": "2026-10-30",
+  "requirements": "- ur0:data/libshacccg.suprx",
+  "size": 5347738,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1.vpk",
+      "size": 5347738,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files En,Fr,De,Es,It",
+      "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 2516582,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/menaman123/TwinsanityEvolved"
+    }
+  ],
+  "screenshots": [
+    "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
+  ]
+}
