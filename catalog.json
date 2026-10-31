@@ -16,8 +16,8 @@
       "strategy",
       "source-port"
     ],
-    "version": "1.0",
-    "version_date": "2026-10-30",
+    "version": "1.01",
+    "version_date": "2026-10-31",
     "requirements": "- No Data",
     "size": 4299162,
     "status": "Verified",
@@ -25,7 +25,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v0.1.vpk",
+        "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v1.01.vpk",
         "size": 4299162,
         "recommended": true
       },
@@ -265,6 +265,13 @@
         "recommended": true
       },
       {
+        "type": "Download",
+        "name": "VPK LiveArea By BetterWinds",
+        "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1%20LiveArea%20By%20BetterWinds%20.vpk",
+        "size": 5662310,
+        "recommended": false
+      },
+      {
         "type": "Game Files",
         "name": "Game Files En,Fr,De,Es,It",
         "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
@@ -277,10 +284,10 @@
         "url": "https://github.com/menaman123/TwinsanityEvolved"
       }
     ],
+    "icon": "https://archive.org/download/codmw-ps-vita-port/icon0.png",
     "screenshots": [
       "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
-    ],
-    "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+    ]
   },
   {
     "id": "pikmin",

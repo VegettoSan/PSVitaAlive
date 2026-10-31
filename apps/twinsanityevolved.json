@@ -31,7 +31,8 @@
       "type": "Download",
       "name": "VPK LiveArea By BetterWinds",
       "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1%20LiveArea%20By%20BetterWinds%20.vpk",
-      "size": 5662310
+      "size": 5662310,
+      "recommended": false
     },
     {
       "type": "Game Files",
