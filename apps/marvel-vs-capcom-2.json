@@ -1,0 +1,46 @@
+{
+  "id": "marvel-vs-capcom-2",
+  "title_id": "MVSC00001",
+  "name": "Marvel vs Capcom 2",
+  "description": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
+  "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+  "author_ids": [
+    "papileno"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-30",
+  "requirements": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
+  "size": 1677722,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.0.vpk",
+      "size": 1677722,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 176265626,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
+    }
+  ],
+  "icon": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
+  ]
+}
