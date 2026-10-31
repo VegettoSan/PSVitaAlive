@@ -14,8 +14,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "0.09.00",
-  "version_date": "2026-10-25",
+  "version": "1.0",
+  "version_date": "2026-10-30",
   "requirements": "- No data",
   "size": 3145728,
   "status": "Verified",
@@ -23,7 +23,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v0.09.00.vpk",
+      "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.0.vpk",
       "size": 3145728,
       "recommended": true
     },
