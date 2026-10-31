@@ -1,5 +1,99 @@
 [
   {
+    "id": "final-fantasy-vii",
+    "title_id": "FFSQ00007",
+    "name": "FINAL FANTASY VII",
+    "description": "Port de Final Fantasy VII - Android Legacy para o VITA",
+    "long_description": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
+    "author_ids": [
+      "ggdrn"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-30",
+    "requirements": "- No data",
+    "size": 3145728,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.0.vpk",
+        "size": 3145728,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2040109466,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ggdrn/METEOR-VII-VITA"
+      }
+    ],
+    "icon": "https://archive.org/download/meteor-vii-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/meteor-vii-vita/shot0.png",
+      "https://archive.org/download/meteor-vii-vita/shot1.png"
+    ]
+  },
+  {
+    "id": "marvel-vs-capcom-2",
+    "title_id": "MVSC00001",
+    "name": "Marvel vs Capcom 2",
+    "description": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
+    "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+    "author_ids": [
+      "papileno"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-30",
+    "requirements": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
+    "size": 1677722,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.0.vpk",
+        "size": 1677722,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 176265626,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
+      }
+    ],
+    "icon": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "nfs-most-wanted",
     "title_id": "NFSMWVITA",
     "name": "NFS Most Wanted",
@@ -13,8 +107,8 @@
       "racing",
       "source-port"
     ],
-    "version": "1.3.7",
-    "version_date": "2026-10-29",
+    "version": "1.3.8",
+    "version_date": "2026-10-30",
     "requirements": "- No Data",
     "size": 3166700,
     "status": "Verified",
@@ -22,7 +116,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.7.vpk",
+        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.8.vpk",
         "size": 3166700,
         "recommended": true
       },
@@ -42,6 +136,55 @@
     "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "silent-hill-4-the-room",
+    "title_id": "SILH00004",
+    "name": "Silent Hill 4: The Room",
+    "description": "Port of the latest GOG PC version of Silent Hill 4: The Room to the PS Vita. You may use your own copy of the game.",
+    "long_description": "Port of the latest GOG PC version of Silent Hill 4: The Room to the PS Vita. You may use your own copy of the game.",
+    "author_ids": [
+      "vallfrr"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "puzzle",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "version": "1.0.1",
+    "version_date": "2026-10-30",
+    "requirements": "- A hacked PS Vita (HENkaku/Enso), at least 4 GB free on ux0:\n- Silent Hill 4 from GOG, version \"1.0 gog v5\". Check: SILENT HILL 4.exe has SHA-256 CF7081A6C78DBE51F6DC2E1C9BD978D8486F1D7B59D7A3B88E027C9B39F21DD0. No other version works (no PS2 files either).\n- ur0:data/libshacccg.suprx from your own Vita (ShaRKF00D).",
+    "size": 5767168,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/sh4vita%20v1.0.1.vpk",
+        "size": 5767168,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/Game%20Files%20for%20PSVA.zip",
+        "size": 3650722202,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/vallfrr/sh4vita"
+      }
+    ],
+    "icon": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/shot0.png",
+      "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/shot1.png"
     ]
   },
   {
@@ -847,54 +990,6 @@
     "source_url": "https://github.com/NDRWhun/JAVITA",
     "release_page": "https://github.com/NDRWhun/JAVITA/releases",
     "updated_at": "2026-08-22T15:39"
-  },
-  {
-    "id": "final-fantasy-vii",
-    "title_id": "FFSQ00007",
-    "name": "FINAL FANTASY VII",
-    "description": "Port de Final Fantasy VII - Android Legacy para o VITA",
-    "long_description": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
-    "author_ids": [
-      "ggdrn"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "rpg",
-      "strategy",
-      "source-port"
-    ],
-    "version": "0.09.00",
-    "version_date": "2026-10-25",
-    "requirements": "- No data",
-    "size": 3145728,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v0.09.00.vpk",
-        "size": 3145728,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 2040109466,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/ggdrn/METEOR-VII-VITA"
-      }
-    ],
-    "icon": "https://archive.org/download/meteor-vii-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/meteor-vii-vita/shot0.png",
-      "https://archive.org/download/meteor-vii-vita/shot1.png"
-    ]
   },
   {
     "id": "resident-evil-4-gc",
