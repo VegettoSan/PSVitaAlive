@@ -1,0 +1,38 @@
+{
+  "id": "zombieville-usa-2",
+  "title_id": "ZUSA42069",
+  "name": "Zombieville USA 2",
+  "description": "Zombieville USA 2 PSVita Port",
+  "long_description": "Zombieville USA 2 PSVita Port",
+  "author_ids": [
+    "aj170"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "shooter",
+    "strategy"
+  ],
+  "version": "1.01",
+  "version_date": "2026-04-17",
+  "requirements": "- No Data",
+  "size": 165884723,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK + Game Files",
+      "url": "https://archive.org/download/zombieville-usa-2-psvita-port/ZUSA2%20v1.01.vpk",
+      "size": 165884723,
+      "recommended": true
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/AJ170/ZombievilleUSA2-PSVita-Port"
+    }
+  ],
+  "icon": "https://archive.org/download/zombieville-usa-2-psvita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/zombieville-usa-2-psvita-port/shot0.png"
+  ]
+}
