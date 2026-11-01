@@ -16,7 +16,7 @@ int main() {
     const std::string longName(120, 'A');
     const std::string longTitle(120, 'B');
     const std::string longThread = feedbackForumThreadName(longTitle, false, longName);
-    assert(feedbackForumUtf8Chars(longThread) <= 100);
+    assert(psvitaalive::feedbackForumUtf8Chars(longThread) <= 100);
     assert(longThread.find(": ") != std::string::npos);
     assert(longThread.find("BBB") != std::string::npos);
 
