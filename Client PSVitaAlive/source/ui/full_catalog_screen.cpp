@@ -2655,104 +2655,194 @@ void FullCatalogScreen::pollDataRequestWorker() {
 
 
 void FullCatalogScreen::drawReportConfirmOverlay() {
-    if(!reportConfirmVisible_ || !font_) return;
-    const int w=860,h=508,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
-    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,195));
-    vita2d_draw_rectangle(x,y,w,h,PANEL);
-    vita2d_draw_rectangle(x,y,w,3,ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+42,ACCENT,1.10f,
-        ::psvitaalive::L("FEEDBACK_HEADING"));
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+76,TEXT,.78f,
-        ::psvitaalive::L("FEEDBACK_HELP_1"));
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+99,DIM,.73f,
-        ::psvitaalive::L("FEEDBACK_HELP_2"));
+    if (!reportConfirmVisible_ || !font_) return;
+    // Interpolate only two scalar offsets, without allocating or re-wrapping
+    // strings in the render path. Both are clamped after input changes.
+    auto ease = [](float& visual, int target) {
+        visual += (static_cast<float>(target) - visual) * .28f;
+        if (std::abs(visual - target) < .7f) visual = static_cast<float>(target);
+    };
+    ease(feedbackInfoVisualY_, feedbackInfoScrollY_);
+    ease(feedbackFormVisualY_, feedbackFormScrollY_);
+    const int infoScroll = static_cast<int>(feedbackInfoVisualY_);
+    const int formScroll = static_cast<int>(feedbackFormVisualY_);
+    const auto r = feedbackFormRects(!feedbackAppName_.empty(),
+        feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
 
+    vita2d_disable_clipping();
+    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,215));
+    vita2d_draw_rectangle(FB_X,FB_Y,FB_W,FB_H,PANEL);
+    vita2d_draw_rectangle(FB_X,FB_Y,FB_W,3,ACCENT);
+    ::psvitaalive::ui::uiDrawText(&font_, FB_X+20, FB_Y+38, ACCENT,1.09f,
+        ::psvitaalive::L("FEEDBACK_HEADING"));
+
+    // Each pane has its own focus border, viewport clip and scroll indicator.
+    const int panelY = FB_Y+52;
+    const int panelH = FB_VIEW_Y + FB_VIEW_H - panelY + 5;
+    for (int panel=0;panel<2;++panel) {
+        const int px=panel==0?FB_INFO_X:FB_FORM_X;
+        const int pw=panel==0?FB_INFO_W:FB_FORM_W;
+        vita2d_draw_rectangle(px,panelY,pw,panelH,
+            feedbackPanel_==panel ? ACCENT : BORDER);
+        vita2d_draw_rectangle(px+2,panelY+2,pw-4,panelH-4,SURFACE2);
+        ::psvitaalive::ui::uiDrawText(&font_,px+12,FB_VIEW_Y-14,
+            feedbackPanel_==panel?ACCENT:WHITE,.91f,
+            ::psvitaalive::L(panel==0?"FEEDBACK_INFO_PANEL":"FEEDBACK_FORM_PANEL"));
+    }
+
+    // Left column: localized problem/suggestion guidance and usage instructions.
+    vita2d_set_clip_rectangle(FB_INFO_X+9,FB_VIEW_Y,
+        FB_INFO_X+FB_INFO_W-14,FB_VIEW_Y+FB_VIEW_H);
+    int infoY=FB_VIEW_Y+25-infoScroll;
+    for (const auto& entry : feedbackInfoLines_) {
+        if (entry.first.empty()) {
+            infoY+=12;
+            continue;
+        }
+        const int lineH=entry.second?29:25;
+        if (infoY>FB_VIEW_Y-8 && infoY<FB_VIEW_Y+FB_VIEW_H+18)
+            ::psvitaalive::ui::uiDrawText(&font_,FB_INFO_X+14,infoY,
+                entry.second?ACCENT:TEXT,entry.second?.87f:.81f,entry.first.c_str());
+        infoY+=lineH;
+    }
+    vita2d_disable_clipping();
+
+    // Right column: selected type, optional frozen app context, title, body,
+    // and the Homebrew responsibility notice. All content can be scrolled.
+    const int fieldX=FB_FORM_FIELD_X, fieldW=FB_FORM_FIELD_W;
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    const int ty=r.typeY-formScroll;
     const char* types[]={::psvitaalive::L("FEEDBACK_PROBLEM"),
                          ::psvitaalive::L("FEEDBACK_SUGGESTION")};
-    // PS Vita shoulder shortcuts for report type (touch remains available).
-    ::psvitaalive::ui::uiDrawText(&font_,x+417,y+141,DIM,.78f,
-        "L / R");
-    for(int i=0;i<2;++i) {
-        const int bx=x+24+i*185,by=y+116,bw=175,bh=36;
+    for (int i=0;i<2;++i) {
+        const int x=fieldX+i*(fieldW/2+5),w=fieldW/2-5;
         const bool selected=(feedbackSuggestion_==(i==1));
-        vita2d_draw_rectangle(bx,by,bw,bh,selected?ACCENT:SURFACE);
-        if(feedbackFocus_==0 && selected)
-            vita2d_draw_rectangle(bx,by,bw,2,WHITE);
-        const float sc=.80f;
-        const int tw=::psvitaalive::ui::uiTextWidth(&font_,sc,types[i]);
-        ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-tw)/2,by+25,
-            selected?BG:TEXT,sc,types[i]);
+        vita2d_draw_rectangle(x,ty,w,40,selected?ACCENT:SURFACE);
+        if (feedbackPanel_==1 && feedbackFocus_==0 && selected)
+            vita2d_draw_rectangle(x,ty,w,2,WHITE);
+        const int tw=::psvitaalive::ui::uiTextWidth(&font_,.82f,types[i]);
+        ::psvitaalive::ui::uiDrawText(&font_,x+(w-tw)/2,ty+27,
+            selected?BG:WHITE,.82f,types[i]);
+    }
+
+    if (!feedbackAppName_.empty()) {
+        const int y=r.appY-formScroll;
+        vita2d_draw_rectangle(fieldX,y,fieldW,r.appH,SURFACE);
+        vita2d_draw_rectangle(fieldX,y,4,r.appH,ACCENT);
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,y+20,ACCENT,.78f,
+            ::psvitaalive::L("FEEDBACK_APP_LABEL"));
+        int rowY=y+46;
+        for (const auto& line : feedbackAppNameLines_) {
+            ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,rowY,WHITE,.90f,line.c_str());
+            rowY+=25;
+        }
+        const std::string titleId=std::string(::psvitaalive::L("FEEDBACK_APP_TITLEID"))+
+            ": "+(feedbackAppTitleId_.empty()?"—":feedbackAppTitleId_);
+        const std::string version=std::string(::psvitaalive::L("FEEDBACK_APP_VERSION"))+
+            ": "+(feedbackAppVersion_.empty()?"—":feedbackAppVersion_);
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,rowY+2,TEXT,.78f,titleId.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,rowY+26,TEXT,.78f,version.c_str());
     }
 
     char count[32];
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+178,WHITE,.83f,
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX,r.titleLabelY-formScroll,WHITE,.85f,
         ::psvitaalive::L("FEEDBACK_TITLE_LABEL"));
     sceClibSnprintf(count,sizeof(count),"%u/64",(unsigned)feedbackTitle_.size());
-    ::psvitaalive::ui::uiDrawText(&font_,x+w-91,y+178,DIM,.72f,count);
-    const int fieldX=x+24,fieldW=w-48;
-    vita2d_draw_rectangle(fieldX,y+187,fieldW,47,
-        feedbackFocus_==1?ACCENT:BORDER);
-    vita2d_draw_rectangle(fieldX+2,y+189,fieldW-4,43,SURFACE2);
-    vita2d_set_clip_rectangle(fieldX+12,y+190,fieldX+fieldW-14,y+230);
-    ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,y+218,
-        feedbackTitle_.empty()?DIM:WHITE,.84f,
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX+fieldW-62,r.titleLabelY-formScroll,DIM,.75f,count);
+    const int titleY=r.titleY-formScroll;
+    vita2d_draw_rectangle(fieldX,titleY,fieldW,46,
+        feedbackPanel_==1 && feedbackFocus_==1?ACCENT:BORDER);
+    vita2d_draw_rectangle(fieldX+2,titleY+2,fieldW-4,42,SURFACE);
+    // Intersect field and panel to keep both horizontal and vertical clipping.
+    vita2d_set_clip_rectangle(fieldX+12,std::max(FB_VIEW_Y,titleY+3),
+        fieldX+fieldW-12,std::min(FB_VIEW_Y+FB_VIEW_H,titleY+43));
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,titleY+29,
+        feedbackTitle_.empty()?DIM:WHITE,.85f,
         feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
                                feedbackTitle_.c_str());
     vita2d_disable_clipping();
 
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+266,WHITE,.84f,
+    // Restore pane clipping before the description label / input container.
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX,r.bodyLabelY-formScroll,WHITE,.85f,
         ::psvitaalive::L("FEEDBACK_BODY_LABEL"));
     sceClibSnprintf(count,sizeof(count),"%u/700",(unsigned)feedbackBody_.size());
-    ::psvitaalive::ui::uiDrawText(&font_,x+w-104,y+266,DIM,.72f,count);
-    const int bx=x+24,by=y+274,bw=w-48,bh=153;
-    vita2d_draw_rectangle(bx,by,bw,bh,feedbackFocus_==2?ACCENT:BORDER);
-    vita2d_draw_rectangle(bx+2,by+2,bw-4,bh-4,SURFACE2);
-    const int clipTop=by+10,clipBot=by+bh-9;
-    vita2d_set_clip_rectangle(bx+13,clipTop,bx+bw-24,clipBot);
-    if(feedbackBody_.empty()) {
-        ::psvitaalive::ui::uiDrawText(&font_,bx+17,by+35,DIM,.78f,
-            ::psvitaalive::L("FEEDBACK_BODY_PLACEHOLDER"));
-    } else {
-        int ty=by+33-feedbackScrollY_;
-        for(const auto& line:feedbackWrapped_) {
-            if(ty>=clipTop-15 && ty<=clipBot+27)
-                ::psvitaalive::ui::uiDrawText(&font_,bx+17,ty,TEXT,.81f,line.c_str());
-            ty+=27;
-            if(ty>clipBot+35) break;
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX+fieldW-72,r.bodyLabelY-formScroll,DIM,.75f,count);
+    const int bodyY=r.bodyY-formScroll;
+    vita2d_draw_rectangle(fieldX,bodyY,fieldW,FB_BODY_H,
+        feedbackPanel_==1 && feedbackFocus_==2?ACCENT:BORDER);
+    vita2d_draw_rectangle(fieldX+2,bodyY+2,fieldW-4,FB_BODY_H-4,SURFACE);
+    const int clipTop=std::max(FB_VIEW_Y,bodyY+8);
+    const int clipBot=std::min(FB_VIEW_Y+FB_VIEW_H,bodyY+FB_BODY_H-8);
+    if (clipBot>clipTop) {
+        vita2d_set_clip_rectangle(fieldX+12,clipTop,fieldX+fieldW-24,clipBot);
+        if (feedbackBody_.empty()) {
+            ::psvitaalive::ui::uiDrawText(&font_,fieldX+16,bodyY+32,DIM,.81f,
+                ::psvitaalive::L("FEEDBACK_BODY_PLACEHOLDER"));
+        } else {
+            int lineY=bodyY+30-feedbackScrollY_;
+            for (const auto& line : feedbackWrapped_) {
+                if(lineY>clipTop-12 && lineY<clipBot+22)
+                    ::psvitaalive::ui::uiDrawText(&font_,fieldX+16,lineY,TEXT,.81f,line.c_str());
+                lineY+=27;
+            }
+        }
+        vita2d_disable_clipping();
+    }
+    const int bodyH=static_cast<int>(feedbackWrapped_.size())*27;
+    if(bodyH>FB_BODY_TEXT_H) {
+        const int trackH=FB_BODY_H-20,thumbH=std::max(20,trackH*FB_BODY_TEXT_H/bodyH);
+        const int thumbY=(feedbackScrollY_*(trackH-thumbH))/
+            std::max(1,bodyH-FB_BODY_TEXT_H);
+        vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10,4,trackH,BORDER);
+        vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10+thumbY,4,thumbH,ACCENT);
+    }
+
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    if (!feedbackNoticeLines_.empty()) {
+        const int nY=r.noticeY-formScroll;
+        vita2d_draw_rectangle(fieldX,nY,fieldW,r.noticeH,SURFACE);
+        vita2d_draw_rectangle(fieldX,nY,4,r.noticeH,ACCENT);
+        int lineY=nY+27;
+        for(const auto& line:feedbackNoticeLines_){
+            ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,lineY,TEXT,.80f,line.c_str());
+            lineY+=25;
         }
     }
     vita2d_disable_clipping();
-    const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
-    if(contentH>118) {
-        const int trackX=bx+bw-13,trackY=by+9,trackH=bh-18;
-        const int thumbH=std::max(22,(trackH*118)/contentH);
-        vita2d_draw_rectangle(trackX,trackY,4,trackH,BORDER);
-        const int pos=(feedbackScrollY_*(trackH-thumbH))/std::max(1,contentH-118);
-        vita2d_draw_rectangle(trackX,trackY+pos,4,thumbH,ACCENT);
-    }
-    const int actionY=y+447,actionH=43;
-    const int sendX=x+24,sendW=380,cancelX=x+w-24-270,cancelW=270;
-    vita2d_draw_rectangle(sendX,actionY,sendW,actionH,
-        feedbackFocus_==3?ACCENT:SURFACE2);
-    vita2d_draw_rectangle(cancelX,actionY,cancelW,actionH,
-        feedbackFocus_==4?ACCENT:SURFACE2);
-    const char* sendText=::psvitaalive::L(feedbackSending_?
-        "FEEDBACK_SENDING":"FEEDBACK_SEND");
-    const char* cancelText=::psvitaalive::L("FEEDBACK_CANCEL");
-    float ss=.84f;
-    while(ss>.58f && ::psvitaalive::ui::uiTextWidth(&font_,ss,sendText)>sendW-20)
-        ss-=.03f;
-    float cs=.82f;
-    while(cs>.58f && ::psvitaalive::ui::uiTextWidth(&font_,cs,cancelText)>cancelW-20)
-        cs-=.03f;
+
+    // Independent scrollbar for each pane; unlike the description scrollbar,
+    // these indicate the entire pane's content extent.
+    auto drawScrollbar=[&](int x,int scroll,int contentH) {
+        const int maxScroll=std::max(0,contentH-FB_VIEW_H);
+        if(maxScroll<=0)return;
+        const int trackH=FB_VIEW_H-12;
+        const int thumbH=std::max(24,(trackH*FB_VIEW_H)/contentH);
+        const int thumbY=(scroll*(trackH-thumbH))/maxScroll;
+        vita2d_draw_rectangle(x,FB_VIEW_Y+6,4,trackH,BORDER);
+        vita2d_draw_rectangle(x,FB_VIEW_Y+6+thumbY,4,thumbH,ACCENT);
+    };
+    drawScrollbar(FB_INFO_X+FB_INFO_W-10,infoScroll,feedbackInfoContentH_);
+    drawScrollbar(FB_FORM_X+FB_FORM_W-10,formScroll,r.contentH);
+
+    // These controls never scroll out of view.
+    const int sendX=FB_FORM_FIELD_X,sendW=284;
+    const int cancelX=sendX+sendW+12,cancelW=FB_FORM_FIELD_W-sendW-12;
+    vita2d_draw_rectangle(sendX,FB_ACTION_Y,sendW,FB_ACTION_H,
+        feedbackPanel_==1 && feedbackFocus_==3?ACCENT:SURFACE2);
+    vita2d_draw_rectangle(cancelX,FB_ACTION_Y,cancelW,FB_ACTION_H,
+        feedbackPanel_==1 && feedbackFocus_==4?ACCENT:SURFACE2);
+    const char* sendLabel=::psvitaalive::L(feedbackSending_?"FEEDBACK_SENDING":"FEEDBACK_SEND");
+    const char* cancelLabel=::psvitaalive::L("FEEDBACK_CANCEL");
     ::psvitaalive::ui::uiDrawText(&font_,
-        sendX+(sendW-::psvitaalive::ui::uiTextWidth(&font_,ss,sendText))/2,
-        actionY+29,feedbackFocus_==3?BG:WHITE,ss,sendText);
+        sendX+(sendW-::psvitaalive::ui::uiTextWidth(&font_,.80f,sendLabel))/2,
+        FB_ACTION_Y+29,feedbackPanel_==1 && feedbackFocus_==3?BG:WHITE,.80f,sendLabel);
     ::psvitaalive::ui::uiDrawText(&font_,
-        cancelX+(cancelW-::psvitaalive::ui::uiTextWidth(&font_,cs,cancelText))/2,
-        actionY+29,feedbackFocus_==4?BG:WHITE,cs,cancelText);
-    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+h-8,DIM,.59f,
-        ::psvitaalive::L("FEEDBACK_NAV_HINT"));
+        cancelX+(cancelW-::psvitaalive::ui::uiTextWidth(&font_,.80f,cancelLabel))/2,
+        FB_ACTION_Y+29,feedbackPanel_==1 && feedbackFocus_==4?BG:WHITE,.80f,cancelLabel);
 }
 
 int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
