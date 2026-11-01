@@ -81,6 +81,9 @@
     "ACGC00001": {
       "version": "v.0.5.0"
     },
+    "ACLD00001": {
+      "version": "1.0"
+    },
     "ACRODEA00": {
       "version": "BETA"
     },
@@ -293,6 +296,9 @@
     },
     "BANJO0064": {
       "version": "v.1.0.1"
+    },
+    "BAOR00001": {
+      "version": "1.0"
     },
     "BARO00001": {
       "version": "v.0.0.2-5.0.2"
@@ -598,7 +604,7 @@
       "version": "v.1.1"
     },
     "CODVIT001": {
-      "version": "1.01"
+      "version": "1.02"
     },
     "COIV00001": {
       "version": "0.12"
@@ -753,6 +759,9 @@
     "DGSO12345": {
       "version": "v.1.0"
     },
+    "DGWD00001": {
+      "version": "0.1.0"
+    },
     "DHEWM3ES2": {
       "version": "v.0.5"
     },
@@ -764,6 +773,9 @@
     },
     "DIVDOW001": {
       "version": "v.1.0"
+    },
+    "DJMR00001": {
+      "version": "1.0"
     },
     "DKAS00000": {
       "version": "v.1.01"
@@ -850,7 +862,7 @@
       "version": "v.0.9.4"
     },
     "DTWO00001": {
-      "version": "0.2.1"
+      "version": "0.2.3"
     },
     "DUK000000": {
       "version": "0.0.1"
@@ -1374,6 +1386,9 @@
     "IDOL00001": {
       "version": "v.0.8.7"
     },
+    "IGNVITA12": {
+      "version": "1.1"
+    },
     "ILLU00001": {
       "version": "1.0"
     },
@@ -1816,7 +1831,7 @@
       "version": "v.1.4"
     },
     "MVSC00001": {
-      "version": "1.0"
+      "version": "1.1"
     },
     "MYLEGNOOB": {
       "version": "v.1.1"
@@ -1882,7 +1897,7 @@
       "version": "v.1.0"
     },
     "NFSMWVITA": {
-      "version": "1.3.8"
+      "version": "1.3.9"
     },
     "NFSR00001": {
       "version": "1.00"
@@ -2233,7 +2248,7 @@
       "version": "v.0.43"
     },
     "PSVNOVA02": {
-      "version": "1.0"
+      "version": "1.0.2"
     },
     "PSVRT0001": {
       "version": "1.0.1"
@@ -2323,7 +2338,7 @@
       "version": "v.1.0"
     },
     "RECVX0001": {
-      "version": "1.1"
+      "version": "1.2"
     },
     "REDG00001": {
       "version": "1.0"
@@ -2462,6 +2477,9 @@
     },
     "RPYKWKFAN": {
       "version": "1.00"
+    },
+    "RPYRD1701": {
+      "version": "1.0"
     },
     "RR2VITA01": {
       "version": "1.0.0"
@@ -2773,7 +2791,7 @@
       "version": "2.1"
     },
     "SRCV00001": {
-      "version": "0.1.2"
+      "version": "0.1.3"
     },
     "SSAM10001": {
       "version": "psvita2"
