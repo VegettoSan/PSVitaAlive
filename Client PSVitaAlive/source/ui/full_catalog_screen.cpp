@@ -2240,6 +2240,120 @@ void FullCatalogScreen::drawReportChip() {
 }
 
 
+
+namespace {
+// Match the QR window's readable two-column design. Never shrink information
+// to make the full content fit: both panels own their scroll state.
+constexpr int FB_X = 30, FB_Y = 16, FB_W = 900, FB_H = 512;
+constexpr int FB_INFO_X = FB_X + 18, FB_INFO_W = 302;
+constexpr int FB_FORM_X = FB_INFO_X + FB_INFO_W + 14, FB_FORM_W = 548;
+constexpr int FB_VIEW_Y = FB_Y + 94, FB_VIEW_H = 348;
+constexpr int FB_FORM_FIELD_X = FB_FORM_X + 14, FB_FORM_FIELD_W = FB_FORM_W - 36;
+constexpr int FB_BODY_H = 148, FB_BODY_TEXT_H = 112;
+constexpr int FB_ACTION_Y = FB_Y + FB_H - 58, FB_ACTION_H = 43;
+struct FeedbackFormRects {
+    int typeY = 0, appY = 0, appH = 0;
+    int titleLabelY = 0, titleY = 0;
+    int bodyLabelY = 0, bodyY = 0;
+    int noticeY = 0, noticeH = 0;
+    int contentH = 0;
+};
+FeedbackFormRects feedbackFormRects(bool withApp, size_t nameLines, size_t noticeLines) {
+    FeedbackFormRects r;
+    int cursor = FB_VIEW_Y + 12;
+    r.typeY = cursor; cursor += 54;
+    if (withApp) {
+        r.appY = cursor;
+        r.appH = 69 + static_cast<int>(nameLines) * 25;
+        cursor += r.appH + 12;
+    }
+    r.titleLabelY = cursor + 17; r.titleY = cursor + 26;
+    cursor += 82;
+    r.bodyLabelY = cursor + 17; r.bodyY = cursor + 26;
+    cursor += FB_BODY_H + 45;
+    if (noticeLines != 0) {
+        r.noticeY = cursor;
+        r.noticeH = 20 + static_cast<int>(noticeLines) * 25 + 15;
+        cursor += r.noticeH + 14;
+    }
+    r.contentH = cursor - FB_VIEW_Y + 10;
+    return r;
+}
+} // namespace
+
+void FullCatalogScreen::clampFeedbackPanelScroll() {
+    const auto rect = feedbackFormRects(!feedbackAppName_.empty(),
+        feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
+    feedbackInfoScrollY_ = std::max(0, std::min(feedbackInfoScrollY_,
+        std::max(0, feedbackInfoContentH_ - FB_VIEW_H)));
+    feedbackFormScrollY_ = std::max(0, std::min(feedbackFormScrollY_,
+        std::max(0, rect.contentH - FB_VIEW_H)));
+}
+
+void FullCatalogScreen::refreshFeedbackGuidance() {
+    feedbackInfoLines_.clear();
+    feedbackInfoContentH_ = 18;
+    auto add = [&](const char* key, bool heading) {
+        if (!feedbackInfoLines_.empty()) {
+            feedbackInfoLines_.emplace_back("", false);
+            feedbackInfoContentH_ += 12;
+        }
+        const auto lines = wrapTextToWidth(&font_, heading ? .87f : .81f,
+            ::psvitaalive::L(key), FB_INFO_W - 35);
+        for (const auto& line : lines) {
+            feedbackInfoLines_.emplace_back(line, heading);
+            feedbackInfoContentH_ += heading ? 29 : 25;
+        }
+    };
+    if (feedbackSuggestion_) {
+        add("FEEDBACK_INFO_SUGGEST_HEAD", true);
+        add("FEEDBACK_INFO_SUGGEST_BODY", false);
+        add("FEEDBACK_INFO_SUGGEST_TIP", false);
+    } else {
+        add("FEEDBACK_INFO_PROBLEM_HEAD", true);
+        add("FEEDBACK_INFO_PROBLEM_BODY", false);
+        add("FEEDBACK_INFO_PORT_HEAD", true);
+        add("FEEDBACK_INFO_PORT_BODY", false);
+    }
+    add("FEEDBACK_NAV_HINT", false);
+    feedbackInfoContentH_ += 18;
+    feedbackNoticeLines_.clear();
+    if (!feedbackSuggestion_) {
+        feedbackNoticeLines_ = wrapTextToWidth(&font_, .80f,
+            ::psvitaalive::L("FEEDBACK_PORT_WARNING"), FB_FORM_FIELD_W - 38);
+    }
+    feedbackAppNameLines_.clear();
+    if (!feedbackAppName_.empty()) {
+        feedbackAppNameLines_ = wrapTextToWidth(&font_, .90f,
+            feedbackAppName_, FB_FORM_FIELD_W - 32);
+    }
+    clampFeedbackPanelScroll();
+}
+
+void FullCatalogScreen::setFeedbackSuggestion(bool suggestion) {
+    if (feedbackSending_ || feedbackSuggestion_ == suggestion) return;
+    feedbackSuggestion_ = suggestion;
+    feedbackInfoScrollY_ = 0;
+    feedbackInfoVisualY_ = 0.f;
+    refreshFeedbackGuidance();
+    ensureFeedbackFocusVisible();
+}
+
+void FullCatalogScreen::ensureFeedbackFocusVisible() {
+    if (feedbackPanel_ != 1 || feedbackFocus_ > 2) return;
+    const auto r = feedbackFormRects(!feedbackAppName_.empty(),
+        feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
+    const int top = feedbackFocus_ == 0 ? r.typeY :
+        feedbackFocus_ == 1 ? r.titleLabelY - 15 : r.bodyLabelY - 15;
+    const int bottom = feedbackFocus_ == 0 ? r.typeY + 42 :
+        feedbackFocus_ == 1 ? r.titleY + 46 : r.bodyY + FB_BODY_H;
+    if (top - feedbackFormScrollY_ < FB_VIEW_Y + 7)
+        feedbackFormScrollY_ = top - FB_VIEW_Y - 7;
+    else if (bottom - feedbackFormScrollY_ > FB_VIEW_Y + FB_VIEW_H - 8)
+        feedbackFormScrollY_ = bottom - (FB_VIEW_Y + FB_VIEW_H - 8);
+    clampFeedbackPanelScroll();
+}
+
 void FullCatalogScreen::openReportConfirm() {
     if(reportUiState_==1 || reportBusy_.load() || reportThread_>=0 ||
        reportConfirmVisible_ || keyboard_.active()) return;
@@ -2254,6 +2368,25 @@ void FullCatalogScreen::openReportConfirm() {
     feedbackFocus_=1;
     feedbackKeyboardField_=0;
     feedbackScrollY_=0;
+    feedbackPanel_=1;
+    feedbackInfoScrollY_=feedbackFormScrollY_=0;
+    feedbackInfoVisualY_=feedbackFormVisualY_=0.f;
+    feedbackAppName_.clear();
+    feedbackAppId_.clear();
+    feedbackAppTitleId_.clear();
+    feedbackAppVersion_.clear();
+    // Selection alone in FULL_CATALOG must never attach unrelated app context.
+    if (state_.mode == UiMode::SPLIT_DETAIL) {
+        const int index = selectedIndex();
+        if (index >= 0) {
+            const CatalogItem& item = catalogView()[index];
+            feedbackAppName_ = item.name;
+            feedbackAppId_ = item.id;
+            feedbackAppTitleId_ = item.titleId;
+            feedbackAppVersion_ = item.version;
+        }
+    }
+    refreshFeedbackGuidance();
     touchDown_=false;
     reportConfirmVisible_=true;
 }
@@ -2266,14 +2399,21 @@ void FullCatalogScreen::closeReportConfirm() {
     feedbackWrapped_.clear();
     feedbackScrollY_=0;
     feedbackKeyboardField_=0;
+    feedbackInfoLines_.clear();
+    feedbackNoticeLines_.clear();
+    feedbackAppNameLines_.clear();
+    feedbackAppName_.clear();
+    feedbackAppId_.clear();
+    feedbackAppTitleId_.clear();
+    feedbackAppVersion_.clear();
     touchDown_=false;
 }
 void FullCatalogScreen::clampFeedbackScroll() {
     const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
-    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,contentH-118)));
+    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,contentH-FB_BODY_TEXT_H)));
 }
 void FullCatalogScreen::refreshFeedbackWrap() {
-    feedbackWrapped_=wrapTextToWidth(&font_,.81f,feedbackBody_,758);
+    feedbackWrapped_=wrapTextToWidth(&font_,.81f,feedbackBody_,FB_FORM_FIELD_W-34);
     clampFeedbackScroll();
 }
 void FullCatalogScreen::openFeedbackKeyboard(int field) {
@@ -2329,7 +2469,7 @@ void FullCatalogScreen::sendManualFeedbackFromForm() {
 void FullCatalogScreen::activateFeedbackFocus() {
     if(feedbackSending_) return;
     switch(feedbackFocus_) {
-    case 0: feedbackSuggestion_=!feedbackSuggestion_; break;
+    case 0: setFeedbackSuggestion(!feedbackSuggestion_); break;
     case 1: openFeedbackKeyboard(1); break;
     case 2: openFeedbackKeyboard(2); break;
     case 3: sendManualFeedbackFromForm(); break;
