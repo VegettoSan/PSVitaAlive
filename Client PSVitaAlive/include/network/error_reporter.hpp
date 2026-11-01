@@ -55,12 +55,20 @@ ErrorReportResult sendErrorReport(
 );
 
 /** User-written feedback from the main Report button: no diagnostics,
- * logs, file identifiers, selected app or device info are attached.
+ * logs, file identifiers, device logs or identifiers are attached.
  */
+struct ManualFeedbackAppContext {
+    std::string name;     // Empty when report was opened outside app details.
+    std::string id;       // VitaAlive catalog ID, not a device identifier.
+    std::string titleId;  // Homebrew Title ID or catalog game's primary ID.
+    std::string version;  // Version shown in catalog.
+};
+
 struct ManualFeedbackRequest {
     std::string title;
     std::string body;
     bool suggestion = false;
+    ManualFeedbackAppContext app; // Optional immutable snapshot from detail view.
 };
 ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req);
 
