@@ -14,17 +14,17 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.1",
-  "version_date": "2026-10-29",
+  "version": "1.2",
+  "version_date": "2026-10-31",
   "requirements": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
-  "size": 2831155,
+  "size": 13946061,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/recvx-vita%20v1.1.vpk",
-      "size": 2831155,
+      "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/recvx-vita%20v1.2.vpk",
+      "size": 13946061,
       "recommended": true
     },
     {

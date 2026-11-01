@@ -13,17 +13,17 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-30",
+  "version": "1.1",
+  "version_date": "2026-11-01",
   "requirements": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
-  "size": 1677722,
+  "size": 1782579,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.0.vpk",
-      "size": 1677722,
+      "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.1.vpk",
+      "size": 1782579,
       "recommended": true
     },
     {

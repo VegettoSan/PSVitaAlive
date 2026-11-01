@@ -15,8 +15,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-09-26",
+  "version": "1.0.2",
+  "version_date": "2026-10-31",
   "requirements": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
   "size": 2097152,
   "status": "Verified",
@@ -24,7 +24,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.vpk",
+      "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.2.vpk",
       "size": 2097152,
       "recommended": true
     },
