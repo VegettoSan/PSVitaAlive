@@ -606,7 +606,7 @@ ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req) {
     std::string payload;
     payload.reserve(req.title.size()+req.body.size()+600);
     payload+="{\"thread_name\":\"";
-    payload+=jsonEscape(feedbackForumThreadName(req.title,req.suggestion));
+    payload+=jsonEscape(feedbackForumThreadName(req.title,req.suggestion,req.app.name));
     payload+="\",\"username\":\"PSVitaAlive Feedback\",";
     payload+="\"allowed_mentions\":{\"parse\":[]},";
     payload+="\"content\":\"";
@@ -623,7 +623,24 @@ ErrorReportResult sendManualFeedback(const ManualFeedbackRequest& req) {
     payload+=jsonEscape(std::string("v")+ver);
     payload+="\",\"inline\":true},{\"name\":\"Submitted (UTC)\",\"value\":\"";
     payload+=jsonEscape(when);
-    payload+="\",\"inline\":false}],\"footer\":{\"text\":\"PSVitaAlive · user feedback · no logs\"}";
+    payload+="\",\"inline\":false}";
+    // A manual report gets only the app explicitly shown in the open detail
+    // panel, not installed software, background selection or diagnostic logs.
+    if (!req.app.name.empty()) {
+        const auto field = [&](const char* label, const std::string& value) {
+            if (value.empty()) return;
+            payload += ",{\"name\":\"";
+            payload += label;
+            payload += "\",\"value\":\"";
+            payload += jsonEscape(truncate(value, 512));
+            payload += "\",\"inline\":true}";
+        };
+        field("Application", req.app.name);
+        field("App ID", req.app.id);
+        field("Title ID", req.app.titleId);
+        field("Version", req.app.version);
+    }
+    payload+="],\"footer\":{\"text\":\"PSVitaAlive · user feedback · no logs\"}";
     if(when.size()>10 && when.find('T')!=std::string::npos) {
         payload+=",\"timestamp\":\"";
         payload+=jsonEscape(when);

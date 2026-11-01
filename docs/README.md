@@ -17,7 +17,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 | [`docs/RELEASE_02_17_TECHNICAL_20261028.md`](RELEASE_02_17_TECHNICAL_20261028.md) | **Estado vigente en 02.17:** tarjetas, filtros, PSP/PS1, Discord, estabilidad, build y verificación |
 | [`docs/releases/02.17.md`](releases/02.17.md) | Body oficial de la release 02.17 |
 | [`docs/self-update-versioning.md`](self-update-versioning.md) | Versiones basadas en `tag_name`; publicación controlada por VitaSDK/SFO/CRC/SHA-256 |
-| [`docs/DISCORD_FEEDBACK_FORUMS_20261028.md`](DISCORD_FEEDBACK_FORUMS_20261028.md) | Foros Discord para Problemas y Sugerencias, sin mezclar diagnósticos automáticos |
+| [`docs/FEEDBACK_TWO_PANEL_REPORTS_20261101.md`](FEEDBACK_TWO_PANEL_REPORTS_20261101.md) | Formulario de dos paneles, scroll independiente, contexto de ficha y título de Discord |\n| [`docs/DISCORD_FEEDBACK_FORUMS_20261028.md`](DISCORD_FEEDBACK_FORUMS_20261028.md) | Foros Discord para Problemas y Sugerencias, sin mezclar diagnósticos automáticos |
 | [`Client PSVitaAlive/docs/FILTER_PANEL_20261020.md`](../Client%20PSVitaAlive/docs/FILTER_PANEL_20261020.md) | Etiqueta `Filtros` sin selección y nombre del filtro activo en 02.17 |
 | [`Client PSVitaAlive/docs/INSTALLED_CATALOG_FILTERS_20261020.md`](../Client%20PSVitaAlive/docs/INSTALLED_CATALOG_FILTERS_20261020.md) | Índice multiunidad y badge de almacenamiento PSP/PS1 en 02.17 |
 | `docs/BGDL_PREPARATION_FRAME.md` | **BGDL preparation-frame handoff**: keep ShellSvc enqueue on the main thread while presenting a visible Preparing overlay first |

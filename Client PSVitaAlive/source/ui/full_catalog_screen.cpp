@@ -2240,6 +2240,120 @@ void FullCatalogScreen::drawReportChip() {
 }
 
 
+
+namespace {
+// Match the QR window's readable two-column design. Never shrink information
+// to make the full content fit: both panels own their scroll state.
+constexpr int FB_X = 30, FB_Y = 16, FB_W = 900, FB_H = 512;
+constexpr int FB_INFO_X = FB_X + 18, FB_INFO_W = 302;
+constexpr int FB_FORM_X = FB_INFO_X + FB_INFO_W + 14, FB_FORM_W = 548;
+constexpr int FB_VIEW_Y = FB_Y + 94, FB_VIEW_H = 348;
+constexpr int FB_FORM_FIELD_X = FB_FORM_X + 14, FB_FORM_FIELD_W = FB_FORM_W - 36;
+constexpr int FB_BODY_H = 148, FB_BODY_TEXT_H = 112;
+constexpr int FB_ACTION_Y = FB_Y + FB_H - 58, FB_ACTION_H = 43;
+struct FeedbackFormRects {
+    int typeY = 0, appY = 0, appH = 0;
+    int titleLabelY = 0, titleY = 0;
+    int bodyLabelY = 0, bodyY = 0;
+    int noticeY = 0, noticeH = 0;
+    int contentH = 0;
+};
+FeedbackFormRects feedbackFormRects(bool withApp, size_t nameLines, size_t noticeLines) {
+    FeedbackFormRects r;
+    int cursor = FB_VIEW_Y + 12;
+    r.typeY = cursor; cursor += 54;
+    if (withApp) {
+        r.appY = cursor;
+        r.appH = 87 + static_cast<int>(nameLines) * 25;
+        cursor += r.appH + 12;
+    }
+    r.titleLabelY = cursor + 17; r.titleY = cursor + 26;
+    cursor += 82;
+    r.bodyLabelY = cursor + 17; r.bodyY = cursor + 26;
+    cursor += FB_BODY_H + 45;
+    if (noticeLines != 0) {
+        r.noticeY = cursor;
+        r.noticeH = 20 + static_cast<int>(noticeLines) * 25 + 15;
+        cursor += r.noticeH + 14;
+    }
+    r.contentH = cursor - FB_VIEW_Y + 10;
+    return r;
+}
+} // namespace
+
+void FullCatalogScreen::clampFeedbackPanelScroll() {
+    const auto rect = feedbackFormRects(!feedbackAppName_.empty(),
+        feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
+    feedbackInfoScrollY_ = std::max(0, std::min(feedbackInfoScrollY_,
+        std::max(0, feedbackInfoContentH_ - FB_VIEW_H)));
+    feedbackFormScrollY_ = std::max(0, std::min(feedbackFormScrollY_,
+        std::max(0, rect.contentH - FB_VIEW_H)));
+}
+
+void FullCatalogScreen::refreshFeedbackGuidance() {
+    feedbackInfoLines_.clear();
+    feedbackInfoContentH_ = 18;
+    auto add = [&](const char* key, bool heading) {
+        if (!feedbackInfoLines_.empty()) {
+            feedbackInfoLines_.emplace_back("", false);
+            feedbackInfoContentH_ += 12;
+        }
+        const auto lines = wrapTextToWidth(&font_, heading ? .87f : .81f,
+            ::psvitaalive::L(key), FB_INFO_W - 35);
+        for (const auto& line : lines) {
+            feedbackInfoLines_.emplace_back(line, heading);
+            feedbackInfoContentH_ += heading ? 29 : 25;
+        }
+    };
+    if (feedbackSuggestion_) {
+        add("FEEDBACK_INFO_SUGGEST_HEAD", true);
+        add("FEEDBACK_INFO_SUGGEST_BODY", false);
+        add("FEEDBACK_INFO_SUGGEST_TIP", false);
+    } else {
+        add("FEEDBACK_INFO_PROBLEM_HEAD", true);
+        add("FEEDBACK_INFO_PROBLEM_BODY", false);
+        add("FEEDBACK_INFO_PORT_HEAD", true);
+        add("FEEDBACK_INFO_PORT_BODY", false);
+    }
+    add("FEEDBACK_NAV_HINT", false);
+    feedbackInfoContentH_ += 18;
+    feedbackNoticeLines_.clear();
+    if (!feedbackSuggestion_) {
+        feedbackNoticeLines_ = wrapTextToWidth(&font_, .80f,
+            ::psvitaalive::L("FEEDBACK_PORT_WARNING"), FB_FORM_FIELD_W - 38);
+    }
+    feedbackAppNameLines_.clear();
+    if (!feedbackAppName_.empty()) {
+        feedbackAppNameLines_ = wrapTextToWidth(&font_, .90f,
+            feedbackAppName_, FB_FORM_FIELD_W - 32);
+    }
+    clampFeedbackPanelScroll();
+}
+
+void FullCatalogScreen::setFeedbackSuggestion(bool suggestion) {
+    if (feedbackSending_ || feedbackSuggestion_ == suggestion) return;
+    feedbackSuggestion_ = suggestion;
+    feedbackInfoScrollY_ = 0;
+    feedbackInfoVisualY_ = 0.f;
+    refreshFeedbackGuidance();
+    ensureFeedbackFocusVisible();
+}
+
+void FullCatalogScreen::ensureFeedbackFocusVisible() {
+    if (feedbackPanel_ != 1 || feedbackFocus_ > 2) return;
+    const auto r = feedbackFormRects(!feedbackAppName_.empty(),
+        feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
+    const int top = feedbackFocus_ == 0 ? r.typeY :
+        feedbackFocus_ == 1 ? r.titleLabelY - 15 : r.bodyLabelY - 15;
+    const int bottom = feedbackFocus_ == 0 ? r.typeY + 42 :
+        feedbackFocus_ == 1 ? r.titleY + 46 : r.bodyY + FB_BODY_H;
+    if (top - feedbackFormScrollY_ < FB_VIEW_Y + 7)
+        feedbackFormScrollY_ = top - FB_VIEW_Y - 7;
+    else if (bottom - feedbackFormScrollY_ > FB_VIEW_Y + FB_VIEW_H - 8)
+        feedbackFormScrollY_ = bottom - (FB_VIEW_Y + FB_VIEW_H - 8);
+    clampFeedbackPanelScroll();
+}
+
 void FullCatalogScreen::openReportConfirm() {
     if(reportUiState_==1 || reportBusy_.load() || reportThread_>=0 ||
        reportConfirmVisible_ || keyboard_.active()) return;
@@ -2254,6 +2368,25 @@ void FullCatalogScreen::openReportConfirm() {
     feedbackFocus_=1;
     feedbackKeyboardField_=0;
     feedbackScrollY_=0;
+    feedbackPanel_=1;
+    feedbackInfoScrollY_=feedbackFormScrollY_=0;
+    feedbackInfoVisualY_=feedbackFormVisualY_=0.f;
+    feedbackAppName_.clear();
+    feedbackAppId_.clear();
+    feedbackAppTitleId_.clear();
+    feedbackAppVersion_.clear();
+    // Selection alone in FULL_CATALOG must never attach unrelated app context.
+    if (state_.mode == UiMode::SPLIT_DETAIL) {
+        const int index = selectedIndex();
+        if (index >= 0) {
+            const CatalogItem& item = catalogView()[index];
+            feedbackAppName_ = item.name;
+            feedbackAppId_ = item.id;
+            feedbackAppTitleId_ = item.titleId;
+            feedbackAppVersion_ = item.version;
+        }
+    }
+    refreshFeedbackGuidance();
     touchDown_=false;
     reportConfirmVisible_=true;
 }
@@ -2266,14 +2399,21 @@ void FullCatalogScreen::closeReportConfirm() {
     feedbackWrapped_.clear();
     feedbackScrollY_=0;
     feedbackKeyboardField_=0;
+    feedbackInfoLines_.clear();
+    feedbackNoticeLines_.clear();
+    feedbackAppNameLines_.clear();
+    feedbackAppName_.clear();
+    feedbackAppId_.clear();
+    feedbackAppTitleId_.clear();
+    feedbackAppVersion_.clear();
     touchDown_=false;
 }
 void FullCatalogScreen::clampFeedbackScroll() {
     const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
-    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,contentH-118)));
+    feedbackScrollY_=std::max(0,std::min(feedbackScrollY_,std::max(0,contentH-FB_BODY_TEXT_H)));
 }
 void FullCatalogScreen::refreshFeedbackWrap() {
-    feedbackWrapped_=wrapTextToWidth(&font_,.81f,feedbackBody_,758);
+    feedbackWrapped_=wrapTextToWidth(&font_,.81f,feedbackBody_,FB_FORM_FIELD_W-34);
     clampFeedbackScroll();
 }
 void FullCatalogScreen::openFeedbackKeyboard(int field) {
@@ -2329,7 +2469,7 @@ void FullCatalogScreen::sendManualFeedbackFromForm() {
 void FullCatalogScreen::activateFeedbackFocus() {
     if(feedbackSending_) return;
     switch(feedbackFocus_) {
-    case 0: feedbackSuggestion_=!feedbackSuggestion_; break;
+    case 0: setFeedbackSuggestion(!feedbackSuggestion_); break;
     case 1: openFeedbackKeyboard(1); break;
     case 2: openFeedbackKeyboard(2); break;
     case 3: sendManualFeedbackFromForm(); break;
@@ -2515,104 +2655,200 @@ void FullCatalogScreen::pollDataRequestWorker() {
 
 
 void FullCatalogScreen::drawReportConfirmOverlay() {
-    if(!reportConfirmVisible_ || !font_) return;
-    const int w=860,h=508,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
-    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,195));
-    vita2d_draw_rectangle(x,y,w,h,PANEL);
-    vita2d_draw_rectangle(x,y,w,3,ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+42,ACCENT,1.10f,
-        ::psvitaalive::L("FEEDBACK_HEADING"));
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+76,TEXT,.78f,
-        ::psvitaalive::L("FEEDBACK_HELP_1"));
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+99,DIM,.73f,
-        ::psvitaalive::L("FEEDBACK_HELP_2"));
+    if (!reportConfirmVisible_ || !font_) return;
+    // Interpolate only two scalar offsets, without allocating or re-wrapping
+    // strings in the render path. Both are clamped after input changes.
+    auto ease = [](float& visual, int target) {
+        visual += (static_cast<float>(target) - visual) * .28f;
+        if (std::abs(visual - target) < .7f) visual = static_cast<float>(target);
+    };
+    ease(feedbackInfoVisualY_, feedbackInfoScrollY_);
+    ease(feedbackFormVisualY_, feedbackFormScrollY_);
+    const int infoScroll = static_cast<int>(feedbackInfoVisualY_);
+    const int formScroll = static_cast<int>(feedbackFormVisualY_);
+    const auto r = feedbackFormRects(!feedbackAppName_.empty(),
+        feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
 
+    vita2d_disable_clipping();
+    vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,215));
+    vita2d_draw_rectangle(FB_X,FB_Y,FB_W,FB_H,PANEL);
+    vita2d_draw_rectangle(FB_X,FB_Y,FB_W,3,ACCENT);
+    ::psvitaalive::ui::uiDrawText(&font_, FB_X+20, FB_Y+38, ACCENT,1.09f,
+        ::psvitaalive::L("FEEDBACK_HEADING"));
+
+    // Each pane has its own focus border, viewport clip and scroll indicator.
+    const int panelY = FB_Y+52;
+    const int panelH = FB_VIEW_Y + FB_VIEW_H - panelY + 5;
+    for (int panel=0;panel<2;++panel) {
+        const int px=panel==0?FB_INFO_X:FB_FORM_X;
+        const int pw=panel==0?FB_INFO_W:FB_FORM_W;
+        vita2d_draw_rectangle(px,panelY,pw,panelH,
+            feedbackPanel_==panel ? ACCENT : BORDER);
+        vita2d_draw_rectangle(px+2,panelY+2,pw-4,panelH-4,SURFACE2);
+        ::psvitaalive::ui::uiDrawText(&font_,px+12,FB_VIEW_Y-14,
+            feedbackPanel_==panel?ACCENT:WHITE,.91f,
+            ::psvitaalive::L(panel==0?"FEEDBACK_INFO_PANEL":"FEEDBACK_FORM_PANEL"));
+    }
+
+    // Left column: localized problem/suggestion guidance and usage instructions.
+    vita2d_set_clip_rectangle(FB_INFO_X+9,FB_VIEW_Y,
+        FB_INFO_X+FB_INFO_W-14,FB_VIEW_Y+FB_VIEW_H);
+    int infoY=FB_VIEW_Y+25-infoScroll;
+    for (const auto& entry : feedbackInfoLines_) {
+        if (entry.first.empty()) {
+            infoY+=12;
+            continue;
+        }
+        const int lineH=entry.second?29:25;
+        if (infoY>FB_VIEW_Y-8 && infoY<FB_VIEW_Y+FB_VIEW_H+18)
+            ::psvitaalive::ui::uiDrawText(&font_,FB_INFO_X+14,infoY,
+                entry.second?ACCENT:TEXT,entry.second?.87f:.81f,entry.first.c_str());
+        infoY+=lineH;
+    }
+    vita2d_disable_clipping();
+
+    // Right column: selected type, optional frozen app context, title, body,
+    // and the Homebrew responsibility notice. All content can be scrolled.
+    const int fieldX=FB_FORM_FIELD_X, fieldW=FB_FORM_FIELD_W;
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    const int ty=r.typeY-formScroll;
     const char* types[]={::psvitaalive::L("FEEDBACK_PROBLEM"),
                          ::psvitaalive::L("FEEDBACK_SUGGESTION")};
-    // PS Vita shoulder shortcuts for report type (touch remains available).
-    ::psvitaalive::ui::uiDrawText(&font_,x+417,y+141,DIM,.78f,
-        "L / R");
-    for(int i=0;i<2;++i) {
-        const int bx=x+24+i*185,by=y+116,bw=175,bh=36;
+    for (int i=0;i<2;++i) {
+        const int x=fieldX+i*(fieldW/2+5),w=fieldW/2-5;
         const bool selected=(feedbackSuggestion_==(i==1));
-        vita2d_draw_rectangle(bx,by,bw,bh,selected?ACCENT:SURFACE);
-        if(feedbackFocus_==0 && selected)
-            vita2d_draw_rectangle(bx,by,bw,2,WHITE);
-        const float sc=.80f;
-        const int tw=::psvitaalive::ui::uiTextWidth(&font_,sc,types[i]);
-        ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-tw)/2,by+25,
-            selected?BG:TEXT,sc,types[i]);
+        vita2d_draw_rectangle(x,ty,w,40,selected?ACCENT:SURFACE);
+        if (feedbackPanel_==1 && feedbackFocus_==0 && selected)
+            vita2d_draw_rectangle(x,ty,w,2,WHITE);
+        const int tw=::psvitaalive::ui::uiTextWidth(&font_,.82f,types[i]);
+        ::psvitaalive::ui::uiDrawText(&font_,x+(w-tw)/2,ty+27,
+            selected?BG:WHITE,.82f,types[i]);
+    }
+
+    if (!feedbackAppName_.empty()) {
+        const int y=r.appY-formScroll;
+        vita2d_draw_rectangle(fieldX,y,fieldW,r.appH,SURFACE);
+        vita2d_draw_rectangle(fieldX,y,4,r.appH,ACCENT);
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,y+20,ACCENT,.78f,
+            ::psvitaalive::L("FEEDBACK_APP_LABEL"));
+        int rowY=y+46;
+        for (const auto& line : feedbackAppNameLines_) {
+            ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,rowY,WHITE,.90f,line.c_str());
+            rowY+=25;
+        }
+        const std::string titleId=std::string(::psvitaalive::L("FEEDBACK_APP_TITLEID"))+
+            ": "+(feedbackAppTitleId_.empty()?"—":feedbackAppTitleId_);
+        const std::string version=std::string(::psvitaalive::L("FEEDBACK_APP_VERSION"))+
+            ": "+(feedbackAppVersion_.empty()?"—":feedbackAppVersion_);
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,rowY+2,TEXT,.78f,titleId.c_str());
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,rowY+26,TEXT,.78f,version.c_str());
     }
 
     char count[32];
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+178,WHITE,.83f,
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX,r.titleLabelY-formScroll,WHITE,.85f,
         ::psvitaalive::L("FEEDBACK_TITLE_LABEL"));
     sceClibSnprintf(count,sizeof(count),"%u/64",(unsigned)feedbackTitle_.size());
-    ::psvitaalive::ui::uiDrawText(&font_,x+w-91,y+178,DIM,.72f,count);
-    const int fieldX=x+24,fieldW=w-48;
-    vita2d_draw_rectangle(fieldX,y+187,fieldW,47,
-        feedbackFocus_==1?ACCENT:BORDER);
-    vita2d_draw_rectangle(fieldX+2,y+189,fieldW-4,43,SURFACE2);
-    vita2d_set_clip_rectangle(fieldX+12,y+190,fieldX+fieldW-14,y+230);
-    ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,y+218,
-        feedbackTitle_.empty()?DIM:WHITE,.84f,
-        feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
-                               feedbackTitle_.c_str());
-    vita2d_disable_clipping();
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX+fieldW-62,r.titleLabelY-formScroll,DIM,.75f,count);
+    const int titleY=r.titleY-formScroll;
+    vita2d_draw_rectangle(fieldX,titleY,fieldW,46,
+        feedbackPanel_==1 && feedbackFocus_==1?ACCENT:BORDER);
+    vita2d_draw_rectangle(fieldX+2,titleY+2,fieldW-4,42,SURFACE);
+    // Intersect field and panel to keep both horizontal and vertical clipping.
+    if (titleY+43>FB_VIEW_Y && titleY+3<FB_VIEW_Y+FB_VIEW_H) {
+        vita2d_set_clip_rectangle(fieldX+12,std::max(FB_VIEW_Y,titleY+3),
+            fieldX+fieldW-12,std::min(FB_VIEW_Y+FB_VIEW_H,titleY+43));
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,titleY+29,
+            feedbackTitle_.empty()?DIM:WHITE,.85f,
+            feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
+                                   feedbackTitle_.c_str());
+        vita2d_disable_clipping();
+    }
 
-    ::psvitaalive::ui::uiDrawText(&font_,x+24,y+266,WHITE,.84f,
+    // Restore pane clipping before the description label / input container.
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX,r.bodyLabelY-formScroll,WHITE,.85f,
         ::psvitaalive::L("FEEDBACK_BODY_LABEL"));
     sceClibSnprintf(count,sizeof(count),"%u/700",(unsigned)feedbackBody_.size());
-    ::psvitaalive::ui::uiDrawText(&font_,x+w-104,y+266,DIM,.72f,count);
-    const int bx=x+24,by=y+274,bw=w-48,bh=153;
-    vita2d_draw_rectangle(bx,by,bw,bh,feedbackFocus_==2?ACCENT:BORDER);
-    vita2d_draw_rectangle(bx+2,by+2,bw-4,bh-4,SURFACE2);
-    const int clipTop=by+10,clipBot=by+bh-9;
-    vita2d_set_clip_rectangle(bx+13,clipTop,bx+bw-24,clipBot);
-    if(feedbackBody_.empty()) {
-        ::psvitaalive::ui::uiDrawText(&font_,bx+17,by+35,DIM,.78f,
-            ::psvitaalive::L("FEEDBACK_BODY_PLACEHOLDER"));
-    } else {
-        int ty=by+33-feedbackScrollY_;
-        for(const auto& line:feedbackWrapped_) {
-            if(ty>=clipTop-15 && ty<=clipBot+27)
-                ::psvitaalive::ui::uiDrawText(&font_,bx+17,ty,TEXT,.81f,line.c_str());
-            ty+=27;
-            if(ty>clipBot+35) break;
+    ::psvitaalive::ui::uiDrawText(&font_,fieldX+fieldW-72,r.bodyLabelY-formScroll,DIM,.75f,count);
+    const int bodyY=r.bodyY-formScroll;
+    vita2d_draw_rectangle(fieldX,bodyY,fieldW,FB_BODY_H,
+        feedbackPanel_==1 && feedbackFocus_==2?ACCENT:BORDER);
+    vita2d_draw_rectangle(fieldX+2,bodyY+2,fieldW-4,FB_BODY_H-4,SURFACE);
+    const int clipTop=std::max(FB_VIEW_Y,bodyY+8);
+    const int clipBot=std::min(FB_VIEW_Y+FB_VIEW_H,bodyY+FB_BODY_H-8);
+    if (clipBot>clipTop) {
+        vita2d_set_clip_rectangle(fieldX+12,clipTop,fieldX+fieldW-24,clipBot);
+        if (feedbackBody_.empty()) {
+            ::psvitaalive::ui::uiDrawText(&font_,fieldX+16,bodyY+32,DIM,.81f,
+                ::psvitaalive::L("FEEDBACK_BODY_PLACEHOLDER"));
+        } else {
+            int lineY=bodyY+30-feedbackScrollY_;
+            for (const auto& line : feedbackWrapped_) {
+                if(lineY>clipTop-12 && lineY<clipBot+22)
+                    ::psvitaalive::ui::uiDrawText(&font_,fieldX+16,lineY,TEXT,.81f,line.c_str());
+                lineY+=27;
+            }
+        }
+        vita2d_disable_clipping();
+    }
+    const int bodyH=static_cast<int>(feedbackWrapped_.size())*27;
+    if(bodyH>FB_BODY_TEXT_H && bodyY+FB_BODY_H>FB_VIEW_Y &&
+       bodyY<FB_VIEW_Y+FB_VIEW_H) {
+        const int trackH=FB_BODY_H-20,thumbH=std::max(20,trackH*FB_BODY_TEXT_H/bodyH);
+        const int thumbY=(feedbackScrollY_*(trackH-thumbH))/
+            std::max(1,bodyH-FB_BODY_TEXT_H);
+        vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+            FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+        vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10,4,trackH,BORDER);
+        vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10+thumbY,4,thumbH,ACCENT);
+        vita2d_disable_clipping();
+    }
+
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    if (!feedbackNoticeLines_.empty()) {
+        const int nY=r.noticeY-formScroll;
+        vita2d_draw_rectangle(fieldX,nY,fieldW,r.noticeH,SURFACE);
+        vita2d_draw_rectangle(fieldX,nY,4,r.noticeH,ACCENT);
+        int lineY=nY+27;
+        for(const auto& line:feedbackNoticeLines_){
+            ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,lineY,TEXT,.80f,line.c_str());
+            lineY+=25;
         }
     }
     vita2d_disable_clipping();
-    const int contentH=static_cast<int>(feedbackWrapped_.size())*27;
-    if(contentH>118) {
-        const int trackX=bx+bw-13,trackY=by+9,trackH=bh-18;
-        const int thumbH=std::max(22,(trackH*118)/contentH);
-        vita2d_draw_rectangle(trackX,trackY,4,trackH,BORDER);
-        const int pos=(feedbackScrollY_*(trackH-thumbH))/std::max(1,contentH-118);
-        vita2d_draw_rectangle(trackX,trackY+pos,4,thumbH,ACCENT);
-    }
-    const int actionY=y+447,actionH=43;
-    const int sendX=x+24,sendW=380,cancelX=x+w-24-270,cancelW=270;
-    vita2d_draw_rectangle(sendX,actionY,sendW,actionH,
-        feedbackFocus_==3?ACCENT:SURFACE2);
-    vita2d_draw_rectangle(cancelX,actionY,cancelW,actionH,
-        feedbackFocus_==4?ACCENT:SURFACE2);
-    const char* sendText=::psvitaalive::L(feedbackSending_?
-        "FEEDBACK_SENDING":"FEEDBACK_SEND");
-    const char* cancelText=::psvitaalive::L("FEEDBACK_CANCEL");
-    float ss=.84f;
-    while(ss>.58f && ::psvitaalive::ui::uiTextWidth(&font_,ss,sendText)>sendW-20)
-        ss-=.03f;
-    float cs=.82f;
-    while(cs>.58f && ::psvitaalive::ui::uiTextWidth(&font_,cs,cancelText)>cancelW-20)
-        cs-=.03f;
+
+    // Independent scrollbar for each pane; unlike the description scrollbar,
+    // these indicate the entire pane's content extent.
+    auto drawScrollbar=[&](int x,int scroll,int contentH) {
+        const int maxScroll=std::max(0,contentH-FB_VIEW_H);
+        if(maxScroll<=0)return;
+        const int trackH=FB_VIEW_H-12;
+        const int thumbH=std::max(24,(trackH*FB_VIEW_H)/contentH);
+        const int thumbY=(scroll*(trackH-thumbH))/maxScroll;
+        vita2d_draw_rectangle(x,FB_VIEW_Y+6,4,trackH,BORDER);
+        vita2d_draw_rectangle(x,FB_VIEW_Y+6+thumbY,4,thumbH,ACCENT);
+    };
+    drawScrollbar(FB_INFO_X+FB_INFO_W-10,infoScroll,feedbackInfoContentH_);
+    drawScrollbar(FB_FORM_X+FB_FORM_W-10,formScroll,r.contentH);
+
+    // These controls never scroll out of view.
+    const int sendX=FB_FORM_FIELD_X,sendW=284;
+    const int cancelX=sendX+sendW+12,cancelW=FB_FORM_FIELD_W-sendW-12;
+    vita2d_draw_rectangle(sendX,FB_ACTION_Y,sendW,FB_ACTION_H,
+        feedbackPanel_==1 && feedbackFocus_==3?ACCENT:SURFACE2);
+    vita2d_draw_rectangle(cancelX,FB_ACTION_Y,cancelW,FB_ACTION_H,
+        feedbackPanel_==1 && feedbackFocus_==4?ACCENT:SURFACE2);
+    const char* sendLabel=::psvitaalive::L(feedbackSending_?"FEEDBACK_SENDING":"FEEDBACK_SEND");
+    const char* cancelLabel=::psvitaalive::L("FEEDBACK_CANCEL");
     ::psvitaalive::ui::uiDrawText(&font_,
-        sendX+(sendW-::psvitaalive::ui::uiTextWidth(&font_,ss,sendText))/2,
-        actionY+29,feedbackFocus_==3?BG:WHITE,ss,sendText);
+        sendX+(sendW-::psvitaalive::ui::uiTextWidth(&font_,.80f,sendLabel))/2,
+        FB_ACTION_Y+29,feedbackPanel_==1 && feedbackFocus_==3?BG:WHITE,.80f,sendLabel);
     ::psvitaalive::ui::uiDrawText(&font_,
-        cancelX+(cancelW-::psvitaalive::ui::uiTextWidth(&font_,cs,cancelText))/2,
-        actionY+29,feedbackFocus_==4?BG:WHITE,cs,cancelText);
-    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+h-8,DIM,.59f,
-        ::psvitaalive::L("FEEDBACK_NAV_HINT"));
+        cancelX+(cancelW-::psvitaalive::ui::uiTextWidth(&font_,.80f,cancelLabel))/2,
+        FB_ACTION_Y+29,feedbackPanel_==1 && feedbackFocus_==4?BG:WHITE,.80f,cancelLabel);
 }
 
 int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
@@ -2624,6 +2860,10 @@ int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
         req.title=self->feedbackTitle_;
         req.body=self->feedbackBody_;
         req.suggestion=self->feedbackSuggestion_;
+        req.app.name=self->feedbackAppName_;
+        req.app.id=self->feedbackAppId_;
+        req.app.titleId=self->feedbackAppTitleId_;
+        req.app.version=self->feedbackAppVersion_;
         const auto res=::psvitaalive::sendManualFeedback(req);
         self->reportOk_.store(res.ok);
         sceClibSnprintf(self->reportResultMsg_,sizeof(self->reportResultMsg_),"%s",
@@ -4464,22 +4704,43 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
-    // Dedicated footer feedback form; finger drag scrolls the description
-    // while taps on the inputs reuse the Vita2D search keyboard.
-    if(reportConfirmVisible_) {
-        const int fx=(SCREEN_W-860)/2,fy=(SCREEN_H-508)/2;
+    // Touch scroll follows the pane in which the gesture began. The form's
+    // long description has its own inner scrollbar; other swipes move the form.
+    if (reportConfirmVisible_) {
+        const auto rect=feedbackFormRects(!feedbackAppName_.empty(),
+            feedbackAppNameLines_.size(),feedbackNoticeLines_.size());
+        auto inPane=[&](int x,int y,int px,int pw) {
+            return hit(x,y,px,FB_VIEW_Y,pw,FB_VIEW_H);
+        };
         if(td.reportNum>0) {
             const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
             if(!touchDown_) {
-                touchDown_=true;
-                touchStartX_=px;touchStartY_=py;touchLastY_=py;touchMoved_=false;
+                touchDown_=true;touchStartX_=px;touchStartY_=py;
+                touchLastY_=py;touchMoved_=false;
             } else {
-                if(std::abs(px-touchStartX_)>14 || std::abs(py-touchStartY_)>14)
+                if(std::abs(px-touchStartX_)>14||std::abs(py-touchStartY_)>14)
                     touchMoved_=true;
-                if(touchMoved_ && hit(touchStartX_,touchStartY_,
-                                       fx+24,fy+274,812,153)) {
-                    feedbackScrollY_+=touchLastY_-py;
-                    clampFeedbackScroll();
+                if(touchMoved_&&!feedbackSending_) {
+                    const int delta=touchLastY_-py;
+                    if(inPane(touchStartX_,touchStartY_,FB_INFO_X,FB_INFO_W)) {
+                        feedbackPanel_=0;
+                        feedbackInfoScrollY_+=delta;
+                    } else if(inPane(touchStartX_,touchStartY_,FB_FORM_X,FB_FORM_W)) {
+                        feedbackPanel_=1;
+                        const int initialBodyY=rect.bodyY-
+                            static_cast<int>(feedbackFormVisualY_);
+                        const int maxBodyScroll=std::max(0,
+                            static_cast<int>(feedbackWrapped_.size())*27-FB_BODY_TEXT_H);
+                        if(hit(touchStartX_,touchStartY_,
+                               FB_FORM_FIELD_X,initialBodyY,FB_FORM_FIELD_W,FB_BODY_H)
+                           &&maxBodyScroll>0) {
+                            feedbackScrollY_+=delta;
+                            clampFeedbackScroll();
+                        } else {
+                            feedbackFormScrollY_+=delta;
+                        }
+                    }
+                    clampFeedbackPanelScroll();
                 }
                 touchLastY_=py;
             }
@@ -4487,19 +4748,30 @@ void FullCatalogScreen::handleTouch() {
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
             touchDown_=false;touchMoved_=false;
-            if(moved || feedbackSending_) return;
-            if(hit(px,py,fx+24,fy+116,175,36)) {
-                feedbackFocus_=0;feedbackSuggestion_=false;
-            } else if(hit(px,py,fx+209,fy+116,175,36)) {
-                feedbackFocus_=0;feedbackSuggestion_=true;
-            } else if(hit(px,py,fx+24,fy+187,812,47)) {
-                openFeedbackKeyboard(1);
-            } else if(hit(px,py,fx+24,fy+274,812,153)) {
-                openFeedbackKeyboard(2);
-            } else if(hit(px,py,fx+24,fy+447,380,43)) {
-                feedbackFocus_=3;sendManualFeedbackFromForm();
-            } else if(hit(px,py,fx+860-24-270,fy+447,270,43)) {
+            if(moved||feedbackSending_)return;
+            if(hit(px,py,FB_FORM_FIELD_X,FB_ACTION_Y,284,FB_ACTION_H)){
+                feedbackPanel_=1;feedbackFocus_=3;sendManualFeedbackFromForm();
+            }else if(hit(px,py,FB_FORM_FIELD_X+296,FB_ACTION_Y,
+                          FB_FORM_FIELD_W-296,FB_ACTION_H)){
                 closeReportConfirm();
+            }else if(inPane(px,py,FB_INFO_X,FB_INFO_W)){
+                feedbackPanel_=0;
+            }else if(inPane(px,py,FB_FORM_X,FB_FORM_W)){
+                feedbackPanel_=1;
+                const int contentY=py+static_cast<int>(feedbackFormVisualY_);
+                if(hit(px,contentY,FB_FORM_FIELD_X,rect.typeY,
+                       FB_FORM_FIELD_W/2-5,40)){
+                    feedbackFocus_=0;setFeedbackSuggestion(false);
+                }else if(hit(px,contentY,FB_FORM_FIELD_X+FB_FORM_FIELD_W/2+5,
+                             rect.typeY,FB_FORM_FIELD_W/2-5,40)){
+                    feedbackFocus_=0;setFeedbackSuggestion(true);
+                }else if(hit(px,contentY,FB_FORM_FIELD_X,rect.titleY,
+                             FB_FORM_FIELD_W,46)){
+                    feedbackFocus_=1;openFeedbackKeyboard(1);
+                }else if(hit(px,contentY,FB_FORM_FIELD_X,rect.bodyY,
+                             FB_FORM_FIELD_W,FB_BODY_H)){
+                    feedbackFocus_=2;openFeedbackKeyboard(2);
+                }
             }
         }
         return;
@@ -6665,8 +6937,8 @@ if(pressed&SCE_CTRL_START){
         // the report category regardless of the currently focused field.
         if(reportConfirmVisible_) {
             if(!feedbackSending_) {
-                if(pressed&SCE_CTRL_LTRIGGER) feedbackSuggestion_=false;
-                else if(pressed&SCE_CTRL_RTRIGGER) feedbackSuggestion_=true;
+                if(pressed&SCE_CTRL_LTRIGGER) setFeedbackSuggestion(false);
+                else if(pressed&SCE_CTRL_RTRIGGER) setFeedbackSuggestion(true);
             }
             return;
         }
@@ -6768,16 +7040,32 @@ if(pressed&SCE_CTRL_START){
     }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){
     if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}
     if(feedbackSending_) return;
+    if(pressed&SCE_CTRL_TRIANGLE) {
+        feedbackPanel_=1-feedbackPanel_;
+        if(feedbackPanel_==1)ensureFeedbackFocusVisible();
+        return;
+    }
+    if(feedbackPanel_==0){
+        if(nav&SCE_CTRL_UP)feedbackInfoScrollY_-=43;
+        if(nav&SCE_CTRL_DOWN)feedbackInfoScrollY_+=43;
+        clampFeedbackPanelScroll();
+        if(pressed&SCE_CTRL_CROSS){feedbackPanel_=1;ensureFeedbackFocusVisible();}
+        return;
+    }
     if(nav&SCE_CTRL_UP) feedbackFocus_=std::max(0,feedbackFocus_-1);
     if(nav&SCE_CTRL_DOWN) feedbackFocus_=std::min(4,feedbackFocus_+1);
     if(feedbackFocus_==0 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)))
-        feedbackSuggestion_=!!(nav&SCE_CTRL_RIGHT);
-    else if(feedbackFocus_==2) {
-        if(nav&SCE_CTRL_LEFT) feedbackScrollY_-=27;
-        if(nav&SCE_CTRL_RIGHT) feedbackScrollY_+=27;
+        setFeedbackSuggestion(!!(nav&SCE_CTRL_RIGHT));
+    else if(feedbackFocus_==2 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT))){
+        if(nav&SCE_CTRL_LEFT)feedbackScrollY_-=27;
+        if(nav&SCE_CTRL_RIGHT)feedbackScrollY_+=27;
         clampFeedbackScroll();
+    }else if(nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){
+        feedbackFormScrollY_+=(nav&SCE_CTRL_RIGHT)?43:-43;
+        clampFeedbackPanelScroll();
     }
-    if(pressed&SCE_CTRL_CROSS) activateFeedbackFocus();
+    ensureFeedbackFocusVisible();
+    if(pressed&SCE_CTRL_CROSS)activateFeedbackFocus();
     return;
 }if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
