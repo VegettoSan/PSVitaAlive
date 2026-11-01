@@ -67,3 +67,5 @@ inline std::string feedbackForumThreadName(
     const char* prefix = suggestion ? "💡 " : "🐛 ";
     return std::string(prefix) + (combined.empty() ? "PSVitaAlive Feedback" : combined);
 }
+
+} // namespace psvitaalive
