@@ -689,6 +689,20 @@ STORAGE_PROTECTED=Nur Informationen · Nicht löschbar
 STORAGE_CLEAN_ALL=Alles leeren
 STORAGE_CONFIRM_ALL=Inklusive ZIPs. X/△: bestätigen, O: abbrechen
 
+FEEDBACK_INFO_PANEL=Informationen
+FEEDBACK_FORM_PANEL=Deine Nachricht
+FEEDBACK_INFO_PROBLEM_HEAD=Probleme mit PSVitaAlive
+FEEDBACK_INFO_PROBLEM_BODY=Melde Fehler des Stores bei Navigation, Downloads, Installation oder Updates.
+FEEDBACK_INFO_PORT_HEAD=Probleme im Homebrew
+FEEDBACK_INFO_PORT_BODY=Ruckler, Abstürze und Spielfehler bitte dem ursprünglichen Entwickler melden. PSVitaAlive verteilt Homebrew, entwickelt diese aber nicht.
+FEEDBACK_INFO_SUGGEST_HEAD=Verbesserung vorschlagen
+FEEDBACK_INFO_SUGGEST_BODY=Teile Ideen für Navigation, Downloads, Barrierefreiheit oder neue Funktionen.
+FEEDBACK_INFO_SUGGEST_TIP=Erkläre, was du ändern würdest und wie es Nutzern hilft.
+FEEDBACK_APP_LABEL=Dieser Bericht betrifft:
+FEEDBACK_APP_TITLEID=Title ID
+FEEDBACK_APP_VERSION=Version
+FEEDBACK_PORT_WARNING=Bei Fehlern im Homebrew wende dich über Issues oder Repository an den Entwickler, sofern vorhanden.
+
 # User-written Report / Suggestion (no diagnostic logs)
 FEEDBACK_HEADING=Probleme und Vorschläge
 FEEDBACK_HELP_1=Problem entdeckt oder eine Idee für PSVitaAlive?
@@ -704,7 +718,7 @@ FEEDBACK_BODY_KEYBOARD=Beschreibung (max. 700)
 FEEDBACK_SEND=An PSVitaAlive senden
 FEEDBACK_CANCEL=Abbrechen
 FEEDBACK_SENDING=Senden...
-FEEDBACK_NAV_HINT=L/R: Typ   Hoch/Runter: wählen   X: bearbeiten   Links/Rechts: scrollen   O: zu
+FEEDBACK_NAV_HINT=Dreieck: Bereich   L/R: Typ   Hoch/Runter: Auswahl oder Lesen   Links/Rechts: Scrollen   X: Bearbeiten   O: Schließen
 FEEDBACK_FIELDS_REQUIRED=Titel und Beschreibung eingeben.
 FEEDBACK_COOLDOWN=Bitte vor dem nächsten Senden warten.
 FEEDBACK_SEND_FAILED=Senden konnte nicht starten.
