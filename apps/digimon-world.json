@@ -1,0 +1,50 @@
+{
+  "id": "digimon-world",
+  "title_id": "DGWD00001",
+  "name": "Digimon World",
+  "description": "Digimon World — PS Vita Port",
+  "long_description": "A native port of Digimon World (PlayStation, 1999 — US version) for PS Vita and PS TV.",
+  "author_ids": [
+    "danicannt"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "adventure",
+    "rpg",
+    "strategy",
+    "source-port"
+  ],
+  "version": "0.1.0",
+  "version_date": "2026-10-31",
+  "requirements": "- A PS Vita or PS TV running HENkaku/Ensō.\n- Your own dump of Digimon World (USA, SLUS-01032), in .bin + .cue format using raw 2352-byte sectors.",
+  "size": 2831155,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/digimon-world-ps-vita-port/dw1-vita%20v0.1.0.vpk",
+      "size": 2831155,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files USA",
+      "url": "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 381786522,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/danicannt/dw-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/digimon-world-ps-vita-port/icon0.jpg",
+  "screenshots": [
+    "https://archive.org/download/digimon-world-ps-vita-port/shot0.jpg",
+    "https://archive.org/download/digimon-world-ps-vita-port/shot1.jpg",
+    "https://archive.org/download/digimon-world-ps-vita-port/shot2.jpg",
+    "https://archive.org/download/digimon-world-ps-vita-port/shot3.jpg"
+  ]
+}

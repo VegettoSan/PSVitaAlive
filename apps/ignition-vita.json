@@ -1,0 +1,46 @@
+{
+  "id": "ignition-vita",
+  "title_id": "IGNVITA12",
+  "name": "Ignition Vita",
+  "description": "Unofficial PlayStation Vita port of Ignition (1997)",
+  "long_description": "Ignition (1997) is a PC arcade racing game. Ignition Vita lets you play the original Windows game on a PlayStation Vita.\n\nIt is not a rewrite or a remake. The port loads the original Ign_3dfx.exe (the 3dfx/Glide version of the game), runs its x86 code on the Vita through a dynamic recompiler (x86 → ARMv7), and provides, in native Vita code, everything the executable expects from Windows: files, timers, DirectInput, DirectSound, the Windows message loop, MCI CD audio and the Glide 3D API (translated to OpenGL calls on the Vita's GPU with vitaGL).",
+  "author_ids": [
+    "zeusthenen"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "racing",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.1",
+  "version_date": "2026-10-24",
+  "requirements": "- A PlayStation Vita (or PlayStation TV) with custom firmware allowing homebrew, with unsafe homebrew enabled (the port needs executable memory for its recompiler, so it is installed as an unsafe application).\n- About 110 MB of free space for the game data (about 37 MB of data plus about 70 MB for the music if you provide it; the music size depends on how you encode it) and a couple of MB for the VPK.",
+  "size": 2097152,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/ignition-vita/IgnitionVita_v1.1.vpk",
+      "size": 2097152,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/ignition-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 122054246,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/Zeusthenen/Ignition-Vita"
+    }
+  ],
+  "icon": "https://archive.org/download/ignition-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/ignition-vita/shot0.png"
+  ]
+}
