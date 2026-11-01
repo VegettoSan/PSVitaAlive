@@ -1,5 +1,51 @@
 [
   {
+    "id": "marvel-vs-capcom-2",
+    "title_id": "MVSC00001",
+    "name": "Marvel vs Capcom 2",
+    "description": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
+    "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+    "author_ids": [
+      "papileno"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.1",
+    "version_date": "2026-11-01",
+    "requirements": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
+    "size": 1782579,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.1.vpk",
+        "size": 1782579,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 176265626,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
+      }
+    ],
+    "icon": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "call-of-duty-4-modern-warfare-multiplayer",
     "title_id": "CODVIT001",
     "name": "Call Of Duty 4: Modern Warfare Multiplayer",
@@ -16,7 +62,7 @@
       "strategy",
       "source-port"
     ],
-    "version": "1.01",
+    "version": "1.02",
     "version_date": "2026-10-31",
     "requirements": "- No Data",
     "size": 4299162,
@@ -25,7 +71,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v1.01.vpk",
+        "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v1.02.vpk",
         "size": 4299162,
         "recommended": true
       },
@@ -45,6 +91,354 @@
     "icon": "https://archive.org/download/codmw-ps-vita-port/icon0.png",
     "screenshots": [
       "https://archive.org/download/codmw-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "d2vita",
+    "title_id": "DTWO00001",
+    "name": "D2Vita",
+    "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
+    "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "franckrst"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "version": "0.2.3",
+    "version_date": "2026-10-31",
+    "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
+    "size": 8074035,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/D2Vita/d2vita%20v0.2.3.vpk",
+        "size": 8074035,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files English",
+        "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
+        "size": 2018634629,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
+        "size": 2190433321,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitHub",
+        "url": "https://github.com/Franckrst/D2Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/D2Vita/newicon0.png",
+    "screenshots": [
+      "https://archive.org/download/D2Vita/shot0.png",
+      "https://archive.org/download/D2Vita/shot1.png"
+    ]
+  },
+  {
+    "id": "digimon-world",
+    "title_id": "DGWD00001",
+    "name": "Digimon World",
+    "description": "Digimon World — PS Vita Port",
+    "long_description": "A native port of Digimon World (PlayStation, 1999 — US version) for PS Vita and PS TV.",
+    "author_ids": [
+      "danicannt"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1.0",
+    "version_date": "2026-10-31",
+    "requirements": "- A PS Vita or PS TV running HENkaku/Ensō.\n- Your own dump of Digimon World (USA, SLUS-01032), in .bin + .cue format using raw 2352-byte sectors.",
+    "size": 2831155,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/digimon-world-ps-vita-port/dw1-vita%20v0.1.0.vpk",
+        "size": 2831155,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files USA",
+        "url": "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 381786522,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/danicannt/dw-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/digimon-world-ps-vita-port/icon0.jpg",
+    "screenshots": [
+      "https://archive.org/download/digimon-world-ps-vita-port/shot0.jpg",
+      "https://archive.org/download/digimon-world-ps-vita-port/shot1.jpg",
+      "https://archive.org/download/digimon-world-ps-vita-port/shot2.jpg",
+      "https://archive.org/download/digimon-world-ps-vita-port/shot3.jpg"
+    ]
+  },
+  {
+    "id": "half-life-2",
+    "title_id": "SRCV00001",
+    "name": "Half-Life 2",
+    "description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine",
+    "long_description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine\n\n- PsVitaAlive -",
+    "author_ids": [
+      "largevegetable"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "fps",
+      "shooter",
+      "strategy",
+      "engine-port",
+      "other"
+    ],
+    "version": "0.1.3",
+    "version_date": "2026-10-31",
+    "requirements": "- A PS Vita or PS TV running HENkaku or Ensō. Tested on a PS Vita on firmware 3.65, not yet on a PS TV; for other firmwares, see \"Known issues\".\n- kubridge v0.3.1_hotfix (bythos14's) as a kernel plugin.\n- libshacccg.suprx, extracted on your Vita with ShaRKBR33D.\nHalf-Life 2 from Steam, on the Pre-20th Anniversary build (the Steam beta steam_legacy). Files from the current anniversary build don't work.\n- About 3.9 GB free on ux0 for the hl2 and platform folders.",
+    "size": 21076378,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/half-life-2-for-ps-vita/hl2_vita%20v0.1.3.vpk",
+        "size": 21076378,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 3650722202,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/LargeVegetable/source-engine"
+      }
+    ],
+    "icon": "https://archive.org/download/half-life-2-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/half-life-2-for-ps-vita/bg.png"
+    ]
+  },
+  {
+    "id": "nova-2-hd",
+    "title_id": "PSVNOVA02",
+    "name": "NOVA 2 HD",
+    "description": "Android to PS Vita port of Gameloft's N.O.V.A 2",
+    "long_description": "N.O.V.A. 2 is Gameloft's sci-fi first-person shooter, originally released for Android as NOVA-2-HD-v1-0-5.apk (package com.gameloft.android.GAND.GloftN2HP). This port runs the compiled native library (libnova2.so, armeabi-v7a) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 2.0 rendering backend.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0.2",
+    "version_date": "2026-10-31",
+    "requirements": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
+    "size": 2097152,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.2.vpk",
+        "size": 2097152,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 849031987,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/N.O.V.A-2-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/n.o.v.a-2-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/n.o.v.a-2-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "resident-evil-code-veronica-x",
+    "title_id": "RECVX0001",
+    "name": "Resident Evil Code: Veronica X",
+    "description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
+    "long_description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.2",
+    "version_date": "2026-10-31",
+    "requirements": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
+    "size": 13946061,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/recvx-vita%20v1.2.vpk",
+        "size": 13946061,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files Spanish",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20Spanish.zip",
+        "size": 2254857830,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files English",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20English.zip",
+        "size": 2254857830,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Data Files",
+        "name": "Shader Cache",
+        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Shaders%20Files.zip",
+        "size": 84582,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Rinnegatamante/recvx_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/resident-evil-code-veronica-x-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot0.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot1.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot2.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot3.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot4.png"
+    ]
+  },
+  {
+    "id": "romance-detective",
+    "title_id": "RPYRD1701",
+    "name": "Romance Detective",
+    "description": "Romance Detective - PS Vita port.",
+    "long_description": "PS Vita port too! - it's based on the v1.7 of the game so it supports multiple languages.",
+    "author_ids": [
+      "puppethuggerdx"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-31",
+    "requirements": "- No data",
+    "size": 62075699,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK + Game Files",
+        "url": "https://archive.org/download/romance-detective/Romance%20Detective-01.00.vpk",
+        "size": 62075699,
+        "recommended": true
+      },
+      {
+        "type": "Official Website",
+        "name": "itch.io",
+        "url": "https://puppethuggerdx.itch.io/romance-detective"
+      }
+    ],
+    "icon": "https://archive.org/download/romance-detective/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/romance-detective/shot0.png",
+      "https://archive.org/download/romance-detective/shot1.png"
+    ]
+  },
+  {
+    "id": "djmax-ray",
+    "title_id": "DJMR00001",
+    "name": "DJMAX Ray",
+    "description": "Unofficial PS Vita port of the iOS version of DJMAX Ray (Neowiz / Pentavision).",
+    "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, CoreGraphics, OpenGL ES, OpenAL, AudioToolbox) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+    "author_ids": [
+      "papileno"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "simulation",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-30",
+    "requirements": "- kubridge v0.3.1 or later by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.",
+    "size": 1468006,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/djmax-ray-for-ps-vita/djmaxray%20v1.0.vpk",
+        "size": 1468006,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/djmax-ray-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 990694605,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/papilenote/vita-ports/tree/main/DJMAX%20Ray"
+      }
+    ],
+    "icon": "https://archive.org/download/djmax-ray-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/djmax-ray-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -96,52 +490,6 @@
     ]
   },
   {
-    "id": "marvel-vs-capcom-2",
-    "title_id": "MVSC00001",
-    "name": "Marvel vs Capcom 2",
-    "description": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
-    "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
-    "author_ids": [
-      "papileno"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "strategy",
-      "source-port"
-    ],
-    "version": "1.0",
-    "version_date": "2026-10-30",
-    "requirements": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
-    "size": 1677722,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.0.vpk",
-        "size": 1677722,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 176265626,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
-      }
-    ],
-    "icon": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
-    ]
-  },
-  {
     "id": "nfs-most-wanted",
     "title_id": "NFSMWVITA",
     "name": "NFS Most Wanted",
@@ -155,7 +503,7 @@
       "racing",
       "source-port"
     ],
-    "version": "1.3.8",
+    "version": "1.3.9",
     "version_date": "2026-10-30",
     "requirements": "- No Data",
     "size": 3166700,
@@ -164,7 +512,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.8.vpk",
+        "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.3.9.vpk",
         "size": 3166700,
         "recommended": true
       },
@@ -290,6 +638,102 @@
     ]
   },
   {
+    "id": "batman-ac-lockdown",
+    "title_id": "ACLD00001",
+    "name": "Batman AC Lockdown",
+    "description": "PS Vita so-loader port of Batman: Arkham City Lockdown (Android)",
+    "long_description": "A port of the Android version of Batman: Arkham City Lockdown to the PS Vita. It runs the game's original code natively, nothing is emulated.",
+    "author_ids": [
+      "kiddrwxssj"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-29",
+    "requirements": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
+    "size": 966349,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/aclockdownvita%20v1.0.vpk",
+        "size": 966349,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 946444698,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/KiddRwxSsj/batman-acl-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/shot0.png",
+      "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/shot1.png",
+      "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/shot2.png"
+    ]
+  },
+  {
+    "id": "batman-arkham-origins",
+    "title_id": "BAOR00001",
+    "name": "Batman Arkham Origins",
+    "description": "Arkham Origins mobile on the PS Vita, ported from the Android version.",
+    "long_description": "A port of the Android version of Batman: Arkham Origins (the mobile fighting game) to the PS Vita. It runs the game's original code natively, nothing is emulated.",
+    "author_ids": [
+      "kiddrwxssj"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-29",
+    "requirements": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/batman-arkham-origins-ps-vita/batmanarkhamoriginsvita%20v1.0.vpk",
+        "size": 1258291,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 928409190,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/KiddRwxSsj/batman-aom-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/batman-arkham-origins-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/batman-arkham-origins-ps-vita/shot0.png",
+      "https://archive.org/download/batman-arkham-origins-ps-vita/shot1.png",
+      "https://archive.org/download/batman-arkham-origins-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "pikmin",
     "title_id": "NECTAR001",
     "name": "Pikmin",
@@ -334,71 +778,6 @@
       "https://archive.org/download/open-nectar/shot.png",
       "https://archive.org/download/open-nectar/shot0.png",
       "https://archive.org/download/open-nectar/shot1.png"
-    ]
-  },
-  {
-    "id": "resident-evil-code-veronica-x",
-    "title_id": "RECVX0001",
-    "name": "Resident Evil Code: Veronica X",
-    "description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
-    "long_description": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
-    "author_ids": [
-      "rinnegatamante"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "shooter",
-      "strategy",
-      "source-port"
-    ],
-    "version": "1.1",
-    "version_date": "2026-10-29",
-    "requirements": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
-    "size": 2831155,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/recvx-vita%20v1.1.vpk",
-        "size": 2831155,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Spanish",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20Spanish.zip",
-        "size": 2254857830,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files English",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA%20English.zip",
-        "size": 2254857830,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Data Files",
-        "name": "Shader Cache",
-        "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Shaders%20Files.zip",
-        "size": 84582,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/Rinnegatamante/recvx_vita"
-      }
-    ],
-    "icon": "https://archive.org/download/resident-evil-code-veronica-x-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot0.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot1.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot2.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot3.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot4.png"
     ]
   },
   {
@@ -943,54 +1322,6 @@
     ]
   },
   {
-    "id": "half-life-2",
-    "title_id": "SRCV00001",
-    "name": "Half-Life 2",
-    "description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine",
-    "long_description": "Half-Life 2 for PS Vita: an unofficial port on nillerusr's Source engine\n\n- PsVitaAlive -",
-    "author_ids": [
-      "largevegetable"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "fps",
-      "shooter",
-      "strategy",
-      "engine-port",
-      "other"
-    ],
-    "version": "0.1.2",
-    "version_date": "2026-10-26",
-    "requirements": "- A PS Vita or PS TV running HENkaku or Ensō. Tested on a PS Vita on firmware 3.65, not yet on a PS TV; for other firmwares, see \"Known issues\".\n- kubridge v0.3.1_hotfix (bythos14's) as a kernel plugin.\n- libshacccg.suprx, extracted on your Vita with ShaRKBR33D.\nHalf-Life 2 from Steam, on the Pre-20th Anniversary build (the Steam beta steam_legacy). Files from the current anniversary build don't work.\n- About 3.9 GB free on ux0 for the hl2 and platform folders.",
-    "size": 21076378,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/half-life-2-for-ps-vita/hl2_vita%20v0.1.2.vpk",
-        "size": 21076378,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 3650722202,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/LargeVegetable/source-engine"
-      }
-    ],
-    "icon": "https://archive.org/download/half-life-2-for-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/half-life-2-for-ps-vita/bg.png"
-    ]
-  },
-  {
     "id": "insurgency-beta",
     "title_id": "VITACQ001",
     "name": "Insurgency BETA",
@@ -1434,6 +1765,52 @@
     "icon": "https://archive.org/download/conker-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/conker-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "ignition-vita",
+    "title_id": "IGNVITA12",
+    "name": "Ignition Vita",
+    "description": "Unofficial PlayStation Vita port of Ignition (1997)",
+    "long_description": "Ignition (1997) is a PC arcade racing game. Ignition Vita lets you play the original Windows game on a PlayStation Vita.\n\nIt is not a rewrite or a remake. The port loads the original Ign_3dfx.exe (the 3dfx/Glide version of the game), runs its x86 code on the Vita through a dynamic recompiler (x86 → ARMv7), and provides, in native Vita code, everything the executable expects from Windows: files, timers, DirectInput, DirectSound, the Windows message loop, MCI CD audio and the Glide 3D API (translated to OpenGL calls on the Vita's GPU with vitaGL).",
+    "author_ids": [
+      "zeusthenen"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.1",
+    "version_date": "2026-10-24",
+    "requirements": "- A PlayStation Vita (or PlayStation TV) with custom firmware allowing homebrew, with unsafe homebrew enabled (the port needs executable memory for its recompiler, so it is installed as an unsafe application).\n- About 110 MB of free space for the game data (about 37 MB of data plus about 70 MB for the music if you provide it; the music size depends on how you encode it) and a couple of MB for the VPK.",
+    "size": 2097152,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ignition-vita/IgnitionVita_v1.1.vpk",
+        "size": 2097152,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/ignition-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 122054246,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Zeusthenen/Ignition-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/ignition-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ignition-vita/shot0.png"
     ]
   },
   {
@@ -2684,60 +3061,6 @@
     "updated_at": "2026-08-13T15:34"
   },
   {
-    "id": "d2vita",
-    "title_id": "DTWO00001",
-    "name": "D2Vita",
-    "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
-    "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "franckrst"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "puzzle",
-      "rpg",
-      "strategy"
-    ],
-    "version": "0.2.1",
-    "version_date": "2026-10-09",
-    "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
-    "size": 8074035,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/D2Vita/d2vita%20v0.2.1.vpk",
-        "size": 8074035,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files English",
-        "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
-        "size": 2018634629,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files Spanish",
-        "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
-        "size": 2190433321,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitHub",
-        "url": "https://github.com/Franckrst/D2Vita"
-      }
-    ],
-    "icon": "https://archive.org/download/D2Vita/newicon0.png",
-    "screenshots": [
-      "https://archive.org/download/D2Vita/shot0.png",
-      "https://archive.org/download/D2Vita/shot1.png"
-    ]
-  },
-  {
     "id": "dragon-ball-tap-battle",
     "title_id": "DBTB01178",
     "name": "Dragon Ball Tap Battle",
@@ -3538,54 +3861,6 @@
     "icon": "https://archive.org/download/asphalt-6-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/asphalt-6-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "nova-2-hd",
-    "title_id": "PSVNOVA02",
-    "name": "NOVA 2 HD",
-    "description": "Android to PS Vita port of Gameloft's N.O.V.A 2",
-    "long_description": "N.O.V.A. 2 is Gameloft's sci-fi first-person shooter, originally released for Android as NOVA-2-HD-v1-0-5.apk (package com.gameloft.android.GAND.GloftN2HP). This port runs the compiled native library (libnova2.so, armeabi-v7a) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 2.0 rendering backend.",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "fps",
-      "shooter",
-      "strategy",
-      "source-port"
-    ],
-    "version": "1.0",
-    "version_date": "2026-09-26",
-    "requirements": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
-    "size": 2097152,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.vpk",
-        "size": 2097152,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "size": 849031987,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/N.O.V.A-2-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/n.o.v.a-2-ps-vita-port/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/n.o.v.a-2-ps-vita-port/shot0.png"
     ]
   },
   {

@@ -2041,6 +2041,21 @@
     "icon": "https://github.com/Dane64.png"
   },
   {
+    "id": "danicannt",
+    "name": "danicannt",
+    "avatar": "https://avatars.githubusercontent.com/u/53301767?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/danicannt",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/53301767?v=4"
+  },
+  {
     "id": "danielbr",
     "name": "DanielBR",
     "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -10285,6 +10300,21 @@
       }
     ],
     "icon": "https://avatars.githubusercontent.com/u/129334871?v=4"
+  },
+  {
+    "id": "zeusthenen",
+    "name": "Zeusthenen",
+    "avatar": "https://avatars.githubusercontent.com/u/313163176?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Zeusthenen",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/313163176?v=4"
   },
   {
     "id": "zfhuang",
