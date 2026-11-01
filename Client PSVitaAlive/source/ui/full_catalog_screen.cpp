@@ -2264,7 +2264,7 @@ FeedbackFormRects feedbackFormRects(bool withApp, size_t nameLines, size_t notic
     r.typeY = cursor; cursor += 54;
     if (withApp) {
         r.appY = cursor;
-        r.appH = 69 + static_cast<int>(nameLines) * 25;
+        r.appH = 87 + static_cast<int>(nameLines) * 25;
         cursor += r.appH + 12;
     }
     r.titleLabelY = cursor + 17; r.titleY = cursor + 26;
@@ -2755,13 +2755,15 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
         feedbackPanel_==1 && feedbackFocus_==1?ACCENT:BORDER);
     vita2d_draw_rectangle(fieldX+2,titleY+2,fieldW-4,42,SURFACE);
     // Intersect field and panel to keep both horizontal and vertical clipping.
-    vita2d_set_clip_rectangle(fieldX+12,std::max(FB_VIEW_Y,titleY+3),
-        fieldX+fieldW-12,std::min(FB_VIEW_Y+FB_VIEW_H,titleY+43));
-    ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,titleY+29,
-        feedbackTitle_.empty()?DIM:WHITE,.85f,
-        feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
-                               feedbackTitle_.c_str());
-    vita2d_disable_clipping();
+    if (titleY+43>FB_VIEW_Y && titleY+3<FB_VIEW_Y+FB_VIEW_H) {
+        vita2d_set_clip_rectangle(fieldX+12,std::max(FB_VIEW_Y,titleY+3),
+            fieldX+fieldW-12,std::min(FB_VIEW_Y+FB_VIEW_H,titleY+43));
+        ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,titleY+29,
+            feedbackTitle_.empty()?DIM:WHITE,.85f,
+            feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
+                                   feedbackTitle_.c_str());
+        vita2d_disable_clipping();
+    }
 
     // Restore pane clipping before the description label / input container.
     vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
@@ -2792,12 +2794,16 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
         vita2d_disable_clipping();
     }
     const int bodyH=static_cast<int>(feedbackWrapped_.size())*27;
-    if(bodyH>FB_BODY_TEXT_H) {
+    if(bodyH>FB_BODY_TEXT_H && bodyY+FB_BODY_H>FB_VIEW_Y &&
+       bodyY<FB_VIEW_Y+FB_VIEW_H) {
         const int trackH=FB_BODY_H-20,thumbH=std::max(20,trackH*FB_BODY_TEXT_H/bodyH);
         const int thumbY=(feedbackScrollY_*(trackH-thumbH))/
             std::max(1,bodyH-FB_BODY_TEXT_H);
+        vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+            FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
         vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10,4,trackH,BORDER);
         vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10+thumbY,4,thumbH,ACCENT);
+        vita2d_disable_clipping();
     }
 
     vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
