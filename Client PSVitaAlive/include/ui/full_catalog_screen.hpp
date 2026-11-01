@@ -576,7 +576,25 @@ private:
     bool feedbackSending_ = false;
     int feedbackFocus_ = 1; // 0 kind, 1 title, 2 description, 3 send, 4 close
     int feedbackKeyboardField_ = 0; // 0 search, 1 title, 2 description
-    int feedbackScrollY_ = 0;
+    int feedbackScrollY_ = 0; // Description text inside the right form.
+    // Two independent scrollable panes. Visual offsets are interpolated when drawn.
+    int feedbackPanel_ = 1; // 0 = guidance (left), 1 = form (right).
+    int feedbackInfoScrollY_ = 0;
+    int feedbackFormScrollY_ = 0;
+    float feedbackInfoVisualY_ = 0.f;
+    float feedbackFormVisualY_ = 0.f;
+    int feedbackInfoContentH_ = 0;
+    std::vector<std::pair<std::string, bool>> feedbackInfoLines_;
+    std::vector<std::string> feedbackNoticeLines_;
+    std::vector<std::string> feedbackAppNameLines_;
+    std::string feedbackAppName_;
+    std::string feedbackAppId_;
+    std::string feedbackAppTitleId_;
+    std::string feedbackAppVersion_;
+    void refreshFeedbackGuidance();
+    void setFeedbackSuggestion(bool suggestion);
+    void clampFeedbackPanelScroll();
+    void ensureFeedbackFocusVisible();
     void openFeedbackKeyboard(int field);
     void refreshFeedbackWrap();
     void sendManualFeedbackFromForm();
