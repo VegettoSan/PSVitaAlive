@@ -2854,6 +2854,10 @@ int FullCatalogScreen::reportWorkerEntry(SceSize args, void* argp) {
         req.title=self->feedbackTitle_;
         req.body=self->feedbackBody_;
         req.suggestion=self->feedbackSuggestion_;
+        req.app.name=self->feedbackAppName_;
+        req.app.id=self->feedbackAppId_;
+        req.app.titleId=self->feedbackAppTitleId_;
+        req.app.version=self->feedbackAppVersion_;
         const auto res=::psvitaalive::sendManualFeedback(req);
         self->reportOk_.store(res.ok);
         sceClibSnprintf(self->reportResultMsg_,sizeof(self->reportResultMsg_),"%s",
@@ -4694,22 +4698,43 @@ void FullCatalogScreen::handleTouch() {
         return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
     };
 
-    // Dedicated footer feedback form; finger drag scrolls the description
-    // while taps on the inputs reuse the Vita2D search keyboard.
-    if(reportConfirmVisible_) {
-        const int fx=(SCREEN_W-860)/2,fy=(SCREEN_H-508)/2;
+    // Touch scroll follows the pane in which the gesture began. The form's
+    // long description has its own inner scrollbar; other swipes move the form.
+    if (reportConfirmVisible_) {
+        const auto rect=feedbackFormRects(!feedbackAppName_.empty(),
+            feedbackAppNameLines_.size(),feedbackNoticeLines_.size());
+        auto inPane=[&](int x,int y,int px,int pw) {
+            return hit(x,y,px,FB_VIEW_Y,pw,FB_VIEW_H);
+        };
         if(td.reportNum>0) {
             const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
             if(!touchDown_) {
-                touchDown_=true;
-                touchStartX_=px;touchStartY_=py;touchLastY_=py;touchMoved_=false;
+                touchDown_=true;touchStartX_=px;touchStartY_=py;
+                touchLastY_=py;touchMoved_=false;
             } else {
-                if(std::abs(px-touchStartX_)>14 || std::abs(py-touchStartY_)>14)
+                if(std::abs(px-touchStartX_)>14||std::abs(py-touchStartY_)>14)
                     touchMoved_=true;
-                if(touchMoved_ && hit(touchStartX_,touchStartY_,
-                                       fx+24,fy+274,812,153)) {
-                    feedbackScrollY_+=touchLastY_-py;
-                    clampFeedbackScroll();
+                if(touchMoved_&&!feedbackSending_) {
+                    const int delta=touchLastY_-py;
+                    if(inPane(touchStartX_,touchStartY_,FB_INFO_X,FB_INFO_W)) {
+                        feedbackPanel_=0;
+                        feedbackInfoScrollY_+=delta;
+                    } else if(inPane(touchStartX_,touchStartY_,FB_FORM_X,FB_FORM_W)) {
+                        feedbackPanel_=1;
+                        const int initialBodyY=rect.bodyY-
+                            static_cast<int>(feedbackFormVisualY_);
+                        const int maxBodyScroll=std::max(0,
+                            static_cast<int>(feedbackWrapped_.size())*27-FB_BODY_TEXT_H);
+                        if(hit(touchStartX_,touchStartY_,
+                               FB_FORM_FIELD_X,initialBodyY,FB_FORM_FIELD_W,FB_BODY_H)
+                           &&maxBodyScroll>0) {
+                            feedbackScrollY_+=delta;
+                            clampFeedbackScroll();
+                        } else {
+                            feedbackFormScrollY_+=delta;
+                        }
+                    }
+                    clampFeedbackPanelScroll();
                 }
                 touchLastY_=py;
             }
@@ -4717,19 +4742,30 @@ void FullCatalogScreen::handleTouch() {
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
             touchDown_=false;touchMoved_=false;
-            if(moved || feedbackSending_) return;
-            if(hit(px,py,fx+24,fy+116,175,36)) {
-                feedbackFocus_=0;feedbackSuggestion_=false;
-            } else if(hit(px,py,fx+209,fy+116,175,36)) {
-                feedbackFocus_=0;feedbackSuggestion_=true;
-            } else if(hit(px,py,fx+24,fy+187,812,47)) {
-                openFeedbackKeyboard(1);
-            } else if(hit(px,py,fx+24,fy+274,812,153)) {
-                openFeedbackKeyboard(2);
-            } else if(hit(px,py,fx+24,fy+447,380,43)) {
-                feedbackFocus_=3;sendManualFeedbackFromForm();
-            } else if(hit(px,py,fx+860-24-270,fy+447,270,43)) {
+            if(moved||feedbackSending_)return;
+            if(hit(px,py,FB_FORM_FIELD_X,FB_ACTION_Y,284,FB_ACTION_H)){
+                feedbackPanel_=1;feedbackFocus_=3;sendManualFeedbackFromForm();
+            }else if(hit(px,py,FB_FORM_FIELD_X+296,FB_ACTION_Y,
+                          FB_FORM_FIELD_W-296,FB_ACTION_H)){
                 closeReportConfirm();
+            }else if(inPane(px,py,FB_INFO_X,FB_INFO_W)){
+                feedbackPanel_=0;
+            }else if(inPane(px,py,FB_FORM_X,FB_FORM_W)){
+                feedbackPanel_=1;
+                const int contentY=py+static_cast<int>(feedbackFormVisualY_);
+                if(hit(px,contentY,FB_FORM_FIELD_X,rect.typeY,
+                       FB_FORM_FIELD_W/2-5,40)){
+                    feedbackFocus_=0;setFeedbackSuggestion(false);
+                }else if(hit(px,contentY,FB_FORM_FIELD_X+FB_FORM_FIELD_W/2+5,
+                             rect.typeY,FB_FORM_FIELD_W/2-5,40)){
+                    feedbackFocus_=0;setFeedbackSuggestion(true);
+                }else if(hit(px,contentY,FB_FORM_FIELD_X,rect.titleY,
+                             FB_FORM_FIELD_W,46)){
+                    feedbackFocus_=1;openFeedbackKeyboard(1);
+                }else if(hit(px,contentY,FB_FORM_FIELD_X,rect.bodyY,
+                             FB_FORM_FIELD_W,FB_BODY_H)){
+                    feedbackFocus_=2;openFeedbackKeyboard(2);
+                }
             }
         }
         return;
@@ -6895,8 +6931,8 @@ if(pressed&SCE_CTRL_START){
         // the report category regardless of the currently focused field.
         if(reportConfirmVisible_) {
             if(!feedbackSending_) {
-                if(pressed&SCE_CTRL_LTRIGGER) feedbackSuggestion_=false;
-                else if(pressed&SCE_CTRL_RTRIGGER) feedbackSuggestion_=true;
+                if(pressed&SCE_CTRL_LTRIGGER) setFeedbackSuggestion(false);
+                else if(pressed&SCE_CTRL_RTRIGGER) setFeedbackSuggestion(true);
             }
             return;
         }
@@ -6998,16 +7034,32 @@ if(pressed&SCE_CTRL_START){
     }if(dataRequestConfirmVisible_){if(pressed&SCE_CTRL_CIRCLE){closeDataRequestConfirm();return;}if(pressed&SCE_CTRL_CROSS){closeDataRequestConfirm();trySendDataRequest();return;}return;}if(reportConfirmVisible_){
     if(pressed&SCE_CTRL_CIRCLE){closeReportConfirm();return;}
     if(feedbackSending_) return;
+    if(pressed&SCE_CTRL_TRIANGLE) {
+        feedbackPanel_=1-feedbackPanel_;
+        if(feedbackPanel_==1)ensureFeedbackFocusVisible();
+        return;
+    }
+    if(feedbackPanel_==0){
+        if(nav&SCE_CTRL_UP)feedbackInfoScrollY_-=43;
+        if(nav&SCE_CTRL_DOWN)feedbackInfoScrollY_+=43;
+        clampFeedbackPanelScroll();
+        if(pressed&SCE_CTRL_CROSS){feedbackPanel_=1;ensureFeedbackFocusVisible();}
+        return;
+    }
     if(nav&SCE_CTRL_UP) feedbackFocus_=std::max(0,feedbackFocus_-1);
     if(nav&SCE_CTRL_DOWN) feedbackFocus_=std::min(4,feedbackFocus_+1);
     if(feedbackFocus_==0 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)))
-        feedbackSuggestion_=!!(nav&SCE_CTRL_RIGHT);
-    else if(feedbackFocus_==2) {
-        if(nav&SCE_CTRL_LEFT) feedbackScrollY_-=27;
-        if(nav&SCE_CTRL_RIGHT) feedbackScrollY_+=27;
+        setFeedbackSuggestion(!!(nav&SCE_CTRL_RIGHT));
+    else if(feedbackFocus_==2 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT))){
+        if(nav&SCE_CTRL_LEFT)feedbackScrollY_-=27;
+        if(nav&SCE_CTRL_RIGHT)feedbackScrollY_+=27;
         clampFeedbackScroll();
+    }else if(nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){
+        feedbackFormScrollY_+=(nav&SCE_CTRL_RIGHT)?43:-43;
+        clampFeedbackPanelScroll();
     }
-    if(pressed&SCE_CTRL_CROSS) activateFeedbackFocus();
+    ensureFeedbackFocusVisible();
+    if(pressed&SCE_CTRL_CROSS)activateFeedbackFocus();
     return;
 }if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
