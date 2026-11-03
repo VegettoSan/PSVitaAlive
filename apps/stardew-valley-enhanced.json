@@ -1,0 +1,49 @@
+{
+  "id": "stardew-valley-enhanced",
+  "title_id": "STDV00001",
+  "name": "Stardew Valley Enhanced",
+  "description": "Unofficial PS Vita port of Stardew Valley 1.6",
+  "long_description": "Unofficial PS Vita port of Stardew Valley 1.6",
+  "author_ids": [
+    "rikujoukoro"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer",
+    "puzzle",
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-31",
+  "requirements": "- kubridge (needed, v0.3.1_hotfix; older ones crash the game at the start)\n- libshacccg.suprx (needed for the graphics): you already have it if ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx exists.\n- NoTrpDrm (optional, real trophies): ux0\\tai\\NoTrpDrm.suprx",
+  "size": 14994637,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/stardew-valley-enhanced-ps-vita/stardew%20v1.0.vpk",
+      "size": 14994637,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/stardew-valley-enhanced-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 660498022,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/rikujoukoro/stardew-valley-enhanced-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/stardew-valley-enhanced-ps-vita/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/stardew-valley-enhanced-ps-vita/shot0.png",
+    "https://archive.org/download/stardew-valley-enhanced-ps-vita/shot1.png"
+  ]
+}
