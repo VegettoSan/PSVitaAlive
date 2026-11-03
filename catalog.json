@@ -48,6 +48,54 @@
     ]
   },
   {
+    "id": "batman-arkham-origins",
+    "title_id": "BAOR00001",
+    "name": "Batman Arkham Origins",
+    "description": "Arkham Origins mobile on the PS Vita, ported from the Android version.",
+    "long_description": "A port of the Android version of Batman: Arkham Origins (the mobile fighting game) to the PS Vita. It runs the game's original code natively, nothing is emulated.",
+    "author_ids": [
+      "kiddrwxssj"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.1",
+    "version_date": "2026-11-01",
+    "requirements": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/batman-arkham-origins-ps-vita/batmanarkhamoriginsvita%20v1.1.vpk",
+        "size": 1258291,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 928409190,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/KiddRwxSsj/batman-aom-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/batman-arkham-origins-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/batman-arkham-origins-ps-vita/shot0.png",
+      "https://archive.org/download/batman-arkham-origins-ps-vita/shot1.png",
+      "https://archive.org/download/batman-arkham-origins-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "marvel-vs-capcom-2",
     "title_id": "MVSC00001",
     "name": "Marvel vs Capcom 2",
@@ -139,6 +187,53 @@
       "https://archive.org/download/shadow-fight-2-for-ps-vita/shot0.png",
       "https://archive.org/download/shadow-fight-2-for-ps-vita/shot1.png",
       "https://archive.org/download/shadow-fight-2-for-ps-vita/shot2.png"
+    ]
+  },
+  {
+    "id": "star-fox-adventures",
+    "title_id": "STFX00001",
+    "name": "Star Fox Adventures",
+    "description": "Star Fox Adventures for PS Vita: a native port",
+    "long_description": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
+    "author_ids": [
+      "tchisholm20"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1.1",
+    "version_date": "2026-11-01",
+    "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
+    "size": 5767168,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.1.vpk",
+        "size": 5767168,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1468006,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/tchisholm20/starfox-adventures-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -285,7 +380,7 @@
         "url": "https://github.com/danicannt/dw-vita"
       }
     ],
-    "icon": "https://archive.org/download/digimon-world-ps-vita-port/icon0.jpg",
+    "icon": "https://archive.org/download/digimon-world-ps-vita-port/icon0.png",
     "screenshots": [
       "https://archive.org/download/digimon-world-ps-vita-port/shot0.jpg",
       "https://archive.org/download/digimon-world-ps-vita-port/shot1.jpg",
@@ -876,54 +971,6 @@
     ]
   },
   {
-    "id": "batman-arkham-origins",
-    "title_id": "BAOR00001",
-    "name": "Batman Arkham Origins",
-    "description": "Arkham Origins mobile on the PS Vita, ported from the Android version.",
-    "long_description": "A port of the Android version of Batman: Arkham Origins (the mobile fighting game) to the PS Vita. It runs the game's original code natively, nothing is emulated.",
-    "author_ids": [
-      "kiddrwxssj"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "strategy",
-      "source-port"
-    ],
-    "version": "1.0",
-    "version_date": "2026-10-29",
-    "requirements": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
-    "size": 1258291,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/batman-arkham-origins-ps-vita/batmanarkhamoriginsvita%20v1.0.vpk",
-        "size": 1258291,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 928409190,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/KiddRwxSsj/batman-aom-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/batman-arkham-origins-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/batman-arkham-origins-ps-vita/shot0.png",
-      "https://archive.org/download/batman-arkham-origins-ps-vita/shot1.png",
-      "https://archive.org/download/batman-arkham-origins-ps-vita/shot2.png"
-    ]
-  },
-  {
     "id": "pikmin",
     "title_id": "NECTAR001",
     "name": "Pikmin",
@@ -968,6 +1015,61 @@
       "https://archive.org/download/open-nectar/shot.png",
       "https://archive.org/download/open-nectar/shot0.png",
       "https://archive.org/download/open-nectar/shot1.png"
+    ]
+  },
+  {
+    "id": "super-mario-strikers-vita",
+    "title_id": "SMSVITA01",
+    "name": "Super Mario Strikers Vita",
+    "description": "A native PC port of Super Mario Strikers, ported from decompiled code.",
+    "long_description": "An unofficial port of Super Mario Strikers / Mario Smash Football for PlayStation Vita. The current runtime uses VitaGL, PC-prepared native graphics, PCM audio, and H.264/AAC MP4 movies streamed from PSARC through SceAvPlayer. This project is still under development. Since version 1.4, live gameplay runs at about 58-59 FPS on a retail Vita in The Palace and about 48 FPS in Pipeline Central (measured at 444/222 MHz with vsync, in a test match), up from about 16-20 FPS. Stadium intros and replays are presented at an even 30 FPS by design. Stable 60 FPS in every scene is not certified yet.",
+    "author_ids": [
+      "robin994"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "strategy",
+      "engine-port"
+    ],
+    "version": "1.5.0",
+    "version_date": "2026-10-29",
+    "requirements": "- ur0:data/libshacccg.suprx\n- Install CapUnlocker for the best possible performance",
+    "size": 3879731,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/strikers-vita/strikers_vita%20v1.5.0.vpk",
+        "size": 3879731,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/strikers-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1717986918,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4 (Recommended)",
+        "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": false
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/robin994/strikersVita"
+      }
+    ],
+    "icon": "https://archive.org/download/strikers-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/strikers-vita/shot0.png"
     ]
   },
   {
@@ -1235,53 +1337,6 @@
     ]
   },
   {
-    "id": "star-fox-adventures",
-    "title_id": "STFX00001",
-    "name": "Star Fox Adventures",
-    "description": "Star Fox Adventures for PS Vita: a native port",
-    "long_description": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
-    "author_ids": [
-      "tchisholm20"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "strategy",
-      "source-port"
-    ],
-    "version": "0.1.0",
-    "version_date": "2026-10-28",
-    "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
-    "size": 5767168,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.0.vpk",
-        "size": 5767168,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 1468006,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/tchisholm20/starfox-adventures-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
-    ]
-  },
-  {
     "id": "subway-surfers",
     "title_id": "SUSU01010",
     "name": "Subway Surfers",
@@ -1318,6 +1373,53 @@
     "icon": "https://archive.org/download/subway-surfers-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/subway-surfers-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "skate-3-vita",
+    "title_id": "SKTV00001",
+    "name": "Skate 3 Vita",
+    "description": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+    "long_description": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+    "author_ids": [
+      "irolup"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "simulation",
+      "source-port"
+    ],
+    "version": "0.2.0",
+    "version_date": "2026-10-27",
+    "requirements": "- No data",
+    "size": 6815744,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/skate-3-ps-vita-ports/skate-3-vita-0.2.0-beta.vpk",
+        "size": 7864320,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
+        "size": 1073741824,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/irolup/skate-3-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/skate-3-ps-vita-ports/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
+      "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
     ]
   },
   {
