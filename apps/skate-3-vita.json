@@ -1,0 +1,47 @@
+{
+  "id": "skate-3-vita",
+  "title_id": "SKTV00001",
+  "name": "Skate 3 Vita",
+  "description": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+  "long_description": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+  "author_ids": [
+    "irolup"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "platformer",
+    "simulation",
+    "source-port"
+  ],
+  "version": "0.2.0",
+  "version_date": "2026-10-27",
+  "requirements": "- No data",
+  "size": 6815744,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/skate-3-ps-vita-ports/skate-3-vita-0.2.0-beta.vpk",
+      "size": 7864320,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
+      "size": 1073741824,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/irolup/skate-3-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/skate-3-ps-vita-ports/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
+    "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
+  ]
+}
