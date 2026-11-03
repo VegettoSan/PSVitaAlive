@@ -28,6 +28,13 @@
       "recommended": true
     },
     {
+      "type": "Game Files",
+      "name": "Game Files Fixed",
+      "url": "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1604321,
+      "extract_path": "ux0:data/"
+    },
+    {
       "type": "Repository",
       "name": "Github",
       "url": "https://github.com/boomannotjeff/usm_vita"
