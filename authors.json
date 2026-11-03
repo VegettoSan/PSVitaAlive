@@ -9327,6 +9327,21 @@
     "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "tobic-99",
+    "name": "Tobic-99",
+    "avatar": "https://avatars.githubusercontent.com/u/349544785?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Tobic-99",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/349544785?v=4"
+  },
+  {
     "id": "tomtomdu80",
     "name": "tomtomdu80",
     "avatar": "https://github.com/MajorTomSec.png",
@@ -10059,6 +10074,21 @@
       }
     ],
     "icon": "https://github.com/xerpi.png"
+  },
+  {
+    "id": "xesf",
+    "name": "xesf",
+    "avatar": "https://avatars.githubusercontent.com/u/751076?v=4",
+    "bio": "Dev",
+    "links": [
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/xesf",
+        "recommended": true
+      }
+    ],
+    "icon": "https://avatars.githubusercontent.com/u/751076?v=4"
   },
   {
     "id": "xfangfang",

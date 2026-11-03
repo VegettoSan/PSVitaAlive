@@ -1,5 +1,97 @@
 [
   {
+    "id": "gunforce-2",
+    "title_id": "GNFC00002",
+    "name": "Gunforce 2",
+    "description": "Gunforce 2 (Irem M92) static recompilation and native PS Vita port.",
+    "long_description": "A static recompilation of Gunforce 2 (Irem, 1994, M92 arcade board) to native ARM code. The game's V33 main program is translated to C++ and linked with a native runtime that replaces the board: memory map, interrupt controller, DMA, a software video renderer, and the sound board (V35 with Irem's opcode encryption, YM2151 and GA20). The sound CPU runs in an interpreter.",
+    "author_ids": [
+      "tobic-99"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "source-port"
+    ],
+    "version": "0.1",
+    "version_date": "2026-11-02",
+    "requirements": "- You need a PS Vita with HENkaku/Ensō, VitaShell and libshacccg.suprx (vitaGL compiles its shaders with it).",
+    "size": 1572864,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/gunforce-2-for-the-ps-vita/gunforce2%20v0.1.vpk",
+        "size": 1572864,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/gunforce-2-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 8493466,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Tobic-99/gunforce2-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/gunforce-2-for-the-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/gunforce-2-for-the-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "manhunt",
+    "title_id": "MHRE00001",
+    "name": "Manhunt",
+    "description": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "long_description": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "author_ids": [
+      "xesf"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "version": "0.2.0",
+    "version_date": "2026-11-02",
+    "requirements": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "size": 1048576,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.2.0.vpk",
+        "size": 1048576
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 2040109466,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/xesf/manhunt-releases",
+        "recommended": true
+      }
+    ],
+    "icon": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
     "id": "ultimate-spider-man",
     "title_id": "USMR00001",
     "name": "Ultimate Spider-Man",
@@ -93,6 +185,53 @@
       "https://archive.org/download/batman-arkham-origins-ps-vita/shot0.png",
       "https://archive.org/download/batman-arkham-origins-ps-vita/shot1.png",
       "https://archive.org/download/batman-arkham-origins-ps-vita/shot2.png"
+    ]
+  },
+  {
+    "id": "final-fantasy-vi",
+    "title_id": "FF6000000",
+    "name": "Final Fantasy VI",
+    "description": "Final Fantasy VI Android wrapper for PS Vita with Configurator and optional PostFX",
+    "long_description": "A port of Final Fantasy VI (Android) for the PlayStation Vita, based on the original ARMv7 game. Like FF3 Vita, it loads the Android game files instead of including them in the download.",
+    "author_ids": [
+      "frangarcj"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "strategy",
+      "engine-port"
+    ],
+    "version": "1.0.0",
+    "version_date": "2026-11-01",
+    "requirements": "- Install kubridge and FdFix in your Vita's active taiHEN plugins folder.\n- Install libshacccg.suprx\n- Get the Android 2.1.6 or 2.1.7 version of Final Fantasy VI from your own legally obtained copy, including its APK and OBB.",
+    "size": 17720934,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ff6-vita/FF6.vpk",
+        "size": 17720934,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/ff6-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 677275238,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/frangarcj/ff6_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/ff6-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ff6-vita/shot0.png",
+      "https://archive.org/download/ff6-vita/shot1.png"
     ]
   },
   {
