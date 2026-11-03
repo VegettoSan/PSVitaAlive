@@ -2574,6 +2574,9 @@
     "SHC100001": {
       "version": "v.1.0"
     },
+    "SHDF00002": {
+      "version": "1.0"
+    },
     "SHDS88320": {
       "version": "v.1.01"
     },
@@ -2823,6 +2826,9 @@
     "STBB00002": {
       "version": "R1"
     },
+    "STDV00001": {
+      "version": "1.0"
+    },
     "STEM00001": {
       "version": "v.0.2"
     },
@@ -3044,6 +3050,9 @@
     },
     "URI000001": {
       "version": "v.0.1"
+    },
+    "USMR00001": {
+      "version": "1.0"
     },
     "VAGROUTE1": {
       "version": "Alpha 0.1.0"
