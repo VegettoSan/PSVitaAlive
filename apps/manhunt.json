@@ -1,0 +1,46 @@
+{
+  "id": "manhunt",
+  "title_id": "MHRE00001",
+  "name": "Manhunt",
+  "description": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+  "long_description": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+  "author_ids": [
+    "xesf"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "strategy",
+    "engine-port"
+  ],
+  "version": "0.2.0",
+  "version_date": "2026-11-02",
+  "requirements": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+  "size": 1048576,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.2.0.vpk",
+      "size": 1048576
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 2040109466,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/xesf/manhunt-releases",
+      "recommended": true
+    }
+  ],
+  "icon": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+  ]
+}
