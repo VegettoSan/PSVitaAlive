@@ -1,5 +1,53 @@
 [
   {
+    "id": "ultimate-spider-man",
+    "title_id": "USMR00001",
+    "name": "Ultimate Spider-Man",
+    "description": "A PS Vita port of Ultimate Spider-Man (PC, 2005).",
+    "long_description": "A PS Vita port of Ultimate Spider-Man (PC, 2005), made by statically recompiling the PC game's USM.exe to C (every x86 instruction becomes equivalent C, like N64Recomp / XenonRecomp), then running that on the Vita with its own Windows, Direct3D 9, DirectSound and input layer on top of vitaGL.",
+    "author_ids": [
+      "boomannotjeff"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-11-02",
+    "requirements": "- On the Vita: ur0:data/libshacccg.suprx (the shader compiler, extracted the usual way for vitaGL games).\n- The PC version's USM.exe (SHA-256 5d554ef69e8066eed9e327a4fe331992124aee6de16af54bd7ac5c5dcb0488b8) and its Data folder.",
+    "size": 11010048,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ultimate-spider-man-vita/usm%20v1.0.vpk",
+        "size": 11010048,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 3435973837,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/boomannotjeff/usm_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/ultimate-spider-man-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ultimate-spider-man-vita/shot0.png",
+      "https://archive.org/download/ultimate-spider-man-vita/shot2.jpg"
+    ]
+  },
+  {
     "id": "marvel-vs-capcom-2",
     "title_id": "MVSC00001",
     "name": "Marvel vs Capcom 2",
@@ -43,6 +91,54 @@
     "icon": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "shadow-fight-2",
+    "title_id": "SHDF00002",
+    "name": "Shadow Fight 2",
+    "description": "Loader port of Shadow Fight 2 (Android, 1.9.38) to the PS Vita.",
+    "long_description": "An unofficial port of Shadow Fight 2 1.9.38 (Nekki) to the PlayStation Vita.\n\nThis isn't a remake. The game's original ARM code runs unmodified on the Vita, and this project supplies everything underneath it: a loader for the game's executable and a replacement for the Android runtime it was built on. You provide the game from your own copy of the APK. Nothing in this repository or its releases will run without it.",
+    "author_ids": [
+      "franciscoclou"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-11-01",
+    "requirements": "- No data",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/shadow-fight-2-for-ps-vita/ShadowFight2%20v1.0.vpk",
+        "size": 2306867,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/shadow-fight-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 412509798,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/franciscoclou/shadowfight2-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/shadow-fight-2-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/shadow-fight-2-for-ps-vita/shot.png",
+      "https://archive.org/download/shadow-fight-2-for-ps-vita/shot0.png",
+      "https://archive.org/download/shadow-fight-2-for-ps-vita/shot1.png",
+      "https://archive.org/download/shadow-fight-2-for-ps-vita/shot2.png"
     ]
   },
   {
@@ -394,6 +490,55 @@
     "screenshots": [
       "https://archive.org/download/romance-detective/shot0.png",
       "https://archive.org/download/romance-detective/shot1.png"
+    ]
+  },
+  {
+    "id": "stardew-valley-enhanced",
+    "title_id": "STDV00001",
+    "name": "Stardew Valley Enhanced",
+    "description": "Unofficial PS Vita port of Stardew Valley 1.6",
+    "long_description": "Unofficial PS Vita port of Stardew Valley 1.6",
+    "author_ids": [
+      "rikujoukoro"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "puzzle",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-31",
+    "requirements": "- kubridge (needed, v0.3.1_hotfix; older ones crash the game at the start)\n- libshacccg.suprx (needed for the graphics): you already have it if ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx exists.\n- NoTrpDrm (optional, real trophies): ux0\\tai\\NoTrpDrm.suprx",
+    "size": 14994637,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/stardew-valley-enhanced-ps-vita/stardew%20v1.0.vpk",
+        "size": 14994637,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/stardew-valley-enhanced-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 660498022,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/rikujoukoro/stardew-valley-enhanced-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/stardew-valley-enhanced-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/stardew-valley-enhanced-ps-vita/shot0.png",
+      "https://archive.org/download/stardew-valley-enhanced-ps-vita/shot1.png"
     ]
   },
   {
