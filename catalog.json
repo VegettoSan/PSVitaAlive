@@ -376,6 +376,52 @@
     ]
   },
   {
+    "id": "touhou12-3vita-hisoutensoku",
+    "title_id": "THSV12302",
+    "name": "Touhou12.3Vita Hisoutensoku",
+    "description": "Experimental native PS Vita port research and practice prototype for Touhou 12.3",
+    "long_description": "Experimental native PS Vita port research and practice prototype for Touhou 12.3",
+    "author_ids": [
+      "botarguirix"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "puzzle",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1.1",
+    "version_date": "2026-11-01",
+    "requirements": "- Verify your shader compiler is at ur0:data/libshacccg.suprx (ur0:, not ux0:).\n- Create ux0:data/touhou123vita/ and copy the four required files from your lawful game installation directly into it. Do not put them in an extra subfolder or ZIP archive.",
+    "size": 24326963,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/touhou-12-3-vita/T123Recomp.vpk",
+        "size": 24326963,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/touhou-12-3-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2147483648,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Botarguirix/Touhou123Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/touhou-12-3-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/touhou-12-3-vita/Shot0.png"
+    ]
+  },
+  {
     "id": "call-of-duty-4-modern-warfare-multiplayer",
     "title_id": "CODVIT001",
     "name": "Call Of Duty 4: Modern Warfare Multiplayer",
@@ -1154,6 +1200,51 @@
       "https://archive.org/download/open-nectar/shot.png",
       "https://archive.org/download/open-nectar/shot0.png",
       "https://archive.org/download/open-nectar/shot1.png"
+    ]
+  },
+  {
+    "id": "shotgunk2vita",
+    "title_id": "SGKV00002",
+    "name": "ShotgunK2Vita",
+    "description": "Experimental Shotgun King port for PS Vita.",
+    "long_description": "Shotgun King Vita+ is an experimental homebrew project adapting Shotgun King to PlayStation Vita through a custom C runtime and a partial implementation of the SUGAR API. It runs Lua scripts and assets prepared from the user's own game files; it does not load the original Android or Windows binaries.",
+    "author_ids": [
+      "botarguirix"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "strategy",
+      "source-port"
+    ],
+    "version": "00.78",
+    "version_date": "2026-10-29",
+    "requirements": "- No Data",
+    "size": 942899,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/ShotgunKing2Vita/ShotgunKing2Vita-steam.vpk",
+        "size": 942899,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/ShotgunKing2Vita/Game%20Files%20for%20PSVA.zip",
+        "size": 82837504,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Botarguirix/ShotgunK2Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/ShotgunKing2Vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/ShotgunKing2Vita/shot0.png"
     ]
   },
   {
