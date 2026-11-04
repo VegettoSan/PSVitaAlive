@@ -451,7 +451,7 @@
       "version": "1.03"
     },
     "BSHT00016": {
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     "BSTONE012": {
       "version": "v0.5.1"
@@ -701,6 +701,9 @@
     },
     "CXZV00001": {
       "version": "v.1.0"
+    },
+    "Crow Country": {
+      "version": "1.0"
     },
     "D33S00001": {
       "version": "v.075"
@@ -1306,7 +1309,7 @@
       "version": "v.1.0.0-Vita"
     },
     "HCEV00001": {
-      "version": "1.1.1"
+      "version": "1.1.2"
     },
     "HCR000000": {
       "version": "beta2"
@@ -1546,7 +1549,7 @@
       "version": "0.5.0"
     },
     "KOTR00002": {
-      "version": "0.5.7"
+      "version": "0.5.8"
     },
     "KPMN12352": {
       "version": "v.1.0"
@@ -1906,7 +1909,7 @@
       "version": "v.1.0"
     },
     "NFSMWVITA": {
-      "version": "1.3.9"
+      "version": "1.4.0"
     },
     "NFSR00001": {
       "version": "1.00"
@@ -2570,6 +2573,9 @@
     },
     "SEGA12345": {
       "version": "v.1.0"
+    },
+    "SF4CE0000": {
+      "version": "1.0 rc3"
     },
     "SFHB00001": {
       "version": "2022.10.19"
