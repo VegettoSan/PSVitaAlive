@@ -269,7 +269,7 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1033371648,
-        "extract_path": "ux0:app/HKVT12222/"
+        "extract_path": "ux0:app/"
       },
       {
         "type": "Plugin",
