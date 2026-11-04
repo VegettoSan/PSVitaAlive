@@ -9,10 +9,14 @@
   ],
   "category_id": "ports",
   "subcategory_ids": [
+    "adventure",
+    "platformer",
+    "strategy",
+    "source-port",
     "other"
   ],
-  "version": "v.0.81",
-  "version_date": "2025-01-19",
+  "version": "1.0",
+  "version_date": "2026-11-02",
   "requirements": "- Game Data Files: PC",
   "size": 22126002,
   "status": "Verified",
@@ -20,15 +24,15 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v0.81%20Hotfix.vpk",
+      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v1.0.vpk",
       "size": 22124954,
       "recommended": true
     },
     {
       "type": "Game Files",
       "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files.zip",
-      "size": 1288490189,
+      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files%20for%20PSVA.zip",
+      "size": 1033371648,
       "extract_path": "ux0:app/HKVT12222/"
     },
     {
@@ -42,8 +46,8 @@
       "required": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
+      "type": "Repository",
+      "name": "Github",
       "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
     }
   ],
