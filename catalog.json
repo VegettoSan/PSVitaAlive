@@ -1,5 +1,72 @@
 [
   {
+    "id": "hollow-knight-vita",
+    "title_id": "HKVT12222",
+    "name": "Hollow Knight Vita",
+    "description": "Port of Hollow Knight for PSVITA.",
+    "long_description": "Port of Hollow Knight for PSVITA.\nHollow Knight is a classically styled 2D action adventure across a vast interconnected world. Explore twisting caverns, ancient cities and deadly wastes; battle tainted creatures and befriend bizarre bugs; and solve ancient mysteries at the kingdom's heart.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "patnosd"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "version": "1.0",
+    "version_date": "2026-11-02",
+    "requirements": "- Game Data Files: PC",
+    "size": 22126002,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v1.0.vpk",
+        "size": 22124954,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1033371648,
+        "extract_path": "ux0:app/HKVT12222/"
+      },
+      {
+        "type": "Plugin",
+        "name": "ioPlus-0.2 Plugin (Required)",
+        "url": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
+        "size": 3379,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/ioplus.skprx",
+        "required": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "1168",
+    "source_url": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
+    "release_page": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
+    "updated_at": "2026-08-13T15:34"
+  },
+  {
     "id": "gunforce-2",
     "title_id": "GNFC00002",
     "name": "Gunforce 2",
@@ -20180,69 +20247,6 @@
     "source_url": "https://github.com/Rinnegatamante/DoomIIRPG-RE",
     "release_page": "https://www.psx-place.com/threads/release-doom-ii-rpg-vita.45825/",
     "updated_at": "2026-08-13T15:34:48.420560+00:00"
-  },
-  {
-    "id": "hollow-knight-vita",
-    "title_id": "HKVT12222",
-    "name": "Hollow Knight Vita",
-    "description": "Port of Hollow Knight for PSVITA.",
-    "long_description": "Port of Hollow Knight for PSVITA.\nHollow Knight is a classically styled 2D action adventure across a vast interconnected world. Explore twisting caverns, ancient cities and deadly wastes; battle tainted creatures and befriend bizarre bugs; and solve ancient mysteries at the kingdom's heart.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "patnosd"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "other"
-    ],
-    "version": "v.0.81",
-    "version_date": "2025-01-19",
-    "requirements": "- Game Data Files: PC",
-    "size": 22126002,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v0.81%20Hotfix.vpk",
-        "size": 22124954,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files.zip",
-        "size": 1288490189,
-        "extract_path": "ux0:app/HKVT12222/"
-      },
-      {
-        "type": "Plugin",
-        "name": "ioPlus-0.2 Plugin (Required)",
-        "url": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
-        "size": 3379,
-        "extract_path": "ur0:tai/",
-        "section": "*KERNEL",
-        "line": "ur0:tai/ioplus.skprx",
-        "required": true
-      },
-      {
-        "type": "Official Website",
-        "name": "Repository",
-        "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_05.png"
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "1168",
-    "source_url": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
-    "release_page": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
-    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "vita-ports-scanner",
