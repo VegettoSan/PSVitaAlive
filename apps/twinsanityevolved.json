@@ -14,8 +14,8 @@
     "puzzle",
     "source-port"
   ],
-  "version": "0.9.1",
-  "version_date": "2026-10-30",
+  "version": "0.9.2",
+  "version_date": "2026-11-03",
   "requirements": "- ur0:data/libshacccg.suprx",
   "size": 5347738,
   "status": "Verified",
@@ -23,16 +23,9 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1.vpk",
+      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved-v0.9.2-vita.vpk",
       "size": 5347738,
       "recommended": true
-    },
-    {
-      "type": "Download",
-      "name": "VPK LiveArea By BetterWinds",
-      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.1%20LiveArea%20By%20BetterWinds%20.vpk",
-      "size": 5662310,
-      "recommended": false
     },
     {
       "type": "Game Files",
