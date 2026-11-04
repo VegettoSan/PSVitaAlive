@@ -1,0 +1,46 @@
+{
+  "id": "street-fighter-iv-ce",
+  "title_id": "SF4CE0000",
+  "name": "Street Fighter IV CE",
+  "description": "Port of Street Fighter IV CE (Android) for the PS Vita.",
+  "long_description": "Port of Street Fighter IV CE (Android) for the PS Vita.",
+  "author_ids": [
+    "frangarcj"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "arcade",
+    "source-port",
+    "other"
+  ],
+  "version": "1.0 rc3",
+  "version_date": "2026-10-16",
+  "requirements": "- kubridge.skprx\n- fd_fix.skprx\n- libshacccg.suprx",
+  "size": 1258291,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/SF4CE%20v1.0-rc3.vpk",
+      "size": 2306867,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 3328599654,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/frangarcj/sf4ce_vita"
+    }
+  ],
+  "icon": "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/shot0.png"
+  ]
+}
