@@ -13,8 +13,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.0.2",
-  "version_date": "2026-10-26",
+  "version": "1.0.3",
+  "version_date": "2026-11-03",
   "requirements": "- No Data",
   "size": 2831155,
   "status": "Verified",
@@ -22,7 +22,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/BuckshotRoulettePortable-BSHT-v1.0.2.vpk",
+      "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/BuckshotRoulettePortable-BSHT-v1.0.3.vpk",
       "size": 2831155,
       "recommended": true
     },
