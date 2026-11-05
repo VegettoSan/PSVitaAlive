@@ -1,4 +1,5 @@
 #include "update/installed_release_tracker.hpp"
+#include "update/data_revision_tracker.hpp"
 
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
@@ -118,7 +119,7 @@ bool InstalledReleaseTracker::writeReceipt(const InstallReceipt& r) {
     body += "{\n";
     body += "  \"schema_version\": ";
     char num[32];
-    sceClibSnprintf(num, sizeof(num), "%d", r.schemaVersion > 0 ? r.schemaVersion : 1);
+    sceClibSnprintf(num, sizeof(num), "%d", r.schemaVersion > 1 ? r.schemaVersion : 2);
     body += num;
     body += ",\n  \"app_id\": \"";
     jsonEscapeAppend(body, r.appId);
@@ -130,6 +131,9 @@ bool InstalledReleaseTracker::writeReceipt(const InstallReceipt& r) {
     jsonEscapeAppend(body, r.versionDate);
     body += "\",\n  \"release_revision\": ";
     sceClibSnprintf(num, sizeof(num), "%d", r.releaseRevision);
+    body += num;
+    body += ",\n  \"dr\": ";
+    sceClibSnprintf(num, sizeof(num), "%u", static_cast<unsigned>(r.dataRevision));
     body += num;
     body += ",\n  \"verification\": {\n";
     body += "    \"path\": \"";
@@ -153,6 +157,8 @@ bool InstalledReleaseTracker::writeReceipt(const InstallReceipt& r) {
         sceIoRemove(tmp.c_str());
         return false;
     }
+    // Migration is complete only after the unified JSON has been committed.
+    DataRevisionTracker::removeLegacyReceipt(r.titleId);
     return true;
 }
 
@@ -181,16 +187,42 @@ bool InstalledReleaseTracker::readReceipt(const std::string& titleId, InstallRec
     extractStringField(data, "catalog_version", out.catalogVersion);
     extractStringField(data, "version_date", out.versionDate);
     extractIntField(data, "release_revision", out.releaseRevision);
+    int parsedDataRevision = 0;
+    if (extractIntField(data, "dr", parsedDataRevision) &&
+        parsedDataRevision >= 0 && parsedDataRevision <= 65535)
+        out.dataRevision = static_cast<uint32_t>(parsedDataRevision);
     extractStringField(data, "path", out.verifyPath);
     extractStringField(data, "algorithm", out.verifyAlgorithm);
     extractStringField(data, "digest", out.verifyDigest);
     if (out.titleId.empty()) out.titleId = upperTitleId(titleId);
-    return !out.catalogVersion.empty() || !out.verifyDigest.empty();
+    return !out.catalogVersion.empty() || !out.verifyDigest.empty() || out.dataRevision > 0;
+}
+
+uint32_t InstalledReleaseTracker::readDataRevision(const std::string& titleId, const InstallReceipt& receipt) {
+    if (receipt.schemaVersion >= 2) return receipt.dataRevision;
+    // One-time backward compatibility for the separate .txt receipts emitted
+    // by the first dr implementation. Absence is revision 0, not a fatal error.
+    uint32_t legacy = 0;
+    DataRevisionTracker::read(titleId, legacy);
+    return legacy;
+}
+
+bool InstalledReleaseTracker::writeDataRevision(const std::string& titleId,
+                                                const std::string& appId, uint32_t revision) {
+    if (revision == 0 || revision > 65535) return false;
+    InstallReceipt r;
+    readReceipt(titleId, r); // keep catalog_version, release_revision and verification
+    r.titleId = titleId;
+    if (r.appId.empty()) r.appId = appId;
+    r.schemaVersion = 2;
+    r.dataRevision = revision;
+    return writeReceipt(r);
 }
 
 void InstalledReleaseTracker::removeReceipt(const std::string& titleId) {
     if (titleId.empty()) return;
     sceIoRemove(receiptPath(titleId).c_str());
+    DataRevisionTracker::removeLegacyReceipt(titleId);
 }
 
 } // namespace update

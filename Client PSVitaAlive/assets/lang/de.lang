@@ -740,13 +740,12 @@ DISCORD_QR_EXTRA=Triff PS-Vita-Fans, teile Homebrew und erhalte Hilfe aus der Co
 DISCORD_QR_URL_LABEL=DISCORD-EINLADUNG
 
 # Optional Game/Data Files revision (dr)
-DR_WARNING_TITLE=Game/Data-Dateien aktualisieren
-DR_WARNING_UNKNOWN=Installierte Datenrevision ist unbekannt.
-DR_WARNING_DIFFERENT=Die installierten Daten passen nicht zu dieser Version.
-DR_WARNING_EXPECTED=Benoetigte Revision:
-DR_WARNING_INSTALLED=Installierte Revision:
-DR_WARNING_RISK=Nur das VPK zu aktualisieren kann das Spiel stoeren.
-DR_CHOICE_FULL=VPK + Daten
-DR_CHOICE_VPK=Nur VPK
-DR_CHOICE_CANCEL=Abbrechen
 DR_FIRST_INSTALL_HINT=Bitte auch die passenden Game/Data-Dateien installieren.
+
+# Full reinstall when catalog dr exceeds recorded Game/Data revision
+DR_UPDATE_ALL_TITLE=ALLES AKTUALISIEREN
+DR_UPDATE_ALL_SUBTITLE=VPK und neue Spieldaten installieren
+DR_UPDATE_CONFIRM1=Neue Game/Data-Dateien werden benoetigt.
+DR_UPDATE_CONFIRM2=Install All installiert VPK und Daten neu.
+DR_UPDATE_CONFIRM3=Alte Dateien werden nicht vorab geloescht.
+DR_UPDATE_CONFIRM4=Der vorhandene ZIP-Installer wird genutzt.

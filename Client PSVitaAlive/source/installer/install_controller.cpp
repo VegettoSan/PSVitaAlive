@@ -2,6 +2,7 @@
 #include "network/parallel_archive_download.hpp"
 #include "network/connectivity_state.hpp"
 #include "update/installed_release_tracker.hpp"
+#include "update/data_revision_tracker.hpp"
 #include "localization/localization.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/net/netctl.h>
@@ -2007,12 +2008,17 @@ int InstallController::workerMain() {
             const std::string path = dispatcher_.lastInstallPath();
             if (!tid.empty() && path.find("ux0:app/") != std::string::npos) {
                 ::psvitaalive::update::InstallReceipt rec;
-                rec.schemaVersion = 1;
+                rec.schemaVersion = 2;
                 rec.titleId = tid;
                 rec.appId = pendingAppId_;
                 rec.catalogVersion = pendingCatalogVersion_;
                 rec.versionDate = pendingVersionDate_;
                 rec.releaseRevision = pendingReleaseRevision_;
+                // Updating a VPK must never erase the independently installed
+                // Game/Data revision (nor claim that newer data was installed).
+                ::psvitaalive::update::InstallReceipt previous;
+                ::psvitaalive::update::InstalledReleaseTracker::readReceipt(tid, previous);
+                rec.dataRevision = ::psvitaalive::update::InstalledReleaseTracker::readDataRevision(tid, previous);
                 rec.verifyPath = "eboot.bin";
                 rec.verifyAlgorithm = "sha256";
                 rec.verifyDigest = ""; // fingerprint worker fills later; version receipt still useful

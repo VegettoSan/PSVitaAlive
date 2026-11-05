@@ -1,75 +1,95 @@
-# PSVitaAlive — optional Game/Data Files revision (`dr`)
+# PSVitaAlive — Game/Data Files revision (`dr`)
 
-**Fecha:** 2026-11-05  
-**Ámbito:** Homebrew en `apps/*.json`, catálogo generado, generador web, ficha pública y cliente PS Vita. No cambia los catálogos de juegos oficiales.
+**Actualizado:** 2026-11-05  
+**Estado:** implementado en el cliente, generador web, catálogo y validación; falta prueba funcional en hardware.
 
-## Motivo
+## Contrato público (sin cambios)
 
-Algunos ports publican un VPK nuevo que deja de funcionar con los antiguos **Game Files** o **Data Files**. Antes, el botón **UPDATE** del cliente instalaba únicamente el VPK; esto es correcto para la mayoría de versiones pero peligroso cuando se requiere regenerar o sustituir los datos.
-
-## Contrato del campo
-
-Un único campo **opcional** por app: `"dr": 2` (*data revision*). Es un entero entre 1 y 65535, no una cadena, un booleano ni una versión semántica. Se omite por completo cuando no se usa. Solo se admite en apps con al menos un enlace `Game Files` o `Data Files`. No modifica las propiedades de sus enlaces, `extract_path`, ni los datos de instalación. El campo no significa que el ZIP tenga que descargarse en cada actualización.
-
-Ejemplo parcial de `apps/mi-port.json`:
+La fuente es siempre `apps/*.json`; GitHub Actions genera `catalog.json` y la web y el cliente consumen el archivo generado. Nunca editar `catalog.json` a mano.
 
 ```json
 {
-  "title_id": "EXAM00001",
-  "version": "1.3.0",
-  "dr": 2,
-  "links": [
-    {"type": "Download", "name": "VPK", "url": "https://example.org/port.vpk", "recommended": true},
-    {"type": "Game Files", "name": "Game Files", "url": "https://example.org/data.zip", "extract_path": "ux0:data/"}
-  ]
+  "version": "1.4.0",
+  "dr": 2
 }
 ```
 
-Los demás campos obligatorios del JSON se mantienen. Nunca editar `catalog.json` manualmente.
+`dr` es un entero opcional entre 1 y 65535. Se permite solo si la app tiene un enlace `Game Files` o `Data Files`. El editor web permite crear, importar, modificar, validar y exportar el campo; una app sin `dr` lo omite del JSON. En la ficha pública se muestra cuando corresponde.
 
-Reglas editoriales:
+**Cuándo incrementarlo:** únicamente cuando los Game/Data Files que necesita la app cambien de manera incompatible. Una actualización exclusiva del VPK conserva el mismo `dr`. La primera vez que se añade `dr: 1` a una app anteriormente publicada sin `dr`, se anuncia una revisión nueva para los usuarios sin registro local. Este comportamiento **no presupone** que los archivos antiguos estén corruptos; es una política editorial explícita de compatibilidad.
 
-- Versión VPK 1.0, datos A: `"dr": 1`.
-- Versión VPK 1.1, mismos datos A: **mantener** `"dr": 1`.
-- Versión VPK 1.2, necesita datos B: **incrementar** a `"dr": 2`.
-- Versión VPK 1.3, mismos datos B: **mantener** `"dr": 2`.
-- Si un proyecto nunca necesita este control, **omitir** `dr`.
+## Flujo del cliente: matriz de decisiones
 
-El mantenedor debe verificar las instrucciones del autor. `dr` es metadato de compatibilidad declarado, no una detección automática por hash.
+| Instalación de la app | `dr` del catálogo | `dr` local | Resultado |
+|---|---:|---:|---|
+| No instalada | Cualquiera | Cualquiera | `INSTALL ALL` normal |
+| Instalada | No existe | Cualquiera | Flujo VPK tradicional |
+| Instalada | 1 | No existe (0) | **`UPDATE ALL`** |
+| Instalada | 2 | 1 | **`UPDATE ALL`** |
+| Instalada | 2 | 2 | `UPDATE` solo VPK, si VPK cambió; si no, `OPEN` |
+| Instalada | 2 | 3 | No bajar automáticamente los datos; flujo VPK normal |
 
-## Web
+La acción `UPDATE ALL` tiene prioridad sobre `UPDATE` VPK, y aparece también en el **filtro de actualizaciones** si solo cambió `dr` y `version` sigue igual. Aplica a Homebrew instalado, incluidos releases cuya identidad de VPK está marcada como desconocida; **no** se cambia la lógica de juegos comerciales, PSP o PS1.
 
-En `web/tools/app-generator/`, sección **3. Release**, el campo *Game/Data Files revision (optional)* aparece junto a la versión. **Create**, **Edit**, importación, previsualización y exportación conservan `dr`, y lo omiten cuando está vacío. Se validan tipo, rango y presencia de enlaces de datos. La ficha pública de Homebrew presenta el número cuando está presente, sin mostrar espacio extra cuando falta.
+Al pulsar `UPDATE ALL`, aparece la **confirmación habitual de Install All** con una advertencia contextual: la revisión de Game/Data Files del catálogo es nueva y se reinstalarán VPK y datos. `Continuar` lanza exactamente el mismo asistente que una instalación nueva: selección de fuentes, selección de Game Files/Data Files, decisiones de plugins si las hay, comprobación de espacio, instalación secuencial y resumen final. `Cancelar` no realiza cambios. No hay un botón VPK-only en esta confirmación; quien quiera una instalación individual puede usar los enlaces de descarga habituales.
 
-## Cliente PS Vita
+No se ejecuta ninguna eliminación preventiva de los datos antiguos. El ZIP pasa por el instalador/extractor que ya existe, con sus políticas de sobreescritura y recuperación. **La posibilidad de reemplazar todos los archivos existentes depende de esas reglas y del contenido del ZIP**; no se garantiza limpieza de ficheros obsoletos que ya no estén en el archivo nuevo.
 
-`CatalogItem.dataRevision` añade solo un entero (0 = no indicado); `catalog_parser.cpp` lee `dr` del catálogo.
+## Registro local único + migración
 
-- **Instalación inicial:** `INSTALL ALL` sigue usando el asistente actual, con una nota visible cuando hay `dr`.
-- **Actualización VPK:** al pulsar **UPDATE**, se compara `dr` con un pequeño recibo local por `title_id`. Si coincide, continúa el flujo habitual de **solo VPK**. Si difiere o falta el recibo, se muestra un modal con **VPK + Datos** (preseleccionado), **Solo VPK** y **Cancelar**. No se cambia ninguna fuente de descarga automáticamente ni se alteran los controles del usuario.
-- **Actualizar completo:** reutiliza la selección de fuentes, los plugins, el estimador de espacio, la descarga secuencial, recuperación ZIP y el reporte de `INSTALL ALL`. La confirmación del modal sustituye la primera pantalla de confirmación, no la selección de enlaces ni el preflight.
-- **Registro local:** `ux0:data/psvitaalive/data_revisions/<TITLEID>.txt`. Guarda un entero pequeño (ej. `2` y salto de línea). **Solo se actualiza si TODOS los pasos seleccionados de Game/Data Files terminaron con éxito.** Fallos, cancelaciones, ZIP incompletos y elegir **Solo VPK** nunca actualizan este recibo. El registro de versión de VPK permanece independiente.
-- **Compatibilidad:** las apps sin `dr` conservan su comportamiento previo; no se escanea el disco en cada frame. Recibos desconocidos se muestran como **no verificados**, no como prueba de archivos obsoletos.
+Se mantiene un solo recibo principal en:
 
-### Límites de esta primera implementación
+`ux0:data/psvitaalive/installed/<TITLEID>.json`
 
-- El recibo local acredita que PSVitaAlive completó satisfactoriamente el último lote de archivos de datos, **no** comprueba la integridad de sus bytes ni detecta borrados/modificaciones externas posteriores.
-- Datos instalados manualmente o desde otras tiendas pueden ser válidos, pero no tienen recibo y generan una advertencia. El usuario puede optar por **Solo VPK**.
-- Si un juego usa varios conjuntos de datos incompatibles que necesitan revisiones independientes, `dr` por app no permite diferenciarlos: se deberá ampliar el contrato en otra fase tras validación.
-- El aviso se activa en el **botón UPDATE** de Homebrew. No cambia el botón **OPEN**, los enlaces individuales, el flujo de juegos comerciales ni las descargas fuera del cliente.
-- Ningún paquete de datos de apps existentes cambia de revisión automáticamente en esta entrega. El editor debe introducir `dr` caso por caso siguiendo las notas del autor.
-- El proyecto `installed_paths` para inventario y borrado seguro sigue siendo independiente; sus reglas **no** son sustituidas por `dr`.
+Ejemplo (versión del esquema 2):
 
-## QA / regresión
+```json
+{
+  "schema_version": 2,
+  "app_id": "ejemplo",
+  "title_id": "EXAM00001",
+  "catalog_version": "1.4.0",
+  "version_date": "2026-11-05",
+  "release_revision": 0,
+  "dr": 2,
+  "verification": {
+    "path": "eboot.bin",
+    "algorithm": "sha256",
+    "digest": ""
+  }
+}
+```
 
-1. App sin `dr`: Create/Edit exporta sin el campo; UPDATE sigue instalando solo VPK.
-2. `dr=2` con enlace Game Files: exporta entero; importar y editar conserva 2.
-3. `dr=0`, negativo, decimal, string, booleano o >65535: validación rechaza; si no existe Game/Data Files también rechaza.
-4. Primera instalación con `dr`: aparece nota en Confirm; solo se registra revisión si los ZIP de datos seleccionados terminan correctamente.
-5. Update con revisión igual: UPDATE no solicita ZIP adicionales.
-6. Update con revisión anterior o sin recibo: modal, por defecto **VPK + Datos**. Confirmar ejecuta selector(es), preflight y cola actuales; rechazar/solo VPK no modifica recibo.
-7. Fallo/cancelación de cualquiera de los ZIP seleccionados: nunca escribir nueva revisión. Probar con y sin VPK exitoso.
-8. Probar navegación D-pad, Cross/Circle, selección táctil y las ocho traducciones. Comprobar en Vita física, Vita3K y compilación VitaSDK.
-9. El pipeline sigue siendo `apps/ + authors/ + categories/` → Actions → `catalog.json + authors.json + categories.json` → cliente + web.
+- `catalog_version` y `release_revision` siguen siendo metadatos de la **instalación del VPK**. No se confunden con `dr`.
+- `dr: 0` significa **sin revisión de datos registrada** (por ejemplo, apps antiguas); `dr: 1` o superior es la última revisión instalada mediante un lote de datos completado satisfactoriamente.
+- Los recibos antiguos `schema_version: 1` se leen como hasta ahora. Si existe el archivo de la primera implementación de `dr`, `ux0:data/psvitaalive/data_revisions/<TITLEID>.txt`, se recupera su número. Cuando el JSON unificado se escribe correctamente, se retira el .txt heredado. No se borra antes de haber escrito el JSON.
+- Al actualizar **solo el VPK**, el instalador conserva el `dr` anterior y solo actualiza los metadatos del VPK.
+- `Install All` escribe `dr` **solo si todos los Game/Data Files seleccionados terminaron correctamente**. Una descarga fallida, una extracción incompleta, el aborto del asistente o la instalación aislada del VPK **no** adelantan `dr`.
+- El detector de instalaciones sigue utilizando el caché y el presupuesto de lecturas existente; no se introduce un escaneo del disco por frame. La clave del caché incorpora el `dr` del catálogo para detectar cambios de este campo aun cuando `version` no cambie.
 
-**Validación incluida:** prueba de lógica pura `tests/test_data_revision_policy.cpp` en el workflow de build de cliente; pruebas del generador en `generator.test.cjs`; validaciones de fuente y final en `validate_catalog.py` y `generate_catalog.py`. La prueba final en PS Vita física requiere ejecutarse manualmente: CI no puede demostrar funcionamiento del almacenamiento ni de los overlays en hardware.
+El recibo indica el resultado de una instalación realizada por PSVitaAlive; no verifica hashes de los archivos de datos ni detecta modificaciones manuales posteriores. Si los datos se instalaron fuera de PSVitaAlive no hay una revisión fiable y se ofrece `UPDATE ALL` al introducir `dr`. La actualización de datos que el usuario confirme sobreescribe lo que el extractor existente admita, sin borrado preventivo.
+
+## Casos de prueba
+
+1. App antigua instalada, recibo JSON v1 sin `dr`; catálogo nuevo con `dr: 1`: `UPDATE ALL` y aparición en filtro `Updates`, incluso si versión VPK coincide.
+2. App antigua con `schema_version: 1` y antiguo archivo .txt válido: recuperar `dr` al consultar y migrar al próximo guardado de recibo JSON.
+3. `dr` local 1, catálogo 2: `UPDATE ALL`. `dr` local 2, catálogo 2: VPK-only `UPDATE` u `OPEN`. Local 3, catálogo 2: nunca rebajar datos automáticamente.
+4. Catálogo sin `dr`: comportamiento anterior completo.
+5. Confirmación `UPDATE ALL`, cancelar: no descargar archivos ni actualizar recibo.
+6. Confirmación `UPDATE ALL`, aceptar: mismos pickers, preflight de espacio, ZIP recovery y resumen que `INSTALL ALL`.
+7. Fallo de un ZIP de datos: `dr` sin cambios, aunque el VPK hubiera terminado correctamente.
+8. Éxito de VPK más Game/Data Files: metadatos del VPK preservados y `dr` actualizado. Si VPK falla, nunca debe falsificarse su versión.
+9. Actualización VPK-only después de instalar `dr`: no borrar el valor.
+10. Comprobar navegación con mando/táctil, idiomas y migración real en PS Vita/Vita3K. Las pruebas CI (VitaSDK y lógica de política) **no sustituyen** una prueba real de instalación.
+
+## Implementación
+
+- `Client PSVitaAlive/include/update/data_revision_policy.hpp`: comparación de revisiones.
+- `Client PSVitaAlive/source/ui/full_catalog_screen.cpp`: detección y botón `UPDATE ALL`, filtro Updates, confirmación y cola Install All.
+- `Client PSVitaAlive/source/update/installed_release_tracker.cpp`: JSON v2, revisión de datos y migración.
+- `Client PSVitaAlive/source/installer/install_controller.cpp`: conservación de `dr` al instalar un VPK.
+- `Client PSVitaAlive/include/update/data_revision_tracker.hpp`: lectura y limpieza del .txt antiguo.
+- `tests/test_data_revision_policy.cpp`: pruebas unitarias sin consola.
+- `web/tools/app-generator/`, `scripts/validate_catalog.py` y `scripts/generate_catalog.py`: esquema público opcional, validación y exportación.
+
+**Arquitectura preservada:** `apps/ + authors/ + categories/` → GitHub Actions → `catalog.json + authors.json + categories.json` → cliente PS Vita + web.

@@ -5,24 +5,13 @@
 namespace psvitaalive {
 namespace update {
 
-// Pure decision logic: catalog key dr=0 is legacy/unspecified.
-// A missing local receipt is UNKNOWN, not evidence that data is outdated.
-enum class DataRevisionState : unsigned char {
-    Unspecified,
-    Matches,
-    Unverified,
-    Different
-};
-
-inline DataRevisionState checkDataRevision(uint32_t required, bool hasDataLinks,
-                                           bool hasLocalReceipt, uint32_t installed) {
-    if (!hasDataLinks || required == 0) return DataRevisionState::Unspecified;
-    if (!hasLocalReceipt || installed == 0) return DataRevisionState::Unverified;
-    return installed == required ? DataRevisionState::Matches : DataRevisionState::Different;
-}
-
-inline bool shouldWarnDataRevision(DataRevisionState state) {
-    return state == DataRevisionState::Unverified || state == DataRevisionState::Different;
+// Public catalog dr=0 means no data revision tracking.
+// A previously installed app with no recorded dr has revision 0: when the
+// catalog first introduces dr=1, a full Install All update is offered.
+// A newer local dr is never downgraded automatically.
+inline bool needsDataRevisionInstall(uint32_t required, bool hasDataLinks,
+                                     uint32_t installed) {
+    return hasDataLinks && required > 0 && installed < required;
 }
 
 } // namespace update

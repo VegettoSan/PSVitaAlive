@@ -31,6 +31,12 @@ class DataRevisionTracker {
     }
 
 public:
+    /** Legacy reader retained for migration from dr .txt to installed/*.json. */
+    static void removeLegacyReceipt(const std::string& titleId) {
+        const std::string normalized = normalizedTitleId(titleId);
+        if (validTitleId(normalized)) sceIoRemove(receiptPath(normalized).c_str());
+    }
+
     static bool read(const std::string& titleId, uint32_t& revision) {
         revision = 0;
         const std::string normalized = normalizedTitleId(titleId);

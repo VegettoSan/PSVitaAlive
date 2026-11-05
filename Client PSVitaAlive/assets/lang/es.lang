@@ -783,13 +783,12 @@ DISCORD_QR_EXTRA=Conoce a otros usuarios de PS Vita, comparte homebrew y recibe 
 DISCORD_QR_URL_LABEL=INVITACIÓN A DISCORD
 
 # Optional Game/Data Files revision (dr)
-DR_WARNING_TITLE=Actualizacion de Game/Data Files
-DR_WARNING_UNKNOWN=No se conoce la revision de datos instalada.
-DR_WARNING_DIFFERENT=Los datos instalados no coinciden con esta version.
-DR_WARNING_EXPECTED=Revision requerida:
-DR_WARNING_INSTALLED=Revision instalada:
-DR_WARNING_RISK=Instalar solo el VPK puede impedir que funcione el juego.
-DR_CHOICE_FULL=VPK + Datos
-DR_CHOICE_VPK=Solo VPK
-DR_CHOICE_CANCEL=Cancelar
 DR_FIRST_INSTALL_HINT=Instala tambien los Game/Data Files de esta version.
+
+# Full reinstall when catalog dr exceeds recorded Game/Data revision
+DR_UPDATE_ALL_TITLE=ACTUALIZAR TODO
+DR_UPDATE_ALL_SUBTITLE=Reinstalar VPK y nuevos Game/Data Files
+DR_UPDATE_CONFIRM1=Se requiere una nueva revision de datos.
+DR_UPDATE_CONFIRM2=Install All reinstalara el VPK y los datos.
+DR_UPDATE_CONFIRM3=No se borraran los archivos anteriores.
+DR_UPDATE_CONFIRM4=Se utilizara el instalador ZIP habitual.

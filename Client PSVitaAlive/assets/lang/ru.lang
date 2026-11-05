@@ -740,13 +740,12 @@ DISCORD_QR_EXTRA=Общайтесь с владельцами PS Vita, дели�
 DISCORD_QR_URL_LABEL=ПРИГЛАШЕНИЕ В DISCORD
 
 # Optional Game/Data Files revision (dr)
-DR_WARNING_TITLE=Обновление файлов игры
-DR_WARNING_UNKNOWN=Версия установленных данных неизвестна.
-DR_WARNING_DIFFERENT=Установленные данные не подходят к этой версии.
-DR_WARNING_EXPECTED=Нужная ревизия:
-DR_WARNING_INSTALLED=Ревизия данных:
-DR_WARNING_RISK=Обновление только VPK может нарушить работу игры.
-DR_CHOICE_FULL=VPK + Данные
-DR_CHOICE_VPK=Только VPK
-DR_CHOICE_CANCEL=Отмена
 DR_FIRST_INSTALL_HINT=Установите подходящие Game/Data Files для этой версии.
+
+# Full reinstall when catalog dr exceeds recorded Game/Data revision
+DR_UPDATE_ALL_TITLE=ОБНОВИТЬ ВСЁ
+DR_UPDATE_ALL_SUBTITLE=Установить VPK и новые данные
+DR_UPDATE_CONFIRM1=Нужны новые файлы игры.
+DR_UPDATE_CONFIRM2=Install All переустановит VPK и данные.
+DR_UPDATE_CONFIRM3=Старые файлы заранее не удаляются.
+DR_UPDATE_CONFIRM4=Используется обычный ZIP-установщик.

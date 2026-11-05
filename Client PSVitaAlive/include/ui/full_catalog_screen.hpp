@@ -38,6 +38,7 @@ enum class LocalInstallState {
 struct LocalInstallInfo {
     LocalInstallState state = LocalInstallState::Unknown;
     std::string installedVersion;
+    uint32_t dataRevision = 0; // Last successful Game/Data Files install (0=not recorded)
     const char* installedMount = nullptr; // cached ux0/uma0/imc0/xmc0 for PSP/PS1 only
 };
 
@@ -452,12 +453,11 @@ private:
     void kickNextEssentialPluginInstall();
     void essentialPluginsTryAdvanceFromProgress(int outcome);
 
-    enum class PrimaryAction { None, InstallAll, Update, Open };
+    enum class PrimaryAction { None, InstallAll, Update, UpdateAll, Open };
     /** Action is derived from the existing installed-release detector. */
     PrimaryAction primaryActionFor(const CatalogItem& item);
     int preferredVpkDownloadIndex(const CatalogItem& item) const;
     void activatePrimaryAction(const CatalogItem& item);
-    void resolveRevisionWarning(int choice);
     void openInstallAllWizard();
     void closeInstallAllWizard(bool cancel);
     void installAllAdvancePick();
@@ -650,7 +650,6 @@ private:
     // Install All (VPK + Game Files + Data Files) wizard + sequential queue
     enum class InstallAllPhase {
         Hidden = 0,
-        RevisionWarning,
         Confirm,
         PickDownload,
         PickGameFiles,
@@ -666,8 +665,7 @@ private:
     bool installAllSpaceProbeFailed_ = false;
     int installAllFocus_ = 0;              // focus inside current wizard list / buttons
     int installAllItemIndex_ = -1;         // index into catalogView() when wizard opened
-    bool revisionWarningKnown_ = false;
-    uint32_t revisionWarningInstalled_ = 0;
+    bool installAllRevisionUpdate_ = false; // Confirm VPK + new Game/Data Files
     bool installAllRevisionHasFiles_ = false;
     bool installAllRevisionFilesOk_ = false;
     std::vector<int> installAllOptions_;   // linkDetail indices for current pick phase
