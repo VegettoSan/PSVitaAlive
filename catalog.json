@@ -1,5 +1,145 @@
 [
   {
+    "id": "bombsquad-vita-alpha-version",
+    "title_id": "BOMBS1762",
+    "name": "BombSquad Vita (Alpha Version)",
+    "description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer",
+    "long_description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer\n\n- PsVitaAlive -",
+    "author_ids": [
+      "spliffcurrybeats"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "arcade",
+      "platformer",
+      "strategy"
+    ],
+    "version": "0.9",
+    "version_date": "2026-11-05",
+    "requirements": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx\n-About 170 MB of free space on ux0",
+    "size": 2411725,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/bombsquad-vita/BombSquad-Vita-Alpha-0.9.vpk",
+        "size": 2411725,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/bombsquad-vita/Game%20Files%20Fix.zip",
+        "size": 151728947,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "GitLab",
+        "url": "https://gitlab.com/sexcurrybeats/bombsquad-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/bombsquad-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/bombsquad-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "star-fox-adventures",
+    "title_id": "STFX00001",
+    "name": "Star Fox Adventures",
+    "description": "Star Fox Adventures for PS Vita: a native port",
+    "long_description": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
+    "author_ids": [
+      "tchisholm20"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.1.2",
+    "version_date": "2026-11-05",
+    "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
+    "size": 9017754,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.2.vpk",
+        "size": 9017754,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 1468006,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/tchisholm20/starfox-adventures-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "twinsanityevolved",
+    "title_id": "TWEV00001",
+    "name": "TwinsanityEvolved",
+    "description": "Native Ps Vita port of Crash Twinsanity",
+    "long_description": "Native Ps Vita port of Crash Twinsanity",
+    "author_ids": [
+      "menaman123"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "version": "0.9.3",
+    "version_date": "2026-11-05",
+    "requirements": "- ur0:data/libshacccg.suprx",
+    "size": 5347738,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.3.vpk",
+        "size": 5347738,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files En,Fr,De,Es,It",
+        "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 2516582,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/menaman123/TwinsanityEvolved"
+      }
+    ],
+    "icon": "https://archive.org/download/twinsanityevolved-ps-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
+    ]
+  },
+  {
     "id": "nfs-most-wanted",
     "title_id": "NFSMWVITA",
     "name": "NFS Most Wanted",
@@ -294,53 +434,6 @@
     "icon": "https://archive.org/download/VitaKotor2/icon0.png",
     "screenshots": [
       "https://archive.org/download/VitaKotor2/shot0.png"
-    ]
-  },
-  {
-    "id": "twinsanityevolved",
-    "title_id": "TWEV00001",
-    "name": "TwinsanityEvolved",
-    "description": "Native Ps Vita port of Crash Twinsanity",
-    "long_description": "Native Ps Vita port of Crash Twinsanity",
-    "author_ids": [
-      "menaman123"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
-    ],
-    "version": "0.9.2",
-    "version_date": "2026-11-03",
-    "requirements": "- ur0:data/libshacccg.suprx",
-    "size": 5347738,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved-v0.9.2-vita.vpk",
-        "size": 5347738,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files En,Fr,De,Es,It",
-        "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 2516582,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/menaman123/TwinsanityEvolved"
-      }
-    ],
-    "icon": "https://archive.org/download/twinsanityevolved-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
     ]
   },
   {
@@ -824,53 +917,6 @@
       "https://archive.org/download/shadow-fight-2-for-ps-vita/shot0.png",
       "https://archive.org/download/shadow-fight-2-for-ps-vita/shot1.png",
       "https://archive.org/download/shadow-fight-2-for-ps-vita/shot2.png"
-    ]
-  },
-  {
-    "id": "star-fox-adventures",
-    "title_id": "STFX00001",
-    "name": "Star Fox Adventures",
-    "description": "Star Fox Adventures for PS Vita: a native port",
-    "long_description": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
-    "author_ids": [
-      "tchisholm20"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "platformer",
-      "strategy",
-      "source-port"
-    ],
-    "version": "0.1.1",
-    "version_date": "2026-11-01",
-    "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
-    "size": 5767168,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.1.vpk",
-        "size": 5767168,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "size": 1468006,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/tchisholm20/starfox-adventures-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -5944,52 +5990,6 @@
       "https://archive.org/download/turbo-fast-psvita/Shot0.png",
       "https://archive.org/download/turbo-fast-psvita/shot1.png",
       "https://archive.org/download/turbo-fast-psvita/shot2.png"
-    ]
-  },
-  {
-    "id": "bombsquad-vita-alpha-version",
-    "title_id": "BOMBS1762",
-    "name": "BombSquad Vita (Alpha Version)",
-    "description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer",
-    "long_description": "A playable PlayStation Vita port of BombSquad 1.7.62 using an Android ARMv7 compatibility layer\n\n- PsVitaAlive -",
-    "author_ids": [
-      "spliffcurrybeats"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "arcade",
-      "platformer",
-      "strategy"
-    ],
-    "version": "0.8",
-    "version_date": "2026-08-30",
-    "requirements": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx\n-About 170 MB of free space on ux0",
-    "size": 2411725,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/bombsquad-vita/BombSquad-Vita-Alpha-0.8.vpk",
-        "size": 2411725,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/bombsquad-vita/Game%20Files%20Fix.zip",
-        "size": 151728947,
-        "extract_path": "ux0:data/"
-      },
-      {
-        "type": "Repository",
-        "name": "GitLab",
-        "url": "https://gitlab.com/sexcurrybeats/bombsquad-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/bombsquad-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/bombsquad-vita/Shot0.png"
     ]
   },
   {
