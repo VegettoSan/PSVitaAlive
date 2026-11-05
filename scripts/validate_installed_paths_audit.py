@@ -6,18 +6,16 @@ not to links[].extract_path. App folder ZIPs do not use installed_paths.
 No network access, deletion, or generated catalog changes.
 """
 import json
-import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-NAME = re.compile(r"^[^:/\\\\\\x00-\\x1f]+$")
-# One or more relative components, but no traversal; reject root-level paths.
+# Relative components only, without traversal, mounts or control characters.
 def valid_path(value):
     if not isinstance(value, str) or not value or value.startswith("/"):
         return False
     parts = value.split("/")
-    return all(part not in ("", ".", "..") and NAME.fullmatch(part) for part in parts)
+    return all(part not in ("", ".", "..") and ":" not in part and "\\\\" not in part and all(ord(ch) >= 32 for ch in part) for part in parts)
 
 def main():
     errors=[]
