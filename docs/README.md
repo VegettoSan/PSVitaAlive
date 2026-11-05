@@ -13,7 +13,8 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
-| [`docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md`](INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md) | **Plan pendiente (2026-11-05):** `installed_paths` requerido para Game Files externos, no requerido en `ux0:app/`, opcional/heredado en Data Files; carpetas compartidas, ZIP STORE, gestión de espacio y desinstalación segura bajo demanda; **solo documentado, no implementado** |
+| [`docs/GAME_FILES_ROUTES_20261105.md`](GAME_FILES_ROUTES_20261105.md) | **Inventario de rutas Game Files (2026-11-05):** 158 aplicaciones, rutas `ux0:data/`/`ux0:app/`, `extract_path`, `installed_paths`, variantes y carpetas compartidas; generado desde `apps/*.json` |
+| [`docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md`](INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md) | **Plan técnico:** metadatos `installed_paths` de Game Files incorporados a `apps/`; Data Files opcional/heredado y cliente/gestión segura de espacio/desinstalación siguen pendientes de implementar |
 | Root `README.md` | Project overview, public JSON API, multi-catalog, recommended Vita setup, download/install locks, commercial PKG routing, client feature summary |
 | [`docs/RELEASE_02_17_TECHNICAL_20261028.md`](RELEASE_02_17_TECHNICAL_20261028.md) | **Estado vigente en 02.17:** tarjetas, filtros, PSP/PS1, Discord, estabilidad, build y verificación |
 | [`docs/releases/02.17.md`](releases/02.17.md) | Body oficial de la release 02.17 |
