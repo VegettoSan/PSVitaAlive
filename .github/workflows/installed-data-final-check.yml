@@ -22,7 +22,18 @@ jobs:
           python3 -m py_compile scripts/validate_catalog.py
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_installed_data_policy.cpp -o /tmp/idpolicy
           /tmp/idpolicy
-          python3 tests/test_localization.py
+          python3 - <<'PY'
+          from pathlib import Path
+          keys = ("ID_TITLE", "ID_SECTION", "ID_UNINSTALL_BUTTON", "ID_WARNING1",
+                  "ID_WARNING2", "ID_WARNING3", "ID_ONLY_APP", "ID_ONLY_DATA",
+                  "ID_APP_DATA", "ID_CONFIRM_CONTROLS")
+          for p in Path("Client PSVitaAlive/assets/lang").glob("*.lang"):
+              text=p.read_text(encoding="utf-8")
+              found={line.split("=",1)[0] for line in text.splitlines() if "=" in line}
+              missing=set(keys)-found
+              assert not missing, (p,sorted(missing))
+          print("Installed data locale coverage: PASS")
+          PY
       - name: Compile final translated Vita client
         run: |
           docker pull vitasdk/vitasdk:2026.08
