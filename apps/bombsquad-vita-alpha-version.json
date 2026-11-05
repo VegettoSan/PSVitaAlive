@@ -13,8 +13,8 @@
     "platformer",
     "strategy"
   ],
-  "version": "0.8",
-  "version_date": "2026-08-30",
+  "version": "0.9",
+  "version_date": "2026-11-05",
   "requirements": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx\n-About 170 MB of free space on ux0",
   "size": 2411725,
   "status": "Verified",
@@ -22,7 +22,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/bombsquad-vita/BombSquad-Vita-Alpha-0.8.vpk",
+      "url": "https://archive.org/download/bombsquad-vita/BombSquad-Vita-Alpha-0.9.vpk",
       "size": 2411725,
       "recommended": true
     },

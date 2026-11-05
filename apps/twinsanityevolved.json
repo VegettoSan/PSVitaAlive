@@ -14,8 +14,8 @@
     "puzzle",
     "source-port"
   ],
-  "version": "0.9.2",
-  "version_date": "2026-11-03",
+  "version": "0.9.3",
+  "version_date": "2026-11-05",
   "requirements": "- ur0:data/libshacccg.suprx",
   "size": 5347738,
   "status": "Verified",
@@ -23,7 +23,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved-v0.9.2-vita.vpk",
+      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.3.vpk",
       "size": 5347738,
       "recommended": true
     },
