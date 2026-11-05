@@ -10,12 +10,12 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Inspect ZIP indexes with byte-range reads only
         env:
-          AUDIT_PENDING_ONLY: "1"
+          AUDIT_PENDING_ONLY: "0"
         run: python3 scripts/audit_game_files_zip_roots.py
       - name: Save audit to research branch
         run: |
