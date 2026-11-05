@@ -17,9 +17,13 @@ jobs:
         env:
           AUDIT_PENDING_ONLY: "0"
         run: python3 scripts/audit_game_files_zip_roots.py
-      - name: Save audit to research branch
+      - name: Populate reviewed Game Files metadata (branch only)
+        run: python3 scripts/populate_installed_paths_from_audit.py
+      - name: Validate source catalog JSON
+        run: python3 scripts/validate_catalog.py
+      - name: Save audit and source JSON to research branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/audits/game_files_zip_roots_20261105.json
+          git add docs/audits/game_files_zip_roots_20261105.json apps/
           git diff --cached --quiet || (git commit -m "docs: record ZIP root audit results [skip ci]" && git push)
