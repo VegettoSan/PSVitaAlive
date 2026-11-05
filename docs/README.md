@@ -13,6 +13,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
+| [`docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md`](INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md) | **Plan pendiente (2026-11-05):** identificación de Game/Data Files mediante `installed_paths`, carpetas compartidas, tamaño con ZIP STORE, gestión de espacio y desinstalación segura bajo demanda; **solo documentado, no implementado** |
 | Root `README.md` | Project overview, public JSON API, multi-catalog, recommended Vita setup, download/install locks, commercial PKG routing, client feature summary |
 | [`docs/RELEASE_02_17_TECHNICAL_20261028.md`](RELEASE_02_17_TECHNICAL_20261028.md) | **Estado vigente en 02.17:** tarjetas, filtros, PSP/PS1, Discord, estabilidad, build y verificación |
 | [`docs/releases/02.17.md`](releases/02.17.md) | Body oficial de la release 02.17 |
