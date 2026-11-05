@@ -1,20 +1,25 @@
-name: Validate Game Files catalog roots (research branch)
+name: Generate full Game Files route report (research branch)
 on:
-  workflow_dispatch:
   push:
     branches:
       - audit/game-files-zip-roots-20261105
     paths:
       - .github/workflows/audit-game-files-zip-roots.yml
 permissions:
-  contents: read
+  contents: write
 jobs:
-  validate:
+  report:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Validate audited installed paths, all source JSON and app installation roots
+      - name: Validate all Game Files paths
         run: python3 scripts/validate_installed_paths_audit.py
-      - name: Validate archived audit JSON format
-        run: python3 -m json.tool docs/audits/game_files_zip_roots_20261105.json > /dev/null
+      - name: Generate table from canonical apps JSON
+        run: python3 scripts/report_game_files_paths.py
+      - name: Commit report into research branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/GAME_FILES_ROUTES_20261105.md
+          git diff --cached --quiet || (git commit -m "docs: publish complete Game Files route table [skip ci]" && git push)
