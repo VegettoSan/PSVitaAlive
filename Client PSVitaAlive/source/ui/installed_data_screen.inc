@@ -294,13 +294,28 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             ::psvitaalive::L("ID_CONFIRM_TITLE"));
         if (app) ::psvitaalive::ui::uiDrawText(&font_,x+28,y+125,WHITE,.88f,
             ellipsize(app->name,54).c_str());
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,WHITE,.76f,
+        // Never confirm a destructive external action without naming its
+        // actual validated targets. Do not imply individual Data Files can be
+        // deleted independently when Game/Data share a parent directory.
+        if (app && installedDataActionFocus_ != 0) {
+            for (size_t i=0;i<app->paths.size() && i<3;++i) {
+                ::psvitaalive::ui::uiDrawText(&font_,x+32,
+                    y+158+static_cast<int>(i)*22,TEXT,.66f,
+                    ellipsize(app->paths[i].path,75).c_str());
+            }
+            if (app->paths.size()>3) {
+                const std::string extra="+"+std::to_string(app->paths.size()-3);
+                ::psvitaalive::ui::uiDrawText(&font_,x+W-87,y+215,DIM,.69f,
+                    extra.c_str());
+            }
+        }
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+257,WHITE,.74f,
             ::psvitaalive::L("ID_WARNING1"));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+218,TEXT,.74f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+286,TEXT,.73f,
             ::psvitaalive::L("ID_WARNING2"));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+257,TEXT,.74f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+317,ACCENT,.74f,
             ::psvitaalive::L("ID_WARNING3"));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+325,ACCENT,.86f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+358,ACCENT,.74f,
             ::psvitaalive::L(installedDataActionFocus_==0 ? "ID_ONLY_APP" :
                 installedDataActionFocus_==1 ? "ID_ONLY_DATA" : "ID_APP_DATA"));
         vita2d_draw_rectangle(x+30,y+383,W-60,57,SURFACE2);

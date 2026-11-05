@@ -9,6 +9,7 @@
 #include <psp2/promoterutil.h>
 #include <psp2/sysmodule.h>
 #include <algorithm>
+#include <cstring>
 #include <unordered_map>
 #include <string>
 #include <utility>
@@ -48,6 +49,9 @@ bool scanTree(const std::string& p, unsigned depth,
     int rc = 0;
     bool complete = true;
     while ((rc = sceIoDread(d, &entry)) > 0) {
+        // Vita may expose "." and ".."; never descend into those entries.
+        if (std::strcmp(entry.d_name, ".") == 0 ||
+            std::strcmp(entry.d_name, "..") == 0) continue;
         if (!safeComponent(entry.d_name) ||
             !scanTree(p + "/" + entry.d_name, depth+1, entries, bytes)) {
             complete = false;
@@ -74,6 +78,8 @@ bool eraseTree(const std::string& path, unsigned depth,
         bool found = false;
         bool ok = true;
         while ((rc = sceIoDread(d, &e)) > 0) {
+            if (std::strcmp(e.d_name, ".") == 0 ||
+                std::strcmp(e.d_name, "..") == 0) continue;
             if (!safeComponent(e.d_name)) { ok = false; break; }
             found = true;
             if (!eraseTree(path + "/" + e.d_name, depth+1, count)) {
