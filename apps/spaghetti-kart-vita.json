@@ -30,7 +30,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/Game%20Files.zip",
       "size": 32191283,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "spaghetti"
+      ]
     },
     {
       "type": "Repository",
