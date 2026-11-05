@@ -32,7 +32,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/bombsquad-vita/Game%20Files%20Fix.zip",
         "size": 151728947,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "BombSquad"
+        ]
       },
       {
         "type": "Repository",
@@ -77,7 +80,10 @@
         "name": "Game Files Fix",
         "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
         "size": 1610612736,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nfsmw"
+        ]
       },
       {
         "type": "Repository",
@@ -124,7 +130,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1468006,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "stairfax"
+        ]
       },
       {
         "type": "Repository",
@@ -171,7 +180,10 @@
         "name": "Game Files En,Fr,De,Es,It",
         "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 2516582,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "twinsanity"
+        ]
       },
       {
         "type": "Repository",
@@ -222,14 +234,20 @@
         "name": "Game Data Files ZIP - MediaFire",
         "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
         "size": 81699799,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "popclassic"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
         "size": 81699799,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "popclassic"
+        ]
       },
       {
         "type": "Repository",
@@ -276,7 +294,10 @@
         "name": "Game Files Fixed",
         "url": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA.zip",
         "size": 2147483648,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "recvx"
+        ]
       },
       {
         "type": "Repository",
@@ -326,7 +347,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 232469299,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "bsht"
+        ]
       },
       {
         "type": "Repository",
@@ -373,7 +397,10 @@
         "name": "Game Files English",
         "url": "https://archive.org/download/halo-ce-ps-vita-direct3d/Game%20Files%20English.zip",
         "size": 1857573356,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "haloce-vita"
+        ]
       },
       {
         "type": "Repository",
@@ -423,7 +450,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/VitaKotor2/Game%20Files.zip",
         "size": 5046586573,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "kotor2"
+        ]
       },
       {
         "type": "Repository",
@@ -537,7 +567,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
         "size": 2040109466,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ffvii-vita"
+        ]
       },
       {
         "type": "Repository",
@@ -584,7 +617,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/gunforce-2-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 8493466,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "gunforce2"
+        ]
       },
       {
         "type": "Repository",
@@ -629,7 +665,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 2040109466,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "manhunt"
+        ]
       },
       {
         "type": "Repository",
@@ -677,7 +716,10 @@
         "name": "Game Files Fixed",
         "url": "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1642824991,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "usm"
+        ]
       },
       {
         "type": "Repository",
@@ -724,7 +766,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 928409190,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "batmanarkhamorigins"
+        ]
       },
       {
         "type": "Repository",
@@ -811,7 +856,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/ff6-vita/Game%20Files%20for%20PSVA.zip",
         "size": 677275238,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ff6"
+        ]
       },
       {
         "type": "Repository",
@@ -858,7 +906,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 176265626,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "mvc2"
+        ]
       },
       {
         "type": "Repository",
@@ -903,7 +954,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/shadow-fight-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 412509798,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "shadowfight2"
+        ]
       },
       {
         "type": "Repository",
@@ -952,7 +1006,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/touhou-12-3-vita/Game%20Files%20for%20PSVA.zip",
         "size": 2147483648,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "touhou123vita"
+        ]
       },
       {
         "type": "Repository",
@@ -1000,7 +1057,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/codmw-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 2684354560,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "CODVIT001"
+        ]
       },
       {
         "type": "Community",
@@ -1046,14 +1106,20 @@
         "name": "Game Files English",
         "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
         "size": 2018634629,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "d2vita"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Files Spanish",
         "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
         "size": 2190433321,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "d2vita"
+        ]
       },
       {
         "type": "Repository",
@@ -1101,7 +1167,10 @@
         "name": "Game Files USA",
         "url": "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 381786522,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "dw1"
+        ]
       },
       {
         "type": "Repository",
@@ -1152,7 +1221,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 3650722202,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "halflife2"
+        ]
       },
       {
         "type": "Repository",
@@ -1200,7 +1272,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 849031987,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nova2"
+        ]
       },
       {
         "type": "Repository",
@@ -1286,7 +1361,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/stardew-valley-enhanced-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 660498022,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "StardewValley"
+        ]
       },
       {
         "type": "Repository",
@@ -1332,7 +1410,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/djmax-ray-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 990694605,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "djmaxray"
+        ]
       },
       {
         "type": "Repository",
@@ -1380,7 +1461,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/Game%20Files%20for%20PSVA.zip",
         "size": 3650722202,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "sh4"
+        ]
       },
       {
         "type": "Repository",
@@ -1426,7 +1510,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/tap-sonic-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 618659840,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "tapsonic"
+        ]
       },
       {
         "type": "Repository",
@@ -1472,7 +1559,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 946444698,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "aclockdown"
+        ]
       },
       {
         "type": "Repository",
@@ -1519,7 +1609,10 @@
         "name": "Game Files USA",
         "url": "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip",
         "size": 555220992,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "Pikmin"
+        ]
       },
       {
         "type": "Repository",
@@ -1566,7 +1659,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/ShotgunKing2Vita/Game%20Files%20for%20PSVA.zip",
         "size": 82837504,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "shotgunk2vita_steam"
+        ]
       },
       {
         "type": "Repository",
@@ -1611,7 +1707,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/strikers-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1717986918,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "strikersVita"
+        ]
       },
       {
         "type": "Plugin",
@@ -1705,7 +1804,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/zombie-infection-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 267282022,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zombieinfection"
+        ]
       },
       {
         "type": "Repository",
@@ -1752,14 +1854,20 @@
         "name": "Game Files English",
         "url": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20English%20for%20PSVA.zip",
         "size": 3006477107,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "bt3"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Files Latino MOD",
         "url": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20Latino%20for%20PSVA.zip",
         "size": 4294967296,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "bt3"
+        ]
       },
       {
         "type": "Plugin",
@@ -1819,7 +1927,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
         "size": 226072986,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "gunbros"
+        ]
       },
       {
         "type": "Repository",
@@ -1867,7 +1978,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 407791206,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nitronic"
+        ]
       },
       {
         "type": "Plugin",
@@ -1966,7 +2080,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
         "size": 1073741824,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "SKATEVITA"
+        ]
       },
       {
         "type": "Repository",
@@ -2013,7 +2130,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
         "size": 1992294,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "theimpossiblegame"
+        ]
       },
       {
         "type": "Repository",
@@ -2104,7 +2224,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-biohazard4-vita/Game%20Files.zip",
         "size": 87660954,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "Bio4"
+        ]
       },
       {
         "type": "Repository",
@@ -2199,7 +2322,10 @@
         "name": "Game Files USA",
         "url": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
         "size": 2469606195,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "smg"
+        ]
       },
       {
         "type": "Mod",
@@ -2257,7 +2383,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/javita-ps-vita/Game%20Files.zip",
         "size": 1181116006,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "JAVITA"
+        ]
       },
       {
         "type": "Repository",
@@ -2309,7 +2438,10 @@
         "name": "Game Files Disc 1",
         "url": "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1503238554,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "BIOHAZ004"
+        ]
       },
       {
         "type": "Official Website",
@@ -2355,7 +2487,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 61446554,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "remercenariesvs"
+        ]
       },
       {
         "type": "Official Website",
@@ -2403,7 +2538,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
         "size": 356096410,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ff3"
+        ]
       },
       {
         "type": "Repository",
@@ -2456,7 +2594,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-openmw-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1073741824,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "openmw"
+        ]
       },
       {
         "type": "Repository",
@@ -2511,7 +2652,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/castle-crashers-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 255747686,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "CastleCrashers"
+        ]
       },
       {
         "type": "Community",
@@ -2558,7 +2702,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/conker-vita/Game%20Files.zip",
         "size": 67108864,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "conker"
+        ]
       },
       {
         "type": "Repository",
@@ -2604,7 +2751,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/ignition-vita/Game%20Files%20for%20PSVA.zip",
         "size": 122054246,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ignition"
+        ]
       },
       {
         "type": "Repository",
@@ -2650,7 +2800,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/VitaKotor/Game%20Files.zip",
         "size": 2576980378,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "kotor"
+        ]
       },
       {
         "type": "Repository",
@@ -2696,7 +2849,10 @@
         "name": "Game Files Fix v2",
         "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip",
         "size": 1932735283,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "mkw"
+        ]
       },
       {
         "type": "Repository",
@@ -2747,7 +2903,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1932735283,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "mscharged"
+        ]
       },
       {
         "type": "Repository",
@@ -2794,7 +2953,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/resident-evil-degeneration-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 20027802,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "redegeneration"
+        ]
       },
       {
         "type": "Official Website",
@@ -2890,7 +3052,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
         "size": 2469606195,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "mh3-wii"
+        ]
       },
       {
         "type": "Plugin",
@@ -2946,7 +3111,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 2040109466,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "wonderboy"
+        ]
       },
       {
         "type": "Repository",
@@ -2992,14 +3160,20 @@
         "name": "Game Files USA",
         "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
         "size": 1395864371,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "dusklight"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Files Spanish",
         "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
         "size": 1050148864,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "dusklight"
+        ]
       },
       {
         "type": "Official Website",
@@ -3046,7 +3220,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/Game%20Files%20for%20PSVA.zip",
         "size": 2469606195,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nba2k16"
+        ]
       },
       {
         "type": "Repository",
@@ -3093,7 +3270,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/ssx-2012-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1288490189,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ssx"
+        ]
       },
       {
         "type": "Plugin",
@@ -3150,7 +3330,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/ducktales-remastered-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 607125504,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "duck"
+        ]
       }
     ],
     "icon": "https://archive.org/download/ducktales-remastered-ps-vita/icon0.png",
@@ -3192,7 +3375,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
         "size": 268435456,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "khdays"
+        ]
       },
       {
         "type": "Repository",
@@ -3238,7 +3424,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
         "size": 1610612736,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "rr3"
+        ]
       },
       {
         "type": "Repository",
@@ -3363,7 +3552,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/raging-thunder-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 3984589,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ragingthunder"
+        ]
       },
       {
         "type": "Repository",
@@ -3409,7 +3601,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 3328599654,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "sf4ce"
+        ]
       },
       {
         "type": "Repository",
@@ -3456,7 +3651,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/hero-of-sparta-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 119642522,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "heroofsparta"
+        ]
       },
       {
         "type": "Repository",
@@ -3502,7 +3700,7 @@
         "name": "Game Files",
         "url": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1288490189,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:app/"
       },
       {
         "type": "Repository",
@@ -3549,7 +3747,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/thug-vita/Game%20Files.zip",
         "size": 1717986918,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "thug"
+        ]
       },
       {
         "type": "Repository",
@@ -3639,7 +3840,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
         "size": 605657498,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ctr"
+        ]
       },
       {
         "type": "Repository",
@@ -3688,7 +3892,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
         "size": 647705395,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "sonicr"
+        ]
       },
       {
         "type": "Repository",
@@ -3736,7 +3943,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/Game%20Files.zip",
         "size": 625370726,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "castleofillusion"
+        ]
       },
       {
         "type": "Repository",
@@ -3830,7 +4040,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-ghostship-vita/Game%20Files%20Fix.zip",
         "size": 18454938,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ghostship"
+        ]
       },
       {
         "type": "Repository",
@@ -3884,14 +4097,20 @@
         "name": "Game Files Japanese",
         "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Japanese.zip",
         "size": 82837504,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "DBTapBattle"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Files Spanish",
         "url": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Spanish.zip",
         "size": 71722598,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "DBTapBattle"
+        ]
       },
       {
         "type": "Official Website",
@@ -3945,7 +4164,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip",
         "size": 1503238554,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "melee"
+        ]
       },
       {
         "type": "Repository",
@@ -3992,7 +4214,10 @@
         "name": "Game Files USA",
         "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
         "size": 41943040,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "papership"
+        ]
       },
       {
         "type": "Repository",
@@ -4040,7 +4265,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/paperboat-ps-vita/Game%20Files.zip",
         "size": 70044877,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "paperboat"
+        ]
       },
       {
         "type": "Repository",
@@ -4086,7 +4314,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/GE007Vita/Game%20Files.zip",
         "size": 12582912,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "GoldenEye007"
+        ]
       },
       {
         "type": "Repository",
@@ -4136,7 +4367,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip",
         "size": 52953088,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "waw"
+        ]
       },
       {
         "type": "Plugin",
@@ -4221,7 +4455,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
         "size": 675073229,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "pvz2"
+        ]
       },
       {
         "type": "Repository",
@@ -4266,7 +4503,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/scribblenauts-remix-ps-vita/Game%20Files.zip",
         "size": 226806989,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "scribblenauts"
+        ]
       },
       {
         "type": "Repository",
@@ -4313,7 +4553,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/Game%20Files.zip",
         "size": 60083405,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "carnivoresdinosaurhunter"
+        ]
       },
       {
         "type": "Repository",
@@ -4359,7 +4602,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
         "size": 73610035,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "carnivoresiceage"
+        ]
       },
       {
         "type": "Repository",
@@ -4406,7 +4652,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 274202624,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "brothersinarms2"
+        ]
       },
       {
         "type": "Repository",
@@ -4451,7 +4700,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/real-racing-2-ps-vita/Game%20Files.zip",
         "size": 2791728742,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "rr2"
+        ]
       },
       {
         "type": "Repository",
@@ -4498,7 +4750,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 670983782,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "sacredodyssey"
+        ]
       },
       {
         "type": "Repository",
@@ -4543,7 +4798,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
         "size": 166199296,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "asphalt5"
+        ]
       },
       {
         "type": "Repository",
@@ -4587,7 +4845,10 @@
         "name": "Game Files USA",
         "url": "https://archive.org/download/psvitaalive-animal-crossing-vita/Game%20Files%20%28USA%29.zip",
         "size": 27577549,
-        "extract_path": "ux0:data/AnimalCrossing/rom/"
+        "extract_path": "ux0:data/AnimalCrossing/rom/",
+        "installed_paths": [
+          "AnimalCrossing"
+        ]
       },
       {
         "type": "Repository",
@@ -4644,7 +4905,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 427609293,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "gangstarmiamivindication"
+        ]
       },
       {
         "type": "Repository",
@@ -4691,7 +4955,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
         "size": 598946611,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "shadowguardian"
+        ]
       },
       {
         "type": "Repository",
@@ -4737,7 +5004,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/asphalt-6-ps-vita/Game%20Files%20for%20PSVA.zip",
         "size": 948227277,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "asphalt6"
+        ]
       },
       {
         "type": "Repository",
@@ -4790,7 +5060,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/arcaea-ps-vita/Game%20Files.zip",
         "size": 505833062,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "arcaea"
+        ]
       },
       {
         "type": "Repository",
@@ -4886,7 +5159,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/moster-shooter-ps-vita/Game%20Files.zip",
         "size": 31142707,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "monstershooter"
+        ]
       },
       {
         "type": "Repository",
@@ -4934,7 +5210,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/nfs2-se-ps-vita/Game%20Files.zip",
         "size": 564133888,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nfs2-recomp"
+        ]
       },
       {
         "type": "Repository",
@@ -4982,7 +5261,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Game%20Files.zip",
         "size": 170813030,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "spiderman"
+        ]
       },
       {
         "type": "Repository",
@@ -5032,7 +5314,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-jk2vita/Game%20Files.zip",
         "size": 626314445,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "JK2Vita"
+        ]
       },
       {
         "type": "Repository",
@@ -5084,7 +5369,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/dungeon-hunter-2-ps-vita/Game%20Files.zip",
         "size": 667523482,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "dungeon-hunter-2"
+        ]
       },
       {
         "type": "Repository",
@@ -5133,7 +5421,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files%20Update.zip",
         "size": 3006477107,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "Bully"
+        ]
       },
       {
         "type": "Repository",
@@ -5187,7 +5478,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/golden-balloon-psvita/Game%20Files%20goldenballoon.zip",
         "size": 12582912,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "goldenballoon"
+        ]
       },
       {
         "type": "Repository",
@@ -5232,7 +5526,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/Game%20Files.zip",
         "size": 33135002,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "powerpuff_mojo"
+        ]
       },
       {
         "type": "Repository",
@@ -5320,7 +5617,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%20Game%20Files.zip",
         "size": 5476083302,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "dhewm3"
+        ]
       },
       {
         "type": "Repository",
@@ -5373,14 +5673,20 @@
         "name": "Game Data Files ZIP - Mediafire",
         "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
         "size": 1500017328,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "asphalt8"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Data Files ZIP",
         "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
         "size": 1610612736,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "asphalt8"
+        ]
       },
       {
         "type": "Mod",
@@ -5433,7 +5739,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/n.o.v.a.-3-vita/Game%20Files.zip",
         "size": 3328599654,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nova3"
+        ]
       },
       {
         "type": "Repository",
@@ -5585,7 +5894,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip",
         "size": 46242202,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "gravityguy"
+        ]
       }
     ],
     "icon": "https://archive.org/download/gravity-guy-ps-vita/icon0.png",
@@ -5729,7 +6041,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
         "size": 732954624,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "barony"
+        ]
       },
       {
         "type": "Repository",
@@ -5785,7 +6100,10 @@
         "name": "Game Data Files ZIP Mediafire",
         "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
         "size": 257980105,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "lighthouse"
+        ]
       },
       {
         "type": "Repository",
@@ -5837,7 +6155,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
         "size": 2576980378,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "Amnesia"
+        ]
       },
       {
         "type": "Repository",
@@ -5881,7 +6202,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
         "size": 12163482,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "battleship"
+        ]
       },
       {
         "type": "Repository",
@@ -5935,7 +6259,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/illusia-psvita/Game%20Files.zip",
         "size": 23592960,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "illusia"
+        ]
       },
       {
         "type": "Repository",
@@ -5982,7 +6309,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/turbo-fast-psvita/Game%20Files.zip",
         "size": 97517568,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "turbo"
+        ]
       }
     ],
     "icon": "https://archive.org/download/turbo-fast-psvita/icon0.png",
@@ -6231,7 +6561,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/Game%20Files.zip",
         "size": 345610650,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "moderncombat2"
+        ]
       }
     ],
     "icon": "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/icon0.png",
@@ -6278,7 +6611,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/modern-combat-3-psvita-port/GameFiles.zip",
         "size": 1513975972,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "mc3"
+        ]
       }
     ],
     "icon": "https://archive.org/download/modern-combat-3-psvita-port/icon0.png",
@@ -6320,7 +6656,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/modern-combat-sandstorm-ps-vita/Game%20Files.zip",
         "size": 168820736,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "mc1"
+        ]
       }
     ],
     "icon": "https://archive.org/download/modern-combat-sandstorm-ps-vita/icon0.png",
@@ -6403,7 +6742,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip",
         "size": 1932735283,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "kras"
+        ]
       }
     ],
     "icon": "https://archive.org/download/batman-the-dark-knight-rises/icon0.png",
@@ -6478,7 +6820,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",
         "size": 336278323,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "NaohAC"
+        ]
       },
       {
         "type": "Repository",
@@ -6681,7 +7026,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/jazz-jackrabbit-2-resurrection-ps-vita/Game%20Files.zip",
         "size": 49597645,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "jazz2"
+        ]
       }
     ],
     "icon": "https://archive.org/download/jazz-jackrabbit-2-resurrection-ps-vita/icon0.png",
@@ -7064,7 +7412,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/Game%20Files.zip",
         "size": 15099494,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zenonia1"
+        ]
       },
       {
         "type": "Repository",
@@ -7177,7 +7528,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-cod-boz-vita/Game%20Files.zip",
         "size": 493145293,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "boz"
+        ]
       },
       {
         "type": "Official Website",
@@ -7326,7 +7680,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/Game%20Files.zip",
         "size": 22334669,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zenonia2"
+        ]
       },
       {
         "type": "Repository",
@@ -7491,7 +7848,10 @@
         "url": "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
         "recommended": false,
         "size": 103300000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "rdball4"
+        ]
       },
       {
         "type": "Game Files",
@@ -7499,7 +7859,10 @@
         "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
         "recommended": false,
         "size": 103300000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "rdball4"
+        ]
       }
     ],
     "icon": "https://archive.org/download/rdball4-psvita/icon0.png",
@@ -9279,7 +9642,10 @@
         "url": "https://www.mediafire.com/file/5fpkqn43vlonozy/Game_Files.zip/file",
         "recommended": false,
         "size": 58700000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ctrm"
+        ]
       },
       {
         "type": "Game Files",
@@ -9287,7 +9653,10 @@
         "url": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
         "recommended": false,
         "size": 58700000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ctrm"
+        ]
       }
     ],
     "icon": "https://archive.org/download/ctrm-psvita/icon0.png",
@@ -9442,7 +9811,10 @@
         "url": "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
         "recommended": false,
         "size": 11100000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ctr"
+        ]
       },
       {
         "type": "Game Files",
@@ -9450,7 +9822,10 @@
         "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
         "recommended": false,
         "size": 11100000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ctr"
+        ]
       }
     ],
     "icon": "https://archive.org/download/ctrc-psvita/icon0.png",
@@ -9743,7 +10118,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/9mm-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
         "size": 2147483648,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "9mm"
+        ]
       },
       {
         "type": "Repository",
@@ -9845,7 +10223,10 @@
         "url": "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
         "recommended": false,
         "size": 12200000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zenonia3"
+        ]
       },
       {
         "type": "Game Files",
@@ -9853,7 +10234,10 @@
         "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
         "recommended": false,
         "size": 12200000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zenonia3"
+        ]
       },
       {
         "type": "Official Website",
@@ -10011,7 +10395,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-ut99-vita/Game%20Files.zip",
         "size": 627992166,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ut99"
+        ]
       },
       {
         "type": "Repository",
@@ -10333,7 +10720,10 @@
         "url": "https://www.mediafire.com/file/3alvqh8g0kzifsn/Game_Files.zip/file",
         "recommended": false,
         "size": 70800000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "beachbuggyracing"
+        ]
       },
       {
         "type": "Game Files",
@@ -10341,7 +10731,10 @@
         "url": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
         "recommended": false,
         "size": 70800000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "beachbuggyracing"
+        ]
       },
       {
         "type": "Repository",
@@ -10406,7 +10799,10 @@
         "url": "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
         "recommended": false,
         "size": 42100000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zombietsunami"
+        ]
       },
       {
         "type": "Game Files",
@@ -10414,7 +10810,10 @@
         "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
         "recommended": false,
         "size": 42100000,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "zombietsunami"
+        ]
       },
       {
         "type": "Repository",
@@ -10465,7 +10864,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/sonic-robo-blast-2-kart-psvita/Game%20Files.zip",
         "size": 532571750,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "srb2kart"
+        ]
       },
       {
         "type": "Repository",
@@ -11695,7 +12097,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-super-hexagon-vita/Game%20Files.zip",
         "size": 152567808,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "superhexagon"
+        ]
       },
       {
         "type": "Repository",
@@ -12521,7 +12926,10 @@
         "name": "Game Files Spanish ZIP",
         "url": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Game%20Files.zip",
         "size": 112931635,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "2s2h"
+        ]
       },
       {
         "type": "Repository",
@@ -12575,7 +12983,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/Game%20Files.zip",
         "size": 32191283,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "spaghetti"
+        ]
       },
       {
         "type": "Repository",
@@ -13092,7 +13503,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-starship-vita/Game%20Files.zip",
         "size": 14575206,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "starship"
+        ]
       },
       {
         "type": "Repository",
@@ -13389,7 +13803,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/Game%20Files.zip",
         "size": 321388544,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "Acrodea"
+        ]
       },
       {
         "type": "Repository",
@@ -13539,7 +13956,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/Game%20Files.zip",
         "size": 27158118,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "soh"
+        ]
       },
       {
         "type": "Repository",
@@ -18307,7 +18727,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-into-the-breach/Game%20Files%20for%20PSVA.zip",
         "size": 517891686,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "breach"
+        ]
       },
       {
         "type": "Repository",
@@ -18407,7 +18830,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
         "size": 1887437,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "smworld"
+        ]
       },
       {
         "type": "Repository",
@@ -18463,7 +18889,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
         "size": 1887437,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "smworld"
+        ]
       },
       {
         "type": "Repository",
@@ -18569,7 +18998,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-super-mario-world-vita/smworld%20Game%20Files.zip",
         "size": 882074,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "smworld"
+        ]
       },
       {
         "type": "Repository",
@@ -21746,7 +22178,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-lswtcs-vita/Game%20Files%20for%20PSVA.zip",
         "size": 1395864371,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "lswtcs"
+        ]
       },
       {
         "type": "Repository",
@@ -22395,14 +22830,20 @@
         "name": "Game Files English",
         "url": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20English.zip",
         "size": 1932735283,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "simpsons"
+        ]
       },
       {
         "type": "Game Files",
         "name": "Game Files Spanish",
         "url": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20Spanish.zip",
         "size": 1932735283,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "simpsons"
+        ]
       },
       {
         "type": "Repository",
@@ -22727,7 +23168,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-fallout-2-ce/Game%20Files.zip",
         "size": 580911104,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "fallout2"
+        ]
       },
       {
         "type": "Repository",
@@ -22779,7 +23223,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-fallout-ce/Game%20Files.zip",
         "size": 576192512,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "fallout"
+        ]
       },
       {
         "type": "Repository",
@@ -23608,7 +24055,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-ffd-vita/Game%20Files.zip",
         "size": 212022067,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ffd"
+        ]
       },
       {
         "type": "Repository",
@@ -24140,7 +24590,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip",
         "size": 735156634,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "tombraider"
+        ]
       },
       {
         "type": "Repository",
@@ -24573,7 +25026,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/Game%20Files.zip",
         "size": 246729933,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "gdash"
+        ]
       },
       {
         "type": "Repository",
@@ -24735,7 +25191,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-nfshp-vita/Game%20Files.zip",
         "size": 445120512,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "nfshp"
+        ]
       },
       {
         "type": "Repository",
@@ -25729,7 +26188,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-xash3d-fwgs/Game%20Files.zip",
         "size": 1610612736,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "xash3d"
+        ]
       },
       {
         "type": "Repository",
@@ -27625,7 +28087,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-ff4ay-vita/Game%20Files.zip",
         "size": 478884659,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ff4a"
+        ]
       },
       {
         "type": "Repository",
@@ -27680,7 +28145,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip",
         "size": 210554061,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "Mania"
+        ]
       },
       {
         "type": "Repository",
@@ -31231,7 +31699,10 @@
         "name": "Game Files ZIP",
         "url": "https://archive.org/download/psvitaalive-dead-space-vita/Game%20Files.zip",
         "size": 318347674,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "deadspace"
+        ]
       },
       {
         "type": "Repository",
@@ -32080,7 +32551,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/Game%20Files%20for%20PSVA.zip",
         "size": 778462822,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "masseffect"
+        ]
       },
       {
         "type": "Repository",
@@ -34478,7 +34952,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip",
         "size": 243793920,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "crazytaxi"
+        ]
       },
       {
         "type": "Repository",
@@ -35631,7 +36108,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip",
         "size": 574305075,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "twom"
+        ]
       },
       {
         "type": "Repository",
@@ -38187,7 +38667,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-ff5-vita/Game%20Files.zip",
         "size": 154874675,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ff5"
+        ]
       },
       {
         "type": "Repository",
@@ -38446,7 +38929,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-gta-sa-vita/Game%20Files.zip",
         "size": 2576980378,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "gtasa"
+        ]
       },
       {
         "type": "Repository",
@@ -42036,7 +42522,10 @@
         "name": "Game Files",
         "url": "https://archive.org/download/psvitaalive-max-payne/Game%20Files.zip",
         "size": 866648064,
-        "extract_path": "ux0:data/"
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "maxpayne"
+        ]
       },
       {
         "type": "Repository",
