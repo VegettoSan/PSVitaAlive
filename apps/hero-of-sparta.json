@@ -1,0 +1,47 @@
+{
+  "id": "hero-of-sparta",
+  "title_id": "PSVHOS001",
+  "name": "Hero of Sparta",
+  "description": "Android to PS Vita port of Gameloft's Hero of Sparta",
+  "long_description": "Hero of Sparta is Gameloft's mythological hack-and-slash action game, originally released for Android as Hero Of Sparta HD Free_1.1.4.apk (package com.gameloft.android.GAND.GloftSPAW.ML). This port runs the compiled native library (libheroofsparta.so, armeabi) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.x fixed-function rendering backend.",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "action",
+    "adventure",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.0",
+  "version_date": "2026-10-13",
+  "requirements": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).\n- A legally obtained copy of Hero of Sparta HD Free v1.1.4 (Hero Of Sparta HD Free_1.1.4.apk) and its downloaded game data folder (/mnt/sdcard/gameloft/games/hos/ from an Android device where the game was installed and run once).",
+  "size": 1153434,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/hero-of-sparta-ps-vita-port/heroofsparta%20v1.0.vpk",
+      "size": 1153434,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/hero-of-sparta-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 119642522,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/MetalSyntax/Hero-of-Sparta-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/hero-of-sparta-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/hero-of-sparta-ps-vita-port/pic0.png"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "zombie-infection",
+  "title_id": "PSVZI0001",
+  "name": "Zombie Infection",
+  "description": "iOS to PS Vita port of Zombie Infection Gameloft",
+  "long_description": "An unofficial, native iOS-to-PS Vita wrapper port of Zombie Infection (originally developed by Gameloft). Unlike the Android ports, there is no .so here: this port ships its own Mach-O loader that maps the official iOS ARM executable (ZombieInfection, from the 1.0.0 IPA) into PS Vita RAM and replaces the Apple frameworks it uses (Foundation, UIKit, CoreGraphics, CoreAudio, OpenGL ES) with native implementations on top of vitaGL, OpenAL Soft, FreeType and the Vita system libraries. The game itself is built on the Irrlicht engine, which the loader runs untouched.",
+  "author_ids": [
+    "metalsyntax"
+  ],
+  "category_id": "ports",
+  "subcategory_ids": [
+    "shooter",
+    "strategy",
+    "source-port"
+  ],
+  "version": "1.1",
+  "version_date": "2026-10-29",
+  "requirements": "- kubridge.skprx\n- libshacccg.suprx\n- Game Files: a decrypted Zombie Infection 1.0.0 iOS .ipa (FairPlay cryptid 0). Open it as a ZIP and extract Payload/ZombieInfection.app/.",
+  "size": 3355443,
+  "status": "Verified",
+  "links": [
+    {
+      "type": "Download",
+      "name": "VPK",
+      "url": "https://archive.org/download/zombie-infection-ps-vita-port/zombieinfection%20v1.1.vpk",
+      "size": 3355443,
+      "recommended": true
+    },
+    {
+      "type": "Game Files",
+      "name": "Game Files",
+      "url": "https://archive.org/download/zombie-infection-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "size": 267282022,
+      "extract_path": "ux0:data/"
+    },
+    {
+      "type": "Repository",
+      "name": "Github",
+      "url": "https://github.com/MetalSyntax/Zombie-Infection-vita"
+    }
+  ],
+  "icon": "https://archive.org/download/zombie-infection-ps-vita-port/icon0.png",
+  "screenshots": [
+    "https://archive.org/download/zombie-infection-ps-vita-port/shot0.png"
+  ]
+}
