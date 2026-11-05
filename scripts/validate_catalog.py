@@ -488,6 +488,50 @@ def validate_links(
                     "must be boolean",
                 )
 
+        # Existing catalog entries without this field remain readable. When
+        # present, installed_paths is metadata, never a deletion permission.
+        if "installed_paths" in link:
+            paths = link["installed_paths"]
+            kind = str(link.get("type", "")).strip().lower()
+            if kind not in {"game files", "data files"}:
+                add_error(errors, f"{item_path}.installed_paths",
+                          "only Game Files and Data Files may declare installed_paths")
+            elif not isinstance(paths, list) or len(paths) > 16:
+                add_error(errors, f"{item_path}.installed_paths",
+                          "must be a list of at most 16 relative paths")
+            else:
+                seen = set()
+                for value in paths:
+                    if not isinstance(value, str) or not (1 <= len(value) <= 200):
+                        add_error(errors, f"{item_path}.installed_paths",
+                                  "each path must be a non-empty string up to 200 characters")
+                        continue
+                    parts = value.split("/")
+                    first = parts[0].lower()
+                    if (len(parts) > 16 or any(
+                            not part or part in {".", ".."} or
+                            ":" in part or "\\" in part or
+                            any(ord(c) < 32 or ord(c) == 127 for c in part)
+                            for part in parts) or
+                            first in {"psvitaalive", "psva_vpk", "tai", "temp",
+                                      "tmp", "sce_sys", "app", "license"} or
+                            first.startswith("psva_zip_stage_")):
+                        add_error(errors, f"{item_path}.installed_paths",
+                                  "must use safe relative ux0:data/ path components")
+                    if value in seen:
+                        add_error(errors, f"{item_path}.installed_paths",
+                                  "duplicate installed path")
+                    seen.add(value)
+                extract = str(link.get("extract_path", ""))
+                if paths and extract.startswith("ux0:data/"):
+                    deeper = extract[len("ux0:data/"):].rstrip("/")
+                    if deeper and not any(
+                            isinstance(p, str) and
+                            (deeper == p or deeper.startswith(p + "/"))
+                            for p in paths):
+                        add_error(errors, f"{item_path}.installed_paths",
+                                  "extraction destination outside declared data root")
+
 
 
 

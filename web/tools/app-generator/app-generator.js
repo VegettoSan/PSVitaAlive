@@ -136,6 +136,29 @@
         return EXTRACT_PATH_TYPES.has(String(type || ""));
     }
 
+    function isAppOwnedGameFiles(type, extractPath, titleId = "") {
+        if (type !== "Game Files") return false;
+        return extractPath === "ux0:app/" ||
+            (!!titleId && extractPath === "ux0:app/" + titleId + "/");
+    }
+
+    function validInstalledRelativePath(path) {
+        if (typeof path !== "string" || path.length < 1 || path.length > 200 ||
+            path.startsWith("/") || path.endsWith("/") || path.includes("\\") ||
+            path.includes(":")) return false;
+        const parts = path.split("/");
+        if (parts.length > 16 || parts.some(part => !part || part === "." || part === ".." ||
+            [...part].some(ch => ch.charCodeAt(0) < 32 || ch.charCodeAt(0) === 127))) return false;
+        const first = parts[0].toLowerCase();
+        return !["psvitaalive", "psva_vpk", "tai", "temp", "tmp",
+            "sce_sys", "app", "license"].includes(first) &&
+            !first.startsWith("psva_zip_stage_");
+    }
+
+    function parseInstalledPathsText(raw) {
+        return String(raw || "").split(/\r?\n/).map(value => value.trim()).filter(Boolean);
+    }
+
     /** Build Internal ID from display name (create mode). */
     function slugifyId(name) {
         return String(name || "")
@@ -211,6 +234,19 @@
         wrap.hidden = !show;
         wrap.style.display = show ? "" : "none";
         row.dataset.lastLinkType = type;
+        const installedWrap = row.querySelector(".link-installed-wrap");
+        if (installedWrap) {
+            const external = type === "Game Files" || type === "Data Files";
+            const currentId = document.getElementById?.("title_id")?.value?.trim() || "";
+            const appOwned = isAppOwnedGameFiles(type, input?.value.trim() || "", currentId);
+            const showPaths = external && !appOwned;
+            installedWrap.hidden = !showPaths;
+            installedWrap.style.display = showPaths ? "" : "none";
+            const hint = installedWrap.querySelector(".link-installed-hint");
+            if (hint) hint.textContent = type === "Data Files"
+                ? "Optional. Empty means the same folder as Game Files when unambiguous."
+                : "Required: roots relative to ux0:data/, one per line. Use the first folder, not the extraction subfolder.";
+        }
         const sizeWrap = row.querySelector(".link-size-field");
         if (sizeWrap) {
             const showSize = linkSupportsSize(type);
@@ -364,6 +400,7 @@
         }
         const showExtract = linkNeedsExtractPath(type);
         const showSize = linkSupportsSize(type);
+        const installedPaths = Array.isArray(value.installed_paths) ? value.installed_paths.join("\n") : "";
         const isPlugin = type === "Plugin";
         let pluginSection = value.section || "*KERNEL";
         let pluginSectionCustom = "";
@@ -390,6 +427,11 @@
                 <input class="link-extract-path" type="text" aria-label="Destination path on PS Vita" placeholder="extract_path (e.g. ux0:data/)" value="${escapeHtml(extractPath)}">
                 <small class="link-extract-hint">Used only for Data Files, Game Files, Mod, Mod Pack and Patch. Example: ux0:data/</small>
             </div>
+            <div class="link-installed-wrap" style="display:none" hidden>
+                <span class="link-installed-label">Installed Game/Data Files paths</span>
+                <textarea class="link-installed-paths" rows="2" aria-label="Installed paths relative to ux0:data/" placeholder="MyGame&#10;MyGame/extra.dat">${escapeHtml(installedPaths)}</textarea>
+                <small class="link-installed-hint"></small>
+            </div>
             <div class="link-plugin-fields" style="${isPlugin ? "" : "display:none;"}">
                 <div class="plugin-field">
                     <span class="plugin-field-label">Config section</span>
@@ -414,7 +456,9 @@
 
             <label class="checkbox-inline"><input class="link-recommended" type="checkbox" ${recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
-        row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", updatePreview));
+        row.querySelectorAll("input,select,textarea").forEach(element => element.addEventListener("input", updatePreview));
+        const extractInput = row.querySelector(".link-extract-path");
+        if (extractInput) extractInput.addEventListener("input", () => syncLinkExtractPathVisibility(row));
         const typeSelect = row.querySelector(".link-type");
         if (typeSelect) {
             typeSelect.addEventListener("change", () => {
@@ -519,6 +563,14 @@
                 const pathEl = row.querySelector(".link-extract-path");
                 const extractPath = pathEl ? pathEl.value.trim() : "";
                 if (extractPath) result.extract_path = extractPath;
+            }
+            if (result.type === "Game Files" || result.type === "Data Files") {
+                const titleId = document.getElementById?.("title_id")?.value?.trim() || "";
+                if (!isAppOwnedGameFiles(result.type, result.extract_path || "", titleId)) {
+                    const installed = row.querySelector(".link-installed-paths");
+                    const parsed = parseInstalledPathsText(installed?.value || "");
+                    if (parsed.length) result.installed_paths = parsed;
+                }
             }
             if (result.type === "Plugin") {
                 if (!result.extract_path) result.extract_path = "ur0:tai/";
@@ -679,6 +731,29 @@
                     add("Link " + (i + 1) + ": size must be greater than zero (choose the correct unit).", prefix + "size");
                 }
             }
+            if (link.type === "Game Files" || link.type === "Data Files") {
+                const isApp = isAppOwnedGameFiles(link.type, link.extract_path || "", app.title_id);
+                const values = link.installed_paths;
+                if (values !== undefined &&
+                    (!Array.isArray(values) || values.length > 16 ||
+                     values.some(value => !validInstalledRelativePath(value)) ||
+                     new Set(values).size !== values.length)) {
+                    add("Link " + (i + 1) + ": installed_paths must be unique safe relative paths, one per line.",
+                        prefix + "installed");
+                }
+                if (link.type === "Game Files" && !isApp &&
+                    (!Array.isArray(values) || values.length === 0) &&
+                    state.mode === "create") {
+                    add("Link " + (i + 1) + ": Game Files under ux0:data require installed_paths.",
+                        prefix + "installed");
+                }
+                if (Array.isArray(values) && values.length && (link.extract_path || "").startsWith("ux0:data/")) {
+                    const deeper = link.extract_path.slice(9).replace(/\/$/, "");
+                    if (deeper && !values.some(value => deeper === value || deeper.startsWith(value + "/")))
+                        add("Link " + (i + 1) + ": extraction path must lie inside a declared root.",
+                            prefix + "installed");
+                }
+            }
             if (link.recommended) recommended++;
         });
         if (recommended > 1) add("Links: only one link may be Recommended.", "links-list");
@@ -700,11 +775,12 @@
     function issueElement(target) {
         if (target === "authors") return $("author-search") || $("author-picker") || $("authors");
         if (target === "subcategories") return $("subcategory-picker");
-        const link = /^link:(\d+):(type|name|url|size)$/.exec(target);
+        const link = /^link:(\d+):(type|name|url|size|installed)$/.exec(target);
         if (link) {
             const row = document.querySelectorAll(".link-item")[Number(link[1])];
             const selectors = {
-                type: ".link-type", name: ".link-name", url: ".link-url", size: ".link-size-value"
+                type: ".link-type", name: ".link-name", url: ".link-url", size: ".link-size-value",
+                installed: ".link-installed-paths"
             };
             return row?.querySelector(selectors[link[2]]) || row || null;
         }

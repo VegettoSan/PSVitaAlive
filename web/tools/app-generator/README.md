@@ -96,21 +96,17 @@ New authors created in the generator (rather than imported) continue to be inclu
 5. Try importing the same author again, an app JSON, malformed JSON and profiles with conflicting ID/name; verify informative feedback and no duplicate author options.
 6. Confirm the old create-new-author flow still exports an author JSON alongside the app, and official authors continue to behave as before.
 
-## Planned installed-path metadata (not yet implemented)
+## Installed Game/Data Files paths (`installed_paths`)
 
-**Design agreement:** [Game/Data Files installed storage plan](../../../docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md), section 3 (JSON contract) and section 9 (generator acceptance tests). This is **documentation only**; the generator does not yet expose `installed_paths`.
+The editor now supports `installed_paths` **per Game Files/Data Files link**, preserving it during Create, Edit, Import and Export. Enter one path relative to **`ux0:data/`** per line. For example, `extract_path: "ux0:data/AnimalCrossing/rom/"` with `installed_paths: ["AnimalCrossing"]`. The field identifies the installed root for space management; it **never changes ZIP extraction**.
 
-When this feature is implemented, apply **conditional** validation:
+- **New external Game Files links** need at least one valid `installed_paths` entry. Paths are relative to `ux0:data/`, not to `extract_path`. The form prevents unsafe absolute/traversal/protected paths and duplicates. Older imported app records missing this field remain editable for gradual migration.
+- **Game Files** extracted directly under `ux0:app/` or `ux0:app/<title_id>/` (as appropriate to the ZIP layout) do **not** need `installed_paths`; these belong to Vita's package installation and are uninstalled through its package manager.
+- **Data Files** may omit `installed_paths` if they share an unambiguous Game Files root; when separate, provide their own paths. The client never assumes exclusive ownership from absence of a Data Files path.
+- Different download servers/languages are alternative links; retain each source's metadata. The Vita client picks **one Game Files source per installation** and **one Data Files source**, never all mirrors.
+- Existing source JSONs, field omissions and `extract_path` are never rewritten silently; GitHub Actions creates the generated catalog. Never edit `catalog.json` manually.
 
-- **Game Files** extracted anywhere under `ux0:data/`: `installed_paths` **required** for newly created/edited entries and **relative to the root `ux0:data/`**, not to the deeper `extract_path`. Record the first folder after `ux0:data/`; e.g. `extract_path: "ux0:data/AnimalCrossing/rom/"` → `installed_paths: ["AnimalCrossing"]`. Destinations outside `ux0:data/` require a separately validated safe base.
-- **Game Files** with `extract_path: "ux0:app/"` (when ZIP already contains `<title_id>/`) **or** `ux0:app/<title_id>/` (when ZIP contains loose files): `installed_paths` **not required**; omit it by default. The client will check `ux0:app/<title_id>` and uninstall only through the app/package mechanism. The Drifter uses `ux0:app/`; Pocket Mortys uses `ux0:app/POMO00137/`.
-- **Data Files**: `installed_paths` **optional**. Missing or `[]` means the same installed **location** as a uniquely identifiable Game Files link in the same Homebrew, *not* exclusive ownership of its files. If it has its own destination, configure an explicit path.
-- If no unambiguous Game Files destination exists or the extraction destinations conflict, warn that the location cannot be inferred; never guess a path or grant a deletion capability.
-- Show the field only for Game Files and Data Files, preserve Create/Edit/Import/Export compatibility, reject invalid traversal/absolute paths, and keep older catalog entries usable during gradual migration.
-- Do **not** change existing ZIP extraction destinations, `extract_path` handling, or generated catalogs manually.
-
-**Implementation status:** pending; first update UI, tests and validator in a branch, and verify before touching the PS Vita client.
-
+Cross-application sharing, partial scans, and conflicting destinations block automatic deletion in the Vita app. See the [implementation notes](../../../docs/INSTALLED_DATA_MANAGER_IMPLEMENTATION_20261105.md) and the [original safety plan](../../../docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md).
 
 ## Game/Data Files revision (`dr`)
 
