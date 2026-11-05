@@ -9,6 +9,7 @@
 #include "installer/app_settings.hpp"
 #include "installer/install_space_policy.hpp"
 #include "storage/storage_manager.hpp"
+#include "storage/installed_data_policy.hpp"
 #include "installer/plugin_detector.hpp"
 #include "installer/tai_config_editor.hpp"
 #include "localization/localization.hpp"
@@ -3083,6 +3084,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     PSVA_TRACE_DURATION("ui_release_textures",traceBegin);
     installStatusCache_.clear();
     allItems_=std::move(items);
+    if(state_.catalog==CatalogType::Homebrew && !installedDataVisible_) rebuildInstalledDataCandidates();
     sortItemsByDate(allItems_);
     const uint64_t sorted=psvitaalive::catalog_trace::nowUs();
     PSVA_TRACE_DURATION("ui_sort_items",released,
@@ -3124,6 +3126,7 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     // Existing GPU textures stay cached: identical URLs remain visible.
     // prepareVisibleTextures() evicts textures that become off-screen.
     allItems_=std::move(items);
+    if(state_.catalog==CatalogType::Homebrew && !installedDataVisible_) rebuildInstalledDataCandidates();
     sortItemsByDate(allItems_);
     rebuildFilteredItems(); // unlike applySearch(), does not reset focus/scroll
     const auto& newView=catalogView();
@@ -3514,7 +3517,7 @@ void FullCatalogScreen::requestUx0SpaceRefresh() {
 
 
 void FullCatalogScreen::openStorageMenu() {
-    if (storageVisible_ || installAllPhase_ != InstallAllPhase::Hidden ||
+    if (installedDataVisible_ || storageVisible_ || installAllPhase_ != InstallAllPhase::Hidden ||
         (installProgressActive_ && installOutcome_ == 0) || catalogLoading_ ||
         newsVisible_ || reportConfirmVisible_ || dataRequestConfirmVisible_ ||
         themeSetupVisible_ || pluginRebootModal_ || essentialPluginsModal_ ||
@@ -3600,6 +3603,7 @@ void FullCatalogScreen::rebuildStorageRows() {
             storageRows_.push_back({4,static_cast<int>(i)});
     storageRows_.push_back({2,-1}); // catalog, read-only
     storageRows_.push_back({3,-1}); // images, read-only
+    storageRows_.push_back({5,-1}); // installed Homebrew data, separate page
     if(storageFocus_>=static_cast<int>(storageRows_.size()))
         storageFocus_=std::max(0,static_cast<int>(storageRows_.size())-1);
     clampStorageScroll();
@@ -3646,6 +3650,7 @@ void FullCatalogScreen::executeStorageSelection() {
     if (storageFocus_ < 0 || storageFocus_ >= static_cast<int>(storageRows_.size()))
         return;
     const StorageDisplayRow row = storageRows_[storageFocus_];
+    if(row.kind==5){storageConfirm_=false;storagePendingAction_=-1;openInstalledDataMenu(true,"");return;}
     int action=-1;
     if (row.kind==0 && storageSnapshot_.temporaryBytes>0) action=-3;
     else if (row.kind==1 && storageSnapshot_.savedZipBytes>0) action=-4;
@@ -3740,19 +3745,22 @@ void FullCatalogScreen::drawStorageOverlay() {
             const char* title=row.kind==0?::psvitaalive::L("STORAGE_TEMP"):
                 row.kind==1?::psvitaalive::L("STORAGE_ZIPS"):
                 row.kind==2?::psvitaalive::L("STORAGE_CATALOG_PROTECTED"):
-                            ::psvitaalive::L("STORAGE_IMAGES_PROTECTED");
+                row.kind==3?::psvitaalive::L("STORAGE_IMAGES_PROTECTED"):
+                            ::psvitaalive::L("ID_SECTION");
             const uint64_t bytes=row.kind==0?snap.temporaryBytes:
                 row.kind==1?snap.savedZipBytes:
-                row.kind==2?snap.catalogBytes:snap.imageBytes;
+                row.kind==2?snap.catalogBytes:
+                row.kind==3?snap.imageBytes:0;
             ::psvitaalive::ui::uiDrawText(&font_,bx+20,cy+29,
                 active?WHITE:TEXT,.84f,title);
-            ::psvitaalive::ui::uiDrawText(&font_,bx+bw-145,cy+29,
+            if(row.kind!=5) ::psvitaalive::ui::uiDrawText(&font_,bx+bw-145,cy+29,
                 active?ACCENT:WHITE,.86f,formatBytesShort(bytes).c_str());
-            const char* action=(row.kind>=2)?::psvitaalive::L("STORAGE_PROTECTED"):
+            const char* action=row.kind==5?::psvitaalive::L("ID_SECTION_HINT"):
+                row.kind>=2?::psvitaalive::L("STORAGE_PROTECTED"):
                 bytes==0?::psvitaalive::L("STORAGE_EMPTY"):
                 ::psvitaalive::L("STORAGE_CLEAR_SECTION");
             ::psvitaalive::ui::uiDrawText(&font_,bx+20,cy+53,
-                (row.kind<2 && bytes>0)?ACCENT:DIM,.74f,action);
+                (row.kind==5||(row.kind<2 && bytes>0))?ACCENT:DIM,.74f,action);
         }
         cy+=rh;
     }
@@ -3791,6 +3799,11 @@ void FullCatalogScreen::drawStorageOverlay() {
 }
 
 void FullCatalogScreen::shutdown(){
+    if(installedDataWorker_>=0){
+        sceKernelWaitThreadEnd(installedDataWorker_,nullptr,nullptr);
+        sceKernelDeleteThread(installedDataWorker_);
+        installedDataWorker_=-1;
+    }
     if (storageWorker_ >= 0) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
@@ -4775,6 +4788,62 @@ void FullCatalogScreen::handleTouch() {
                 }else if(hit(px,contentY,FB_FORM_FIELD_X,rect.bodyY,
                              FB_FORM_FIELD_W,FB_BODY_H)){
                     feedbackFocus_=2;openFeedbackKeyboard(2);
+                }
+            }
+        }
+        return;
+    }
+
+    if (installedDataVisible_) {
+        constexpr int w=864,h=500,ROW=54;
+        const int ox=(SCREEN_W-w)/2,oy=(SCREEN_H-h)/2;
+        if(td.reportNum>0) {
+            const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
+            if(!touchDown_) {
+                touchDown_=true;touchStartX_=px;touchStartY_=py;
+                touchLastY_=py;touchMoved_=false;
+            }else{
+                if(std::abs(px-touchStartX_)>14||std::abs(py-touchStartY_)>14)
+                    touchMoved_=true;
+                if(touchMoved_&&installedDataWorker_<0&&!installedDataDetail_&&
+                   !installedDataConfirm_&&std::abs(touchLastY_-py)>=23){
+                    const int step=touchLastY_>py?1:-1;
+                    installedDataScroll_=std::max(0,std::min(
+                        std::max(0,(int)installedDataVisibleRows_.size()-5),
+                        installedDataScroll_+step));
+                    touchLastY_=py;
+                }
+            }
+        }else if(touchDown_){
+            const int px=touchStartX_,py=touchStartY_;
+            const bool moved=touchMoved_;
+            touchDown_=touchMoved_=false;
+            if(moved||installedDataWorker_>=0)return;
+            if(installedDataConfirm_){
+                if(hit(px,py,ox+30,oy+383,w-60,57))
+                    activateInstalledDataSelection();
+                else installedDataConfirm_=false;
+                return;
+            }
+            if(!installedDataDetail_){
+                if(hit(px,py,ox+23,oy+140,w-46,5*ROW)){
+                    const int row=(py-(oy+140))/ROW+installedDataScroll_;
+                    if(row>=0&&row<(int)installedDataVisibleRows_.size()){
+                        installedDataListFocus_=row;
+                        activateInstalledDataSelection();
+                    }
+                }else if(py>oy+h-55)closeInstalledDataMenu();
+            }else{
+                for(int i=0;i<4;i++){
+                    if(hit(px,py,ox+24+i*204,oy+378,195,52)){
+                        installedDataActionFocus_=i;
+                        activateInstalledDataSelection();
+                        break;
+                    }
+                }
+                if(py>oy+h-55){
+                    if(installedDataPreferredId_.empty())installedDataDetail_=false;
+                    else closeInstalledDataMenu();
                 }
             }
         }
@@ -5860,7 +5929,19 @@ void FullCatalogScreen::handleTouch() {
                 else enterLinkNavigation();
                 return;
             }
-            if (!state_.linkNavigation && itemEligibleForDataRequest(tapItem)) {
+            const LocalInstallInfo liUninstall=queryLocalInstall(tapItem);
+            const bool uninstallButton=state_.catalog==CatalogType::Homebrew &&
+                tapItem.titleId!="PSVAS1178" &&
+                (liUninstall.state==LocalInstallState::Installed ||
+                 liUninstall.state==LocalInstallState::UpdateAvailable ||
+                 liUninstall.state==LocalInstallState::InstalledUnknown);
+            if(!state_.linkNavigation && uninstallButton &&
+               hit(x,y,bx,by+bh+6,bw,32)){
+                openInstalledDataMenu(false,tapItem.titleId);
+                return;
+            }
+            if(!state_.linkNavigation && !uninstallButton &&
+               itemEligibleForDataRequest(tapItem)){
                 const bool linkHeader = !tapItem.linkDetails.empty() || primaryActionFor(tapItem)!=PrimaryAction::None;
                 const int rby = linkHeader ? (by + bh + 6) : by;
                 if (hit(x, y, bx, rby, bw, 32)) {
@@ -6680,6 +6761,28 @@ void FullCatalogScreen::drawSettings() {
 }
 
 void FullCatalogScreen::handleInput(){
+    if (installedDataVisible_) {
+        SceCtrlData pad{};
+        sceCtrlPeekBufferPositive(0,&pad,1);
+        static uint32_t prevIdButtons=0,prevIdAnalog=0;
+        static uint64_t idRepeatAt=0;
+        const uint32_t pressed=pad.buttons & ~prevIdButtons;
+        const uint32_t analog=leftStickNavMask(pad);
+        const uint32_t direct=(pressed & NAV_DIRECTION_MASK)|
+                              (analog & ~prevIdAnalog);
+        const uint32_t held=(pad.buttons & NAV_DIRECTION_MASK)|analog;
+        const uint64_t now=sceKernelGetProcessTimeWide();
+        uint32_t repeat=0;
+        if(!held) idRepeatAt=0;
+        else if(direct) idRepeatAt=now+330000ULL;
+        else if(idRepeatAt&&now>=idRepeatAt){
+            repeat=held;idRepeatAt=now+130000ULL;
+        }
+        prevIdButtons=pad.buttons;
+        prevIdAnalog=analog;
+        handleInstalledDataInput(pressed,direct|repeat);
+        return;
+    }
     if (storageVisible_) {
         SceCtrlData pad{};
         sceCtrlPeekBufferPositive(0,&pad,1);
@@ -7116,7 +7219,24 @@ if(pressed&SCE_CTRL_START){
         if (installPause_) installPause_();
     }
     return;
-}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!installArchiveSourceUnavailable_&&shouldReportInstallFailure(installFailureKind_)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+}if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!installArchiveSourceUnavailable_&&shouldReportInstallFailure(installFailureKind_)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;
+if((pressed&SCE_CTRL_TRIANGLE)&&state_.mode==UiMode::SPLIT_DETAIL&&
+   state_.activePanel==UiPanel::Detail&&!state_.linkNavigation&&
+   state_.catalog==CatalogType::Homebrew){
+    const int i=selectedIndex();
+    if(i>=0){
+        const auto& item=catalogView()[i];
+        const auto local=queryLocalInstall(item);
+        if(item.titleId!="PSVAS1178" &&
+           (local.state==LocalInstallState::Installed ||
+            local.state==LocalInstallState::UpdateAvailable ||
+            local.state==LocalInstallState::InstalledUnknown)){
+            openInstalledDataMenu(false,item.titleId);
+            return;
+        }
+    }
+}
+if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -8965,7 +9085,20 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
                                 linkLab, true, bx + 4, by, bx + bw - 4, by + bh);
             }
         }
-        if (!state_.linkNavigation && itemEligibleForDataRequest(it)) {
+        const LocalInstallInfo localUninstall=queryLocalInstall(it);
+        const bool canUninstall=state_.catalog==CatalogType::Homebrew &&
+            it.titleId!="PSVAS1178" &&
+            (localUninstall.state==LocalInstallState::Installed ||
+             localUninstall.state==LocalInstallState::UpdateAvailable ||
+             localUninstall.state==LocalInstallState::InstalledUnknown);
+        if(!state_.linkNavigation && canUninstall){
+            const int ubY=by+bh+6;
+            vita2d_draw_rectangle(bx,ubY,bw,32,SURFACE2);
+            vita2d_draw_rectangle(bx,ubY,bw,2,ACCENT);
+            drawMarqueeText(&font_,bx+8,ubY+22,bw-16,ACCENT,.65f,
+                ::psvitaalive::L("ID_UNINSTALL_BUTTON"),true,
+                bx+4,ubY,bx+bw-4,ubY+32);
+        }else if(!state_.linkNavigation && itemEligibleForDataRequest(it)){
             // Below Select links when present; same header column when no links.
             // Amber identity color so it stands out from green "Select links".
             const unsigned REQ = RGBA8(0xFF, 0xB0, 0x20, 255);
@@ -11381,6 +11514,7 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
     if(keyboard_.active())
         keyboard_.drawOverlay(&font_, {BG,SURFACE,SURFACE2,BORDER,TEXT,DIM,ACCENT});
     if(storageVisible_) drawStorageOverlay();
+    if(installedDataVisible_) drawInstalledDataOverlay();
     finishFrame();
 }
 void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
@@ -11417,6 +11551,7 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
     pollReportWorker();
     pollDataRequestWorker();
     pollStorageOperation();
+    pollInstalledDataOperation();
     flushDeferredTextureFrees();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
     // Expire toast
@@ -11698,5 +11833,7 @@ void FullCatalogScreen::drawPspSetupOverlay() {
     ::psvitaalive::ui::uiDrawText(&font_, x + pad, y + h - 12, DIM, 0.72f, ::psvitaalive::L(TID::PspSetupNavHint));
 }
 
+
+#include "installed_data_screen.inc"
 
 } // namespace psvitaalive::ui

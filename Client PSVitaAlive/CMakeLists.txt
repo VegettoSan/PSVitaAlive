@@ -25,6 +25,7 @@ set(SOURCES
   source/diagnostic_logger.cpp
   source/storage/storage_manager.cpp
   source/storage/storage_maintenance.cpp
+  source/storage/installed_data_manager.cpp
   source/network/http_client.cpp
   source/network/archive_service_probe.cpp
   source/network/parallel_archive_download.cpp

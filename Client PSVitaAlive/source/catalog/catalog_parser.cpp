@@ -269,6 +269,10 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                     : ui::CatalogLink::PluginRequirement::Optional;
             }
         }
+        // Keep installed_paths metadata for Game/Data Files; no scanning or
+        // filesystem access during catalog parsing. Legacy links remain valid.
+        if (type == "Game Files" || type == "Data Files")
+            parseStringArray(link, "installed_paths", detail.installedPaths);
         item.linkDetails.push_back(detail);
 
         std::string display = type;

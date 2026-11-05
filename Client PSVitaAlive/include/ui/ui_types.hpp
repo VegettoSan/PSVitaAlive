@@ -39,6 +39,8 @@ struct CatalogLink {
     std::string contentId; // NPS Content ID (Vita/PSP/PS1) for license / BGDL
     /** Optional ZIP extract destination (e.g. ux0:data/AppFolder/). Empty → user picks path. */
     std::string extractPath;
+    /** Optional Game/Data Files roots, relative to ux0:data/ (NOT extractPath). */
+    std::vector<std::string> installedPaths;
     /** Plugin links: taiHEN config section (*KERNEL, *main, *ALL, custom) or "none". */
     std::string section;
     /** Plugin links: exact line to append under section (e.g. ur0:tai/foo.suprx). */

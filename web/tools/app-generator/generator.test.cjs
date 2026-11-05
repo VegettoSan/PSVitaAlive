@@ -49,6 +49,7 @@ const context = {
         catch { return false; }
     },
     document: {
+        getElementById: id => id === "title_id" ? { value: "GAME12345" } : null,
         querySelectorAll: selector => selector === ".link-item" ? currentRows :
             selector === ".screenshot-url" ? screenshotRows : []
     }
@@ -61,16 +62,19 @@ function visibilityRow(type) {
     const input = { value: "ux0:data/", title: "" };
     const wrap = { hidden: false, style: {}, querySelector: () => input };
     const sizeWrap = { hidden: false, style: {} };
+    const installedHint = { textContent: "" };
+    const installedWrap = { hidden: false, style: {}, querySelector: () => installedHint };
     const pluginFields = { style: {} };
     const secSel = { value: "*KERNEL" };
     const custom = { style: {} };
     const elements = {
         ".link-type": typeEl, ".link-extract-wrap": wrap,
         ".link-plugin-fields": pluginFields, ".link-plugin-section": secSel,
-        ".link-plugin-section-custom": custom, ".link-size-field": sizeWrap
+        ".link-plugin-section-custom": custom, ".link-size-field": sizeWrap,
+        ".link-installed-wrap": installedWrap
     };
     return {
-        dataset: {}, typeEl, input, wrap, sizeWrap, pluginFields,
+        dataset: {}, typeEl, input, wrap, sizeWrap, installedWrap, pluginFields,
         querySelector: selector => elements[selector] || null,
         querySelectorAll: () => []
     };
@@ -145,12 +149,13 @@ test("ZIP and Plugin destinations survive type changes independently", () => {
     assert.equal(row.wrap.hidden, true);
 });
 
-function outputRow(type, url = "https://example.org/file.zip", extractPath = "ux0:data/", size = "") {
+function outputRow(type, url = "https://example.org/file.zip", extractPath = "ux0:data/", size = "", installedPaths = "") {
     const elements = {
         ".link-type": { value: type }, ".link-name": { value: "Link" },
         ".link-url": { value: url }, ".link-size-value": { value: size },
         ".link-size-unit": { value: "MB" },
         ".link-extract-path": { value: extractPath },
+        ".link-installed-paths": { value: installedPaths },
         ".link-plugin-section": { value: "*KERNEL" },
         ".link-plugin-section-custom": { value: "" },
         ".link-plugin-line": { value: "ur0:tai/sample.skprx" },
@@ -204,7 +209,7 @@ test("validation identifies the missing main size and correct link field", () =>
         links: [{ type: "Download", name: "Link", url: "https://example.org/file.vpk" }]
     };
     assert.equal(api.validateApp(app).length, 0);
-    const withData = { ...app, dr: 2, links: [...app.links, { type: "Game Files", name: "Game files", url: "https://example.org/data.zip" }] };
+    const withData = { ...app, dr: 2, links: [...app.links, { type: "Game Files", name: "Game files", url: "https://example.org/data.zip", extract_path: "ux0:data/", installed_paths: ["example"] }] };
     assert.equal(api.validateApp(withData).length, 0);
     for (const dr of [0, -1, 1.5, 65536, NaN, "2"]) {
         assert.ok(api.validateApp({ ...withData, dr }).some(error => error.target === "dr"), String(dr));
@@ -229,4 +234,59 @@ test("the page exposes jump targets, a bottom reset, and an export status", () =
     }
     assert.ok(source.includes('navigateToIssue(button.dataset.target)'));
     assert.ok(source.includes('$("create-another").addEventListener("click", startNewApp)'));
+});
+
+test("installed_paths are emitted only for Game/Data Files and preserve alternatives", () => {
+    currentRows = [
+        outputRow("Game Files", "https://example.org/en.zip", "ux0:data/", "", "game"),
+        outputRow("Game Files", "https://example.org/es.zip", "ux0:data/", "", "game"),
+        outputRow("Data Files", "https://example.org/voices.zip", "ux0:data/", "", "game/voices\nconfig.dat"),
+        outputRow("Data Files", "https://example.org/extra.zip", "ux0:data/", "", ""),
+        outputRow("Download", "https://example.org/game.vpk", "", "", "should/not/export"),
+        outputRow("Game Files", "https://example.org/embedded.zip", "ux0:app/", "", "should/not/export"),
+        outputRow("Game Files", "https://example.org/embedded2.zip", "ux0:app/GAME12345/", "", "should/not/export")
+    ];
+    const rows = api.collectLinks();
+    assert.deepEqual(Array.from(rows[0].installed_paths), ["game"]);
+    assert.deepEqual(Array.from(rows[1].installed_paths), ["game"]);
+    assert.deepEqual(Array.from(rows[2].installed_paths), ["game/voices", "config.dat"]);
+    for (const i of [3, 4, 5, 6])
+        assert.equal(Object.hasOwn(rows[i], "installed_paths"), false, String(i));
+});
+
+test("installed_paths visibility is conditional on Game/Data and extract_path", () => {
+    const row = visibilityRow("Game Files");
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.installedWrap.hidden, false);
+    row.input.value = "ux0:app/";
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.installedWrap.hidden, true);
+    row.input.value = "ux0:app/GAME12345/";
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.installedWrap.hidden, true);
+    row.typeEl.value = "Data Files";
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.installedWrap.hidden, false);
+    row.typeEl.value = "Repository";
+    api.syncLinkExtractPathVisibility(row);
+    assert.equal(row.installedWrap.hidden, true);
+});
+
+test("installed paths validation requires safe external Game Files on new apps", () => {
+    const base = {
+        id: "example", title_id: "GAME12345", name: "Example",
+        description: "Short", long_description: "Full", author_ids: ["dev"],
+        category_id: "games", subcategory_ids: ["action"],
+        version: "1.0", version_date: "2026-10-24", requirements: "None",
+        size: 1048576, status: "Verified"
+    };
+    const link = {type: "Game Files", name: "Game Files", url: "https://example.org/files.zip", extract_path: "ux0:data/"};
+    assert.ok(api.validateApp({...base, links: [link]}).some(e => e.target === "link:0:installed"));
+    assert.equal(api.validateApp({...base, links: [{...link, installed_paths: ["mygame"]}]}).length, 0);
+    assert.equal(api.validateApp({...base, links: [{...link, extract_path: "ux0:app/"}]}).length, 0);
+    assert.ok(api.validateApp({...base, links: [{...link, installed_paths: ["../bad"]}]}).some(e => e.target === "link:0:installed"));
+    assert.ok(api.validateApp({...base, links: [{...link, installed_paths: ["game", "game"]}]}).some(e => e.target === "link:0:installed"));
+    assert.equal(api.validateApp({...base, links: [{
+        type: "Data Files", name: "Data Files", url: "https://example.org/extra.zip", extract_path: "ux0:data/"
+    }]}).length, 0);
 });

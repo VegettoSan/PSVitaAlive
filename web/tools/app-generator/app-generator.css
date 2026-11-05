@@ -173,6 +173,7 @@
         "url    url    url"
         "size   size   size"
         "path   path   path"
+        "installed installed installed"
         "plugin plugin plugin"
         "rec    rec    remove";
     gap: 12px;
@@ -1050,3 +1051,20 @@ input.id-locked {
 .repeat-item.link-item .link-size-field[style*="display: none"] {
     display: none !important;
 }
+
+/* Optional per-link installed_paths, never changes ZIP extraction destination. */
+.repeat-item.link-item .link-installed-wrap {
+    grid-area: installed;
+    width: 100%;
+    display: grid;
+    gap: 6px;
+}
+.repeat-item.link-item .link-installed-wrap[hidden],
+.repeat-item.link-item .link-installed-wrap[style*="display: none"] {display: none !important;}
+.repeat-item.link-item .link-installed-paths {
+    width: 100%; min-width: 0; min-height: 76px; resize: vertical;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: rgba(0,0,0,.4); color: #fff; padding: 10px;
+    font: inherit;
+}
+.repeat-item.link-item .link-installed-hint {font-size: .82rem; opacity: .8;}

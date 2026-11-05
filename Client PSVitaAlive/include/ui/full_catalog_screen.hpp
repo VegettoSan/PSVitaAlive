@@ -6,6 +6,7 @@
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
+#include "storage/installed_data_manager.hpp"
 #include "ui/install_failure_presentation.hpp"
 #include "update/update_checker.hpp"
 
@@ -565,6 +566,36 @@ private:
     void executeStorageAll();
     void drawStorageOverlay();
     static int storageWorkerEntry(SceSize args, void* argp);
+
+    // Installed Game/Data Files inspector: independently managed and NEVER
+    // included in transient/ZIP cleanup, with separate explicit consent.
+    bool installedDataVisible_ = false;
+    bool installedDataFromStorage_ = false;
+    bool installedDataDetail_ = false;
+    bool installedDataConfirm_ = false;
+    int installedDataListFocus_ = 0;
+    int installedDataScroll_ = 0;
+    int installedDataActionFocus_ = 0; // 0 package, 1 external, 2 both, 3 back
+    int installedDataAction_ = -1; // -1 scan, 0 package, 1 external, 2 both
+    std::string installedDataTargetId_;
+    std::string installedDataPreferredId_;
+    ::psvitaalive::storage::InstalledDataSnapshot installedDataSnapshot_;
+    std::vector<::psvitaalive::storage::InstalledDataApp> installedDataCandidates_;
+    std::vector<int> installedDataVisibleRows_; // only present packages/data
+    int installedDataPathScroll_ = 0;
+    void rebuildInstalledDataCandidates();
+    void rebuildInstalledDataVisibleRows();
+    std::atomic<bool> installedDataWorkerDone_{false};
+    std::atomic<bool> installedDataWorkerOk_{false};
+    SceUID installedDataWorker_ = -1;
+    void openInstalledDataMenu(bool fromStorage, const std::string& preferredTitleId);
+    void closeInstalledDataMenu();
+    void startInstalledDataOperation(int action);
+    void pollInstalledDataOperation();
+    void activateInstalledDataSelection();
+    void drawInstalledDataOverlay();
+    void handleInstalledDataInput(uint32_t pressed, uint32_t nav);
+    static int installedDataWorkerEntry(SceSize args, void* argp);
 
     // Discord error report UI (webhook)
     bool reportConfirmVisible_ = false;

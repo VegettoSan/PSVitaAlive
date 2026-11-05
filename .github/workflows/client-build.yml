@@ -47,6 +47,12 @@ jobs:
             tests/test_data_revision_policy.cpp -o /tmp/psvitaalive-data-revision-test
           /tmp/psvitaalive-data-revision-test
 
+      - name: Test installed Game/Data path safety policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_installed_data_policy.cpp -o /tmp/psvitaalive-installed-data-policy
+          /tmp/psvitaalive-installed-data-policy
+
       - name: Test Game/Data ZIP dispatch policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
