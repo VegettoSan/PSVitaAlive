@@ -1,47 +1,20 @@
-name: Audit Game Files archive roots (research branch)
+name: Validate Game Files catalog roots (research branch)
 on:
+  workflow_dispatch:
   push:
     branches:
       - audit/game-files-zip-roots-20261105
     paths:
       - .github/workflows/audit-game-files-zip-roots.yml
 permissions:
-  contents: write
+  contents: read
 jobs:
-  inspect:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect ZIP indexes with byte-range reads only
-        env:
-          AUDIT_PENDING_ONLY: "0"
-        run: python3 scripts/audit_game_files_zip_roots.py
-      - name: Populate reviewed Game Files metadata (branch only)
-        run: python3 scripts/populate_installed_paths_from_audit.py
-      - name: Validate source JSON and installed_paths locally
-        run: |
-          python3 - <<'PY'
-          import json, pathlib, re
-          valid=0
-          for p in pathlib.Path("apps").glob("*.json"):
-              app=json.loads(p.read_text(encoding="utf-8"))
-              for link in app.get("links",[]):
-                  if "installed_paths" not in link:
-                      continue
-                  assert link.get("type") == "Game Files", p
-                  assert link.get("extract_path","").startswith("ux0:data/"), p
-                  paths=link["installed_paths"]
-                  assert isinstance(paths,list) and paths, p
-                  for root in paths:
-                      assert isinstance(root,str) and bool(re.fullmatch(r"[\w .()\-]+",root)), (p,root)
-                      assert root not in (".",".."), p
-                  valid+=1
-          print(f"Validated {valid} Game Files installed_paths entries")
-          PY
-      - name: Save audit and source JSON to research branch
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/audits/game_files_zip_roots_20261105.json apps/
-          git diff --cached --quiet || (git commit -m "docs: record ZIP root audit results [skip ci]" && git push)
+      - name: Validate audited installed paths, all source JSON and app installation roots
+        run: python3 scripts/validate_installed_paths_audit.py
+      - name: Validate archived audit JSON format
+        run: python3 -m json.tool docs/audits/game_files_zip_roots_20261105.json > /dev/null
