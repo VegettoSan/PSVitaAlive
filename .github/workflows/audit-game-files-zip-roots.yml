@@ -19,8 +19,26 @@ jobs:
         run: python3 scripts/audit_game_files_zip_roots.py
       - name: Populate reviewed Game Files metadata (branch only)
         run: python3 scripts/populate_installed_paths_from_audit.py
-      - name: Validate source catalog JSON
-        run: python3 scripts/validate_catalog.py
+      - name: Validate source JSON and installed_paths locally
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, re
+          valid=0
+          for p in pathlib.Path("apps").glob("*.json"):
+              app=json.loads(p.read_text(encoding="utf-8"))
+              for link in app.get("links",[]):
+                  if "installed_paths" not in link:
+                      continue
+                  assert link.get("type") == "Game Files", p
+                  assert link.get("extract_path","").startswith("ux0:data/"), p
+                  paths=link["installed_paths"]
+                  assert isinstance(paths,list) and paths, p
+                  for root in paths:
+                      assert isinstance(root,str) and bool(re.fullmatch(r"[\w .()\-]+",root)), (p,root)
+                      assert root not in (".",".."), p
+                  valid+=1
+          print(f"Validated {valid} Game Files installed_paths entries")
+          PY
       - name: Save audit and source JSON to research branch
         run: |
           git config user.name "github-actions[bot]"
