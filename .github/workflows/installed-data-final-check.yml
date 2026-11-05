@@ -15,6 +15,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check web editor and installed paths
+        env:
+          VITAHUB_SKIP_REMOTE_CHECKS: "true"
+          VITAHUB_SKIP_REMOTE_MEDIA: "true"
         run: |
           node --test web/tools/app-generator/generator.test.cjs
           python3 scripts/validate_catalog.py
