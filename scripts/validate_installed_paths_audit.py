@@ -15,7 +15,7 @@ def valid_path(value):
     if not isinstance(value, str) or not value or value.startswith("/"):
         return False
     parts = value.split("/")
-    return all(part not in ("", ".", "..") and ":" not in part and "\\\\" not in part and all(ord(ch) >= 32 for ch in part) for part in parts)
+    return all(part not in ("", ".", "..") and ":" not in part and chr(92) not in part and all(ord(ch) >= 32 for ch in part) for part in parts)
 
 def main():
     errors=[]
