@@ -102,8 +102,8 @@ New authors created in the generator (rather than imported) continue to be inclu
 
 When this feature is implemented, apply **conditional** validation:
 
-- **Game Files** extracted to `ux0:data/` or another external destination: `installed_paths` **required** for newly created/edited entries, as an array of relative folder/file paths.
-- **Game Files** with `extract_path: "ux0:app/"`: `installed_paths` **not required**; omit it by default. The client will check `ux0:app/<title_id>` and only uninstall through the app/package mechanism.
+- **Game Files** extracted anywhere under `ux0:data/`: `installed_paths` **required** for newly created/edited entries and **relative to the root `ux0:data/`**, not to the deeper `extract_path`. Record the first folder after `ux0:data/`; e.g. `extract_path: "ux0:data/AnimalCrossing/rom/"` → `installed_paths: ["AnimalCrossing"]`. Destinations outside `ux0:data/` require a separately validated safe base.
+- **Game Files** with `extract_path: "ux0:app/"` (when ZIP already contains `<title_id>/`) **or** `ux0:app/<title_id>/` (when ZIP contains loose files): `installed_paths` **not required**; omit it by default. The client will check `ux0:app/<title_id>` and uninstall only through the app/package mechanism. The Drifter uses `ux0:app/`; Pocket Mortys uses `ux0:app/POMO00137/`.
 - **Data Files**: `installed_paths` **optional**. Missing or `[]` means the same installed **location** as a uniquely identifiable Game Files link in the same Homebrew, *not* exclusive ownership of its files. If it has its own destination, configure an explicit path.
 - If no unambiguous Game Files destination exists or the extraction destinations conflict, warn that the location cannot be inferred; never guess a path or grant a deletion capability.
 - Show the field only for Game Files and Data Files, preserve Create/Edit/Import/Export compatibility, reject invalid traversal/absolute paths, and keep older catalog entries usable during gradual migration.
