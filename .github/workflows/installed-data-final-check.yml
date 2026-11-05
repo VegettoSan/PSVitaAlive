@@ -1,0 +1,43 @@
+name: Final installed data manager checks
+on:
+  push:
+    branches: [work/installed-data-manager-20261105]
+    paths:
+      - .github/workflows/installed-data-final-check.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check web editor and installed paths
+        run: |
+          node --test web/tools/app-generator/generator.test.cjs
+          python3 scripts/validate_catalog.py
+          python3 scripts/validate_installed_paths_audit.py
+          python3 -m py_compile scripts/validate_catalog.py
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_installed_data_policy.cpp -o /tmp/idpolicy
+          /tmp/idpolicy
+          python3 tests/test_localization.py
+      - name: Compile final translated Vita client
+        run: |
+          docker pull vitasdk/vitasdk:2026.08
+          docker run --rm -v "$PWD:/workspace" -w "/workspace/Client PSVitaAlive" vitasdk/vitasdk:2026.08 bash -lc 'set -e; cmake -S . -B build-ci -DCMAKE_BUILD_TYPE=Release; cmake --build build-ci --parallel 2; test -s build-ci/PSVitaAlive.vpk'
+      - name: Upload final VPK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-installed-data-final
+          path: Client PSVitaAlive/build-ci/PSVitaAlive.vpk
+          if-no-files-found: error
+      - name: Remove temporary validation workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/installed-data-final-check.yml
+          git add .github/workflows/installed-data-final-check.yml
+          git commit -m "Remove temporary installed data final validation workflow"
+          git push origin HEAD:work/installed-data-manager-20261105
