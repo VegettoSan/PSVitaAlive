@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Populate *source* apps/*.json Game Files links from audited top-level data roots.
 
-Does not touch Data Files, extract_path, or generated catalog.json.
-Run only with a reviewed audit report. All paths are relative to ux0:data/.
+Does not touch Data Files or generated catalog.json.
+Only The Drifter is approved for extract_path reassignment to ux0:app/.
+Run only with a reviewed audit report. External paths are relative to ux0:data/.
 """
 import json
 import re
@@ -20,13 +21,26 @@ DOCUMENTED={
  "paper-mario-vita":"papership",
  "real-racing-3":"rr3",
  "tomb-raider-1-2-classic-collection":"tombraider",
+ "wonder-boy-the-dragon-s-trap":"wonderboy",
 }
-# Shared, unexpected independent roots: do NOT silently claim one folder covers the ZIP.
-SHARED_ROOTS={"batman-the-dark-knight-rises","nba-2k16"}
-# Filename matching app title ID suggests assets may actually be intended for ux0:app/.
-# Their current metadata says ux0:data/: stop instead of silently changing extract_path.
-TITLE_ID_REVIEW={"call-of-duty-4-modern-warfare-multiplayer",
-                 "resident-evil-4-gc","the-drifter"}
+# Reviewed multi-root archives: track the main game directory, never claim a
+# global-looking shader_cache directory is uniquely owned by this game.
+MAIN_ROOT_OVERRIDES={
+    "batman-the-dark-knight-rises":"kras",
+    "nba-2k16":"nba2k16",
+}
+# Maintainer confirmed that Title ID-shaped roots for these titles live in
+# ux0:data/, not ux0:app/. Other unknown Title ID matches still stop.
+APPROVED_DATA_TITLE_ID_ROOTS={
+    "call-of-duty-4-modern-warfare-multiplayer",
+    "resident-evil-4-gc",
+    "crazy-taxi-vita",
+    "dead-space-vita",
+    "paperboat",
+    "spaghetti-kart-vita",
+    "ultimate-spiderman-total-mayhem",
+}
+APP_ROOT_OVERRIDE="the-drifter"
 VALID=re.compile(r"^[\w .()\-]+$", re.UNICODE)
 def main():
     raw=json.loads(AUDIT.read_text(encoding="utf-8"))
@@ -40,18 +54,30 @@ def main():
             continue
         id=app["id"]
         row=rows.get(id)
-        if id in SHARED_ROOTS or id in TITLE_ID_REVIEW:
-            skipped.append((id,"manual review: shared root or title-id folder"));continue
         if not row:
             skipped.append((id,"missing audit row"));continue
-        if row["status"] in ("zip_verified","from_extract_path"):
+        if id==APP_ROOT_OVERRIDE:
+            if row["status"]!="zip_verified" or row["proposed_paths"]!=[app["title_id"]]:
+                raise RuntimeError("The Drifter ZIP no longer matches the application Title ID")
+            for link in game_links:
+                if link.get("extract_path") not in ("ux0:data/","ux0:app/"):
+                    raise RuntimeError("Unexpected The Drifter extract_path")
+                if "installed_paths" in link:
+                    raise RuntimeError("The Drifter must not set installed_paths for its app path")
+                link["extract_path"]="ux0:app/"
+            path.write_text(json.dumps(app,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+            touched+=1
+            continue
+        if id in MAIN_ROOT_OVERRIDES:
+            proposed=[MAIN_ROOT_OVERRIDES[id]]
+        elif row["status"] in ("zip_verified","from_extract_path"):
             proposed=row["proposed_paths"]
         else:
             proposed=[DOCUMENTED[id]] if id in DOCUMENTED else []
         if len(proposed)!=1 or not VALID.fullmatch(proposed[0]) or proposed[0] in (".",".."):
             skipped.append((id,"unverified/unsafe folder name"));continue
-        if proposed[0].casefold()==str(app["title_id"]).casefold():
-            skipped.append((id,"root equals Title ID: check ux0:app before editing"));continue
+        if proposed[0].casefold()==str(app["title_id"]).casefold() and id not in APPROVED_DATA_TITLE_ID_ROOTS:
+            skipped.append((id,"unapproved Title ID-shaped data root"));continue
         root=proposed[0]
         changed=False
         for link in game_links:
