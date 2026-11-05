@@ -31,7 +31,10 @@
       "name": "Game Files Fix v2",
       "url": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip",
       "size": 1932735283,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "mkw"
+      ]
     },
     {
       "type": "Repository",

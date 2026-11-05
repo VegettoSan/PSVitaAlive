@@ -28,7 +28,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-super-mario-world-vita/smworld%20Game%20Files.zip",
       "size": 882074,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "smworld"
+      ]
     },
     {
       "type": "Repository",

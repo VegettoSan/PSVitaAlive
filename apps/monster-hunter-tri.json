@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
       "size": 2469606195,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "mh3-wii"
+      ]
     },
     {
       "type": "Plugin",

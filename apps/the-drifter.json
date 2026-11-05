@@ -31,7 +31,7 @@
       "name": "Game Files",
       "url": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
       "size": 1288490189,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:app/"
     },
     {
       "type": "Repository",

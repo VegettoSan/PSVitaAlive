@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/jazz-jackrabbit-2-resurrection-ps-vita/Game%20Files.zip",
       "size": 49597645,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "jazz2"
+      ]
     }
   ],
   "icon": "https://archive.org/download/jazz-jackrabbit-2-resurrection-ps-vita/icon0.png",

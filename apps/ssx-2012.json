@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/ssx-2012-ps-vita/Game%20Files%20for%20PSVA.zip",
       "size": 1288490189,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "ssx"
+      ]
     },
     {
       "type": "Plugin",

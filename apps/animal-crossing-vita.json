@@ -29,7 +29,10 @@
       "name": "Game Files USA",
       "url": "https://archive.org/download/psvitaalive-animal-crossing-vita/Game%20Files%20%28USA%29.zip",
       "size": 27577549,
-      "extract_path": "ux0:data/AnimalCrossing/rom/"
+      "extract_path": "ux0:data/AnimalCrossing/rom/",
+      "installed_paths": [
+        "AnimalCrossing"
+      ]
     },
     {
       "type": "Repository",

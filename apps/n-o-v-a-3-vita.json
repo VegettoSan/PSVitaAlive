@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/n.o.v.a.-3-vita/Game%20Files.zip",
       "size": 3328599654,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "nova3"
+      ]
     },
     {
       "type": "Repository",

@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
       "size": 268435456,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "khdays"
+      ]
     },
     {
       "type": "Repository",

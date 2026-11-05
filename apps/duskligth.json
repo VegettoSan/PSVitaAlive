@@ -31,14 +31,20 @@
       "name": "Game Files USA",
       "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
       "size": 1395864371,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "dusklight"
+      ]
     },
     {
       "type": "Game Files",
       "name": "Game Files Spanish",
       "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
       "size": 1050148864,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "dusklight"
+      ]
     },
     {
       "type": "Official Website",

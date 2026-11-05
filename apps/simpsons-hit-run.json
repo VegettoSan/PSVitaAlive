@@ -39,14 +39,20 @@
       "name": "Game Files English",
       "url": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20English.zip",
       "size": 1932735283,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "simpsons"
+      ]
     },
     {
       "type": "Game Files",
       "name": "Game Files Spanish",
       "url": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20Spanish.zip",
       "size": 1932735283,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "simpsons"
+      ]
     },
     {
       "type": "Repository",

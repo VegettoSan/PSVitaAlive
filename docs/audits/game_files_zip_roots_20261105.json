@@ -1,0 +1,2119 @@
+{
+  "method": "HTTP Range ZIP central directory only",
+  "results": [
+    {
+      "id": "2ship2harkinian-vita",
+      "name": "2ship2harkinian Vita",
+      "title_id": "2SHIP2HAR",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "2s2h"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Game%20Files.zip",
+      "entries": 367
+    },
+    {
+      "id": "9mm-hd",
+      "name": "9mm HD",
+      "title_id": "NMHD00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "9mm"
+      ],
+      "urls": [
+        "https://archive.org/download/9mm-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/9mm-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 40
+    },
+    {
+      "id": "amnesia-the-dark-descent",
+      "name": "Amnesia: The Dark Descent",
+      "title_id": "AMNE00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "Amnesia"
+      ],
+      "urls": [
+        "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
+      "entries": 12550
+    },
+    {
+      "id": "animal-crossing-vita",
+      "name": "Animal Crossing Vita",
+      "title_id": "ACGC00001",
+      "status": "from_extract_path",
+      "proposed_paths": [
+        "AnimalCrossing"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-animal-crossing-vita/Game%20Files%20%28USA%29.zip"
+      ],
+      "note": "ZIP contents not verified"
+    },
+    {
+      "id": "arcaea",
+      "name": "Arcaea",
+      "title_id": "ARCA69420",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "arcaea"
+      ],
+      "urls": [
+        "https://archive.org/download/arcaea-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/arcaea-ps-vita/Game%20Files.zip",
+      "entries": 125
+    },
+    {
+      "id": "asphalt-5",
+      "name": "Asphalt 5",
+      "title_id": "ASPHALT05",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "asphalt5"
+      ],
+      "urls": [
+        "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
+      "entries": 336
+    },
+    {
+      "id": "asphalt-6",
+      "name": "Asphalt 6",
+      "title_id": "ASPHALT06",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "asphalt6"
+      ],
+      "urls": [
+        "https://archive.org/download/asphalt-6-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/asphalt-6-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 884
+    },
+    {
+      "id": "asphalt-8",
+      "name": "Asphalt 8 Vita",
+      "title_id": "ASPHALT20",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "asphalt8"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
+        "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip"
+      ],
+      "zip_used": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
+      "entries": 7
+    },
+    {
+      "id": "barony-vita",
+      "name": "Barony Vita",
+      "title_id": "BARO00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "barony"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
+      "entries": 80
+    },
+    {
+      "id": "batman-ac-lockdown",
+      "name": "Batman AC Lockdown",
+      "title_id": "ACLD00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "aclockdown"
+      ],
+      "urls": [
+        "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 4
+    },
+    {
+      "id": "batman-arkham-origins",
+      "name": "Batman Arkham Origins",
+      "title_id": "BAOR00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "batmanarkhamorigins"
+      ],
+      "urls": [
+        "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 4
+    },
+    {
+      "id": "batman-the-dark-knight-rises",
+      "name": "Batman - The Dark Knight Rises",
+      "title_id": "KRAS00000",
+      "status": "unverified",
+      "proposed_paths": [],
+      "urls": [
+        "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip"
+      ],
+      "note": "RuntimeError: root candidates: kras, shader_cache"
+    },
+    {
+      "id": "battleship-vita",
+      "name": "Battleship Vita",
+      "title_id": "SSB64VITA",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "battleship"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "beach-buggy-racing-vita",
+      "name": "Beach Buggy Racing Vita",
+      "title_id": "BBRV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "beachbuggyracing"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/3alvqh8g0kzifsn/Game_Files.zip/file",
+        "https://archive.org/download/bbr-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/bbr-psvita/Game%20Files.zip",
+      "entries": 7
+    },
+    {
+      "id": "biohazard4-vita",
+      "name": "BIOHAZARD4 Vita",
+      "title_id": "BIO4AF000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "Bio4"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-biohazard4-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-biohazard4-vita/Game%20Files.zip",
+      "entries": 40
+    },
+    {
+      "id": "bombsquad-vita-alpha-version",
+      "name": "BombSquad Vita (Alpha Version)",
+      "title_id": "BOMBS1762",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "BombSquad"
+      ],
+      "urls": [
+        "https://archive.org/download/bombsquad-vita/Game%20Files%20Fix.zip"
+      ],
+      "zip_used": "https://archive.org/download/bombsquad-vita/Game%20Files%20Fix.zip",
+      "entries": 2487
+    },
+    {
+      "id": "brothers-in-arms-2",
+      "name": "Brothers in Arms 2",
+      "title_id": "PSVBIA002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "brothersinarms2"
+      ],
+      "urls": [
+        "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 1416
+    },
+    {
+      "id": "buckshot-roulette",
+      "name": "Buckshot Roulette",
+      "title_id": "BSHT00016",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "bsht"
+      ],
+      "urls": [
+        "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/buckshot-roulette-portable-bsht-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 138
+    },
+    {
+      "id": "bully-vita",
+      "name": "Bully Vita",
+      "title_id": "BULLY0000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "Bully"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-bully-vita/Game%20Files%20Update.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files%20Update.zip",
+      "entries": 390
+    },
+    {
+      "id": "call-of-duty-4-modern-warfare-multiplayer",
+      "name": "Call Of Duty 4: Modern Warfare Multiplayer",
+      "title_id": "CODVIT001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "CODVIT001"
+      ],
+      "urls": [
+        "https://archive.org/download/codmw-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/codmw-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 744
+    },
+    {
+      "id": "carnivores-dinosaur-hunter",
+      "name": "Carnivores Dinosaur Hunter",
+      "title_id": "PSVCDH001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "carnivoresdinosaurhunter"
+      ],
+      "urls": [
+        "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/Game%20Files.zip",
+      "entries": 12
+    },
+    {
+      "id": "carnivores-ice-age",
+      "name": "Carnivores Ice Age",
+      "title_id": "PSVCSIA01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "carnivoresiceage"
+      ],
+      "urls": [
+        "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
+      "entries": 21
+    },
+    {
+      "id": "castle-crashers",
+      "name": "Castle Crashers",
+      "title_id": "CCRV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "CastleCrashers"
+      ],
+      "urls": [
+        "https://archive.org/download/castle-crashers-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/castle-crashers-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 584
+    },
+    {
+      "id": "castle-of-illusion",
+      "name": "Castle of Illusion",
+      "title_id": "COIV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "castleofillusion"
+      ],
+      "urls": [
+        "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/Game%20Files.zip",
+      "entries": 4
+    },
+    {
+      "id": "cod-boz-vita",
+      "name": "COD: BOZ Vita",
+      "title_id": "BOZ000001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "boz"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-cod-boz-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-cod-boz-vita/Game%20Files.zip",
+      "entries": 64
+    },
+    {
+      "id": "cod-waw",
+      "name": "COD WAW",
+      "title_id": "WAW000001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "waw"
+      ],
+      "urls": [
+        "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip",
+      "entries": 23
+    },
+    {
+      "id": "conker-s-bad-fur-day",
+      "name": "Conker's Bad Fur Day",
+      "title_id": "CBFD00064",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "conker"
+      ],
+      "urls": [
+        "https://archive.org/download/conker-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/conker-vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "crazy-taxi-vita",
+      "name": "Crazy Taxi Vita",
+      "title_id": "CRAZYTAXI",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "crazytaxi"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip",
+      "entries": 5
+    },
+    {
+      "id": "ctr-high-octane",
+      "name": "CTR: High Octane",
+      "title_id": "CTR000004",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ctr"
+      ],
+      "urls": [
+        "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
+      "entries": 4
+    },
+    {
+      "id": "cut-the-rope-classic",
+      "name": "Cut the Rope Classic",
+      "title_id": "CTROPE001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ctr"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
+        "https://archive.org/download/ctrc-psvita/Game%20Data.zip"
+      ],
+      "zip_used": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
+      "entries": 473
+    },
+    {
+      "id": "cut-the-rope-magic",
+      "name": "Cut the Rope: Magic",
+      "title_id": "CTRMAG001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ctrm"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/5fpkqn43vlonozy/Game_Files.zip/file",
+        "https://archive.org/download/ctrm-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/ctrm-psvita/Game%20Files.zip",
+      "entries": 1081
+    },
+    {
+      "id": "d2vita",
+      "name": "D2Vita",
+      "title_id": "DTWO00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "d2vita"
+      ],
+      "urls": [
+        "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
+        "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip"
+      ],
+      "zip_used": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
+      "entries": 14
+    },
+    {
+      "id": "dead-space-vita",
+      "name": "Dead Space Vita",
+      "title_id": "DEADSPACE",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "deadspace"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-dead-space-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-dead-space-vita/Game%20Files.zip",
+      "entries": 1851
+    },
+    {
+      "id": "devil-may-cry-4-refrain-vita",
+      "name": "Devil May Cry 4 Refrain Vita",
+      "title_id": "ACRODEA00",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "Acrodea"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/Game%20Files.zip",
+      "entries": 112
+    },
+    {
+      "id": "digimon-world",
+      "name": "Digimon World",
+      "title_id": "DGWD00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "dw1"
+      ],
+      "urls": [
+        "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 4
+    },
+    {
+      "id": "djmax-ray",
+      "name": "DJMAX Ray",
+      "title_id": "DJMR00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "djmaxray"
+      ],
+      "urls": [
+        "https://archive.org/download/djmax-ray-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/djmax-ray-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 39733
+    },
+    {
+      "id": "dragon-ball-tap-battle",
+      "name": "Dragon Ball Tap Battle",
+      "title_id": "DBTB01178",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "DBTapBattle"
+      ],
+      "urls": [
+        "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Japanese.zip",
+        "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Spanish.zip"
+      ],
+      "zip_used": "https://archive.org/download/dragon-ball-tap-battle-ps-vita/Game%20Files%20Japanese.zip",
+      "entries": 151
+    },
+    {
+      "id": "dragon-ball-z-bt3",
+      "name": "Dragon Ball Z: BT3",
+      "title_id": "BTTD00010",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "bt3"
+      ],
+      "urls": [
+        "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20English%20for%20PSVA.zip",
+        "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20Latino%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20English%20for%20PSVA.zip",
+      "entries": 18
+    },
+    {
+      "id": "ducktales-remastered",
+      "name": "DuckTales Remastered",
+      "title_id": "DUK000000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "duck"
+      ],
+      "urls": [
+        "https://archive.org/download/ducktales-remastered-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/ducktales-remastered-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 444
+    },
+    {
+      "id": "dungeon-hunter-2",
+      "name": "Dungeon Hunter 2",
+      "title_id": "PSVDH0002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "dungeon-hunter-2"
+      ],
+      "urls": [
+        "https://archive.org/download/dungeon-hunter-2-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/dungeon-hunter-2-ps-vita/Game%20Files.zip",
+      "entries": 7158
+    },
+    {
+      "id": "duskligth",
+      "name": "DuskLigth TLOZ:TLP",
+      "title_id": "DUSKGXM01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "dusklight"
+      ],
+      "urls": [
+        "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
+        "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip"
+      ],
+      "zip_used": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "fallout-2-ce",
+      "name": "Fallout 2 CE",
+      "title_id": "FOUT00002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "fallout2"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-fallout-2-ce/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-fallout-2-ce/Game%20Files.zip",
+      "entries": 38
+    },
+    {
+      "id": "fallout-ce",
+      "name": "Fallout CE",
+      "title_id": "FOUT00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "fallout"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-fallout-ce/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-fallout-ce/Game%20Files.zip",
+      "entries": 152
+    },
+    {
+      "id": "ff3-vita",
+      "name": "FF3-Vita",
+      "title_id": "FF3000000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ff3"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
+      "entries": 5
+    },
+    {
+      "id": "ff4ay-vita",
+      "name": "FF4AY-Vita",
+      "title_id": "FF4AY0000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ff4a"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ff4ay-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ff4ay-vita/Game%20Files.zip",
+      "entries": 9
+    },
+    {
+      "id": "ff5-vita",
+      "name": "FF5-Vita",
+      "title_id": "FF5000000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ff5"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ff5-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ff5-vita/Game%20Files.zip",
+      "entries": 34
+    },
+    {
+      "id": "ffd-vita",
+      "name": "FFD-Vita",
+      "title_id": "FFDIMEN01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ffd"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ffd-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ffd-vita/Game%20Files.zip",
+      "entries": 65
+    },
+    {
+      "id": "final-fantasy-vi",
+      "name": "Final Fantasy VI",
+      "title_id": "FF6000000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ff6"
+      ],
+      "urls": [
+        "https://archive.org/download/ff6-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/ff6-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 6
+    },
+    {
+      "id": "final-fantasy-vii",
+      "name": "FINAL FANTASY VII",
+      "title_id": "FFSQ00007",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ffvii-vita"
+      ],
+      "urls": [
+        "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip"
+      ],
+      "zip_used": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
+      "entries": 4
+    },
+    {
+      "id": "gangstar-miami-vindication",
+      "name": "Gangstar Miami Vindication",
+      "title_id": "PSVGMV002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "gangstarmiamivindication"
+      ],
+      "urls": [
+        "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 3344
+    },
+    {
+      "id": "ge007vita",
+      "name": "GE007Vita",
+      "title_id": "GEVT00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "GoldenEye007"
+      ],
+      "urls": [
+        "https://archive.org/download/GE007Vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/GE007Vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "geometry-dash-vita",
+      "name": "Geometry Dash Vita",
+      "title_id": "GEOMETRYD",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "gdash"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-geometry-dash-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-geometry-dash-vita/Game%20Files.zip",
+      "entries": 619
+    },
+    {
+      "id": "ghostship-vita",
+      "name": "Ghostship Vita",
+      "title_id": "GHSTSHP01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ghostship"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ghostship-vita/Game%20Files%20Fix.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ghostship-vita/Game%20Files%20Fix.zip",
+      "entries": 36
+    },
+    {
+      "id": "golden-balloon",
+      "name": "Golden Balloon",
+      "title_id": "GBLN00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "goldenballoon"
+      ],
+      "urls": [
+        "https://archive.org/download/golden-balloon-psvita/Game%20Files%20goldenballoon.zip"
+      ],
+      "zip_used": "https://archive.org/download/golden-balloon-psvita/Game%20Files%20goldenballoon.zip",
+      "entries": 2
+    },
+    {
+      "id": "gravity-guy",
+      "name": "Gravity Guy",
+      "title_id": "GRVG00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "gravityguy"
+      ],
+      "urls": [
+        "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip",
+      "entries": 524
+    },
+    {
+      "id": "gta-sa-vita",
+      "name": "GTA: SA Vita",
+      "title_id": "GTASA0000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "gtasa"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-gta-sa-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-gta-sa-vita/Game%20Files.zip",
+      "entries": 592
+    },
+    {
+      "id": "gun-bros",
+      "name": "Gun Bros",
+      "title_id": "BROS00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "gunbros"
+      ],
+      "urls": [
+        "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
+      "entries": 329
+    },
+    {
+      "id": "gunforce-2",
+      "name": "Gunforce 2",
+      "title_id": "GNFC00002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "gunforce2"
+      ],
+      "urls": [
+        "https://archive.org/download/gunforce-2-for-the-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/gunforce-2-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 18
+    },
+    {
+      "id": "half-life-2",
+      "name": "Half-Life 2",
+      "title_id": "SRCV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "halflife2"
+      ],
+      "urls": [
+        "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/half-life-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 1137
+    },
+    {
+      "id": "halo-ce",
+      "name": "Halo CE",
+      "title_id": "HCEV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "haloce-vita"
+      ],
+      "urls": [
+        "https://archive.org/download/halo-ce-ps-vita-direct3d/Game%20Files%20English.zip"
+      ],
+      "zip_used": "https://archive.org/download/halo-ce-ps-vita-direct3d/Game%20Files%20English.zip",
+      "entries": 27
+    },
+    {
+      "id": "hero-of-sparta",
+      "name": "Hero of Sparta",
+      "title_id": "PSVHOS001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "heroofsparta"
+      ],
+      "urls": [
+        "https://archive.org/download/hero-of-sparta-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/hero-of-sparta-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 287
+    },
+    {
+      "id": "ignition-vita",
+      "name": "Ignition Vita",
+      "title_id": "IGNVITA12",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ignition"
+      ],
+      "urls": [
+        "https://archive.org/download/ignition-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/ignition-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 391
+    },
+    {
+      "id": "illusia",
+      "name": "Illusia",
+      "title_id": "ILLU00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "illusia"
+      ],
+      "urls": [
+        "https://archive.org/download/illusia-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/illusia-psvita/Game%20Files.zip",
+      "entries": 2100
+    },
+    {
+      "id": "into-the-breach",
+      "name": "Into the Breach",
+      "title_id": "THEBREACH",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "breach"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-into-the-breach/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-into-the-breach/Game%20Files%20for%20PSVA.zip",
+      "entries": 667
+    },
+    {
+      "id": "javita",
+      "name": "JAVITA",
+      "title_id": "JAVITA001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "JAVITA"
+      ],
+      "urls": [
+        "https://archive.org/download/javita-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/javita-ps-vita/Game%20Files.zip",
+      "entries": 6
+    },
+    {
+      "id": "jazz-jackrabbit-2-resurrection",
+      "name": "Jazz Jackrabbit 2 Resurrection",
+      "title_id": "JAZZ20000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "jazz2"
+      ],
+      "urls": [
+        "https://archive.org/download/jazz-jackrabbit-2-resurrection-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/jazz-jackrabbit-2-resurrection-ps-vita/Game%20Files.zip",
+      "entries": 416
+    },
+    {
+      "id": "jk2vita",
+      "name": "JK2VITA",
+      "title_id": "JK2VITA01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "JK2Vita"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-jk2vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-jk2vita/Game%20Files.zip",
+      "entries": 8
+    },
+    {
+      "id": "kingdom-hearts-358-2-days",
+      "name": "Kingdom Hearts 358/2 Days",
+      "title_id": "KHDD00358",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "khdays"
+      ],
+      "urls": [
+        "https://archive.org/download/kh-days-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "kotor-ii",
+      "name": "KOTOR II",
+      "title_id": "KOTR00002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "kotor2"
+      ],
+      "urls": [
+        "https://archive.org/download/VitaKotor2/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/VitaKotor2/Game%20Files.zip",
+      "entries": 4408
+    },
+    {
+      "id": "kotor",
+      "name": "KOTOR",
+      "title_id": "KOTR00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "kotor"
+      ],
+      "urls": [
+        "https://archive.org/download/VitaKotor/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/VitaKotor/Game%20Files.zip",
+      "entries": 27
+    },
+    {
+      "id": "lighthouse-vita",
+      "name": "Lighthouse Vita",
+      "title_id": "BANJO0064",
+      "status": "unverified",
+      "proposed_paths": [],
+      "urls": [
+        "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file"
+      ],
+      "note": "No Archive.org ZIP"
+    },
+    {
+      "id": "lswtcs-vita",
+      "name": "LSWTCS Vita",
+      "title_id": "LSWCS0000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "lswtcs"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-lswtcs-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-lswtcs-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 7
+    },
+    {
+      "id": "manhunt",
+      "name": "Manhunt",
+      "title_id": "MHRE00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "manhunt"
+      ],
+      "urls": [
+        "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 970
+    },
+    {
+      "id": "mario-kart-wii",
+      "name": "Mario Kart Wii",
+      "title_id": "MKWV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "mkw"
+      ],
+      "urls": [
+        "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/mkwiita/Game%20Files%20Fix%20v2%20for%20PSVA.zip",
+      "entries": 235
+    },
+    {
+      "id": "mario-strikers-charged",
+      "name": "Mario Strikers Charged",
+      "title_id": "MSCN00003",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "mscharged"
+      ],
+      "urls": [
+        "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 2646
+    },
+    {
+      "id": "marvel-vs-capcom-2",
+      "name": "Marvel vs Capcom 2",
+      "title_id": "MVSC00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "mvc2"
+      ],
+      "urls": [
+        "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 2121
+    },
+    {
+      "id": "mass-effect-infiltrator-vita",
+      "name": "Mass Effect Infiltrator Vita",
+      "title_id": "MASSEFFEC",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "masseffect"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 1204
+    },
+    {
+      "id": "max-payne",
+      "name": "Max Payne",
+      "title_id": "MAXP00000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "maxpayne"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-max-payne/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-max-payne/Game%20Files.zip",
+      "entries": 237
+    },
+    {
+      "id": "modern-combat-2-black-pegasus",
+      "name": "Modern Combat 2: Black Pegasus",
+      "title_id": "MC2V00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "moderncombat2"
+      ],
+      "urls": [
+        "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/modern-combat-2-black-pegasus-ps-vita-port/Game%20Files.zip",
+      "entries": 1290
+    },
+    {
+      "id": "modern-combat-3-fallen-nation",
+      "name": "Modern Combat 3: Fallen Nation",
+      "title_id": "MOCO30000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "mc3"
+      ],
+      "urls": [
+        "https://archive.org/download/modern-combat-3-psvita-port/GameFiles.zip"
+      ],
+      "zip_used": "https://archive.org/download/modern-combat-3-psvita-port/GameFiles.zip",
+      "entries": 62
+    },
+    {
+      "id": "modern-combat-sandstorm",
+      "name": "Modern Combat: Sandstorm",
+      "title_id": "MCSS00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "mc1"
+      ],
+      "urls": [
+        "https://archive.org/download/modern-combat-sandstorm-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/modern-combat-sandstorm-ps-vita/Game%20Files.zip",
+      "entries": 530
+    },
+    {
+      "id": "monster-hunter-tri",
+      "name": "Monster Hunter Tri",
+      "title_id": "MH3WII001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "mh3-wii"
+      ],
+      "urls": [
+        "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/monster-hunter-tri-ps-vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "monster-shooter",
+      "name": "Monster Shooter",
+      "title_id": "MNST00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "monstershooter"
+      ],
+      "urls": [
+        "https://archive.org/download/moster-shooter-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/moster-shooter-ps-vita/Game%20Files.zip",
+      "entries": 13
+    },
+    {
+      "id": "n-o-v-a-3-vita",
+      "name": "N.O.V.A. 3 Vita",
+      "title_id": "NOVA30001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "nova3"
+      ],
+      "urls": [
+        "https://archive.org/download/n.o.v.a.-3-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/n.o.v.a.-3-vita/Game%20Files.zip",
+      "entries": 48
+    },
+    {
+      "id": "naoh-arcade-collection",
+      "name": "NAOH: Arcade Collection",
+      "title_id": "NAOH00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "NaohAC"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",
+      "entries": 38
+    },
+    {
+      "id": "nba-2k16",
+      "name": "NBA 2K16",
+      "title_id": "NBA2K1600",
+      "status": "unverified",
+      "proposed_paths": [],
+      "urls": [
+        "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "note": "RuntimeError: root candidates: nba2k16, shader_cache"
+    },
+    {
+      "id": "nfs-ii-se-recompiled",
+      "name": "NFS II SE Recompiled",
+      "title_id": "NFSR00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "nfs2-recomp"
+      ],
+      "urls": [
+        "https://archive.org/download/nfs2-se-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/nfs2-se-ps-vita/Game%20Files.zip",
+      "entries": 1064
+    },
+    {
+      "id": "nfs-most-wanted",
+      "name": "NFS Most Wanted",
+      "title_id": "NFSMWVITA",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "nfsmw"
+      ],
+      "urls": [
+        "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+      "entries": 1395
+    },
+    {
+      "id": "nfshp-vita",
+      "name": "NFSHP Vita",
+      "title_id": "NFSHP0000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "nfshp"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-nfshp-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-nfshp-vita/Game%20Files.zip",
+      "entries": 4
+    },
+    {
+      "id": "nitronic-rush",
+      "name": "Nitronic Rush",
+      "title_id": "NRSH00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "nitronic"
+      ],
+      "urls": [
+        "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 74
+    },
+    {
+      "id": "nova-2-hd",
+      "name": "NOVA 2 HD",
+      "title_id": "PSVNOVA02",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "nova2"
+      ],
+      "urls": [
+        "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 128
+    },
+    {
+      "id": "openmw-vita",
+      "name": "OpenMW Vita",
+      "title_id": "OMWV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "openmw"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-openmw-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-openmw-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 7503
+    },
+    {
+      "id": "paper-mario-vita",
+      "name": "Paper Mario Vita",
+      "title_id": "PPMR00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "papership"
+      ],
+      "urls": [
+        "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
+      "entries": 3
+    },
+    {
+      "id": "paperboat",
+      "name": "PaperBoat",
+      "title_id": "PAPERBOAT",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "paperboat"
+      ],
+      "urls": [
+        "https://archive.org/download/paperboat-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/paperboat-ps-vita/Game%20Files.zip",
+      "entries": 477
+    },
+    {
+      "id": "pikmin",
+      "name": "Pikmin",
+      "title_id": "NECTAR001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "Pikmin"
+      ],
+      "urls": [
+        "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip",
+      "entries": 3
+    },
+    {
+      "id": "plants-vs-zombies-2",
+      "name": "Plants vs Zombies 2",
+      "title_id": "PVZ2VITA1",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "pvz2"
+      ],
+      "urls": [
+        "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
+      "entries": 3
+    },
+    {
+      "id": "potatoom-3",
+      "name": "LDhewm3 ReARMed",
+      "title_id": "DHEWM3ES2",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "dhewm3"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%20Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%20Game%20Files.zip",
+      "entries": 33584
+    },
+    {
+      "id": "powerpuff-girls-mojo-madness",
+      "name": "Powerpuff Girls Mojo Madness",
+      "title_id": "PPGMV2000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "powerpuff_mojo"
+      ],
+      "urls": [
+        "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/Game%20Files.zip",
+      "entries": 145
+    },
+    {
+      "id": "prince-of-persia-classic",
+      "name": "Prince of Persia Classic",
+      "title_id": "POPC00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "popclassic"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
+        "https://archive.org/download/ppc-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+      "entries": 523
+    },
+    {
+      "id": "raging-thunder",
+      "name": "Raging Thunder",
+      "title_id": "PSVRT0001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ragingthunder"
+      ],
+      "urls": [
+        "https://archive.org/download/raging-thunder-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/raging-thunder-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 16
+    },
+    {
+      "id": "real-racing-2",
+      "name": "Real Racing 2",
+      "title_id": "RR2VITA01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "rr2"
+      ],
+      "urls": [
+        "https://archive.org/download/real-racing-2-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/real-racing-2-ps-vita/Game%20Files.zip",
+      "entries": 3668
+    },
+    {
+      "id": "real-racing-3",
+      "name": "Real Racing 3",
+      "title_id": "RR3VITA01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "rr3"
+      ],
+      "urls": [
+        "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
+      "entries": 9561
+    },
+    {
+      "id": "red-ball-4",
+      "name": "Red Ball 4 PS Vita",
+      "title_id": "RDBL40001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "rdball4"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
+        "https://archive.org/download/rdball4-psvita/rdball4.zip"
+      ],
+      "zip_used": "https://archive.org/download/rdball4-psvita/rdball4.zip",
+      "entries": 478
+    },
+    {
+      "id": "resident-evil-4-gc",
+      "name": "Resident Evil 4 GC",
+      "title_id": "BIOHAZ004",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "BIOHAZ004"
+      ],
+      "urls": [
+        "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 1259
+    },
+    {
+      "id": "resident-evil-code-veronica-x",
+      "name": "Resident Evil Code: Veronica X",
+      "title_id": "RECVX0001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "recvx"
+      ],
+      "urls": [
+        "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 103
+    },
+    {
+      "id": "resident-evil-degeneration",
+      "name": "Resident Evil Degeneration",
+      "title_id": "REDG00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "redegeneration"
+      ],
+      "urls": [
+        "https://archive.org/download/resident-evil-degeneration-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/resident-evil-degeneration-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 3
+    },
+    {
+      "id": "resident-evil-mercenaries-vs",
+      "name": "Resident Evil Mercenaries VS",
+      "title_id": "REMV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "remercenariesvs"
+      ],
+      "urls": [
+        "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 150
+    },
+    {
+      "id": "sacred-odyssey",
+      "name": "Sacred Odyssey",
+      "title_id": "PSVSOTROA",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "sacredodyssey"
+      ],
+      "urls": [
+        "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/sacred-odyssey-rise-of-ayden-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 4530
+    },
+    {
+      "id": "scribblenauts-remix",
+      "name": "Scribblenauts Remix",
+      "title_id": "SCRB00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "scribblenauts"
+      ],
+      "urls": [
+        "https://archive.org/download/scribblenauts-remix-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/scribblenauts-remix-ps-vita/Game%20Files.zip",
+      "entries": 48
+    },
+    {
+      "id": "shadow-fight-2",
+      "name": "Shadow Fight 2",
+      "title_id": "SHDF00002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "shadowfight2"
+      ],
+      "urls": [
+        "https://archive.org/download/shadow-fight-2-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/shadow-fight-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 2159
+    },
+    {
+      "id": "shadow-guardian",
+      "name": "Shadow Guardian",
+      "title_id": "PSVSGHD01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "shadowguardian"
+      ],
+      "urls": [
+        "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
+      "entries": 3793
+    },
+    {
+      "id": "ship-of-harkinian-vita",
+      "name": "Ship of Harkinian Vita",
+      "title_id": "SHIPOFHAR",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "soh"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/Game%20Files.zip",
+      "entries": 70
+    },
+    {
+      "id": "shotgunk2vita",
+      "name": "ShotgunK2Vita",
+      "title_id": "SGKV00002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "shotgunk2vita_steam"
+      ],
+      "urls": [
+        "https://archive.org/download/ShotgunKing2Vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/ShotgunKing2Vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 3
+    },
+    {
+      "id": "silent-hill-4-the-room",
+      "name": "Silent Hill 4: The Room",
+      "title_id": "SILH00004",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "sh4"
+      ],
+      "urls": [
+        "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/Game%20Files%20for%20PSVA.zip",
+      "entries": 749
+    },
+    {
+      "id": "simpsons-hit-run",
+      "name": "Simpsons Hit & Run",
+      "title_id": "ROADRAGE2",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "simpsons"
+      ],
+      "urls": [
+        "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20English.zip",
+        "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20Spanish.zip"
+      ],
+      "zip_used": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20English.zip",
+      "entries": 3914
+    },
+    {
+      "id": "skate-3-vita",
+      "name": "Skate 3 Vita",
+      "title_id": "SKTV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "SKATEVITA"
+      ],
+      "urls": [
+        "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
+      "entries": 30
+    },
+    {
+      "id": "smash-melee-vita",
+      "name": "Smash Melee Vita",
+      "title_id": "MLVITA002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "melee"
+      ],
+      "urls": [
+        "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/smash-melee-port-ps-vita/Game%20Files.zip",
+      "entries": 2
+    },
+    {
+      "id": "sonic-mania-vita",
+      "name": "Sonic Mania Vita",
+      "title_id": "MANIA0001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "Mania"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip",
+      "entries": 31
+    },
+    {
+      "id": "sonic-r",
+      "name": "Sonic R",
+      "title_id": "SONICR001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "sonicr"
+      ],
+      "urls": [
+        "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
+      "entries": 501
+    },
+    {
+      "id": "sonic-robo-blast-2-kart",
+      "name": "Sonic Robo Blast 2 Kart",
+      "title_id": "SRB2KART0",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "srb2kart"
+      ],
+      "urls": [
+        "https://archive.org/download/sonic-robo-blast-2-kart-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/sonic-robo-blast-2-kart-psvita/Game%20Files.zip",
+      "entries": 443
+    },
+    {
+      "id": "spaghetti-kart-vita",
+      "name": "Spaghetti Kart Vita",
+      "title_id": "SPAGHETTI",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "spaghetti"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-spaghetti-kart-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/Game%20Files.zip",
+      "entries": 57
+    },
+    {
+      "id": "ssx-2012",
+      "name": "SSX (2012)",
+      "title_id": "SSXV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ssx"
+      ],
+      "urls": [
+        "https://archive.org/download/ssx-2012-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/ssx-2012-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 11761
+    },
+    {
+      "id": "star-fox-adventures",
+      "name": "Star Fox Adventures",
+      "title_id": "STFX00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "stairfax"
+      ],
+      "urls": [
+        "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 3
+    },
+    {
+      "id": "stardew-valley-enhanced",
+      "name": "Stardew Valley Enhanced",
+      "title_id": "STDV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "StardewValley"
+      ],
+      "urls": [
+        "https://archive.org/download/stardew-valley-enhanced-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/stardew-valley-enhanced-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 3620
+    },
+    {
+      "id": "starship-vita",
+      "name": "Starship Vita",
+      "title_id": "STARSHIP1",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "starship"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-starship-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-starship-vita/Game%20Files.zip",
+      "entries": 35
+    },
+    {
+      "id": "street-fighter-iv-ce",
+      "name": "Street Fighter IV CE",
+      "title_id": "SF4CE0000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "sf4ce"
+      ],
+      "urls": [
+        "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/street-fighter-iv-ce-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 8211
+    },
+    {
+      "id": "super-hexagon-vita",
+      "name": "Super Hexagon Vita",
+      "title_id": "SHXV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "superhexagon"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-super-hexagon-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-super-hexagon-vita/Game%20Files.zip",
+      "entries": 61
+    },
+    {
+      "id": "super-mario-all-stars-vita-allstars1",
+      "name": "Super Mario All-Stars Vita",
+      "title_id": "ALLSTARS1",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "smworld"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
+      "entries": 5
+    },
+    {
+      "id": "super-mario-all-stars-vita",
+      "name": "Super Mario All-Stars Vita",
+      "title_id": "ALLSTARSW",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "smworld"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
+      "entries": 5
+    },
+    {
+      "id": "super-mario-galaxy",
+      "name": "Super Mario Galaxy",
+      "title_id": "SMGV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "smg"
+      ],
+      "urls": [
+        "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 2523
+    },
+    {
+      "id": "super-mario-strikers-vita",
+      "name": "Super Mario Strikers Vita",
+      "title_id": "SMSVITA01",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "strikersVita"
+      ],
+      "urls": [
+        "https://archive.org/download/strikers-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/strikers-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 4
+    },
+    {
+      "id": "super-mario-world-vita",
+      "name": "Super Mario World Vita",
+      "title_id": "SPRMRWRLD",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "smworld"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-super-mario-world-vita/smworld%20Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-super-mario-world-vita/smworld%20Game%20Files.zip",
+      "entries": 3
+    },
+    {
+      "id": "tap-sonic",
+      "name": "Tap Sonic",
+      "title_id": "TPSN00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "tapsonic"
+      ],
+      "urls": [
+        "https://archive.org/download/tap-sonic-for-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/tap-sonic-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 836
+    },
+    {
+      "id": "the-drifter",
+      "name": "The Drifter",
+      "title_id": "DRFT00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "DRFT00001"
+      ],
+      "urls": [
+        "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 205
+    },
+    {
+      "id": "the-impossible-game",
+      "name": "The Impossible Game",
+      "title_id": "PSVTIG001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "theimpossiblegame"
+      ],
+      "urls": [
+        "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
+      "entries": 129
+    },
+    {
+      "id": "thug-vita",
+      "name": "THUG Vita",
+      "title_id": "THUG00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "thug"
+      ],
+      "urls": [
+        "https://archive.org/download/thug-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/thug-vita/Game%20Files.zip",
+      "entries": 6159
+    },
+    {
+      "id": "tomb-raider-1-2-classic-collection",
+      "name": "Tomb Raider 1 & 2 Classic Collection",
+      "title_id": "TMBRAIDER",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "tombraider"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip",
+      "entries": 543
+    },
+    {
+      "id": "touhou12-3vita-hisoutensoku",
+      "name": "Touhou12.3Vita Hisoutensoku",
+      "title_id": "THSV12302",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "touhou123vita"
+      ],
+      "urls": [
+        "https://archive.org/download/touhou-12-3-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/touhou-12-3-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 30
+    },
+    {
+      "id": "turbo-fast-league",
+      "name": "Turbo Fast League",
+      "title_id": "TRBO00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "turbo"
+      ],
+      "urls": [
+        "https://archive.org/download/turbo-fast-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/turbo-fast-psvita/Game%20Files.zip",
+      "entries": 21
+    },
+    {
+      "id": "twinsanityevolved",
+      "name": "TwinsanityEvolved",
+      "title_id": "TWEV00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "twinsanity"
+      ],
+      "urls": [
+        "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 6
+    },
+    {
+      "id": "twom-vita",
+      "name": "TWoM Vita",
+      "title_id": "TWOM00000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "twom"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 5
+    },
+    {
+      "id": "ultimate-spider-man",
+      "name": "Ultimate Spider-Man",
+      "title_id": "USMR00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "usm"
+      ],
+      "urls": [
+        "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 816
+    },
+    {
+      "id": "ultimate-spiderman-total-mayhem",
+      "name": "Ultimate Spiderman: Total Mayhem",
+      "title_id": "SPIDERMAN",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "spiderman"
+      ],
+      "urls": [
+        "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Game%20Files.zip",
+      "entries": 635
+    },
+    {
+      "id": "ut99-vita",
+      "name": "UT99 Vita",
+      "title_id": "UNREALT99",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ut99"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-ut99-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-ut99-vita/Game%20Files.zip",
+      "entries": 629
+    },
+    {
+      "id": "wonder-boy-the-dragon-s-trap",
+      "name": "Wonder Boy: The Dragon's Trap",
+      "title_id": "WBDT00001",
+      "status": "unverified",
+      "proposed_paths": [],
+      "urls": [
+        "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/Game%20Files%20for%20PSVA.zip"
+      ],
+      "note": "HTTPError: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "id": "xash3d-fwgs",
+      "name": "Xash3D-FWGS",
+      "title_id": "XASH10000",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "xash3d"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-xash3d-fwgs/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-xash3d-fwgs/Game%20Files.zip",
+      "entries": 10409
+    },
+    {
+      "id": "zenonia-1-remastered-vita",
+      "name": "Zenonia 1 Remastered Vita",
+      "title_id": "ZNNA00002",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "zenonia1"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/Game%20Files.zip",
+      "entries": 1513
+    },
+    {
+      "id": "zenonia-2-remaster-vita",
+      "name": "Zenonia 2 Remaster Vita",
+      "title_id": "ZNNA00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "zenonia2"
+      ],
+      "urls": [
+        "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/Game%20Files.zip",
+      "entries": 1686
+    },
+    {
+      "id": "zenonia-3",
+      "name": "Zenonia 3",
+      "title_id": "PSVZ00003",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "zenonia3"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
+        "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
+      "entries": 2518
+    },
+    {
+      "id": "zombie-infection",
+      "name": "Zombie Infection",
+      "title_id": "PSVZI0001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "zombieinfection"
+      ],
+      "urls": [
+        "https://archive.org/download/zombie-infection-ps-vita-port/Game%20Files%20for%20PSVA.zip"
+      ],
+      "zip_used": "https://archive.org/download/zombie-infection-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "entries": 4210
+    },
+    {
+      "id": "zombie-tsunami-vita",
+      "name": "Zombie Tsunami Vita",
+      "title_id": "ZTSU00001",
+      "status": "zip_verified",
+      "proposed_paths": [
+        "zombietsunami"
+      ],
+      "urls": [
+        "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
+        "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip"
+      ],
+      "zip_used": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
+      "entries": 101
+    }
+  ]
+}

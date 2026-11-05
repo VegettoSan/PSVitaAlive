@@ -31,7 +31,10 @@
       "name": "Game Files ZIP",
       "url": "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip",
       "size": 1932735283,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "kras"
+      ]
     }
   ],
   "icon": "https://archive.org/download/batman-the-dark-knight-rises/icon0.png",

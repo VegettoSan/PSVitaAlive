@@ -30,7 +30,10 @@
       "name": "Game Files ZIP",
       "url": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
       "size": 732954624,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "barony"
+      ]
     },
     {
       "type": "Repository",

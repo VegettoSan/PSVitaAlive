@@ -37,7 +37,10 @@
       "url": "https://www.mediafire.com/file/3uxmygtsbymkhqc/Game_Files.zip/file",
       "recommended": false,
       "size": 12200000,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "zenonia3"
+      ]
     },
     {
       "type": "Game Files",
@@ -45,7 +48,10 @@
       "url": "https://archive.org/download/zenonia-3-psvita/Game%20Files.zip",
       "recommended": false,
       "size": 12200000,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "zenonia3"
+      ]
     },
     {
       "type": "Official Website",

@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
       "size": 647705395,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "sonicr"
+      ]
     },
     {
       "type": "Repository",

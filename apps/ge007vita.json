@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/GE007Vita/Game%20Files.zip",
       "size": 12582912,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "GoldenEye007"
+      ]
     },
     {
       "type": "Repository",

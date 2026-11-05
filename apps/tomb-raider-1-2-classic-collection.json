@@ -33,7 +33,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip",
       "size": 735156634,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "tombraider"
+      ]
     },
     {
       "type": "Repository",

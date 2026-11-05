@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-ut99-vita/Game%20Files.zip",
       "size": 627992166,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "ut99"
+      ]
     },
     {
       "type": "Repository",

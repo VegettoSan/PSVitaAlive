@@ -289,6 +289,9 @@ jobs:
           print(f'Authors published: {len(authors)} (orphans included: {orphan_count})')
           PY
 
+      - name: Validate Game Files installed paths (offline)
+        run: python scripts/validate_installed_paths_audit.py
+
       - name: Validate VitaHub source catalog
         env:
           VITAHUB_SKIP_REMOTE_CHECKS: "true"

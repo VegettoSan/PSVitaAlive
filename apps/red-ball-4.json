@@ -37,7 +37,10 @@
       "url": "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
       "recommended": false,
       "size": 103300000,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "rdball4"
+      ]
     },
     {
       "type": "Game Files",
@@ -45,7 +48,10 @@
       "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
       "recommended": false,
       "size": 103300000,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "rdball4"
+      ]
     }
   ],
   "icon": "https://archive.org/download/rdball4-psvita/icon0.png",
