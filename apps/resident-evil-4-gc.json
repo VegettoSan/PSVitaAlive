@@ -32,7 +32,10 @@
       "name": "Game Files Disc 1",
       "url": "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip",
       "size": 1503238554,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "BIOHAZ004"
+      ]
     },
     {
       "type": "Official Website",
