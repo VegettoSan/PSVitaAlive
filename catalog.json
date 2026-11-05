@@ -1627,6 +1627,52 @@
     ]
   },
   {
+    "id": "zombie-infection",
+    "title_id": "PSVZI0001",
+    "name": "Zombie Infection",
+    "description": "iOS to PS Vita port of Zombie Infection Gameloft",
+    "long_description": "An unofficial, native iOS-to-PS Vita wrapper port of Zombie Infection (originally developed by Gameloft). Unlike the Android ports, there is no .so here: this port ships its own Mach-O loader that maps the official iOS ARM executable (ZombieInfection, from the 1.0.0 IPA) into PS Vita RAM and replaces the Apple frameworks it uses (Foundation, UIKit, CoreGraphics, CoreAudio, OpenGL ES) with native implementations on top of vitaGL, OpenAL Soft, FreeType and the Vita system libraries. The game itself is built on the Irrlicht engine, which the loader runs untouched.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.1",
+    "version_date": "2026-10-29",
+    "requirements": "- kubridge.skprx\n- libshacccg.suprx\n- Game Files: a decrypted Zombie Infection 1.0.0 iOS .ipa (FairPlay cryptid 0). Open it as a ZIP and extract Payload/ZombieInfection.app/.",
+    "size": 3355443,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/zombie-infection-ps-vita-port/zombieinfection%20v1.1.vpk",
+        "size": 3355443,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/zombie-infection-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 267282022,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Zombie-Infection-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/zombie-infection-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/zombie-infection-ps-vita-port/shot0.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "title_id": "BTTD00010",
     "name": "Dragon Ball Z: BT3",
@@ -3331,6 +3377,53 @@
     ]
   },
   {
+    "id": "hero-of-sparta",
+    "title_id": "PSVHOS001",
+    "name": "Hero of Sparta",
+    "description": "Android to PS Vita port of Gameloft's Hero of Sparta",
+    "long_description": "Hero of Sparta is Gameloft's mythological hack-and-slash action game, originally released for Android as Hero Of Sparta HD Free_1.1.4.apk (package com.gameloft.android.GAND.GloftSPAW.ML). This port runs the compiled native library (libheroofsparta.so, armeabi) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.x fixed-function rendering backend.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-10-13",
+    "requirements": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).\n- A legally obtained copy of Hero of Sparta HD Free v1.1.4 (Hero Of Sparta HD Free_1.1.4.apk) and its downloaded game data folder (/mnt/sdcard/gameloft/games/hos/ from an Android device where the game was installed and run once).",
+    "size": 1153434,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/hero-of-sparta-ps-vita-port/heroofsparta%20v1.0.vpk",
+        "size": 1153434,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/hero-of-sparta-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 119642522,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Hero-of-Sparta-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/hero-of-sparta-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/hero-of-sparta-ps-vita-port/pic0.png"
+    ]
+  },
+  {
     "id": "the-drifter",
     "title_id": "DRFT00001",
     "name": "The Drifter",
@@ -4234,6 +4327,53 @@
     ]
   },
   {
+    "id": "brothers-in-arms-2",
+    "title_id": "PSVBIA002",
+    "name": "Brothers in Arms 2",
+    "description": "Android to PS Vita port of Gameloft's Brothers in Arms 2",
+    "long_description": "Brothers in Arms 2: Global Front HD is Gameloft's acclaimed World War II first-person shooter, originally released for Android (Brothers_In_Arms_2__Global_Front_HD_1.0.4, package com.gameloft.android.GAND.GloftBia2.bia2). This port runs the original compiled native library (libbia2.so, armeabi-v7a) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL handling hardware-accelerated GLES rendering.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-09-30",
+    "requirements": "- A PS Vita or PS TV on Custom Firmware (HENkaku / h-encore / Enso), firmware 3.60–3.74.\n- kubridge and FdFix installed as kernel plugins in ur0:tai/config.txt under *KERNEL.\n- libshacccg.suprx installed in ur0:data/ (extraction guide).\n- A legally obtained copy of Brothers in Arms 2: Global Front HD v1.0.4 (.apk) and its data cache folder (BIA2/).",
+    "size": 2097152,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/brothersinarms2%20v1.0.vpk",
+        "size": 2097152,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 274202624,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Brothers-in-Arms-2-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/pic0.png"
+    ]
+  },
+  {
     "id": "real-racing-2",
     "title_id": "RR2VITA01",
     "name": "Real Racing 2",
@@ -4422,6 +4562,54 @@
     "source_url": "https://github.com/Brendonm17/ACGC-Vita-Port",
     "release_page": "https://github.com/Brendonm17/ACGC-Vita-Port/releases",
     "updated_at": "2026-08-13T15:34"
+  },
+  {
+    "id": "gangstar-miami-vindication",
+    "title_id": "PSVGMV002",
+    "name": "Gangstar Miami Vindication",
+    "description": "Android to PS Vita port of Gameloft's Gangstar Miami Vindication",
+    "long_description": "Gangstar Miami Vindication is Gameloft's open-world action game, originally released for Android as Gangstar-Miami-Vindication-HD.apk. This port runs the compiled native library (libGangster2.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend. The .so has no JNI_OnLoad/RegisterNatives — every JNI entry point is resolved by symbol name and invoked by hand, following the exact lifecycle order of the real Android Activity/Renderer.",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "shooter",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.2.0",
+    "version_date": "2026-09-27",
+    "requirements": "- A PS Vita running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Gangstar Miami Vindication HD (Gangstar-Miami-Vindication-HD.apk, package com.gameloft.android.TBFV.GloftGMHP.ML).",
+    "size": 2411725,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/gangstarmiamivindication%20v0.2.0.vpk",
+        "size": 2411725,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "size": 427609293,
+        "extract_path": "ux0:data/"
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita"
+      }
+    ],
+    "icon": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/shot0.png"
+    ]
   },
   {
     "id": "shadow-guardian",
