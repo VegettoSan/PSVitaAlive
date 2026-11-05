@@ -14,8 +14,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-30",
+  "version": "1.1.0",
+  "version_date": "2026-11-02",
   "requirements": "- No data",
   "size": 3145728,
   "status": "Verified",
@@ -23,14 +23,14 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v0.09.00.vpk",
+      "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.1.0.vpk",
       "size": 3145728,
       "recommended": true
     },
     {
       "type": "Game Files",
       "name": "Game Files",
-      "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA.zip",
+      "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
       "size": 2040109466,
       "extract_path": "ux0:data/"
     },
@@ -40,9 +40,9 @@
       "url": "https://github.com/ggdrn/METEOR-VII-VITA"
     }
   ],
-  "icon": "https://archive.org/download/meteor-vii-vita/icon0.png",
+  "icon": "https://archive.org/download/meteor-vii-vita/icon0%20New.png",
   "screenshots": [
-    "https://archive.org/download/meteor-vii-vita/shot0.png",
-    "https://archive.org/download/meteor-vii-vita/shot1.png"
+    "https://archive.org/download/meteor-vii-vita/shot_0.png",
+    "https://archive.org/download/meteor-vii-vita/shot_1.png"
   ]
 }
