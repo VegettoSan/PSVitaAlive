@@ -1,0 +1,49 @@
+name: Validate installed data manager staging
+on:
+  push:
+    branches:
+      - work/installed-data-manager-20261105
+    paths:
+      - .github/workflows/installed-data-staging.yml
+      - scripts/installed_data_ui_patch_1.py
+      - scripts/installed_data_ui_patch_2.py
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout staging
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply checked UI changes
+        run: |
+          python3 scripts/installed_data_ui_patch_1.py
+          python3 scripts/installed_data_ui_patch_2.py
+          git diff --check
+          grep -q 'installed_data_screen.inc' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+      - name: Test safe installed paths policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_installed_data_policy.cpp -o /tmp/idpolicy
+          /tmp/idpolicy
+      - name: Compile full Vita client
+        run: |
+          docker pull vitasdk/vitasdk:2026.08
+          docker run --rm -v "$PWD:/workspace" -w "/workspace/Client PSVitaAlive" vitasdk/vitasdk:2026.08 bash -lc 'set -e; cmake -S . -B build-ci -DCMAKE_BUILD_TYPE=Release; cmake --build build-ci --parallel 2; test -s build-ci/PSVitaAlive.vpk'
+      - name: Upload test VPK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-installed-data-staging
+          path: Client PSVitaAlive/build-ci/PSVitaAlive.vpk
+          if-no-files-found: error
+      - name: Commit validated staging patch and remove helpers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm scripts/installed_data_ui_patch_1.py scripts/installed_data_ui_patch_2.py scripts/installed_data_patch_placeholder.txt
+          rm .github/workflows/installed-data-staging.yml
+          git add -A
+          git commit -m "Integrate validated installed data screen and remove staging helpers"
+          git push origin HEAD:work/installed-data-manager-20261105
