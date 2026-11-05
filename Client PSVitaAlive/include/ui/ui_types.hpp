@@ -64,6 +64,8 @@ struct CatalogItem {
     std::string status;
     std::string version;
     std::string versionDate;
+    // Optional Game/Data Files compatibility revision (0 means unspecified).
+    uint32_t dataRevision = 0;
 
     std::string requirements;
     std::string size;

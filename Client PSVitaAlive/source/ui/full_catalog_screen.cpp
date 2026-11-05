@@ -16,6 +16,8 @@
 #include "update/update_checker.hpp"
 #include "update/update_decision.hpp"
 #include "update/installed_release_tracker.hpp"
+#include "update/data_revision_policy.hpp"
+#include "update/data_revision_tracker.hpp"
 
 #ifndef PSVITAALIVE_VERSION
 #define PSVITAALIVE_VERSION "01.00"
@@ -5361,6 +5363,17 @@ void FullCatalogScreen::handleTouch() {
                 }
                 return;
             }
+            if (installAllPhase_ == InstallAllPhase::RevisionWarning) {
+                const int bw = 232, bh = 56, by = oy + oh - 90;
+                for (int option = 0; option < 3; ++option) {
+                    const int bx = ox + 32 + option * 262;
+                    if (hit(x, y, bx - 5, by - 6, bw + 10, bh + 12)) {
+                        resolveRevisionWarning(option);
+                        return;
+                    }
+                }
+                return;
+            }
             if (installAllPhase_ == InstallAllPhase::SpaceWarning) {
                 closeInstallAllWizard(true); // no download was ever enqueued
                 return;
@@ -7008,6 +7021,15 @@ if(pressed&SCE_CTRL_START){
             if (nav & SCE_CTRL_RIGHT) installAllFocus_ = 1;
             if (pressed & SCE_CTRL_CIRCLE) { installAllAdvancePluginPick(false); return; }
             if (pressed & SCE_CTRL_CROSS) { installAllAdvancePluginPick(installAllFocus_ == 0); return; }
+            return;
+        }
+        if (installAllPhase_ == InstallAllPhase::RevisionWarning) {
+            if (pressed & SCE_CTRL_CIRCLE) { closeInstallAllWizard(true); return; }
+            if (nav & (SCE_CTRL_LEFT | SCE_CTRL_UP))
+                installAllFocus_ = (installAllFocus_ + 2) % 3;
+            if (nav & (SCE_CTRL_RIGHT | SCE_CTRL_DOWN))
+                installAllFocus_ = (installAllFocus_ + 1) % 3;
+            if (pressed & SCE_CTRL_CROSS) resolveRevisionWarning(installAllFocus_);
             return;
         }
         if(pressed&SCE_CTRL_CIRCLE){closeInstallAllWizard(true);return;}
@@ -9017,6 +9039,29 @@ void FullCatalogScreen::activatePrimaryAction(const CatalogItem& item){
             showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryVpkUnavailable),2800);
             return;
         }
+        // Check the optional Game/Data revision only on explicit UPDATE.
+        // Missing receipts mean unverified data, never proof of outdated files.
+        if (item.dataRevision > 0 && itemHasDataOrGameFiles(item)) {
+            uint32_t localRevision = 0;
+            const bool known = ::psvitaalive::update::DataRevisionTracker::read(item.titleId, localRevision);
+            const auto revisionState = ::psvitaalive::update::checkDataRevision(
+                item.dataRevision, true, known, localRevision);
+            if (::psvitaalive::update::shouldWarnDataRevision(revisionState)) {
+                const int index = selectedIndex();
+                if (index >= 0 && catalogView()[index].titleId == item.titleId) {
+                    revisionWarningKnown_ = known;
+                    revisionWarningInstalled_ = localRevision;
+                    installAllItemIndex_ = index;
+                    installAllFocus_ = 0;
+                    installAllPhase_ = InstallAllPhase::RevisionWarning;
+                    exitLinkNavigation();
+                    diagnostics::log("[UI] data revision warning title="+item.titleId+
+                                     " expected="+std::to_string(item.dataRevision)+
+                                     " local="+(known?std::to_string(localRevision):"unknown"));
+                    return;
+                }
+            }
+        }
         const CatalogLink& selected=item.linkDetails[idx];
         diagnostics::log("[UI] update VPK "+item.titleId+" recommended="+std::to_string(selected.recommended?1:0));
         // Reuse installer, receipts, progress UI and image-memory suspension.
@@ -9055,6 +9100,35 @@ void FullCatalogScreen::activatePrimaryAction(const CatalogItem& item){
     default: return;
     }
 }
+void FullCatalogScreen::resolveRevisionWarning(int choice) {
+    if (installAllPhase_ != InstallAllPhase::RevisionWarning) return;
+    const int index = installAllItemIndex_;
+    if (index < 0 || index >= (int)catalogView().size()) {
+        closeInstallAllWizard(true);
+        return;
+    }
+    const CatalogItem item = catalogView()[index];
+    installAllPhase_ = InstallAllPhase::Hidden;
+    installAllItemIndex_ = -1;
+    revisionWarningKnown_ = false;
+    revisionWarningInstalled_ = 0;
+    if (choice == 0) {
+        // User confirmed full update; use existing source selection, plugins and preflight.
+        openInstallAllWizard();
+        if (installAllPhase_ == InstallAllPhase::Confirm) installAllAdvancePick();
+    } else if (choice == 1) {
+        // Explicit VPK-only override does not update the local data receipt.
+        const int di = preferredVpkDownloadIndex(item);
+        if (di < 0) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::PrimaryVpkUnavailable), 2800);
+        } else if (linkAction_ && linkAction_(item, item.linkDetails[di])) {
+            exitLinkNavigation();
+        } else {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastCouldNotStartInstall), 2200);
+        }
+    }
+}
+
 bool FullCatalogScreen::itemSupportsInstallAll(const CatalogItem& item) const {
     return itemHasDataOrGameFiles(item) || itemHasPluginLinks(item);
 }
@@ -9105,6 +9179,8 @@ void FullCatalogScreen::openInstallAllWizard() {
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
     installAllResults_.clear();
+    installAllRevisionHasFiles_ = false;
+    installAllRevisionFilesOk_ = false;
     installAllReportAppId_.clear();
     installAllReportTitleId_.clear();
     installAllReportAppName_.clear();
@@ -9164,6 +9240,10 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
     installAllWaitingRecovery_ = false;
     installAllPluginInstalled_ = false;
     installAllItemIndex_ = -1;
+    revisionWarningKnown_ = false;
+    revisionWarningInstalled_ = 0;
+    installAllRevisionHasFiles_ = false;
+    installAllRevisionFilesOk_ = false;
     if (cancel) diagnostics::log("[UI] Install All wizard cancelled");
 }
 
@@ -9330,6 +9410,8 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllQueue_.clear();
     installAllQueueLabels_.clear();
     installAllQueueResultIndices_.clear();
+    installAllRevisionHasFiles_ = installAllChosenGameFiles_ >= 0 || installAllChosenDataFiles_ >= 0;
+    installAllRevisionFilesOk_ = installAllRevisionHasFiles_;
 
     // Budget each actual queue entry when it is enqueued, never unselected
     // catalog alternatives. The same path handles manual and automatic picks.
@@ -9434,6 +9516,8 @@ void FullCatalogScreen::installAllStartNextStep() {
                          installAllQueueLabels_[index] + " url=" + link.url);
         installAllLastOutcome_ = -1;
         if (linkAction_ && linkAction_(item, link)) return;
+        if (isGameFilesTypeLink(link) || isDataFilesTypeLink(link))
+            installAllRevisionFilesOk_ = false;
         InstallAllResult& result = installAllResults_[installAllQueueResultIndices_[index]];
         result.state = InstallAllResultState::Failed;
         result.detail = ::psvitaalive::L("ALL_REPORT_START_FAILED");
@@ -9449,6 +9533,7 @@ void FullCatalogScreen::installAllStartNextStep() {
 void FullCatalogScreen::installAllFinishReport(bool aborted) {
     if (installAllPhase_ != InstallAllPhase::Running) return;
     if (aborted) {
+        installAllRevisionFilesOk_ = false;
         for (auto& result : installAllResults_) {
             if (result.state == InstallAllResultState::Pending) {
                 result.state = InstallAllResultState::NotAttempted;
@@ -9456,6 +9541,22 @@ void FullCatalogScreen::installAllFinishReport(bool aborted) {
             }
         }
     }
+    // Record only if all selected Game/Data ZIP steps completed successfully.
+    // The VPK receipt is independent, and no failed/cancelled data batch is marked current.
+    if (!aborted && installAllRevisionHasFiles_ && installAllRevisionFilesOk_ &&
+        installAllJobItem_.dataRevision > 0) {
+        if (!::psvitaalive::update::DataRevisionTracker::write(
+                installAllJobItem_.titleId, installAllJobItem_.dataRevision)) {
+            diagnostics::log("[UI] data revision receipt could not be written: " +
+                             installAllJobItem_.titleId);
+        } else {
+            diagnostics::log("[UI] data revision " +
+                             std::to_string(installAllJobItem_.dataRevision) +
+                             " installed for " + installAllJobItem_.titleId);
+        }
+    }
+    installAllRevisionHasFiles_ = false;
+    installAllRevisionFilesOk_ = false;
     if (installAcknowledge_) installAcknowledge_();
     installAllPhase_ = InstallAllPhase::Summary;
     installAllSummarySelected_ = 0;
@@ -9610,6 +9711,8 @@ void FullCatalogScreen::installAllTryAdvanceFromProgress(int outcome, bool needs
     InstallAllResult& result = installAllResults_[installAllQueueResultIndices_[index]];
     const CatalogLink& link = installAllQueue_[index];
 
+    if (outcome != 1 && (isGameFilesTypeLink(link) || isDataFilesTypeLink(link)))
+        installAllRevisionFilesOk_ = false;
     if (outcome == 1) {
         // An install-success callback is authoritative for this job only.
         // LiveArea verification is separate: never infer it from downloaded bytes.
@@ -10017,6 +10120,38 @@ void FullCatalogScreen::drawInstallAllOverlay() {
     vita2d_draw_rectangle(ox, oy, 1, oh, BORDER);
     vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
 
+    if (installAllPhase_ == InstallAllPhase::RevisionWarning) {
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 48, ACCENT, 1.13f,
+                                     ::psvitaalive::L("DR_WARNING_TITLE"));
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 90, WHITE, 0.88f,
+                                     ellipsize(item.name, 42).c_str());
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 145, TEXT, 0.79f,
+                                     ::psvitaalive::L(revisionWarningKnown_ ? "DR_WARNING_DIFFERENT" : "DR_WARNING_UNKNOWN"));
+        const std::string expected = std::string(::psvitaalive::L("DR_WARNING_EXPECTED")) +
+                                     " " + std::to_string(item.dataRevision);
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 182, WHITE, 0.78f, expected.c_str());
+        if (revisionWarningKnown_) {
+            const std::string installed = std::string(::psvitaalive::L("DR_WARNING_INSTALLED")) +
+                                          " " + std::to_string(revisionWarningInstalled_);
+            ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 213, WHITE, 0.78f, installed.c_str());
+        }
+        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 275, TEXT, 0.77f,
+                                     ::psvitaalive::L("DR_WARNING_RISK"));
+        const char* options[3] = { ::psvitaalive::L("DR_CHOICE_FULL"),
+                                   ::psvitaalive::L("DR_CHOICE_VPK"),
+                                   ::psvitaalive::L("DR_CHOICE_CANCEL") };
+        for (int option = 0; option < 3; ++option) {
+            const int bx = ox + 32 + option * 262, by = oy + oh - 90;
+            const int bw = 232, bh = 56;
+            const bool selected = option == installAllFocus_;
+            vita2d_draw_rectangle(bx, by, bw, bh, selected ? ACCENT : SURFACE);
+            const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.72f, options[option]);
+            ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 36,
+                selected ? BG : WHITE, 0.72f, options[option]);
+        }
+        return;
+    }
+
     if (installAllPhase_ == InstallAllPhase::SpaceWarning) {
         const char* title = ::psvitaalive::L("ALL_SPACE_TITLE");
         ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 44, ACCENT, 1.15f, title);
@@ -10057,6 +10192,10 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         for (const char* ln : lines) {
             ::psvitaalive::ui::uiDrawText(&font_, ox + 28, ty, TEXT, 0.86f, ln);
             ty += 34;
+        }
+        if (item.dataRevision > 0) {
+            ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 298, ACCENT,
+                0.74f, ::psvitaalive::L("DR_FIRST_INSTALL_HINT"));
         }
         const int bw = 240, bh = 50;
         const int by = oy + oh - 68;

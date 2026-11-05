@@ -738,3 +738,15 @@ DISCORD_QR_HEADING=Servidor Discord oficial do PSVitaAlive
 DISCORD_QR_BODY=Lê o código QR com o telemóvel ou utiliza a ligação de convite abaixo para entrar no nosso Discord.
 DISCORD_QR_EXTRA=Conhece fãs da PS Vita, partilha homebrew e pede ajuda à comunidade.
 DISCORD_QR_URL_LABEL=CONVITE DISCORD
+
+# Optional Game/Data Files revision (dr)
+DR_WARNING_TITLE=Atualizacao dos ficheiros de dados
+DR_WARNING_UNKNOWN=A revisao dos dados instalados e desconhecida.
+DR_WARNING_DIFFERENT=Os dados instalados nao correspondem a esta versao.
+DR_WARNING_EXPECTED=Revisao necessaria:
+DR_WARNING_INSTALLED=Revisao instalada:
+DR_WARNING_RISK=Atualizar so o VPK pode impedir o jogo de funcionar.
+DR_CHOICE_FULL=VPK + Dados
+DR_CHOICE_VPK=So VPK
+DR_CHOICE_CANCEL=Cancelar
+DR_FIRST_INSTALL_HINT=Instala tambem os Game/Data Files desta versao.

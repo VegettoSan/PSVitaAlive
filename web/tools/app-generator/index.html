@@ -92,6 +92,7 @@
                     <div class="field-grid">
                         <div class="field"><label for="version">Version <span>*</span></label><input id="version" name="version" required placeholder="1.0.0"><small>Version string of this release (e.g. <code>1.2.0</code> or <code>v3</code>), matching the download when possible.</small></div>
                         <div class="field"><label for="version_date">Version date <span>*</span></label><input id="version_date" name="version_date" type="date" required><small>Release date of this version (YYYY-MM-DD).</small></div>
+                        <div class="field"><label for="dr">Game/Data Files revision (optional)</label><input id="dr" name="dr" type="number" min="1" max="65535" step="1" placeholder="e.g. 1"><small>Increase only when new Game Files or Data Files are required. Leave blank to omit <code>dr</code>.</small></div>
                         <div class="field full"><label for="requirements">Requirements <span>*</span></label><textarea id="requirements" name="requirements" required rows="5" placeholder="Firmware, plugins, notes… (line breaks allowed)"></textarea><small>What the user needs: firmware, plugins (NoNpDrm, etc.), storage, or “None”. Line breaks are allowed.</small></div>
                         <div class="field"><label for="size">Main file size (VPK) <span>*</span></label>
                             <div class="size-unit-field app-size-field">

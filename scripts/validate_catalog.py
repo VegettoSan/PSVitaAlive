@@ -761,6 +761,18 @@ def validate_apps(
                 "must use YYYY-MM-DD format",
             )
 
+        # Optional Game/Data Files revision. Old records remain unchanged.
+        if "dr" in app:
+            dr = app["dr"]
+            if isinstance(dr, bool) or not isinstance(dr, int) or not 1 <= dr <= 65535:
+                add_error(errors, f"{rel}.dr", "must be an integer from 1 to 65535")
+            elif not any(
+                isinstance(link, dict)
+                and str(link.get("type", "")).strip().lower() in {"game files", "data files"}
+                for link in (app.get("links") if isinstance(app.get("links"), list) else [])
+            ):
+                add_error(errors, f"{rel}.dr", "requires a Game Files or Data Files link")
+
         size = app.get("size")
 
         if (

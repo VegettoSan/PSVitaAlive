@@ -370,6 +370,8 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         if (item.description.size() > 480) item.description.resize(480);
         item.longDescription.clear();
         item.version = getString(app, "version");
+        const uint64_t dr = getUnsigned(app, "dr");
+        item.dataRevision = (dr >= 1 && dr <= 65535) ? static_cast<uint32_t>(dr) : 0;
         item.versionDate = getString(app, "version_date");
         if (item.versionDate.empty()) item.versionDate = getString(app, "date");
         item.requirements = getString(app, "requirements");

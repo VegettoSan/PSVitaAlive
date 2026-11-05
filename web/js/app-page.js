@@ -340,6 +340,13 @@ function renderApplication(app, authors, category) {
     document.getElementById("info-date").textContent =
         formatReleaseDate(app.version_date);
 
+    const dataRevision = app.dr;
+    const dataRevisionRow = document.getElementById("info-data-revision-row");
+    dataRevisionRow.hidden = !Number.isSafeInteger(dataRevision) || dataRevision < 1;
+    if (!dataRevisionRow.hidden) {
+        document.getElementById("info-data-revision").textContent = String(dataRevision);
+    }
+
     document.getElementById("info-size").textContent =
         formatFileSize(app.size);
 

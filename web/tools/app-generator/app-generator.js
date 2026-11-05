@@ -558,6 +558,10 @@
             links: collectLinks()
         };
 
+        // Small optional catalog revision for Game/Data Files; never emit it when blank.
+        const drInput = $("dr").value.trim();
+        if (drInput !== "") app.dr = Number(drInput);
+
         const icon = optionalString("icon");
         if (icon) app.icon = icon;
 
@@ -647,6 +651,13 @@
             add("File size is missing or invalid. Enter the VPK size and select B, KB, MB or GB.", "size");
         }
         if (!["Verified", "Legacy", "Archive"].includes(app.status)) add("Choose a valid status.", "status");
+        if (Object.prototype.hasOwnProperty.call(app, "dr")) {
+            if (!Number.isSafeInteger(app.dr) || app.dr < 1 || app.dr > 65535) {
+                add("Game/Data revision must be a whole number from 1 to 65535.", "dr");
+            } else if (!app.links.some(link => ["game files", "data files"].includes(String(link.type || "").toLowerCase()))) {
+                add("A Game Files or Data Files link is required when dr is set.", "dr");
+            }
+        }
 
         const rows = [...document.querySelectorAll(".link-item")];
         if (!app.links.length) add("Links: add at least one link.", "links-list");
@@ -816,6 +827,7 @@
         $("long_description").value = app.long_description || "";
         $("version").value = app.version || "";
         $("version_date").value = app.version_date || "";
+        $("dr").value = app.dr ?? "";
         $("requirements").value = app.requirements || "";
         {
             const parts = parseLegacySizeField(app.size);

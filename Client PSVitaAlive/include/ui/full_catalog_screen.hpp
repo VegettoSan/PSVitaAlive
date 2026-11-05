@@ -457,6 +457,7 @@ private:
     PrimaryAction primaryActionFor(const CatalogItem& item);
     int preferredVpkDownloadIndex(const CatalogItem& item) const;
     void activatePrimaryAction(const CatalogItem& item);
+    void resolveRevisionWarning(int choice);
     void openInstallAllWizard();
     void closeInstallAllWizard(bool cancel);
     void installAllAdvancePick();
@@ -649,6 +650,7 @@ private:
     // Install All (VPK + Game Files + Data Files) wizard + sequential queue
     enum class InstallAllPhase {
         Hidden = 0,
+        RevisionWarning,
         Confirm,
         PickDownload,
         PickGameFiles,
@@ -664,6 +666,10 @@ private:
     bool installAllSpaceProbeFailed_ = false;
     int installAllFocus_ = 0;              // focus inside current wizard list / buttons
     int installAllItemIndex_ = -1;         // index into catalogView() when wizard opened
+    bool revisionWarningKnown_ = false;
+    uint32_t revisionWarningInstalled_ = 0;
+    bool installAllRevisionHasFiles_ = false;
+    bool installAllRevisionFilesOk_ = false;
     std::vector<int> installAllOptions_;   // linkDetail indices for current pick phase
     int installAllChosenDownload_ = -1;
     int installAllChosenGameFiles_ = -1;

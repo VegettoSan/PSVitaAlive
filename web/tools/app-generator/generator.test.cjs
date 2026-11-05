@@ -204,6 +204,15 @@ test("validation identifies the missing main size and correct link field", () =>
         links: [{ type: "Download", name: "Link", url: "https://example.org/file.vpk" }]
     };
     assert.equal(api.validateApp(app).length, 0);
+    const withData = { ...app, dr: 2, links: [...app.links, { type: "Game Files", name: "Game files", url: "https://example.org/data.zip" }] };
+    assert.equal(api.validateApp(withData).length, 0);
+    for (const dr of [0, -1, 1.5, 65536, NaN, "2"]) {
+        assert.ok(api.validateApp({ ...withData, dr }).some(error => error.target === "dr"), String(dr));
+    }
+    assert.ok(api.validateApp({ ...app, dr: 2 }).some(error => error.target === "dr"));
+    assert.ok(page.includes('id="dr"'));
+    assert.ok(source.includes('if (drInput !== "") app.dr = Number(drInput);'));
+    assert.ok(source.includes('$("dr").value = app.dr ?? "";'));
     assert.ok(api.validateApp({ ...app, size: 0 }).some(error => error.target === "size"));
     assert.ok(api.validateApp({ ...app, author_ids: [] }).some(error => error.target === "authors"));
     assert.ok(api.validateApp({ ...app, links: [{ ...app.links[0], url: "bad url" }] })

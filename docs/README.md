@@ -167,3 +167,7 @@ como especificación preferente frente al código y estos registros.
 Los cambios de tarjetas, filtros, índice PSP/PS1, rutas de instalación, Discord y estabilidad están descritos en [la referencia técnica 02.17](RELEASE_02_17_TECHNICAL_20261028.md). Se conservan los documentos fechados anteriores como historial, sin presentarlos como la especificación más reciente.
 
 La release 02.17 incluye `APP_VER=02.17`, `TITLE_ID=PSVAS1178`, VPK y SHA-256 publicados desde un build exitoso en GitHub Actions. La funcionalidad se probó en consola con el VPK de ensayo previo; la compilación final tiene verificación CI independiente. Los archivos JSON generados no se modifican manualmente.
+
+## Revisión de Game/Data Files (`dr`)
+
+[DATA_REVISION_20261105.md](DATA_REVISION_20261105.md) documenta el campo JSON opcional y compacto, la interfaz del generador web, el aviso de actualizaciones VPK + datos, los recibos locales del cliente y sus límites de compatibilidad.

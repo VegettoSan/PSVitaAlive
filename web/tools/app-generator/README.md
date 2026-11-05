@@ -111,3 +111,9 @@ When this feature is implemented, apply **conditional** validation:
 
 **Implementation status:** pending; first update UI, tests and validator in a branch, and verify before touching the PS Vita client.
 
+
+## Game/Data Files revision (`dr`)
+
+In **Release**, optionally set **Game/Data Files revision** to a positive integer 1–65535. The generator emits only `"dr": 2` (for example); a blank field **omits** the property. An app with `dr` must include at least one Game Files or Data Files link. Increase `dr` only if replacing data packages is necessary for compatibility; do not increase it for VPK-only changes. Importing/editing a JSON retains its existing value. This is **not** the VPK version or an automatic hash of the archive.
+
+The client can warn about outdated or unverified data and record the selected revision only after a successful data-installation batch. Archives installed outside PSVitaAlive may remain unverified. This metadata is optional, and existing JSONs retain their behavior.

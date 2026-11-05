@@ -291,6 +291,13 @@ def validate_final(apps, authors, categories):
         for sub_id in app.get("subcategory_ids", []):
             if sub_id not in allowed:
                 raise ValueError(f"{app['id']}: invalid subcategory {sub_id}")
+        if "dr" in app:
+            dr = app["dr"]
+            if isinstance(dr, bool) or not isinstance(dr, int) or not 1 <= dr <= 65535:
+                raise ValueError(f"{app['id']}: dr must be integer 1..65535")
+            if not any(isinstance(l, dict) and str(l.get("type", "")).strip().lower()
+                       in {"game files", "data files"} for l in (app.get("links") or [])):
+                raise ValueError(f"{app['id']}: dr requires Game Files or Data Files link")
         screenshots = app.get("screenshots") or []
         if screenshots and not 1 <= len(screenshots) <= 5:
             raise ValueError(f"{app['id']}: screenshots must contain 1-5 items")
