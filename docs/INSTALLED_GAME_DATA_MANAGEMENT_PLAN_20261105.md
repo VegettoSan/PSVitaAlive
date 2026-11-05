@@ -9,7 +9,7 @@
 
 1. Conservar la arquitectura oficial: `apps/ + authors/ + categories/` → GitHub Actions → `catalog.json + authors.json + categories.json` → cliente Vita + web. **Nunca editar a mano los JSON generados**.
 2. Añadir **un único campo nuevo** por enlace `Game Files` / `Data Files`: `installed_paths` (array de rutas relativas, archivo o carpeta). **Game Files:** obligatorio para nuevas entradas si su `extract_path` no es exactamente `ux0:app/`; cuando extrae directamente en `ux0:app/`, se omite y se considera parte de la app (`title_id`). **Data Files:** siempre opcional; ausente o `[]` indica que comparte la ubicación identificada por Game Files. No colocar un `folder` a nivel de la app.
-3. Seguir usando `extract_path` como destino/base real de extracción; `installed_paths` identifica elementos instalados bajo esa base. La herencia de Data Files **es solo para detección/contabilidad, nunca cambia dónde se extrae el ZIP**. Si destino y ruta heredada no son compatibles, no asumir ubicación: avisar y solicitar revisión. **No modificar la semántica del extractor**.
+3. Seguir usando `extract_path` como destino/base **real** de extracción. Para archivos instalados dentro de `ux0:data/`, `installed_paths` identifica rutas relativas a **`ux0:data/`**, aunque `extract_path` sea más profundo (por ejemplo `ux0:data/AnimalCrossing/rom/` con `installed_paths: ["AnimalCrossing"]`). La herencia de Data Files **es solo para detección/contabilidad, nunca cambia dónde se extrae el ZIP**. Si destino y ruta heredada no son compatibles, no asumir ubicación: avisar y solicitar revisión. **No modificar la semántica del extractor**, salvo corregir explícitamente metadatos de extracción erróneos caso por caso.
 4. Reutilizar el `size` **existente de cada enlace** para estimar su tamaño instalado. El mantenedor utiliza ZIP en modo **STORE/sin compresión** para Game/Data Files del catálogo: sus bytes descargados suelen aproximarse a la suma de archivos extraídos. **No introducir `installed_size` en la primera versión**.
 5. Game Files y Data Files **pueden compartir la misma carpeta**; los Data Files a menudo se extraen dentro de la carpeta de Game Files. Detectar rutas idénticas y relaciones padre/hijo **antes de medir o borrar**. No contabilizar ni borrar dos veces una ruta física.
 6. Para una carpeta compartida con propiedad de archivos no diferenciable, **no prometer borrado independiente de cada enlace**: tratar el directorio como unidad compartida; borrado conjunto con aviso y confirmación, o solo informativo si hay dudas.
@@ -40,7 +40,7 @@
 | Enlace | `extract_path` | `installed_paths` | Semántica |
 |---|---|---|---|
 | Game Files | `ux0:data/` u otro destino externo permitido | **Obligatorio** para nuevas entradas | Identifica carpeta(s) o archivo(s) del Game Files |
-| Game Files | **Exactamente** `ux0:app/` (normalizar barra final) | **No requerido** (preferible omitir) | Datos dentro de `ux0:app/<title_id>`, gestionados con la desinstalación de la aplicación |
+| Game Files | `ux0:app/` cuando el ZIP contiene `<title_id>/`, o `ux0:app/<title_id>/` cuando contiene directamente archivos | **No requerido** (preferible omitir) | Datos dentro de `ux0:app/<title_id>`, gestionados con la desinstalación de la aplicación; verificar estructura real del ZIP |
 | Data Files | Cualquier destino soportado | **Opcional** | Si falta o es `[]`, hereda la ubicación de Game Files de la **misma aplicación**, siempre que sea inequívoca y compatible con la extracción |
 | Data Files | Cualquier destino soportado | Opcional, pero **explícito cuando los datos están en ruta distinta** | Permite mostrar/borrar archivos propios si no se solapan |
 | Data Files sin Game Files asociable | Cualquier destino | Opcional en esquema, **recomendado completarlo** | Si está vacío, no hay ubicación que heredar: estado «no identificable», sin borrado automático |
@@ -60,7 +60,7 @@
 }
 ~~~
 
-Ruta resuelta: `ux0:data/MiJuego`. También puede contener archivos sueltos, varias rutas o rutas anidadas.
+Ruta resuelta: `ux0:data/MiJuego`. También puede contener archivos sueltos, varias rutas o rutas anidadas. **Siempre tomar la primera carpeta después de `ux0:data/` para Game Files ubicados allí**, incluso si el enlace tiene un `extract_path` profundo. Ejemplo real: Animal Crossing, `extract_path: "ux0:data/AnimalCrossing/rom/"`, declara `installed_paths: ["AnimalCrossing"]` y conserva intacto el destino del ZIP.
 
 ### 3.3 Data Files dentro de Game Files: **sin nuevo campo**
 
@@ -120,12 +120,13 @@ También es posible que Data Files declare `["MiJuego"]` mientras Game Files dec
 ### 3.7 Reglas de resolución y validación
 
 - Formato: `installed_paths` debe ser un **array** de cadenas relativas no vacías y sin duplicados cuando haya elementos. El estado «vacío» de Data Files se representa por **ausencia** del campo o por `[]`; `""`, `null` o tipos incorrectos no son representación canónica válida.
-- **Game Files externo**: no permitir `installed_paths` ausente ni `[]` en nuevas entradas cuando el `extract_path` no es la raíz `ux0:app/`. Si falta el destino de extracción, el generador no debe presumir `ux0:app/`; requiere rutas explícitas o debe señalar metadatos no resolubles hasta conocer el destino efectivo.
-- **Game Files en `ux0:app/`**: omitir el campo por defecto. Si algún JSON histórico lo incluye, no usarlo para autorizar borrado; comprobar `title_id` y el destino de paquete.
+- **Game Files externo**: no permitir `installed_paths` ausente ni `[]` en nuevas entradas cuando el `extract_path` no es un destino de instalación de paquete `ux0:app/` o `ux0:app/<title_id>/` validado. Si falta el destino de extracción, el generador no debe presumir `ux0:app/`; requiere rutas explícitas o debe señalar metadatos no resolubles hasta conocer el destino efectivo.
+- **Game Files en `ux0:app/`** (ZIP con carpeta `<title_id>/`) **o `ux0:app/<title_id>/`** (ZIP sin esa carpeta): omitir el campo por defecto. Verificar que la carpeta coincida con el Title ID y no duplicarla. No usar `installed_paths` para autorizar borrado del paquete.
 - **Data Files vacío**: buscar Game Files del **mismo Homebrew**, resolver su destino efectivo y heredar su(s) ruta(s) como **referencia compartida**, no como prueba de archivos exclusivos. Si hay **varios destinos distintos** de Game Files o enlaces alternativos ambiguos, no elegir uno arbitrariamente: marcar «herencia ambigua».
 - Si Data Files tiene `extract_path` distinto/incompatible con la ubicación de Game Files, **no cambiar el destino de extracción** para intentar que coincida; informar que la referencia heredada es incompatible y exigir revisión antes de medir o borrar.
 - Si no existe Game Files, o Game Files externo carece de ruta válida (registro antiguo), Data Files vacío **no puede identificarse**: mostrar estado desconocido; no inventar una ruta ni habilitar borrado. El generador avisará y recomendará completar la ruta explícita, sin convertir la opcionalidad de Data Files en requisito.
-- Cada componente relativo se concatena con `extract_path`, sin `ux0:`, `uma0:`, barra inicial, `..`, `.`, barras invertidas, controles ni componentes vacíos. Admitir `MiJuego/game.dat`. Respetar nombres/mayúsculas; determinar archivo/carpeta con `sceIoGetstat`, no por extensión.
+- **Base de resolución:** cuando `extract_path` esté dentro de `ux0:data/`, resolver **`ux0:data/` + `installed_paths[i]`**, nunca `extract_path` + `installed_paths[i]` (evita duplicar `AnimalCrossing/rom/`). Solo aceptar una ruta declarada si su relación con el destino real del ZIP se ha comprobado. Para destinos de otras particiones, definir/validar explícitamente una base segura antes de habilitar gestión o borrado.
+- Rutas sin `ux0:`, `uma0:`, barra inicial, `..`, `.`, barras invertidas, controles ni componentes vacíos. Admitir `MiJuego/game.dat`. Respetar nombres/mayúsculas; determinar archivo/carpeta con `sceIoGetstat`, no por extensión.
 - Establecer límites de longitud y número de rutas en web, Python y cliente. Rutas de borrado solo en raíces aprobadas, con comprobación de propiedad y colisiones. Una ruta `ux0:app/<title_id>` es solo informativa para la limpieza externa.
 - Los JSON antiguos sin campo **no deben romper instalación, visualización ni carga del catálogo** durante la migración. Su capacidad de identificación/borrado puede quedar restringida hasta corregirlos.
 - Si el instalador permite seleccionar manualmente `extract_path`, no inventar una ubicación efectiva si no hay recibo local del destino elegido. Revalidar siempre en disco antes de operar.
@@ -206,7 +207,7 @@ Modificar **en fase 1** siguiendo estas reglas **condicionales** (no implementad
 | Tipo seleccionado en la web | Destino de extracción | Mostrar campo de rutas | Validación para JSON nuevo |
 |---|---|---|---|
 | Game Files | `ux0:data/` u otra base externa | Sí | **Requerido**, al menos una ruta |
-| Game Files | `ux0:app/` | Oculto/deshabilitado o con aclaración «incluido en aplicación» | **No requerido**; omitirlo al exportar |
+| Game Files | `ux0:app/` o `ux0:app/<title_id>/` validado | Oculto/deshabilitado o con aclaración «incluido en aplicación» | **No requerido**; omitirlo al exportar |
 | Data Files | Cualquier destino | Sí, **opcional** | En blanco equivale a **misma ubicación de Game Files**, si resoluble |
 | Otros enlaces, incluidos Plugin/Mod/Patch | Los existentes | **No** para esta nueva función | No serializar `installed_paths` |
 
@@ -214,9 +215,9 @@ Requisitos concretos:
 
 1. En `web/tools/app-generator/app-generator.js`, mostrar el campo como una lista de rutas relativas (una por línea); validarlo únicamente según tipo y `extract_path`. Si el tipo es Game Files, ajustar obligatoriedad en tiempo real cuando `extract_path` cambia hacia/desde `ux0:app/`. Conservar los valores temporales mientras se alternan tipos sin filtrarlos a enlaces ajenos.
 2. En Data Files, explicar junto al campo: **«Opcional. Déjalo vacío si los Data Files se instalan dentro de la misma carpeta de Game Files»**. Si no hay Game Files inequívoco, informar «No se pudo determinar la carpeta heredada; indica la ruta para permitir su identificación», pero **no convertirlo en error de obligatoriedad**.
-3. En Game Files con `extract_path: "ux0:app/"`, explicar «Los Game Files forman parte de la aplicación; no se requiere indicar carpeta». No rellenar automáticamente `BLPM12345` en `installed_paths`; el cliente tomará `title_id` al consultar.
+3. En Game Files con `extract_path: "ux0:app/"` o `ux0:app/<title_id>/` que coincida exactamente, explicar «Los Game Files forman parte de la aplicación; no se requiere indicar carpeta». No rellenar automáticamente `BLPM12345` en `installed_paths`; el cliente tomará `title_id` al consultar. **The Drifter** es ejemplo de `ux0:app/` porque su ZIP ya trae `DRFT00001/`; **Pocket Mortys** usa `ux0:app/POMO00137/` porque su ZIP no contiene esa carpeta.
 4. Al crear JSON, **omitir el campo** si Data Files está vacío o Game Files está en `ux0:app/`. Al importar JSON históricos con `[]`, reconocerlo como herencia sin convertirlo en cadena vacía. Los archivos editados preservan sus otros metadatos.
-5. Mantener la validación histórica de `extract_path`; la nueva variable describe lo que se detecta o borra y **no cambia las rutas que utiliza ZIPExtractor**.
+5. Mantener la validación histórica de `extract_path`; la nueva variable describe lo que se detecta o borra y **no cambia las rutas que utiliza ZIPExtractor**. Si `extract_path` está dentro de `ux0:data/`, el editor mostrará que `installed_paths` empieza en la **primera carpeta de `ux0:data/`**, aunque el ZIP se extraiga varios niveles más abajo.
 6. En `scripts/validate_catalog.py`, validar tipos y rutas; definir una **transición que no rompa el catálogo legado** (regla estricta en el generador y en registros nuevos/modificados, diagnóstico para existentes). No activar una regla global de «Game Files obligatorio» hasta cubrir esos registros o disponer de compatibilidad/versionado controlado.
 7. En `scripts/generate_catalog.py` y normalización/merge, preservar datos canónicos, omisiones y `[]` sin inferir rutas inexistentes. **Nunca** editar catálogos generados manualmente.
 8. Añadir pruebas del generador (`generator.test.cjs`), validadores Python y documentación del generador (`README.md`) para todas las combinaciones de la tabla; probar importar, cambiar tipo, cambiar `extract_path`, descargar JSON y usar modo Edit.
