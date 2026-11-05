@@ -28,7 +28,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
       "size": 1887437,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "smworld"
+      ]
     },
     {
       "type": "Repository",

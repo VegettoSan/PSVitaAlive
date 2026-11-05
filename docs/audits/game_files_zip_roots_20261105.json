@@ -145,12 +145,15 @@
       "id": "batman-arkham-origins",
       "name": "Batman Arkham Origins",
       "title_id": "BAOR00001",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "batmanarkhamorigins"
+      ],
       "urls": [
         "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip"
       ],
-      "note": "HTTPError: HTTP Error 500: Internal Server Error"
+      "zip_used": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "entries": 4
     },
     {
       "id": "batman-the-dark-knight-rises",
@@ -322,12 +325,15 @@
       "id": "castle-of-illusion",
       "name": "Castle of Illusion",
       "title_id": "COIV00001",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "castleofillusion"
+      ],
       "urls": [
         "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/Game%20Files.zip"
       ],
-      "note": "HTTPError: HTTP Error 500: Internal Server Error"
+      "zip_used": "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/Game%20Files.zip",
+      "entries": 4
     },
     {
       "id": "cod-boz-vita",
@@ -361,12 +367,15 @@
       "id": "conker-s-bad-fur-day",
       "name": "Conker's Bad Fur Day",
       "title_id": "CBFD00064",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "conker"
+      ],
       "urls": [
         "https://archive.org/download/conker-vita/Game%20Files.zip"
       ],
-      "note": "HTTPError: HTTP Error 500: Internal Server Error"
+      "zip_used": "https://archive.org/download/conker-vita/Game%20Files.zip",
+      "entries": 2
     },
     {
       "id": "crazy-taxi-vita",
@@ -602,12 +611,15 @@
       "id": "ff3-vita",
       "name": "FF3-Vita",
       "title_id": "FF3000000",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ff3"
+      ],
       "urls": [
         "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip"
       ],
-      "note": "BadZipFile: File is not a zip file"
+      "zip_used": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
+      "entries": 5
     },
     {
       "id": "ff4ay-vita",
@@ -641,12 +653,15 @@
       "id": "ffd-vita",
       "name": "FFD-Vita",
       "title_id": "FFDIMEN01",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "ffd"
+      ],
       "urls": [
         "https://archive.org/download/psvitaalive-ffd-vita/Game%20Files.zip"
       ],
-      "note": "HTTPError: HTTP Error 500: Internal Server Error"
+      "zip_used": "https://archive.org/download/psvitaalive-ffd-vita/Game%20Files.zip",
+      "entries": 65
     },
     {
       "id": "final-fantasy-vi",
@@ -1276,12 +1291,15 @@
       "id": "paper-mario-vita",
       "name": "Paper Mario Vita",
       "title_id": "PPMR00001",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "papership"
+      ],
       "urls": [
         "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip"
       ],
-      "note": "BadZipFile: File is not a zip file"
+      "zip_used": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
+      "entries": 3
     },
     {
       "id": "paperboat",
@@ -1400,12 +1418,15 @@
       "id": "real-racing-3",
       "name": "Real Racing 3",
       "title_id": "RR3VITA01",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "rr3"
+      ],
       "urls": [
         "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip"
       ],
-      "note": "BadZipFile: File is not a zip file"
+      "zip_used": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
+      "entries": 9561
     },
     {
       "id": "red-ball-4",
@@ -1889,12 +1910,15 @@
       "id": "tomb-raider-1-2-classic-collection",
       "name": "Tomb Raider 1 & 2 Classic Collection",
       "title_id": "TMBRAIDER",
-      "status": "unverified",
-      "proposed_paths": [],
+      "status": "zip_verified",
+      "proposed_paths": [
+        "tombraider"
+      ],
       "urls": [
         "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip"
       ],
-      "note": "HTTPError: HTTP Error 500: Internal Server Error"
+      "zip_used": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip",
+      "entries": 543
     },
     {
       "id": "touhou12-3vita-hisoutensoku",
@@ -1998,15 +2022,12 @@
       "id": "wonder-boy-the-dragon-s-trap",
       "name": "Wonder Boy: The Dragon's Trap",
       "title_id": "WBDT00001",
-      "status": "zip_verified",
-      "proposed_paths": [
-        "wonderboy"
-      ],
+      "status": "unverified",
+      "proposed_paths": [],
       "urls": [
         "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/Game%20Files%20for%20PSVA.zip"
       ],
-      "zip_used": "https://archive.org/download/wonder-boy-the-dragons-trap-on-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "entries": 2323
+      "note": "HTTPError: HTTP Error 500: Internal Server Error"
     },
     {
       "id": "xash3d-fwgs",

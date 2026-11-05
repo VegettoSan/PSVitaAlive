@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip",
       "size": 52953088,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "waw"
+      ]
     },
     {
       "type": "Plugin",

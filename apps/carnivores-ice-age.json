@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
       "size": 73610035,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "carnivoresiceage"
+      ]
     },
     {
       "type": "Repository",

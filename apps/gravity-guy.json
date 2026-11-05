@@ -30,7 +30,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip",
       "size": 46242202,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "gravityguy"
+      ]
     }
   ],
   "icon": "https://archive.org/download/gravity-guy-ps-vita/icon0.png",

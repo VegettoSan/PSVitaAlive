@@ -31,14 +31,20 @@
       "name": "Game Files English",
       "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
       "size": 2018634629,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "d2vita"
+      ]
     },
     {
       "type": "Game Files",
       "name": "Game Files Spanish",
       "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
       "size": 2190433321,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "d2vita"
+      ]
     },
     {
       "type": "Repository",

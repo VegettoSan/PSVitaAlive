@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-devil-may-cry-4-refrain-vita/Game%20Files.zip",
       "size": 321388544,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "Acrodea"
+      ]
     },
     {
       "type": "Repository",

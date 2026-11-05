@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
       "size": 1992294,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "theimpossiblegame"
+      ]
     },
     {
       "type": "Repository",

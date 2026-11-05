@@ -30,14 +30,20 @@
       "name": "Game Data Files ZIP - Mediafire",
       "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
       "size": 1500017328,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "asphalt8"
+      ]
     },
     {
       "type": "Game Files",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
       "size": 1610612736,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "asphalt8"
+      ]
     },
     {
       "type": "Mod",

@@ -34,7 +34,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-bully-vita/Game%20Files%20Update.zip",
       "size": 3006477107,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "Bully"
+      ]
     },
     {
       "type": "Repository",

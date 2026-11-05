@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
       "size": 2040109466,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "ffvii-vita"
+      ]
     },
     {
       "type": "Repository",

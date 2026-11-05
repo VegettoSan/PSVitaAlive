@@ -36,14 +36,20 @@
       "name": "Game Data Files ZIP - MediaFire",
       "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
       "size": 81699799,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "popclassic"
+      ]
     },
     {
       "type": "Game Files",
       "name": "Game Data Files ZIP",
       "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
       "size": 81699799,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "popclassic"
+      ]
     },
     {
       "type": "Repository",

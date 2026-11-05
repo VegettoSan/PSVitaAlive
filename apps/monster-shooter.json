@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/moster-shooter-ps-vita/Game%20Files.zip",
       "size": 31142707,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "monstershooter"
+      ]
     },
     {
       "type": "Repository",

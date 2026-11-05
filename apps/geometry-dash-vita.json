@@ -43,7 +43,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-geometry-dash-vita/Game%20Files.zip",
       "size": 246729933,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "gdash"
+      ]
     },
     {
       "type": "Repository",

@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/gun-bros-ps-vita/Game%20Files.zip",
       "size": 226072986,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "gunbros"
+      ]
     },
     {
       "type": "Repository",

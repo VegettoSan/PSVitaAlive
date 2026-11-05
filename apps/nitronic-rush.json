@@ -30,7 +30,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
       "size": 407791206,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "nitronic"
+      ]
     },
     {
       "type": "Plugin",

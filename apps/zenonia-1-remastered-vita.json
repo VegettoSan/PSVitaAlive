@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/Game%20Files.zip",
       "size": 15099494,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "zenonia1"
+      ]
     },
     {
       "type": "Repository",

@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/plants-vs-zombies-2-psvita/pvz2%20Game%20Files.zip",
       "size": 675073229,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "pvz2"
+      ]
     },
     {
       "type": "Repository",

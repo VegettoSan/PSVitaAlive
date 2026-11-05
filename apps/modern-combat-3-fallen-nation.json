@@ -33,7 +33,10 @@
       "name": "Game Files ZIP",
       "url": "https://archive.org/download/modern-combat-3-psvita-port/GameFiles.zip",
       "size": 1513975972,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "mc3"
+      ]
     }
   ],
   "icon": "https://archive.org/download/modern-combat-3-psvita-port/icon0.png",

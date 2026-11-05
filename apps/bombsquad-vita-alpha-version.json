@@ -31,7 +31,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/bombsquad-vita/Game%20Files%20Fix.zip",
       "size": 151728947,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "BombSquad"
+      ]
     },
     {
       "type": "Repository",

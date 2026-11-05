@@ -30,7 +30,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip",
       "size": 574305075,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "twom"
+      ]
     },
     {
       "type": "Repository",

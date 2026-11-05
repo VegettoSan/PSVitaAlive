@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
       "size": 1468006,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "stairfax"
+      ]
     },
     {
       "type": "Repository",

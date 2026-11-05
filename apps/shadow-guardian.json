@@ -32,7 +32,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
       "size": 598946611,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "shadowguardian"
+      ]
     },
     {
       "type": "Repository",
