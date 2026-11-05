@@ -33,7 +33,10 @@
       "name": "Game Files",
       "url": "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip",
       "size": 243793920,
-      "extract_path": "ux0:data/"
+      "extract_path": "ux0:data/",
+      "installed_paths": [
+        "crazytaxi"
+      ]
     },
     {
       "type": "Repository",
