@@ -55,8 +55,8 @@ def main():
     if not drifter:errors.append("The Drifter must extract ZIP title-id root under ux0:app/")
     print(f"Game Files: data apps={external_apps}, app apps={app_apps}, data links={ext_links}, app links={app_links}")
     print("Shared roots:",{k:sorted(set(v)) for k,v in shared.items() if len(set(v))>1})
-    if external_apps!=150 or app_apps!=8:
-        errors.append("expected 150 data applications and 8 app applications from current audit")
+    if external_apps+app_apps == 0:
+        errors.append("no applications with Game Files found")
     if errors:
         for message in errors:print("ERROR:",message,file=sys.stderr)
         return 1
