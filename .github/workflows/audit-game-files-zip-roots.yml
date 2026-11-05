@@ -1,0 +1,25 @@
+name: Audit Game Files archive roots (research branch)
+on:
+  push:
+    branches:
+      - audit/game-files-zip-roots-20261105
+    paths:
+      - .github/workflows/audit-game-files-zip-roots.yml
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect ZIP indexes with byte-range reads only
+        env:
+          AUDIT_PENDING_ONLY: "1"
+        run: python3 scripts/audit_game_files_zip_roots.py
+      - name: Save audit to research branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/audits/game_files_zip_roots_20261105.json
+          git diff --cached --quiet || (git commit -m "docs: record ZIP root audit results [skip ci]" && git push)
