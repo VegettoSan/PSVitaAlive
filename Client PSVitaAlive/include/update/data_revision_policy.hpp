@@ -5,13 +5,16 @@
 namespace psvitaalive {
 namespace update {
 
-// Public catalog dr=0 means no data revision tracking.
-// A previously installed app with no recorded dr has revision 0: when the
-// catalog first introduces dr=1, a full Install All update is offered.
-// A newer local dr is never downgraded automatically.
-inline bool needsDataRevisionInstall(uint32_t required, bool hasDataLinks,
-                                     uint32_t installed) {
-    return hasDataLinks && required > 0 && installed < required;
+// A Game/Data Files revision only chooses HOW to apply an already-detected
+// VPK version update. Changing dr alone must never advertise a new update.
+// With an older/missing local dr, use the existing Install All flow to choose
+// one alternative per kind (VPK, Game Files, Data Files).
+inline bool shouldUseInstallAllForUpdate(bool vpkUpdateAvailable,
+                                         uint32_t catalogRevision,
+                                         bool hasDataLinks,
+                                         uint32_t installedRevision) {
+    return vpkUpdateAvailable && hasDataLinks &&
+           catalogRevision > 0 && installedRevision < catalogRevision;
 }
 
 } // namespace update

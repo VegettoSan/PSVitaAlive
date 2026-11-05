@@ -3857,16 +3857,11 @@ bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) {
                    state == LocalInstallState::UpdateAvailable ||
                    state == LocalInstallState::InstalledUnknown;
         }
-        case ContentFilter::Updates: {
-            if (state_.catalog != CatalogType::Homebrew) return false;
-            const LocalInstallInfo installed = queryLocalInstall(item);
-            if (installed.state == LocalInstallState::UpdateAvailable) return true;
-            return installed.state != LocalInstallState::Unknown &&
-                   installed.state != LocalInstallState::NotInstalled &&
-                   ::psvitaalive::update::needsDataRevisionInstall(
-                       item.dataRevision, itemHasDataOrGameFiles(item),
-                       installed.dataRevision);
-        }
+        case ContentFilter::Updates:
+            // Only a newer VPK version creates an update. A change to dr alone
+            // must not put an already-current app in the Updates filter.
+            return state_.catalog == CatalogType::Homebrew &&
+                   queryLocalInstall(item).state == LocalInstallState::UpdateAvailable;
         case ContentFilter::Unrecognized:
             return state_.catalog == CatalogType::Homebrew &&
                    queryLocalInstall(item).state == LocalInstallState::InstalledUnknown;
@@ -9000,15 +8995,16 @@ FullCatalogScreen::PrimaryAction FullCatalogScreen::primaryActionFor(const Catal
     // Only Homebrew has this replacement; game catalogs retain Install All.
     if(state_.catalog==CatalogType::Homebrew&&!item.titleId.empty()){
         const LocalInstallInfo installed=queryLocalInstall(item);
-        const bool hasApp = installed.state == LocalInstallState::Installed ||
-                            installed.state == LocalInstallState::UpdateAvailable ||
-                            installed.state == LocalInstallState::InstalledUnknown;
-        // dr takes precedence over VPK-only UPDATE. The first catalog dr on
-        // an old install with no local dr is itself a pending full update.
-        if (hasApp && ::psvitaalive::update::needsDataRevisionInstall(
-                item.dataRevision, itemHasDataOrGameFiles(item),
-                installed.dataRevision)) return PrimaryAction::UpdateAll;
-        if(installed.state==LocalInstallState::UpdateAvailable)return PrimaryAction::Update;
+        // Only a detected VPK update can display UPDATE or UPDATE ALL.
+        // If the catalog added/raised dr on the *same* VPK version, keep OPEN.
+        // Once a later VPK update arrives, an older/missing dr triggers the
+        // existing Install All wizard (one chosen link per source category).
+        if (installed.state == LocalInstallState::UpdateAvailable) {
+            return ::psvitaalive::update::shouldUseInstallAllForUpdate(
+                true, item.dataRevision, itemHasDataOrGameFiles(item),
+                installed.dataRevision) ? PrimaryAction::UpdateAll
+                                        : PrimaryAction::Update;
+        }
         if(installed.state==LocalInstallState::Installed)return PrimaryAction::Open;
         // Never assert that InstalledUnknown is up-to-date.
     }
