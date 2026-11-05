@@ -95,3 +95,19 @@ New authors created in the generator (rather than imported) continue to be inclu
 4. Choose Create another JSON, check that the imported author remains selected, and generate a second app referencing the same ID.
 5. Try importing the same author again, an app JSON, malformed JSON and profiles with conflicting ID/name; verify informative feedback and no duplicate author options.
 6. Confirm the old create-new-author flow still exports an author JSON alongside the app, and official authors continue to behave as before.
+
+## Planned installed-path metadata (not yet implemented)
+
+**Design agreement:** [Game/Data Files installed storage plan](../../../docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md), section 3 (JSON contract) and section 9 (generator acceptance tests). This is **documentation only**; the generator does not yet expose `installed_paths`.
+
+When this feature is implemented, apply **conditional** validation:
+
+- **Game Files** extracted to `ux0:data/` or another external destination: `installed_paths` **required** for newly created/edited entries, as an array of relative folder/file paths.
+- **Game Files** with `extract_path: "ux0:app/"`: `installed_paths` **not required**; omit it by default. The client will check `ux0:app/<title_id>` and only uninstall through the app/package mechanism.
+- **Data Files**: `installed_paths` **optional**. Missing or `[]` means the same installed **location** as a uniquely identifiable Game Files link in the same Homebrew, *not* exclusive ownership of its files. If it has its own destination, configure an explicit path.
+- If no unambiguous Game Files destination exists or the extraction destinations conflict, warn that the location cannot be inferred; never guess a path or grant a deletion capability.
+- Show the field only for Game Files and Data Files, preserve Create/Edit/Import/Export compatibility, reject invalid traversal/absolute paths, and keep older catalog entries usable during gradual migration.
+- Do **not** change existing ZIP extraction destinations, `extract_path` handling, or generated catalogs manually.
+
+**Implementation status:** pending; first update UI, tests and validator in a branch, and verify before touching the PS Vita client.
+
