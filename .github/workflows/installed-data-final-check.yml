@@ -20,7 +20,8 @@ jobs:
           VITAHUB_SKIP_REMOTE_MEDIA: "true"
         run: |
           node --test web/tools/app-generator/generator.test.cjs
-          python3 scripts/validate_catalog.py
+          # Full catalog validation runs in its official workflow on main.
+          # Use the existing offline installed-path audit in staging.
           python3 scripts/validate_installed_paths_audit.py
           python3 -m py_compile scripts/validate_catalog.py
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_installed_data_policy.cpp -o /tmp/idpolicy
