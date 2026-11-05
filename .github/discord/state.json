@@ -2241,6 +2241,9 @@
     "PSREGPROF": {
       "version": "v.1.0"
     },
+    "PSVBIA002": {
+      "version": "1.0"
+    },
     "PSVCDH001": {
       "version": "1.1.0"
     },
@@ -2252,6 +2255,12 @@
     },
     "PSVGC0001": {
       "version": "v.2.0"
+    },
+    "PSVGMV002": {
+      "version": "0.2.0"
+    },
+    "PSVHOS001": {
+      "version": "1.0"
     },
     "PSVIBE001": {
       "version": "v.2-final"
@@ -2285,6 +2294,9 @@
     },
     "PSVZ00004": {
       "version": "v.1.0.0"
+    },
+    "PSVZI0001": {
+      "version": "1.1"
     },
     "PTVT44218": {
       "version": "v.1.0"
