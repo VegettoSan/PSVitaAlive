@@ -414,9 +414,10 @@ bool InstalledDataManager::prepareExternalRemoval(
     const InstalledDataSnapshot& snapshot, const std::string& titleId,
     InstalledDataOperationProgress* progress) {
     const InstalledDataApp* target = nullptr;
-    // Perform the same destructive-operation checks before counting anything.
-    if (!validateExternalRemoval(snapshot, titleId, target)) return false;
+    // Show the preflight stage immediately, including when ownership checks
+    // reject the request. Never falsely label this as uninstalling the APP.
     if (progress) progress->phase.store(5, std::memory_order_release);
+    if (!validateExternalRemoval(snapshot, titleId, target)) return false;
     uint64_t total = 0;
     for (const auto& path : target->paths) {
         if (!path.exists) continue;

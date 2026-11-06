@@ -76,7 +76,9 @@ void FullCatalogScreen::rebuildInstalledDataVisibleRows() {
     for (size_t i = 0; i < installedDataVisibleRows_.size(); ++i)
         if (installedDataSnapshot_.apps[installedDataVisibleRows_[i]].titleId ==
             installedDataPreferredId_) { installedDataListFocus_ = static_cast<int>(i); break; }
-    installedDataScroll_ = std::max(0, installedDataListFocus_ - 1);
+    installedDataScroll_ = std::min(
+        std::max(0, static_cast<int>(installedDataVisibleRows_.size()) - 3),
+        std::max(0, installedDataListFocus_ - 1));
 }
 void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
                                                const std::string& titleId) {
@@ -389,7 +391,9 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             if (installedDataSnapshot_.apps[installedDataVisibleRows_[i]].titleId ==
                 focusId) {
                 installedDataListFocus_ = static_cast<int>(i);
-                installedDataScroll_ = std::max(0, installedDataListFocus_ - 1);
+                installedDataScroll_ = std::min(
+        std::max(0, static_cast<int>(installedDataVisibleRows_.size()) - 3),
+        std::max(0, installedDataListFocus_ - 1));
                 break;
             }
     }
