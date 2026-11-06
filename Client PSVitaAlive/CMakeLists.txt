@@ -26,6 +26,8 @@ set(SOURCES
   source/storage/storage_manager.cpp
   source/storage/storage_maintenance.cpp
   source/storage/installed_data_manager.cpp
+  source/storage/installed_directory_cache.cpp
+  source/storage/installed_directory_codec.cpp
   source/network/http_client.cpp
   source/network/archive_service_probe.cpp
   source/network/parallel_archive_download.cpp

@@ -12,6 +12,9 @@ struct InstalledDataPath {
     bool exists = false;
     bool complete = true;
     bool shared = false; // another catalog app claims same or overlapping path
+    bool sizeKnown = false; // an entire tree was measured successfully
+    bool sizeCached = false; // previous measurement; only a historical estimate
+    uint64_t rootStamp = 0; // stat hint, not proof that descendants are unchanged
 };
 
 struct InstalledDataApp {
@@ -31,6 +34,7 @@ struct InstalledDataSnapshot {
     std::vector<InstalledDataApp> apps;
     uint64_t totalExternalBytes = 0; // physical roots counted once across apps
     bool complete = true; // traversal limit, I/O errors => false
+    bool totalSizeKnown = true; // false if an installed root has no verified size
 };
 
 // Read-only worker -> UI counters. Every field is atomic: the render thread
@@ -72,7 +76,12 @@ public:
         std::vector<InstalledDataApp> candidates,
         const std::string& onlyTitleId = {},
         InstalledDataScanProgress* progress = nullptr,
-        uint64_t timeBudgetUs = 30000000ULL);
+        uint64_t timeBudgetUs = 30000000ULL,
+        bool measureSizes = true);
+    // Persistent discovery index: the canonical catalog always owns routes.
+    // Saved bytes are display-only; neither directory cache nor size can
+    // authorize deletion. Explicit invalidation after known data changes.
+    static void invalidateCachedTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.
     static uint64_t knownExternalBytes(const InstalledDataSnapshot& snapshot);
     // Revalidates the catalog snapshot and every path before deletion.

@@ -794,3 +794,13 @@ ID_DISCOVERING=Ordner werden gesucht...
 ID_SCAN_LIMIT_HINT=Grosse Ordner brauchen Zeit; unvollstaendige Daten sind geschuetzt.
 ID_UNKNOWN_SIZE=Groesse offen
 ID_CANCELLED=Scan abgebrochen. Teilweise Ergebnisse.
+
+# Persistent installed directories index and on-demand sizes
+ID_MEASURE_SIZE=Groesse messen
+ID_MEASURING=Spieldaten werden gemessen...
+ID_SIZE_PENDING=Nicht gemessen
+ID_TOTAL_PARTIAL=Teilweise
+ID_LAST_MEASURED=Letzte Messung
+ID_CACHE_HINT=* Gespeicherte Werte; VitaShell-Aenderungen evtl. unbemerkt.
+ID_MEASURE_COMPLETE=Messung gespeichert.
+ID_MEASURE_PARTIAL=Messung unvollstaendig; Groesse nicht gespeichert.

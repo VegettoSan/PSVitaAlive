@@ -794,3 +794,13 @@ ID_DISCOVERING=A procurar pastas...
 ID_SCAN_LIMIT_HINT=Pastas grandes demoram; dados parciais ficam protegidos.
 ID_UNKNOWN_SIZE=Tamanho pendente
 ID_CANCELLED=Analise cancelada. Resultados parciais.
+
+# Persistent installed directories index and on-demand sizes
+ID_MEASURE_SIZE=Medir tamanho
+ID_MEASURING=A medir ficheiros...
+ID_SIZE_PENDING=Nao medido
+ID_TOTAL_PARTIAL=Parcial
+ID_LAST_MEASURED=Ultima medicao
+ID_CACHE_HINT=* Medicoes guardadas; alteracoes via VitaShell podem escapar.
+ID_MEASURE_COMPLETE=Medicao guardada.
+ID_MEASURE_PARTIAL=Medicao incompleta; tamanho nao guardado.

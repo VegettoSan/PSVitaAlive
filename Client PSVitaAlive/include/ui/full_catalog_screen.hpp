@@ -575,7 +575,7 @@ private:
     bool installedDataConfirm_ = false;
     int installedDataListFocus_ = 0;
     int installedDataScroll_ = 0;
-    int installedDataActionFocus_ = 0; // 0 package, 1 external, 2 both, 3 back
+    int installedDataActionFocus_ = 0; // 0 VPK, 1 data, 2 both, 3 measure, 4 back
     int installedDataAction_ = -1; // -1 scan, 0 package, 1 external, 2 both
     std::string installedDataTargetId_;
     std::string installedDataPreferredId_;

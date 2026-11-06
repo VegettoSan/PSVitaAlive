@@ -1,5 +1,6 @@
 #include "storage/installed_data_manager.hpp"
 #include "storage/installed_data_policy.hpp"
+#include "storage/installed_directory_cache.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/appmgr.h>
 #include <psp2/io/dirent.h>
@@ -33,6 +34,20 @@ bool exists(const std::string& path, SceIoStat* out=nullptr) {
 }
 bool safeComponent(const std::string& n) {
     return validInstalledRelativePath(n) && n.find('/') == std::string::npos;
+}
+// Root directory timestamp is a *hint*. A nested write may not update it.
+// Therefore any cached bytes are explicitly marked historical in the UI.
+uint64_t rootFingerprint(const SceIoStat& st) {
+    const auto& t = st.st_mtime;
+    if (!t.year) return 0;
+    uint64_t value = 1469598103934665603ULL;
+    const uint32_t fields[] = {t.year,t.month,t.day,t.hour,t.minute,
+                               t.second,t.microsecond};
+    for (uint32_t field : fields) {
+        value ^= field;
+        value *= 1099511628211ULL;
+    }
+    return value;
 }
 // Each completed directory entry carries d_stat on PS Vita, avoiding the
 // previously expensive sceIoGetstat() call for every file in a large ZIP.
@@ -157,13 +172,16 @@ InstalledDataSnapshot InstalledDataManager::scan(
     std::vector<InstalledDataApp> apps,
     const std::string& onlyTitleId,
     InstalledDataScanProgress* progress,
-    uint64_t timeBudgetUs) {
+    uint64_t timeBudgetUs,
+    bool measureSizes) {
     InstalledDataSnapshot result;
     result.apps = std::move(apps);
     ScanContext ctx;
     ctx.progress = progress;
     ctx.startUs = sceKernelGetProcessTimeWide();
     ctx.budgetUs = timeBudgetUs;
+    std::vector<CachedDirectory> index;
+    InstalledDirectoryCache::load(index); // absent or corrupt -> fresh lookup
     if (progress) {
         // The caller resets counters *before* launching the worker.
         // Do not erase a cancellation pressed immediately after opening.
@@ -194,9 +212,24 @@ InstalledDataSnapshot InstalledDataManager::scan(
                 app.unresolved = true;
                 row.complete = false;
             } else if (selected && !ctx.shouldStop()) {
-                row.exists = exists(path);
-                if (row.exists && progress)
-                    progress->rootsFound.fetch_add(1, std::memory_order_relaxed);
+                SceIoStat st{};
+                row.exists = exists(path, &st);
+                if (row.exists) {
+                    row.rootStamp = rootFingerprint(st);
+                    // The disk index never supersedes canonical JSON paths or
+                    // a fresh Getstat. Cached measurements do not grant
+                    // permission to delete.
+                    const auto* cached = InstalledDirectoryCache::find(
+                        index, app.titleId, path);
+                    if (cached && cached->sizeKnown && row.rootStamp &&
+                        cached->rootStamp == row.rootStamp) {
+                        row.bytes = cached->bytes;
+                        row.sizeKnown = true;
+                        row.sizeCached = true;
+                    }
+                    if (progress)
+                        progress->rootsFound.fetch_add(1, std::memory_order_relaxed);
+                }
             } else if (selected) {
                 row.complete = false;
             }
@@ -216,8 +249,9 @@ InstalledDataSnapshot InstalledDataManager::scan(
                     }
 
     if (progress) progress->phase.store(2, std::memory_order_release);
-    // Phase 2: measure actual file bytes with a strict total time budget.
-    // Directory reads never hold a UI lock or allocate one object per file.
+    // Phase 2 is deliberately OPTIONAL. An ordinary menu open only performs
+    // bounded Getstat checks of roots; it never recursively walks game files.
+    // The user must choose Measure size on an individual Homebrew.
     std::unordered_map<std::string, std::pair<uint64_t, bool>> measured;
     for (auto& app : result.apps) {
         if (!onlyTitleId.empty() && app.titleId != onlyTitleId) continue;
@@ -229,43 +263,74 @@ InstalledDataSnapshot InstalledDataManager::scan(
         }
         for (auto& path : app.paths) {
             if (!safeExternalDataPath(path.path) || !path.exists) continue;
-            const auto cached = measured.find(path.path);
-            if (cached != measured.end()) {
-                path.bytes = cached->second.first;
-                path.complete = cached->second.second;
-            } else {
-                SceIoStat st{};
-                if (!exists(path.path, &st)) {
-                    path.complete = false;
+            if (measureSizes) {
+                const auto previous = measured.find(path.path);
+                if (previous != measured.end()) {
+                    path.bytes = previous->second.first;
+                    path.complete = previous->second.second;
                 } else {
-                    uint32_t entries = 0;
-                    path.complete = scanTree(path.path, st, 0, entries, path.bytes, ctx);
+                    SceIoStat st{};
+                    if (!exists(path.path, &st)) {
+                        path.complete = false;
+                    } else {
+                        uint32_t entries = 0;
+                        path.bytes = 0; // never preserve a partial cached value
+                        path.complete = scanTree(
+                            path.path, st, 0, entries, path.bytes, ctx);
+                    }
+                    measured.emplace(path.path,
+                                     std::make_pair(path.bytes, path.complete));
                 }
-                measured.emplace(path.path, std::make_pair(path.bytes, path.complete));
+                path.sizeKnown = path.complete;
+                path.sizeCached = false;
             }
             if (!path.complete) {
                 result.complete = false;
                 app.blocked = true;
             }
-            app.bytes = sum(app.bytes, path.bytes);
+            if (path.sizeKnown) app.bytes = sum(app.bytes, path.bytes);
             if (ctx.stopped) break;
         }
         if (ctx.stopped) {
             result.complete = false;
             app.blocked = true;
             for (auto& path : app.paths)
-                if (path.exists && measured.find(path.path)==measured.end())
+                if (path.exists && measureSizes && !path.sizeKnown)
                     path.complete = false;
         } else if (progress) {
             progress->appsCompleted.fetch_add(1, std::memory_order_relaxed);
         }
     }
-    std::vector<std::string> distinct;
-    distinct.reserve(measured.size());
-    for (const auto& entry : measured) distinct.push_back(entry.first);
-    uniqueRoots(distinct);
-    for (const auto& path : distinct)
-        result.totalExternalBytes = sum(result.totalExternalBytes, measured[path].first);
+    // Only sum measured (or previously measured) roots and mark unknown totals
+    // explicitly. A cached measurement is historical, not a current proof.
+    result.totalExternalBytes = knownExternalBytes(result);
+    for (const auto& app : result.apps) {
+        if (!onlyTitleId.empty() && app.titleId != onlyTitleId) continue;
+        for (const auto& path : app.paths)
+            if (path.exists && !path.sizeKnown)
+                result.totalSizeKnown = false;
+    }
+    // Reconcile the directory index with canonical catalog declarations.
+    // Unselected apps keep prior observations; selected roots are rechecked.
+    std::vector<CachedDirectory> next;
+    next.reserve(index.size() + 8);
+    for (const auto& app : result.apps) {
+        const bool selected = onlyTitleId.empty() || app.titleId == onlyTitleId;
+        for (const auto& path : app.paths) {
+            if (!safeExternalDataPath(path.path) ||
+                !validInstalledTitleId(app.titleId)) continue;
+            if (selected) {
+                if (!path.exists || !path.complete) continue;
+                next.push_back({app.titleId, path.path, path.rootStamp,
+                    path.sizeKnown ? path.bytes : 0, path.sizeKnown});
+            } else {
+                const auto* saved = InstalledDirectoryCache::find(
+                    index, app.titleId, path.path);
+                if (saved) next.push_back(*saved);
+            }
+        }
+    }
+    if (!ctx.stopped) InstalledDirectoryCache::save(next);
     if (ctx.stopped) result.complete = false;
     if (progress) {
         progress->truncated.store(!result.complete, std::memory_order_relaxed);
@@ -279,7 +344,8 @@ uint64_t InstalledDataManager::knownExternalBytes(
     std::vector<const InstalledDataPath*> paths;
     for (const auto& app : snapshot.apps)
         for (const auto& path : app.paths)
-            if (path.exists && safeExternalDataPath(path.path))
+            if (path.exists && path.sizeKnown &&
+                safeExternalDataPath(path.path))
                 paths.push_back(&path);
     // Count parents before children, and count a shared root only once.
     std::sort(paths.begin(), paths.end(),
@@ -304,6 +370,10 @@ uint64_t InstalledDataManager::knownExternalBytes(
     return total;
 }
 
+void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
+    InstalledDirectoryCache::invalidateTitle(titleId);
+}
+
 bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                                           const std::string& titleId) {
     // Other apps may have incomplete size scans; their path *claims* are
@@ -325,6 +395,9 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
         }
     }
     bool removed = true;
+    // After any destructive attempt the old size must never be displayed
+    // again, even when a partial filesystem deletion fails.
+    invalidateCachedTitle(titleId);
     for (const auto& path : target->paths) {
         if (!path.exists) continue;
         uint32_t count = 0;

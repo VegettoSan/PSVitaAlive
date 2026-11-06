@@ -837,3 +837,13 @@ ID_DISCOVERING=Locating declared folders...
 ID_SCAN_LIMIT_HINT=Large folders may take longer; partial results are protected.
 ID_UNKNOWN_SIZE=Size pending
 ID_CANCELLED=Scan cancelled. Partial results shown.
+
+# Persistent installed directories index and on-demand sizes
+ID_MEASURE_SIZE=Measure size
+ID_MEASURING=Measuring selected game files...
+ID_SIZE_PENDING=Size not measured
+ID_TOTAL_PARTIAL=Partial
+ID_LAST_MEASURED=Last measurement
+ID_CACHE_HINT=* Sizes are saved measurements; VitaShell changes may go unnoticed.
+ID_MEASURE_COMPLETE=Measurement saved.
+ID_MEASURE_PARTIAL=Measurement incomplete; no size cached.
