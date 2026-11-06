@@ -825,3 +825,15 @@ ID_UNSAFE=Ruta insegura, compartida o desconocida.
 ID_SECTION=Game/Data Files de Homebrew instalados
 ID_SECTION_HINT=Abrir listado y consultar espacio utilizado
 ID_UNINSTALL_BUTTON=Desinstalar
+
+# Installed data scan progress
+ID_APPS_PROGRESS=Aplicaciones analizadas:
+ID_FOLDERS_FOUND=Carpetas detectadas:
+ID_FOLDERS_READ=Carpetas revisadas:
+ID_FILES_READ=Archivos revisados:
+ID_CANCEL_SCAN=Circulo: cancelar analisis
+ID_CANCELLING=Cancelando analisis...
+ID_DISCOVERING=Localizando carpetas declaradas...
+ID_SCAN_LIMIT_HINT=Las carpetas grandes pueden tardar; se protegen resultados parciales.
+ID_UNKNOWN_SIZE=Tamano pendiente
+ID_CANCELLED=Analisis cancelado. Resultados parciales.

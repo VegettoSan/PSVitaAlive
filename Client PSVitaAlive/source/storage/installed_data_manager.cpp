@@ -6,6 +6,7 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 #include <psp2/kernel/threadmgr.h>
+#include <psp2/kernel/processmgr.h>
 #include <psp2/promoterutil.h>
 #include <psp2/sysmodule.h>
 #include <algorithm>
@@ -33,27 +34,71 @@ bool exists(const std::string& path, SceIoStat* out=nullptr) {
 bool safeComponent(const std::string& n) {
     return validInstalledRelativePath(n) && n.find('/') == std::string::npos;
 }
-bool scanTree(const std::string& p, unsigned depth,
-              uint32_t& entries, uint64_t& bytes) {
+// Each completed directory entry carries d_stat on PS Vita, avoiding the
+// previously expensive sceIoGetstat() call for every file in a large ZIP.
+// Some emulators have incomplete d_stat; fall back to Getstat in that case.
+struct ScanContext {
+    InstalledDataScanProgress* progress = nullptr;
+    uint64_t startUs = 0;
+    uint64_t budgetUs = 0;
+    bool stopped = false;
+    bool shouldStop() {
+        if (stopped) return true;
+        if (progress && progress->cancelRequested.load(std::memory_order_relaxed))
+            stopped = true;
+        if (!stopped && budgetUs &&
+            (sceKernelGetProcessTimeWide() - startUs) >= budgetUs)
+            stopped = true;
+        if (stopped && progress)
+            progress->truncated.store(true, std::memory_order_relaxed);
+        return stopped;
+    }
+    void fileSeen() {
+        if(progress) progress->filesVisited.fetch_add(1, std::memory_order_relaxed);
+    }
+    void dirSeen() {
+        if(progress) progress->dirsVisited.fetch_add(1, std::memory_order_relaxed);
+    }
+};
+bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
+              uint32_t& entries, uint64_t& bytes, ScanContext& ctx) {
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
-        !safeExternalDataPath(p)) return false;
-    SceIoStat st{};
-    if (!exists(p, &st)) return false;
+        !safeExternalDataPath(p) || ctx.shouldStop()) return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
+        ctx.fileSeen();
         if (st.st_size > 0) bytes = sum(bytes, static_cast<uint64_t>(st.st_size));
         return true;
     }
+    ctx.dirSeen();
     const SceUID d = sceIoDopen(p.c_str());
     if (d < 0) return false;
     SceIoDirent entry{};
     int rc = 0;
     bool complete = true;
     while ((rc = sceIoDread(d, &entry)) > 0) {
-        // Vita may expose "." and ".."; never descend into those entries.
         if (std::strcmp(entry.d_name, ".") == 0 ||
             std::strcmp(entry.d_name, "..") == 0) continue;
-        if (!safeComponent(entry.d_name) ||
-            !scanTree(p + "/" + entry.d_name, depth+1, entries, bytes)) {
+        if (!safeComponent(entry.d_name) || entries >= MAX_ENTRIES ||
+            ((entries & 63u) == 0u && ctx.shouldStop())) {
+            complete = false;
+            break;
+        }
+        // This fast path eliminates path allocations and syscalls for files.
+        if (entry.d_stat.st_mode != 0 &&
+            !(entry.d_stat.st_mode & SCE_S_IFDIR)) {
+            ++entries;
+            ctx.fileSeen();
+            if (entry.d_stat.st_size > 0)
+                bytes = sum(bytes, static_cast<uint64_t>(entry.d_stat.st_size));
+            continue;
+        }
+        const std::string child = p + "/" + entry.d_name;
+        SceIoStat childStat = entry.d_stat;
+        if (childStat.st_mode == 0 && !exists(child, &childStat)) {
+            complete = false;
+            break;
+        }
+        if (!scanTree(child, childStat, depth+1, entries, bytes, ctx)) {
             complete = false;
             break;
         }
@@ -108,15 +153,36 @@ void uniqueRoots(std::vector<std::string>& roots) {
 }
 } // namespace
 
-InstalledDataSnapshot InstalledDataManager::scan(std::vector<InstalledDataApp> apps) {
+InstalledDataSnapshot InstalledDataManager::scan(
+    std::vector<InstalledDataApp> apps,
+    const std::string& onlyTitleId,
+    InstalledDataScanProgress* progress,
+    uint64_t timeBudgetUs) {
     InstalledDataSnapshot result;
     result.apps = std::move(apps);
-    // Never interpret candidate metadata as permission for a different root.
+    ScanContext ctx;
+    ctx.progress = progress;
+    ctx.startUs = sceKernelGetProcessTimeWide();
+    ctx.budgetUs = timeBudgetUs;
+    if (progress) {
+        // The caller resets counters *before* launching the worker.
+        // Do not erase a cancellation pressed immediately after opening.
+        progress->phase.store(1, std::memory_order_release);
+        uint32_t count = 0;
+        for (const auto& app : result.apps)
+            if (onlyTitleId.empty() || app.titleId == onlyTitleId) ++count;
+        progress->appsTotal.store(count, std::memory_order_relaxed);
+    }
+    // Phase 1: identify declared roots and package presence. We keep *all*
+    // catalog claims to detect overlaps, but only touch the requested app's
+    // filesystem when invoked from the application's uninstall button.
     for (auto& app : result.apps) {
+        const bool selected = onlyTitleId.empty() || app.titleId == onlyTitleId;
         const bool titleOk = validInstalledTitleId(app.titleId);
-        SceIoStat installed{};
-        app.packagePresent = titleOk &&
-            exists(std::string("ux0:app/") + app.titleId + "/sce_sys/param.sfo", &installed);
+        if (selected && titleOk) {
+            app.packagePresent = exists(
+                std::string("ux0:app/") + app.titleId + "/sce_sys/param.sfo");
+        }
         if (app.appId == "psvitaalive" || app.appId == "ps-vita-alive" ||
             app.titleId == CLIENT_TID) { app.blocked = true; app.unresolved = true; }
         uniqueRoots(app.roots);
@@ -127,37 +193,54 @@ InstalledDataSnapshot InstalledDataManager::scan(std::vector<InstalledDataApp> a
                 app.blocked = true;
                 app.unresolved = true;
                 row.complete = false;
+            } else if (selected && !ctx.shouldStop()) {
+                row.exists = exists(path);
+                if (row.exists && progress)
+                    progress->rootsFound.fetch_add(1, std::memory_order_relaxed);
+            } else if (selected) {
+                row.complete = false;
             }
             app.paths.push_back(std::move(row));
         }
         if (app.unresolved) app.blocked = true;
     }
-    // Cross-app path collisions are blocked regardless of whether both app
-    // packages are currently installed. Catalog ownership is not exclusive.
-    for (size_t i = 0; i < result.apps.size(); ++i) {
-        for (size_t j = i+1; j < result.apps.size(); ++j) {
+    // Cross-app conflicts must be checked for every declaration, including
+    // uninstalled apps. Never rely solely on a filtered UI list for safety.
+    for (size_t i = 0; i < result.apps.size(); ++i)
+        for (size_t j = i+1; j < result.apps.size(); ++j)
             for (auto& a : result.apps[i].paths)
                 for (auto& b : result.apps[j].paths)
                     if (installedPathsOverlap(a.path, b.path)) {
                         a.shared = b.shared = true;
                         result.apps[i].blocked = result.apps[j].blocked = true;
                     }
-        }
-    }
+
+    if (progress) progress->phase.store(2, std::memory_order_release);
+    // Phase 2: measure actual file bytes with a strict total time budget.
+    // Directory reads never hold a UI lock or allocate one object per file.
     std::unordered_map<std::string, std::pair<uint64_t, bool>> measured;
     for (auto& app : result.apps) {
+        if (!onlyTitleId.empty() && app.titleId != onlyTitleId) continue;
+        if (ctx.shouldStop()) {
+            result.complete = false;
+            app.blocked = true;
+            for (auto& path : app.paths) path.complete = false;
+            continue;
+        }
         for (auto& path : app.paths) {
-            if (!safeExternalDataPath(path.path)) continue;
-            SceIoStat st{};
-            path.exists = exists(path.path, &st);
-            if (!path.exists) continue;
+            if (!safeExternalDataPath(path.path) || !path.exists) continue;
             const auto cached = measured.find(path.path);
             if (cached != measured.end()) {
                 path.bytes = cached->second.first;
                 path.complete = cached->second.second;
             } else {
-                uint32_t entries = 0;
-                path.complete = scanTree(path.path, 0, entries, path.bytes);
+                SceIoStat st{};
+                if (!exists(path.path, &st)) {
+                    path.complete = false;
+                } else {
+                    uint32_t entries = 0;
+                    path.complete = scanTree(path.path, st, 0, entries, path.bytes, ctx);
+                }
                 measured.emplace(path.path, std::make_pair(path.bytes, path.complete));
             }
             if (!path.complete) {
@@ -165,20 +248,66 @@ InstalledDataSnapshot InstalledDataManager::scan(std::vector<InstalledDataApp> a
                 app.blocked = true;
             }
             app.bytes = sum(app.bytes, path.bytes);
+            if (ctx.stopped) break;
+        }
+        if (ctx.stopped) {
+            result.complete = false;
+            app.blocked = true;
+            for (auto& path : app.paths)
+                if (path.exists && measured.find(path.path)==measured.end())
+                    path.complete = false;
+        } else if (progress) {
+            progress->appsCompleted.fetch_add(1, std::memory_order_relaxed);
         }
     }
-    // Total uses only outermost physical roots, never downloaded ZIP sizes.
     std::vector<std::string> distinct;
     distinct.reserve(measured.size());
     for (const auto& entry : measured) distinct.push_back(entry.first);
     uniqueRoots(distinct);
     for (const auto& path : distinct)
         result.totalExternalBytes = sum(result.totalExternalBytes, measured[path].first);
+    if (ctx.stopped) result.complete = false;
+    if (progress) {
+        progress->truncated.store(!result.complete, std::memory_order_relaxed);
+        progress->phase.store(3, std::memory_order_release);
+    }
     return result;
+}
+
+uint64_t InstalledDataManager::knownExternalBytes(
+    const InstalledDataSnapshot& snapshot) {
+    std::vector<const InstalledDataPath*> paths;
+    for (const auto& app : snapshot.apps)
+        for (const auto& path : app.paths)
+            if (path.exists && safeExternalDataPath(path.path))
+                paths.push_back(&path);
+    // Count parents before children, and count a shared root only once.
+    std::sort(paths.begin(), paths.end(),
+              [](const InstalledDataPath* a, const InstalledDataPath* b) {
+                  return a->path.size() == b->path.size()
+                      ? a->path < b->path : a->path.size() < b->path.size();
+              });
+    std::vector<std::string> counted;
+    uint64_t total = 0;
+    for (const auto* path : paths) {
+        bool covered = false;
+        for (const auto& root : counted)
+            if (installedPathsOverlap(root, path->path)) {
+                covered = true;
+                break;
+            }
+        if (!covered) {
+            counted.push_back(path->path);
+            total = sum(total, path->bytes);
+        }
+    }
+    return total;
 }
 
 bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                                           const std::string& titleId) {
+    // Other apps may have incomplete size scans; their path *claims* are
+    // still checked below. Only the target must be fully verified.
     if (!validInstalledTitleId(titleId)) return false;
     const InstalledDataApp* target = nullptr;
     for (const auto& app : snapshot.apps)

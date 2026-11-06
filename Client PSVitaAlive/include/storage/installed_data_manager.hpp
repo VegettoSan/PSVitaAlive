@@ -1,4 +1,5 @@
 #pragma once
+#include <atomic>
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -32,9 +33,48 @@ struct InstalledDataSnapshot {
     bool complete = true; // traversal limit, I/O errors => false
 };
 
+// Read-only worker -> UI counters. Every field is atomic: the render thread
+// must never read the in-progress InstalledDataSnapshot.
+struct InstalledDataScanProgress {
+    std::atomic<uint32_t> phase{0}; // 1 discover, 2 measure, 3 completed
+    std::atomic<uint32_t> appsTotal{0};
+    std::atomic<uint32_t> appsCompleted{0};
+    std::atomic<uint32_t> rootsFound{0};
+    std::atomic<uint32_t> dirsVisited{0};
+    std::atomic<uint32_t> filesVisited{0};
+    std::atomic<bool> cancelRequested{false};
+    std::atomic<bool> truncated{false};
+    void reset() {
+        phase.store(0, std::memory_order_relaxed);
+        appsTotal.store(0, std::memory_order_relaxed);
+        appsCompleted.store(0, std::memory_order_relaxed);
+        rootsFound.store(0, std::memory_order_relaxed);
+        dirsVisited.store(0, std::memory_order_relaxed);
+        filesVisited.store(0, std::memory_order_relaxed);
+        cancelRequested.store(false, std::memory_order_relaxed);
+        truncated.store(false, std::memory_order_relaxed);
+    }
+};
+
+// Exact applications completed, not an estimate of time remaining.
+// A long root can keep the number static; file/folder counters still advance.
+inline uint32_t installedDataProgressPercent(uint32_t done, uint32_t total) {
+    return total ? static_cast<uint32_t>(
+        100ULL * (done > total ? total : done) / total) : 100;
+}
+
 class InstalledDataManager {
 public:
-    static InstalledDataSnapshot scan(std::vector<InstalledDataApp> candidates);
+    // Empty onlyTitleId scans all Homebrew; a non-empty Title ID only visits
+    // that application's roots, while keeping *all* other catalog claims
+    // for collision detection. timeBudgetUs is per scan, not per folder.
+    static InstalledDataSnapshot scan(
+        std::vector<InstalledDataApp> candidates,
+        const std::string& onlyTitleId = {},
+        InstalledDataScanProgress* progress = nullptr,
+        uint64_t timeBudgetUs = 30000000ULL);
+    // Recalculate de-duplicated external bytes after a single app refresh.
+    static uint64_t knownExternalBytes(const InstalledDataSnapshot& snapshot);
     // Revalidates the catalog snapshot and every path before deletion.
     // Never attempts ux0:app/ or PSVitaAlive-owned directories.
     static bool removeExternal(const InstalledDataSnapshot& snapshot,
