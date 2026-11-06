@@ -43,6 +43,44 @@ int main() {
     assert(validInstalledChildName(std::string(255, 'A')));
     assert(!safeExternalDataPath("ux0:data/psvitaalive"));
     assert(!safeExternalDataPath("ux0:data/tai"));
+    // Action buttons are hidden, not merely greyed out. Focus and touch
+    // hit-testing use the exact same ordered slot mapping as the renderer.
+    assert(installedDataFirstAction(true, false) == 0);
+    assert(installedDataFirstAction(false, true) == 1);
+    assert(installedDataFirstAction(false, false) == -1);
+    assert(installedDataActionAvailable(0, true, false));
+    assert(!installedDataActionAvailable(1, true, false));
+    assert(!installedDataActionAvailable(2, true, false));
+    assert(!installedDataActionAvailable(0, false, true));
+    assert(installedDataActionAvailable(1, false, true));
+    assert(!installedDataActionAvailable(2, false, true));
+    for (int i = 0; i < 3; ++i) {
+        assert(installedDataActionAvailable(i, true, true));
+        assert(installedDataActionSlot(i, true, true) == i);
+    }
+    assert(installedDataActionSlot(0, true, false) == 0);
+    assert(installedDataActionSlot(1, true, false) == -1);
+    assert(installedDataActionSlot(1, false, true) == 0);
+    assert(installedDataActionSlot(2, false, true) == -1);
+    assert(installedDataMoveAction(0, 1, true, true) == 1);
+    assert(installedDataMoveAction(0, -1, true, true) == 2);
+    assert(installedDataMoveAction(2, 1, true, true) == 0);
+    assert(installedDataMoveAction(0, 1, true, false) == 0);
+    assert(installedDataMoveAction(-1, 1, false, true) == 1);
+    assert(installedDataMoveAction(-1, 1, false, false) == -1);
+
+    // Percentage reflects confirmed file + folder deletions, NEVER roots.
+    assert(installedDataDeletionPercent(0, 1000) == 0);
+    assert(installedDataDeletionPercent(650, 1000) == 65);
+    assert(installedDataDeletionPercent(999, 1000) == 99);
+    assert(installedDataDeletionPercent(1000, 1000) == 99);
+    assert(installedDataDeletionPercent(1000, 1000, true) == 100);
+    assert(installedDataDeletionPercent(1500, 1000) == 99);
+    assert(installedDataDeletionPercent(0, 0) == 0);
+    assert(installedDataDeletionPercent(0, 0, true) == 100);
+    // Big inputs keep the calculation in 64-bit units.
+    assert(installedDataDeletionPercent(200000000ULL, 400000000ULL) == 50);
+
     assert(installedDataProgressPercent(0, 5) == 0);
     assert(installedDataProgressPercent(1, 5) == 20);
     assert(installedDataProgressPercent(3, 5) == 60);
@@ -60,9 +98,10 @@ int main() {
     live.reset();
     assert(!live.cancelRequested.load());
     assert(live.appsTotal.load() == 0);
-    // Real progress uses completed roots, not an inferred file percentage.
+    // Root counters remain for diagnostics; the deletion UI uses entries.
     InstalledDataOperationProgress operation;
     operation.phase.store(2);
+    operation.entriesTotal.store(2000);
     operation.rootsTotal.store(4);
     operation.rootsCompleted.store(1);
     operation.filesRemoved.store(527);
@@ -70,10 +109,14 @@ int main() {
     assert(installedDataProgressPercent(operation.rootsCompleted.load(),
                                        operation.rootsTotal.load()) == 25);
     assert(operation.filesRemoved.load() == 527);
+    assert(installedDataDeletionPercent(
+        static_cast<uint64_t>(operation.filesRemoved.load()) +
+        operation.foldersRemoved.load(), operation.entriesTotal.load()) == 27);
     operation.promoterPolls.fetch_add(1);
     assert(operation.promoterPolls.load() == 1);
     operation.reset();
     assert(operation.phase.load() == 0);
+    assert(operation.entriesTotal.load() == 0);
     assert(operation.rootsTotal.load() == 0);
     assert(operation.rootsCompleted.load() == 0);
     assert(operation.filesRemoved.load() == 0);

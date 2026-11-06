@@ -78,4 +78,37 @@ inline bool installedDataActiveCollision(const std::string& target,
     return otherInstalled && installedPathsOverlap(target, other);
 }
 
+// Menu entries use stable action IDs (0 APP, 1 Game Files, 2 both).
+// All input methods and rendering must consult these same predicates.
+inline bool installedDataActionAvailable(int action, bool canApp, bool canData) {
+    return action == 0 ? canApp :
+           action == 1 ? canData :
+           action == 2 ? (canApp && canData) : false;
+}
+inline int installedDataFirstAction(bool canApp, bool canData) {
+    for (int a = 0; a < 3; ++a)
+        if (installedDataActionAvailable(a, canApp, canData)) return a;
+    return -1;
+}
+inline int installedDataActionSlot(int action, bool canApp, bool canData) {
+    int slot = 0;
+    for (int a = 0; a < 3; ++a) {
+        if (!installedDataActionAvailable(a, canApp, canData)) continue;
+        if (a == action) return slot;
+        ++slot;
+    }
+    return -1;
+}
+inline int installedDataMoveAction(int action, int delta,
+                                   bool canApp, bool canData) {
+    if (!installedDataActionAvailable(action, canApp, canData))
+        return installedDataFirstAction(canApp, canData);
+    for (int step = 1; step <= 3; ++step) {
+        const int next = (action + 3 + step * (delta >= 0 ? 1 : 2)) % 3;
+        if (installedDataActionAvailable(next, canApp, canData))
+            return next;
+    }
+    return -1;
+}
+
 }} // namespace psvitaalive::storage

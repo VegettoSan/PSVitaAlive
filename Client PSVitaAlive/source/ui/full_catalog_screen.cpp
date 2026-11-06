@@ -4795,29 +4795,45 @@ void FullCatalogScreen::handleTouch() {
     }
 
     if (installedDataVisible_) {
-        constexpr int w=864,h=500,ROW=54;
+        constexpr int w=864,h=500,ROW=90,VISIBLE=3;
         const int ox=(SCREEN_W-w)/2,oy=(SCREEN_H-h)/2;
         if(td.reportNum>0) {
             const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
             if(!touchDown_) {
                 touchDown_=true;touchStartX_=px;touchStartY_=py;
-                touchLastY_=py;touchMoved_=false;
+                touchLastY_=py;touchMoved_=false;touchAccumY_=0.f;
             }else{
-                if(std::abs(px-touchStartX_)>14||std::abs(py-touchStartY_)>14)
+                const int dy=py-touchLastY_;
+                touchLastY_=py;
+                if(std::abs(px-touchStartX_)>20||std::abs(py-touchStartY_)>20)
                     touchMoved_=true;
-                if(touchMoved_&&(installedDataWorker_<0||installedDataAction_==-3)&&!installedDataDetail_&&
-                   !installedDataConfirm_&&std::abs(touchLastY_-py)>=23){
-                    const int step=touchLastY_>py?1:-1;
-                    installedDataScroll_=std::max(0,std::min(
-                        std::max(0,(int)installedDataVisibleRows_.size()-5),
-                        installedDataScroll_+step));
-                    touchLastY_=py;
+                // Match catalog swipes: accumulate movement across frames;
+                // each 48 px moves one focused row, including slow drags.
+                if(touchMoved_&&(installedDataWorker_<0||installedDataAction_==-3)&&
+                   !installedDataDetail_&&!installedDataConfirm_&&!installedDataResultVisible_&&
+                   touchStartX_>=ox+23&&touchStartX_<=ox+w-23&&
+                   touchStartY_>=oy+140&&touchStartY_<oy+140+VISIBLE*ROW){
+                    touchAccumY_+=static_cast<float>(dy);
+                    const int count=static_cast<int>(installedDataVisibleRows_.size());
+                    while(touchAccumY_<=-48.f) {
+                        touchAccumY_+=48.f;
+                        installedDataListFocus_=std::min(std::max(0,count-1),
+                            installedDataListFocus_+1);
+                    }
+                    while(touchAccumY_>=48.f) {
+                        touchAccumY_-=48.f;
+                        installedDataListFocus_=std::max(0,installedDataListFocus_-1);
+                    }
+                    if(installedDataListFocus_<installedDataScroll_)
+                        installedDataScroll_=installedDataListFocus_;
+                    if(installedDataListFocus_>=installedDataScroll_+VISIBLE)
+                        installedDataScroll_=installedDataListFocus_-VISIBLE+1;
                 }
             }
         }else if(touchDown_){
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
-            touchDown_=touchMoved_=false;
+            touchDown_=touchMoved_=false;touchAccumY_=0.f;
             if(installedDataWorker_>=0 && installedDataAction_!=-3){
                 if(!moved && installedDataAction_<0 && py>oy+h-55)
                     installedDataScanProgress_.cancelRequested.store(
@@ -4837,7 +4853,7 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             if(!installedDataDetail_){
-                if(hit(px,py,ox+23,oy+140,w-46,5*ROW)){
+                if(hit(px,py,ox+23,oy+140,w-46,VISIBLE*ROW)){
                     const int row=(py-(oy+140))/ROW+installedDataScroll_;
                     if(row>=0&&row<(int)installedDataVisibleRows_.size()){
                         installedDataListFocus_=row;
@@ -4851,9 +4867,25 @@ void FullCatalogScreen::handleTouch() {
                     else startInstalledDataOperation(-2);
                     return;
                 }
-                for(int i=0;i<3;i++){
-                    if(hit(px,py,ox+24+i*272,oy+382,260,61)){
-                        installedDataActionFocus_=i;
+                const ::psvitaalive::storage::InstalledDataApp* app=nullptr;
+                for(const auto& candidate:installedDataSnapshot_.apps)
+                    if(candidate.titleId==installedDataTargetId_){
+                        app=&candidate;
+                        break;
+                    }
+                bool hasData=false;
+                if(app)for(const auto& p:app->paths)hasData=hasData||p.exists;
+                const bool canApp=app&&app->packagePresent&&app->titleId!="PSVAS1178";
+                const bool canData=app&&hasData&&!app->blocked&&!app->unresolved;
+                const int count=(canApp?1:0)+(canData?1:0)+((canApp&&canData)?1:0);
+                const int buttonW=count==1?420:260;
+                const int firstX=ox+(w-count*buttonW-(count-1)*12)/2;
+                for(int action=0;action<3;action++){
+                    const int slot=::psvitaalive::storage::installedDataActionSlot(
+                        action,canApp,canData);
+                    if(slot<0)continue;
+                    if(hit(px,py,firstX+slot*(buttonW+12),oy+382,buttonW,61)){
+                        installedDataActionFocus_=action;
                         activateInstalledDataSelection();
                         break;
                     }
@@ -7477,6 +7509,41 @@ void FullCatalogScreen::prepareVisibleTextures(){
             imageCache_->cancelQueuedExcept(keepSet);
         }
     };
+
+    if(installedDataVisible_){
+        // Reuse the normal ImageCache/GPU budget for the three visible rows.
+        // Do not queue hundreds of icons or decode textures while deleting.
+        std::vector<std::string> icons;
+        if(!installedDataDetail_&&!installedDataConfirm_&&!installedDataResultVisible_){
+            const int first=std::max(0,installedDataScroll_);
+            const int last=std::min((int)installedDataVisibleRows_.size(),first+3);
+            for(int i=first;i<last;++i){
+                const auto& app=installedDataSnapshot_.apps[installedDataVisibleRows_[i]];
+                if(!app.icon.empty()){
+                    markKeep(app.icon,"app");
+                    icons.push_back(app.icon);
+                }
+            }
+        }else{
+            for(const auto& app:installedDataSnapshot_.apps)
+                if(app.titleId==installedDataTargetId_&&!app.icon.empty()){
+                    markKeep(app.icon,"app");
+                    break;
+                }
+        }
+        releaseTexturesNotIn(keep);
+        syncImageNetwork(keep);
+        if(!navigationBusy&&!(installedDataWorker_>=0&&installedDataAction_>=0)){
+            int loads=0;
+            for(const auto& url:icons){
+                if(loads>=kLoadsPerFrame)break;
+                const size_t before=textures_.size();
+                prepareImageTexture(url,"app");
+                if(textures_.size()>before)++loads;
+            }
+        }
+        return;
+    }
 
     if(state_.mode==UiMode::FULL_CATALOG){
         const int first=std::max(0, state_.catalogScrollRow*3);

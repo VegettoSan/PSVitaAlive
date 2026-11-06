@@ -21,6 +21,7 @@ struct InstalledDataApp {
     std::string appId;
     std::string titleId;
     std::string name;
+    std::string icon; // existing catalog icon URL; loaded lazily by ImageCache
     // Inputs are compact, extracted from links[].installed_paths on demand.
     std::vector<std::string> roots;
     bool unresolved = false; // metadata missing, conflicting or ambiguous
@@ -67,11 +68,22 @@ inline uint32_t installedDataProgressPercent(uint32_t done, uint32_t total) {
         100ULL * (done > total ? total : done) / total) : 100;
 }
 
+// A percentage is only meaningful after a complete, safe pre-count.
+inline uint32_t installedDataDeletionPercent(uint64_t removed, uint64_t total,
+                                             bool finished = false) {
+    if (!total) return finished ? 100u : 0u;
+    const uint64_t done = removed > total ? total : removed;
+    const uint32_t pct = static_cast<uint32_t>(done * 100ULL / total);
+    // Do not claim 100% until the entire deletion is verified successful.
+    return finished ? pct : (pct >= 100u ? 99u : pct);
+}
+
 // Per-operation counters. UI reads atomics, worker updates them.
 // For package uninstall, Sony's PromoterUtility exposes state but no file
 // percentage. Never invent one; show indeterminate progress.
 struct InstalledDataOperationProgress {
-    std::atomic<uint32_t> phase{0}; // 1 VPK, 2 data, 3 verifying, 4 done
+    std::atomic<uint32_t> phase{0}; // 1 VPK, 2 data, 3 verifying, 4 done, 5 pre-count
+    std::atomic<uint64_t> entriesTotal{0}; // files + folders to remove
     std::atomic<uint32_t> rootsTotal{0};
     std::atomic<uint32_t> rootsCompleted{0};
     std::atomic<uint32_t> filesRemoved{0};
@@ -79,6 +91,7 @@ struct InstalledDataOperationProgress {
     std::atomic<uint32_t> promoterPolls{0};
     void reset() {
         phase.store(0, std::memory_order_relaxed);
+        entriesTotal.store(0, std::memory_order_relaxed);
         rootsTotal.store(0, std::memory_order_relaxed);
         rootsCompleted.store(0, std::memory_order_relaxed);
         filesRemoved.store(0, std::memory_order_relaxed);
@@ -104,6 +117,11 @@ public:
     static void invalidateCachedTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.
     static uint64_t knownExternalBytes(const InstalledDataSnapshot& snapshot);
+    // Preflight ownership and count every file/folder without storing a file list.
+    // Must succeed BEFORE package uninstall when the user selected both.
+    static bool prepareExternalRemoval(const InstalledDataSnapshot& snapshot,
+                                       const std::string& titleId,
+                                       InstalledDataOperationProgress* progress);
     // Revalidates the catalog snapshot and every path before deletion.
     // Never attempts ux0:app/ or PSVitaAlive-owned directories.
     static bool removeExternal(const InstalledDataSnapshot& snapshot,

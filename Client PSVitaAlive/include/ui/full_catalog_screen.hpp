@@ -585,6 +585,7 @@ private:
     int installedDataResultAction_ = -1;
     std::atomic<bool> installedDataVpkOk_{false};
     std::atomic<bool> installedDataFilesOk_{false};
+    std::atomic<bool> installedDataPreflightFailed_{false};
     ::psvitaalive::storage::InstalledDataOperationProgress installedDataOpProgress_;
     std::string installedDataTargetId_;
     std::string installedDataPreferredId_;

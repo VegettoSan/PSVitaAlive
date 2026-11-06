@@ -175,6 +175,41 @@ void uniqueRoots(std::vector<std::string>& roots) {
     }
     roots.swap(compact);
 }
+// A catalog declaration alone does not prove ownership. Only another
+// installed package claiming an overlapping root blocks a destructive action.
+bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
+                             const std::string& titleId,
+                             const InstalledDataApp*& target) {
+    target = nullptr;
+    if (!validInstalledTitleId(titleId)) return false;
+    for (const auto& app : snapshot.apps)
+        if (app.titleId == titleId) { target = &app; break; }
+    if (!target || target->blocked || target->unresolved ||
+        target->paths.empty()) return false;
+    bool anyPresent = false;
+    for (const auto& p : target->paths) {
+        if (!safeExternalDataPath(p.path)) return false;
+        if (!p.exists) continue;
+        if (!exists(p.path)) return false; // snapshot may have become stale
+        anyPresent = true;
+        for (const auto& other : snapshot.apps) {
+            if (other.titleId == titleId ||
+                !validInstalledTitleId(other.titleId)) continue;
+            const bool installed = exists(std::string("ux0:app/") +
+                                          other.titleId + "/sce_sys/param.sfo");
+            if (!installed) continue;
+            for (const auto& q : other.paths) {
+                if (safeExternalDataPath(q.path) &&
+                    installedDataActiveCollision(p.path, q.path, installed)) {
+                    diagnostics::log("[InstalledData] refusing to delete data used "
+                                     "by another installed VPK: " + other.titleId);
+                    return false;
+                }
+            }
+        }
+    }
+    return anyPresent;
+}
 } // namespace
 
 InstalledDataSnapshot InstalledDataManager::scan(
@@ -375,48 +410,37 @@ void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
     InstalledDirectoryCache::invalidateTitle(titleId);
 }
 
+bool InstalledDataManager::prepareExternalRemoval(
+    const InstalledDataSnapshot& snapshot, const std::string& titleId,
+    InstalledDataOperationProgress* progress) {
+    const InstalledDataApp* target = nullptr;
+    // Perform the same destructive-operation checks before counting anything.
+    if (!validateExternalRemoval(snapshot, titleId, target)) return false;
+    if (progress) progress->phase.store(5, std::memory_order_release);
+    uint64_t total = 0;
+    for (const auto& path : target->paths) {
+        if (!path.exists) continue;
+        SceIoStat st{};
+        if (!exists(path.path, &st)) return false;
+        uint32_t entries = 0;
+        uint64_t bytesIgnored = 0;
+        ScanContext ctx; // no time budget for the complete pre-delete count
+        if (!scanTree(path.path, st, 0, entries, bytesIgnored, ctx))
+            return false; // do not start a deletion using an incomplete count
+        total = sum(total, entries);
+    }
+    if (!total) return false;
+    if (progress)
+        progress->entriesTotal.store(total, std::memory_order_release);
+    return true;
+}
+
 bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                                           const std::string& titleId,
                                           InstalledDataOperationProgress* progress) {
-    // Other apps may have incomplete size scans; their path *claims* are
-    // still checked below. Only the target must be fully verified.
-    if (!validInstalledTitleId(titleId)) return false;
     const InstalledDataApp* target = nullptr;
-    for (const auto& app : snapshot.apps)
-        if (app.titleId == titleId) { target = &app; break; }
-    if (!target || target->blocked || target->unresolved || target->paths.empty())
-        return false;
-    // Only an *actually installed* second VPK makes a catalog collision
-    // evidence of shared usage. Do not block because an uninstalled project
-    // happens to declare a coincident root (e.g. ux0:data/ctr).
-    // Still protect users if two installed apps claim overlapping folders.
-    for (const auto& p : target->paths) {
-        // Sizing may have timed out. Deletion rechecks the root and child
-        // paths directly; a size estimate is not a deletion prerequisite.
-        if (!safeExternalDataPath(p.path)) return false;
-        for (const auto& other : snapshot.apps) {
-            if (other.titleId == titleId ||
-                !validInstalledTitleId(other.titleId)) continue;
-            // Check the other package directly, not the cached list.
-            // A metadata-only coincidence with an uninstalled VPK is NOT
-            // enough to claim a path is in use by two applications.
-            const bool installed = exists(std::string("ux0:app/") +
-                                          other.titleId + "/sce_sys/param.sfo");
-            if (!installed) continue;
-            bool overlapping = false;
-            for (const auto& q : other.paths)
-                if (safeExternalDataPath(q.path) &&
-                    installedDataActiveCollision(p.path, q.path, installed)) {
-                    overlapping = true;
-                    break;
-                }
-            if (overlapping) {
-                diagnostics::log("[InstalledData] refusing to delete data used "
-                                 "by another installed VPK: " + other.titleId);
-                return false;
-            }
-        }
-    }
+    // Recheck ownership and existence AFTER pre-count and package operations.
+    if (!validateExternalRemoval(snapshot, titleId, target)) return false;
     if (progress) {
         uint32_t roots = 0;
         for (const auto& path : target->paths)
