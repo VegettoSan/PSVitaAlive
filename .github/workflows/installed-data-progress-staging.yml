@@ -1,0 +1,66 @@
+name: Validate faster installed data scanning
+on:
+  push:
+    branches:
+      - work/fix-installed-data-scan-progress-20261105
+    paths:
+      - .github/workflows/installed-data-progress-staging.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply checked large-file UI patch
+        run: |
+          python3 scripts/apply_installed_data_scan_ui_patch.py
+          git diff --check
+          grep -q 'installed Game/Data Files, first section' 'Client PSVitaAlive/source/ui/full_catalog_screen.cpp'
+      - name: Test installed-data safety and progress arithmetic
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_installed_data_policy.cpp -o /tmp/installed-data-policy
+          /tmp/installed-data-policy
+      - name: Verify installed-data progress translations
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          keys = ("ID_APPS_PROGRESS", "ID_FOLDERS_FOUND", "ID_FOLDERS_READ",
+                  "ID_FILES_READ", "ID_CANCEL_SCAN", "ID_CANCELLING",
+                  "ID_DISCOVERING", "ID_SCAN_LIMIT_HINT", "ID_UNKNOWN_SIZE",
+                  "ID_CANCELLED")
+          langs=("en","es","fr","de","it","pt-BR","pt-PT","ru")
+          for lang in langs:
+              p=Path(f"Client PSVitaAlive/assets/lang/{lang}.lang")
+              found={s.split("=",1)[0] for s in p.read_text(encoding="utf-8").splitlines() if "=" in s}
+              assert not set(keys)-found, (lang, sorted(set(keys)-found))
+          print("Progress translations validated")
+          PY
+      - name: Compile PS Vita VPK
+        run: |
+          docker pull vitasdk/vitasdk:2026.08
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w "/workspace/Client PSVitaAlive" \
+            vitasdk/vitasdk:2026.08 \
+            bash -lc 'set -euo pipefail; cmake -S . -B build-ci -DCMAKE_BUILD_TYPE=Release; cmake --build build-ci --parallel 2; test -s build-ci/PSVitaAlive.vpk'
+      - name: Upload smoke-test VPK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-scanning-progress-staging
+          path: Client PSVitaAlive/build-ci/PSVitaAlive.vpk
+          if-no-files-found: error
+      - name: Commit validated UI and remove staging helpers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm scripts/apply_installed_data_scan_ui_patch.py
+          rm .github/workflows/installed-data-progress-staging.yml
+          git add -A
+          git commit -m "Apply validated faster Game/Data Files scan UI patch"
+          git push origin HEAD:work/fix-installed-data-scan-progress-20261105
