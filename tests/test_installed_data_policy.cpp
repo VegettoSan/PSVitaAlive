@@ -22,6 +22,27 @@ int main() {
     assert(installedPathsOverlap("ux0:data/game", "ux0:data/game"));
     assert(installedPathsOverlap("ux0:data/game", "ux0:data/game/saves"));
     assert(!installedPathsOverlap("ux0:data/game", "ux0:data/game2"));
+    // Catalog overlap alone does not mean data is shared by installed apps.
+    assert(!installedDataActiveCollision(
+        "ux0:data/ctr", "ux0:data/ctr", false));
+    assert(installedDataActiveCollision(
+        "ux0:data/ctr", "ux0:data/ctr", true));
+    assert(installedDataActiveCollision(
+        "ux0:data/game", "ux0:data/game/saves", true));
+    assert(!installedDataActiveCollision(
+        "ux0:data/game", "ux0:data/game2", true));
+    // Nested game-file entries are NOT catalog roots. Legitimate 'temp',
+    // 'tai' and 'sce_sys' directories must not break size measurement.
+    for (const auto& name : {"temp", "tmp", "tai", "sce_sys",
+                             "app", "psvitaalive", "data.dat"})
+        assert(validInstalledChildName(name));
+    for (const auto& bad : {"", ".", "..", "x/y", "bad\\name",
+                            "bad:name", "x\n"})
+        assert(!validInstalledChildName(bad));
+    assert(!validInstalledChildName(std::string(256, 'A')));
+    assert(validInstalledChildName(std::string(255, 'A')));
+    assert(!safeExternalDataPath("ux0:data/psvitaalive"));
+    assert(!safeExternalDataPath("ux0:data/tai"));
     assert(installedDataProgressPercent(0, 5) == 0);
     assert(installedDataProgressPercent(1, 5) == 20);
     assert(installedDataProgressPercent(3, 5) == 60);

@@ -32,9 +32,7 @@ bool exists(const std::string& path, SceIoStat* out=nullptr) {
     if (out) *out = st;
     return true;
 }
-bool safeComponent(const std::string& n) {
-    return validInstalledRelativePath(n) && n.find('/') == std::string::npos;
-}
+// Each child name is validated independently of the protected root policy.
 // Root directory timestamp is a *hint*. A nested write may not update it.
 // Therefore any cached bytes are explicitly marked historical in the UI.
 uint64_t rootFingerprint(const SceIoStat& st) {
@@ -78,7 +76,8 @@ struct ScanContext {
 bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
               uint32_t& entries, uint64_t& bytes, ScanContext& ctx) {
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
-        !safeExternalDataPath(p) || ctx.shouldStop()) return false;
+        (depth == 0 && !safeExternalDataPath(p)) ||
+        ctx.shouldStop()) return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         ctx.fileSeen();
         if (st.st_size > 0) bytes = sum(bytes, static_cast<uint64_t>(st.st_size));
@@ -93,7 +92,7 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     while ((rc = sceIoDread(d, &entry)) > 0) {
         if (std::strcmp(entry.d_name, ".") == 0 ||
             std::strcmp(entry.d_name, "..") == 0) continue;
-        if (!safeComponent(entry.d_name) || entries >= MAX_ENTRIES ||
+        if (!validInstalledChildName(entry.d_name) || entries >= MAX_ENTRIES ||
             ((entries & 63u) == 0u && ctx.shouldStop())) {
             complete = false;
             break;
@@ -124,8 +123,8 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
 }
 bool eraseTree(const std::string& path, unsigned depth,
                uint32_t& count, InstalledDataOperationProgress* progress) {
-    if (!safeExternalDataPath(path) || depth > MAX_DEPTH ||
-        ++count > MAX_ENTRIES) return false;
+    if ((depth == 0 && !safeExternalDataPath(path)) ||
+        depth > MAX_DEPTH || ++count > MAX_ENTRIES) return false;
     SceIoStat st{};
     if (!exists(path, &st)) return true;
     if (!(st.st_mode & SCE_S_IFDIR)) {
@@ -145,7 +144,7 @@ bool eraseTree(const std::string& path, unsigned depth,
         while ((rc = sceIoDread(d, &e)) > 0) {
             if (std::strcmp(e.d_name, ".") == 0 ||
                 std::strcmp(e.d_name, "..") == 0) continue;
-            if (!safeComponent(e.d_name)) { ok = false; break; }
+            if (!validInstalledChildName(e.d_name)) { ok = false; break; }
             found = true;
             if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress)) {
                 ok = false; break;
@@ -247,16 +246,11 @@ InstalledDataSnapshot InstalledDataManager::scan(
         }
         if (app.unresolved) app.blocked = true;
     }
-    // Cross-app conflicts must be checked for every declaration, including
-    // uninstalled apps. Never rely solely on a filtered UI list for safety.
-    for (size_t i = 0; i < result.apps.size(); ++i)
-        for (size_t j = i+1; j < result.apps.size(); ++j)
-            for (auto& a : result.apps[i].paths)
-                for (auto& b : result.apps[j].paths)
-                    if (installedPathsOverlap(a.path, b.path)) {
-                        a.shared = b.shared = true;
-                        result.apps[i].blocked = result.apps[j].blocked = true;
-                    }
+    // Do not mark a Game Files directory as shared/protected simply
+    // because another catalog entry declares the same path. Declarations
+    // are not evidence of multiple installations. In particular this must
+    // NEVER affect read-only measurement. Destructive actions have their
+    // own real-installation check in removeExternal().
 
     if (progress) progress->phase.store(2, std::memory_order_release);
     // Phase 2 is deliberately OPTIONAL. An ordinary menu open only performs
@@ -267,7 +261,8 @@ InstalledDataSnapshot InstalledDataManager::scan(
         if (!onlyTitleId.empty() && app.titleId != onlyTitleId) continue;
         if (ctx.shouldStop()) {
             result.complete = false;
-            app.blocked = true;
+            // A read-only size timeout cannot make a verified root unsafe.
+            // Keep deletion safety and measurement completeness independent.
             for (auto& path : app.paths) path.complete = false;
             continue;
         }
@@ -294,16 +289,12 @@ InstalledDataSnapshot InstalledDataManager::scan(
                 path.sizeKnown = path.complete;
                 path.sizeCached = false;
             }
-            if (!path.complete) {
-                result.complete = false;
-                app.blocked = true;
-            }
+            if (!path.complete) result.complete = false;
             if (path.sizeKnown) app.bytes = sum(app.bytes, path.bytes);
             if (ctx.stopped) break;
         }
         if (ctx.stopped) {
             result.complete = false;
-            app.blocked = true;
             for (auto& path : app.paths)
                 if (path.exists && measureSizes && !path.sizeKnown)
                     path.complete = false;
@@ -395,14 +386,35 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
         if (app.titleId == titleId) { target = &app; break; }
     if (!target || target->blocked || target->unresolved || target->paths.empty())
         return false;
-    // Don't trust only snapshot flags: validate collisions immediately before
-    // deleting. Source catalog changes require a fresh UI scan by the caller.
+    // Only an *actually installed* second VPK makes a catalog collision
+    // evidence of shared usage. Do not block because an uninstalled project
+    // happens to declare a coincident root (e.g. ux0:data/ctr).
+    // Still protect users if two installed apps claim overlapping folders.
     for (const auto& p : target->paths) {
-        if (!safeExternalDataPath(p.path) || !p.complete) return false;
+        // Sizing may have timed out. Deletion rechecks the root and child
+        // paths directly; a size estimate is not a deletion prerequisite.
+        if (!safeExternalDataPath(p.path)) return false;
         for (const auto& other : snapshot.apps) {
-            if (other.titleId == titleId) continue;
+            if (other.titleId == titleId ||
+                !validInstalledTitleId(other.titleId)) continue;
+            // Check the other package directly, not the cached list.
+            // A metadata-only coincidence with an uninstalled VPK is NOT
+            // enough to claim a path is in use by two applications.
+            const bool installed = exists(std::string("ux0:app/") +
+                                          other.titleId + "/sce_sys/param.sfo");
+            if (!installed) continue;
+            bool overlapping = false;
             for (const auto& q : other.paths)
-                if (installedPathsOverlap(p.path, q.path)) return false;
+                if (safeExternalDataPath(q.path) &&
+                    installedDataActiveCollision(p.path, q.path, installed)) {
+                    overlapping = true;
+                    break;
+                }
+            if (overlapping) {
+                diagnostics::log("[InstalledData] refusing to delete data used "
+                                 "by another installed VPK: " + other.titleId);
+                return false;
+            }
         }
     }
     if (progress) {

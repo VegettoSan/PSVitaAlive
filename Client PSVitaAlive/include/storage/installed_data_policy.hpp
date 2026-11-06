@@ -58,4 +58,24 @@ inline bool installedPathsOverlap(const std::string& a,
          b[a.size()] == '/');
 }
 
+// Directory-entry names are *inside* an already-validated ux0:data/ root.
+// Do not treat nested 'tai', 'temp' or 'sce_sys' as protected root names:
+// those are legitimate child filenames inside many game-data archives.
+inline bool validInstalledChildName(const std::string& name) {
+    if (name.empty() || name.size() > 255 ||
+        name == "." || name == "..") return false;
+    for (unsigned char c : name)
+        if (c < 32 || c == 127 || c == '/' || c == '\\' || c == ':')
+            return false;
+    return true;
+}
+
+// A catalog collision by itself is NOT proof that two installed apps share
+// data. This predicate is only part of the destructive-operation preflight.
+inline bool installedDataActiveCollision(const std::string& target,
+                                         const std::string& other,
+                                         bool otherInstalled) {
+    return otherInstalled && installedPathsOverlap(target, other);
+}
+
 }} // namespace psvitaalive::storage
