@@ -3593,6 +3593,7 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
 void FullCatalogScreen::rebuildStorageRows() {
     storageRows_.clear();
     storageRows_.reserve(storageSnapshot_.items.size() + 4);
+    storageRows_.push_back({5,-1}); // installed Game/Data Files, first section
     storageRows_.push_back({0,-1}); // temporary files
     for(size_t i=0;i<storageSnapshot_.items.size();++i)
         if(!storageSnapshot_.items[i].savedZip)
@@ -3603,7 +3604,6 @@ void FullCatalogScreen::rebuildStorageRows() {
             storageRows_.push_back({4,static_cast<int>(i)});
     storageRows_.push_back({2,-1}); // catalog, read-only
     storageRows_.push_back({3,-1}); // images, read-only
-    storageRows_.push_back({5,-1}); // installed Homebrew data, separate page
     if(storageFocus_>=static_cast<int>(storageRows_.size()))
         storageFocus_=std::max(0,static_cast<int>(storageRows_.size())-1);
     clampStorageScroll();
@@ -4818,7 +4818,13 @@ void FullCatalogScreen::handleTouch() {
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
             touchDown_=touchMoved_=false;
-            if(moved||installedDataWorker_>=0)return;
+            if(installedDataWorker_>=0){
+                if(!moved && installedDataAction_==-1 && py>oy+h-55)
+                    installedDataScanProgress_.cancelRequested.store(
+                        true,std::memory_order_release);
+                return;
+            }
+            if(moved)return;
             if(installedDataConfirm_){
                 if(hit(px,py,ox+30,oy+383,w-60,57))
                     activateInstalledDataSelection();
