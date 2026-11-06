@@ -575,8 +575,17 @@ private:
     bool installedDataConfirm_ = false;
     int installedDataListFocus_ = 0;
     int installedDataScroll_ = 0;
-    int installedDataActionFocus_ = 0; // 0 VPK, 1 data, 2 both, 3 measure, 4 back
-    int installedDataAction_ = -1; // -1 scan, 0 package, 1 external, 2 both
+    int installedDataActionFocus_ = 0; // 0 app, 1 Game/Data Files, 2 all
+    int installedDataAction_ = -1; // -3 background measure, -2 manual size, -1 discovery, 0..2 delete
+    bool installedDataAutoEnabled_ = false;
+    bool installedDataAutoClosePending_ = false;
+    std::unordered_set<std::string> installedDataAutoAttempted_;
+    ::psvitaalive::storage::InstalledDataApp installedDataAutoResult_;
+    bool installedDataResultVisible_ = false;
+    int installedDataResultAction_ = -1;
+    std::atomic<bool> installedDataVpkOk_{false};
+    std::atomic<bool> installedDataFilesOk_{false};
+    ::psvitaalive::storage::InstalledDataOperationProgress installedDataOpProgress_;
     std::string installedDataTargetId_;
     std::string installedDataPreferredId_;
     std::string installedDataScanFocusId_; // rescan one incomplete row
@@ -594,6 +603,8 @@ private:
     void closeInstalledDataMenu();
     void startInstalledDataOperation(int action);
     void pollInstalledDataOperation();
+    void startNextInstalledDataAutoMeasure();
+    void finishInstalledDataResult();
     void activateInstalledDataSelection();
     void drawInstalledDataOverlay();
     void handleInstalledDataInput(uint32_t pressed, uint32_t nav);

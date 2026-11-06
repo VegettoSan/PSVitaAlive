@@ -39,4 +39,23 @@ int main() {
     live.reset();
     assert(!live.cancelRequested.load());
     assert(live.appsTotal.load() == 0);
+    // Real progress uses completed roots, not an inferred file percentage.
+    InstalledDataOperationProgress operation;
+    operation.phase.store(2);
+    operation.rootsTotal.store(4);
+    operation.rootsCompleted.store(1);
+    operation.filesRemoved.store(527);
+    operation.foldersRemoved.store(18);
+    assert(installedDataProgressPercent(operation.rootsCompleted.load(),
+                                       operation.rootsTotal.load()) == 25);
+    assert(operation.filesRemoved.load() == 527);
+    operation.promoterPolls.fetch_add(1);
+    assert(operation.promoterPolls.load() == 1);
+    operation.reset();
+    assert(operation.phase.load() == 0);
+    assert(operation.rootsTotal.load() == 0);
+    assert(operation.rootsCompleted.load() == 0);
+    assert(operation.filesRemoved.load() == 0);
+    assert(operation.foldersRemoved.load() == 0);
+    assert(operation.promoterPolls.load() == 0);
 }

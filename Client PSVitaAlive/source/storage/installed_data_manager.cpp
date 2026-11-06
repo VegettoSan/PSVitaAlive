@@ -123,12 +123,17 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     return complete;
 }
 bool eraseTree(const std::string& path, unsigned depth,
-               uint32_t& count) {
+               uint32_t& count, InstalledDataOperationProgress* progress) {
     if (!safeExternalDataPath(path) || depth > MAX_DEPTH ||
         ++count > MAX_ENTRIES) return false;
     SceIoStat st{};
     if (!exists(path, &st)) return true;
-    if (!(st.st_mode & SCE_S_IFDIR)) return sceIoRemove(path.c_str()) >= 0;
+    if (!(st.st_mode & SCE_S_IFDIR)) {
+        const bool ok = sceIoRemove(path.c_str()) >= 0;
+        if (ok && progress)
+            progress->filesRemoved.fetch_add(1, std::memory_order_relaxed);
+        return ok;
+    }
     // Removing during enumeration may skip entries; reopen until empty.
     for (unsigned pass = 0; pass < 32; ++pass) {
         const SceUID d = sceIoDopen(path.c_str());
@@ -142,13 +147,18 @@ bool eraseTree(const std::string& path, unsigned depth,
                 std::strcmp(e.d_name, "..") == 0) continue;
             if (!safeComponent(e.d_name)) { ok = false; break; }
             found = true;
-            if (!eraseTree(path + "/" + e.d_name, depth+1, count)) {
+            if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress)) {
                 ok = false; break;
             }
         }
         sceIoDclose(d);
         if (rc < 0 || !ok) return false;
-        if (!found) return sceIoRmdir(path.c_str()) >= 0;
+        if (!found) {
+            const bool ok = sceIoRmdir(path.c_str()) >= 0;
+            if (ok && progress)
+                progress->foldersRemoved.fetch_add(1, std::memory_order_relaxed);
+            return ok;
+        }
     }
     return false;
 }
@@ -375,7 +385,8 @@ void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
 }
 
 bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
-                                          const std::string& titleId) {
+                                          const std::string& titleId,
+                                          InstalledDataOperationProgress* progress) {
     // Other apps may have incomplete size scans; their path *claims* are
     // still checked below. Only the target must be fully verified.
     if (!validInstalledTitleId(titleId)) return false;
@@ -394,6 +405,13 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                 if (installedPathsOverlap(p.path, q.path)) return false;
         }
     }
+    if (progress) {
+        uint32_t roots = 0;
+        for (const auto& path : target->paths)
+            if (path.exists) ++roots;
+        progress->phase.store(2, std::memory_order_release);
+        progress->rootsTotal.store(roots, std::memory_order_release);
+    }
     bool removed = true;
     // After any destructive attempt the old size must never be displayed
     // again, even when a partial filesystem deletion fails.
@@ -401,15 +419,19 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
     for (const auto& path : target->paths) {
         if (!path.exists) continue;
         uint32_t count = 0;
-        if (!eraseTree(path.path, 0, count)) {
+        if (!eraseTree(path.path, 0, count, progress)) {
             diagnostics::log("[InstalledData] unable to remove " + path.path);
             removed = false;
+        } else if (progress) {
+            progress->rootsCompleted.fetch_add(1, std::memory_order_release);
         }
     }
     return removed;
 }
 
-bool InstalledDataManager::uninstallPackage(const std::string& titleId) {
+bool InstalledDataManager::uninstallPackage(
+    const std::string& titleId, InstalledDataOperationProgress* progress) {
+    if (progress) progress->phase.store(1, std::memory_order_release);
     if (!validInstalledTitleId(titleId) || titleId == CLIENT_TID) return false;
     SceIoStat st{};
     if (!exists(std::string("ux0:app/") + titleId + "/sce_sys/param.sfo", &st))
@@ -424,9 +446,12 @@ bool InstalledDataManager::uninstallPackage(const std::string& titleId) {
     for (unsigned i=0; i<2000 && del >= 0; ++i) {
         state = 1;
         if (scePromoterUtilityGetState(&state) < 0) break;
+        if (progress)
+            progress->promoterPolls.fetch_add(1, std::memory_order_relaxed);
         if (state == 0) { idle = true; break; }
         sceKernelDelayThread(10000);
     }
+    if (progress) progress->phase.store(3, std::memory_order_release);
     scePromoterUtilityExit();
     // Don't announce success merely because an API call was accepted.
     return del >= 0 && idle &&

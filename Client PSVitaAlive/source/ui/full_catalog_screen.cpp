@@ -4805,7 +4805,7 @@ void FullCatalogScreen::handleTouch() {
             }else{
                 if(std::abs(px-touchStartX_)>14||std::abs(py-touchStartY_)>14)
                     touchMoved_=true;
-                if(touchMoved_&&installedDataWorker_<0&&!installedDataDetail_&&
+                if(touchMoved_&&(installedDataWorker_<0||installedDataAction_==-3)&&!installedDataDetail_&&
                    !installedDataConfirm_&&std::abs(touchLastY_-py)>=23){
                     const int step=touchLastY_>py?1:-1;
                     installedDataScroll_=std::max(0,std::min(
@@ -4818,13 +4818,18 @@ void FullCatalogScreen::handleTouch() {
             const int px=touchStartX_,py=touchStartY_;
             const bool moved=touchMoved_;
             touchDown_=touchMoved_=false;
-            if(installedDataWorker_>=0){
+            if(installedDataWorker_>=0 && installedDataAction_!=-3){
                 if(!moved && installedDataAction_<0 && py>oy+h-55)
                     installedDataScanProgress_.cancelRequested.store(
                         true,std::memory_order_release);
                 return;
             }
             if(moved)return;
+            if(installedDataResultVisible_){
+                if(hit(px,py,ox+30,oy+381,w-60,62) || py>oy+h-55)
+                    finishInstalledDataResult();
+                return;
+            }
             if(installedDataConfirm_){
                 if(hit(px,py,ox+30,oy+383,w-60,57))
                     activateInstalledDataSelection();
@@ -4840,8 +4845,14 @@ void FullCatalogScreen::handleTouch() {
                     }
                 }else if(py>oy+h-55)closeInstalledDataMenu();
             }else{
-                for(int i=0;i<5;i++){
-                    if(hit(px,py,ox+24+i*164,oy+378,154,52)){
+                if(hit(px,py,ox+24,oy+341,w-48,28)){
+                    if(installedDataWorker_>=0)
+                        showToast(::psvitaalive::L("ID_SCAN_FINISHING"),2800);
+                    else startInstalledDataOperation(-2);
+                    return;
+                }
+                for(int i=0;i<3;i++){
+                    if(hit(px,py,ox+24+i*272,oy+382,260,61)){
                         installedDataActionFocus_=i;
                         activateInstalledDataSelection();
                         break;
