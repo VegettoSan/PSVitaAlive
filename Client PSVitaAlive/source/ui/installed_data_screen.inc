@@ -76,7 +76,7 @@ void FullCatalogScreen::rebuildInstalledDataVisibleRows() {
     for (size_t i = 0; i < installedDataVisibleRows_.size(); ++i)
         if (installedDataSnapshot_.apps[installedDataVisibleRows_[i]].titleId ==
             installedDataPreferredId_) { installedDataListFocus_ = static_cast<int>(i); break; }
-    installedDataScroll_ = std::max(0, installedDataListFocus_ - 3);
+    installedDataScroll_ = std::max(0, installedDataListFocus_ - 1);
 }
 void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
                                                const std::string& titleId) {
@@ -389,7 +389,7 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             if (installedDataSnapshot_.apps[installedDataVisibleRows_[i]].titleId ==
                 focusId) {
                 installedDataListFocus_ = static_cast<int>(i);
-                installedDataScroll_ = std::max(0, installedDataListFocus_ - 3);
+                installedDataScroll_ = std::max(0, installedDataListFocus_ - 1);
                 break;
             }
     }
@@ -519,14 +519,14 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
         const int rows = static_cast<int>(installedDataVisibleRows_.size());
         if (nav & (SCE_CTRL_UP | SCE_CTRL_LEFT))
             installedDataListFocus_ = std::max(0, installedDataListFocus_ -
-                ((nav & SCE_CTRL_LEFT) ? 5 : 1));
+                ((nav & SCE_CTRL_LEFT) ? 3 : 1));
         if (nav & (SCE_CTRL_DOWN | SCE_CTRL_RIGHT))
             installedDataListFocus_ = std::min(std::max(0, rows - 1),
-                installedDataListFocus_ + ((nav & SCE_CTRL_RIGHT) ? 5 : 1));
+                installedDataListFocus_ + ((nav & SCE_CTRL_RIGHT) ? 3 : 1));
         if (installedDataListFocus_ < installedDataScroll_)
             installedDataScroll_ = installedDataListFocus_;
-        if (installedDataListFocus_ >= installedDataScroll_ + 5)
-            installedDataScroll_ = installedDataListFocus_ - 4;
+        if (installedDataListFocus_ >= installedDataScroll_ + 3)
+            installedDataScroll_ = installedDataListFocus_ - 2;
     }
     if (pressed & SCE_CTRL_CROSS) activateInstalledDataSelection();
 }
