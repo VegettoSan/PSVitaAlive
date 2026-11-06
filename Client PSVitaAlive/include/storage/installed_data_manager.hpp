@@ -67,6 +67,26 @@ inline uint32_t installedDataProgressPercent(uint32_t done, uint32_t total) {
         100ULL * (done > total ? total : done) / total) : 100;
 }
 
+// Per-operation counters. UI reads atomics, worker updates them.
+// For package uninstall, Sony's PromoterUtility exposes state but no file
+// percentage. Never invent one; show indeterminate progress.
+struct InstalledDataOperationProgress {
+    std::atomic<uint32_t> phase{0}; // 1 VPK, 2 data, 3 verifying, 4 done
+    std::atomic<uint32_t> rootsTotal{0};
+    std::atomic<uint32_t> rootsCompleted{0};
+    std::atomic<uint32_t> filesRemoved{0};
+    std::atomic<uint32_t> foldersRemoved{0};
+    std::atomic<uint32_t> promoterPolls{0};
+    void reset() {
+        phase.store(0, std::memory_order_relaxed);
+        rootsTotal.store(0, std::memory_order_relaxed);
+        rootsCompleted.store(0, std::memory_order_relaxed);
+        filesRemoved.store(0, std::memory_order_relaxed);
+        foldersRemoved.store(0, std::memory_order_relaxed);
+        promoterPolls.store(0, std::memory_order_relaxed);
+    }
+};
+
 class InstalledDataManager {
 public:
     // Empty onlyTitleId scans all Homebrew; a non-empty Title ID only visits
@@ -87,9 +107,11 @@ public:
     // Revalidates the catalog snapshot and every path before deletion.
     // Never attempts ux0:app/ or PSVitaAlive-owned directories.
     static bool removeExternal(const InstalledDataSnapshot& snapshot,
-                               const std::string& titleId);
+                               const std::string& titleId,
+                               InstalledDataOperationProgress* progress = nullptr);
     // Vita package manager only; no direct ux0:app recursive deletion.
-    static bool uninstallPackage(const std::string& titleId);
+    static bool uninstallPackage(const std::string& titleId,
+                                 InstalledDataOperationProgress* progress = nullptr);
 };
 
 }} // namespace psvitaalive::storage
