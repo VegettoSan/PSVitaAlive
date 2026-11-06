@@ -4819,7 +4819,7 @@ void FullCatalogScreen::handleTouch() {
             const bool moved=touchMoved_;
             touchDown_=touchMoved_=false;
             if(installedDataWorker_>=0){
-                if(!moved && installedDataAction_==-1 && py>oy+h-55)
+                if(!moved && installedDataAction_<0 && py>oy+h-55)
                     installedDataScanProgress_.cancelRequested.store(
                         true,std::memory_order_release);
                 return;
@@ -4840,8 +4840,8 @@ void FullCatalogScreen::handleTouch() {
                     }
                 }else if(py>oy+h-55)closeInstalledDataMenu();
             }else{
-                for(int i=0;i<4;i++){
-                    if(hit(px,py,ox+24+i*204,oy+378,195,52)){
+                for(int i=0;i<5;i++){
+                    if(hit(px,py,ox+24+i*164,oy+378,154,52)){
                         installedDataActionFocus_=i;
                         activateInstalledDataSelection();
                         break;
@@ -9632,6 +9632,11 @@ void FullCatalogScreen::installAllFinishReport(bool aborted) {
             }
         }
     }
+    // A successful Game/Data extraction may change files even if dr did
+    // not change. Invalidate ONLY the installed-directory index for it.
+    if (!aborted && installAllRevisionHasFiles_ && installAllRevisionFilesOk_)
+        ::psvitaalive::storage::InstalledDataManager::invalidateCachedTitle(
+            installAllJobItem_.titleId);
     // Record only if all selected Game/Data ZIP steps completed successfully.
     // The VPK receipt is independent, and no failed/cancelled data batch is marked current.
     if (!aborted && installAllRevisionHasFiles_ && installAllRevisionFilesOk_ &&

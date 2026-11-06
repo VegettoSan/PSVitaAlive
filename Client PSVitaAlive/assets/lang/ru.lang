@@ -794,3 +794,13 @@ ID_DISCOVERING=Поиск папок...
 ID_SCAN_LIMIT_HINT=Большие папки требуют времени; неполные данные защищены.
 ID_UNKNOWN_SIZE=Размер неизвестен
 ID_CANCELLED=Проверка отменена. Частичные результаты.
+
+# Persistent installed directories index and on-demand sizes
+ID_MEASURE_SIZE=Измерить размер
+ID_MEASURING=Подсчет файлов игры...
+ID_SIZE_PENDING=Не измерено
+ID_TOTAL_PARTIAL=Частично
+ID_LAST_MEASURED=Последний замер
+ID_CACHE_HINT=* Размеры сохранены; изменения VitaShell могут быть не учтены.
+ID_MEASURE_COMPLETE=Размер сохранен.
+ID_MEASURE_PARTIAL=Измерение не завершено; размер не сохранен.

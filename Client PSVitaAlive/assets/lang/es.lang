@@ -837,3 +837,13 @@ ID_DISCOVERING=Localizando carpetas declaradas...
 ID_SCAN_LIMIT_HINT=Las carpetas grandes pueden tardar; se protegen resultados parciales.
 ID_UNKNOWN_SIZE=Tamano pendiente
 ID_CANCELLED=Analisis cancelado. Resultados parciales.
+
+# Persistent installed directories index and on-demand sizes
+ID_MEASURE_SIZE=Medir tamaño
+ID_MEASURING=Midiendo datos del juego...
+ID_SIZE_PENDING=Sin calcular
+ID_TOTAL_PARTIAL=Parcial
+ID_LAST_MEASURED=Última medición
+ID_CACHE_HINT=* Tamaños guardados; los cambios con VitaShell podrían no detectarse.
+ID_MEASURE_COMPLETE=Medición guardada.
+ID_MEASURE_PARTIAL=Medición incompleta: no se guardó el tamaño.

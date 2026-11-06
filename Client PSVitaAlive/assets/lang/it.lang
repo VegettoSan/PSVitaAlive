@@ -794,3 +794,13 @@ ID_DISCOVERING=Ricerca delle cartelle...
 ID_SCAN_LIMIT_HINT=Cartelle grandi possono richiedere tempo; dati parziali protetti.
 ID_UNKNOWN_SIZE=Dimensione ignota
 ID_CANCELLED=Analisi annullata. Risultati parziali.
+
+# Persistent installed directories index and on-demand sizes
+ID_MEASURE_SIZE=Misura spazio
+ID_MEASURING=Misurazione dei dati...
+ID_SIZE_PENDING=Non misurato
+ID_TOTAL_PARTIAL=Parziale
+ID_LAST_MEASURED=Ultima misura
+ID_CACHE_HINT=* Misure salvate; modifiche con VitaShell potrebbero sfuggire.
+ID_MEASURE_COMPLETE=Misura salvata.
+ID_MEASURE_PARTIAL=Misura incompleta; dimensione non salvata.

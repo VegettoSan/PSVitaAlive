@@ -26,6 +26,8 @@ set(SOURCES
   source/storage/storage_manager.cpp
   source/storage/storage_maintenance.cpp
   source/storage/installed_data_manager.cpp
+  source/storage/installed_directory_cache.cpp
+  source/storage/installed_directory_codec.cpp
   source/network/http_client.cpp
   source/network/archive_service_probe.cpp
   source/network/parallel_archive_download.cpp
@@ -94,6 +96,17 @@ set_source_files_properties(
   source/diagnostic_logger.cpp
   PROPERTIES COMPILE_OPTIONS "-Os"
 )
+# PS Vita SCE ELF segments need spare space for vita-elf-create metadata.
+# The UI dispatcher is the largest translation unit. Optimize for footprint,
+# without affecting zlib/libzip or the independent extraction workers.
+set_source_files_properties(
+  source/ui/full_catalog_screen.cpp
+  source/storage/installed_data_manager.cpp
+  source/storage/installed_directory_cache.cpp
+  source/storage/installed_directory_codec.cpp
+  PROPERTIES COMPILE_OPTIONS "-Os"
+)
+
 set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_IMPL"
 )
