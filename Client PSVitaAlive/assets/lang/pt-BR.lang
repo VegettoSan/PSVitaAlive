@@ -782,3 +782,15 @@ ID_UNSAFE=Pasta desconhecida ou compartilhada.
 ID_SECTION=Dados Game/Homebrew instalados
 ID_SECTION_HINT=Abrir lista de apps e espaco usado
 ID_UNINSTALL_BUTTON=Desinstalar
+
+# Installed data scan progress
+ID_APPS_PROGRESS=Apps analisados:
+ID_FOLDERS_FOUND=Pastas encontradas:
+ID_FOLDERS_READ=Pastas analisadas:
+ID_FILES_READ=Arquivos verificados:
+ID_CANCEL_SCAN=Circulo: cancelar analise
+ID_CANCELLING=Cancelando analise...
+ID_DISCOVERING=Localizando pastas...
+ID_SCAN_LIMIT_HINT=Pastas grandes podem demorar; dados parciais ficam protegidos.
+ID_UNKNOWN_SIZE=Tamanho pendente
+ID_CANCELLED=Analise cancelada. Resultados parciais.

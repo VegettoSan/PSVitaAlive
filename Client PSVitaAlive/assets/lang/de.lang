@@ -782,3 +782,15 @@ ID_UNSAFE=Unsichere oder geteilte Daten.
 ID_SECTION=Installierte Homebrew-Spieldaten
 ID_SECTION_HINT=Ordnerliste und Speicherverbrauch anzeigen
 ID_UNINSTALL_BUTTON=Deinstallieren
+
+# Installed data scan progress
+ID_APPS_PROGRESS=Gepruefte Apps:
+ID_FOLDERS_FOUND=Ordner gefunden:
+ID_FOLDERS_READ=Ordner geprueft:
+ID_FILES_READ=Dateien geprueft:
+ID_CANCEL_SCAN=Kreis: Scan abbrechen
+ID_CANCELLING=Scan wird abgebrochen...
+ID_DISCOVERING=Ordner werden gesucht...
+ID_SCAN_LIMIT_HINT=Grosse Ordner brauchen Zeit; unvollstaendige Daten sind geschuetzt.
+ID_UNKNOWN_SIZE=Groesse offen
+ID_CANCELLED=Scan abgebrochen. Teilweise Ergebnisse.

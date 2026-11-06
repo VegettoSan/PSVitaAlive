@@ -579,6 +579,7 @@ private:
     int installedDataAction_ = -1; // -1 scan, 0 package, 1 external, 2 both
     std::string installedDataTargetId_;
     std::string installedDataPreferredId_;
+    std::string installedDataScanFocusId_; // rescan one incomplete row
     ::psvitaalive::storage::InstalledDataSnapshot installedDataSnapshot_;
     std::vector<::psvitaalive::storage::InstalledDataApp> installedDataCandidates_;
     std::vector<int> installedDataVisibleRows_; // only present packages/data
@@ -587,6 +588,7 @@ private:
     void rebuildInstalledDataVisibleRows();
     std::atomic<bool> installedDataWorkerDone_{false};
     std::atomic<bool> installedDataWorkerOk_{false};
+    ::psvitaalive::storage::InstalledDataScanProgress installedDataScanProgress_;
     SceUID installedDataWorker_ = -1;
     void openInstalledDataMenu(bool fromStorage, const std::string& preferredTitleId);
     void closeInstalledDataMenu();

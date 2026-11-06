@@ -782,3 +782,15 @@ ID_UNSAFE=Dossier ambigu ou protege.
 ID_SECTION=Donnees Game/Homebrew installees
 ID_SECTION_HINT=Afficher les fichiers et l'espace utilise
 ID_UNINSTALL_BUTTON=Desinstaller
+
+# Installed data scan progress
+ID_APPS_PROGRESS=Applications analysees :
+ID_FOLDERS_FOUND=Dossiers trouves :
+ID_FOLDERS_READ=Dossiers parcourus :
+ID_FILES_READ=Fichiers verifies :
+ID_CANCEL_SCAN=Cercle : annuler
+ID_CANCELLING=Annulation en cours...
+ID_DISCOVERING=Recherche des dossiers...
+ID_SCAN_LIMIT_HINT=Les gros dossiers prennent du temps ; suppression bloquee si incomplet.
+ID_UNKNOWN_SIZE=Taille inconnue
+ID_CANCELLED=Analyse annulee. Resultats partiels.

@@ -825,3 +825,15 @@ ID_UNSAFE=Unsafe/shared/unknown data: deletion blocked.
 ID_SECTION=Installed Homebrew Game/Data Files
 ID_SECTION_HINT=Open separate list to inspect used storage
 ID_UNINSTALL_BUTTON=Uninstall
+
+# Installed data scan progress
+ID_APPS_PROGRESS=Applications scanned:
+ID_FOLDERS_FOUND=Declared folders found:
+ID_FOLDERS_READ=Folders scanned:
+ID_FILES_READ=Files checked:
+ID_CANCEL_SCAN=Circle: cancel scan
+ID_CANCELLING=Cancelling scan...
+ID_DISCOVERING=Locating declared folders...
+ID_SCAN_LIMIT_HINT=Large folders may take longer; partial results are protected.
+ID_UNKNOWN_SIZE=Size pending
+ID_CANCELLED=Scan cancelled. Partial results shown.

@@ -782,3 +782,15 @@ ID_UNSAFE=Опасная или общая папка.
 ID_SECTION=Файлы Homebrew Game/Data
 ID_SECTION_HINT=Список игр и занятое место
 ID_UNINSTALL_BUTTON=Удалить
+
+# Installed data scan progress
+ID_APPS_PROGRESS=Проверено приложений:
+ID_FOLDERS_FOUND=Найдено папок:
+ID_FOLDERS_READ=Проверено папок:
+ID_FILES_READ=Проверено файлов:
+ID_CANCEL_SCAN=Круг: отменить проверку
+ID_CANCELLING=Отмена проверки...
+ID_DISCOVERING=Поиск папок...
+ID_SCAN_LIMIT_HINT=Большие папки требуют времени; неполные данные защищены.
+ID_UNKNOWN_SIZE=Размер неизвестен
+ID_CANCELLED=Проверка отменена. Частичные результаты.
