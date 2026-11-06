@@ -1,5 +1,6 @@
 #include "storage/installed_data_policy.hpp"
 #include "storage/installed_data_manager.hpp"
+#include "ui/installed_data_texture_policy.hpp"
 #include <cassert>
 #include <string>
 using namespace psvitaalive::storage;
@@ -68,6 +69,38 @@ int main() {
     assert(installedDataMoveAction(0, 1, true, false) == 0);
     assert(installedDataMoveAction(-1, 1, false, true) == 1);
     assert(installedDataMoveAction(-1, 1, false, false) == -1);
+
+    // GPU icon lifetime: dialog and catalog share the same path/texture.
+    // An icon loaded by the dialog but still visible on returning to the
+    // catalog must NOT be freed.
+    {
+        using ::psvitaalive::ui::installedDataExclusiveTextureKeys;
+        const std::unordered_set<std::string> introduced = {
+            "ux0:cache/app_only_data.png",
+            "ux0:cache/app_shared.png",
+            "ux0:cache/app_scrolled.png"
+        };
+        const std::unordered_set<std::string> neededByCatalog = {
+            "ux0:cache/app_shared.png",
+            "ux0:cache/app_preexisting.png"
+        };
+        const auto toRelease = installedDataExclusiveTextureKeys(
+            introduced, neededByCatalog);
+        assert(toRelease.size() == 2);
+        bool removedData = false, removedScrolled = false;
+        for (const auto& path : toRelease) {
+            assert(path != "ux0:cache/app_shared.png");
+            assert(path != "ux0:cache/app_preexisting.png");
+            removedData |= path == "ux0:cache/app_only_data.png";
+            removedScrolled |= path == "ux0:cache/app_scrolled.png";
+        }
+        assert(removedData && removedScrolled);
+        assert(installedDataExclusiveTextureKeys({}, neededByCatalog).empty());
+        assert(installedDataExclusiveTextureKeys(
+            introduced, introduced).empty());
+        assert(installedDataExclusiveTextureKeys(
+            {"ux0:cache/app_one.png"}, {}).size() == 1);
+    }
 
     // Percentage reflects confirmed file + folder deletions, NEVER roots.
     assert(installedDataDeletionPercent(0, 1000) == 0);

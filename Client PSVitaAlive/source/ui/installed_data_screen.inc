@@ -88,6 +88,9 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2800);
         return;
     }
+    // Scope only new GPU decodes. Textures shared with the catalog remain in
+    // its existing app-icon LRU; no duplicate textures are created.
+    installedDataIntroducedIconTextures_.clear();
     installedDataVisible_ = true;
     installedDataFromStorage_ = fromStorage;
     installedDataPreferredId_ = titleId;
@@ -123,6 +126,65 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     touchDown_ = touchMoved_ = false;
     startInstalledDataOperation(-1);
 }
+void FullCatalogScreen::releaseInstalledDataExclusiveTextures() {
+    // The catalog remains drawn behind this modal and is restored after exit.
+    // Keep precisely its currently needed icon paths, including the selected
+    // detail icon, regardless of which view originally decoded the texture.
+    std::unordered_set<std::string> catalogKeep;
+    if (imageCache_) {
+        const auto& view = catalogView();
+        auto keepItem = [&](int index) {
+            if (index < 0 || index >= static_cast<int>(view.size())) return;
+            const auto& item = view[static_cast<size_t>(index)];
+            const std::string& url = !item.icon.empty() ? item.icon : item.cover;
+            if (!url.empty()) {
+                const std::string path = imageCache_->pathFor(url, "app");
+                if (!path.empty()) catalogKeep.insert(path);
+            }
+        };
+        if (state_.mode == UiMode::FULL_CATALOG) {
+            const int first = std::max(0, state_.catalogScrollRow * 3);
+            const int last = std::min(static_cast<int>(view.size()), first + 9);
+            for (int i = first; i < last; ++i) keepItem(i);
+        } else if (state_.mode == UiMode::OPENING_DETAIL ||
+                   state_.mode == UiMode::SPLIT_DETAIL ||
+                   state_.mode == UiMode::CLOSING_DETAIL) {
+            const int first = std::max(0, state_.catalogScrollRow);
+            const int last = std::min(static_cast<int>(view.size()),
+                                      first + visibleRowsSplit());
+            for (int i = first; i < last; ++i) keepItem(i);
+            keepItem(selectedIndex());
+        }
+    }
+
+    const auto obsolete = installedDataExclusiveTextureKeys(
+        installedDataIntroducedIconTextures_, catalogKeep);
+    unsigned freed = 0;
+    for (const std::string& path : obsolete) {
+        auto found = textures_.find(path);
+        if (found == textures_.end()) continue; // LRU already evicted it
+        scheduleTextureFree(found->second);    // GPU-safe next-frame disposal
+        textures_.erase(found);
+        textureOrder_.erase(std::remove(textureOrder_.begin(),
+            textureOrder_.end(), path), textureOrder_.end());
+        ++freed;
+    }
+    const unsigned preserved = static_cast<unsigned>(
+        installedDataIntroducedIconTextures_.size() - obsolete.size());
+    installedDataIntroducedIconTextures_.clear();
+
+    // Stop any queued image downloads used solely by the closed dialog.
+    // Keep the restored catalog's requests; the normal ImageCache disk cache
+    // remains untouched, so subsequent opens can reuse downloaded icons.
+    if (imageCache_) imageCache_->cancelQueuedExcept(catalogKeep);
+    if (freed || preserved) {
+        char msg[180];
+        sceClibSnprintf(msg, sizeof(msg),
+            "[UI] installed-data icons: released=%u reused_by_catalog=%u",
+            freed, preserved);
+        diagnostics::log(msg);
+    }
+}
 void FullCatalogScreen::closeInstalledDataMenu() {
     if (installedDataWorker_ >= 0) {
         if (installedDataAction_ == -3) {
@@ -132,6 +194,7 @@ void FullCatalogScreen::closeInstalledDataMenu() {
         }
         return;
     }
+    releaseInstalledDataExclusiveTextures();
     installedDataVisible_ = false;
     installedDataConfirm_ = false;
     installedDataDetail_ = false;

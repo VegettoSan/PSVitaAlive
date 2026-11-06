@@ -1,5 +1,6 @@
 #include "ui/full_catalog_screen.hpp"
 #include "ui/installed_game_index.hpp"
+#include "ui/installed_data_texture_policy.hpp"
 #include "catalog/catalog_trace.hpp"
 #include "ui/mascot_manager.hpp"
 #include "ui/news_markdown.hpp"
@@ -7537,9 +7538,24 @@ void FullCatalogScreen::prepareVisibleTextures(){
             int loads=0;
             for(const auto& url:icons){
                 if(loads>=kLoadsPerFrame)break;
-                const size_t before=textures_.size();
+                const std::string path=imageCache_->pathFor(url,"app");
+                if(path.empty())continue;
+                const bool alreadyResident=textures_.find(path)!=textures_.end();
                 prepareImageTexture(url,"app");
-                if(textures_.size()>before)++loads;
+                // Check the exact image key, not texture-map size: the LRU
+                // can evict one icon while adding another in the same frame.
+                if(!alreadyResident&&textures_.find(path)!=textures_.end()){
+                    // Bound dialog bookkeeping to resident icons; the global
+                    // app LRU may already have evicted earlier dialog images.
+                    for(auto it=installedDataIntroducedIconTextures_.begin();
+                        it!=installedDataIntroducedIconTextures_.end();){
+                        if(textures_.find(*it)==textures_.end())
+                            it=installedDataIntroducedIconTextures_.erase(it);
+                        else ++it;
+                    }
+                    installedDataIntroducedIconTextures_.insert(path);
+                    ++loads;
+                }
             }
         }
         return;

@@ -73,3 +73,32 @@ Siguen vigentes las confirmaciones y la protección de la APP PSVitaAlive.
   pero evita mostrar porcentajes falsos.
 
 **No declarar la prueba en hardware superada sin realizarla.**
+
+## Vida de iconos GPU compartidos (revisión)
+
+- No hay una segunda caché ni duplicados: el catálogo y el administrador
+  resuelven cada URL de icono mediante `ImageCache::pathFor(url, "app")`.
+- El administrador identifica **únicamente** los iconos que él decodifica
+  por primera vez mientras está abierto. Los iconos ya residentes antes
+  pertenecen al LRU global de apps y no cambian de propietario.
+- Los registros de iconos decodificados por la ventana se recortan cuando
+  el LRU descarta una textura, evitando acumulaciones si se recorren
+  cientos de aplicaciones.
+- Al salir, se calcula el conjunto de iconos requeridos por el catálogo
+  visible que reaparecerá detrás del modal (incluida la ficha seleccionada).
+  Se conservan las texturas compartidas y se programan para liberación
+  diferida las que la ventana introdujo y **ya no son útiles al catálogo**.
+- Se cancelan solicitudes de imágenes que solo interesaban a la ventana
+  cerrada, sin borrar la caché de archivos descargados en `ux0:`.
+- Se utiliza `scheduleTextureFree` y la cola GPU existente, nunca
+  `vita2d_free_texture` mientras un frame podría seguir usando la textura.
+- La política original del catálogo (`MAX_APP_TEXTURES=18` y LRU de
+  iconos) permanece intacta; no se fuerza un borrado global ni se liberan
+  texturas anteriores simplemente por cerrar este modal.
+- El límite de decodificación de **una textura por frame** se verifica por
+  clave, incluso cuando el LRU elimina una y agrega otra en el mismo frame.
+
+La prueba host `tests/test_installed_data_policy.cpp` verifica retención
+compartida y liberación exclusiva. En PS Vita/Vita3K hay que comprobar
+visualmente abrir, recorrer, volver al catálogo, reabrir y cerrar el menú
+repetidamente; la validación en hardware no se presume completada.

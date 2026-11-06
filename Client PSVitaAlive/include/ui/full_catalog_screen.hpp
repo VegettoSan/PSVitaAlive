@@ -593,6 +593,9 @@ private:
     ::psvitaalive::storage::InstalledDataSnapshot installedDataSnapshot_;
     std::vector<::psvitaalive::storage::InstalledDataApp> installedDataCandidates_;
     std::vector<int> installedDataVisibleRows_; // only present packages/data
+    // GPU textures newly decoded by this dialog; previously resident catalog
+    // icons are NOT owned by the dialog and keep their existing LRU lifetime.
+    std::unordered_set<std::string> installedDataIntroducedIconTextures_;
     int installedDataPathScroll_ = 0;
     void rebuildInstalledDataCandidates();
     void rebuildInstalledDataVisibleRows();
@@ -602,6 +605,7 @@ private:
     SceUID installedDataWorker_ = -1;
     void openInstalledDataMenu(bool fromStorage, const std::string& preferredTitleId);
     void closeInstalledDataMenu();
+    void releaseInstalledDataExclusiveTextures();
     void startInstalledDataOperation(int action);
     void pollInstalledDataOperation();
     void startNextInstalledDataAutoMeasure();
