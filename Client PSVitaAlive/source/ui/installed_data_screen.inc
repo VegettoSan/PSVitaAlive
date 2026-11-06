@@ -224,8 +224,11 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         !self->installedDataScanFocusId_.empty() ? self->installedDataScanFocusId_ :
         (self->installedDataFromStorage_ ? "" : self->installedDataPreferredId_);
     const bool deepMeasure = action == -2 || action == -3;
-    const uint64_t budget = action == -3 ? 8500000ULL :
-        deepMeasure ? 18000000ULL : 8000000ULL;
+    // Read-only background work yields to navigation, but give large,
+    // legitimate Game Files enough time to complete once per session.
+    // A scan timeout must not make the app "protected".
+    const uint64_t budget = action == -3 ? 25000000ULL :
+        deepMeasure ? 35000000ULL : 8000000ULL;
     auto refreshed = InstalledDataManager::scan(
         self->installedDataCandidates_, scope, &self->installedDataScanProgress_,
         budget, deepMeasure);
@@ -406,13 +409,11 @@ void FullCatalogScreen::activateInstalledDataSelection() {
     if (!app) return;
     const bool canPackage = app->packagePresent && app->titleId != "PSVAS1178";
     bool hasData = false;
-    bool targetComplete = true;
-    for (const auto& path : app->paths) {
+    for (const auto& path : app->paths)
         hasData = hasData || path.exists;
-        if (path.exists && !path.complete) targetComplete = false;
-    }
-    const bool canData = hasData && !app->blocked && !app->unresolved &&
-        targetComplete;
+    // Directory measurement is optional. A timeout, huge archive or unreadable
+    // size must not disable deleting a path with a valid declared root.
+    const bool canData = hasData && !app->blocked && !app->unresolved;
     if ((installedDataActionFocus_ == 0 && !canPackage) ||
         (installedDataActionFocus_ == 1 && !canData) ||
         (installedDataActionFocus_ == 2 && (!canPackage || !canData))) {
@@ -767,8 +768,9 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                     ::psvitaalive::L("ID_NOT_FOUND") :
                     !path.sizeKnown ? ::psvitaalive::L("ID_SIZE_PENDING") :
                     formatBytesShort(path.bytes) + (path.sizeCached ? "*" : "");
-                if(path.shared) status += "  (" + std::string(
-                    ::psvitaalive::L("ID_SHARED")) + ")";
+                // Same-path catalog declarations no longer create a
+                // misleading "shared" badge; ownership is checked only
+                // immediately before a destructive operation.
                 ::psvitaalive::ui::uiDrawText(&font_,x+28,yy,TEXT,.67f,
                     ellipsize(path.path,65).c_str());
                 ::psvitaalive::ui::uiDrawText(&font_,x+W-156,yy,ACCENT,.67f,
