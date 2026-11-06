@@ -1,4 +1,4 @@
-name: Validate installed directory index on VitaSDK
+name: Validate installed directory index on VitaSDK (compact ELF)
 on:
   push:
     branches: [work/installed-directory-index-20261105]
