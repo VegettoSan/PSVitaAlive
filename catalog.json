@@ -59,6 +59,69 @@
     ]
   },
   {
+    "id": "pokemon-colosseum",
+    "title_id": "PCOLN0010",
+    "name": "Pokemon Colosseum",
+    "description": "Port of Pokemon Colosseum for PSVita based off the decompilation of the Gamecube version.",
+    "long_description": "Port of Pokemon Colosseum for PSVita based off the decompilation of the Gamecube version.",
+    "author_ids": [
+      "rinnegatamante"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "rpg",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.0",
+    "version_date": "2026-11-06",
+    "requirements": "- libshacccg.suprx\n- CapUnlocker.skprx\n- Game Data Files: Gamecube",
+    "size": 4928307,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/pokemon-colosseum-vita/PokemonColosseum%20v1.0.vpk",
+        "size": 4928307,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/pokemon-colosseum-vita/Game%20Files%20for%20PSVA.zip",
+        "size": 736624640,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "colosseum"
+        ]
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4 (Recommended)",
+        "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": true
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/Rinnegatamante/colosseum-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/pokemon-colosseum-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/pokemon-colosseum-vita/shot0.png",
+      "https://archive.org/download/pokemon-colosseum-vita/shot1.png",
+      "https://archive.org/download/pokemon-colosseum-vita/shot2.png",
+      "https://archive.org/download/pokemon-colosseum-vita/shot3.png",
+      "https://archive.org/download/pokemon-colosseum-vita/shot4.png"
+    ]
+  },
+  {
     "id": "ff5-vita",
     "title_id": "FF5000000",
     "name": "FF5-Vita",
