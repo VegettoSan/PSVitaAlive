@@ -840,3 +840,5 @@ ID_RESULT_FILES_NOT_STARTED=Game Files nao processados
 ID_RESULT_FILES_FAILED=Nao foi possivel apagar todos os Game Files
 ID_RESULT_RECHECK=Estado de instalacao atualizado.
 ID_RESULT_CONTINUE=X: Continuar   O: Voltar
+ID_APP_SIZE=App
+ID_DATA_SIZE=Game Files

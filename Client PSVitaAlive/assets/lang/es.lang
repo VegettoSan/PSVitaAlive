@@ -883,3 +883,5 @@ ID_RESULT_FILES_NOT_STARTED=No se procesaron los Game Files
 ID_RESULT_FILES_FAILED=No se pudieron borrar todos los Game Files
 ID_RESULT_RECHECK=El estado de instalación ya se actualizó.
 ID_RESULT_CONTINUE=X: Continuar   O: Volver
+ID_APP_SIZE=App
+ID_DATA_SIZE=Game Files

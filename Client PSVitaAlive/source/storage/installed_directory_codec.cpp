@@ -23,7 +23,8 @@ bool decimal(const std::string& source, uint64_t& value) {
 }
 bool validate(const CachedDirectory& row) {
     return validInstalledTitleId(row.titleId) &&
-           safeExternalDataPath(row.path) &&
+           (safeExternalDataPath(row.path) ||
+            row.path == "ux0:app/" + row.titleId) &&
            (row.sizeKnown || row.bytes == 0);
 }
 

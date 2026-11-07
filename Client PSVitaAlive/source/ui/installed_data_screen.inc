@@ -194,6 +194,10 @@ void FullCatalogScreen::closeInstalledDataMenu() {
         }
         return;
     }
+    // Returning from the inspector updates the parent summary entirely in
+    // RAM; no second recursive filesystem walk is needed.
+    if (installedDataFromStorage_ && storageVisible_)
+        applyInstalledStorageSummary(storageSnapshot_, installedDataSnapshot_);
     releaseInstalledDataExclusiveTextures();
     installedDataVisible_ = false;
     installedDataConfirm_ = false;
@@ -290,7 +294,12 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     if (action == 0) {
         if (ok) {
             for (auto& app : self->installedDataSnapshot_.apps)
-                if (app.titleId == titleId) app.packagePresent = false;
+                if (app.titleId == titleId) {
+                    app.packagePresent = false;
+                    app.packageBytes = 0;
+                    app.packageSizeKnown = false;
+                    app.packageSizeCached = false;
+                }
         }
         self->installedDataOpProgress_.phase.store(4, std::memory_order_release);
         self->installedDataWorkerOk_.store(ok, std::memory_order_release);
@@ -341,6 +350,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
             break;
         }
         previous.totalExternalBytes = InstalledDataManager::knownExternalBytes(previous);
+        previous.totalPackageBytes = InstalledDataManager::knownPackageBytes(previous);
         previous.totalSizeKnown = true;
         for (const auto& item : previous.apps)
             for (const auto& p : item.paths)
@@ -360,15 +370,14 @@ void FullCatalogScreen::startNextInstalledDataAutoMeasure() {
         installedDataWorker_ >= 0) return;
     const int count = static_cast<int>(installedDataVisibleRows_.size());
     if (count <= 0) return;
-    // Prioritize the selected game; then continue with the other rows one
-    // by one. Each attempt gets its own time budget and is never retried in
-    // the same session if it was incomplete.
+    // Prioritize the selected Homebrew. Measure exactly one Homebrew at
+    // a time (external data + package), within the existing work budget.
     const int focus = std::max(0, std::min(installedDataListFocus_, count-1));
     for (int offset = 0; offset < count; ++offset) {
         const auto& app = installedDataSnapshot_.apps[
             installedDataVisibleRows_[(focus + offset) % count]];
         if (installedDataAutoAttempted_.count(app.titleId)) continue;
-        bool needsMeasure = false;
+        bool needsMeasure = app.packagePresent && !app.packageSizeKnown;
         for (const auto& path : app.paths)
             if (path.exists && !path.sizeKnown) needsMeasure = true;
         if (!needsMeasure) continue;
@@ -411,6 +420,9 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             installedDataSnapshot_.totalExternalBytes =
                 ::psvitaalive::storage::InstalledDataManager::knownExternalBytes(
                     installedDataSnapshot_);
+            installedDataSnapshot_.totalPackageBytes =
+                ::psvitaalive::storage::InstalledDataManager::knownPackageBytes(
+                    installedDataSnapshot_);
             installedDataSnapshot_.totalSizeKnown = true;
             for (const auto& app : installedDataSnapshot_.apps)
                 for (const auto& path : app.paths)
@@ -439,9 +451,11 @@ void FullCatalogScreen::pollInstalledDataOperation() {
     } else if (finishedAction == -2) {
         bool allKnown = true;
         for (const auto& app : installedDataSnapshot_.apps)
-            if (app.titleId == installedDataTargetId_)
+            if (app.titleId == installedDataTargetId_) {
+                if (app.packagePresent && !app.packageSizeKnown) allKnown = false;
                 for (const auto& path : app.paths)
                     if (path.exists && !path.sizeKnown) allKnown = false;
+            }
         showToast(::psvitaalive::L(allKnown ?
             "ID_MEASURE_COMPLETE" : "ID_MEASURE_PARTIAL"), 3300);
     }
@@ -822,7 +836,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             drawImage(app.icon,"app",x+39,ry+11,64,64);
             ::psvitaalive::ui::uiDrawText(&font_,x+118,ry+31,
                 focused?WHITE:TEXT,.85f,ellipsize(app.name,43).c_str());
-            bool cachedSize = false;
+            bool cachedSize = app.packagePresent && app.packageSizeCached;
             bool hasExternal = false;
             bool partial = false;
             for (const auto& path : app.paths) {
@@ -840,10 +854,12 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_LAST_MEASURED"));
             ::psvitaalive::ui::uiDrawText(&font_,x+118,ry+60,DIM,.67f,
                 ellipsize(state,65).c_str());
-            const std::string spaceLabel = !hasExternal ?
-                std::string(::psvitaalive::L("ID_ONLY_APP_LABEL")) :
-                partial ? ::psvitaalive::L("ID_SIZE_PENDING") :
-                formatBytesShort(app.bytes) + (cachedSize ? "*" : "");
+            const bool unknown = (app.packagePresent && !app.packageSizeKnown) ||
+                (hasExternal && partial);
+            const std::string spaceLabel = unknown ?
+                std::string(::psvitaalive::L("ID_SIZE_PENDING")) :
+                formatBytesShort(app.bytes + (app.packagePresent ?
+                    app.packageBytes : 0)) + (cachedSize ? "*" : "");
             ::psvitaalive::ui::uiDrawText(&font_,x+W-172,ry+36,
                 focused?ACCENT:WHITE,.76f,spaceLabel.c_str());
         }
@@ -891,15 +907,27 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_ONLY_APP_LABEL") :
                 !app->packagePresent ? ::psvitaalive::L("ID_ONLY_FILES_LABEL") :
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
-            const std::string details = app->titleId + "  |  " +
-                contentType + "  |  " + (!hasExternal ?
-                    std::string(::psvitaalive::L("ID_NO_EXTERNAL")) :
-                    appPartial ? std::string(::psvitaalive::L("ID_SIZE_PENDING")) :
-                        formatBytesShort(app->bytes));
+            const std::string details = app->titleId + "  |  " + contentType;
             ::psvitaalive::ui::uiDrawText(&font_,x+28,y+151,DIM,.73f,details.c_str());
+            const std::string packageSize = !app->packagePresent ? "-" :
+                !app->packageSizeKnown ? ::psvitaalive::L("ID_SIZE_PENDING") :
+                formatBytesShort(app->packageBytes) +
+                    (app->packageSizeCached ? "*" : "");
+            const std::string dataSize = !hasExternal ?
+                std::string(::psvitaalive::L("ID_NO_EXTERNAL")) :
+                appPartial ? std::string(::psvitaalive::L("ID_SIZE_PENDING")) :
+                formatBytesShort(app->bytes);
+            const std::string packageLabel =
+                std::string(::psvitaalive::L("ID_APP_SIZE")) + ": " + packageSize;
+            const std::string dataLabel =
+                std::string(::psvitaalive::L("ID_DATA_SIZE")) + ": " + dataSize;
+            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+177,WHITE,.72f,
+                packageLabel.c_str());
+            ::psvitaalive::ui::uiDrawText(&font_,x+385,y+177,WHITE,.72f,
+                dataLabel.c_str());
             for (size_t i=0;i<app->paths.size() && i<5;i++) {
                 const auto& path=app->paths[i];
-                const int yy=y+180+static_cast<int>(i)*30;
+                const int yy=y+203+static_cast<int>(i)*24;
                 std::string status=!path.exists ?
                     ::psvitaalive::L("ID_NOT_FOUND") :
                     !path.sizeKnown ? ::psvitaalive::L("ID_SIZE_PENDING") :

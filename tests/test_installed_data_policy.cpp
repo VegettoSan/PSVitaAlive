@@ -47,6 +47,7 @@ int main() {
     // Action buttons are hidden, not merely greyed out. Focus and touch
     // hit-testing use the exact same ordered slot mapping as the renderer.
     assert(installedDataFirstAction(true, false) == 0);
+    assert(installedDataFirstAction(true, true) == 2);
     assert(installedDataFirstAction(false, true) == 1);
     assert(installedDataFirstAction(false, false) == -1);
     assert(installedDataActionAvailable(0, true, false));
@@ -57,7 +58,8 @@ int main() {
     assert(!installedDataActionAvailable(2, false, true));
     for (int i = 0; i < 3; ++i) {
         assert(installedDataActionAvailable(i, true, true));
-        assert(installedDataActionSlot(i, true, true) == i);
+        assert(installedDataActionSlot(i, true, true) ==
+               (i == 2 ? 0 : i + 1));
     }
     assert(installedDataActionSlot(0, true, false) == 0);
     assert(installedDataActionSlot(1, true, false) == -1);
@@ -66,6 +68,7 @@ int main() {
     assert(installedDataMoveAction(0, 1, true, true) == 1);
     assert(installedDataMoveAction(0, -1, true, true) == 2);
     assert(installedDataMoveAction(2, 1, true, true) == 0);
+    assert(installedDataActionSlot(2, true, true) == 0);
     assert(installedDataMoveAction(0, 1, true, false) == 0);
     assert(installedDataMoveAction(-1, 1, false, true) == 1);
     assert(installedDataMoveAction(-1, 1, false, false) == -1);

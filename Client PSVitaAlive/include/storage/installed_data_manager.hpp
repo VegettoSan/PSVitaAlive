@@ -26,6 +26,11 @@ struct InstalledDataApp {
     std::vector<std::string> roots;
     bool unresolved = false; // metadata missing, conflicting or ambiguous
     bool packagePresent = false;
+    // Measured installed package tree ux0:app/<titleId> (read-only).
+    uint64_t packageBytes = 0;
+    uint64_t packageRootStamp = 0;
+    bool packageSizeKnown = false;
+    bool packageSizeCached = false; // Historical cached size, not live proof.
     bool blocked = false; // at least one path is shared, invalid or unresolved
     uint64_t bytes = 0; // deduplicated within this app
     std::vector<InstalledDataPath> paths;
@@ -34,6 +39,7 @@ struct InstalledDataApp {
 struct InstalledDataSnapshot {
     std::vector<InstalledDataApp> apps;
     uint64_t totalExternalBytes = 0; // physical roots counted once across apps
+    uint64_t totalPackageBytes = 0;  // known ux0:app/ package measurements
     bool complete = true; // traversal limit, I/O errors => false
     bool totalSizeKnown = true; // false if an installed root has no verified size
 };
@@ -115,8 +121,11 @@ public:
     // Saved bytes are display-only; neither directory cache nor size can
     // authorize deletion. Explicit invalidation after known data changes.
     static void invalidateCachedTitle(const std::string& titleId);
+    static void invalidateCachedPackageTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.
     static uint64_t knownExternalBytes(const InstalledDataSnapshot& snapshot);
+    // Sum known installed-package measurements, once per distinct Title ID.
+    static uint64_t knownPackageBytes(const InstalledDataSnapshot& snapshot);
     // Preflight ownership and count every file/folder without storing a file list.
     // Must succeed BEFORE package uninstall when the user selected both.
     static bool prepareExternalRemoval(const InstalledDataSnapshot& snapshot,

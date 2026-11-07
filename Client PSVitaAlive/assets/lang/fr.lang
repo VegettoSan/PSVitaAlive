@@ -840,3 +840,5 @@ ID_RESULT_FILES_NOT_STARTED=Game Files non traites
 ID_RESULT_FILES_FAILED=Echec de suppression des Game Files
 ID_RESULT_RECHECK=Etat de l'installation actualise.
 ID_RESULT_CONTINUE=X : Continuer   O : Retour
+ID_APP_SIZE=App
+ID_DATA_SIZE=Game Files
