@@ -91,6 +91,19 @@ bool InstalledDirectoryCache::save(
     if (previous) sceIoRemove(backup.c_str());
     return true;
 }
+void InstalledDirectoryCache::invalidatePackageTitle(const std::string& titleId) {
+    if (!validInstalledTitleId(titleId)) return;
+    std::vector<CachedDirectory> entries;
+    if (!load(entries)) return;
+    const size_t original = entries.size();
+    const std::string root = "ux0:app/" + titleId;
+    entries.erase(std::remove_if(entries.begin(), entries.end(),
+        [&](const CachedDirectory& row) {
+            return row.titleId == titleId && row.path == root;
+        }), entries.end());
+    if (original != entries.size()) save(entries);
+}
+
 void InstalledDirectoryCache::invalidateTitle(const std::string& titleId) {
     if (!validInstalledTitleId(titleId)) return;
     std::vector<CachedDirectory> entries;
