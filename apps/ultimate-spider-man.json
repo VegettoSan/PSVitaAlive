@@ -14,8 +14,8 @@
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-11-02",
+  "version": "1.1",
+  "version_date": "2026-11-07",
   "requirements": "- On the Vita: ur0:data/libshacccg.suprx (the shader compiler, extracted the usual way for vitaGL games).\n- The PC version's USM.exe (SHA-256 5d554ef69e8066eed9e327a4fe331992124aee6de16af54bd7ac5c5dcb0488b8) and its Data folder.",
   "size": 11010048,
   "status": "Verified",
@@ -23,7 +23,7 @@
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/ultimate-spider-man-vita/usm%20v1.0.vpk",
+      "url": "https://archive.org/download/ultimate-spider-man-vita/usm%20v1.1.vpk",
       "size": 11010048,
       "recommended": true
     },
