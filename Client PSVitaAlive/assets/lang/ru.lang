@@ -840,3 +840,5 @@ ID_RESULT_FILES_NOT_STARTED=Game Files не обрабатывались
 ID_RESULT_FILES_FAILED=Не удалось удалить все Game Files
 ID_RESULT_RECHECK=Состояние установки обновлено.
 ID_RESULT_CONTINUE=X: Продолжить   O: Назад
+ID_APP_SIZE=Приложение
+ID_DATA_SIZE=Game Files
