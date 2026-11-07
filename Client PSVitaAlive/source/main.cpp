@@ -17,6 +17,7 @@
 #include "diagnostic_logger.hpp"
 #include "storage/storage_manager.hpp"
 #include "storage/storage_maintenance.hpp"
+#include "storage/installed_data_manager.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/install_archive_policy.hpp"
 #include "ui/ui_font.hpp"
@@ -777,6 +778,16 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
                                || cur.state == InstallState::Failed
                                || cur.state == InstallState::Cancelled;
             if (downloaded || finished) screen.requestUx0SpaceRefresh();
+            if (cur.state == InstallState::Completed && !cur.titleId.empty()) {
+                // Invalidate only what the completed installer wrote. A VPK
+                // reinstall must not discard the Game Files size cache.
+                if (cur.installPath.compare(0, 8, "ux0:app/") == 0)
+                    psvitaalive::storage::InstalledDataManager::
+                        invalidateCachedPackageTitle(cur.titleId);
+                else if (cur.installPath.compare(0, 9, "ux0:data/") == 0)
+                    psvitaalive::storage::InstalledDataManager::
+                        invalidateCachedTitle(cur.titleId);
+            }
             previousStorageInstallState = cur.state;
         }
         images.setNetworkPaused(screen.keyboardVisible()||cur.state==InstallState::Downloading||cur.state==InstallState::Paused||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Paused||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt,cur.archiveSourceUnavailable,
