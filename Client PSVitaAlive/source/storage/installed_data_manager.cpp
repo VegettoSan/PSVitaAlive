@@ -476,6 +476,10 @@ uint64_t InstalledDataManager::knownPackageBytes(
 void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
     InstalledDirectoryCache::invalidateTitle(titleId);
 }
+void InstalledDataManager::invalidateCachedPackageTitle(
+    const std::string& titleId) {
+    InstalledDirectoryCache::invalidatePackageTitle(titleId);
+}
 
 bool InstalledDataManager::prepareExternalRemoval(
     const InstalledDataSnapshot& snapshot, const std::string& titleId,
