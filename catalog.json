@@ -59,6 +59,66 @@
     ]
   },
   {
+    "id": "ff5-vita",
+    "title_id": "FF5000000",
+    "name": "FF5-Vita",
+    "description": "Port of Final Fantasy V for PSVITA.",
+    "long_description": "This is a wrapper/port of Final Fantasy V Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "frangarcj",
+      "rinnegatamante",
+      "theflow"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "rpg",
+      "strategy",
+      "other"
+    ],
+    "version": "1.1",
+    "version_date": "2026-11-05",
+    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+    "size": 18245222,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/psvitaalive-ff5-vita/FF5%20v1.1.vpk",
+        "size": 18245222,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/psvitaalive-ff5-vita/Game%20Files.zip",
+        "size": 154874675,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ff5"
+        ]
+      },
+      {
+        "type": "Repository",
+        "name": "Repositorio",
+        "url": "https://github.com/frangarcj/ff5_vita"
+      }
+    ],
+    "icon": "https://archive.org/download/psvitaalive-ff5-vita/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/psvitaalive-ff5-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-ff5-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-ff5-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-ff5-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-ff5-vita/shot_05.png"
+    ],
+    "source_name": "VitaHomebrewDB",
+    "source_id": "733",
+    "source_url": "https://github.com/frangarcj/ff5_vita",
+    "release_page": "https://github.com/frangarcj/ff5_vita/releases",
+    "updated_at": "2026-08-13T15:34"
+  },
+  {
     "id": "bombsquad-vita-alpha-version",
     "title_id": "BOMBS1762",
     "name": "BombSquad Vita (Alpha Version)",
@@ -73,17 +133,17 @@
       "platformer",
       "strategy"
     ],
-    "version": "0.9",
+    "version": "0.95",
     "version_date": "2026-11-05",
     "requirements": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx\n-About 170 MB of free space on ux0",
-    "size": 2411725,
+    "size": 2516582,
     "status": "Verified",
     "links": [
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/bombsquad-vita/BombSquad-Vita-Alpha-0.9.vpk",
-        "size": 2411725,
+        "url": "https://archive.org/download/bombsquad-vita/BombSquad-Vita-Alpha-0.95.vpk",
+        "size": 2516582,
         "recommended": true
       },
       {
@@ -105,6 +165,156 @@
     "icon": "https://archive.org/download/bombsquad-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/bombsquad-vita/Shot0.png"
+    ]
+  },
+  {
+    "id": "carnivores-dinosaur-hunter",
+    "title_id": "PSVCDH001",
+    "name": "Carnivores Dinosaur Hunter",
+    "description": "Android to PS Vita port of Carnivores Dinosaur Hunter",
+    "long_description": "so-loader port of the Android version (1.3.1) of Carnivores: Dinosaur Hunter (Tatem Games / Action Forms). It runs the original libdinHunter.so + libfmodex.so with an emulated Java layer (FalsoJNI).\n\n- PsVitaAlive -",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy"
+    ],
+    "version": "1.2.0",
+    "version_date": "2026-11-05",
+    "requirements": "- No Data",
+    "size": 1153434,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/carnivoresdinosaurhunter%20v1.2.0.vpk",
+        "size": 1153434,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/Game%20Files.zip",
+        "size": 60083405,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "carnivoresdinosaurhunter"
+        ]
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Carnivores-Dinosaur-Hunter-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "carnivores-ice-age",
+    "title_id": "PSVCSIA01",
+    "name": "Carnivores Ice Age",
+    "description": "Android to PS Vita port of Carnivores: Ice Age",
+    "long_description": "Carnivores: Ice Age is Tatem Games' prehistoric hunting game, originally released for Android as Carnivores__Ice_Age_1.5.4_Android_4.0.apk (package com.tatemgames.iceage, version 1.5.4). This port runs the original ARM libraries from the Android release — the game (libIceAgeAndroid.so) and its audio engine (libfmodex.so), both armeabi — directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the OpenGL ES 1.1 rendering backend.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "fps",
+      "shooter",
+      "strategy"
+    ],
+    "version": "1.2.0",
+    "version_date": "2026-11-05",
+    "requirements": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso).\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Carnivores: Ice Age 1.5.4 for Android",
+    "size": 1258291,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.2.0.vpk",
+        "size": 1258291,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
+        "size": 73610035,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "carnivoresiceage"
+        ]
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/Carnivores-Ice-Age-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/carnivores-ice-age-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/carnivores-ice-age-ps-vita-port/pic0.png"
+    ]
+  },
+  {
+    "id": "final-fantasy-vii",
+    "title_id": "FFSQ00007",
+    "name": "FINAL FANTASY VII",
+    "description": "Port de Final Fantasy VII - Android Legacy para o VITA",
+    "long_description": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
+    "author_ids": [
+      "ggdrn"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "adventure",
+      "rpg",
+      "strategy",
+      "source-port"
+    ],
+    "version": "1.2.0",
+    "version_date": "2026-11-05",
+    "requirements": "- No data",
+    "size": 3145728,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.2.0.vpk",
+        "size": 3145728,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
+        "size": 2040109466,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "ffvii-vita"
+        ]
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/ggdrn/METEOR-VII-VITA"
+      }
+    ],
+    "icon": "https://archive.org/download/meteor-vii-vita/icon0%20New.png",
+    "screenshots": [
+      "https://archive.org/download/meteor-vii-vita/shot_0.png",
+      "https://archive.org/download/meteor-vii-vita/shot_1.png"
     ]
   },
   {
@@ -171,7 +381,7 @@
       "strategy",
       "source-port"
     ],
-    "version": "0.1.2",
+    "version": "0.1.3",
     "version_date": "2026-11-05",
     "requirements": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
     "size": 9017754,
@@ -180,7 +390,7 @@
       {
         "type": "Download",
         "name": "VPK",
-        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.2.vpk",
+        "url": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.3.vpk",
         "size": 9017754,
         "recommended": true
       },
@@ -203,6 +413,55 @@
     "icon": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "the-impossible-game",
+    "title_id": "PSVTIG001",
+    "name": "The Impossible Game",
+    "description": "Android to PS Vita port of The Impossible Game originally published by Fluke Games (FlukeDude)",
+    "long_description": "The Impossible Game is FlukeDude's rhythm-platformer, originally released for Android as 05133-the-impossible-1.5.2.apk (package com.flukedude.impossiblegame). This port runs the compiled native library (libimpossible.so — a small, self-contained proprietary engine that handles cube physics, collisions, procedural level generation, and rendering) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI). The UI and audio layers, which were Java on Android, have been fully reimplemented natively in C (menu.c, audio.c, texture.c, save.c) for zero-latency input and native performance.\n\n- PsVitaAlive -",
+    "author_ids": [
+      "metalsyntax"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "platformer",
+      "puzzle",
+      "strategy"
+    ],
+    "version": "1.3.1",
+    "version_date": "2026-11-05",
+    "requirements": "- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (required by vitaGL's fixed-function shader compiler).",
+    "size": 954266,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/theimpossiblegame%20v1.3.1.vpk",
+        "size": 954266,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
+        "size": 1992294,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "theimpossiblegame"
+        ]
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/MetalSyntax/The-Impossible-Game-vita"
+      }
+    ],
+    "icon": "https://archive.org/download/the-impossible-game-ps-vita-port/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
     ]
   },
   {
@@ -591,57 +850,6 @@
     "source_url": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
     "release_page": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
     "updated_at": "2026-08-13T15:34"
-  },
-  {
-    "id": "final-fantasy-vii",
-    "title_id": "FFSQ00007",
-    "name": "FINAL FANTASY VII",
-    "description": "Port de Final Fantasy VII - Android Legacy para o VITA",
-    "long_description": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
-    "author_ids": [
-      "ggdrn"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "adventure",
-      "rpg",
-      "strategy",
-      "source-port"
-    ],
-    "version": "1.1.0",
-    "version_date": "2026-11-02",
-    "requirements": "- No data",
-    "size": 3145728,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.1.0.vpk",
-        "size": 3145728,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
-        "size": 2040109466,
-        "extract_path": "ux0:data/",
-        "installed_paths": [
-          "ffvii-vita"
-        ]
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/ggdrn/METEOR-VII-VITA"
-      }
-    ],
-    "icon": "https://archive.org/download/meteor-vii-vita/icon0%20New.png",
-    "screenshots": [
-      "https://archive.org/download/meteor-vii-vita/shot_0.png",
-      "https://archive.org/download/meteor-vii-vita/shot_1.png"
-    ]
   },
   {
     "id": "gunforce-2",
@@ -2154,55 +2362,6 @@
     "screenshots": [
       "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
       "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
-    ]
-  },
-  {
-    "id": "the-impossible-game",
-    "title_id": "PSVTIG001",
-    "name": "The Impossible Game",
-    "description": "Android to PS Vita port of The Impossible Game originally published by Fluke Games (FlukeDude)",
-    "long_description": "The Impossible Game is FlukeDude's rhythm-platformer, originally released for Android as 05133-the-impossible-1.5.2.apk (package com.flukedude.impossiblegame). This port runs the compiled native library (libimpossible.so — a small, self-contained proprietary engine that handles cube physics, collisions, procedural level generation, and rendering) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI). The UI and audio layers, which were Java on Android, have been fully reimplemented natively in C (menu.c, audio.c, texture.c, save.c) for zero-latency input and native performance.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "platformer",
-      "puzzle",
-      "strategy"
-    ],
-    "version": "1.2.0",
-    "version_date": "2026-10-27",
-    "requirements": "- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (required by vitaGL's fixed-function shader compiler).",
-    "size": 864358,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/theimpossiblegame%20v1.2.0.vpk",
-        "size": 864358,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/the-impossible-game-ps-vita-port/Game%20Files.zip",
-        "size": 1992294,
-        "extract_path": "ux0:data/",
-        "installed_paths": [
-          "theimpossiblegame"
-        ]
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/The-Impossible-Game-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/the-impossible-game-ps-vita-port/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/the-impossible-game-ps-vita-port/shot0.png"
     ]
   },
   {
@@ -4576,105 +4735,6 @@
     "icon": "https://archive.org/download/scribblenauts-remix-ps-vita/icon0.png",
     "screenshots": [
       "https://archive.org/download/scribblenauts-remix-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "carnivores-dinosaur-hunter",
-    "title_id": "PSVCDH001",
-    "name": "Carnivores Dinosaur Hunter",
-    "description": "Android to PS Vita port of Carnivores Dinosaur Hunter",
-    "long_description": "so-loader port of the Android version (1.3.1) of Carnivores: Dinosaur Hunter (Tatem Games / Action Forms). It runs the original libdinHunter.so + libfmodex.so with an emulated Java layer (FalsoJNI).\n\n- PsVitaAlive -",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "action",
-      "fps",
-      "shooter",
-      "strategy"
-    ],
-    "version": "1.1.0",
-    "version_date": "2026-10-01",
-    "requirements": "- No Data",
-    "size": 1025741,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/carnivoresdinosaurhunter%20v1.1.0.vpk",
-        "size": 1025741,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/Game%20Files.zip",
-        "size": 60083405,
-        "extract_path": "ux0:data/",
-        "installed_paths": [
-          "carnivoresdinosaurhunter"
-        ]
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/Carnivores-Dinosaur-Hunter-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/shot0.png"
-    ]
-  },
-  {
-    "id": "carnivores-ice-age",
-    "title_id": "PSVCSIA01",
-    "name": "Carnivores Ice Age",
-    "description": "Android to PS Vita port of Carnivores: Ice Age",
-    "long_description": "Carnivores: Ice Age is Tatem Games' prehistoric hunting game, originally released for Android as Carnivores__Ice_Age_1.5.4_Android_4.0.apk (package com.tatemgames.iceage, version 1.5.4). This port runs the original ARM libraries from the Android release — the game (libIceAgeAndroid.so) and its audio engine (libfmodex.so), both armeabi — directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the OpenGL ES 1.1 rendering backend.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "metalsyntax"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "fps",
-      "shooter",
-      "strategy"
-    ],
-    "version": "1.1",
-    "version_date": "2026-10-01",
-    "requirements": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso).\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Carnivores: Ice Age 1.5.4 for Android",
-    "size": 1048576,
-    "status": "Verified",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.1.vpk",
-        "size": 1048576,
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
-        "size": 73610035,
-        "extract_path": "ux0:data/",
-        "installed_paths": [
-          "carnivoresiceage"
-        ]
-      },
-      {
-        "type": "Repository",
-        "name": "Github",
-        "url": "https://github.com/MetalSyntax/Carnivores-Ice-Age-vita"
-      }
-    ],
-    "icon": "https://archive.org/download/carnivores-ice-age-ps-vita-port/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/carnivores-ice-age-ps-vita-port/pic0.png"
     ]
   },
   {
@@ -38691,65 +38751,6 @@
     "source_url": "https://cubic-games-official.itch.io/hexagon-jumper",
     "release_page": "https://cubic-games-official.itch.io/hexagon-jumper",
     "updated_at": "2026-08-13T15:34:48.568665+00:00"
-  },
-  {
-    "id": "ff5-vita",
-    "title_id": "FF5000000",
-    "name": "FF5-Vita",
-    "description": "Port of Final Fantasy V for PSVITA.",
-    "long_description": "This is a wrapper/port of Final Fantasy V Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
-    "author_ids": [
-      "frangarcj",
-      "rinnegatamante",
-      "theflow"
-    ],
-    "category_id": "ports",
-    "subcategory_ids": [
-      "rpg",
-      "strategy",
-      "other"
-    ],
-    "version": "v.1.0",
-    "version_date": "2021-10-08",
-    "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-    "size": 16548626,
-    "status": "Legacy",
-    "links": [
-      {
-        "type": "Download",
-        "name": "VPK",
-        "url": "https://archive.org/download/psvitaalive-ff5-vita/ff5-vita.vpk",
-        "recommended": true
-      },
-      {
-        "type": "Game Files",
-        "name": "Game Files",
-        "url": "https://archive.org/download/psvitaalive-ff5-vita/Game%20Files.zip",
-        "size": 154874675,
-        "extract_path": "ux0:data/",
-        "installed_paths": [
-          "ff5"
-        ]
-      },
-      {
-        "type": "Repository",
-        "name": "Repositorio",
-        "url": "https://github.com/frangarcj/ff5_vita"
-      }
-    ],
-    "icon": "https://archive.org/download/psvitaalive-ff5-vita/icon0.png",
-    "screenshots": [
-      "https://archive.org/download/psvitaalive-ff5-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-ff5-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-ff5-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-ff5-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-ff5-vita/shot_05.png"
-    ],
-    "source_name": "VitaHomebrewDB",
-    "source_id": "733",
-    "source_url": "https://github.com/frangarcj/ff5_vita",
-    "release_page": "https://github.com/frangarcj/ff5_vita/releases",
-    "updated_at": "2026-08-13T15:34"
   },
   {
     "id": "space-cadet-pinball-vita",
