@@ -121,6 +121,7 @@ public:
     // Saved bytes are display-only; neither directory cache nor size can
     // authorize deletion. Explicit invalidation after known data changes.
     static void invalidateCachedTitle(const std::string& titleId);
+    static void invalidateCachedPackageTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.
     static uint64_t knownExternalBytes(const InstalledDataSnapshot& snapshot);
     // Sum known installed-package measurements, once per distinct Title ID.
