@@ -1,4 +1,5 @@
 #include "storage/installed_directory_cache.hpp"
+#include "storage/storage_maintenance.hpp"
 #include <cassert>
 #include <string>
 #include <vector>
@@ -59,5 +60,17 @@ int main() {
         encoded + "KOTR00001\tux0:data/kotor\t42\t0\t0\n",decoded));
     assert(!InstalledDirectoryCache::decode(
         "PSVA_DIR_INDEX_V1\nKOTR00001\tux0:data/kotor\tx\t1\t20\n",decoded));
+    // Main storage summary includes cached installed usage, but its cleanup
+    // authority remains limited to temporary files and saved ZIPs.
+    UsageSnapshot usage;
+    usage.temporaryBytes = 10;
+    usage.savedZipBytes = 20;
+    usage.catalogBytes = 30;
+    usage.imageBytes = 40;
+    usage.installedBytes = 50;
+    usage.installedPartial = true;
+    usage.installedHistorical = true;
+    assert(usage.totalBytes() == 150);
+    assert(usage.temporaryBytes + usage.savedZipBytes == 30);
     assert(InstalledDirectoryCache::encode(rows,encoded));
 }
