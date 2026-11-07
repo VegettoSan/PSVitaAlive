@@ -13,17 +13,17 @@
     "shooter",
     "strategy"
   ],
-  "version": "1.1",
-  "version_date": "2026-10-01",
+  "version": "1.2.0",
+  "version_date": "2026-11-05",
   "requirements": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso).\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Carnivores: Ice Age 1.5.4 for Android",
-  "size": 1048576,
+  "size": 1258291,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.1.vpk",
-      "size": 1048576,
+      "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.2.0.vpk",
+      "size": 1258291,
       "recommended": true
     },
     {

@@ -14,17 +14,17 @@
     "shooter",
     "strategy"
   ],
-  "version": "1.1.0",
-  "version_date": "2026-10-01",
+  "version": "1.2.0",
+  "version_date": "2026-11-05",
   "requirements": "- No Data",
-  "size": 1025741,
+  "size": 1153434,
   "status": "Verified",
   "links": [
     {
       "type": "Download",
       "name": "VPK",
-      "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/carnivoresdinosaurhunter%20v1.1.0.vpk",
-      "size": 1025741,
+      "url": "https://archive.org/download/carnivores-dinosaur-hunter-ps-vita-port/carnivoresdinosaurhunter%20v1.2.0.vpk",
+      "size": 1153434,
       "recommended": true
     },
     {
