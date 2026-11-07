@@ -78,11 +78,12 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
               uint32_t& entries, uint64_t& bytes, ScanContext& ctx) {
     // Read-only traversal permits one exact ux0:app/<TITLE_ID> package root.
     // eraseTree() remains strictly limited to safe ux0:data/ locations.
-    const bool safeRoot = safeExternalDataPath(p) ||
+    // Validate only the root; validating every descendant hurts large ZIPs.
+    const bool safeRoot = depth != 0 || safeExternalDataPath(p) ||
         (p.compare(0, 8, "ux0:app/") == 0 &&
          validInstalledTitleId(p.substr(8)));
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
-        (depth == 0 && !safeRoot) ||
+        !safeRoot ||
         ctx.shouldStop()) return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         ctx.fileSeen();
