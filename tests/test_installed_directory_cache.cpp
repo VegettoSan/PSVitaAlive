@@ -32,8 +32,20 @@ int main() {
 
     assert(!InstalledDirectoryCache::encode(
         {{"KOTR00001","ux0:data/../tai",4,6,true}},encoded));
+    // Exact package roots are permitted as read-only size records.
+    const CachedDirectory package{"KOTR00001","ux0:app/KOTR00001",9,85000000,true};
+    rows.push_back(package);
+    assert(InstalledDirectoryCache::encode(rows,encoded));
+    assert(InstalledDirectoryCache::decode(encoded,decoded));
+    const CachedDirectory* packageHit = InstalledDirectoryCache::find(
+        decoded,"KOTR00001","ux0:app/KOTR00001");
+    assert(packageHit && packageHit->bytes == 85000000);
     assert(!InstalledDirectoryCache::encode(
-        {{"KOTR00001","ux0:app/KOTR00001",4,6,true}},encoded));
+        {{"KOTR00001","ux0:app/ABCD12345",4,6,true}},encoded));
+    assert(!InstalledDirectoryCache::encode(
+        {{"KOTR00001","ux0:app/KOTR00001/sce_sys",4,6,true}},encoded));
+    assert(!InstalledDirectoryCache::encode(
+        {{"KOTR00001","ux0:app/KOTR00001",4,6,false}},encoded));
     assert(!InstalledDirectoryCache::encode(
         {{"KOTR00001","ux0:data/psvitaalive/cache",4,6,true}},encoded));
     assert(!InstalledDirectoryCache::encode(
