@@ -840,3 +840,5 @@ ID_RESULT_FILES_NOT_STARTED=Game Files nicht bearbeitet
 ID_RESULT_FILES_FAILED=Game Files nicht vollstaendig entfernt
 ID_RESULT_RECHECK=Installationsstatus wurde aktualisiert.
 ID_RESULT_CONTINUE=X: Weiter   O: Zurueck
+ID_APP_SIZE=App
+ID_DATA_SIZE=Game Files
