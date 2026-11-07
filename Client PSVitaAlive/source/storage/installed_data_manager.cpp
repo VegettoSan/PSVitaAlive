@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <cstring>
 #include <unordered_map>
+#include <unordered_set>
 #include <string>
 #include <utility>
 #include <vector>
@@ -75,8 +76,13 @@ struct ScanContext {
 };
 bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
               uint32_t& entries, uint64_t& bytes, ScanContext& ctx) {
+    // Read-only traversal permits one exact ux0:app/<TITLE_ID> package root.
+    // eraseTree() remains strictly limited to safe ux0:data/ locations.
+    const bool safeRoot = safeExternalDataPath(p) ||
+        (p.compare(0, 8, "ux0:app/") == 0 &&
+         validInstalledTitleId(p.substr(8)));
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
-        (depth == 0 && !safeExternalDataPath(p)) ||
+        (depth == 0 && !safeRoot) ||
         ctx.shouldStop()) return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         ctx.fileSeen();
@@ -242,8 +248,20 @@ InstalledDataSnapshot InstalledDataManager::scan(
         const bool selected = onlyTitleId.empty() || app.titleId == onlyTitleId;
         const bool titleOk = validInstalledTitleId(app.titleId);
         if (selected && titleOk) {
-            app.packagePresent = exists(
-                std::string("ux0:app/") + app.titleId + "/sce_sys/param.sfo");
+            const std::string packageRoot = "ux0:app/" + app.titleId;
+            app.packagePresent = exists(packageRoot + "/sce_sys/param.sfo");
+            SceIoStat packageStat{};
+            if (app.packagePresent && exists(packageRoot, &packageStat)) {
+                app.packageRootStamp = rootFingerprint(packageStat);
+                const auto* saved = InstalledDirectoryCache::find(
+                    index, app.titleId, packageRoot);
+                if (saved && saved->sizeKnown && app.packageRootStamp &&
+                    saved->rootStamp == app.packageRootStamp) {
+                    app.packageBytes = saved->bytes;
+                    app.packageSizeKnown = true;
+                    app.packageSizeCached = true;
+                }
+            }
         }
         if (app.appId == "psvitaalive" || app.appId == "ps-vita-alive" ||
             app.titleId == CLIENT_TID) { app.blocked = true; app.unresolved = true; }
@@ -328,6 +346,28 @@ InstalledDataSnapshot InstalledDataManager::scan(
             if (path.sizeKnown) app.bytes = sum(app.bytes, path.bytes);
             if (ctx.stopped) break;
         }
+        // Measure the package only after its external roots: still one
+        // Homebrew at a time, using the same bounded cooperative worker.
+        // No recursive package walk occurs on ordinary menu entry.
+        if (app.packagePresent && measureSizes && !ctx.shouldStop()) {
+            const std::string packageRoot = "ux0:app/" + app.titleId;
+            SceIoStat packageStat{};
+            uint32_t entries = 0;
+            uint64_t measuredBytes = 0;
+            if (exists(packageRoot, &packageStat) &&
+                scanTree(packageRoot, packageStat, 0, entries,
+                         measuredBytes, ctx)) {
+                app.packageBytes = measuredBytes;
+                app.packageSizeKnown = true;
+                app.packageSizeCached = false;
+                app.packageRootStamp = rootFingerprint(packageStat);
+            } else {
+                app.packageBytes = 0;
+                app.packageSizeKnown = false;
+                app.packageSizeCached = false;
+                result.complete = false;
+            }
+        }
         if (ctx.stopped) {
             result.complete = false;
             for (auto& path : app.paths)
@@ -340,6 +380,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
     // Only sum measured (or previously measured) roots and mark unknown totals
     // explicitly. A cached measurement is historical, not a current proof.
     result.totalExternalBytes = knownExternalBytes(result);
+    result.totalPackageBytes = knownPackageBytes(result);
     for (const auto& app : result.apps) {
         if (!onlyTitleId.empty() && app.titleId != onlyTitleId) continue;
         for (const auto& path : app.paths)
@@ -352,6 +393,18 @@ InstalledDataSnapshot InstalledDataManager::scan(
     next.reserve(index.size() + 8);
     for (const auto& app : result.apps) {
         const bool selected = onlyTitleId.empty() || app.titleId == onlyTitleId;
+        if (validInstalledTitleId(app.titleId)) {
+            const std::string packageRoot = "ux0:app/" + app.titleId;
+            if (selected && app.packagePresent && app.packageRootStamp) {
+                next.push_back({app.titleId, packageRoot, app.packageRootStamp,
+                    app.packageSizeKnown ? app.packageBytes : 0,
+                    app.packageSizeKnown});
+            } else if (!selected) {
+                const auto* saved = InstalledDirectoryCache::find(
+                    index, app.titleId, packageRoot);
+                if (saved) next.push_back(*saved);
+            }
+        }
         for (const auto& path : app.paths) {
             if (!safeExternalDataPath(path.path) ||
                 !validInstalledTitleId(app.titleId)) continue;
@@ -402,6 +455,19 @@ uint64_t InstalledDataManager::knownExternalBytes(
             counted.push_back(path->path);
             total = sum(total, path->bytes);
         }
+    }
+    return total;
+}
+
+uint64_t InstalledDataManager::knownPackageBytes(
+    const InstalledDataSnapshot& snapshot) {
+    uint64_t total = 0;
+    std::unordered_set<std::string> counted;
+    for (const auto& app : snapshot.apps) {
+        if (!app.packagePresent || !app.packageSizeKnown ||
+            !validInstalledTitleId(app.titleId) ||
+            !counted.insert(app.titleId).second) continue;
+        total = sum(total, app.packageBytes);
     }
     return total;
 }
