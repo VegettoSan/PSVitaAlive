@@ -562,8 +562,10 @@ bool InstalledDataManager::uninstallPackage(
     if (progress) progress->phase.store(3, std::memory_order_release);
     scePromoterUtilityExit();
     // Don't announce success merely because an API call was accepted.
-    return del >= 0 && idle &&
+    const bool removed = del >= 0 && idle &&
         !exists(std::string("ux0:app/") + titleId + "/sce_sys/param.sfo");
+    if (removed) InstalledDirectoryCache::invalidatePackageTitle(titleId);
+    return removed;
 }
 
 }} // namespace psvitaalive::storage
