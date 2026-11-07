@@ -22,6 +22,8 @@ public:
     static bool load(std::vector<CachedDirectory>& entries);
     static bool save(const std::vector<CachedDirectory>& entries);
     static void invalidateTitle(const std::string& titleId);
+    // Only ux0:app/<titleId>; preserve external Game Files measurements.
+    static void invalidatePackageTitle(const std::string& titleId);
     // Pure, host-testable serialization, with fail-closed validation.
     static bool encode(const std::vector<CachedDirectory>& entries,
                        std::string& out);
