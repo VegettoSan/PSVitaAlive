@@ -1,5 +1,64 @@
 [
   {
+    "id": "need-for-speed-underground",
+    "title_id": "NFSUG1VTA",
+    "name": "Need for Speed Underground",
+    "description": "Need for Speed Underground, on the PS Vita",
+    "long_description": "A fan port of the PC version of Need for Speed Underground (2003, US and European versions)",
+    "author_ids": [
+      "ndrw"
+    ],
+    "category_id": "ports",
+    "subcategory_ids": [
+      "racing",
+      "strategy",
+      "source-port"
+    ],
+    "version": "0.9",
+    "version_date": "2026-11-06",
+    "requirements": "- Need for Speed Underground for PC, US or European, version 1.4 (your own copy)\n- The game's Speed.exe must have the no-DVD patch applied\n- PS Vita with HENkaku / Ensō and VitaShell\n- About 1.5 GB free on the memory card\n- Overclocking is mandatory, for example with PSVshell\n- CapUnlocker is highly recommended",
+    "size": 7025459,
+    "status": "Verified",
+    "links": [
+      {
+        "type": "Download",
+        "name": "VPK",
+        "url": "https://archive.org/download/NFSUG1VITA/NFSUG1VITA_0.9_playtest_hotfix2_EU_US.vpk",
+        "size": 7025459,
+        "recommended": true
+      },
+      {
+        "type": "Game Files",
+        "name": "Game Files",
+        "url": "https://archive.org/download/NFSUG1VITA/Game%20Files%20for%20PSVA.zip",
+        "size": 1395864371,
+        "extract_path": "ux0:data/",
+        "installed_paths": [
+          "NFSUG1VITA"
+        ]
+      },
+      {
+        "type": "Plugin",
+        "name": "CapUnlocker 1.4 (Recommended)",
+        "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "size": 5222,
+        "extract_path": "ur0:tai/",
+        "section": "*KERNEL",
+        "line": "ur0:tai/CapUnlocker.skprx",
+        "required": false
+      },
+      {
+        "type": "Repository",
+        "name": "Github",
+        "url": "https://github.com/NDRWhun/UG1VITA"
+      }
+    ],
+    "icon": "https://archive.org/download/NFSUG1VITA/icon0.png",
+    "screenshots": [
+      "https://archive.org/download/NFSUG1VITA/shot0.png"
+    ]
+  },
+  {
     "id": "bombsquad-vita-alpha-version",
     "title_id": "BOMBS1762",
     "name": "BombSquad Vita (Alpha Version)",
