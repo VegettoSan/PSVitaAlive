@@ -45,6 +45,69 @@ int main() {
     assert(validInstalledChildName(std::string(255, 'A')));
     assert(!safeExternalDataPath("ux0:data/psvitaalive"));
     assert(!safeExternalDataPath("ux0:data/tai"));
+    // Installed package collisions and orphan folders: smworld has more than
+    // one catalog owner, but only actually installed VPKs are shared users.
+    assert(installedDataExtractWithinRoot("ux0:data/", "ux0:data/smworld"));
+    assert(installedDataExtractWithinRoot("ux0:data/smworld", "ux0:data/smworld"));
+    assert(installedDataExtractWithinRoot("ux0:data/smworld/rom", "ux0:data/smworld"));
+    assert(!installedDataExtractWithinRoot("ux0:data/smworld2", "ux0:data/smworld"));
+    assert(!installedDataExtractWithinRoot("ux0:app/SPRMRWRLD", "ux0:data/smworld"));
+    assert(!installedDataAlternativesAmbiguous(false, 3));
+    assert(!installedDataAlternativesAmbiguous(true, 0));
+    assert(!installedDataAlternativesAmbiguous(true, 1));
+    assert(installedDataAlternativesAmbiguous(true, 2));
+
+    assert(!installedDataSharedDeletePermitted(false, true, true, false));
+    assert(!installedDataSharedDeletePermitted(true, false, true, false));
+    assert(!installedDataSharedDeletePermitted(true, true, false, false));
+    assert(installedDataSharedDeletePermitted(true, true, true, false));
+    assert(installedDataSharedDeletePermitted(true, true, false, true));
+    assert(!installedDataSharedDeletePermitted(true, false, false, true));
+    {
+        InstalledDataApp mario;
+        mario.appId = "super-mario-world-vita";
+        mario.titleId = "SPRMRWRLD";
+        InstalledDataPath root;
+        root.path = "ux0:data/smworld";
+        root.exists = true;
+        mario.paths.push_back(root);
+        // Root exists without any VPK. It is not automatically unsafe.
+        assert(installedDataCanOfferExternalDelete(mario));
+        InstalledDataSnapshot snapshot;
+        snapshot.apps.push_back(mario);
+        InstalledDataApp stars;
+        stars.titleId = "ALLSTARSW";
+        stars.paths.push_back(root);
+        stars.packagePresent = false;
+        snapshot.apps.push_back(stars);
+        assert(!installedDataHasActiveShare(snapshot, snapshot.apps[0]));
+        snapshot.apps[1].packagePresent = true;
+        assert(installedDataHasActiveShare(snapshot, snapshot.apps[0]));
+        snapshot.apps[0].activeShared = true;
+        // Orphan selected while another VPK is using the same directory.
+        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
+        snapshot.apps[0].packagePresent = true;
+        assert(installedDataCanOfferExternalDelete(snapshot.apps[0]));
+        snapshot.apps[1].paths[0].path = "ux0:data/smworld2";
+        assert(!installedDataHasActiveShare(snapshot, snapshot.apps[0]));
+        snapshot.apps[1].paths[0].path = "ux0:data/smworld/saves";
+        assert(installedDataHasActiveShare(snapshot, snapshot.apps[0]));
+        snapshot.apps[0].paths[0].path = "ux0:data/psvitaalive";
+        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
+        snapshot.apps[0].paths[0].path = "ux0:data/smworld";
+        snapshot.apps[0].unresolved = true;
+        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
+        snapshot.apps[0].unresolved = false;
+        snapshot.apps[0].blocked = true;
+        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
+        snapshot.apps[0].blocked = false;
+        snapshot.apps[0].paths[0].exists = false;
+        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
+        snapshot.apps[0].paths[0].exists = true;
+        snapshot.apps[0].titleId = "PSVAS1178";
+        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
+    }
+
     // Game Files warning only for installed apps with missing, known roots.
     {
         using ::psvitaalive::ui::CatalogItem;
