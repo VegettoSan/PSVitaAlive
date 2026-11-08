@@ -413,6 +413,7 @@ def fill_generated_metadata(apps, authors):
 
 def generate():
     from external.aggregate import build
+    from catalog_schema_v2 import to_v2
 
     apps, authors, categories, conflicts = build(ROOT)
     if conflicts:
@@ -439,13 +440,13 @@ def generate():
     validate_final(apps, authors, categories)
 
     with (ROOT / "catalog.json").open("w", encoding="utf-8") as handle:
-        json.dump(apps, handle, ensure_ascii=False, indent=2)
+        json.dump(to_v2(apps), handle, ensure_ascii=False, separators=(',', ':'))
         handle.write("\n")
     with (ROOT / "authors.json").open("w", encoding="utf-8") as handle:
-        json.dump(authors, handle, ensure_ascii=False, indent=2)
+        json.dump(to_v2(authors), handle, ensure_ascii=False, separators=(',', ':'))
         handle.write("\n")
     with (ROOT / "categories.json").open("w", encoding="utf-8") as handle:
-        json.dump(categories, handle, ensure_ascii=False, indent=2)
+        json.dump(to_v2(categories), handle, ensure_ascii=False, separators=(',', ':'))
         handle.write("\n")
 
     print(f"Applications: {len(apps)}")
