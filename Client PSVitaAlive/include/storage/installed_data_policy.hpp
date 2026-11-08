@@ -49,6 +49,34 @@ inline bool safeExternalDataPath(const std::string& path) {
     return validInstalledRelativePath(path.substr(9));
 }
 
+// The installer may extract directly into the declared data root, or into
+// one of its subfolders. Different prefixes such as game and game2 are distinct.
+inline bool installedDataExtractWithinRoot(const std::string& extract,
+                                           const std::string& root) {
+    return extract == "ux0:data/" || extract == root ||
+        (extract.size() > root.size() &&
+         extract.compare(0, root.size(), root) == 0 &&
+         extract[root.size()] == '/');
+}
+
+// Alternative mirrors cannot establish ownership over multiple independent
+// directories merely because all happen to exist on the card.
+inline bool installedDataAlternativesAmbiguous(bool hasAlternatives,
+                                               unsigned existingRootCount) {
+    return hasAlternatives && existingRootCount > 1;
+}
+
+// Explicit warning acceptance + installed-target proof are both required.
+// targetJustUninstalled is only set after successful PromoterUtility uninstall
+// within the same preflighted "delete both" operation.
+inline bool installedDataSharedDeletePermitted(bool confirmed,
+                                               bool targetWasInstalled,
+                                               bool targetPresentNow,
+                                               bool targetJustUninstalled) {
+    return confirmed && targetWasInstalled &&
+        (targetPresentNow || targetJustUninstalled);
+}
+
 // Component-aligned collision test. "game" does not overlap "game2".
 inline bool installedPathsOverlap(const std::string& a,
                                  const std::string& b) {
