@@ -1,5 +1,6 @@
 #include "ui/full_catalog_screen.hpp"
 #include "ui/game_files_notice_policy.hpp"
+#include "ui/detail_screenshot_visibility.hpp"
 #include "ui/installed_game_index.hpp"
 #include "ui/installed_data_texture_policy.hpp"
 #include "catalog/catalog_trace.hpp"
@@ -7529,6 +7530,32 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
     textures_[path]=t;textureOrder_.push_back(path);
 }
+int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, int panelWidth) {
+    // Exactly mirror drawDetailLinks + emitTextSection. Old visibility code
+    // estimated links using linkDetails.size(), ignoring grouped sections,
+    // permanent Web QR, saved ZIPs and the primary action. It evicted shots
+    // while their real rectangles were still visible.
+    int offset = linkLayoutTotalHeight(buildLinkLayout(item))
+        + WEB_QR_BLOCK_H + savedZipBlockHeight(item);
+    if (primaryActionFor(item) != PrimaryAction::None)
+        offset += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+
+    const int maxChars = std::max(16, (panelWidth - 36) / 7);
+    std::vector<std::string> lines;
+    auto appendTextSection = [&](const std::string& text) {
+        if (text.empty()) return;
+        wrapText(text, maxChars, lines);
+        if (!lines.empty())
+            offset += DETAIL_SECTION_H +
+                      static_cast<int>(lines.size()) * LINE_H +
+                      DETAIL_SECTION_GAP;
+    };
+    appendTextSection(item.description);
+    appendTextSection(item.longDescription);
+    // The first screenshot starts after the CAPTURAS section header.
+    return offset + DETAIL_SECTION_H;
+}
+
 void FullCatalogScreen::prepareVisibleTextures(){
     if(!imageCache_||catalogLoading_||installProgressActive_||mediaTexturesSuspended_)return;
     // Do not thrash GPU while frees are still draining or right after a catalog switch.
@@ -7652,31 +7679,32 @@ void FullCatalogScreen::prepareVisibleTextures(){
             markKeep(!it.icon.empty()?it.icon:it.cover, "app");
         }
         const int sel=selectedIndex();
+        std::vector<std::string> visibleScreenshots;
         if(sel>=0){
             const CatalogItem& it=catalogView()[sel];
             markKeep(!it.icon.empty()?it.icon:it.cover, "app");
-            const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
-            const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
+            // Match the *actual* detail panel width during transitions.
+            int panelW=SCREEN_W/2;
+            if (state_.mode==UiMode::OPENING_DETAIL)
+                panelW=static_cast<int>((SCREEN_W/2)*transitionProgress());
+            else if (state_.mode==UiMode::CLOSING_DETAIL)
+                panelW=static_cast<int>((SCREEN_W/2)*(1.f-transitionProgress()));
+            const int panelY=HEADER_H+TABS_H;
+            const int panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
             const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
             const int scroll=std::max(0, (int)visualDetailScroll_);
-            int mc=std::max(18, (panelW-36)/7);
-            std::vector<std::string> pre;
-            auto add=[&](const std::string& v){
-                if(v.empty())return;
-                pre.push_back("");
-                std::vector<std::string> q; wrapText(v, mc, q);
-                pre.insert(pre.end(), q.begin(), q.end());
-                pre.push_back("");
-            };
-            add(it.description);
-            add(it.longDescription);
-            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
-            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll;
-            const int shotH=SCREENSHOT_ROW_H-12;
-            const int sc=std::min((int)it.screenshots.size(), 8);
-            for(int k=0;k<sc;++k){
-                const int sy=shotTop+k*SCREENSHOT_ROW_H;
-                if(sy+shotH>top&&sy<bottom)markKeep(it.screenshots[k], "shot");
+            const int sc=std::min(5, (int)it.screenshots.size());
+            if (sc>0 && panelW>36) {
+                const int shotTop=top+detailScreenshotContentOffset(it,panelW)-scroll;
+                for(int k=0;k<sc;++k){
+                    const int sy=shotTop+k*SCREENSHOT_ROW_H;
+                    if(detailScreenshotIntersectsViewport(
+                           sy,SCREENSHOT_ROW_H-18,top,bottom)){
+                        // Keep exact drawn rows only, including partially visible.
+                        markKeep(it.screenshots[k], "shot");
+                        visibleScreenshots.push_back(it.screenshots[k]);
+                    }
+                }
             }
         }
         releaseTexturesNotIn(keep);
@@ -7694,32 +7722,10 @@ void FullCatalogScreen::prepareVisibleTextures(){
             const CatalogItem& it=catalogView()[i];
             prepareOne(!it.icon.empty()?it.icon:it.cover, "app");
         }
-        if(sel>=0){
-            const CatalogItem& it=catalogView()[sel];
-            const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
-            const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
-            const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
-            const int scroll=std::max(0, (int)visualDetailScroll_);
-            int mc=std::max(18, (panelW-36)/7);
-            std::vector<std::string> pre;
-            auto add=[&](const std::string& v){
-                if(v.empty())return;
-                pre.push_back("");
-                std::vector<std::string> q; wrapText(v, mc, q);
-                pre.insert(pre.end(), q.begin(), q.end());
-                pre.push_back("");
-            };
-            add(it.description);
-            add(it.longDescription);
-            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
-            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll;
-            const int shotH=SCREENSHOT_ROW_H-12;
-            const int sc=std::min((int)it.screenshots.size(), 8);
-            for(int k=0;k<sc;++k){
-                const int sy=shotTop+k*SCREENSHOT_ROW_H;
-                if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k], "shot");
-            }
-        }
+        // Use the SAME visible list for keeping and loading. The previous
+        // duplicated layout estimates could disagree with the renderer.
+        for(const auto& url:visibleScreenshots)
+            prepareOne(url,"shot");
         return;
     }
 
@@ -9122,8 +9128,12 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     const int sc = std::min(5, (int)it.screenshots.size());
     if (sc > 0) {
+        // Shared geometry with prepareVisibleTextures: residency and drawing
+        // must use identical screenshot coordinates.
+        const int firstRowY=top+detailScreenshotContentOffset(it,w)-(int)scroll;
+        cursor=firstRowY-DETAIL_SECTION_H;
         drawSectionHeader(cx, cursor, ::psvitaalive::L(::psvitaalive::TextId::SectionScreenshots));
-        cursor += DETAIL_SECTION_H;
+        cursor=firstRowY;
         for (int i = 0; i < sc; ++i) {
             drawImage(it.screenshots[i], "shot", cx, cursor + i * SCREENSHOT_ROW_H, cw, SCREENSHOT_ROW_H - 18);
         }

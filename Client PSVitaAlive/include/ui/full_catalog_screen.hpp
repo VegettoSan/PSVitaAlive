@@ -437,6 +437,7 @@ private:
     void updateAnimations();
     void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
+    int detailScreenshotContentOffset(const CatalogItem& item, int panelWidth);
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void openWebQrModal();
     void openDiscordQrModal();
