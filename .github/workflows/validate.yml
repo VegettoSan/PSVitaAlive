@@ -334,6 +334,9 @@ jobs:
           VITAHUB_SKIP_REMOTE_CHECKS: "true"
         run: python scripts/validate_catalog_ci.py
 
+      - name: Test repeatable V1/V2 game catalog compaction
+        run: python -m unittest discover -s tests -p test_compact_game_catalogs_v2.py -v
+
       - name: Generate compact PS Vita / PSP / PS1 public JSON (post-02.18)
         run: |
           set -euo pipefail

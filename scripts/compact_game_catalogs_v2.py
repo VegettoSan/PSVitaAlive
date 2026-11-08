@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build *experimental* V2 editions of the existing PS Vita, PSP and PS1 catalogs.
+"""Validate and rebuild compact V2 editions of PS Vita, PSP and PS1 catalogs.
 
-The three root catalog_ps*_games.json files are input only and are NEVER
-overwritten. The three official homebrew catalogs and the PSVita zRIF sidecar
-are likewise untouched.
+Input may be V1 *or already V2*. The three root catalog_ps*_games.json files
+are input only and are NEVER overwritten by this script. The official homebrew
+catalogs and PSVita zRIF sidecar are likewise untouched.
 
 Usage (repository root):
     python scripts/compact_game_catalogs_v2.py --out-dir /tmp/game-catalogs-v2 \
@@ -20,7 +20,11 @@ import json
 import sys
 from pathlib import Path
 
-from catalog_schema_v2 import KEYS, to_v1, to_v2
+# The script is executed directly by CI and imported as a package by tests.
+if __package__:
+    from .catalog_schema_v2 import KEYS, to_v1, to_v2
+else:
+    from catalog_schema_v2 import KEYS, to_v1, to_v2
 
 ROOT = Path(__file__).resolve().parents[1]
 GAMES = (
@@ -80,9 +84,12 @@ def build(out_dir: Path | None, report_path: Path | None) -> dict:
     for name in GAMES:
         path = ROOT / name
         original_bytes = path.read_bytes()
-        original = json.loads(original_bytes)
-        if not isinstance(original, list):
+        source = json.loads(original_bytes)
+        if not isinstance(source, list):
             raise ValueError(f"{name}: root must be an array")
+        # Convert to a single canonical V1 view for audit regardless of the
+        # input schema. Re-compacting an existing V2 file must be idempotent.
+        original = to_v1(source)
         fields: dict[str, int] = {}
         errors: list[str] = []
         scan_keys(original, "root", errors, fields)
@@ -90,8 +97,11 @@ def build(out_dir: Path | None, report_path: Path | None) -> dict:
         restored = to_v1(compact)
         if normalize(restored) != normalize(original):
             errors.append("V2 -> V1 roundtrip differs from source")
-        if len({str(x["id"]) for x in original}) != len(original):
-            errors.append("Duplicate game IDs")
+        if normalize(to_v2(restored)) != normalize(compact):
+            errors.append("V2 -> V1 -> V2 re-encoding differs")
+        ids = [str(x.get("id", "")) for x in original if isinstance(x, dict)]
+        if len(ids) != len(original) or not all(ids) or len(set(ids)) != len(ids):
+            errors.append("Missing or duplicate game IDs")
         for index, (old, new) in enumerate(zip(original, restored)):
             if old.get("title_ids") != new.get("title_ids"):
                 errors.append(f"record {index}: regional title IDs differ")
@@ -129,7 +139,7 @@ def build(out_dir: Path | None, report_path: Path | None) -> dict:
         "bytes_saved": sum(x["bytes_saved"] for x in results),
         "passed": not failed,
         "failed_files": failed,
-        "note": "V2 output is experimental. Do not publish in main before client validation.",
+        "note": "Accepts V1 or already V2 input; always stages validated V2 output separately. Publishing is controlled by the release-gated workflow.",
     }
     if report_path is not None:
         report_path.parent.mkdir(parents=True, exist_ok=True)
