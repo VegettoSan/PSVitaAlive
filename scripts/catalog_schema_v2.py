@@ -71,6 +71,9 @@ KEYS = {
     "bio": "b",
     "order": "ord",
     "subcategories": "subs",
+    "required_fw": "rfw",
+    "pkg_name": "pn",
+    "rap": "rap",  # already short; preserved for PSP compatibility
     "content_id": "coid",
     "contentId": "coi",
     "region": "rg",
