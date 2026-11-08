@@ -95,9 +95,15 @@ function jsonEq(actual, expected, name) {
     assert.equal(JSON.stringify(actual), JSON.stringify(expected), name);
 }
 
-async function testWebData(version, originals) {
+async function testWebData(version, originals, withProgress) {
     const files = readFiles(version);
     const browser = makeBrowser(files);
+    if (withProgress) {
+        vm.runInContext(
+            fs.readFileSync(path.join(ROOT, 'web/js/catalog-loader.js'), 'utf8'),
+            browser, {filename: 'web/js/catalog-loader.js'}
+        );
+    }
     const loaded = await vm.runInContext('loadVitaHubData()', browser);
     for (const [file, key] of [['catalog.json', 'catalog'], ['authors.json', 'authors'],
                                ['categories.json', 'categories']]) {
@@ -112,7 +118,20 @@ async function testWebData(version, originals) {
         const games = await browser.loadOfficialGamesCatalog();
         jsonEq(games, originals[file], version + ' game detail page: ' + file);
     }
-    console.log(version + ': data.js and all game detail page loaders OK');
+    // Test the author's direct reload path (its fetch bypasses data.js).
+    vm.runInContext(
+        fs.readFileSync(path.join(ROOT, 'web/js/author-page.js'), 'utf8'),
+        browser, {filename: 'web/js/author-page.js'}
+    );
+    const firstAuthor = originals['authors.json'][0];
+    browser.setTimeout = callback => callback(); // Skip retry delay; retain retry flow.
+    vm.runInContext('VitaHubData.authors = []', browser);
+    const refreshed = await vm.runInContext(
+        'findAuthorWithRetry(' + JSON.stringify(firstAuthor.id) + ')', browser
+    );
+    jsonEq(refreshed, firstAuthor, version + ' author refresh from public authors.json');
+    console.log(version + ': data.js (' + (withProgress ? 'progress-loader' : 'default') +
+                '), all game detail pages, and direct author refresh OK');
 }
 
 async function testSwitcher(version, originals, streamed) {
@@ -158,7 +177,8 @@ async function main() {
     );
     checkScriptOrder();
     for (const version of ['v1', 'v2']) {
-        await testWebData(version, originals);
+        await testWebData(version, originals, false);
+        await testWebData(version, originals, true);
         await testSwitcher(version, originals, false);
         await testSwitcher(version, originals, true);
     }
