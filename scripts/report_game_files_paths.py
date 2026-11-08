@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Generate complete Game Files route report from canonical apps/*.json only."""
 import json
+from catalog_schema_v2 import to_v1, to_v2
 from collections import defaultdict
 from pathlib import Path
 
@@ -15,7 +16,7 @@ def main():
     audit={x["id"]:x for x in json.loads(AUDIT.read_text(encoding="utf-8"))["results"]}
     rows=[];groups=defaultdict(set);multi=[];external=inside=ext_links=app_links=0
     for p in sorted((ROOT/"apps").glob("*.json")):
-        a=json.loads(p.read_text(encoding="utf-8"))
+        a=to_v1(json.loads(p.read_text(encoding="utf-8")))
         links=[l for l in a.get("links",[]) if l.get("type")=="Game Files"]
         if not links:continue
         one=[]
