@@ -20,7 +20,11 @@ import json
 import sys
 from pathlib import Path
 
-from catalog_schema_v2 import KEYS, to_v1, to_v2
+# The script is executed directly by CI and imported as a package by tests.
+if __package__:
+    from .catalog_schema_v2 import KEYS, to_v1, to_v2
+else:
+    from catalog_schema_v2 import KEYS, to_v1, to_v2
 
 ROOT = Path(__file__).resolve().parents[1]
 GAMES = (
