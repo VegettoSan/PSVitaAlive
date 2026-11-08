@@ -265,7 +265,9 @@ def app_id_from_candidate(candidate: Candidate, existing_ids: set[str]) -> str:
 
 
 def write_json_if_changed(path: Path, value: dict) -> bool:
-    serialized = json.dumps(to_v2(value), ensure_ascii=False, indent=2) + "\n"
+    # Hold canonical source JSON at V1 until official client 02.18 is released.
+    source_v2 = os.getenv("PSVA_SOURCE_SCHEMA_V2", "").lower() in ("1", "true", "yes")
+    serialized = json.dumps(to_v2(value) if source_v2 else value, ensure_ascii=False, indent=2) + "\n"
     if path.exists():
         try:
             current = path.read_text(encoding="utf-8")

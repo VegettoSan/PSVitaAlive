@@ -16,6 +16,7 @@ jobs:
       VITAHUB_REBUILD_FROM_EXTERNAL: 'false'
       VITAHUB_SKIP_REMOTE_MEDIA: 'true'
       VITAHUB_SKIP_REMOTE_CHECKS: 'true'
+      PSVA_SOURCE_SCHEMA_V2: 'true'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

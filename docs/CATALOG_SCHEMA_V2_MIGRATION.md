@@ -1,7 +1,8 @@
 # PSVitaAlive — Catalog schema V2 migration (work branch)
 
-> Status: **source migration committed on feature branch**, PR #65 remains a draft.
-> Production `main`, existing public catalogs, website and client releases remain unchanged.
+> Status: **staged deployment required**: publish dual-reader client 02.18 first;
+> integrate compact source JSON and public V2 catalogs only after release verification.
+> PR #65 contains compact JSON and is held until the client is available.
 > CI integration verified reversible conversion and identical V1/V2 generated values.
 > **Hardware validation remains pending.**
 
@@ -86,8 +87,10 @@ a separate inventory before any catalog-wide cutover.
 
 ## Publication switch
 
-`scripts/generate_catalog.py` generates **V1 by default** while its source
-files are V2. Set `PSVA_PUBLIC_SCHEMA_V2=true` only at the controlled catalog
+`scripts/generate_catalog.py` generates **V1 by default** even when source
+files are V2. Source-writing scripts keep V1 until `PSVA_SOURCE_SCHEMA_V2=true`
+is set (unset by default). Set both `PSVA_SOURCE_SCHEMA_V2=true` and
+`PSVA_PUBLIC_SCHEMA_V2=true` only at the controlled post-release catalog
 cutover; then the same generated `catalog.json`, `authors.json` and
 `categories.json` paths contain compact V2. The workflow's inline
 source-synchronization steps respect the same flag.
