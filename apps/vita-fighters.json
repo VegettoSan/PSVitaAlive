@@ -1,40 +1,40 @@
 {
   "id": "vita-fighters",
-  "title_id": "VFRS12346",
-  "name": "Vita Fighters",
-  "description": "A 3D fighting game.",
-  "long_description": "A fighting game with block-like graphics made with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VFRS12346",
+  "n": "Vita Fighters",
+  "d": "A 3D fighting game.",
+  "ld": "A fighting game with block-like graphics made with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "angrydevs"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.94",
-  "version_date": "2020-02-22",
-  "requirements": "Not specified",
-  "size": 54291648,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-fighters/icon0.png",
-  "screenshots": [
+  "v": "v.0.94",
+  "vd": "2020-02-22",
+  "req": "Not specified",
+  "sz": 54291648,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-fighters/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-fighters/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-fighters/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-fighters/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-fighters/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-fighters/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-fighters/vita-fighters.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-fighters/vita-fighters.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "468",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/468-VitaFighters.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.623579+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "468",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/468-VitaFighters.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.623579+00:00"
 }

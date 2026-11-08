@@ -1,15 +1,15 @@
 {
   "id": "dal3boy",
-  "name": "dal3boy",
-  "avatar": "https://github.com/ddB0515.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "dal3boy",
+  "av": "https://github.com/ddB0515.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/ddB0515",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/ddB0515",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/ddB0515.png"
+  "ic": "https://github.com/ddB0515.png"
 }

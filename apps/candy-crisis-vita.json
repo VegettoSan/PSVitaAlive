@@ -1,45 +1,45 @@
 {
   "id": "candy-crisis-vita",
-  "title_id": "CANDYCRIS",
-  "name": "Candy Crisis Vita",
-  "description": "Port of Candy Crisis for PSVITA.",
-  "long_description": "Port of Candy Crisis for PSVITA.\nCandy Crisis is an exciting combination of pure action and puzzle gaming! The game features twelve unique stages, complete with its own character and individual technique. Also, you can pair off against a friend, and even specify a handicap so that both players are evenly matched. And if you don't want to play against an opponent, Solitaire Crisis mode allows you to practice without having to compete against an opponent. A tutorial is included with the game as well, so even puzzle novices can become Candy Crisis champions in no time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CANDYCRIS",
+  "n": "Candy Crisis Vita",
+  "d": "Port of Candy Crisis for PSVITA.",
+  "ld": "Port of Candy Crisis for PSVITA.\nCandy Crisis is an exciting combination of pure action and puzzle gaming! The game features twelve unique stages, complete with its own character and individual technique. Also, you can pair off against a friend, and even specify a handicap so that both players are evenly matched. And if you don't want to play against an opponent, Solitaire Crisis mode allows you to practice without having to compete against an opponent. A tutorial is included with the game as well, so even puzzle novices can become Candy Crisis champions in no time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-02-24",
-  "requirements": "Not specified",
-  "size": 717046,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-candy-crisis-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-02-24",
+  "req": "Not specified",
+  "sz": 717046,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-candy-crisis-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-candy-crisis-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-candy-crisis-vita/candy-crisis-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-candy-crisis-vita/candy-crisis-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/CandyCrisis"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/CandyCrisis"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1043",
-  "source_url": "https://github.com/Rinnegatamante/CandyCrisis",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.510698+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1043",
+  "su": "https://github.com/Rinnegatamante/CandyCrisis",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.510698+00:00"
 }

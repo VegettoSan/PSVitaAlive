@@ -1,58 +1,58 @@
 {
   "id": "super-mario-strikers-vita",
-  "title_id": "SMSVITA01",
-  "name": "Super Mario Strikers Vita",
-  "description": "A native PC port of Super Mario Strikers, ported from decompiled code.",
-  "long_description": "An unofficial port of Super Mario Strikers / Mario Smash Football for PlayStation Vita. The current runtime uses VitaGL, PC-prepared native graphics, PCM audio, and H.264/AAC MP4 movies streamed from PSARC through SceAvPlayer. This project is still under development. Since version 1.4, live gameplay runs at about 58-59 FPS on a retail Vita in The Palace and about 48 FPS in Pipeline Central (measured at 444/222 MHz with vsync, in a test match), up from about 16-20 FPS. Stadium intros and replays are presented at an even 30 FPS by design. Stable 60 FPS in every scene is not certified yet.",
-  "author_ids": [
+  "tid": "SMSVITA01",
+  "n": "Super Mario Strikers Vita",
+  "d": "A native PC port of Super Mario Strikers, ported from decompiled code.",
+  "ld": "An unofficial port of Super Mario Strikers / Mario Smash Football for PlayStation Vita. The current runtime uses VitaGL, PC-prepared native graphics, PCM audio, and H.264/AAC MP4 movies streamed from PSARC through SceAvPlayer. This project is still under development. Since version 1.4, live gameplay runs at about 58-59 FPS on a retail Vita in The Palace and about 48 FPS in Pipeline Central (measured at 444/222 MHz with vsync, in a test match), up from about 16-20 FPS. Stadium intros and replays are presented at an even 30 FPS by design. Stable 60 FPS in every scene is not certified yet.",
+  "aids": [
     "robin994"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "strategy",
     "engine-port"
   ],
-  "version": "1.5.0",
-  "version_date": "2026-10-29",
-  "requirements": "- ur0:data/libshacccg.suprx\n- Install CapUnlocker for the best possible performance",
-  "size": 3879731,
-  "status": "Verified",
-  "links": [
+  "v": "1.5.0",
+  "vd": "2026-10-29",
+  "req": "- ur0:data/libshacccg.suprx\n- Install CapUnlocker for the best possible performance",
+  "sz": 3879731,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/strikers-vita/strikers_vita%20v1.5.0.vpk",
-      "size": 3879731,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/strikers-vita/strikers_vita%20v1.5.0.vpk",
+      "sz": 3879731,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/strikers-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1717986918,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/strikers-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1717986918,
+      "xp": "ux0:data/",
+      "ips": [
         "strikersVita"
       ]
     },
     {
-      "type": "Plugin",
-      "name": "CapUnlocker 1.4 (Recommended)",
-      "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-      "size": 5222,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/CapUnlocker.skprx",
-      "required": false
+      "t": "Plugin",
+      "n": "CapUnlocker 1.4 (Recommended)",
+      "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+      "sz": 5222,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/CapUnlocker.skprx",
+      "rq": false
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/robin994/strikersVita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/robin994/strikersVita"
     }
   ],
-  "icon": "https://archive.org/download/strikers-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/strikers-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/strikers-vita/shot0.png"
   ]
 }

@@ -1,55 +1,55 @@
 {
   "id": "arx-libertatis",
-  "title_id": "ARXL00001",
-  "name": "Arx Libertatis",
-  "description": "Port of Arx Fatalis to PSVita.",
-  "long_description": "Arx Libertatis is an open-source reimplementation of the Arx Fatalis engine, ported to PS Vita via vitaGL. Explore the dungeons of Arx as you fight, sneak, and cast your way through a full-length RPG with an immersive underground world.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ARXL00001",
+  "n": "Arx Libertatis",
+  "d": "Port of Arx Fatalis to PSVita.",
+  "ld": "Arx Libertatis is an open-source reimplementation of the Arx Fatalis engine, ported to PS Vita via vitaGL. Explore the dungeons of Arx as you fight, sneak, and cast your way through a full-length RPG with an immersive underground world.\n\n- PsVitaAlive -",
+  "aids": [
     "kingtorro"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.003",
-  "version_date": "2026-02-17",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 3586848,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-arx-libertatis/icon0.png",
-  "screenshots": [
+  "v": "v.1.003",
+  "vd": "2026-02-17",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 3586848,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-arx-libertatis/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-arx-libertatis/shot_01.png",
     "https://archive.org/download/psvitaalive-arx-libertatis/shot_02.png",
     "https://archive.org/download/psvitaalive-arx-libertatis/shot_03.png",
     "https://archive.org/download/psvitaalive-arx-libertatis/shot_04.png",
     "https://archive.org/download/psvitaalive-arx-libertatis/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-arx-libertatis/arx-libertatis.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-arx-libertatis/arx-libertatis.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheLostPantheon/ArxLibertatis/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheLostPantheon/ArxLibertatis/releases/tag/v1.003"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases/tag/v1.003"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheLostPantheon/ArxLibertatis"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheLostPantheon/ArxLibertatis"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1367",
-  "source_url": "https://github.com/TheLostPantheon/ArxLibertatis",
-  "release_page": "https://github.com/TheLostPantheon/ArxLibertatis/releases",
-  "updated_at": "2026-08-13T15:34:48.364116+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1367",
+  "su": "https://github.com/TheLostPantheon/ArxLibertatis",
+  "rp": "https://github.com/TheLostPantheon/ArxLibertatis/releases",
+  "ua": "2026-08-13T15:34:48.364116+00:00"
 }

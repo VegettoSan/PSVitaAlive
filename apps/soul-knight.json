@@ -1,41 +1,41 @@
 {
   "id": "soul-knight",
-  "title_id": "SOUL12345",
-  "name": "Soul Knight",
-  "description": "A port of the popular fast-paced roguelike shooter Soul Knight for PlayStation Vita.",
-  "long_description": "Explore randomly generated dungeons, fight hordes of enemies, discover new weapons and upgrades, unlock different characters, and try to make it as far as possible. Every run is different thanks to randomly generated rooms, enemies, and items.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SOUL12345",
+  "n": "Soul Knight",
+  "d": "A port of the popular fast-paced roguelike shooter Soul Knight for PlayStation Vita.",
+  "ld": "Explore randomly generated dungeons, fight hordes of enemies, discover new weapons and upgrades, unlock different characters, and try to make it as far as possible. Every run is different thanks to randomly generated rooms, enemies, and items.\n\n- PsVitaAlive -",
+  "aids": [
     "xqspx"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer",
     "strategy"
   ],
-  "version": "1.0",
-  "version_date": "2026-08-28",
-  "requirements": "- No Data",
-  "size": 57252250,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-08-28",
+  "req": "- No Data",
+  "sz": 57252250,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/soul-knight-psvita/SoulKnight.vpk",
-      "size": 57252250,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/soul-knight-psvita/SoulKnight.vpk",
+      "sz": 57252250,
+      "rec": true
     },
     {
-      "type": "Data Files",
-      "name": "Data Files",
-      "url": "https://archive.org/download/soul-knight-psvita/Game%20Files.zip",
-      "size": 445,
-      "extract_path": "ux0:data/"
+      "t": "Data Files",
+      "n": "Data Files",
+      "u": "https://archive.org/download/soul-knight-psvita/Game%20Files.zip",
+      "sz": 445,
+      "xp": "ux0:data/"
     }
   ],
-  "icon": "https://archive.org/download/soul-knight-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/soul-knight-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/soul-knight-psvita/shot0.png",
     "https://archive.org/download/soul-knight-psvita/shot1.png"
   ]

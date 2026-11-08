@@ -1,45 +1,45 @@
 {
   "id": "pause",
-  "title_id": "PAUSEGAME",
-  "name": "Pause",
-  "description": "3D puzzle game for PSVITA.",
-  "long_description": "There are two modes, move mode and freeze mode. move mode allows you to pickup and place objects, such as stacking a pile of boxes to get to a high place. Freeze mode lets you freeze objects in place, such as freezing a crate over a gap, so you can get across without falling in.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "PAUSEGAME",
+  "n": "Pause",
+  "d": "3D puzzle game for PSVITA.",
+  "ld": "There are two modes, move mode and freeze mode. move mode allows you to pickup and place objects, such as stacking a pile of boxes to get to a high place. Freeze mode lets you freeze objects in place, such as freezing a crate over a gap, so you can get across without falling in.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "wz"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-09-22",
-  "requirements": "Not specified",
-  "size": 48276346,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pause/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-09-22",
+  "req": "Not specified",
+  "sz": 48276346,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pause/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pause/shot_01.png",
     "https://archive.org/download/psvitaalive-pause/shot_02.png",
     "https://archive.org/download/psvitaalive-pause/shot_03.png",
     "https://archive.org/download/psvitaalive-pause/shot_04.png",
     "https://archive.org/download/psvitaalive-pause/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pause/pause.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pause/pause.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/58/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/58/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1143",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/58/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/58/",
-  "updated_at": "2026-08-13T15:34:48.473597+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1143",
+  "su": "https://fuhen.homebrew-contest.com/submissions/58/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/58/",
+  "ua": "2026-08-13T15:34:48.473597+00:00"
 }

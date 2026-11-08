@@ -1,46 +1,46 @@
 {
   "id": "dead-knight",
-  "title_id": "DEADKNI01",
-  "name": "Dead Knight",
-  "description": "Port of Dead Knight: Pocket Edition for PSVITA.",
-  "long_description": "Dead Knight - Pocket Edition is a downgrade version of the upcoming roguevania Dead Knight. Made for GBJam 4.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DEADKNI01",
+  "n": "Dead Knight",
+  "d": "Port of Dead Knight: Pocket Edition for PSVITA.",
+  "ld": "Dead Knight - Pocket Edition is a downgrade version of the upcoming roguevania Dead Knight. Made for GBJam 4.\n\n- PsVitaAlive -",
+  "aids": [
     "rodentcat"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-01-24",
-  "requirements": "- Game Data Files: PC",
-  "size": 2870412,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dead-knight/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-01-24",
+  "req": "- Game Data Files: PC",
+  "sz": 2870412,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dead-knight/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dead-knight/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dead-knight/dead-knight.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dead-knight/dead-knight.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/rodentcat/deadknight-vita-port"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/rodentcat/deadknight-vita-port"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/rodentcat/deadknight-vita-port/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/rodentcat/deadknight-vita-port/releases/tag/1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "791",
-  "source_url": "https://github.com/rodentcat/deadknight-vita-port",
-  "release_page": "https://github.com/rodentcat/deadknight-vita-port",
-  "updated_at": "2026-08-13T15:34:48.557833+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "791",
+  "su": "https://github.com/rodentcat/deadknight-vita-port",
+  "rp": "https://github.com/rodentcat/deadknight-vita-port",
+  "ua": "2026-08-13T15:34:48.557833+00:00"
 }

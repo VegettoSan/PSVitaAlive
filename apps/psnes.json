@@ -1,52 +1,52 @@
 {
   "id": "psnes",
-  "title_id": "PSNE00001",
-  "name": "pSNES",
-  "description": "SNES emulator for PSVITA.",
-  "long_description": "SNES emulator, multiplatform port of snes9x emulator.",
-  "author_ids": [
+  "tid": "PSNE00001",
+  "n": "pSNES",
+  "d": "SNES emulator for PSVITA.",
+  "ld": "SNES emulator, multiplatform port of snes9x emulator.",
+  "aids": [
     "cpasjuste"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.7.1",
-  "version_date": "2025-12-30",
-  "requirements": "Not specified",
-  "size": 3887269,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psnes/icon0.png",
-  "screenshots": [
+  "v": "v.7.1",
+  "vd": "2025-12-30",
+  "req": "Not specified",
+  "sz": 3887269,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psnes/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psnes/shot_01.png",
     "https://archive.org/download/psvitaalive-psnes/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psnes/psnes.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psnes/psnes.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/pemu"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Cpasjuste/pemu"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "546",
-  "source_url": "https://github.com/Cpasjuste/pemu",
-  "release_page": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/",
-  "updated_at": "2026-08-13T15:34:48.370631+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "546",
+  "su": "https://github.com/Cpasjuste/pemu",
+  "rp": "https://gbatemp.net/threads/psnes-a-snes9x-port-for-the-ps-vita.509360/",
+  "ua": "2026-08-13T15:34:48.370631+00:00"
 }

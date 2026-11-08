@@ -1,37 +1,37 @@
 {
   "id": "dungeon-survivor",
-  "title_id": "DGSO12345",
-  "name": "Dungeon Survivor",
-  "description": "Roguelike game for PSVITA.",
-  "long_description": "Port of Dungeon Survivor, a basic 2D roguelike game where you have to survive as long as you can.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DGSO12345",
+  "n": "Dungeon Survivor",
+  "d": "Roguelike game for PSVITA.",
+  "ld": "Port of Dungeon Survivor, a basic 2D roguelike game where you have to survive as long as you can.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "luckthegamers"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-08-28",
-  "requirements": "Not specified",
-  "size": 46072244,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dungeon-survivor/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-08-28",
+  "req": "Not specified",
+  "sz": 46072244,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dungeon-survivor/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dungeon-survivor/shot_01.png",
     "https://archive.org/download/psvitaalive-dungeon-survivor/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dungeon-survivor/dungeon-survivor.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dungeon-survivor/dungeon-survivor.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "501",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.632181+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "501",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/501-Dungeon_Survivor.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.632181+00:00"
 }

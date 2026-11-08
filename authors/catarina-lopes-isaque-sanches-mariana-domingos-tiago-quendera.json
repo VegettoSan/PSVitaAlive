@@ -1,25 +1,25 @@
 {
   "id": "catarina-lopes-isaque-sanches-mariana-domingos-tiago-quendera",
-  "name": "Catarina Lopes & Isaque Sanches & Mariana Domingos & Tiago Quendera",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "Catarina Lopes & Isaque Sanches & Mariana Domingos & Tiago Quendera",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/686-WTFDIGTS.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VitaHomebrewDB VPK",
+      "u": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/686-WTFDIGTS.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/sunglass/"
+      "t": "Official Website",
+      "n": "VitaHomebrewDB Release Page",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/sunglass/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

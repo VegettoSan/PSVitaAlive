@@ -1,41 +1,41 @@
 {
   "id": "snake-snako0002",
-  "title_id": "SNAKO0002",
-  "name": "Snake!",
-  "description": "Snake game for PSVITA/PSTV.",
-  "long_description": "A Snake game made with GameMaker for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "SNAKO0002",
+  "n": "Snake!",
+  "d": "Snake game for PSVITA/PSTV.",
+  "ld": "A Snake game made with GameMaker for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "ccoolguy"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.0",
-  "version_date": "2020-05-30",
-  "requirements": "Not specified",
-  "size": 5956779,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-snake-snako0002/icon0.png",
-  "screenshots": [
+  "v": "v.2.0",
+  "vd": "2020-05-30",
+  "req": "Not specified",
+  "sz": 5956779,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-snake-snako0002/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-snake-snako0002/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-snake-snako0002/snake-snako0002.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-snake-snako0002/snake-snako0002.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Ccoolguy/SnakeVita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Ccoolguy/SnakeVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "644",
-  "source_url": "https://github.com/Ccoolguy/SnakeVita",
-  "release_page": "https://github.com/Ccoolguy/SnakeVita",
-  "updated_at": "2026-08-13T15:34:48.619468+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "644",
+  "su": "https://github.com/Ccoolguy/SnakeVita",
+  "rp": "https://github.com/Ccoolguy/SnakeVita",
+  "ua": "2026-08-13T15:34:48.619468+00:00"
 }

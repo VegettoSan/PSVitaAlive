@@ -1,44 +1,44 @@
 {
   "id": "epsp-bubble-installer",
-  "title_id": "EPSPINSTA",
-  "name": "ePSP Bubble Installer",
-  "description": "Creates a bubble for Adrenaline/ARK.",
-  "long_description": "This is a tool that quickly installs a mini ePSP bubble for use with Adrenaline or ARK.\nNo need to be on IDU or to have a PS3. Moreover, the bubble will only cost you 3.5MB !\nSince v2.0, you can even activate your PSVita directly through the app !\nSince v3.0, you can clone ePSP bubbles and delete them if needed.\nOpen the app and follow what is written on screen. Enjoy, finally, ARK and Adrenaline.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "EPSPINSTA",
+  "n": "ePSP Bubble Installer",
+  "d": "Creates a bubble for Adrenaline/ARK.",
+  "ld": "This is a tool that quickly installs a mini ePSP bubble for use with Adrenaline or ARK.\nNo need to be on IDU or to have a PS3. Moreover, the bubble will only cost you 3.5MB !\nSince v2.0, you can even activate your PSVita directly through the app !\nSince v3.0, you can clone ePSP bubbles and delete them if needed.\nOpen the app and follow what is written on screen. Enjoy, finally, ARK and Adrenaline.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "celesteblue"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.3.1",
-  "version_date": "2017-03-20",
-  "requirements": "Not specified",
-  "size": 5491546,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-epsp-bubble-installer/icon0.png",
-  "screenshots": [
+  "v": "v.3.1",
+  "vd": "2017-03-20",
+  "req": "Not specified",
+  "sz": 5491546,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-epsp-bubble-installer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_01.png",
     "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_02.png",
     "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_03.png",
     "https://archive.org/download/psvitaalive-epsp-bubble-installer/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-epsp-bubble-installer/epsp-bubble-installer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-epsp-bubble-installer/epsp-bubble-installer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "124",
-  "source_url": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer",
-  "release_page": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer",
-  "updated_at": "2026-08-13T15:34:48.684546+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "124",
+  "su": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer",
+  "rp": "http://gekihen.customprotocol.com/en/project/ePSP-Bubble-Installer",
+  "ua": "2026-08-13T15:34:48.684546+00:00"
 }

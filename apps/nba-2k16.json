@@ -1,49 +1,49 @@
 {
   "id": "nba-2k16",
-  "title_id": "NBA2K1600",
-  "name": "NBA 2K16",
-  "description": "NBA 2K16 Android port for PlayStation Vita.",
-  "long_description": "NBA 2K16 Android port for PlayStation Vita.",
-  "author_ids": [
+  "tid": "NBA2K1600",
+  "n": "NBA 2K16",
+  "d": "NBA 2K16 Android port for PlayStation Vita.",
+  "ld": "NBA 2K16 Android port for PlayStation Vita.",
+  "aids": [
     "spliffcurrybeats"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "simulation",
     "strategy",
     "source-port"
   ],
-  "version": "0.2",
-  "version_date": "2026-10-22",
-  "requirements": "- Homebrew enabled, with VitaShell installed.\n- kubridge.skprx enabled and libshacccg.suprx installed.\n- At least 3 GB free on the PC for preparation, in addition to your original files, and 3 GB free on ux0: for installation. Leave additional room for saves and growing caches.",
-  "size": 2831155,
-  "status": "Verified",
-  "links": [
+  "v": "0.2",
+  "vd": "2026-10-22",
+  "req": "- Homebrew enabled, with VitaShell installed.\n- kubridge.skprx enabled and libshacccg.suprx installed.\n- At least 3 GB free on the PC for preparation, in addition to your original files, and 3 GB free on ux0: for installation. Leave additional room for saves and growing caches.",
+  "sz": 2831155,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/NBA2K16Vita_v0.2.vpk",
-      "size": 2831155,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/NBA2K16Vita_v0.2.vpk",
+      "sz": 2831155,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 2469606195,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2469606195,
+      "xp": "ux0:data/",
+      "ips": [
         "nba2k16"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Gitlab",
-      "url": "https://gitlab.com/sexcurrybeats/nba2k16-vita"
+      "t": "Repository",
+      "n": "Gitlab",
+      "u": "https://gitlab.com/sexcurrybeats/nba2k16-vita"
     }
   ],
-  "icon": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/nba-2k16-android-port-for-playstation-vita/shot0.png"
   ]
 }

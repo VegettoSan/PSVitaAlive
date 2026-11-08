@@ -1,48 +1,48 @@
 {
   "id": "easyrpg-player",
-  "title_id": "EASYRPG01",
-  "name": "EasyRPG Player",
-  "description": "RPG Maker 2k/2k3 player.",
-  "long_description": "EasyRPG Player is a program that allows to play games created with RPG Maker 2000 and 2003.\n\nIt aims to be a free (as in freedom) cross-platform RPG Maker 2000/2003 interpreter. The main goal is to play all games created with them as the original game interpreter (RPG_RT) does.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "EASYRPG01",
+  "n": "EasyRPG Player",
+  "d": "RPG Maker 2k/2k3 player.",
+  "ld": "EasyRPG Player is a program that allows to play games created with RPG Maker 2000 and 2003.\n\nIt aims to be a free (as in freedom) cross-platform RPG Maker 2000/2003 interpreter. The main goal is to play all games created with them as the original game interpreter (RPG_RT) does.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "easyrpg-team",
     "rinnegatamante"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.0.8.1.1",
-  "version_date": "2025-06-02",
-  "requirements": "Not specified",
-  "size": 4210037,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-easyrpg-player/icon0.png",
-  "screenshots": [
+  "v": "v.0.8.1.1",
+  "vd": "2025-06-02",
+  "req": "Not specified",
+  "sz": 4210037,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-easyrpg-player/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-easyrpg-player/shot_01.png",
     "https://archive.org/download/psvitaalive-easyrpg-player/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-easyrpg-player/easyrpg-player.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-easyrpg-player/easyrpg-player.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://blog.easyrpg.org/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://blog.easyrpg.org/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/EasyRPG/Player"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/EasyRPG/Player"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "5",
-  "source_url": "https://github.com/EasyRPG/Player",
-  "release_page": "https://blog.easyrpg.org/",
-  "updated_at": "2026-08-13T15:34:48.406753+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "5",
+  "su": "https://github.com/EasyRPG/Player",
+  "rp": "https://blog.easyrpg.org/",
+  "ua": "2026-08-13T15:34:48.406753+00:00"
 }

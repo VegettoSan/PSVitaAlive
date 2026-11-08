@@ -1,50 +1,50 @@
 {
   "id": "squid-game",
-  "title_id": "SQUIDGAME",
-  "name": "Squid Game",
-  "description": "A challenge based game inspired by the hit Netflix show.",
-  "long_description": "A challenge based game inspired by the hit Netflix show. Created in Lua using Lua Player Plus.",
-  "author_ids": [
+  "tid": "SQUIDGAME",
+  "n": "Squid Game",
+  "d": "A challenge based game inspired by the hit Netflix show.",
+  "ld": "A challenge based game inspired by the hit Netflix show. Created in Lua using Lua Player Plus.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-11-06",
-  "requirements": "Not specified",
-  "size": 28319506,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-squid-game/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-11-06",
+  "req": "Not specified",
+  "sz": 28319506,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-squid-game/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-squid-game/shot_01.png",
     "https://archive.org/download/psvitaalive-squid-game/shot_02.png",
     "https://archive.org/download/psvitaalive-squid-game/shot_03.png",
     "https://archive.org/download/psvitaalive-squid-game/shot_04.png",
     "https://archive.org/download/psvitaalive-squid-game/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-squid-game/squid-game.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-squid-game/squid-game.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/AntHJ/Squid-Game"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/AntHJ/Squid-Game"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Squid-Game/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Squid-Game/releases/tag/v1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "750",
-  "source_url": "https://github.com/AntHJ/Squid-Game",
-  "release_page": "https://github.com/AntHJ/Squid-Game",
-  "updated_at": "2026-08-13T15:34:48.564737+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "750",
+  "su": "https://github.com/AntHJ/Squid-Game",
+  "rp": "https://github.com/AntHJ/Squid-Game",
+  "ua": "2026-08-13T15:34:48.564737+00:00"
 }

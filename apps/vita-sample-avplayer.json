@@ -1,49 +1,49 @@
 {
   "id": "vita-sample-avplayer",
-  "title_id": "AVPLAYER1",
-  "name": "Vita Sample Avplayer",
-  "description": "Simple video player for PSVITA.",
-  "long_description": "A simple video player for PSVITA based off SceAvPlayer module.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "AVPLAYER1",
+  "n": "Vita Sample Avplayer",
+  "d": "Simple video player for PSVITA.",
+  "ld": "A simple video player for PSVITA based off SceAvPlayer module.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "yizhigai"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.03",
-  "version_date": "2022-12-10",
-  "requirements": "Not specified",
-  "size": 2934998,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-sample-avplayer/icon0.png",
-  "screenshots": [
+  "v": "v.1.03",
+  "vd": "2022-12-10",
+  "req": "Not specified",
+  "sz": 2934998,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-sample-avplayer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-sample-avplayer/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-sample-avplayer/vita-sample-avplayer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-sample-avplayer/vita-sample-avplayer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gitee.com/yizhigai/vita-sample-avplayer/releases"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gitee.com/yizhigai/vita-sample-avplayer/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://gitee.com/yizhigai/vita-sample-avplayer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://gitee.com/yizhigai/vita-sample-avplayer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1057",
-  "source_url": "https://gitee.com/yizhigai/vita-sample-avplayer",
-  "release_page": "https://gitee.com/yizhigai/vita-sample-avplayer/releases",
-  "updated_at": "2026-08-13T15:34:48.522612+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1057",
+  "su": "https://gitee.com/yizhigai/vita-sample-avplayer",
+  "rp": "https://gitee.com/yizhigai/vita-sample-avplayer/releases",
+  "ua": "2026-08-13T15:34:48.522612+00:00"
 }

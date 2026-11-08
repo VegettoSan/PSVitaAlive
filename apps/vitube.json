@@ -1,39 +1,39 @@
 {
   "id": "vitube",
-  "title_id": "VTUB00001",
-  "name": "ViTube",
-  "description": "Native YouTube client for the PlayStation Vita",
-  "long_description": "Native YouTube client for the PlayStation Vita. Talks directly to YouTube's internal API — no companion server, no account requirement, no browser.",
-  "author_ids": [
+  "tid": "VTUB00001",
+  "n": "ViTube",
+  "d": "Native YouTube client for the PlayStation Vita",
+  "ld": "Native YouTube client for the PlayStation Vita. Talks directly to YouTube's internal API — no companion server, no account requirement, no browser.",
+  "aids": [
     "shorelight82"
   ],
-  "category_id": "media",
-  "subcategory_ids": [
+  "cid": "media",
+  "sids": [
     "video",
     "video-player",
     "streaming"
   ],
-  "version": "2.0",
-  "version_date": "2026-09-15",
-  "requirements": "- requires HENkaku/Ensō",
-  "size": 4194304,
-  "status": "Verified",
-  "links": [
+  "v": "2.0",
+  "vd": "2026-09-15",
+  "req": "- requires HENkaku/Ensō",
+  "sz": 4194304,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/vi-tube-psvita/ViTube%20v2.0.vpk",
-      "size": 4194304,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/vi-tube-psvita/ViTube%20v2.0.vpk",
+      "sz": 4194304,
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/shorelight82/vitube-vpk"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/shorelight82/vitube-vpk"
     }
   ],
-  "icon": "https://archive.org/download/vi-tube-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/vi-tube-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/vi-tube-psvita/shot0.png",
     "https://archive.org/download/vi-tube-psvita/shot1.png"
   ]

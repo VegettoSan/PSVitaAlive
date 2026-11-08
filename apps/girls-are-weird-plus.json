@@ -1,43 +1,43 @@
 {
   "id": "girls-are-weird-plus",
-  "title_id": "SKEN12345",
-  "name": "Girls Are Weird Plus",
-  "description": "Remaster of Girls are Weird for PSVITA.",
-  "long_description": "Remaster of a visual novel called Girls are Weird for PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "SKEN12345",
+  "n": "Girls Are Weird Plus",
+  "d": "Remaster of Girls are Weird for PSVITA.",
+  "ld": "Remaster of a visual novel called Girls are Weird for PSVITA/PSTV.",
+  "aids": [
     "betterwinds"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-06-28",
-  "requirements": "Not specified",
-  "size": 19813881,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-girls-are-weird-plus/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-06-28",
+  "req": "Not specified",
+  "sz": 19813881,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-girls-are-weird-plus/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-girls-are-weird-plus/shot_01.png",
     "https://archive.org/download/psvitaalive-girls-are-weird-plus/shot_02.png",
     "https://archive.org/download/psvitaalive-girls-are-weird-plus/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-girls-are-weird-plus/girls-are-weird-plus.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-girls-are-weird-plus/girls-are-weird-plus.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://betterwinds.itch.io/girls-are-weird-plus"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://betterwinds.itch.io/girls-are-weird-plus"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "834",
-  "source_url": "https://betterwinds.itch.io/girls-are-weird-plus",
-  "release_page": "https://betterwinds.itch.io/girls-are-weird-plus",
-  "updated_at": "2026-08-14T01:05:59.219827+00:00"
+  "sn": "VitaDB",
+  "si": "834",
+  "su": "https://betterwinds.itch.io/girls-are-weird-plus",
+  "rp": "https://betterwinds.itch.io/girls-are-weird-plus",
+  "ua": "2026-08-14T01:05:59.219827+00:00"
 }

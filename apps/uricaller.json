@@ -1,47 +1,47 @@
 {
   "id": "uricaller",
-  "title_id": "URI000001",
-  "name": "uriCaller",
-  "description": "Utility to call URIs.",
-  "long_description": "Fast and easy solution to call URIs on an HENkaku enabled PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "URI000001",
+  "n": "uriCaller",
+  "d": "Utility to call URIs.",
+  "ld": "Fast and easy solution to call URIs on an HENkaku enabled PSVITA/PSTV.",
+  "aids": [
     "freakler"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2016-08-23",
-  "requirements": "Not specified",
-  "size": 198429,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-uricaller/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2016-08-23",
+  "req": "Not specified",
+  "sz": 198429,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-uricaller/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-uricaller/shot_01.png",
     "https://archive.org/download/psvitaalive-uricaller/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-uricaller/uricaller.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-uricaller/uricaller.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Freakler/vita-uriCaller/releases/tag/0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Freakler/vita-uriCaller/releases/tag/0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Freakler/vita-uriCaller"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Freakler/vita-uriCaller"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "150",
-  "source_url": "https://github.com/Freakler/vita-uriCaller",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.703234+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "150",
+  "su": "https://github.com/Freakler/vita-uriCaller",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.703234+00:00"
 }

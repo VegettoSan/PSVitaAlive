@@ -1,55 +1,55 @@
 {
   "id": "pony-island",
-  "title_id": "PONY22412",
-  "name": "Pony Island",
-  "description": "Port of Pony Island for PSVITA.",
-  "long_description": "A port of Pony Island to the PS Vita. Pony Island is a suspense puzzle game in disguise. You are in limbo, trapped in a malevolent and malfunctioning arcade machine devised by the devil himself. The devil detests having his puzzles solved and poor programming exposed; you will need to think outside the box to proceed and you will be insulted when you do. You need legally purchased files in order to play this. All the credit of making this game goes to Daniel Mullins Games.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PONY22412",
+  "n": "Pony Island",
+  "d": "Port of Pony Island for PSVITA.",
+  "ld": "A port of Pony Island to the PS Vita. Pony Island is a suspense puzzle game in disguise. You are in limbo, trapped in a malevolent and malfunctioning arcade machine devised by the devil himself. The devil detests having his puzzles solved and poor programming exposed; you will need to think outside the box to proceed and you will be insulted when you do. You need legally purchased files in order to play this. All the credit of making this game goes to Daniel Mullins Games.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2022-12-10",
-  "requirements": "- Game Data Files: PC Steam",
-  "size": 32772175,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pony-island/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2022-12-10",
+  "req": "- Game Data Files: PC Steam",
+  "sz": 32772175,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pony-island/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pony-island/shot_01.png",
     "https://archive.org/download/psvitaalive-pony-island/shot_02.png",
     "https://archive.org/download/psvitaalive-pony-island/shot_03.png",
     "https://archive.org/download/psvitaalive-pony-island/shot_04.png",
     "https://archive.org/download/psvitaalive-pony-island/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pony-island/pony-island.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pony-island/pony-island.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/PonyIsland"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/PonyIsland"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/hatoving/ponyisland-old-vita/releases/tag/1.2-vita"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/hatoving/ponyisland-old-vita/releases/tag/1.2-vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/hatoving/ponyisland-old-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/hatoving/ponyisland-old-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1021",
-  "source_url": "https://github.com/hatoving/PonyIsland",
-  "release_page": "https://github.com/hatoving/PonyIsland",
-  "updated_at": "2026-08-13T15:34:48.522491+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1021",
+  "su": "https://github.com/hatoving/PonyIsland",
+  "rp": "https://github.com/hatoving/PonyIsland",
+  "ua": "2026-08-13T15:34:48.522491+00:00"
 }

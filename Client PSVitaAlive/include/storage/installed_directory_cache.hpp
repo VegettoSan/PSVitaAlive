@@ -5,9 +5,9 @@
 
 namespace psvitaalive { namespace storage {
 
-// A persistent *directory discovery* index. Exact roots ALWAYS come from
-// catalog links[].installed_paths, not this file. Sizes are optional
-// historical display hints and must never grant permission to delete.
+// Persistent read-only measurements. External roots ALWAYS come from
+// catalog links[].installed_paths; package roots are exactly ux0:app/<title_id>.
+// Saved bytes are historical hints only; NEVER a deletion authorization.
 struct CachedDirectory {
     std::string titleId;
     std::string path;
@@ -22,6 +22,8 @@ public:
     static bool load(std::vector<CachedDirectory>& entries);
     static bool save(const std::vector<CachedDirectory>& entries);
     static void invalidateTitle(const std::string& titleId);
+    // Only ux0:app/<titleId>; preserve external Game Files measurements.
+    static void invalidatePackageTitle(const std::string& titleId);
     // Pure, host-testable serialization, with fail-closed validation.
     static bool encode(const std::vector<CachedDirectory>& entries,
                        std::string& out);

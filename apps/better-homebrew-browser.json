@@ -1,55 +1,55 @@
 {
   "id": "better-homebrew-browser",
-  "title_id": "BHBB00001",
-  "name": "Better Homebrew Browser",
-  "description": "Homebrew Downloader for PSVITA.",
-  "long_description": "Homebrew Browser and Downloader for PSVITA with background downloads support.",
-  "author_ids": [
+  "tid": "BHBB00001",
+  "n": "Better Homebrew Browser",
+  "d": "Homebrew Downloader for PSVITA.",
+  "ld": "Homebrew Browser and Downloader for PSVITA with background downloads support.",
+  "aids": [
     "m-ibrahim"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "V1.45",
-  "version_date": "2025-03-23",
-  "requirements": "Not specified",
-  "size": 1129338,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-better-homebrew-browser/icon0.png",
-  "screenshots": [
+  "v": "V1.45",
+  "vd": "2025-03-23",
+  "req": "Not specified",
+  "sz": 1129338,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-better-homebrew-browser/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_01.png",
     "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_02.png",
     "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_03.png",
     "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_04.png",
     "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-better-homebrew-browser/BetterHomebrewBrowser.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-better-homebrew-browser/BetterHomebrewBrowser.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Ibrahim778/BetterHomebrewBrowser"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "734",
-  "source_url": "https://github.com/Ibrahim778/BetterHomebrewBrowser",
-  "release_page": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45",
-  "updated_at": "2026-08-13T15:34:48.431997+00:00"
+  "sn": "NeoVitaDB",
+  "si": "734",
+  "su": "https://github.com/Ibrahim778/BetterHomebrewBrowser",
+  "rp": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45",
+  "ua": "2026-08-13T15:34:48.431997+00:00"
 }

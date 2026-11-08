@@ -1,55 +1,55 @@
 {
   "id": "isotope-244-collection",
-  "title_id": "ISOTPE244",
-  "name": "Isotope 244 Collection",
-  "description": "Port of Machines at War 3/Land Air Sea Warfare.",
-  "long_description": "This is a wrapper/port of Machines at War 3 and Land Air Sea Warfare for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ISOTPE244",
+  "n": "Isotope 244 Collection",
+  "d": "Port of Machines at War 3/Land Air Sea Warfare.",
+  "ld": "This is a wrapper/port of Machines at War 3 and Land Air Sea Warfare for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-10-02",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 5415624,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-isotope-244-collection/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-10-02",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 5415624,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-isotope-244-collection/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-isotope-244-collection/shot_01.png",
     "https://archive.org/download/psvitaalive-isotope-244-collection/shot_02.png",
     "https://archive.org/download/psvitaalive-isotope-244-collection/shot_03.png",
     "https://archive.org/download/psvitaalive-isotope-244-collection/shot_04.png",
     "https://archive.org/download/psvitaalive-isotope-244-collection/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-isotope-244-collection/isotope-244-collection.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-isotope-244-collection/isotope-244-collection.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Isotope-244-Collection"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Isotope-244-Collection"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "987",
-  "source_url": "https://github.com/Rinnegatamante/Isotope-244-Collection",
-  "release_page": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases",
-  "updated_at": "2026-08-13T15:34:48.529232+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "987",
+  "su": "https://github.com/Rinnegatamante/Isotope-244-Collection",
+  "rp": "https://github.com/Rinnegatamante/Isotope-244-Collection/releases",
+  "ua": "2026-08-13T15:34:48.529232+00:00"
 }

@@ -1,54 +1,54 @@
 {
   "id": "sdl2sand",
-  "title_id": "SDLSAND01",
-  "name": "SDL2Sand",
-  "description": "Port of SDL2Sand for PSVITA.",
-  "long_description": "SDL2Sand is another implementation of the now-classic Falling Sand Game, old-school and minimalistic. The game simulates different particles (such as sand, water, oil or fire) interacting with each other. Freedom is given to the player to experiment with different materials in a sandbox environment.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SDLSAND01",
+  "n": "SDL2Sand",
+  "d": "Port of SDL2Sand for PSVITA.",
+  "ld": "SDL2Sand is another implementation of the now-classic Falling Sand Game, old-school and minimalistic. The game simulates different particles (such as sand, water, oil or fire) interacting with each other. Freedom is given to the player to experiment with different materials in a sandbox environment.\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-01-20",
-  "requirements": "Not specified",
-  "size": 654139,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sdl2sand/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-01-20",
+  "req": "Not specified",
+  "sz": 654139,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sdl2sand/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sdl2sand/shot_01.png",
     "https://archive.org/download/psvitaalive-sdl2sand/shot_02.png",
     "https://archive.org/download/psvitaalive-sdl2sand/shot_03.png",
     "https://archive.org/download/psvitaalive-sdl2sand/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sdl2sand/sdl2sand.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sdl2sand/sdl2sand.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/sdl2sand/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/sdl2sand/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/sdl2sand/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/sdl2sand/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/sdl2sand"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/sdl2sand"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "778",
-  "source_url": "https://github.com/v-atamanenko/sdl2sand",
-  "release_page": "https://github.com/v-atamanenko/sdl2sand/releases",
-  "updated_at": "2026-08-13T15:34:48.557950+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "778",
+  "su": "https://github.com/v-atamanenko/sdl2sand",
+  "rp": "https://github.com/v-atamanenko/sdl2sand/releases",
+  "ua": "2026-08-13T15:34:48.557950+00:00"
 }

@@ -1,46 +1,46 @@
 {
   "id": "pkgi",
-  "title_id": "PKGI00000",
-  "name": "PKGi",
-  "description": "Download and install .pkg files.",
-  "long_description": "PKGi allows to install original pkg files on your Vita.\nThis homebrew allows to download & unpack pkg file directly on Vita together with your NoNpDrm fake license.",
-  "author_ids": [
+  "tid": "PKGI00000",
+  "n": "PKGi",
+  "d": "Download and install .pkg files.",
+  "ld": "PKGi allows to install original pkg files on your Vita.\nThis homebrew allows to download & unpack pkg file directly on Vita together with your NoNpDrm fake license.",
+  "aids": [
     "mmozeiko"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.05",
-  "version_date": "2017-10-24",
-  "requirements": "Not specified",
-  "size": 159126,
-  "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/786c9e9cc7bf0d4332e09c0280c8623b9d44f9673474b39d64b440c754120e3f.png",
-  "screenshots": [
+  "v": "v.0.05",
+  "vd": "2017-10-24",
+  "req": "Not specified",
+  "sz": 159126,
+  "st": "Legacy",
+  "ic": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/786c9e9cc7bf0d4332e09c0280c8623b9d44f9673474b39d64b440c754120e3f.png",
+  "ss": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/50b7fb19aff9d881ef507103d90c2a3d4416c3208cf72893a52b19f39b9ca7f4.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/mmozeiko/pkgi/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/mmozeiko/pkgi/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/mmozeiko/pkgi/releases/tag/v0.05"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/mmozeiko/pkgi/releases/tag/v0.05"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/mmozeiko/pkgi"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/mmozeiko/pkgi"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "341",
-  "source_url": "https://github.com/mmozeiko/pkgi",
-  "release_page": "https://github.com/mmozeiko/pkgi/releases",
-  "updated_at": "2026-08-13T15:34:48.672975+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "341",
+  "su": "https://github.com/mmozeiko/pkgi",
+  "rp": "https://github.com/mmozeiko/pkgi/releases",
+  "ua": "2026-08-13T15:34:48.672975+00:00"
 }

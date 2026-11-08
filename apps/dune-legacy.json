@@ -1,55 +1,55 @@
 {
   "id": "dune-legacy",
-  "title_id": "DUNE00002",
-  "name": "Dune Legacy",
-  "description": "Port of Dune Legacy for PSVITA.",
-  "long_description": "Dune Legacy is an effort by a handful of developers to revitalize the first-ever real-time strategy game.\nIt tries to be as similar as possible to the original gameplay but to integrate user interface features most modern realtime-strategy games have like selecting multiple units\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DUNE00002",
+  "n": "Dune Legacy",
+  "d": "Port of Dune Legacy for PSVITA.",
+  "ld": "Dune Legacy is an effort by a handful of developers to revitalize the first-ever real-time strategy game.\nIt tries to be as similar as possible to the original gameplay but to integrate user interface features most modern realtime-strategy games have like selecting multiple units\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.97.02-vita.1",
-  "version_date": "2023-12-15",
-  "requirements": "- Game Data Files: PC",
-  "size": 4531124,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dune-legacy/icon0.png",
-  "screenshots": [
+  "v": "v.0.97.02-vita.1",
+  "vd": "2023-12-15",
+  "req": "- Game Data Files: PC",
+  "sz": 4531124,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dune-legacy/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dune-legacy/shot_01.png",
     "https://archive.org/download/psvitaalive-dune-legacy/shot_02.png",
     "https://archive.org/download/psvitaalive-dune-legacy/shot_03.png",
     "https://archive.org/download/psvitaalive-dune-legacy/shot_04.png",
     "https://archive.org/download/psvitaalive-dune-legacy/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dune-legacy/dune-legacy.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dune-legacy/dune-legacy.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/dunelegacy-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/dunelegacy-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/dunelegacy-vita/releases/tag/0.97.02-vita.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/dunelegacy-vita/releases/tag/0.97.02-vita.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/dunelegacy-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/dunelegacy-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "732",
-  "source_url": "https://github.com/Northfear/dunelegacy-vita",
-  "release_page": "https://github.com/Northfear/dunelegacy-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.459089+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "732",
+  "su": "https://github.com/Northfear/dunelegacy-vita",
+  "rp": "https://github.com/Northfear/dunelegacy-vita/releases",
+  "ua": "2026-08-13T15:34:48.459089+00:00"
 }

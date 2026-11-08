@@ -1,15 +1,15 @@
 {
   "id": "lienby",
-  "name": "LiEnby",
-  "avatar": "https://github.com/LiEnby.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "LiEnby",
+  "av": "https://github.com/LiEnby.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/LiEnby",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/LiEnby",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/LiEnby.png"
+  "ic": "https://github.com/LiEnby.png"
 }

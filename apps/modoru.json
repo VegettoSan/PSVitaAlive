@@ -1,51 +1,51 @@
 {
   "id": "modoru",
-  "title_id": "MODORU000",
-  "name": "modoru",
-  "description": "Downgrader for PSVITA/PSTV.",
-  "long_description": "modoru means \"to go back\" in Japanese and is a downgrader for the PS Vita,",
-  "author_ids": [
+  "tid": "MODORU000",
+  "n": "modoru",
+  "d": "Downgrader for PSVITA/PSTV.",
+  "ld": "modoru means \"to go back\" in Japanese and is a downgrader for the PS Vita,",
+  "aids": [
     "theflow"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v2.3",
-  "version_date": "2022-05-11",
-  "requirements": "Not specified",
-  "size": 125403,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-modoru/icon0.png",
-  "screenshots": [
+  "v": "v2.3",
+  "vd": "2022-05-11",
+  "req": "Not specified",
+  "sz": 125403,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-modoru/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-modoru/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-modoru/modoru.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-modoru/modoru.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/modoru/releases/tag/v2.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/modoru/releases/tag/v2.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/modoru"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/modoru"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/modoru/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/modoru/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "425",
-  "source_url": "https://github.com/TheOfficialFloW/modoru",
-  "release_page": "https://github.com/TheOfficialFloW/modoru/releases/tag/v2.3",
-  "updated_at": "2026-08-13T15:34:48.607540+00:00"
+  "sn": "NeoVitaDB",
+  "si": "425",
+  "su": "https://github.com/TheOfficialFloW/modoru",
+  "rp": "https://github.com/TheOfficialFloW/modoru/releases/tag/v2.3",
+  "ua": "2026-08-13T15:34:48.607540+00:00"
 }

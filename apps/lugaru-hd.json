@@ -1,50 +1,50 @@
 {
   "id": "lugaru-hd",
-  "title_id": "LUGARU069",
-  "name": "Lugaru HD",
-  "description": "Port of Lugaru for PSVITA.",
-  "long_description": "Ninja rabbits on your Vita!\nThis is a beta release, meaning there are some bugs and crashes, but it's still entirely playable.\nThis is a port of the LugaruOSS to the PS Vita. It runs at 60 FPS at stock speeds, and some scenes even run at 60 with an underclock!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "LUGARU069",
+  "n": "Lugaru HD",
+  "d": "Port of Lugaru for PSVITA.",
+  "ld": "Ninja rabbits on your Vita!\nThis is a beta release, meaning there are some bugs and crashes, but it's still entirely playable.\nThis is a port of the LugaruOSS to the PS Vita. It runs at 60 FPS at stock speeds, and some scenes even run at 60 with an underclock!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "diggeloid"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "beta 1",
-  "version_date": "2022-08-20",
-  "requirements": "Not specified",
-  "size": 16154761,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-lugaru-hd/icon0.png",
-  "screenshots": [
+  "v": "beta 1",
+  "vd": "2022-08-20",
+  "req": "Not specified",
+  "sz": 16154761,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-lugaru-hd/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-lugaru-hd/shot_01.png",
     "https://archive.org/download/psvitaalive-lugaru-hd/shot_02.png",
     "https://archive.org/download/psvitaalive-lugaru-hd/shot_03.png",
     "https://archive.org/download/psvitaalive-lugaru-hd/shot_04.png",
     "https://archive.org/download/psvitaalive-lugaru-hd/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lugaru-hd/lugaru-hd.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-lugaru-hd/lugaru-hd.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://aramallo.itch.io/lugaru-vita-port"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://aramallo.itch.io/lugaru-vita-port"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://gitlab.com/alexramallo/lugaruvita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://gitlab.com/alexramallo/lugaruvita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "853",
-  "source_url": "https://gitlab.com/alexramallo/lugaruvita",
-  "release_page": "https://aramallo.itch.io/lugaru-vita-port",
-  "updated_at": "2026-08-13T15:34:48.535454+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "853",
+  "su": "https://gitlab.com/alexramallo/lugaruvita",
+  "rp": "https://aramallo.itch.io/lugaru-vita-port",
+  "ua": "2026-08-13T15:34:48.535454+00:00"
 }

@@ -1,45 +1,45 @@
 {
   "id": "animal-vitas",
-  "title_id": "ANIM41356",
-  "name": "Animal Vitas",
-  "description": "Clone of Animal Crossing for PSVITA.",
-  "long_description": "Open world game where you build a town and make it look fancy\nMake friends or enemies with the villagers\nGather resources and trade with others or craft them into new items\nExplore the caves and maybe not die\nMake your house extra fancy and invite people over\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ANIM41356",
+  "n": "Animal Vitas",
+  "d": "Clone of Animal Crossing for PSVITA.",
+  "ld": "Open world game where you build a town and make it look fancy\nMake friends or enemies with the villagers\nGather resources and trade with others or craft them into new items\nExplore the caves and maybe not die\nMake your house extra fancy and invite people over\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "spartanfox"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.0",
-  "version_date": "2023-09-22",
-  "requirements": "Not specified",
-  "size": 56187739,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-animal-vitas/icon0.png",
-  "screenshots": [
+  "v": "v.2.0",
+  "vd": "2023-09-22",
+  "req": "Not specified",
+  "sz": 56187739,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-animal-vitas/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-animal-vitas/shot_01.png",
     "https://archive.org/download/psvitaalive-animal-vitas/shot_02.png",
     "https://archive.org/download/psvitaalive-animal-vitas/shot_03.png",
     "https://archive.org/download/psvitaalive-animal-vitas/shot_04.png",
     "https://archive.org/download/psvitaalive-animal-vitas/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-animal-vitas/animal-vitas.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-animal-vitas/animal-vitas.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/40/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/40/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1130",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/40/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/40/",
-  "updated_at": "2026-08-13T15:34:48.469833+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1130",
+  "su": "https://fuhen.homebrew-contest.com/submissions/40/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/40/",
+  "ua": "2026-08-13T15:34:48.469833+00:00"
 }

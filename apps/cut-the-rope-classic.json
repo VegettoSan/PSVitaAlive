@@ -1,60 +1,60 @@
 {
   "id": "cut-the-rope-classic",
-  "title_id": "CTROPE001",
-  "name": "Cut the Rope Classic",
-  "description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.",
-  "long_description": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.\n\nGame data (ux0:data/ctr)\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CTROPE001",
+  "n": "Cut the Rope Classic",
+  "d": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.",
+  "ld": "Unofficial so-loader port of Cut the Rope (classic cardboard-box Android build) for PlayStation Vita.\n\nGame data (ux0:data/ctr)\n\n- PsVitaAlive -",
+  "aids": [
     "clyppe"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "puzzle"
   ],
-  "version": "0.2.0",
-  "version_date": "2026-07-31",
-  "requirements": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
-  "size": 2210000,
-  "status": "Verified",
-  "links": [
+  "v": "0.2.0",
+  "vd": "2026-07-31",
+  "req": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
+  "sz": 2210000,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/ctrc-psvita/CutTheRope%200.2.0.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ctrc-psvita/CutTheRope%200.2.0.vpk",
+      "rec": true
     },
     {
-      "type": "Download",
-      "name": "VPK - MediaFire",
-      "url": "https://www.mediafire.com/file/wpptb90v1fdaq1e/CutTheRope_0.2.0.vpk/file",
-      "recommended": false
+      "t": "Download",
+      "n": "VPK - MediaFire",
+      "u": "https://www.mediafire.com/file/wpptb90v1fdaq1e/CutTheRope_0.2.0.vpk/file",
+      "rec": false
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP - Mediafire",
-      "url": "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
-      "recommended": false,
-      "size": 11100000,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP - Mediafire",
+      "u": "https://www.mediafire.com/file/76qw8cqvq46lyjb/Game_Data.zip/file",
+      "rec": false,
+      "sz": 11100000,
+      "xp": "ux0:data/",
+      "ips": [
         "ctr"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
-      "recommended": false,
-      "size": 11100000,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP",
+      "u": "https://archive.org/download/ctrc-psvita/Game%20Data.zip",
+      "rec": false,
+      "sz": 11100000,
+      "xp": "ux0:data/",
+      "ips": [
         "ctr"
       ]
     }
   ],
-  "icon": "https://archive.org/download/ctrc-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/ctrc-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/ctrc-psvita/bg0.png",
     "https://archive.org/download/ctrc-psvita/pic0.png"
   ]

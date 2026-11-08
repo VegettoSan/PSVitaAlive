@@ -1,51 +1,51 @@
 {
   "id": "digital-clock-vita",
-  "title_id": "DIGICLOCK",
-  "name": "Digital Clock Vita",
-  "description": "",
-  "long_description": "Minimal PlayStation Vita digital clock with MP3 music playback, alarm scheduling and touch dismiss.",
-  "author_ids": [
+  "tid": "DIGICLOCK",
+  "n": "Digital Clock Vita",
+  "d": "",
+  "ld": "Minimal PlayStation Vita digital clock with MP3 music playback, alarm scheduling and touch dismiss.",
+  "aids": [
     "theherogac"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "1.01",
-  "version_date": "2026-08-12",
-  "requirements": "Not specified",
-  "size": 208803,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-digital-clock-vita/icon0.png",
-  "screenshots": [
+  "v": "1.01",
+  "vd": "2026-08-12",
+  "req": "Not specified",
+  "sz": 208803,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-digital-clock-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-digital-clock-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-digital-clock-vita/DigitalClockVita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-digital-clock-vita/DigitalClockVita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/theheroGAC/Digital-Clock-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.01"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.01"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1450",
-  "source_url": "https://github.com/theheroGAC/Digital-Clock-Vita",
-  "release_page": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00",
-  "updated_at": "2026-08-13T15:34:48.719516+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1450",
+  "su": "https://github.com/theheroGAC/Digital-Clock-Vita",
+  "rp": "https://github.com/theheroGAC/Digital-Clock-Vita/releases/tag/1.00",
+  "ua": "2026-08-13T15:34:48.719516+00:00"
 }

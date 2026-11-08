@@ -1,51 +1,51 @@
 {
   "id": "cspot_vita",
-  "title_id": "CSPOT0021",
-  "name": "Cspot_vita",
-  "description": "Spotify client for PSVITA.",
-  "long_description": "A Spotify player for PS Vita.\nOnly to be used with premium spotify accounts!\nRequires iTLS-Enso or newer firmware.",
-  "author_ids": [
+  "tid": "CSPOT0021",
+  "n": "Cspot_vita",
+  "d": "Spotify client for PSVITA.",
+  "ld": "A Spotify player for PS Vita.\nOnly to be used with premium spotify accounts!\nRequires iTLS-Enso or newer firmware.",
+  "aids": [
     "michal4132"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v0.2.9",
-  "version_date": "2023-01-04",
-  "requirements": "- libshacccg.suprx\n- iTLS-Enso or latest firmware",
-  "size": 2663165,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cspot_vita/icon0.png",
-  "screenshots": [
+  "v": "v0.2.9",
+  "vd": "2023-01-04",
+  "req": "- libshacccg.suprx\n- iTLS-Enso or latest firmware",
+  "sz": 2663165,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-cspot_vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cspot_vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cspot_vita/cspot_vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cspot_vita/cspot_vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/michal4132/cspot_vita/releases/tag/v0.2.9"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/michal4132/cspot_vita/releases/tag/v0.2.9"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/michal4132/cspot_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/michal4132/cspot_vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/michal4132/cspot_vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/michal4132/cspot_vita/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1018",
-  "source_url": "https://github.com/michal4132/cspot_vita",
-  "release_page": "https://github.com/michal4132/cspot_vita/releases/tag/v0.2.9",
-  "updated_at": "2026-08-13T15:34:48.523953+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1018",
+  "su": "https://github.com/michal4132/cspot_vita",
+  "rp": "https://github.com/michal4132/cspot_vita/releases/tag/v0.2.9",
+  "ua": "2026-08-13T15:34:48.523953+00:00"
 }

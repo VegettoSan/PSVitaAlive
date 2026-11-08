@@ -1,49 +1,49 @@
 {
   "id": "star-warfare-alien-invasion",
-  "title_id": "STWF00001",
-  "name": "Star Warfare: Alien Invasion",
-  "description": "Port of Star Warfare: Alien Invasion for PSVita.",
-  "long_description": "This is a a port of Star Warfare: Alien Invasion for the PlayStation Vita, playable with the Vita's controls and with trophies.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "STWF00001",
+  "n": "Star Warfare: Alien Invasion",
+  "d": "Port of Star Warfare: Alien Invasion for PSVita.",
+  "ld": "This is a a port of Star Warfare: Alien Invasion for the PlayStation Vita, playable with the Vita's controls and with trophies.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "arcade",
     "shooter",
     "other"
   ],
-  "version": "v.0.9-hotfix.0",
-  "version_date": "2026-04-17",
-  "requirements": "- Game Data Files: Android",
-  "size": 158334976,
-  "status": "Verified",
-  "links": [
+  "v": "v.0.9-hotfix.0",
+  "vd": "2026-04-17",
+  "req": "- Game Data Files: Android",
+  "sz": 158334976,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK with Game Files",
-      "url": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/StarWarfarev0.9Fix.vpk",
-      "size": 158334976,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK with Game Files",
+      "u": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/StarWarfarev0.9Fix.vpk",
+      "sz": 158334976,
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/starwarfare-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/starwarfare-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_01.png",
     "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_02.png",
     "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_03.png",
     "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_04.png",
     "https://archive.org/download/psvitaalive-star-warfare-alien-invasion/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1386",
-  "source_url": "https://github.com/hatoving/starwarfare-vita",
-  "release_page": "https://github.com/hatoving/starwarfare-vita",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1386",
+  "su": "https://github.com/hatoving/starwarfare-vita",
+  "rp": "https://github.com/hatoving/starwarfare-vita",
+  "ua": "2026-08-13T15:34"
 }

@@ -1,15 +1,15 @@
 {
   "id": "fatlenny",
-  "name": "FatLenny",
-  "avatar": "https://github.com/muukalainenpuhuu.png",
-  "bio": "",
-  "links": [
+  "n": "FatLenny",
+  "av": "https://github.com/muukalainenpuhuu.png",
+  "b": "",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/muukalainenpuhuu",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/muukalainenpuhuu",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/muukalainenpuhuu.png"
+  "ic": "https://github.com/muukalainenpuhuu.png"
 }

@@ -1,59 +1,59 @@
 {
   "id": "pokemon-colosseum",
-  "title_id": "PCOLN0010",
-  "name": "Pokemon Colosseum",
-  "description": "Port of Pokemon Colosseum for PSVita based off the decompilation of the Gamecube version.",
-  "long_description": "Port of Pokemon Colosseum for PSVita based off the decompilation of the Gamecube version.",
-  "author_ids": [
+  "tid": "PCOLN0010",
+  "n": "Pokemon Colosseum",
+  "d": "Port of Pokemon Colosseum for PSVita based off the decompilation of the Gamecube version.",
+  "ld": "Port of Pokemon Colosseum for PSVita based off the decompilation of the Gamecube version.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "rpg",
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-11-06",
-  "requirements": "- libshacccg.suprx\n- CapUnlocker.skprx\n- Game Data Files: Gamecube",
-  "size": 4928307,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-11-06",
+  "req": "- libshacccg.suprx\n- CapUnlocker.skprx\n- Game Data Files: Gamecube",
+  "sz": 4928307,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/pokemon-colosseum-vita/PokemonColosseum%20v1.0.vpk",
-      "size": 4928307,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/pokemon-colosseum-vita/PokemonColosseum%20v1.0.vpk",
+      "sz": 4928307,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/pokemon-colosseum-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 736624640,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/pokemon-colosseum-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 736624640,
+      "xp": "ux0:data/",
+      "ips": [
         "colosseum"
       ]
     },
     {
-      "type": "Plugin",
-      "name": "CapUnlocker 1.4 (Recommended)",
-      "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-      "size": 5222,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/CapUnlocker.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "CapUnlocker 1.4 (Recommended)",
+      "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+      "sz": 5222,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/CapUnlocker.skprx",
+      "rq": true
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Rinnegatamante/colosseum-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Rinnegatamante/colosseum-vita"
     }
   ],
-  "icon": "https://archive.org/download/pokemon-colosseum-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/pokemon-colosseum-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/pokemon-colosseum-vita/shot0.png",
     "https://archive.org/download/pokemon-colosseum-vita/shot1.png",
     "https://archive.org/download/pokemon-colosseum-vita/shot2.png",

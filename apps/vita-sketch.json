@@ -1,50 +1,50 @@
 {
   "id": "vita-sketch",
-  "title_id": "VTASKETCH",
-  "name": "VitA Sketch",
-  "description": "Etch a Sketch recreation for PSVita.",
-  "long_description": "An \"Etch A Sketch\" inspired recreation for the Vita, you can even shake to clear the image.",
-  "author_ids": [
+  "tid": "VTASKETCH",
+  "n": "VitA Sketch",
+  "d": "Etch a Sketch recreation for PSVita.",
+  "ld": "An \"Etch A Sketch\" inspired recreation for the Vita, you can even shake to clear the image.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-10-07",
-  "requirements": "Not specified",
-  "size": 4209007,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-sketch/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-10-07",
+  "req": "Not specified",
+  "sz": 4209007,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-sketch/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-sketch/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-sketch/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-sketch/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-sketch/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-sketch/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-sketch/vita-sketch.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-sketch/vita-sketch.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://anthj.itch.io/vita-sketch"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://anthj.itch.io/vita-sketch"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/VitA-Sketch"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/VitA-Sketch"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1331",
-  "source_url": "https://anthj.itch.io/vita-sketch",
-  "release_page": "https://anthj.itch.io/vita-sketch",
-  "updated_at": "2026-08-13T15:34:48.381128+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1331",
+  "su": "https://anthj.itch.io/vita-sketch",
+  "rp": "https://anthj.itch.io/vita-sketch",
+  "ua": "2026-08-13T15:34:48.381128+00:00"
 }

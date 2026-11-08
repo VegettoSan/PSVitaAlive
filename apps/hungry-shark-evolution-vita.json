@@ -1,49 +1,49 @@
 {
   "id": "hungry-shark-evolution-vita",
-  "title_id": "HGSKE1178",
-  "name": "Hungry Shark Evolution Vita",
-  "description": "Hungry Shark Evolution Vita Port",
-  "long_description": "Swim, hunt, survive, and evolve on PlayStation Vita. This port brings the classic Hungry Shark Evolution experience to the handheld, with Vita controls and touchscreen support.\n\n- PSVitaAlive Store -\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HGSKE1178",
+  "n": "Hungry Shark Evolution Vita",
+  "d": "Hungry Shark Evolution Vita Port",
+  "ld": "Swim, hunt, survive, and evolve on PlayStation Vita. This port brings the classic Hungry Shark Evolution experience to the handheld, with Vita controls and touchscreen support.\n\n- PSVitaAlive Store -\n\n- PsVitaAlive -",
+  "aids": [
     "vegettosandev"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "source-port",
     "other"
   ],
-  "version": "01.00",
-  "version_date": "2026-10-23",
-  "requirements": "- For smoother gameplay and more consistent frame rates, overclocking your PS Vita is recommended, especially in more demanding areas of the game.\n- An unmodified Hungry Shark Evolution 6.4.2 (build 228) Android APK",
-  "size": 134217728,
-  "status": "Verified",
-  "links": [
+  "v": "01.00",
+  "vd": "2026-10-23",
+  "req": "- For smoother gameplay and more consistent frame rates, overclocking your PS Vita is recommended, especially in more demanding areas of the game.\n- An unmodified Hungry Shark Evolution 6.4.2 (build 228) Android APK",
+  "sz": 134217728,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK + Game Files",
-      "url": "https://archive.org/download/hungry-shark-evolution-vita/Hungry_Shark_Evolution_Vita_1.0.vpk",
-      "size": 134217728,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/hungry-shark-evolution-vita/Hungry_Shark_Evolution_Vita_1.0.vpk",
+      "sz": 134217728,
+      "rec": true
     },
     {
-      "type": "Plugin",
-      "name": "CapUnlocker 1.4 (Recommended)",
-      "url": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-      "size": 5222,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/CapUnlocker.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "CapUnlocker 1.4 (Recommended)",
+      "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+      "sz": 5222,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/CapUnlocker.skprx",
+      "rq": true
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/VegettoSan/Hungry-Shark-Evolution-Ps-Vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/VegettoSan/Hungry-Shark-Evolution-Ps-Vita"
     }
   ],
-  "icon": "https://archive.org/download/hungry-shark-evolution-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/hungry-shark-evolution-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/hungry-shark-evolution-vita/shot0.png"
   ]
 }

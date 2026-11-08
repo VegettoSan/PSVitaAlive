@@ -1,56 +1,56 @@
 {
   "id": "nazi-zombies-portable",
-  "title_id": "NZZMBSPTB",
-  "name": "Nazi Zombies Portable",
-  "description": "Port of Nazi Zombies Portable for PSVITA.",
-  "long_description": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NZZMBSPTB",
+  "n": "Nazi Zombies Portable",
+  "d": "Port of Nazi Zombies Portable for PSVITA.",
+  "ld": "Call of Duty: Zombies \"de-make\" for PlayStation Portable & VITA, Nintendo Switch & 3DS, Windows, & Linux (ARM & x86). Powered by various Quake sourceports. Includes \"Nacht der Untoten\" and several community-made maps.\n\n- PsVitaAlive -",
+  "aids": [
     "nzp-reboot-team",
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "Nightly",
-  "version_date": "2024-02-05",
-  "requirements": "- libshacccg.suprx",
-  "size": 3612951,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-nazi-zombies-portable/icon0.png",
-  "screenshots": [
+  "v": "Nightly",
+  "vd": "2024-02-05",
+  "req": "- libshacccg.suprx",
+  "sz": 3612951,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-nazi-zombies-portable/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-nazi-zombies-portable/shot_01.png",
     "https://archive.org/download/psvitaalive-nazi-zombies-portable/shot_02.png",
     "https://archive.org/download/psvitaalive-nazi-zombies-portable/shot_03.png",
     "https://archive.org/download/psvitaalive-nazi-zombies-portable/shot_04.png",
     "https://archive.org/download/psvitaalive-nazi-zombies-portable/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-nazi-zombies-portable/nazi-zombies-portable.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-nazi-zombies-portable/nazi-zombies-portable.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/nzp-team/nzportable/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/nzp-team/nzportable/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/nzp-team/nzportable/releases/tag/nightly"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/nzp-team/nzportable"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/nzp-team/nzportable"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1028",
-  "source_url": "https://github.com/nzp-team/nzportable",
-  "release_page": "https://github.com/nzp-team/nzportable/releases",
-  "updated_at": "2026-08-13T15:34:48.451358+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1028",
+  "su": "https://github.com/nzp-team/nzportable",
+  "rp": "https://github.com/nzp-team/nzportable/releases",
+  "ua": "2026-08-13T15:34:48.451358+00:00"
 }

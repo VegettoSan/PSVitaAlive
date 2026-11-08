@@ -1,55 +1,55 @@
 {
   "id": "dungeonrush",
-  "title_id": "DUNGEON00",
-  "name": "DungeonRush",
-  "description": "Port of Dungeon Rush for PSVita.",
-  "long_description": "Port of Dungeon Rush for PSVita.\nDungeon Rush is a game inspired by Snake.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DUNGEON00",
+  "n": "DungeonRush",
+  "d": "Port of Dungeon Rush for PSVita.",
+  "ld": "Port of Dungeon Rush for PSVita.\nDungeon Rush is a game inspired by Snake.\n\n- PsVitaAlive -",
+  "aids": [
     "xfangfang"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.01.00",
-  "version_date": "2020-09-12",
-  "requirements": "Not specified",
-  "size": 3538174,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dungeonrush/icon0.png",
-  "screenshots": [
+  "v": "v.01.00",
+  "vd": "2020-09-12",
+  "req": "Not specified",
+  "sz": 3538174,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dungeonrush/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dungeonrush/shot_01.png",
     "https://archive.org/download/psvitaalive-dungeonrush/shot_02.png",
     "https://archive.org/download/psvitaalive-dungeonrush/shot_03.png",
     "https://archive.org/download/psvitaalive-dungeonrush/shot_04.png",
     "https://archive.org/download/psvitaalive-dungeonrush/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dungeonrush/dungeonrush.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dungeonrush/dungeonrush.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/xfangfang/DungeonRush-PSV"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/xfangfang/DungeonRush-PSV"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xfangfang/DungeonRush-PSV/releases/tag/01.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xfangfang/DungeonRush-PSV/releases/tag/01.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xfangfang/DungeonRush-PSV/releases"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/xfangfang/DungeonRush-PSV/releases"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "578",
-  "source_url": "https://github.com/xfangfang/DungeonRush-PSV/releases",
-  "release_page": "https://github.com/xfangfang/DungeonRush-PSV",
-  "updated_at": "2026-08-13T15:34:48.610808+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "578",
+  "su": "https://github.com/xfangfang/DungeonRush-PSV/releases",
+  "rp": "https://github.com/xfangfang/DungeonRush-PSV",
+  "ua": "2026-08-13T15:34:48.610808+00:00"
 }

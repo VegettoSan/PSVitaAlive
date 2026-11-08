@@ -1,57 +1,57 @@
 {
   "id": "nfshp-vita",
-  "title_id": "NFSHP0000",
-  "name": "NFSHP Vita",
-  "description": "Port of Need for Speed: Hot Pursuit for PSVITA.",
-  "long_description": "This is a wrapper/port of Need for Speed: Hot Pursuit Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NFSHP0000",
+  "n": "NFSHP Vita",
+  "d": "Port of Need for Speed: Hot Pursuit for PSVITA.",
+  "ld": "This is a wrapper/port of Need for Speed: Hot Pursuit Android for the PS Vita.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
+  "aids": [
     "electry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "racing",
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-01-05",
-  "requirements": "- Game Data Files: Android\n- kubridge.skprx",
-  "size": 1728053,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0",
+  "vd": "2024-01-05",
+  "req": "- Game Data Files: Android\n- kubridge.skprx",
+  "sz": 1728053,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-nfshp-vita/nfshp-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-nfshp-vita/nfshp-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-nfshp-vita/Game%20Files.zip",
-      "size": 445120512,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-nfshp-vita/Game%20Files.zip",
+      "sz": 445120512,
+      "xp": "ux0:data/",
+      "ips": [
         "nfshp"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Electry/nfshp_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Electry/nfshp_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-nfshp-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-nfshp-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-nfshp-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-nfshp-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-nfshp-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-nfshp-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-nfshp-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1173",
-  "source_url": "https://github.com/Electry/nfshp_vita",
-  "release_page": "https://github.com/Electry/nfshp_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1173",
+  "su": "https://github.com/Electry/nfshp_vita",
+  "rp": "https://github.com/Electry/nfshp_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

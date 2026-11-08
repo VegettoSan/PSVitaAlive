@@ -1,52 +1,52 @@
 {
   "id": "openjazz",
-  "title_id": "OPENJAZZ1",
-  "name": "OpenJazz",
-  "description": "Jazz Jackrabbit port for PSVITA",
-  "long_description": "OpenJazz is a free, open-source version of the classic Jazz Jackrabbitâ„¢ games. OpenJazz can be compiled on a wide range of operating systems, including Windows 98/Me/XP and Linux. To play, you will need the files from one of the original games.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OPENJAZZ1",
+  "n": "OpenJazz",
+  "d": "Jazz Jackrabbit port for PSVITA",
+  "ld": "OpenJazz is a free, open-source version of the classic Jazz Jackrabbitâ„¢ games. OpenJazz can be compiled on a wide range of operating systems, including Windows 98/Me/XP and Linux. To play, you will need the files from one of the original games.\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2018-04-13",
-  "requirements": "- Game Data Files: PC",
-  "size": 752944,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-openjazz/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2018-04-13",
+  "req": "- Game Data Files: PC",
+  "sz": 752944,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-openjazz/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openjazz/shot_01.png",
     "https://archive.org/download/psvitaalive-openjazz/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openjazz/openjazz.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openjazz/openjazz.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/openjazz/releases/latest"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/openjazz/releases/latest"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/openjazz/releases/tag/1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/openjazz/releases/tag/1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/openjazz"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/openjazz"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "378",
-  "source_url": "https://github.com/usineur/openjazz",
-  "release_page": "https://github.com/usineur/openjazz/releases/latest",
-  "updated_at": "2026-08-13T15:34:48.665112+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "378",
+  "su": "https://github.com/usineur/openjazz",
+  "rp": "https://github.com/usineur/openjazz/releases/latest",
+  "ua": "2026-08-13T15:34:48.665112+00:00"
 }

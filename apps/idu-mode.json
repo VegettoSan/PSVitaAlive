@@ -1,51 +1,51 @@
 {
   "id": "idu-mode",
-  "title_id": "XYZZ00003",
-  "name": "idu-mode",
-  "description": "Enables or disables IDU (Demo) mode",
-  "long_description": "App for your HENkaku-enabled PS Vita that lets you enable the Demo mode. \nThe Demo mode of the PSVita gives you access to more options, in particular the Package Installer. \nThe Package Installer can be used to install DRM Free official Vita apps (such as DRM free Demos, or apps like Netflix, etc...)\nPlease don't use this homebrew (and Demo mode) unless you know what you're doing because your PSVita could potentially automatically upgrade the FW if you're connected to WiFi.",
-  "author_ids": [
+  "tid": "XYZZ00003",
+  "n": "idu-mode",
+  "d": "Enables or disables IDU (Demo) mode",
+  "ld": "App for your HENkaku-enabled PS Vita that lets you enable the Demo mode. \nThe Demo mode of the PSVita gives you access to more options, in particular the Package Installer. \nThe Package Installer can be used to install DRM Free official Vita apps (such as DRM free Demos, or apps like Netflix, etc...)\nPlease don't use this homebrew (and Demo mode) unless you know what you're doing because your PSVita could potentially automatically upgrade the FW if you're connected to WiFi.",
+  "aids": [
     "xyzz"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-08-17",
-  "requirements": "Not specified",
-  "size": 51620,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-idu-mode/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-08-17",
+  "req": "Not specified",
+  "sz": 51620,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-idu-mode/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-idu-mode/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-idu-mode/idu-mode.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-idu-mode/idu-mode.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xyzz/vita-idu/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xyzz/vita-idu/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xyzz/vita-idu"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/xyzz/vita-idu"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "145",
-  "source_url": "https://github.com/xyzz/vita-idu",
-  "release_page": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/",
-  "updated_at": "2026-08-13T15:34:48.706143+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "145",
+  "su": "https://github.com/xyzz/vita-idu",
+  "rp": "http://wololo.net/2016/08/18/release-vita-idu-convert-vita-demo-mode-adds-cool-options/",
+  "ua": "2026-08-13T15:34:48.706143+00:00"
 }

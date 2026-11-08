@@ -1,15 +1,15 @@
 {
   "id": "cigflavoredgum",
-  "name": "CigFlavoredGum",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Dev",
-  "links": [
+  "n": "CigFlavoredGum",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Community",
-      "name": "Reddit",
-      "url": "https://www.reddit.com/user/CigFlavoredGum/",
-      "recommended": false
+      "t": "Community",
+      "n": "Reddit",
+      "u": "https://www.reddit.com/user/CigFlavoredGum/",
+      "rec": false
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

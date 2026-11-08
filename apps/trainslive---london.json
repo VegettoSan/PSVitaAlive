@@ -1,39 +1,39 @@
 {
   "id": "trainslive---london",
-  "title_id": "MYSR00000",
-  "name": "TrainsLIVE - London",
-  "description": "Realtime London trains tracker app.",
-  "long_description": "An application that uses the TfL API, to show all London trains in realtime on a vector rendition of the london underground map. The application takes approx. 1.5 minutes to download all the trains and place them.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "MYSR00000",
+  "n": "TrainsLIVE - London",
+  "d": "Realtime London trains tracker app.",
+  "ld": "An application that uses the TfL API, to show all London trains in realtime on a vector rendition of the london underground map. The application takes approx. 1.5 minutes to download all the trains and place them.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "mysters789"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2020-12-10",
-  "requirements": "Not specified",
-  "size": 1635419,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-trainslive---london/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2020-12-10",
+  "req": "Not specified",
+  "sz": 1635419,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-trainslive---london/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-trainslive---london/shot_01.png",
     "https://archive.org/download/psvitaalive-trainslive---london/shot_02.png",
     "https://archive.org/download/psvitaalive-trainslive---london/shot_03.png",
     "https://archive.org/download/psvitaalive-trainslive---london/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-trainslive---london/trainslive---london.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-trainslive---london/trainslive---london.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "598",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/598-trainsliveldn.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.603858+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "598",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/598-trainsliveldn.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.603858+00:00"
 }

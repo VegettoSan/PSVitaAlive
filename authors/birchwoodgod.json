@@ -1,15 +1,15 @@
 {
   "id": "birchwoodgod",
-  "name": "BirchWoodGod",
-  "avatar": "https://avatars.githubusercontent.com/u/122767749?v=4",
-  "bio": "I use AI to code, I'm sorry. :(",
-  "links": [
+  "n": "BirchWoodGod",
+  "av": "https://avatars.githubusercontent.com/u/122767749?v=4",
+  "b": "I use AI to code, I'm sorry. :(",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/BirchWoodGod",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/BirchWoodGod",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/122767749?v=4https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://avatars.githubusercontent.com/u/122767749?v=4https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

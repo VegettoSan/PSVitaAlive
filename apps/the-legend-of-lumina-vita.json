@@ -1,45 +1,45 @@
 {
   "id": "the-legend-of-lumina-vita",
-  "title_id": "TLOL00020",
-  "name": "The Legend of Lumina Vita",
-  "description": "Port of The Legend of Lumina for PSVITA.",
-  "long_description": "Port of The Legend of Lumina for PSVITA.\nExplore an ancient forest, push blocks to solve puzzles, and uncover a way to lift the curse on your homeland.\nOriginally developed in Godot for the KB Games ZeldaJam 2022, The Legend of Lumina is a block-pushing puzzle game with Metroidvania-style progression, set in a peaceful forest environment.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "TLOL00020",
+  "n": "The Legend of Lumina Vita",
+  "d": "Port of The Legend of Lumina for PSVITA.",
+  "ld": "Port of The Legend of Lumina for PSVITA.\nExplore an ancient forest, push blocks to solve puzzles, and uncover a way to lift the curse on your homeland.\nOriginally developed in Godot for the KB Games ZeldaJam 2022, The Legend of Lumina is a block-pushing puzzle game with Metroidvania-style progression, set in a peaceful forest environment.\n\n- PsVitaAlive -",
+  "aids": [
     "rocroverss"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-05-22",
-  "requirements": "- Game Data Files: PC",
-  "size": 16561478,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-05-22",
+  "req": "- Game Data Files: PC",
+  "sz": 16561478,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/the-legend-of-lumina-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-legend-of-lumina-vita/the-legend-of-lumina-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1272",
-  "source_url": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita",
-  "release_page": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita",
-  "updated_at": "2026-08-13T15:34:48.407289+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1272",
+  "su": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita",
+  "rp": "https://github.com/Rocroverss/The-legend-of-lumina-patch-psvita",
+  "ua": "2026-08-13T15:34:48.407289+00:00"
 }

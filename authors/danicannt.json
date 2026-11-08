@@ -1,15 +1,15 @@
 {
   "id": "danicannt",
-  "name": "danicannt",
-  "avatar": "https://avatars.githubusercontent.com/u/53301767?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "danicannt",
+  "av": "https://avatars.githubusercontent.com/u/53301767?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/danicannt",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/danicannt",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/53301767?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/53301767?v=4"
 }

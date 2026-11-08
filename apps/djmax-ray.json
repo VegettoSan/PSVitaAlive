@@ -1,48 +1,48 @@
 {
   "id": "djmax-ray",
-  "title_id": "DJMR00001",
-  "name": "DJMAX Ray",
-  "description": "Unofficial PS Vita port of the iOS version of DJMAX Ray (Neowiz / Pentavision).",
-  "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, CoreGraphics, OpenGL ES, OpenAL, AudioToolbox) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
-  "author_ids": [
+  "tid": "DJMR00001",
+  "n": "DJMAX Ray",
+  "d": "Unofficial PS Vita port of the iOS version of DJMAX Ray (Neowiz / Pentavision).",
+  "ld": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, CoreGraphics, OpenGL ES, OpenAL, AudioToolbox) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+  "aids": [
     "papileno"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "simulation",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-30",
-  "requirements": "- kubridge v0.3.1 or later by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.",
-  "size": 1468006,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-10-30",
+  "req": "- kubridge v0.3.1 or later by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.",
+  "sz": 1468006,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/djmax-ray-for-ps-vita/djmaxray%20v1.0.vpk",
-      "size": 1468006,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/djmax-ray-for-ps-vita/djmaxray%20v1.0.vpk",
+      "sz": 1468006,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/djmax-ray-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 990694605,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/djmax-ray-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 990694605,
+      "xp": "ux0:data/",
+      "ips": [
         "djmaxray"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/papilenote/vita-ports/tree/main/DJMAX%20Ray"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/papilenote/vita-ports/tree/main/DJMAX%20Ray"
     }
   ],
-  "icon": "https://archive.org/download/djmax-ray-for-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/djmax-ray-for-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/djmax-ray-for-ps-vita/shot0.png"
   ]
 }

@@ -21,6 +21,10 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    # Activated only AFTER official Release 02.18 is available.
+    env:
+      PSVA_SOURCE_SCHEMA_V2: "true"
+      PSVA_PUBLIC_SCHEMA_V2: "true"
 
     steps:
       - name: Checkout repository
@@ -58,6 +62,25 @@ jobs:
           echo "VITAHUB_SKIP_REMOTE_MEDIA=true" >> "$GITHUB_ENV"
           echo "Local-only mode: no external catalog fetches; remote media probes skipped."
 
+      - name: Guard public V2 cutover behind official 02.18 release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/02.18" > /tmp/psva-release-0218.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          release = json.loads(Path('/tmp/psva-release-0218.json').read_text())
+          assets = {a.get('name') for a in release.get('assets', []) if a.get('state') == 'uploaded'}
+          if (release.get('draft') or release.get('prerelease') or
+              release.get('tag_name') != '02.18' or
+              not {'PSVitaAlive.vpk', 'PSVitaAlive.vpk.sha256'} <= assets):
+              raise SystemExit('BLOCKED: 02.18 stable VPK and checksum must be published before V2 JSON')
+          print('Verified stable PSVitaAlive 02.18 release + VPK + SHA256 before V2 JSON publication')
+          PY
+
       - name: Run aggregation unit smoke test (offline)
         run: python scripts/external_smoke_test.py
 
@@ -76,8 +99,10 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import os
           import re
           from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1, to_v2
           from scripts.external.identity import canonical_author_id
 
           root = Path('.')
@@ -86,10 +111,14 @@ jobs:
           fallback = 'https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png'
 
           def load(path):
-              return json.loads(path.read_text(encoding='utf-8'))
+              return to_v1(json.loads(path.read_text(encoding='utf-8')))
 
           def save(path, value):
-              path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              sources = ('apps', 'authors', 'categories')
+              source_v2 = os.getenv('PSVA_SOURCE_SCHEMA_V2', '').lower() in ('1', 'true', 'yes')
+              public_v2 = os.getenv('PSVA_PUBLIC_SCHEMA_V2', '').lower() in ('1', 'true', 'yes')
+              payload = to_v2(value) if (source_v2 if path.parent.name in sources else public_v2) else value
+              path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
           def split_names(value):
               if not isinstance(value, str):
@@ -217,7 +246,9 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import os
           from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1, to_v2
 
           root = Path('.')
           authors_dir = root / 'authors'
@@ -226,7 +257,7 @@ jobs:
           referenced = set()
           for path in sorted((root / 'apps').glob('*.json')):
               try:
-                  app = json.loads(path.read_text(encoding='utf-8'))
+                  app = to_v1(json.loads(path.read_text(encoding='utf-8')))
               except Exception:
                   continue
               ids = app.get('author_ids', [])
@@ -236,7 +267,7 @@ jobs:
           authors_by_id = {}
           for path in sorted(authors_dir.glob('*.json')):
               try:
-                  author = json.loads(path.read_text(encoding='utf-8'))
+                  author = to_v1(json.loads(path.read_text(encoding='utf-8')))
               except Exception:
                   continue
               aid = author.get('id')
@@ -265,7 +296,7 @@ jobs:
               }
               path = authors_dir / f'{aid}.json'
               path.write_text(
-                  json.dumps(profile, ensure_ascii=False, indent=2) + '\n',
+                  json.dumps(to_v2(profile) if os.getenv('PSVA_SOURCE_SCHEMA_V2', '').lower() in ('1', 'true', 'yes') else profile, ensure_ascii=False, indent=2) + '\n',
                   encoding='utf-8',
               )
               authors_by_id[aid] = profile
@@ -276,7 +307,10 @@ jobs:
           authors = list(authors_by_id.values())
           authors.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
           (root / 'authors.json').write_text(
-              json.dumps(authors, ensure_ascii=False, indent=2) + '\n',
+              json.dumps(
+                  to_v2(authors) if os.getenv('PSVA_PUBLIC_SCHEMA_V2', '').lower() in ('1', 'true', 'yes') else authors,
+                  ensure_ascii=False, indent=2
+              ) + '\n',
               encoding='utf-8',
           )
 
@@ -289,6 +323,9 @@ jobs:
           print(f'Authors published: {len(authors)} (orphans included: {orphan_count})')
           PY
 
+      - name: Check source catalog V2 key coverage and roundtrip
+        run: python scripts/migrate_catalog_schema_v2.py
+
       - name: Validate Game Files installed paths (offline)
         run: python scripts/validate_installed_paths_audit.py
 
@@ -296,6 +333,18 @@ jobs:
         env:
           VITAHUB_SKIP_REMOTE_CHECKS: "true"
         run: python scripts/validate_catalog_ci.py
+
+      - name: Generate compact PS Vita / PSP / PS1 public JSON (post-02.18)
+        run: |
+          set -euo pipefail
+          python scripts/compact_game_catalogs_v2.py \
+            --out-dir /tmp/psva-publish-games-v2 \
+            --report /tmp/psva-publish-games-report.json
+          for name in catalog_psvita_games.json catalog_psp_games.json catalog_ps1_games.json; do
+            test -s "/tmp/psva-publish-games-v2/$name"
+            cp "/tmp/psva-publish-games-v2/$name" "$name"
+          done
+          # The PS Vita license sidecar (.zrifidx) is deliberately untouched.
 
       - name: Verify generated catalogs
         run: |
@@ -315,7 +364,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -A -- apps authors categories catalog.json authors.json categories.json sources
+          git add -A -- apps authors categories catalog.json authors.json categories.json \
+            catalog_psvita_games.json catalog_psp_games.json catalog_ps1_games.json sources
           if [ -d reports ]; then
             git add -A -- reports
           fi

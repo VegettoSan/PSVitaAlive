@@ -1,44 +1,44 @@
 {
   "id": "vita-hangman---touhou-edition-thhm00001",
-  "title_id": "THHM00001",
-  "name": "Vita Hangman - Touhou Edition",
-  "description": "Hangman game for PSVITA.",
-  "long_description": "Hangman game for PSVITA coded in Lua. Enhanced version of Vita Hangman with sounds, BGMs, backgrounds and enhanced game mechanics.",
-  "author_ids": [
+  "tid": "THHM00001",
+  "n": "Vita Hangman - Touhou Edition",
+  "d": "Hangman game for PSVITA.",
+  "ld": "Hangman game for PSVITA coded in Lua. Enhanced version of Vita Hangman with sounds, BGMs, backgrounds and enhanced game mechanics.",
+  "aids": [
     "aurora",
     "jackiepooh",
     "rinnegatamante"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1A-TH1",
-  "version_date": "2018-04-06",
-  "requirements": "Not specified",
-  "size": 6749665,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/icon0.png",
-  "screenshots": [
+  "v": "v.1.1A-TH1",
+  "vd": "2018-04-06",
+  "req": "Not specified",
+  "sz": 6749665,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/vita-hangman---touhou-edition-thhm00001.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition-thhm00001/vita-hangman---touhou-edition-thhm00001.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "379",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
-  "updated_at": "2026-08-14T01:05:59.226214+00:00"
+  "sn": "VitaDB",
+  "si": "379",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
+  "ua": "2026-08-14T01:05:59.226214+00:00"
 }

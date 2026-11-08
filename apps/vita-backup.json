@@ -1,55 +1,55 @@
 {
   "id": "vita-backup",
-  "title_id": "VITABUP00",
-  "name": "Vita Backup",
-  "description": "Backup/Restore tool.",
-  "long_description": "This utility aims to backup and restore VITA specific files (hardware ids, activation data, databases etc) on the go.",
-  "author_ids": [
+  "tid": "VITABUP00",
+  "n": "Vita Backup",
+  "d": "Backup/Restore tool.",
+  "ld": "This utility aims to backup and restore VITA specific files (hardware ids, activation data, databases etc) on the go.",
+  "aids": [
     "joel16"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.00",
-  "version_date": "2018-12-31",
-  "requirements": "Not specified",
-  "size": 1264304,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-backup/icon0.png",
-  "screenshots": [
+  "v": "v.2.00",
+  "vd": "2018-12-31",
+  "req": "Not specified",
+  "sz": 1264304,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-backup/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-backup/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-backup/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-backup/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-backup/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-backup/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-backup/vita-backup.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-backup/vita-backup.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/vitabackup-wip.495625/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/vitabackup-wip.495625/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/VitaBackup/releases/tag/2.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/VitaBackup/releases/tag/2.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/VitaBackup"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joel16/VitaBackup"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "361",
-  "source_url": "https://github.com/joel16/VitaBackup",
-  "release_page": "https://gbatemp.net/threads/vitabackup-wip.495625/",
-  "updated_at": "2026-08-13T15:34:48.658136+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "361",
+  "su": "https://github.com/joel16/VitaBackup",
+  "rp": "https://gbatemp.net/threads/vitabackup-wip.495625/",
+  "ua": "2026-08-13T15:34:48.658136+00:00"
 }

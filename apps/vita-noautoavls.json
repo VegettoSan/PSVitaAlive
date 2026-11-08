@@ -1,51 +1,51 @@
 {
   "id": "vita-noautoavls",
-  "title_id": "SKG4V2SW1",
-  "name": "VITA-NoAutoAvls",
-  "description": "Disable Auto AVLS feature.",
-  "long_description": "A small utility to permanently enable/disable the Auto AVLS feature on Playstation Vita.",
-  "author_ids": [
+  "tid": "SKG4V2SW1",
+  "n": "VITA-NoAutoAvls",
+  "d": "Disable Auto AVLS feature.",
+  "ld": "A small utility to permanently enable/disable the Auto AVLS feature on Playstation Vita.",
+  "aids": [
     "skgleba"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-10-30",
-  "requirements": "Not specified",
-  "size": 32445,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-noautoavls/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-10-30",
+  "req": "Not specified",
+  "sz": 32445,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-noautoavls/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-noautoavls/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-noautoavls/vita-noautoavls.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-noautoavls/vita-noautoavls.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/VITA-NoAutoAvls/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/VITA-NoAutoAvls/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/VITA-NoAutoAvls/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/VITA-NoAutoAvls/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/VITA-NoAutoAvls"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SKGleba/VITA-NoAutoAvls"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "515",
-  "source_url": "https://github.com/SKGleba/VITA-NoAutoAvls",
-  "release_page": "https://github.com/SKGleba/VITA-NoAutoAvls/releases",
-  "updated_at": "2026-08-13T15:34:48.628204+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "515",
+  "su": "https://github.com/SKGleba/VITA-NoAutoAvls",
+  "rp": "https://github.com/SKGleba/VITA-NoAutoAvls/releases",
+  "ua": "2026-08-13T15:34:48.628204+00:00"
 }

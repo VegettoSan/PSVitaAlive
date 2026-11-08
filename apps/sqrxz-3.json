@@ -1,41 +1,41 @@
 {
   "id": "sqrxz-3",
-  "title_id": "SQRXZ0003",
-  "name": "Sqrxz 3",
-  "description": "Port of Sqrxz 3 to PSVITA/PSTV.",
-  "long_description": "Sqrxz 3 is a Jump’n’Run which will please the hardcore gamer amongst you. You need fast fingers and a fast brain. Original Sqrxz made by Marcus Vesterlund and John Holmvall.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SQRXZ0003",
+  "n": "Sqrxz 3",
+  "d": "Port of Sqrxz 3 to PSVITA/PSTV.",
+  "ld": "Sqrxz 3 is a Jump’n’Run which will please the hardcore gamer amongst you. You need fast fingers and a fast brain. Original Sqrxz made by Marcus Vesterlund and John Holmvall.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "retroguru-team"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.05r",
-  "version_date": "2019-07-23",
-  "requirements": "- Game Data Files: PC",
-  "size": 1463772,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sqrxz-3/icon0.png",
-  "screenshots": [
+  "v": "v.1.05r",
+  "vd": "2019-07-23",
+  "req": "- Game Data Files: PC",
+  "sz": 1463772,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sqrxz-3/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sqrxz-3/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sqrxz-3/sqrxz-3.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sqrxz-3/sqrxz-3.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.sqrxz.de/sqrxz-3/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.sqrxz.de/sqrxz-3/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "614",
-  "source_url": "https://www.sqrxz.de/sqrxz-3/",
-  "release_page": "https://www.sqrxz.de/sqrxz-3/",
-  "updated_at": "2026-08-13T15:34:48.635891+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "614",
+  "su": "https://www.sqrxz.de/sqrxz-3/",
+  "rp": "https://www.sqrxz.de/sqrxz-3/",
+  "ua": "2026-08-13T15:34:48.635891+00:00"
 }

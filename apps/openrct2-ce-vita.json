@@ -1,51 +1,51 @@
 {
   "id": "openrct2-ce-vita",
-  "title_id": "OPRCT0002",
-  "name": "OpenRCT2-CE Vita",
-  "description": "Port of OpenRCT2 for PSVITA.",
-  "long_description": "Port of OpenRCT2 for PSVITA.\nOpenRCT2 is an open-source re-implementation of RollerCoaster Tycoon 2. A construction and management simulation video game that simulates amusement park management.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OPRCT0002",
+  "n": "OpenRCT2-CE Vita",
+  "d": "Port of OpenRCT2 for PSVITA.",
+  "ld": "Port of OpenRCT2 for PSVITA.\nOpenRCT2 is an open-source re-implementation of RollerCoaster Tycoon 2. A construction and management simulation video game that simulates amusement park management.\n\n- PsVitaAlive -",
+  "aids": [
     "technicaljicama"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1",
-  "version_date": "2025-04-23",
-  "requirements": "Not specified",
-  "size": 4749899,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-openrct2-ce-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1",
+  "vd": "2025-04-23",
+  "req": "Not specified",
+  "sz": 4749899,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-openrct2-ce-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openrct2-ce-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openrct2-ce-vita/openrct2-ce-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openrct2-ce-vita/openrct2-ce-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/technicaljicama/OpenRCT2-CE/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/technicaljicama/OpenRCT2-CE/releases/tag/vita-1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/technicaljicama/OpenRCT2-CE/releases/tag/vita-1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/technicaljicama/OpenRCT2-CE"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/technicaljicama/OpenRCT2-CE"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1269",
-  "source_url": "https://github.com/technicaljicama/OpenRCT2-CE",
-  "release_page": "https://github.com/technicaljicama/OpenRCT2-CE/releases",
-  "updated_at": "2026-08-13T15:34:48.408854+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1269",
+  "su": "https://github.com/technicaljicama/OpenRCT2-CE",
+  "rp": "https://github.com/technicaljicama/OpenRCT2-CE/releases",
+  "ua": "2026-08-13T15:34:48.408854+00:00"
 }

@@ -1,51 +1,51 @@
 {
   "id": "vitafft",
-  "title_id": "MFFT00016",
-  "name": "VitaFFT",
-  "description": "Audio spectrum analyzer for PSVITA.",
-  "long_description": "This homebrew is a fast Fourier transformation (FFT) for the PSVita, which uses the internal microphone to read audio, formerly known as audio spectrum analyzer.",
-  "author_ids": [
+  "tid": "MFFT00016",
+  "n": "VitaFFT",
+  "d": "Audio spectrum analyzer for PSVITA.",
+  "ld": "This homebrew is a fast Fourier transformation (FFT) for the PSVita, which uses the internal microphone to read audio, formerly known as audio spectrum analyzer.",
+  "aids": [
     "pyroesp"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1.6",
-  "version_date": "2017-09-08",
-  "requirements": "Not specified",
-  "size": 74919,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitafft/icon0.png",
-  "screenshots": [
+  "v": "v.0.1.6",
+  "vd": "2017-09-08",
+  "req": "Not specified",
+  "sz": 74919,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitafft/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitafft/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitafft/VitaFFT.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitafft/VitaFFT.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=52&t=48443"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=52&t=48443"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/pyroesp/vitaFFT/releases/tag/v0.1.6"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/pyroesp/vitaFFT/releases/tag/v0.1.6"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/pyroesp/vitaFFT"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/pyroesp/vitaFFT"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "303",
-  "source_url": "https://github.com/pyroesp/vitaFFT",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=52&t=48443",
-  "updated_at": "2026-08-13T15:34:48.677240+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "303",
+  "su": "https://github.com/pyroesp/vitaFFT",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=52&t=48443",
+  "ua": "2026-08-13T15:34:48.677240+00:00"
 }

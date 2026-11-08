@@ -1,15 +1,15 @@
 {
   "id": "ggdrn",
-  "name": "ggdrn",
-  "avatar": "https://avatars.githubusercontent.com/u/34396735?v=4",
-  "bio": "Front-End Developer | VUE.js | Node.js | React-Native | Express | Sequelize.",
-  "links": [
+  "n": "ggdrn",
+  "av": "https://avatars.githubusercontent.com/u/34396735?v=4",
+  "b": "Front-End Developer | VUE.js | Node.js | React-Native | Express | Sequelize.",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ggdrn",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ggdrn",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/34396735?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/34396735?v=4"
 }

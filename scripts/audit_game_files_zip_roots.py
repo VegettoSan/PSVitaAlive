@@ -55,7 +55,7 @@ def zip_roots(url):
         if not re.fullmatch(r"[\w .()\-]+",root):raise RuntimeError("unsafe root")
         return root,count
 def inspect(path):
-    j=json.loads(path.read_text(encoding="utf-8"))
+    j=to_v1(json.loads(path.read_text(encoding="utf-8")))
     links=[l for l in j.get("links",[]) if l.get("type")=="Game Files"]
     if not links or all(str(l.get("extract_path","")).startswith("ux0:app/") for l in links):return None
     base=[str(l.get("extract_path","")).replace("\\","/") for l in links]

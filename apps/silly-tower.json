@@ -1,55 +1,55 @@
 {
   "id": "silly-tower",
-  "title_id": "STOWE0001",
-  "name": "Silly Tower",
-  "description": "Physics based tower builder game.",
-  "long_description": "SillyTower is a physics based game where you must build the highest possible tower!",
-  "author_ids": [
+  "tid": "STOWE0001",
+  "n": "Silly Tower",
+  "d": "Physics based tower builder game.",
+  "ld": "SillyTower is a physics based game where you must build the highest possible tower!",
+  "aids": [
     "cpasjuste"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3",
-  "version_date": "2021-07-01",
-  "requirements": "Not specified",
-  "size": 37274249,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-silly-tower/icon0.png",
-  "screenshots": [
+  "v": "v.1.3",
+  "vd": "2021-07-01",
+  "req": "Not specified",
+  "sz": 37274249,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-silly-tower/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-silly-tower/shot_01.png",
     "https://archive.org/download/psvitaalive-silly-tower/shot_02.png",
     "https://archive.org/download/psvitaalive-silly-tower/shot_03.png",
     "https://archive.org/download/psvitaalive-silly-tower/shot_04.png",
     "https://archive.org/download/psvitaalive-silly-tower/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-silly-tower/silly-tower.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-silly-tower/silly-tower.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/sillytower/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/sillytower/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/sillytower/releases/tag/1.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/sillytower/releases/tag/1.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/sillytower"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Cpasjuste/sillytower"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "680",
-  "source_url": "https://github.com/Cpasjuste/sillytower",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/sillytower/",
-  "updated_at": "2026-08-13T15:34:48.578182+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "680",
+  "su": "https://github.com/Cpasjuste/sillytower",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/sillytower/",
+  "ua": "2026-08-13T15:34:48.578182+00:00"
 }

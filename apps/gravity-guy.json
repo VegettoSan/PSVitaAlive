@@ -1,43 +1,43 @@
 {
   "id": "gravity-guy",
-  "title_id": "GRVG00001",
-  "name": "Gravity Guy",
-  "description": "Gravity Guy Ps Vita Port",
-  "long_description": "Gravity Guy Ps Vita Port\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GRVG00001",
+  "n": "Gravity Guy",
+  "d": "Gravity Guy Ps Vita Port",
+  "ld": "Gravity Guy Ps Vita Port\n\n- PsVitaAlive -",
+  "aids": [
     "elpinguinoxd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer"
   ],
-  "version": "1.1",
-  "version_date": "2026-09-08",
-  "requirements": "- no data",
-  "size": 4194304,
-  "status": "Verified",
-  "links": [
+  "v": "1.1",
+  "vd": "2026-09-08",
+  "req": "- no data",
+  "sz": 4194304,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/gravity-guy-ps-vita/gravityguy%20v1.1.vpk",
-      "size": 4194304,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/gravity-guy-ps-vita/gravityguy%20v1.1.vpk",
+      "sz": 4194304,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip",
-      "size": 46242202,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/gravity-guy-ps-vita/Game%20Files.zip",
+      "sz": 46242202,
+      "xp": "ux0:data/",
+      "ips": [
         "gravityguy"
       ]
     }
   ],
-  "icon": "https://archive.org/download/gravity-guy-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/gravity-guy-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/gravity-guy-ps-vita/Shot0.png"
   ]
 }

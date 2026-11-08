@@ -53,6 +53,21 @@ jobs:
             tests/test_installed_data_policy.cpp -o /tmp/psvitaalive-installed-data-policy
           /tmp/psvitaalive-installed-data-policy
 
+      - name: Test screenshot viewport residency policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_detail_screenshot_visibility.cpp \
+            -o /tmp/psvitaalive-screenshot-visibility-test
+          /tmp/psvitaalive-screenshot-visibility-test
+
+      - name: Test cached package/data index and storage summary
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_installed_directory_cache.cpp \
+            "Client PSVitaAlive/source/storage/installed_directory_codec.cpp" \
+            -o /tmp/psvitaalive-installed-cache-test
+          /tmp/psvitaalive-installed-cache-test
+
       - name: Test Game/Data ZIP dispatch policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \

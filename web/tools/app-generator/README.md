@@ -1,5 +1,11 @@
 # App generator tool
 
+> **Catalog Schema V2:** This editor accepts V1 and V2 JSON imports.
+> Its internal form logic keeps readable V1 property names, but preview,
+> copy and downloadable `apps/*.json` / `authors/*.json` output use
+> compact V2 field names. The public catalog remains V1 until the
+> dual-reading Vita client is released and V2 publication enabled.
+
 Static helper to draft homebrew `apps/*.json` records for PS Vita Alive Store.
 
 ## Usage

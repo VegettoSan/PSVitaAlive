@@ -1,81 +1,81 @@
 {
   "id": "development",
-  "name": "Development",
-  "description": "Development tools, libraries, frameworks and resources for creating software on PlayStation Vita.",
-  "icon": "icons/development.png",
-  "order": 11,
-  "subcategories": [
+  "n": "Development",
+  "d": "Development tools, libraries, frameworks and resources for creating software on PlayStation Vita.",
+  "ic": "icons/development.png",
+  "ord": 11,
+  "subs": [
     {
       "id": "sdk",
-      "name": "SDK"
+      "n": "SDK"
     },
     {
       "id": "libraries",
-      "name": "Libraries"
+      "n": "Libraries"
     },
     {
       "id": "frameworks",
-      "name": "Frameworks"
+      "n": "Frameworks"
     },
     {
       "id": "game-engine",
-      "name": "Game Engine"
+      "n": "Game Engine"
     },
     {
       "id": "development-tools",
-      "name": "Development Tools"
+      "n": "Development Tools"
     },
     {
       "id": "debugging",
-      "name": "Debugging"
+      "n": "Debugging"
     },
     {
       "id": "profiling",
-      "name": "Profiling"
+      "n": "Profiling"
     },
     {
       "id": "compiler",
-      "name": "Compiler"
+      "n": "Compiler"
     },
     {
       "id": "interpreter",
-      "name": "Interpreter"
+      "n": "Interpreter"
     },
     {
       "id": "scripting",
-      "name": "Scripting"
+      "n": "Scripting"
     },
     {
       "id": "lua",
-      "name": "Lua"
+      "n": "Lua"
     },
     {
       "id": "python",
-      "name": "Python"
+      "n": "Python"
     },
     {
       "id": "networking",
-      "name": "Networking"
+      "n": "Networking"
     },
     {
       "id": "graphics",
-      "name": "Graphics"
+      "n": "Graphics"
     },
     {
       "id": "audio",
-      "name": "Audio"
+      "n": "Audio"
     },
     {
       "id": "examples",
-      "name": "Examples"
+      "n": "Examples"
     },
     {
       "id": "templates",
-      "name": "Templates"
+      "n": "Templates"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

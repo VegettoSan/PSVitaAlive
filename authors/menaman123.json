@@ -1,15 +1,15 @@
 {
   "id": "menaman123",
-  "name": "menaman123",
-  "avatar": "https://avatars.githubusercontent.com/u/53198002?v=4",
-  "bio": "love to build cool things",
-  "links": [
+  "n": "menaman123",
+  "av": "https://avatars.githubusercontent.com/u/53198002?v=4",
+  "b": "love to build cool things",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/menaman123",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/menaman123",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/53198002?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/53198002?v=4"
 }

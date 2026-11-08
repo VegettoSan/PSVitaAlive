@@ -1,55 +1,55 @@
 {
   "id": "mirrormagic",
-  "title_id": "MIRROR000",
-  "name": "mirrormagic",
-  "description": "Mirrormagic port for PSVITA",
-  "long_description": "Mirrormagic is a game in the tradition of Deflektor and Mindbender written by Holger Schemel. You guide a laser beam by adjusting mirrors before the time limit runs out.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MIRROR000",
+  "n": "mirrormagic",
+  "d": "Mirrormagic port for PSVITA",
+  "ld": "Mirrormagic is a game in the tradition of Deflektor and Mindbender written by Holger Schemel. You guide a laser beam by adjusting mirrors before the time limit runs out.\n\n- PsVitaAlive -",
+  "aids": [
     "rsn8887"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "1.15",
-  "version_date": "2021-05-22",
-  "requirements": "- Game Data Files: PC",
-  "size": 2742965,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mirrormagic/icon0.png",
-  "screenshots": [
+  "v": "1.15",
+  "vd": "2021-05-22",
+  "req": "- Game Data Files: PC",
+  "sz": 2742965,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mirrormagic/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mirrormagic/shot_01.png",
     "https://archive.org/download/psvitaalive-mirrormagic/shot_02.png",
     "https://archive.org/download/psvitaalive-mirrormagic/shot_03.png",
     "https://archive.org/download/psvitaalive-mirrormagic/shot_04.png",
     "https://archive.org/download/psvitaalive-mirrormagic/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mirrormagic/mirrormagic_vita_1.12.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mirrormagic/mirrormagic_vita_1.12.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/rsn8887/rocksndiamonds/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/rsn8887/rocksndiamonds/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/rsn8887/rocksndiamonds/releases/latest"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/rsn8887/rocksndiamonds/releases/latest"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "387",
-  "source_url": "https://github.com/rsn8887/rocksndiamonds",
-  "release_page": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15",
-  "updated_at": "2026-08-13T15:34:48.656683+00:00"
+  "sn": "NeoVitaDB",
+  "si": "387",
+  "su": "https://github.com/rsn8887/rocksndiamonds",
+  "rp": "https://github.com/rsn8887/rocksndiamonds/releases/tag/1.15",
+  "ua": "2026-08-13T15:34:48.656683+00:00"
 }

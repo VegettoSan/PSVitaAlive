@@ -1,15 +1,15 @@
 {
   "id": "lordchickenblaster",
-  "name": "LordChickenBlaster",
-  "avatar": "https://github.com/Lordchickenblaster.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "LordChickenBlaster",
+  "av": "https://github.com/Lordchickenblaster.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Lordchickenblaster",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Lordchickenblaster",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Lordchickenblaster.png"
+  "ic": "https://github.com/Lordchickenblaster.png"
 }

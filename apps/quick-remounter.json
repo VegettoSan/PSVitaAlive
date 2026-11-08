@@ -1,52 +1,52 @@
 {
   "id": "quick-remounter",
-  "title_id": "QRMNTTOOL",
-  "name": "Quick Remounter",
-  "description": "Quick and easily mount/remount your preferred storage",
-  "long_description": "This app will allow you to quickly remount your prefered storage as UX0. ideal for quickly swapping from internal to external storage or remounting an SD after a fresh jailbreak.",
-  "author_ids": [
+  "tid": "QRMNTTOOL",
+  "n": "Quick Remounter",
+  "d": "Quick and easily mount/remount your preferred storage",
+  "ld": "This app will allow you to quickly remount your prefered storage as UX0. ideal for quickly swapping from internal to external storage or remounting an SD after a fresh jailbreak.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-01-19",
-  "requirements": "Not specified",
-  "size": 4799848,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-quick-remounter/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-01-19",
+  "req": "Not specified",
+  "sz": 4799848,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-quick-remounter/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-quick-remounter/shot_01.png",
     "https://archive.org/download/psvitaalive-quick-remounter/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-quick-remounter/quick-remounter.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-quick-remounter/quick-remounter.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Quick-Remounter/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Quick-Remounter/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Quick-Remounter/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Quick-Remounter/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Quick-Remounter"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Quick-Remounter"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1078",
-  "source_url": "https://github.com/AntHJ/Quick-Remounter/releases",
-  "release_page": "https://github.com/AntHJ/Quick-Remounter/releases",
-  "updated_at": "2026-08-13T15:34:48.516735+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1078",
+  "su": "https://github.com/AntHJ/Quick-Remounter/releases",
+  "rp": "https://github.com/AntHJ/Quick-Remounter/releases",
+  "ua": "2026-08-13T15:34:48.516735+00:00"
 }

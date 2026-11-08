@@ -1,56 +1,56 @@
 {
   "id": "rpphs",
-  "title_id": "VGEE00001",
-  "name": "RPPHS",
-  "description": "Top down shooter game",
-  "long_description": "Blast your way through those shapes in this Geometry Wars-inspired twin stick shooter for the PlayStation Vita! Enter your initials for the offline leaderboards, customize your crosshair, and mess with our super-cool settings menu.. or don't, that's entirely up to you.",
-  "author_ids": [
+  "tid": "VGEE00001",
+  "n": "RPPHS",
+  "d": "Top down shooter game",
+  "ld": "Blast your way through those shapes in this Geometry Wars-inspired twin stick shooter for the PlayStation Vita! Enter your initials for the offline leaderboards, customize your crosshair, and mess with our super-cool settings menu.. or don't, that's entirely up to you.",
+  "aids": [
     "g33",
     "motolegacy"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2019-01-28",
-  "requirements": "Not specified",
-  "size": 9493224,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-rpphs/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2019-01-28",
+  "req": "Not specified",
+  "sz": 9493224,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-rpphs/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-rpphs/shot_01.png",
     "https://archive.org/download/psvitaalive-rpphs/shot_02.png",
     "https://archive.org/download/psvitaalive-rpphs/shot_03.png",
     "https://archive.org/download/psvitaalive-rpphs/shot_04.png",
     "https://archive.org/download/psvitaalive-rpphs/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-rpphs/rpphs.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-rpphs/rpphs.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/G333333/RPPHS/releases/tag/v1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/G333333/RPPHS/releases/tag/v1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/G333333/RPPHS"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/G333333/RPPHS"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "399",
-  "source_url": "https://github.com/G333333/RPPHS",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389",
-  "updated_at": "2026-08-13T15:34:48.655976+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "399",
+  "su": "https://github.com/G333333/RPPHS",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&p=423389#p423389",
+  "ua": "2026-08-13T15:34:48.655976+00:00"
 }

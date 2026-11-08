@@ -1,40 +1,40 @@
 {
   "id": "heart-potato",
-  "title_id": "HTPT12345",
-  "name": "Heart Potato",
-  "description": "Original Game made in 48 hours for Chillenium Game Jam.",
-  "long_description": "Heart Potato is originally a Chillenium game jam submission under the theme \"We Share a Heart\" and won third place.\nAn ancient artifact was discovered in the desert by a group of magical scientists. These scientists have been experimenting with the artifact's mystical powers and found that the artifact feeds on blood -- and its power can bring any fossil back to life. The scientists succeeded in reviving a monstrous T. rex. However, the creature and its partner broke free.  The two dinosaurs must now try to survive the scientists' attempt to subdue them while sharing the power of the ancient artifact.\nAs the player, your objective is to keep the ancient heart artifact charged with blood and balanced so neither T. rex dies while the two dinosaurs fight the scientists and obtain their research blood vials to feed this powerful artifact.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "HTPT12345",
+  "n": "Heart Potato",
+  "d": "Original Game made in 48 hours for Chillenium Game Jam.",
+  "ld": "Heart Potato is originally a Chillenium game jam submission under the theme \"We Share a Heart\" and won third place.\nAn ancient artifact was discovered in the desert by a group of magical scientists. These scientists have been experimenting with the artifact's mystical powers and found that the artifact feeds on blood -- and its power can bring any fossil back to life. The scientists succeeded in reviving a monstrous T. rex. However, the creature and its partner broke free.  The two dinosaurs must now try to survive the scientists' attempt to subdue them while sharing the power of the ancient artifact.\nAs the player, your objective is to keep the ancient heart artifact charged with blood and balanced so neither T. rex dies while the two dinosaurs fight the scientists and obtain their research blood vials to feed this powerful artifact.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "discord-mods"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-04-17",
-  "requirements": "Not specified",
-  "size": 41746686,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-heart-potato/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-04-17",
+  "req": "Not specified",
+  "sz": 41746686,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-heart-potato/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-heart-potato/shot_01.png",
     "https://archive.org/download/psvitaalive-heart-potato/shot_02.png",
     "https://archive.org/download/psvitaalive-heart-potato/shot_03.png",
     "https://archive.org/download/psvitaalive-heart-potato/shot_04.png",
     "https://archive.org/download/psvitaalive-heart-potato/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-heart-potato/heart-potato.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-heart-potato/heart-potato.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1071",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1071-HeartPotato.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.498047+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1071",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1071-HeartPotato.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.498047+00:00"
 }

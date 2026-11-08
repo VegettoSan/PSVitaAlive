@@ -1,49 +1,49 @@
 {
   "id": "hendoku",
-  "title_id": "KUNI00002",
-  "name": "Hendoku",
-  "description": "Sudoku game for PSVITA.",
-  "long_description": "Sudoku game for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "KUNI00002",
+  "n": "Hendoku",
+  "d": "Sudoku game for PSVITA.",
+  "ld": "Sudoku game for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "kuni59"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2016-08-09",
-  "requirements": "Not specified",
-  "size": 2010692,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hendoku/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2016-08-09",
+  "req": "Not specified",
+  "sz": 2010692,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hendoku/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hendoku/shot_01.png",
     "https://archive.org/download/psvitaalive-hendoku/shot_02.png",
     "https://archive.org/download/psvitaalive-hendoku/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hendoku/hendoku.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hendoku/hendoku.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar",
-      "recommended": false
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar",
+      "rec": false
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "130",
-  "source_url": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar",
-  "release_page": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/",
-  "updated_at": "2026-08-13T15:34:48.707345+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "130",
+  "su": "http://www.mediafire.com/file/wu7ptl6t57wo5tl/SudokuCPP.rar",
+  "rp": "https://gbatemp.net/threads/release-hendoku-sudoku-for-vita.437511/",
+  "ua": "2026-08-13T15:34:48.707345+00:00"
 }

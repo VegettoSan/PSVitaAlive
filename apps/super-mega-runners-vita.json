@@ -1,50 +1,50 @@
 {
   "id": "super-mega-runners-vita",
-  "title_id": "SMRV00000",
-  "name": "Super Mega Runners Vita",
-  "description": "Port of Super Mega Runners for PSVita.",
-  "long_description": "A port of Super Mega Runners for PS Vita. A runner game inspired by 8-bit retro games.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SMRV00000",
+  "n": "Super Mega Runners Vita",
+  "d": "Port of Super Mega Runners for PSVita.",
+  "ld": "A port of Super Mega Runners for PS Vita. A runner game inspired by 8-bit retro games.\n\n- PsVitaAlive -",
+  "aids": [
     "regular-character"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2026-02-22",
-  "requirements": "- Game Data Files: Android",
-  "size": 14733060,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-mega-runners-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2026-02-22",
+  "req": "- Game Data Files: Android",
+  "sz": 14733060,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-super-mega-runners-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-mega-runners-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-super-mega-runners-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-super-mega-runners-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-super-mega-runners-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-super-mega-runners-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-mega-runners-vita/super-mega-runners-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-mega-runners-vita/super-mega-runners-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/RegularCharacter07/SuperMegaRunnersVita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/RegularCharacter07/SuperMegaRunnersVita/releases/tag/1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1369",
-  "source_url": "https://github.com/RegularCharacter07/SuperMegaRunnersVita",
-  "release_page": "https://github.com/RegularCharacter07/SuperMegaRunnersVita",
-  "updated_at": "2026-08-13T15:34:48.363734+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1369",
+  "su": "https://github.com/RegularCharacter07/SuperMegaRunnersVita",
+  "rp": "https://github.com/RegularCharacter07/SuperMegaRunnersVita",
+  "ua": "2026-08-13T15:34:48.363734+00:00"
 }

@@ -1,42 +1,42 @@
 {
   "id": "vitasudoku",
-  "title_id": "SUDO00001",
-  "name": "VitaSudoku",
-  "description": "Sudoku game for PSVITA.",
-  "long_description": "VitaSudoku is a sudoku game for PSVITA wrote using Lua Player Plus which has an algorithm to automatically generate a sudoku allowing you to play infinite sudokus.\nIt also supports BGM audio playback during your gaming sessions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "SUDO00001",
+  "n": "VitaSudoku",
+  "d": "Sudoku game for PSVITA.",
+  "ld": "VitaSudoku is a sudoku game for PSVITA wrote using Lua Player Plus which has an algorithm to automatically generate a sudoku allowing you to play infinite sudokus.\nIt also supports BGM audio playback during your gaming sessions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3",
-  "version_date": "2016-08-08",
-  "requirements": "Not specified",
-  "size": 1654538,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitasudoku/icon0.png",
-  "screenshots": [
+  "v": "v.1.3",
+  "vd": "2016-08-08",
+  "req": "Not specified",
+  "sz": 1654538,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitasudoku/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitasudoku/shot_01.png",
     "https://archive.org/download/psvitaalive-vitasudoku/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitasudoku/vitasudoku.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitasudoku/vitasudoku.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46423"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/talk/viewtopic.php?f=116&t=46423"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "129",
-  "source_url": "https://wololo.net/talk/viewtopic.php?f=116&t=46423",
-  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46423",
-  "updated_at": "2026-08-13T15:34:48.707928+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "129",
+  "su": "https://wololo.net/talk/viewtopic.php?f=116&t=46423",
+  "rp": "https://wololo.net/talk/viewtopic.php?f=116&t=46423",
+  "ua": "2026-08-13T15:34:48.707928+00:00"
 }

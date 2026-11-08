@@ -1,10 +1,10 @@
 {
   "id": "fryingmaster",
-  "title_id": "ABCD12345",
-  "name": "FryingMaster",
-  "description": "Frying game for PSVITA.",
-  "long_description": "The game is inspired by a mini game from \"Super Mario Party\" it has two modes, endless where you have to cook patties before the time limit and 4 sides where you have to cook all four sides of a steak and make a high score.",
-  "author_ids": [
+  "tid": "ABCD12345",
+  "n": "FryingMaster",
+  "d": "Frying game for PSVITA.",
+  "ld": "The game is inspired by a mini game from \"Super Mario Party\" it has two modes, endless where you have to cook patties before the time limit and 4 sides where you have to cook all four sides of a steak and make a high score.",
+  "aids": [
     "widegcg",
     "mrkane",
     "polydood",
@@ -19,44 +19,44 @@
     "retrogamer74",
     "lazyox199"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2019-02-13",
-  "requirements": "Not specified",
-  "size": 38554505,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fryingmaster/icon0.png",
-  "screenshots": [
+  "v": "v.2.1",
+  "vd": "2019-02-13",
+  "req": "Not specified",
+  "sz": 38554505,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fryingmaster/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fryingmaster/shot_01.png",
     "https://archive.org/download/psvitaalive-fryingmaster/shot_02.png",
     "https://archive.org/download/psvitaalive-fryingmaster/shot_03.png",
     "https://archive.org/download/psvitaalive-fryingmaster/shot_04.png",
     "https://archive.org/download/psvitaalive-fryingmaster/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fryingmaster/fryingmaster.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fryingmaster/fryingmaster.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://ronikgames.itch.io/ronister-adventure"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://ronikgames.itch.io/ronister-adventure"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "414",
-  "source_url": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
-  "release_page": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
-  "updated_at": "2026-08-13T15:34:48.386124+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "414",
+  "su": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
+  "rp": "https://www.reddit.com/r/vitahacks/comments/acai91/ported_a_game_im_working_on_for_android_to_psvita/",
+  "ua": "2026-08-13T15:34:48.386124+00:00"
 }

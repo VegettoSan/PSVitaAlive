@@ -1,53 +1,53 @@
 {
   "id": "naoh-arcade-collection",
-  "title_id": "NAOH00001",
-  "name": "NAOH: Arcade Collection",
-  "description": "Arcade launcher for Marvel vs Capcom games.",
-  "long_description": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NAOH00001",
+  "n": "NAOH: Arcade Collection",
+  "d": "Arcade launcher for Marvel vs Capcom games.",
+  "ld": "NAOH: Arcade Collection is a native PlayStation Vita arcade launcher written in C. It statically links the FB Alpha 2012 (CPS2) and MAME 2000 libretro cores behind a custom vita2d-rendered front end, so a set of classic Marvel vs Capcom arcade games can be launched and played.\n\n- PsVitaAlive -",
+  "aids": [
     "kiddrwxssj"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "arcade",
     "other"
   ],
-  "version": "v.2.0.1",
-  "version_date": "2026-08-25",
-  "requirements": "- Game Data Files: Different Systems",
-  "size": 34812723,
-  "status": "Legacy",
-  "links": [
+  "v": "v.2.0.1",
+  "vd": "2026-08-25",
+  "req": "- Game Data Files: Different Systems",
+  "sz": 34812723,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/naoh_arcade_collection2.0.1.vpk",
-      "size": 34812723,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-naoh-arcade-collection/naoh_arcade_collection2.0.1.vpk",
+      "sz": 34812723,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",
-      "size": 336278323,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/psvitaalive-naoh-arcade-collection/Game%20Files.zip",
+      "sz": 336278323,
+      "xp": "ux0:data/",
+      "ips": [
         "NaohAC"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/KiddRwxSsj/naoh-ac"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/KiddRwxSsj/naoh-ac"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-naoh-arcade-collection/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-naoh-arcade-collection/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-naoh-arcade-collection/shot_01.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1470",
-  "source_url": "https://github.com/KiddRwxSsj/naoh-ac",
-  "release_page": "https://github.com/KiddRwxSsj/naoh-ac/releases",
-  "updated_at": "2026-08-17T21:42"
+  "sn": "VitaDB",
+  "si": "1470",
+  "su": "https://github.com/KiddRwxSsj/naoh-ac",
+  "rp": "https://github.com/KiddRwxSsj/naoh-ac/releases",
+  "ua": "2026-08-17T21:42"
 }

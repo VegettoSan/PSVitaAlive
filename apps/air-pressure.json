@@ -1,52 +1,52 @@
 {
   "id": "air-pressure",
-  "title_id": "AIRPRESSR",
-  "name": "Air Pressure",
-  "description": "Port of Air Pressure for PSVITA.",
-  "long_description": "Port of Air Pressure for PSVITA.\nAir Pressure is an unromantic visual novel.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "AIRPRESSR",
+  "n": "Air Pressure",
+  "d": "Port of Air Pressure for PSVITA.",
+  "ld": "Port of Air Pressure for PSVITA.\nAir Pressure is an unromantic visual novel.\n\n- PsVitaAlive -",
+  "aids": [
     "majonessyltetoy"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2022-11-28",
-  "requirements": "Not specified",
-  "size": 26852528,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-air-pressure/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2022-11-28",
+  "req": "Not specified",
+  "sz": 26852528,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-air-pressure/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-air-pressure/shot_01.png",
     "https://archive.org/download/psvitaalive-air-pressure/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-air-pressure/air-pressure.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-air-pressure/air-pressure.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/majonessyltetoy/airpressure/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/majonessyltetoy/airpressure/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/majonessyltetoy/airpressure/releases/tag/v1.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/majonessyltetoy/airpressure/releases/tag/v1.0.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/majonessyltetoy/airpressure"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/majonessyltetoy/airpressure"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1020",
-  "source_url": "https://github.com/majonessyltetoy/airpressure",
-  "release_page": "https://github.com/majonessyltetoy/airpressure/releases",
-  "updated_at": "2026-08-13T15:34:48.523604+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1020",
+  "su": "https://github.com/majonessyltetoy/airpressure",
+  "rp": "https://github.com/majonessyltetoy/airpressure/releases",
+  "ua": "2026-08-13T15:34:48.523604+00:00"
 }

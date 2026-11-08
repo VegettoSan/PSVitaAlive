@@ -1,50 +1,50 @@
 {
   "id": "ufoai-vita",
-  "title_id": "UFOAI0002",
-  "name": "ufoai-vita",
-  "description": "Port of UFO: Alien Invasion for PSVITA.",
-  "long_description": "ufoai-vita is a port of UFO: Alien Invasion for PSVITA.\nUFO: Alien Invasion is a squad-based tactical strategy game in the tradition of the old X-COM PC games, but with a twist. Our game combines military realism with hard science-fiction and the weirdness of an alien invasion. The carefully constructed turn-based system gives you pin-point control of your squad while maintaining a sense of pace and danger.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "UFOAI0002",
+  "n": "ufoai-vita",
+  "d": "Port of UFO: Alien Invasion for PSVITA.",
+  "ld": "ufoai-vita is a port of UFO: Alien Invasion for PSVITA.\nUFO: Alien Invasion is a squad-based tactical strategy game in the tradition of the old X-COM PC games, but with a twist. Our game combines military realism with hard science-fiction and the weirdness of an alien invasion. The carefully constructed turn-based system gives you pin-point control of your squad while maintaining a sense of pace and danger.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.5",
-  "version_date": "2023-04-13",
-  "requirements": "- libshacccg.suprx",
-  "size": 4434594,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ufoai-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.5",
+  "vd": "2023-04-13",
+  "req": "- libshacccg.suprx",
+  "sz": 4434594,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ufoai-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ufoai-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-ufoai-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-ufoai-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-ufoai-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-ufoai-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ufoai-vita/ufoai-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ufoai-vita/ufoai-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-ufoai-vita-port-of-ufo-alien-invasion-for-psvita.40248/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-ufoai-vita-port-of-ufo-alien-invasion-for-psvita.40248/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/ufoai"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/ufoai"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1069",
-  "source_url": "https://github.com/Rinnegatamante/ufoai",
-  "release_page": "https://www.psx-place.com/threads/release-ufoai-vita-port-of-ufo-alien-invasion-for-psvita.40248/",
-  "updated_at": "2026-08-13T15:34:48.498611+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1069",
+  "su": "https://github.com/Rinnegatamante/ufoai",
+  "rp": "https://www.psx-place.com/threads/release-ufoai-vita-port-of-ufo-alien-invasion-for-psvita.40248/",
+  "ua": "2026-08-13T15:34:48.498611+00:00"
 }

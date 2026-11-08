@@ -1,52 +1,52 @@
 {
   "id": "water-closet",
-  "title_id": "WLOGICWC1",
-  "name": "Water Closet",
-  "description": "Puzzle platform game for PSVITA.",
-  "long_description": "Water Closet (AKA WC) is a (somewhat ridiculous) 2D platform puzzle game. Guide Walter Chambers through a series of stages as he attempts to return home from a bizarre world that he has become trapped in.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WLOGICWC1",
+  "n": "Water Closet",
+  "d": "Puzzle platform game for PSVITA.",
+  "ld": "Water Closet (AKA WC) is a (somewhat ridiculous) 2D platform puzzle game. Guide Walter Chambers through a series of stages as he attempts to return home from a bizarre world that he has become trapped in.\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-01-09",
-  "requirements": "Not specified",
-  "size": 10180722,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-water-closet/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-01-09",
+  "req": "Not specified",
+  "sz": 10180722,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-water-closet/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-water-closet/shot_01.png",
     "https://archive.org/download/psvitaalive-water-closet/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-water-closet/water-closet.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-water-closet/water-closet.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/waterCloset/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/waterCloset/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/waterCloset/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/waterCloset/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/waterCloset"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/withLogic/waterCloset"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "768",
-  "source_url": "https://github.com/withLogic/waterCloset",
-  "release_page": "https://github.com/withLogic/waterCloset/releases",
-  "updated_at": "2026-08-13T15:34:48.559486+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "768",
+  "su": "https://github.com/withLogic/waterCloset",
+  "rp": "https://github.com/withLogic/waterCloset/releases",
+  "ua": "2026-08-13T15:34:48.559486+00:00"
 }

@@ -1,46 +1,46 @@
 {
   "id": "immortal-dusk-vita",
-  "title_id": "IMMDUSK01",
-  "name": "Immortal Dusk Vita",
-  "description": "Port of Immortal Dusk for PSVita.",
-  "long_description": "Native PlayStation Vita port of Gamevil's classic action RPG.\nPowered by dynamic ARM shared library loading (.so loader) and FalsoJNI.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "IMMDUSK01",
+  "n": "Immortal Dusk Vita",
+  "d": "Port of Immortal Dusk for PSVita.",
+  "ld": "Native PlayStation Vita port of Gamevil's classic action RPG.\nPowered by dynamic ARM shared library loading (.so loader) and FalsoJNI.\n\n- PsVitaAlive -",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-21",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1182617,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-immortal-dusk-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-08-21",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1182617,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-immortal-dusk-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-immortal-dusk-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-immortal-dusk-vita/immortal-dusk-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-immortal-dusk-vita/immortal-dusk-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MetalSyntax/Inmortal-Dusk-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MetalSyntax/Inmortal-Dusk-vita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MetalSyntax/Inmortal-Dusk-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MetalSyntax/Inmortal-Dusk-vita"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1478",
-  "source_url": "https://github.com/MetalSyntax/Inmortal-Dusk-vita",
-  "release_page": "https://github.com/MetalSyntax/Inmortal-Dusk-vita/releases",
-  "updated_at": "2026-08-22T01:12:12.353955+00:00"
+  "sn": "VitaDB",
+  "si": "1478",
+  "su": "https://github.com/MetalSyntax/Inmortal-Dusk-vita",
+  "rp": "https://github.com/MetalSyntax/Inmortal-Dusk-vita/releases",
+  "ua": "2026-08-22T01:12:12.353955+00:00"
 }

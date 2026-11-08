@@ -1,15 +1,15 @@
 {
   "id": "serph",
-  "name": "Serph",
-  "avatar": "https://github.com/Serph.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Serph",
+  "av": "https://github.com/Serph.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Serph",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Serph",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Serph.png"
+  "ic": "https://github.com/Serph.png"
 }

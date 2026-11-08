@@ -1,52 +1,52 @@
 {
   "id": "vitarebootshutdown",
-  "title_id": "RBSD00001",
-  "name": "VitaRebootShutdown",
-  "description": "Shutdown/Reboot utility.",
-  "long_description": "This is an app that reboots or powers off your PSVita depending on what trigger you hold. It allows to update or restore icons database too.",
-  "author_ids": [
+  "tid": "RBSD00001",
+  "n": "VitaRebootShutdown",
+  "d": "Shutdown/Reboot utility.",
+  "ld": "This is an app that reboots or powers off your PSVita depending on what trigger you hold. It allows to update or restore icons database too.",
+  "aids": [
     "mccallum99"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.08",
-  "version_date": "2019-05-18",
-  "requirements": "Not specified",
-  "size": 259995,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitarebootshutdown/icon0.png",
-  "screenshots": [
+  "v": "v.1.08",
+  "vd": "2019-05-18",
+  "req": "Not specified",
+  "sz": 259995,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitarebootshutdown/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitarebootshutdown/shot_01.png",
     "https://archive.org/download/psvitaalive-vitarebootshutdown/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitarebootshutdown/vitarebootshutdown.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitarebootshutdown/vitarebootshutdown.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/McCallum99/PSVitaRebootShutdown/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/tag/v1.08"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/McCallum99/PSVitaRebootShutdown/releases/tag/v1.08"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/McCallum99/PSVitaRebootShutdown"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/McCallum99/PSVitaRebootShutdown"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "431",
-  "source_url": "https://github.com/McCallum99/PSVitaRebootShutdown",
-  "release_page": "https://github.com/McCallum99/PSVitaRebootShutdown/releases",
-  "updated_at": "2026-08-13T15:34:48.639588+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "431",
+  "su": "https://github.com/McCallum99/PSVitaRebootShutdown",
+  "rp": "https://github.com/McCallum99/PSVitaRebootShutdown/releases",
+  "ua": "2026-08-13T15:34:48.639588+00:00"
 }

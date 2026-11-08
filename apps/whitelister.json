@@ -1,41 +1,41 @@
 {
   "id": "whitelister",
-  "title_id": "XXXX35570",
-  "name": "Whitelister",
-  "description": "Whitelister for PSTV.",
-  "long_description": "v1 whitelister app for Playstation TV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "XXXX35570",
+  "n": "Whitelister",
+  "d": "Whitelister for PSTV.",
+  "ld": "v1 whitelister app for Playstation TV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "kankertje"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2016-07-30",
-  "requirements": "Not specified",
-  "size": 104562,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-whitelister/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2016-07-30",
+  "req": "Not specified",
+  "sz": 104562,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-whitelister/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-whitelister/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-whitelister/whitelister.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-whitelister/whitelister.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46154"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=46154"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "178",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=46154",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46154",
-  "updated_at": "2026-08-13T15:34:48.712550+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "178",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&t=46154",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=46154",
+  "ua": "2026-08-13T15:34:48.712550+00:00"
 }

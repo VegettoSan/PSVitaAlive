@@ -1,52 +1,52 @@
 {
   "id": "sdllopan",
-  "title_id": "SDLLOPAN0",
-  "name": "SDLLopan",
-  "description": "Mahjongg game for PSVITA.",
-  "long_description": "A classic remake for Linux Lopan (a Mahjong clone) by Dave Ashley.\nLike other Mahjongg games, you try to remove all the pieces. To remove pieces you must select a pair of pieces with the same drawing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SDLLOPAN0",
+  "n": "SDLLopan",
+  "d": "Mahjongg game for PSVITA.",
+  "ld": "A classic remake for Linux Lopan (a Mahjong clone) by Dave Ashley.\nLike other Mahjongg games, you try to remove all the pieces. To remove pieces you must select a pair of pieces with the same drawing.\n\n- PsVitaAlive -",
+  "aids": [
     "nop90"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-10-04",
-  "requirements": "Not specified",
-  "size": 882916,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sdllopan/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-10-04",
+  "req": "Not specified",
+  "sz": 882916,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sdllopan/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sdllopan/shot_01.png",
     "https://archive.org/download/psvitaalive-sdllopan/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sdllopan/sdllopan.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sdllopan/sdllopan.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/nop90-PSVITA/SDLLopan-VITA/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/nop90-PSVITA/SDLLopan-VITA/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/nop90-PSVITA/SDLLopan-VITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/nop90-PSVITA/SDLLopan-VITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "332",
-  "source_url": "https://github.com/nop90-PSVITA/SDLLopan-VITA",
-  "release_page": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/",
-  "updated_at": "2026-08-13T15:34:48.675111+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "332",
+  "su": "https://github.com/nop90-PSVITA/SDLLopan-VITA",
+  "rp": "https://gbatemp.net/threads/release-sdl-lopan-a-simple-mahjong-solitaire-game-ported-to-ps-vita.485852/",
+  "ua": "2026-08-13T15:34:48.675111+00:00"
 }

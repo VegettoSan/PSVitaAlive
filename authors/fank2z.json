@@ -1,15 +1,15 @@
 {
   "id": "fank2z",
-  "name": "Fank2z",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Dev",
-  "links": [
+  "n": "Fank2z",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Madfinger Games",
-      "url": "https://www.madfingergames.com/",
-      "recommended": true
+      "t": "Official Website",
+      "n": "Madfinger Games",
+      "u": "https://www.madfingergames.com/",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

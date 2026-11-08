@@ -1,36 +1,36 @@
 {
   "id": "database-updater-kana99999",
-  "title_id": "KANA99999",
-  "name": "Database Updater",
-  "description": "App.db Database Updater for PSVITA.",
-  "long_description": "Triggers a rebuild/update for app.db database.",
-  "author_ids": [
+  "tid": "KANA99999",
+  "n": "Database Updater",
+  "d": "App.db Database Updater for PSVITA.",
+  "ld": "Triggers a rebuild/update for app.db database.",
+  "aids": [
     "kanadeengel"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v2.0",
-  "version_date": "2016-12-31",
-  "requirements": "Not specified",
-  "size": 60902,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-database-updater-kana99999/icon0.png",
-  "screenshots": [
+  "v": "v2.0",
+  "vd": "2016-12-31",
+  "req": "Not specified",
+  "sz": 60902,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-database-updater-kana99999/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-database-updater-kana99999/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-database-updater-kana99999/database-updater-kana99999.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-database-updater-kana99999/database-updater-kana99999.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "224",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=224",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.234437+00:00"
+  "sn": "VitaDB",
+  "si": "224",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=224",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.234437+00:00"
 }

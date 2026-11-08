@@ -1,54 +1,54 @@
 {
   "id": "wiiero",
-  "title_id": "VITALIERO",
-  "name": "Wiiero",
-  "description": "Wiiero port for PSTV.",
-  "long_description": "THIS GAME IS LOCAL MULTIPLAYER ONLY! It requires 2 controllers to play, so it won't work on a regular Vita.\nWiiero is a clone of Liero specially originally developed for Wii. Liero is a PvP game between two worms armed with heavy weapons of all kinds battling in underground caves. Wiiero is composed of 3 game modes: Deathmatch, Capture the flag and game of tag. In the wiiero world, players are able to fight with the original Liero weapons ( there are basically thirty of them) or add the twenty more or less harmful new ones.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "VITALIERO",
+  "n": "Wiiero",
+  "d": "Wiiero port for PSTV.",
+  "ld": "THIS GAME IS LOCAL MULTIPLAYER ONLY! It requires 2 controllers to play, so it won't work on a regular Vita.\nWiiero is a clone of Liero specially originally developed for Wii. Liero is a PvP game between two worms armed with heavy weapons of all kinds battling in underground caves. Wiiero is composed of 3 game modes: Deathmatch, Capture the flag and game of tag. In the wiiero world, players are able to fight with the original Liero weapons ( there are basically thirty of them) or add the twenty more or less harmful new ones.\n\n- PsVitaAlive -",
+  "aids": [
     "grzybojad"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2019-01-12",
-  "requirements": "Not specified",
-  "size": 748458,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-wiiero/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2019-01-12",
+  "req": "Not specified",
+  "sz": 748458,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-wiiero/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-wiiero/shot_01.png",
     "https://archive.org/download/psvitaalive-wiiero/shot_02.png",
     "https://archive.org/download/psvitaalive-wiiero/shot_03.png",
     "https://archive.org/download/psvitaalive-wiiero/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-wiiero/wiiero.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-wiiero/wiiero.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Grzybojad/wiiero-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Grzybojad/wiiero-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Grzybojad/wiiero-vita/releases/tag/1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Grzybojad/wiiero-vita/releases/tag/1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Grzybojad/wiiero-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Grzybojad/wiiero-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "417",
-  "source_url": "https://github.com/Grzybojad/wiiero-vita",
-  "release_page": "https://github.com/Grzybojad/wiiero-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.657105+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "417",
+  "su": "https://github.com/Grzybojad/wiiero-vita",
+  "rp": "https://github.com/Grzybojad/wiiero-vita/releases",
+  "ua": "2026-08-13T15:34:48.657105+00:00"
 }

@@ -1,15 +1,15 @@
 {
   "id": "nekomimi",
-  "name": "NekoMimi",
-  "avatar": "https://github.com/NekoMimiOfficial.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "NekoMimi",
+  "av": "https://github.com/NekoMimiOfficial.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/NekoMimiOfficial",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/NekoMimiOfficial",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/NekoMimiOfficial.png"
+  "ic": "https://github.com/NekoMimiOfficial.png"
 }

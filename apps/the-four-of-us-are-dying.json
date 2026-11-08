@@ -1,46 +1,46 @@
 {
   "id": "the-four-of-us-are-dying",
-  "title_id": "WSCG00005",
-  "name": "The Four of Us Are Dying",
-  "description": "Survival horror game for PSVITA.",
-  "long_description": "In progress survival horror game for PSVITA. This is a development build, mirrored with the author's permission.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "WSCG00005",
+  "n": "The Four of Us Are Dying",
+  "d": "Survival horror game for PSVITA.",
+  "ld": "In progress survival horror game for PSVITA. This is a development build, mirrored with the author's permission.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "noradninja"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-05",
-  "requirements": "Not specified",
-  "size": 114337376,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-08-05",
+  "req": "Not specified",
+  "sz": 114337376,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/TFoUAD.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-four-of-us-are-dying/TFoUAD.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/noradninja/The-Four-of-Us-Are-Dying"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1456",
-  "source_url": "https://github.com/noradninja/The-Four-of-Us-Are-Dying",
-  "release_page": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current",
-  "updated_at": "2026-08-13T15:34:48.322344+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1456",
+  "su": "https://github.com/noradninja/The-Four-of-Us-Are-Dying",
+  "rp": "https://github.com/noradninja/The-Four-of-Us-Are-Dying/tree/Current",
+  "ua": "2026-08-13T15:34:48.322344+00:00"
 }

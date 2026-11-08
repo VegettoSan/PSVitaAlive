@@ -1,55 +1,55 @@
 {
   "id": "rolling-down-vita",
-  "title_id": "EMOJI0001",
-  "name": "Rolling Down Vita",
-  "description": "Port of Rolling Down: Emoji Adventure for PSVita.",
-  "long_description": "This is a wrapper/port of Rolling Down: Emoji Adventure for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "EMOJI0001",
+  "n": "Rolling Down Vita",
+  "d": "Port of Rolling Down: Emoji Adventure for PSVita.",
+  "ld": "This is a wrapper/port of Rolling Down: Emoji Adventure for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-08-16",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2769091,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-rolling-down-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-08-16",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2769091,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-rolling-down-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-rolling-down-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-rolling-down-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-rolling-down-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-rolling-down-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-rolling-down-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-rolling-down-vita/rolling-down-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-rolling-down-vita/rolling-down-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/rolling-down-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/rolling-down-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/rolling-down-vita/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/rolling-down-vita/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/rolling-down-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/rolling-down-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1312",
-  "source_url": "https://github.com/Rinnegatamante/rolling-down-vita",
-  "release_page": "https://github.com/Rinnegatamante/rolling-down-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.393093+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1312",
+  "su": "https://github.com/Rinnegatamante/rolling-down-vita",
+  "rp": "https://github.com/Rinnegatamante/rolling-down-vita/releases",
+  "ua": "2026-08-13T15:34:48.393093+00:00"
 }

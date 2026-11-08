@@ -1,51 +1,51 @@
 {
   "id": "pup-extractor",
-  "title_id": "PSP2PUP00",
-  "name": "PUP-Extractor",
-  "description": "Extract PSVITA .PUP firmware updates.",
-  "long_description": "Application that allows you to extract firmware updates for PSVITA/PSTV in .PUP format.",
-  "author_ids": [
+  "tid": "PSP2PUP00",
+  "n": "PUP-Extractor",
+  "d": "Extract PSVITA .PUP firmware updates.",
+  "ld": "Application that allows you to extract firmware updates for PSVITA/PSTV in .PUP format.",
+  "aids": [
     "princess-of-sleeping"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3",
-  "version_date": "2018-02-09",
-  "requirements": "Not specified",
-  "size": 40368,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pup-extractor/icon0.png",
-  "screenshots": [
+  "v": "v.1.3",
+  "vd": "2018-02-09",
+  "req": "Not specified",
+  "sz": 40368,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pup-extractor/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pup-extractor/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pup-extractor/pup-extractor.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pup-extractor/pup-extractor.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases/tag/1.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases/tag/1.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "385",
-  "source_url": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor",
-  "release_page": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases",
-  "updated_at": "2026-08-13T15:34:48.668782+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "385",
+  "su": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor",
+  "rp": "https://github.com/Princess-of-Sleeping/PSV-PUP-Extractor/releases",
+  "ua": "2026-08-13T15:34:48.668782+00:00"
 }

@@ -1,15 +1,15 @@
 {
   "id": "pookette",
-  "name": "Pookette",
-  "avatar": "https://github.com/Avellea.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Pookette",
+  "av": "https://github.com/Avellea.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Avellea",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Avellea",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Avellea.png"
+  "ic": "https://github.com/Avellea.png"
 }

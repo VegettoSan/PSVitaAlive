@@ -1,48 +1,48 @@
 {
   "id": "sssplayer",
-  "title_id": "SSSP00001",
-  "name": "SSSPlayer",
-  "description": "Music and video player for PS Vita by SergioSSantiago. Combines a VitaWave-style music shell (EQ, visualizer, playlists, themes) with VitaMediaDeck-class video playback: H.264 hardware decode, precise touch seek, subtitles, and network streaming (SMB, SFTP, WebDAV, Jellyfin).",
-  "long_description": "SSSPlayer is an all-in-one media player for PlayStation Vita by SergioSSantiago.\n\nMusic:\n- Browse ux0:/music and uma0:/music (MP3, FLAC, OGG)\n- Now Playing with touch scrub on the progress bar\n- 10-band equalizer, spectrum visualizer, M3U playlists\n- Theme system (Terminus CRT theme by default)\n\nVideo:\n- Browse ux0:/video, uma0:/video, ux0:/movies, uma0:/movies\n- Hardware H.264 playback with exact seek / scrub\n- Subtitles and audio tracks\n- Network sources: SMB, SFTP, WebDAV, Jellyfin\n\nInstall:\n1. Download SSSPlayer-x.y.z.vpk from GitHub Releases\n2. Enable FTP in VitaShell\n3. Copy the VPK to ux0: with Cyberduck\n4. Install from VitaShell\n\nCredits: built by SergioSSantiago. Thanks to VitaWave and VitaMediaDeck — SSSPlayer reuses foundations from both projects.\n\nTITLEID: SSSP00001\nData: ux0:data/SSSPlayer/\nLicense: GPL-3.0-only",
-  "author_ids": [
+  "tid": "SSSP00001",
+  "n": "SSSPlayer",
+  "d": "Music and video player for PS Vita by SergioSSantiago. Combines a VitaWave-style music shell (EQ, visualizer, playlists, themes) with VitaMediaDeck-class video playback: H.264 hardware decode, precise touch seek, subtitles, and network streaming (SMB, SFTP, WebDAV, Jellyfin).",
+  "ld": "SSSPlayer is an all-in-one media player for PlayStation Vita by SergioSSantiago.\n\nMusic:\n- Browse ux0:/music and uma0:/music (MP3, FLAC, OGG)\n- Now Playing with touch scrub on the progress bar\n- 10-band equalizer, spectrum visualizer, M3U playlists\n- Theme system (Terminus CRT theme by default)\n\nVideo:\n- Browse ux0:/video, uma0:/video, ux0:/movies, uma0:/movies\n- Hardware H.264 playback with exact seek / scrub\n- Subtitles and audio tracks\n- Network sources: SMB, SFTP, WebDAV, Jellyfin\n\nInstall:\n1. Download SSSPlayer-x.y.z.vpk from GitHub Releases\n2. Enable FTP in VitaShell\n3. Copy the VPK to ux0: with Cyberduck\n4. Install from VitaShell\n\nCredits: built by SergioSSantiago. Thanks to VitaWave and VitaMediaDeck — SSSPlayer reuses foundations from both projects.\n\nTITLEID: SSSP00001\nData: ux0:data/SSSPlayer/\nLicense: GPL-3.0-only",
+  "aids": [
     "sergiossantiago"
   ],
-  "category_id": "media",
-  "subcategory_ids": [
+  "cid": "media",
+  "sids": [
     "audio",
     "music-player",
     "video",
     "video-player",
     "streaming"
   ],
-  "version": "1.1.34",
-  "version_date": "2026-09-24",
-  "requirements": "PS Vita / PSTV with HENkaku / enso. Network features need Wi-Fi.",
-  "size": 49073357,
-  "status": "Verified",
-  "links": [
+  "v": "1.1.34",
+  "vd": "2026-09-24",
+  "req": "PS Vita / PSTV with HENkaku / enso. Network features need Wi-Fi.",
+  "sz": 49073357,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/sssplayer-ps-vita/SSSPlayer-1.1.34.vpk",
-      "size": 49073357,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/sssplayer-ps-vita/SSSPlayer-1.1.34.vpk",
+      "sz": 49073357,
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SergioSSantiago/SSSPlayer/releases/latest"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SergioSSantiago/SSSPlayer/releases/latest"
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/SergioSSantiago/SSSPlayer"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/SergioSSantiago/SSSPlayer"
     }
   ],
-  "icon": "https://archive.org/download/sssplayer-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/sssplayer-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/sssplayer-ps-vita/shot0.png"
   ],
-  "source_url": "https://github.com/SergioSSantiago/SSSPlayer",
-  "release_page": "https://github.com/SergioSSantiago/SSSPlayer/releases"
+  "su": "https://github.com/SergioSSantiago/SSSPlayer",
+  "rp": "https://github.com/SergioSSantiago/SSSPlayer/releases"
 }

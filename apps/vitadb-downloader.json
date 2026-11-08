@@ -1,60 +1,60 @@
 {
   "id": "vitadb-downloader",
-  "title_id": "VITADBDLD",
-  "name": "VitaDB Downloader",
-  "description": "Official Vita client for VitaDB.",
-  "long_description": "VitaDB Downloader is the official Vita client for VitaDB allowing to easily install homebrews from VitaDB directly from your PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "VITADBDLD",
+  "n": "VitaDB Downloader",
+  "d": "Official Vita client for VitaDB.",
+  "ld": "VitaDB Downloader is the official Vita client for VitaDB allowing to easily install homebrews from VitaDB directly from your PSVITA/PSTV.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.7",
-  "version_date": "2026-08-15",
-  "requirements": "- libshacccg.suprx",
-  "size": 3101129,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitadb-downloader/icon0.png",
-  "screenshots": [
+  "v": "v.2.7",
+  "vd": "2026-08-15",
+  "req": "- libshacccg.suprx",
+  "sz": 3101129,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitadb-downloader/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitadb-downloader/shot_01.png",
     "https://archive.org/download/psvitaalive-vitadb-downloader/shot_02.png",
     "https://archive.org/download/psvitaalive-vitadb-downloader/shot_03.png",
     "https://archive.org/download/psvitaalive-vitadb-downloader/shot_04.png",
     "https://archive.org/download/psvitaalive-vitadb-downloader/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitadb-downloader/vitadb-downloader.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitadb-downloader/vitadb-downloader.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.5"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/VitaDB-Downloader"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "877",
-  "source_url": "https://github.com/Rinnegatamante/VitaDB-Downloader",
-  "release_page": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
-  "updated_at": "2026-08-13T15:34:48.346042+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "877",
+  "su": "https://github.com/Rinnegatamante/VitaDB-Downloader",
+  "rp": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
+  "ua": "2026-08-13T15:34:48.346042+00:00"
 }

@@ -1,61 +1,61 @@
 {
   "id": "thug-vita",
-  "title_id": "THUG00001",
-  "name": "THUG Vita",
-  "description": "Native port of Tony Hawk's Underground for PSVita.",
-  "long_description": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "THUG00001",
+  "n": "THUG Vita",
+  "d": "Native port of Tony Hawk's Underground for PSVita.",
+  "ld": "A native PS Vita port of Tony Hawk's Underground (2003). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, based on the kisak-thug PC project. Story mode, free skate, Create-a-Skater, Create-a-Park and every level are available, most of them at or near 60 fps. FMV videos are skipped. No game data is included: the port reads the data files of the Xbox USA release.\n\n- PsVitaAlive -",
+  "aids": [
     "iwannagooutside"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer",
     "source-port"
   ],
-  "version": "v1.2.0",
-  "version_date": "2026-10-13",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
-  "size": 4613734,
-  "status": "Verified",
-  "links": [
+  "v": "v1.2.0",
+  "vd": "2026-10-13",
+  "req": "- libshacccg.suprx\n- Game Data Files: Xbox (USA)",
+  "sz": 4613734,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/thug-vita/thug_vita%20v1.2.0.vpk",
-      "size": 4613734,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/thug-vita/thug_vita%20v1.2.0.vpk",
+      "sz": 4613734,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/thug-vita/Game%20Files.zip",
-      "size": 1717986918,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/thug-vita/Game%20Files.zip",
+      "sz": 1717986918,
+      "xp": "ux0:data/",
+      "ips": [
         "thug"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/iwannagooutside/thug-vita-port"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/iwannagooutside/thug-vita-port"
     },
     {
-      "type": "Issues",
-      "name": "Issues",
-      "url": "https://github.com/iwannagooutside/thug-vita-port/issues"
+      "t": "Issues",
+      "n": "Issues",
+      "u": "https://github.com/iwannagooutside/thug-vita-port/issues"
     },
     {
-      "type": "Official Website",
-      "name": "Trailer",
-      "url": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
+      "t": "Official Website",
+      "n": "Trailer",
+      "u": "https://www.youtube.com/watch?v=XKwEK5B5K2w"
     }
   ],
-  "icon": "https://archive.org/download/thug-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/thug-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/thug-vita/shot0.jpg",
     "https://archive.org/download/thug-vita/shot1.png"
   ],
-  "release_page": "https://github.com/iwannagooutside/thug-vita-port/releases"
+  "rp": "https://github.com/iwannagooutside/thug-vita-port/releases"
 }

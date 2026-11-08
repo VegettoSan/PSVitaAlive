@@ -1,52 +1,52 @@
 {
   "id": "leo-s-fortune-vita",
-  "title_id": "LEOFORT01",
-  "name": "Leo's Fortune Vita",
-  "description": "Port of Leo's Fortune for PSVita.",
-  "long_description": "This is a wrapper/port of Leo's Fortune for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "LEOFORT01",
+  "n": "Leo's Fortune Vita",
+  "d": "Port of Leo's Fortune for PSVita.",
+  "ld": "This is a wrapper/port of Leo's Fortune for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "claude-ai",
     "stoicpingu"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-05-06",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2236369,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-leo-s-fortune-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-05-06",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2236369,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-leo-s-fortune-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-leo-s-fortune-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-leo-s-fortune-vita/leo-s-fortune-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-leo-s-fortune-vita/leo-s-fortune-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/stoicpingu/leos-fortune-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/stoicpingu/leos-fortune-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/stoicpingu/leos-fortune-vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/stoicpingu/leos-fortune-vita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/stoicpingu/leos-fortune-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/stoicpingu/leos-fortune-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1396",
-  "source_url": "https://github.com/stoicpingu/leos-fortune-vita",
-  "release_page": "https://github.com/stoicpingu/leos-fortune-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.350678+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1396",
+  "su": "https://github.com/stoicpingu/leos-fortune-vita",
+  "rp": "https://github.com/stoicpingu/leos-fortune-vita/releases",
+  "ua": "2026-08-13T15:34:48.350678+00:00"
 }

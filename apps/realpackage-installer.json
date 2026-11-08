@@ -1,52 +1,52 @@
 {
   "id": "realpackage-installer",
-  "title_id": "RPKG10031",
-  "name": "★RealPackage Installer",
-  "description": "Package installer for PSVITA.",
-  "long_description": "Package installer for PSVITA.",
-  "author_ids": [
+  "tid": "RPKG10031",
+  "n": "★RealPackage Installer",
+  "d": "Package installer for PSVITA.",
+  "ld": "Package installer for PSVITA.",
+  "aids": [
     "lienby",
     "li"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2026-08-05",
-  "requirements": "Not specified",
-  "size": 2644676,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-realpackage-installer/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2026-08-05",
+  "req": "Not specified",
+  "sz": 2644676,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-realpackage-installer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-realpackage-installer/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-realpackage-installer/real_package_installer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-realpackage-installer/real_package_installer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/LiEnby/real-package-installer/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/LiEnby/real-package-installer/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/LiEnby/real-package-installer/releases/tag/1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/LiEnby/real-package-installer/releases/tag/1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/LiEnby/real-package-installer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/LiEnby/real-package-installer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1454",
-  "source_url": "https://github.com/LiEnby/real-package-installer",
-  "release_page": "https://github.com/LiEnby/real-package-installer/releases",
-  "updated_at": "2026-08-13T15:34:48.323488+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1454",
+  "su": "https://github.com/LiEnby/real-package-installer",
+  "rp": "https://github.com/LiEnby/real-package-installer/releases",
+  "ua": "2026-08-13T15:34:48.323488+00:00"
 }

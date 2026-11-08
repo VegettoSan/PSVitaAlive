@@ -1,55 +1,55 @@
 {
   "id": "vitasnake",
-  "title_id": "GRZB00002",
-  "name": "vitaSnake",
-  "description": "An original snake game",
-  "long_description": "A snake game with smooth rotation made for the PS Vita.\nWith 5 game modes, each with 2 difficulty modes, there are 10 unique ways to play! Customise your experience further with custom themes available in the options menu.",
-  "author_ids": [
+  "tid": "GRZB00002",
+  "n": "vitaSnake",
+  "d": "An original snake game",
+  "ld": "A snake game with smooth rotation made for the PS Vita.\nWith 5 game modes, each with 2 difficulty modes, there are 10 unique ways to play! Customise your experience further with custom themes available in the options menu.",
+  "aids": [
     "grzybojad"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.5",
-  "version_date": "2019-04-28",
-  "requirements": "Not specified",
-  "size": 1856878,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitasnake/icon0.png",
-  "screenshots": [
+  "v": "v.1.5",
+  "vd": "2019-04-28",
+  "req": "Not specified",
+  "sz": 1856878,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitasnake/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitasnake/shot_01.png",
     "https://archive.org/download/psvitaalive-vitasnake/shot_02.png",
     "https://archive.org/download/psvitaalive-vitasnake/shot_03.png",
     "https://archive.org/download/psvitaalive-vitasnake/shot_04.png",
     "https://archive.org/download/psvitaalive-vitasnake/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitasnake/vitasnake.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitasnake/vitasnake.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Grzybojad/vitaSnake/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Grzybojad/vitaSnake/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Grzybojad/vitaSnake/releases/tag/v1.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Grzybojad/vitaSnake/releases/tag/v1.5"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Grzybojad/vitaSnake"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Grzybojad/vitaSnake"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "394",
-  "source_url": "https://github.com/Grzybojad/vitaSnake",
-  "release_page": "https://github.com/Grzybojad/vitaSnake/releases",
-  "updated_at": "2026-08-13T15:34:48.643010+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "394",
+  "su": "https://github.com/Grzybojad/vitaSnake",
+  "rp": "https://github.com/Grzybojad/vitaSnake/releases",
+  "ua": "2026-08-13T15:34:48.643010+00:00"
 }

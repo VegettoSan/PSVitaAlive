@@ -1,55 +1,55 @@
 {
   "id": "enbornx-vita",
-  "title_id": "ENBORNX01",
-  "name": "EnbornX Vita",
-  "description": "Port of EnbornX for PSVITA.",
-  "long_description": "This is a wrapper/port of EnbornX for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ENBORNX01",
+  "n": "EnbornX Vita",
+  "d": "Port of EnbornX for PSVITA.",
+  "ld": "This is a wrapper/port of EnbornX for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-02-09",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1243011,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-enbornx-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2024-02-09",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1243011,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-enbornx-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-enbornx-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-enbornx-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-enbornx-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-enbornx-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-enbornx-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-enbornx-vita/enbornx-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-enbornx-vita/enbornx-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/enbornx_vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/enbornx_vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/enbornx_vita/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/enbornx_vita/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/enbornx_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/enbornx_vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1183",
-  "source_url": "https://github.com/Rinnegatamante/enbornx_vita",
-  "release_page": "https://github.com/Rinnegatamante/enbornx_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.449893+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1183",
+  "su": "https://github.com/Rinnegatamante/enbornx_vita",
+  "rp": "https://github.com/Rinnegatamante/enbornx_vita/releases",
+  "ua": "2026-08-13T15:34:48.449893+00:00"
 }

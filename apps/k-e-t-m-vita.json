@@ -1,50 +1,50 @@
 {
   "id": "k-e-t-m-vita",
-  "title_id": "KETM00001",
-  "name": "K.E.T.M. Vita",
-  "description": "K.E.T.M. port for PSVITA.",
-  "long_description": "This is the PSVITA port of K.E.T.M. (Kill Everything That Moves) , a fast paced 2D shooter.\nThe game is available with the original game style and 4 mods (1941, Star Wars, Iron man, Mario Kart). The Game mode is selectable at startup\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "KETM00001",
+  "n": "K.E.T.M. Vita",
+  "d": "K.E.T.M. port for PSVITA.",
+  "ld": "This is the PSVITA port of K.E.T.M. (Kill Everything That Moves) , a fast paced 2D shooter.\nThe game is available with the original game style and 4 mods (1941, Star Wars, Iron man, Mario Kart). The Game mode is selectable at startup\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-12-29",
-  "requirements": "Not specified",
-  "size": 996832,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-k-e-t-m-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-12-29",
+  "req": "Not specified",
+  "sz": 996832,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-k-e-t-m-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-k-e-t-m-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-k-e-t-m-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-k-e-t-m-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-k-e-t-m-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-k-e-t-m-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-k-e-t-m-vita/k-e-t-m-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-k-e-t-m-vita/k-e-t-m-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48784"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48784"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/K.E.T.M.-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/K.E.T.M.-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "356",
-  "source_url": "https://github.com/Rinnegatamante/K.E.T.M.-Vita",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48784",
-  "updated_at": "2026-08-13T15:34:48.670199+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "356",
+  "su": "https://github.com/Rinnegatamante/K.E.T.M.-Vita",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=48784",
+  "ua": "2026-08-13T15:34:48.670199+00:00"
 }

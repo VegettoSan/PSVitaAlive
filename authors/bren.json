@@ -1,15 +1,15 @@
 {
   "id": "bren",
-  "name": "bren",
-  "avatar": "https://github.com/Brendonm17.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "bren",
+  "av": "https://github.com/Brendonm17.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Brendonm17",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Brendonm17",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Brendonm17.png"
+  "ic": "https://github.com/Brendonm17.png"
 }

@@ -1,53 +1,53 @@
 {
   "id": "save-keeper",
-  "title_id": "SVK000001",
-  "name": "Save Keeper",
-  "description": "Save backup manager with Google Drive sync.",
-  "long_description": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
-  "author_ids": [
+  "tid": "SVK000001",
+  "n": "Save Keeper",
+  "d": "Save backup manager with Google Drive sync.",
+  "ld": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
+  "aids": [
     "claude-ai",
     "falkenhawk"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3.0",
-  "version_date": "2026-08-03",
-  "requirements": "Not specified",
-  "size": 3148166,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
-  "screenshots": [
+  "v": "v.1.3.0",
+  "vd": "2026-08-03",
+  "req": "Not specified",
+  "sz": 3148166,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-save-keeper/shot_01.png",
     "https://archive.org/download/psvitaalive-save-keeper/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-save-keeper/save-keeper.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-save-keeper/save-keeper.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/falkenhawk/vita-save-keeper"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/falkenhawk/vita-save-keeper"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/falkenhawk/vita-save-keeper/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/falkenhawk/vita-save-keeper/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1430",
-  "source_url": "https://github.com/falkenhawk/vita-save-keeper",
-  "release_page": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0",
-  "updated_at": "2026-08-13T15:34:48.327643+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1430",
+  "su": "https://github.com/falkenhawk/vita-save-keeper",
+  "rp": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0",
+  "ua": "2026-08-13T15:34:48.327643+00:00"
 }

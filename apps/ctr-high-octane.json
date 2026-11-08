@@ -1,48 +1,48 @@
 {
   "id": "ctr-high-octane",
-  "title_id": "CTR000004",
-  "name": "CTR: High Octane",
-  "description": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
-  "long_description": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CTR000004",
+  "n": "CTR: High Octane",
+  "d": "is a sourceport for PSVita of Crash Team Racing based on the ctr-native project.",
+  "ld": "Crash Team Racing: High Octane is a sourceport for PSVita of Crash Team Racing based on the ctr-native project. It focuses on new features, enhancements and optimization.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing"
   ],
-  "version": "1.5",
-  "version_date": "2026-10-12",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PS1",
-  "size": 3670016,
-  "status": "Verified",
-  "links": [
+  "v": "1.5",
+  "vd": "2026-10-12",
+  "req": "- libshacccg.suprx\n- Game Data Files: PS1",
+  "sz": 3670016,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.5.vpk",
-      "size": 3670016,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/crash-team-racing-high-optane/ctr%20v1.5.vpk",
+      "sz": 3670016,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
-      "size": 605657498,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/crash-team-racing-high-optane/Game%20Files.zip",
+      "sz": 605657498,
+      "xp": "ux0:data/",
+      "ips": [
         "ctr"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Rinnegatamante/Crash-Team-Racing-High-Octane"
     }
   ],
-  "icon": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/crash-team-racing-high-optane/icon0.png",
+  "ss": [
     "https://archive.org/download/crash-team-racing-high-optane/shot0.jpg",
     "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
     "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",

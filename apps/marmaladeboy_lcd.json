@@ -1,55 +1,55 @@
 {
   "id": "marmaladeboy_lcd",
-  "title_id": "BUNKAI007",
-  "name": "MarmaladeBoy_LCD",
-  "description": "Clone of MarmeladeBoy LCD console for PSVITA.",
-  "long_description": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BUNKAI007",
+  "n": "MarmaladeBoy_LCD",
+  "d": "Clone of MarmeladeBoy LCD console for PSVITA.",
+  "ld": "The main game is a port of the LCD game where you have to go from one point to another without dying to increase your score. The idea is based on the MarmaladeBoy LCD game made by Bandai Namco.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "bunkai"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-14",
-  "requirements": "Not specified",
-  "size": 4054232,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-marmaladeboy_lcd/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-08-14",
+  "req": "Not specified",
+  "sz": 4054232,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-marmaladeboy_lcd/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_01.png",
     "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_02.png",
     "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_03.png",
     "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_04.png",
     "https://archive.org/download/psvitaalive-marmaladeboy_lcd/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-marmaladeboy_lcd/MarmaladeBoy_LCD.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-marmaladeboy_lcd/MarmaladeBoy_LCD.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/23/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/23/"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://bunkai.itch.io/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://bunkai.itch.io/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Bunkai9448/vita_gamemaker"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Bunkai9448/vita_gamemaker"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1109",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/23/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/23/",
-  "updated_at": "2026-08-13T15:34:48.484525+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1109",
+  "su": "https://fuhen.homebrew-contest.com/submissions/23/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/23/",
+  "ua": "2026-08-13T15:34:48.484525+00:00"
 }

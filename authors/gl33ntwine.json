@@ -1,15 +1,15 @@
 {
   "id": "gl33ntwine",
-  "name": "gl33ntwine",
-  "avatar": "https://github.com/v-atamanenko.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "gl33ntwine",
+  "av": "https://github.com/v-atamanenko.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/v-atamanenko",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/v-atamanenko",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/v-atamanenko.png"
+  "ic": "https://github.com/v-atamanenko.png"
 }

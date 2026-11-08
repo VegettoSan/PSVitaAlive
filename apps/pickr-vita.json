@@ -1,52 +1,52 @@
 {
   "id": "pickr-vita",
-  "title_id": "PICKRV016",
-  "name": "Pickr VITA",
-  "description": "Port of Pickr3ds for PSVITA.",
-  "long_description": "PickrVITA is a port of the game Pickr3DS by BernardoGiordano. The original idea was founded by Sean M. Tracey. The objective of the game is to tap the odd colour found on the screen until you run out of lives. Unlike Sean M. Tracey's game, PickrVITA can only be played in timer mode.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PICKRV016",
+  "n": "Pickr VITA",
+  "d": "Port of Pickr3ds for PSVITA.",
+  "ld": "PickrVITA is a port of the game Pickr3DS by BernardoGiordano. The original idea was founded by Sean M. Tracey. The objective of the game is to tap the odd colour found on the screen until you run out of lives. Unlike Sean M. Tracey's game, PickrVITA can only be played in timer mode.\n\n- PsVitaAlive -",
+  "aids": [
     "joel16"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2017-04-17",
-  "requirements": "Not specified",
-  "size": 303520,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pickr-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2017-04-17",
+  "req": "Not specified",
+  "sz": 303520,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pickr-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pickr-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-pickr-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pickr-vita/pickr-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pickr-vita/pickr-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?p=417846"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?p=417846"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/PickrVITA/releases/tag/1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/PickrVITA/releases/tag/1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/PickrVITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joel16/PickrVITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "238",
-  "source_url": "https://github.com/joel16/PickrVITA",
-  "release_page": "http://wololo.net/talk/viewtopic.php?p=417846",
-  "updated_at": "2026-08-13T15:34:48.683643+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "238",
+  "su": "https://github.com/joel16/PickrVITA",
+  "rp": "http://wololo.net/talk/viewtopic.php?p=417846",
+  "ua": "2026-08-13T15:34:48.683643+00:00"
 }

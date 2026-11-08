@@ -1,55 +1,55 @@
 {
   "id": "vita-media-player-psv",
-  "title_id": "SVMP00001",
-  "name": "Vita Media Player PSV",
-  "description": "Opensource video player for PSVITA.",
-  "long_description": "An Open Source PSVita MP4 player with 1080p playback and subtitle support.\nSRT subtitle support (Has to be the same name as the video file)",
-  "author_ids": [
+  "tid": "SVMP00001",
+  "n": "Vita Media Player PSV",
+  "d": "Opensource video player for PSVITA.",
+  "ld": "An Open Source PSVita MP4 player with 1080p playback and subtitle support.\nSRT subtitle support (Has to be the same name as the video file)",
+  "aids": [
     "sonicmastr"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2021-04-09",
-  "requirements": "Not specified",
-  "size": 319320,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-media-player-psv/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2021-04-09",
+  "req": "Not specified",
+  "sz": 319320,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-media-player-psv/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-media-player-psv/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-media-player-psv/vita-media-player-psv.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-media-player-psv/vita-media-player-psv.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Vita-Media-Player/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Vita-Media-Player/releases/tag/v1.01-PSTV"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Vita-Media-Player/releases/tag/v1.01-PSTV"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/Vita-Media-Player"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SonicMastr/Vita-Media-Player"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "869",
-  "source_url": "https://github.com/SonicMastr/Vita-Media-Player",
-  "release_page": "https://github.com/SonicMastr/Vita-Media-Player/releases",
-  "updated_at": "2026-08-13T15:34:48.590333+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "869",
+  "su": "https://github.com/SonicMastr/Vita-Media-Player",
+  "rp": "https://github.com/SonicMastr/Vita-Media-Player/releases",
+  "ua": "2026-08-13T15:34:48.590333+00:00"
 }

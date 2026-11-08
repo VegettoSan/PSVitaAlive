@@ -1,43 +1,43 @@
 {
   "id": "turbo-fast-league",
-  "title_id": "TRBO00001",
-  "name": "Turbo Fast League",
-  "description": "Turbo Fast Vita Port is BountyBoy's community test port of Turbo Fast League for PlayStation Vita.",
-  "long_description": "Turbo Fast Vita Port is BountyBoy's community test port of Turbo Fast League for PlayStation Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "TRBO00001",
+  "n": "Turbo Fast League",
+  "d": "Turbo Fast Vita Port is BountyBoy's community test port of Turbo Fast League for PlayStation Vita.",
+  "ld": "Turbo Fast Vita Port is BountyBoy's community test port of Turbo Fast League for PlayStation Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "boazbee"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing"
   ],
-  "version": "v1.02",
-  "version_date": "2026-08-31",
-  "requirements": "-kubridge - kernel plugin required for RWX memory; must be installed on the target Vita.\n- The target game's .so extracted from its APK.",
-  "size": 1572864,
-  "status": "Verified",
-  "links": [
+  "v": "v1.02",
+  "vd": "2026-08-31",
+  "req": "-kubridge - kernel plugin required for RWX memory; must be installed on the target Vita.\n- The target game's .so extracted from its APK.",
+  "sz": 1572864,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/turbo-fast-psvita/turbo-vita-v1.02.Beta.vpk",
-      "size": 1572864,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/turbo-fast-psvita/turbo-vita-v1.02.Beta.vpk",
+      "sz": 1572864,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/turbo-fast-psvita/Game%20Files.zip",
-      "size": 97517568,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/turbo-fast-psvita/Game%20Files.zip",
+      "sz": 97517568,
+      "xp": "ux0:data/",
+      "ips": [
         "turbo"
       ]
     }
   ],
-  "icon": "https://archive.org/download/turbo-fast-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/turbo-fast-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/turbo-fast-psvita/Shot0.png",
     "https://archive.org/download/turbo-fast-psvita/shot1.png",
     "https://archive.org/download/turbo-fast-psvita/shot2.png"

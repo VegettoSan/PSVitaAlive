@@ -1,55 +1,55 @@
 {
   "id": "picrest",
-  "title_id": "PICRESTGM",
-  "name": "PiCrest",
-  "description": "Picross game for PSVITA",
-  "long_description": "A Picross game for PSVITA with a level editor to create new levels and multilanguage support.",
-  "author_ids": [
+  "tid": "PICRESTGM",
+  "n": "PiCrest",
+  "d": "Picross game for PSVITA",
+  "ld": "A Picross game for PSVITA with a level editor to create new levels and multilanguage support.",
+  "aids": [
     "creckeryop"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.15",
-  "version_date": "2022-03-08",
-  "requirements": "Not specified",
-  "size": 2529584,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-picrest/icon0.png",
-  "screenshots": [
+  "v": "v.1.15",
+  "vd": "2022-03-08",
+  "req": "Not specified",
+  "sz": 2529584,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-picrest/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-picrest/shot_01.png",
     "https://archive.org/download/psvitaalive-picrest/shot_02.png",
     "https://archive.org/download/psvitaalive-picrest/shot_03.png",
     "https://archive.org/download/psvitaalive-picrest/shot_04.png",
     "https://archive.org/download/psvitaalive-picrest/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-picrest/picrest.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-picrest/picrest.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/PiCrest/releases/tag/1.15"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/PiCrest/releases/tag/1.15"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Creckeryop/PiCrest"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Creckeryop/PiCrest"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "392",
-  "source_url": "https://github.com/Creckeryop/PiCrest",
-  "release_page": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254",
-  "updated_at": "2026-08-13T15:34:48.554855+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "392",
+  "su": "https://github.com/Creckeryop/PiCrest",
+  "rp": "https://gbatemp.net/threads/release-picrest-picross-for-ps-vita.513063/#post-8182254",
+  "ua": "2026-08-13T15:34:48.554855+00:00"
 }

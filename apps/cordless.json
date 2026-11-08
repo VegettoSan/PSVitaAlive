@@ -1,48 +1,48 @@
 {
   "id": "cordless",
-  "title_id": "CRDL00001",
-  "name": "Cordless",
-  "description": "Discord client for PSVita.",
-  "long_description": "Unoffical Discord Client port for Playstation Vita.",
-  "author_ids": [
+  "tid": "CRDL00001",
+  "n": "Cordless",
+  "d": "Discord client for PSVita.",
+  "ld": "Unoffical Discord Client port for Playstation Vita.",
+  "aids": [
     "bren",
     "harommel-rabbid"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2026-08-20",
-  "requirements": "Not specified",
-  "size": 3253276,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cordless/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2026-08-20",
+  "req": "Not specified",
+  "sz": 3253276,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-cordless/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cordless/shot_01.png",
     "https://archive.org/download/psvitaalive-cordless/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cordless/cordless.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cordless/cordless.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Brendonm17/Cordless/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Brendonm17/Cordless/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Brendonm17/Cordless"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Brendonm17/Cordless"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1475",
-  "source_url": "https://github.com/Brendonm17/Cordless",
-  "release_page": "https://github.com/Brendonm17/Cordless/releases",
-  "updated_at": "2026-08-20T09:53:08.634753+00:00"
+  "sn": "VitaDB",
+  "si": "1475",
+  "su": "https://github.com/Brendonm17/Cordless",
+  "rp": "https://github.com/Brendonm17/Cordless/releases",
+  "ua": "2026-08-20T09:53:08.634753+00:00"
 }

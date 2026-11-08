@@ -1,52 +1,52 @@
 {
   "id": "creeperdiver",
-  "title_id": "CREEPER00",
-  "name": "CreeperDiver",
-  "description": "Navigate a creeper through a cave.",
-  "long_description": "A game about navigating a creeper through a cave\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "CREEPER00",
+  "n": "CreeperDiver",
+  "d": "Navigate a creeper through a cave.",
+  "ld": "A game about navigating a creeper through a cave\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "ws-studios",
     "lienby"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2026-08-13",
-  "requirements": "Not specified",
-  "size": 10802255,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-creeperdiver/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2026-08-13",
+  "req": "Not specified",
+  "sz": 10802255,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-creeperdiver/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-creeperdiver/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-creeperdiver/creeperdiver-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-creeperdiver/creeperdiver-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://git.silica.codes"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://git.silica.codes"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://git.silica.codes/Li/creeperdiver/releases"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://git.silica.codes/Li/creeperdiver/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://git.silica.codes/Li/creeperdiver"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://git.silica.codes/Li/creeperdiver"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1459",
-  "source_url": "https://git.silica.codes",
-  "release_page": "",
-  "updated_at": "2020-01-01T00:00:00+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1459",
+  "su": "https://git.silica.codes",
+  "rp": "",
+  "ua": "2020-01-01T00:00:00+00:00"
 }

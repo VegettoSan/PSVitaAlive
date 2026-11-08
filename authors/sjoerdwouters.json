@@ -1,15 +1,15 @@
 {
   "id": "sjoerdwouters",
-  "name": "sjoerdwouters",
-  "avatar": "https://github.com/sjoerdev.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "sjoerdwouters",
+  "av": "https://github.com/sjoerdev.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/sjoerdev",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/sjoerdev",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/sjoerdev.png"
+  "ic": "https://github.com/sjoerdev.png"
 }

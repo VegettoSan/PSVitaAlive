@@ -1,15 +1,15 @@
 {
   "id": "yoyz",
-  "name": "yoyz",
-  "avatar": "https://github.com/yoyz.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "yoyz",
+  "av": "https://github.com/yoyz.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/yoyz",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/yoyz",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/yoyz.png"
+  "ic": "https://github.com/yoyz.png"
 }

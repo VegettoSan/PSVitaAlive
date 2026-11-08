@@ -1,36 +1,36 @@
 {
   "id": "batman-doom",
-  "title_id": "BATM00001",
-  "name": "Batman Doom",
-  "description": "Port of Batman Doom for PSVITA.",
-  "long_description": "A port of Batman Doom, the classic Doom II total conversion by ACE Team, powered by the doomgeneric engine. The game files are required and are not included.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BATM00001",
+  "n": "Batman Doom",
+  "d": "Port of Batman Doom for PSVITA.",
+  "ld": "A port of Batman Doom, the classic Doom II total conversion by ACE Team, powered by the doomgeneric engine. The game files are required and are not included.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "draxtube"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-07",
-  "requirements": "- Game Data Files: doom2.wad, batman.wad and batman.deh in ux0:data/batmandoom/",
-  "size": 592662,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-batman-doom/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-08-07",
+  "req": "- Game Data Files: doom2.wad, batman.wad and batman.deh in ux0:data/batmandoom/",
+  "sz": 592662,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-batman-doom/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-batman-doom/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-batman-doom/BatmanDoom.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-batman-doom/BatmanDoom.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1467",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/BatmanDoom.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.321352+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1467",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/BatmanDoom.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.321352+00:00"
 }

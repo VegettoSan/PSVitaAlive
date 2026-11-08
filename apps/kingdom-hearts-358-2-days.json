@@ -1,50 +1,50 @@
 {
   "id": "kingdom-hearts-358-2-days",
-  "title_id": "KHDD00358",
-  "name": "Kingdom Hearts 358/2 Days",
-  "description": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
-  "long_description": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "KHDD00358",
+  "n": "Kingdom Hearts 358/2 Days",
+  "d": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
+  "ld": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
+  "aids": [
     "ggdrn"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "rpg",
     "source-port",
     "game-engine"
   ],
-  "version": "1.0.0",
-  "version_date": "2026-10-21",
-  "requirements": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
-  "size": 3984589,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.0",
+  "vd": "2026-10-21",
+  "req": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
+  "sz": 3984589,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/kh-days-vita/khdays-vita-1.0.0.vpk",
-      "size": 3984589,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/kh-days-vita/khdays-vita-1.0.0.vpk",
+      "sz": 3984589,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
-      "size": 268435456,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
+      "sz": 268435456,
+      "xp": "ux0:data/",
+      "ips": [
         "khdays"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ggdrn/KH-DAYS-VITA"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ggdrn/KH-DAYS-VITA"
     }
   ],
-  "icon": "https://archive.org/download/kh-days-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/kh-days-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/kh-days-vita/shot0.png"
   ]
 }

@@ -1,46 +1,46 @@
 {
   "id": "unsighted-vita",
-  "title_id": "UNSI22233",
-  "name": "Unsighted Vita",
-  "description": "Port of Unsighted for PSVITA.",
-  "long_description": "Port of Unsighted for PSVITA.\nThe game is a Metroidvania adventure game in which players assume the role of Alma, an automaton who has amnesia in the aftermath of a war between humans and robots.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "UNSI22233",
+  "n": "Unsighted Vita",
+  "d": "Port of Unsighted for PSVITA.",
+  "ld": "Port of Unsighted for PSVITA.\nThe game is a Metroidvania adventure game in which players assume the role of Alma, an automaton who has amnesia in the aftermath of a war between humans and robots.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.3",
-  "version_date": "2025-03-09",
-  "requirements": "- Game Data Files: PC",
-  "size": 16124488,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-unsighted-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.3",
+  "vd": "2025-03-09",
+  "req": "- Game Data Files: PC",
+  "sz": 16124488,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-unsighted-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-unsighted-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-unsighted-vita/unsighted-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-unsighted-vita/unsighted-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/PatnosDD/Unsighted-Ps-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/PatnosDD/Unsighted-Ps-Vita/releases/tag/V0.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/PatnosDD/Unsighted-Ps-Vita/releases/tag/V0.3"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1262",
-  "source_url": "https://github.com/PatnosDD/Unsighted-Ps-Vita",
-  "release_page": "https://github.com/PatnosDD/Unsighted-Ps-Vita",
-  "updated_at": "2026-08-13T15:34:48.412923+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1262",
+  "su": "https://github.com/PatnosDD/Unsighted-Ps-Vita",
+  "rp": "https://github.com/PatnosDD/Unsighted-Ps-Vita",
+  "ua": "2026-08-13T15:34:48.412923+00:00"
 }

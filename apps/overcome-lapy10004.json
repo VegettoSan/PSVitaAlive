@@ -1,36 +1,36 @@
 {
   "id": "overcome-lapy10004",
-  "title_id": "LAPY10004",
-  "name": "Overcome",
-  "description": "Snake-like 3D game.",
-  "long_description": "An endless game where you need to avoid hitting walls and other cars for as much as possible.",
-  "author_ids": [
+  "tid": "LAPY10004",
+  "n": "Overcome",
+  "d": "Snake-like 3D game.",
+  "ld": "An endless game where you need to avoid hitting walls and other cars for as much as possible.",
+  "aids": [
     "lapy"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2019-04-17",
-  "requirements": "Not specified",
-  "size": 40020711,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-overcome-lapy10004/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2019-04-17",
+  "req": "Not specified",
+  "sz": 40020711,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-overcome-lapy10004/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-overcome-lapy10004/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-overcome-lapy10004/overcome-lapy10004.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-overcome-lapy10004/overcome-lapy10004.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "458",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=458",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.222933+00:00"
+  "sn": "VitaDB",
+  "si": "458",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=458",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.222933+00:00"
 }

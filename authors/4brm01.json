@@ -1,15 +1,15 @@
 {
   "id": "4brm01",
-  "name": "4brm01",
-  "avatar": "https://github.com/4brm01.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "4brm01",
+  "av": "https://github.com/4brm01.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/4brm01",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/4brm01",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/4brm01.png"
+  "ic": "https://github.com/4brm01.png"
 }

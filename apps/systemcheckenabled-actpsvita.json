@@ -1,38 +1,38 @@
 {
   "id": "systemcheckenabled-actpsvita",
-  "title_id": "ACTPSVITA",
-  "name": "SystemCheckEnabled",
-  "description": "Check if the console is enabled.",
-  "long_description": "Simple homebrew that checks if your system is enabled.",
-  "author_ids": [
+  "tid": "ACTPSVITA",
+  "n": "SystemCheckEnabled",
+  "d": "Check if the console is enabled.",
+  "ld": "Simple homebrew that checks if your system is enabled.",
+  "aids": [
     "draqen"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-02-22",
-  "requirements": "Not specified",
-  "size": 1837913,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-02-22",
+  "req": "Not specified",
+  "sz": 1837913,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/shot_01.png",
     "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/shot_02.png",
     "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/systemcheckenabled-actpsvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-systemcheckenabled-actpsvita/systemcheckenabled-actpsvita.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "17",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=17",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.231940+00:00"
+  "sn": "VitaDB",
+  "si": "17",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=17",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.231940+00:00"
 }

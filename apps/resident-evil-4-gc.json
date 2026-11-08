@@ -1,50 +1,50 @@
 {
   "id": "resident-evil-4-gc",
-  "title_id": "BIOHAZ004",
-  "name": "Resident Evil 4 GC",
-  "description": "Resident Evil 4 GC Ps Vita",
-  "long_description": "Resident Evil 4 GC Ps Vita",
-  "author_ids": [
+  "tid": "BIOHAZ004",
+  "n": "Resident Evil 4 GC",
+  "d": "Resident Evil 4 GC Ps Vita",
+  "ld": "Resident Evil 4 GC Ps Vita",
+  "aids": [
     "tfarclegnakrad"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "source-port",
     "other"
   ],
-  "version": "00.00",
-  "version_date": "2026-10-25",
-  "requirements": "- A decrypted libshacccg.suprx at ur0:data/libshacccg.suprx.\n- Your own uncompressed GameCube disc 1 image of the G4BE08 November 25, 2004 debug prototype. A retail image is not interchangeable, even if it has the same six-character Disc ID.",
-  "size": 15309210,
-  "status": "Verified",
-  "links": [
+  "v": "00.00",
+  "vd": "2026-10-25",
+  "req": "- A decrypted libshacccg.suprx at ur0:data/libshacccg.suprx.\n- Your own uncompressed GameCube disc 1 image of the G4BE08 November 25, 2004 debug prototype. A retail image is not interchangeable, even if it has the same six-character Disc ID.",
+  "sz": 15309210,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/resident-evil-4-gc-ps-vita/BIOHAZ004.vpk",
-      "size": 15309210,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/resident-evil-4-gc-ps-vita/BIOHAZ004.vpk",
+      "sz": 15309210,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Disc 1",
-      "url": "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1503238554,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Disc 1",
+      "u": "https://archive.org/download/resident-evil-4-gc-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1503238554,
+      "xp": "ux0:data/",
+      "ips": [
         "BIOHAZ004"
       ]
     },
     {
-      "type": "Official Website",
-      "name": "Reddit Post",
-      "url": "https://www.reddit.com/u/TfarclegnaKrad/s/yrxClZ43rJ"
+      "t": "Official Website",
+      "n": "Reddit Post",
+      "u": "https://www.reddit.com/u/TfarclegnaKrad/s/yrxClZ43rJ"
     }
   ],
-  "icon": "https://archive.org/download/resident-evil-4-gc-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/resident-evil-4-gc-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/resident-evil-4-gc-ps-vita/pic0.png"
   ]
 }

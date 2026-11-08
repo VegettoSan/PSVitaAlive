@@ -1,48 +1,48 @@
 {
   "id": "powerpuff-girls-mojo-madness",
-  "title_id": "PPGMV2000",
-  "name": "Powerpuff Girls Mojo Madness",
-  "description": "A port of The Powerpuff Girls: Mojo Madness Android for PS Vita.",
-  "long_description": "A port of The Powerpuff Girls: Mojo Madness Android for PS Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PPGMV2000",
+  "n": "Powerpuff Girls Mojo Madness",
+  "d": "A port of The Powerpuff Girls: Mojo Madness Android for PS Vita.",
+  "ld": "A port of The Powerpuff Girls: Mojo Madness Android for PS Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "spliffcurrybeats"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer"
   ],
-  "version": "0.1.1",
-  "version_date": "2026-09-16",
-  "requirements": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx",
-  "size": 2306867,
-  "status": "Verified",
-  "links": [
+  "v": "0.1.1",
+  "vd": "2026-09-16",
+  "req": "- kubridge.skprx installed\n- libshacccg.suprx at ur0:data/libshacccg.suprx or ur0:data/external/libshacccg.suprx",
+  "sz": 2306867,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/PowerpuffVita_v0.1.1.vpk",
-      "size": 2306867,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/PowerpuffVita_v0.1.1.vpk",
+      "sz": 2306867,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/Game%20Files.zip",
-      "size": 33135002,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/Game%20Files.zip",
+      "sz": 33135002,
+      "xp": "ux0:data/",
+      "ips": [
         "powerpuff_mojo"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitLab",
-      "url": "https://gitlab.com/sexcurrybeats/powerpuff-mojo-madness-vita"
+      "t": "Repository",
+      "n": "GitLab",
+      "u": "https://gitlab.com/sexcurrybeats/powerpuff-mojo-madness-vita"
     }
   ],
-  "icon": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/the-powerpuff-girls-mojo-madness-vita/shot0.png"
   ]
 }

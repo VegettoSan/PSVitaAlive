@@ -1,50 +1,50 @@
 {
   "id": "minotaur",
-  "title_id": "D33S00002",
-  "name": "Minotaur",
-  "description": "Tense game of Cat and Mouse.",
-  "long_description": "Enter the labyrinth and test your courage and wit. Will you survive to the exit, or will you perish at the mighty axe of the MINOTAUR?",
-  "author_ids": [
+  "tid": "D33S00002",
+  "n": "Minotaur",
+  "d": "Tense game of Cat and Mouse.",
+  "ld": "Enter the labyrinth and test your courage and wit. Will you survive to the exit, or will you perish at the mighty axe of the MINOTAUR?",
+  "aids": [
     "digital33"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.5",
-  "version_date": "2026-07-26",
-  "requirements": "Not specified",
-  "size": 13147507,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-minotaur/icon0.png",
-  "screenshots": [
+  "v": "v.1.5",
+  "vd": "2026-07-26",
+  "req": "Not specified",
+  "sz": 13147507,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-minotaur/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-minotaur/shot_01.png",
     "https://archive.org/download/psvitaalive-minotaur/shot_02.png",
     "https://archive.org/download/psvitaalive-minotaur/shot_03.png",
     "https://archive.org/download/psvitaalive-minotaur/shot_04.png",
     "https://archive.org/download/psvitaalive-minotaur/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-minotaur/minotaur.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-minotaur/minotaur.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Digital33Studios/minotaur"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Digital33Studios/minotaur"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Digital33Studios/minotaur/releases/tag/v1.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Digital33Studios/minotaur/releases/tag/v1.5"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1349",
-  "source_url": "https://github.com/Digital33Studios/minotaur",
-  "release_page": "https://github.com/Digital33Studios/minotaur",
-  "updated_at": "2026-08-13T15:34:48.325369+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1349",
+  "su": "https://github.com/Digital33Studios/minotaur",
+  "rp": "https://github.com/Digital33Studios/minotaur",
+  "ua": "2026-08-13T15:34:48.325369+00:00"
 }

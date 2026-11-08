@@ -1,15 +1,15 @@
 {
   "id": "cxziaho",
-  "name": "cxziaho",
-  "avatar": "https://github.com/cxziaho.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "cxziaho",
+  "av": "https://github.com/cxziaho.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/cxziaho",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/cxziaho",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/cxziaho.png"
+  "ic": "https://github.com/cxziaho.png"
 }

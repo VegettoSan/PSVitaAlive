@@ -1,46 +1,46 @@
 {
   "id": "mcdonalds-ecdp-keygen",
-  "title_id": "ECDP00001",
-  "name": "McDonalds eCDP KeyGen",
-  "description": "",
-  "long_description": "Generate \"Serial Code\" for the Nintendo DS Game, Mcdonalds eCrew Development Program",
-  "author_ids": [
+  "tid": "ECDP00001",
+  "n": "McDonalds eCDP KeyGen",
+  "d": "",
+  "ld": "Generate \"Serial Code\" for the Nintendo DS Game, Mcdonalds eCrew Development Program",
+  "aids": [
     "li"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v1.0-vita",
-  "version_date": "2026-08-08",
-  "requirements": "Not specified",
-  "size": 1247791,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/icon0.png",
-  "screenshots": [
+  "v": "v1.0-vita",
+  "vd": "2026-08-08",
+  "req": "Not specified",
+  "sz": 1247791,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/eCDPKeyGen.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mcdonalds-ecdp-keygen/eCDPKeyGen.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/LiEnby/eCDP-Serial-Code/releases/tag/v1.0-vita"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/LiEnby/eCDP-Serial-Code/releases/tag/v1.0-vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/LiEnby/eCDP-Serial-Code"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/LiEnby/eCDP-Serial-Code"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1989",
-  "source_url": "https://github.com/LiEnby/eCDP-Serial-Code",
-  "release_page": "https://github.com/LiEnby/eCDP-Serial-Code/releases/tag/v1.0-vita",
-  "updated_at": "2026-08-13T15:34:48.727072+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1989",
+  "su": "https://github.com/LiEnby/eCDP-Serial-Code",
+  "rp": "https://github.com/LiEnby/eCDP-Serial-Code/releases/tag/v1.0-vita",
+  "ua": "2026-08-13T15:34:48.727072+00:00"
 }

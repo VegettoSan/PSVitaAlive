@@ -1,15 +1,15 @@
 {
   "id": "nxengine",
-  "name": "nxengine",
-  "avatar": "https://github.com/nxengine.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "nxengine",
+  "av": "https://github.com/nxengine.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/nxengine",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/nxengine",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/nxengine.png"
+  "ic": "https://github.com/nxengine.png"
 }

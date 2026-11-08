@@ -1,50 +1,50 @@
 {
   "id": "geometrizer",
-  "title_id": "GEOM00001",
-  "name": "Geometrizer",
-  "description": "Sega Model 1 emulator for PSVita.",
-  "long_description": "A Sega Model 1 arcade-board emulator for the PlayStation Vita.\nGeometrizer is, above all, a playground for AI-assisted development.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "GEOM00001",
+  "n": "Geometrizer",
+  "d": "Sega Model 1 emulator for PSVita.",
+  "ld": "A Sega Model 1 arcade-board emulator for the PlayStation Vita.\nGeometrizer is, above all, a playground for AI-assisted development.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "frangarcj"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "vita-20260711",
-  "version_date": "2026-07-11",
-  "requirements": "- libshacccg.suprx",
-  "size": 1376471,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-geometrizer/icon0.png",
-  "screenshots": [
+  "v": "vita-20260711",
+  "vd": "2026-07-11",
+  "req": "- libshacccg.suprx",
+  "sz": 1376471,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-geometrizer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-geometrizer/shot_01.png",
     "https://archive.org/download/psvitaalive-geometrizer/shot_02.png",
     "https://archive.org/download/psvitaalive-geometrizer/shot_03.png",
     "https://archive.org/download/psvitaalive-geometrizer/shot_04.png",
     "https://archive.org/download/psvitaalive-geometrizer/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-geometrizer/geometrizer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-geometrizer/geometrizer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/geometrizer/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/geometrizer/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/geometrizer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/frangarcj/geometrizer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1432",
-  "source_url": "https://github.com/frangarcj/geometrizer",
-  "release_page": "https://github.com/frangarcj/geometrizer/releases",
-  "updated_at": "2026-08-13T15:34:48.330543+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1432",
+  "su": "https://github.com/frangarcj/geometrizer",
+  "rp": "https://github.com/frangarcj/geometrizer/releases",
+  "ua": "2026-08-13T15:34:48.330543+00:00"
 }

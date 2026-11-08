@@ -1,45 +1,45 @@
 {
   "id": "g-w-octopus",
-  "title_id": "OCTO00000",
-  "name": "G&W Octopus",
-  "description": "Clone of Game and Watch Octopus game.",
-  "long_description": "A clone of the Nintendo Game & Watch Octopus electronic console.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "OCTO00000",
+  "n": "G&W Octopus",
+  "d": "Clone of Game and Watch Octopus game.",
+  "ld": "A clone of the Nintendo Game & Watch Octopus electronic console.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "jacobsplayground"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-08-03",
-  "requirements": "Not specified",
-  "size": 32334215,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-g-w-octopus/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-08-03",
+  "req": "Not specified",
+  "sz": 32334215,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-g-w-octopus/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-g-w-octopus/shot_01.png",
     "https://archive.org/download/psvitaalive-g-w-octopus/shot_02.png",
     "https://archive.org/download/psvitaalive-g-w-octopus/shot_03.png",
     "https://archive.org/download/psvitaalive-g-w-octopus/shot_04.png",
     "https://archive.org/download/psvitaalive-g-w-octopus/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-g-w-octopus/g-w-octopus.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-g-w-octopus/g-w-octopus.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "496",
-  "source_url": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198",
-  "release_page": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198",
-  "updated_at": "2026-08-13T15:34:48.635343+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "496",
+  "su": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198",
+  "rp": "https://gbatemp.net/threads/relaese-g-w-octopus.545137/#post-8743198",
+  "ua": "2026-08-13T15:34:48.635343+00:00"
 }

@@ -1,46 +1,46 @@
 {
   "id": "purified",
-  "title_id": "BALD00001",
-  "name": "Purified",
-  "description": "Waves based TPS for PSVITA.",
-  "long_description": "Purified is a third person wave based shooter with the goal to run a smooth 60 on Vita hardware!\nThe official soundtrack is composed by my friend Brian Czernikowski!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BALD00001",
+  "n": "Purified",
+  "d": "Waves based TPS for PSVITA.",
+  "ld": "Purified is a third person wave based shooter with the goal to run a smooth 60 on Vita hardware!\nThe official soundtrack is composed by my friend Brian Czernikowski!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "balder"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "shooter",
     "action"
   ],
-  "version": "Breach",
-  "version_date": "2024-10-31",
-  "requirements": "Not specified",
-  "size": 88310794,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-purified/icon0.png",
-  "screenshots": [
+  "v": "Breach",
+  "vd": "2024-10-31",
+  "req": "Not specified",
+  "sz": 88310794,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-purified/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-purified/shot_01.png",
     "https://archive.org/download/psvitaalive-purified/shot_02.png",
     "https://archive.org/download/psvitaalive-purified/shot_03.png",
     "https://archive.org/download/psvitaalive-purified/shot_04.png",
     "https://archive.org/download/psvitaalive-purified/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-purified/purified.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-purified/purified.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/54/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/54/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1140",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/54/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/54/",
-  "updated_at": "2026-08-13T15:34:48.428968+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1140",
+  "su": "https://fuhen.homebrew-contest.com/submissions/54/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/54/",
+  "ua": "2026-08-13T15:34:48.428968+00:00"
 }

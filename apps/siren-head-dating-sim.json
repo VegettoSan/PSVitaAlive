@@ -1,45 +1,45 @@
 {
   "id": "siren-head-dating-sim",
-  "title_id": "SHDS88320",
-  "name": "Siren Head Dating Sim",
-  "description": "Port of Siren Head Dating Sim for PSVITA.",
-  "long_description": "Port of Siren Head Dating Sim for PSVITA.\nHave you ever looked at Siren Head and think \"Man. I sure would love to date him.\"\nWELL NOW YOU CAN!\nCheck out Siren Head Dating Sim to have a magical day with Siren Head!\nJust make sure you don't get killed.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SHDS88320",
+  "n": "Siren Head Dating Sim",
+  "d": "Port of Siren Head Dating Sim for PSVITA.",
+  "ld": "Port of Siren Head Dating Sim for PSVITA.\nHave you ever looked at Siren Head and think \"Man. I sure would love to date him.\"\nWELL NOW YOU CAN!\nCheck out Siren Head Dating Sim to have a magical day with Siren Head!\nJust make sure you don't get killed.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rayc"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2023-09-22",
-  "requirements": "Not specified",
-  "size": 31793401,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-siren-head-dating-sim/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2023-09-22",
+  "req": "Not specified",
+  "sz": 31793401,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-siren-head-dating-sim/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_01.png",
     "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_02.png",
     "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_03.png",
     "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_04.png",
     "https://archive.org/download/psvitaalive-siren-head-dating-sim/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-siren-head-dating-sim/siren-head-dating-sim.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-siren-head-dating-sim/siren-head-dating-sim.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/53/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/53/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1139",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/53/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/53/",
-  "updated_at": "2026-08-13T15:34:48.472380+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1139",
+  "su": "https://fuhen.homebrew-contest.com/submissions/53/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/53/",
+  "ua": "2026-08-13T15:34:48.472380+00:00"
 }

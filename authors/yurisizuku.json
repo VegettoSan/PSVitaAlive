@@ -1,15 +1,15 @@
 {
   "id": "yurisizuku",
-  "name": "YuriSizuku",
-  "avatar": "https://github.com/YuriSizuku.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "YuriSizuku",
+  "av": "https://github.com/YuriSizuku.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/YuriSizuku",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/YuriSizuku",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/YuriSizuku.png"
+  "ic": "https://github.com/YuriSizuku.png"
 }

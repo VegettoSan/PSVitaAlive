@@ -1,52 +1,52 @@
 {
   "id": "catacomb-vita",
-  "title_id": "CTCB00000",
-  "name": "Catacomb Vita",
-  "description": "Port of Catacomb II for PSVita.",
-  "long_description": "Vita port of Catacomb II (also known as The Catacomb).\nThis port is based on the Catacomb SDL2 source code\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CTCB00000",
+  "n": "Catacomb Vita",
+  "d": "Port of Catacomb II for PSVita.",
+  "ld": "Vita port of Catacomb II (also known as The Catacomb).\nThis port is based on the Catacomb SDL2 source code\n\n- PsVitaAlive -",
+  "aids": [
     "l0wigh"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-06-02",
-  "requirements": "- Game Data Files: PC",
-  "size": 572647,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-catacomb-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-06-02",
+  "req": "- Game Data Files: PC",
+  "sz": 572647,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-catacomb-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-catacomb-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-catacomb-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-catacomb-vita/catacomb-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-catacomb-vita/catacomb-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/l0wigh/CatacombVita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/l0wigh/CatacombVita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/l0wigh/CatacombVita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/l0wigh/CatacombVita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/l0wigh/CatacombVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/l0wigh/CatacombVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1082",
-  "source_url": "https://github.com/l0wigh/CatacombVita",
-  "release_page": "https://github.com/l0wigh/CatacombVita/releases",
-  "updated_at": "2026-08-13T15:34:48.491431+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1082",
+  "su": "https://github.com/l0wigh/CatacombVita",
+  "rp": "https://github.com/l0wigh/CatacombVita/releases",
+  "ua": "2026-08-13T15:34:48.491431+00:00"
 }

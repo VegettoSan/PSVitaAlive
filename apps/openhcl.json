@@ -1,46 +1,46 @@
 {
   "id": "openhcl",
-  "title_id": "OHCL00001",
-  "name": "OpenHCL",
-  "description": "Port of Hydra Castle Labyrinth for PSVITA.",
-  "long_description": "A multiplatform port of Hydra Castle Labyrinth through SDL.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OHCL00001",
+  "n": "OpenHCL",
+  "d": "Port of Hydra Castle Labyrinth for PSVITA.",
+  "ld": "A multiplatform port of Hydra Castle Labyrinth through SDL.\n\n- PsVitaAlive -",
+  "aids": [
     "jeffrulz345"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v2021.11.08",
-  "version_date": "2021-11-08",
-  "requirements": "Not specified",
-  "size": 10454487,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-openhcl/icon0.png",
-  "screenshots": [
+  "v": "v2021.11.08",
+  "vd": "2021-11-08",
+  "req": "Not specified",
+  "sz": 10454487,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-openhcl/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openhcl/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openhcl/openhcl.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openhcl/openhcl.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/JeffRuLz/OpenHCL/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/JeffRuLz/OpenHCL/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/JeffRuLz/OpenHCL"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/JeffRuLz/OpenHCL"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "754",
-  "source_url": "https://github.com/JeffRuLz/OpenHCL",
-  "release_page": "https://github.com/JeffRuLz/OpenHCL/releases",
-  "updated_at": "2026-08-13T15:34:48.564580+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "754",
+  "su": "https://github.com/JeffRuLz/OpenHCL",
+  "rp": "https://github.com/JeffRuLz/OpenHCL/releases",
+  "ua": "2026-08-13T15:34:48.564580+00:00"
 }

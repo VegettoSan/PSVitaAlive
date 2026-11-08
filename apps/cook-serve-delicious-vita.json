@@ -1,50 +1,50 @@
 {
   "id": "cook-serve-delicious-vita",
-  "title_id": "CSDLICIUS",
-  "name": "Cook, Serve, Delicious! Vita",
-  "description": "Port of Cook, Serve, Delicious! for PSVITA.",
-  "long_description": "Cook, Serve, Delicious is a hardcore restaurant sim, one of the few in its genre that gives the players total control over where they want to take their restaurant.\nThe game centers on an old, worn down restaurant in the SherriSoda Tower, which was once the heart of the building but closed down as business (and tenants) dropped to an all time low. But with the local economy rising back up and occupancy reaching its maximum, SherriSoda Tower has decided to bring back the old Cook, Serve, Delicious restaurant, and has given you complete control to bring it back to its old five star status of world class dining.\nInstructions on how to patch and install the game provided in the release page (Github).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CSDLICIUS",
+  "n": "Cook, Serve, Delicious! Vita",
+  "d": "Port of Cook, Serve, Delicious! for PSVITA.",
+  "ld": "Cook, Serve, Delicious is a hardcore restaurant sim, one of the few in its genre that gives the players total control over where they want to take their restaurant.\nThe game centers on an old, worn down restaurant in the SherriSoda Tower, which was once the heart of the building but closed down as business (and tenants) dropped to an all time low. But with the local economy rising back up and occupancy reaching its maximum, SherriSoda Tower has decided to bring back the old Cook, Serve, Delicious restaurant, and has given you complete control to bring it back to its old five star status of world class dining.\nInstructions on how to patch and install the game provided in the release page (Github).\n\n- PsVitaAlive -",
+  "aids": [
     "mdashk"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2021-10-11",
-  "requirements": "- Game Data Files: PC Steam",
-  "size": 3189944,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2021-10-11",
+  "req": "- Game Data Files: PC Steam",
+  "sz": 3189944,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/cook-serve-delicious-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cook-serve-delicious-vita/cook-serve-delicious-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/MDashK/cook-serve-delicious-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/MDashK/cook-serve-delicious-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MDashK/cook-serve-delicious-vita/releases/tag/v1.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MDashK/cook-serve-delicious-vita/releases/tag/v1.0.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "735",
-  "source_url": "https://github.com/MDashK/cook-serve-delicious-vita",
-  "release_page": "https://github.com/MDashK/cook-serve-delicious-vita",
-  "updated_at": "2026-08-13T15:34:48.568431+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "735",
+  "su": "https://github.com/MDashK/cook-serve-delicious-vita",
+  "rp": "https://github.com/MDashK/cook-serve-delicious-vita",
+  "ua": "2026-08-13T15:34:48.568431+00:00"
 }

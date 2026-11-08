@@ -1,15 +1,15 @@
 {
   "id": "comet-games",
-  "name": "Comet Games",
-  "avatar": "https://github.com/Comet-Games.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "Comet Games",
+  "av": "https://github.com/Comet-Games.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Comet-Games",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Comet-Games",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Comet-Games.png"
+  "ic": "https://github.com/Comet-Games.png"
 }

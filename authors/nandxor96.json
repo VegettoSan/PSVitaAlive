@@ -1,15 +1,15 @@
 {
   "id": "nandxor96",
-  "name": "NandXor96",
-  "avatar": "https://github.com/NandXor96.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "NandXor96",
+  "av": "https://github.com/NandXor96.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/NandXor96",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/NandXor96",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/NandXor96.png"
+  "ic": "https://github.com/NandXor96.png"
 }

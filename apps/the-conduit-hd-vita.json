@@ -1,54 +1,54 @@
 {
   "id": "the-conduit-hd-vita",
-  "title_id": "CONDUIT00",
-  "name": "The Conduit HD Vita",
-  "description": "Port of The Conduit HD for PSVITA.",
-  "long_description": "This is a wrapper/port of The Conduit HD for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CONDUIT00",
+  "n": "The Conduit HD Vita",
+  "d": "Port of The Conduit HD for PSVITA.",
+  "ld": "This is a wrapper/port of The Conduit HD for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "aap",
     "theflow",
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-03-11",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2356853,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-conduit-hd-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-03-11",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2356853,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-conduit-hd-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-conduit-hd-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-the-conduit-hd-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-conduit-hd-vita/the-conduit-hd-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-conduit-hd-vita/the-conduit-hd-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/conduit_vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/conduit_vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/conduit_vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/conduit_vita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/conduit_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/conduit_vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1054",
-  "source_url": "https://github.com/TheOfficialFloW/conduit_vita",
-  "release_page": "https://github.com/TheOfficialFloW/conduit_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.504223+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1054",
+  "su": "https://github.com/TheOfficialFloW/conduit_vita",
+  "rp": "https://github.com/TheOfficialFloW/conduit_vita/releases",
+  "ua": "2026-08-13T15:34:48.504223+00:00"
 }

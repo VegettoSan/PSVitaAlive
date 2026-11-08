@@ -1,54 +1,54 @@
 {
   "id": "connect-four",
-  "title_id": "CONNECT04",
-  "name": "Connect Four",
-  "description": "Connect 4 game for PSVITA.",
-  "long_description": "A simple Connect 4 game for PSVITA/PSTV with Minimax algorithm implemented.",
-  "author_ids": [
+  "tid": "CONNECT04",
+  "n": "Connect Four",
+  "d": "Connect 4 game for PSVITA.",
+  "ld": "A simple Connect 4 game for PSVITA/PSTV with Minimax algorithm implemented.",
+  "aids": [
     "dane64"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-05-03",
-  "requirements": "Not specified",
-  "size": 675033,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-connect-four/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-05-03",
+  "req": "Not specified",
+  "sz": 675033,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-connect-four/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-connect-four/shot_01.png",
     "https://archive.org/download/psvitaalive-connect-four/shot_02.png",
     "https://archive.org/download/psvitaalive-connect-four/shot_03.png",
     "https://archive.org/download/psvitaalive-connect-four/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-connect-four/connect-four.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-connect-four/connect-four.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Dane64/ConnectFour/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Dane64/ConnectFour/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Dane64/ConnectFour/releases/tag/1.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Dane64/ConnectFour/releases/tag/1.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Dane64/ConnectFour"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Dane64/ConnectFour"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "550",
-  "source_url": "https://github.com/Dane64/ConnectFour",
-  "release_page": "https://github.com/Dane64/ConnectFour/releases",
-  "updated_at": "2026-08-13T15:34:48.620805+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "550",
+  "su": "https://github.com/Dane64/ConnectFour",
+  "rp": "https://github.com/Dane64/ConnectFour/releases",
+  "ua": "2026-08-13T15:34:48.620805+00:00"
 }

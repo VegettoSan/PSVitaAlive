@@ -1,51 +1,51 @@
 {
   "id": "qrdecoder",
-  "title_id": "GAUT16912",
-  "name": "qrdecoder",
-  "description": "QR Decoder for PSVITA.",
-  "long_description": "A small app that decodes QR code and then opens browser with the scanned payload.",
-  "author_ids": [
+  "tid": "GAUT16912",
+  "n": "qrdecoder",
+  "d": "QR Decoder for PSVITA.",
+  "ld": "A small app that decodes QR code and then opens browser with the scanned payload.",
+  "aids": [
     "linhtinh11"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2.1",
-  "version_date": "2017-01-06",
-  "requirements": "Not specified",
-  "size": 62067,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-qrdecoder/icon0.png",
-  "screenshots": [
+  "v": "v.0.2.1",
+  "vd": "2017-01-06",
+  "req": "Not specified",
+  "sz": 62067,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-qrdecoder/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-qrdecoder/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-qrdecoder/qrdecoder.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-qrdecoder/qrdecoder.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47605"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/talk/viewtopic.php?f=116&t=47605"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/linhtinh11/vita_qrdecoder/releases/tag/0.2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/linhtinh11/vita_qrdecoder/releases/tag/0.2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/linhtinh11/vita_qrdecoder"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/linhtinh11/vita_qrdecoder"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "64",
-  "source_url": "https://github.com/linhtinh11/vita_qrdecoder",
-  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=47605",
-  "updated_at": "2026-08-13T15:34:48.689248+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "64",
+  "su": "https://github.com/linhtinh11/vita_qrdecoder",
+  "rp": "https://wololo.net/talk/viewtopic.php?f=116&t=47605",
+  "ua": "2026-08-13T15:34:48.689248+00:00"
 }

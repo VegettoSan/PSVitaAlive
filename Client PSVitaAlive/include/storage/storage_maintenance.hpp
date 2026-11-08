@@ -20,7 +20,16 @@ struct UsageSnapshot {
     uint64_t savedZipBytes = 0;
     uint64_t catalogBytes = 0; // read-only
     uint64_t imageBytes = 0;   // read-only
-    uint64_t totalBytes() const { return temporaryBytes + savedZipBytes + catalogBytes + imageBytes; }
+    // Added by the UI from the persistent Homebrew app/data measurements;
+    // never part of StorageMaintenance cleanup ownership or "Clean all".
+    uint64_t installedBytes = 0;
+    bool installedFound = false;
+    bool installedPartial = false;
+    bool installedHistorical = false;
+    uint64_t totalBytes() const {
+        return temporaryBytes + savedZipBytes + catalogBytes + imageBytes +
+               installedBytes;
+    }
 };
 
 // Only PSVitaAlive-owned temporary files and deliberately saved ZIP archives.

@@ -1,52 +1,52 @@
 {
   "id": "custom-boot-splash-manager",
-  "title_id": "SKGCBSMGR",
-  "name": "Custom Boot Splash Manager",
-  "description": "Change bootlogo with a custom one.",
-  "long_description": "This tool can display a Image/Animation during the PSVita boot process.\nIf Enso 3.65-update365 is installed and boot_config.txt exists in vs0:tai/ CBS will not be loaded, please update Enso to the latest version.",
-  "author_ids": [
+  "tid": "SKGCBSMGR",
+  "n": "Custom Boot Splash Manager",
+  "d": "Change bootlogo with a custom one.",
+  "ld": "This tool can display a Image/Animation during the PSVita boot process.\nIf Enso 3.65-update365 is installed and boot_config.txt exists in vs0:tai/ CBS will not be loaded, please update Enso to the latest version.",
+  "aids": [
     "skgleba"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.3.1",
-  "version_date": "2019-10-14",
-  "requirements": "Not specified",
-  "size": 895862,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-custom-boot-splash-manager/icon0.png",
-  "screenshots": [
+  "v": "v.3.1",
+  "vd": "2019-10-14",
+  "req": "Not specified",
+  "sz": 895862,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-custom-boot-splash-manager/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-custom-boot-splash-manager/shot_01.png",
     "https://archive.org/download/psvitaalive-custom-boot-splash-manager/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-custom-boot-splash-manager/custom-boot-splash-manager.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-custom-boot-splash-manager/custom-boot-splash-manager.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/CBS-Manager/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/CBS-Manager/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/CBS-Manager/releases/tag/v3.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/CBS-Manager/releases/tag/v3.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/CBS-Manager"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SKGleba/CBS-Manager"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "437",
-  "source_url": "https://github.com/SKGleba/CBS-Manager",
-  "release_page": "https://github.com/SKGleba/CBS-Manager/releases",
-  "updated_at": "2026-08-13T15:34:48.628904+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "437",
+  "su": "https://github.com/SKGleba/CBS-Manager",
+  "rp": "https://github.com/SKGleba/CBS-Manager/releases",
+  "ua": "2026-08-13T15:34:48.628904+00:00"
 }

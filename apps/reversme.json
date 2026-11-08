@@ -1,48 +1,48 @@
 {
   "id": "reversme",
-  "title_id": "BREW00001",
-  "name": "ReversMe",
-  "description": "Othello clone for PSVITA.",
-  "long_description": "If you haven't played Reversi/Othello before, you have definitely missed something in your childhood.\nBut it's never too late, launch this homebrew immediately!\nYou will quickly understand the game, and soon you will develop your own tactics to defeat the AI or your friend.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BREW00001",
+  "n": "ReversMe",
+  "d": "Othello clone for PSVITA.",
+  "ld": "If you haven't played Reversi/Othello before, you have definitely missed something in your childhood.\nBut it's never too late, launch this homebrew immediately!\nYou will quickly understand the game, and soon you will develop your own tactics to defeat the AI or your friend.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "theflow"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2016-07-30",
-  "requirements": "Not specified",
-  "size": 1674628,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-reversme/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2016-07-30",
+  "req": "Not specified",
+  "sz": 1674628,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-reversme/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-reversme/shot_01.png",
     "https://archive.org/download/psvitaalive-reversme/shot_02.png",
     "https://archive.org/download/psvitaalive-reversme/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-reversme/reversme.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-reversme/reversme.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=114&t=44128"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=114&t=44128"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/file/d/0B8d0Wy4mDFrGM0k0YW9Xd01qS2M/view"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/file/d/0B8d0Wy4mDFrGM0k0YW9Xd01qS2M/view"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "181",
-  "source_url": "https://drive.google.com/file/d/0B8d0Wy4mDFrGM0k0YW9Xd01qS2M/view",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=114&t=44128",
-  "updated_at": "2026-08-13T15:34:48.713158+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "181",
+  "su": "https://drive.google.com/file/d/0B8d0Wy4mDFrGM0k0YW9Xd01qS2M/view",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=114&t=44128",
+  "ua": "2026-08-13T15:34:48.713158+00:00"
 }

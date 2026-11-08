@@ -1,55 +1,55 @@
 {
   "id": "monument-valley",
-  "title_id": "VLLY22132",
-  "name": "Monument Valley",
-  "description": "Port of Monument Valley for PSVITA.",
-  "long_description": "Port of Monument Valley for the PS Vita. In Monument Valley you will manipulate impossible architecture and guide a silent princess through a stunningly beautiful world. Monument Valley is a surreal exploration through fantastical architecture and impossible geometry. Guide the silent princess Ida through mysterious monuments, uncovering hidden paths, unfolding optical illusions and outsmarting the enigmatic Crow People. All credit of making the game goes to ustwo games.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "VLLY22132",
+  "n": "Monument Valley",
+  "d": "Port of Monument Valley for PSVITA.",
+  "ld": "Port of Monument Valley for the PS Vita. In Monument Valley you will manipulate impossible architecture and guide a silent princess through a stunningly beautiful world. Monument Valley is a surreal exploration through fantastical architecture and impossible geometry. Guide the silent princess Ida through mysterious monuments, uncovering hidden paths, unfolding optical illusions and outsmarting the enigmatic Crow People. All credit of making the game goes to ustwo games.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2022-12-16",
-  "requirements": "- Game Data Files: PC Steam/Android",
-  "size": 34515748,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-monument-valley/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.1",
+  "vd": "2022-12-16",
+  "req": "- Game Data Files: PC Steam/Android",
+  "sz": 34515748,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-monument-valley/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-monument-valley/shot_01.png",
     "https://archive.org/download/psvitaalive-monument-valley/shot_02.png",
     "https://archive.org/download/psvitaalive-monument-valley/shot_03.png",
     "https://archive.org/download/psvitaalive-monument-valley/shot_04.png",
     "https://archive.org/download/psvitaalive-monument-valley/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-monument-valley/monument-valley.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-monument-valley/monument-valley.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/MonumentValley"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/MonumentValley"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/hatoving/mvalley-old-vita/releases/tag/1.0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/hatoving/mvalley-old-vita/releases/tag/1.0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/hatoving/mvalley-old-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/hatoving/mvalley-old-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1023",
-  "source_url": "https://github.com/hatoving/MonumentValley",
-  "release_page": "https://github.com/hatoving/MonumentValley",
-  "updated_at": "2026-08-13T15:34:48.522228+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1023",
+  "su": "https://github.com/hatoving/MonumentValley",
+  "rp": "https://github.com/hatoving/MonumentValley",
+  "ua": "2026-08-13T15:34:48.522228+00:00"
 }

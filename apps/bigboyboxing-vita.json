@@ -1,46 +1,46 @@
 {
   "id": "bigboyboxing-vita",
-  "title_id": "BBBV04040",
-  "name": "BigBoyBoxing Vita",
-  "description": "Port of Big Boy Boxing for PSVITA.",
-  "long_description": "Experience the singleplayer action-boss-rush game with pixel-perfect retro aesthetics and inspiration from classic titles like 'Punch-Out!!', and recent indie hits like 'Cuphead'.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BBBV04040",
+  "n": "BigBoyBoxing Vita",
+  "d": "Port of Big Boy Boxing for PSVITA.",
+  "ld": "Experience the singleplayer action-boss-rush game with pixel-perfect retro aesthetics and inspiration from classic titles like 'Punch-Out!!', and recent indie hits like 'Cuphead'.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "lordchickenblaster",
     "soupmasters"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3.0",
-  "version_date": "2025-04-10",
-  "requirements": "Not specified",
-  "size": 46264686,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bigboyboxing-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.3.0",
+  "vd": "2025-04-10",
+  "req": "Not specified",
+  "sz": 46264686,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bigboyboxing-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-bigboyboxing-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bigboyboxing-vita/bigboyboxing-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bigboyboxing-vita/bigboyboxing-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gamejolt.com/games/BBBV/982964"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gamejolt.com/games/BBBV/982964"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1264",
-  "source_url": "https://gamejolt.com/games/BBBV/982964",
-  "release_page": "https://gamejolt.com/games/BBBV/982964",
-  "updated_at": "2026-08-13T15:34:48.410893+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1264",
+  "su": "https://gamejolt.com/games/BBBV/982964",
+  "rp": "https://gamejolt.com/games/BBBV/982964",
+  "ua": "2026-08-13T15:34:48.410893+00:00"
 }

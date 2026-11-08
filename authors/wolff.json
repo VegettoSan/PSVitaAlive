@@ -1,15 +1,15 @@
 {
   "id": "wolff",
-  "name": "Wolff",
-  "avatar": "https://github.com/WolffsRoom.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "Wolff",
+  "av": "https://github.com/WolffsRoom.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/WolffsRoom",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/WolffsRoom",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/WolffsRoom.png"
+  "ic": "https://github.com/WolffsRoom.png"
 }

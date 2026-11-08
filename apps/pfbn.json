@@ -1,52 +1,52 @@
 {
   "id": "pfbn",
-  "title_id": "PFBN00001",
-  "name": "pFBN",
-  "description": "Arcade emulator for PSVITA.",
-  "long_description": "Several Arcades emulator, multiplatform port of FinalBurn Neo emulator.",
-  "author_ids": [
+  "tid": "PFBN00001",
+  "n": "pFBN",
+  "d": "Arcade emulator for PSVITA.",
+  "ld": "Several Arcades emulator, multiplatform port of FinalBurn Neo emulator.",
+  "aids": [
     "cpasjuste"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.7.1",
-  "version_date": "2025-12-30",
-  "requirements": "Not specified",
-  "size": 14675424,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pfbn/icon0.png",
-  "screenshots": [
+  "v": "v.7.1",
+  "vd": "2025-12-30",
+  "req": "Not specified",
+  "sz": 14675424,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pfbn/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pfbn/shot_01.png",
     "https://archive.org/download/psvitaalive-pfbn/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pfbn/pfbn.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pfbn/pfbn.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "800",
-  "source_url": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo",
-  "release_page": "https://github.com/Cpasjuste/pemu/releases",
-  "updated_at": "2026-08-13T15:34:48.370984+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "800",
+  "su": "https://github.com/Cpasjuste/pemu/tree/master/pfbneo",
+  "rp": "https://github.com/Cpasjuste/pemu/releases",
+  "ua": "2026-08-13T15:34:48.370984+00:00"
 }

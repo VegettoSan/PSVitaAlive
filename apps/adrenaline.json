@@ -1,52 +1,52 @@
 {
   "id": "adrenaline",
-  "title_id": "PSPEMUCFW",
-  "name": "Adrenaline",
-  "description": "Native ePSP CFW with enhanced features.",
-  "long_description": "Adrenaline is a native eCFW for the PSPEMU allows you to play PSP/PSX games with custom patches (like GPU shaders for a smoother video quality) directly from your PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "PSPEMUCFW",
+  "n": "Adrenaline",
+  "d": "Native ePSP CFW with enhanced features.",
+  "ld": "Adrenaline is a native eCFW for the PSPEMU allows you to play PSP/PSX games with custom patches (like GPU shaders for a smoother video quality) directly from your PSVITA/PSTV.",
+  "aids": [
     "theflow"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.7",
-  "version_date": "2020-09-23",
-  "requirements": "Not specified",
-  "size": 417931,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-adrenaline/icon0.png",
-  "screenshots": [
+  "v": "v.7",
+  "vd": "2020-09-23",
+  "req": "Not specified",
+  "sz": 417931,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-adrenaline/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-adrenaline/shot_01.png",
     "https://archive.org/download/psvitaalive-adrenaline/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-adrenaline/adrenaline.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-adrenaline/adrenaline.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/Adrenaline/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/Adrenaline/releases/tag/v7"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/Adrenaline/releases/tag/v7"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/Adrenaline"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/Adrenaline"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "47",
-  "source_url": "https://github.com/TheOfficialFloW/Adrenaline",
-  "release_page": "https://github.com/TheOfficialFloW/Adrenaline/releases",
-  "updated_at": "2026-08-13T15:34:48.610053+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "47",
+  "su": "https://github.com/TheOfficialFloW/Adrenaline",
+  "rp": "https://github.com/TheOfficialFloW/Adrenaline/releases",
+  "ua": "2026-08-13T15:34:48.610053+00:00"
 }

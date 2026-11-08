@@ -1,50 +1,50 @@
 {
   "id": "hyperfight-vita",
-  "title_id": "HYFT01234",
-  "name": "HYPERFIGHT Vita",
-  "description": "Port of HYPERFIGHT for PSVITA.",
-  "long_description": "Port of HYPERFIGHT for PSVITA.\nHYPERFIGHT is a 2D one-hit fighting game, made with Godot 3.2 and GodotSteam.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HYFT01234",
+  "n": "HYPERFIGHT Vita",
+  "d": "Port of HYPERFIGHT for PSVITA.",
+  "ld": "Port of HYPERFIGHT for PSVITA.\nHYPERFIGHT is a 2D one-hit fighting game, made with Godot 3.2 and GodotSteam.\n\n- PsVitaAlive -",
+  "aids": [
     "anashalideen"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-04-30",
-  "requirements": "Not specified",
-  "size": 27141519,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hyperfight-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-04-30",
+  "req": "Not specified",
+  "sz": 27141519,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hyperfight-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hyperfight-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-hyperfight-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-hyperfight-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-hyperfight-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-hyperfight-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hyperfight-vita/hyperfight-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hyperfight-vita/hyperfight-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/anas-halid/HYPERFIGHT-VITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/anas-halid/HYPERFIGHT-VITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1072",
-  "source_url": "https://github.com/anas-halid/HYPERFIGHT-VITA",
-  "release_page": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases",
-  "updated_at": "2026-08-13T15:34:48.496453+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1072",
+  "su": "https://github.com/anas-halid/HYPERFIGHT-VITA",
+  "rp": "https://github.com/anas-halid/HYPERFIGHT-VITA/releases",
+  "ua": "2026-08-13T15:34:48.496453+00:00"
 }

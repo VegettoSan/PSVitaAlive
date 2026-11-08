@@ -1,56 +1,56 @@
 {
   "id": "vita-mhdh",
-  "title_id": "MHDH00001",
-  "name": "Vita MHDH",
-  "description": "Port of Monster Hunter Dynamic Hunting for PSVita.",
-  "long_description": "This is a wrapper port of the Android version of Monster Hunter Dynamic Hunting a spin-off of the Main MH game series for Android & iOS. It has been released worldwide on June 1, 2011.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MHDH00001",
+  "n": "Vita MHDH",
+  "d": "Port of Monster Hunter Dynamic Hunting for PSVita.",
+  "ld": "This is a wrapper port of the Android version of Monster Hunter Dynamic Hunting a spin-off of the Main MH game series for Android & iOS. It has been released worldwide on June 1, 2011.\n\n- PsVitaAlive -",
+  "aids": [
     "chatgpt-ai",
     "fatlenny"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2026-06-24",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1732001,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-mhdh/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2026-06-24",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1732001,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-mhdh/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-mhdh/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-mhdh/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-mhdh/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-mhdh/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-mhdh/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-mhdh/vita-mhdh.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-mhdh/vita-mhdh.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/tag/1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases/tag/1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MuukalainenPuhuu/Vita-MH-DH"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1420",
-  "source_url": "https://github.com/MuukalainenPuhuu/Vita-MH-DH",
-  "release_page": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases",
-  "updated_at": "2026-08-13T15:34:48.335274+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1420",
+  "su": "https://github.com/MuukalainenPuhuu/Vita-MH-DH",
+  "rp": "https://github.com/MuukalainenPuhuu/Vita-MH-DH/releases",
+  "ua": "2026-08-13T15:34:48.335274+00:00"
 }

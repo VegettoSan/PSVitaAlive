@@ -1,48 +1,48 @@
 {
   "id": "amnesia-the-dark-descent",
-  "title_id": "AMNE00001",
-  "name": "Amnesia: The Dark Descent",
-  "description": "Amnesia: The Dark Descent Port Ps Vita",
-  "long_description": "Amnesia: The Dark Descent Port Ps Vita\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "AMNE00001",
+  "n": "Amnesia: The Dark Descent",
+  "d": "Amnesia: The Dark Descent Port Ps Vita",
+  "ld": "Amnesia: The Dark Descent Port Ps Vita\n\n- PsVitaAlive -",
+  "aids": [
     "fridinator1"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "strategy"
   ],
-  "version": "01.50",
-  "version_date": "2026-09-01",
-  "requirements": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
-  "size": 5976883,
-  "status": "Verified",
-  "links": [
+  "v": "01.50",
+  "vd": "2026-09-01",
+  "req": "You must provide a legally owned copy of Amnesia: The Dark Descent; only the Steam release has been tested.",
+  "sz": 5976883,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.50.vpk",
-      "size": 5976883,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/amnesia-the-dark-descent_202608/Amnesia-Vita-01.50.vpk",
+      "sz": 5976883,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
-      "size": 2576980378,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/amnesia-the-dark-descent_202608/Game%20Files.zip",
+      "sz": 2576980378,
+      "xp": "ux0:data/",
+      "ips": [
         "Amnesia"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/FridiNaTor1/HPL2-handyman"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/FridiNaTor1/HPL2-handyman"
     }
   ],
-  "icon": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/amnesia-the-dark-descent_202608/icon0.png",
+  "ss": [
     "https://archive.org/download/amnesia-the-dark-descent_202608/shot0.jpg",
     "https://archive.org/download/amnesia-the-dark-descent_202608/shot1.jpg"
   ]

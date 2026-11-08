@@ -1,48 +1,48 @@
 {
   "id": "breakveetout",
-  "title_id": "BREWW0001",
-  "name": "BreakVeetOut",
-  "description": "Clone of BreakOut for the PS Vita.",
-  "long_description": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "BREWW0001",
+  "n": "BreakVeetOut",
+  "d": "Clone of BreakOut for the PS Vita.",
+  "ld": "BreakOut / Arkanoid clone for PSVITA/PSTV.",
+  "aids": [
     "ruben-wolfe",
     "dal3boy"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-07-31",
-  "requirements": "Not specified",
-  "size": 1520655,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-breakveetout/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-07-31",
+  "req": "Not specified",
+  "sz": 1520655,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-breakveetout/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-breakveetout/shot_01.png",
     "https://archive.org/download/psvitaalive-breakveetout/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-breakveetout/breakveetout.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-breakveetout/breakveetout.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/talk/viewtopic.php?f=116&t=46215"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/InvalidExcepti0n/BreakVeetOut"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/InvalidExcepti0n/BreakVeetOut"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "15",
-  "source_url": "https://github.com/InvalidExcepti0n/BreakVeetOut",
-  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46215",
-  "updated_at": "2026-08-13T15:34:48.710051+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "15",
+  "su": "https://github.com/InvalidExcepti0n/BreakVeetOut",
+  "rp": "https://wololo.net/talk/viewtopic.php?f=116&t=46215",
+  "ua": "2026-08-13T15:34:48.710051+00:00"
 }

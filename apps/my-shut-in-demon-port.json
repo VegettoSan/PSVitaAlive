@@ -1,51 +1,51 @@
 {
   "id": "my-shut-in-demon-port",
-  "title_id": "RNPYMSID2",
-  "name": "My Shut-In Demon! Port",
-  "description": "",
-  "long_description": "Ren'py port of My Shut-in demon by MrJack \nGame Files are required for this to work, it is reccomended to use the files comming from itch.io\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RNPYMSID2",
+  "n": "My Shut-In Demon! Port",
+  "d": "",
+  "ld": "Ren'py port of My Shut-in demon by MrJack \nGame Files are required for this to work, it is reccomended to use the files comming from itch.io\n\n- PsVitaAlive -",
+  "aids": [
     "xblade720"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "2.01",
-  "version_date": "2026-08-13",
-  "requirements": "PC Files from the itch.io version of the game",
-  "size": 25877410,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-my-shut-in-demon-port/icon0.png",
-  "screenshots": [
+  "v": "2.01",
+  "vd": "2026-08-13",
+  "req": "PC Files from the itch.io version of the game",
+  "sz": 25877410,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-my-shut-in-demon-port/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-my-shut-in-demon-port/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-my-shut-in-demon-port/my.shut-in.demon.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-my-shut-in-demon-port/my.shut-in.demon.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/OmegaStator/msid-vita/releases/tag/2.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/OmegaStator/msid-vita/releases/tag/2.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/OmegaStator/msid-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/OmegaStator/msid-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/OmegaStator/msid-vita/releases/tag/2.01"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/OmegaStator/msid-vita/releases/tag/2.01"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1990",
-  "source_url": "https://github.com/OmegaStator/msid-vita",
-  "release_page": "https://github.com/OmegaStator/msid-vita/releases/tag/2.0",
-  "updated_at": "2026-08-13T15:34:48.727173+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1990",
+  "su": "https://github.com/OmegaStator/msid-vita",
+  "rp": "https://github.com/OmegaStator/msid-vita/releases/tag/2.0",
+  "ua": "2026-08-13T15:34:48.727173+00:00"
 }

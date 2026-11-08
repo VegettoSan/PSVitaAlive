@@ -1,52 +1,52 @@
 {
   "id": "vita-sokoban",
-  "title_id": "VTSOKOBAN",
-  "name": "Vita Sokoban",
-  "description": "Sokoban game for the PSVita.",
-  "long_description": "Sokoban game for the PS Vita",
-  "author_ids": [
+  "tid": "VTSOKOBAN",
+  "n": "Vita Sokoban",
+  "d": "Sokoban game for the PSVita.",
+  "ld": "Sokoban game for the PS Vita",
+  "aids": [
     "harommel-rabbid"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "02-11-25",
-  "version_date": "2025-11-02",
-  "requirements": "Not specified",
-  "size": 2519289,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-sokoban/icon0.png",
-  "screenshots": [
+  "v": "02-11-25",
+  "vd": "2025-11-02",
+  "req": "Not specified",
+  "sz": 2519289,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-sokoban/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-sokoban/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-sokoban/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-sokoban/vita-sokoban.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-sokoban/vita-sokoban.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/HarommelRabbid/VitaSokoban/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/HarommelRabbid/VitaSokoban/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/HarommelRabbid/VitaSokoban/releases/tag/02-11-25"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/HarommelRabbid/VitaSokoban/releases/tag/02-11-25"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/HarommelRabbid/VitaSokoban"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/HarommelRabbid/VitaSokoban"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1343",
-  "source_url": "https://github.com/HarommelRabbid/VitaSokoban",
-  "release_page": "https://github.com/HarommelRabbid/VitaSokoban/releases",
-  "updated_at": "2026-08-13T15:34:48.375318+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1343",
+  "su": "https://github.com/HarommelRabbid/VitaSokoban",
+  "rp": "https://github.com/HarommelRabbid/VitaSokoban/releases",
+  "ua": "2026-08-13T15:34:48.375318+00:00"
 }

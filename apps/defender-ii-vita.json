@@ -1,55 +1,55 @@
 {
   "id": "defender-ii-vita",
-  "title_id": "DDEF00001",
-  "name": "Defender II Vita",
-  "description": "Port of Defender II for PSVita.",
-  "long_description": "Defender II is a pretty classic tower defense / castle defense game where you protect your castle from endless waves of enemies using a bow and powerful magic.\nYou play as the last defender, shooting arrows manually while upgrading your strength, speed, and abilities. As the game goes on, enemies become stronger and more challenging, so youÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ll need to improve your skills and unlock new defenses like magic towers and special powers.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DDEF00001",
+  "n": "Defender II Vita",
+  "d": "Port of Defender II for PSVita.",
+  "ld": "Defender II is a pretty classic tower defense / castle defense game where you protect your castle from endless waves of enemies using a bow and powerful magic.\nYou play as the last defender, shooting arrows manually while upgrading your strength, speed, and abilities. As the game goes on, enemies become stronger and more challenging, so youÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ll need to improve your skills and unlock new defenses like magic towers and special powers.\n\n- PsVitaAlive -",
+  "aids": [
     "rocroverss"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2026-04-03",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: Android",
-  "size": 2377115,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-defender-ii-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2026-04-03",
+  "req": "- libshacccg.suprx\n- Game Data Files: Android",
+  "sz": 2377115,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-defender-ii-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-defender-ii-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-defender-ii-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-defender-ii-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-defender-ii-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-defender-ii-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-defender-ii-vita/defender-ii-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-defender-ii-vita/defender-ii-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/tag/v1.01"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases/tag/v1.01"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1380",
-  "source_url": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port",
-  "release_page": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases",
-  "updated_at": "2026-08-13T15:34:48.356417+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1380",
+  "su": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port",
+  "rp": "https://github.com/Rocroverss/Defender-II-PS-Vita-Port/releases",
+  "ua": "2026-08-13T15:34:48.356417+00:00"
 }

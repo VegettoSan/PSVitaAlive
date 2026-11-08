@@ -78,6 +78,24 @@ inline bool installedDataActiveCollision(const std::string& target,
     return otherInstalled && installedPathsOverlap(target, other);
 }
 
+// UI wording must reflect the observed installed roots, not just the
+// existence of a Game Files link in the catalog. Pure and host-testable.
+inline const char* installedDataActionNoteKey(int action, bool hasExternal) {
+    if (action == 0)
+        return hasExternal ? "ID_DELETE_APP_NOTE" : "ID_DELETE_APP_ONLY_NOTE";
+    if (action == 1) return "ID_DELETE_FILES_NOTE";
+    if (action == 2) return "ID_DELETE_ALL_NOTE";
+    return "ID_UNSAFE";
+}
+inline const char* installedDataConfirmImpactKey(int action, bool hasExternal) {
+    if (action == 0)
+        return hasExternal ? "ID_CONFIRM_IMPACT_APP_KEEP"
+                           : "ID_CONFIRM_IMPACT_APP_ONLY";
+    if (action == 1) return "ID_CONFIRM_IMPACT_FILES_ONLY";
+    if (action == 2) return "ID_CONFIRM_IMPACT_ALL";
+    return "ID_UNSAFE";
+}
+
 // Menu entries use stable action IDs (0 APP, 1 Game Files, 2 both).
 // All input methods and rendering must consult these same predicates.
 inline bool installedDataActionAvailable(int action, bool canApp, bool canData) {
@@ -85,16 +103,24 @@ inline bool installedDataActionAvailable(int action, bool canApp, bool canData) 
            action == 1 ? canData :
            action == 2 ? (canApp && canData) : false;
 }
+// User-facing order: BOTH, APP, GAME FILES. Stable internal IDs stay 2,0,1.
+inline int installedDataVisualAction(unsigned position) {
+    static const int order[3] = {2, 0, 1};
+    return position < 3 ? order[position] : -1;
+}
 inline int installedDataFirstAction(bool canApp, bool canData) {
-    for (int a = 0; a < 3; ++a)
-        if (installedDataActionAvailable(a, canApp, canData)) return a;
+    for (unsigned i = 0; i < 3; ++i) {
+        const int action = installedDataVisualAction(i);
+        if (installedDataActionAvailable(action, canApp, canData)) return action;
+    }
     return -1;
 }
 inline int installedDataActionSlot(int action, bool canApp, bool canData) {
     int slot = 0;
-    for (int a = 0; a < 3; ++a) {
-        if (!installedDataActionAvailable(a, canApp, canData)) continue;
-        if (a == action) return slot;
+    for (unsigned i = 0; i < 3; ++i) {
+        const int candidate = installedDataVisualAction(i);
+        if (!installedDataActionAvailable(candidate, canApp, canData)) continue;
+        if (candidate == action) return slot;
         ++slot;
     }
     return -1;
@@ -103,10 +129,13 @@ inline int installedDataMoveAction(int action, int delta,
                                    bool canApp, bool canData) {
     if (!installedDataActionAvailable(action, canApp, canData))
         return installedDataFirstAction(canApp, canData);
+    int index = 0;
+    for (unsigned i = 0; i < 3; ++i)
+        if (installedDataVisualAction(i) == action) index = static_cast<int>(i);
     for (int step = 1; step <= 3; ++step) {
-        const int next = (action + 3 + step * (delta >= 0 ? 1 : 2)) % 3;
-        if (installedDataActionAvailable(next, canApp, canData))
-            return next;
+        const int next = installedDataVisualAction(
+            static_cast<unsigned>((index + 3 + step * (delta >= 0 ? 1 : 2)) % 3));
+        if (installedDataActionAvailable(next, canApp, canData)) return next;
     }
     return -1;
 }

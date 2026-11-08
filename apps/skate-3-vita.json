@@ -1,49 +1,49 @@
 {
   "id": "skate-3-vita",
-  "title_id": "SKTV00001",
-  "name": "Skate 3 Vita",
-  "description": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
-  "long_description": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
-  "author_ids": [
+  "tid": "SKTV00001",
+  "n": "Skate 3 Vita",
+  "d": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+  "ld": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+  "aids": [
     "irolup"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "platformer",
     "simulation",
     "source-port"
   ],
-  "version": "0.2.0",
-  "version_date": "2026-10-27",
-  "requirements": "- No data",
-  "size": 6815744,
-  "status": "Verified",
-  "links": [
+  "v": "0.2.0",
+  "vd": "2026-10-27",
+  "req": "- No data",
+  "sz": 6815744,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/skate-3-ps-vita-ports/skate-3-vita-0.2.0-beta.vpk",
-      "size": 7864320,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/skate-3-ps-vita-ports/skate-3-vita-0.2.0-beta.vpk",
+      "sz": 7864320,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
-      "size": 1073741824,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
+      "sz": 1073741824,
+      "xp": "ux0:data/",
+      "ips": [
         "SKATEVITA"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/irolup/skate-3-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/irolup/skate-3-vita"
     }
   ],
-  "icon": "https://archive.org/download/skate-3-ps-vita-ports/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/skate-3-ps-vita-ports/icon0.png",
+  "ss": [
     "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
     "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
   ]

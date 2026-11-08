@@ -1,54 +1,54 @@
 {
   "id": "consolepedia-3d",
-  "title_id": "CPVT45668",
-  "name": "Consolepedia 3D",
-  "description": "Virtual encyclopedia of game systems.",
-  "long_description": "Consolepedia 3D is a virtual encyclopedia of game systems. From Atari to Nintendo and PlayStation all with with detailed 3D models of each system with information about the history, specifications and their best selling games.\nConsolepedia 3D features detailed 3d models where you can take a close look and also learn about it's history through the years. You can also see the top-5 best selling games for each system with the original box art.",
-  "author_ids": [
+  "tid": "CPVT45668",
+  "n": "Consolepedia 3D",
+  "d": "Virtual encyclopedia of game systems.",
+  "ld": "Consolepedia 3D is a virtual encyclopedia of game systems. From Atari to Nintendo and PlayStation all with with detailed 3D models of each system with information about the history, specifications and their best selling games.\nConsolepedia 3D features detailed 3d models where you can take a close look and also learn about it's history through the years. You can also see the top-5 best selling games for each system with the original box art.",
+  "aids": [
     "vitahex-games"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.3",
-  "version_date": "2020-10-05",
-  "requirements": "Not specified",
-  "size": 121788887,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-consolepedia-3d/icon0.png",
-  "screenshots": [
+  "v": "v.0.3",
+  "vd": "2020-10-05",
+  "req": "Not specified",
+  "sz": 121788887,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-consolepedia-3d/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-consolepedia-3d/shot_01.png",
     "https://archive.org/download/psvitaalive-consolepedia-3d/shot_02.png",
     "https://archive.org/download/psvitaalive-consolepedia-3d/shot_03.png",
     "https://archive.org/download/psvitaalive-consolepedia-3d/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-consolepedia-3d/consolepedia-3d.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-consolepedia-3d/consolepedia-3d.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases/tag/v0.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases/tag/v0.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/VitaHEX-Games/Consolepedia-3D"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/VitaHEX-Games/Consolepedia-3D"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "580",
-  "source_url": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases",
-  "release_page": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases",
-  "updated_at": "2026-08-13T15:34:48.608368+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "580",
+  "su": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases",
+  "rp": "https://github.com/VitaHEX-Games/Consolepedia-3D/releases",
+  "ua": "2026-08-13T15:34:48.608368+00:00"
 }

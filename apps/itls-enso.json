@@ -1,51 +1,51 @@
 {
   "id": "itls-enso",
-  "title_id": "SKGTLSE12",
-  "name": "iTLS-Enso",
-  "description": "Adds TLS 1.2 to enso enabled devices.",
-  "long_description": "Application that allows to add TLS 1.2 support to PSVITA/PSTV running Henkaku enso CFW.",
-  "author_ids": [
+  "tid": "SKGTLSE12",
+  "n": "iTLS-Enso",
+  "d": "Adds TLS 1.2 to enso enabled devices.",
+  "ld": "Application that allows to add TLS 1.2 support to PSVITA/PSTV running Henkaku enso CFW.",
+  "aids": [
     "skgleba"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.3.2.1",
-  "version_date": "2023-01-17",
-  "requirements": "Not specified",
-  "size": 2873670,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-itls-enso/icon0.png",
-  "screenshots": [
+  "v": "v.3.2.1",
+  "vd": "2023-01-17",
+  "req": "Not specified",
+  "sz": 2873670,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-itls-enso/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-itls-enso/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-itls-enso/itls-enso.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-itls-enso/itls-enso.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/iTLS-Enso/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/iTLS-Enso/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/iTLS-Enso/releases/tag/v3.2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/iTLS-Enso/releases/tag/v3.2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/iTLS-Enso"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SKGleba/iTLS-Enso"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "404",
-  "source_url": "https://github.com/SKGleba/iTLS-Enso",
-  "release_page": "https://github.com/SKGleba/iTLS-Enso/releases",
-  "updated_at": "2026-08-13T15:34:48.519139+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "404",
+  "su": "https://github.com/SKGleba/iTLS-Enso",
+  "rp": "https://github.com/SKGleba/iTLS-Enso/releases",
+  "ua": "2026-08-13T15:34:48.519139+00:00"
 }

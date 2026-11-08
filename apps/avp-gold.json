@@ -1,50 +1,50 @@
 {
   "id": "avp-gold",
-  "title_id": "AVPGOLD20",
-  "name": "AvP Gold",
-  "description": "Port of AvP Classic 2000 for PSVITA.",
-  "long_description": "AvP Gold Vita is a port of AvP Classic 2000, an FPS made by Rebellion Developments set in Aliens vs Predator world. You can play as a Marine, as an Alien or as a Predator; the game features three different campaigns and a skirmish mode to play against bots in deatmatch games.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "AVPGOLD20",
+  "n": "AvP Gold",
+  "d": "Port of AvP Classic 2000 for PSVITA.",
+  "ld": "AvP Gold Vita is a port of AvP Classic 2000, an FPS made by Rebellion Developments set in Aliens vs Predator world. You can play as a Marine, as an Alien or as a Predator; the game features three different campaigns and a skirmish mode to play against bots in deatmatch games.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.8",
-  "version_date": "2020-07-22",
-  "requirements": "- Game Data Files: PC",
-  "size": 3507347,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-avp-gold/icon0.png",
-  "screenshots": [
+  "v": "v.0.8",
+  "vd": "2020-07-22",
+  "req": "- Game Data Files: PC",
+  "sz": 3507347,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-avp-gold/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-avp-gold/shot_01.png",
     "https://archive.org/download/psvitaalive-avp-gold/shot_02.png",
     "https://archive.org/download/psvitaalive-avp-gold/shot_03.png",
     "https://archive.org/download/psvitaalive-avp-gold/shot_04.png",
     "https://archive.org/download/psvitaalive-avp-gold/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-avp-gold/avp-gold.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-avp-gold/avp-gold.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/avp-gold.30555/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/avp-gold.30555/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/AvP-Gold-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/AvP-Gold-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "569",
-  "source_url": "https://github.com/Rinnegatamante/AvP-Gold-Vita",
-  "release_page": "https://www.psx-place.com/threads/avp-gold.30555/",
-  "updated_at": "2026-08-13T15:34:48.614882+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "569",
+  "su": "https://github.com/Rinnegatamante/AvP-Gold-Vita",
+  "rp": "https://www.psx-place.com/threads/avp-gold.30555/",
+  "ua": "2026-08-13T15:34:48.614882+00:00"
 }

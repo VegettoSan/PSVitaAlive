@@ -1,15 +1,15 @@
 {
   "id": "dayos",
-  "name": "DayOS",
-  "avatar": "https://github.com/Day-OS.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "DayOS",
+  "av": "https://github.com/Day-OS.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Day-OS",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Day-OS",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Day-OS.png"
+  "ic": "https://github.com/Day-OS.png"
 }

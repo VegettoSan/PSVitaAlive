@@ -1,57 +1,57 @@
 {
   "id": "miku-vu",
-  "title_id": "MIKU00039",
-  "name": "Miku Vu",
-  "description": "Hatsune Miku random image viewer.",
-  "long_description": "Application that shows random images taken from safebooru of Hatsune Miku and allows to save them on your Vita.",
-  "author_ids": [
+  "tid": "MIKU00039",
+  "n": "Miku Vu",
+  "d": "Hatsune Miku random image viewer.",
+  "ld": "Application that shows random images taken from safebooru of Hatsune Miku and allows to save them on your Vita.",
+  "aids": [
     "avellea",
     "ek720",
     "sonicmastr"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.8",
-  "version_date": "2024-11-03",
-  "requirements": "Not specified",
-  "size": 4024378,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-miku-vu/icon0.png",
-  "screenshots": [
+  "v": "v.1.8",
+  "vd": "2024-11-03",
+  "req": "Not specified",
+  "sz": 4024378,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-miku-vu/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-miku-vu/shot_01.png",
     "https://archive.org/download/psvitaalive-miku-vu/shot_02.png",
     "https://archive.org/download/psvitaalive-miku-vu/shot_03.png",
     "https://archive.org/download/psvitaalive-miku-vu/shot_04.png",
     "https://archive.org/download/psvitaalive-miku-vu/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-miku-vu/miku-vu.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-miku-vu/miku-vu.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Avellea/mikuvu/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Avellea/mikuvu/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Avellea/mikuvu/releases/tag/1.8"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Avellea/mikuvu/releases/tag/1.8"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/EK720/MikuVU"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/EK720/MikuVU"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1073",
-  "source_url": "https://github.com/Avellea/mikuvu",
-  "release_page": "https://github.com/Avellea/mikuvu/releases",
-  "updated_at": "2026-08-13T15:34:48.368344+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1073",
+  "su": "https://github.com/Avellea/mikuvu",
+  "rp": "https://github.com/Avellea/mikuvu/releases",
+  "ua": "2026-08-13T15:34:48.368344+00:00"
 }

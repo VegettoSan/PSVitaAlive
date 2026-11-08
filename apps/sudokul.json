@@ -1,52 +1,52 @@
 {
   "id": "sudokul",
-  "title_id": "SDKL39690",
-  "name": "SuDokuL",
-  "description": "Sudoku game made with SDL.",
-  "long_description": "A multiplatform Sudoku game made in C++ using SDL.\nFeatures:\n- Sudoku puzzle generator\n- Touch screen support\n- A scrolling background that lets you change the size, scroll speed and scroll direction\n- Those mini-numbers to help you keep track of harder puzzles\n- An optional cheat that auto-fills a cell (press X or Y 10 times)\n- 7 different MOD format songs",
-  "author_ids": [
+  "tid": "SDKL39690",
+  "n": "SuDokuL",
+  "d": "Sudoku game made with SDL.",
+  "ld": "A multiplatform Sudoku game made in C++ using SDL.\nFeatures:\n- Sudoku puzzle generator\n- Touch screen support\n- A scrolling background that lets you change the size, scroll speed and scroll direction\n- Those mini-numbers to help you keep track of harder puzzles\n- An optional cheat that auto-fills a cell (press X or Y 10 times)\n- 7 different MOD format songs",
+  "aids": [
     "mode8fx"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "puzzle"
   ],
-  "version": "v.1.5",
-  "version_date": "2026-05-10",
-  "requirements": "Not specified",
-  "size": 3504034,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sudokul/icon0.png",
-  "screenshots": [
+  "v": "v.1.5",
+  "vd": "2026-05-10",
+  "req": "Not specified",
+  "sz": 3504034,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sudokul/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sudokul/shot_01.png",
     "https://archive.org/download/psvitaalive-sudokul/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sudokul/sudokul.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sudokul/sudokul.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Mode8fx/SuDokuL/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Mode8fx/SuDokuL/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Mode8fx/SuDokuL/releases/tag/v1.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Mode8fx/SuDokuL/releases/tag/v1.5"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Mode8fx/SuDokuL"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Mode8fx/SuDokuL"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "736",
-  "source_url": "https://github.com/Mode8fx/SuDokuL",
-  "release_page": "https://github.com/Mode8fx/SuDokuL/releases",
-  "updated_at": "2026-08-13T15:34:48.349340+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "736",
+  "su": "https://github.com/Mode8fx/SuDokuL",
+  "rp": "https://github.com/Mode8fx/SuDokuL/releases",
+  "ua": "2026-08-13T15:34:48.349340+00:00"
 }

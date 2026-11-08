@@ -1,45 +1,45 @@
 {
   "id": "rvgl",
-  "title_id": "RVGL00001",
-  "name": "RVGL",
-  "description": "Port of RVGL for PSVITA.",
-  "long_description": "This is a native port of RVGL.\nRVGL is a cross-platform rewrite / port of Re-Volt that runs natively on a wide variety of platforms. It's powered entirely by modern, open source components.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RVGL00001",
+  "n": "RVGL",
+  "d": "Port of RVGL for PSVITA.",
+  "ld": "This is a native port of RVGL.\nRVGL is a cross-platform rewrite / port of Re-Volt that runs natively on a wide variety of platforms. It's powered entirely by modern, open source components.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "racing"
   ],
-  "version": "v.1.1",
-  "version_date": "2024-11-02",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 4335841,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-rvgl/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2024-11-02",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 4335841,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-rvgl/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-rvgl/shot_01.png",
     "https://archive.org/download/psvitaalive-rvgl/shot_02.png",
     "https://archive.org/download/psvitaalive-rvgl/shot_03.png",
     "https://archive.org/download/psvitaalive-rvgl/shot_04.png",
     "https://archive.org/download/psvitaalive-rvgl/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-rvgl/rvgl.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-rvgl/rvgl.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Rinnegatamante/rvgl-vita-native"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Rinnegatamante/rvgl-vita-native"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1217",
-  "source_url": "https://github.com/Rinnegatamante/rvgl-vita-native",
-  "release_page": "https://github.com/Rinnegatamante/rvgl-vita-native",
-  "updated_at": "2026-08-13T15:34:48.427804+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1217",
+  "su": "https://github.com/Rinnegatamante/rvgl-vita-native",
+  "rp": "https://github.com/Rinnegatamante/rvgl-vita-native",
+  "ua": "2026-08-13T15:34:48.427804+00:00"
 }

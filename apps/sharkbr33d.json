@@ -1,51 +1,51 @@
 {
   "id": "sharkbr33d",
-  "title_id": "SHRKBR33D",
-  "name": "ShaRKBR33D",
-  "description": "Automated libshacccg.suprx installer.",
-  "long_description": "ShaRKBR33D is an all-in-one, automated, one-click extractor/installer of libshacccg.suprx. It's a repackage of a feature of VitaDB Downloader in form of a standalone application.",
-  "author_ids": [
+  "tid": "SHRKBR33D",
+  "n": "ShaRKBR33D",
+  "d": "Automated libshacccg.suprx installer.",
+  "ld": "ShaRKBR33D is an all-in-one, automated, one-click extractor/installer of libshacccg.suprx. It's a repackage of a feature of VitaDB Downloader in form of a standalone application.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2024-11-14",
-  "requirements": "Not specified",
-  "size": 1588522,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sharkbr33d/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2024-11-14",
+  "req": "Not specified",
+  "sz": 1588522,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sharkbr33d/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sharkbr33d/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sharkbr33d/sharkbr33d.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sharkbr33d/sharkbr33d.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/ShaRKBR33D/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/ShaRKBR33D/releases/tag/v.1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/ShaRKBR33D/releases/tag/v.1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/ShaRKBR33D"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/ShaRKBR33D"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "997",
-  "source_url": "https://github.com/Rinnegatamante/ShaRKBR33D",
-  "release_page": "https://github.com/Rinnegatamante/ShaRKBR33D/releases",
-  "updated_at": "2026-08-13T15:34:48.427251+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "997",
+  "su": "https://github.com/Rinnegatamante/ShaRKBR33D",
+  "rp": "https://github.com/Rinnegatamante/ShaRKBR33D/releases",
+  "ua": "2026-08-13T15:34:48.427251+00:00"
 }

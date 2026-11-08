@@ -1,44 +1,44 @@
 {
   "id": "cave-story-vita",
-  "title_id": "DOKU41220",
-  "name": "Cave Story Vita",
-  "description": "Port of Cave Story for PSVITA.",
-  "long_description": "Port of Cave Story for PSVITA based on CSE2 sourcecode.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DOKU41220",
+  "n": "Cave Story Vita",
+  "d": "Port of Cave Story for PSVITA.",
+  "ld": "Port of Cave Story for PSVITA based on CSE2 sourcecode.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "iruzz"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "platformer"
   ],
-  "version": "v.1.0.4",
-  "version_date": "2024-06-15",
-  "requirements": "Not specified",
-  "size": 2366335,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cave-story-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.4",
+  "vd": "2024-06-15",
+  "req": "Not specified",
+  "sz": 2366335,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-cave-story-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cave-story-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-cave-story-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-cave-story-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-cave-story-vita/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cave-story-vita/cave-story-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cave-story-vita/cave-story-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1203",
-  "source_url": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/",
-  "release_page": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/",
-  "updated_at": "2026-08-13T15:34:48.437321+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1203",
+  "su": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/",
+  "rp": "https://gbatemp.net/threads/cave-story-ps-vita-port-based-on-cse2.653601/",
+  "ua": "2026-08-13T15:34:48.437321+00:00"
 }

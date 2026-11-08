@@ -1,38 +1,38 @@
 {
   "id": "hackinformer-app",
-  "title_id": "HACKINFOR",
-  "name": "HackInformer App",
-  "description": "HackInformer redirecter for PSVITA.",
-  "long_description": "Simple application that automatically opens the webbrowser to HackInformer portal.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "HACKINFOR",
+  "n": "HackInformer App",
+  "d": "HackInformer redirecter for PSVITA.",
+  "ld": "Simple application that automatically opens the webbrowser to HackInformer portal.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "hackinformer-staff"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-04-03",
-  "requirements": "Not specified",
-  "size": 150516,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hackinformer-app/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-04-03",
+  "req": "Not specified",
+  "sz": 150516,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hackinformer-app/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hackinformer-app/shot_01.png",
     "https://archive.org/download/psvitaalive-hackinformer-app/shot_02.png",
     "https://archive.org/download/psvitaalive-hackinformer-app/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hackinformer-app/hackinformer-app.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hackinformer-app/hackinformer-app.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "227",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/227-HackInformer.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.683958+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "227",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/227-HackInformer.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.683958+00:00"
 }

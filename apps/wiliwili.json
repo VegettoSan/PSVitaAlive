@@ -1,55 +1,55 @@
 {
   "id": "wiliwili",
-  "title_id": "WILIWILI0",
-  "name": "wiliwili",
-  "description": "Bilibili client for PSVITA.",
-  "long_description": "wiliwili is a third-party cross-platform Bilibili client specially designed for gamepad control, It supports hardware decoding for PSVita.\nBilibili is like the Chinese version of YouTube, with main users in China, Japan, South Korea, and Southeast Asia. (offical website: https://www.bilibili.com/).",
-  "author_ids": [
+  "tid": "WILIWILI0",
+  "n": "wiliwili",
+  "d": "Bilibili client for PSVITA.",
+  "ld": "wiliwili is a third-party cross-platform Bilibili client specially designed for gamepad control, It supports hardware decoding for PSVita.\nBilibili is like the Chinese version of YouTube, with main users in China, Japan, South Korea, and Southeast Asia. (offical website: https://www.bilibili.com/).",
+  "aids": [
     "xfangfang"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.6.0",
-  "version_date": "2026-04-25",
-  "requirements": "Not specified",
-  "size": 20134928,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-wiliwili/icon0.png",
-  "screenshots": [
+  "v": "v.1.6.0",
+  "vd": "2026-04-25",
+  "req": "Not specified",
+  "sz": 20134928,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-wiliwili/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-wiliwili/shot_01.png",
     "https://archive.org/download/psvitaalive-wiliwili/shot_02.png",
     "https://archive.org/download/psvitaalive-wiliwili/shot_03.png",
     "https://archive.org/download/psvitaalive-wiliwili/shot_04.png",
     "https://archive.org/download/psvitaalive-wiliwili/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-wiliwili/wiliwili.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-wiliwili/wiliwili.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xfangfang/wiliwili/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xfangfang/wiliwili/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xfangfang/wiliwili/releases/tag/v1.6.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xfangfang/wiliwili/releases/tag/v1.6.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xfangfang/wiliwili"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/xfangfang/wiliwili"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1164",
-  "source_url": "https://github.com/xfangfang/wiliwili",
-  "release_page": "https://github.com/xfangfang/wiliwili/releases",
-  "updated_at": "2026-08-13T15:34:48.353809+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1164",
+  "su": "https://github.com/xfangfang/wiliwili",
+  "rp": "https://github.com/xfangfang/wiliwili/releases",
+  "ua": "2026-08-13T15:34:48.353809+00:00"
 }

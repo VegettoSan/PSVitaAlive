@@ -1,15 +1,15 @@
 {
   "id": "ndrw",
-  "name": "NDRW",
-  "avatar": "https://github.com/ndrwhun.png",
-  "bio": "",
-  "links": [
+  "n": "NDRW",
+  "av": "https://github.com/ndrwhun.png",
+  "b": "",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/ndrwhun",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/ndrwhun",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/ndrwhun.png"
+  "ic": "https://github.com/ndrwhun.png"
 }

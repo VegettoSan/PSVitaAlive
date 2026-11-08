@@ -1,55 +1,55 @@
 {
   "id": "hurrican",
-  "title_id": "MEIR00003",
-  "name": "Hurrican",
-  "description": "Port of Hurrican for PSVITA.",
-  "long_description": "Hurrican is a freeware jump and shoot game created by Poke53280 that is based on the Turrican game series. Blast your way through nine action-packed levels filled with different enemies and powerups.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MEIR00003",
+  "n": "Hurrican",
+  "d": "Port of Hurrican for PSVITA.",
+  "ld": "Hurrican is a freeware jump and shoot game created by Poke53280 that is based on the Turrican game series. Blast your way through nine action-packed levels filled with different enemies and powerups.\n\n- PsVitaAlive -",
+  "aids": [
     "ammeir"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.9",
-  "version_date": "2021-02-15",
-  "requirements": "- libshacccg.suprx",
-  "size": 1999158,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hurrican/icon0.png",
-  "screenshots": [
+  "v": "v.0.9",
+  "vd": "2021-02-15",
+  "req": "- libshacccg.suprx",
+  "sz": 1999158,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hurrican/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hurrican/shot_01.png",
     "https://archive.org/download/psvitaalive-hurrican/shot_02.png",
     "https://archive.org/download/psvitaalive-hurrican/shot_03.png",
     "https://archive.org/download/psvitaalive-hurrican/shot_04.png",
     "https://archive.org/download/psvitaalive-hurrican/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hurrican/hurrican.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hurrican/hurrican.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ammeir/hurrican/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ammeir/hurrican/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ammeir/hurrican/releases/tag/v0.9"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ammeir/hurrican/releases/tag/v0.9"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ammeir/hurrican"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ammeir/hurrican"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "617",
-  "source_url": "https://github.com/ammeir/hurrican",
-  "release_page": "https://github.com/ammeir/hurrican/releases",
-  "updated_at": "2026-08-13T15:34:48.596156+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "617",
+  "su": "https://github.com/ammeir/hurrican",
+  "rp": "https://github.com/ammeir/hurrican/releases",
+  "ua": "2026-08-13T15:34:48.596156+00:00"
 }

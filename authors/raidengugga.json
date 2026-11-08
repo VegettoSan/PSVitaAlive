@@ -1,15 +1,15 @@
 {
   "id": "raidengugga",
-  "name": "raidengugga",
-  "avatar": "https://github.com/raidengugga.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "raidengugga",
+  "av": "https://github.com/raidengugga.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/raidengugga",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/raidengugga",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/raidengugga.png"
+  "ic": "https://github.com/raidengugga.png"
 }

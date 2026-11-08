@@ -1,50 +1,50 @@
 {
   "id": "bg2v",
-  "title_id": "BG2V00001",
-  "name": "BG2V",
-  "description": "Port of Baldur's Gate 2: Enhanced Edition for PSVita.",
-  "long_description": "BG2V is a community-made PlayStation Vita port of Baldur's Gate II: Enhanced Edition. It lets the game run on a homebrew-capable Vita with Vita controls, touchscreen support, and Vita-optimized startup videos.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BG2V00001",
+  "n": "BG2V",
+  "d": "Port of Baldur's Gate 2: Enhanced Edition for PSVita.",
+  "ld": "BG2V is a community-made PlayStation Vita port of Baldur's Gate II: Enhanced Edition. It lets the game run on a homebrew-capable Vita with Vita controls, touchscreen support, and Vita-optimized startup videos.\n\n- PsVitaAlive -",
+  "aids": [
     "calligula87"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0 Beta",
-  "version_date": "2026-08-14",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 3195276,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bg2v/icon0.png",
-  "screenshots": [
+  "v": "v.0 Beta",
+  "vd": "2026-08-14",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 3195276,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bg2v/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bg2v/shot_01.png",
     "https://archive.org/download/psvitaalive-bg2v/shot_02.png",
     "https://archive.org/download/psvitaalive-bg2v/shot_03.png",
     "https://archive.org/download/psvitaalive-bg2v/shot_04.png",
     "https://archive.org/download/psvitaalive-bg2v/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bg2v/bg2v.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bg2v/bg2v.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Calligula87/BG2V/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Calligula87/BG2V/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Calligula87/BG2V"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Calligula87/BG2V"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1454",
-  "source_url": "https://github.com/Calligula87/BG2V",
-  "release_page": "https://github.com/Calligula87/BG2V/releases",
-  "updated_at": "2026-08-14T19:27:11.483910+00:00"
+  "sn": "VitaDB",
+  "si": "1454",
+  "su": "https://github.com/Calligula87/BG2V",
+  "rp": "https://github.com/Calligula87/BG2V/releases",
+  "ua": "2026-08-14T19:27:11.483910+00:00"
 }

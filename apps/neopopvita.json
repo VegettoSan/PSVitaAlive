@@ -1,55 +1,55 @@
 {
   "id": "neopopvita",
-  "title_id": "FRAN00004",
-  "name": "NeopopVITA",
-  "description": "Neogeo Pocket Color emulator.",
-  "long_description": "Neogeo Pocket Color emulator for PSVita.",
-  "author_ids": [
+  "tid": "FRAN00004",
+  "n": "NeopopVITA",
+  "d": "Neogeo Pocket Color emulator.",
+  "ld": "Neogeo Pocket Color emulator for PSVita.",
+  "aids": [
     "frangarcj"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.0.71.15",
-  "version_date": "2016-07-29",
-  "requirements": "Not specified",
-  "size": 1557875,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-neopopvita/icon0.png",
-  "screenshots": [
+  "v": "v.0.71.15",
+  "vd": "2016-07-29",
+  "req": "Not specified",
+  "sz": 1557875,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-neopopvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-neopopvita/shot_01.png",
     "https://archive.org/download/psvitaalive-neopopvita/shot_02.png",
     "https://archive.org/download/psvitaalive-neopopvita/shot_03.png",
     "https://archive.org/download/psvitaalive-neopopvita/shot_04.png",
     "https://archive.org/download/psvitaalive-neopopvita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-neopopvita/neopopvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-neopopvita/neopopvita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/NeopopVITA/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/NeopopVITA/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/NeopopVITA/releases/tag/0.71.15-Henkaku"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/NeopopVITA/releases/tag/0.71.15-Henkaku"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/NeopopVITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/frangarcj/NeopopVITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "165",
-  "source_url": "https://github.com/frangarcj/NeopopVITA",
-  "release_page": "https://github.com/frangarcj/NeopopVITA/releases",
-  "updated_at": "2026-08-13T15:34:48.713555+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "165",
+  "su": "https://github.com/frangarcj/NeopopVITA",
+  "rp": "https://github.com/frangarcj/NeopopVITA/releases",
+  "ua": "2026-08-13T15:34:48.713555+00:00"
 }

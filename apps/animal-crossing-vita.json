@@ -1,56 +1,56 @@
 {
   "id": "animal-crossing-vita",
-  "title_id": "ACGC00001",
-  "name": "Animal Crossing Vita",
-  "description": "Port of Animal Crossing for PSVita.",
-  "long_description": "Port of Animal Crossing for the Nintendo Gamecube, based on the decompilation and PC port.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ACGC00001",
+  "n": "Animal Crossing Vita",
+  "d": "Port of Animal Crossing for PSVita.",
+  "ld": "Port of Animal Crossing for the Nintendo Gamecube, based on the decompilation and PC port.\n\n- PsVitaAlive -",
+  "aids": [
     "bren"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.5.0",
-  "version_date": "2026-09-27",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: Gamecube",
-  "size": 6742344,
-  "status": "Legacy",
-  "links": [
+  "v": "v.0.5.0",
+  "vd": "2026-09-27",
+  "req": "- libshacccg.suprx\n- Game Data Files: Gamecube",
+  "sz": 6742344,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-animal-crossing-vita/animal-crossing-vita.vpk",
-      "size": 6710886,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-animal-crossing-vita/animal-crossing-vita.vpk",
+      "sz": 6710886,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files USA",
-      "url": "https://archive.org/download/psvitaalive-animal-crossing-vita/Game%20Files%20%28USA%29.zip",
-      "size": 27577549,
-      "extract_path": "ux0:data/AnimalCrossing/rom/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files USA",
+      "u": "https://archive.org/download/psvitaalive-animal-crossing-vita/Game%20Files%20%28USA%29.zip",
+      "sz": 27577549,
+      "xp": "ux0:data/AnimalCrossing/rom/",
+      "ips": [
         "AnimalCrossing"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Brendonm17/ACGC-Vita-Port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Brendonm17/ACGC-Vita-Port"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-animal-crossing-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-animal-crossing-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-animal-crossing-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-animal-crossing-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-animal-crossing-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-animal-crossing-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-animal-crossing-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1381",
-  "source_url": "https://github.com/Brendonm17/ACGC-Vita-Port",
-  "release_page": "https://github.com/Brendonm17/ACGC-Vita-Port/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1381",
+  "su": "https://github.com/Brendonm17/ACGC-Vita-Port",
+  "rp": "https://github.com/Brendonm17/ACGC-Vita-Port/releases",
+  "ua": "2026-08-13T15:34"
 }

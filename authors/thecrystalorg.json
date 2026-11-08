@@ -1,35 +1,35 @@
 {
   "id": "thecrystalorg",
-  "name": "TheCrystalOrg",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "TheCrystalOrg",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/latest/ImMultiple_VITA.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "NeoVitaDB VPK",
+      "u": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/latest/ImMultiple_VITA.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://git.silica.codes"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://git.silica.codes"
     },
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/v0.1/ImMultiple_VITA.vpk"
+      "t": "Download",
+      "n": "VitaHomebrewDB VPK",
+      "u": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases/download/v0.1/ImMultiple_VITA.vpk"
     },
     {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases"
+      "t": "Official Website",
+      "n": "VitaHomebrewDB Release Page",
+      "u": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://git.silica.codes/TheCrystalOrg/ImMultiple"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

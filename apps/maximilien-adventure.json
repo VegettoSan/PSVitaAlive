@@ -1,61 +1,61 @@
 {
   "id": "maximilien-adventure",
-  "title_id": "GDOT00001",
-  "name": "Maximilien Adventure",
-  "description": "Port of Parkour Labs for PSVITA.",
-  "long_description": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GDOT00001",
+  "n": "Maximilien Adventure",
+  "d": "Port of Parkour Labs for PSVITA.",
+  "ld": "Port of Maximilien Adventure for PSVITA/PSTV, which is a super Mario like game created with Godot.\n\n- PsVitaAlive -",
+  "aids": [
     "soykhaler",
     "sonicmastr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "3.5-rc5-vita1",
-  "version_date": "2022-07-13",
-  "requirements": "Not specified",
-  "size": 38629820,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-maximilien-adventure/icon0.png",
-  "screenshots": [
+  "v": "3.5-rc5-vita1",
+  "vd": "2022-07-13",
+  "req": "Not specified",
+  "sz": 38629820,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-maximilien-adventure/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-maximilien-adventure/shot_01.png",
     "https://archive.org/download/psvitaalive-maximilien-adventure/shot_02.png",
     "https://archive.org/download/psvitaalive-maximilien-adventure/shot_03.png",
     "https://archive.org/download/psvitaalive-maximilien-adventure/shot_04.png",
     "https://archive.org/download/psvitaalive-maximilien-adventure/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-maximilien-adventure/maximilien-adventure-godot-demo.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-maximilien-adventure/maximilien-adventure-godot-demo.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/godot-vita/releases/tag/3.5-rc5-vita1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/godot-vita/releases/tag/3.5-rc5-vita1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/godot-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SonicMastr/godot-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://soykhaler.itch.io/parkour-labs-vita-port"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/godot/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/godot/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "871",
-  "source_url": "https://github.com/SonicMastr/godot-vita",
-  "release_page": "https://github.com/SonicMastr/godot-vita/releases/tag/3.5-rc5-vita1",
-  "updated_at": "2026-08-13T15:34:48.361837+00:00"
+  "sn": "NeoVitaDB",
+  "si": "871",
+  "su": "https://github.com/SonicMastr/godot-vita",
+  "rp": "https://github.com/SonicMastr/godot-vita/releases/tag/3.5-rc5-vita1",
+  "ua": "2026-08-13T15:34:48.361837+00:00"
 }

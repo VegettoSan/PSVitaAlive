@@ -1,50 +1,50 @@
 {
   "id": "twinsanityevolved",
-  "title_id": "TWEV00001",
-  "name": "TwinsanityEvolved",
-  "description": "Native Ps Vita port of Crash Twinsanity",
-  "long_description": "Native Ps Vita port of Crash Twinsanity",
-  "author_ids": [
+  "tid": "TWEV00001",
+  "n": "TwinsanityEvolved",
+  "d": "Native Ps Vita port of Crash Twinsanity",
+  "ld": "Native Ps Vita port of Crash Twinsanity",
+  "aids": [
     "menaman123"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "platformer",
     "puzzle",
     "source-port"
   ],
-  "version": "0.9.3",
-  "version_date": "2026-11-05",
-  "requirements": "- ur0:data/libshacccg.suprx",
-  "size": 5347738,
-  "status": "Verified",
-  "links": [
+  "v": "0.9.3",
+  "vd": "2026-11-05",
+  "req": "- ur0:data/libshacccg.suprx",
+  "sz": 5347738,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.3.vpk",
-      "size": 5347738,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/twinsanityevolved-ps-vita/twinsanityevolved%20v0.9.3.vpk",
+      "sz": 5347738,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files En,Fr,De,Es,It",
-      "url": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 2516582,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files En,Fr,De,Es,It",
+      "u": "https://archive.org/download/twinsanityevolved-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2516582,
+      "xp": "ux0:data/",
+      "ips": [
         "twinsanity"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/menaman123/TwinsanityEvolved"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/menaman123/TwinsanityEvolved"
     }
   ],
-  "icon": "https://archive.org/download/twinsanityevolved-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/twinsanityevolved-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
   ]
 }

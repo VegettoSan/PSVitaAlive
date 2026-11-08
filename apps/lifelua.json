@@ -1,50 +1,50 @@
 {
   "id": "lifelua",
-  "title_id": "LIFELUAJT",
-  "name": "LifeLua",
-  "description": "Lua interpreter for PSVITA.",
-  "long_description": "A Lua interpreter for PSVITA with a builtin sample app which showcases its functionalities.",
-  "author_ids": [
+  "tid": "LIFELUAJT",
+  "n": "LifeLua",
+  "d": "Lua interpreter for PSVITA.",
+  "ld": "A Lua interpreter for PSVITA with a builtin sample app which showcases its functionalities.",
+  "aids": [
     "harommel-rabbid"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "08-06-2025",
-  "version_date": "2025-06-09",
-  "requirements": "Not specified",
-  "size": 1414258,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-lifelua/icon0.png",
-  "screenshots": [
+  "v": "08-06-2025",
+  "vd": "2025-06-09",
+  "req": "Not specified",
+  "sz": 1414258,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-lifelua/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-lifelua/shot_01.png",
     "https://archive.org/download/psvitaalive-lifelua/shot_02.png",
     "https://archive.org/download/psvitaalive-lifelua/shot_03.png",
     "https://archive.org/download/psvitaalive-lifelua/shot_04.png",
     "https://archive.org/download/psvitaalive-lifelua/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lifelua/lifelua.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-lifelua/lifelua.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/HarommelRabbid/LifeLua/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/HarommelRabbid/LifeLua/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/HarommelRabbid/LifeLua"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/HarommelRabbid/LifeLua"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1275",
-  "source_url": "https://github.com/HarommelRabbid/LifeLua",
-  "release_page": "https://github.com/HarommelRabbid/LifeLua/releases",
-  "updated_at": "2026-08-13T15:34:48.405955+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1275",
+  "su": "https://github.com/HarommelRabbid/LifeLua",
+  "rp": "https://github.com/HarommelRabbid/LifeLua/releases",
+  "ua": "2026-08-13T15:34:48.405955+00:00"
 }

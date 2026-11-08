@@ -1,45 +1,45 @@
 {
   "id": "tie-vita",
-  "title_id": "TIEE00000",
-  "name": "TIE Vita",
-  "description": "Port of TIE for PSVita.",
-  "long_description": "TIE is a game about depression and the daily grind we are all forced too endure. Experience a week of more of the same, every day, through the eyes of our main character as the world and its inhabitants slowly start too become increasingly unfamiliar. Irregularities in the world and from deep within plague your day to day and a strange force seems to tear the very fabric of reality itself, as it becomes apparent that not all is as it seems in this short, atmospheric game about depression and existential dread.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "TIEE00000",
+  "n": "TIE Vita",
+  "d": "Port of TIE for PSVita.",
+  "ld": "TIE is a game about depression and the daily grind we are all forced too endure. Experience a week of more of the same, every day, through the eyes of our main character as the world and its inhabitants slowly start too become increasingly unfamiliar. Irregularities in the world and from deep within plague your day to day and a strange force seems to tear the very fabric of reality itself, as it becomes apparent that not all is as it seems in this short, atmospheric game about depression and existential dread.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "lordchickenblaster"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-09-20",
-  "requirements": "- Game Data Files: PC",
-  "size": 14984183,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-tie-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-09-20",
+  "req": "- Game Data Files: PC",
+  "sz": 14984183,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-tie-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-tie-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-tie-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-tie-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-tie-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-tie-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-tie-vita/tie-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-tie-vita/tie-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://lordchickenblaster.itch.io/agameaboutdepression"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://lordchickenblaster.itch.io/agameaboutdepression"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1325",
-  "source_url": "https://lordchickenblaster.itch.io/agameaboutdepression",
-  "release_page": "https://lordchickenblaster.itch.io/agameaboutdepression",
-  "updated_at": "2026-08-13T15:34:48.387382+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1325",
+  "su": "https://lordchickenblaster.itch.io/agameaboutdepression",
+  "rp": "https://lordchickenblaster.itch.io/agameaboutdepression",
+  "ua": "2026-08-13T15:34:48.387382+00:00"
 }

@@ -1,49 +1,49 @@
 {
   "id": "late-shift-vita",
-  "title_id": "LATE00001",
-  "name": "Late Shift Vita",
-  "description": "Port of Late Shift for PSVITA.",
-  "long_description": "This is a complete rewrite from scratch of the FMV game Late Shift from CtrlMovie studio. It runs on OpenFMV engine, an FMV game engine wrote from scratch to mimic Wales Interactive engine used for their FMV games.\nLate Shift is a high stakes FMV crime thriller. Forced into a brutal London heist, your choices matter in this interactive cinematic experience with adaptable storylines that lead to one of seven conclusions. Your decisions are you.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "LATE00001",
+  "n": "Late Shift Vita",
+  "d": "Port of Late Shift for PSVITA.",
+  "ld": "This is a complete rewrite from scratch of the FMV game Late Shift from CtrlMovie studio. It runs on OpenFMV engine, an FMV game engine wrote from scratch to mimic Wales Interactive engine used for their FMV games.\nLate Shift is a high stakes FMV crime thriller. Forced into a brutal London heist, your choices matter in this interactive cinematic experience with adaptable storylines that lead to one of seven conclusions. Your decisions are you.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2023-09-24",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: Steam",
-  "size": 5195068,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-late-shift-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.1",
+  "vd": "2023-09-24",
+  "req": "- libshacccg.suprx\n- Game Data Files: Steam",
+  "sz": 5195068,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-late-shift-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-late-shift-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-late-shift-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-late-shift-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-late-shift-vita/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-late-shift-vita/1121-lateshift.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-late-shift-vita/1121-lateshift.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/OpenFMV/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/OpenFMV/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/OpenFMV"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/OpenFMV"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1121",
-  "source_url": "https://github.com/Rinnegatamante/OpenFMV",
-  "release_page": "https://github.com/Rinnegatamante/OpenFMV/releases",
-  "updated_at": "2026-08-13T15:34:48.466984+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1121",
+  "su": "https://github.com/Rinnegatamante/OpenFMV",
+  "rp": "https://github.com/Rinnegatamante/OpenFMV/releases",
+  "ua": "2026-08-13T15:34:48.466984+00:00"
 }

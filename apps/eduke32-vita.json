@@ -1,50 +1,50 @@
 {
   "id": "eduke32-vita",
-  "title_id": "EDUKE0032",
-  "name": "EDuke32 Vita",
-  "description": "Port of EDuke32 for PSVITA",
-  "long_description": "Port of EDuke32, a Duke Nukem 3D source port, for PSVITA. It supports also add-on packs, mods and all other EDuke32 regular features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "EDUKE0032",
+  "n": "EDuke32 Vita",
+  "d": "Port of EDuke32 for PSVITA",
+  "ld": "Port of EDuke32, a Duke Nukem 3D source port, for PSVITA. It supports also add-on packs, mods and all other EDuke32 regular features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.6",
-  "version_date": "2019-09-05",
-  "requirements": "Not specified",
-  "size": 2007891,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-eduke32-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.6",
+  "vd": "2019-09-05",
+  "req": "Not specified",
+  "sz": 2007891,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-eduke32-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-eduke32-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-eduke32-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-eduke32-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-eduke32-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-eduke32-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-eduke32-vita/eduke32-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-eduke32-vita/eduke32-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49442"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=49442"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/EDuke32-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/EDuke32-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "397",
-  "source_url": "https://github.com/Rinnegatamante/EDuke32-Vita",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=49442",
-  "updated_at": "2026-08-13T15:34:48.630478+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "397",
+  "su": "https://github.com/Rinnegatamante/EDuke32-Vita",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=49442",
+  "ua": "2026-08-13T15:34:48.630478+00:00"
 }

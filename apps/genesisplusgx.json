@@ -1,55 +1,55 @@
 {
   "id": "genesisplusgx",
-  "title_id": "FRAN00003",
-  "name": "GenesisPlusGX",
-  "description": "Sega Genesis/Megadrive emulator.",
-  "long_description": "Genesis Plus GX is an open-source Sega 8/16 bit emulator focused on accuracy and portability.",
-  "author_ids": [
+  "tid": "FRAN00003",
+  "n": "GenesisPlusGX",
+  "d": "Sega Genesis/Megadrive emulator.",
+  "ld": "Genesis Plus GX is an open-source Sega 8/16 bit emulator focused on accuracy and portability.",
+  "aids": [
     "frangarcj"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.7.5-RC",
-  "version_date": "2016-07-29",
-  "requirements": "Not specified",
-  "size": 2011467,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-genesisplusgx/icon0.png",
-  "screenshots": [
+  "v": "v.1.7.5-RC",
+  "vd": "2016-07-29",
+  "req": "Not specified",
+  "sz": 2011467,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-genesisplusgx/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-genesisplusgx/shot_01.png",
     "https://archive.org/download/psvitaalive-genesisplusgx/shot_02.png",
     "https://archive.org/download/psvitaalive-genesisplusgx/shot_03.png",
     "https://archive.org/download/psvitaalive-genesisplusgx/shot_04.png",
     "https://archive.org/download/psvitaalive-genesisplusgx/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-genesisplusgx/genesisplusgx.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-genesisplusgx/genesisplusgx.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/Genesis-Plus-GX/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/Genesis-Plus-GX/releases/tag/1.7.5-RC-Henkaku"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/Genesis-Plus-GX/releases/tag/1.7.5-RC-Henkaku"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/Genesis-Plus-GX"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/frangarcj/Genesis-Plus-GX"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "158",
-  "source_url": "https://github.com/frangarcj/Genesis-Plus-GX",
-  "release_page": "https://github.com/frangarcj/Genesis-Plus-GX/releases",
-  "updated_at": "2026-08-13T15:34:48.713422+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "158",
+  "su": "https://github.com/frangarcj/Genesis-Plus-GX",
+  "rp": "https://github.com/frangarcj/Genesis-Plus-GX/releases",
+  "ua": "2026-08-13T15:34:48.713422+00:00"
 }

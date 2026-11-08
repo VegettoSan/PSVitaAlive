@@ -1,48 +1,48 @@
 {
   "id": "ultimate-spiderman-total-mayhem",
-  "title_id": "SPIDERMAN",
-  "name": "Ultimate Spiderman: Total Mayhem",
-  "description": "Ultimate Spiderman: Total Mayhem Ps Vita Port",
-  "long_description": "Ultimate Spiderman: Total Mayhem Ps Vita Port\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SPIDERMAN",
+  "n": "Ultimate Spiderman: Total Mayhem",
+  "d": "Ultimate Spiderman: Total Mayhem Ps Vita Port",
+  "ld": "Ultimate Spiderman: Total Mayhem Ps Vita Port\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer"
   ],
-  "version": "1.2",
-  "version_date": "2026-09-21",
-  "requirements": "- no data",
-  "size": 3460301,
-  "status": "Verified",
-  "links": [
+  "v": "1.2",
+  "vd": "2026-09-21",
+  "req": "- no data",
+  "sz": 3460301,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Spiderman%20v1.2.vpk",
-      "size": 3460301,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Spiderman%20v1.2.vpk",
+      "sz": 3460301,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Game%20Files.zip",
-      "size": 170813030,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/Game%20Files.zip",
+      "sz": 170813030,
+      "xp": "ux0:data/",
+      "ips": [
         "spiderman"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Rinnegatamante/spiderman_vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Rinnegatamante/spiderman_vita"
     }
   ],
-  "icon": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/shot0.png",
     "https://archive.org/download/ultimate-spiderman-total-mayhem-ps-vita/shot1.png"
   ]

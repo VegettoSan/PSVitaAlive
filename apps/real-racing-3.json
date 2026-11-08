@@ -1,49 +1,49 @@
 {
   "id": "real-racing-3",
-  "title_id": "RR3VITA01",
-  "name": "Real Racing 3",
-  "description": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
-  "long_description": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RR3VITA01",
+  "n": "Real Racing 3",
+  "d": "New Real Racing 3 port for PS vita Based on 1.4.0 MALI graphics version.",
+  "ld": "Native port loader for Real Racing 3 (v1.4.0 ROW Mali ETC1 edition) targeting the PlayStation Vita using vitaGL, vitashark, and kubridge.\n\n- PsVitaAlive -",
+  "aids": [
     "chuta7x"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing",
     "strategy"
   ],
-  "version": "3.6.2",
-  "version_date": "2026-10-19",
-  "requirements": "- No data",
-  "size": 8598323,
-  "status": "Verified",
-  "links": [
+  "v": "3.6.2",
+  "vd": "2026-10-19",
+  "req": "- No data",
+  "sz": 8598323,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita%20v3.6.2.vpk",
-      "size": 8598323,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/real-racing-3-port-for-ps-vita/RR3Vita%20v3.6.2.vpk",
+      "sz": 8598323,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
-      "size": 1610612736,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/real-racing-3-port-for-ps-vita/Game%20Files.zip",
+      "sz": 1610612736,
+      "xp": "ux0:data/",
+      "ips": [
         "rr3"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/CHUTA7X/Real-Racing-3-Port-Release"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/CHUTA7X/Real-Racing-3-Port-Release"
     }
   ],
-  "icon": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/real-racing-3-port-for-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/real-racing-3-port-for-ps-vita/shot0.png"
   ]
 }

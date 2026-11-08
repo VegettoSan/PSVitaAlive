@@ -1,51 +1,51 @@
 {
   "id": "bloons-td-5-vita",
-  "title_id": "BTD500001",
-  "name": "Bloons TD 5 Vita",
-  "description": "Port of Bloons TD 5 for PSVita.",
-  "long_description": "An unofficial PlayStation Vita loader for the Android ARMv7 release of Bloons TD 5.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BTD500001",
+  "n": "Bloons TD 5 Vita",
+  "d": "Port of Bloons TD 5 for PSVita.",
+  "ld": "An unofficial PlayStation Vita loader for the Android ARMv7 release of Bloons TD 5.\n\n- PsVitaAlive -",
+  "aids": [
     "claude-ai",
     "reallootfury"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2026-07-18",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 956984,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bloons-td-5-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2026-07-18",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 956984,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bloons-td-5-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bloons-td-5-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-bloons-td-5-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-bloons-td-5-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-bloons-td-5-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-bloons-td-5-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bloons-td-5-vita/btd5-vita-v1.01.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bloons-td-5-vita/btd5-vita-v1.01.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/reallootfury/bloons-td-5-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/reallootfury/bloons-td-5-vita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/reallootfury/bloons-td-5-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/reallootfury/bloons-td-5-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1440",
-  "source_url": "https://github.com/reallootfury/bloons-td-5-vita",
-  "release_page": "https://github.com/reallootfury/bloons-td-5-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.328349+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1440",
+  "su": "https://github.com/reallootfury/bloons-td-5-vita",
+  "rp": "https://github.com/reallootfury/bloons-td-5-vita/releases",
+  "ua": "2026-08-13T15:34:48.328349+00:00"
 }

@@ -1,51 +1,51 @@
 {
   "id": "minecraft-pe",
-  "title_id": "MCPE00000",
-  "name": "Minecraft PE",
-  "description": "Port of Minecraft Pocket Edition Alpha 0.6.1 for PSVITA.",
-  "long_description": "Port of MCPE Alpha 0.6.1 to PSVita. The original game files are required and are not included.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MCPE00000",
+  "n": "Minecraft PE",
+  "d": "Port of Minecraft Pocket Edition Alpha 0.6.1 for PSVITA.",
+  "ld": "Port of MCPE Alpha 0.6.1 to PSVita. The original game files are required and are not included.\n\n- PsVitaAlive -",
+  "aids": [
     "minecraftpe-vita"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.7",
-  "version_date": "2026-08-05",
-  "requirements": "- Game Data Files: Minecraft Pocket Edition Alpha 0.6.1",
-  "size": 8670937,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-minecraft-pe/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.7",
+  "vd": "2026-08-05",
+  "req": "- Game Data Files: Minecraft Pocket Edition Alpha 0.6.1",
+  "sz": 8670937,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-minecraft-pe/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-minecraft-pe/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-minecraft-pe/minecraftpe.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-minecraft-pe/minecraftpe.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases/tag/v1.0.7"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/minecraftpe-vita/minecraftpe-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/minecraftpe-vita/minecraftpe-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1453",
-  "source_url": "https://github.com/minecraftpe-vita/minecraftpe-vita",
-  "release_page": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.323618+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1453",
+  "su": "https://github.com/minecraftpe-vita/minecraftpe-vita",
+  "rp": "https://github.com/minecraftpe-vita/minecraftpe-vita/releases",
+  "ua": "2026-08-13T15:34:48.323618+00:00"
 }

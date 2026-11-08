@@ -1,41 +1,41 @@
 {
   "id": "earn-to-die-vita",
-  "title_id": "E2DV00001",
-  "name": "Earn to Die Vita",
-  "description": "Port of Earn to Die for PSVita.",
-  "long_description": "Port of the Android game Earn to Die for PSVita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "E2DV00001",
+  "n": "Earn to Die Vita",
+  "d": "Port of Earn to Die for PSVita.",
+  "ld": "Port of the Android game Earn to Die for PSVita.\n\n- PsVitaAlive -",
+  "aids": [
     "no-storage7413"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-07-30",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 3125070,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-earn-to-die-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-07-30",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 3125070,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-earn-to-die-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-earn-to-die-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-earn-to-die-vita/earn-to-die-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-earn-to-die-vita/earn-to-die-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/file/d/1B93krry5gZwq_uVA-E6ZB1MsrOdWTAnT/view?usp=sharing"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/file/d/1B93krry5gZwq_uVA-E6ZB1MsrOdWTAnT/view?usp=sharing"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1460",
-  "source_url": "https://drive.google.com/file/d/1B93krry5gZwq_uVA-E6ZB1MsrOdWTAnT/view?usp=sharing",
-  "release_page": "",
-  "updated_at": "2026-08-15T09:57:03.727397+00:00"
+  "sn": "VitaDB",
+  "si": "1460",
+  "su": "https://drive.google.com/file/d/1B93krry5gZwq_uVA-E6ZB1MsrOdWTAnT/view?usp=sharing",
+  "rp": "",
+  "ua": "2026-08-15T09:57:03.727397+00:00"
 }

@@ -1,41 +1,41 @@
 {
   "id": "bit-clicker",
-  "title_id": "BCLK00001",
-  "name": "Bit Clicker",
-  "description": "Clicker game for PSVITA/PSTV.",
-  "long_description": "A clicker game for PSVITA/PSTV made with GameMaker.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BCLK00001",
+  "n": "Bit Clicker",
+  "d": "Clicker game for PSVITA/PSTV.",
+  "ld": "A clicker game for PSVITA/PSTV made with GameMaker.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "ccoolguy"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-05-28",
-  "requirements": "Not specified",
-  "size": 2651275,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bit-clicker/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-05-28",
+  "req": "Not specified",
+  "sz": 2651275,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bit-clicker/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bit-clicker/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bit-clicker/bit-clicker.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bit-clicker/bit-clicker.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Ccoolguy/BitClickerVita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Ccoolguy/BitClickerVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "645",
-  "source_url": "https://github.com/Ccoolguy/BitClickerVita",
-  "release_page": "https://github.com/Ccoolguy/BitClickerVita",
-  "updated_at": "2026-08-13T15:34:48.620198+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "645",
+  "su": "https://github.com/Ccoolguy/BitClickerVita",
+  "rp": "https://github.com/Ccoolguy/BitClickerVita",
+  "ua": "2026-08-13T15:34:48.620198+00:00"
 }

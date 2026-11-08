@@ -1,15 +1,15 @@
 {
   "id": "mmozeiko",
-  "name": "mmozeiko",
-  "avatar": "https://github.com/mmozeiko.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "mmozeiko",
+  "av": "https://github.com/mmozeiko.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/mmozeiko",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/mmozeiko",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/mmozeiko.png"
+  "ic": "https://github.com/mmozeiko.png"
 }

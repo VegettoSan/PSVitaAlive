@@ -1,15 +1,15 @@
 {
   "id": "clyppe",
-  "name": "Clyppe",
-  "avatar": "https://avatars.githubusercontent.com/u/147959848?v=4",
-  "bio": "Dev Ps Vita",
-  "links": [
+  "n": "Clyppe",
+  "av": "https://avatars.githubusercontent.com/u/147959848?v=4",
+  "b": "Dev Ps Vita",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/Clyppe",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Clyppe",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/147959848?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/147959848?v=4"
 }

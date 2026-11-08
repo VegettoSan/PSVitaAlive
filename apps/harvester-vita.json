@@ -1,46 +1,46 @@
 {
   "id": "harvester-vita",
-  "title_id": "GDOT00011",
-  "name": "Harvester Vita",
-  "description": "Port of Harvester for PSVITA.",
-  "long_description": "Harvester is a Free and Open-Source top-down space mining game made with the Godot game engine. Control your spaceship in forays into an asteroid belt, gather iron, and bring it back to base. Spend them on upgrading your ship's speed and maneuverability and cargo space.\nBut beware, as you are not alone out here. Pirate miners are out there and want to monopolize the business.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GDOT00011",
+  "n": "Harvester Vita",
+  "d": "Port of Harvester for PSVITA.",
+  "ld": "Harvester is a Free and Open-Source top-down space mining game made with the Godot game engine. Control your spaceship in forays into an asteroid belt, gather iron, and bring it back to base. Spend them on upgrading your ship's speed and maneuverability and cargo space.\nBut beware, as you are not alone out here. Pirate miners are out there and want to monopolize the business.\n\n- PsVitaAlive -",
+  "aids": [
     "parallel-productions"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.10",
-  "version_date": "2023-02-04",
-  "requirements": "Not specified",
-  "size": 21986257,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-harvester-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.10",
+  "vd": "2023-02-04",
+  "req": "Not specified",
+  "sz": 21986257,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-harvester-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-harvester-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-harvester-vita/harvester-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-harvester-vita/harvester-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1037",
-  "source_url": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita",
-  "release_page": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases",
-  "updated_at": "2026-08-13T15:34:48.516578+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1037",
+  "su": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita",
+  "rp": "https://github.com/ParallelProductions/godot-2d-space-game-PSVita/releases",
+  "ua": "2026-08-13T15:34:48.516578+00:00"
 }

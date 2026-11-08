@@ -1,51 +1,51 @@
 {
   "id": "breadtopia",
-  "title_id": "BTPA11451",
-  "name": "BreadToPIA",
-  "description": "Remake of Japanese viral game \"Suika Game\" for PS Vita.",
-  "long_description": "Remake of Japanese viral game \"Suika Game\" for PS Vita. Merge 2 (or sometimes 3) bread and evolve it to bigger bread. Complete the order and get scores as high as you can. \nOverclocking is need due to unoptimized code. \nThe global score are subject to change without any warning or notification before hand.",
-  "author_ids": [
+  "tid": "BTPA11451",
+  "n": "BreadToPIA",
+  "d": "Remake of Japanese viral game \"Suika Game\" for PS Vita.",
+  "ld": "Remake of Japanese viral game \"Suika Game\" for PS Vita. Merge 2 (or sometimes 3) bread and evolve it to bigger bread. Complete the order and get scores as high as you can. \nOverclocking is need due to unoptimized code. \nThe global score are subject to change without any warning or notification before hand.",
+  "aids": [
     "kaon"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "casual",
     "puzzle"
   ],
-  "version": "v.1.1.0",
-  "version_date": "2024-09-13",
-  "requirements": "Not specified",
-  "size": 13769661,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-breadtopia/icon0.png",
-  "screenshots": [
+  "v": "v.1.1.0",
+  "vd": "2024-09-13",
+  "req": "Not specified",
+  "sz": 13769661,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-breadtopia/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-breadtopia/shot_01.png",
     "https://archive.org/download/psvitaalive-breadtopia/shot_02.png",
     "https://archive.org/download/psvitaalive-breadtopia/shot_03.png",
     "https://archive.org/download/psvitaalive-breadtopia/shot_04.png",
     "https://archive.org/download/psvitaalive-breadtopia/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-breadtopia/breadtopia.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-breadtopia/breadtopia.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/kaonkaon/BreadToPIA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/kaonkaon/BreadToPIA"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/kaonkaon/BreadToPIA/releases/tag/v1.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/kaonkaon/BreadToPIA/releases/tag/v1.1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1225",
-  "source_url": "https://github.com/kaonkaon/BreadToPIA",
-  "release_page": "https://github.com/kaonkaon/BreadToPIA",
-  "updated_at": "2026-08-13T15:34:48.431574+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1225",
+  "su": "https://github.com/kaonkaon/BreadToPIA",
+  "rp": "https://github.com/kaonkaon/BreadToPIA",
+  "ua": "2026-08-13T15:34:48.431574+00:00"
 }

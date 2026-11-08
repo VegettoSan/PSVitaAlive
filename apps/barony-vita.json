@@ -1,57 +1,57 @@
 {
   "id": "barony-vita",
-  "title_id": "BARO00001",
-  "name": "Barony Vita",
-  "description": "Port of Barony for PSVita.",
-  "long_description": "Port of Barony by Turning Wheel for Playstation Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BARO00001",
+  "n": "Barony Vita",
+  "d": "Port of Barony for PSVita.",
+  "ld": "Port of Barony by Turning Wheel for Playstation Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "bren"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "other"
   ],
-  "version": "v.0.0.2-5.0.2",
-  "version_date": "2026-09-05",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 9961472,
-  "status": "Legacy",
-  "links": [
+  "v": "v.0.0.2-5.0.2",
+  "vd": "2026-09-05",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 9961472,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-barony-vita/barony%20v0.0.2-5.0.2.vpk",
-      "size": 9961472,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-barony-vita/barony%20v0.0.2-5.0.2.vpk",
+      "sz": 9961472,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
-      "size": 732954624,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/psvitaalive-barony-vita/Game%20Files.zip",
+      "sz": 732954624,
+      "xp": "ux0:data/",
+      "ips": [
         "barony"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Brendonm17/Barony-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Brendonm17/Barony-Vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-barony-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-barony-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-barony-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-barony-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-barony-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-barony-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1444",
-  "source_url": "https://github.com/Brendonm17/Barony-Vita",
-  "release_page": "https://github.com/Brendonm17/Barony-Vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1444",
+  "su": "https://github.com/Brendonm17/Barony-Vita",
+  "rp": "https://github.com/Brendonm17/Barony-Vita/releases",
+  "ua": "2026-08-13T15:34"
 }

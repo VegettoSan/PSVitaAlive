@@ -1,15 +1,15 @@
 {
   "id": "rompelhd",
-  "name": "Rompelhd",
-  "avatar": "https://github.com/rompelhd.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Rompelhd",
+  "av": "https://github.com/rompelhd.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/rompelhd",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/rompelhd",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/rompelhd.png"
+  "ic": "https://github.com/rompelhd.png"
 }

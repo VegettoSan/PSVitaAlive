@@ -1,50 +1,50 @@
 {
   "id": "an-untitled-story",
-  "title_id": "UNTITLEDS",
-  "name": "An Untitled Story",
-  "description": "Port of An Untitled Story",
-  "long_description": "Classic freeware game filled with secrets and platforming challenges, and has an endearing art style and music.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "UNTITLEDS",
+  "n": "An Untitled Story",
+  "d": "Port of An Untitled Story",
+  "ld": "Classic freeware game filled with secrets and platforming challenges, and has an endearing art style and music.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "jeffrulz345"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-01-03",
-  "requirements": "Not specified",
-  "size": 46454545,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-an-untitled-story/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-01-03",
+  "req": "Not specified",
+  "sz": 46454545,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-an-untitled-story/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-an-untitled-story/shot_01.png",
     "https://archive.org/download/psvitaalive-an-untitled-story/shot_02.png",
     "https://archive.org/download/psvitaalive-an-untitled-story/shot_03.png",
     "https://archive.org/download/psvitaalive-an-untitled-story/shot_04.png",
     "https://archive.org/download/psvitaalive-an-untitled-story/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-an-untitled-story/an-untitled-story.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-an-untitled-story/an-untitled-story.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "412",
-  "source_url": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7",
-  "release_page": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/",
-  "updated_at": "2026-08-13T15:34:48.658012+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "412",
+  "su": "https://drive.google.com/open?id=1WnmCXBQxEASaanJ0jX8fJoeK6NWbxTV7",
+  "rp": "https://www.reddit.com/r/vitahacks/comments/abzr7c/release_an_untitled_story_gms_port/",
+  "ua": "2026-08-13T15:34:48.658012+00:00"
 }

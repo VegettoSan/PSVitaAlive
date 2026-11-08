@@ -1,41 +1,41 @@
 {
   "id": "very-obscure-souls",
-  "title_id": "VOSM02345",
-  "name": "Very Obscure Souls",
-  "description": "Dungeon crawler game for PSVITA.",
-  "long_description": "This is a game where you fight in a dungeon a variety of enemies to survive, also many things that populate this world are deadly for you, so you have to be careful and hone your skills to the most.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VOSM02345",
+  "n": "Very Obscure Souls",
+  "d": "Dungeon crawler game for PSVITA.",
+  "ld": "This is a game where you fight in a dungeon a variety of enemies to survive, also many things that populate this world are deadly for you, so you have to be careful and hone your skills to the most.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "asdronin"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Demo",
-  "version_date": "2021-11-21",
-  "requirements": "Not specified",
-  "size": 53605566,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-very-obscure-souls/icon0.png",
-  "screenshots": [
+  "v": "Demo",
+  "vd": "2021-11-21",
+  "req": "Not specified",
+  "sz": 53605566,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-very-obscure-souls/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-very-obscure-souls/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-very-obscure-souls/very-obscure-souls.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-very-obscure-souls/very-obscure-souls.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.patreon.com/asdronin"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.patreon.com/asdronin"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "759",
-  "source_url": "https://www.patreon.com/asdronin",
-  "release_page": "https://www.patreon.com/asdronin",
-  "updated_at": "2026-08-13T15:34:48.562902+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "759",
+  "su": "https://www.patreon.com/asdronin",
+  "rp": "https://www.patreon.com/asdronin",
+  "ua": "2026-08-13T15:34:48.562902+00:00"
 }

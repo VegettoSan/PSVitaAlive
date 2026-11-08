@@ -1,65 +1,65 @@
 {
   "id": "asphalt-8",
-  "title_id": "ASPHALT20",
-  "name": "Asphalt 8 Vita",
-  "description": "Native compatibility port of Asphalt 8 Android v2.0.0e for PlayStation Vita. Data-free; users supply exact game files.",
-  "long_description": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ASPHALT20",
+  "n": "Asphalt 8 Vita",
+  "d": "Native compatibility port of Asphalt 8 Android v2.0.0e for PlayStation Vita. Data-free; users supply exact game files.",
+  "ld": "A port of the Android version of Asphalt 8 v2.0.0e for PS Vita\nIt uses the original ARMv7 Android game library, with so_util, FalsoJNI and VitaGL.\nRaces, menus, saving, physical controls and touch are working\nPerformance runs in the high 50s during races\n\n- PsVitaAlive -",
+  "aids": [
     "spliffcurrybeats"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing"
   ],
-  "version": "0.3",
-  "version_date": "2026-09-13",
-  "requirements": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
-  "size": 2516582,
-  "status": "Verified",
-  "links": [
+  "v": "0.3",
+  "vd": "2026-09-13",
+  "req": "- Homebrew enabled PS Vita with VitaShell - kubridge.skprx installed - libshacccg.suprx at ur0:/data/libshacccg.suprx or ur0:/data/external/libshacccg.suprx - Your own Asphalt 8 v2.0.0e APK and OBB",
+  "sz": 2516582,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/asphalt-8-psvita/Asphalt8Vita%20v0.3.vpk",
-      "size": 3565158,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/asphalt-8-psvita/Asphalt8Vita%20v0.3.vpk",
+      "sz": 3565158,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP - Mediafire",
-      "url": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
-      "size": 1500017328,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP - Mediafire",
+      "u": "https://www.mediafire.com/file/w1lqvp8lfxnk9q0/asphalt8_game_data.zip/file",
+      "sz": 1500017328,
+      "xp": "ux0:data/",
+      "ips": [
         "asphalt8"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
-      "size": 1610612736,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP",
+      "u": "https://archive.org/download/asphalt-8-psvita/asphalt8%20game%20data.zip",
+      "sz": 1610612736,
+      "xp": "ux0:data/",
+      "ips": [
         "asphalt8"
       ]
     },
     {
-      "type": "Mod",
-      "name": "All Cars MAX/PRO FIXED",
-      "url": "https://archive.org/download/asphalt-8-psvita/Mod%20-%20All%20Cars%20MAX%20-%20PRO%20FIXED.zip",
-      "size": 78950,
-      "extract_path": "ux0:data/asphalt8/internal/"
+      "t": "Mod",
+      "n": "All Cars MAX/PRO FIXED",
+      "u": "https://archive.org/download/asphalt-8-psvita/Mod%20-%20All%20Cars%20MAX%20-%20PRO%20FIXED.zip",
+      "sz": 78950,
+      "xp": "ux0:data/asphalt8/internal/"
     },
     {
-      "type": "Repository",
-      "name": "GitLab",
-      "url": "https://gitlab.com/sexcurrybeats/asphalt8-vita/"
+      "t": "Repository",
+      "n": "GitLab",
+      "u": "https://gitlab.com/sexcurrybeats/asphalt8-vita/"
     }
   ],
-  "icon": "https://archive.org/download/asphalt-8-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/asphalt-8-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/asphalt-8-psvita/bg0.png"
   ]
 }

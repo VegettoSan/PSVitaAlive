@@ -1,51 +1,51 @@
 {
   "id": "nxengine-evo",
-  "title_id": "NXEV00001",
-  "name": "NXENGINE-EVO",
-  "description": "Port of Cave Story for PSVITA.",
-  "long_description": "NXEngine-evo, a refactored engine for Cave Story. The original game files are required and are not included.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NXEV00001",
+  "n": "NXENGINE-EVO",
+  "d": "Port of Cave Story for PSVITA.",
+  "ld": "NXEngine-evo, a refactored engine for Cave Story. The original game files are required and are not included.\n\n- PsVitaAlive -",
+  "aids": [
     "nxengine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.2.6.5",
-  "version_date": "2026-08-06",
-  "requirements": "- Game Data Files: Cave Story",
-  "size": 10484800,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-nxengine-evo/icon0.png",
-  "screenshots": [
+  "v": "v.2.6.5",
+  "vd": "2026-08-06",
+  "req": "- Game Data Files: Cave Story",
+  "sz": 10484800,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-nxengine-evo/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-nxengine-evo/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-nxengine-evo/NXEngine-Evo-v2.6.5-Vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-nxengine-evo/NXEngine-Evo-v2.6.5-Vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/nxengine/nxengine-evo/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/nxengine/nxengine-evo/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/nxengine/nxengine-evo/releases/tag/v2.6.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/nxengine/nxengine-evo/releases/tag/v2.6.5"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/nxengine/nxengine-evo"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/nxengine/nxengine-evo"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1458",
-  "source_url": "https://github.com/nxengine/nxengine-evo",
-  "release_page": "https://github.com/nxengine/nxengine-evo/releases",
-  "updated_at": "2026-08-13T15:34:48.322211+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1458",
+  "su": "https://github.com/nxengine/nxengine-evo",
+  "rp": "https://github.com/nxengine/nxengine-evo/releases",
+  "ua": "2026-08-13T15:34:48.322211+00:00"
 }

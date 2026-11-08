@@ -1,39 +1,39 @@
 {
   "id": "sonic-the-hedgehog-run",
-  "title_id": "SONIC1111",
-  "name": "SONIC THE HEDGEHOG RUN",
-  "description": "Fanmade Sonic game for PSVITA.",
-  "long_description": "A simple action game as a fan-made game of Sonic.\nThe controls are simple: just press the buttons!\nLet's go!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "SONIC1111",
+  "n": "SONIC THE HEDGEHOG RUN",
+  "d": "Fanmade Sonic game for PSVITA.",
+  "ld": "A simple action game as a fan-made game of Sonic.\nThe controls are simple: just press the buttons!\nLet's go!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "bayashi"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-03-14",
-  "requirements": "Not specified",
-  "size": 10467426,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2024-03-14",
+  "req": "Not specified",
+  "sz": 10467426,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/sonic-the-hedgehog-run.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-the-hedgehog-run/sonic-the-hedgehog-run.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1195",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1195-sonic_run.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.446273+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1195",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1195-sonic_run.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.446273+00:00"
 }

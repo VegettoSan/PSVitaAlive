@@ -1,48 +1,48 @@
 {
   "id": "raging-thunder",
-  "title_id": "PSVRT0001",
-  "name": "Raging Thunder",
-  "description": "Android to PS Vita port of Raging Thunder",
-  "long_description": "Unofficial port of Raging Thunder (Polarbit, Android) to the PS Vita, running the original ARM game library through a native loader (TheFloW's so-loader + FalsoJNI) with rendering via vitaGL.",
-  "author_ids": [
+  "tid": "PSVRT0001",
+  "n": "Raging Thunder",
+  "d": "Android to PS Vita port of Raging Thunder",
+  "ld": "Unofficial port of Raging Thunder (Polarbit, Android) to the PS Vita, running the original ARM game library through a native loader (TheFloW's so-loader + FalsoJNI) with rendering via vitaGL.",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "rpg",
     "source-port"
   ],
-  "version": "1.0.1",
-  "version_date": "2026-10-17",
-  "requirements": "- HENkaku / Enso\tAny recent firmware with homebrew support\n- kubridge.skprx\tRequired, loaded in taiHEN config (*KERNEL)\n- libshacccg.suprx\tRequired at ur0:data/libshacccg.suprx (via ShaRKBR33D)",
-  "size": 922317,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.1",
+  "vd": "2026-10-17",
+  "req": "- HENkaku / Enso\tAny recent firmware with homebrew support\n- kubridge.skprx\tRequired, loaded in taiHEN config (*KERNEL)\n- libshacccg.suprx\tRequired at ur0:data/libshacccg.suprx (via ShaRKBR33D)",
+  "sz": 922317,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/raging-thunder-ps-vita-port/ragingthunder%20v1.0.1.vpk",
-      "size": 922317,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/raging-thunder-ps-vita-port/ragingthunder%20v1.0.1.vpk",
+      "sz": 922317,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/raging-thunder-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-      "size": 3984589,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/raging-thunder-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 3984589,
+      "xp": "ux0:data/",
+      "ips": [
         "ragingthunder"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/MetalSyntax/Raging-Thunder-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/MetalSyntax/Raging-Thunder-vita"
     }
   ],
-  "icon": "https://archive.org/download/raging-thunder-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/raging-thunder-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/raging-thunder-ps-vita-port/shot0.png"
   ]
 }

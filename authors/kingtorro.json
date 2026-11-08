@@ -1,15 +1,15 @@
 {
   "id": "kingtorro",
-  "name": "KingTorro",
-  "avatar": "https://github.com/TheLostPantheon.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "KingTorro",
+  "av": "https://github.com/TheLostPantheon.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/TheLostPantheon",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/TheLostPantheon",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/TheLostPantheon.png"
+  "ic": "https://github.com/TheLostPantheon.png"
 }

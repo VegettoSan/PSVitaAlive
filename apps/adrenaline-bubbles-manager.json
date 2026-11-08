@@ -1,46 +1,46 @@
 {
   "id": "adrenaline-bubbles-manager",
-  "title_id": "ADRBUBMAN",
-  "name": "Adrenaline Bubbles Manager",
-  "description": "",
-  "long_description": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't work on Adrenaline 8).",
-  "author_ids": [
+  "tid": "ADRBUBMAN",
+  "n": "Adrenaline Bubbles Manager",
+  "d": "",
+  "ld": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't work on Adrenaline 8).",
+  "aids": [
     "onelua"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "6.20",
-  "version_date": "2023-07-23",
-  "requirements": "Not specified",
-  "size": 9728063,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/icon0.png",
-  "screenshots": [
+  "v": "6.20",
+  "vd": "2023-07-23",
+  "req": "Not specified",
+  "sz": 9728063,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/AdrenalineBubbleManager.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/AdrenalineBubbleManager.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ONElua/AdrenalineBubbleManager"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ONElua/AdrenalineBubbleManager"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1453",
-  "source_url": "https://github.com/ONElua/AdrenalineBubbleManager",
-  "release_page": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20",
-  "updated_at": "2026-08-13T15:34:48.720363+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1453",
+  "su": "https://github.com/ONElua/AdrenalineBubbleManager",
+  "rp": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20",
+  "ua": "2026-08-13T15:34:48.720363+00:00"
 }

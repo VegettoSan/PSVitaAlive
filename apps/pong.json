@@ -1,52 +1,52 @@
 {
   "id": "pong",
-  "title_id": "VITAPONG0",
-  "name": "Pong",
-  "description": "Pong clone for PSVITA.",
-  "long_description": "This is a classic pong clone I created as a throwback to the origin of video games. This is also my first homebrew game and I designed it to resemble the original Pong by Ralph Baer.",
-  "author_ids": [
+  "tid": "VITAPONG0",
+  "n": "Pong",
+  "d": "Pong clone for PSVITA.",
+  "ld": "This is a classic pong clone I created as a throwback to the origin of video games. This is also my first homebrew game and I designed it to resemble the original Pong by Ralph Baer.",
+  "aids": [
     "no-storage7413",
     "namelessghoul0",
     "nyorem"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.10",
-  "version_date": "2017-09-06",
-  "requirements": "Not specified",
-  "size": 706314,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pong/icon0.png",
-  "screenshots": [
+  "v": "v.1.10",
+  "vd": "2017-09-06",
+  "req": "Not specified",
+  "sz": 706314,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pong/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pong/shot_01.png",
     "https://archive.org/download/psvitaalive-pong/shot_02.png",
     "https://archive.org/download/psvitaalive-pong/shot_03.png",
     "https://archive.org/download/psvitaalive-pong/shot_04.png",
     "https://archive.org/download/psvitaalive-pong/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pong/pong.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pong/pong.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/Pong"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/Pong"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NamelessGhoul0/VitaPong"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/NamelessGhoul0/VitaPong"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "102",
-  "source_url": "https://github.com/NamelessGhoul0/VitaPong",
-  "release_page": "http://gekihen.customprotocol.com/en/project/Pong",
-  "updated_at": "2026-08-13T15:34:48.348883+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "102",
+  "su": "https://github.com/NamelessGhoul0/VitaPong",
+  "rp": "http://gekihen.customprotocol.com/en/project/Pong",
+  "ua": "2026-08-13T15:34:48.348883+00:00"
 }

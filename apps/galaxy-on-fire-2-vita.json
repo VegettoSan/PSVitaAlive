@@ -1,57 +1,57 @@
 {
   "id": "galaxy-on-fire-2-vita",
-  "title_id": "GALAXYOF2",
-  "name": "Galaxy on Fire 2 Vita",
-  "description": "Galaxy on Fire 2 port for PSVITA.",
-  "long_description": "A loader for an Xperia Play edition of a popular spaceflight simulation video game. Please read the installation instructions on GitHub.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GALAXYOF2",
+  "n": "Galaxy on Fire 2 Vita",
+  "d": "Galaxy on Fire 2 port for PSVITA.",
+  "ld": "A loader for an Xperia Play edition of a popular spaceflight simulation video game. Please read the installation instructions on GitHub.\n\n- PsVitaAlive -",
+  "aids": [
     "danil-linad",
     "gl33ntwine",
     "pg-team"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-03-12",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 57418076,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-03-12",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 57418076,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/galaxy-on-fire-2-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-galaxy-on-fire-2-vita/galaxy-on-fire-2-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/gof2-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/gof2-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/gof2-vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/gof2-vita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/gof2-vita/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/gof2-vita/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1055",
-  "source_url": "https://github.com/v-atamanenko/gof2-vita/",
-  "release_page": "https://github.com/v-atamanenko/gof2-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.503388+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1055",
+  "su": "https://github.com/v-atamanenko/gof2-vita/",
+  "rp": "https://github.com/v-atamanenko/gof2-vita/releases",
+  "ua": "2026-08-13T15:34:48.503388+00:00"
 }

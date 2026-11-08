@@ -1,79 +1,79 @@
 {
   "id": "zombie-tsunami-vita",
-  "title_id": "ZTSU00001",
-  "name": "Zombie Tsunami Vita",
-  "description": "Port of Zombie Tsunami for PSVita.",
-  "long_description": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ZTSU00001",
+  "n": "Zombie Tsunami Vita",
+  "d": "Port of Zombie Tsunami for PSVita.",
+  "ld": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.\n\n- PsVitaAlive -",
+  "aids": [
     "chatgpt-ai",
     "wolff"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-07-14",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 6318259,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/zombie-tsunami-psvita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-07-14",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 6318259,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/zombie-tsunami-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/zombie-tsunami-psvita/shot_01.png",
     "https://archive.org/download/zombie-tsunami-psvita/shot_02.png",
     "https://archive.org/download/zombie-tsunami-psvita/shot_03.png",
     "https://archive.org/download/zombie-tsunami-psvita/shot_04.png",
     "https://archive.org/download/zombie-tsunami-psvita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/zombie-tsunami-psvita/ZombieTsunami-v1.0.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/zombie-tsunami-psvita/ZombieTsunami-v1.0.vpk",
+      "rec": true
     },
     {
-      "type": "Download",
-      "name": "VPK - MediaFire",
-      "url": "https://www.mediafire.com/file/pt5tp2hlc1ec75r/ZombieTsunami-v1.0.vpk/file",
-      "recommended": false
+      "t": "Download",
+      "n": "VPK - MediaFire",
+      "u": "https://www.mediafire.com/file/pt5tp2hlc1ec75r/ZombieTsunami-v1.0.vpk/file",
+      "rec": false
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP - MediaFire",
-      "url": "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
-      "recommended": false,
-      "size": 42100000,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP - MediaFire",
+      "u": "https://www.mediafire.com/file/resfszr3lfgxfo7/Game_Files.zip/file",
+      "rec": false,
+      "sz": 42100000,
+      "xp": "ux0:data/",
+      "ips": [
         "zombietsunami"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
-      "recommended": false,
-      "size": 42100000,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP",
+      "u": "https://archive.org/download/zombie-tsunami-psvita/Game%20Files.zip",
+      "rec": false,
+      "sz": 42100000,
+      "xp": "ux0:data/",
+      "ips": [
         "zombietsunami"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/WolffsRoom/ZombieTsunami-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1436",
-  "source_url": "https://github.com/WolffsRoom/ZombieTsunami-Vita",
-  "release_page": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.328778+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1436",
+  "su": "https://github.com/WolffsRoom/ZombieTsunami-Vita",
+  "rp": "https://github.com/WolffsRoom/ZombieTsunami-Vita/releases",
+  "ua": "2026-08-13T15:34:48.328778+00:00"
 }

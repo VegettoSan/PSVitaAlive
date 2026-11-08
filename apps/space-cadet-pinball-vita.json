@@ -1,54 +1,54 @@
 {
   "id": "space-cadet-pinball-vita",
-  "title_id": "SPACEPINB",
-  "name": "Space Cadet Pinball Vita",
-  "description": "Port of Space Cadet for PSVITA.",
-  "long_description": "Port of Space Cadet, popular pinball game bundled with Windows XP.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SPACEPINB",
+  "n": "Space Cadet Pinball Vita",
+  "d": "Port of Space Cadet for PSVITA.",
+  "ld": "Port of Space Cadet, popular pinball game bundled with Windows XP.\n\n- PsVitaAlive -",
+  "aids": [
     "axiom"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1.1-VB2",
-  "version_date": "2021-09-29",
-  "requirements": "Not specified",
-  "size": 2773484,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1.1-VB2",
+  "vd": "2021-09-29",
+  "req": "Not specified",
+  "sz": 2773484,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/space-cadet-pinball-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-space-cadet-pinball-vita/space-cadet-pinball-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/tag/Release_1.1.1_VitaBuild_2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases/tag/Release_1.1.1_VitaBuild_2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/suicvne/SpaceCadetPinball_Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/suicvne/SpaceCadetPinball_Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "730",
-  "source_url": "https://github.com/suicvne/SpaceCadetPinball_Vita",
-  "release_page": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.569659+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "730",
+  "su": "https://github.com/suicvne/SpaceCadetPinball_Vita",
+  "rp": "https://github.com/suicvne/SpaceCadetPinball_Vita/releases",
+  "ua": "2026-08-13T15:34:48.569659+00:00"
 }

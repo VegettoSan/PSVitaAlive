@@ -1,51 +1,51 @@
 {
   "id": "ps-vita-sync",
-  "title_id": "SYNC00055",
-  "name": "PS Vita Sync",
-  "description": "Homebrew to sync savefiles with your Google Drive.",
-  "long_description": "Homebrew to sync savefiles with your Google Drive.",
-  "author_ids": [
+  "tid": "SYNC00055",
+  "n": "PS Vita Sync",
+  "d": "Homebrew to sync savefiles with your Google Drive.",
+  "ld": "Homebrew to sync savefiles with your Google Drive.",
+  "aids": [
     "laochun"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.01",
-  "version_date": "2023-11-05",
-  "requirements": "Not specified",
-  "size": 1041927,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ps-vita-sync/icon0.png",
-  "screenshots": [
+  "v": "v.0.01",
+  "vd": "2023-11-05",
+  "req": "Not specified",
+  "sz": 1041927,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ps-vita-sync/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ps-vita-sync/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ps-vita-sync/ps-vita-sync.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ps-vita-sync/ps-vita-sync.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/add-le/ps-vita-sync/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/add-le/ps-vita-sync/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/add-le/ps-vita-sync/releases/tag/v0.01"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/add-le/ps-vita-sync/releases/tag/v0.01"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/add-le/ps-vita-sync"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/add-le/ps-vita-sync"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1166",
-  "source_url": "https://github.com/add-le/ps-vita-sync",
-  "release_page": "https://github.com/add-le/ps-vita-sync/releases",
-  "updated_at": "2026-08-13T15:34:48.459636+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1166",
+  "su": "https://github.com/add-le/ps-vita-sync",
+  "rp": "https://github.com/add-le/ps-vita-sync/releases",
+  "ua": "2026-08-13T15:34:48.459636+00:00"
 }

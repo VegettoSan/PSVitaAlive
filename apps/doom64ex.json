@@ -1,55 +1,55 @@
 {
   "id": "doom64ex",
-  "title_id": "DOOM64EX1",
-  "name": "Doom64EX",
-  "description": "Port of Doom64EX for PSVITA/PSTV.",
-  "long_description": "Doom64EX Vita is a port of Doom64EX for the PSVITA/PSTV.\nDoom64EX is a reverse-engineering project aimed to recreate Doom64 as close as possible with additional modding features.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DOOM64EX1",
+  "n": "Doom64EX",
+  "d": "Port of Doom64EX for PSVITA/PSTV.",
+  "ld": "Doom64EX Vita is a port of Doom64EX for the PSVITA/PSTV.\nDoom64EX is a reverse-engineering project aimed to recreate Doom64 as close as possible with additional modding features.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2022-09-17",
-  "requirements": "- libshacccg.suprx.\n- Game Data Files: PC Steam or N64.",
-  "size": 1955832,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-doom64ex/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.1",
+  "vd": "2022-09-17",
+  "req": "- libshacccg.suprx.\n- Game Data Files: PC Steam or N64.",
+  "sz": 1955832,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-doom64ex/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-doom64ex/shot_01.png",
     "https://archive.org/download/psvitaalive-doom64ex/shot_02.png",
     "https://archive.org/download/psvitaalive-doom64ex/shot_03.png",
     "https://archive.org/download/psvitaalive-doom64ex/shot_04.png",
     "https://archive.org/download/psvitaalive-doom64ex/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-doom64ex/doom64ex.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-doom64ex/doom64ex.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/Doom64EX/releases/tag/v.1.0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/Doom64EX/releases/tag/v.1.0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Doom64EX"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Doom64EX"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "881",
-  "source_url": "https://github.com/Rinnegatamante/Doom64EX",
-  "release_page": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/",
-  "updated_at": "2026-08-13T15:34:48.530351+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "881",
+  "su": "https://github.com/Rinnegatamante/Doom64EX",
+  "rp": "https://www.psx-place.com/threads/release-doom64ex-reverse-engineered-and-enhanced-source-port-of-doom-64.38361/",
+  "ua": "2026-08-13T15:34:48.530351+00:00"
 }

@@ -1,15 +1,15 @@
 {
   "id": "jwfeniello",
-  "name": "jwfeniello",
-  "avatar": "https://avatars.githubusercontent.com/u/99435269?v=4",
-  "bio": "lowfat chocolate milk enthusiast",
-  "links": [
+  "n": "jwfeniello",
+  "av": "https://avatars.githubusercontent.com/u/99435269?v=4",
+  "b": "lowfat chocolate milk enthusiast",
+  "l": [
     {
-      "type": "Repository",
-      "name": "VPK",
-      "url": "https://github.com/jwfeniello",
-      "recommended": true
+      "t": "Repository",
+      "n": "VPK",
+      "u": "https://github.com/jwfeniello",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/99435269?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/99435269?v=4"
 }

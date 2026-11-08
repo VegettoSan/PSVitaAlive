@@ -1,45 +1,45 @@
 {
   "id": "chro-mono-2",
-  "title_id": "CHROMONO2",
-  "name": "chro.mono 2",
-  "description": "Port of chro.mono 2 for PSVITA.",
-  "long_description": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CHROMONO2",
+  "n": "chro.mono 2",
+  "d": "Port of chro.mono 2 for PSVITA.",
+  "ld": "chro.mono 2 is a puzzle game for mobile devices. Solve puzzles with time limits in 120 exciting levels over 6 different level packs. Improve your scores by finishing levels faster than the target time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "thp"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-05-06",
-  "requirements": "Not specified",
-  "size": 5595880,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-chro-mono-2/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-05-06",
+  "req": "Not specified",
+  "sz": 5595880,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-chro-mono-2/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-chro-mono-2/shot_01.png",
     "https://archive.org/download/psvitaalive-chro-mono-2/shot_02.png",
     "https://archive.org/download/psvitaalive-chro-mono-2/shot_03.png",
     "https://archive.org/download/psvitaalive-chro-mono-2/shot_04.png",
     "https://archive.org/download/psvitaalive-chro-mono-2/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-chro-mono-2/chro-mono-2.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-chro-mono-2/chro-mono-2.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://thp.itch.io/chromono-vita"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://thp.itch.io/chromono-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "477",
-  "source_url": "https://thp.itch.io/chromono-vita",
-  "release_page": "https://thp.itch.io/chromono-vita",
-  "updated_at": "2026-08-13T15:34:48.640736+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "477",
+  "su": "https://thp.itch.io/chromono-vita",
+  "rp": "https://thp.itch.io/chromono-vita",
+  "ua": "2026-08-13T15:34:48.640736+00:00"
 }

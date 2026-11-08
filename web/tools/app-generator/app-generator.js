@@ -270,7 +270,8 @@
         if (!response.ok) {
             throw new Error(`${path}: HTTP ${response.status}`);
         }
-        return response.json();
+        const value = await response.json();
+        return window.PSVitaAliveCatalogSchemaV2.toV1(value);
     }
 
     async function loadData() {
@@ -866,7 +867,7 @@
         const app = collectApp();
         const status = $("download-status");
         if (status && state.lastDownloadedSnapshot && JSON.stringify(app) !== state.lastDownloadedSnapshot) status.hidden = true;
-        $("json-preview").textContent = JSON.stringify(app, null, 2);
+        $("json-preview").textContent = JSON.stringify(window.PSVitaAliveCatalogSchemaV2.toV2(app), null, 2);
         updateValidation(app);
     }
 
@@ -936,7 +937,7 @@
     }
 
     function downloadBlob(filename, object) {
-        const blob = new Blob([JSON.stringify(object, null, 2) + "\n"], { type: "application/json;charset=utf-8" });
+        const blob = new Blob([JSON.stringify(window.PSVitaAliveCatalogSchemaV2.toV2(object), null, 2) + "\n"], { type: "application/json;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         const anchor = document.createElement("a");
         anchor.href = url;
@@ -1028,7 +1029,7 @@
             const file = event.target.files?.[0];
             if (!file) return;
             try {
-                const object = JSON.parse(await file.text());
+                const object = window.PSVitaAliveCatalogSchemaV2.toV1(JSON.parse(await file.text()));
                 if (!object || typeof object !== "object" || Array.isArray(object)) throw new Error("Root value must be an object.");
                 setMode("edit");
                 populateFromObject(object);

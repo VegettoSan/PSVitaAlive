@@ -1,51 +1,51 @@
 {
   "id": "silent-hill-4-the-room",
-  "title_id": "SILH00004",
-  "name": "Silent Hill 4: The Room",
-  "description": "Port of the latest GOG PC version of Silent Hill 4: The Room to the PS Vita. You may use your own copy of the game.",
-  "long_description": "Port of the latest GOG PC version of Silent Hill 4: The Room to the PS Vita. You may use your own copy of the game.",
-  "author_ids": [
+  "tid": "SILH00004",
+  "n": "Silent Hill 4: The Room",
+  "d": "Port of the latest GOG PC version of Silent Hill 4: The Room to the PS Vita. You may use your own copy of the game.",
+  "ld": "Port of the latest GOG PC version of Silent Hill 4: The Room to the PS Vita. You may use your own copy of the game.",
+  "aids": [
     "vallfrr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "puzzle",
     "strategy",
     "source-port",
     "other"
   ],
-  "version": "1.0.1",
-  "version_date": "2026-10-30",
-  "requirements": "- A hacked PS Vita (HENkaku/Enso), at least 4 GB free on ux0:\n- Silent Hill 4 from GOG, version \"1.0 gog v5\". Check: SILENT HILL 4.exe has SHA-256 CF7081A6C78DBE51F6DC2E1C9BD978D8486F1D7B59D7A3B88E027C9B39F21DD0. No other version works (no PS2 files either).\n- ur0:data/libshacccg.suprx from your own Vita (ShaRKF00D).",
-  "size": 5767168,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.1",
+  "vd": "2026-10-30",
+  "req": "- A hacked PS Vita (HENkaku/Enso), at least 4 GB free on ux0:\n- Silent Hill 4 from GOG, version \"1.0 gog v5\". Check: SILENT HILL 4.exe has SHA-256 CF7081A6C78DBE51F6DC2E1C9BD978D8486F1D7B59D7A3B88E027C9B39F21DD0. No other version works (no PS2 files either).\n- ur0:data/libshacccg.suprx from your own Vita (ShaRKF00D).",
+  "sz": 5767168,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/sh4vita%20v1.0.1.vpk",
-      "size": 5767168,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/sh4vita%20v1.0.1.vpk",
+      "sz": 5767168,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/Game%20Files%20for%20PSVA.zip",
-      "size": 3650722202,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/Game%20Files%20for%20PSVA.zip",
+      "sz": 3650722202,
+      "xp": "ux0:data/",
+      "ips": [
         "sh4"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/vallfrr/sh4vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/vallfrr/sh4vita"
     }
   ],
-  "icon": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/icon0.png",
+  "ss": [
     "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/shot0.png",
     "https://archive.org/download/silent-hill-4-the-room-for-playstationvita/shot1.png"
   ]

@@ -1,56 +1,56 @@
 {
   "id": "flycast-vita",
-  "title_id": "FLYCASTDC",
-  "name": "Flycast Vita",
-  "description": "Sega Dreamcast emulator for PSVITA/PSTV.",
-  "long_description": "Flycast Vita is a port of flycast, popular multiplatform Dreamcast emulator maintained by flyinghead. It's based on the standalone version of the emulator modified with added features to fasten the emulation compared to a regular vanilla port of the emulator.",
-  "author_ids": [
+  "tid": "FLYCASTDC",
+  "n": "Flycast Vita",
+  "d": "Sega Dreamcast emulator for PSVITA/PSTV.",
+  "ld": "Flycast Vita is a port of flycast, popular multiplatform Dreamcast emulator maintained by flyinghead. It's based on the standalone version of the emulator modified with added features to fasten the emulation compared to a regular vanilla port of the emulator.",
+  "aids": [
     "bythos",
     "rinnegatamante"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2022-10-25",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx",
-  "size": 4873249,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-flycast-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2022-10-25",
+  "req": "- libshacccg.suprx\n- kubridge.skprx",
+  "sz": 4873249,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-flycast-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-flycast-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-flycast-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-flycast-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-flycast-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-flycast-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-flycast-vita/flycast-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-flycast-vita/flycast-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-flycast-vita-v-1-0-sega-dreamcast-emulator-for-psvita-pstv.38180/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-flycast-vita-v-1-0-sega-dreamcast-emulator-for-psvita-pstv.38180/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/flycast-vita/releases/tag/v.1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/flycast-vita/releases/tag/v.1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/flycast-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/flycast-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "605",
-  "source_url": "https://github.com/Rinnegatamante/flycast-vita",
-  "release_page": "https://www.psx-place.com/threads/release-flycast-vita-v-1-0-sega-dreamcast-emulator-for-psvita-pstv.38180/",
-  "updated_at": "2026-08-13T15:34:48.526228+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "605",
+  "su": "https://github.com/Rinnegatamante/flycast-vita",
+  "rp": "https://www.psx-place.com/threads/release-flycast-vita-v-1-0-sega-dreamcast-emulator-for-psvita-pstv.38180/",
+  "ua": "2026-08-13T15:34:48.526228+00:00"
 }

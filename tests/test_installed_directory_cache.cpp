@@ -1,4 +1,5 @@
 #include "storage/installed_directory_cache.hpp"
+#include "storage/storage_maintenance.hpp"
 #include <cassert>
 #include <string>
 #include <vector>
@@ -32,8 +33,20 @@ int main() {
 
     assert(!InstalledDirectoryCache::encode(
         {{"KOTR00001","ux0:data/../tai",4,6,true}},encoded));
+    // Exact package roots are permitted as read-only size records.
+    const CachedDirectory package{"KOTR00001","ux0:app/KOTR00001",9,85000000,true};
+    rows.push_back(package);
+    assert(InstalledDirectoryCache::encode(rows,encoded));
+    assert(InstalledDirectoryCache::decode(encoded,decoded));
+    const CachedDirectory* packageHit = InstalledDirectoryCache::find(
+        decoded,"KOTR00001","ux0:app/KOTR00001");
+    assert(packageHit && packageHit->bytes == 85000000);
     assert(!InstalledDirectoryCache::encode(
-        {{"KOTR00001","ux0:app/KOTR00001",4,6,true}},encoded));
+        {{"KOTR00001","ux0:app/ABCD12345",4,6,true}},encoded));
+    assert(!InstalledDirectoryCache::encode(
+        {{"KOTR00001","ux0:app/KOTR00001/sce_sys",4,6,true}},encoded));
+    assert(!InstalledDirectoryCache::encode(
+        {{"KOTR00001","ux0:app/KOTR00001",4,6,false}},encoded));
     assert(!InstalledDirectoryCache::encode(
         {{"KOTR00001","ux0:data/psvitaalive/cache",4,6,true}},encoded));
     assert(!InstalledDirectoryCache::encode(
@@ -47,5 +60,17 @@ int main() {
         encoded + "KOTR00001\tux0:data/kotor\t42\t0\t0\n",decoded));
     assert(!InstalledDirectoryCache::decode(
         "PSVA_DIR_INDEX_V1\nKOTR00001\tux0:data/kotor\tx\t1\t20\n",decoded));
+    // Main storage summary includes cached installed usage, but its cleanup
+    // authority remains limited to temporary files and saved ZIPs.
+    UsageSnapshot usage;
+    usage.temporaryBytes = 10;
+    usage.savedZipBytes = 20;
+    usage.catalogBytes = 30;
+    usage.imageBytes = 40;
+    usage.installedBytes = 50;
+    usage.installedPartial = true;
+    usage.installedHistorical = true;
+    assert(usage.totalBytes() == 150);
+    assert(usage.temporaryBytes + usage.savedZipBytes == 30);
     assert(InstalledDirectoryCache::encode(rows,encoded));
 }

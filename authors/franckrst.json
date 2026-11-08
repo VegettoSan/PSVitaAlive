@@ -1,21 +1,21 @@
 {
   "id": "franckrst",
-  "name": "Franckrst",
-  "avatar": "https://avatars.githubusercontent.com/u/3009263?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "Franckrst",
+  "av": "https://avatars.githubusercontent.com/u/3009263?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Franckrst",
-      "recommended": false
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Franckrst",
+      "rec": false
     },
     {
-      "type": "Official Website",
-      "name": "Website",
-      "url": "http://franckrst.com/",
-      "recommended": false
+      "t": "Official Website",
+      "n": "Website",
+      "u": "http://franckrst.com/",
+      "rec": false
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/3009263?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/3009263?v=4"
 }

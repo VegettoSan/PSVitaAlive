@@ -1,42 +1,42 @@
 {
   "id": "parkour-labs",
-  "title_id": "GDOT32494",
-  "name": "Parkour Labs",
-  "description": "Port of Parkour Labs for PSVITA.",
-  "long_description": "A port of the Steam game Parkour Labs, a hard parkour videogame similar to CSGO: Surf.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GDOT32494",
+  "n": "Parkour Labs",
+  "d": "Port of Parkour Labs for PSVITA.",
+  "ld": "A port of the Steam game Parkour Labs, a hard parkour videogame similar to CSGO: Surf.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "soykhaler"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2026-03-09",
-  "requirements": "Not specified",
-  "size": 43264784,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-parkour-labs/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2026-03-09",
+  "req": "Not specified",
+  "sz": 43264784,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-parkour-labs/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-parkour-labs/shot_01.png",
     "https://archive.org/download/psvitaalive-parkour-labs/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-parkour-labs/1099-Parkour_Labs.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-parkour-labs/1099-Parkour_Labs.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://soykhaler.itch.io/parkour-labs-vita-port"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://soykhaler.itch.io/parkour-labs-vita-port"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1837",
-  "source_url": "https://github.com",
-  "release_page": "",
-  "updated_at": "2020-01-01T00:00:00+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1837",
+  "su": "https://github.com",
+  "rp": "",
+  "ua": "2020-01-01T00:00:00+00:00"
 }

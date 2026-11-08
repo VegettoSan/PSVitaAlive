@@ -1,52 +1,52 @@
 {
   "id": "starfield-vita",
-  "title_id": "STFD00001",
-  "name": "Starfield Vita",
-  "description": "Simple endless game for the PS Vita. Runs on Lua Player Plus Vita",
-  "long_description": "A small endless game where you must dodge the stars.\n\nThis is a port (or rather, a rewrite, written at the same time the PC version was being written) of a small game made for Programming classes at my university. I've decided to rewrite it in Lua. It's rather incomplete because the original game isn't finished either, and I'll add most features from the PC version once that one is finished.",
-  "author_ids": [
+  "tid": "STFD00001",
+  "n": "Starfield Vita",
+  "d": "Simple endless game for the PS Vita. Runs on Lua Player Plus Vita",
+  "ld": "A small endless game where you must dodge the stars.\n\nThis is a port (or rather, a rewrite, written at the same time the PC version was being written) of a small game made for Programming classes at my university. I've decided to rewrite it in Lua. It's rather incomplete because the original game isn't finished either, and I'll add most features from the PC version once that one is finished.",
+  "aids": [
     "gnmmarechal"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2",
-  "version_date": "2017-03-19",
-  "requirements": "Not specified",
-  "size": 6051088,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-starfield-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.2",
+  "vd": "2017-03-19",
+  "req": "Not specified",
+  "sz": 6051088,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-starfield-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-starfield-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-starfield-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-starfield-vita/starfield-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-starfield-vita/starfield-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/Starfield-Vita"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/Starfield-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/gnmmarechal/starfield-vita/releases/tag/v0.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/gnmmarechal/starfield-vita/releases/tag/v0.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/gnmmarechal/starfield-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/gnmmarechal/starfield-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "128",
-  "source_url": "https://github.com/gnmmarechal/starfield-vita",
-  "release_page": "http://gekihen.customprotocol.com/en/project/Starfield-Vita",
-  "updated_at": "2026-08-13T15:34:48.684669+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "128",
+  "su": "https://github.com/gnmmarechal/starfield-vita",
+  "rp": "http://gekihen.customprotocol.com/en/project/Starfield-Vita",
+  "ua": "2026-08-13T15:34:48.684669+00:00"
 }

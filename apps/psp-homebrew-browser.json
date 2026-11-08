@@ -1,40 +1,40 @@
 {
   "id": "psp-homebrew-browser",
-  "title_id": "ARKSPSPHB",
-  "name": "PSP Homebrew Browser",
-  "description": "PSP homebrews downloader.",
-  "long_description": "A HENkaku application to help with installing PSP homebrews to run under Adrenaline.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ARKSPSPHB",
+  "n": "PSP Homebrew Browser",
+  "d": "PSP homebrews downloader.",
+  "ld": "A HENkaku application to help with installing PSP homebrews to run under Adrenaline.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "arkanite"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.9b",
-  "version_date": "2017-05-26",
-  "requirements": "Not specified",
-  "size": 7929431,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psp-homebrew-browser/icon0.png",
-  "screenshots": [
+  "v": "v.0.9b",
+  "vd": "2017-05-26",
+  "req": "Not specified",
+  "sz": 7929431,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psp-homebrew-browser/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_01.png",
     "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_02.png",
     "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_03.png",
     "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_04.png",
     "https://archive.org/download/psvitaalive-psp-homebrew-browser/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psp-homebrew-browser/psp-homebrew-browser.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psp-homebrew-browser/psp-homebrew-browser.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "264",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/264-PSPhbb.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.682154+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "264",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/264-PSPhbb.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.682154+00:00"
 }

@@ -1,36 +1,36 @@
 {
   "id": "gohan-parallel",
-  "title_id": "ZXGQ00004",
-  "name": "GoHAN Parallel",
-  "description": "Savedata modifier for PSVITA.",
-  "long_description": "Homebrew that allows the user to modify games data.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ZXGQ00004",
+  "n": "GoHAN Parallel",
+  "d": "Savedata modifier for PSVITA.",
+  "ld": "Homebrew that allows the user to modify games data.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "onerice07"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1.0",
-  "version_date": "2016-10-26",
-  "requirements": "Not specified",
-  "size": 384298,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gohan-parallel/icon0.png",
-  "screenshots": [
+  "v": "v.2.1.0",
+  "vd": "2016-10-26",
+  "req": "Not specified",
+  "sz": 384298,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gohan-parallel/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gohan-parallel/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gohan-parallel/gohan-parallel.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gohan-parallel/gohan-parallel.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "251",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.692857+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "251",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/251-GoHAN_Parallel.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.692857+00:00"
 }

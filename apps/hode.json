@@ -1,51 +1,51 @@
 {
   "id": "hode",
-  "title_id": "HODEVITA1",
-  "name": "hode",
-  "description": "Port of Heart of Darkness for PSVITA.",
-  "long_description": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HODEVITA1",
+  "n": "hode",
+  "d": "Port of Heart of Darkness for PSVITA.",
+  "ld": "hode is a reimplementation of the engine used by the game Heart of Darkness developed by Amazing Studio.\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2.9",
-  "version_date": "2020-05-04",
-  "requirements": "- Game Data Files: PC",
-  "size": 690248,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hode/icon0.png",
-  "screenshots": [
+  "v": "v.0.2.9",
+  "vd": "2020-05-04",
+  "req": "- Game Data Files: PC",
+  "sz": 690248,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hode/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hode/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hode/hode.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hode/hode.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/hode/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/hode/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/hode/releases/tag/0.2.9d"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/hode/releases/tag/0.2.9d"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/hode"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/hode"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "512",
-  "source_url": "https://github.com/usineur/hode",
-  "release_page": "https://github.com/usineur/hode/releases",
-  "updated_at": "2026-08-13T15:34:48.620575+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "512",
+  "su": "https://github.com/usineur/hode",
+  "rp": "https://github.com/usineur/hode/releases",
+  "ua": "2026-08-13T15:34:48.620575+00:00"
 }

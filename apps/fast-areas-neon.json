@@ -1,55 +1,55 @@
 {
   "id": "fast-areas-neon",
-  "title_id": "NBDI56749",
-  "name": "fast-areas NEON",
-  "description": "Port of fast-areas NEON for PSVITA.",
-  "long_description": "Port of fast-areas NEON for PSVITA.\nGo as far as you can, don't touch any obstacles, or you will lose!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NBDI56749",
+  "n": "fast-areas NEON",
+  "d": "Port of fast-areas NEON for PSVITA.",
+  "ld": "Port of fast-areas NEON for PSVITA.\nGo as far as you can, don't touch any obstacles, or you will lose!\n\n- PsVitaAlive -",
+  "aids": [
     "orbitalflagstudio"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2023-07-02",
-  "requirements": "Not specified",
-  "size": 36494661,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fast-areas-neon/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.1",
+  "vd": "2023-07-02",
+  "req": "Not specified",
+  "sz": 36494661,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fast-areas-neon/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fast-areas-neon/shot_01.png",
     "https://archive.org/download/psvitaalive-fast-areas-neon/shot_02.png",
     "https://archive.org/download/psvitaalive-fast-areas-neon/shot_03.png",
     "https://archive.org/download/psvitaalive-fast-areas-neon/shot_04.png",
     "https://archive.org/download/psvitaalive-fast-areas-neon/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fast-areas-neon/fast-areas-neon.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fast-areas-neon/fast-areas-neon.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/OrbitalFlagStudio/VitaGamesReleases"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1083",
-  "source_url": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0",
-  "release_page": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0",
-  "updated_at": "2026-08-13T15:34:48.489748+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1083",
+  "su": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0",
+  "rp": "https://github.com/OrbitalFlagStudio/VitaGamesReleases/releases/tag/fast-areas.NEON.v1.0",
+  "ua": "2026-08-13T15:34:48.489748+00:00"
 }

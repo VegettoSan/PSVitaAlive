@@ -1,15 +1,15 @@
 {
   "id": "joel16",
-  "name": "joel16",
-  "avatar": "https://github.com/joel16.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "joel16",
+  "av": "https://github.com/joel16.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/joel16",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/joel16",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/joel16.png"
+  "ic": "https://github.com/joel16.png"
 }

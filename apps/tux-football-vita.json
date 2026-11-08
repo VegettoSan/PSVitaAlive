@@ -1,55 +1,55 @@
 {
   "id": "tux-football-vita",
-  "title_id": "ISLD00005",
-  "name": "Tux Football Vita",
-  "description": "Port of Tux Football for PSVITA/PSTV.",
-  "long_description": "A PS Vita port of Tux Football. The game supports 2 players (PSTV), however, that mode is untested.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ISLD00005",
+  "n": "Tux Football Vita",
+  "d": "Port of Tux Football for PSVITA/PSTV.",
+  "ld": "A PS Vita port of Tux Football. The game supports 2 players (PSTV), however, that mode is untested.\n\n- PsVitaAlive -",
+  "aids": [
     "island-games"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-09-11",
-  "requirements": "Not specified",
-  "size": 8489084,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-tux-football-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-09-11",
+  "req": "Not specified",
+  "sz": 8489084,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-tux-football-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-tux-football-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-tux-football-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-tux-football-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-tux-football-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-tux-football-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-tux-football-vita/tux-football-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-tux-football-vita/tux-football-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/Tux-Football-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/Tux-Football-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/Tux-Football-Vita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/Tux-Football-Vita/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/island-games/Tux-Football-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/island-games/Tux-Football-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "878",
-  "source_url": "https://github.com/island-games/Tux-Football-Vita",
-  "release_page": "https://github.com/island-games/Tux-Football-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.531285+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "878",
+  "su": "https://github.com/island-games/Tux-Football-Vita",
+  "rp": "https://github.com/island-games/Tux-Football-Vita/releases",
+  "ua": "2026-08-13T15:34:48.531285+00:00"
 }

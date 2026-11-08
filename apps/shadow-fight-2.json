@@ -1,48 +1,48 @@
 {
   "id": "shadow-fight-2",
-  "title_id": "SHDF00002",
-  "name": "Shadow Fight 2",
-  "description": "Loader port of Shadow Fight 2 (Android, 1.9.38) to the PS Vita.",
-  "long_description": "An unofficial port of Shadow Fight 2 1.9.38 (Nekki) to the PlayStation Vita.\n\nThis isn't a remake. The game's original ARM code runs unmodified on the Vita, and this project supplies everything underneath it: a loader for the game's executable and a replacement for the Android runtime it was built on. You provide the game from your own copy of the APK. Nothing in this repository or its releases will run without it.",
-  "author_ids": [
+  "tid": "SHDF00002",
+  "n": "Shadow Fight 2",
+  "d": "Loader port of Shadow Fight 2 (Android, 1.9.38) to the PS Vita.",
+  "ld": "An unofficial port of Shadow Fight 2 1.9.38 (Nekki) to the PlayStation Vita.\n\nThis isn't a remake. The game's original ARM code runs unmodified on the Vita, and this project supplies everything underneath it: a loader for the game's executable and a replacement for the Android runtime it was built on. You provide the game from your own copy of the APK. Nothing in this repository or its releases will run without it.",
+  "aids": [
     "franciscoclou"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-11-01",
-  "requirements": "- No data",
-  "size": 1258291,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-11-01",
+  "req": "- No data",
+  "sz": 1258291,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/shadow-fight-2-for-ps-vita/ShadowFight2%20v1.0.vpk",
-      "size": 2306867,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/shadow-fight-2-for-ps-vita/ShadowFight2%20v1.0.vpk",
+      "sz": 2306867,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/shadow-fight-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 412509798,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/shadow-fight-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 412509798,
+      "xp": "ux0:data/",
+      "ips": [
         "shadowfight2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/franciscoclou/shadowfight2-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/franciscoclou/shadowfight2-vita"
     }
   ],
-  "icon": "https://archive.org/download/shadow-fight-2-for-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/shadow-fight-2-for-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/shadow-fight-2-for-ps-vita/shot.png",
     "https://archive.org/download/shadow-fight-2-for-ps-vita/shot0.png",
     "https://archive.org/download/shadow-fight-2-for-ps-vita/shot1.png",

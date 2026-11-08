@@ -1,15 +1,15 @@
 {
   "id": "sinusinu",
-  "name": "sinusinu",
-  "avatar": "https://github.com/sinusinu.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "sinusinu",
+  "av": "https://github.com/sinusinu.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/sinusinu",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/sinusinu",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/sinusinu.png"
+  "ic": "https://github.com/sinusinu.png"
 }

@@ -1,55 +1,55 @@
 {
   "id": "vita-surviving",
-  "title_id": "KGHG89678",
-  "name": "VITA Surviving",
-  "description": "Clone of Vampire Survivors for PSVita.",
-  "long_description": "Surviving 2D game for PS Vita. Fight against different enemies and upgrade your weapons while you try to survive. Its the first release and it will be uptaded with more content in the future.",
-  "author_ids": [
+  "tid": "KGHG89678",
+  "n": "VITA Surviving",
+  "d": "Clone of Vampire Survivors for PSVita.",
+  "ld": "Surviving 2D game for PS Vita. Fight against different enemies and upgrade your weapons while you try to survive. Its the first release and it will be uptaded with more content in the future.",
+  "aids": [
     "pelayodc"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2024-01-02",
-  "requirements": "Not specified",
-  "size": 50327636,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-surviving/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2024-01-02",
+  "req": "Not specified",
+  "sz": 50327636,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-surviving/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-surviving/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-surviving/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-surviving/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-surviving/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-surviving/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-surviving/vita-surviving.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-surviving/vita-surviving.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/pelayodc/VITASurviving/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/pelayodc/VITASurviving/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/pelayodc/VITASurviving/releases/tag/v1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/pelayodc/VITASurviving/releases/tag/v1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/pelayodc/VITASurviving"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/pelayodc/VITASurviving"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1032",
-  "source_url": "https://github.com/pelayodc/VITASurviving",
-  "release_page": "https://github.com/pelayodc/VITASurviving/releases",
-  "updated_at": "2026-08-13T15:34:48.454674+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1032",
+  "su": "https://github.com/pelayodc/VITASurviving",
+  "rp": "https://github.com/pelayodc/VITASurviving/releases",
+  "ua": "2026-08-13T15:34:48.454674+00:00"
 }

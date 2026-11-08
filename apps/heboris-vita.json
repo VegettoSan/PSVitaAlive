@@ -1,51 +1,51 @@
 {
   "id": "heboris-vita",
-  "title_id": "HBRS00000",
-  "name": "Heboris-Vita",
-  "description": "Port of Heboris for PSVITA.",
-  "long_description": "Vita port of Heboris, a Tetris clone.\nThis port is based on the Heboris SDL2 source code.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HBRS00000",
+  "n": "Heboris-Vita",
+  "d": "Port of Heboris for PSVITA.",
+  "ld": "Vita port of Heboris, a Tetris clone.\nThis port is based on the Heboris SDL2 source code.\n\n- PsVitaAlive -",
+  "aids": [
     "l0wigh"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0-Vita",
-  "version_date": "2022-01-20",
-  "requirements": "Not specified",
-  "size": 13369282,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-heboris-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0-Vita",
+  "vd": "2022-01-20",
+  "req": "Not specified",
+  "sz": 13369282,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-heboris-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-heboris-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-heboris-vita/heboris-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-heboris-vita/heboris-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/l0wigh/Heboris-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/l0wigh/Heboris-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/l0wigh/Heboris-Vita/releases/tag/v1.0.0-Vita"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/l0wigh/Heboris-Vita/releases/tag/v1.0.0-Vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/l0wigh/Heboris-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/l0wigh/Heboris-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "780",
-  "source_url": "https://github.com/l0wigh/Heboris-Vita",
-  "release_page": "https://github.com/l0wigh/Heboris-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.558485+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "780",
+  "su": "https://github.com/l0wigh/Heboris-Vita",
+  "rp": "https://github.com/l0wigh/Heboris-Vita/releases",
+  "ua": "2026-08-13T15:34:48.558485+00:00"
 }

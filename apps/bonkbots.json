@@ -1,45 +1,45 @@
 {
   "id": "bonkbots",
-  "title_id": "BKBT13371",
-  "name": "BonkBots!",
-  "description": "Arcade fighting game for PSVITA.",
-  "long_description": "BonkBots! is an arcade fighting game where your goal is to defeat waves of bots by either smashing them with a hammer or slashing their wires with a sword. Upgrade your gear and prepare for the incoming waves by taking the enemy drops to the incinerator.\nDestroy waves of bots, see how long you can last and most importantly, have fun bonking!\nOverclock is not mandatory, but recommended.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BKBT13371",
+  "n": "BonkBots!",
+  "d": "Arcade fighting game for PSVITA.",
+  "ld": "BonkBots! is an arcade fighting game where your goal is to defeat waves of bots by either smashing them with a hammer or slashing their wires with a sword. Upgrade your gear and prepare for the incoming waves by taking the enemy drops to the incinerator.\nDestroy waves of bots, see how long you can last and most importantly, have fun bonking!\nOverclock is not mandatory, but recommended.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "almidasa-studios"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-09-23",
-  "requirements": "Not specified",
-  "size": 73075945,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bonkbots/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-09-23",
+  "req": "Not specified",
+  "sz": 73075945,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bonkbots/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bonkbots/shot_01.png",
     "https://archive.org/download/psvitaalive-bonkbots/shot_02.png",
     "https://archive.org/download/psvitaalive-bonkbots/shot_03.png",
     "https://archive.org/download/psvitaalive-bonkbots/shot_04.png",
     "https://archive.org/download/psvitaalive-bonkbots/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bonkbots/bonkbots.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bonkbots/bonkbots.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/69/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/69/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1149",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/69/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/69/",
-  "updated_at": "2026-08-13T15:34:48.468324+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1149",
+  "su": "https://fuhen.homebrew-contest.com/submissions/69/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/69/",
+  "ua": "2026-08-13T15:34:48.468324+00:00"
 }

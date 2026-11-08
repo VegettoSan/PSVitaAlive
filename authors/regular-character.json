@@ -1,15 +1,15 @@
 {
   "id": "regular-character",
-  "name": "Regular Character",
-  "avatar": "https://github.com/regularcharacter07.png",
-  "bio": "",
-  "links": [
+  "n": "Regular Character",
+  "av": "https://github.com/regularcharacter07.png",
+  "b": "",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/regularcharacter07",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/regularcharacter07",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/regularcharacter07.png"
+  "ic": "https://github.com/regularcharacter07.png"
 }
