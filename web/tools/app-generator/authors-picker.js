@@ -383,7 +383,7 @@
         for (const file of files) {
             try {
                 if (file.size > 1024 * 1024) throw new Error("Author JSON exceeds 1 MB.");
-                const data = JSON.parse(await file.text());
+                const data = window.PSVitaAliveCatalogSchemaV2.toV1(JSON.parse(await file.text()));
                 const author = parseImportedAuthorProfile(data);
                 notices.push(registerImportedAuthor(author));
             } catch (error) {
@@ -402,7 +402,7 @@
     }
 
     function downloadBlob(filename, object) {
-        const blob = new Blob([JSON.stringify(object, null, 2) + "\n"], { type: "application/json;charset=utf-8" });
+        const blob = new Blob([JSON.stringify(window.PSVitaAliveCatalogSchemaV2.toV2(object), null, 2) + "\n"], { type: "application/json;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         const anchor = document.createElement("a");
         anchor.href = url;

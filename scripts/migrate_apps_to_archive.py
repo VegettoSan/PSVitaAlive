@@ -137,7 +137,7 @@ def migrate():
     changed = 0
     for path in sorted(APPS.glob("*.json")):
         app_id = path.stem
-        data = json.loads(path.read_text(encoding="utf-8"))
+        data = to_v1(json.loads(path.read_text(encoding="utf-8")))
         original = json.dumps(data, sort_keys=True)
         mirror = mirrors.get(app_id) or mirrors.get(MIRROR_ALIASES.get(app_id, ""))
         user_mig = looks_user_migrated(data, app_id)
@@ -279,7 +279,7 @@ def migrate():
         data["links"] = final
         new = json.dumps(data, sort_keys=True)
         if new != original:
-            path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            path.write_text(json.dumps(to_v2(data), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             changed += 1
     print(f"changed={changed}")
     return changed

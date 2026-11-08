@@ -355,7 +355,8 @@
             );
         }
 
-        return response.json();
+        const data = await response.json();
+        return window.PSVitaAliveCatalogSchemaV2.toV1(data);
     }
 
     window.loadJSON =

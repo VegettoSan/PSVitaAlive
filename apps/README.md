@@ -1,5 +1,17 @@
 # `apps/` — Canonical homebrew application records
 
+> **Catalog Schema V2 (feature branch):** JSON records in `apps/` use short
+> field keys, e.g. `title_id → tid`, `name → n`, `author_ids → aids`,
+> `category_id → cid`, `subcategory_ids → sids`, `version → v`,
+> `version_date → vd`, `links → l`, `type → t`, `url → u`.
+> This README's long field names describe the *logical* V1 names, not
+> necessarily the keys stored in V2 files. The complete versioned mapping
+> is in [catalog_schema_v2.py](../scripts/catalog_schema_v2.py).
+> Never change the actual IDs, URLs, names or other values during migration.
+>
+> The public generated schema remains V1 until the dual-reading client has
+> been released and the `PSVA_PUBLIC_SCHEMA_V2` cutover flag is enabled.
+
 One JSON file per homebrew application. This is the editable layer before `catalog.json` is generated.
 
 ## Pipeline

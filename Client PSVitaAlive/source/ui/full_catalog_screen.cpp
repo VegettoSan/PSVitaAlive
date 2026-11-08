@@ -1,4 +1,6 @@
 #include "ui/full_catalog_screen.hpp"
+#include "ui/game_files_notice_policy.hpp"
+#include "ui/detail_screenshot_visibility.hpp"
 #include "ui/installed_game_index.hpp"
 #include "ui/installed_data_texture_policy.hpp"
 #include "catalog/catalog_trace.hpp"
@@ -3084,6 +3086,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     const uint64_t released=psvitaalive::catalog_trace::nowUs();
     PSVA_TRACE_DURATION("ui_release_textures",traceBegin);
     installStatusCache_.clear();
+    detailGameFilesCheckMs_ = 0;
     allItems_=std::move(items);
     if(state_.catalog==CatalogType::Homebrew && !installedDataVisible_) rebuildInstalledDataCandidates();
     sortItemsByDate(allItems_);
@@ -3124,6 +3127,7 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     const int oldDetailScroll=state_.detailScroll;
     const int oldLinkFocus=state_.linkFocus;
     const bool oldLinkNavigation=state_.linkNavigation;
+    detailGameFilesCheckMs_ = 0;
     // Existing GPU textures stay cached: identical URLs remain visible.
     // prepareVisibleTextures() evicts textures that become off-screen.
     allItems_=std::move(items);
@@ -3764,6 +3768,10 @@ void FullCatalogScreen::drawStorageOverlay() {
         const int rh=row.kind==4?46:68;
         if(cy+rh<=listTop) {cy+=rh;continue;}
         if(cy>=listBottom) break;
+        // Text glyphs (especially custom PGF/FreeType) may not honor the Vita2D
+        // scissor on every renderer. Only draw complete rows, never the clipped
+        // last/first row where labels could overlap the modal footer/header.
+        if(cy<listTop || cy+rh>listBottom) {cy+=rh;continue;}
         const int bx=x+21,bw=w-59;
         const bool active=static_cast<int>(i)==storageFocus_;
         vita2d_draw_rectangle(bx,cy,bw,rh-5,active?SURFACE2:SURFACE);
@@ -3810,6 +3818,9 @@ void FullCatalogScreen::drawStorageOverlay() {
         cy+=rh;
     }
     vita2d_disable_clipping();
+    // Restore the footer background after list rendering. This also shields
+    // the hint/controls from glyphs outside the list's clipping area on Vita3K.
+    vita2d_draw_rectangle(x+21,listBottom,w-42,y+h-listBottom-10,PANEL);
     const int totalH=storageContentHeight();
     if(totalH>viewportH) {
         const int trackX=x+w-31;
@@ -4261,28 +4272,41 @@ int FullCatalogScreen::savedZipBlockHeight(const CatalogItem& item) {
     const int count = savedZipCountFor(item);
     return count ? LINK_SECTION_H + 4 + LINK_ROW_H * count + 8 : 0;
 }
+std::vector<std::string> FullCatalogScreen::wrapDetailLines(
+    const std::string& text, int contentWidth, bool bullets) const {
+    std::vector<std::string> lines;
+    if (text.empty()) return lines;
+    // Preserve source paragraph/newline boundaries and split bullet items.
+    // The old character-count wrapper ignored real PGF glyph widths and cut
+    // requirements/URLs off at the right edge of the detail viewport.
+    std::string normalized;
+    normalized.reserve(text.size() + 8);
+    for (size_t p = 0; p < text.size(); ++p) {
+        if (bullets && text[p] == '-' &&
+            (p == 0 || text[p - 1] == ' ') &&
+            p + 1 < text.size() && text[p + 1] == ' ' &&
+            !normalized.empty() && normalized.back() != '\n')
+            normalized.push_back('\n');
+        normalized.push_back(text[p]);
+    }
+    const int maxWidth = std::max(32, contentWidth - 6);
+    size_t begin = 0;
+    while (begin <= normalized.size()) {
+        const size_t end = normalized.find('\n', begin);
+        const std::string paragraph = normalized.substr(begin,
+            end == std::string::npos ? std::string::npos : end - begin);
+        const auto wrapped = wrapTextToWidth(&font_, 0.68f, paragraph, maxWidth);
+        lines.insert(lines.end(), wrapped.begin(), wrapped.end());
+        if (end == std::string::npos) break;
+        begin = end + 1;
+    }
+    return lines;
+}
+
 int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
     const int cw = std::max(1, w - 36);
-    const int mc = std::max(16, cw / 7);
-    auto bodyLines = [&](const std::string& text) -> int {
-        if (text.empty()) return 0;
-        std::vector<std::string> lines;
-        wrapText(text, mc, lines);
-        return (int)lines.size();
-    };
-    auto reqLines = [&](const std::string& text) -> int {
-        if (text.empty()) return 0;
-        std::string normalized;
-        normalized.reserve(text.size() + 8);
-        for (size_t p = 0; p < text.size(); ++p) {
-            if (text[p] == '-' && (p == 0 || text[p - 1] == ' ') && p + 1 < text.size() && text[p + 1] == ' ') {
-                if (!normalized.empty() && normalized.back() != '\n') normalized.push_back('\n');
-            }
-            normalized.push_back(text[p]);
-        }
-        std::vector<std::string> lines;
-        wrapText(normalized, mc, lines);
-        return (int)lines.size();
+    auto bodyLines = [&](const std::string& text, bool bullets = false) -> int {
+        return static_cast<int>(wrapDetailLines(text, cw, bullets).size());
     };
 
     int h = linkLayoutTotalHeight(buildLinkLayout(i)) + WEB_QR_BLOCK_H +
@@ -4299,7 +4323,7 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
     const int sc = std::min(5, (int)i.screenshots.size());
     if (sc > 0) h += DETAIL_SECTION_H + sc * SCREENSHOT_ROW_H + DETAIL_SECTION_GAP;
 
-    addSection(reqLines(i.requirements));
+    addSection(bodyLines(i.requirements, true));
 
     int meta = 0;
     if (!i.titleId.empty()) ++meta;
@@ -4892,9 +4916,20 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             if(installedDataConfirm_){
-                if(hit(px,py,ox+30,oy+383,w-60,57))
+                // The confirmation dialog is intentionally smaller than the
+                // installed-data browser. Keep touch targets in exact sync
+                // with drawInstalledDataOverlay() and controller actions.
+                constexpr int dialogW=780,dialogH=400,buttonW=238,gap=20;
+                const int dialogX=(SCREEN_W-dialogW)/2;
+                const int dialogY=(SCREEN_H-dialogH)/2;
+                const int firstX=dialogX+(dialogW-(buttonW*2+gap))/2;
+                const int buttonY=dialogY+dialogH-58;
+                if(hit(px,py,firstX,buttonY,buttonW,46))
+                    installedDataConfirm_=false;
+                else if(hit(px,py,firstX+buttonW+gap,buttonY,buttonW,46))
                     activateInstalledDataSelection();
-                else installedDataConfirm_=false;
+                else if(!hit(px,py,dialogX,dialogY,dialogW,dialogH))
+                    installedDataConfirm_=false;
                 return;
             }
             if(!installedDataDetail_){
@@ -4979,7 +5014,10 @@ void FullCatalogScreen::handleTouch() {
                 int rowY=listTop-storageScrollY_;
                 for(size_t i=0;i<storageRows_.size();++i) {
                     const int rh=storageRows_[i].kind==4?46:68;
-                    if(py>=rowY && py<rowY+rh) {
+                    // Match drawStorageOverlay: partially clipped rows
+                    // are not visible and must not accept touch input.
+                    if(rowY>=listTop && rowY+rh<=listBottom &&
+                       py>=rowY && py<rowY+rh) {
                         if(static_cast<int>(i)!=storageFocus_) {
                             storageFocus_=static_cast<int>(i);
                             storageConfirm_=false;
@@ -7516,6 +7554,28 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
     textures_[path]=t;textureOrder_.push_back(path);
 }
+int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, int panelWidth) {
+    // Exactly mirror drawDetailLinks + emitTextSection. Old visibility code
+    // estimated links using linkDetails.size(), ignoring grouped sections,
+    // permanent Web QR, saved ZIPs and the primary action. It evicted shots
+    // while their real rectangles were still visible.
+    int offset = linkLayoutTotalHeight(buildLinkLayout(item))
+        + WEB_QR_BLOCK_H + savedZipBlockHeight(item);
+    if (primaryActionFor(item) != PrimaryAction::None)
+        offset += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+
+    const int bodyWidth = std::max(1, panelWidth - 36);
+    auto appendTextSection = [&](const std::string& text) {
+        const int count = static_cast<int>(wrapDetailLines(text, bodyWidth, false).size());
+        if (count > 0)
+            offset += DETAIL_SECTION_H + count * LINE_H + DETAIL_SECTION_GAP;
+    };
+    appendTextSection(item.description);
+    appendTextSection(item.longDescription);
+    // The first screenshot starts after the CAPTURAS section header.
+    return offset + DETAIL_SECTION_H;
+}
+
 void FullCatalogScreen::prepareVisibleTextures(){
     if(!imageCache_||catalogLoading_||installProgressActive_||mediaTexturesSuspended_)return;
     // Do not thrash GPU while frees are still draining or right after a catalog switch.
@@ -7639,31 +7699,32 @@ void FullCatalogScreen::prepareVisibleTextures(){
             markKeep(!it.icon.empty()?it.icon:it.cover, "app");
         }
         const int sel=selectedIndex();
+        std::vector<std::string> visibleScreenshots;
         if(sel>=0){
             const CatalogItem& it=catalogView()[sel];
             markKeep(!it.icon.empty()?it.icon:it.cover, "app");
-            const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
-            const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
+            // Match the *actual* detail panel width during transitions.
+            int panelW=SCREEN_W/2;
+            if (state_.mode==UiMode::OPENING_DETAIL)
+                panelW=static_cast<int>((SCREEN_W/2)*transitionProgress());
+            else if (state_.mode==UiMode::CLOSING_DETAIL)
+                panelW=static_cast<int>((SCREEN_W/2)*(1.f-transitionProgress()));
+            const int panelY=HEADER_H+TABS_H;
+            const int panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
             const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
             const int scroll=std::max(0, (int)visualDetailScroll_);
-            int mc=std::max(18, (panelW-36)/7);
-            std::vector<std::string> pre;
-            auto add=[&](const std::string& v){
-                if(v.empty())return;
-                pre.push_back("");
-                std::vector<std::string> q; wrapText(v, mc, q);
-                pre.insert(pre.end(), q.begin(), q.end());
-                pre.push_back("");
-            };
-            add(it.description);
-            add(it.longDescription);
-            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
-            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll;
-            const int shotH=SCREENSHOT_ROW_H-12;
-            const int sc=std::min((int)it.screenshots.size(), 8);
-            for(int k=0;k<sc;++k){
-                const int sy=shotTop+k*SCREENSHOT_ROW_H;
-                if(sy+shotH>top&&sy<bottom)markKeep(it.screenshots[k], "shot");
+            const int sc=std::min(5, (int)it.screenshots.size());
+            if (sc>0 && panelW>36) {
+                const int shotTop=top+detailScreenshotContentOffset(it,panelW)-scroll;
+                for(int k=0;k<sc;++k){
+                    const int sy=shotTop+k*SCREENSHOT_ROW_H;
+                    if(detailScreenshotIntersectsViewport(
+                           sy,SCREENSHOT_ROW_H-18,top,bottom)){
+                        // Keep exact drawn rows only, including partially visible.
+                        markKeep(it.screenshots[k], "shot");
+                        visibleScreenshots.push_back(it.screenshots[k]);
+                    }
+                }
             }
         }
         releaseTexturesNotIn(keep);
@@ -7681,32 +7742,10 @@ void FullCatalogScreen::prepareVisibleTextures(){
             const CatalogItem& it=catalogView()[i];
             prepareOne(!it.icon.empty()?it.icon:it.cover, "app");
         }
-        if(sel>=0){
-            const CatalogItem& it=catalogView()[sel];
-            const int panelX=SCREEN_W/2, panelY=HEADER_H+TABS_H;
-            const int panelW=SCREEN_W-panelX, panelH=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;
-            const int top=panelY+DETAIL_HEADER_H+10, bottom=panelY+panelH-10;
-            const int scroll=std::max(0, (int)visualDetailScroll_);
-            int mc=std::max(18, (panelW-36)/7);
-            std::vector<std::string> pre;
-            auto add=[&](const std::string& v){
-                if(v.empty())return;
-                pre.push_back("");
-                std::vector<std::string> q; wrapText(v, mc, q);
-                pre.insert(pre.end(), q.begin(), q.end());
-                pre.push_back("");
-            };
-            add(it.description);
-            add(it.longDescription);
-            const int links=it.linkDetails.empty()?0:10+(int)it.linkDetails.size()*(LINK_ROW_H+LINK_GAP);
-            const int shotTop=top+links+(int)pre.size()*LINE_H-scroll;
-            const int shotH=SCREENSHOT_ROW_H-12;
-            const int sc=std::min((int)it.screenshots.size(), 8);
-            for(int k=0;k<sc;++k){
-                const int sy=shotTop+k*SCREENSHOT_ROW_H;
-                if(sy+shotH>top&&sy<bottom)prepareOne(it.screenshots[k], "shot");
-            }
-        }
+        // Use the SAME visible list for keeping and loading. The previous
+        // duplicated layout estimates could disagree with the renderer.
+        for(const auto& url:visibleScreenshots)
+            prepareOne(url,"shot");
         return;
     }
 
@@ -8320,6 +8359,7 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
 }
 
 void FullCatalogScreen::invalidateInstallStatus(const std::string& titleId) {
+    detailGameFilesCheckMs_ = 0;
     installedGameIndex().invalidate();
     if (titleId.empty()) {
         installStatusCache_.clear();
@@ -8424,6 +8464,28 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
     // caller-owned card/detail clip before returning.
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(clipLeft, clipTop, clipRight, clipBottom);
+}
+
+bool FullCatalogScreen::detailNeedsGameFilesNotice(const CatalogItem& item, bool installed) {
+    if (state_.catalog != CatalogType::Homebrew || item.id.empty() ||
+        catalogLoading_ || installProgressActive_) return false;
+    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    // Selected detail only, with bounded Getstat probes every four seconds.
+    if (detailGameFilesProbeId_ != item.id || detailGameFilesCheckMs_ == 0 ||
+        nowMs < detailGameFilesCheckMs_ ||
+        nowMs - detailGameFilesCheckMs_ >= 4000ULL ||
+        detailGameFilesAppInstalled_ != installed) {
+        detailGameFilesProbeId_ = item.id;
+        detailGameFilesCheckMs_ = nowMs ? nowMs : 1;
+        detailGameFilesAppInstalled_ = installed;
+        detailGameFilesMissing_ = missingInstalledGameFiles(
+            item, installed, isGameFilesTypeLink, [](const std::string& path) {
+                SceIoStat st{};
+                return sceIoGetstat(path.c_str(), &st) >= 0 &&
+                       (st.st_mode & SCE_S_IFDIR) != 0;
+            });
+    }
+    return detailGameFilesMissing_;
 }
 
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus,int clipL,int clipT,int clipR,int clipB){
@@ -9012,22 +9074,9 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     const int cx = x + 18;
     const int cw = w - 36;
-    const int mc = std::max(16, cw / 7);
     const int top = y + DETAIL_HEADER_H + 10;
     const int bottom = y + h - 10;
     const float scroll = std::max(0.f, visualDetailScroll_);
-
-    auto normalizeBullets = [](const std::string& text) {
-        std::string out;
-        out.reserve(text.size() + 8);
-        for (size_t p = 0; p < text.size(); ++p) {
-            if (text[p] == '-' && (p == 0 || text[p - 1] == ' ') && p + 1 < text.size() && text[p + 1] == ' ') {
-                if (!out.empty() && out.back() != '\n') out.push_back('\n');
-            }
-            out.push_back(text[p]);
-        }
-        return out;
-    };
 
     auto drawSectionHeader = [&](int sx, int sy, const char* title) {
         if (sy + DETAIL_SECTION_H < top || sy > bottom) return;
@@ -9053,8 +9102,10 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
             ::psvitaalive::ui::uiDrawText(&font_, sx + 10, sy + 18, DIM, 0.64f, label);
             const int lw = ::psvitaalive::ui::uiTextWidth(&font_, 0.64f, label);
             const int vx = sx + std::max(120, lw + 20);
-            const int maxChars = std::max(8, (rowW - (vx - sx) - 12) / 8);
-            ::psvitaalive::ui::uiDrawText(&font_, vx, sy + 18, WHITE, 0.68f, ellipsize(value, maxChars).c_str());
+            const int pixelWidth = std::max(24, rowW - (vx - sx) - 12);
+            drawMarqueeText(&font_, vx, sy + 18, pixelWidth,
+                            WHITE, 0.68f, value, false,
+                            sx, top, sx + rowW, bottom);
         }
         return sy + DETAIL_META_H;
     };
@@ -9072,8 +9123,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     auto emitTextSection = [&](const char* title, const std::string& body, bool bullets) {
         if (body.empty()) return;
-        std::vector<std::string> lines;
-        wrapText(bullets ? normalizeBullets(body) : body, mc, lines);
+        const std::vector<std::string> lines = wrapDetailLines(body, cw, bullets);
         if (lines.empty()) return;
         drawSectionHeader(cx, cursor, title);
         cursor += DETAIL_SECTION_H;
@@ -9086,8 +9136,12 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     const int sc = std::min(5, (int)it.screenshots.size());
     if (sc > 0) {
+        // Shared geometry with prepareVisibleTextures: residency and drawing
+        // must use identical screenshot coordinates.
+        const int firstRowY=top+detailScreenshotContentOffset(it,w)-(int)scroll;
+        cursor=firstRowY-DETAIL_SECTION_H;
         drawSectionHeader(cx, cursor, ::psvitaalive::L(::psvitaalive::TextId::SectionScreenshots));
-        cursor += DETAIL_SECTION_H;
+        cursor=firstRowY;
         for (int i = 0; i < sc; ++i) {
             drawImage(it.screenshots[i], "shot", cx, cursor + i * SCREENSHOT_ROW_H, cw, SCREENSHOT_ROW_H - 18);
         }
@@ -9228,6 +9282,10 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
                 drawMarqueeText(&font_, bx + 8, by + 22, bw - 16, linkOn ? BG : ACCENT, 0.70f,
                                 linkLab, true, bx + 4, by, bx + bw - 4, by + bh);
             }
+            // The marquee restores its *text strip* scissor, not the panel.
+            // Restore the full header before drawing Uninstall / Request data.
+            vita2d_enable_clipping();
+            vita2d_set_clip_rectangle(x, y, x + w, y + h);
         }
         const LocalInstallInfo localUninstall=queryLocalInstall(it);
         const bool canUninstall=state_.catalog==CatalogType::Homebrew &&
@@ -9259,6 +9317,25 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
                             ::psvitaalive::L(::psvitaalive::TextId::RequestData), true,
                             rbx + 4, rby, rbx + rbw - 4, rby + rbh);
         }
+    }
+    // Secondary action labels can also marquee and leave a tight scissor.
+    // Reassert the enclosing detail panel so the missing-Game-Files notice
+    // can never be clipped away by an unrelated header button.
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, y, x + w, y + h);
+    if (detailNeedsGameFilesNotice(it, isInstallBadgeState(queryLocalInstall(it)))) {
+        // Subtle bottom strip: keeps name, author, version and buttons free.
+        const int nx = x + 12, ny = y + 89, nw = w - 24, nh = 18;
+        const unsigned warningBg = RGBA8(0x3A, 0x2A, 0x10, 255);
+        const unsigned warningFg = RGBA8(0xFF, 0xC1, 0x55, 255);
+        vita2d_draw_rectangle(nx, ny, nw, nh, warningBg);
+        vita2d_draw_rectangle(nx, ny, 3, nh, warningFg);
+        drawMarqueeText(&font_, nx + 10, ny + 13, nw - 20,
+                        warningFg, 0.58f,
+                        ::psvitaalive::L("GAME_FILES_MISSING_NOTICE"), true,
+                        nx + 7, ny + 1, nx + nw - 8, ny + nh - 1);
+        vita2d_enable_clipping();
+        vita2d_set_clip_rectangle(x, y, x + w, y + h);
     }
     drawDetailContent(it, x, y, w, h);
     // Fade over scrollable body (below header)

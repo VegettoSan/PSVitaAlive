@@ -6,6 +6,7 @@ Only The Drifter is approved for extract_path reassignment to ux0:app/.
 Run only with a reviewed audit report. External paths are relative to ux0:data/.
 """
 import json
+from catalog_schema_v2 import to_v1, to_v2
 import re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
@@ -47,7 +48,7 @@ def main():
     rows={x["id"]:x for x in raw["results"]}
     touched=0;links_done=0;skipped=[]
     for path in sorted((ROOT/"apps").glob("*.json")):
-        app=json.loads(path.read_text(encoding="utf-8"))
+        app=to_v1(json.loads(path.read_text(encoding="utf-8")))
         game_links=[link for link in app.get("links",[]) if link.get("type")=="Game Files"]
         if not game_links:continue
         if all(str(link.get("extract_path","")).startswith("ux0:app/") for link in game_links):
@@ -65,7 +66,7 @@ def main():
                 if "installed_paths" in link:
                     raise RuntimeError("The Drifter must not set installed_paths for its app path")
                 link["extract_path"]="ux0:app/"
-            path.write_text(json.dumps(app,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+            path.write_text(json.dumps(to_v2(app),ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
             touched+=1
             continue
         if id in MAIN_ROOT_OVERRIDES:
@@ -92,7 +93,7 @@ def main():
             elif link["installed_paths"]!=[root]:
                 skipped.append((id,"already has conflicting installed_paths"))
         if changed:
-            path.write_text(json.dumps(app,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+            path.write_text(json.dumps(to_v2(app),ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
             touched+=1
     print(f"UPDATED apps={touched} Game Files links={links_done}")
     print(f"SKIPPED {len(skipped)} apps:")

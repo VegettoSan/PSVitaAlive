@@ -6,6 +6,7 @@ not to links[].extract_path. App folder ZIPs do not use installed_paths.
 No network access, deletion, or generated catalog changes.
 """
 import json
+from catalog_schema_v2 import to_v1
 import sys
 from pathlib import Path
 
@@ -23,7 +24,7 @@ def main():
     shared={}
     drifter=False
     for file in sorted((ROOT/"apps").glob("*.json")):
-        app=json.loads(file.read_text(encoding="utf-8"))
+        app=to_v1(json.loads(file.read_text(encoding="utf-8")))
         game=[l for l in app.get("links",[]) if l.get("type")=="Game Files"]
         if not game:continue
         types=set()

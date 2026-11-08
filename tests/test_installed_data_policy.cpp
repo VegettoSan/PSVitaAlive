@@ -1,5 +1,6 @@
 #include "storage/installed_data_policy.hpp"
 #include "storage/installed_data_manager.hpp"
+#include "ui/game_files_notice_policy.hpp"
 #include "ui/installed_data_texture_policy.hpp"
 #include <cassert>
 #include <string>
@@ -44,6 +45,38 @@ int main() {
     assert(validInstalledChildName(std::string(255, 'A')));
     assert(!safeExternalDataPath("ux0:data/psvitaalive"));
     assert(!safeExternalDataPath("ux0:data/tai"));
+    // Game Files warning only for installed apps with missing, known roots.
+    {
+        using ::psvitaalive::ui::CatalogItem;
+        using ::psvitaalive::ui::CatalogLink;
+        using ::psvitaalive::ui::missingInstalledGameFiles;
+        CatalogItem item;
+        CatalogLink game;
+        game.type = "Game Files";
+        game.installedPaths = {"gtasa", "gtasa_alt"};
+        item.linkDetails.push_back(game);
+        const auto isGame = [](const CatalogLink& l) { return l.type == "Game Files"; };
+        const auto absent = [](const std::string&) { return false; };
+        assert(!missingInstalledGameFiles(item, false, isGame, absent));
+        assert(missingInstalledGameFiles(item, true, isGame, absent));
+        assert(!missingInstalledGameFiles(item, true, isGame,
+            [](const std::string& path) { return path == "ux0:data/gtasa_alt"; }));
+        item.linkDetails[0].installedPaths.clear();
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+        item.linkDetails[0].installedPaths = {"../unsafe"};
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+        item.linkDetails[0].installedPaths = {"gtasa"};
+        CatalogLink unknownMirror;
+        unknownMirror.type = "Game Files";
+        item.linkDetails.push_back(unknownMirror);
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+        item.linkDetails.clear();
+        CatalogLink data;
+        data.type = "Data Files";
+        data.installedPaths = {"gtasa"};
+        item.linkDetails.push_back(data);
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+    }
     // Action buttons are hidden, not merely greyed out. Focus and touch
     // hit-testing use the exact same ordered slot mapping as the renderer.
     assert(installedDataFirstAction(true, false) == 0);
@@ -72,6 +105,16 @@ int main() {
     assert(installedDataMoveAction(0, 1, true, false) == 0);
     assert(installedDataMoveAction(-1, 1, false, true) == 1);
     assert(installedDataMoveAction(-1, 1, false, false) == -1);
+
+    // Copy for APP-only installs must not imply nonexistent data was retained.
+    assert(std::string(installedDataActionNoteKey(0, false)) == "ID_DELETE_APP_ONLY_NOTE");
+    assert(std::string(installedDataActionNoteKey(0, true)) == "ID_DELETE_APP_NOTE");
+    assert(std::string(installedDataActionNoteKey(1, false)) == "ID_DELETE_FILES_NOTE");
+    assert(std::string(installedDataActionNoteKey(2, true)) == "ID_DELETE_ALL_NOTE");
+    assert(std::string(installedDataConfirmImpactKey(0, false)) == "ID_CONFIRM_IMPACT_APP_ONLY");
+    assert(std::string(installedDataConfirmImpactKey(0, true)) == "ID_CONFIRM_IMPACT_APP_KEEP");
+    assert(std::string(installedDataConfirmImpactKey(1, true)) == "ID_CONFIRM_IMPACT_FILES_ONLY");
+    assert(std::string(installedDataConfirmImpactKey(2, true)) == "ID_CONFIRM_IMPACT_ALL");
 
     // GPU icon lifetime: dialog and catalog share the same path/texture.
     // An icon loaded by the dialog but still visible on returning to the

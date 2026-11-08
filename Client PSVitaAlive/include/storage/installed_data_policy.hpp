@@ -78,6 +78,24 @@ inline bool installedDataActiveCollision(const std::string& target,
     return otherInstalled && installedPathsOverlap(target, other);
 }
 
+// UI wording must reflect the observed installed roots, not just the
+// existence of a Game Files link in the catalog. Pure and host-testable.
+inline const char* installedDataActionNoteKey(int action, bool hasExternal) {
+    if (action == 0)
+        return hasExternal ? "ID_DELETE_APP_NOTE" : "ID_DELETE_APP_ONLY_NOTE";
+    if (action == 1) return "ID_DELETE_FILES_NOTE";
+    if (action == 2) return "ID_DELETE_ALL_NOTE";
+    return "ID_UNSAFE";
+}
+inline const char* installedDataConfirmImpactKey(int action, bool hasExternal) {
+    if (action == 0)
+        return hasExternal ? "ID_CONFIRM_IMPACT_APP_KEEP"
+                           : "ID_CONFIRM_IMPACT_APP_ONLY";
+    if (action == 1) return "ID_CONFIRM_IMPACT_FILES_ONLY";
+    if (action == 2) return "ID_CONFIRM_IMPACT_ALL";
+    return "ID_UNSAFE";
+}
+
 // Menu entries use stable action IDs (0 APP, 1 Game Files, 2 both).
 // All input methods and rendering must consult these same predicates.
 inline bool installedDataActionAvailable(int action, bool canApp, bool canData) {

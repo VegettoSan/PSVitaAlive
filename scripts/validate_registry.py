@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+from catalog_schema_v2 import to_v1
 import os
 import subprocess
 import sys
@@ -69,7 +70,8 @@ def get_base_revision():
 
 def load_json_file(path):
     with open(path, "r", encoding="utf-8") as handle:
-        return json.load(handle)
+        data = json.load(handle)
+    return to_v1(data) if Path(path).parent.name in DIRECTORIES else data
 
 
 def load_current_state():
@@ -120,7 +122,7 @@ def load_base_state(revision):
 
         try:
             content = run_git("show", f"{revision}:{relative}")
-            state[parts[0]][relative] = json.loads(content)
+            state[parts[0]][relative] = to_v1(json.loads(content))
         except Exception:
             continue
 
