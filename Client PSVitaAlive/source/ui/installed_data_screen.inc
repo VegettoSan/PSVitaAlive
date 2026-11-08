@@ -15,7 +15,6 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
         app.titleId = item.titleId;
         app.name = item.name;
         app.icon = !item.icon.empty() ? item.icon : item.cover;
-        bool hasGameRoots = false;
         bool missingGameRoot = false;
         bool missingDataRoot = false;
         std::set<std::string> gameVariants;
@@ -49,7 +48,6 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
                 }
                 app.roots.push_back(full);
                 if (game) {
-                    hasGameRoots = true;
                     signatureParts.push_back(full);
                 }
             }
@@ -63,7 +61,10 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
                 gameVariants.insert(signature);
             }
         }
-        if ((missingGameRoot || missingDataRoot) && !hasGameRoots)
+        // Missing metadata on one alternate link does not invalidate a
+        // different, explicitly declared safe root. We delete only the
+        // detected paths, never infer an undocumented directory.
+        if ((missingGameRoot || missingDataRoot) && app.roots.empty())
             app.unresolved = true;
         app.alternateGameRoots = gameVariants.size() > 1;
         // Also include installed Homebrew without Game/Data links. Their
