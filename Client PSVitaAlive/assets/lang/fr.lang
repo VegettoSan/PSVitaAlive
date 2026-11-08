@@ -96,6 +96,7 @@ SECTION_OTHER=OTHER
 META_DOWNLOAD=Download
 META_DATA_FILES=Data Files
 META_GAME_FILES=Game Files
+GAME_FILES_MISSING_NOTICE=Game Files manquants - nécessaires pour jouer
 META_MOD=Mod
 META_DLC=DLC
 META_UPDATE=Update

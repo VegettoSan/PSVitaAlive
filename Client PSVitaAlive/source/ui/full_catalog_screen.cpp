@@ -1,4 +1,5 @@
 #include "ui/full_catalog_screen.hpp"
+#include "ui/game_files_notice_policy.hpp"
 #include "ui/installed_game_index.hpp"
 #include "ui/installed_data_texture_policy.hpp"
 #include "catalog/catalog_trace.hpp"
@@ -3084,6 +3085,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     const uint64_t released=psvitaalive::catalog_trace::nowUs();
     PSVA_TRACE_DURATION("ui_release_textures",traceBegin);
     installStatusCache_.clear();
+    detailGameFilesCheckMs_ = 0;
     allItems_=std::move(items);
     if(state_.catalog==CatalogType::Homebrew && !installedDataVisible_) rebuildInstalledDataCandidates();
     sortItemsByDate(allItems_);
@@ -3124,6 +3126,7 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     const int oldDetailScroll=state_.detailScroll;
     const int oldLinkFocus=state_.linkFocus;
     const bool oldLinkNavigation=state_.linkNavigation;
+    detailGameFilesCheckMs_ = 0;
     // Existing GPU textures stay cached: identical URLs remain visible.
     // prepareVisibleTextures() evicts textures that become off-screen.
     allItems_=std::move(items);
@@ -8330,6 +8333,7 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
 }
 
 void FullCatalogScreen::invalidateInstallStatus(const std::string& titleId) {
+    detailGameFilesCheckMs_ = 0;
     installedGameIndex().invalidate();
     if (titleId.empty()) {
         installStatusCache_.clear();
@@ -8434,6 +8438,28 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
     // caller-owned card/detail clip before returning.
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(clipLeft, clipTop, clipRight, clipBottom);
+}
+
+bool FullCatalogScreen::detailNeedsGameFilesNotice(const CatalogItem& item, bool installed) {
+    if (state_.catalog != CatalogType::Homebrew || item.id.empty() ||
+        catalogLoading_ || installProgressActive_) return false;
+    const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
+    // Selected detail only, with bounded Getstat probes every four seconds.
+    if (detailGameFilesProbeId_ != item.id || detailGameFilesCheckMs_ == 0 ||
+        nowMs < detailGameFilesCheckMs_ ||
+        nowMs - detailGameFilesCheckMs_ >= 4000ULL ||
+        detailGameFilesAppInstalled_ != installed) {
+        detailGameFilesProbeId_ = item.id;
+        detailGameFilesCheckMs_ = nowMs ? nowMs : 1;
+        detailGameFilesAppInstalled_ = installed;
+        detailGameFilesMissing_ = missingInstalledGameFiles(
+            item, installed, isGameFilesTypeLink, [](const std::string& path) {
+                SceIoStat st{};
+                return sceIoGetstat(path.c_str(), &st) >= 0 &&
+                       (st.st_mode & SCE_S_IFDIR) != 0;
+            });
+    }
+    return detailGameFilesMissing_;
 }
 
 void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y,int w,int h,bool focus,int clipL,int clipT,int clipR,int clipB){
@@ -9269,6 +9295,20 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
                             ::psvitaalive::L(::psvitaalive::TextId::RequestData), true,
                             rbx + 4, rby, rbx + rbw - 4, rby + rbh);
         }
+    }
+    if (detailNeedsGameFilesNotice(it, isInstallBadgeState(queryLocalInstall(it)))) {
+        // Subtle bottom strip: keeps name, author, version and buttons free.
+        const int nx = x + 12, ny = y + 89, nw = w - 24, nh = 18;
+        const unsigned warningBg = RGBA8(0x3A, 0x2A, 0x10, 255);
+        const unsigned warningFg = RGBA8(0xFF, 0xC1, 0x55, 255);
+        vita2d_draw_rectangle(nx, ny, nw, nh, warningBg);
+        vita2d_draw_rectangle(nx, ny, 3, nh, warningFg);
+        drawMarqueeText(&font_, nx + 10, ny + 13, nw - 20,
+                        warningFg, 0.58f,
+                        ::psvitaalive::L("GAME_FILES_MISSING_NOTICE"), true,
+                        nx + 7, ny + 1, nx + nw - 8, ny + nh - 1);
+        vita2d_enable_clipping();
+        vita2d_set_clip_rectangle(x, y, x + w, y + h);
     }
     drawDetailContent(it, x, y, w, h);
     // Fade over scrollable body (below header)

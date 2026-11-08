@@ -1,5 +1,6 @@
 #include "storage/installed_data_policy.hpp"
 #include "storage/installed_data_manager.hpp"
+#include "ui/game_files_notice_policy.hpp"
 #include "ui/installed_data_texture_policy.hpp"
 #include <cassert>
 #include <string>
@@ -44,6 +45,38 @@ int main() {
     assert(validInstalledChildName(std::string(255, 'A')));
     assert(!safeExternalDataPath("ux0:data/psvitaalive"));
     assert(!safeExternalDataPath("ux0:data/tai"));
+    // Game Files warning only for installed apps with missing, known roots.
+    {
+        using ::psvitaalive::ui::CatalogItem;
+        using ::psvitaalive::ui::CatalogLink;
+        using ::psvitaalive::ui::missingInstalledGameFiles;
+        CatalogItem item;
+        CatalogLink game;
+        game.type = "Game Files";
+        game.installedPaths = {"gtasa", "gtasa_alt"};
+        item.linkDetails.push_back(game);
+        const auto isGame = [](const CatalogLink& l) { return l.type == "Game Files"; };
+        const auto absent = [](const std::string&) { return false; };
+        assert(!missingInstalledGameFiles(item, false, isGame, absent));
+        assert(missingInstalledGameFiles(item, true, isGame, absent));
+        assert(!missingInstalledGameFiles(item, true, isGame,
+            [](const std::string& path) { return path == "ux0:data/gtasa_alt"; }));
+        item.linkDetails[0].installedPaths.clear();
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+        item.linkDetails[0].installedPaths = {"../unsafe"};
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+        item.linkDetails[0].installedPaths = {"gtasa"};
+        CatalogLink unknownMirror;
+        unknownMirror.type = "Game Files";
+        item.linkDetails.push_back(unknownMirror);
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+        item.linkDetails.clear();
+        CatalogLink data;
+        data.type = "Data Files";
+        data.installedPaths = {"gtasa"};
+        item.linkDetails.push_back(data);
+        assert(!missingInstalledGameFiles(item, true, isGame, absent));
+    }
     // Action buttons are hidden, not merely greyed out. Focus and touch
     // hit-testing use the exact same ordered slot mapping as the renderer.
     assert(installedDataFirstAction(true, false) == 0);

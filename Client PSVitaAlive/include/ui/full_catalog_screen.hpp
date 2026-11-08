@@ -338,6 +338,11 @@ private:
     int detailScrollBeforeLinkMode_ = 0;
     // Snapshot plugin link statuses outside the render loop (indexed by linkDetails).
     std::vector<bool> detailPluginInstalled_;
+    // Selected detail Game Files probe (no per-frame filesystem I/O).
+    std::string detailGameFilesProbeId_;
+    uint64_t detailGameFilesCheckMs_ = 0;
+    bool detailGameFilesAppInstalled_ = false;
+    bool detailGameFilesMissing_ = false;
 
     /** One rendered line of the News modal (Markdown-lite). */
     struct NewsDrawLine {
@@ -421,6 +426,7 @@ private:
     void drawDetailPanel(int x, int y, int width, int height);
     void drawCatalogCard(const CatalogItem& item, int index, int x, int y, int width, int height, bool focused, int clipLeft, int clipTop, int clipRight, int clipBottom);
     LocalInstallInfo queryLocalInstall(const CatalogItem& item);
+    bool detailNeedsGameFilesNotice(const CatalogItem& item, bool installed);
     void invalidateInstallStatus(const std::string& titleId = {});
     void drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact,
                           int clipLeft, int clipTop, int clipRight, int clipBottom);
