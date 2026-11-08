@@ -487,6 +487,10 @@ int main(){
     // VitaShell pattern: remove temporary self-update helper bubble if present.
     psvitaalive::UpdateChecker::cleanupUpdaterBubble();
 
+#if PSVITAALIVE_CATALOG_OFFLINE_TEST
+    // Avoid replacing the experimental VPK with a public release at startup.
+    psvitaalive::diagnostics::log("[V2-OFFLINE-TEST] automatic VPK startup update disabled");
+#else
     if (installer.settings().startupUpdateCheck) {
         psvitaalive::diagnostics::log("[Startup] update check enabled by config");
         psvitaalive::StartupUpdateManager startupUpdate;
@@ -530,6 +534,8 @@ int main(){
     } else {
         psvitaalive::diagnostics::log("[Startup] update check disabled by config");
     }
+
+#endif // PSVITAALIVE_CATALOG_OFFLINE_TEST
 
     psvitaalive::diagnostics::log("[Startup] update phase finished — starting catalogs");
 
