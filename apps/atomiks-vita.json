@@ -1,55 +1,55 @@
 {
   "id": "atomiks-vita",
-  "title_id": "WLOGICAT1",
-  "name": "Atomiks Vita",
-  "description": "Port of Atomiks for PSVita.",
-  "long_description": "Atomiks is a faithful remake of, and a tribute to, Atomix, a classic puzzle game created by Softtouch & RoSt and released in 1990 by the Thalion Software company. Atomiks is free software, and shares no code with the original Atomix game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WLOGICAT1",
+  "n": "Atomiks Vita",
+  "d": "Port of Atomiks for PSVita.",
+  "ld": "Atomiks is a faithful remake of, and a tribute to, Atomix, a classic puzzle game created by Softtouch & RoSt and released in 1990 by the Thalion Software company. Atomiks is free software, and shares no code with the original Atomix game.\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2026-03-14",
-  "requirements": "Not specified",
-  "size": 1815845,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-atomiks-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2026-03-14",
+  "req": "Not specified",
+  "sz": 1815845,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-atomiks-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-atomiks-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-atomiks-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-atomiks-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-atomiks-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-atomiks-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-atomiks-vita/atomiks-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-atomiks-vita/atomiks-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/atomiks-psvita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/atomiks-psvita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/atomiks-psvita/releases/tag/1.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/atomiks-psvita/releases/tag/1.0.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/atomiks-psvita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/withLogic/atomiks-psvita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1371",
-  "source_url": "https://github.com/withLogic/atomiks-psvita",
-  "release_page": "https://github.com/withLogic/atomiks-psvita/releases",
-  "updated_at": "2026-08-13T15:34:48.360748+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1371",
+  "su": "https://github.com/withLogic/atomiks-psvita",
+  "rp": "https://github.com/withLogic/atomiks-psvita/releases",
+  "ua": "2026-08-13T15:34:48.360748+00:00"
 }

@@ -1,49 +1,49 @@
 {
   "id": "resident-evil-degeneration",
-  "title_id": "REDG00001",
-  "name": "Resident Evil Degeneration",
-  "description": "Unofficial PS Vita port of the Android version of Resident Evil Degeneration (Capcom).",
-  "long_description": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES) replaced by Vita code. No game files are included. You need your own copy of the Android APK.",
-  "author_ids": [
+  "tid": "REDG00001",
+  "n": "Resident Evil Degeneration",
+  "d": "Unofficial PS Vita port of the Android version of Resident Evil Degeneration (Capcom).",
+  "ld": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES) replaced by Vita code. No game files are included. You need your own copy of the Android APK.",
+  "aids": [
     "papileno"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-24",
-  "requirements": "- no data",
-  "size": 942797,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-10-24",
+  "req": "- no data",
+  "sz": 942797,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/resident-evil-degeneration-ps-vita/redegeneration%20v1.0.vpk",
-      "size": 942797,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/resident-evil-degeneration-ps-vita/redegeneration%20v1.0.vpk",
+      "sz": 942797,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/resident-evil-degeneration-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 20027802,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/resident-evil-degeneration-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 20027802,
+      "xp": "ux0:data/",
+      "ips": [
         "redegeneration"
       ]
     },
     {
-      "type": "Official Website",
-      "name": "Github",
-      "url": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Degeneration"
+      "t": "Official Website",
+      "n": "Github",
+      "u": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Degeneration"
     }
   ],
-  "icon": "https://archive.org/download/resident-evil-degeneration-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/resident-evil-degeneration-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/resident-evil-degeneration-ps-vita/Shot0.png"
   ]
 }

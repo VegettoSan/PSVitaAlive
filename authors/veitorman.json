@@ -1,15 +1,15 @@
 {
   "id": "veitorman",
-  "name": "veitorman",
-  "avatar": "https://avatars.githubusercontent.com/u/99414483?v=4",
-  "bio": "https://github.com/veitorman",
-  "links": [
+  "n": "veitorman",
+  "av": "https://avatars.githubusercontent.com/u/99414483?v=4",
+  "b": "https://github.com/veitorman",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/veitorman",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/veitorman",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/99414483?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/99414483?v=4"
 }

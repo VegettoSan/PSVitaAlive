@@ -1,46 +1,46 @@
 {
   "id": "omega-strike-vita",
-  "title_id": "OMEGAVITA",
-  "name": "Omega Strike Vita",
-  "description": "Port of Omega Strike for PSVITA.",
-  "long_description": "Omega Strike is a metroidvania game with a vast, open ended world and multiple playable characters. Explore the world, learn new abilities, upgrade your weapons and defeat Doctor Omega and his mutant armies!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OMEGAVITA",
+  "n": "Omega Strike Vita",
+  "d": "Port of Omega Strike for PSVITA.",
+  "ld": "Omega Strike is a metroidvania game with a vast, open ended world and multiple playable characters. Explore the world, learn new abilities, upgrade your weapons and defeat Doctor Omega and his mutant armies!\n\n- PsVitaAlive -",
+  "aids": [
     "elpapadelospollitos"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-05-26",
-  "requirements": "Not specified",
-  "size": 3167033,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-omega-strike-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-05-26",
+  "req": "Not specified",
+  "sz": 3167033,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-omega-strike-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-omega-strike-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-omega-strike-vita/omega-strike-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-omega-strike-vita/omega-strike-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/elpapadelospollitos/Omega-strike-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/elpapadelospollitos/Omega-strike-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/elpapadelospollitos/Omega-strike-vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/elpapadelospollitos/Omega-strike-vita/releases/tag/v1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "827",
-  "source_url": "https://github.com/elpapadelospollitos/Omega-strike-vita",
-  "release_page": "https://github.com/elpapadelospollitos/Omega-strike-vita",
-  "updated_at": "2026-08-13T15:34:48.545597+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "827",
+  "su": "https://github.com/elpapadelospollitos/Omega-strike-vita",
+  "rp": "https://github.com/elpapadelospollitos/Omega-strike-vita",
+  "ua": "2026-08-13T15:34:48.545597+00:00"
 }

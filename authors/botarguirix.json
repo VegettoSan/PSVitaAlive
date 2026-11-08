@@ -1,15 +1,15 @@
 {
   "id": "botarguirix",
-  "name": "Botarguirix",
-  "avatar": "https://avatars.githubusercontent.com/u/332337963?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "Botarguirix",
+  "av": "https://avatars.githubusercontent.com/u/332337963?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Botarguirix",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Botarguirix",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/332337963?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/332337963?v=4"
 }

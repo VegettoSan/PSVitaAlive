@@ -1,45 +1,45 @@
 {
   "id": "behind-every-great-one",
-  "title_id": "BEGO00000",
-  "name": "Behind Every Great One",
-  "description": "Port of Behind Every Great One for PSVITA.",
-  "long_description": "Behind Every Great One is a game made by Deconstructeam for the Ludum Dare 42. The theme of the gamejam was \"Running out of space\". Gabriel is a really driven succesful artist. Victorine doesn't have any personal passions but supports Gabriel as a housewife. They love each other.\nCredits to GrossleyMoo for helping with the port and developing UndertaleModTool. Without his help, a GMS 2 in a Vita would be a dream.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BEGO00000",
+  "n": "Behind Every Great One",
+  "d": "Port of Behind Every Great One for PSVITA.",
+  "ld": "Behind Every Great One is a game made by Deconstructeam for the Ludum Dare 42. The theme of the gamejam was \"Running out of space\". Gabriel is a really driven succesful artist. Victorine doesn't have any personal passions but supports Gabriel as a housewife. They love each other.\nCredits to GrossleyMoo for helping with the port and developing UndertaleModTool. Without his help, a GMS 2 in a Vita would be a dream.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-03-16",
-  "requirements": "Not specified",
-  "size": 25901373,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-behind-every-great-one/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-03-16",
+  "req": "Not specified",
+  "sz": 25901373,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-behind-every-great-one/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-behind-every-great-one/shot_01.png",
     "https://archive.org/download/psvitaalive-behind-every-great-one/shot_02.png",
     "https://archive.org/download/psvitaalive-behind-every-great-one/shot_03.png",
     "https://archive.org/download/psvitaalive-behind-every-great-one/shot_04.png",
     "https://archive.org/download/psvitaalive-behind-every-great-one/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-behind-every-great-one/behind-every-great-one.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-behind-every-great-one/behind-every-great-one.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://deconstructeam.itch.io/behind-every-great-one"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://deconstructeam.itch.io/behind-every-great-one"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "624",
-  "source_url": "https://deconstructeam.itch.io/behind-every-great-one",
-  "release_page": "https://deconstructeam.itch.io/behind-every-great-one",
-  "updated_at": "2026-08-13T15:34:48.592920+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "624",
+  "su": "https://deconstructeam.itch.io/behind-every-great-one",
+  "rp": "https://deconstructeam.itch.io/behind-every-great-one",
+  "ua": "2026-08-13T15:34:48.592920+00:00"
 }

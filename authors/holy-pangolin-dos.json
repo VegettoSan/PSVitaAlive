@@ -1,25 +1,25 @@
 {
   "id": "holy-pangolin-dos",
-  "name": "Holy Pangolin & dos",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "Holy Pangolin & dos",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1447-rukavychka-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VitaHomebrewDB VPK",
+      "u": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1447-rukavychka-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "https://holypangolin.itch.io/rukavychka"
+      "t": "Official Website",
+      "n": "VitaHomebrewDB Release Page",
+      "u": "https://holypangolin.itch.io/rukavychka"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://gitlab.com/HolyPangolin/rukavychka"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://gitlab.com/HolyPangolin/rukavychka"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

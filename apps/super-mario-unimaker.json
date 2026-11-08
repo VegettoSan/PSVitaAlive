@@ -1,55 +1,55 @@
 {
   "id": "super-mario-unimaker",
-  "title_id": "SMUM30622",
-  "name": "Super Mario UniMaker",
-  "description": "Port of Super Mario UniMaker for PSVITA.",
-  "long_description": "Super Mario UniMaker is a fan game of Super Mario Maker that lets you make your own Super Mario levels. You can Create/Play and Modify levels at your will ! Original game by NinStar.\nFor installing custom levels you need to take the '.unis' file and put it in the ux0:app/SMUM30622/games/courses/ folder.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SMUM30622",
+  "n": "Super Mario UniMaker",
+  "d": "Port of Super Mario UniMaker for PSVITA.",
+  "ld": "Super Mario UniMaker is a fan game of Super Mario Maker that lets you make your own Super Mario levels. You can Create/Play and Modify levels at your will ! Original game by NinStar.\nFor installing custom levels you need to take the '.unis' file and put it in the ux0:app/SMUM30622/games/courses/ folder.\n\n- PsVitaAlive -",
+  "aids": [
     "megagameboy"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2.3.4",
-  "version_date": "2023-02-05",
-  "requirements": "Not specified",
-  "size": 294642493,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-mario-unimaker/icon0.png",
-  "screenshots": [
+  "v": "v.1.2.3.4",
+  "vd": "2023-02-05",
+  "req": "Not specified",
+  "sz": 294642493,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-super-mario-unimaker/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-mario-unimaker/shot_01.png",
     "https://archive.org/download/psvitaalive-super-mario-unimaker/shot_02.png",
     "https://archive.org/download/psvitaalive-super-mario-unimaker/shot_03.png",
     "https://archive.org/download/psvitaalive-super-mario-unimaker/shot_04.png",
     "https://archive.org/download/psvitaalive-super-mario-unimaker/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-mario-unimaker/super-mario-unimaker.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-mario-unimaker/super-mario-unimaker.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases/tag/1.2.3.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases/tag/1.2.3.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "832",
-  "source_url": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port",
-  "release_page": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases",
-  "updated_at": "2026-08-13T15:34:48.516027+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "832",
+  "su": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port",
+  "rp": "https://github.com/MEGAgameBoy/Super-Mario-UniMaker-PS-Vita-Port/releases",
+  "ua": "2026-08-13T15:34:48.516027+00:00"
 }

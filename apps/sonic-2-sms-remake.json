@@ -1,45 +1,45 @@
 {
   "id": "sonic-2-sms-remake",
-  "title_id": "SOSR00002",
-  "name": "Sonic 2 SMS Remake",
-  "description": "Port of Sonic 2 SMS Remake for PSVITA.",
-  "long_description": "Sonic 2 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1993. This is an unofficial port, based on version 2.0.C of the game for PC.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SOSR00002",
+  "n": "Sonic 2 SMS Remake",
+  "d": "Port of Sonic 2 SMS Remake for PSVITA.",
+  "ld": "Sonic 2 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1993. This is an unofficial port, based on version 2.0.C of the game for PC.\n\n- PsVitaAlive -",
+  "aids": [
     "mdashk",
     "creative-araya"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.2.9.2",
-  "version_date": "2022-12-01",
-  "requirements": "Not specified",
-  "size": 47985755,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-2-sms-remake/icon0.png",
-  "screenshots": [
+  "v": "v.2.9.2",
+  "vd": "2022-12-01",
+  "req": "Not specified",
+  "sz": 47985755,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-2-sms-remake/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-2-sms-remake/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-2-sms-remake/SOSR00002.VPK",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-2-sms-remake/SOSR00002.VPK",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "738",
-  "source_url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",
-  "release_page": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",
-  "updated_at": "2026-08-13T15:34:48.523481+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "738",
+  "su": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",
+  "rp": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita",
+  "ua": "2026-08-13T15:34:48.523481+00:00"
 }

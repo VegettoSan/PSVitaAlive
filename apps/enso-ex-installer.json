@@ -1,54 +1,54 @@
 {
   "id": "enso-ex-installer",
-  "title_id": "MLCL00003",
-  "name": "enso ex Installer",
-  "description": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65",
-  "long_description": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65\nFeatures:\n - Custom kernel loader\n - Support for unsigned base kernel modules\n - Code execution on the bootloader level\n - SD2VITA and EMMC -based recovery\n - Various tweaks such as custom bootlogo or DevKit VitaTV mode support",
-  "author_ids": [
+  "tid": "MLCL00003",
+  "n": "enso ex Installer",
+  "d": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65",
+  "ld": "Untethered jailbreak and CFW loader for PlayStation Vita/TV units on firmware 3.65\nFeatures:\n - Custom kernel loader\n - Support for unsigned base kernel modules\n - Code execution on the bootloader level\n - SD2VITA and EMMC -based recovery\n - Various tweaks such as custom bootlogo or DevKit VitaTV mode support",
+  "aids": [
     "skgleba",
     "team-molecule",
     "theflow"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.5.0",
-  "version_date": "2023-07-08",
-  "requirements": "Not specified",
-  "size": 84371,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-enso-ex-installer/icon0.png",
-  "screenshots": [
+  "v": "v.5.0",
+  "vd": "2023-07-08",
+  "req": "Not specified",
+  "sz": 84371,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-enso-ex-installer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-enso-ex-installer/shot_01.png",
     "https://archive.org/download/psvitaalive-enso-ex-installer/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-enso-ex-installer/enso-ex-installer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-enso-ex-installer/enso-ex-installer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/enso_ex/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/enso_ex/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/enso_ex/releases/tag/v5.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/enso_ex/releases/tag/v5.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/enso_ex"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SKGleba/enso_ex"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "435",
-  "source_url": "https://github.com/SKGleba/enso_ex",
-  "release_page": "https://github.com/SKGleba/enso_ex/releases",
-  "updated_at": "2026-08-13T15:34:48.489197+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "435",
+  "su": "https://github.com/SKGleba/enso_ex",
+  "rp": "https://github.com/SKGleba/enso_ex/releases",
+  "ua": "2026-08-13T15:34:48.489197+00:00"
 }

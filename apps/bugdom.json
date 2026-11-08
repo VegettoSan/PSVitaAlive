@@ -1,52 +1,52 @@
 {
   "id": "bugdom",
-  "title_id": "BGDM00099",
-  "name": "Bugdom",
-  "description": "Port of Bugdom for the PSVITA.",
-  "long_description": "This is a port of Pangea Software's Bugdom to PlayStation Vita, based on the modern version of Bugdom written by Iliyas Jorio. Bugdom is a 1999 platform video game originally created by Pangea Software for Mac OS 9.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BGDM00099",
+  "n": "Bugdom",
+  "d": "Port of Bugdom for the PSVITA.",
+  "ld": "This is a port of Pangea Software's Bugdom to PlayStation Vita, based on the modern version of Bugdom written by Iliyas Jorio. Bugdom is a 1999 platform video game originally created by Pangea Software for Mac OS 9.\n\n- PsVitaAlive -",
+  "aids": [
     "ywnico"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3.4-vita.1",
-  "version_date": "2025-02-28",
-  "requirements": "- libshacccg.suprx",
-  "size": 50453337,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bugdom/icon0.png",
-  "screenshots": [
+  "v": "v.1.3.4-vita.1",
+  "vd": "2025-02-28",
+  "req": "- libshacccg.suprx",
+  "sz": 50453337,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bugdom/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bugdom/shot_01.png",
     "https://archive.org/download/psvitaalive-bugdom/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bugdom/bugdom.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bugdom/bugdom.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ywnico/bugdom-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ywnico/bugdom-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ywnico/bugdom-vita/releases/tag/1.3.4-vita.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ywnico/bugdom-vita/releases/tag/1.3.4-vita.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ywnico/bugdom-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ywnico/bugdom-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "841",
-  "source_url": "https://github.com/ywnico/bugdom-vita",
-  "release_page": "https://github.com/ywnico/bugdom-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.413290+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "841",
+  "su": "https://github.com/ywnico/bugdom-vita",
+  "rp": "https://github.com/ywnico/bugdom-vita/releases",
+  "ua": "2026-08-13T15:34:48.413290+00:00"
 }

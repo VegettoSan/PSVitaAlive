@@ -1,54 +1,54 @@
 {
   "id": "vitagraphs",
-  "title_id": "AF1A00001",
-  "name": "VitaGraphs",
-  "description": "Simple Graphing Calculator",
-  "long_description": "Simple Graphing Calculator written on lpp-vita",
-  "author_ids": [
+  "tid": "AF1A00001",
+  "n": "VitaGraphs",
+  "d": "Simple Graphing Calculator",
+  "ld": "Simple Graphing Calculator written on lpp-vita",
+  "aids": [
     "creckeryop"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0010",
-  "version_date": "2018-02-06",
-  "requirements": "Not specified",
-  "size": 2143646,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitagraphs/icon0.png",
-  "screenshots": [
+  "v": "v.0010",
+  "vd": "2018-02-06",
+  "req": "Not specified",
+  "sz": 2143646,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitagraphs/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitagraphs/shot_01.png",
     "https://archive.org/download/psvitaalive-vitagraphs/shot_02.png",
     "https://archive.org/download/psvitaalive-vitagraphs/shot_03.png",
     "https://archive.org/download/psvitaalive-vitagraphs/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitagraphs/vitagraphs.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitagraphs/vitagraphs.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/VitaGraphs/releases/tag/0010"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/VitaGraphs/releases/tag/0010"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Creckeryop/VitaGraphs"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Creckeryop/VitaGraphs"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "363",
-  "source_url": "https://github.com/Creckeryop/VitaGraphs",
-  "release_page": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/",
-  "updated_at": "2026-08-13T15:34:48.668998+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "363",
+  "su": "https://github.com/Creckeryop/VitaGraphs",
+  "rp": "http://gbatemp.net/threads/release-vitagraphs-simple-graphing-calculator-for-ps-vita.496111/",
+  "ua": "2026-08-13T15:34:48.668998+00:00"
 }

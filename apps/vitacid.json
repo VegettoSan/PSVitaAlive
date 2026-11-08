@@ -1,51 +1,51 @@
 {
   "id": "vitacid",
-  "title_id": "VCID00001",
-  "name": "VitaCID",
-  "description": "Gets your Vita's CID.",
-  "long_description": "Little application that gives you your PSVITA/PSTV console ID.",
-  "author_ids": [
+  "tid": "VCID00001",
+  "n": "VitaCID",
+  "d": "Gets your Vita's CID.",
+  "ld": "Little application that gives you your PSVITA/PSTV console ID.",
+  "aids": [
     "tomtomdu80"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-08-18",
-  "requirements": "Not specified",
-  "size": 51165,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitacid/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-08-18",
+  "req": "Not specified",
+  "sz": 51165,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitacid/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitacid/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitacid/vitacid.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitacid/vitacid.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MajorTomSec/VitaCID/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MajorTomSec/VitaCID/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/tomtomdu80/VitaCID"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/tomtomdu80/VitaCID"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "148",
-  "source_url": "https://github.com/tomtomdu80/VitaCID",
-  "release_page": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/",
-  "updated_at": "2026-08-13T15:34:48.705148+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "148",
+  "su": "https://github.com/tomtomdu80/VitaCID",
+  "rp": "http://wololo.net/2016/08/18/release-vitacid-get-ps-vita-console-id/",
+  "ua": "2026-08-13T15:34:48.705148+00:00"
 }

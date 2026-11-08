@@ -1,15 +1,15 @@
 {
   "id": "axiom",
-  "name": "Axiom",
-  "avatar": "https://github.com/suicvne.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Axiom",
+  "av": "https://github.com/suicvne.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/suicvne",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/suicvne",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/suicvne.png"
+  "ic": "https://github.com/suicvne.png"
 }

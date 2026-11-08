@@ -1,55 +1,55 @@
 {
   "id": "worminator-3",
-  "title_id": "MEIR00004",
-  "name": "Worminator 3",
-  "description": "Port of Worminator 3 for PSVITA.",
-  "long_description": "Worminator 3 is a sidescrolling action platformer game where you play as The Worminator and fight your way through many levels of madness and mayhem. It features huge levels, two episodes, nine unique weapons, Matrix-style \"bullet time\", hidden locations, multiple difficulties, several other optional characters and many cheats that influence gameplay.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MEIR00004",
+  "n": "Worminator 3",
+  "d": "Port of Worminator 3 for PSVITA.",
+  "ld": "Worminator 3 is a sidescrolling action platformer game where you play as The Worminator and fight your way through many levels of madness and mayhem. It features huge levels, two episodes, nine unique weapons, Matrix-style \"bullet time\", hidden locations, multiple difficulties, several other optional characters and many cheats that influence gameplay.\n\n- PsVitaAlive -",
+  "aids": [
     "ammeir"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-05-08",
-  "requirements": "Not specified",
-  "size": 29017876,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-worminator-3/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-05-08",
+  "req": "Not specified",
+  "sz": 29017876,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-worminator-3/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-worminator-3/shot_01.png",
     "https://archive.org/download/psvitaalive-worminator-3/shot_02.png",
     "https://archive.org/download/psvitaalive-worminator-3/shot_03.png",
     "https://archive.org/download/psvitaalive-worminator-3/shot_04.png",
     "https://archive.org/download/psvitaalive-worminator-3/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-worminator-3/worminator-3.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-worminator-3/worminator-3.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/worminator3/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/worminator3/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ammeir/worminator/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ammeir/worminator/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ammeir/worminator"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ammeir/worminator"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "664",
-  "source_url": "https://github.com/ammeir/worminator",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/worminator3/",
-  "updated_at": "2026-08-13T15:34:48.588257+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "664",
+  "su": "https://github.com/ammeir/worminator",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/worminator3/",
+  "ua": "2026-08-13T15:34:48.588257+00:00"
 }

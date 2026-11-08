@@ -1,52 +1,52 @@
 {
   "id": "vita-smb-client",
-  "title_id": "SMBCLI001",
-  "name": "vita-smb-client",
-  "description": "SMB client for PSVITA.",
-  "long_description": "Simple SMB Client App for Vita for connecting to remote Windows Shares, Linux SMB Shares and NAS SMB shares to transfer files back and forth.",
-  "author_ids": [
+  "tid": "SMBCLI001",
+  "n": "vita-smb-client",
+  "d": "SMB client for PSVITA.",
+  "ld": "Simple SMB Client App for Vita for connecting to remote Windows Shares, Linux SMB Shares and NAS SMB shares to transfer files back and forth.",
+  "aids": [
     "cy33hc"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.02",
-  "version_date": "2023-01-13",
-  "requirements": "- libshacccg.suprx",
-  "size": 1326086,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-smb-client/icon0.png",
-  "screenshots": [
+  "v": "v.1.02",
+  "vd": "2023-01-13",
+  "req": "- libshacccg.suprx",
+  "sz": 1326086,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-smb-client/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-smb-client/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-smb-client/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-smb-client/vita-smb-client.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-smb-client/vita-smb-client.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/cy33hc/vita-smb-client/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/cy33hc/vita-smb-client/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/cy33hc/vita-smb-client/releases/tag/latest"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/cy33hc/vita-smb-client/releases/tag/latest"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cy33hc/vita-smb-client"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/cy33hc/vita-smb-client"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1024",
-  "source_url": "https://github.com/cy33hc/vita-smb-client",
-  "release_page": "https://github.com/cy33hc/vita-smb-client/releases",
-  "updated_at": "2026-08-13T15:34:48.519799+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1024",
+  "su": "https://github.com/cy33hc/vita-smb-client",
+  "rp": "https://github.com/cy33hc/vita-smb-client/releases",
+  "ua": "2026-08-13T15:34:48.519799+00:00"
 }

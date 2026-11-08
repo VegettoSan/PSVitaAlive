@@ -1,45 +1,45 @@
 {
   "id": "wrecking-wave",
-  "title_id": "AGKB22101",
-  "name": "Wrecking Wave",
-  "description": "Action game with physics-based destruction.",
-  "long_description": "Wrecking Wave is an explosive action game with physics-based destruction focused on Challenge and Speedrun modes. Unleash a wave of chaos, smash cities, chase high scores, and stop a mad scientist from polluting your ocean with toxic waste.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "AGKB22101",
+  "n": "Wrecking Wave",
+  "d": "Action game with physics-based destruction.",
+  "ld": "Wrecking Wave is an explosive action game with physics-based destruction focused on Challenge and Speedrun modes. Unleash a wave of chaos, smash cities, chase high scores, and stop a mad scientist from polluting your ocean with toxic waste.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "brunu"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-06-12",
-  "requirements": "Not specified",
-  "size": 28534836,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-wrecking-wave/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-06-12",
+  "req": "Not specified",
+  "sz": 28534836,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-wrecking-wave/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-wrecking-wave/shot_01.png",
     "https://archive.org/download/psvitaalive-wrecking-wave/shot_02.png",
     "https://archive.org/download/psvitaalive-wrecking-wave/shot_03.png",
     "https://archive.org/download/psvitaalive-wrecking-wave/shot_04.png",
     "https://archive.org/download/psvitaalive-wrecking-wave/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-wrecking-wave/wrecking-wave.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-wrecking-wave/wrecking-wave.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://brunu.itch.io/wrecking-wave"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://brunu.itch.io/wrecking-wave"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1412",
-  "source_url": "https://brunu.itch.io/wrecking-wave",
-  "release_page": "https://brunu.itch.io/wrecking-wave",
-  "updated_at": "2026-08-13T15:34:48.340454+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1412",
+  "su": "https://brunu.itch.io/wrecking-wave",
+  "rp": "https://brunu.itch.io/wrecking-wave",
+  "ua": "2026-08-13T15:34:48.340454+00:00"
 }

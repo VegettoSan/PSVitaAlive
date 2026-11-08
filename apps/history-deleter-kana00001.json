@@ -1,36 +1,36 @@
 {
   "id": "history-deleter-kana00001",
-  "title_id": "KANA00001",
-  "name": "History Deleter",
-  "description": "Purge game logs and errors.",
-  "long_description": "Little application that purges game logs and coredumps.",
-  "author_ids": [
+  "tid": "KANA00001",
+  "n": "History Deleter",
+  "d": "Purge game logs and errors.",
+  "ld": "Little application that purges game logs and coredumps.",
+  "aids": [
     "kanadeengel"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.0",
-  "version_date": "2016-12-31",
-  "requirements": "Not specified",
-  "size": 131633,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-history-deleter-kana00001/icon0.png",
-  "screenshots": [
+  "v": "v.2.0",
+  "vd": "2016-12-31",
+  "req": "Not specified",
+  "sz": 131633,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-history-deleter-kana00001/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-history-deleter-kana00001/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-history-deleter-kana00001/history-deleter-kana00001.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-history-deleter-kana00001/history-deleter-kana00001.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "162",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=162",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.233190+00:00"
+  "sn": "VitaDB",
+  "si": "162",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=162",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.233190+00:00"
 }

@@ -1,55 +1,55 @@
 {
   "id": "serious-sam-tfe-vita",
-  "title_id": "SSAM10001",
-  "name": "Serious Sam TFE Vita",
-  "description": "Port of Serious Sam: The First Encounter for PSVita.",
-  "long_description": "Port of Serious Sam: The First Encounter for PSVita based on the opensourced code from Croteam.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SSAM10001",
+  "n": "Serious Sam TFE Vita",
+  "d": "Port of Serious Sam: The First Encounter for PSVita.",
+  "ld": "Port of Serious Sam: The First Encounter for PSVita based on the opensourced code from Croteam.\n\n- PsVitaAlive -",
+  "aids": [
     "fgsfds"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "psvita2",
-  "version_date": "2025-12-17",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 3435049,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/icon0.png",
-  "screenshots": [
+  "v": "psvita2",
+  "vd": "2025-12-17",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 3435049,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/serious-sam-tfe-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-serious-sam-tfe-vita/serious-sam-tfe-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/fgsfdsfgs/Serious-Engine/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/fgsfdsfgs/Serious-Engine/releases/tag/psvita2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/fgsfdsfgs/Serious-Engine/releases/tag/psvita2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1344",
-  "source_url": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita",
-  "release_page": "https://github.com/fgsfdsfgs/Serious-Engine/releases",
-  "updated_at": "2026-08-13T15:34:48.371849+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1344",
+  "su": "https://github.com/fgsfdsfgs/Serious-Engine/tree/psvita",
+  "rp": "https://github.com/fgsfdsfgs/Serious-Engine/releases",
+  "ua": "2026-08-13T15:34:48.371849+00:00"
 }

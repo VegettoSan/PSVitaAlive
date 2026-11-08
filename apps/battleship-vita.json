@@ -1,53 +1,53 @@
 {
   "id": "battleship-vita",
-  "title_id": "SSB64VITA",
-  "name": "Battleship Vita",
-  "description": "Port of Battleship for PSVita.",
-  "long_description": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SSB64VITA",
+  "n": "Battleship Vita",
+  "d": "Port of Battleship for PSVita.",
+  "ld": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.\n\n- PsVitaAlive -",
+  "aids": [
     "robin994"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-31",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 7201620,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0",
+  "vd": "2026-08-31",
+  "req": "- libshacccg.suprx\n- Game Data Files: N64",
+  "sz": 7201620,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-battleship-vita/battleship%20v1.4.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-battleship-vita/battleship%20v1.4.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
-      "size": 12163482,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
+      "sz": 12163482,
+      "xp": "ux0:data/",
+      "ips": [
         "battleship"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/robin994/battleship-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/robin994/battleship-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-battleship-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-battleship-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-battleship-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-battleship-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-battleship-vita/shot_03.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1483",
-  "source_url": "https://github.com/robin994/battleship-vita",
-  "release_page": "https://github.com/robin994/battleship-vita/releases",
-  "updated_at": "2026-08-23T23:03"
+  "sn": "VitaDB",
+  "si": "1483",
+  "su": "https://github.com/robin994/battleship-vita",
+  "rp": "https://github.com/robin994/battleship-vita/releases",
+  "ua": "2026-08-23T23:03"
 }

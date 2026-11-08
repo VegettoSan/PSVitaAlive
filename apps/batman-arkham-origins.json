@@ -1,49 +1,49 @@
 {
   "id": "batman-arkham-origins",
-  "title_id": "BAOR00001",
-  "name": "Batman Arkham Origins",
-  "description": "Arkham Origins mobile on the PS Vita, ported from the Android version.",
-  "long_description": "A port of the Android version of Batman: Arkham Origins (the mobile fighting game) to the PS Vita. It runs the game's original code natively, nothing is emulated.",
-  "author_ids": [
+  "tid": "BAOR00001",
+  "n": "Batman Arkham Origins",
+  "d": "Arkham Origins mobile on the PS Vita, ported from the Android version.",
+  "ld": "A port of the Android version of Batman: Arkham Origins (the mobile fighting game) to the PS Vita. It runs the game's original code natively, nothing is emulated.",
+  "aids": [
     "kiddrwxssj"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "strategy",
     "source-port"
   ],
-  "version": "1.1",
-  "version_date": "2026-11-01",
-  "requirements": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
-  "size": 1258291,
-  "status": "Verified",
-  "links": [
+  "v": "1.1",
+  "vd": "2026-11-01",
+  "req": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
+  "sz": 1258291,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/batman-arkham-origins-ps-vita/batmanarkhamoriginsvita%20v1.1.vpk",
-      "size": 1258291,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/batman-arkham-origins-ps-vita/batmanarkhamoriginsvita%20v1.1.vpk",
+      "sz": 1258291,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 928409190,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/batman-arkham-origins-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 928409190,
+      "xp": "ux0:data/",
+      "ips": [
         "batmanarkhamorigins"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/KiddRwxSsj/batman-aom-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/KiddRwxSsj/batman-aom-vita"
     }
   ],
-  "icon": "https://archive.org/download/batman-arkham-origins-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/batman-arkham-origins-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/batman-arkham-origins-ps-vita/shot0.png",
     "https://archive.org/download/batman-arkham-origins-ps-vita/shot1.png",
     "https://archive.org/download/batman-arkham-origins-ps-vita/shot2.png"

@@ -1,15 +1,15 @@
 {
   "id": "lagaipag",
-  "name": "LaGaipaG",
-  "avatar": "https://github.com/LaGaipaG.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "LaGaipaG",
+  "av": "https://github.com/LaGaipaG.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/LaGaipaG",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/LaGaipaG",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/LaGaipaG.png"
+  "ic": "https://github.com/LaGaipaG.png"
 }

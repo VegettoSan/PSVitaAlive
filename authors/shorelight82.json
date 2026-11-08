@@ -1,15 +1,15 @@
 {
   "id": "shorelight82",
-  "name": "shorelight82",
-  "avatar": "https://avatars.githubusercontent.com/u/295845165?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "shorelight82",
+  "av": "https://avatars.githubusercontent.com/u/295845165?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/shorelight82",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/shorelight82",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/295845165?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/295845165?v=4"
 }

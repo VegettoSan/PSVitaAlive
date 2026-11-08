@@ -1,45 +1,45 @@
 {
   "id": "dream-punk",
-  "title_id": "BKYS00001",
-  "name": "Dream Punk",
-  "description": "Platform game for PSVITA.",
-  "long_description": "In Dream Punk, you are falling, and you can't wake up. Bounce, hookshot, glide and grind through a candy colored world, collecting videotapes for your neighbor. If you can find and ring all the bells, and you wake The Dreamer- what will become of you?\nUnlock abilities and level them up. Are you falling? Or flying?\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BKYS00001",
+  "n": "Dream Punk",
+  "d": "Platform game for PSVITA.",
+  "ld": "In Dream Punk, you are falling, and you can't wake up. Bounce, hookshot, glide and grind through a candy colored world, collecting videotapes for your neighbor. If you can find and ring all the bells, and you wake The Dreamer- what will become of you?\nUnlock abilities and level them up. Are you falling? Or flying?\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "bokoyoss"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2023-09-28",
-  "requirements": "Not specified",
-  "size": 80438565,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dream-punk/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2023-09-28",
+  "req": "Not specified",
+  "sz": 80438565,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dream-punk/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dream-punk/shot_01.png",
     "https://archive.org/download/psvitaalive-dream-punk/shot_02.png",
     "https://archive.org/download/psvitaalive-dream-punk/shot_03.png",
     "https://archive.org/download/psvitaalive-dream-punk/shot_04.png",
     "https://archive.org/download/psvitaalive-dream-punk/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dream-punk/dream-punk.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dream-punk/dream-punk.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/73/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/73/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1151",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/73/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/73/",
-  "updated_at": "2026-08-13T15:34:48.463698+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1151",
+  "su": "https://fuhen.homebrew-contest.com/submissions/73/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/73/",
+  "ua": "2026-08-13T15:34:48.463698+00:00"
 }

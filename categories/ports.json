@@ -1,69 +1,69 @@
 {
   "id": "ports",
-  "name": "Game Ports",
-  "description": "Games, engines and other projects ported to PlayStation Vita.",
-  "icon": "icons/ports.png",
-  "order": 2,
-  "subcategories": [
+  "n": "Game Ports",
+  "d": "Games, engines and other projects ported to PlayStation Vita.",
+  "ic": "icons/ports.png",
+  "ord": 2,
+  "subs": [
     {
       "id": "action",
-      "name": "Action"
+      "n": "Action"
     },
     {
       "id": "adventure",
-      "name": "Adventure"
+      "n": "Adventure"
     },
     {
       "id": "arcade",
-      "name": "Arcade"
+      "n": "Arcade"
     },
     {
       "id": "fps",
-      "name": "FPS"
+      "n": "FPS"
     },
     {
       "id": "platformer",
-      "name": "Platformer"
+      "n": "Platformer"
     },
     {
       "id": "puzzle",
-      "name": "Puzzle"
+      "n": "Puzzle"
     },
     {
       "id": "racing",
-      "name": "Racing"
+      "n": "Racing"
     },
     {
       "id": "rpg",
-      "name": "RPG"
+      "n": "RPG"
     },
     {
       "id": "shooter",
-      "name": "Shooter"
+      "n": "Shooter"
     },
     {
       "id": "simulation",
-      "name": "Simulation"
+      "n": "Simulation"
     },
     {
       "id": "strategy",
-      "name": "Strategy"
+      "n": "Strategy"
     },
     {
       "id": "engine-port",
-      "name": "Engine Port"
+      "n": "Engine Port"
     },
     {
       "id": "source-port",
-      "name": "Source Port"
+      "n": "Source Port"
     },
     {
       "id": "game-engine",
-      "name": "Game Engine"
+      "n": "Game Engine"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

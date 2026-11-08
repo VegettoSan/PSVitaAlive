@@ -1,47 +1,47 @@
 {
   "id": "call-of-mini-zombies",
-  "title_id": "COMZ42069",
-  "name": "Call of Mini Zombies",
-  "description": "Call of Mini Zombies Ps Vita Port",
-  "long_description": "Call of Mini Zombies Ps Vita Port",
-  "author_ids": [
+  "tid": "COMZ42069",
+  "n": "Call of Mini Zombies",
+  "d": "Call of Mini Zombies Ps Vita Port",
+  "ld": "Call of Mini Zombies Ps Vita Port",
+  "aids": [
     "aj170"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "shooter",
     "strategy",
     "source-port"
   ],
-  "version": "1.01",
-  "version_date": "2026-05-11",
-  "requirements": "IMPORTANT:\ncreate a folder called \"comZombiesOffline\" in ux0:data\nshould look like ux0:/data/comZombiesOffline/",
-  "size": 182976512,
-  "status": "Verified",
-  "links": [
+  "v": "1.01",
+  "vd": "2026-05-11",
+  "req": "IMPORTANT:\ncreate a folder called \"comZombiesOffline\" in ux0:data\nshould look like ux0:/data/comZombiesOffline/",
+  "sz": 182976512,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK + Game Files",
-      "url": "https://archive.org/download/call-of-mini-zombies-ps-vita/CoMZombies_v1.01.vpk",
-      "size": 182976512,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/call-of-mini-zombies-ps-vita/CoMZombies_v1.01.vpk",
+      "sz": 182976512,
+      "rec": true
     },
     {
-      "type": "Data Files",
-      "name": "Folder Required",
-      "url": "https://archive.org/download/call-of-mini-zombies-ps-vita/Data%20Files%20for%20PSVA.zip",
-      "size": 432,
-      "extract_path": "ux0:data/"
+      "t": "Data Files",
+      "n": "Folder Required",
+      "u": "https://archive.org/download/call-of-mini-zombies-ps-vita/Data%20Files%20for%20PSVA.zip",
+      "sz": 432,
+      "xp": "ux0:data/"
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/AJ170/COMZombies-PSVita-Port"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/AJ170/COMZombies-PSVita-Port"
     }
   ],
-  "icon": "https://archive.org/download/call-of-mini-zombies-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/call-of-mini-zombies-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/call-of-mini-zombies-ps-vita/shot0.png"
   ]
 }

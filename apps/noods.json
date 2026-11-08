@@ -1,51 +1,51 @@
 {
   "id": "noods",
-  "title_id": "NOODSVITA",
-  "name": "NooDS",
-  "description": "Multiplatform Nintendo DS emulator.",
-  "long_description": "NooDS aims to be a fast and portable Nintendo DS emulator. It's not quite there speed-wise, but it offers most other features that you might expect from a DS emulator. It even supports GBA backwards compatibility!",
-  "author_ids": [
+  "tid": "NOODSVITA",
+  "n": "NooDS",
+  "d": "Multiplatform Nintendo DS emulator.",
+  "ld": "NooDS aims to be a fast and portable Nintendo DS emulator. It's not quite there speed-wise, but it offers most other features that you might expect from a DS emulator. It even supports GBA backwards compatibility!",
+  "aids": [
     "hydr8gon"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "Nightly",
-  "version_date": "2023-06-28",
-  "requirements": "Not specified",
-  "size": 480453,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-noods/icon0.png",
-  "screenshots": [
+  "v": "Nightly",
+  "vd": "2023-06-28",
+  "req": "Not specified",
+  "sz": 480453,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-noods/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-noods/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-noods/noods.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-noods/noods.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Hydr8gon/NooDS/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Hydr8gon/NooDS/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Hydr8gon/NooDS/releases/tag/release"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Hydr8gon/NooDS/releases/tag/release"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Hydr8gon/NooDS"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Hydr8gon/NooDS"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1093",
-  "source_url": "https://github.com/Hydr8gon/NooDS",
-  "release_page": "https://github.com/Hydr8gon/NooDS/releases",
-  "updated_at": "2026-08-13T15:34:48.490564+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1093",
+  "su": "https://github.com/Hydr8gon/NooDS",
+  "rp": "https://github.com/Hydr8gon/NooDS/releases",
+  "ua": "2026-08-13T15:34:48.490564+00:00"
 }

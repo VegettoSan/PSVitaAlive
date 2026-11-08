@@ -1,41 +1,41 @@
 {
   "id": "kogre-s-mountain-kogremoun",
-  "title_id": "KOGREMOUN",
-  "name": "Kogre's Mountain",
-  "description": "Digital board game for PSVITA.",
-  "long_description": "Kogre's Mountain is a wholesome, family-friendly digital board game. The first player to reach the top of the mountain with all four of their knights wins!\nHowever, watch out for falling rocks! If the spinner lands on a gate icon, all the rocks will roll down the mountain- Getting hit by one will send your knight back to the bottom, so strategize by hiding your knights behind obstactles and other players.",
-  "author_ids": [
+  "tid": "KOGREMOUN",
+  "n": "Kogre's Mountain",
+  "d": "Digital board game for PSVITA.",
+  "ld": "Kogre's Mountain is a wholesome, family-friendly digital board game. The first player to reach the top of the mountain with all four of their knights wins!\nHowever, watch out for falling rocks! If the spinner lands on a gate icon, all the rocks will roll down the mountain- Getting hit by one will send your knight back to the bottom, so strategize by hiding your knights behind obstactles and other players.",
+  "aids": [
     "crait"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-06-06",
-  "requirements": "Not specified",
-  "size": 48613219,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-06-06",
+  "req": "Not specified",
+  "sz": 48613219,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/kogre-s-mountain-kogremoun.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-kogre-s-mountain-kogremoun/kogre-s-mountain-kogremoun.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://www.crait.net/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://www.crait.net/"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "557",
-  "source_url": "http://www.crait.net/",
-  "release_page": "http://www.crait.net/",
-  "updated_at": "2026-08-14T01:05:59.219925+00:00"
+  "sn": "VitaDB",
+  "si": "557",
+  "su": "http://www.crait.net/",
+  "rp": "http://www.crait.net/",
+  "ua": "2026-08-14T01:05:59.219925+00:00"
 }

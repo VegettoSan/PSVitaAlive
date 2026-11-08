@@ -1,45 +1,45 @@
 {
   "id": "sonic-1-sms-remake",
-  "title_id": "SOSR00001",
-  "name": "Sonic 1 SMS Remake",
-  "description": "Port of Sonic 1 SMS Remake for PSVITA.",
-  "long_description": "Sonic 1 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1991.\nThis is an official port, based on version 1.9 of the game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SOSR00001",
+  "n": "Sonic 1 SMS Remake",
+  "d": "Port of Sonic 1 SMS Remake for PSVITA.",
+  "ld": "Sonic 1 SMS Remake is a fan game that represents a redesigned version of the Master System game released by SEGA in 1991.\nThis is an official port, based on version 1.9 of the game.\n\n- PsVitaAlive -",
+  "aids": [
     "mdashk",
     "creative-araya"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.9.2",
-  "version_date": "2022-12-01",
-  "requirements": "Not specified",
-  "size": 31781081,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-1-sms-remake/icon0.png",
-  "screenshots": [
+  "v": "v.1.9.2",
+  "vd": "2022-12-01",
+  "req": "Not specified",
+  "sz": 31781081,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-1-sms-remake/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-1-sms-remake/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-1-sms-remake/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-1-sms-remake/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-1-sms-remake/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-1-sms-remake/SOSR00001.VPK",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-1-sms-remake/SOSR00001.VPK",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/MDashK/sonic-1-sms-remake-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "737",
-  "source_url": "https://github.com/MDashK/sonic-1-sms-remake-vita",
-  "release_page": "https://github.com/MDashK/sonic-1-sms-remake-vita",
-  "updated_at": "2026-08-13T15:34:48.523041+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "737",
+  "su": "https://github.com/MDashK/sonic-1-sms-remake-vita",
+  "rp": "https://github.com/MDashK/sonic-1-sms-remake-vita",
+  "ua": "2026-08-13T15:34:48.523041+00:00"
 }

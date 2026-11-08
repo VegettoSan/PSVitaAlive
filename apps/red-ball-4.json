@@ -1,61 +1,61 @@
 {
   "id": "red-ball-4",
-  "title_id": "RDBL40001",
-  "name": "Red Ball 4 PS Vita",
-  "description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.",
-  "long_description": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RDBL40001",
+  "n": "Red Ball 4 PS Vita",
+  "d": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.",
+  "ld": "Unofficial so-loader port of the Android Cocos2d-x build of Red Ball 4.\n\n- PsVitaAlive -",
+  "aids": [
     "clyppe"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer",
     "source-port"
   ],
-  "version": "1.1.1",
-  "version_date": "2026-08-15",
-  "requirements": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
-  "size": 2220000,
-  "status": "Verified",
-  "links": [
+  "v": "1.1.1",
+  "vd": "2026-08-15",
+  "req": "- PS Vita / PSTV with HENkaku / Ensō - kubridge kernel plugin - libshacccg.suprx (e.g. via ShaRKBR33D)",
+  "sz": 2220000,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/rdball4-psvita/RedBall4%201.1.1.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/rdball4-psvita/RedBall4%201.1.1.vpk",
+      "rec": true
     },
     {
-      "type": "Download",
-      "name": "VPK - MediaFire",
-      "url": "https://www.mediafire.com/file/vysylzqwwjwxm9w/RedBall4_1.1.1.vpk/file",
-      "recommended": false
+      "t": "Download",
+      "n": "VPK - MediaFire",
+      "u": "https://www.mediafire.com/file/vysylzqwwjwxm9w/RedBall4_1.1.1.vpk/file",
+      "rec": false
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP - MediaFire",
-      "url": "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
-      "recommended": false,
-      "size": 103300000,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP - MediaFire",
+      "u": "https://www.mediafire.com/file/ukw7oqpeers2ueg/rdball4.zip/file",
+      "rec": false,
+      "sz": 103300000,
+      "xp": "ux0:data/",
+      "ips": [
         "rdball4"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/rdball4-psvita/rdball4.zip",
-      "recommended": false,
-      "size": 103300000,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP",
+      "u": "https://archive.org/download/rdball4-psvita/rdball4.zip",
+      "rec": false,
+      "sz": 103300000,
+      "xp": "ux0:data/",
+      "ips": [
         "rdball4"
       ]
     }
   ],
-  "icon": "https://archive.org/download/rdball4-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/rdball4-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/rdball4-psvita/bg0.png",
     "https://archive.org/download/rdball4-psvita/pic0.png"
   ]

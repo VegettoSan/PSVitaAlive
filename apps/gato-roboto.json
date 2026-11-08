@@ -1,49 +1,49 @@
 {
   "id": "gato-roboto",
-  "title_id": "GATOROBOT",
-  "name": "Gato Roboto",
-  "description": "Port of Gato Roboto for PSVITA.",
-  "long_description": "Patch and install instructions in Release Page (Github). Original game by DoinkSoft. Pounce inside of your cozy armored mech and set off on a dangerous trek through an alien underworld full of irritable creatures and treacherous obstacles in a valiant effort to save your stranded captain and his crashed spaceship.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GATOROBOT",
+  "n": "Gato Roboto",
+  "d": "Port of Gato Roboto for PSVITA.",
+  "ld": "Patch and install instructions in Release Page (Github). Original game by DoinkSoft. Pounce inside of your cozy armored mech and set off on a dangerous trek through an alien underworld full of irritable creatures and treacherous obstacles in a valiant effort to save your stranded captain and his crashed spaceship.\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v1.0.1",
-  "version_date": "2022-01-20",
-  "requirements": "- Game Data Files: PC",
-  "size": 2859705,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gato-roboto/icon0.png",
-  "screenshots": [
+  "v": "v1.0.1",
+  "vd": "2022-01-20",
+  "req": "- Game Data Files: PC",
+  "sz": 2859705,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gato-roboto/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gato-roboto/shot_01.png",
     "https://archive.org/download/psvitaalive-gato-roboto/shot_02.png",
     "https://archive.org/download/psvitaalive-gato-roboto/shot_03.png",
     "https://archive.org/download/psvitaalive-gato-roboto/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gato-roboto/Gato_Roboto_v1.0.0.VPK",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gato-roboto/Gato_Roboto_v1.0.0.VPK",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/m1s3ry/gato-roboto-vita/releases/tag/v1.0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/m1s3ry/gato-roboto-vita/releases/tag/v1.0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/m1s3ry/gato-roboto-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/m1s3ry/gato-roboto-vita"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "779",
-  "source_url": "https://github.com/m1s3ry/gato-roboto-vita",
-  "release_page": "https://github.com/m1s3ry/gato-roboto-vita/releases/tag/v1.0.1",
-  "updated_at": "2026-08-13T15:34:48.558069+00:00"
+  "sn": "NeoVitaDB",
+  "si": "779",
+  "su": "https://github.com/m1s3ry/gato-roboto-vita",
+  "rp": "https://github.com/m1s3ry/gato-roboto-vita/releases/tag/v1.0.1",
+  "ua": "2026-08-13T15:34:48.558069+00:00"
 }

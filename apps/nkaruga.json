@@ -1,50 +1,50 @@
 {
   "id": "nkaruga",
-  "title_id": "NKARUGA01",
-  "name": "nKaruga",
-  "description": "Port of nKaruga for PSVITA.",
-  "long_description": "nKaruga is a demake of the popular bullet hell game Ikaruga, released in 2002 for Dreamcast and 2003 for Gamecube. Ikaruga is a vertical shoot 'em up that features an unique polarity-switching gameplay.\nSwitch the ship's polarity and \"get hit and absorb\" enemy bullets!\nAchieve High Score with the chain bonus!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NKARUGA01",
+  "n": "nKaruga",
+  "d": "Port of nKaruga for PSVITA.",
+  "ld": "nKaruga is a demake of the popular bullet hell game Ikaruga, released in 2002 for Dreamcast and 2003 for Gamecube. Ikaruga is a vertical shoot 'em up that features an unique polarity-switching gameplay.\nSwitch the ship's polarity and \"get hit and absorb\" enemy bullets!\nAchieve High Score with the chain bonus!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-02-25",
-  "requirements": "Not specified",
-  "size": 8285707,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-nkaruga/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-02-25",
+  "req": "Not specified",
+  "sz": 8285707,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-nkaruga/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-nkaruga/shot_01.png",
     "https://archive.org/download/psvitaalive-nkaruga/shot_02.png",
     "https://archive.org/download/psvitaalive-nkaruga/shot_03.png",
     "https://archive.org/download/psvitaalive-nkaruga/shot_04.png",
     "https://archive.org/download/psvitaalive-nkaruga/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-nkaruga/nkaruga.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-nkaruga/nkaruga.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-nkaruga-ikaruga-demake-port-for-psvita.36625/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-nkaruga-ikaruga-demake-port-for-psvita.36625/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/nKaruga"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/nKaruga"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "788",
-  "source_url": "https://github.com/Rinnegatamante/nKaruga",
-  "release_page": "https://www.psx-place.com/threads/release-nkaruga-ikaruga-demake-port-for-psvita.36625/",
-  "updated_at": "2026-08-13T15:34:48.555784+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "788",
+  "su": "https://github.com/Rinnegatamante/nKaruga",
+  "rp": "https://www.psx-place.com/threads/release-nkaruga-ikaruga-demake-port-for-psvita.36625/",
+  "ua": "2026-08-13T15:34:48.555784+00:00"
 }

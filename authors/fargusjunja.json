@@ -1,15 +1,15 @@
 {
   "id": "fargusjunja",
-  "name": "FARGUSJUNJA",
-  "avatar": "https://github.com/rerulon.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "FARGUSJUNJA",
+  "av": "https://github.com/rerulon.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/rerulon",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/rerulon",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/rerulon.png"
+  "ic": "https://github.com/rerulon.png"
 }

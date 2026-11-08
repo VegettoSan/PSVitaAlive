@@ -1,59 +1,59 @@
 {
   "id": "ff4ay-vita",
-  "title_id": "FF4AY0000",
-  "name": "FF4AY-Vita",
-  "description": "Port of Final Fantasy IV: The After Years for PSVITA.",
-  "long_description": "This is a wrapper/port of Final Fantasy IV: The After Years Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FF4AY0000",
+  "n": "FF4AY-Vita",
+  "d": "Port of Final Fantasy IV: The After Years for PSVITA.",
+  "ld": "This is a wrapper/port of Final Fantasy IV: The After Years Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "bythos",
     "frangarcj",
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "rpg",
     "strategy",
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2023-09-05",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 21409825,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0.1",
+  "vd": "2023-09-05",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 21409825,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ff4ay-vita/ff4ay-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ff4ay-vita/ff4ay-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-ff4ay-vita/Game%20Files.zip",
-      "size": 478884659,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-ff4ay-vita/Game%20Files.zip",
+      "sz": 478884659,
+      "xp": "ux0:data/",
+      "ips": [
         "ff4a"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/ff4a_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/ff4a_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-ff4ay-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-ff4ay-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ff4ay-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-ff4ay-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-ff4ay-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-ff4ay-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-ff4ay-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "989",
-  "source_url": "https://github.com/Rinnegatamante/ff4a_vita",
-  "release_page": "https://github.com/Rinnegatamante/ff4a_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "989",
+  "su": "https://github.com/Rinnegatamante/ff4a_vita",
+  "rp": "https://github.com/Rinnegatamante/ff4a_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

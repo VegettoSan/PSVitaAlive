@@ -1,45 +1,45 @@
 {
   "id": "demons-down",
-  "title_id": "WIDE87198",
-  "name": "Demons Down",
-  "description": "First person shooter inspired by Doom.",
-  "long_description": "A first person action shooter inspired by classic old FPSes such as Doom and similars.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "WIDE87198",
+  "n": "Demons Down",
+  "d": "First person shooter inspired by Doom.",
+  "ld": "A first person action shooter inspired by classic old FPSes such as Doom and similars.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "widegcg"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-06-05",
-  "requirements": "Not specified",
-  "size": 47759818,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-demons-down/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-06-05",
+  "req": "Not specified",
+  "sz": 47759818,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-demons-down/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-demons-down/shot_01.png",
     "https://archive.org/download/psvitaalive-demons-down/shot_02.png",
     "https://archive.org/download/psvitaalive-demons-down/shot_03.png",
     "https://archive.org/download/psvitaalive-demons-down/shot_04.png",
     "https://archive.org/download/psvitaalive-demons-down/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-demons-down/demons-down.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-demons-down/demons-down.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "679",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
-  "updated_at": "2026-08-13T15:34:48.582810+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "679",
+  "su": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/demonsdown/",
+  "ua": "2026-08-13T15:34:48.582810+00:00"
 }

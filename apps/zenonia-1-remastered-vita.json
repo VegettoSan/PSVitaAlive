@@ -1,57 +1,57 @@
 {
   "id": "zenonia-1-remastered-vita",
-  "title_id": "ZNNA00002",
-  "name": "Zenonia 1 Remastered Vita",
-  "description": "Port of Zenonia 1 Remastered for PSVita.",
-  "long_description": "ZENONIA 1 is a classic 2D action role-playing game. It follows the journey of a young hero named Regret as he investigates his adoptive father's murder, uncovers a deep conspiracy between rival factions of light and darkness, and fights against the demon god Ladon.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ZNNA00002",
+  "n": "Zenonia 1 Remastered Vita",
+  "d": "Port of Zenonia 1 Remastered for PSVita.",
+  "ld": "ZENONIA 1 is a classic 2D action role-playing game. It follows the journey of a young hero named Regret as he investigates his adoptive father's murder, uncovers a deep conspiracy between rival factions of light and darkness, and fights against the demon god Ladon.\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "arcade",
     "rpg",
     "strategy",
     "other"
   ],
-  "version": "v.0.1.1",
-  "version_date": "2026-08-19",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2567963,
-  "status": "Legacy",
-  "links": [
+  "v": "v.0.1.1",
+  "vd": "2026-08-19",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2567963,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/zenonia-1-remastered-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/zenonia-1-remastered-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/Game%20Files.zip",
-      "size": 15099494,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/Game%20Files.zip",
+      "sz": 15099494,
+      "xp": "ux0:data/",
+      "ips": [
         "zenonia1"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/zenonia1-remaster-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/withLogic/zenonia1-remaster-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-zenonia-1-remastered-vita/shot_03.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1471",
-  "source_url": "https://github.com/withLogic/zenonia1-remaster-vita",
-  "release_page": "https://github.com/withLogic/zenonia1-remaster-vita/releases",
-  "updated_at": "2026-08-18T21:51"
+  "sn": "VitaDB",
+  "si": "1471",
+  "su": "https://github.com/withLogic/zenonia1-remaster-vita",
+  "rp": "https://github.com/withLogic/zenonia1-remaster-vita/releases",
+  "ua": "2026-08-18T21:51"
 }

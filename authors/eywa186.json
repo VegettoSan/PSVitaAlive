@@ -1,15 +1,15 @@
 {
   "id": "eywa186",
-  "name": "Eywa186",
-  "avatar": "https://github.com/Eywa186.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Eywa186",
+  "av": "https://github.com/Eywa186.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Eywa186",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Eywa186",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Eywa186.png"
+  "ic": "https://github.com/Eywa186.png"
 }

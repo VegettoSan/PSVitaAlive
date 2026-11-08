@@ -1,15 +1,15 @@
 {
   "id": "jtothebell",
-  "name": "jtothebell",
-  "avatar": "https://github.com/jtothebell.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "jtothebell",
+  "av": "https://github.com/jtothebell.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/jtothebell",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/jtothebell",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/jtothebell.png"
+  "ic": "https://github.com/jtothebell.png"
 }

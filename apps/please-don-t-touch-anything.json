@@ -1,45 +1,45 @@
 {
   "id": "please-don-t-touch-anything",
-  "title_id": "PDTA10721",
-  "name": "Please, Don't Touch Anything",
-  "description": "Port of Please, Don't Touch Anything for PSVITA.",
-  "long_description": "Please, Don't Touch Anything is a cryptic, brain-racking button-pushing simulation.\nCovering for a colleague who is taking a bathroom break, you find yourself in front of a mysterious panel which only component is a red button. And since you've clearly been instructed not to touch anything, the only thing you want to do now is push that damn button.\nPush it and expect to be held liable for any unintended aftermath. And there will be many. Credits to m1s3ry, Grossleymoo, Four Quarters Team and ForwardXP.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PDTA10721",
+  "n": "Please, Don't Touch Anything",
+  "d": "Port of Please, Don't Touch Anything for PSVITA.",
+  "ld": "Please, Don't Touch Anything is a cryptic, brain-racking button-pushing simulation.\nCovering for a colleague who is taking a bathroom break, you find yourself in front of a mysterious panel which only component is a red button. And since you've clearly been instructed not to touch anything, the only thing you want to do now is push that damn button.\nPush it and expect to be held liable for any unintended aftermath. And there will be many. Credits to m1s3ry, Grossleymoo, Four Quarters Team and ForwardXP.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.07",
-  "version_date": "2021-04-08",
-  "requirements": "- Game Data Files: Android OR PC",
-  "size": 2938656,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-please-don-t-touch-anything/icon0.png",
-  "screenshots": [
+  "v": "v.1.07",
+  "vd": "2021-04-08",
+  "req": "- Game Data Files: Android OR PC",
+  "sz": 2938656,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-please-don-t-touch-anything/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-please-don-t-touch-anything/shot_01.png",
     "https://archive.org/download/psvitaalive-please-don-t-touch-anything/shot_02.png",
     "https://archive.org/download/psvitaalive-please-don-t-touch-anything/shot_03.png",
     "https://archive.org/download/psvitaalive-please-don-t-touch-anything/shot_04.png",
     "https://archive.org/download/psvitaalive-please-don-t-touch-anything/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-please-don-t-touch-anything/please-don-t-touch-anything.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-please-don-t-touch-anything/please-don-t-touch-anything.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/GMSVitaPortInstructions"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "640",
-  "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "updated_at": "2026-08-13T15:34:48.590550+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "640",
+  "su": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "rp": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "ua": "2026-08-13T15:34:48.590550+00:00"
 }

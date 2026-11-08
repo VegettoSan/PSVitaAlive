@@ -1,51 +1,51 @@
 {
   "id": "bad-piggies",
-  "title_id": "BPGS20201",
-  "name": "Bad Piggies",
-  "description": "Port of Bad Piggies for PSVITA/PSTV.",
-  "long_description": "Port of Bad Piggies for PSVITA/PSTV.\nBad Piggies is a puzzle video game developed by Rovio Entertainment, and was the company's first spin-off of Angry Birds.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BPGS20201",
+  "n": "Bad Piggies",
+  "d": "Port of Bad Piggies for PSVITA/PSTV.",
+  "ld": "Port of Bad Piggies for PSVITA/PSTV.\nBad Piggies is a puzzle video game developed by Rovio Entertainment, and was the company's first spin-off of Angry Birds.\n\n- PsVitaAlive -",
+  "aids": [
     "mrdivdiz"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2021-08-02",
-  "requirements": "Not specified",
-  "size": 77837069,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bad-piggies/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2021-08-02",
+  "req": "Not specified",
+  "sz": 77837069,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bad-piggies/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bad-piggies/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bad-piggies/bad-piggies.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bad-piggies/bad-piggies.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/mrdivdiz/bpvita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/mrdivdiz/bpvita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/mrdivdiz/bpvita/releases/tag/1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/mrdivdiz/bpvita/releases/tag/1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/mrdivdiz/bpvita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/mrdivdiz/bpvita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "633",
-  "source_url": "https://github.com/mrdivdiz/bpvita",
-  "release_page": "https://github.com/mrdivdiz/bpvita/releases",
-  "updated_at": "2026-08-13T15:34:48.575578+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "633",
+  "su": "https://github.com/mrdivdiz/bpvita",
+  "rp": "https://github.com/mrdivdiz/bpvita/releases",
+  "ua": "2026-08-13T15:34:48.575578+00:00"
 }

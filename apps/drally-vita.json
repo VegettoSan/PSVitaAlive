@@ -1,51 +1,51 @@
 {
   "id": "drally-vita",
-  "title_id": "DERA00002",
-  "name": "dRally Vita",
-  "description": "Port of Death Rally for PSVITA.",
-  "long_description": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DERA00002",
+  "n": "dRally Vita",
+  "d": "Port of Death Rally for PSVITA.",
+  "ld": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.\n\n- PsVitaAlive -",
+  "aids": [
     "enrique-somolinos-perez"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2.1",
-  "version_date": "2022-05-18",
-  "requirements": "Not specified",
-  "size": 1830404,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-drally-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.2.1",
+  "vd": "2022-05-18",
+  "req": "Not specified",
+  "sz": 1830404,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-drally-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-drally-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-drally-vita/drally-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-drally-vita/drally-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/enriquesomolinos/dRally-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/enriquesomolinos/dRally-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/enriquesomolinos/dRally-vita/releases/tag/v0.2.1-vita"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/enriquesomolinos/dRally-vita/releases/tag/v0.2.1-vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "823",
-  "source_url": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita",
-  "release_page": "https://github.com/enriquesomolinos/dRally-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.546146+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "823",
+  "su": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita",
+  "rp": "https://github.com/enriquesomolinos/dRally-vita/releases",
+  "ua": "2026-08-13T15:34:48.546146+00:00"
 }

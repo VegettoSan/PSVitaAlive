@@ -1,50 +1,50 @@
 {
   "id": "a-bite-at-freddy-s-vita",
-  "title_id": "ABAF00011",
-  "name": "A Bite at Freddy's Vita",
-  "description": "Port of A Bite at Freddy's for PSVita.",
-  "long_description": "A Bite at Freddy's is a bite-sized Five Nights at Freddy's experience. Fnaf style. reddy Fazbear's Grill needs your help to test and repair the Freddy Fast-Food Delivery machine! Work alongside the restaurant manager to ensure food orders can be delivered from kitchen to customer without issue.\nComplete orders, repairs, and challenges!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ABAF00011",
+  "n": "A Bite at Freddy's Vita",
+  "d": "Port of A Bite at Freddy's for PSVita.",
+  "ld": "A Bite at Freddy's is a bite-sized Five Nights at Freddy's experience. Fnaf style. reddy Fazbear's Grill needs your help to test and repair the Freddy Fast-Food Delivery machine! Work alongside the restaurant manager to ensure food orders can be delivered from kitchen to customer without issue.\nComplete orders, repairs, and challenges!\n\n- PsVitaAlive -",
+  "aids": [
     "rocroverss"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2026-06-15",
-  "requirements": "- Game Data Files: PC",
-  "size": 15656987,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2026-06-15",
+  "req": "- Game Data Files: PC",
+  "sz": 15656987,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/a-bite-at-freddy-s-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-a-bite-at-freddy-s-vita/a-bite-at-freddy-s-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita/releases/tag/V1.01"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita/releases/tag/V1.01"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1413",
-  "source_url": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
-  "release_page": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
-  "updated_at": "2026-08-13T15:34:48.339678+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1413",
+  "su": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
+  "rp": "https://github.com/Rocroverss/A-Bite-at-Freddy-s-psvita",
+  "ua": "2026-08-13T15:34:48.339678+00:00"
 }

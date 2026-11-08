@@ -1,15 +1,15 @@
 {
   "id": "then00p",
-  "name": "THEN00P",
-  "avatar": "https://github.com/THEN00P.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "THEN00P",
+  "av": "https://github.com/THEN00P.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/THEN00P",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/THEN00P",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/THEN00P.png"
+  "ic": "https://github.com/THEN00P.png"
 }

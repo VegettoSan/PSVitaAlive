@@ -1,58 +1,58 @@
 {
   "id": "ship-of-harkinian-vita",
-  "title_id": "SHIPOFHAR",
-  "name": "Ship of Harkinian Vita",
-  "description": "Port of Ship of Harkinian for PSVita.",
-  "long_description": "Ship of Harkinian is a sourceport of The Legend of Zelda: Ocarina of Time based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on a custom old version (more or less Khan Charlie (6.1.2)).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SHIPOFHAR",
+  "n": "Ship of Harkinian Vita",
+  "d": "Port of Ship of Harkinian for PSVita.",
+  "ld": "Ship of Harkinian is a sourceport of The Legend of Zelda: Ocarina of Time based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on a custom old version (more or less Khan Charlie (6.1.2)).\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "platformer",
     "puzzle",
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2026-03-27",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 12732858,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.2",
+  "vd": "2026-03-27",
+  "req": "- libshacccg.suprx\n- Game Data Files: N64",
+  "sz": 12732858,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/ship-of-harkinian-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/ship-of-harkinian-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/Game%20Files.zip",
-      "size": 27158118,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/Game%20Files.zip",
+      "sz": 27158118,
+      "xp": "ux0:data/",
+      "ips": [
         "soh"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Shipwright"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Shipwright"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-ship-of-harkinian-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1276",
-  "source_url": "https://github.com/Rinnegatamante/Shipwright",
-  "release_page": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1276",
+  "su": "https://github.com/Rinnegatamante/Shipwright",
+  "rp": "https://www.psx-place.com/threads/release-ship-of-harkinian-vita.47750/",
+  "ua": "2026-08-13T15:34"
 }

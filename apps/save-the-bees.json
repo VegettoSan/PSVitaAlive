@@ -1,49 +1,49 @@
 {
   "id": "save-the-bees",
-  "title_id": "STBB00002",
-  "name": "Save The Bees",
-  "description": "Small puzzle game for PSVITA.",
-  "long_description": "Small puzzle game for PSVITA. The game only has 7 small levels as it was a learning project.",
-  "author_ids": [
+  "tid": "STBB00002",
+  "n": "Save The Bees",
+  "d": "Small puzzle game for PSVITA.",
+  "ld": "Small puzzle game for PSVITA. The game only has 7 small levels as it was a learning project.",
+  "aids": [
     "nathankewley"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "puzzle"
   ],
-  "version": "R1",
-  "version_date": "2024-08-19",
-  "requirements": "Not specified",
-  "size": 18663017,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-save-the-bees/icon0.png",
-  "screenshots": [
+  "v": "R1",
+  "vd": "2024-08-19",
+  "req": "Not specified",
+  "sz": 18663017,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-save-the-bees/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-save-the-bees/shot_01.png",
     "https://archive.org/download/psvitaalive-save-the-bees/shot_02.png",
     "https://archive.org/download/psvitaalive-save-the-bees/shot_03.png",
     "https://archive.org/download/psvitaalive-save-the-bees/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-save-the-bees/save-the-bees.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-save-the-bees/save-the-bees.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/NathanKewley/godot_save_the_bees/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/NathanKewley/godot_save_the_bees/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1230",
-  "source_url": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita",
-  "release_page": "https://github.com/NathanKewley/godot_save_the_bees/releases",
-  "updated_at": "2026-08-13T15:34:48.432801+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1230",
+  "su": "https://github.com/NathanKewley/godot_save_the_bees/tree/port/psp-vita",
+  "rp": "https://github.com/NathanKewley/godot_save_the_bees/releases",
+  "ua": "2026-08-13T15:34:48.432801+00:00"
 }

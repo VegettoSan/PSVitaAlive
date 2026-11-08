@@ -1,51 +1,51 @@
 {
   "id": "gangstar-miami-vindication",
-  "title_id": "PSVGMV002",
-  "name": "Gangstar Miami Vindication",
-  "description": "Android to PS Vita port of Gameloft's Gangstar Miami Vindication",
-  "long_description": "Gangstar Miami Vindication is Gameloft's open-world action game, originally released for Android as Gangstar-Miami-Vindication-HD.apk. This port runs the compiled native library (libGangster2.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend. The .so has no JNI_OnLoad/RegisterNatives — every JNI entry point is resolved by symbol name and invoked by hand, following the exact lifecycle order of the real Android Activity/Renderer.",
-  "author_ids": [
+  "tid": "PSVGMV002",
+  "n": "Gangstar Miami Vindication",
+  "d": "Android to PS Vita port of Gameloft's Gangstar Miami Vindication",
+  "ld": "Gangstar Miami Vindication is Gameloft's open-world action game, originally released for Android as Gangstar-Miami-Vindication-HD.apk. This port runs the compiled native library (libGangster2.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend. The .so has no JNI_OnLoad/RegisterNatives — every JNI entry point is resolved by symbol name and invoked by hand, following the exact lifecycle order of the real Android Activity/Renderer.",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "simulation",
     "strategy",
     "source-port"
   ],
-  "version": "0.2.0",
-  "version_date": "2026-09-27",
-  "requirements": "- A PS Vita running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Gangstar Miami Vindication HD (Gangstar-Miami-Vindication-HD.apk, package com.gameloft.android.TBFV.GloftGMHP.ML).",
-  "size": 2411725,
-  "status": "Verified",
-  "links": [
+  "v": "0.2.0",
+  "vd": "2026-09-27",
+  "req": "- A PS Vita running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Gangstar Miami Vindication HD (Gangstar-Miami-Vindication-HD.apk, package com.gameloft.android.TBFV.GloftGMHP.ML).",
+  "sz": 2411725,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/gangstarmiamivindication%20v0.2.0.vpk",
-      "size": 2411725,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/gangstarmiamivindication%20v0.2.0.vpk",
+      "sz": 2411725,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-      "size": 427609293,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 427609293,
+      "xp": "ux0:data/",
+      "ips": [
         "gangstarmiamivindication"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita"
     }
   ],
-  "icon": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/shot0.png"
   ]
 }

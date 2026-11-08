@@ -1,44 +1,44 @@
 {
   "id": "fnaf-world-psvita-demake-gdot00083",
-  "title_id": "GDOT00083",
-  "name": "FNaF World PSVita Demake",
-  "description": "Demake of FNaF World for PSVITA.",
-  "long_description": "FNaF World PSVita Demake is a demake of the original FNaF World consisting of over 80% of the features cut like: character unlocks, Glitch areas, character dialogs, multiple endings ect. This game should be stable but unless there are extremly game breaking glitches the bugs wont be fixed.",
-  "author_ids": [
+  "tid": "GDOT00083",
+  "n": "FNaF World PSVita Demake",
+  "d": "Demake of FNaF World for PSVITA.",
+  "ld": "FNaF World PSVita Demake is a demake of the original FNaF World consisting of over 80% of the features cut like: character unlocks, Glitch areas, character dialogs, multiple endings ect. This game should be stable but unless there are extremly game breaking glitches the bugs wont be fixed.",
+  "aids": [
     "oldsport099"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-05-29",
-  "requirements": "Not specified",
-  "size": 40753318,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-05-29",
+  "req": "Not specified",
+  "sz": 40753318,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_01.png",
     "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_02.png",
     "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_03.png",
     "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/fnaf-world-psvita-demake-gdot00083.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fnaf-world-psvita-demake-gdot00083/fnaf-world-psvita-demake-gdot00083.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gamejolt.com/games/FWpsVita/996208"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gamejolt.com/games/FWpsVita/996208"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1274",
-  "source_url": "https://gamejolt.com/games/FWpsVita/996208",
-  "release_page": "https://gamejolt.com/games/FWpsVita/996208",
-  "updated_at": "2026-08-14T01:05:59.212463+00:00"
+  "sn": "VitaDB",
+  "si": "1274",
+  "su": "https://gamejolt.com/games/FWpsVita/996208",
+  "rp": "https://gamejolt.com/games/FWpsVita/996208",
+  "ua": "2026-08-14T01:05:59.212463+00:00"
 }

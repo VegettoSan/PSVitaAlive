@@ -1,50 +1,50 @@
 {
   "id": "pikuniku-vita",
-  "title_id": "PIKU12345",
-  "name": "Pikuniku Vita",
-  "description": "Port of Pikuniku for PSVita.",
-  "long_description": "Pikuniku is an absurdly wonderful puzzle-exploration game that takes place in a strange but playful world where not everything is as happy as it seems.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PIKU12345",
+  "n": "Pikuniku Vita",
+  "d": "Port of Pikuniku for PSVita.",
+  "ld": "Pikuniku is an absurdly wonderful puzzle-exploration game that takes place in a strange but playful world where not everything is as happy as it seems.\n\n- PsVitaAlive -",
+  "aids": [
     "gl00mm"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2025-07-02",
-  "requirements": "- Game Data Files: PC",
-  "size": 14955745,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pikuniku-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2025-07-02",
+  "req": "- Game Data Files: PC",
+  "sz": 14955745,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pikuniku-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pikuniku-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-pikuniku-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-pikuniku-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-pikuniku-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-pikuniku-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pikuniku-vita/pikuniku-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pikuniku-vita/pikuniku-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/gl00mm/Pikuniku_PSVITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/gl00mm/Pikuniku_PSVITA"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/gl00mm/Pikuniku_PSVITA/releases/tag/Pikuniku_PSVITA-v1.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/gl00mm/Pikuniku_PSVITA/releases/tag/Pikuniku_PSVITA-v1.00"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1278",
-  "source_url": "https://github.com/gl00mm/Pikuniku_PSVITA",
-  "release_page": "https://github.com/gl00mm/Pikuniku_PSVITA",
-  "updated_at": "2026-08-13T15:34:48.404119+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1278",
+  "su": "https://github.com/gl00mm/Pikuniku_PSVITA",
+  "rp": "https://github.com/gl00mm/Pikuniku_PSVITA",
+  "ua": "2026-08-13T15:34:48.404119+00:00"
 }

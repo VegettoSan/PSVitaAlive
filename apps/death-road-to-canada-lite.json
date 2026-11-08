@@ -1,57 +1,57 @@
 {
   "id": "death-road-to-canada-lite",
-  "title_id": "DRTCANADA",
-  "name": "Death Road to Canada Lite",
-  "description": "Port of Death Road to Canada for PSVITA.",
-  "long_description": "This is a wrapper/port of Death Road to Canada for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.\nThis release is bundled with a mod made by CatoTheYounger to reduce workload of game maps in order to make the game playable on Vita hardware (Thus why the release is named Lite).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DRTCANADA",
+  "n": "Death Road to Canada Lite",
+  "d": "Port of Death Road to Canada for PSVITA.",
+  "ld": "This is a wrapper/port of Death Road to Canada for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as it is.\nThis release is bundled with a mod made by CatoTheYounger to reduce workload of game maps in order to make the game playable on Vita hardware (Thus why the release is named Lite).\n\n- PsVitaAlive -",
+  "aids": [
     "bythos",
     "rinnegatamante",
     "catotheyounger"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-07-29",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 2399930,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-death-road-to-canada-lite/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-07-29",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 2399930,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-death-road-to-canada-lite/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-death-road-to-canada-lite/shot_01.png",
     "https://archive.org/download/psvitaalive-death-road-to-canada-lite/shot_02.png",
     "https://archive.org/download/psvitaalive-death-road-to-canada-lite/shot_03.png",
     "https://archive.org/download/psvitaalive-death-road-to-canada-lite/shot_04.png",
     "https://archive.org/download/psvitaalive-death-road-to-canada-lite/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-death-road-to-canada-lite/death-road-to-canada-lite.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-death-road-to-canada-lite/death-road-to-canada-lite.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "846",
-  "source_url": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite",
-  "release_page": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases",
-  "updated_at": "2026-08-13T15:34:48.539256+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "846",
+  "su": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite",
+  "rp": "https://github.com/Rinnegatamante/Death-Road-to-Canada-Lite/releases",
+  "ua": "2026-08-13T15:34:48.539256+00:00"
 }

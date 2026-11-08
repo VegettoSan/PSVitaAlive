@@ -1,37 +1,37 @@
 {
   "id": "vitabooks",
-  "title_id": "VITABOOKS",
-  "name": "VitaBooks",
-  "description": "Manual reader for PSVITA.",
-  "long_description": "VitaBooks is a manual/books reader in PNG format.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VITABOOKS",
+  "n": "VitaBooks",
+  "d": "Manual reader for PSVITA.",
+  "ld": "VitaBooks is a manual/books reader in PNG format.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "benmitnick"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-06-15",
-  "requirements": "Not specified",
-  "size": 2140210,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitabooks/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-06-15",
+  "req": "Not specified",
+  "sz": 2140210,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitabooks/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitabooks/shot_01.png",
     "https://archive.org/download/psvitaalive-vitabooks/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitabooks/vitabooks.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitabooks/vitabooks.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "274",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/274-VitaBooks.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.681995+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "274",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/274-VitaBooks.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.681995+00:00"
 }

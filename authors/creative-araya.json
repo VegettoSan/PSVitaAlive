@@ -1,15 +1,15 @@
 {
   "id": "creative-araya",
-  "name": "Creative Araya",
-  "avatar": "https://github.com/MDashK.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "Creative Araya",
+  "av": "https://github.com/MDashK.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/MDashK",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/MDashK",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/MDashK.png"
+  "ic": "https://github.com/MDashK.png"
 }

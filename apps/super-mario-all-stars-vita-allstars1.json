@@ -1,62 +1,62 @@
 {
   "id": "super-mario-all-stars-vita-allstars1",
-  "title_id": "ALLSTARS1",
-  "name": "Super Mario All-Stars Vita",
-  "description": "Port of Super Mario All-Stars + World for PSVita.",
-  "long_description": "Super Mario All-Stars Vita is a port of smw, a reimplementation of Super Mario World with several enhancements with experimental support for Super Mario All-Stars (Super Mario Bros 1 and Super Mario Bros: Lost Levels).\nThis release acts as an improvement of my previous Super Mario World port, bringing fixes (eg. the tunnels bug is fixed), support for SMB1 and SMB:LL, integer scaling option (IntegerScaling in the ini file), and more.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ALLSTARS1",
+  "n": "Super Mario All-Stars Vita",
+  "d": "Port of Super Mario All-Stars + World for PSVita.",
+  "ld": "Super Mario All-Stars Vita is a port of smw, a reimplementation of Super Mario World with several enhancements with experimental support for Super Mario All-Stars (Super Mario Bros 1 and Super Mario Bros: Lost Levels).\nThis release acts as an improvement of my previous Super Mario World port, bringing fixes (eg. the tunnels bug is fixed), support for SMB1 and SMB:LL, integer scaling option (IntegerScaling in the ini file), and more.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer",
     "puzzle",
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-07-15",
-  "requirements": "- Game Data Files: SNES",
-  "size": 1918894,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0",
+  "vd": "2025-07-15",
+  "req": "- Game Data Files: SNES",
+  "sz": 1918894,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/super-mario-all-stars-vita-allstars1.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/super-mario-all-stars-vita-allstars1.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
-      "size": 1887437,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/smworld%20Game%20Files.zip",
+      "sz": 1887437,
+      "xp": "ux0:data/",
+      "ips": [
         "smworld"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/smw"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/smw"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_01.png",
     "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_02.png",
     "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_03.png",
     "https://archive.org/download/psvitaalive-super-mario-all-stars-vita-allstars1/shot_04.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1280",
-  "source_url": "https://github.com/Rinnegatamante/smw",
-  "release_page": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/",
-  "updated_at": "2026-08-14T01:05"
+  "sn": "VitaDB",
+  "si": "1280",
+  "su": "https://github.com/Rinnegatamante/smw",
+  "rp": "https://www.psx-place.com/threads/release-super-mario-all-stars-vita.47994/",
+  "ua": "2026-08-14T01:05"
 }

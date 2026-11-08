@@ -1,25 +1,25 @@
 {
   "id": "primer0-ruben_wolfe",
-  "name": "Primer0 & Ruben_Wolfe",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "Primer0 & Ruben_Wolfe",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/91-Procedural_Planets.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VitaHomebrewDB VPK",
+      "u": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/91-Procedural_Planets.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "http://wololo.net/talk/viewtopic.php?p=406861"
+      "t": "Official Website",
+      "n": "VitaHomebrewDB Release Page",
+      "u": "http://wololo.net/talk/viewtopic.php?p=406861"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

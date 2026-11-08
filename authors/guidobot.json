@@ -1,15 +1,15 @@
 {
   "id": "guidobot",
-  "name": "GUIDOBOT",
-  "avatar": "https://github.com/GUIDOBOT.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "GUIDOBOT",
+  "av": "https://github.com/GUIDOBOT.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/GUIDOBOT",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/GUIDOBOT",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/GUIDOBOT.png"
+  "ic": "https://github.com/GUIDOBOT.png"
 }

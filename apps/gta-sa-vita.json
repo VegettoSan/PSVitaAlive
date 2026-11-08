@@ -1,57 +1,57 @@
 {
   "id": "gta-sa-vita",
-  "title_id": "GTASA0000",
-  "name": "GTA: SA Vita",
-  "description": "Port of Grand Theft Auto: San Andreas for PSVITA.",
-  "long_description": "A port of Grand Theft Auto: San Andreas for PSVITA/PSTV based on the Mobile (Android) version of the game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GTASA0000",
+  "n": "GTA: SA Vita",
+  "d": "Port of Grand Theft Auto: San Andreas for PSVITA.",
+  "ld": "A port of Grand Theft Auto: San Andreas for PSVITA/PSTV based on the Mobile (Android) version of the game.\n\n- PsVitaAlive -",
+  "aids": [
     "aap",
     "rinnegatamante",
     "theflow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2021-08-28",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1455423,
-  "status": "Legacy",
-  "links": [
+  "v": "v.2.1",
+  "vd": "2021-08-28",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1455423,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gta-sa-vita/gta-sa-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gta-sa-vita/gta-sa-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-gta-sa-vita/Game%20Files.zip",
-      "size": 2576980378,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-gta-sa-vita/Game%20Files.zip",
+      "sz": 2576980378,
+      "xp": "ux0:data/",
+      "ips": [
         "gtasa"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/gtasa_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/gtasa_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-gta-sa-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-gta-sa-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gta-sa-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-gta-sa-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-gta-sa-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-gta-sa-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-gta-sa-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "618",
-  "source_url": "https://github.com/TheOfficialFloW/gtasa_vita",
-  "release_page": "https://github.com/TheOfficialFloW/gtasa_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "618",
+  "su": "https://github.com/TheOfficialFloW/gtasa_vita",
+  "rp": "https://github.com/TheOfficialFloW/gtasa_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

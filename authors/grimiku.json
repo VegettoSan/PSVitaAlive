@@ -1,15 +1,15 @@
 {
   "id": "grimiku",
-  "name": "grimiku",
-  "avatar": "https://github.com/Grimiku.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "grimiku",
+  "av": "https://github.com/Grimiku.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Grimiku",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Grimiku",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Grimiku.png"
+  "ic": "https://github.com/Grimiku.png"
 }

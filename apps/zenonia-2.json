@@ -1,46 +1,46 @@
 {
   "id": "zenonia-2",
-  "title_id": "PSVZ00002",
-  "name": "Zenonia 2",
-  "description": "PS Vita port/loader of the Android release of Zenonia 2, originally published by Gamevil for Android, built on soloader-boilerplate.",
-  "long_description": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PSVZ00002",
+  "n": "Zenonia 2",
+  "d": "PS Vita port/loader of the Android release of Zenonia 2, originally published by Gamevil for Android, built on soloader-boilerplate.",
+  "ld": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!\n\n- PsVitaAlive -",
+  "aids": [
     "claude-ai",
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "arcade",
     "puzzle",
     "rpg",
     "strategy"
   ],
-  "version": "v.1.20",
-  "version_date": "2026-07-18",
-  "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "size": 848304,
-  "status": "Verified",
-  "links": [
+  "v": "v.1.20",
+  "vd": "2026-07-18",
+  "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+  "sz": 848304,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-zenonia-2/zenonia-2.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-zenonia-2/zenonia-2.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MetalSyntax/Zenonia2-psvita-port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-zenonia-2/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-zenonia-2/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-zenonia-2/shot_01.png"
   ]
 }

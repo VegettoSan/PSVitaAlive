@@ -21,6 +21,10 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    # Activated only AFTER official Release 02.18 is available.
+    env:
+      PSVA_SOURCE_SCHEMA_V2: "true"
+      PSVA_PUBLIC_SCHEMA_V2: "true"
 
     steps:
       - name: Checkout repository
@@ -57,6 +61,25 @@ jobs:
           echo "VITAHUB_SKIP_REMOTE_CHECKS=true" >> "$GITHUB_ENV"
           echo "VITAHUB_SKIP_REMOTE_MEDIA=true" >> "$GITHUB_ENV"
           echo "Local-only mode: no external catalog fetches; remote media probes skipped."
+
+      - name: Guard public V2 cutover behind official 02.18 release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/02.18" > /tmp/psva-release-0218.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          release = json.loads(Path('/tmp/psva-release-0218.json').read_text())
+          assets = {a.get('name') for a in release.get('assets', []) if a.get('state') == 'uploaded'}
+          if (release.get('draft') or release.get('prerelease') or
+              release.get('tag_name') != '02.18' or
+              not {'PSVitaAlive.vpk', 'PSVitaAlive.vpk.sha256'} <= assets):
+              raise SystemExit('BLOCKED: 02.18 stable VPK and checksum must be published before V2 JSON')
+          print('Verified stable PSVitaAlive 02.18 release + VPK + SHA256 before V2 JSON publication')
+          PY
 
       - name: Run aggregation unit smoke test (offline)
         run: python scripts/external_smoke_test.py
@@ -311,6 +334,18 @@ jobs:
           VITAHUB_SKIP_REMOTE_CHECKS: "true"
         run: python scripts/validate_catalog_ci.py
 
+      - name: Generate compact PS Vita / PSP / PS1 public JSON (post-02.18)
+        run: |
+          set -euo pipefail
+          python scripts/compact_game_catalogs_v2.py \
+            --out-dir /tmp/psva-publish-games-v2 \
+            --report /tmp/psva-publish-games-report.json
+          for name in catalog_psvita_games.json catalog_psp_games.json catalog_ps1_games.json; do
+            test -s "/tmp/psva-publish-games-v2/$name"
+            cp "/tmp/psva-publish-games-v2/$name" "$name"
+          done
+          # The PS Vita license sidecar (.zrifidx) is deliberately untouched.
+
       - name: Verify generated catalogs
         run: |
           test -s catalog.json
@@ -329,7 +364,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -A -- apps authors categories catalog.json authors.json categories.json sources
+          git add -A -- apps authors categories catalog.json authors.json categories.json \
+            catalog_psvita_games.json catalog_psp_games.json catalog_ps1_games.json sources
           if [ -d reports ]; then
             git add -A -- reports
           fi

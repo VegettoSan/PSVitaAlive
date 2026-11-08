@@ -1,48 +1,48 @@
 {
   "id": "nfs-most-wanted",
-  "title_id": "NFSMWVITA",
-  "name": "NFS Most Wanted",
-  "description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-  "long_description": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NFSMWVITA",
+  "n": "NFS Most Wanted",
+  "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+  "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "germanalvarez15"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "racing",
     "source-port"
   ],
-  "version": "1.4.2",
-  "version_date": "2026-11-05",
-  "requirements": "- No Data",
-  "size": 3250586,
-  "status": "Verified",
-  "links": [
+  "v": "1.4.2",
+  "vd": "2026-11-05",
+  "req": "- No Data",
+  "sz": 3250586,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.4.2.vpk",
-      "size": 3250586,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.4.2.vpk",
+      "sz": 3250586,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Fix",
-      "url": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-      "size": 1610612736,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Fix",
+      "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+      "sz": 1610612736,
+      "xp": "ux0:data/",
+      "ips": [
         "nfsmw"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Gihub",
-      "url": "https://github.com/germanalvarez15/nfsmw-vita"
+      "t": "Repository",
+      "n": "Gihub",
+      "u": "https://github.com/germanalvarez15/nfsmw-vita"
     }
   ],
-  "icon": "https://archive.org/download/nfsmw-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/nfsmw-vita/shot0.png"
   ]
 }

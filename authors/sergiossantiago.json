@@ -1,15 +1,15 @@
 {
   "id": "sergiossantiago",
-  "name": "SergioSSantiago",
-  "avatar": "https://avatars.githubusercontent.com/u/44295455?v=4",
-  "bio": "PlayStation Vita homebrew developer. Author of SSSPlayer (music + video media player).",
-  "links": [
+  "n": "SergioSSantiago",
+  "av": "https://avatars.githubusercontent.com/u/44295455?v=4",
+  "b": "PlayStation Vita homebrew developer. Author of SSSPlayer (music + video media player).",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/SergioSSantiago",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/SergioSSantiago",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/44295455?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/44295455?v=4"
 }

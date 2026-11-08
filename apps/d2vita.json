@@ -1,59 +1,59 @@
 {
   "id": "d2vita",
-  "title_id": "DTWO00001",
-  "name": "D2Vita",
-  "description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
-  "long_description": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DTWO00001",
+  "n": "D2Vita",
+  "d": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.",
+  "ld": "Port of Diablo II: Lord of Destruction to the PlayStation Vita.\n\nTarget: 960×544 · classic renderer.\nStrategy: run the genuine Diablo II: LoD 1.14d Game.exe through a Win32/x86 runtime (PE loader + import bridge + an x86→ARMv7 dynarec derived from Box86), shimming only the OS layer — run Diablo, don't rewrite Diablo. An earlier clean-room D2MOO+Ghidra-decompilation approach was abandoned before it shipped anything.\nStatus: boots and plays solo (Rogue Encampment) on real Vita hardware; online play (realm → character → game → act) proven end-to-end on console, including against official Battle.net. See ROADMAP.md for what's done and what's open.\n\n- PsVitaAlive -",
+  "aids": [
     "franckrst"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "puzzle",
     "rpg",
     "strategy"
   ],
-  "version": "0.2.3",
-  "version_date": "2026-10-31",
-  "requirements": "- Provide your own from a legitimate copy of D2 / LoD",
-  "size": 8074035,
-  "status": "Verified",
-  "links": [
+  "v": "0.2.3",
+  "vd": "2026-10-31",
+  "req": "- Provide your own from a legitimate copy of D2 / LoD",
+  "sz": 8074035,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/D2Vita/d2vita%20v0.2.3.vpk",
-      "size": 8074035,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/D2Vita/d2vita%20v0.2.3.vpk",
+      "sz": 8074035,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files English",
-      "url": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
-      "size": 2018634629,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files English",
+      "u": "https://archive.org/download/D2Vita/Game%20Files%20English.zip",
+      "sz": 2018634629,
+      "xp": "ux0:data/",
+      "ips": [
         "d2vita"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Spanish",
-      "url": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
-      "size": 2190433321,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Spanish",
+      "u": "https://archive.org/download/D2Vita/Game%20Files%20Spanish.zip",
+      "sz": 2190433321,
+      "xp": "ux0:data/",
+      "ips": [
         "d2vita"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/Franckrst/D2Vita"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Franckrst/D2Vita"
     }
   ],
-  "icon": "https://archive.org/download/D2Vita/newicon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/D2Vita/newicon0.png",
+  "ss": [
     "https://archive.org/download/D2Vita/shot0.png",
     "https://archive.org/download/D2Vita/shot1.png"
   ]

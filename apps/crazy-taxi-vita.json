@@ -1,60 +1,60 @@
 {
   "id": "crazy-taxi-vita",
-  "title_id": "CRAZYTAXI",
-  "name": "Crazy Taxi Vita",
-  "description": "Port of Craxy Taxi Classic for PSVITA.",
-  "long_description": "This is a wrapper/port of Craxy Taxi Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CRAZYTAXI",
+  "n": "Crazy Taxi Vita",
+  "d": "Port of Craxy Taxi Classic for PSVITA.",
+  "ld": "This is a wrapper/port of Craxy Taxi Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
+  "aids": [
     "aap",
     "rinnegatamante",
     "theflow",
     "vitahex-games"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing",
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2022-06-14",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 1469055,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.2",
+  "vd": "2022-06-14",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 1469055,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-crazy-taxi-vita/crazy-taxi-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crazy-taxi-vita/crazy-taxi-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip",
-      "size": 243793920,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-crazy-taxi-vita/Game%20Files.zip",
+      "sz": 243793920,
+      "xp": "ux0:data/",
+      "ips": [
         "crazytaxi"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/crazytaxi_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/crazytaxi_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-crazy-taxi-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-crazy-taxi-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-crazy-taxi-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "728",
-  "source_url": "https://github.com/TheOfficialFloW/crazytaxi_vita",
-  "release_page": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "728",
+  "su": "https://github.com/TheOfficialFloW/crazytaxi_vita",
+  "rp": "https://github.com/TheOfficialFloW/crazytaxi_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

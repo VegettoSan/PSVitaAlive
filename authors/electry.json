@@ -1,15 +1,15 @@
 {
   "id": "electry",
-  "name": "Electry",
-  "avatar": "https://github.com/Electry.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Electry",
+  "av": "https://github.com/Electry.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Electry",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Electry",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Electry.png"
+  "ic": "https://github.com/Electry.png"
 }

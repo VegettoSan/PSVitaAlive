@@ -1,36 +1,36 @@
 {
   "id": "jailbreaker-vita",
-  "title_id": "JAIBRE001",
-  "name": "Jailbreaker Vita",
-  "description": "Port of the demo of Jailbreaker for PSVITA.",
-  "long_description": "Port of the demo of Jailbreaker for PSVITA.\nJailbreaker is a short game about an unorthodox, sci-fi world of pixels and parkour. Find your way out of your confinement and venture through eerie worlds while evading dangerous traps that halt your ascent. Reach the paramount. Reach.\nOriginal game by Awfy.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "JAIBRE001",
+  "n": "Jailbreaker Vita",
+  "d": "Port of the demo of Jailbreaker for PSVITA.",
+  "ld": "Port of the demo of Jailbreaker for PSVITA.\nJailbreaker is a short game about an unorthodox, sci-fi world of pixels and parkour. Find your way out of your confinement and venture through eerie worlds while evading dangerous traps that halt your ascent. Reach the paramount. Reach.\nOriginal game by Awfy.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "vsm-gammer"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-05-11",
-  "requirements": "Not specified",
-  "size": 26950205,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-jailbreaker-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-05-11",
+  "req": "Not specified",
+  "sz": 26950205,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-jailbreaker-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-jailbreaker-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-jailbreaker-vita/jailbreaker-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-jailbreaker-vita/jailbreaker-vita.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1075",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1075-Jailbreaker.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.495091+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1075",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1075-Jailbreaker.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.495091+00:00"
 }

@@ -1,42 +1,42 @@
 {
   "id": "super-crate-mod",
-  "title_id": "SCRATEBOX",
-  "name": "Super Crate Mod",
-  "description": "Port of Super Crate Box.",
-  "long_description": "A port of Super Crate Box with some enhanced feature.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SCRATEBOX",
+  "n": "Super Crate Mod",
+  "d": "Port of Super Crate Box.",
+  "ld": "A port of Super Crate Box with some enhanced feature.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "jeffrulz345"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2019-11-20",
-  "requirements": "Not specified",
-  "size": 23405926,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-crate-mod/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2019-11-20",
+  "req": "Not specified",
+  "sz": 23405926,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-super-crate-mod/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-crate-mod/shot_01.png",
     "https://archive.org/download/psvitaalive-super-crate-mod/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-crate-mod/super-crate-mod.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-crate-mod/super-crate-mod.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/open?id=1u67SpFEYYLzzzw0QVuY_VVsNFS4dgbrP"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/open?id=1u67SpFEYYLzzzw0QVuY_VVsNFS4dgbrP"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "516",
-  "source_url": "https://drive.google.com/open?id=1u67SpFEYYLzzzw0QVuY_VVsNFS4dgbrP",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.627639+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "516",
+  "su": "https://drive.google.com/open?id=1u67SpFEYYLzzzw0QVuY_VVsNFS4dgbrP",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.627639+00:00"
 }

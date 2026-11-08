@@ -1,52 +1,52 @@
 {
   "id": "ps4linkcontrols-gui",
-  "title_id": "PS4LNKGUI",
-  "name": "ps4linkcontrols-gui",
-  "description": "GUI for ps4linkcontrols plugin.",
-  "long_description": "Configurator GUI for ps4linkcontrols plugin.",
-  "author_ids": [
+  "tid": "PS4LNKGUI",
+  "n": "ps4linkcontrols-gui",
+  "d": "GUI for ps4linkcontrols plugin.",
+  "ld": "Configurator GUI for ps4linkcontrols plugin.",
+  "aids": [
     "keltar"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2020-06-12",
-  "requirements": "Not specified",
-  "size": 338830,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2020-06-12",
+  "req": "Not specified",
+  "sz": 338830,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/shot_01.png",
     "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/ps4linkcontrols-gui.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ps4linkcontrols-gui/ps4linkcontrols-gui.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/keltar/ps4linkcontrols-gui/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/keltar/ps4linkcontrols-gui/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/keltar/ps4linkcontrols-gui/releases/tag/0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/keltar/ps4linkcontrols-gui/releases/tag/0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/keltar/ps4linkcontrols-gui"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/keltar/ps4linkcontrols-gui"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "560",
-  "source_url": "https://github.com/keltar/ps4linkcontrols-gui",
-  "release_page": "https://github.com/keltar/ps4linkcontrols-gui/releases",
-  "updated_at": "2026-08-13T15:34:48.617001+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "560",
+  "su": "https://github.com/keltar/ps4linkcontrols-gui",
+  "rp": "https://github.com/keltar/ps4linkcontrols-gui/releases",
+  "ua": "2026-08-13T15:34:48.617001+00:00"
 }

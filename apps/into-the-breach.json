@@ -1,55 +1,55 @@
 {
   "id": "into-the-breach",
-  "title_id": "THEBREACH",
-  "name": "Into the Breach",
-  "description": "Port of Into the Breach for PSVita.",
-  "long_description": "This is a wrapper/port of Into the Breach for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "THEBREACH",
+  "n": "Into the Breach",
+  "d": "Port of Into the Breach for PSVita.",
+  "ld": "This is a wrapper/port of Into the Breach for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0-vita",
-  "version_date": "2025-07-23",
-  "requirements": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2720006,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0-vita",
+  "vd": "2025-07-23",
+  "req": "- libshacccg.suprx\n- libfmodstudio.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2720006,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-into-the-breach/into-the-breach.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-into-the-breach/into-the-breach.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-into-the-breach/Game%20Files%20for%20PSVA.zip",
-      "size": 517891686,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-into-the-breach/Game%20Files%20for%20PSVA.zip",
+      "sz": 517891686,
+      "xp": "ux0:data/",
+      "ips": [
         "breach"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Into-The-Breach-Vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-into-the-breach/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-into-the-breach/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-into-the-breach/shot_01.png",
     "https://archive.org/download/psvitaalive-into-the-breach/shot_02.png",
     "https://archive.org/download/psvitaalive-into-the-breach/shot_03.png",
     "https://archive.org/download/psvitaalive-into-the-breach/shot_04.png",
     "https://archive.org/download/psvitaalive-into-the-breach/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1289",
-  "source_url": "https://github.com/Rinnegatamante/Into-The-Breach-Vita",
-  "release_page": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1289",
+  "su": "https://github.com/Rinnegatamante/Into-The-Breach-Vita",
+  "rp": "https://github.com/Rinnegatamante/Into-The-Breach-Vita/releases",
+  "ua": "2026-08-13T15:34"
 }

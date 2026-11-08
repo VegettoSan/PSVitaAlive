@@ -1,45 +1,45 @@
 {
   "id": "beat2x-vita",
-  "title_id": "BEAT00002",
-  "name": "Beat2x Vita",
-  "description": "Port of Beat2x for PSVITA.",
-  "long_description": "Port of Beat2x for PSVITA.\nBeat2x is a Dance Dance Revolution like game originally made for the GP2X open console.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BEAT00002",
+  "n": "Beat2x Vita",
+  "d": "Port of Beat2x for PSVITA.",
+  "ld": "Port of Beat2x for PSVITA.\nBeat2x is a Dance Dance Revolution like game originally made for the GP2X open console.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2023-09-24",
-  "requirements": "Not specified",
-  "size": 2000690,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-beat2x-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.1",
+  "vd": "2023-09-24",
+  "req": "Not specified",
+  "sz": 2000690,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-beat2x-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-beat2x-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-beat2x-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-beat2x-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-beat2x-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-beat2x-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-beat2x-vita/beat2x-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-beat2x-vita/beat2x-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/beat2x-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/beat2x-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1101",
-  "source_url": "https://github.com/Rinnegatamante/beat2x-vita",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.465314+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1101",
+  "su": "https://github.com/Rinnegatamante/beat2x-vita",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.465314+00:00"
 }

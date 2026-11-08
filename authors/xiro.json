@@ -1,15 +1,15 @@
 {
   "id": "xiro",
-  "name": "xiro",
-  "avatar": "https://github.com/TheMrIron2.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "xiro",
+  "av": "https://github.com/TheMrIron2.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/TheMrIron2",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/TheMrIron2",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/TheMrIron2.png"
+  "ic": "https://github.com/TheMrIron2.png"
 }

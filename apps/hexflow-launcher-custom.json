@@ -1,56 +1,56 @@
 {
   "id": "hexflow-launcher-custom",
-  "title_id": "HXLC00001",
-  "name": "HEXFlow Launcher Custom",
-  "description": "3D coverflow launcher for PSVITA.",
-  "long_description": "Display and launch your games and homebrews in style.\nHexFlow Launcher features a 3d user interface to display your games with their box art and supports many customization options like custom covers and backgrounds.\n\nLaunching a game/app from HexFlow Launcher will close the launcher automaticaly without asking.",
-  "author_ids": [
+  "tid": "HXLC00001",
+  "n": "HEXFlow Launcher Custom",
+  "d": "3D coverflow launcher for PSVITA.",
+  "ld": "Display and launch your games and homebrews in style.\nHexFlow Launcher features a 3d user interface to display your games with their box art and supports many customization options like custom covers and backgrounds.\n\nLaunching a game/app from HexFlow Launcher will close the launcher automaticaly without asking.",
+  "aids": [
     "blacksheepboy69",
     "vitahex-games"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.9.1",
-  "version_date": "2025-10-19",
-  "requirements": "Not specified",
-  "size": 19836866,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hexflow-launcher-custom/icon0.png",
-  "screenshots": [
+  "v": "v.2.9.1",
+  "vd": "2025-10-19",
+  "req": "Not specified",
+  "sz": 19836866,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hexflow-launcher-custom/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_01.png",
     "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_02.png",
     "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_03.png",
     "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_04.png",
     "https://archive.org/download/psvitaalive-hexflow-launcher-custom/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hexflow-launcher-custom/HexFlow.Custom.2.9.1.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hexflow-launcher-custom/HexFlow.Custom.2.9.1.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/tag/v2.9.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases/tag/v2.9.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "587",
-  "source_url": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom",
-  "release_page": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases",
-  "updated_at": "2026-08-13T15:34:48.379083+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "587",
+  "su": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom",
+  "rp": "https://github.com/BlackSheepBoy69/HexFlow-Launcher-Unofficial-Custom/releases",
+  "ua": "2026-08-13T15:34:48.379083+00:00"
 }

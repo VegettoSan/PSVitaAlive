@@ -1,52 +1,52 @@
 {
   "id": "vitalbum",
-  "title_id": "VITALBUM0",
-  "name": "VITAlbum",
-  "description": "Image Viewer for PSVITA/PSTV.",
-  "long_description": "A simple homebrew file browser that is used for viewing various image formats on the PlayStation Vita.",
-  "author_ids": [
+  "tid": "VITALBUM0",
+  "n": "VITAlbum",
+  "d": "Image Viewer for PSVITA/PSTV.",
+  "ld": "A simple homebrew file browser that is used for viewing various image formats on the PlayStation Vita.",
+  "aids": [
     "joel16"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.40",
-  "version_date": "2020-12-31",
-  "requirements": "Not specified",
-  "size": 1524725,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitalbum/icon0.png",
-  "screenshots": [
+  "v": "v.1.40",
+  "vd": "2020-12-31",
+  "req": "Not specified",
+  "sz": 1524725,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitalbum/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitalbum/shot_01.png",
     "https://archive.org/download/psvitaalive-vitalbum/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitalbum/vitalbum.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitalbum/vitalbum.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/VITAlbum/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/VITAlbum/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/VITAlbum/releases/tag/v1.40"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/VITAlbum/releases/tag/v1.40"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/VITAlbum"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joel16/VITAlbum"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "566",
-  "source_url": "https://github.com/joel16/VITAlbum",
-  "release_page": "https://github.com/joel16/VITAlbum/releases",
-  "updated_at": "2026-08-13T15:34:48.602035+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "566",
+  "su": "https://github.com/joel16/VITAlbum",
+  "rp": "https://github.com/joel16/VITAlbum/releases",
+  "ua": "2026-08-13T15:34:48.602035+00:00"
 }

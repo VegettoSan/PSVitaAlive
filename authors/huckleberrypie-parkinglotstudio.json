@@ -1,15 +1,15 @@
 {
   "id": "huckleberrypie-parkinglotstudio",
-  "name": "huckleberrypie & ParkingLotStudio",
-  "avatar": "https://github.com/huckleberrypie.png",
-  "bio": "",
-  "links": [
+  "n": "huckleberrypie & ParkingLotStudio",
+  "av": "https://github.com/huckleberrypie.png",
+  "b": "",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/huckleberrypie",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/huckleberrypie",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/huckleberrypie.png"
+  "ic": "https://github.com/huckleberrypie.png"
 }

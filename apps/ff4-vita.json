@@ -1,55 +1,55 @@
 {
   "id": "ff4-vita",
-  "title_id": "FF4000000",
-  "name": "FF4-Vita",
-  "description": "Port of Final Fantasy IV (3D Remake) for PSVITA.",
-  "long_description": "This is a wrapper/port of Final Fantasy IV (3D Remake) Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FF4000000",
+  "n": "FF4-Vita",
+  "d": "Port of Final Fantasy IV (3D Remake) for PSVITA.",
+  "ld": "This is a wrapper/port of Final Fantasy IV (3D Remake) Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\n\n- PsVitaAlive -",
+  "aids": [
     "bythos",
     "frangarcj",
     "rinnegatamante",
     "theflow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3.1",
-  "version_date": "2023-09-05",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 23492297,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.3.1",
+  "vd": "2023-09-05",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 23492297,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ff4-vita/ff4-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ff4-vita/ff4-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Download",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-ff4-vita/Game%20Files.zip",
-      "size": 545574093,
-      "recommended": false
+      "t": "Download",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-ff4-vita/Game%20Files.zip",
+      "sz": 545574093,
+      "rec": false
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/ff4_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/ff4_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-ff4-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-ff4-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ff4-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-ff4-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-ff4-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-ff4-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-ff4-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "726",
-  "source_url": "https://github.com/Rinnegatamante/ff4_vita",
-  "release_page": "https://github.com/Rinnegatamante/ff4_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "726",
+  "su": "https://github.com/Rinnegatamante/ff4_vita",
+  "rp": "https://github.com/Rinnegatamante/ff4_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

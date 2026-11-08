@@ -1,55 +1,55 @@
 {
   "id": "xash3d-fwgs",
-  "title_id": "XASH10000",
-  "name": "Xash3D-FWGS",
-  "description": "Port of Xash3D-FWGS for PSVITA.",
-  "long_description": "Port of Xash3D-FWGS for PSVITA.\nXash3D-FWGS is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\n\nNOTE: Data files are slightly different from vitaXash3D. This means both versions can't be installed at the same time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "XASH10000",
+  "n": "Xash3D-FWGS",
+  "d": "Port of Xash3D-FWGS for PSVITA.",
+  "ld": "Port of Xash3D-FWGS for PSVITA.\nXash3D-FWGS is an open source re-creation of the GoldSrc engine, a modified Quake Engine running Half-Life, Counter Strike and Team Fortress.\n\nNOTE: Data files are slightly different from vitaXash3D. This means both versions can't be installed at the same time.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "fgsfds",
     "xash3d-fwgs-team"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "fps",
     "shooter",
     "other"
   ],
-  "version": "v.continuous",
-  "version_date": "2023-10-07",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
-  "size": 33443283,
-  "status": "Legacy",
-  "links": [
+  "v": "v.continuous",
+  "vd": "2023-10-07",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: PC",
+  "sz": 33443283,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-xash3d-fwgs/xash3d-fwgs.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-xash3d-fwgs/xash3d-fwgs.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-xash3d-fwgs/Game%20Files.zip",
-      "size": 1610612736,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-xash3d-fwgs/Game%20Files.zip",
+      "sz": 1610612736,
+      "xp": "ux0:data/",
+      "ips": [
         "xash3d"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/FWGS/xash3d-fwgs"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/FWGS/xash3d-fwgs"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-xash3d-fwgs/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-xash3d-fwgs/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-xash3d-fwgs/shot_01.png",
     "https://archive.org/download/psvitaalive-xash3d-fwgs/shot_02.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1157",
-  "source_url": "https://github.com/FWGS/xash3d-fwgs",
-  "release_page": "https://github.com/FWGS/xash3d-fwgs/release",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1157",
+  "su": "https://github.com/FWGS/xash3d-fwgs",
+  "rp": "https://github.com/FWGS/xash3d-fwgs/release",
+  "ua": "2026-08-13T15:34"
 }

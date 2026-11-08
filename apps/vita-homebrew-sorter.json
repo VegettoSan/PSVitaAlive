@@ -1,55 +1,55 @@
 {
   "id": "vita-homebrew-sorter",
-  "title_id": "VITAHBSRT",
-  "name": "Vita Homebrew Sorter",
-  "description": "Apps database sorter for PSVITA.",
-  "long_description": "A basic PS VITA homebrew application that sorts the application database in your LiveArea. The application sorts apps and games that are inside folders as well. This applications also allows you to backup your current \"loadout\" that you can switch into as you wish.\nA backup will be made before any changes are applied to the application database. This backup is overwritten each time you use the sort option. You can find the backup in ux0:/data/VITAHomebrewSorter/backups/app.db.",
-  "author_ids": [
+  "tid": "VITAHBSRT",
+  "n": "Vita Homebrew Sorter",
+  "d": "Apps database sorter for PSVITA.",
+  "ld": "A basic PS VITA homebrew application that sorts the application database in your LiveArea. The application sorts apps and games that are inside folders as well. This applications also allows you to backup your current \"loadout\" that you can switch into as you wish.\nA backup will be made before any changes are applied to the application database. This backup is overwritten each time you use the sort option. You can find the backup in ux0:/data/VITAHomebrewSorter/backups/app.db.",
+  "aids": [
     "joel16"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "file-manager"
   ],
-  "version": "v.1.27",
-  "version_date": "2024-05-12",
-  "requirements": "Not specified",
-  "size": 2501645,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-homebrew-sorter/icon0.png",
-  "screenshots": [
+  "v": "v.1.27",
+  "vd": "2024-05-12",
+  "req": "Not specified",
+  "sz": 2501645,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-homebrew-sorter/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-homebrew-sorter/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-sorter/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-sorter/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-sorter/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-sorter/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-homebrew-sorter/vita-homebrew-sorter.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-homebrew-sorter/vita-homebrew-sorter.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/VITA-Homebrew-Sorter/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/tag/v1.27"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/VITA-Homebrew-Sorter/releases/tag/v1.27"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/VITA-Homebrew-Sorter"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joel16/VITA-Homebrew-Sorter"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "655",
-  "source_url": "https://github.com/joel16/VITA-Homebrew-Sorter",
-  "release_page": "https://github.com/joel16/VITA-Homebrew-Sorter/releases",
-  "updated_at": "2026-08-13T15:34:48.439951+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "655",
+  "su": "https://github.com/joel16/VITA-Homebrew-Sorter",
+  "rp": "https://github.com/joel16/VITA-Homebrew-Sorter/releases",
+  "ua": "2026-08-13T15:34:48.439951+00:00"
 }

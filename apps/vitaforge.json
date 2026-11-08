@@ -1,40 +1,40 @@
 {
   "id": "vitaforge",
-  "title_id": "VITAFORGE",
-  "name": "VitaForge",
-  "description": "Homebrew store client.",
-  "long_description": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaHomebrewDB-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VITAFORGE",
+  "n": "VitaForge",
+  "d": "Homebrew store client.",
+  "ld": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaHomebrewDB-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "josephinoo"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1.1",
-  "version_date": "2026-08-11",
-  "requirements": "Not specified",
-  "size": 5178911,
-  "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png",
-  "screenshots": [
+  "v": "v.0.1.1",
+  "vd": "2026-08-11",
+  "req": "Not specified",
+  "sz": 5178911,
+  "st": "Legacy",
+  "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png",
+  "ss": [
     "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/josephinoo/vitaForge/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/josephinoo/vitaForge/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/josephinoo/vitaForge"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/josephinoo/vitaForge"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1451",
-  "source_url": "https://github.com/josephinoo/vitaForge",
-  "release_page": "https://github.com/josephinoo/vitaForge/releases",
-  "updated_at": "2026-08-13T15:34:48.323857+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1451",
+  "su": "https://github.com/josephinoo/vitaForge",
+  "rp": "https://github.com/josephinoo/vitaForge/releases",
+  "ua": "2026-08-13T15:34:48.323857+00:00"
 }

@@ -1,53 +1,53 @@
 {
   "id": "catsfc-libretro-vita",
-  "title_id": "SKOG10001",
-  "name": "CATSFC-libretro-vita",
-  "description": "SNES emulator.",
-  "long_description": "CATSFC-libretro-vita is a SNES emulator for the PSVita and PSTV. It is based on CATSFC-libretro, which is based on Snes9x 1.43.",
-  "author_ids": [
+  "tid": "SKOG10001",
+  "n": "CATSFC-libretro-vita",
+  "d": "SNES emulator.",
+  "ld": "CATSFC-libretro-vita is a SNES emulator for the PSVita and PSTV. It is based on CATSFC-libretro, which is based on Snes9x 1.43.",
+  "aids": [
     "malachi",
     "skogaby"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3.0",
-  "version_date": "2017-01-15",
-  "requirements": "Not specified",
-  "size": 1319283,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-catsfc-libretro-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.3.0",
+  "vd": "2017-01-15",
+  "req": "Not specified",
+  "sz": 1319283,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-catsfc-libretro-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-catsfc-libretro-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-catsfc-libretro-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-catsfc-libretro-vita/CATSFC-libretro-vita-1.3.0.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-catsfc-libretro-vita/CATSFC-libretro-vita-1.3.0.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?t=46394"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?t=46394"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/skogaby/CATSFC-libretro/releases/tag/1.3.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/skogaby/CATSFC-libretro/releases/tag/1.3.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/skogaby/CATSFC-libretro"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/skogaby/CATSFC-libretro"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "75",
-  "source_url": "https://github.com/skogaby/CATSFC-libretro",
-  "release_page": "http://wololo.net/talk/viewtopic.php?t=46394",
-  "updated_at": "2026-08-13T15:34:48.688503+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "75",
+  "su": "https://github.com/skogaby/CATSFC-libretro",
+  "rp": "http://wololo.net/talk/viewtopic.php?t=46394",
+  "ua": "2026-08-13T15:34:48.688503+00:00"
 }

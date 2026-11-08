@@ -1,15 +1,15 @@
 {
   "id": "bunkai",
-  "name": "Bunkai",
-  "avatar": "https://github.com/Bunkai9448.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Bunkai",
+  "av": "https://github.com/Bunkai9448.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Bunkai9448",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Bunkai9448",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Bunkai9448.png"
+  "ic": "https://github.com/Bunkai9448.png"
 }

@@ -1,39 +1,39 @@
 {
   "id": "cubik-adventure",
-  "title_id": "RAED67053",
-  "name": "Cubik Adventure",
-  "description": "2D Platformer for PSVITA.",
-  "long_description": "Cubik Adventure is a 2.5D platforming game in which you control a cube and have to face various challenges.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "RAED67053",
+  "n": "Cubik Adventure",
+  "d": "2D Platformer for PSVITA.",
+  "ld": "Cubik Adventure is a 2.5D platforming game in which you control a cube and have to face various challenges.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "luckthegamers"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Demo v.2",
-  "version_date": "2019-05-01",
-  "requirements": "Not specified",
-  "size": 26542250,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cubik-adventure/icon0.png",
-  "screenshots": [
+  "v": "Demo v.2",
+  "vd": "2019-05-01",
+  "req": "Not specified",
+  "sz": 26542250,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-cubik-adventure/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cubik-adventure/shot_01.png",
     "https://archive.org/download/psvitaalive-cubik-adventure/shot_02.png",
     "https://archive.org/download/psvitaalive-cubik-adventure/shot_03.png",
     "https://archive.org/download/psvitaalive-cubik-adventure/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cubik-adventure/cubik-adventure.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cubik-adventure/cubik-adventure.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "471",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/471-Cubik_20Adventure.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.642147+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "471",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/471-Cubik_20Adventure.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.642147+00:00"
 }

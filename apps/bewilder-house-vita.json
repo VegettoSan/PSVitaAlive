@@ -1,55 +1,55 @@
 {
   "id": "bewilder-house-vita",
-  "title_id": "BEHO20247",
-  "name": "Bewilder House Vita",
-  "description": "Port of Bewilder House for PSVITA.",
-  "long_description": "Port of Bewilder House for PSVITA.\nBewilder House is a short indie 3D horror game made by Minoteam.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BEHO20247",
+  "n": "Bewilder House Vita",
+  "d": "Port of Bewilder House for PSVITA.",
+  "ld": "Port of Bewilder House for PSVITA.\nBewilder House is a short indie 3D horror game made by Minoteam.\n\n- PsVitaAlive -",
+  "aids": [
     "maloneczsd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "PreFinal",
-  "version_date": "2024-07-22",
-  "requirements": "Not specified",
-  "size": 61062119,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bewilder-house-vita/icon0.png",
-  "screenshots": [
+  "v": "PreFinal",
+  "vd": "2024-07-22",
+  "req": "Not specified",
+  "sz": 61062119,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bewilder-house-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bewilder-house-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-bewilder-house-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-bewilder-house-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-bewilder-house-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-bewilder-house-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bewilder-house-vita/bewilder-house-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bewilder-house-vita/bewilder-house-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/malone46/BewilderHouseOpSource"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/malone46/BewilderHouseOpSource"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA/releases/tag/Pre-Final"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA/releases/tag/Pre-Final"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MaloneCZSD/BewilderHouse-PS-VITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1223",
-  "source_url": "https://github.com/malone46/BewilderHouseOpSource",
-  "release_page": "https://github.com/malone46/BewilderHouseOpSource",
-  "updated_at": "2026-08-13T15:34:48.436740+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1223",
+  "su": "https://github.com/malone46/BewilderHouseOpSource",
+  "rp": "https://github.com/malone46/BewilderHouseOpSource",
+  "ua": "2026-08-13T15:34:48.436740+00:00"
 }

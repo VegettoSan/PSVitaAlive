@@ -1,51 +1,51 @@
 {
   "id": "pgen",
-  "title_id": "PGEN00001",
-  "name": "pGEN",
-  "description": "Sega Genesis emulator for PSVITA.",
-  "long_description": "Sega Genesis emulator, multiplatform port of Genesis Plus GX.",
-  "author_ids": [
+  "tid": "PGEN00001",
+  "n": "pGEN",
+  "d": "Sega Genesis emulator for PSVITA.",
+  "ld": "Sega Genesis emulator, multiplatform port of Genesis Plus GX.",
+  "aids": [
     "cpasjuste"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.7.1",
-  "version_date": "2025-12-30",
-  "requirements": "Not specified",
-  "size": 3425938,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pgen/icon0.png",
-  "screenshots": [
+  "v": "v.7.1",
+  "vd": "2025-12-30",
+  "req": "Not specified",
+  "sz": 3425938,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pgen/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pgen/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pgen/pgen.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pgen/pgen.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/pemu/tree/master/pgen"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Cpasjuste/pemu/tree/master/pgen"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "820",
-  "source_url": "https://github.com/Cpasjuste/pemu/tree/master/pgen",
-  "release_page": "https://github.com/Cpasjuste/pemu/releases",
-  "updated_at": "2026-08-13T15:34:48.370750+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "820",
+  "su": "https://github.com/Cpasjuste/pemu/tree/master/pgen",
+  "rp": "https://github.com/Cpasjuste/pemu/releases",
+  "ua": "2026-08-13T15:34:48.370750+00:00"
 }

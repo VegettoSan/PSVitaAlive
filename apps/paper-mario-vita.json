@@ -1,49 +1,49 @@
 {
   "id": "paper-mario-vita",
-  "title_id": "PPMR00001",
-  "name": "Paper Mario Vita",
-  "description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
-  "long_description": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PPMR00001",
+  "n": "Paper Mario Vita",
+  "d": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.",
+  "ld": "This is built on top of PaperShip, the decomp-based port of Paper Mario 64 running on libultraship, retargeted for PS Vita hardware.\n\n- PsVitaAlive -",
+  "aids": [
     "kaziema"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "platformer",
     "puzzle"
   ],
-  "version": "0.6.1",
-  "version_date": "2026-10-08",
-  "requirements": "- A homebrew-enabled PS Vita or PS TV",
-  "size": 7969178,
-  "status": "Verified",
-  "links": [
+  "v": "0.6.1",
+  "vd": "2026-10-08",
+  "req": "- A homebrew-enabled PS Vita or PS TV",
+  "sz": 7969178,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.6.1.vpk",
-      "size": 7969178,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/paper-mario-ps-vita/PaperMarioVita%20v0.6.1.vpk",
+      "sz": 7969178,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files USA",
-      "url": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
-      "size": 41943040,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files USA",
+      "u": "https://archive.org/download/paper-mario-ps-vita/Game%20Files.zip",
+      "sz": 41943040,
+      "xp": "ux0:data/",
+      "ips": [
         "papership"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/kaziema/pmvita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/kaziema/pmvita"
     }
   ],
-  "icon": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/paper-mario-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/paper-mario-ps-vita/shot0.png"
   ]
 }

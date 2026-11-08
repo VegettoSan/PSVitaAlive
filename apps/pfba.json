@@ -1,51 +1,51 @@
 {
   "id": "pfba",
-  "title_id": "VITAFBA01",
-  "name": "pFBA",
-  "description": "Arcade emulator for PSVITA.",
-  "long_description": "PFBA is an arcade emulator supporting the following platforms: Capcom CPS-1, Capcom CPS-2, Capcom CPS-3, Cave, Data East DEC-0, DEC-8 and DECO IC16 based games, Galaxian based hardware, Irem M62, M63, M72, M90, M92 and M107 hardware, Kaneko 16, Konami, Neo-Geo, NMK16, Pacman based hardware, PGM, Psikyo 68EC020 and SH-2 based hardware, Sega System 1, System 16 (and similar), System 18, X-Board and Y-Board, Super Kaneko Nova System, Toaplan 1, Toaplan 2, Taito F2, X, Z and others, Miscellaneous drivers for lots of other hardware\n\nFB Alpha also has WIP console drivers for Sega Megadrive/Genesis, ColecoVision, Sega SG-1000, Sega Master System/Game Gear and also PC-Engine/TurboGrafx 16/SuperGrafx.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VITAFBA01",
+  "n": "pFBA",
+  "d": "Arcade emulator for PSVITA.",
+  "ld": "PFBA is an arcade emulator supporting the following platforms: Capcom CPS-1, Capcom CPS-2, Capcom CPS-3, Cave, Data East DEC-0, DEC-8 and DECO IC16 based games, Galaxian based hardware, Irem M62, M63, M72, M90, M92 and M107 hardware, Kaneko 16, Konami, Neo-Geo, NMK16, Pacman based hardware, PGM, Psikyo 68EC020 and SH-2 based hardware, Sega System 1, System 16 (and similar), System 18, X-Board and Y-Board, Super Kaneko Nova System, Toaplan 1, Toaplan 2, Taito F2, X, Z and others, Miscellaneous drivers for lots of other hardware\n\nFB Alpha also has WIP console drivers for Sega Megadrive/Genesis, ColecoVision, Sega SG-1000, Sega Master System/Game Gear and also PC-Engine/TurboGrafx 16/SuperGrafx.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "cpasjuste",
     "rsn8887"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.57",
-  "version_date": "2018-06-28",
-  "requirements": "Not specified",
-  "size": 10978473,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pfba/icon0.png",
-  "screenshots": [
+  "v": "v.1.57",
+  "vd": "2018-06-28",
+  "req": "Not specified",
+  "sz": 10978473,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pfba/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pfba/shot_01.png",
     "https://archive.org/download/psvitaalive-pfba/shot_02.png",
     "https://archive.org/download/psvitaalive-pfba/shot_03.png",
     "https://archive.org/download/psvitaalive-pfba/shot_04.png",
     "https://archive.org/download/psvitaalive-pfba/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pfba/pfba.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pfba/pfba.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/cpasjuste/pfba/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/cpasjuste/pfba/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cpasjuste/pfba"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/cpasjuste/pfba"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "20",
-  "source_url": "https://github.com/cpasjuste/pfba",
-  "release_page": "https://github.com/cpasjuste/pfba/releases",
-  "updated_at": "2026-08-13T15:34:48.663389+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "20",
+  "su": "https://github.com/cpasjuste/pfba",
+  "rp": "https://github.com/cpasjuste/pfba/releases",
+  "ua": "2026-08-13T15:34:48.663389+00:00"
 }

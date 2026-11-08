@@ -1,14 +1,14 @@
 {
   "id": "tomb-raider-1-2-classic-collection",
-  "title_id": "TMBRAIDER",
-  "name": "Tomb Raider 1 & 2 Classic Collection",
-  "description": "Port of Tomb Raider 1/Tomb Raider 2 Classic for PSVITA.",
-  "long_description": "This is a wrapper/port of Tomb Raider 1 Classic and Tomb Raider 2 Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "TMBRAIDER",
+  "n": "Tomb Raider 1 & 2 Classic Collection",
+  "d": "Port of Tomb Raider 1/Tomb Raider 2 Classic for PSVITA.",
+  "ld": "This is a wrapper/port of Tomb Raider 1 Classic and Tomb Raider 2 Classic Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "platformer",
@@ -16,45 +16,45 @@
     "strategy",
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2024-02-14",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 9305063,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.2",
+  "vd": "2024-02-14",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 9305063,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/tomb-raider-1-2-classic-collection.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/tomb-raider-1-2-classic-collection.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip",
-      "size": 735156634,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/Game%20Files.zip",
+      "sz": 735156634,
+      "xp": "ux0:data/",
+      "ips": [
         "tombraider"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/raider-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/raider-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_01.png",
     "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_02.png",
     "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_03.png",
     "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_04.png",
     "https://archive.org/download/psvitaalive-tomb-raider-1-2-classic-collection/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "845",
-  "source_url": "https://github.com/Rinnegatamante/raider-vita",
-  "release_page": "https://github.com/Rinnegatamante/raider-vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "845",
+  "su": "https://github.com/Rinnegatamante/raider-vita",
+  "rp": "https://github.com/Rinnegatamante/raider-vita/releases",
+  "ua": "2026-08-13T15:34"
 }

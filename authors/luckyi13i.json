@@ -1,15 +1,15 @@
 {
   "id": "luckyi13i",
-  "name": "LuckyI13I",
-  "avatar": "https://github.com/luckyi13i.png",
-  "bio": "",
-  "links": [
+  "n": "LuckyI13I",
+  "av": "https://github.com/luckyi13i.png",
+  "b": "",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/luckyi13i",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/luckyi13i",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/luckyi13i.png"
+  "ic": "https://github.com/luckyi13i.png"
 }

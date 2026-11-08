@@ -1,15 +1,15 @@
 {
   "id": "parallel-productions",
-  "name": "Parallel Productions",
-  "avatar": "https://github.com/ParallelProductions.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "Parallel Productions",
+  "av": "https://github.com/ParallelProductions.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/ParallelProductions",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/ParallelProductions",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/ParallelProductions.png"
+  "ic": "https://github.com/ParallelProductions.png"
 }

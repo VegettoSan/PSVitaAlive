@@ -1,45 +1,45 @@
 {
   "id": "lynne",
-  "title_id": "RNPYLYNNE",
-  "name": "Lynne",
-  "description": "Port of Lynne for PSVITA/PSTV.",
-  "long_description": "Port of Lynne for PSVITA/PSTV, a visual novel made in RenPy.\nLynne is a short story about the scariest thing in the world: being a teenager.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RNPYLYNNE",
+  "n": "Lynne",
+  "d": "Port of Lynne for PSVITA/PSTV.",
+  "ld": "Port of Lynne for PSVITA/PSTV, a visual novel made in RenPy.\nLynne is a short story about the scariest thing in the world: being a teenager.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "just-fer"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2022-08-29",
-  "requirements": "Not specified",
-  "size": 14384313,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-lynne/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2022-08-29",
+  "req": "Not specified",
+  "sz": 14384313,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-lynne/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-lynne/shot_01.png",
     "https://archive.org/download/psvitaalive-lynne/shot_02.png",
     "https://archive.org/download/psvitaalive-lynne/shot_03.png",
     "https://archive.org/download/psvitaalive-lynne/shot_04.png",
     "https://archive.org/download/psvitaalive-lynne/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lynne/lynne.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-lynne/lynne.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Fimo4ka/Linne-PSVita-port"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Fimo4ka/Linne-PSVita-port"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "862",
-  "source_url": "https://github.com/Fimo4ka/Linne-PSVita-port",
-  "release_page": "https://github.com/Fimo4ka/Linne-PSVita-port",
-  "updated_at": "2026-08-13T15:34:48.534654+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "862",
+  "su": "https://github.com/Fimo4ka/Linne-PSVita-port",
+  "rp": "https://github.com/Fimo4ka/Linne-PSVita-port",
+  "ua": "2026-08-13T15:34:48.534654+00:00"
 }

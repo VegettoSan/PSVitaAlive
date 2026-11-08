@@ -1,15 +1,15 @@
 {
   "id": "bomblik",
-  "name": "bomblik",
-  "avatar": "https://github.com/bomblik.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "bomblik",
+  "av": "https://github.com/bomblik.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/bomblik",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/bomblik",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/bomblik.png"
+  "ic": "https://github.com/bomblik.png"
 }

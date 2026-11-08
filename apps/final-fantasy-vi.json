@@ -1,49 +1,49 @@
 {
   "id": "final-fantasy-vi",
-  "title_id": "FF6000000",
-  "name": "Final Fantasy VI",
-  "description": "Final Fantasy VI Android wrapper for PS Vita with Configurator and optional PostFX",
-  "long_description": "A port of Final Fantasy VI (Android) for the PlayStation Vita, based on the original ARMv7 game. Like FF3 Vita, it loads the Android game files instead of including them in the download.",
-  "author_ids": [
+  "tid": "FF6000000",
+  "n": "Final Fantasy VI",
+  "d": "Final Fantasy VI Android wrapper for PS Vita with Configurator and optional PostFX",
+  "ld": "A port of Final Fantasy VI (Android) for the PlayStation Vita, based on the original ARMv7 game. Like FF3 Vita, it loads the Android game files instead of including them in the download.",
+  "aids": [
     "frangarcj"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "strategy",
     "engine-port"
   ],
-  "version": "1.0.0",
-  "version_date": "2026-11-01",
-  "requirements": "- Install kubridge and FdFix in your Vita's active taiHEN plugins folder.\n- Install libshacccg.suprx\n- Get the Android 2.1.6 or 2.1.7 version of Final Fantasy VI from your own legally obtained copy, including its APK and OBB.",
-  "size": 17720934,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.0",
+  "vd": "2026-11-01",
+  "req": "- Install kubridge and FdFix in your Vita's active taiHEN plugins folder.\n- Install libshacccg.suprx\n- Get the Android 2.1.6 or 2.1.7 version of Final Fantasy VI from your own legally obtained copy, including its APK and OBB.",
+  "sz": 17720934,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/ff6-vita/FF6.vpk",
-      "size": 17720934,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ff6-vita/FF6.vpk",
+      "sz": 17720934,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/ff6-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 677275238,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/ff6-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 677275238,
+      "xp": "ux0:data/",
+      "ips": [
         "ff6"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/frangarcj/ff6_vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/frangarcj/ff6_vita"
     }
   ],
-  "icon": "https://archive.org/download/ff6-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/ff6-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/ff6-vita/shot0.png",
     "https://archive.org/download/ff6-vita/shot1.png"
   ]

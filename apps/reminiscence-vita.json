@@ -1,53 +1,53 @@
 {
   "id": "reminiscence-vita",
-  "title_id": "SOMO00001",
-  "name": "REminiscence Vita",
-  "description": "Flashback port for PSVITA.",
-  "long_description": "Classic game reimplementation of Flashback for PSVITA.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SOMO00001",
+  "n": "REminiscence Vita",
+  "d": "Flashback port for PSVITA.",
+  "ld": "Classic game reimplementation of Flashback for PSVITA.\n\n- PsVitaAlive -",
+  "aids": [
     "enrique-somolinos-perez"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.4.2",
-  "version_date": "2016-10-24",
-  "requirements": "- Game Data Files: PC",
-  "size": 870311,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-reminiscence-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.4.2",
+  "vd": "2016-10-24",
+  "req": "- Game Data Files: PC",
+  "sz": 870311,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-reminiscence-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-reminiscence-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-reminiscence-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-reminiscence-vita/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-reminiscence-vita/reminiscence-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-reminiscence-vita/reminiscence-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/enriquesomolinos/REminiscence-Vita/releases/tag/v0.4.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/enriquesomolinos/REminiscence-Vita/releases/tag/v0.4.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/enriquesomolinos/REminiscence-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/enriquesomolinos/REminiscence-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "168",
-  "source_url": "https://github.com/enriquesomolinos/REminiscence-Vita",
-  "release_page": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/",
-  "updated_at": "2026-08-13T15:34:48.693144+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "168",
+  "su": "https://github.com/enriquesomolinos/REminiscence-Vita",
+  "rp": "http://wololo.net/2016/09/14/release-reminiscence-vita-0-3-2-play-flashback-vita/",
+  "ua": "2026-08-13T15:34:48.693144+00:00"
 }

@@ -1,54 +1,54 @@
 {
   "id": "prehistorik-2",
-  "title_id": "PREHIST01",
-  "name": "Prehistorik 2",
-  "description": "Port of Prehistorik 2 for PSVITA.",
-  "long_description": "Prehistorik 2 is a platformer where you control a neanderthal who must march through hostile pre-historic environments seeking food and keeping himself safe. Use your club to crush animal enemies, many of which then release bonus items to collect. Other bonus items are located around the levels, while yet more can be found by using your club creatively and adventurously.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PREHIST01",
+  "n": "Prehistorik 2",
+  "d": "Port of Prehistorik 2 for PSVITA.",
+  "ld": "Prehistorik 2 is a platformer where you control a neanderthal who must march through hostile pre-historic environments seeking food and keeping himself safe. Use your club to crush animal enemies, many of which then release bonus items to collect. Other bonus items are located around the levels, while yet more can be found by using your club creatively and adventurously.\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-01-17",
-  "requirements": "- Game Data Files: DOS",
-  "size": 1118947,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-prehistorik-2/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-01-17",
+  "req": "- Game Data Files: DOS",
+  "sz": 1118947,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-prehistorik-2/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-prehistorik-2/shot_01.png",
     "https://archive.org/download/psvitaalive-prehistorik-2/shot_02.png",
     "https://archive.org/download/psvitaalive-prehistorik-2/shot_03.png",
     "https://archive.org/download/psvitaalive-prehistorik-2/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-prehistorik-2/prehistorik-2.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-prehistorik-2/prehistorik-2.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/blues-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/blues-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/blues-vita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/blues-vita/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/blues-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/blues-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "777",
-  "source_url": "https://github.com/v-atamanenko/blues-vita",
-  "release_page": "https://github.com/v-atamanenko/blues-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.558833+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "777",
+  "su": "https://github.com/v-atamanenko/blues-vita",
+  "rp": "https://github.com/v-atamanenko/blues-vita/releases",
+  "ua": "2026-08-13T15:34:48.558833+00:00"
 }

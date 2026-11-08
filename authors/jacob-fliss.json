@@ -1,15 +1,15 @@
 {
   "id": "jacob-fliss",
-  "name": "Jacob Fliss",
-  "avatar": "https://github.com/erfg12.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Jacob Fliss",
+  "av": "https://github.com/erfg12.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/erfg12",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/erfg12",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/erfg12.png"
+  "ic": "https://github.com/erfg12.png"
 }

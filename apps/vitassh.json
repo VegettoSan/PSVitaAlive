@@ -1,55 +1,55 @@
 {
   "id": "vitassh",
-  "title_id": "ROM000069",
-  "name": "VitaSSH",
-  "description": "SSH client for PSVita.",
-  "long_description": "VitaSSH is a proof-of-concept SSH client designed specifically for the PlayStation Vita, leveraging libssh2 for secure shell connections and VitaSDK for native Vita hardware integration. This experimental client provides basic SSH terminal functionality on the Vita's unique platform.",
-  "author_ids": [
+  "tid": "ROM000069",
+  "n": "VitaSSH",
+  "d": "SSH client for PSVita.",
+  "ld": "VitaSSH is a proof-of-concept SSH client designed specifically for the PlayStation Vita, leveraging libssh2 for secure shell connections and VitaSDK for native Vita hardware integration. This experimental client provides basic SSH terminal functionality on the Vita's unique platform.",
+  "aids": [
     "rompelhd"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2026-03-15",
-  "requirements": "Not specified",
-  "size": 1130397,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitassh/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2026-03-15",
+  "req": "Not specified",
+  "sz": 1130397,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitassh/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitassh/shot_01.png",
     "https://archive.org/download/psvitaalive-vitassh/shot_02.png",
     "https://archive.org/download/psvitaalive-vitassh/shot_03.png",
     "https://archive.org/download/psvitaalive-vitassh/shot_04.png",
     "https://archive.org/download/psvitaalive-vitassh/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitassh/vitassh.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitassh/vitassh.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/rompelhd/VitaSSH/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/rompelhd/VitaSSH/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/rompelhd/VitaSSH/releases/tag/v.1.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/rompelhd/VitaSSH/releases/tag/v.1.0.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/rompelhd/VitaSSH"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/rompelhd/VitaSSH"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1373",
-  "source_url": "https://github.com/rompelhd/VitaSSH",
-  "release_page": "https://github.com/rompelhd/VitaSSH/releases",
-  "updated_at": "2026-08-13T15:34:48.360094+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1373",
+  "su": "https://github.com/rompelhd/VitaSSH",
+  "rp": "https://github.com/rompelhd/VitaSSH/releases",
+  "ua": "2026-08-13T15:34:48.360094+00:00"
 }

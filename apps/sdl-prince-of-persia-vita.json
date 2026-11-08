@@ -1,53 +1,53 @@
 {
   "id": "sdl-prince-of-persia-vita",
-  "title_id": "SPOP00001",
-  "name": "SDL Prince of Persia Vita",
-  "description": "Port of SDLPoP for the PS Vita.",
-  "long_description": "SDLPoP is an open-source project that aims to allow people to play the original Prince of Persia DOS games on modern systems without the use of tools like DosBox. It was originally created by disassembling the code of the original game to get the source.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SPOP00001",
+  "n": "SDL Prince of Persia Vita",
+  "d": "Port of SDLPoP for the PS Vita.",
+  "ld": "SDLPoP is an open-source project that aims to allow people to play the original Prince of Persia DOS games on modern systems without the use of tools like DosBox. It was originally created by disassembling the code of the original game to get the source.\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.7",
-  "version_date": "2019-10-13",
-  "requirements": "Not specified",
-  "size": 999627,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.7",
+  "vd": "2019-10-13",
+  "req": "Not specified",
+  "sz": 999627,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/sdl-prince-of-persia-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sdl-prince-of-persia-vita/sdl-prince-of-persia-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/SDLPoP-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/SDLPoP-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/SDLPoP/releases/tag/vita-1.7"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/SDLPoP/releases/tag/vita-1.7"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/SDLPoP-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/SDLPoP-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "12",
-  "source_url": "https://github.com/usineur/SDLPoP-Vita",
-  "release_page": "https://github.com/usineur/SDLPoP-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.629024+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "12",
+  "su": "https://github.com/usineur/SDLPoP-Vita",
+  "rp": "https://github.com/usineur/SDLPoP-Vita/releases",
+  "ua": "2026-08-13T15:34:48.629024+00:00"
 }

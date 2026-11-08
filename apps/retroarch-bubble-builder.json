@@ -1,55 +1,55 @@
 {
   "id": "retroarch-bubble-builder",
-  "title_id": "RETBUBMKR",
-  "name": "Retroarch Bubble Builder",
-  "description": "Tool to create custom bubbles for Retroarch games.",
-  "long_description": "With this tool you are able to load your own images and resize them to make your own bubble and launch page.. if your using the Crazymac build or older verions of Retroarch the shortcut feature wasn't included, this app can also make your Retroarch compatible with the bubble shortcuts..",
-  "author_ids": [
+  "tid": "RETBUBMKR",
+  "n": "Retroarch Bubble Builder",
+  "d": "Tool to create custom bubbles for Retroarch games.",
+  "ld": "With this tool you are able to load your own images and resize them to make your own bubble and launch page.. if your using the Crazymac build or older verions of Retroarch the shortcut feature wasn't included, this app can also make your Retroarch compatible with the bubble shortcuts..",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-11-19",
-  "requirements": "Not specified",
-  "size": 5885149,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-retroarch-bubble-builder/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-11-19",
+  "req": "Not specified",
+  "sz": 5885149,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-retroarch-bubble-builder/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-retroarch-bubble-builder/shot_01.png",
     "https://archive.org/download/psvitaalive-retroarch-bubble-builder/shot_02.png",
     "https://archive.org/download/psvitaalive-retroarch-bubble-builder/shot_03.png",
     "https://archive.org/download/psvitaalive-retroarch-bubble-builder/shot_04.png",
     "https://archive.org/download/psvitaalive-retroarch-bubble-builder/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-retroarch-bubble-builder/retroarch-bubble-builder.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-retroarch-bubble-builder/retroarch-bubble-builder.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Retroarch-Bubble-Builder"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Retroarch-Bubble-Builder"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "756",
-  "source_url": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
-  "release_page": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
-  "updated_at": "2026-08-13T15:34:48.563057+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "756",
+  "su": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
+  "rp": "https://github.com/AntHJ/Retroarch-Bubble-Builder/releases",
+  "ua": "2026-08-13T15:34:48.563057+00:00"
 }

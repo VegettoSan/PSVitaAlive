@@ -1,15 +1,15 @@
 {
   "id": "zack",
-  "name": "Zack",
-  "avatar": "https://github.com/BenMcLean.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Zack",
+  "av": "https://github.com/BenMcLean.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/BenMcLean",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/BenMcLean",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/BenMcLean.png"
+  "ic": "https://github.com/BenMcLean.png"
 }

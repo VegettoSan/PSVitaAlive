@@ -1,15 +1,15 @@
 {
   "id": "malachi",
-  "name": "Malachi",
-  "avatar": "https://github.com/skogaby.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Malachi",
+  "av": "https://github.com/skogaby.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/skogaby",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/skogaby",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/skogaby.png"
+  "ic": "https://github.com/skogaby.png"
 }

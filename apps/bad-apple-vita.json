@@ -1,55 +1,55 @@
 {
   "id": "bad-apple-vita",
-  "title_id": "BADA00001",
-  "name": "Bad Apple Vita",
-  "description": "Bad Apple with monoRLE graphical engine.",
-  "long_description": "Bad Apple recreated with monoRLE graphical engine.\nBad Apple is a Japanese dance pop song originally featured in one of the arcade games from the Touhou series.",
-  "author_ids": [
+  "tid": "BADA00001",
+  "n": "Bad Apple Vita",
+  "d": "Bad Apple with monoRLE graphical engine.",
+  "ld": "Bad Apple recreated with monoRLE graphical engine.\nBad Apple is a Japanese dance pop song originally featured in one of the arcade games from the Touhou series.",
+  "aids": [
     "knight-ryu12",
     "princess-of-sleeping"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2018-12-31",
-  "requirements": "Not specified",
-  "size": 15437907,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bad-apple-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2018-12-31",
+  "req": "Not specified",
+  "sz": 15437907,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bad-apple-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bad-apple-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-bad-apple-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-bad-apple-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-bad-apple-vita/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bad-apple-vita/bad-apple-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bad-apple-vita/bad-apple-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/knight-ryu12/badapplevita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/knight-ryu12/badapplevita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/knight-ryu12/badapplevita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/knight-ryu12/badapplevita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/knight-ryu12/badapplevita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/knight-ryu12/badapplevita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "439",
-  "source_url": "https://github.com/knight-ryu12/badapplevita",
-  "release_page": "https://github.com/knight-ryu12/badapplevita/releases",
-  "updated_at": "2026-08-13T15:34:48.659015+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "439",
+  "su": "https://github.com/knight-ryu12/badapplevita",
+  "rp": "https://github.com/knight-ryu12/badapplevita/releases",
+  "ua": "2026-08-13T15:34:48.659015+00:00"
 }

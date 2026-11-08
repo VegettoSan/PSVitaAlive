@@ -1,53 +1,53 @@
 {
   "id": "easyvpk",
-  "title_id": "ESVPK0009",
-  "name": "EasyVPK",
-  "description": "Homebrew downloader linked to VitaDB.",
-  "long_description": "A lightweighted homebrew downloader that uses VitaDB as source.",
-  "author_ids": [
+  "tid": "ESVPK0009",
+  "n": "EasyVPK",
+  "d": "Homebrew downloader linked to VitaDB.",
+  "ld": "A lightweighted homebrew downloader that uses VitaDB as source.",
+  "aids": [
     "electric",
     "then00p"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1.0",
-  "version_date": "2021-08-15",
-  "requirements": "Not specified",
-  "size": 2906433,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-easyvpk/icon0.png",
-  "screenshots": [
+  "v": "v.2.1.0",
+  "vd": "2021-08-15",
+  "req": "Not specified",
+  "sz": 2906433,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-easyvpk/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-easyvpk/shot_01.png",
     "https://archive.org/download/psvitaalive-easyvpk/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-easyvpk/easyvpk.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-easyvpk/easyvpk.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Electric1447/EasyVPK/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Electric1447/EasyVPK/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Electric1447/EasyVPK/releases/tag/v2.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Electric1447/EasyVPK"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Electric1447/EasyVPK"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "558",
-  "source_url": "https://github.com/Electric1447/EasyVPK",
-  "release_page": "https://github.com/Electric1447/EasyVPK/releases",
-  "updated_at": "2026-08-13T15:34:48.573447+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "558",
+  "su": "https://github.com/Electric1447/EasyVPK",
+  "rp": "https://github.com/Electric1447/EasyVPK/releases",
+  "ua": "2026-08-13T15:34:48.573447+00:00"
 }

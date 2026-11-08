@@ -1,49 +1,49 @@
 {
   "id": "minit",
-  "title_id": "MINITVITA",
-  "name": "Minit",
-  "description": "Port of Minit for PSVITA/PSTV.",
-  "long_description": "Minit is a collaboration between Kitty Calis, Jan Willem Nijman, Jukio Kallio & Dominik Johann.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MINITVITA",
+  "n": "Minit",
+  "d": "Port of Minit for PSVITA/PSTV.",
+  "ld": "Minit is a collaboration between Kitty Calis, Jan Willem Nijman, Jukio Kallio & Dominik Johann.\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2021-04-10",
-  "requirements": "- Game Data Files: PC",
-  "size": 2995304,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-minit/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2021-04-10",
+  "req": "- Game Data Files: PC",
+  "sz": 2995304,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-minit/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-minit/shot_01.png",
     "https://archive.org/download/psvitaalive-minit/shot_02.png",
     "https://archive.org/download/psvitaalive-minit/shot_03.png",
     "https://archive.org/download/psvitaalive-minit/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-minit/minit.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-minit/minit.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/m1s3ry/minit-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/m1s3ry/minit-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/m1s3ry/minit-vita/releases/tag/v1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/m1s3ry/minit-vita/releases/tag/v1.1"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "638",
-  "source_url": "https://github.com/m1s3ry/minit-vita",
-  "release_page": "https://github.com/m1s3ry/minit-vita",
-  "updated_at": "2026-08-13T15:34:48.589601+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "638",
+  "su": "https://github.com/m1s3ry/minit-vita",
+  "rp": "https://github.com/m1s3ry/minit-vita",
+  "ua": "2026-08-13T15:34:48.589601+00:00"
 }

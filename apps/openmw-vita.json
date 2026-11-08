@@ -1,56 +1,56 @@
 {
   "id": "openmw-vita",
-  "title_id": "OMWV00001",
-  "name": "OpenMW Vita",
-  "description": "Port of Morrowind for PSVita.",
-  "long_description": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OMWV00001",
+  "n": "OpenMW Vita",
+  "d": "Port of Morrowind for PSVita.",
+  "ld": "OpenMW for Vita is a native port of the open-source Morrowind engine, built on vitaGL. Runs the base game plus the Tribunal and Bloodmoon expansions through a custom GLSL pipeline. Dynamic fog scales draw distance on the fly to hold the target framerate, and both controller and front touchscreen are fully supported. Requires game data from a legally acquired copy of The Elder Scrolls III: Morrowind.\n\n- PsVitaAlive -",
+  "aids": [
     "kingtorro"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "2.4.1",
-  "version_date": "2026-10-24",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 175217050,
-  "status": "Legacy",
-  "links": [
+  "v": "2.4.1",
+  "vd": "2026-10-24",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 175217050,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openmw-vita/openmw-vita.vpk",
-      "size": 175217050,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openmw-vita/openmw-vita.vpk",
+      "sz": 175217050,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-openmw-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1073741824,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-openmw-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1073741824,
+      "xp": "ux0:data/",
+      "ips": [
         "openmw"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheLostPantheon/openmw"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheLostPantheon/openmw"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-openmw-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-openmw-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openmw-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-openmw-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-openmw-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-openmw-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-openmw-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1390",
-  "source_url": "https://github.com/TheLostPantheon/openmw",
-  "release_page": "https://github.com/TheLostPantheon/openmw/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1390",
+  "su": "https://github.com/TheLostPantheon/openmw",
+  "rp": "https://github.com/TheLostPantheon/openmw/releases",
+  "ua": "2026-08-13T15:34"
 }

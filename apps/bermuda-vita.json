@@ -1,53 +1,53 @@
 {
   "id": "bermuda-vita",
-  "title_id": "BERM00001",
-  "name": "Bermuda Vita",
-  "description": "Bermuda Syndrome port for PSVITA.",
-  "long_description": "This is a Vita port of the game Bermuda Syndrome, using the reverse engine made by Gregory Montoir. To play, you will need the files from the original game. Further instructions can be found at https://github.com/usineur/bermuda/releases/latest\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BERM00001",
+  "n": "Bermuda Vita",
+  "d": "Bermuda Syndrome port for PSVITA.",
+  "ld": "This is a Vita port of the game Bermuda Syndrome, using the reverse engine made by Gregory Montoir. To play, you will need the files from the original game. Further instructions can be found at https://github.com/usineur/bermuda/releases/latest\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2018-01-12",
-  "requirements": "- Game Data Files: PC",
-  "size": 1015517,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bermuda-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2018-01-12",
+  "req": "- Game Data Files: PC",
+  "sz": 1015517,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bermuda-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bermuda-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-bermuda-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-bermuda-vita/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bermuda-vita/bermuda-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bermuda-vita/bermuda-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/bermuda/releases/tag/1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/bermuda/releases/tag/1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/bermuda/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/bermuda/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "115",
-  "source_url": "https://github.com/usineur/bermuda/",
-  "release_page": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/",
-  "updated_at": "2026-08-13T15:34:48.669123+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "115",
+  "su": "https://github.com/usineur/bermuda/",
+  "rp": "https://gbatemp.net/threads/release-bermuda-syndrome.446812/",
+  "ua": "2026-08-13T15:34:48.669123+00:00"
 }

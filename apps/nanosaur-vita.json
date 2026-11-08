@@ -1,50 +1,50 @@
 {
   "id": "nanosaur-vita",
-  "title_id": "NANOSAUR1",
-  "name": "Nanosaur Vita",
-  "description": "Port of Nanosaur for PSVITA.",
-  "long_description": "Nanosaur is a science fiction third-person shooter video game developed by Pangea Software and published by Ideas From the Deep for Mac OS 9 and Microsoft Windows. The player takes on the form of a Nanosaur, a genetically engineered intelligent dinosaur from the future, sent back in time just prior to the Cretaceous-Paleogene extinction event.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NANOSAUR1",
+  "n": "Nanosaur Vita",
+  "d": "Port of Nanosaur for PSVITA.",
+  "ld": "Nanosaur is a science fiction third-person shooter video game developed by Pangea Software and published by Ideas From the Deep for Mac OS 9 and Microsoft Windows. The player takes on the form of a Nanosaur, a genetically engineered intelligent dinosaur from the future, sent back in time just prior to the Cretaceous-Paleogene extinction event.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-08-17",
-  "requirements": "- libshacccg.suprx",
-  "size": 1698368,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-nanosaur-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-08-17",
+  "req": "- libshacccg.suprx",
+  "sz": 1698368,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-nanosaur-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-nanosaur-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-nanosaur-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-nanosaur-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-nanosaur-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-nanosaur-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-nanosaur-vita/nanosaur-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-nanosaur-vita/nanosaur-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-nanosaur-vita-v-1-0-port-of-nanosaur-for-psvita.38129/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-nanosaur-vita-v-1-0-port-of-nanosaur-for-psvita.38129/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Nanosaur"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Nanosaur"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "851",
-  "source_url": "https://github.com/Rinnegatamante/Nanosaur",
-  "release_page": "https://www.psx-place.com/threads/release-nanosaur-vita-v-1-0-port-of-nanosaur-for-psvita.38129/",
-  "updated_at": "2026-08-13T15:34:48.535984+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "851",
+  "su": "https://github.com/Rinnegatamante/Nanosaur",
+  "rp": "https://www.psx-place.com/threads/release-nanosaur-vita-v-1-0-port-of-nanosaur-for-psvita.38129/",
+  "ua": "2026-08-13T15:34:48.535984+00:00"
 }

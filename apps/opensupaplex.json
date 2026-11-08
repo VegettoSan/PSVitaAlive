@@ -1,55 +1,55 @@
 {
   "id": "opensupaplex",
-  "title_id": "OSPX00001",
-  "name": "OpenSupaplex",
-  "description": "Port of Supaplex for PSVITA.",
-  "long_description": "OpenSupaplex is an open-source reimplementation of Supaplex by sergiou87. Supaplex is a video game created by Philip Jespersen and Michael Stopp, two Swiss students, and published by Digital Integration in 1991. It is an extended clone of Boulder Dash.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OSPX00001",
+  "n": "OpenSupaplex",
+  "d": "Port of Supaplex for PSVITA.",
+  "ld": "OpenSupaplex is an open-source reimplementation of Supaplex by sergiou87. Supaplex is a video game created by Philip Jespersen and Michael Stopp, two Swiss students, and published by Digital Integration in 1991. It is an extended clone of Boulder Dash.\n\n- PsVitaAlive -",
+  "aids": [
     "sergiou87"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.7.2.2",
-  "version_date": "2020-07-05",
-  "requirements": "Not specified",
-  "size": 4635077,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-opensupaplex/icon0.png",
-  "screenshots": [
+  "v": "v.7.2.2",
+  "vd": "2020-07-05",
+  "req": "Not specified",
+  "sz": 4635077,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-opensupaplex/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-opensupaplex/shot_01.png",
     "https://archive.org/download/psvitaalive-opensupaplex/shot_02.png",
     "https://archive.org/download/psvitaalive-opensupaplex/shot_03.png",
     "https://archive.org/download/psvitaalive-opensupaplex/shot_04.png",
     "https://archive.org/download/psvitaalive-opensupaplex/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-opensupaplex/OpenSupaplex.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-opensupaplex/OpenSupaplex.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/sergiou87/open-supaplex/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/sergiou87/open-supaplex/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/sergiou87/open-supaplex/releases/tag/v7.2.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/sergiou87/open-supaplex/releases/tag/v7.2.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/sergiou87/open-supaplex"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/sergiou87/open-supaplex"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "552",
-  "source_url": "https://github.com/sergiou87/open-supaplex",
-  "release_page": "https://github.com/sergiou87/open-supaplex/releases",
-  "updated_at": "2026-08-13T15:34:48.615559+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "552",
+  "su": "https://github.com/sergiou87/open-supaplex",
+  "rp": "https://github.com/sergiou87/open-supaplex/releases",
+  "ua": "2026-08-13T15:34:48.615559+00:00"
 }

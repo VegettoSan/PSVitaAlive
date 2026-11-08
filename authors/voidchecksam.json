@@ -1,15 +1,15 @@
 {
   "id": "voidchecksam",
-  "name": "voidchecksam",
-  "avatar": "https://avatars.githubusercontent.com/u/146993325?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "voidchecksam",
+  "av": "https://avatars.githubusercontent.com/u/146993325?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/voidchecksam",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/voidchecksam",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/146993325?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/146993325?v=4"
 }

@@ -1,50 +1,50 @@
 {
   "id": "jfduke3d-vita",
-  "title_id": "JONOFDUKE",
-  "name": "jfduke3d-vita",
-  "description": "Port of JFDuke3D for PSVITA/PSTV.",
-  "long_description": "jfduke3d-vita is a port of JFDuke3D, a popular multi-platform source port of Duke Nukem 3D.\nIt supports both shareware and full game data files as well as full game data files of NAM.\nThis port implements both classic 8 bit renderer and the new 32 bit Polymost renderer with hardware acceleration through vitaGL.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "JONOFDUKE",
+  "n": "jfduke3d-vita",
+  "d": "Port of JFDuke3D for PSVITA/PSTV.",
+  "ld": "jfduke3d-vita is a port of JFDuke3D, a popular multi-platform source port of Duke Nukem 3D.\nIt supports both shareware and full game data files as well as full game data files of NAM.\nThis port implements both classic 8 bit renderer and the new 32 bit Polymost renderer with hardware acceleration through vitaGL.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-07-20",
-  "requirements": "Not specified",
-  "size": 2790022,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-jfduke3d-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-07-20",
+  "req": "Not specified",
+  "sz": 2790022,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-jfduke3d-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-jfduke3d-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-jfduke3d-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-jfduke3d-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-jfduke3d-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-jfduke3d-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-jfduke3d-vita/jfduke3d-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-jfduke3d-vita/jfduke3d-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-jfduke3d-vita-port-of-duke-nukem-3d-nam-with-hardware-acceleration-support.34643/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-jfduke3d-vita-port-of-duke-nukem-3d-nam-with-hardware-acceleration-support.34643/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/jfduke3d-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/jfduke3d-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "711",
-  "source_url": "https://github.com/Rinnegatamante/jfduke3d-vita",
-  "release_page": "https://www.psx-place.com/threads/release-jfduke3d-vita-port-of-duke-nukem-3d-nam-with-hardware-acceleration-support.34643/",
-  "updated_at": "2026-08-13T15:34:48.576947+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "711",
+  "su": "https://github.com/Rinnegatamante/jfduke3d-vita",
+  "rp": "https://www.psx-place.com/threads/release-jfduke3d-vita-port-of-duke-nukem-3d-nam-with-hardware-acceleration-support.34643/",
+  "ua": "2026-08-13T15:34:48.576947+00:00"
 }

@@ -1,21 +1,21 @@
 {
   "id": "deathkiller",
-  "name": "deathkiller",
-  "avatar": "https://avatars.githubusercontent.com/u/884052?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "deathkiller",
+  "av": "https://avatars.githubusercontent.com/u/884052?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/deathkiller",
-      "recommended": false
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/deathkiller",
+      "rec": false
     },
     {
-      "type": "Official Website",
-      "name": "Web",
-      "url": "https://de4th.dev/",
-      "recommended": false
+      "t": "Official Website",
+      "n": "Web",
+      "u": "https://de4th.dev/",
+      "rec": false
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/884052?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/884052?v=4"
 }

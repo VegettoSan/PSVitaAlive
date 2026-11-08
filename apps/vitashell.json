@@ -1,55 +1,55 @@
 {
   "id": "vitashell",
-  "title_id": "VITASHELL",
-  "name": "VitaShell",
-  "description": "Multifunction shell for PSVITA.",
-  "long_description": "VitaShell is an alternative replacement of the PS Vita's LiveArea. It offers you a file manager, package installer, built-in FTP and much more.\nIt also have advanced features like USB hard-drive mounting for PSTV users and standard USB protocool implementation for file transfering with a PC.",
-  "author_ids": [
+  "tid": "VITASHELL",
+  "n": "VitaShell",
+  "d": "Multifunction shell for PSVITA.",
+  "ld": "VitaShell is an alternative replacement of the PS Vita's LiveArea. It offers you a file manager, package installer, built-in FTP and much more.\nIt also have advanced features like USB hard-drive mounting for PSTV users and standard USB protocool implementation for file transfering with a PC.",
+  "aids": [
     "theflow"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.02",
-  "version_date": "2020-01-19",
-  "requirements": "Not specified",
-  "size": 1889776,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitashell/icon0.png",
-  "screenshots": [
+  "v": "v.2.02",
+  "vd": "2020-01-19",
+  "req": "Not specified",
+  "sz": 1889776,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitashell/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitashell/shot_01.png",
     "https://archive.org/download/psvitaalive-vitashell/shot_02.png",
     "https://archive.org/download/psvitaalive-vitashell/shot_03.png",
     "https://archive.org/download/psvitaalive-vitashell/shot_04.png",
     "https://archive.org/download/psvitaalive-vitashell/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitashell/vitashell.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitashell/vitashell.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/VitaShell/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/VitaShell/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/VitaShell/releases/tag/v2.02"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/VitaShell/releases/tag/v2.02"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/VitaShell"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/VitaShell"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "21",
-  "source_url": "https://github.com/TheOfficialFloW/VitaShell",
-  "release_page": "https://github.com/TheOfficialFloW/VitaShell/releases",
-  "updated_at": "2026-08-13T15:34:48.625535+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "21",
+  "su": "https://github.com/TheOfficialFloW/VitaShell",
+  "rp": "https://github.com/TheOfficialFloW/VitaShell/releases",
+  "ua": "2026-08-13T15:34:48.625535+00:00"
 }

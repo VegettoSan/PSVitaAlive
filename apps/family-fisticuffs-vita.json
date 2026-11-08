@@ -1,51 +1,51 @@
 {
   "id": "family-fisticuffs-vita",
-  "title_id": "GDOT29102",
-  "name": "Family Fisticuffs Vita",
-  "description": "Port of Family Fisticuffs for PSVITA.",
-  "long_description": "A game about breaking apart people trying to come back together made in Godot for the LoJam 2022.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GDOT29102",
+  "n": "Family Fisticuffs Vita",
+  "d": "Port of Family Fisticuffs for PSVITA.",
+  "ld": "A game about breaking apart people trying to come back together made in Godot for the LoJam 2022.\n\n- PsVitaAlive -",
+  "aids": [
     "alim395"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2022-10-30",
-  "requirements": "Not specified",
-  "size": 24806566,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-family-fisticuffs-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2022-10-30",
+  "req": "Not specified",
+  "sz": 24806566,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-family-fisticuffs-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-family-fisticuffs-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-family-fisticuffs-vita/family-fisticuffs-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-family-fisticuffs-vita/family-fisticuffs-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/alim395/FamilyFisticuffsVita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/alim395/FamilyFisticuffsVita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/alim395/FamilyFisticuffsVita/releases/tag/v1.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/alim395/FamilyFisticuffsVita/releases/tag/v1.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/alim395/FamilyFisticuffsVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/alim395/FamilyFisticuffsVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1013",
-  "source_url": "https://github.com/alim395/FamilyFisticuffsVita",
-  "release_page": "https://github.com/alim395/FamilyFisticuffsVita/releases",
-  "updated_at": "2026-08-13T15:34:48.525496+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1013",
+  "su": "https://github.com/alim395/FamilyFisticuffsVita",
+  "rp": "https://github.com/alim395/FamilyFisticuffsVita/releases",
+  "ua": "2026-08-13T15:34:48.525496+00:00"
 }

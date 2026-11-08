@@ -1,52 +1,52 @@
 {
   "id": "stock-app-remover",
-  "title_id": "STKAPPREM",
-  "name": "Stock App Remover",
-  "description": "Quick and easy way to remove/hide stock apps.",
-  "long_description": "This app is not destructive and does not actually \"remove\" the stock apps. It just hides them from the LiveArea. You can of course restore them.",
-  "author_ids": [
+  "tid": "STKAPPREM",
+  "n": "Stock App Remover",
+  "d": "Quick and easy way to remove/hide stock apps.",
+  "ld": "This app is not destructive and does not actually \"remove\" the stock apps. It just hides them from the LiveArea. You can of course restore them.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-12-12",
-  "requirements": "Not specified",
-  "size": 4621733,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-stock-app-remover/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-12-12",
+  "req": "Not specified",
+  "sz": 4621733,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-stock-app-remover/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-stock-app-remover/shot_01.png",
     "https://archive.org/download/psvitaalive-stock-app-remover/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-stock-app-remover/stock-app-remover.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-stock-app-remover/stock-app-remover.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Stock-App-Remover/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Stock-App-Remover/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Stock-App-Remover/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Stock-App-Remover/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Stock-App-Remover"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Stock-App-Remover"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "764",
-  "source_url": "https://github.com/AntHJ/Stock-App-Remover/releases",
-  "release_page": "https://github.com/AntHJ/Stock-App-Remover/releases",
-  "updated_at": "2026-08-13T15:34:48.561539+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "764",
+  "su": "https://github.com/AntHJ/Stock-App-Remover/releases",
+  "rp": "https://github.com/AntHJ/Stock-App-Remover/releases",
+  "ua": "2026-08-13T15:34:48.561539+00:00"
 }

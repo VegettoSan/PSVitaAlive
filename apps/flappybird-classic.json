@@ -1,55 +1,55 @@
 {
   "id": "flappybird-classic",
-  "title_id": "FLAPPY001",
-  "name": "FlappyBird Classic",
-  "description": "Flappy Bird clone for PSVITA.",
-  "long_description": "A Flappy Bird clone for PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "FLAPPY001",
+  "n": "FlappyBird Classic",
+  "d": "Flappy Bird clone for PSVITA.",
+  "ld": "A Flappy Bird clone for PSVITA/PSTV.",
+  "aids": [
     "creckeryop"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v1.21",
-  "version_date": "2020-04-08",
-  "requirements": "Not specified",
-  "size": 398871,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-flappybird-classic/icon0.png",
-  "screenshots": [
+  "v": "v1.21",
+  "vd": "2020-04-08",
+  "req": "Not specified",
+  "sz": 398871,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-flappybird-classic/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-flappybird-classic/shot_01.png",
     "https://archive.org/download/psvitaalive-flappybird-classic/shot_02.png",
     "https://archive.org/download/psvitaalive-flappybird-classic/shot_03.png",
     "https://archive.org/download/psvitaalive-flappybird-classic/shot_04.png",
     "https://archive.org/download/psvitaalive-flappybird-classic/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-flappybird-classic/FBClassic.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-flappybird-classic/FBClassic.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/tag/v1.21"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/tag/v1.21"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "508",
-  "source_url": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita",
-  "release_page": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/tag/v1.21",
-  "updated_at": "2026-08-13T15:34:48.629240+00:00"
+  "sn": "NeoVitaDB",
+  "si": "508",
+  "su": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita",
+  "rp": "https://github.com/Creckeryop/Flappy-Bird-Classic-vita/releases/tag/v1.21",
+  "ua": "2026-08-13T15:34:48.629240+00:00"
 }

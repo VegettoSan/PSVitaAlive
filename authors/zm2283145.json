@@ -1,15 +1,15 @@
 {
   "id": "zm2283145",
-  "name": "zm2283145",
-  "avatar": "https://avatars.githubusercontent.com/u/324678428?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "zm2283145",
+  "av": "https://avatars.githubusercontent.com/u/324678428?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/zm2283145",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/zm2283145",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/324678428?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/324678428?v=4"
 }

@@ -1,51 +1,51 @@
 {
   "id": "psv-cleaner",
-  "title_id": "CLEAN0000",
-  "name": "Psv Cleaner",
-  "description": "",
-  "long_description": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
-  "author_ids": [
+  "tid": "CLEAN0000",
+  "n": "Psv Cleaner",
+  "d": "",
+  "ld": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
+  "aids": [
     "theherogac"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "1.16",
-  "version_date": "2026-08-14",
-  "requirements": "Not specified",
-  "size": 114465,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
-  "screenshots": [
+  "v": "1.16",
+  "vd": "2026-08-14",
+  "req": "Not specified",
+  "sz": 114465,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psv-cleaner/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psv-cleaner/PSV_Cleaner.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psv-cleaner/PSV_Cleaner.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/theheroGAC/PSV-Cleaner"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/theheroGAC/PSV-Cleaner"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1454",
-  "source_url": "https://github.com/theheroGAC/PSV-Cleaner",
-  "release_page": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
-  "updated_at": "2026-08-13T15:34:48.720960+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1454",
+  "su": "https://github.com/theheroGAC/PSV-Cleaner",
+  "rp": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
+  "ua": "2026-08-13T15:34:48.720960+00:00"
 }

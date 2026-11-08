@@ -1,42 +1,42 @@
 {
   "id": "katawa-shoujo",
-  "title_id": "KSVN00001",
-  "name": "Katawa Shoujo",
-  "description": "Katawa Shoujo port for PSVITA.",
-  "long_description": "Katawa Shoujo port for PSVITA based on March33 engine.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "KSVN00001",
+  "n": "Katawa Shoujo",
+  "d": "Katawa Shoujo port for PSVITA.",
+  "ld": "Katawa Shoujo port for PSVITA based on March33 engine.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "sudovim"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.11",
-  "version_date": "2016-10-04",
-  "requirements": "Not specified",
-  "size": 227303932,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-katawa-shoujo/icon0.png",
-  "screenshots": [
+  "v": "v.0.11",
+  "vd": "2016-10-04",
+  "req": "Not specified",
+  "sz": 227303932,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-katawa-shoujo/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-katawa-shoujo/shot_01.png",
     "https://archive.org/download/psvitaalive-katawa-shoujo/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-katawa-shoujo/katawa-shoujo.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-katawa-shoujo/katawa-shoujo.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47277"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/talk/viewtopic.php?f=116&t=47277"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "79",
-  "source_url": "https://wololo.net/talk/viewtopic.php?f=116&t=47277",
-  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=47277",
-  "updated_at": "2026-08-13T15:34:48.696862+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "79",
+  "su": "https://wololo.net/talk/viewtopic.php?f=116&t=47277",
+  "rp": "https://wololo.net/talk/viewtopic.php?f=116&t=47277",
+  "ua": "2026-08-13T15:34:48.696862+00:00"
 }

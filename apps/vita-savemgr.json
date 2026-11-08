@@ -1,48 +1,48 @@
 {
   "id": "vita-savemgr",
-  "title_id": "SAVEMGR00",
-  "name": "vita-savemgr",
-  "description": "Savegame dumper/restorer.",
-  "long_description": "Savegames dumper/restorer for PSVITA.",
-  "author_ids": [
+  "tid": "SAVEMGR00",
+  "n": "vita-savemgr",
+  "d": "Savegame dumper/restorer.",
+  "ld": "Savegames dumper/restorer for PSVITA.",
+  "aids": [
     "d3m3vilurr"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.0.0",
-  "version_date": "2018-04-14",
-  "requirements": "Not specified",
-  "size": 490724,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-savemgr/icon0.png",
-  "screenshots": [
+  "v": "v.2.0.0",
+  "vd": "2018-04-14",
+  "req": "Not specified",
+  "sz": 490724,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-savemgr/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-savemgr/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-savemgr/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-savemgr/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-savemgr/vita-savemgr.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-savemgr/vita-savemgr.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/d3m3vilurr/vita-savemgr/releases/tag/nightly"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/d3m3vilurr/vita-savemgr/releases/tag/nightly"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/d3m3vilurr/vita-savemgr"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/d3m3vilurr/vita-savemgr"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "9",
-  "source_url": "https://github.com/d3m3vilurr/vita-savemgr",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.664996+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "9",
+  "su": "https://github.com/d3m3vilurr/vita-savemgr",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.664996+00:00"
 }

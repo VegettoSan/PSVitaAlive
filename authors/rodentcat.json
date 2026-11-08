@@ -1,15 +1,15 @@
 {
   "id": "rodentcat",
-  "name": "rodentcat",
-  "avatar": "https://github.com/rodentcat.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "rodentcat",
+  "av": "https://github.com/rodentcat.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/rodentcat",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/rodentcat",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/rodentcat.png"
+  "ic": "https://github.com/rodentcat.png"
 }

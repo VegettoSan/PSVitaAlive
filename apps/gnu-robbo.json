@@ -1,54 +1,54 @@
 {
   "id": "gnu-robbo",
-  "title_id": "ROBB00001",
-  "name": "GNU Robbo",
-  "description": "Atari XL/XE Robbo port.",
-  "long_description": "GNU Robbo is a free open source reimplementation of game designed by Janusz Pelc and published by LK Avalon in 1989 for the Atari XL/XE computers. A success on the Polish domestic market, it was later ported to other computer platforms and also released in the United States as The Adventures of Robbo.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ROBB00001",
+  "n": "GNU Robbo",
+  "d": "Atari XL/XE Robbo port.",
+  "ld": "GNU Robbo is a free open source reimplementation of game designed by Janusz Pelc and published by LK Avalon in 1989 for the Atari XL/XE computers. A success on the Polish domestic market, it was later ported to other computer platforms and also released in the United States as The Adventures of Robbo.\n\n- PsVitaAlive -",
+  "aids": [
     "bomblik"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.GNU_Robbo_0.68_PSVITA",
-  "version_date": "2017-02-20",
-  "requirements": "Not specified",
-  "size": 3840296,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gnu-robbo/icon0.png",
-  "screenshots": [
+  "v": "v.GNU_Robbo_0.68_PSVITA",
+  "vd": "2017-02-20",
+  "req": "Not specified",
+  "sz": 3840296,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gnu-robbo/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gnu-robbo/shot_01.png",
     "https://archive.org/download/psvitaalive-gnu-robbo/shot_02.png",
     "https://archive.org/download/psvitaalive-gnu-robbo/shot_03.png",
     "https://archive.org/download/psvitaalive-gnu-robbo/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gnu-robbo/gnu-robbo.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gnu-robbo/gnu-robbo.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/GNU-Robbo"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/GNU-Robbo"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/tag/GNU_Robbo_0.68_PSVITA"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP/releases/tag/GNU_Robbo_0.68_PSVITA"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "114",
-  "source_url": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP",
-  "release_page": "http://gekihen.customprotocol.com/en/project/GNU-Robbo",
-  "updated_at": "2026-08-13T15:34:48.686491+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "114",
+  "su": "https://github.com/bomblik/GNU_Robbo_PSVITA_PSP",
+  "rp": "http://gekihen.customprotocol.com/en/project/GNU-Robbo",
+  "ua": "2026-08-13T15:34:48.686491+00:00"
 }

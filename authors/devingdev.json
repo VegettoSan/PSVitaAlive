@@ -1,15 +1,15 @@
 {
   "id": "devingdev",
-  "name": "devingDev",
-  "avatar": "https://github.com/devingDev.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "devingDev",
+  "av": "https://github.com/devingDev.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/devingDev",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/devingDev",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/devingDev.png"
+  "ic": "https://github.com/devingDev.png"
 }

@@ -1,49 +1,49 @@
 {
   "id": "sonic-r",
-  "title_id": "SONICR001",
-  "name": "Sonic R",
-  "description": "A reimplementation of Sonic R for the PlayStation Vita.",
-  "long_description": "A reimplementation of Sonic R for the PlayStation Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SONICR001",
+  "n": "Sonic R",
+  "d": "A reimplementation of Sonic R for the PlayStation Vita.",
+  "ld": "A reimplementation of Sonic R for the PlayStation Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "fr3dsp"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "platformer",
     "puzzle"
   ],
-  "version": "2.0",
-  "version_date": "2026-10-12",
-  "requirements": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
-  "size": 4299162,
-  "status": "Verified",
-  "links": [
+  "v": "2.0",
+  "vd": "2026-10-12",
+  "req": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
+  "sz": 4299162,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v2.0.vpk",
-      "size": 4299162,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v2.0.vpk",
+      "sz": 4299162,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
-      "size": 647705395,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
+      "sz": 647705395,
+      "xp": "ux0:data/",
+      "ips": [
         "sonicr"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/fr3dsp/sonic-r-vita"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/fr3dsp/sonic-r-vita"
     }
   ],
-  "icon": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/sonic-r-ps-vita/shot0.png",
     "https://archive.org/download/sonic-r-ps-vita/shot1.png",
     "https://archive.org/download/sonic-r-ps-vita/shot2.png"

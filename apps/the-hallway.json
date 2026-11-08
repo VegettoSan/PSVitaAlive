@@ -1,44 +1,44 @@
 {
   "id": "the-hallway",
-  "title_id": "PTVT45668",
-  "name": "The Hallway",
-  "description": "P.T. clone for PSVITA.",
-  "long_description": "This game is a recreation of P.T. demo. It's a complete recreation of the original with handmade 3d models and environments created as close as possible to original.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "PTVT45668",
+  "n": "The Hallway",
+  "d": "P.T. clone for PSVITA.",
+  "ld": "This game is a recreation of P.T. demo. It's a complete recreation of the original with handmade 3d models and environments created as close as possible to original.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "vitahex-games"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2020-09-05",
-  "requirements": "Not specified",
-  "size": 114002075,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-hallway/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.1",
+  "vd": "2020-09-05",
+  "req": "Not specified",
+  "sz": 114002075,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-hallway/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-hallway/shot_01.png",
     "https://archive.org/download/psvitaalive-the-hallway/shot_02.png",
     "https://archive.org/download/psvitaalive-the-hallway/shot_03.png",
     "https://archive.org/download/psvitaalive-the-hallway/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-hallway/the-hallway.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-hallway/the-hallway.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=49690"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=49690"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "428",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=49690",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=49690",
-  "updated_at": "2026-08-13T15:34:48.611676+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "428",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&t=49690",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=49690",
+  "ua": "2026-08-13T15:34:48.611676+00:00"
 }

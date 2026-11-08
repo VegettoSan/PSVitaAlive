@@ -1,15 +1,15 @@
 {
   "id": "tchisholm20",
-  "name": "tchisholm20",
-  "avatar": "https://avatars.githubusercontent.com/u/59560447?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "tchisholm20",
+  "av": "https://avatars.githubusercontent.com/u/59560447?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/tchisholm20",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/tchisholm20",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/59560447?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/59560447?v=4"
 }

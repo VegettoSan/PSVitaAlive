@@ -1,55 +1,55 @@
 {
   "id": "madn",
-  "title_id": "MADN00000",
-  "name": "MaDn",
-  "description": "Puzzle game for PSVITA.",
-  "long_description": "Try to get all four pawns as fast as you can in the 'home' position and dont get angry when your pawn is hit just before your victory!",
-  "author_ids": [
+  "tid": "MADN00000",
+  "n": "MaDn",
+  "d": "Puzzle game for PSVITA.",
+  "ld": "Try to get all four pawns as fast as you can in the 'home' position and dont get angry when your pawn is hit just before your victory!",
+  "aids": [
     "dane64"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-06-27",
-  "requirements": "Not specified",
-  "size": 49789,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-madn/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-06-27",
+  "req": "Not specified",
+  "sz": 49789,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-madn/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-madn/shot_01.png",
     "https://archive.org/download/psvitaalive-madn/shot_02.png",
     "https://archive.org/download/psvitaalive-madn/shot_03.png",
     "https://archive.org/download/psvitaalive-madn/shot_04.png",
     "https://archive.org/download/psvitaalive-madn/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-madn/madn.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-madn/madn.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Dane64/MaDn/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Dane64/MaDn/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Dane64/MaDn/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Dane64/MaDn/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Dane64/MaDn"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Dane64/MaDn"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "565",
-  "source_url": "https://github.com/Dane64/MaDn",
-  "release_page": "https://github.com/Dane64/MaDn/releases",
-  "updated_at": "2026-08-13T15:34:48.616608+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "565",
+  "su": "https://github.com/Dane64/MaDn",
+  "rp": "https://github.com/Dane64/MaDn/releases",
+  "ua": "2026-08-13T15:34:48.616608+00:00"
 }

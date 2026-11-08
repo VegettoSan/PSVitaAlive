@@ -1,52 +1,52 @@
 {
   "id": "elevenmpv",
-  "title_id": "ELEVENMPV",
-  "name": "ElevenMPV",
-  "description": "Music Player for PSVITA.",
-  "long_description": "A homebrew music player for Playstation VITA that aims to support many different audio formats compared to the offical PS VITA music application.",
-  "author_ids": [
+  "tid": "ELEVENMPV",
+  "n": "ElevenMPV",
+  "d": "Music Player for PSVITA.",
+  "ld": "A homebrew music player for Playstation VITA that aims to support many different audio formats compared to the offical PS VITA music application.",
+  "aids": [
     "joel16"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.10",
-  "version_date": "2019-07-17",
-  "requirements": "Not specified",
-  "size": 2440427,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-elevenmpv/icon0.png",
-  "screenshots": [
+  "v": "v.2.10",
+  "vd": "2019-07-17",
+  "req": "Not specified",
+  "sz": 2440427,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-elevenmpv/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-elevenmpv/shot_01.png",
     "https://archive.org/download/psvitaalive-elevenmpv/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-elevenmpv/elevenmpv.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-elevenmpv/elevenmpv.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/ElevenMPV/releases/tag/v2.10"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/ElevenMPV/releases/tag/v2.10"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/ElevenMPV"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joel16/ElevenMPV"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "447",
-  "source_url": "https://github.com/joel16/ElevenMPV",
-  "release_page": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/",
-  "updated_at": "2026-08-13T15:34:48.636012+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "447",
+  "su": "https://github.com/joel16/ElevenMPV",
+  "rp": "https://gbatemp.net/threads/elevenmpv-eleven-music-player-vita.534916/",
+  "ua": "2026-08-13T15:34:48.636012+00:00"
 }

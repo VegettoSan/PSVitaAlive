@@ -1,69 +1,69 @@
 {
   "id": "modding",
-  "name": "Modding",
-  "description": "Mods, patches, translations and other modifications for games and software on PlayStation Vita.",
-  "icon": "icons/modding.png",
-  "order": 10,
-  "subcategories": [
+  "n": "Modding",
+  "d": "Mods, patches, translations and other modifications for games and software on PlayStation Vita.",
+  "ic": "icons/modding.png",
+  "ord": 10,
+  "subs": [
     {
       "id": "patches",
-      "name": "Patches"
+      "n": "Patches"
     },
     {
       "id": "game-patches",
-      "name": "Game Patches"
+      "n": "Game Patches"
     },
     {
       "id": "translation",
-      "name": "Translation"
+      "n": "Translation"
     },
     {
       "id": "localization",
-      "name": "Localization"
+      "n": "Localization"
     },
     {
       "id": "widescreen",
-      "name": "Widescreen"
+      "n": "Widescreen"
     },
     {
       "id": "graphics",
-      "name": "Graphics"
+      "n": "Graphics"
     },
     {
       "id": "textures",
-      "name": "Textures"
+      "n": "Textures"
     },
     {
       "id": "audio",
-      "name": "Audio"
+      "n": "Audio"
     },
     {
       "id": "cheats",
-      "name": "Cheats"
+      "n": "Cheats"
     },
     {
       "id": "rom-hacks",
-      "name": "ROM Hacks"
+      "n": "ROM Hacks"
     },
     {
       "id": "mods",
-      "name": "Mods"
+      "n": "Mods"
     },
     {
       "id": "compatibility-packs",
-      "name": "Compatibility Packs"
+      "n": "Compatibility Packs"
     },
     {
       "id": "dlc",
-      "name": "DLC"
+      "n": "DLC"
     },
     {
       "id": "restoration",
-      "name": "Restoration"
+      "n": "Restoration"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

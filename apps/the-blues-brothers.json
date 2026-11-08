@@ -1,54 +1,54 @@
 {
   "id": "the-blues-brothers",
-  "title_id": "BLUES0001",
-  "name": "The Blues Brothers",
-  "description": "Port of The Blues Brothers for PSVITA.",
-  "long_description": "The Blues Brothers is a 1991 platformer based on the self-titled band. You control either Jake or Elwood to evade police on your way to a blues concert. Throughout the 6 fun levels the game offers, your only weapons are agility and throwable crates.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BLUES0001",
+  "n": "The Blues Brothers",
+  "d": "Port of The Blues Brothers for PSVITA.",
+  "ld": "The Blues Brothers is a 1991 platformer based on the self-titled band. You control either Jake or Elwood to evade police on your way to a blues concert. Throughout the 6 fun levels the game offers, your only weapons are agility and throwable crates.\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-01-17",
-  "requirements": "- Game Data Files: Amiga OR DOS",
-  "size": 1205494,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-blues-brothers/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-01-17",
+  "req": "- Game Data Files: Amiga OR DOS",
+  "sz": 1205494,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-blues-brothers/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-blues-brothers/shot_01.png",
     "https://archive.org/download/psvitaalive-the-blues-brothers/shot_02.png",
     "https://archive.org/download/psvitaalive-the-blues-brothers/shot_03.png",
     "https://archive.org/download/psvitaalive-the-blues-brothers/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-blues-brothers/the-blues-brothers.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-blues-brothers/the-blues-brothers.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/blues-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/blues-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/blues-vita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/blues-vita/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/blues-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/blues-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "775",
-  "source_url": "https://github.com/v-atamanenko/blues-vita",
-  "release_page": "https://github.com/v-atamanenko/blues-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.558603+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "775",
+  "su": "https://github.com/v-atamanenko/blues-vita",
+  "rp": "https://github.com/v-atamanenko/blues-vita/releases",
+  "ua": "2026-08-13T15:34:48.558603+00:00"
 }

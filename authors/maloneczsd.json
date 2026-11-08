@@ -1,15 +1,15 @@
 {
   "id": "maloneczsd",
-  "name": "MaloneCZSD",
-  "avatar": "https://github.com/MaloneCZSD.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "MaloneCZSD",
+  "av": "https://github.com/MaloneCZSD.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/MaloneCZSD",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/MaloneCZSD",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/MaloneCZSD.png"
+  "ic": "https://github.com/MaloneCZSD.png"
 }

@@ -1,37 +1,37 @@
 {
   "id": "resident-evil-code-vita-mark00001",
-  "title_id": "MARK00001",
-  "name": "Resident Evil CODE:Vita",
-  "description": "Shoot'em up for PSVITA",
-  "long_description": "Shoot'em up set in the Resident Evil world based on Super Hero Chronicles sourcecode.",
-  "author_ids": [
+  "tid": "MARK00001",
+  "n": "Resident Evil CODE:Vita",
+  "d": "Shoot'em up for PSVITA",
+  "ld": "Shoot'em up set in the Resident Evil world based on Super Hero Chronicles sourcecode.",
+  "aids": [
     "markus95"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.5",
-  "version_date": "2019-06-07",
-  "requirements": "Not specified",
-  "size": 65464001,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/icon0.png",
-  "screenshots": [
+  "v": "v.0.5",
+  "vd": "2019-06-07",
+  "req": "Not specified",
+  "sz": 65464001,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/shot_01.png",
     "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/resident-evil-code-vita-mark00001.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-resident-evil-code-vita-mark00001/resident-evil-code-vita-mark00001.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "83",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=83",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.221454+00:00"
+  "sn": "VitaDB",
+  "si": "83",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=83",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.221454+00:00"
 }

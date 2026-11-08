@@ -1,15 +1,15 @@
 {
   "id": "10tr-ll-on-percent",
-  "name": "10TR!LL!ON Percent%",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "10TR!LL!ON Percent%",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "Other",
-      "name": "Buscar autor",
-      "url": "https://github.com/search?q=10TR%21LL%21ON+Percent%25&type=users",
-      "recommended": true
+      "t": "Other",
+      "n": "Buscar autor",
+      "u": "https://github.com/search?q=10TR%21LL%21ON+Percent%25&type=users",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

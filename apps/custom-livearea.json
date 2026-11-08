@@ -1,54 +1,54 @@
 {
   "id": "custom-livearea",
-  "title_id": "CSTMLIVEA",
-  "name": "Custom LiveArea",
-  "description": "App to customize your bubbles.",
-  "long_description": "Using custom themes is good fun but your limited to only being able to change the stock app bubbles, but now you can customise a whole lot more.\nCustomise icons, title names and images of your apps and games bubbles.",
-  "author_ids": [
+  "tid": "CSTMLIVEA",
+  "n": "Custom LiveArea",
+  "d": "App to customize your bubbles.",
+  "ld": "Using custom themes is good fun but your limited to only being able to change the stock app bubbles, but now you can customise a whole lot more.\nCustomise icons, title names and images of your apps and games bubbles.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-12-12",
-  "requirements": "Not specified",
-  "size": 5017198,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-custom-livearea/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-12-12",
+  "req": "Not specified",
+  "sz": 5017198,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-custom-livearea/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-custom-livearea/shot_01.png",
     "https://archive.org/download/psvitaalive-custom-livearea/shot_02.png",
     "https://archive.org/download/psvitaalive-custom-livearea/shot_03.png",
     "https://archive.org/download/psvitaalive-custom-livearea/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-custom-livearea/custom-livearea.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-custom-livearea/custom-livearea.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Custom-LiveArea/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Custom-LiveArea/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Custom-LiveArea/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Custom-LiveArea/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Custom-LiveArea"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Custom-LiveArea"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "762",
-  "source_url": "https://github.com/AntHJ/Custom-LiveArea/releases",
-  "release_page": "https://github.com/AntHJ/Custom-LiveArea/releases",
-  "updated_at": "2026-08-13T15:34:48.561214+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "762",
+  "su": "https://github.com/AntHJ/Custom-LiveArea/releases",
+  "rp": "https://github.com/AntHJ/Custom-LiveArea/releases",
+  "ua": "2026-08-13T15:34:48.561214+00:00"
 }

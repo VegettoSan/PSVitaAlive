@@ -1,15 +1,15 @@
 {
   "id": "team-molecule",
-  "name": "Team Molecule",
-  "avatar": "https://github.com/TeamMolecule.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "Team Molecule",
+  "av": "https://github.com/TeamMolecule.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/TeamMolecule",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/TeamMolecule",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/TeamMolecule.png"
+  "ic": "https://github.com/TeamMolecule.png"
 }

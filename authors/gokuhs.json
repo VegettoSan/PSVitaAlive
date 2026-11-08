@@ -1,15 +1,15 @@
 {
   "id": "gokuhs",
-  "name": "gokuhs",
-  "avatar": "https://github.com/gokuhs.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "gokuhs",
+  "av": "https://github.com/gokuhs.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/gokuhs",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/gokuhs",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/gokuhs.png"
+  "ic": "https://github.com/gokuhs.png"
 }

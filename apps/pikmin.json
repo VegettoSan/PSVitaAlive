@@ -1,48 +1,48 @@
 {
   "id": "pikmin",
-  "title_id": "NECTAR001",
-  "name": "Pikmin",
-  "description": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
-  "long_description": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
-  "author_ids": [
+  "tid": "NECTAR001",
+  "n": "Pikmin",
+  "d": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
+  "ld": "PS Vita release of Open Nectar, a native port of Pikmin built on the decompilation.",
+  "aids": [
     "bren"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "source-port",
     "other"
   ],
-  "version": "0.0.1",
-  "version_date": "2026-10-29",
-  "requirements": "HENkaku/Ensō, game ID GPIE01 (revision 1), about 1.5 GB free on ux0:.",
-  "size": 3670016,
-  "status": "Verified",
-  "links": [
+  "v": "0.0.1",
+  "vd": "2026-10-29",
+  "req": "HENkaku/Ensō, game ID GPIE01 (revision 1), about 1.5 GB free on ux0:.",
+  "sz": 3670016,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/open-nectar/Pikmin-Vita-v0.0.1.vpk",
-      "size": 3670016,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/open-nectar/Pikmin-Vita-v0.0.1.vpk",
+      "sz": 3670016,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files USA",
-      "url": "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip",
-      "size": 555220992,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files USA",
+      "u": "https://archive.org/download/open-nectar/Game%20Files%20for%20PSVA.zip",
+      "sz": 555220992,
+      "xp": "ux0:data/",
+      "ips": [
         "Pikmin"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Brendonm17/Open-Nectar-Vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Brendonm17/Open-Nectar-Vita"
     }
   ],
-  "icon": "https://archive.org/download/open-nectar/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/open-nectar/icon0.png",
+  "ss": [
     "https://archive.org/download/open-nectar/shot.png",
     "https://archive.org/download/open-nectar/shot0.png",
     "https://archive.org/download/open-nectar/shot1.png"

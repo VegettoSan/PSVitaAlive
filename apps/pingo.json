@@ -1,55 +1,55 @@
 {
   "id": "pingo",
-  "title_id": "GRZB00003",
-  "name": "Pingo",
-  "description": "Puzzle game for PSVITA.",
-  "long_description": "Pingo is a puzzle game in which your goal is to paint the whole level in as little steps as possible. Try to earn 3 stars in 60 hand crafted levels!",
-  "author_ids": [
+  "tid": "GRZB00003",
+  "n": "Pingo",
+  "d": "Puzzle game for PSVITA.",
+  "ld": "Pingo is a puzzle game in which your goal is to paint the whole level in as little steps as possible. Try to earn 3 stars in 60 hand crafted levels!",
+  "aids": [
     "grzybojad"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2019-09-03",
-  "requirements": "Not specified",
-  "size": 8404175,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pingo/icon0.png",
-  "screenshots": [
+  "v": "v.2.1",
+  "vd": "2019-09-03",
+  "req": "Not specified",
+  "sz": 8404175,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pingo/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pingo/shot_01.png",
     "https://archive.org/download/psvitaalive-pingo/shot_02.png",
     "https://archive.org/download/psvitaalive-pingo/shot_03.png",
     "https://archive.org/download/psvitaalive-pingo/shot_04.png",
     "https://archive.org/download/psvitaalive-pingo/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pingo/pingo.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pingo/pingo.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Grzybojad/Pingo/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Grzybojad/Pingo/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Grzybojad/Pingo/releases/tag/2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Grzybojad/Pingo/releases/tag/2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Grzybojad/Pingo"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Grzybojad/Pingo"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "462",
-  "source_url": "https://github.com/Grzybojad/Pingo",
-  "release_page": "https://github.com/Grzybojad/Pingo/releases",
-  "updated_at": "2026-08-13T15:34:48.630792+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "462",
+  "su": "https://github.com/Grzybojad/Pingo",
+  "rp": "https://github.com/Grzybojad/Pingo/releases",
+  "ua": "2026-08-13T15:34:48.630792+00:00"
 }

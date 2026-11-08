@@ -1,55 +1,55 @@
 {
   "id": "vanillara",
-  "title_id": "VCRA00001",
-  "name": "VanillaRA",
-  "description": "Port of C&C: Red Alert for PSVITA.",
-  "long_description": "Vanilla Conquer is a fully portable version of the first-generation C&C engine and can run both Tiberian Dawn and Red Alert on multiple platforms.\nThis is the Red Alert executable (formerly VanillaRA).\nThe focus of Vanilla Conquer is to keep the default out-of-box experience faithful to what the games were back when they were released and work as a drop-in replacement for the original executables while also providing bug fixes, compatibility and quality of life improvements.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "VCRA00001",
+  "n": "VanillaRA",
+  "d": "Port of C&C: Red Alert for PSVITA.",
+  "ld": "Vanilla Conquer is a fully portable version of the first-generation C&C engine and can run both Tiberian Dawn and Red Alert on multiple platforms.\nThis is the Red Alert executable (formerly VanillaRA).\nThe focus of Vanilla Conquer is to keep the default out-of-box experience faithful to what the games were back when they were released and work as a drop-in replacement for the original executables while also providing bug fixes, compatibility and quality of life improvements.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0-r914",
-  "version_date": "2023-12-23",
-  "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
-  "size": 2175330,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vanillara/icon0.png",
-  "screenshots": [
+  "v": "v.1.0-r914",
+  "vd": "2023-12-23",
+  "req": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
+  "sz": 2175330,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vanillara/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vanillara/shot_01.png",
     "https://archive.org/download/psvitaalive-vanillara/shot_02.png",
     "https://archive.org/download/psvitaalive-vanillara/shot_03.png",
     "https://archive.org/download/psvitaalive-vanillara/shot_04.png",
     "https://archive.org/download/psvitaalive-vanillara/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vanillara/vanillara.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vanillara/vanillara.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/tag/v1.0-r914"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/Vanilla-Conquer-vita/releases/tag/v1.0-r914"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/Vanilla-Conquer-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/Vanilla-Conquer-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "649",
-  "source_url": "https://github.com/Northfear/Vanilla-Conquer-vita",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer",
-  "updated_at": "2026-08-13T15:34:48.457640+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "649",
+  "su": "https://github.com/Northfear/Vanilla-Conquer-vita",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/vanilla_conquer",
+  "ua": "2026-08-13T15:34:48.457640+00:00"
 }

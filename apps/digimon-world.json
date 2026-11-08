@@ -1,50 +1,50 @@
 {
   "id": "digimon-world",
-  "title_id": "DGWD00001",
-  "name": "Digimon World",
-  "description": "Digimon World — PS Vita Port",
-  "long_description": "A native port of Digimon World (PlayStation, 1999 — US version) for PS Vita and PS TV.",
-  "author_ids": [
+  "tid": "DGWD00001",
+  "n": "Digimon World",
+  "d": "Digimon World — PS Vita Port",
+  "ld": "A native port of Digimon World (PlayStation, 1999 — US version) for PS Vita and PS TV.",
+  "aids": [
     "danicannt"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "rpg",
     "strategy",
     "source-port"
   ],
-  "version": "0.1.0",
-  "version_date": "2026-10-31",
-  "requirements": "- A PS Vita or PS TV running HENkaku/Ensō.\n- Your own dump of Digimon World (USA, SLUS-01032), in .bin + .cue format using raw 2352-byte sectors.",
-  "size": 2831155,
-  "status": "Verified",
-  "links": [
+  "v": "0.1.0",
+  "vd": "2026-10-31",
+  "req": "- A PS Vita or PS TV running HENkaku/Ensō.\n- Your own dump of Digimon World (USA, SLUS-01032), in .bin + .cue format using raw 2352-byte sectors.",
+  "sz": 2831155,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/digimon-world-ps-vita-port/dw1-vita%20v0.1.0.vpk",
-      "size": 2831155,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/digimon-world-ps-vita-port/dw1-vita%20v0.1.0.vpk",
+      "sz": 2831155,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files USA",
-      "url": "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-      "size": 381786522,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files USA",
+      "u": "https://archive.org/download/digimon-world-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 381786522,
+      "xp": "ux0:data/",
+      "ips": [
         "dw1"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/danicannt/dw-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/danicannt/dw-vita"
     }
   ],
-  "icon": "https://archive.org/download/digimon-world-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/digimon-world-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/digimon-world-ps-vita-port/shot0.jpg",
     "https://archive.org/download/digimon-world-ps-vita-port/shot1.jpg",
     "https://archive.org/download/digimon-world-ps-vita-port/shot2.jpg",

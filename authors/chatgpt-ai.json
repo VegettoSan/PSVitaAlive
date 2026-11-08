@@ -1,15 +1,15 @@
 {
   "id": "chatgpt-ai",
-  "name": "ChatGPT AI",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Asistente de IA de OpenAI usado como apoyo creativo y técnico en algunos homebrews de PS Vita.",
-  "links": [
+  "n": "ChatGPT AI",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Asistente de IA de OpenAI usado como apoyo creativo y técnico en algunos homebrews de PS Vita.",
+  "l": [
     {
-      "type": "Official Website",
-      "name": "ChatGPT",
-      "url": "https://openai.com/chatgpt/",
-      "recommended": true
+      "t": "Official Website",
+      "n": "ChatGPT",
+      "u": "https://openai.com/chatgpt/",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

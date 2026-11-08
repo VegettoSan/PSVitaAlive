@@ -1,15 +1,15 @@
 {
   "id": "team789er",
-  "name": "Team789er",
-  "avatar": "https://github.com/Team789er.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "Team789er",
+  "av": "https://github.com/Team789er.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Team789er",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Team789er",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Team789er.png"
+  "ic": "https://github.com/Team789er.png"
 }

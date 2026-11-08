@@ -1,15 +1,15 @@
 {
   "id": "twilight-games-studio",
-  "name": "Twilight Games Studio",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "Twilight Games Studio",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "Other",
-      "name": "Buscar autor",
-      "url": "https://github.com/search?q=Twilight+Games+Studio&type=users",
-      "recommended": true
+      "t": "Other",
+      "n": "Buscar autor",
+      "u": "https://github.com/search?q=Twilight+Games+Studio&type=users",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

@@ -1,39 +1,39 @@
 {
   "id": "pnglive",
-  "title_id": "WOLFGIRL0",
-  "name": "PNGLive",
-  "description": "Turn your PSVita into a PNGtuber.",
-  "long_description": "Turn your PSVita into a PNGtuber.\nWant to stream with a PNGtuber but don't want to install more programs on your already crowded phone or laptop? Or you simply want to use a PSVita/PSTV that's been sitting around catching dust for something? PNGLive will let you do just that after setting it up on your system and adding it to OBS.\nAn instructions guide can be found in ux0:/app/WOLFGIRL0/instructions.txt.\nPlease contact the developer if you need help setting this up or need a PNGtuber.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "WOLFGIRL0",
+  "n": "PNGLive",
+  "d": "Turn your PSVita into a PNGtuber.",
+  "ld": "Turn your PSVita into a PNGtuber.\nWant to stream with a PNGtuber but don't want to install more programs on your already crowded phone or laptop? Or you simply want to use a PSVita/PSTV that's been sitting around catching dust for something? PNGLive will let you do just that after setting it up on your system and adding it to OBS.\nAn instructions guide can be found in ux0:/app/WOLFGIRL0/instructions.txt.\nPlease contact the developer if you need help setting this up or need a PNGtuber.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "wolfgirlbreeder"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.4 BETA",
-  "version_date": "2023-08-14",
-  "requirements": "Not specified",
-  "size": 5234780,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pnglive/icon0.png",
-  "screenshots": [
+  "v": "v.0.4 BETA",
+  "vd": "2023-08-14",
+  "req": "Not specified",
+  "sz": 5234780,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pnglive/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pnglive/shot_01.png",
     "https://archive.org/download/psvitaalive-pnglive/shot_02.png",
     "https://archive.org/download/psvitaalive-pnglive/shot_03.png",
     "https://archive.org/download/psvitaalive-pnglive/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pnglive/pnglive.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pnglive/pnglive.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1113",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1113-pnglive.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.482610+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1113",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1113-pnglive.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.482610+00:00"
 }

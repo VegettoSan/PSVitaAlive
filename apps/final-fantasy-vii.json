@@ -1,50 +1,50 @@
 {
   "id": "final-fantasy-vii",
-  "title_id": "FFSQ00007",
-  "name": "FINAL FANTASY VII",
-  "description": "Port de Final Fantasy VII - Android Legacy para o VITA",
-  "long_description": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
-  "author_ids": [
+  "tid": "FFSQ00007",
+  "n": "FINAL FANTASY VII",
+  "d": "Port de Final Fantasy VII - Android Legacy para o VITA",
+  "ld": "A loader that runs the native library of the Android version of FINAL FANTASY VII (v1.0.29) on the PlayStation Vita, without emulation: the original ARMv7 .so runs directly on the CPU, with the Android system calls redirected to their Vita equivalents.",
+  "aids": [
     "ggdrn"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "rpg",
     "strategy",
     "source-port"
   ],
-  "version": "1.2.0",
-  "version_date": "2026-11-05",
-  "requirements": "- No data",
-  "size": 3145728,
-  "status": "Verified",
-  "links": [
+  "v": "1.2.0",
+  "vd": "2026-11-05",
+  "req": "- No data",
+  "sz": 3145728,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.2.0.vpk",
-      "size": 3145728,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/meteor-vii-vita/ff7_vita_v1.2.0.vpk",
+      "sz": 3145728,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
-      "size": 2040109466,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/meteor-vii-vita/Game%20Files%20for%20PSVA%20Fix.zip",
+      "sz": 2040109466,
+      "xp": "ux0:data/",
+      "ips": [
         "ffvii-vita"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ggdrn/METEOR-VII-VITA"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ggdrn/METEOR-VII-VITA"
     }
   ],
-  "icon": "https://archive.org/download/meteor-vii-vita/icon0%20New.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/meteor-vii-vita/icon0%20New.png",
+  "ss": [
     "https://archive.org/download/meteor-vii-vita/shot_0.png",
     "https://archive.org/download/meteor-vii-vita/shot_1.png"
   ]

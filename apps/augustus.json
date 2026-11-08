@@ -1,53 +1,53 @@
 {
   "id": "augustus",
-  "title_id": "AUGUSTUS1",
-  "name": "Augustus",
-  "description": "Port of Augustus for PSVITA.",
-  "long_description": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes. The aim of this project is to provide enhanced, customizable gameplay to Caesar 3 using project Julius UI enhancements.\nAugustus is able to load Caesar 3 and Julius saves, however saves made with Augustus will not work outside Augustus.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "AUGUSTUS1",
+  "n": "Augustus",
+  "d": "Port of Augustus for PSVITA.",
+  "ld": "Augustus is a fork of the Julius project that intends to incorporate gameplay changes. The aim of this project is to provide enhanced, customizable gameplay to Caesar 3 using project Julius UI enhancements.\nAugustus is able to load Caesar 3 and Julius saves, however saves made with Augustus will not work outside Augustus.\n\n- PsVitaAlive -",
+  "aids": [
     "keriew",
     "devnoname120",
     "julius-team"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.4.0.0",
-  "version_date": "2023-12-28",
-  "requirements": "- Game Data Files: PC",
-  "size": 15627999,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-augustus/icon0.png",
-  "screenshots": [
+  "v": "v.4.0.0",
+  "vd": "2023-12-28",
+  "req": "- Game Data Files: PC",
+  "sz": 15627999,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-augustus/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-augustus/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-augustus/augustus.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-augustus/augustus.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Keriew/augustus/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Keriew/augustus/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Keriew/augustus/releases/tag/v4.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Keriew/augustus/releases/tag/v4.0.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Keriew/augustus"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Keriew/augustus"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "746",
-  "source_url": "https://github.com/Keriew/augustus",
-  "release_page": "https://github.com/Keriew/augustus/releases",
-  "updated_at": "2026-08-13T15:34:48.456580+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "746",
+  "su": "https://github.com/Keriew/augustus",
+  "rp": "https://github.com/Keriew/augustus/releases",
+  "ua": "2026-08-13T15:34:48.456580+00:00"
 }

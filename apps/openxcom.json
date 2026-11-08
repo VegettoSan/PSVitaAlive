@@ -1,50 +1,50 @@
 {
   "id": "openxcom",
-  "title_id": "XCOM00001",
-  "name": "OpenXcom",
-  "description": "Port of OpenXcom for PSVITA.",
-  "long_description": "OpenXcom is an open-source clone of the popular \"UFO: Enemy Unknown\" (\"X-COM: UFO Defense\" in the USA release) and \"X-COM: Terror From the Deep\" videogames by Microprose, licensed under the GPL and written in C++ / SDL.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "XCOM00001",
+  "n": "OpenXcom",
+  "d": "Port of OpenXcom for PSVITA.",
+  "ld": "OpenXcom is an open-source clone of the popular \"UFO: Enemy Unknown\" (\"X-COM: UFO Defense\" in the USA release) and \"X-COM: Terror From the Deep\" videogames by Microprose, licensed under the GPL and written in C++ / SDL.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0-vita.6",
-  "version_date": "2023-12-15",
-  "requirements": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
-  "size": 3815383,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-openxcom/icon0.png",
-  "screenshots": [
+  "v": "v.1.0-vita.6",
+  "vd": "2023-12-15",
+  "req": "- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: PC",
+  "sz": 3815383,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-openxcom/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openxcom/shot_01.png",
     "https://archive.org/download/psvitaalive-openxcom/shot_02.png",
     "https://archive.org/download/psvitaalive-openxcom/shot_03.png",
     "https://archive.org/download/psvitaalive-openxcom/shot_04.png",
     "https://archive.org/download/psvitaalive-openxcom/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openxcom/openxcom.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openxcom/openxcom.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/xcom/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/xcom/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/OpenXcom-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/OpenXcom-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "658",
-  "source_url": "https://github.com/Northfear/OpenXcom-vita",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/xcom/",
-  "updated_at": "2026-08-13T15:34:48.458602+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "658",
+  "su": "https://github.com/Northfear/OpenXcom-vita",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/xcom/",
+  "ua": "2026-08-13T15:34:48.458602+00:00"
 }

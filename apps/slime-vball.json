@@ -1,55 +1,55 @@
 {
   "id": "slime-vball",
-  "title_id": "ISLD00002",
-  "name": "Slime-vBall",
-  "description": "Port of slime-vball for PSVITA/PSTV.",
-  "long_description": "Port of slime-vball for PSVITA/PSTV.\nslime-vball is a clone of the slime volleyball game http://oneslime.net/ in C and SDL.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ISLD00002",
+  "n": "Slime-vBall",
+  "d": "Port of slime-vball for PSVITA/PSTV.",
+  "ld": "Port of slime-vball for PSVITA/PSTV.\nslime-vball is a clone of the slime volleyball game http://oneslime.net/ in C and SDL.\n\n- PsVitaAlive -",
+  "aids": [
     "island-games"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2022-09-04",
-  "requirements": "Not specified",
-  "size": 429097,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-slime-vball/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2022-09-04",
+  "req": "Not specified",
+  "sz": 429097,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-slime-vball/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-slime-vball/shot_01.png",
     "https://archive.org/download/psvitaalive-slime-vball/shot_02.png",
     "https://archive.org/download/psvitaalive-slime-vball/shot_03.png",
     "https://archive.org/download/psvitaalive-slime-vball/shot_04.png",
     "https://archive.org/download/psvitaalive-slime-vball/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-slime-vball/slime-vball.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-slime-vball/slime-vball.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/slime-vball/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/slime-vball/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/slime-vball/releases/tag/v1.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/slime-vball/releases/tag/v1.0.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/island-games/slime-vball"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/island-games/slime-vball"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "875",
-  "source_url": "https://github.com/island-games/slime-vball",
-  "release_page": "https://github.com/island-games/slime-vball/releases",
-  "updated_at": "2026-08-13T15:34:48.532383+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "875",
+  "su": "https://github.com/island-games/slime-vball",
+  "rp": "https://github.com/island-games/slime-vball/releases",
+  "ua": "2026-08-13T15:34:48.532383+00:00"
 }

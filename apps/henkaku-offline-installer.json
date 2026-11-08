@@ -1,51 +1,51 @@
 {
   "id": "henkaku-offline-installer",
-  "title_id": "MLCL00002",
-  "name": "Henkaku Offline Installer",
-  "description": "Offline installer for Henkaku.",
-  "long_description": "Mail application exploit that allows you to start HENkaku without an Internet connection.",
-  "author_ids": [
+  "tid": "MLCL00002",
+  "n": "Henkaku Offline Installer",
+  "d": "Offline installer for Henkaku.",
+  "ld": "Mail application exploit that allows you to start HENkaku without an Internet connection.",
+  "aids": [
     "xyzz"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-08-10",
-  "requirements": "Not specified",
-  "size": 409671,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-henkaku-offline-installer/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-08-10",
+  "req": "Not specified",
+  "sz": 409671,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-henkaku-offline-installer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-henkaku-offline-installer/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-henkaku-offline-installer/henkaku-offline-installer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-henkaku-offline-installer/henkaku-offline-installer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/henkaku/offline-installer/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/henkaku/offline-installer/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/henkaku/offline-installer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/henkaku/offline-installer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "160",
-  "source_url": "https://github.com/henkaku/offline-installer",
-  "release_page": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/",
-  "updated_at": "2026-08-13T15:34:48.706386+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "160",
+  "su": "https://github.com/henkaku/offline-installer",
+  "rp": "http://wololo.net/2016/08/11/henkaku-offline-installer-released/",
+  "ua": "2026-08-13T15:34:48.706386+00:00"
 }

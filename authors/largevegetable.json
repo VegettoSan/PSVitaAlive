@@ -1,15 +1,15 @@
 {
   "id": "largevegetable",
-  "name": "LargeVegetable",
-  "avatar": "https://avatars.githubusercontent.com/u/345090473?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "LargeVegetable",
+  "av": "https://avatars.githubusercontent.com/u/345090473?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/LargeVegetable",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/LargeVegetable",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/345090473?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/345090473?v=4"
 }

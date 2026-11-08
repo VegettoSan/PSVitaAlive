@@ -1,52 +1,52 @@
 {
   "id": "psp2-batteryfixer",
-  "title_id": "SKGB4TF1X",
-  "name": "PSP2-batteryFixer",
-  "description": "Battery issues fixer for PSVITA.",
-  "long_description": "A small application packed with a kernel plugin for enso that fixes most of PSVita's battery-related problems.\nBasically the result is the same as hardware-disconnecting the battery or using a syscon keycombo.\nAs a bonus it deletes all the temp flags from the battery chip.\nNOTE: There are some compatibility issues with some PSVita 2000 revisions: https://github.com/SKGleba/PSP2-batteryFixer/issues/13",
-  "author_ids": [
+  "tid": "SKGB4TF1X",
+  "n": "PSP2-batteryFixer",
+  "d": "Battery issues fixer for PSVITA.",
+  "ld": "A small application packed with a kernel plugin for enso that fixes most of PSVita's battery-related problems.\nBasically the result is the same as hardware-disconnecting the battery or using a syscon keycombo.\nAs a bonus it deletes all the temp flags from the battery chip.\nNOTE: There are some compatibility issues with some PSVita 2000 revisions: https://github.com/SKGleba/PSP2-batteryFixer/issues/13",
+  "aids": [
     "skgleba"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.3.0.1",
-  "version_date": "2023-01-08",
-  "requirements": "Not specified",
-  "size": 43566,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psp2-batteryfixer/icon0.png",
-  "screenshots": [
+  "v": "v.3.0.1",
+  "vd": "2023-01-08",
+  "req": "Not specified",
+  "sz": 43566,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psp2-batteryfixer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psp2-batteryfixer/shot_01.png",
     "https://archive.org/download/psvitaalive-psp2-batteryfixer/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psp2-batteryfixer/psp2-batteryfixer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psp2-batteryfixer/psp2-batteryfixer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/PSP2-batteryFixer/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SKGleba/PSP2-batteryFixer/releases/tag/v3.0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SKGleba/PSP2-batteryFixer/releases/tag/v3.0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/PSP2-batteryFixer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SKGleba/PSP2-batteryFixer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "479",
-  "source_url": "https://github.com/SKGleba/PSP2-batteryFixer",
-  "release_page": "https://github.com/SKGleba/PSP2-batteryFixer/releases",
-  "updated_at": "2026-08-13T15:34:48.521087+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "479",
+  "su": "https://github.com/SKGleba/PSP2-batteryFixer",
+  "rp": "https://github.com/SKGleba/PSP2-batteryFixer/releases",
+  "ua": "2026-08-13T15:34:48.521087+00:00"
 }

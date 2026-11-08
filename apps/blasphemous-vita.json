@@ -1,52 +1,52 @@
 {
   "id": "blasphemous-vita",
-  "title_id": "BLPM12345",
-  "name": "Blasphemous Vita",
-  "description": "Port of Blasphemous for PSVITA.",
-  "long_description": "Port of Blasphemous for PSVITA.\nBlasphemous is a punishing action-platformer that combines the fast-paced, skilled combat of a hack-n-slash game with a deep and evocative narrative core, delivered through exploration of a huge universe comprised of non-linear levels.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BLPM12345",
+  "n": "Blasphemous Vita",
+  "d": "Port of Blasphemous for PSVITA.",
+  "ld": "Port of Blasphemous for PSVITA.\nBlasphemous is a punishing action-platformer that combines the fast-paced, skilled combat of a hack-n-slash game with a deep and evocative narrative core, delivered through exploration of a huge universe comprised of non-linear levels.\n\n- PsVitaAlive -",
+  "aids": [
     "gl00mm"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "platformer"
   ],
-  "version": "beta.1",
-  "version_date": "2024-06-11",
-  "requirements": "- Game Data Files: PC",
-  "size": 429964394,
-  "status": "Legacy",
-  "links": [
+  "v": "beta.1",
+  "vd": "2024-06-11",
+  "req": "- Game Data Files: PC",
+  "sz": 429964394,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-blasphemous-vita/blasphemous-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-blasphemous-vita/blasphemous-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-blasphemous-vita/Game%20Files.zip",
-      "size": 816840704,
-      "extract_path": "ux0:app/"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-blasphemous-vita/Game%20Files.zip",
+      "sz": 816840704,
+      "xp": "ux0:app/"
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/gl00mm/Blasphemous_PSVITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/gl00mm/Blasphemous_PSVITA"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-blasphemous-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-blasphemous-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-blasphemous-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-blasphemous-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-blasphemous-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-blasphemous-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-blasphemous-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1209",
-  "source_url": "https://github.com/gl00mm/Blasphemous_PSVITA",
-  "release_page": "https://github.com/gl00mm/Blasphemous_PSVITA",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1209",
+  "su": "https://github.com/gl00mm/Blasphemous_PSVITA",
+  "rp": "https://github.com/gl00mm/Blasphemous_PSVITA",
+  "ua": "2026-08-13T15:34"
 }

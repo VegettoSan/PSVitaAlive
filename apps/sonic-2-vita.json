@@ -1,55 +1,55 @@
 {
   "id": "sonic-2-vita",
-  "title_id": "SONIC0002",
-  "name": "Sonic 2 Vita",
-  "description": "Port of Sonic 2 for PSVITA/PSTV.",
-  "long_description": "A port of the second Sonic game (Sonic The Hedgehog 2) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SONIC0002",
+  "n": "Sonic 2 Vita",
+  "d": "Port of Sonic 2 for PSVITA/PSTV.",
+  "ld": "A port of the second Sonic game (Sonic The Hedgehog 2) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
+  "aids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1.0",
-  "version_date": "2021-01-23",
-  "requirements": "- Game Data Files: Android",
-  "size": 962589,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-2-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1.0",
+  "vd": "2021-01-23",
+  "req": "- Game Data Files: Android",
+  "sz": 962589,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-2-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-2-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-2-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-2-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-2-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-sonic-2-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-2-vita/sonic-2-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-2-vita/sonic-2-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/tag/1.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases/tag/1.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/Sonic-1-2-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SonicMastr/Sonic-1-2-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "866",
-  "source_url": "https://github.com/SonicMastr/Sonic-1-2-Vita",
-  "release_page": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.597913+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "866",
+  "su": "https://github.com/SonicMastr/Sonic-1-2-Vita",
+  "rp": "https://github.com/SonicMastr/Sonic-1-2-Vita/releases",
+  "ua": "2026-08-13T15:34:48.597913+00:00"
 }

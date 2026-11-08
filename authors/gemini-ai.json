@@ -1,15 +1,15 @@
 {
   "id": "gemini-ai",
-  "name": "Gemini AI",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Asistente de IA de Google orientado a ayuda creativa, análisis y productividad.",
-  "links": [
+  "n": "Gemini AI",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Asistente de IA de Google orientado a ayuda creativa, análisis y productividad.",
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Gemini",
-      "url": "https://gemini.google.com/",
-      "recommended": true
+      "t": "Official Website",
+      "n": "Gemini",
+      "u": "https://gemini.google.com/",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

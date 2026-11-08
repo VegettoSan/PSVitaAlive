@@ -1,51 +1,51 @@
 {
   "id": "psm-manager",
-  "title_id": "PSMFIXER2",
-  "name": "PSM Manager",
-  "description": "Bypass PSN for PSM titles.",
-  "long_description": "This program bypasses the PSN account requirement when using PSM games.",
-  "author_ids": [
+  "tid": "PSMFIXER2",
+  "n": "PSM Manager",
+  "d": "Bypass PSN for PSM titles.",
+  "ld": "This program bypasses the PSN account requirement when using PSM games.",
+  "aids": [
     "yoti"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2019-08-20",
-  "requirements": "Not specified",
-  "size": 261619,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psm-manager/icon0.png",
-  "screenshots": [
+  "v": "v.2.1",
+  "vd": "2019-08-20",
+  "req": "Not specified",
+  "sz": 261619,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psm-manager/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psm-manager/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psm-manager/PSM_Manager.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psm-manager/PSM_Manager.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Yoti/psv_npdrmfix/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Yoti/psv_npdrmfix/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Yoti/psv_npdrmfix/releases/tag/v2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Yoti/psv_npdrmfix/releases/tag/v2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Yoti/psv_npdrmfix"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Yoti/psv_npdrmfix"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "500",
-  "source_url": "https://github.com/Yoti/psv_npdrmfix",
-  "release_page": "https://github.com/Yoti/psv_npdrmfix/releases",
-  "updated_at": "2026-08-13T15:34:48.634579+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "500",
+  "su": "https://github.com/Yoti/psv_npdrmfix",
+  "rp": "https://github.com/Yoti/psv_npdrmfix/releases",
+  "ua": "2026-08-13T15:34:48.634579+00:00"
 }

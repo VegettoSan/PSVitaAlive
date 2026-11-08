@@ -1,59 +1,59 @@
 {
   "id": "potatoom-3",
-  "title_id": "DHEWM3ES2",
-  "name": "LDhewm3 ReARMed",
-  "description": "Port of Doom 3 for PSVITA.",
-  "long_description": "LDhewm3 ReARMed is a port of Doom 3, popular FPS made by idSoftware with idTech 4 engine.\nThis port is based over a heavily modified version of dhewm3 that adds basic multithreading support to idTech 4 optimized furtherly to squeeze as much performances as possible.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DHEWM3ES2",
+  "n": "LDhewm3 ReARMed",
+  "d": "Port of Doom 3 for PSVITA.",
+  "ld": "LDhewm3 ReARMed is a port of Doom 3, popular FPS made by idSoftware with idTech 4 engine.\nThis port is based over a heavily modified version of dhewm3 that adds basic multithreading support to idTech 4 optimized furtherly to squeeze as much performances as possible.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "fps",
     "shooter",
     "strategy",
     "other"
   ],
-  "version": "v.0.5",
-  "version_date": "2026-09-14",
-  "requirements": "- libshacccg.suprx",
-  "size": 9961472,
-  "status": "Verified",
-  "links": [
+  "v": "v.0.5",
+  "vd": "2026-09-14",
+  "req": "- libshacccg.suprx",
+  "sz": 9961472,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%200.5.vpk",
-      "size": 9961472,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%200.5.vpk",
+      "sz": 9961472,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%20Game%20Files.zip",
-      "size": 5476083302,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-potatoom-3/dhewm3%20Game%20Files.zip",
+      "sz": 5476083302,
+      "xp": "ux0:data/",
+      "ips": [
         "dhewm3"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/Rinnegatamante/ldhewm3-rearmed"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Rinnegatamante/ldhewm3-rearmed"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-potatoom-3/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-potatoom-3/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-potatoom-3/shot_01.png",
     "https://archive.org/download/psvitaalive-potatoom-3/shot_02.png",
     "https://archive.org/download/psvitaalive-potatoom-3/shot_03.png",
     "https://archive.org/download/psvitaalive-potatoom-3/shot_04.png",
     "https://archive.org/download/psvitaalive-potatoom-3/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1052",
-  "source_url": "https://github.com/Rinnegatamante/d3es-vita",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1052",
+  "su": "https://github.com/Rinnegatamante/d3es-vita",
+  "ua": "2026-08-13T15:34"
 }

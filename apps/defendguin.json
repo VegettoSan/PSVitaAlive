@@ -1,55 +1,55 @@
 {
   "id": "defendguin",
-  "title_id": "ISLD00004",
-  "name": "Defendguin",
-  "description": "Port of Defendguin for PSVITA/PSTV.",
-  "long_description": "Defendguin is a clone of the arcade game \"Defender,\" but with a Linux theme. Your mission is to defend little penguinoids from being captured and mutated.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ISLD00004",
+  "n": "Defendguin",
+  "d": "Port of Defendguin for PSVITA/PSTV.",
+  "ld": "Defendguin is a clone of the arcade game \"Defender,\" but with a Linux theme. Your mission is to defend little penguinoids from being captured and mutated.\n\n- PsVitaAlive -",
+  "aids": [
     "island-games"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-09-04",
-  "requirements": "Not specified",
-  "size": 2961100,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-defendguin/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-09-04",
+  "req": "Not specified",
+  "sz": 2961100,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-defendguin/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-defendguin/shot_01.png",
     "https://archive.org/download/psvitaalive-defendguin/shot_02.png",
     "https://archive.org/download/psvitaalive-defendguin/shot_03.png",
     "https://archive.org/download/psvitaalive-defendguin/shot_04.png",
     "https://archive.org/download/psvitaalive-defendguin/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-defendguin/defendguin.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-defendguin/defendguin.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/Defendguin/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/Defendguin/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/Defendguin/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/Defendguin/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/island-games/Defendguin"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/island-games/Defendguin"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "876",
-  "source_url": "https://github.com/island-games/Defendguin",
-  "release_page": "https://github.com/island-games/Defendguin/releases",
-  "updated_at": "2026-08-13T15:34:48.532748+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "876",
+  "su": "https://github.com/island-games/Defendguin",
+  "rp": "https://github.com/island-games/Defendguin/releases",
+  "ua": "2026-08-13T15:34:48.532748+00:00"
 }

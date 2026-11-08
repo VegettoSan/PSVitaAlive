@@ -1,55 +1,55 @@
 {
   "id": "biplanes-revival",
-  "title_id": "BPREVIVAL",
-  "name": "Biplanes Revival",
-  "description": "Port of Biplanes Revival for PSVita.",
-  "long_description": "An old cellphone arcade \"BlueTooth BiPlanes\" recreated for PC and PS Vita (originally developed by Morpheme Ltd. in 2004). This port is based on the tremendous work done by regular-dev. Multiplayer is compatible with the PC version.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BPREVIVAL",
+  "n": "Biplanes Revival",
+  "d": "Port of Biplanes Revival for PSVita.",
+  "ld": "An old cellphone arcade \"BlueTooth BiPlanes\" recreated for PC and PS Vita (originally developed by Morpheme Ltd. in 2004). This port is based on the tremendous work done by regular-dev. Multiplayer is compatible with the PC version.\n\n- PsVitaAlive -",
+  "aids": [
     "thesame"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2.1-fix1",
-  "version_date": "2025-08-29",
-  "requirements": "Not specified",
-  "size": 2279182,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-biplanes-revival/icon0.png",
-  "screenshots": [
+  "v": "v.1.2.1-fix1",
+  "vd": "2025-08-29",
+  "req": "Not specified",
+  "sz": 2279182,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-biplanes-revival/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-biplanes-revival/shot_01.png",
     "https://archive.org/download/psvitaalive-biplanes-revival/shot_02.png",
     "https://archive.org/download/psvitaalive-biplanes-revival/shot_03.png",
     "https://archive.org/download/psvitaalive-biplanes-revival/shot_04.png",
     "https://archive.org/download/psvitaalive-biplanes-revival/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-biplanes-revival/biplanes-revival.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-biplanes-revival/biplanes-revival.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases/tag/v1.2.1-fix1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases/tag/v1.2.1-fix1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/DvaMishkiLapa/biplanes-revival-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1295",
-  "source_url": "https://github.com/DvaMishkiLapa/biplanes-revival-vita",
-  "release_page": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.390198+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1295",
+  "su": "https://github.com/DvaMishkiLapa/biplanes-revival-vita",
+  "rp": "https://github.com/DvaMishkiLapa/biplanes-revival-vita/releases",
+  "ua": "2026-08-13T15:34:48.390198+00:00"
 }

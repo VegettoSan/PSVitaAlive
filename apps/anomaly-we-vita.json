@@ -1,55 +1,55 @@
 {
   "id": "anomaly-we-vita",
-  "title_id": "ANOMALY01",
-  "name": "Anomaly WE Vita",
-  "description": "Port of Anomaly: Warzone Earth HD for PSVITA.",
-  "long_description": "This is a wrapper/port of Anomaly: Warzone Earth HD for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ANOMALY01",
+  "n": "Anomaly WE Vita",
+  "d": "Port of Anomaly: Warzone Earth HD for PSVITA.",
+  "ld": "This is a wrapper/port of Anomaly: Warzone Earth HD for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2023-03-08",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 3314006,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-anomaly-we-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2023-03-08",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 3314006,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-anomaly-we-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-anomaly-we-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-anomaly-we-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-anomaly-we-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-anomaly-we-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-anomaly-we-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-anomaly-we-vita/anomaly-we-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-anomaly-we-vita/anomaly-we-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/anomaly-we_vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/anomaly-we_vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/anomaly-we_vita/releases/tag/v.1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/anomaly-we_vita/releases/tag/v.1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/anomaly-we_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/anomaly-we_vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1046",
-  "source_url": "https://github.com/Rinnegatamante/anomaly-we_vita",
-  "release_page": "https://github.com/Rinnegatamante/anomaly-we_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.504775+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1046",
+  "su": "https://github.com/Rinnegatamante/anomaly-we_vita",
+  "rp": "https://github.com/Rinnegatamante/anomaly-we_vita/releases",
+  "ua": "2026-08-13T15:34:48.504775+00:00"
 }

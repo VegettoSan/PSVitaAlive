@@ -1,55 +1,55 @@
 {
   "id": "lua-player-plus-vita",
-  "title_id": "LPPV00001",
-  "name": "Lua Player Plus Vita",
-  "description": "Lua interpreter for PSVITA.",
-  "long_description": "The first Lua interpreter for PSVITA.\nIt has several features like 3D rendering, 2D rendering, complete audio system with support for different audio file formats, network features, etc...",
-  "author_ids": [
+  "tid": "LPPV00001",
+  "n": "Lua Player Plus Vita",
+  "d": "Lua interpreter for PSVITA.",
+  "ld": "The first Lua interpreter for PSVITA.\nIt has several features like 3D rendering, 2D rendering, complete audio system with support for different audio file formats, network features, etc...",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "r6",
-  "version_date": "2017-07-31",
-  "requirements": "Not specified",
-  "size": 8950843,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-lua-player-plus-vita/icon0.png",
-  "screenshots": [
+  "v": "r6",
+  "vd": "2017-07-31",
+  "req": "Not specified",
+  "sz": 8950843,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-lua-player-plus-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-lua-player-plus-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-lua-player-plus-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-lua-player-plus-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-lua-player-plus-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-lua-player-plus-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lua-player-plus-vita/lua-player-plus-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-lua-player-plus-vita/lua-player-plus-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=46242"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/talk/viewtopic.php?f=116&t=46242"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/lpp-vita/releases/tag/r6"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/lpp-vita/releases/tag/r6"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/lpp-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/lpp-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "290",
-  "source_url": "https://github.com/Rinnegatamante/lpp-vita",
-  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=46242",
-  "updated_at": "2026-08-13T15:34:48.679657+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "290",
+  "su": "https://github.com/Rinnegatamante/lpp-vita",
+  "rp": "https://wololo.net/talk/viewtopic.php?f=116&t=46242",
+  "ua": "2026-08-13T15:34:48.679657+00:00"
 }

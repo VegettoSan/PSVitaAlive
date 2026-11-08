@@ -1,44 +1,44 @@
 {
   "id": "luairc",
-  "title_id": "LIRC00001",
-  "name": "luaIrc",
-  "description": "IRC client for PSVITA.",
-  "long_description": "luaIrc is an IRC client for PS Vita wrote with Lua Player Plus Vita, allowing you to chat with your friends whenever you want.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "LIRC00001",
+  "n": "luaIrc",
+  "d": "IRC client for PSVITA.",
+  "ld": "luaIrc is an IRC client for PS Vita wrote with Lua Player Plus Vita, allowing you to chat with your friends whenever you want.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2016-09-15",
-  "requirements": "Not specified",
-  "size": 1761292,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-luairc/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2016-09-15",
+  "req": "Not specified",
+  "sz": 1761292,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-luairc/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-luairc/shot_01.png",
     "https://archive.org/download/psvitaalive-luairc/shot_02.png",
     "https://archive.org/download/psvitaalive-luairc/shot_03.png",
     "https://archive.org/download/psvitaalive-luairc/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-luairc/luairc.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-luairc/luairc.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=47107"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=47107"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "51",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=47107",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=47107",
-  "updated_at": "2026-08-13T15:34:48.698820+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "51",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&t=47107",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=47107",
+  "ua": "2026-08-13T15:34:48.698820+00:00"
 }

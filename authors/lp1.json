@@ -1,15 +1,15 @@
 {
   "id": "lp1",
-  "name": "lp1",
-  "avatar": "https://github.com/lp1dev.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "lp1",
+  "av": "https://github.com/lp1dev.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/lp1dev",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/lp1dev",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/lp1dev.png"
+  "ic": "https://github.com/lp1dev.png"
 }

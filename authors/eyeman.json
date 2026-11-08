@@ -1,15 +1,15 @@
 {
   "id": "eyeman",
-  "name": "Eyeman",
-  "avatar": "https://github.com/Eyeman420.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Eyeman",
+  "av": "https://github.com/Eyeman420.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Eyeman420",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Eyeman420",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Eyeman420.png"
+  "ic": "https://github.com/Eyeman420.png"
 }

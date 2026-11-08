@@ -1,69 +1,69 @@
 {
   "id": "plugins",
-  "name": "Plugins",
-  "description": "Plugins that extend or modify the functionality of PlayStation Vita.",
-  "icon": "icons/plugins.png",
-  "order": 4,
-  "subcategories": [
+  "n": "Plugins",
+  "d": "Plugins that extend or modify the functionality of PlayStation Vita.",
+  "ic": "icons/plugins.png",
+  "ord": 4,
+  "subs": [
     {
       "id": "system",
-      "name": "System"
+      "n": "System"
     },
     {
       "id": "performance",
-      "name": "Performance"
+      "n": "Performance"
     },
     {
       "id": "overclock",
-      "name": "Overclock"
+      "n": "Overclock"
     },
     {
       "id": "graphics",
-      "name": "Graphics"
+      "n": "Graphics"
     },
     {
       "id": "audio",
-      "name": "Audio"
+      "n": "Audio"
     },
     {
       "id": "networking",
-      "name": "Networking"
+      "n": "Networking"
     },
     {
       "id": "storage",
-      "name": "Storage"
+      "n": "Storage"
     },
     {
       "id": "compatibility",
-      "name": "Compatibility"
+      "n": "Compatibility"
     },
     {
       "id": "input",
-      "name": "Input"
+      "n": "Input"
     },
     {
       "id": "display",
-      "name": "Display"
+      "n": "Display"
     },
     {
       "id": "ux0",
-      "name": "ux0"
+      "n": "ux0"
     },
     {
       "id": "ur0",
-      "name": "ur0"
+      "n": "ur0"
     },
     {
       "id": "psp",
-      "name": "PSP"
+      "n": "PSP"
     },
     {
       "id": "security",
-      "name": "Security"
+      "n": "Security"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

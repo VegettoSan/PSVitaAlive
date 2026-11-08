@@ -1,15 +1,15 @@
 {
   "id": "kaziema",
-  "name": "kaziema",
-  "avatar": "https://avatars.githubusercontent.com/u/290817416?v=4",
-  "bio": "I try to build cool tools, games, and ports",
-  "links": [
+  "n": "kaziema",
+  "av": "https://avatars.githubusercontent.com/u/290817416?v=4",
+  "b": "I try to build cool tools, games, and ports",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/kaziema",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/kaziema",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/290817416?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/290817416?v=4"
 }

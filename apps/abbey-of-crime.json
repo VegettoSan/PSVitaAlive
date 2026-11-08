@@ -1,52 +1,52 @@
 {
   "id": "abbey-of-crime",
-  "title_id": "ABBEY0001",
-  "name": "Abbey of Crime",
-  "description": "Port of Abbey of Crime for PSVITA/PSTV.",
-  "long_description": "A free game inspired by Umberto Eco's novel and Jean-Jaques Annaud's film \"The Name of the Rose',  and based on the game \"La abadía del crimen\" by Paco Menéndez and Juan Delcán.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ABBEY0001",
+  "n": "Abbey of Crime",
+  "d": "Port of Abbey of Crime for PSVITA/PSTV.",
+  "ld": "A free game inspired by Umberto Eco's novel and Jean-Jaques Annaud's film \"The Name of the Rose',  and based on the game \"La abadía del crimen\" by Paco Menéndez and Juan Delcán.\n\n- PsVitaAlive -",
+  "aids": [
     "samuel85"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-03-07",
-  "requirements": "Not specified",
-  "size": 2378727,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-abbey-of-crime/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-03-07",
+  "req": "Not specified",
+  "sz": 2378727,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-abbey-of-crime/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-abbey-of-crime/shot_01.png",
     "https://archive.org/download/psvitaalive-abbey-of-crime/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-abbey-of-crime/abbey-of-crime.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-abbey-of-crime/abbey-of-crime.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Samuel85/Abbey/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Samuel85/Abbey/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Samuel85/Abbey/releases/tag/Vita_v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Samuel85/Abbey/releases/tag/Vita_v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Samuel85/Abbey"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Samuel85/Abbey"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "635",
-  "source_url": "https://github.com/Samuel85/Abbey",
-  "release_page": "https://github.com/Samuel85/Abbey/releases",
-  "updated_at": "2026-08-13T15:34:48.593858+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "635",
+  "su": "https://github.com/Samuel85/Abbey",
+  "rp": "https://github.com/Samuel85/Abbey/releases",
+  "ua": "2026-08-13T15:34:48.593858+00:00"
 }

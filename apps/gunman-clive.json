@@ -1,55 +1,55 @@
 {
   "id": "gunman-clive",
-  "title_id": "CLIVE1001",
-  "name": "Gunman Clive",
-  "description": "Port of Gunman Clive for PSVita.",
-  "long_description": "This is a wrapper/port of Gunman Clive for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CLIVE1001",
+  "n": "Gunman Clive",
+  "d": "Port of Gunman Clive for PSVita.",
+  "ld": "This is a wrapper/port of Gunman Clive for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-01-11",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1839822,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gunman-clive/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-01-11",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1839822,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gunman-clive/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gunman-clive/shot_01.png",
     "https://archive.org/download/psvitaalive-gunman-clive/shot_02.png",
     "https://archive.org/download/psvitaalive-gunman-clive/shot_03.png",
     "https://archive.org/download/psvitaalive-gunman-clive/shot_04.png",
     "https://archive.org/download/psvitaalive-gunman-clive/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gunman-clive/gunman-clive.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gunman-clive/gunman-clive.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/clive-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/clive-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/clive-vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/clive-vita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/clive-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/clive-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1360",
-  "source_url": "https://github.com/usineur/clive-vita",
-  "release_page": "https://github.com/usineur/clive-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.368833+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1360",
+  "su": "https://github.com/usineur/clive-vita",
+  "rp": "https://github.com/usineur/clive-vita/releases",
+  "ua": "2026-08-13T15:34:48.368833+00:00"
 }

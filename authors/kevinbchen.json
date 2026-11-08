@@ -1,15 +1,15 @@
 {
   "id": "kevinbchen",
-  "name": "kevinbchen",
-  "avatar": "https://github.com/kevinbchen.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "kevinbchen",
+  "av": "https://github.com/kevinbchen.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/kevinbchen",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/kevinbchen",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/kevinbchen.png"
+  "ic": "https://github.com/kevinbchen.png"
 }

@@ -1,15 +1,15 @@
 {
   "id": "jamsilva",
-  "name": "jamsilva",
-  "avatar": "https://github.com/jamsilva.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "jamsilva",
+  "av": "https://github.com/jamsilva.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/jamsilva",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/jamsilva",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/jamsilva.png"
+  "ic": "https://github.com/jamsilva.png"
 }

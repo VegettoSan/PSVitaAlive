@@ -1,44 +1,44 @@
 {
   "id": "snake",
-  "title_id": "JJH000002",
-  "name": "Snake",
-  "description": "Snake clone for PSVITA.",
-  "long_description": "This is a recreation of the famous game, Snake. It includes the ability to play with different themes and difficulties.",
-  "author_ids": [
+  "tid": "JJH000002",
+  "n": "Snake",
+  "d": "Snake clone for PSVITA.",
+  "ld": "This is a recreation of the famous game, Snake. It includes the ability to play with different themes and difficulties.",
+  "aids": [
     "jjh"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.9",
-  "version_date": "2020-09-05",
-  "requirements": "Not specified",
-  "size": 645999,
-  "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/27e53b470b66ab033c7f8f8cb125c0a018edc095187ebfbc3d31bc66ed20406f.png",
-  "screenshots": [
+  "v": "v.0.9",
+  "vd": "2020-09-05",
+  "req": "Not specified",
+  "sz": 645999,
+  "st": "Legacy",
+  "ic": "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/27e53b470b66ab033c7f8f8cb125c0a018edc095187ebfbc3d31bc66ed20406f.png",
+  "ss": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/aa83a3dba2ad89b1cbc314bd800fd93c1e93ab4362f255ddd058a1027c26c372.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/84598c8624f6f1993e286d231fcb4176c088e1b41273a8cf78569e3e6e1ebef8.png",
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7b856a9b43ef12cccedcc976d63d14856dbe00311e12a493b20852f11ef3a096.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/c5f0867464400e02d768941712f05094c6bea282fc9519bc9ced91d89292c5ca.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/JJH47E/snake/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/JJH47E/snake/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/JJH47E/snake"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/JJH47E/snake"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "577",
-  "source_url": "https://github.com/JJH47E/snake",
-  "release_page": "https://github.com/JJH47E/snake/releases",
-  "updated_at": "2026-08-13T15:34:48.612010+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "577",
+  "su": "https://github.com/JJH47E/snake",
+  "rp": "https://github.com/JJH47E/snake/releases",
+  "ua": "2026-08-13T15:34:48.612010+00:00"
 }

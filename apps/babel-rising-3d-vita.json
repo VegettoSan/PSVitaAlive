@@ -1,55 +1,55 @@
 {
   "id": "babel-rising-3d-vita",
-  "title_id": "BABEL003D",
-  "name": "Babel Rising 3D Vita",
-  "description": "Port of Babel Rising 3D for PSVita.",
-  "long_description": "This is a wrapper/port of Babel Rising 3D for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BABEL003D",
+  "n": "Babel Rising 3D Vita",
+  "d": "Port of Babel Rising 3D for PSVita.",
+  "ld": "This is a wrapper/port of Babel Rising 3D for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-08-03",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1744758,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-babel-rising-3d-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-08-03",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1744758,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-babel-rising-3d-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-babel-rising-3d-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-babel-rising-3d-vita/babel-rising-3d-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-babel-rising-3d-vita/babel-rising-3d-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/babel-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/babel-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/babel-vita/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/babel-vita/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/babel-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/babel-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1298",
-  "source_url": "https://github.com/Rinnegatamante/babel-vita",
-  "release_page": "https://github.com/Rinnegatamante/babel-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.399219+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1298",
+  "su": "https://github.com/Rinnegatamante/babel-vita",
+  "rp": "https://github.com/Rinnegatamante/babel-vita/releases",
+  "ua": "2026-08-13T15:34:48.399219+00:00"
 }

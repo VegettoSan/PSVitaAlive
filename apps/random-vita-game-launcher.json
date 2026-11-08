@@ -1,52 +1,52 @@
 {
   "id": "random-vita-game-launcher",
-  "title_id": "RANDOMPSV",
-  "name": "Random Vita Game Launcher",
-  "description": "A random game launcher for PS Vita.",
-  "long_description": "Spend too long choosing a game to play, or you don't get around to trying new games? Use this app to select and launch a Vita game at random for you to play.",
-  "author_ids": [
+  "tid": "RANDOMPSV",
+  "n": "Random Vita Game Launcher",
+  "d": "A random game launcher for PS Vita.",
+  "ld": "Spend too long choosing a game to play, or you don't get around to trying new games? Use this app to select and launch a Vita game at random for you to play.",
+  "aids": [
     "jimbob4000"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-12-30",
-  "requirements": "Not specified",
-  "size": 4707494,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-random-vita-game-launcher/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-12-30",
+  "req": "Not specified",
+  "sz": 4707494,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-random-vita-game-launcher/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-random-vita-game-launcher/shot_01.png",
     "https://archive.org/download/psvitaalive-random-vita-game-launcher/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-random-vita-game-launcher/random-vita-game-launcher.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-random-vita-game-launcher/random-vita-game-launcher.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/jimbob4000/Random-Vita-Game-Launcher"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1171",
-  "source_url": "https://github.com/jimbob4000/Random-Vita-Game-Launcher",
-  "release_page": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases",
-  "updated_at": "2026-08-13T15:34:48.454792+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1171",
+  "su": "https://github.com/jimbob4000/Random-Vita-Game-Launcher",
+  "rp": "https://github.com/jimbob4000/Random-Vita-Game-Launcher/releases",
+  "ua": "2026-08-13T15:34:48.454792+00:00"
 }

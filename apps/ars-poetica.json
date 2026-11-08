@@ -1,45 +1,45 @@
 {
   "id": "ars-poetica",
-  "title_id": "ARSP03714",
-  "name": "Ars Poetica",
-  "description": "Escape-room puzzle game.",
-  "long_description": "Ars Poetica is a poetry-themed narrative-focused escape-room puzzle game.\nThink \"Zorg meets Dear Esther\" - story-focused, vanguardist in its puzzle design, but rooted in the genre of the text adventure, merging old-school and contemporary game design.\nA World War II soldier gets injured in battle. In his journey back home he's killed by a bombshell - and in this split second, between life and death, he must now find peace, and remember who he is.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ARSP03714",
+  "n": "Ars Poetica",
+  "d": "Escape-room puzzle game.",
+  "ld": "Ars Poetica is a poetry-themed narrative-focused escape-room puzzle game.\nThink \"Zorg meets Dear Esther\" - story-focused, vanguardist in its puzzle design, but rooted in the genre of the text adventure, merging old-school and contemporary game design.\nA World War II soldier gets injured in battle. In his journey back home he's killed by a bombshell - and in this split second, between life and death, he must now find peace, and remember who he is.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "joao-eiras-antunes"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-06-05",
-  "requirements": "Not specified",
-  "size": 64308506,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ars-poetica/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-06-05",
+  "req": "Not specified",
+  "sz": 64308506,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ars-poetica/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ars-poetica/shot_01.png",
     "https://archive.org/download/psvitaalive-ars-poetica/shot_02.png",
     "https://archive.org/download/psvitaalive-ars-poetica/shot_03.png",
     "https://archive.org/download/psvitaalive-ars-poetica/shot_04.png",
     "https://archive.org/download/psvitaalive-ars-poetica/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ars-poetica/ars-poetica.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ars-poetica/ars-poetica.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "681",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/",
-  "updated_at": "2026-08-13T15:34:48.583176+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "681",
+  "su": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/arspoetica/",
+  "ua": "2026-08-13T15:34:48.583176+00:00"
 }

@@ -1,25 +1,25 @@
 {
   "id": "lordchickenblaster-soupmasters",
-  "name": "LordChickenBlaster & SoupMasters",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "LordChickenBlaster & SoupMasters",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1264-bbbv.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VitaHomebrewDB VPK",
+      "u": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1264-bbbv.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "VitaHomebrewDB Release Page",
-      "url": "https://gamejolt.com/games/BBBV/982964"
+      "t": "Official Website",
+      "n": "VitaHomebrewDB Release Page",
+      "u": "https://gamejolt.com/games/BBBV/982964"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

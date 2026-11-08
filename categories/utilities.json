@@ -1,89 +1,89 @@
 {
   "id": "utilities",
-  "name": "Utilities",
-  "description": "General-purpose tools and utilities for PlayStation Vita.",
-  "icon": "icons/utilities.png",
-  "order": 5,
-  "subcategories": [
+  "n": "Utilities",
+  "d": "General-purpose tools and utilities for PlayStation Vita.",
+  "ic": "icons/utilities.png",
+  "ord": 5,
+  "subs": [
     {
       "id": "file-manager",
-      "name": "File Manager"
+      "n": "File Manager"
     },
     {
       "id": "ftp",
-      "name": "FTP"
+      "n": "FTP"
     },
     {
       "id": "backup",
-      "name": "Backup"
+      "n": "Backup"
     },
     {
       "id": "save-manager",
-      "name": "Save Manager"
+      "n": "Save Manager"
     },
     {
       "id": "archive",
-      "name": "Archive"
+      "n": "Archive"
     },
     {
       "id": "calculator",
-      "name": "Calculator"
+      "n": "Calculator"
     },
     {
       "id": "clock",
-      "name": "Clock"
+      "n": "Clock"
     },
     {
       "id": "battery",
-      "name": "Battery"
+      "n": "Battery"
     },
     {
       "id": "system-information",
-      "name": "System Information"
+      "n": "System Information"
     },
     {
       "id": "device-information",
-      "name": "Device Information"
+      "n": "Device Information"
     },
     {
       "id": "process-manager",
-      "name": "Process Manager"
+      "n": "Process Manager"
     },
     {
       "id": "task-manager",
-      "name": "Task Manager"
+      "n": "Task Manager"
     },
     {
       "id": "installer",
-      "name": "Installer"
+      "n": "Installer"
     },
     {
       "id": "downloader",
-      "name": "Downloader"
+      "n": "Downloader"
     },
     {
       "id": "updater",
-      "name": "Updater"
+      "n": "Updater"
     },
     {
       "id": "launcher",
-      "name": "Launcher"
+      "n": "Launcher"
     },
     {
       "id": "terminal",
-      "name": "Terminal"
+      "n": "Terminal"
     },
     {
       "id": "text-editor",
-      "name": "Text Editor"
+      "n": "Text Editor"
     },
     {
       "id": "notes",
-      "name": "Notes"
+      "n": "Notes"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

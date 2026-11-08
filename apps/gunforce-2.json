@@ -1,49 +1,49 @@
 {
   "id": "gunforce-2",
-  "title_id": "GNFC00002",
-  "name": "Gunforce 2",
-  "description": "Gunforce 2 (Irem M92) static recompilation and native PS Vita port.",
-  "long_description": "A static recompilation of Gunforce 2 (Irem, 1994, M92 arcade board) to native ARM code. The game's V33 main program is translated to C++ and linked with a native runtime that replaces the board: memory map, interrupt controller, DMA, a software video renderer, and the sound board (V35 with Irem's opcode encryption, YM2151 and GA20). The sound CPU runs in an interpreter.",
-  "author_ids": [
+  "tid": "GNFC00002",
+  "n": "Gunforce 2",
+  "d": "Gunforce 2 (Irem M92) static recompilation and native PS Vita port.",
+  "ld": "A static recompilation of Gunforce 2 (Irem, 1994, M92 arcade board) to native ARM code. The game's V33 main program is translated to C++ and linked with a native runtime that replaces the board: memory map, interrupt controller, DMA, a software video renderer, and the sound board (V35 with Irem's opcode encryption, YM2151 and GA20). The sound CPU runs in an interpreter.",
+  "aids": [
     "tobic-99"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "platformer",
     "source-port"
   ],
-  "version": "0.1",
-  "version_date": "2026-11-02",
-  "requirements": "- You need a PS Vita with HENkaku/Ensō, VitaShell and libshacccg.suprx (vitaGL compiles its shaders with it).",
-  "size": 1572864,
-  "status": "Verified",
-  "links": [
+  "v": "0.1",
+  "vd": "2026-11-02",
+  "req": "- You need a PS Vita with HENkaku/Ensō, VitaShell and libshacccg.suprx (vitaGL compiles its shaders with it).",
+  "sz": 1572864,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/gunforce-2-for-the-ps-vita/gunforce2%20v0.1.vpk",
-      "size": 1572864,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/gunforce-2-for-the-ps-vita/gunforce2%20v0.1.vpk",
+      "sz": 1572864,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/gunforce-2-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 8493466,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/gunforce-2-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 8493466,
+      "xp": "ux0:data/",
+      "ips": [
         "gunforce2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Tobic-99/gunforce2-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Tobic-99/gunforce2-vita"
     }
   ],
-  "icon": "https://archive.org/download/gunforce-2-for-the-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/gunforce-2-for-the-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/gunforce-2-for-the-ps-vita/shot0.png"
   ]
 }

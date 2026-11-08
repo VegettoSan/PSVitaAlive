@@ -1,55 +1,55 @@
 {
   "id": "the-world-ends-with-you-vita",
-  "title_id": "NEKU23850",
-  "name": "The World Ends With You Vita",
-  "description": "Port of The World Ends With You for PSVITA.",
-  "long_description": "Port of the Android version of The World Ends With You for the PS Vita.\nThe game is a Action-RPG developed by Square Enix and Jupiter, originally made for the Nintendo DS. The Android port was done by h.a.n.d.\nComplete the mission...or face erasure. ThatÃ¢â‚¬â„¢s all Neku knows after regaining consciousness in the middle of a busy intersection without his memories. Now he and his partner must fight to survive a life-or-death game in this twisted tale with more turns than the urban labyrinth of Tokyo theyÃ¢â‚¬â„¢re trapped in.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NEKU23850",
+  "n": "The World Ends With You Vita",
+  "d": "Port of The World Ends With You for PSVITA.",
+  "ld": "Port of the Android version of The World Ends With You for the PS Vita.\nThe game is a Action-RPG developed by Square Enix and Jupiter, originally made for the Nintendo DS. The Android port was done by h.a.n.d.\nComplete the mission...or face erasure. ThatÃ¢â‚¬â„¢s all Neku knows after regaining consciousness in the middle of a busy intersection without his memories. Now he and his partner must fight to survive a life-or-death game in this twisted tale with more turns than the urban labyrinth of Tokyo theyÃ¢â‚¬â„¢re trapped in.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2023-08-16",
-  "requirements": "- Game Data Files: NDS/Android",
-  "size": 36773104,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2023-08-16",
+  "req": "- Game Data Files: NDS/Android",
+  "sz": 36773104,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/the-world-ends-with-you-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-world-ends-with-you-vita/the-world-ends-with-you-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/28/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/28/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/hatoving/twewy-old-vita/releases/tag/v1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/hatoving/twewy-old-vita/releases/tag/v1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/hatoving/twewy-old-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/hatoving/twewy-old-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1112",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/28/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/28/",
-  "updated_at": "2026-08-13T15:34:48.481958+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1112",
+  "su": "https://fuhen.homebrew-contest.com/submissions/28/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/28/",
+  "ua": "2026-08-13T15:34:48.481958+00:00"
 }

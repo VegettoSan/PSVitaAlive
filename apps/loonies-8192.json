@@ -1,44 +1,44 @@
 {
   "id": "loonies-8192",
-  "title_id": "LOON8VITA",
-  "name": "Loonies 8192",
-  "description": "Puzzle game for PSVITA.",
-  "long_description": "A multiplatform mini retro puzzle game.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "LOON8VITA",
+  "n": "Loonies 8192",
+  "d": "Puzzle game for PSVITA.",
+  "ld": "A multiplatform mini retro puzzle game.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "thp"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "r66",
-  "version_date": "2021-07-09",
-  "requirements": "Not specified",
-  "size": 12651987,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-loonies-8192/icon0.png",
-  "screenshots": [
+  "v": "r66",
+  "vd": "2021-07-09",
+  "req": "Not specified",
+  "sz": 12651987,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-loonies-8192/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-loonies-8192/shot_01.png",
     "https://archive.org/download/psvitaalive-loonies-8192/shot_02.png",
     "https://archive.org/download/psvitaalive-loonies-8192/shot_03.png",
     "https://archive.org/download/psvitaalive-loonies-8192/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-loonies-8192/loonies-8192.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-loonies-8192/loonies-8192.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://thp.itch.io/loonies-8192"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://thp.itch.io/loonies-8192"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "704",
-  "source_url": "https://thp.itch.io/loonies-8192",
-  "release_page": "https://thp.itch.io/loonies-8192",
-  "updated_at": "2026-08-13T15:34:48.578063+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "704",
+  "su": "https://thp.itch.io/loonies-8192",
+  "rp": "https://thp.itch.io/loonies-8192",
+  "ua": "2026-08-13T15:34:48.578063+00:00"
 }

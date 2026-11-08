@@ -1,51 +1,51 @@
 {
   "id": "call-of-duty-4-modern-warfare-multiplayer",
-  "title_id": "CODVIT001",
-  "name": "Call Of Duty 4: Modern Warfare Multiplayer",
-  "description": "Call Of Duty 4: Modern Warfare Port Ps Vita",
-  "long_description": "Call Of Duty 4: Modern Warfare Port Ps Vita",
-  "author_ids": [
+  "tid": "CODVIT001",
+  "n": "Call Of Duty 4: Modern Warfare Multiplayer",
+  "d": "Call Of Duty 4: Modern Warfare Port Ps Vita",
+  "ld": "Call Of Duty 4: Modern Warfare Port Ps Vita",
+  "aids": [
     "cigflavoredgum"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "fps",
     "shooter",
     "strategy",
     "source-port"
   ],
-  "version": "1.02",
-  "version_date": "2026-10-31",
-  "requirements": "- No Data",
-  "size": 4299162,
-  "status": "Verified",
-  "links": [
+  "v": "1.02",
+  "vd": "2026-10-31",
+  "req": "- No Data",
+  "sz": 4299162,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v1.02.vpk",
-      "size": 4299162,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/codmw-ps-vita-port/COD4-Vita%20v1.02.vpk",
+      "sz": 4299162,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/codmw-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-      "size": 2684354560,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/codmw-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 2684354560,
+      "xp": "ux0:data/",
+      "ips": [
         "CODVIT001"
       ]
     },
     {
-      "type": "Community",
-      "name": "Reddit",
-      "url": "https://www.reddit.com/r/VitaPiracy/comments/1xjw2wy/comment/19rww30gbsi8z/?context=3"
+      "t": "Community",
+      "n": "Reddit",
+      "u": "https://www.reddit.com/r/VitaPiracy/comments/1xjw2wy/comment/19rww30gbsi8z/?context=3"
     }
   ],
-  "icon": "https://archive.org/download/codmw-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/codmw-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/codmw-ps-vita-port/shot0.png"
   ]
 }

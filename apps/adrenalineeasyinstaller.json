@@ -1,50 +1,50 @@
 {
   "id": "adrenalineeasyinstaller",
-  "title_id": "ADRINSTAL",
-  "name": "AdrenalineEasyInstaller",
-  "description": "Easy installer for Adrenaline.",
-  "long_description": "An easy to use installer for the 6.61 Adrenaline eCFW by TheFloW.\nSupports Adrenaline from v.1.0 to v.5.1.",
-  "author_ids": [
+  "tid": "ADRINSTAL",
+  "n": "AdrenalineEasyInstaller",
+  "d": "Easy installer for Adrenaline.",
+  "ld": "An easy to use installer for the 6.61 Adrenaline eCFW by TheFloW.\nSupports Adrenaline from v.1.0 to v.5.1.",
+  "aids": [
     "freakler"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.15",
-  "version_date": "2017-06-22",
-  "requirements": "Not specified",
-  "size": 6646381,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/icon0.png",
-  "screenshots": [
+  "v": "v.1.15",
+  "vd": "2017-06-22",
+  "req": "Not specified",
+  "sz": 6646381,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/shot_01.png",
     "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/shot_02.png",
     "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/shot_03.png",
     "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/shot_04.png",
     "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/adrenalineeasyinstaller.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-adrenalineeasyinstaller/adrenalineeasyinstaller.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/tag/v1.15"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Freakler/vita-AdrenalineEasyInstaller/releases/tag/v1.15"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Freakler/vita-AdrenalineEasyInstaller"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "36",
-  "source_url": "https://github.com/Freakler/vita-AdrenalineEasyInstaller",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.681831+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "36",
+  "su": "https://github.com/Freakler/vita-AdrenalineEasyInstaller",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.681831+00:00"
 }

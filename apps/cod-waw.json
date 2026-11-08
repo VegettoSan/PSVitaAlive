@@ -1,54 +1,54 @@
 {
   "id": "cod-waw",
-  "title_id": "WAW000001",
-  "name": "COD WAW",
-  "description": "COD WAW Zombies IOS Port Ps Vita.",
-  "long_description": "COD WAW Zombies IOS Port Ps Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WAW000001",
+  "n": "COD WAW",
+  "d": "COD WAW Zombies IOS Port Ps Vita.",
+  "ld": "COD WAW Zombies IOS Port Ps Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "devnoname120"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "fps",
     "shooter"
   ],
-  "version": "00.00",
-  "version_date": "2026-10-06",
-  "requirements": "- no data",
-  "size": 523571,
-  "status": "Verified",
-  "links": [
+  "v": "00.00",
+  "vd": "2026-10-06",
+  "req": "- no data",
+  "sz": 523571,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/cod-waw-ps-vita/waw.vpk",
-      "size": 523571,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/cod-waw-ps-vita/waw.vpk",
+      "sz": 523571,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip",
-      "size": 52953088,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/cod-waw-ps-vita/Game%20Files.zip",
+      "sz": 52953088,
+      "xp": "ux0:data/",
+      "ips": [
         "waw"
       ]
     },
     {
-      "type": "Plugin",
-      "name": "Plugin TTBR Remap",
-      "url": "https://archive.org/download/cod-waw-ps-vita/ttbr_remap.skprx",
-      "size": 19149,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:/tai/ttbr_remap.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "Plugin TTBR Remap",
+      "u": "https://archive.org/download/cod-waw-ps-vita/ttbr_remap.skprx",
+      "sz": 19149,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:/tai/ttbr_remap.skprx",
+      "rq": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
-  "screenshots": [
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png",
+  "ss": [
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
   ]
 }

@@ -1,15 +1,15 @@
 {
   "id": "delon5",
-  "name": "delon5",
-  "avatar": "https://avatars.githubusercontent.com/u/25923990?v=4",
-  "bio": "dev",
-  "links": [
+  "n": "delon5",
+  "av": "https://avatars.githubusercontent.com/u/25923990?v=4",
+  "b": "dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/delon5",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/delon5",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/25923990?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/25923990?v=4"
 }

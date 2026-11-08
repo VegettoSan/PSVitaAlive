@@ -1,51 +1,51 @@
 {
   "id": "don-t-open-your-eyes",
-  "title_id": "RNPYDNOPE",
-  "name": "(Don't) Open Your Eyes",
-  "description": "Port of (Don't) Open Your Eyes for PSVITA.",
-  "long_description": "(Don't) Open Your Eyes\" is a short, horror-themed Visual Novel about a midnight encounter with a mysterious being. Through conversation, you'll learn more about them, such as their journey so far, or what they think about themselves. And every now and then, it'll make a simple request out of you: to open your eyes.\nIt's up to you whether to open your eyes or not. It's up to you to believe if they're really there, or if that whispering voice is only a part of your imagination. Just don't keep your visitor waiting for too long.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RNPYDNOPE",
+  "n": "(Don't) Open Your Eyes",
+  "d": "Port of (Don't) Open Your Eyes for PSVITA.",
+  "ld": "(Don't) Open Your Eyes\" is a short, horror-themed Visual Novel about a midnight encounter with a mysterious being. Through conversation, you'll learn more about them, such as their journey so far, or what they think about themselves. And every now and then, it'll make a simple request out of you: to open your eyes.\nIt's up to you whether to open your eyes or not. It's up to you to believe if they're really there, or if that whispering voice is only a part of your imagination. Just don't keep your visitor waiting for too long.\n\n- PsVitaAlive -",
+  "aids": [
     "silvercrow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.11",
-  "version_date": "2022-04-03",
-  "requirements": "- Game Data Files: PC",
-  "size": 26243091,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-don-t-open-your-eyes/icon0.png",
-  "screenshots": [
+  "v": "v.1.11",
+  "vd": "2022-04-03",
+  "req": "- Game Data Files: PC",
+  "sz": 26243091,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-don-t-open-your-eyes/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-don-t-open-your-eyes/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-don-t-open-your-eyes/don-t-open-your-eyes.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-don-t-open-your-eyes/don-t-open-your-eyes.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://via01.itch.io/dont-open-your-eyes"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://via01.itch.io/dont-open-your-eyes"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/tag/v.1.11"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SilverCrow2323/Don-t-OpenYourVita/releases/tag/v.1.11"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SilverCrow2323/Don-t-OpenYourVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SilverCrow2323/Don-t-OpenYourVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "807",
-  "source_url": "https://via01.itch.io/dont-open-your-eyes",
-  "release_page": "https://via01.itch.io/dont-open-your-eyes",
-  "updated_at": "2026-08-13T15:34:48.551499+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "807",
+  "su": "https://via01.itch.io/dont-open-your-eyes",
+  "rp": "https://via01.itch.io/dont-open-your-eyes",
+  "ua": "2026-08-13T15:34:48.551499+00:00"
 }

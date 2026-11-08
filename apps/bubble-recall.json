@@ -1,52 +1,52 @@
 {
   "id": "bubble-recall",
-  "title_id": "BUBRECALL",
-  "name": "Bubble Recall",
-  "description": "Quickly and easily save and restore your bubbles layouts.",
-  "long_description": "If you have a custom Vita build that you often transfer onto other systems or you swap your SD between devices, you probably know that neatly arranging your apps every time is tedious and time consuming. This will save your custom layout so it can be restored onto other systems.",
-  "author_ids": [
+  "tid": "BUBRECALL",
+  "n": "Bubble Recall",
+  "d": "Quickly and easily save and restore your bubbles layouts.",
+  "ld": "If you have a custom Vita build that you often transfer onto other systems or you swap your SD between devices, you probably know that neatly arranging your apps every time is tedious and time consuming. This will save your custom layout so it can be restored onto other systems.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-12-12",
-  "requirements": "Not specified",
-  "size": 3775090,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bubble-recall/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-12-12",
+  "req": "Not specified",
+  "sz": 3775090,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bubble-recall/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bubble-recall/shot_01.png",
     "https://archive.org/download/psvitaalive-bubble-recall/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bubble-recall/bubble-recall.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bubble-recall/bubble-recall.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Bubble-Recall/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Bubble-Recall/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Bubble-Recall/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Bubble-Recall/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Bubble-Recall"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Bubble-Recall"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "763",
-  "source_url": "https://github.com/AntHJ/Bubble-Recall/releases",
-  "release_page": "https://github.com/AntHJ/Bubble-Recall/releases",
-  "updated_at": "2026-08-13T15:34:48.561365+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "763",
+  "su": "https://github.com/AntHJ/Bubble-Recall/releases",
+  "rp": "https://github.com/AntHJ/Bubble-Recall/releases",
+  "ua": "2026-08-13T15:34:48.561365+00:00"
 }

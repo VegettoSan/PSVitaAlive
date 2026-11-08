@@ -1,50 +1,50 @@
 {
   "id": "ultimate-spider-man",
-  "title_id": "USMR00001",
-  "name": "Ultimate Spider-Man",
-  "description": "A PS Vita port of Ultimate Spider-Man (PC, 2005).",
-  "long_description": "A PS Vita port of Ultimate Spider-Man (PC, 2005), made by statically recompiling the PC game's USM.exe to C (every x86 instruction becomes equivalent C, like N64Recomp / XenonRecomp), then running that on the Vita with its own Windows, Direct3D 9, DirectSound and input layer on top of vitaGL.",
-  "author_ids": [
+  "tid": "USMR00001",
+  "n": "Ultimate Spider-Man",
+  "d": "A PS Vita port of Ultimate Spider-Man (PC, 2005).",
+  "ld": "A PS Vita port of Ultimate Spider-Man (PC, 2005), made by statically recompiling the PC game's USM.exe to C (every x86 instruction becomes equivalent C, like N64Recomp / XenonRecomp), then running that on the Vita with its own Windows, Direct3D 9, DirectSound and input layer on top of vitaGL.",
+  "aids": [
     "boomannotjeff"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "strategy",
     "source-port"
   ],
-  "version": "1.1",
-  "version_date": "2026-11-07",
-  "requirements": "- On the Vita: ur0:data/libshacccg.suprx (the shader compiler, extracted the usual way for vitaGL games).\n- The PC version's USM.exe (SHA-256 5d554ef69e8066eed9e327a4fe331992124aee6de16af54bd7ac5c5dcb0488b8) and its Data folder.",
-  "size": 11010048,
-  "status": "Verified",
-  "links": [
+  "v": "1.1",
+  "vd": "2026-11-07",
+  "req": "- On the Vita: ur0:data/libshacccg.suprx (the shader compiler, extracted the usual way for vitaGL games).\n- The PC version's USM.exe (SHA-256 5d554ef69e8066eed9e327a4fe331992124aee6de16af54bd7ac5c5dcb0488b8) and its Data folder.",
+  "sz": 11010048,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/ultimate-spider-man-vita/usm%20v1.1.vpk",
-      "size": 11010048,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ultimate-spider-man-vita/usm%20v1.1.vpk",
+      "sz": 11010048,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Fixed",
-      "url": "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1642824991,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Fixed",
+      "u": "https://archive.org/download/ultimate-spider-man-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1642824991,
+      "xp": "ux0:data/",
+      "ips": [
         "usm"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/boomannotjeff/usm_vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/boomannotjeff/usm_vita"
     }
   ],
-  "icon": "https://archive.org/download/ultimate-spider-man-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/ultimate-spider-man-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/ultimate-spider-man-vita/shot0.png",
     "https://archive.org/download/ultimate-spider-man-vita/shot2.jpg"
   ]

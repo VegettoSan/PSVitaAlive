@@ -1,37 +1,37 @@
 {
   "id": "romance-detective",
-  "title_id": "RPYRD1701",
-  "name": "Romance Detective",
-  "description": "Romance Detective - PS Vita port.",
-  "long_description": "PS Vita port too! - it's based on the v1.7 of the game so it supports multiple languages.",
-  "author_ids": [
+  "tid": "RPYRD1701",
+  "n": "Romance Detective",
+  "d": "Romance Detective - PS Vita port.",
+  "ld": "PS Vita port too! - it's based on the v1.7 of the game so it supports multiple languages.",
+  "aids": [
     "puppethuggerdx"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-31",
-  "requirements": "- No data",
-  "size": 62075699,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-10-31",
+  "req": "- No data",
+  "sz": 62075699,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK + Game Files",
-      "url": "https://archive.org/download/romance-detective/Romance%20Detective-01.00.vpk",
-      "size": 62075699,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/romance-detective/Romance%20Detective-01.00.vpk",
+      "sz": 62075699,
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "itch.io",
-      "url": "https://puppethuggerdx.itch.io/romance-detective"
+      "t": "Official Website",
+      "n": "itch.io",
+      "u": "https://puppethuggerdx.itch.io/romance-detective"
     }
   ],
-  "icon": "https://archive.org/download/romance-detective/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/romance-detective/icon0.png",
+  "ss": [
     "https://archive.org/download/romance-detective/shot0.png",
     "https://archive.org/download/romance-detective/shot1.png"
   ]

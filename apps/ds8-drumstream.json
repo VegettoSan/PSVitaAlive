@@ -1,36 +1,36 @@
 {
   "id": "ds8-drumstream",
-  "title_id": "DS8L00001",
-  "name": "DS8 Drumstream",
-  "description": "Drum synthesizer and groovebox for PSVita.",
-  "long_description": "DS8 Drumstream is a drum synthesizer and groovebox for the PlayStation Vita.\nIt turns the Vita into a compact drum machine for sketching ideas, building grooves, and performing anywhere. The app is built around eight drum tracks, a step sequencer with up to sixty-four steps, and direct control through the Vitaâ€™s physical buttons.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DS8L00001",
+  "n": "DS8 Drumstream",
+  "d": "Drum synthesizer and groovebox for PSVita.",
+  "ld": "DS8 Drumstream is a drum synthesizer and groovebox for the PlayStation Vita.\nIt turns the Vita into a compact drum machine for sketching ideas, building grooves, and performing anywhere. The app is built around eight drum tracks, a step sequencer with up to sixty-four steps, and direct control through the Vitaâ€™s physical buttons.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "intermynd-instruments"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.6.3",
-  "version_date": "2026-06-06",
-  "requirements": "- psvita_usb_audio_midi.skprx, included in the archive",
-  "size": 2086872,
-  "status": "Legacy",
-  "icon": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1962-ds8-drumstream.png",
-  "screenshots": [
+  "v": "v.0.6.3",
+  "vd": "2026-06-06",
+  "req": "- psvita_usb_audio_midi.skprx, included in the archive",
+  "sz": 2086872,
+  "st": "Legacy",
+  "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1962-ds8-drumstream.png",
+  "ss": [
     "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/fcb5f371cbf6bbe777435f71340c427157cac856fc8d4b61c33e4e4a61ba28b4.png",
     "https://www.rinnegatamante.eu/vitadb/screenshots/fcb5f371cbf6bbe777435f71340c427157cac856fc8d4b61c33e4e4a61ba28b4.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://intermynd-instruments.itch.io/ds-8"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://intermynd-instruments.itch.io/ds-8"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1407",
-  "source_url": "https://intermynd-instruments.itch.io/ds-8",
-  "release_page": "https://intermynd-instruments.itch.io/ds-8",
-  "updated_at": "2026-08-13T15:34:48.342683+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1407",
+  "su": "https://intermynd-instruments.itch.io/ds-8",
+  "rp": "https://intermynd-instruments.itch.io/ds-8",
+  "ua": "2026-08-13T15:34:48.342683+00:00"
 }

@@ -1,15 +1,15 @@
 {
   "id": "aagaming",
-  "name": "AAGaming",
-  "avatar": "https://github.com/AAGaming00.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "AAGaming",
+  "av": "https://github.com/AAGaming00.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/AAGaming00",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/AAGaming00",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/AAGaming00.png"
+  "ic": "https://github.com/AAGaming00.png"
 }

@@ -1,41 +1,41 @@
 {
   "id": "vita-hardware-test",
-  "title_id": "VHWT00001",
-  "name": "Vita Hardware Test",
-  "description": "Hardware tester for PSVITA.",
-  "long_description": "App that tests your console inputs and outputs (buttons, touchscreens, audio, video).",
-  "author_ids": [
+  "tid": "VHWT00001",
+  "n": "Vita Hardware Test",
+  "d": "Hardware tester for PSVITA.",
+  "ld": "App that tests your console inputs and outputs (buttons, touchscreens, audio, video).",
+  "aids": [
     "ifrit05"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-08-13",
-  "requirements": "Not specified",
-  "size": 1821008,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-hardware-test/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-08-13",
+  "req": "Not specified",
+  "sz": 1821008,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-hardware-test/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-hardware-test/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-hardware-test/vita-hardware-test.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-hardware-test/vita-hardware-test.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-vita-hardware-test.437856/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-vita-hardware-test.437856/"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "177",
-  "source_url": "https://gbatemp.net/threads/release-vita-hardware-test.437856/",
-  "release_page": "https://gbatemp.net/threads/release-vita-hardware-test.437856/",
-  "updated_at": "2026-08-14T01:05:59.234617+00:00"
+  "sn": "VitaDB",
+  "si": "177",
+  "su": "https://gbatemp.net/threads/release-vita-hardware-test.437856/",
+  "rp": "https://gbatemp.net/threads/release-vita-hardware-test.437856/",
+  "ua": "2026-08-14T01:05:59.234617+00:00"
 }

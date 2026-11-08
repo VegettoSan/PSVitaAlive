@@ -1,52 +1,52 @@
 {
   "id": "psvident",
-  "title_id": "PSVIDENT0",
-  "name": "PSVident",
-  "description": "Shows info about your PSVITA.",
-  "long_description": "Tool that bring all your Vita/PSTV info in to one place. App has a very nostalgic design for first PSP users, interface is looking very similar to well known PSPident application for PSP.",
-  "author_ids": [
+  "tid": "PSVIDENT0",
+  "n": "PSVident",
+  "d": "Shows info about your PSVITA.",
+  "ld": "Tool that bring all your Vita/PSTV info in to one place. App has a very nostalgic design for first PSP users, interface is looking very similar to well known PSPident application for PSP.",
+  "aids": [
     "freakler"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.43",
-  "version_date": "2023-11-12",
-  "requirements": "Not specified",
-  "size": 159945,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psvident/icon0.png",
-  "screenshots": [
+  "v": "v.0.43",
+  "vd": "2023-11-12",
+  "req": "Not specified",
+  "sz": 159945,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psvident/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psvident/shot_01.png",
     "https://archive.org/download/psvitaalive-psvident/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psvident/psvident.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psvident/psvident.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Freakler/vita-PSVident/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Freakler/vita-PSVident/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Freakler/vita-PSVident/releases/tag/0.43"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Freakler/vita-PSVident/releases/tag/0.43"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Freakler/vita-PSVident"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Freakler/vita-PSVident"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "108",
-  "source_url": "https://github.com/Freakler/vita-PSVident",
-  "release_page": "https://github.com/Freakler/vita-PSVident/releases",
-  "updated_at": "2026-08-13T15:34:48.459516+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "108",
+  "su": "https://github.com/Freakler/vita-PSVident",
+  "rp": "https://github.com/Freakler/vita-PSVident/releases",
+  "ua": "2026-08-13T15:34:48.459516+00:00"
 }

@@ -1,57 +1,57 @@
 {
   "id": "spaghetti-kart-vita",
-  "title_id": "SPAGHETTI",
-  "name": "Spaghetti Kart Vita",
-  "description": "Port of Spaghetti Kart for PSVita.",
-  "long_description": "Spaghetti Kart is a sourceport of Mario Kart 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Bolognese Alfa) with bugfixes from the in-development branch.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SPAGHETTI",
+  "n": "Spaghetti Kart Vita",
+  "d": "Port of Spaghetti Kart for PSVita.",
+  "ld": "Spaghetti Kart is a sourceport of Mario Kart 64 based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.0.0 (Bolognese Alfa) with bugfixes from the in-development branch.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing",
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2026-05-07",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 7722762,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.1",
+  "vd": "2026-05-07",
+  "req": "- libshacccg.suprx\n- Game Data Files: N64",
+  "sz": 7722762,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/spaghetti-kart-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/spaghetti-kart-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/Game%20Files.zip",
-      "size": 32191283,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/Game%20Files.zip",
+      "sz": 32191283,
+      "xp": "ux0:data/",
+      "ips": [
         "spaghetti"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/SpaghettiKart"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/SpaghettiKart"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-spaghetti-kart-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-spaghetti-kart-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-spaghetti-kart-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-spaghetti-kart-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-spaghetti-kart-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-spaghetti-kart-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1393",
-  "source_url": "https://github.com/Rinnegatamante/SpaghettiKart",
-  "release_page": "https://github.com/Rinnegatamante/SpaghettiKart/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1393",
+  "su": "https://github.com/Rinnegatamante/SpaghettiKart",
+  "rp": "https://github.com/Rinnegatamante/SpaghettiKart/releases",
+  "ua": "2026-08-13T15:34"
 }

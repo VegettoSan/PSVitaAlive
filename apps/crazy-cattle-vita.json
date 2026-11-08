@@ -1,53 +1,53 @@
 {
   "id": "crazy-cattle-vita",
-  "title_id": "CCDV33333",
-  "name": "Crazy Cattle Vita",
-  "description": "Port of the Unity remake of Welcome to Crazy Cattle 3D.",
-  "long_description": "Port of the Unity remake made by Dimolade. Welcome to Crazy Cattle 3D, an exhilarating battle royale game where you control explosive sheep in a chaotic survival challenge across three distinct global environments. Master physics-based movement, outwit your opponents, and be the last sheep standing!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CCDV33333",
+  "n": "Crazy Cattle Vita",
+  "d": "Port of the Unity remake of Welcome to Crazy Cattle 3D.",
+  "ld": "Port of the Unity remake made by Dimolade. Welcome to Crazy Cattle 3D, an exhilarating battle royale game where you control explosive sheep in a chaotic survival challenge across three distinct global environments. Master physics-based movement, outwit your opponents, and be the last sheep standing!\n\n- PsVitaAlive -",
+  "aids": [
     "anna3d",
     "lordchickenblaster",
     "dimolade"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2025-05-10",
-  "requirements": "Not specified",
-  "size": 44323467,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-crazy-cattle-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2025-05-10",
+  "req": "Not specified",
+  "sz": 44323467,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-crazy-cattle-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-crazy-cattle-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-crazy-cattle-vita/crazy-cattle-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crazy-cattle-vita/crazy-cattle-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/tag/1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases/tag/1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1270",
-  "source_url": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases",
-  "release_page": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita",
-  "updated_at": "2026-08-13T15:34:48.408732+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1270",
+  "su": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita/releases",
+  "rp": "https://github.com/Lordchickenblaster/Crazy-Cattle-Vita",
+  "ua": "2026-08-13T15:34:48.408732+00:00"
 }

@@ -1,50 +1,50 @@
 {
   "id": "openxcom-extended",
-  "title_id": "OXCE00001",
-  "name": "OpenXcom Extended",
-  "description": "Port of OpenXcom Extended for PSVITA.",
-  "long_description": "Port of OpenXcom Extended for PSVITA.\nOpenXcom Extended is an improved version of OpenXcom.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OXCE00001",
+  "n": "OpenXcom Extended",
+  "d": "Port of OpenXcom Extended for PSVITA.",
+  "ld": "Port of OpenXcom Extended for PSVITA.\nOpenXcom Extended is an improved version of OpenXcom.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.7.10-vita.1",
-  "version_date": "2023-12-30",
-  "requirements": "- Game Data Files: PC",
-  "size": 6884745,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-openxcom-extended/icon0.png",
-  "screenshots": [
+  "v": "v.7.10-vita.1",
+  "vd": "2023-12-30",
+  "req": "- Game Data Files: PC",
+  "sz": 6884745,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-openxcom-extended/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openxcom-extended/shot_01.png",
     "https://archive.org/download/psvitaalive-openxcom-extended/shot_02.png",
     "https://archive.org/download/psvitaalive-openxcom-extended/shot_03.png",
     "https://archive.org/download/psvitaalive-openxcom-extended/shot_04.png",
     "https://archive.org/download/psvitaalive-openxcom-extended/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openxcom-extended/openxcom-extended.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openxcom-extended/openxcom-extended.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/OpenXcom-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/OpenXcom-vita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1172",
-  "source_url": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita",
-  "release_page": "https://github.com/Northfear/OpenXcom-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.455306+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1172",
+  "su": "https://github.com/Northfear/OpenXcom-vita/tree/oxce-plus-vita",
+  "rp": "https://github.com/Northfear/OpenXcom-vita/releases",
+  "ua": "2026-08-13T15:34:48.455306+00:00"
 }

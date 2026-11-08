@@ -1,51 +1,51 @@
 {
   "id": "vitaident-gui",
-  "title_id": "VID000162",
-  "name": "VITAident GUI",
-  "description": "Shows info about your PSVITA.",
-  "long_description": "VITAident is a tool inspired by PSPident - which was originally developed by Jas0nuk and later updated by Yoti. The tool was used to obtain more information about your PSP's motherboard, firmware etc. Similarly the VITA version - VITAident aims to display more information about your PS VITA. It is currently a work in progress.",
-  "author_ids": [
+  "tid": "VID000162",
+  "n": "VITAident GUI",
+  "d": "Shows info about your PSVITA.",
+  "ld": "VITAident is a tool inspired by PSPident - which was originally developed by Jas0nuk and later updated by Yoti. The tool was used to obtain more information about your PSP's motherboard, firmware etc. Similarly the VITA version - VITAident aims to display more information about your PS VITA. It is currently a work in progress.",
+  "aids": [
     "joel16"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.7.4",
-  "version_date": "2017-10-17",
-  "requirements": "Not specified",
-  "size": 261016,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitaident-gui/icon0.png",
-  "screenshots": [
+  "v": "v.0.7.4",
+  "vd": "2017-10-17",
+  "req": "Not specified",
+  "sz": 261016,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitaident-gui/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitaident-gui/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitaident-gui/VITAident_GUI.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitaident-gui/VITAident_GUI.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46381"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=46381"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/joel16/VITAident/releases/tag/0.7.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/joel16/VITAident/releases/tag/0.7.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joel16/VITAident"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joel16/VITAident"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "26",
-  "source_url": "https://github.com/joel16/VITAident",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46381",
-  "updated_at": "2026-08-13T15:34:48.673889+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "26",
+  "su": "https://github.com/joel16/VITAident",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=46381",
+  "ua": "2026-08-13T15:34:48.673889+00:00"
 }

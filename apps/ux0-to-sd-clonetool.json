@@ -1,55 +1,55 @@
 {
   "id": "ux0-to-sd-clonetool",
-  "title_id": "ANTSCT001",
-  "name": "UX0 to SD CloneTool",
-  "description": "Tool that semi-automates migration to an SD.",
-  "long_description": "This simple to use tool has been designed to semi-automate the SD migration process. It will assign your memory allocations, and clone your Sony memory to the SD. Works with SD2Vita, PSVSD and USB on PSTVs and Vitas.",
-  "author_ids": [
+  "tid": "ANTSCT001",
+  "n": "UX0 to SD CloneTool",
+  "d": "Tool that semi-automates migration to an SD.",
+  "ld": "This simple to use tool has been designed to semi-automate the SD migration process. It will assign your memory allocations, and clone your Sony memory to the SD. Works with SD2Vita, PSVSD and USB on PSTVs and Vitas.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.3",
-  "version_date": "2024-05-02",
-  "requirements": "Not specified",
-  "size": 7431948,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/icon0.png",
-  "screenshots": [
+  "v": "v.2.3",
+  "vd": "2024-05-02",
+  "req": "Not specified",
+  "sz": 7431948,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/shot_01.png",
     "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/shot_02.png",
     "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/shot_03.png",
     "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/shot_04.png",
     "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/ux0-to-sd-clonetool.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ux0-to-sd-clonetool/ux0-to-sd-clonetool.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/UX0toSD/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/UX0toSD/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/UX0toSD/releases/tag/v2.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/UX0toSD/releases/tag/v2.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/UX0toSD"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/UX0toSD"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "724",
-  "source_url": "https://github.com/AntHJ/UX0toSD/releases",
-  "release_page": "https://github.com/AntHJ/UX0toSD/releases",
-  "updated_at": "2026-08-13T15:34:48.441304+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "724",
+  "su": "https://github.com/AntHJ/UX0toSD/releases",
+  "rp": "https://github.com/AntHJ/UX0toSD/releases",
+  "ua": "2026-08-13T15:34:48.441304+00:00"
 }

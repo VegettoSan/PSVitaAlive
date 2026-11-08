@@ -1,49 +1,49 @@
 {
   "id": "vita-deck",
-  "title_id": "VITADECK0",
-  "name": "Vita Deck",
-  "description": "Stream Deck client for PSVita.",
-  "long_description": "Stream Deck client for PSVita. Allows to use your PSVita as a shortcut interface for your devices.",
-  "author_ids": [
+  "tid": "VITADECK0",
+  "n": "Vita Deck",
+  "d": "Stream Deck client for PSVita.",
+  "ld": "Stream Deck client for PSVita. Allows to use your PSVita as a shortcut interface for your devices.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-10-07",
-  "requirements": "Not specified",
-  "size": 3918135,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-deck/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-10-07",
+  "req": "Not specified",
+  "sz": 3918135,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-deck/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-deck/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-deck/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-deck/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-deck/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-deck/vita-deck.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-deck/vita-deck.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://anthj.itch.io/vita-deck"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://anthj.itch.io/vita-deck"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/VitaDeck"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/VitaDeck"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1332",
-  "source_url": "https://anthj.itch.io/vita-deck",
-  "release_page": "https://anthj.itch.io/vita-deck",
-  "updated_at": "2026-08-13T15:34:48.381281+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1332",
+  "su": "https://anthj.itch.io/vita-deck",
+  "rp": "https://anthj.itch.io/vita-deck",
+  "ua": "2026-08-13T15:34:48.381281+00:00"
 }

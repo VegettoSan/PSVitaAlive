@@ -1,15 +1,15 @@
 {
   "id": "xesf",
-  "name": "xesf",
-  "avatar": "https://avatars.githubusercontent.com/u/751076?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "xesf",
+  "av": "https://avatars.githubusercontent.com/u/751076?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/xesf",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/xesf",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/751076?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/751076?v=4"
 }

@@ -1,55 +1,55 @@
 {
   "id": "mgba",
-  "title_id": "MGBA00001",
-  "name": "mGBA",
-  "description": "GBA emulator for PSVITA.",
-  "long_description": "mGBA is a new generation of Game Boy Advance emulator. The project started in April 2013 with the goal of being fast enough to run on lower end hardware than other emulators support, without sacrificing accuracy or portability. Even in the initial version, games generally played without problems. mGBA has only gotten better since then, and now boasts being the most accurate GBA emulator around.\n\nOther goals include accurate enough emulation to provide a development environment for homebrew software, a good workflow for tool-assist runners, and a modern feature set for emulators that older emulators may not support.",
-  "author_ids": [
+  "tid": "MGBA00001",
+  "n": "mGBA",
+  "d": "GBA emulator for PSVITA.",
+  "ld": "mGBA is a new generation of Game Boy Advance emulator. The project started in April 2013 with the goal of being fast enough to run on lower end hardware than other emulators support, without sacrificing accuracy or portability. Even in the initial version, games generally played without problems. mGBA has only gotten better since then, and now boasts being the most accurate GBA emulator around.\n\nOther goals include accurate enough emulation to provide a development environment for homebrew software, a good workflow for tool-assist runners, and a modern feature set for emulators that older emulators may not support.",
+  "aids": [
     "endrift"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.0.10.5",
-  "version_date": "2025-03-08",
-  "requirements": "Not specified",
-  "size": 852635,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mgba/icon0.png",
-  "screenshots": [
+  "v": "v.0.10.5",
+  "vd": "2025-03-08",
+  "req": "Not specified",
+  "sz": 852635,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mgba/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mgba/shot_01.png",
     "https://archive.org/download/psvitaalive-mgba/shot_02.png",
     "https://archive.org/download/psvitaalive-mgba/shot_03.png",
     "https://archive.org/download/psvitaalive-mgba/shot_04.png",
     "https://archive.org/download/psvitaalive-mgba/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mgba/mgba.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mgba/mgba.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://mgba.io/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://mgba.io/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/mgba-emu/mgba/releases/tag/0.10.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/mgba-emu/mgba/releases/tag/0.10.5"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/mgba-emu/mgba/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/mgba-emu/mgba/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "164",
-  "source_url": "https://github.com/mgba-emu/mgba/",
-  "release_page": "https://mgba.io/",
-  "updated_at": "2026-08-13T15:34:48.413047+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "164",
+  "su": "https://github.com/mgba-emu/mgba/",
+  "rp": "https://mgba.io/",
+  "ua": "2026-08-13T15:34:48.413047+00:00"
 }

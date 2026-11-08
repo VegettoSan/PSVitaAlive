@@ -1,51 +1,51 @@
 {
   "id": "uqm-vita",
-  "title_id": "UQMC00001",
-  "name": "uqm-vita",
-  "description": "Port of Ur-Quan Masters for PSVITA.",
-  "long_description": "uqm-vita is a port of the Ur-Quan Masters project to the PS Vita system.\nThe Ur-Quan Masters is a volunteer project that brings the classic game Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢ to modern systems. The code from the Ur-Quan Masters project is derived from code written by Toys for Bob, Inc. for the 3DO version of Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "UQMC00001",
+  "n": "uqm-vita",
+  "d": "Port of Ur-Quan Masters for PSVITA.",
+  "ld": "uqm-vita is a port of the Ur-Quan Masters project to the PS Vita system.\nThe Ur-Quan Masters is a volunteer project that brings the classic game Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢ to modern systems. The code from the Ur-Quan Masters project is derived from code written by Toys for Bob, Inc. for the 3DO version of Ã¢â‚¬ËœStar Control IIÃ¢â‚¬â„¢.\n\n- PsVitaAlive -",
+  "aids": [
     "argarak"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "rev1",
-  "version_date": "2022-03-03",
-  "requirements": "Not specified",
-  "size": 1432712,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-uqm-vita/icon0.png",
-  "screenshots": [
+  "v": "rev1",
+  "vd": "2022-03-03",
+  "req": "Not specified",
+  "sz": 1432712,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-uqm-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-uqm-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-uqm-vita/uqm.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-uqm-vita/uqm.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/argarak/uqm-vita/releases/tag/rev1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/argarak/uqm-vita/releases/tag/rev1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/argarak/uqm-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/argarak/uqm-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/argarak/uqm-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/argarak/uqm-vita/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "789",
-  "source_url": "https://github.com/argarak/uqm-vita",
-  "release_page": "https://github.com/argarak/uqm-vita/releases/tag/rev1",
-  "updated_at": "2026-08-13T15:34:48.554977+00:00"
+  "sn": "NeoVitaDB",
+  "si": "789",
+  "su": "https://github.com/argarak/uqm-vita",
+  "rp": "https://github.com/argarak/uqm-vita/releases/tag/rev1",
+  "ua": "2026-08-13T15:34:48.554977+00:00"
 }

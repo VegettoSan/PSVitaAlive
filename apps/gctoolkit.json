@@ -1,52 +1,52 @@
 {
   "id": "gctoolkit",
-  "title_id": "GCTK10000",
-  "name": "GCToolKit",
-  "description": "Create backups of PSVITA game carts.",
-  "long_description": "Creates 1:1 backups of PSVITA game carts, including CMD56 authentication and the p20-p18 unique keys. A companion PC application can receive the backup over the network when no memory card is available.",
-  "author_ids": [
+  "tid": "GCTK10000",
+  "n": "GCToolKit",
+  "d": "Create backups of PSVITA game carts.",
+  "ld": "Creates 1:1 backups of PSVITA game carts, including CMD56 authentication and the p20-p18 unique keys. A companion PC application can receive the backup over the network when no memory card is available.",
+  "aids": [
     "oestriot",
     "li"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.9",
-  "version_date": "2026-08-05",
-  "requirements": "Not specified",
-  "size": 2136641,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gctoolkit/icon0.png",
-  "screenshots": [
+  "v": "v.1.9",
+  "vd": "2026-08-05",
+  "req": "Not specified",
+  "sz": 2136641,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gctoolkit/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gctoolkit/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gctoolkit/GcToolKit.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gctoolkit/GcToolKit.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/oestriot/GcToolKit/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/oestriot/GcToolKit/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/oestriot/GcToolKit/releases/tag/v1.9"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/oestriot/GcToolKit/releases/tag/v1.9"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/oestriot/GcToolKit"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/oestriot/GcToolKit"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1455",
-  "source_url": "https://github.com/oestriot/GcToolKit",
-  "release_page": "https://github.com/oestriot/GcToolKit/releases",
-  "updated_at": "2026-08-13T15:34:48.322772+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1455",
+  "su": "https://github.com/oestriot/GcToolKit",
+  "rp": "https://github.com/oestriot/GcToolKit/releases",
+  "ua": "2026-08-13T15:34:48.322772+00:00"
 }

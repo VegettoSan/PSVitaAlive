@@ -1,45 +1,45 @@
 {
   "id": "zombiebound-reloaded",
-  "title_id": "ZMBR94732",
-  "name": "Zombiebound Reloaded",
-  "description": "Nazi Zombies clone for PSVITA.",
-  "long_description": "Zombiebound is an original homebrew zombie-shooting game for the PSVita/PSTV. The game is a 3D first-person zombie shooter that recalls Nazi Zombies game mode from Call of Duty franchise.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ZMBR94732",
+  "n": "Zombiebound Reloaded",
+  "d": "Nazi Zombies clone for PSVITA.",
+  "ld": "Zombiebound is an original homebrew zombie-shooting game for the PSVita/PSTV. The game is a 3D first-person zombie shooter that recalls Nazi Zombies game mode from Call of Duty franchise.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "vitahex-games"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.21",
-  "version_date": "2019-02-15",
-  "requirements": "Not specified",
-  "size": 165900291,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-zombiebound-reloaded/icon0.png",
-  "screenshots": [
+  "v": "v.0.21",
+  "vd": "2019-02-15",
+  "req": "Not specified",
+  "sz": 165900291,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-zombiebound-reloaded/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_01.png",
     "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_02.png",
     "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_03.png",
     "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_04.png",
     "https://archive.org/download/psvitaalive-zombiebound-reloaded/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-zombiebound-reloaded/zombiebound-reloaded.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-zombiebound-reloaded/zombiebound-reloaded.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "421",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058",
-  "updated_at": "2026-08-13T15:34:48.654518+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "421",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&p=424058&sid=b677b3efd094a8debc96d9870da05636#p424058",
+  "ua": "2026-08-13T15:34:48.654518+00:00"
 }

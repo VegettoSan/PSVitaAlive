@@ -1,15 +1,15 @@
 {
   "id": "easyrpg-team",
-  "name": "EasyRPG Team",
-  "avatar": "https://github.com/EasyRPG.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "EasyRPG Team",
+  "av": "https://github.com/EasyRPG.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/EasyRPG",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/EasyRPG",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/EasyRPG.png"
+  "ic": "https://github.com/EasyRPG.png"
 }

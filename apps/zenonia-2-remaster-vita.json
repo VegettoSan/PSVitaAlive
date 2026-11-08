@@ -1,57 +1,57 @@
 {
   "id": "zenonia-2-remaster-vita",
-  "title_id": "ZNNA00001",
-  "name": "Zenonia 2 Remaster Vita",
-  "description": "Zenonia 2 Remastered port for PSVita.",
-  "long_description": "Zenonia 2: The Lost Memories is a classic 2D action role-playing game developed and published by Gamevil. It features real-time combat, four unique playable characters with individual storylines, and an extensive 16-bit-style fantasy world.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ZNNA00001",
+  "n": "Zenonia 2 Remaster Vita",
+  "d": "Zenonia 2 Remastered port for PSVita.",
+  "ld": "Zenonia 2: The Lost Memories is a classic 2D action role-playing game developed and published by Gamevil. It features real-time combat, four unique playable characters with individual storylines, and an extensive 16-bit-style fantasy world.\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "arcade",
     "rpg",
     "strategy",
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2026-08-15",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2493514,
-  "status": "Legacy",
-  "links": [
+  "v": "v.0.1",
+  "vd": "2026-08-15",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2493514,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/zenonia-2-remaster-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/zenonia-2-remaster-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/Game%20Files.zip",
-      "size": 22334669,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/Game%20Files.zip",
+      "sz": 22334669,
+      "xp": "ux0:data/",
+      "ips": [
         "zenonia2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/zenonia2-remaster-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/withLogic/zenonia2-remaster-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-zenonia-2-remaster-vita/shot_03.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1466",
-  "source_url": "https://github.com/withLogic/zenonia2-remaster-vita",
-  "release_page": "https://github.com/withLogic/zenonia2-remaster-vita/releases",
-  "updated_at": "2026-08-15T22:14"
+  "sn": "VitaDB",
+  "si": "1466",
+  "su": "https://github.com/withLogic/zenonia2-remaster-vita",
+  "rp": "https://github.com/withLogic/zenonia2-remaster-vita/releases",
+  "ua": "2026-08-15T22:14"
 }

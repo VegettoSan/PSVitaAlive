@@ -1,15 +1,15 @@
 {
   "id": "jakubito",
-  "name": "jakubito",
-  "avatar": "https://github.com/jakubito.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "jakubito",
+  "av": "https://github.com/jakubito.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/jakubito",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/jakubito",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/jakubito.png"
+  "ic": "https://github.com/jakubito.png"
 }

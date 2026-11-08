@@ -1,55 +1,55 @@
 {
   "id": "vitacord",
-  "title_id": "VTCD00001",
-  "name": "VitaCord",
-  "description": "Discord client for PSVITA.",
-  "long_description": "A Discord client for PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "VTCD00001",
+  "n": "VitaCord",
+  "d": "Discord client for PSVITA.",
+  "ld": "A Discord client for PSVITA/PSTV.",
+  "aids": [
     "devingdev"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.5fix1",
-  "version_date": "2017-11-07",
-  "requirements": "Not specified",
-  "size": 2765534,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitacord/icon0.png",
-  "screenshots": [
+  "v": "v.1.5fix1",
+  "vd": "2017-11-07",
+  "req": "Not specified",
+  "sz": 2765534,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitacord/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitacord/shot_01.png",
     "https://archive.org/download/psvitaalive-vitacord/shot_02.png",
     "https://archive.org/download/psvitaalive-vitacord/shot_03.png",
     "https://archive.org/download/psvitaalive-vitacord/shot_04.png",
     "https://archive.org/download/psvitaalive-vitacord/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitacord/vitacord.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitacord/vitacord.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/devingDev/VitaCord/releases/tag/1.5fix1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/devingDev/VitaCord/releases/tag/1.5fix1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/devingDev/VitaCord"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/devingDev/VitaCord"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "266",
-  "source_url": "https://github.com/devingDev/VitaCord",
-  "release_page": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/",
-  "updated_at": "2026-08-13T15:34:48.672022+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "266",
+  "su": "https://github.com/devingDev/VitaCord",
+  "rp": "http://wololo.net/2017/06/05/vitacord-psvita-client-discord-released/",
+  "ua": "2026-08-13T15:34:48.672022+00:00"
 }

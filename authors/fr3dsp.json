@@ -1,15 +1,15 @@
 {
   "id": "fr3dsp",
-  "name": "fr3dsp",
-  "avatar": "https://avatars.githubusercontent.com/u/121837347?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "fr3dsp",
+  "av": "https://avatars.githubusercontent.com/u/121837347?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/fr3dsp",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/fr3dsp",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/121837347?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/121837347?v=4"
 }

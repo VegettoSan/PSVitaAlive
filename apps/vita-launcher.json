@@ -1,52 +1,52 @@
 {
   "id": "vita-launcher",
-  "title_id": "SMLA00001",
-  "name": "Vita Launcher",
-  "description": "Applications launcher for PSVita/PSTV.",
-  "long_description": "An application that allows to launch other installed apps, roms from emulators and PSP games and homebrews thbrough Adrenaline. This removes the bubbles limit of Livearea and allows to categorize applications.",
-  "author_ids": [
+  "tid": "SMLA00001",
+  "n": "Vita Launcher",
+  "d": "Applications launcher for PSVita/PSTV.",
+  "ld": "An application that allows to launch other installed apps, roms from emulators and PSP games and homebrews thbrough Adrenaline. This removes the bubbles limit of Livearea and allows to categorize applications.",
+  "aids": [
     "cy33hc"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.3.9.6",
-  "version_date": "2022-11-23",
-  "requirements": "Not specified",
-  "size": 5286589,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-launcher/icon0.png",
-  "screenshots": [
+  "v": "v.3.9.6",
+  "vd": "2022-11-23",
+  "req": "Not specified",
+  "sz": 5286589,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-launcher/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-launcher/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-launcher/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-launcher/vita-launcher.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-launcher/vita-launcher.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-vita-launcher-v1-2-app-to-launch-games-and-apps.574644/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-vita-launcher-v1-2-app-to-launch-games-and-apps.574644/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/cy33hc/vita-launcher/releases/tag/latest"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/cy33hc/vita-launcher/releases/tag/latest"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cy33hc/vita-launcher"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/cy33hc/vita-launcher"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "583",
-  "source_url": "https://github.com/cy33hc/vita-launcher",
-  "release_page": "https://gbatemp.net/threads/release-vita-launcher-v1-2-app-to-launch-games-and-apps.574644/",
-  "updated_at": "2026-08-13T15:34:48.523713+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "583",
+  "su": "https://github.com/cy33hc/vita-launcher",
+  "rp": "https://gbatemp.net/threads/release-vita-launcher-v1-2-app-to-launch-games-and-apps.574644/",
+  "ua": "2026-08-13T15:34:48.523713+00:00"
 }

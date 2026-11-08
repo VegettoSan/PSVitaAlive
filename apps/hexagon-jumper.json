@@ -1,42 +1,42 @@
 {
   "id": "hexagon-jumper",
-  "title_id": "JFKD22551",
-  "name": "Hexagon Jumper",
-  "description": "Platformer for PSVITA.",
-  "long_description": "A platformer for PSVITA inspired by Geometry Dash.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "JFKD22551",
+  "n": "Hexagon Jumper",
+  "d": "Platformer for PSVITA.",
+  "ld": "A platformer for PSVITA inspired by Geometry Dash.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "cubic-games-official"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4.1",
-  "version_date": "2021-10-09",
-  "requirements": "Not specified",
-  "size": 80076273,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hexagon-jumper/icon0.png",
-  "screenshots": [
+  "v": "v.1.4.1",
+  "vd": "2021-10-09",
+  "req": "Not specified",
+  "sz": 80076273,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hexagon-jumper/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hexagon-jumper/shot_01.png",
     "https://archive.org/download/psvitaalive-hexagon-jumper/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hexagon-jumper/hexagon-jumper.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hexagon-jumper/hexagon-jumper.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://cubic-games-official.itch.io/hexagon-jumper"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://cubic-games-official.itch.io/hexagon-jumper"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "766",
-  "source_url": "https://cubic-games-official.itch.io/hexagon-jumper",
-  "release_page": "https://cubic-games-official.itch.io/hexagon-jumper",
-  "updated_at": "2026-08-13T15:34:48.568665+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "766",
+  "su": "https://cubic-games-official.itch.io/hexagon-jumper",
+  "rp": "https://cubic-games-official.itch.io/hexagon-jumper",
+  "ua": "2026-08-13T15:34:48.568665+00:00"
 }

@@ -1,49 +1,49 @@
 {
   "id": "better-qr-scanner",
-  "title_id": "BETTERQRS",
-  "name": "Better QR Scanner",
-  "description": "Multi-functional QR tool for PSVita.",
-  "long_description": "Multi-functional QR tool that scans and generates QR codes for the PSVita.",
-  "author_ids": [
+  "tid": "BETTERQRS",
+  "n": "Better QR Scanner",
+  "d": "Multi-functional QR tool for PSVita.",
+  "ld": "Multi-functional QR tool that scans and generates QR codes for the PSVita.",
+  "aids": [
     "harommel-rabbid"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "24-07-2025",
-  "version_date": "2025-07-24",
-  "requirements": "Not specified",
-  "size": 1501459,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-better-qr-scanner/icon0.png",
-  "screenshots": [
+  "v": "24-07-2025",
+  "vd": "2025-07-24",
+  "req": "Not specified",
+  "sz": 1501459,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-better-qr-scanner/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-better-qr-scanner/shot_01.png",
     "https://archive.org/download/psvitaalive-better-qr-scanner/shot_02.png",
     "https://archive.org/download/psvitaalive-better-qr-scanner/shot_03.png",
     "https://archive.org/download/psvitaalive-better-qr-scanner/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-better-qr-scanner/better-qr-scanner.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-better-qr-scanner/better-qr-scanner.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/HarommelRabbid/BetterQRScanner/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/HarommelRabbid/BetterQRScanner"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/HarommelRabbid/BetterQRScanner"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1286",
-  "source_url": "https://github.com/HarommelRabbid/BetterQRScanner",
-  "release_page": "https://github.com/HarommelRabbid/BetterQRScanner/releases",
-  "updated_at": "2026-08-13T15:34:48.400831+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1286",
+  "su": "https://github.com/HarommelRabbid/BetterQRScanner",
+  "rp": "https://github.com/HarommelRabbid/BetterQRScanner/releases",
+  "ua": "2026-08-13T15:34:48.400831+00:00"
 }

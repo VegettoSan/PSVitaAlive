@@ -1,15 +1,15 @@
 {
   "id": "thextech-team",
-  "name": "TheXTech Team",
-  "avatar": "https://github.com/Wohlstand.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "TheXTech Team",
+  "av": "https://github.com/Wohlstand.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Wohlstand",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Wohlstand",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Wohlstand.png"
+  "ic": "https://github.com/Wohlstand.png"
 }

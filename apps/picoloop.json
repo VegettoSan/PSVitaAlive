@@ -1,46 +1,46 @@
 {
   "id": "picoloop",
-  "title_id": "PICOLOOP1",
-  "name": "Picoloop",
-  "description": "Synth and stepsequencer for PSVITA.",
-  "long_description": "Picoloop is a synth and a stepsequencer (a clone of the famous nanoloop). The step sequencer play 4 tracks simultaneously, by default each track are 16 steps long, you can set the track to be up to 128 steps. Each track has a synthengine which can be a Virtual Analog, a Drum Synth, a FM synth. Each of the step can be edited on the 4 tracks. So for example, you can set a C4 note on step 0, nothing on step 1 and 2, then a D+5 on step 3 until the step 15.\n\nA pattern of 16 steps is played repeatedly while these notes can be edited in various respects like volume, pitch, filter, lfo etc. All parameters are set step-wise, so you can make huge variation of sound on the same pattern. Each channel's patterns can be saved to file slots and are then available for new combinations. Finally, saved patterns can be arranged in a song structure.",
-  "author_ids": [
+  "tid": "PICOLOOP1",
+  "n": "Picoloop",
+  "d": "Synth and stepsequencer for PSVITA.",
+  "ld": "Picoloop is a synth and a stepsequencer (a clone of the famous nanoloop). The step sequencer play 4 tracks simultaneously, by default each track are 16 steps long, you can set the track to be up to 128 steps. Each track has a synthengine which can be a Virtual Analog, a Drum Synth, a FM synth. Each of the step can be edited on the 4 tracks. So for example, you can set a C4 note on step 0, nothing on step 1 and 2, then a D+5 on step 3 until the step 15.\n\nA pattern of 16 steps is played repeatedly while these notes can be edited in various respects like volume, pitch, filter, lfo etc. All parameters are set step-wise, so you can make huge variation of sound on the same pattern. Each channel's patterns can be saved to file slots and are then available for new combinations. Finally, saved patterns can be arranged in a song structure.",
+  "aids": [
     "yoyz"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.77a",
-  "version_date": "2017-04-17",
-  "requirements": "Not specified",
-  "size": 6826055,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-picoloop/icon0.png",
-  "screenshots": [
+  "v": "v.0.77a",
+  "vd": "2017-04-17",
+  "req": "Not specified",
+  "sz": 6826055,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-picoloop/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-picoloop/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-picoloop/picoloop.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-picoloop/picoloop.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/yoyz/picoloop/releases/tag/picoloop-0.77a"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/yoyz/picoloop/releases/tag/picoloop-0.77a"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/yoyz/picoloop"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/yoyz/picoloop"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "191",
-  "source_url": "https://github.com/yoyz/picoloop",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.683525+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "191",
+  "su": "https://github.com/yoyz/picoloop",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.683525+00:00"
 }

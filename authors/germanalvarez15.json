@@ -1,15 +1,15 @@
 {
   "id": "germanalvarez15",
-  "name": "germanalvarez15",
-  "avatar": "https://avatars.githubusercontent.com/u/12685031?v=4",
-  "bio": "Software Developer and AR/VR Developer",
-  "links": [
+  "n": "germanalvarez15",
+  "av": "https://avatars.githubusercontent.com/u/12685031?v=4",
+  "b": "Software Developer and AR/VR Developer",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/germanalvarez15",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/germanalvarez15",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/12685031?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/12685031?v=4"
 }

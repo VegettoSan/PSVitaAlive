@@ -1,52 +1,52 @@
 {
   "id": "hota",
-  "title_id": "HOTA00001",
-  "name": "HOTA",
-  "description": "Heart of the Alien port",
-  "long_description": "This is a Vita port of the reverse engine for Heart of the Alien, the sequel of Another World.\nIt's based on the reverse engine made originally by Gil Megidish.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HOTA00001",
+  "n": "HOTA",
+  "d": "Heart of the Alien port",
+  "ld": "This is a Vita port of the reverse engine for Heart of the Alien, the sequel of Another World.\nIt's based on the reverse engine made originally by Gil Megidish.\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-10-23",
-  "requirements": "Not specified",
-  "size": 402380,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hota/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-10-23",
+  "req": "Not specified",
+  "sz": 402380,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hota/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hota/shot_01.png",
     "https://archive.org/download/psvitaalive-hota/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hota/hota.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hota/hota.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-hota.445832/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-hota.445832/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/hota/releases/tag/vita-1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/hota/releases/tag/vita-1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/hota"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/hota"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "126",
-  "source_url": "https://github.com/usineur/hota",
-  "release_page": "https://gbatemp.net/threads/release-hota.445832/",
-  "updated_at": "2026-08-13T15:34:48.693814+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "126",
+  "su": "https://github.com/usineur/hota",
+  "rp": "https://gbatemp.net/threads/release-hota.445832/",
+  "ua": "2026-08-13T15:34:48.693814+00:00"
 }

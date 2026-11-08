@@ -1,59 +1,59 @@
 {
   "id": "duskligth",
-  "title_id": "DUSKGXM01",
-  "name": "DuskLigth TLOZ:TLP",
-  "description": "Port The Legend of Zelda: Twilight Princess Ps Vita",
-  "long_description": "Port The Legend of Zelda: Twilight Princess Ps Vita\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DUSKGXM01",
+  "n": "DuskLigth TLOZ:TLP",
+  "d": "Port The Legend of Zelda: Twilight Princess Ps Vita",
+  "ld": "Port The Legend of Zelda: Twilight Princess Ps Vita\n\n- PsVitaAlive -",
+  "aids": [
     "capitanbarbacoa"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "strategy"
   ],
-  "version": "1.0.1",
-  "version_date": "2026-10-22",
-  "requirements": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
-  "size": 21600666,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.1",
+  "vd": "2026-10-22",
+  "req": "- ISO The Legend of Zelda: Twilight Princess Region USA.",
+  "sz": 21600666,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/duskligth-ps-vita/DuskGXM-1-0-1.vpk",
-      "size": 21600666,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/duskligth-ps-vita/DuskGXM-1-0-1.vpk",
+      "sz": 21600666,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files USA",
-      "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
-      "size": 1395864371,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files USA",
+      "u": "https://archive.org/download/duskligth-ps-vita/Game%20Files.zip",
+      "sz": 1395864371,
+      "xp": "ux0:data/",
+      "ips": [
         "dusklight"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Spanish",
-      "url": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
-      "size": 1050148864,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Spanish",
+      "u": "https://archive.org/download/duskligth-ps-vita/Game%20Files%20ES.zip",
+      "sz": 1050148864,
+      "xp": "ux0:data/",
+      "ips": [
         "dusklight"
       ]
     },
     {
-      "type": "Official Website",
-      "name": "itch.io",
-      "url": "https://capitanbarbacoa.itch.io/duskgxm?download"
+      "t": "Official Website",
+      "n": "itch.io",
+      "u": "https://capitanbarbacoa.itch.io/duskgxm?download"
     }
   ],
-  "icon": "https://archive.org/download/duskligth-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/duskligth-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/duskligth-ps-vita/bg.png",
     "https://archive.org/download/duskligth-ps-vita/0.jpg"
   ]

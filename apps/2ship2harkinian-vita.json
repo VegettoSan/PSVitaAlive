@@ -1,55 +1,55 @@
 {
   "id": "2ship2harkinian-vita",
-  "title_id": "2SHIP2HAR",
-  "name": "2ship2harkinian Vita",
-  "description": "Port of 2ship2harkinian for PSVita.",
-  "long_description": "2ship2harkinian is a sourceport of The Legend of Zelda: Majora's Mask based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.1.2 (Satoko Charlie).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "2SHIP2HAR",
+  "n": "2ship2harkinian Vita",
+  "d": "Port of 2ship2harkinian for PSVita.",
+  "ld": "2ship2harkinian is a sourceport of The Legend of Zelda: Majora's Mask based off the decompilation efforts of the game. It features several enhancements and mods support. The Vita port is based on version 1.1.2 (Satoko Charlie).\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2026-05-08",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 9069134,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.2",
+  "vd": "2026-05-08",
+  "req": "- libshacccg.suprx\n- Game Data Files: N64",
+  "sz": 9069134,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/2ship2harkinian-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/2ship2harkinian-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Spanish ZIP",
-      "url": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Game%20Files.zip",
-      "size": 112931635,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Spanish ZIP",
+      "u": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/Game%20Files.zip",
+      "sz": 112931635,
+      "xp": "ux0:data/",
+      "ips": [
         "2s2h"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/2ship2harkinian"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/2ship2harkinian"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-2ship2harkinian-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-2ship2harkinian-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-2ship2harkinian-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-2ship2harkinian-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-2ship2harkinian-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-2ship2harkinian-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1384",
-  "source_url": "https://github.com/Rinnegatamante/2ship2harkinian",
-  "release_page": "https://github.com/Rinnegatamante/2ship2harkinian/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1384",
+  "su": "https://github.com/Rinnegatamante/2ship2harkinian",
+  "rp": "https://github.com/Rinnegatamante/2ship2harkinian/releases",
+  "ua": "2026-08-13T15:34"
 }

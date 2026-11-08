@@ -1,41 +1,41 @@
 {
   "id": "fruity",
-  "title_id": "FRUITY001",
-  "name": "FruitY",
-  "description": "Puzzle game for PSVITA.",
-  "long_description": "Fruit'Y - Playing with edibles is heavily inspired by the Kaiko classic Gem'X, which has been seen on computers such as the Commodore Amiga 500, Commodore 64 and Atari ST.\nAlthough tiger mum forbids little Sheran to play with edibles, there is simply no way to stop him from playing with fruits found inside the deep jungle. Being shiny, smelling wonderful and tasting even better Sheran can't be kept away. So let's do the best we could do: Support him!\nThe game consists of two boards of fruits. The left field belongs to Sheran who needs to reproduce the right field 1:1 being able to proceed to the next level. Sounds easy?!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "FRUITY001",
+  "n": "FruitY",
+  "d": "Puzzle game for PSVITA.",
+  "ld": "Fruit'Y - Playing with edibles is heavily inspired by the Kaiko classic Gem'X, which has been seen on computers such as the Commodore Amiga 500, Commodore 64 and Atari ST.\nAlthough tiger mum forbids little Sheran to play with edibles, there is simply no way to stop him from playing with fruits found inside the deep jungle. Being shiny, smelling wonderful and tasting even better Sheran can't be kept away. So let's do the best we could do: Support him!\nThe game consists of two boards of fruits. The left field belongs to Sheran who needs to reproduce the right field 1:1 being able to proceed to the next level. Sounds easy?!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "retroguru-team"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-05-24",
-  "requirements": "Not specified",
-  "size": 1075064,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fruity/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-05-24",
+  "req": "Not specified",
+  "sz": 1075064,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fruity/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fruity/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fruity/fruity.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fruity/fruity.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://www.retroguru.com/fruity/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://www.retroguru.com/fruity/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "480",
-  "source_url": "http://www.retroguru.com/fruity/",
-  "release_page": "http://www.retroguru.com/fruity/",
-  "updated_at": "2026-08-13T15:34:48.639126+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "480",
+  "su": "http://www.retroguru.com/fruity/",
+  "rp": "http://www.retroguru.com/fruity/",
+  "ua": "2026-08-13T15:34:48.639126+00:00"
 }

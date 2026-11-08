@@ -1,51 +1,51 @@
 {
   "id": "opentitus",
-  "title_id": "OPENTITUS",
-  "name": "OpenTitus",
-  "description": "Titus port for PSVITA.",
-  "long_description": "A port of the game engine behind the DOS versions of Titus the Fox.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OPENTITUS",
+  "n": "OpenTitus",
+  "d": "Titus port for PSVITA.",
+  "ld": "A port of the game engine behind the DOS versions of Titus the Fox.\n\n- PsVitaAlive -",
+  "aids": [
     "usineur"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-10-25",
-  "requirements": "- Game Data Files: PC",
-  "size": 543246,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-opentitus/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-10-25",
+  "req": "- Game Data Files: PC",
+  "sz": 543246,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-opentitus/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-opentitus/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-opentitus/opentitus.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-opentitus/opentitus.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48673"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/usineur/opentitus/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/usineur/opentitus/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/usineur/opentitus"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/usineur/opentitus"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "344",
-  "source_url": "https://github.com/usineur/opentitus",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48673",
-  "updated_at": "2026-08-13T15:34:48.672849+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "344",
+  "su": "https://github.com/usineur/opentitus",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=48673",
+  "ua": "2026-08-13T15:34:48.672849+00:00"
 }

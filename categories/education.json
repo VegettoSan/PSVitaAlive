@@ -1,49 +1,49 @@
 {
   "id": "education",
-  "name": "Education",
-  "description": "Educational applications and learning resources for PlayStation Vita.",
-  "icon": "icons/education.png",
-  "order": 13,
-  "subcategories": [
+  "n": "Education",
+  "d": "Educational applications and learning resources for PlayStation Vita.",
+  "ic": "icons/education.png",
+  "ord": 13,
+  "subs": [
     {
       "id": "learning",
-      "name": "Learning"
+      "n": "Learning"
     },
     {
       "id": "mathematics",
-      "name": "Mathematics"
+      "n": "Mathematics"
     },
     {
       "id": "programming",
-      "name": "Programming"
+      "n": "Programming"
     },
     {
       "id": "language",
-      "name": "Language"
+      "n": "Language"
     },
     {
       "id": "reference",
-      "name": "Reference"
+      "n": "Reference"
     },
     {
       "id": "encyclopedia",
-      "name": "Encyclopedia"
+      "n": "Encyclopedia"
     },
     {
       "id": "science",
-      "name": "Science"
+      "n": "Science"
     },
     {
       "id": "tutorials",
-      "name": "Tutorials"
+      "n": "Tutorials"
     },
     {
       "id": "typing",
-      "name": "Typing"
+      "n": "Typing"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

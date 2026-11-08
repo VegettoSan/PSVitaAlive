@@ -1,53 +1,53 @@
 {
   "id": "vita-hangman---touhou-edition",
-  "title_id": "HANG00001",
-  "name": "Vita Hangman - Touhou Edition",
-  "description": "Hangman game for PSVITA.",
-  "long_description": "Hangman game for PSVITA coded in Lua. Enhanced version of Vita Hangman with sounds, BGMs, backgrounds and enhanced game mechanics.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "HANG00001",
+  "n": "Vita Hangman - Touhou Edition",
+  "d": "Hangman game for PSVITA.",
+  "ld": "Hangman game for PSVITA coded in Lua. Enhanced version of Vita Hangman with sounds, BGMs, backgrounds and enhanced game mechanics.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "aurora",
     "jackiepooh",
     "rinnegatamante",
     "ifrit05"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1A-TH1",
-  "version_date": "2018-04-06",
-  "requirements": "Not specified",
-  "size": 2237731,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/icon0.png",
-  "screenshots": [
+  "v": "v.1.1A-TH1",
+  "vd": "2018-04-06",
+  "req": "Not specified",
+  "sz": 2237731,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/379-VitaHangman.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-hangman---touhou-edition/379-VitaHangman.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48977"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2017/09/08/vita-hangman-released-vita-guess-away-stick-figures-life/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2017/09/08/vita-hangman-released-vita-guess-away-stick-figures-life/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "379",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
-  "updated_at": "2026-08-13T15:34:48.666294+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "379",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=48977",
+  "ua": "2026-08-13T15:34:48.666294+00:00"
 }

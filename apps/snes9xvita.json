@@ -1,56 +1,56 @@
 {
   "id": "snes9xvita",
-  "title_id": "SKOG00001",
-  "name": "Snes9xVITA",
-  "description": "SNES emulator for the PS Vita.",
-  "long_description": "Native SNES emulator for the PlayStation VITA.\nCurrently features Snes9x 1.52 core based on Snes9xNext.",
-  "author_ids": [
+  "tid": "SKOG00001",
+  "n": "Snes9xVITA",
+  "d": "SNES emulator for the PS Vita.",
+  "ld": "Native SNES emulator for the PlayStation VITA.\nCurrently features Snes9x 1.52 core based on Snes9xNext.",
+  "aids": [
     "frangarcj",
     "skogaby"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1-HENkaku",
-  "version_date": "2016-07-29",
-  "requirements": "Not specified",
-  "size": 1612893,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-snes9xvita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1-HENkaku",
+  "vd": "2016-07-29",
+  "req": "Not specified",
+  "sz": 1612893,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-snes9xvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-snes9xvita/shot_01.png",
     "https://archive.org/download/psvitaalive-snes9xvita/shot_02.png",
     "https://archive.org/download/psvitaalive-snes9xvita/shot_03.png",
     "https://archive.org/download/psvitaalive-snes9xvita/shot_04.png",
     "https://archive.org/download/psvitaalive-snes9xvita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-snes9xvita/snes9xvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-snes9xvita/snes9xvita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/Snes9xVITA/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/Snes9xVITA/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/Snes9xVITA/releases/tag/1.1-Henkaku"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/Snes9xVITA/releases/tag/1.1-Henkaku"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/Snes9xVITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/frangarcj/Snes9xVITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "194",
-  "source_url": "https://github.com/frangarcj/Snes9xVITA",
-  "release_page": "https://github.com/frangarcj/Snes9xVITA/releases",
-  "updated_at": "2026-08-13T15:34:48.714508+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "194",
+  "su": "https://github.com/frangarcj/Snes9xVITA",
+  "rp": "https://github.com/frangarcj/Snes9xVITA/releases",
+  "ua": "2026-08-13T15:34:48.714508+00:00"
 }

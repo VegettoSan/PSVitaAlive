@@ -1,52 +1,52 @@
 {
   "id": "mkrandom",
-  "title_id": "MKRANDOM0",
-  "name": "Mkrandom",
-  "description": "Mario Kart races generator.",
-  "long_description": "A PSVita app that generates configurations for Mario Kart races randomly.",
-  "author_ids": [
+  "tid": "MKRANDOM0",
+  "n": "Mkrandom",
+  "d": "Mario Kart races generator.",
+  "ld": "A PSVita app that generates configurations for Mario Kart races randomly.",
+  "aids": [
     "tau5"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2021-03-27",
-  "requirements": "Not specified",
-  "size": 1284846,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mkrandom/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2021-03-27",
+  "req": "Not specified",
+  "sz": 1284846,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mkrandom/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mkrandom/shot_01.png",
     "https://archive.org/download/psvitaalive-mkrandom/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mkrandom/mkrandom.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mkrandom/mkrandom.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Tau5/mkrandom/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Tau5/mkrandom/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Tau5/mkrandom/releases/tag/1.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Tau5/mkrandom/releases/tag/1.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Tau5/mkrandom"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Tau5/mkrandom"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "630",
-  "source_url": "https://github.com/Tau5/mkrandom",
-  "release_page": "https://github.com/Tau5/mkrandom/releases",
-  "updated_at": "2026-08-13T15:34:48.592436+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "630",
+  "su": "https://github.com/Tau5/mkrandom",
+  "rp": "https://github.com/Tau5/mkrandom/releases",
+  "ua": "2026-08-13T15:34:48.592436+00:00"
 }

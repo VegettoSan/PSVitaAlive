@@ -1,50 +1,50 @@
 {
   "id": "inscryption-vita",
-  "title_id": "INSC12345",
-  "name": "Inscryption Vita",
-  "description": "Port of Inscryption for PSVita.",
-  "long_description": "Inscryption is an inky black card-based odyssey that blends the deckbuilding roguelike, escape-room style puzzles, and psychological horror into a blood-laced smoothie. Darker still are the secrets inscrybed upon the cards...\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "INSC12345",
+  "n": "Inscryption Vita",
+  "d": "Port of Inscryption for PSVita.",
+  "ld": "Inscryption is an inky black card-based odyssey that blends the deckbuilding roguelike, escape-room style puzzles, and psychological horror into a blood-laced smoothie. Darker still are the secrets inscrybed upon the cards...\n\n- PsVitaAlive -",
+  "aids": [
     "gl00mm"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "alpha.1",
-  "version_date": "2025-09-19",
-  "requirements": "- Game Data Files: PC",
-  "size": 15108770,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-inscryption-vita/icon0.png",
-  "screenshots": [
+  "v": "alpha.1",
+  "vd": "2025-09-19",
+  "req": "- Game Data Files: PC",
+  "sz": 15108770,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-inscryption-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-inscryption-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-inscryption-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-inscryption-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-inscryption-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-inscryption-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-inscryption-vita/inscryption-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-inscryption-vita/inscryption-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/gl00mm/Inscryption_PSVITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/gl00mm/Inscryption_PSVITA"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/gl00mm/Inscryption_PSVITA/releases/tag/Inscryption_PSVITA-alpha.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/gl00mm/Inscryption_PSVITA/releases/tag/Inscryption_PSVITA-alpha.1"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1323",
-  "source_url": "https://github.com/gl00mm/Inscryption_PSVITA",
-  "release_page": "https://github.com/gl00mm/Inscryption_PSVITA",
-  "updated_at": "2026-08-13T15:34:48.388096+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1323",
+  "su": "https://github.com/gl00mm/Inscryption_PSVITA",
+  "rp": "https://github.com/gl00mm/Inscryption_PSVITA",
+  "ua": "2026-08-13T15:34:48.388096+00:00"
 }

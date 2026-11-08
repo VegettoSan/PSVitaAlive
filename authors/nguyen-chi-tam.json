@@ -1,15 +1,15 @@
 {
   "id": "nguyen-chi-tam",
-  "name": "Nguyen Chi Tam",
-  "avatar": "https://github.com/gtzampanakis.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Nguyen Chi Tam",
+  "av": "https://github.com/gtzampanakis.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/gtzampanakis",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/gtzampanakis",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/gtzampanakis.png"
+  "ic": "https://github.com/gtzampanakis.png"
 }

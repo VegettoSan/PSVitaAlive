@@ -1,36 +1,36 @@
 {
   "id": "mdashk-creative-araya",
-  "name": "MDashK & Creative Araya",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "MDashK & Creative Araya",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/download/v1.9.2-vita/SOSR00001.VPK",
-      "recommended": true
+      "t": "Download",
+      "n": "NeoVitaDB VPK",
+      "u": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/download/v1.9.2-vita/SOSR00001.VPK",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/tag/v1.9.2-vita"
+      "t": "Official Website",
+      "n": "NeoVitaDB Release Page",
+      "u": "https://github.com/MDashK/sonic-1-sms-remake-vita/releases/tag/v1.9.2-vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MDashK/sonic-1-sms-remake-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MDashK/sonic-1-sms-remake-vita"
     },
     {
-      "type": "Download",
-      "name": "NeoVitaDB VPK",
-      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
-      "recommended": false
+      "t": "Download",
+      "n": "NeoVitaDB VPK",
+      "u": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/download/v2.9.2-vita/SOSR00002.VPK",
+      "rec": false
     },
     {
-      "type": "Official Website",
-      "name": "NeoVitaDB Release Page",
-      "url": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
+      "t": "Official Website",
+      "n": "NeoVitaDB Release Page",
+      "u": "https://github.com/MDashK/Sonic-2-SMS-Remake-Vita/releases/tag/v2.9.2-vita"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

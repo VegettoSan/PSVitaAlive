@@ -1,15 +1,15 @@
 {
   "id": "tushkan",
-  "name": "TushkaN",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "TushkaN",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "Other",
-      "name": "Buscar autor",
-      "url": "https://github.com/search?q=TushkaN&type=users",
-      "recommended": true
+      "t": "Other",
+      "n": "Buscar autor",
+      "u": "https://github.com/search?q=TushkaN&type=users",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

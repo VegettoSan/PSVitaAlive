@@ -1,55 +1,55 @@
 {
   "id": "vicevita",
-  "title_id": "MEIR00002",
-  "name": "VICEVita",
-  "description": "Commodore 64 emulator.",
-  "long_description": "VICEVita is a port of the Versatile Commodore Emulator (VICE) for the PlayStation Vita.\nIt features a completely new UI with touch keyboard, savestates and control mappings.",
-  "author_ids": [
+  "tid": "MEIR00002",
+  "n": "VICEVita",
+  "d": "Commodore 64 emulator.",
+  "ld": "VICEVita is a port of the Versatile Commodore Emulator (VICE) for the PlayStation Vita.\nIt features a completely new UI with touch keyboard, savestates and control mappings.",
+  "aids": [
     "ammeir"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2020-12-19",
-  "requirements": "Not specified",
-  "size": 2489495,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vicevita/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2020-12-19",
+  "req": "Not specified",
+  "sz": 2489495,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vicevita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vicevita/shot_01.png",
     "https://archive.org/download/psvitaalive-vicevita/shot_02.png",
     "https://archive.org/download/psvitaalive-vicevita/shot_03.png",
     "https://archive.org/download/psvitaalive-vicevita/shot_04.png",
     "https://archive.org/download/psvitaalive-vicevita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vicevita/vicevita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vicevita/vicevita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ammeir/vicevita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ammeir/vicevita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ammeir/vicevita/releases/tag/v1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ammeir/vicevita/releases/tag/v1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ammeir/vicevita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ammeir/vicevita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "541",
-  "source_url": "https://github.com/ammeir/vicevita",
-  "release_page": "https://github.com/ammeir/vicevita/releases",
-  "updated_at": "2026-08-13T15:34:48.603255+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "541",
+  "su": "https://github.com/ammeir/vicevita",
+  "rp": "https://github.com/ammeir/vicevita/releases",
+  "ua": "2026-08-13T15:34:48.603255+00:00"
 }

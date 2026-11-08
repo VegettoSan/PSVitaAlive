@@ -1,55 +1,55 @@
 {
   "id": "sonic-cd-vita",
-  "title_id": "SOCD00001",
-  "name": "Sonic CD Vita",
-  "description": "Port of Sonic CD for PSVITA/PSTV.",
-  "long_description": "Port of Sonic CD for PSVITA/PSTV based on the decompilation of Sonic CD 2011.\nThis specific decompilation is based on the PC remake with improvements & tweaks from the mobile remakes.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SOCD00001",
+  "n": "Sonic CD Vita",
+  "d": "Port of Sonic CD for PSVITA/PSTV.",
+  "ld": "Port of Sonic CD for PSVITA/PSTV based on the decompilation of Sonic CD 2011.\nThis specific decompilation is based on the PC remake with improvements & tweaks from the mobile remakes.\n\n- PsVitaAlive -",
+  "aids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2 Alpha",
-  "version_date": "2021-01-05",
-  "requirements": "- Game Data Files: Android OR PC",
-  "size": 969613,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-cd-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.2 Alpha",
+  "vd": "2021-01-05",
+  "req": "- Game Data Files: Android OR PC",
+  "sz": 969613,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-cd-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-cd-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-cd-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-cd-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-cd-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-sonic-cd-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-cd-vita/sonic-cd-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-cd-vita/sonic-cd-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Sonic-CD-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/tag/0.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/tag/0.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/Sonic-CD-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SonicMastr/Sonic-CD-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "868",
-  "source_url": "https://github.com/SonicMastr/Sonic-CD-Vita",
-  "release_page": "https://github.com/SonicMastr/Sonic-CD-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.601091+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "868",
+  "su": "https://github.com/SonicMastr/Sonic-CD-Vita",
+  "rp": "https://github.com/SonicMastr/Sonic-CD-Vita/releases",
+  "ua": "2026-08-13T15:34:48.601091+00:00"
 }

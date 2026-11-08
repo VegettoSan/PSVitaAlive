@@ -1,40 +1,40 @@
 {
   "id": "ghost-of-tsushima-mini-games",
-  "title_id": "LAPY30018",
-  "name": "Ghost of Tsushima Mini Games",
-  "description": "Collection of minigames for PSVITA.",
-  "long_description": "A collection of three minigames focusing on quick reflexes with Ghost of Tsushima as theme.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "LAPY30018",
+  "n": "Ghost of Tsushima Mini Games",
+  "d": "Collection of minigames for PSVITA.",
+  "ld": "A collection of three minigames focusing on quick reflexes with Ghost of Tsushima as theme.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "lapy"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2022-10-11",
-  "requirements": "Not specified",
-  "size": 62388542,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2022-10-11",
+  "req": "Not specified",
+  "sz": 62388542,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_01.png",
     "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_02.png",
     "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_03.png",
     "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_04.png",
     "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/ghost-of-tsushima-mini-games.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ghost-of-tsushima-mini-games/ghost-of-tsushima-mini-games.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "991",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/991-got.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.528147+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "991",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/991-got.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.528147+00:00"
 }

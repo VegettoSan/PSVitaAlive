@@ -1,21 +1,21 @@
 {
   "id": "vegettosandev",
-  "name": "VegettoSanDev",
-  "avatar": "https://github.com/VegettoSan.png?size=256",
-  "bio": "Desarrollador de videojuego y amante del anime.",
-  "links": [
+  "n": "VegettoSanDev",
+  "av": "https://github.com/VegettoSan.png?size=256",
+  "b": "Desarrollador de videojuego y amante del anime.",
+  "l": [
     {
-      "type": "github",
-      "url": "https://github.com/VegettoSan"
+      "t": "github",
+      "u": "https://github.com/VegettoSan"
     },
     {
-      "type": "website",
-      "url": "https://sites.google.com/view/vegettosandev/main"
+      "t": "website",
+      "u": "https://sites.google.com/view/vegettosandev/main"
     },
     {
-      "type": "youtube",
-      "url": "https://www.youtube.com/@vegettosandev"
+      "t": "youtube",
+      "u": "https://www.youtube.com/@vegettosandev"
     }
   ],
-  "icon": "https://github.com/VegettoSan.png?size=256"
+  "ic": "https://github.com/VegettoSan.png?size=256"
 }

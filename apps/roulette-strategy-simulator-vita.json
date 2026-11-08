@@ -1,45 +1,45 @@
 {
   "id": "roulette-strategy-simulator-vita",
-  "title_id": "RSIMVITA1",
-  "name": "Roulette Strategy Simulator VITA",
-  "description": "Roulette simulator for PSVITA.",
-  "long_description": "In Roulette:\n- In the long term loss is guaranteed\n- In the short term, gains are possible\nThis simulation confirms the reality of point (1) and explores the possibilities of point (2).\nTesting roulette strategies one spin at a time is a time-consuming exercise. This program runs a series of spins in rapid concession using a given strategy, until the strategy succeeds or fails.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "RSIMVITA1",
+  "n": "Roulette Strategy Simulator VITA",
+  "d": "Roulette simulator for PSVITA.",
+  "ld": "In Roulette:\n- In the long term loss is guaranteed\n- In the short term, gains are possible\nThis simulation confirms the reality of point (1) and explores the possibilities of point (2).\nTesting roulette strategies one spin at a time is a time-consuming exercise. This program runs a series of spins in rapid concession using a given strategy, until the strategy succeeds or fails.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "gremlin-software"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-09-22",
-  "requirements": "Not specified",
-  "size": 9476459,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-09-22",
+  "req": "Not specified",
+  "sz": 9476459,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/roulette-strategy-simulator-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-roulette-strategy-simulator-vita/roulette-strategy-simulator-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/45/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/45/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1137",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/45/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/45/",
-  "updated_at": "2026-08-13T15:34:48.471686+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1137",
+  "su": "https://fuhen.homebrew-contest.com/submissions/45/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/45/",
+  "ua": "2026-08-13T15:34:48.471686+00:00"
 }

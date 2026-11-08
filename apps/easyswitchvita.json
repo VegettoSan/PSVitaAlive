@@ -1,52 +1,52 @@
 {
   "id": "easyswitchvita",
-  "title_id": "EZSV00001",
-  "name": "EasySwitchVita",
-  "description": "Easy config/installer for some plugins",
-  "long_description": "EasySwitchVita aims to simplify the transition between playing the PS Vita as a handheld, and playing it on a big screen by allowing you to toggle the required plugins on and off and rebooting, as fast as one click, without the need to mess with the configuration files.",
-  "author_ids": [
+  "tid": "EZSV00001",
+  "n": "EasySwitchVita",
+  "d": "Easy config/installer for some plugins",
+  "ld": "EasySwitchVita aims to simplify the transition between playing the PS Vita as a handheld, and playing it on a big screen by allowing you to toggle the required plugins on and off and rebooting, as fast as one click, without the need to mess with the configuration files.",
+  "aids": [
     "kirezar"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2018-08-23",
-  "requirements": "Not specified",
-  "size": 2264647,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-easyswitchvita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2018-08-23",
+  "req": "Not specified",
+  "sz": 2264647,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-easyswitchvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-easyswitchvita/shot_01.png",
     "https://archive.org/download/psvitaalive-easyswitchvita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-easyswitchvita/easyswitchvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-easyswitchvita/easyswitchvita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Kirezar/EasySwitchVita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Kirezar/EasySwitchVita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Kirezar/EasySwitchVita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Kirezar/EasySwitchVita/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Kirezar/EasySwitchVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Kirezar/EasySwitchVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "398",
-  "source_url": "https://github.com/Kirezar/EasySwitchVita",
-  "release_page": "https://github.com/Kirezar/EasySwitchVita/releases",
-  "updated_at": "2026-08-13T15:34:48.662105+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "398",
+  "su": "https://github.com/Kirezar/EasySwitchVita",
+  "rp": "https://github.com/Kirezar/EasySwitchVita/releases",
+  "ua": "2026-08-13T15:34:48.662105+00:00"
 }

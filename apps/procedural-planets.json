@@ -1,48 +1,48 @@
 {
   "id": "procedural-planets",
-  "title_id": "PRIMER001",
-  "name": "Procedural Planets",
-  "description": "Procedural planets generator.",
-  "long_description": "Procedural 2D planets landscapes pixelart generator for PSVITA/PSTV inspired by No Man's Sky art.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "PRIMER001",
+  "n": "Procedural Planets",
+  "d": "Procedural planets generator.",
+  "ld": "Procedural 2D planets landscapes pixelart generator for PSVITA/PSTV inspired by No Man's Sky art.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "primer0",
     "ruben-wolfe"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-07-31",
-  "requirements": "Not specified",
-  "size": 677970,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-procedural-planets/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-07-31",
+  "req": "Not specified",
+  "sz": 677970,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-procedural-planets/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-procedural-planets/shot_01.png",
     "https://archive.org/download/psvitaalive-procedural-planets/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-procedural-planets/procedural-planets.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-procedural-planets/procedural-planets.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?p=406861"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?p=406861"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "91",
-  "source_url": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view",
-  "release_page": "http://wololo.net/talk/viewtopic.php?p=406861",
-  "updated_at": "2026-08-13T15:34:48.710590+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "91",
+  "su": "https://drive.google.com/file/d/0B4QqovA_rXzGT3I3ZUdpTnJtc2s/view",
+  "rp": "http://wololo.net/talk/viewtopic.php?p=406861",
+  "ua": "2026-08-13T15:34:48.710590+00:00"
 }

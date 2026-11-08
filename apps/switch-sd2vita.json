@@ -1,52 +1,52 @@
 {
   "id": "switch-sd2vita",
-  "title_id": "SWITCHSDV",
-  "name": "Switch SD2Vita",
-  "description": "SD2Vita drivers manager.",
-  "long_description": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
-  "author_ids": [
+  "tid": "SWITCHSDV",
+  "n": "Switch SD2Vita",
+  "d": "SD2Vita drivers manager.",
+  "ld": "Little application that allows you to install and manage SD2VITA drivers for both ux0:/ and uma0:/ mounting points.",
+  "aids": [
     "appleio",
     "wth"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2018-09-29",
-  "requirements": "Not specified",
-  "size": 250120,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-switch-sd2vita/icon0.png",
-  "screenshots": [
+  "v": "v.2.1",
+  "vd": "2018-09-29",
+  "req": "Not specified",
+  "sz": 250120,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-switch-sd2vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-switch-sd2vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-switch-sd2vita/switch-sd2vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-switch-sd2vita/switch-sd2vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?p=419388"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?p=419388"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Applelo/SwitchSD2Vita/releases/tag/2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Applelo/SwitchSD2Vita/releases/tag/2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Applelo/SwitchSD2Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Applelo/SwitchSD2Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "294",
-  "source_url": "https://github.com/Applelo/SwitchSD2Vita",
-  "release_page": "http://wololo.net/talk/viewtopic.php?p=419388",
-  "updated_at": "2026-08-13T15:34:48.661488+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "294",
+  "su": "https://github.com/Applelo/SwitchSD2Vita",
+  "rp": "http://wololo.net/talk/viewtopic.php?p=419388",
+  "ua": "2026-08-13T15:34:48.661488+00:00"
 }

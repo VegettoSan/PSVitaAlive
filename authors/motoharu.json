@@ -1,15 +1,15 @@
 {
   "id": "motoharu",
-  "name": "motoharu",
-  "avatar": "https://github.com/motoharu-gosuto.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "motoharu",
+  "av": "https://github.com/motoharu-gosuto.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/motoharu-gosuto",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/motoharu-gosuto",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/motoharu-gosuto.png"
+  "ic": "https://github.com/motoharu-gosuto.png"
 }

@@ -1,45 +1,45 @@
 {
   "id": "coffee-talk-vita",
-  "title_id": "CFTK12345",
-  "name": "Coffee Talk Vita",
-  "description": "Port of Coffee Talk for PSVITA.",
-  "long_description": "Coffee Talk is a game about listening to peopleÃ¢â‚¬â„¢s problems and helping them by serving up a warm drink out of the ingredients you have in stock. It is a game that depicts lives as humanly as possible, while having a cast that is more than just humans.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CFTK12345",
+  "n": "Coffee Talk Vita",
+  "d": "Port of Coffee Talk for PSVITA.",
+  "ld": "Coffee Talk is a game about listening to peopleÃ¢â‚¬â„¢s problems and helping them by serving up a warm drink out of the ingredients you have in stock. It is a game that depicts lives as humanly as possible, while having a cast that is more than just humans.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.35",
-  "version_date": "2024-04-01",
-  "requirements": "- Game Data Files: PC",
-  "size": 15037090,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-coffee-talk-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.35",
+  "vd": "2024-04-01",
+  "req": "- Game Data Files: PC",
+  "sz": 15037090,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-coffee-talk-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-coffee-talk-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-coffee-talk-vita/coffee-talk-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-coffee-talk-vita/coffee-talk-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1201",
-  "source_url": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
-  "release_page": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
-  "updated_at": "2026-08-13T15:34:48.443919+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1201",
+  "su": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
+  "rp": "https://github.com/PatnosDD/Coffee-Talk-PS-VITA",
+  "ua": "2026-08-13T15:34:48.443919+00:00"
 }

@@ -1,55 +1,55 @@
 {
   "id": "fallout-2-ce",
-  "title_id": "FOUT00002",
-  "name": "Fallout 2 CE",
-  "description": "Port of Fallout 2 for PSVITA.",
-  "long_description": "Port of Fallout 2 for PSVITA based on a reverse engineering of the game called Fallout 2: Community Edition.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FOUT00002",
+  "n": "Fallout 2 CE",
+  "d": "Port of Fallout 2 for PSVITA.",
+  "ld": "Port of Fallout 2 for PSVITA based on a reverse engineering of the game called Fallout 2: Community Edition.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "rpg"
   ],
-  "version": "v.1.3.0-vita.8",
-  "version_date": "2024-06-02",
-  "requirements": "- Game Data Files: PC",
-  "size": 1843397,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.3.0-vita.8",
+  "vd": "2024-06-02",
+  "req": "- Game Data Files: PC",
+  "sz": 1843397,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fallout-2-ce/fallout-2-ce.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fallout-2-ce/fallout-2-ce.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-fallout-2-ce/Game%20Files.zip",
-      "size": 580911104,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-fallout-2-ce/Game%20Files.zip",
+      "sz": 580911104,
+      "xp": "ux0:data/",
+      "ips": [
         "fallout2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/fallout2-ce-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/fallout2-ce-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-fallout-2-ce/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-fallout-2-ce/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fallout-2-ce/shot_01.png",
     "https://archive.org/download/psvitaalive-fallout-2-ce/shot_02.png",
     "https://archive.org/download/psvitaalive-fallout-2-ce/shot_03.png",
     "https://archive.org/download/psvitaalive-fallout-2-ce/shot_04.png",
     "https://archive.org/download/psvitaalive-fallout-2-ce/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "842",
-  "source_url": "https://github.com/Northfear/fallout2-ce-vita",
-  "release_page": "https://github.com/Northfear/fallout2-ce-vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "842",
+  "su": "https://github.com/Northfear/fallout2-ce-vita",
+  "rp": "https://github.com/Northfear/fallout2-ce-vita/releases",
+  "ua": "2026-08-13T15:34"
 }

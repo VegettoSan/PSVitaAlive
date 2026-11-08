@@ -1,41 +1,41 @@
 {
   "id": "book-of-the-dead-vita",
-  "title_id": "NECROVITA",
-  "name": "Book of the Dead Vita",
-  "description": "Port of Book of the Dead: Lost Souls for PSVita.",
-  "long_description": "The first Russian VN in history, released in May 2006. The plot follows a married couple who move into a gloomy mansion they inherited, where events unfold in the spirit of Lovecraft's works.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NECROVITA",
+  "n": "Book of the Dead Vita",
+  "d": "Port of Book of the Dead: Lost Souls for PSVita.",
+  "ld": "The first Russian VN in history, released in May 2006. The plot follows a married couple who move into a gloomy mansion they inherited, where events unfold in the spirit of Lovecraft's works.\n\n- PsVitaAlive -",
+  "aids": [
     "fargusjunja"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-06-24",
-  "requirements": "Not specified",
-  "size": 86355323,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-book-of-the-dead-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-06-24",
+  "req": "Not specified",
+  "sz": 86355323,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-book-of-the-dead-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-book-of-the-dead-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-book-of-the-dead-vita/book-of-the-dead-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-book-of-the-dead-vita/book-of-the-dead-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/rerulon/dushi4kDX"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/rerulon/dushi4kDX"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1424",
-  "source_url": "https://github.com/rerulon/dushi4kDX",
-  "release_page": "https://github.com/rerulon/dushi4kDX",
-  "updated_at": "2026-08-13T15:34:48.335574+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1424",
+  "su": "https://github.com/rerulon/dushi4kDX",
+  "rp": "https://github.com/rerulon/dushi4kDX",
+  "ua": "2026-08-13T15:34:48.335574+00:00"
 }

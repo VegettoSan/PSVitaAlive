@@ -1,15 +1,15 @@
 {
   "id": "wth",
-  "name": "wth",
-  "avatar": "https://github.com/Applelo.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "wth",
+  "av": "https://github.com/Applelo.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Applelo",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Applelo",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Applelo.png"
+  "ic": "https://github.com/Applelo.png"
 }

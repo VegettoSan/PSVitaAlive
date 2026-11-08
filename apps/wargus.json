@@ -1,55 +1,55 @@
 {
   "id": "wargus",
-  "title_id": "WARG00001",
-  "name": "Wargus",
-  "description": "Port of Warcraft 1/2 for PSVITA.",
-  "long_description": "Wargus is a Warcraft 2 Mod that allows you to play Warcraft 2 with the Stratagus engine. The game looks and sounds almost exactly like Warcraft 2. The gameplay is very close to Warcraft 2Ã¢â‚¬â„¢s gameplay, with slight enhancements towards Starcraft and other more modern RTS games.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WARG00001",
+  "n": "Wargus",
+  "d": "Port of Warcraft 1/2 for PSVITA.",
+  "ld": "Wargus is a Warcraft 2 Mod that allows you to play Warcraft 2 with the Stratagus engine. The game looks and sounds almost exactly like Warcraft 2. The gameplay is very close to Warcraft 2Ã¢â‚¬â„¢s gameplay, with slight enhancements towards Starcraft and other more modern RTS games.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.3.3.2-vita.3",
-  "version_date": "2022-08-15",
-  "requirements": "- Game Data Files: PC",
-  "size": 3907642,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-wargus/icon0.png",
-  "screenshots": [
+  "v": "v.3.3.2-vita.3",
+  "vd": "2022-08-15",
+  "req": "- Game Data Files: PC",
+  "sz": 3907642,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-wargus/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-wargus/shot_01.png",
     "https://archive.org/download/psvitaalive-wargus/shot_02.png",
     "https://archive.org/download/psvitaalive-wargus/shot_03.png",
     "https://archive.org/download/psvitaalive-wargus/shot_04.png",
     "https://archive.org/download/psvitaalive-wargus/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-wargus/wargus.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-wargus/wargus.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/stratagus-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/stratagus-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/stratagus-vita/releases/tag/v3.3.2-vita.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/stratagus-vita/releases/tag/v3.3.2-vita.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/stratagus-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/stratagus-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "717",
-  "source_url": "https://github.com/Northfear/stratagus-vita",
-  "release_page": "https://github.com/Northfear/stratagus-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.536489+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "717",
+  "su": "https://github.com/Northfear/stratagus-vita",
+  "rp": "https://github.com/Northfear/stratagus-vita/releases",
+  "ua": "2026-08-13T15:34:48.536489+00:00"
 }

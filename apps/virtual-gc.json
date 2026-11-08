@@ -1,51 +1,51 @@
 {
   "id": "virtual-gc",
-  "title_id": "PSVGC0001",
-  "name": "Virtual GC",
-  "description": "Gamecard dumper/emulator for PSVITA.",
-  "long_description": "Application that allows you to dump and run your physical gamecards.",
-  "author_ids": [
+  "tid": "PSVGC0001",
+  "n": "Virtual GC",
+  "d": "Gamecard dumper/emulator for PSVITA.",
+  "ld": "Application that allows you to dump and run your physical gamecards.",
+  "aids": [
     "motoharu"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.0",
-  "version_date": "2019-02-06",
-  "requirements": "Not specified",
-  "size": 53085,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-virtual-gc/icon0.png",
-  "screenshots": [
+  "v": "v.2.0",
+  "vd": "2019-02-06",
+  "req": "Not specified",
+  "sz": 53085,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-virtual-gc/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-virtual-gc/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-virtual-gc/virtual-gc.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-virtual-gc/virtual-gc.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/motoharu-gosuto/psvgamesd/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/motoharu-gosuto/psvgamesd/releases/tag/v2.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/motoharu-gosuto/psvgamesd"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/motoharu-gosuto/psvgamesd"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "312",
-  "source_url": "https://github.com/motoharu-gosuto/psvgamesd",
-  "release_page": "https://github.com/motoharu-gosuto/psvgamesd/releases",
-  "updated_at": "2026-08-13T15:34:48.655150+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "312",
+  "su": "https://github.com/motoharu-gosuto/psvgamesd",
+  "rp": "https://github.com/motoharu-gosuto/psvgamesd/releases",
+  "ua": "2026-08-13T15:34:48.655150+00:00"
 }

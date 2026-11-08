@@ -1,48 +1,48 @@
 {
   "id": "asphalt-5",
-  "title_id": "ASPHALT05",
-  "name": "Asphalt 5",
-  "description": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
-  "long_description": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ASPHALT05",
+  "n": "Asphalt 5",
+  "d": "Native PS Vita wrapper/port of Asphalt 5, originally published by Gameloft for Android, built on soloader-boilerplate.",
+  "ld": "Asphalt 5 is Gameloft's arcade racing game, originally released for Android as Asphalt-5-HD-v3.4.1.apk. This port runs the compiled native library (libasphalt5.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend.\n\n- PsVitaAlive -",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "racing"
   ],
-  "version": "1.2.0",
-  "version_date": "2026-09-28",
-  "requirements": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
-  "size": 1992294,
-  "status": "Verified",
-  "links": [
+  "v": "1.2.0",
+  "vd": "2026-09-28",
+  "req": "- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.",
+  "sz": 1992294,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.2.0.vpk",
-      "size": 1992294,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/asphalt-5-ps-vita/asphalt5%20v1.2.0.vpk",
+      "sz": 1992294,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
-      "size": 166199296,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/asphalt-5-ps-vita/Game%20Files.zip",
+      "sz": 166199296,
+      "xp": "ux0:data/",
+      "ips": [
         "asphalt5"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/MetalSyntax/Asphalt-5-Vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/MetalSyntax/Asphalt-5-Vita"
     }
   ],
-  "icon": "https://archive.org/download/asphalt-5-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/asphalt-5-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/asphalt-5-ps-vita/shot0.png"
   ]
 }

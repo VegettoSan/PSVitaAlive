@@ -1,15 +1,15 @@
 {
   "id": "d3m3vilurr",
-  "name": "d3m3vilurr",
-  "avatar": "https://github.com/d3m3vilurr.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "d3m3vilurr",
+  "av": "https://github.com/d3m3vilurr.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/d3m3vilurr",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/d3m3vilurr",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/d3m3vilurr.png"
+  "ic": "https://github.com/d3m3vilurr.png"
 }

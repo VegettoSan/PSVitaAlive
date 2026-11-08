@@ -1,46 +1,46 @@
 {
   "id": "touhou-6-vita",
-  "title_id": "TOHO06REV",
-  "name": "Touhou 6 Vita",
-  "description": "Port of Touhou 6 for PSVita.",
-  "long_description": "This is a port of Touhou Koumakyou - the Embodiment of Scarlet Devil to the Playstation Vita using GensokyoClub's portable EoSD decompilation.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "TOHO06REV",
+  "n": "Touhou 6 Vita",
+  "d": "Port of Touhou 6 for PSVita.",
+  "ld": "This is a port of Touhou Koumakyou - the Embodiment of Scarlet Devil to the Playstation Vita using GensokyoClub's portable EoSD decompilation.\n\n- PsVitaAlive -",
+  "aids": [
     "wavy667"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2026-08-12",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 2679945,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-touhou-6-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2026-08-12",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 2679945,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-touhou-6-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-touhou-6-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-touhou-6-vita/touhou-6-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-touhou-6-vita/touhou-6-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-touhou-6-vita-port.683739/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-touhou-6-vita-port.683739/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Wavy667/th06-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Wavy667/th06-vita"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1467",
-  "source_url": "https://github.com/Wavy667/th06-vita",
-  "release_page": "https://gbatemp.net/threads/release-touhou-6-vita-port.683739/",
-  "updated_at": "2026-08-16T01:06:26.919218+00:00"
+  "sn": "VitaDB",
+  "si": "1467",
+  "su": "https://github.com/Wavy667/th06-vita",
+  "rp": "https://gbatemp.net/threads/release-touhou-6-vita-port.683739/",
+  "ua": "2026-08-16T01:06:26.919218+00:00"
 }

@@ -1,55 +1,55 @@
 {
   "id": "panelpop",
-  "title_id": "PPOP00001",
-  "name": "PanelPop",
-  "description": "PanelPop port for PSVITA/PSTV.",
-  "long_description": "A Panel de Pon / Tetris Attack / Puzzle League clone.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PPOP00001",
+  "n": "PanelPop",
+  "d": "PanelPop port for PSVITA/PSTV.",
+  "ld": "A Panel de Pon / Tetris Attack / Puzzle League clone.\n\n- PsVitaAlive -",
+  "aids": [
     "sharkwouter"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.0.3",
-  "version_date": "2020-12-12",
-  "requirements": "Not specified",
-  "size": 9182952,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-panelpop/icon0.png",
-  "screenshots": [
+  "v": "v.0.0.3",
+  "vd": "2020-12-12",
+  "req": "Not specified",
+  "sz": 9182952,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-panelpop/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-panelpop/shot_01.png",
     "https://archive.org/download/psvitaalive-panelpop/shot_02.png",
     "https://archive.org/download/psvitaalive-panelpop/shot_03.png",
     "https://archive.org/download/psvitaalive-panelpop/shot_04.png",
     "https://archive.org/download/psvitaalive-panelpop/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-panelpop/panelpop.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-panelpop/panelpop.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/sharkwouter/panel-pop/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/sharkwouter/panel-pop/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/sharkwouter/panel-pop/releases/tag/0.0.3-vita"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/sharkwouter/panel-pop/releases/tag/0.0.3-vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/sharkwouter/panel-pop"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/sharkwouter/panel-pop"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "599",
-  "source_url": "https://github.com/sharkwouter/panel-pop",
-  "release_page": "https://github.com/sharkwouter/panel-pop/releases",
-  "updated_at": "2026-08-13T15:34:48.603375+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "599",
+  "su": "https://github.com/sharkwouter/panel-pop",
+  "rp": "https://github.com/sharkwouter/panel-pop/releases",
+  "ua": "2026-08-13T15:34:48.603375+00:00"
 }

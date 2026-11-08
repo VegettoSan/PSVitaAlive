@@ -1,52 +1,52 @@
 {
   "id": "trogdor-reburninated",
-  "title_id": "TROG73287",
-  "name": "Trogdor: Reburninated",
-  "description": "Recreation of the Flash game Trogdor.",
-  "long_description": "An enhanced recreation of the Homestar Runner Flash game Trogdor, expanded with new features.\n- New Options menu to customize your game\n- Level select\n- New cheats\n- Optional soundtrack from Stinkoman 20X6, another Homestar Runner game\n- Multiple screen scaling options\n- Bugs from the original game have been fixed",
-  "author_ids": [
+  "tid": "TROG73287",
+  "n": "Trogdor: Reburninated",
+  "d": "Recreation of the Flash game Trogdor.",
+  "ld": "An enhanced recreation of the Homestar Runner Flash game Trogdor, expanded with new features.\n- New Options menu to customize your game\n- Level select\n- New cheats\n- Optional soundtrack from Stinkoman 20X6, another Homestar Runner game\n- Multiple screen scaling options\n- Bugs from the original game have been fixed",
+  "aids": [
     "mode8fx"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "casual"
   ],
-  "version": "v.2.4",
-  "version_date": "2026-05-17",
-  "requirements": "Not specified",
-  "size": 10350041,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-trogdor-reburninated/icon0.png",
-  "screenshots": [
+  "v": "v.2.4",
+  "vd": "2026-05-17",
+  "req": "Not specified",
+  "sz": 10350041,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-trogdor-reburninated/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-trogdor-reburninated/shot_01.png",
     "https://archive.org/download/psvitaalive-trogdor-reburninated/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-trogdor-reburninated/trogdor-reburninated.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-trogdor-reburninated/trogdor-reburninated.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Mips96/Trogdor-Reburninated/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Mips96/Trogdor-Reburninated/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/tag/v2.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Mode8fx/Trogdor-Reburninated/releases/tag/v2.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Mips96/Trogdor-Reburninated"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Mips96/Trogdor-Reburninated"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1015",
-  "source_url": "https://github.com/Mips96/Trogdor-Reburninated",
-  "release_page": "https://github.com/Mips96/Trogdor-Reburninated/releases",
-  "updated_at": "2026-08-13T15:34:48.345505+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1015",
+  "su": "https://github.com/Mips96/Trogdor-Reburninated",
+  "rp": "https://github.com/Mips96/Trogdor-Reburninated/releases",
+  "ua": "2026-08-13T15:34:48.345505+00:00"
 }

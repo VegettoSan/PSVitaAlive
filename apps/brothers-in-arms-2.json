@@ -1,50 +1,50 @@
 {
   "id": "brothers-in-arms-2",
-  "title_id": "PSVBIA002",
-  "name": "Brothers in Arms 2",
-  "description": "Android to PS Vita port of Gameloft's Brothers in Arms 2",
-  "long_description": "Brothers in Arms 2: Global Front HD is Gameloft's acclaimed World War II first-person shooter, originally released for Android (Brothers_In_Arms_2__Global_Front_HD_1.0.4, package com.gameloft.android.GAND.GloftBia2.bia2). This port runs the original compiled native library (libbia2.so, armeabi-v7a) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL handling hardware-accelerated GLES rendering.",
-  "author_ids": [
+  "tid": "PSVBIA002",
+  "n": "Brothers in Arms 2",
+  "d": "Android to PS Vita port of Gameloft's Brothers in Arms 2",
+  "ld": "Brothers in Arms 2: Global Front HD is Gameloft's acclaimed World War II first-person shooter, originally released for Android (Brothers_In_Arms_2__Global_Front_HD_1.0.4, package com.gameloft.android.GAND.GloftBia2.bia2). This port runs the original compiled native library (libbia2.so, armeabi-v7a) directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL handling hardware-accelerated GLES rendering.",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-09-30",
-  "requirements": "- A PS Vita or PS TV on Custom Firmware (HENkaku / h-encore / Enso), firmware 3.60–3.74.\n- kubridge and FdFix installed as kernel plugins in ur0:tai/config.txt under *KERNEL.\n- libshacccg.suprx installed in ur0:data/ (extraction guide).\n- A legally obtained copy of Brothers in Arms 2: Global Front HD v1.0.4 (.apk) and its data cache folder (BIA2/).",
-  "size": 2097152,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-09-30",
+  "req": "- A PS Vita or PS TV on Custom Firmware (HENkaku / h-encore / Enso), firmware 3.60–3.74.\n- kubridge and FdFix installed as kernel plugins in ur0:tai/config.txt under *KERNEL.\n- libshacccg.suprx installed in ur0:data/ (extraction guide).\n- A legally obtained copy of Brothers in Arms 2: Global Front HD v1.0.4 (.apk) and its data cache folder (BIA2/).",
+  "sz": 2097152,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/brothersinarms2%20v1.0.vpk",
-      "size": 2097152,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/brothersinarms2%20v1.0.vpk",
+      "sz": 2097152,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-      "size": 274202624,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 274202624,
+      "xp": "ux0:data/",
+      "ips": [
         "brothersinarms2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/MetalSyntax/Brothers-in-Arms-2-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/MetalSyntax/Brothers-in-Arms-2-vita"
     }
   ],
-  "icon": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/brothers-in-arms-2-global-front-hd-ps-vita-port/pic0.png"
   ]
 }

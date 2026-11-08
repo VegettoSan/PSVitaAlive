@@ -1,49 +1,49 @@
 {
   "id": "batman-ac-lockdown",
-  "title_id": "ACLD00001",
-  "name": "Batman AC Lockdown",
-  "description": "PS Vita so-loader port of Batman: Arkham City Lockdown (Android)",
-  "long_description": "A port of the Android version of Batman: Arkham City Lockdown to the PS Vita. It runs the game's original code natively, nothing is emulated.",
-  "author_ids": [
+  "tid": "ACLD00001",
+  "n": "Batman AC Lockdown",
+  "d": "PS Vita so-loader port of Batman: Arkham City Lockdown (Android)",
+  "ld": "A port of the Android version of Batman: Arkham City Lockdown to the PS Vita. It runs the game's original code natively, nothing is emulated.",
+  "aids": [
     "kiddrwxssj"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-29",
-  "requirements": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
-  "size": 966349,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-10-29",
+  "req": "- kubridge: put kubridge.skprx in ur0:tai/, add it under *KERNEL in ur0:tai/config.txt and reboot.\n- libshacccg.suprx, installed with ShaRKBR33D. The game's shaders get compiled on the Vita with it.",
+  "sz": 966349,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/aclockdownvita%20v1.0.vpk",
-      "size": 966349,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/aclockdownvita%20v1.0.vpk",
+      "sz": 966349,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 946444698,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 946444698,
+      "xp": "ux0:data/",
+      "ips": [
         "aclockdown"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/KiddRwxSsj/batman-acl-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/KiddRwxSsj/batman-acl-vita"
     }
   ],
-  "icon": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/shot0.png",
     "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/shot1.png",
     "https://archive.org/download/batman-arkham-city-lockdown-ps-vita/shot2.png"

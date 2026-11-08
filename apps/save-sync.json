@@ -1,60 +1,60 @@
 {
   "id": "save-sync",
-  "title_id": "SAVSYNC01",
-  "name": "Save Sync",
-  "description": "Self-hosted manual cloud save sync for PSVita.",
-  "long_description": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server. Download and restore on another device to keep saves in sync. Works with any number of Vitas and PSTVs sharing one server.\nThe server can be created with the prebuilt docker image.",
-  "author_ids": [
+  "tid": "SAVSYNC01",
+  "n": "Save Sync",
+  "d": "Self-hosted manual cloud save sync for PSVita.",
+  "ld": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server. Download and restore on another device to keep saves in sync. Works with any number of Vitas and PSTVs sharing one server.\nThe server can be created with the prebuilt docker image.",
+  "aids": [
     "iamcco",
     "claude-ai"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1.5",
-  "version_date": "2026-08-14",
-  "requirements": "Not specified",
-  "size": 8120593,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-save-sync/icon0.png",
-  "screenshots": [
+  "v": "v.0.1.5",
+  "vd": "2026-08-14",
+  "req": "Not specified",
+  "sz": 8120593,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-save-sync/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-save-sync/shot_01.png",
     "https://archive.org/download/psvitaalive-save-sync/shot_02.png",
     "https://archive.org/download/psvitaalive-save-sync/shot_03.png",
     "https://archive.org/download/psvitaalive-save-sync/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-save-sync/vita-save-cloud.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-save-sync/vita-save-cloud.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/unveroleone/vita-save-sync/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/unveroleone/vita-save-sync/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/unveroleone/vita-save-sync"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/unveroleone/vita-save-sync"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1418",
-  "source_url": "https://github.com/unveroleone/vita-save-sync",
-  "release_page": "https://github.com/unveroleone/vita-save-sync/releases",
-  "updated_at": "2026-08-13T15:34:48.333453+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1418",
+  "su": "https://github.com/unveroleone/vita-save-sync",
+  "rp": "https://github.com/unveroleone/vita-save-sync/releases",
+  "ua": "2026-08-13T15:34:48.333453+00:00"
 }

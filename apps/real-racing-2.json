@@ -1,48 +1,48 @@
 {
   "id": "real-racing-2",
-  "title_id": "RR2VITA01",
-  "name": "Real Racing 2",
-  "description": "A RR2 vita port based on android HD version.",
-  "long_description": "A RR2 vita port based on android HD version.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RR2VITA01",
+  "n": "Real Racing 2",
+  "d": "A RR2 vita port based on android HD version.",
+  "ld": "A RR2 vita port based on android HD version.\n\n- PsVitaAlive -",
+  "aids": [
     "chuta7x"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "racing",
     "other"
   ],
-  "version": "1.0.0",
-  "version_date": "2026-09-30",
-  "requirements": "- No Data",
-  "size": 6396314,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.0",
+  "vd": "2026-09-30",
+  "req": "- No Data",
+  "sz": 6396314,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/real-racing-2-ps-vita/RR2Vita_Public_Beta_1.0.0.vpk",
-      "size": 6396314,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/real-racing-2-ps-vita/RR2Vita_Public_Beta_1.0.0.vpk",
+      "sz": 6396314,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/real-racing-2-ps-vita/Game%20Files.zip",
-      "size": 2791728742,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/real-racing-2-ps-vita/Game%20Files.zip",
+      "sz": 2791728742,
+      "xp": "ux0:data/",
+      "ips": [
         "rr2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/CHUTA7X/Real-Racing-2-Vita-Port-Release"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/CHUTA7X/Real-Racing-2-Vita-Port-Release"
     }
   ],
-  "icon": "https://archive.org/download/real-racing-2-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/real-racing-2-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/real-racing-2-ps-vita/bg.png"
   ]
 }

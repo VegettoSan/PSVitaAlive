@@ -1,33 +1,33 @@
 {
   "id": "samurai-ii-vengeance",
-  "title_id": "SV2ESPJCR",
-  "name": "Samurai II: Vengeance",
-  "description": "Samurai II Vengeance Ps Vita Port",
-  "long_description": "Samurai II Vengeance Ps Vita Port\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SV2ESPJCR",
+  "n": "Samurai II: Vengeance",
+  "d": "Samurai II Vengeance Ps Vita Port",
+  "ld": "Samurai II Vengeance Ps Vita Port\n\n- PsVitaAlive -",
+  "aids": [
     "fank2z"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "arcade"
   ],
-  "version": "1.1",
-  "version_date": "2026-08-27",
-  "requirements": "No data",
-  "size": 94266982,
-  "status": "Verified",
-  "links": [
+  "v": "1.1",
+  "vd": "2026-08-27",
+  "req": "No data",
+  "sz": 94266982,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK with Game Files",
-      "url": "https://archive.org/download/samurai-ii-v.-1.1/Samurai%20II%20v.1.1.vpk",
-      "size": 94266982,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK with Game Files",
+      "u": "https://archive.org/download/samurai-ii-v.-1.1/Samurai%20II%20v.1.1.vpk",
+      "sz": 94266982,
+      "rec": true
     }
   ],
-  "icon": "https://archive.org/download/samurai-ii-v.-1.1/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/samurai-ii-v.-1.1/icon0.png",
+  "ss": [
     "https://archive.org/download/samurai-ii-v.-1.1/shot0.png",
     "https://archive.org/download/samurai-ii-v.-1.1/shot1.png"
   ]

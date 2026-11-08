@@ -1,15 +1,15 @@
 {
   "id": "macperek",
-  "name": "Macperek",
-  "avatar": "https://github.com/Macperek.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Macperek",
+  "av": "https://github.com/Macperek.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Macperek",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Macperek",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Macperek.png"
+  "ic": "https://github.com/Macperek.png"
 }

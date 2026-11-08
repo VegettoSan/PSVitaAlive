@@ -1,15 +1,15 @@
 {
   "id": "esodland",
-  "name": "Esodland",
-  "avatar": "https://avatars.githubusercontent.com/u/268847111?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "Esodland",
+  "av": "https://avatars.githubusercontent.com/u/268847111?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/Esodland",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Esodland",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/268847111?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/268847111?v=4"
 }

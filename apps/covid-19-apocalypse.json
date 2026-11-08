@@ -1,55 +1,55 @@
 {
   "id": "covid-19-apocalypse",
-  "title_id": "COVID19AP",
-  "name": "Covid 19 Apocalypse",
-  "description": "8 bit style point-and-shoot game.",
-  "long_description": "The year is 2521, Covid 19 has evolved into a demonic form sort of like the pink ogre creature from Doom but not as good. You are the last hope for mankind.\nThis game is \"in the style of\" the Commodore 64, with similar sounds, colour palette and resolution.\nIt's a 8 bit style point-and-shoot game based on a Covid-19 Apocalypse Theme.",
-  "author_ids": [
+  "tid": "COVID19AP",
+  "n": "Covid 19 Apocalypse",
+  "d": "8 bit style point-and-shoot game.",
+  "ld": "The year is 2521, Covid 19 has evolved into a demonic form sort of like the pink ogre creature from Doom but not as good. You are the last hope for mankind.\nThis game is \"in the style of\" the Commodore 64, with similar sounds, colour palette and resolution.\nIt's a 8 bit style point-and-shoot game based on a Covid-19 Apocalypse Theme.",
+  "aids": [
     "gremlin-software"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-10-29",
-  "requirements": "Not specified",
-  "size": 1764631,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-covid-19-apocalypse/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-10-29",
+  "req": "Not specified",
+  "sz": 1764631,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-covid-19-apocalypse/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-covid-19-apocalypse/shot_01.png",
     "https://archive.org/download/psvitaalive-covid-19-apocalypse/shot_02.png",
     "https://archive.org/download/psvitaalive-covid-19-apocalypse/shot_03.png",
     "https://archive.org/download/psvitaalive-covid-19-apocalypse/shot_04.png",
     "https://archive.org/download/psvitaalive-covid-19-apocalypse/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-covid-19-apocalypse/covid-19-apocalypse.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-covid-19-apocalypse/covid-19-apocalypse.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/tag/v1%2C0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases/tag/v1%2C0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/softwaregremlin/Covid-19-Apocalypse"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/softwaregremlin/Covid-19-Apocalypse"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "758",
-  "source_url": "https://github.com/softwaregremlin/Covid-19-Apocalypse",
-  "release_page": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases",
-  "updated_at": "2026-08-13T15:34:48.566264+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "758",
+  "su": "https://github.com/softwaregremlin/Covid-19-Apocalypse",
+  "rp": "https://github.com/softwaregremlin/Covid-19-Apocalypse/releases",
+  "ua": "2026-08-13T15:34:48.566264+00:00"
 }
