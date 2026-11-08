@@ -1,0 +1,46 @@
+{
+  "id": "60-seconds",
+  "tid": "SSEC06000",
+  "n": "60 Seconds",
+  "d": "A 60 Seconds PSVita Port.",
+  "ld": "A 60 Seconds PSVita Port.",
+  "aids": [
+    "fr3dsp"
+  ],
+  "cid": "ports",
+  "sids": [
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-02",
+  "req": "- No Data",
+  "sz": 16567501,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/60-seconds-psvita-port/60seconds%20v1.0.vpk",
+      "sz": 16567501,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/60-seconds-psvita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 219991245,
+      "xp": "ux0:app/"
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/PupueStudios/60-Seconds-Vita"
+    }
+  ],
+  "ic": "https://archive.org/download/60-seconds-psvita-port/icon0.png",
+  "ss": [
+    "https://archive.org/download/60-seconds-psvita-port/shot0.png"
+  ]
+}
