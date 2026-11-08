@@ -65,7 +65,7 @@ jobs:
           # individual Title IDs. The older reader omitted ASIA even in V1.
           import json
           import re
-          match = re.search(r'static const char\\* regions\\[\\]\\s*=\\s*\\{([^}]+)\\}', s)
+          match = re.search(r'static const char\* regions\[\]\s*=\s*\{([^}]+)\}', s)
           assert match, 'Cannot find PS Vita C++ regional Title ID table'
           client_regions = set(re.findall(r'"([^"]+)"', match.group(1)))
           for filename in ('catalog_psvita_games.json','catalog_psp_games.json','catalog_ps1_games.json'):
