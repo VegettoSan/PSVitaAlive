@@ -1,0 +1,56 @@
+name: Catalog schema V2 - integration checks
+
+on:
+  push:
+    branches:
+      - feature/catalog-schema-v2
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/feature/catalog-schema-v2'
+    runs-on: ubuntu-latest
+    env:
+      VITAHUB_REBUILD_FROM_EXTERNAL: 'false'
+      VITAHUB_SKIP_REMOTE_MEDIA: 'true'
+      VITAHUB_SKIP_REMOTE_CHECKS: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install catalog dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: V2 source migration in isolated CI checkout
+        run: |
+          python scripts/migrate_catalog_schema_v2.py --write
+          python scripts/migrate_catalog_schema_v2.py
+      - name: Normalization and source validation in V2
+        run: |
+          python scripts/normalize_persisted_sources.py
+          python scripts/validate_catalog_ci.py
+          python scripts/validate_installed_paths_audit.py
+      - name: Verify public V1 and V2 generators have identical values
+        run: |
+          python scripts/generate_catalog.py
+          mkdir -p /tmp/catalog-v1
+          cp catalog.json authors.json categories.json /tmp/catalog-v1/
+          PSVA_PUBLIC_SCHEMA_V2=true python scripts/generate_catalog.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1
+          for name in ('catalog.json', 'authors.json', 'categories.json'):
+              old = json.loads((Path('/tmp/catalog-v1') / name).read_text(encoding='utf8'))
+              new = json.loads(Path(name).read_text(encoding='utf8'))
+              assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
+              print(f'{name}: {len(old)} entries, identical semantic values')
+          PY
+      - name: Inspect source diff (test checkout only)
+        run: |
+          git status --short | tail -n 15
+          echo "No changes from this workflow are pushed to GitHub."
