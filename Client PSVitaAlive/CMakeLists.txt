@@ -135,6 +135,8 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
   PSVITAALIVE_VERSION="${VITA_VERSION}"
+  # Experimental test branch only: never merge into production.
+  PSVITAALIVE_CATALOG_OFFLINE_TEST=1
 )
 
 option(PSVITAALIVE_USE_MBEDTLS_CURL
