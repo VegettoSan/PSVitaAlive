@@ -184,11 +184,26 @@ def main():
     ap.add_argument("--base", default="origin/main")
     ap.add_argument("--v1-dir", type=Path, default=Path("/tmp/catalog-v1"))
     ap.add_argument("--v2-dir", type=Path, default=ROOT)
+    ap.add_argument("--main-regenerated", type=Path, required=True,
+                    help="Fresh V1 catalogs generated using unchanged main code in isolated worktree")
     ap.add_argument("--output", type=Path, default=Path("catalog-v2-comparison.json"))
     args = ap.parse_args()
     files = compare_source_files(args.base)
     catalogs = compare_catalogs(args.base, args.v1_dir, args.v2_dir)
+    regenerated = {}
     errors = []
+    warnings = []
+    for name in CATALOGS:
+        main_clean = json.loads((args.main_regenerated / name).read_text(encoding="utf-8"))
+        branch_v1 = json.loads((args.v1_dir / name).read_text(encoding="utf-8"))
+        drift = []
+        differences(main_clean, branch_v1, name, drift)
+        regenerated[name] = {"matches": main_clean == branch_v1,
+                             "differences": drift,
+                             "rows_main": len(main_clean),
+                             "rows_v1": len(branch_v1)}
+        if not regenerated[name]["matches"]:
+            errors.append(name + ": regenerated main differs from regenerated V1 in branch")
     if files["issue_count"]:
         errors.append(f"{files['issue_count']} source JSON discrepancies against {args.base}")
     if files["unmapped_source_keys"]:
@@ -197,9 +212,13 @@ def main():
         if not info["lossless"]:
             errors.append(name + ": V1/V2 generated data differ")
         if not info["vs_published_main"]["matches"]:
-            errors.append(name + ": generated V1 differs from currently published main")
+            # A stale public snapshot is not a V2 conversion bug when a clean
+            # regeneration of the current main code produces precisely the
+            # same output as the branch. Keep it prominent for release review.
+            warnings.append(name + ": published main JSON differs from fresh main regeneration")
     result = {"baseline": args.base, "source": files, "catalogs": catalogs,
-              "passed": not errors, "errors": errors}
+              "main_regenerated": regenerated,
+              "passed": not errors, "errors": errors, "warnings": warnings}
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n",
                            encoding="utf-8")
     print("=== PSVitaAlive V2 FULL INTEGRITY AUDIT ===")
@@ -212,6 +231,10 @@ def main():
         print(f"{name}: {info['rows']} records | V1={info['v1_bytes']:,} bytes, "
               f"V2={info['v2_bytes']:,} bytes | saved={info['saved_percent']}% | "
               f"roundtrip={info['lossless']} | published-main-equal={main['matches']}")
+        print("  unchanged-main-generator-equal:",
+              regenerated[name]["matches"])
+        if regenerated[name]["differences"]:
+            print("  differing generator fields:", regenerated[name]["differences"][:10])
         if not main["matches"]:
             print("  published differences: added", main["added_count"],
                   "removed", main["removed_count"], "changed", main["changed_count"],
@@ -219,12 +242,16 @@ def main():
             print("  changed IDs:", main["changed_ids"][:20])
             for record_id, diffs in main["sample_differences"].items():
                 print("  ", record_id, "->", "; ".join(diffs[:8]))
+    if warnings:
+        print("WARNINGS (public snapshot drift):")
+        for note in warnings:
+            print("  -", note)
     if errors:
         print("ERRORS:")
         for error in errors:
             print("  -", error)
         raise SystemExit(1)
-    print("PASS: all source records and all three generated catalogs match.")
+    print("PASS: V2 source records and all three generated catalogs match a clean main regeneration.")
 
 
 if __name__ == "__main__":
