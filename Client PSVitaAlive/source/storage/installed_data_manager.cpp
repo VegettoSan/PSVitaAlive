@@ -199,8 +199,9 @@ bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
     // follow a successful package uninstall within the same job.
     const bool targetPresentNow = exists(std::string("ux0:app/") +
                                         titleId + "/sce_sys/param.sfo");
-    const bool permitShared = confirmedInstalledShare &&
-        target->packagePresent && (targetPresentNow || targetJustUninstalled);
+    const bool permitShared = installedDataSharedDeletePermitted(
+        confirmedInstalledShare, target->packagePresent, targetPresentNow,
+        targetJustUninstalled);
     bool anyPresent = false;
     for (const auto& p : target->paths) {
         if (!safeExternalDataPath(p.path)) return false;
@@ -318,7 +319,9 @@ InstalledDataSnapshot InstalledDataManager::scan(
             // an unambiguous deletion target; multiple roots need review.
             unsigned present = 0;
             for (const auto& path : app.paths) if (path.exists) ++present;
-            if (present > 1) app.unresolved = true;
+            if (installedDataAlternativesAmbiguous(app.alternateGameRoots,
+                                                   present))
+                app.unresolved = true;
         }
         if (app.unresolved) app.blocked = true;
     }
