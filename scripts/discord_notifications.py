@@ -2,7 +2,12 @@
 """Standalone Discord notifier. Never modifies generated catalogs."""
 import argparse
 import json
-from catalog_schema_v2 import to_v1, to_v2
+# Support both "python scripts/discord_notifications.py" and
+# "from scripts import discord_notifications" used by CI unit tests.
+if __package__:
+    from .catalog_schema_v2 import to_v1, to_v2
+else:
+    from catalog_schema_v2 import to_v1, to_v2
 import os
 import sys
 import time
