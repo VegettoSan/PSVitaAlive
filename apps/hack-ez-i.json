@@ -1,40 +1,40 @@
 {
   "id": "hack-ez-i",
-  "title_id": "VTGS00100",
-  "name": ".hack//ez-i",
-  "description": ".hack//ez-i port for PSVita.",
-  "long_description": "Kite, a beginner in the game The World, is playing with his real-life friend known in-game as Orca when they are attacked by an unidentified monster chasing Aura, a secretive girl. Afterwards, Orca, who died from the monsters attack, enters a coma in the real world. Unable to understand the reason for Orcas coma, Kite joins two new characters to find Aura and bring his friend back.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "VTGS00100",
+  "n": ".hack//ez-i",
+  "d": ".hack//ez-i port for PSVita.",
+  "ld": "Kite, a beginner in the game The World, is playing with his real-life friend known in-game as Orca when they are attacked by an unidentified monster chasing Aura, a secretive girl. Afterwards, Orca, who died from the monsters attack, enters a coma in the real world. Unable to understand the reason for Orcas coma, Kite joins two new characters to find Aura and bring his friend back.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "twilight-games-studio"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.3",
-  "version_date": "2025-10-18",
-  "requirements": "- libshacccg.suprx",
-  "size": 915662,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hack-ez-i/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.3",
+  "vd": "2025-10-18",
+  "req": "- libshacccg.suprx",
+  "sz": 915662,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hack-ez-i/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hack-ez-i/shot_01.png",
     "https://archive.org/download/psvitaalive-hack-ez-i/shot_02.png",
     "https://archive.org/download/psvitaalive-hack-ez-i/shot_03.png",
     "https://archive.org/download/psvitaalive-hack-ez-i/shot_04.png",
     "https://archive.org/download/psvitaalive-hack-ez-i/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hack-ez-i/hack-ez-i.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hack-ez-i/hack-ez-i.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1339",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1339-hack-ez-i.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.380251+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1339",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1339-hack-ez-i.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.380251+00:00"
 }

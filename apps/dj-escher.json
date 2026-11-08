@@ -1,49 +1,49 @@
 {
   "id": "dj-escher",
-  "title_id": "DOS1ESCHE",
-  "name": "DJ Escher",
-  "description": "Music game for PSVita.",
-  "long_description": "M.C. Escher got tired of being an MC and decided to try being a DJ instead!\nHe throws hexagonal vinyl recordings of his favorite band of singing potatoes, so you have to catch as many as you can with your turntables.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DOS1ESCHE",
+  "n": "DJ Escher",
+  "d": "Music game for PSVita.",
+  "ld": "M.C. Escher got tired of being an MC and decided to try being a DJ instead!\nHe throws hexagonal vinyl recordings of his favorite band of singing potatoes, so you have to catch as many as you can with your turntables.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "dos"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-08-09",
-  "requirements": "Not specified",
-  "size": 18680010,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dj-escher/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-08-09",
+  "req": "Not specified",
+  "sz": 18680010,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dj-escher/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dj-escher/shot_01.png",
     "https://archive.org/download/psvitaalive-dj-escher/shot_02.png",
     "https://archive.org/download/psvitaalive-dj-escher/shot_03.png",
     "https://archive.org/download/psvitaalive-dj-escher/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dj-escher/dj-escher.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dj-escher/dj-escher.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://dos.itch.io/djescher"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://dos.itch.io/djescher"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://gitlab.com/dosowisko.net/djescher/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://gitlab.com/dosowisko.net/djescher/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1446",
-  "source_url": "https://gitlab.com/dosowisko.net/djescher/",
-  "release_page": "https://dos.itch.io/djescher",
-  "updated_at": "2026-08-13T15:34:48.575455+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1446",
+  "su": "https://gitlab.com/dosowisko.net/djescher/",
+  "rp": "https://dos.itch.io/djescher",
+  "ua": "2026-08-13T15:34:48.575455+00:00"
 }

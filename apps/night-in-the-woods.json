@@ -1,45 +1,45 @@
 {
   "id": "night-in-the-woods",
-  "title_id": "NITW22222",
-  "name": "Night in the Woods",
-  "description": "Port of Night in the Woods for PSVITA.",
-  "long_description": "NIGHT IN THE WOODS is an adventure game focused on exploration, story, and character, featuring dozens of characters to meet and lots to do across a lush, vibrant world. After a successful Kickstarter it's being made by Infinite Fall, a teamup of Alec Holowka (Aquaria), Scott Benson (Late Night Work Club), and Bethany Hockenberry.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NITW22222",
+  "n": "Night in the Woods",
+  "d": "Port of Night in the Woods for PSVITA.",
+  "ld": "NIGHT IN THE WOODS is an adventure game focused on exploration, story, and character, featuring dozens of characters to meet and lots to do across a lush, vibrant world. After a successful Kickstarter it's being made by Infinite Fall, a teamup of Alec Holowka (Aquaria), Scott Benson (Late Night Work Club), and Bethany Hockenberry.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.5",
-  "version_date": "2024-01-26",
-  "requirements": "- Game Data Files: PC",
-  "size": 14910713,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-night-in-the-woods/icon0.png",
-  "screenshots": [
+  "v": "v.0.5",
+  "vd": "2024-01-26",
+  "req": "- Game Data Files: PC",
+  "sz": 14910713,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-night-in-the-woods/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-night-in-the-woods/shot_01.png",
     "https://archive.org/download/psvitaalive-night-in-the-woods/shot_02.png",
     "https://archive.org/download/psvitaalive-night-in-the-woods/shot_03.png",
     "https://archive.org/download/psvitaalive-night-in-the-woods/shot_04.png",
     "https://archive.org/download/psvitaalive-night-in-the-woods/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-night-in-the-woods/night-in-the-woods.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-night-in-the-woods/night-in-the-woods.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1179",
-  "source_url": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
-  "release_page": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
-  "updated_at": "2026-08-13T15:34:48.452938+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1179",
+  "su": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
+  "rp": "https://github.com/PatnosDD/Night-In-The-Woods-PS-VITA",
+  "ua": "2026-08-13T15:34:48.452938+00:00"
 }

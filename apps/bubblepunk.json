@@ -1,45 +1,45 @@
 {
   "id": "bubblepunk",
-  "title_id": "BLPV00980",
-  "name": "BubblePunk",
-  "description": "Cyberpunk mixology visual novel game.",
-  "long_description": "Lumina City, 2647.\nIn this cybernetic metropolis, corporations reign supreme, their influence looming large over every facet of society. From the incessant hum of holographic advertisements to the dance of shadows beneath neon signs, the city pulses with a relentless energy that never sleeps.\nYet amidst the chaos and corruption, there exists a haven of tranquility, a sanctuary from the clamor of the streets. Your own handcrafted beverage haven, a cozy retreat from the dystopian realities outside. \nAs the proprietor of this refuge, you are more than just a bartender; you are a listener, a confidant, and a seeker of stories.\nWith an array of handpicked ingredients and a flair for mixology, you craft beverages that transcend mere refreshment, becoming liquid works of art that tantalize the senses and ignite the imagination.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BLPV00980",
+  "n": "BubblePunk",
+  "d": "Cyberpunk mixology visual novel game.",
+  "ld": "Lumina City, 2647.\nIn this cybernetic metropolis, corporations reign supreme, their influence looming large over every facet of society. From the incessant hum of holographic advertisements to the dance of shadows beneath neon signs, the city pulses with a relentless energy that never sleeps.\nYet amidst the chaos and corruption, there exists a haven of tranquility, a sanctuary from the clamor of the streets. Your own handcrafted beverage haven, a cozy retreat from the dystopian realities outside. \nAs the proprietor of this refuge, you are more than just a bartender; you are a listener, a confidant, and a seeker of stories.\nWith an array of handpicked ingredients and a flair for mixology, you craft beverages that transcend mere refreshment, becoming liquid works of art that tantalize the senses and ignite the imagination.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "cybertokyo"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2",
-  "version_date": "2025-04-08",
-  "requirements": "Not specified",
-  "size": 77201382,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bubblepunk/icon0.png",
-  "screenshots": [
+  "v": "v.0.2",
+  "vd": "2025-04-08",
+  "req": "Not specified",
+  "sz": 77201382,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bubblepunk/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bubblepunk/shot_01.png",
     "https://archive.org/download/psvitaalive-bubblepunk/shot_02.png",
     "https://archive.org/download/psvitaalive-bubblepunk/shot_03.png",
     "https://archive.org/download/psvitaalive-bubblepunk/shot_04.png",
     "https://archive.org/download/psvitaalive-bubblepunk/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bubblepunk/bubblepunk.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bubblepunk/bubblepunk.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://cybertokyo.itch.io/bubblepunk"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://cybertokyo.itch.io/bubblepunk"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1265",
-  "source_url": "https://cybertokyo.itch.io/bubblepunk",
-  "release_page": "https://cybertokyo.itch.io/bubblepunk",
-  "updated_at": "2026-08-13T15:34:48.411112+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1265",
+  "su": "https://cybertokyo.itch.io/bubblepunk",
+  "rp": "https://cybertokyo.itch.io/bubblepunk",
+  "ua": "2026-08-13T15:34:48.411112+00:00"
 }

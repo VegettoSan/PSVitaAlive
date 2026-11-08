@@ -1,45 +1,45 @@
 {
   "id": "super-drone-racer-ultra",
-  "title_id": "DRON57468",
-  "name": "Super Drone Racer Ultra",
-  "description": "Arcade race game.",
-  "long_description": "An arcade race game with syntwave style.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DRON57468",
+  "n": "Super Drone Racer Ultra",
+  "d": "Arcade race game.",
+  "ld": "An arcade race game with syntwave style.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "jacobsplayground"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-06-29",
-  "requirements": "Not specified",
-  "size": 57031071,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-drone-racer-ultra/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-06-29",
+  "req": "Not specified",
+  "sz": 57031071,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-super-drone-racer-ultra/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-drone-racer-ultra/shot_01.png",
     "https://archive.org/download/psvitaalive-super-drone-racer-ultra/shot_02.png",
     "https://archive.org/download/psvitaalive-super-drone-racer-ultra/shot_03.png",
     "https://archive.org/download/psvitaalive-super-drone-racer-ultra/shot_04.png",
     "https://archive.org/download/psvitaalive-super-drone-racer-ultra/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-drone-racer-ultra/super-drone-racer-ultra.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-drone-racer-ultra/super-drone-racer-ultra.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-super-drone-racer-ultra.542525/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-super-drone-racer-ultra.542525/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "490",
-  "source_url": "https://gbatemp.net/threads/release-super-drone-racer-ultra.542525/",
-  "release_page": "https://gbatemp.net/threads/release-super-drone-racer-ultra.542525/",
-  "updated_at": "2026-08-13T15:34:48.636764+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "490",
+  "su": "https://gbatemp.net/threads/release-super-drone-racer-ultra.542525/",
+  "rp": "https://gbatemp.net/threads/release-super-drone-racer-ultra.542525/",
+  "ua": "2026-08-13T15:34:48.636764+00:00"
 }

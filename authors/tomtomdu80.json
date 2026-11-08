@@ -1,15 +1,15 @@
 {
   "id": "tomtomdu80",
-  "name": "tomtomdu80",
-  "avatar": "https://github.com/MajorTomSec.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "tomtomdu80",
+  "av": "https://github.com/MajorTomSec.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/MajorTomSec",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/MajorTomSec",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/MajorTomSec.png"
+  "ic": "https://github.com/MajorTomSec.png"
 }

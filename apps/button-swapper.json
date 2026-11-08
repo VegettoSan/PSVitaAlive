@@ -1,51 +1,51 @@
 {
   "id": "button-swapper",
-  "title_id": "XYZZ00001",
-  "name": "button-swapper",
-  "description": "Swaps X/O for Accept/Cancel",
-  "long_description": "This homebrew allows you to swap X/O button assignment.\nOn Japanese Vitas O is confirm and X is cancel, while the rest of the world is X confirm, O cancel.\nPlease note that using this homebrew is different from swapping X/O in Accessibility settings => Button Assignment. This homebrew \"properly\" swaps the buttons, without using Accessibility settings.",
-  "author_ids": [
+  "tid": "XYZZ00001",
+  "n": "button-swapper",
+  "d": "Swaps X/O for Accept/Cancel",
+  "ld": "This homebrew allows you to swap X/O button assignment.\nOn Japanese Vitas O is confirm and X is cancel, while the rest of the world is X confirm, O cancel.\nPlease note that using this homebrew is different from swapping X/O in Accessibility settings => Button Assignment. This homebrew \"properly\" swaps the buttons, without using Accessibility settings.",
+  "aids": [
     "xyzz"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-08-11",
-  "requirements": "Not specified",
-  "size": 52118,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-button-swapper/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-08-11",
+  "req": "Not specified",
+  "sz": 52118,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-button-swapper/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-button-swapper/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-button-swapper/button-swapper.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-button-swapper/button-swapper.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xyzz/vita-button-swapper/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xyzz/vita-button-swapper/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xyzz/vita-button-swapper"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/xyzz/vita-button-swapper"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "147",
-  "source_url": "https://github.com/xyzz/vita-button-swapper",
-  "release_page": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/",
-  "updated_at": "2026-08-13T15:34:48.706263+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "147",
+  "su": "https://github.com/xyzz/vita-button-swapper",
+  "rp": "https://www.reddit.com/r/vitahacks/comments/4x853u/release_button_swapper_swap_xo_confirm_button/",
+  "ua": "2026-08-13T15:34:48.706263+00:00"
 }

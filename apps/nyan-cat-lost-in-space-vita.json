@@ -1,55 +1,55 @@
 {
   "id": "nyan-cat-lost-in-space-vita",
-  "title_id": "NYANCAT01",
-  "name": "Nyan Cat: Lost in Space Vita",
-  "description": "Port of Nyan Cat: Lost in Space for PSVita.",
-  "long_description": "This is a wrapper/port of Nyan Cat: Lost in Space for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NYANCAT01",
+  "n": "Nyan Cat: Lost in Space Vita",
+  "d": "Port of Nyan Cat: Lost in Space for PSVita.",
+  "ld": "This is a wrapper/port of Nyan Cat: Lost in Space for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-08-08",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2728807,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-08-08",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2728807,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/nyan-cat-lost-in-space-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-nyan-cat-lost-in-space-vita/nyan-cat-lost-in-space-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/nyan-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/nyan-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/nyan-vita/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/nyan-vita/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/nyan-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/nyan-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1301",
-  "source_url": "https://github.com/Rinnegatamante/nyan-vita",
-  "release_page": "https://github.com/Rinnegatamante/nyan-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.398116+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1301",
+  "su": "https://github.com/Rinnegatamante/nyan-vita",
+  "rp": "https://github.com/Rinnegatamante/nyan-vita/releases",
+  "ua": "2026-08-13T15:34:48.398116+00:00"
 }

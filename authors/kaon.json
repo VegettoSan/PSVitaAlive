@@ -1,15 +1,15 @@
 {
   "id": "kaon",
-  "name": "Kaon",
-  "avatar": "https://github.com/kaonkaon.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "Kaon",
+  "av": "https://github.com/kaonkaon.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/kaonkaon",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/kaonkaon",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/kaonkaon.png"
+  "ic": "https://github.com/kaonkaon.png"
 }

@@ -1,15 +1,15 @@
 {
   "id": "isledecomp",
-  "name": "isledecomp",
-  "avatar": "https://github.com/isledecomp.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "isledecomp",
+  "av": "https://github.com/isledecomp.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/isledecomp",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/isledecomp",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/isledecomp.png"
+  "ic": "https://github.com/isledecomp.png"
 }

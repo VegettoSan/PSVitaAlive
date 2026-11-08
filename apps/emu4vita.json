@@ -1,55 +1,55 @@
 {
   "id": "emu4vita",
-  "title_id": "EMU4VPLUS",
-  "name": "Emu4Vita++",
-  "description": "Libretro frontend for PSVITA.",
-  "long_description": "A frontend for libretro cores for PSVITA.",
-  "author_ids": [
+  "tid": "EMU4VPLUS",
+  "n": "Emu4Vita++",
+  "d": "Libretro frontend for PSVITA.",
+  "ld": "A frontend for libretro cores for PSVITA.",
+  "aids": [
     "noword"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.0.79",
-  "version_date": "2026-06-26",
-  "requirements": "Not specified",
-  "size": 197348129,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-emu4vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.79",
+  "vd": "2026-06-26",
+  "req": "Not specified",
+  "sz": 197348129,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-emu4vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-emu4vita/shot_01.png",
     "https://archive.org/download/psvitaalive-emu4vita/shot_02.png",
     "https://archive.org/download/psvitaalive-emu4vita/shot_03.png",
     "https://archive.org/download/psvitaalive-emu4vita/shot_04.png",
     "https://archive.org/download/psvitaalive-emu4vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-emu4vita/emu4vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-emu4vita/emu4vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/noword/Emu4VitaPlus/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/noword/Emu4VitaPlus"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/noword/Emu4VitaPlus"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1260",
-  "source_url": "https://github.com/noword/Emu4VitaPlus",
-  "release_page": "https://github.com/noword/Emu4VitaPlus/releases",
-  "updated_at": "2026-08-13T15:34:48.333586+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1260",
+  "su": "https://github.com/noword/Emu4VitaPlus",
+  "rp": "https://github.com/noword/Emu4VitaPlus/releases",
+  "ua": "2026-08-13T15:34:48.333586+00:00"
 }

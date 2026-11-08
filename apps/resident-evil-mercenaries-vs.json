@@ -1,49 +1,49 @@
 {
   "id": "resident-evil-mercenaries-vs",
-  "title_id": "REMV00001",
-  "name": "Resident Evil Mercenaries VS",
-  "description": "Unofficial PS Vita port of the iOS version of Resident Evil Mercenaries VS (Capcom).",
-  "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, audio) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
-  "author_ids": [
+  "tid": "REMV00001",
+  "n": "Resident Evil Mercenaries VS",
+  "d": "Unofficial PS Vita port of the iOS version of Resident Evil Mercenaries VS (Capcom).",
+  "ld": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, audio) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+  "aids": [
     "papileno"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "source-port"
   ],
-  "version": "0.1",
-  "version_date": "2026-10-25",
-  "requirements": "- no data",
-  "size": 1677722,
-  "status": "Verified",
-  "links": [
+  "v": "0.1",
+  "vd": "2026-10-25",
+  "req": "- no data",
+  "sz": 1677722,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/remercvs%20v0.1.vpk",
-      "size": 2726298,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/remercvs%20v0.1.vpk",
+      "sz": 2726298,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 61446554,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 61446554,
+      "xp": "ux0:data/",
+      "ips": [
         "remercenariesvs"
       ]
     },
     {
-      "type": "Official Website",
-      "name": "Github",
-      "url": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Mercenaries%20VS"
+      "t": "Official Website",
+      "n": "Github",
+      "u": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Mercenaries%20VS"
     }
   ],
-  "icon": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Shot0.png"
   ]
 }

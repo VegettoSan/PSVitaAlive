@@ -1,51 +1,51 @@
 {
   "id": "scratch-everywhere",
-  "title_id": "NTXS00053",
-  "name": "Scratch Everywhere!",
-  "description": "Custom Scratch Runtime made in C++.",
-  "long_description": "A work-in-progress runtime made in C++ aimed to bring most Scratch 3 projects over to 6-8th-generation console and handheld platforms (and more).",
-  "author_ids": [
+  "tid": "NTXS00053",
+  "n": "Scratch Everywhere!",
+  "d": "Custom Scratch Runtime made in C++.",
+  "ld": "A work-in-progress runtime made in C++ aimed to bring most Scratch 3 projects over to 6-8th-generation console and handheld platforms (and more).",
+  "aids": [
     "dogo6647",
     "natexs"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "Beta Build 40",
-  "version_date": "2026-04-26",
-  "requirements": "Not specified",
-  "size": 4188074,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-scratch-everywhere/icon0.png",
-  "screenshots": [
+  "v": "Beta Build 40",
+  "vd": "2026-04-26",
+  "req": "Not specified",
+  "sz": 4188074,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-scratch-everywhere/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-scratch-everywhere/shot_01.png",
     "https://archive.org/download/psvitaalive-scratch-everywhere/shot_02.png",
     "https://archive.org/download/psvitaalive-scratch-everywhere/shot_03.png",
     "https://archive.org/download/psvitaalive-scratch-everywhere/shot_04.png",
     "https://archive.org/download/psvitaalive-scratch-everywhere/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-scratch-everywhere/scratch-everywhere.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-scratch-everywhere/scratch-everywhere.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ScratchEverywhere/ScratchEverywhere"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ScratchEverywhere/ScratchEverywhere"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1320",
-  "source_url": "https://github.com/ScratchEverywhere/ScratchEverywhere",
-  "release_page": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases",
-  "updated_at": "2026-08-13T15:34:48.353682+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1320",
+  "su": "https://github.com/ScratchEverywhere/ScratchEverywhere",
+  "rp": "https://github.com/ScratchEverywhere/ScratchEverywhere/releases",
+  "ua": "2026-08-13T15:34:48.353682+00:00"
 }

@@ -1,41 +1,41 @@
 {
   "id": "adrbubblebooterinstaller",
-  "title_id": "ADRBBLINS",
-  "name": "AdrBubbleBooterInstaller",
-  "description": "Installer for AdrBubbleBooter.",
-  "long_description": "This homebrew will allow you to easily setup AdrBubbleBooter into your Adrenaline installation. Installs the required files for bubbles made with 'Adrenaline Bubble Booter VPK edition' to work but doesn't create the bubbles itself!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ADRBBLINS",
+  "n": "AdrBubbleBooterInstaller",
+  "d": "Installer for AdrBubbleBooter.",
+  "ld": "This homebrew will allow you to easily setup AdrBubbleBooter into your Adrenaline installation. Installs the required files for bubbles made with 'Adrenaline Bubble Booter VPK edition' to work but doesn't create the bubbles itself!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "leecherman"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.6",
-  "version_date": "2018-07-02",
-  "requirements": "Not specified",
-  "size": 441484,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/icon0.png",
-  "screenshots": [
+  "v": "v.0.6",
+  "vd": "2018-07-02",
+  "req": "Not specified",
+  "sz": 441484,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/adrbubblebooterinstaller.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-adrbubblebooterinstaller/adrbubblebooterinstaller.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "307",
-  "source_url": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition",
-  "release_page": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition",
-  "updated_at": "2026-08-13T15:34:48.662642+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "307",
+  "su": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition",
+  "rp": "https://sites.google.com/site/theleecherman/adrbubblebooter/vpkedition",
+  "ua": "2026-08-13T15:34:48.662642+00:00"
 }

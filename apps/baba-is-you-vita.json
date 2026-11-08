@@ -1,55 +1,55 @@
 {
   "id": "baba-is-you-vita",
-  "title_id": "BABAISYOU",
-  "name": "Baba Is You Vita",
-  "description": "Baba Is You port for PSVITA.",
-  "long_description": "Baba Is You is an award-winning puzzle game where you can change the rules by which you play. In every level, the rules themselves are present as blocks you can interact with; by manipulating them, you can change how the level works and cause surprising, unexpected interactions!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BABAISYOU",
+  "n": "Baba Is You Vita",
+  "d": "Baba Is You port for PSVITA.",
+  "ld": "Baba Is You is an award-winning puzzle game where you can change the rules by which you play. In every level, the rules themselves are present as blocks you can interact with; by manipulating them, you can change how the level works and cause surprising, unexpected interactions!\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2022-09-09",
-  "requirements": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 1576928,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-baba-is-you-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2022-09-09",
+  "req": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 1576928,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-baba-is-you-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-baba-is-you-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-baba-is-you-vita/baba-is-you-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-baba-is-you-vita/baba-is-you-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/baba-is-you-vita//releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/baba-is-you-vita//releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/baba-is-you-vita/releases/tag/v1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/baba-is-you-vita/releases/tag/v1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/baba-is-you-vita/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/baba-is-you-vita/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "828",
-  "source_url": "https://github.com/v-atamanenko/baba-is-you-vita/",
-  "release_page": "https://github.com/v-atamanenko/baba-is-you-vita//releases",
-  "updated_at": "2026-08-13T15:34:48.532036+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "828",
+  "su": "https://github.com/v-atamanenko/baba-is-you-vita/",
+  "rp": "https://github.com/v-atamanenko/baba-is-you-vita//releases",
+  "ua": "2026-08-13T15:34:48.532036+00:00"
 }

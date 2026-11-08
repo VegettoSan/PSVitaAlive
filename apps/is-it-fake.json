@@ -1,55 +1,55 @@
 {
   "id": "is-it-fake",
-  "title_id": "ISITFAKE0",
-  "name": "Is It Fake?",
-  "description": "Fake SD Card checker tool.",
-  "long_description": "The basics of the app are that it will look to see the capacity of the SD and compare it with a table of SD values to see if it falls within the peramiters of a genuine SD.",
-  "author_ids": [
+  "tid": "ISITFAKE0",
+  "n": "Is It Fake?",
+  "d": "Fake SD Card checker tool.",
+  "ld": "The basics of the app are that it will look to see the capacity of the SD and compare it with a table of SD values to see if it falls within the peramiters of a genuine SD.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2b",
-  "version_date": "2024-05-02",
-  "requirements": "Not specified",
-  "size": 5594486,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-is-it-fake/icon0.png",
-  "screenshots": [
+  "v": "v.2b",
+  "vd": "2024-05-02",
+  "req": "Not specified",
+  "sz": 5594486,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-is-it-fake/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-is-it-fake/shot_01.png",
     "https://archive.org/download/psvitaalive-is-it-fake/shot_02.png",
     "https://archive.org/download/psvitaalive-is-it-fake/shot_03.png",
     "https://archive.org/download/psvitaalive-is-it-fake/shot_04.png",
     "https://archive.org/download/psvitaalive-is-it-fake/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-is-it-fake/is-it-fake.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-is-it-fake/is-it-fake.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Is-It-Fake/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Is-It-Fake/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Is-It-Fake/releases/tag/v2b"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Is-It-Fake/releases/tag/v2b"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Is-It-Fake"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Is-It-Fake"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1208",
-  "source_url": "https://github.com/AntHJ/Is-It-Fake",
-  "release_page": "https://github.com/AntHJ/Is-It-Fake/releases",
-  "updated_at": "2026-08-13T15:34:48.441479+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1208",
+  "su": "https://github.com/AntHJ/Is-It-Fake",
+  "rp": "https://github.com/AntHJ/Is-It-Fake/releases",
+  "ua": "2026-08-13T15:34:48.441479+00:00"
 }

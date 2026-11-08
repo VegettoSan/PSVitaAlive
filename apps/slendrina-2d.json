@@ -1,50 +1,50 @@
 {
   "id": "slendrina-2d",
-  "title_id": "SLEN20000",
-  "name": "Slendrina 2D",
-  "description": "Port of Slendrina 2D for PSVITA.",
-  "long_description": "Slendrina is back in a new scary adventure! This time in a type 2D side scroller game!\nSlendrina are evil and want to kill anyone who intrudes on her territory. Examine an abandoned house and solve different tasks to pass this game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SLEN20000",
+  "n": "Slendrina 2D",
+  "d": "Port of Slendrina 2D for PSVITA.",
+  "ld": "Slendrina is back in a new scary adventure! This time in a type 2D side scroller game!\nSlendrina are evil and want to kill anyone who intrudes on her territory. Examine an abandoned house and solve different tasks to pass this game.\n\n- PsVitaAlive -",
+  "aids": [
     "maloneczsd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "puzzle"
   ],
-  "version": "v.1.1",
-  "version_date": "2024-10-08",
-  "requirements": "Not specified",
-  "size": 61468773,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-slendrina-2d/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2024-10-08",
+  "req": "Not specified",
+  "sz": 61468773,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-slendrina-2d/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-slendrina-2d/shot_01.png",
     "https://archive.org/download/psvitaalive-slendrina-2d/shot_02.png",
     "https://archive.org/download/psvitaalive-slendrina-2d/shot_03.png",
     "https://archive.org/download/psvitaalive-slendrina-2d/shot_04.png",
     "https://archive.org/download/psvitaalive-slendrina-2d/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-slendrina-2d/slendrina-2d.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-slendrina-2d/slendrina-2d.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/malone46/Slendrina2DVita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/malone46/Slendrina2DVita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MaloneCZSD/Slendrina2DVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MaloneCZSD/Slendrina2DVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1237",
-  "source_url": "https://github.com/malone46/Slendrina2DVita",
-  "release_page": "https://github.com/malone46/Slendrina2DVita",
-  "updated_at": "2026-08-13T15:34:48.430067+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1237",
+  "su": "https://github.com/malone46/Slendrina2DVita",
+  "rp": "https://github.com/malone46/Slendrina2DVita",
+  "ua": "2026-08-13T15:34:48.430067+00:00"
 }

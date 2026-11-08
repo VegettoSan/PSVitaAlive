@@ -1,55 +1,55 @@
 {
   "id": "freeways-vita",
-  "title_id": "FREEWAYS1",
-  "name": "Freeways Vita",
-  "description": "Port of Freeways for PSVITA.",
-  "long_description": "This is a wrapper/port of Freeways for the PS Vita.\nThe port works by loading the official Android ARMv6 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FREEWAYS1",
+  "n": "Freeways Vita",
+  "d": "Port of Freeways for PSVITA.",
+  "ld": "This is a wrapper/port of Freeways for the PS Vita.\nThe port works by loading the official Android ARMv6 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-02-12",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 837200,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-freeways-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2024-02-12",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 837200,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-freeways-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-freeways-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-freeways-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-freeways-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-freeways-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-freeways-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-freeways-vita/freeways-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-freeways-vita/freeways-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/freeways-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/freeways-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/freeways-vita/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/freeways-vita/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/freeways-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/freeways-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1184",
-  "source_url": "https://github.com/Rinnegatamante/freeways-vita",
-  "release_page": "https://github.com/Rinnegatamante/freeways-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.449343+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1184",
+  "su": "https://github.com/Rinnegatamante/freeways-vita",
+  "rp": "https://github.com/Rinnegatamante/freeways-vita/releases",
+  "ua": "2026-08-13T15:34:48.449343+00:00"
 }

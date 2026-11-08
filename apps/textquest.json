@@ -1,42 +1,42 @@
 {
   "id": "textquest",
-  "title_id": "TQUE00001",
-  "name": "TextQuest",
-  "description": "Text adventure for PSVITA.",
-  "long_description": "A simple Vita choose your own adventure text game.\nJust a super simple nostalgic text adventure PS Vita homebrew.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "TQUE00001",
+  "n": "TextQuest",
+  "d": "Text adventure for PSVITA.",
+  "ld": "A simple Vita choose your own adventure text game.\nJust a super simple nostalgic text adventure PS Vita homebrew.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "joshaxey"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-08-23",
-  "requirements": "Not specified",
-  "size": 291942,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-textquest/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-08-23",
+  "req": "Not specified",
+  "sz": 291942,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-textquest/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-textquest/shot_01.png",
     "https://archive.org/download/psvitaalive-textquest/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-textquest/textquest.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-textquest/textquest.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/joshaxey/textquest"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/joshaxey/textquest"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "170",
-  "source_url": "https://github.com/joshaxey/textquest",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.703350+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "170",
+  "su": "https://github.com/joshaxey/textquest",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.703350+00:00"
 }

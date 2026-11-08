@@ -1,47 +1,47 @@
 {
   "id": "zato-vita",
-  "title_id": "ZATO01986",
-  "name": "ZATO Vita",
-  "description": "Port of Z.A.T.O for PSVita.",
-  "long_description": "Port of Z.A.T.O. // I Love the World and Everything In It for PSVita.\nThis is a visual novel made in RenPy.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ZATO01986",
+  "n": "ZATO Vita",
+  "d": "Port of Z.A.T.O for PSVita.",
+  "ld": "Port of Z.A.T.O. // I Love the World and Everything In It for PSVita.\nThis is a visual novel made in RenPy.\n\n- PsVitaAlive -",
+  "aids": [
     "zfhuang"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2026-02-08",
-  "requirements": "- Game Data Files: Steam",
-  "size": 21298478,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-zato-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2026-02-08",
+  "req": "- Game Data Files: Steam",
+  "sz": 21298478,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-zato-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-zato-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-zato-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-zato-vita/zato-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-zato-vita/zato-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/ZFhuang/ZATO-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/ZFhuang/ZATO-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ZFhuang/ZATO-vita/releases/tag/v01_00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ZFhuang/ZATO-vita/releases/tag/v01_00"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1366",
-  "source_url": "https://github.com/ZFhuang/ZATO-vita",
-  "release_page": "https://github.com/ZFhuang/ZATO-vita",
-  "updated_at": "2026-08-13T15:34:48.365331+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1366",
+  "su": "https://github.com/ZFhuang/ZATO-vita",
+  "rp": "https://github.com/ZFhuang/ZATO-vita",
+  "ua": "2026-08-13T15:34:48.365331+00:00"
 }

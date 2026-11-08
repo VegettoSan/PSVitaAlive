@@ -1,38 +1,38 @@
 {
   "id": "insurgency-beta",
-  "title_id": "VITACQ001",
-  "name": "Insurgency BETA",
-  "description": "Insurgency: VITA - Multiplayer Beta",
-  "long_description": "Insurgency: VITA - Multiplayer Beta\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "VITACQ001",
+  "n": "Insurgency BETA",
+  "d": "Insurgency: VITA - Multiplayer Beta",
+  "ld": "Insurgency: VITA - Multiplayer Beta\n\n- PsVitaAlive -",
+  "aids": [
     "onedumbfox"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "shooter",
     "strategy"
   ],
-  "version": "4",
-  "version_date": "2026-10-26",
-  "requirements": "- No Data",
-  "size": 688809574,
-  "status": "Verified",
-  "links": [
+  "v": "4",
+  "vd": "2026-10-26",
+  "req": "- No Data",
+  "sz": 688809574,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK  + Game Files",
-      "url": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
-      "size": 688809574,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK  + Game Files",
+      "u": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
+      "sz": 688809574,
+      "rec": true
     },
     {
-      "type": "Community",
-      "name": "Post Reddit",
-      "url": "https://www.reddit.com/r/vitahacks/comments/1x7eotu/insurgency_vita_multiplayer_beta_feature_update/"
+      "t": "Community",
+      "n": "Post Reddit",
+      "u": "https://www.reddit.com/r/vitahacks/comments/1x7eotu/insurgency_vita_multiplayer_beta_feature_update/"
     }
   ],
-  "icon": "https://archive.org/download/insurgency-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/insurgency-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/insurgency-vita/shot0.png",
     "https://archive.org/download/insurgency-vita/shot1.png",
     "https://archive.org/download/insurgency-vita/shot2.png"

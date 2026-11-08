@@ -1,55 +1,55 @@
 {
   "id": "osu-octave",
-  "title_id": "OSU000001",
-  "name": "osu!octave",
-  "description": "osu!standard client for PSVITA.",
-  "long_description": "osu!octave is a free and open source rhythm game designed to play osu!standard beatmaps, optimized for best performance and playability on PlayStation Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "OSU000001",
+  "n": "osu!octave",
+  "d": "osu!standard client for PSVITA.",
+  "ld": "osu!octave is a free and open source rhythm game designed to play osu!standard beatmaps, optimized for best performance and playability on PlayStation Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.20",
-  "version_date": "2022-04-29",
-  "requirements": "Not specified",
-  "size": 2493928,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-osu-octave/icon0.png",
-  "screenshots": [
+  "v": "v.1.20",
+  "vd": "2022-04-29",
+  "req": "Not specified",
+  "sz": 2493928,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-osu-octave/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-osu-octave/shot_01.png",
     "https://archive.org/download/psvitaalive-osu-octave/shot_02.png",
     "https://archive.org/download/psvitaalive-osu-octave/shot_03.png",
     "https://archive.org/download/psvitaalive-osu-octave/shot_04.png",
     "https://archive.org/download/psvitaalive-osu-octave/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-osu-octave/osu-octave.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-osu-octave/osu-octave.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/osu-octave/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/osu-octave/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/osu-octave/releases/tag/1.20"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/osu-octave/releases/tag/1.20"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/osu-octave"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/osu-octave"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "814",
-  "source_url": "https://github.com/v-atamanenko/osu-octave",
-  "release_page": "https://github.com/v-atamanenko/osu-octave/releases",
-  "updated_at": "2026-08-13T15:34:48.547065+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "814",
+  "su": "https://github.com/v-atamanenko/osu-octave",
+  "rp": "https://github.com/v-atamanenko/osu-octave/releases",
+  "ua": "2026-08-13T15:34:48.547065+00:00"
 }

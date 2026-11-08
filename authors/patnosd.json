@@ -1,15 +1,15 @@
 {
   "id": "patnosd",
-  "name": "PatnosD",
-  "avatar": "https://github.com/PatnosDD.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "PatnosD",
+  "av": "https://github.com/PatnosDD.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/PatnosDD",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/PatnosDD",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/PatnosDD.png"
+  "ic": "https://github.com/PatnosDD.png"
 }

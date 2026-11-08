@@ -1,42 +1,42 @@
 {
   "id": "deathrun-to-vita",
-  "title_id": "DRSS00001",
-  "name": "DeathRun To Vita",
-  "description": "2D Platformer for PSVITA.",
-  "long_description": "A simple 2D Platformer for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DRSS00001",
+  "n": "DeathRun To Vita",
+  "d": "2D Platformer for PSVITA.",
+  "ld": "A simple 2D Platformer for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "vektast"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Build 531",
-  "version_date": "2016-08-18",
-  "requirements": "Not specified",
-  "size": 2023040,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-deathrun-to-vita/icon0.png",
-  "screenshots": [
+  "v": "Build 531",
+  "vd": "2016-08-18",
+  "req": "Not specified",
+  "sz": 2023040,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-deathrun-to-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-deathrun-to-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-deathrun-to-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-deathrun-to-vita/deathrun-to-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-deathrun-to-vita/deathrun-to-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?t=46567"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?t=46567"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "253",
-  "source_url": "http://wololo.net/talk/viewtopic.php?t=46567",
-  "release_page": "http://wololo.net/talk/viewtopic.php?t=46567",
-  "updated_at": "2026-08-13T15:34:48.705784+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "253",
+  "su": "http://wololo.net/talk/viewtopic.php?t=46567",
+  "rp": "http://wololo.net/talk/viewtopic.php?t=46567",
+  "ua": "2026-08-13T15:34:48.705784+00:00"
 }

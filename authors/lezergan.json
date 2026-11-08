@@ -1,15 +1,15 @@
 {
   "id": "lezergan",
-  "name": "LeZergan",
-  "avatar": "https://github.com/LeZergan.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "LeZergan",
+  "av": "https://github.com/LeZergan.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/LeZergan",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/LeZergan",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/LeZergan.png"
+  "ic": "https://github.com/LeZergan.png"
 }

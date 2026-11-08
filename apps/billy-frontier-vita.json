@@ -1,50 +1,50 @@
 {
   "id": "billy-frontier-vita",
-  "title_id": "BLLYFRNTR",
-  "name": "Billy Frontier Vita",
-  "description": "Port of Billy Frontier for PSVITA.",
-  "long_description": "Billy Frontier Vita is a port of Billy Frontier based on the recent source release by jorio.\nBilly Frontier is an arcade style action game with a \"cowboys in space\" theme. You get to fight in duels, shootouts, stampedes, etc. It's the kind of game you'll want to pick up and play whenever you get that twitch to just shoot something and blow stuff up!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BLLYFRNTR",
+  "n": "Billy Frontier Vita",
+  "d": "Port of Billy Frontier for PSVITA.",
+  "ld": "Billy Frontier Vita is a port of Billy Frontier based on the recent source release by jorio.\nBilly Frontier is an arcade style action game with a \"cowboys in space\" theme. You get to fight in duels, shootouts, stampedes, etc. It's the kind of game you'll want to pick up and play whenever you get that twitch to just shoot something and blow stuff up!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2024-12-02",
-  "requirements": "- libshacccg.suprx",
-  "size": 1858496,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-billy-frontier-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2024-12-02",
+  "req": "- libshacccg.suprx",
+  "sz": 1858496,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-billy-frontier-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-billy-frontier-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-billy-frontier-vita/billy-frontier-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-billy-frontier-vita/billy-frontier-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-billy-frontier-vita.38588/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-billy-frontier-vita.38588/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/BillyFrontier"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/BillyFrontier"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1001",
-  "source_url": "https://github.com/Rinnegatamante/BillyFrontier",
-  "release_page": "https://www.psx-place.com/threads/release-billy-frontier-vita.38588/",
-  "updated_at": "2026-08-13T15:34:48.425639+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1001",
+  "su": "https://github.com/Rinnegatamante/BillyFrontier",
+  "rp": "https://www.psx-place.com/threads/release-billy-frontier-vita.38588/",
+  "ua": "2026-08-13T15:34:48.425639+00:00"
 }

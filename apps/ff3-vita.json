@@ -1,60 +1,60 @@
 {
   "id": "ff3-vita",
-  "title_id": "FF3000000",
-  "name": "FF3-Vita",
-  "description": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
-  "long_description": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FF3000000",
+  "n": "FF3-Vita",
+  "d": "Port of Final Fantasy 3 (3D Remake) for PSVITA.",
+  "ld": "This is a wrapper/port of Final Fantasy 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nDonation Link: https://ko-fi.com/frangar\n\n- PsVitaAlive -",
+  "aids": [
     "frangarcj",
     "rinnegatamante",
     "theflow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "rpg",
     "strategy",
     "other"
   ],
-  "version": "v.1.2.5",
-  "version_date": "2026-10-24",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 18245222,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.2.5",
+  "vd": "2026-10-24",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 18245222,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ff3-vita/FF3%20v1.2.5.vpk",
-      "size": 18245222,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ff3-vita/FF3%20v1.2.5.vpk",
+      "sz": 18245222,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
-      "size": 356096410,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-ff3-vita/Game%20Files.zip",
+      "sz": 356096410,
+      "xp": "ux0:data/",
+      "ips": [
         "ff3"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/ff3_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/frangarcj/ff3_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-ff3-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-ff3-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ff3-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-ff3-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-ff3-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-ff3-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-ff3-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "725",
-  "source_url": "https://github.com/frangarcj/ff3_vita",
-  "release_page": "https://github.com/frangarcj/ff3_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "725",
+  "su": "https://github.com/frangarcj/ff3_vita",
+  "rp": "https://github.com/frangarcj/ff3_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

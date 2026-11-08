@@ -1,41 +1,41 @@
 {
   "id": "how-to-rob-a-gas-station",
-  "title_id": "POTO00002",
-  "name": "How to Rob A Gas Station",
-  "description": "Short multiplatform FPS game.",
-  "long_description": "In this game you, get this, rob a gas station. In fact, it's a step by step tutorial on robbing a gas station. Since this game is about 5 minutes, there are multiple endings. So if you care, you can do all the endings. There are a total of 22 endings.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "POTO00002",
+  "n": "How to Rob A Gas Station",
+  "d": "Short multiplatform FPS game.",
+  "ld": "In this game you, get this, rob a gas station. In fact, it's a step by step tutorial on robbing a gas station. Since this game is about 5 minutes, there are multiple endings. So if you care, you can do all the endings. There are a total of 22 endings.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "poto-software"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.3.2",
-  "version_date": "2025-02-06",
-  "requirements": "Not specified",
-  "size": 51734795,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-how-to-rob-a-gas-station/icon0.png",
-  "screenshots": [
+  "v": "v.2.3.2",
+  "vd": "2025-02-06",
+  "req": "Not specified",
+  "sz": 51734795,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-how-to-rob-a-gas-station/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-how-to-rob-a-gas-station/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-how-to-rob-a-gas-station/how-to-rob-a-gas-station.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-how-to-rob-a-gas-station/how-to-rob-a-gas-station.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://poto-software.itch.io/how-to-rob-a-gas-station"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://poto-software.itch.io/how-to-rob-a-gas-station"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "839",
-  "source_url": "https://poto-software.itch.io/how-to-rob-a-gas-station",
-  "release_page": "https://poto-software.itch.io/how-to-rob-a-gas-station",
-  "updated_at": "2026-08-13T15:34:48.415171+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "839",
+  "su": "https://poto-software.itch.io/how-to-rob-a-gas-station",
+  "rp": "https://poto-software.itch.io/how-to-rob-a-gas-station",
+  "ua": "2026-08-13T15:34:48.415171+00:00"
 }

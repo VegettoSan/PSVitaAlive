@@ -1,45 +1,45 @@
 {
   "id": "drone-sim-vita",
-  "title_id": "DSIM12345",
-  "name": "Drone Sim Vita",
-  "description": "Drone simulator game for PSVITA.",
-  "long_description": "Drone Sim Vita is a drone simulation game made with the Unity game engine.\nExpect bugs and slowdowns.\nOverclock for best experience!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DSIM12345",
+  "n": "Drone Sim Vita",
+  "d": "Drone simulator game for PSVITA.",
+  "ld": "Drone Sim Vita is a drone simulation game made with the Unity game engine.\nExpect bugs and slowdowns.\nOverclock for best experience!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "haasman0"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2023-08-14",
-  "requirements": "Not specified",
-  "size": 49721402,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-drone-sim-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2023-08-14",
+  "req": "Not specified",
+  "sz": 49721402,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-drone-sim-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-drone-sim-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-drone-sim-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-drone-sim-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-drone-sim-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-drone-sim-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-drone-sim-vita/drone-sim-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-drone-sim-vita/drone-sim-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/29/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/29/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1115",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/29/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/29/",
-  "updated_at": "2026-08-13T15:34:48.482923+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1115",
+  "su": "https://fuhen.homebrew-contest.com/submissions/29/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/29/",
+  "ua": "2026-08-13T15:34:48.482923+00:00"
 }

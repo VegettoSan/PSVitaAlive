@@ -1,55 +1,55 @@
 {
   "id": "commander-genius",
-  "title_id": "CGEN00001",
-  "name": "Commander Genius",
-  "description": "Port of Commander Genius for PSVITA.",
-  "long_description": "Port of Commander Genius for PSVITA/PSTV. Commander Genius is an open-source clone of Commander Keen (1-6, Dreams) which allows you to play these episodes and some of the mods made for them.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CGEN00001",
+  "n": "Commander Genius",
+  "d": "Port of Commander Genius for PSVITA.",
+  "ld": "Port of Commander Genius for PSVITA/PSTV. Commander Genius is an open-source clone of Commander Keen (1-6, Dreams) which allows you to play these episodes and some of the mods made for them.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.3.0.9-vita.2",
-  "version_date": "2021-12-17",
-  "requirements": "Not specified",
-  "size": 3865398,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-commander-genius/icon0.png",
-  "screenshots": [
+  "v": "v.3.0.9-vita.2",
+  "vd": "2021-12-17",
+  "req": "Not specified",
+  "sz": 3865398,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-commander-genius/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-commander-genius/shot_01.png",
     "https://archive.org/download/psvitaalive-commander-genius/shot_02.png",
     "https://archive.org/download/psvitaalive-commander-genius/shot_03.png",
     "https://archive.org/download/psvitaalive-commander-genius/shot_04.png",
     "https://archive.org/download/psvitaalive-commander-genius/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-commander-genius/commander-genius.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-commander-genius/commander-genius.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/Commander-Genius/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/Commander-Genius/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/Commander-Genius/releases/tag/v3.0.9-vita.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/Commander-Genius/releases/tag/v3.0.9-vita.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/Commander-Genius"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/Commander-Genius"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "610",
-  "source_url": "https://github.com/Northfear/Commander-Genius",
-  "release_page": "https://github.com/Northfear/Commander-Genius/releases",
-  "updated_at": "2026-08-13T15:34:48.560876+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "610",
+  "su": "https://github.com/Northfear/Commander-Genius",
+  "rp": "https://github.com/Northfear/Commander-Genius/releases",
+  "ua": "2026-08-13T15:34:48.560876+00:00"
 }

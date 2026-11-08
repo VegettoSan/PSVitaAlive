@@ -1,15 +1,15 @@
 {
   "id": "cynostial",
-  "name": "Cynostial",
-  "avatar": "https://avatars.githubusercontent.com/u/27498538?v=4",
-  "bio": "I ship",
-  "links": [
+  "n": "Cynostial",
+  "av": "https://avatars.githubusercontent.com/u/27498538?v=4",
+  "b": "I ship",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/Cynostial",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Cynostial",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/27498538?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/27498538?v=4"
 }

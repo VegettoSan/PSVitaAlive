@@ -1,48 +1,48 @@
 {
   "id": "alisa-vita",
-  "title_id": "ALSA50001",
-  "name": "Alisa Vita",
-  "description": "Port of Alisa: Developer's Cut for PSVita.",
-  "long_description": "This is a port of Alisa: Developer's Cut for PSVita.\nAlisa is a indie survival horror game heavily inspired by the classics of this genre like the original Resident Evil.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ALSA50001",
+  "n": "Alisa Vita",
+  "d": "Port of Alisa: Developer's Cut for PSVita.",
+  "ld": "This is a port of Alisa: Developer's Cut for PSVita.\nAlisa is a indie survival horror game heavily inspired by the classics of this genre like the original Resident Evil.\n\n- PsVitaAlive -",
+  "aids": [
     "bythos",
     "patnosd",
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2026-01-10",
-  "requirements": "- Game Data Files: Steam",
-  "size": 167667302,
-  "status": "Verified",
-  "links": [
+  "v": "v.1.2",
+  "vd": "2026-01-10",
+  "req": "- Game Data Files: Steam",
+  "sz": 167667302,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK + Game Files",
-      "url": "https://archive.org/download/psvitaalive-alisa-vita/Alisa%20Vita%20Complete%20v1.2.vpk",
-      "size": 167667302,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/psvitaalive-alisa-vita/Alisa%20Vita%20Complete%20v1.2.vpk",
+      "sz": 167667302,
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/Rinnegatamante/Alisa-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/Rinnegatamante/Alisa-Vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-alisa-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-alisa-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-alisa-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-alisa-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-alisa-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-alisa-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-alisa-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1355",
-  "source_url": "https://github.com/Rinnegatamante/Alisa-Vita",
-  "release_page": "https://github.com/Rinnegatamante/Alisa-Vita",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1355",
+  "su": "https://github.com/Rinnegatamante/Alisa-Vita",
+  "rp": "https://github.com/Rinnegatamante/Alisa-Vita",
+  "ua": "2026-08-13T15:34"
 }

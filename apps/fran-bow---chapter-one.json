@@ -1,44 +1,44 @@
 {
   "id": "fran-bow---chapter-one",
-  "title_id": "FBCH10408",
-  "name": "Fran Bow - Chapter One",
-  "description": "Port of Fran Bow - Chapter one for PSVITA.",
-  "long_description": "After witnessing the gruesome and mysterious loss of her parents, found dismembered at their home, Fran rushes into the woods, together with her only friend, Mr. Midnight, a black cat that Fran had previously received as a present from her parents.\nIn the forest, Fran goes into shock over the loss of her parents and when she recovers, she's at Oswald Asylum, an oppressive mental institution for children, and Mr. Midnight is nowhere to be found.\nAfter having a dream about her beloved cat, Fran decides to escape from the mental institution to find him and go back home to Aunt Grace, her only living relative. Credits to m1s3ry, Grossleymoo and Killmonday Games.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FBCH10408",
+  "n": "Fran Bow - Chapter One",
+  "d": "Port of Fran Bow - Chapter one for PSVITA.",
+  "ld": "After witnessing the gruesome and mysterious loss of her parents, found dismembered at their home, Fran rushes into the woods, together with her only friend, Mr. Midnight, a black cat that Fran had previously received as a present from her parents.\nIn the forest, Fran goes into shock over the loss of her parents and when she recovers, she's at Oswald Asylum, an oppressive mental institution for children, and Mr. Midnight is nowhere to be found.\nAfter having a dream about her beloved cat, Fran decides to escape from the mental institution to find him and go back home to Aunt Grace, her only living relative. Credits to m1s3ry, Grossleymoo and Killmonday Games.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.2.07",
-  "version_date": "2021-04-08",
-  "requirements": "- Game Data Files: Android OR PC",
-  "size": 2949071,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fran-bow---chapter-one/icon0.png",
-  "screenshots": [
+  "v": "v.2.07",
+  "vd": "2021-04-08",
+  "req": "- Game Data Files: Android OR PC",
+  "sz": 2949071,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fran-bow---chapter-one/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_01.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_02.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_03.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-one/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fran-bow---chapter-one/fran-bow---chapter-one.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fran-bow---chapter-one/fran-bow---chapter-one.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/GMSVitaPortInstructions"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "639",
-  "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "updated_at": "2026-08-13T15:34:48.590451+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "639",
+  "su": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "rp": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "ua": "2026-08-13T15:34:48.590451+00:00"
 }

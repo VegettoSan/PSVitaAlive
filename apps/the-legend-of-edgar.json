@@ -1,45 +1,45 @@
 {
   "id": "the-legend-of-edgar",
-  "title_id": "EDGAR0134",
-  "name": "The Legend of Edgar",
-  "description": "Port of The Legend of Edgar for PSVITA.",
-  "long_description": "The Legend of Edgar is a platform game, not unlike those found on the Amiga and SNES. Edgar must battle his way across the world, solving puzzles and defeating powerful enemies to achieve his quest.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "EDGAR0134",
+  "n": "The Legend of Edgar",
+  "d": "Port of The Legend of Edgar for PSVITA.",
+  "ld": "The Legend of Edgar is a platform game, not unlike those found on the Amiga and SNES. Edgar must battle his way across the world, solving puzzles and defeating powerful enemies to achieve his quest.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "riviera71"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.34",
-  "version_date": "2023-09-22",
-  "requirements": "Not specified",
-  "size": 95830168,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-the-legend-of-edgar/icon0.png",
-  "screenshots": [
+  "v": "v.1.34",
+  "vd": "2023-09-22",
+  "req": "Not specified",
+  "sz": 95830168,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-the-legend-of-edgar/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_01.png",
     "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_02.png",
     "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_03.png",
     "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_04.png",
     "https://archive.org/download/psvitaalive-the-legend-of-edgar/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-the-legend-of-edgar/the-legend-of-edgar.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-the-legend-of-edgar/the-legend-of-edgar.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://fuhen.homebrew-contest.com/submissions/55/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://fuhen.homebrew-contest.com/submissions/55/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1141",
-  "source_url": "https://fuhen.homebrew-contest.com/submissions/55/",
-  "release_page": "https://fuhen.homebrew-contest.com/submissions/55/",
-  "updated_at": "2026-08-13T15:34:48.472941+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1141",
+  "su": "https://fuhen.homebrew-contest.com/submissions/55/",
+  "rp": "https://fuhen.homebrew-contest.com/submissions/55/",
+  "ua": "2026-08-13T15:34:48.472941+00:00"
 }

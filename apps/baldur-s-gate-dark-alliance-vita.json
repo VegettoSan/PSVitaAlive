@@ -1,55 +1,55 @@
 {
   "id": "baldur-s-gate-dark-alliance-vita",
-  "title_id": "BGDA00001",
-  "name": "Baldur's Gate: Dark Alliance Vita",
-  "description": "Port of Baldur's Gate: Dark Alliance for PSVita.",
-  "long_description": "This is a wrapper/port of Baldur's Gate: Dark Alliance for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BGDA00001",
+  "n": "Baldur's Gate: Dark Alliance Vita",
+  "d": "Port of Baldur's Gate: Dark Alliance for PSVita.",
+  "ld": "This is a wrapper/port of Baldur's Gate: Dark Alliance for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "nevak"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.06",
-  "version_date": "2026-02-28",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 5993441,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.06",
+  "vd": "2026-02-28",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 5993441,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/baldur-s-gate-dark-alliance-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-baldur-s-gate-dark-alliance-vita/baldur-s-gate-dark-alliance-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Nevak/bgda-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Nevak/bgda-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Nevak/bgda-vita/releases/tag/v1.06"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Nevak/bgda-vita/releases/tag/v1.06"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Nevak/bgda-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Nevak/bgda-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1357",
-  "source_url": "https://github.com/Nevak/bgda-vita",
-  "release_page": "https://github.com/Nevak/bgda-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.362977+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1357",
+  "su": "https://github.com/Nevak/bgda-vita",
+  "rp": "https://github.com/Nevak/bgda-vita/releases",
+  "ua": "2026-08-13T15:34:48.362977+00:00"
 }

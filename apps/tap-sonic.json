@@ -1,48 +1,48 @@
 {
   "id": "tap-sonic",
-  "title_id": "TPSN00001",
-  "name": "Tap Sonic",
-  "description": "Unofficial PS Vita port of the Android version of Tap Sonic (Neowiz).",
-  "long_description": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES, sound player) replaced by Vita code. The Java menus are rebuilt with the APK's own pictures. No game files are included. You need your own copy of the Android APK and of its songs.",
-  "author_ids": [
+  "tid": "TPSN00001",
+  "n": "Tap Sonic",
+  "d": "Unofficial PS Vita port of the Android version of Tap Sonic (Neowiz).",
+  "ld": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES, sound player) replaced by Vita code. The Java menus are rebuilt with the APK's own pictures. No game files are included. You need your own copy of the Android APK and of its songs.",
+  "aids": [
     "papileno"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-10-30",
-  "requirements": "- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.",
-  "size": 1153434,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-10-30",
+  "req": "- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.",
+  "sz": 1153434,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/tap-sonic-for-ps-vita/tapsonic%20v1.0.vpk",
-      "size": 1153434,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/tap-sonic-for-ps-vita/tapsonic%20v1.0.vpk",
+      "sz": 1153434,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/tap-sonic-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 618659840,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/tap-sonic-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 618659840,
+      "xp": "ux0:data/",
+      "ips": [
         "tapsonic"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic"
     }
   ],
-  "icon": "https://archive.org/download/tap-sonic-for-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/tap-sonic-for-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/tap-sonic-for-ps-vita/shot0.png"
   ]
 }

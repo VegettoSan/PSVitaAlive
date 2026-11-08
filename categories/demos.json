@@ -1,49 +1,49 @@
 {
   "id": "demos",
-  "name": "Demos & Tech",
-  "description": "Technical demonstrations, experiments, benchmarks and proof-of-concept projects for PlayStation Vita.",
-  "icon": "icons/demos.png",
-  "order": 12,
-  "subcategories": [
+  "n": "Demos & Tech",
+  "d": "Technical demonstrations, experiments, benchmarks and proof-of-concept projects for PlayStation Vita.",
+  "ic": "icons/demos.png",
+  "ord": 12,
+  "subs": [
     {
       "id": "tech-demo",
-      "name": "Tech Demo"
+      "n": "Tech Demo"
     },
     {
       "id": "graphics-demo",
-      "name": "Graphics Demo"
+      "n": "Graphics Demo"
     },
     {
       "id": "audio-demo",
-      "name": "Audio Demo"
+      "n": "Audio Demo"
     },
     {
       "id": "physics-demo",
-      "name": "Physics Demo"
+      "n": "Physics Demo"
     },
     {
       "id": "engine-demo",
-      "name": "Engine Demo"
+      "n": "Engine Demo"
     },
     {
       "id": "gameplay-demo",
-      "name": "Gameplay Demo"
+      "n": "Gameplay Demo"
     },
     {
       "id": "benchmark",
-      "name": "Benchmark"
+      "n": "Benchmark"
     },
     {
       "id": "proof-of-concept",
-      "name": "Proof of Concept"
+      "n": "Proof of Concept"
     },
     {
       "id": "experiment",
-      "name": "Experiment"
+      "n": "Experiment"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

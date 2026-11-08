@@ -1,50 +1,50 @@
 {
   "id": "spelunky-classic-hd-vita",
-  "title_id": "SPCL00001",
-  "name": "Spelunky Classic HD Vita",
-  "description": "Port of Spelunky Classic HD for PSVITA.",
-  "long_description": "Spelunky is a cave exploration / treasure-hunting game inspired by classic platform games and roguelikes, where the goal is to grab as much treasure from the cave as possible. Every time you play the caveÃ¢â‚¬â„¢s layout will be different. Use your wits, your reflexes, and the items available to you to survive and go ever deeper! Perhaps at the end you may find what youÃ¢â‚¬â„¢re looking forÃ¢â‚¬Â¦ DonÃ¢â‚¬â„¢t be afraid to die! But also donÃ¢â‚¬â„¢t be afraid to live! Happy Spelunky-ing!\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SPCL00001",
+  "n": "Spelunky Classic HD Vita",
+  "d": "Port of Spelunky Classic HD for PSVITA.",
+  "ld": "Spelunky is a cave exploration / treasure-hunting game inspired by classic platform games and roguelikes, where the goal is to grab as much treasure from the cave as possible. Every time you play the caveÃ¢â‚¬â„¢s layout will be different. Use your wits, your reflexes, and the items available to you to survive and go ever deeper! Perhaps at the end you may find what youÃ¢â‚¬â„¢re looking forÃ¢â‚¬Â¦ DonÃ¢â‚¬â„¢t be afraid to die! But also donÃ¢â‚¬â„¢t be afraid to live! Happy Spelunky-ing!\n\n- PsVitaAlive -",
+  "aids": [
     "siulpop"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-10-19",
-  "requirements": "Not specified",
-  "size": 7648928,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-10-19",
+  "req": "Not specified",
+  "sz": 7648928,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/spelunky-classic-hd-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-spelunky-classic-hd-vita/spelunky-classic-hd-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA./releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA./releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA."
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA."
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "996",
-  "source_url": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA.",
-  "release_page": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA./releases",
-  "updated_at": "2026-08-13T15:34:48.526936+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "996",
+  "su": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA.",
+  "rp": "https://github.com/SiulPop/Spelunky.Classic.HD.VITA./releases",
+  "ua": "2026-08-13T15:34:48.526936+00:00"
 }

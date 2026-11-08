@@ -1,41 +1,41 @@
 {
   "id": "boiled-corn",
-  "title_id": "DOS1BCORN",
-  "name": "Boiled Corn",
-  "description": "Short game for PSVita.",
-  "long_description": "Short game made for the Nomad Game Jam for PSVita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DOS1BCORN",
+  "n": "Boiled Corn",
+  "d": "Short game for PSVita.",
+  "ld": "Short game made for the Nomad Game Jam for PSVita.\n\n- PsVitaAlive -",
+  "aids": [
     "dos"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-11-16",
-  "requirements": "Not specified",
-  "size": 5222174,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-boiled-corn/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-11-16",
+  "req": "Not specified",
+  "sz": 5222174,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-boiled-corn/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-boiled-corn/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-boiled-corn/boiled-corn.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-boiled-corn/boiled-corn.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://dos.itch.io/boiledcorn"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://dos.itch.io/boiledcorn"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1451",
-  "source_url": "https://dos.itch.io/boiledcorn",
-  "release_page": "https://dos.itch.io/boiledcorn",
-  "updated_at": "2026-08-14T01:05:59.219475+00:00"
+  "sn": "VitaDB",
+  "si": "1451",
+  "su": "https://dos.itch.io/boiledcorn",
+  "rp": "https://dos.itch.io/boiledcorn",
+  "ua": "2026-08-14T01:05:59.219475+00:00"
 }

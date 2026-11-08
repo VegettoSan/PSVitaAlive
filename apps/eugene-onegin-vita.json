@@ -1,41 +1,41 @@
 {
   "id": "eugene-onegin-vita",
-  "title_id": "ONEGAVITA",
-  "name": "Eugene Onegin Vita",
-  "description": "Port of Eugene Onegin: A Novel-in-Electronic Game Remastered for PSVita.",
-  "long_description": "A visual novel based on the immortal novel-in-verse by Alexander Pushkin, released in September 2009. The player acts as an unseen observer, whose decisions can influence the fates of Onegin, Tatyana, and Lensky, as well as guest characters from other works of Russian classics.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ONEGAVITA",
+  "n": "Eugene Onegin Vita",
+  "d": "Port of Eugene Onegin: A Novel-in-Electronic Game Remastered for PSVita.",
+  "ld": "A visual novel based on the immortal novel-in-verse by Alexander Pushkin, released in September 2009. The player acts as an unseen observer, whose decisions can influence the fates of Onegin, Tatyana, and Lensky, as well as guest characters from other works of Russian classics.\n\n- PsVitaAlive -",
+  "aids": [
     "fargusjunja"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-06-25",
-  "requirements": "Not specified",
-  "size": 195885335,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-eugene-onegin-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-06-25",
+  "req": "Not specified",
+  "sz": 195885335,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-eugene-onegin-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-eugene-onegin-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-eugene-onegin-vita/eugene-onegin-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-eugene-onegin-vita/eugene-onegin-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/rerulon/negavita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/rerulon/negavita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1422",
-  "source_url": "https://github.com/rerulon/negavita",
-  "release_page": "https://github.com/rerulon/negavita",
-  "updated_at": "2026-08-13T15:34:48.334431+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1422",
+  "su": "https://github.com/rerulon/negavita",
+  "rp": "https://github.com/rerulon/negavita",
+  "ua": "2026-08-13T15:34:48.334431+00:00"
 }

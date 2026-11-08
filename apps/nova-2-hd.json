@@ -1,51 +1,51 @@
 {
   "id": "nova-2-hd",
-  "title_id": "PSVNOVA02",
-  "name": "NOVA 2 HD",
-  "description": "Android to PS Vita port of Gameloft's N.O.V.A 2",
-  "long_description": "N.O.V.A. 2 is Gameloft's sci-fi first-person shooter, originally released for Android as NOVA-2-HD-v1-0-5.apk (package com.gameloft.android.GAND.GloftN2HP). This port runs the compiled native library (libnova2.so, armeabi-v7a) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 2.0 rendering backend.",
-  "author_ids": [
+  "tid": "PSVNOVA02",
+  "n": "NOVA 2 HD",
+  "d": "Android to PS Vita port of Gameloft's N.O.V.A 2",
+  "ld": "N.O.V.A. 2 is Gameloft's sci-fi first-person shooter, originally released for Android as NOVA-2-HD-v1-0-5.apk (package com.gameloft.android.GAND.GloftN2HP). This port runs the compiled native library (libnova2.so, armeabi-v7a) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 2.0 rendering backend.",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "fps",
     "shooter",
     "strategy",
     "source-port"
   ],
-  "version": "1.0.2",
-  "version_date": "2026-10-31",
-  "requirements": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
-  "size": 2097152,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.2",
+  "vd": "2026-10-31",
+  "req": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
+  "sz": 2097152,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.2.vpk",
-      "size": 2097152,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.2.vpk",
+      "sz": 2097152,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-      "size": 849031987,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 849031987,
+      "xp": "ux0:data/",
+      "ips": [
         "nova2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/MetalSyntax/N.O.V.A-2-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/MetalSyntax/N.O.V.A-2-vita"
     }
   ],
-  "icon": "https://archive.org/download/n.o.v.a-2-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/n.o.v.a-2-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/n.o.v.a-2-ps-vita-port/shot0.png"
   ]
 }

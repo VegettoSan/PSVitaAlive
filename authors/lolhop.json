@@ -1,15 +1,15 @@
 {
   "id": "lolhop",
-  "name": "lolhop",
-  "avatar": "https://avatars.githubusercontent.com/u/185359541?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "lolhop",
+  "av": "https://avatars.githubusercontent.com/u/185359541?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/lolhop",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/lolhop",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/185359541?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/185359541?v=4"
 }

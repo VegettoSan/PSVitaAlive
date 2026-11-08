@@ -1,55 +1,55 @@
 {
   "id": "partia-the-granian-trilogy",
-  "title_id": "PARTIAVGL",
-  "name": "Partia: The Granian Trilogy",
-  "description": "Port of Partia 1, Partia 2 and Partia 3 for PSVITA.",
-  "long_description": "This is a wrapper/port of Portia 1, Portia 2 and Porta 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PARTIAVGL",
+  "n": "Partia: The Granian Trilogy",
+  "d": "Port of Partia 1, Partia 2 and Partia 3 for PSVITA.",
+  "ld": "This is a wrapper/port of Portia 1, Portia 2 and Porta 3 Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-07-22",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 5690682,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-07-22",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 5690682,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/shot_01.png",
     "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/shot_02.png",
     "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/shot_03.png",
     "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/shot_04.png",
     "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/partia-the-granian-trilogy.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-partia-the-granian-trilogy/partia-the-granian-trilogy.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/partia-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/partia-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/partia-vita/releases/tag/v.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/partia-vita/releases/tag/v.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/partia-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/partia-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "843",
-  "source_url": "https://github.com/Rinnegatamante/partia-vita",
-  "release_page": "https://github.com/Rinnegatamante/partia-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.540855+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "843",
+  "su": "https://github.com/Rinnegatamante/partia-vita",
+  "rp": "https://github.com/Rinnegatamante/partia-vita/releases",
+  "ua": "2026-08-13T15:34:48.540855+00:00"
 }

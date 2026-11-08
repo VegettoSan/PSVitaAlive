@@ -1,43 +1,43 @@
 {
   "id": "non-competitive-singing-potatoes",
-  "title_id": "DOS1POTAT",
-  "name": "Non-Competitive Singing Potatoes",
-  "description": "Music homebrew game for PSVita.",
-  "long_description": "o competing just singing now\nyou're a band of singing potatoes and you sing while not competing\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DOS1POTAT",
+  "n": "Non-Competitive Singing Potatoes",
+  "d": "Music homebrew game for PSVita.",
+  "ld": "o competing just singing now\nyou're a band of singing potatoes and you sing while not competing\n\n- PsVitaAlive -",
+  "aids": [
     "dos",
     "holy-pangolin"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-03-04",
-  "requirements": "Not specified",
-  "size": 22941783,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2024-03-04",
+  "req": "Not specified",
+  "sz": 22941783,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/shot_01.png",
     "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/non-competitive-singing-potatoes.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-non-competitive-singing-potatoes/non-competitive-singing-potatoes.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://dos.itch.io/potatoes"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://dos.itch.io/potatoes"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1450",
-  "source_url": "https://dos.itch.io/potatoes",
-  "release_page": "https://dos.itch.io/potatoes",
-  "updated_at": "2026-08-14T01:05:59.215233+00:00"
+  "sn": "VitaDB",
+  "si": "1450",
+  "su": "https://dos.itch.io/potatoes",
+  "rp": "https://dos.itch.io/potatoes",
+  "ua": "2026-08-14T01:05:59.215233+00:00"
 }

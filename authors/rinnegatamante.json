@@ -1,20 +1,20 @@
 {
   "id": "rinnegatamante",
-  "name": "Rinnegatamante",
-  "avatar": "https://github.com/Rinnegatamante.png",
-  "bio": "Desarrollador destacado de la escena homebrew de PS Vita, con numerosos ports, herramientas y proyectos publicados.",
-  "links": [
+  "n": "Rinnegatamante",
+  "av": "https://github.com/Rinnegatamante.png",
+  "b": "Desarrollador destacado de la escena homebrew de PS Vita, con numerosos ports, herramientas y proyectos publicados.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Rinnegatamante",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Rinnegatamante",
+      "rec": true
     },
     {
-      "type": "Web",
-      "name": "Sitio web",
-      "url": "https://rinnegatamante.it"
+      "t": "Web",
+      "n": "Sitio web",
+      "u": "https://rinnegatamante.it"
     }
   ],
-  "icon": "https://github.com/Rinnegatamante.png"
+  "ic": "https://github.com/Rinnegatamante.png"
 }

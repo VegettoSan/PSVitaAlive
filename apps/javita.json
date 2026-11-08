@@ -1,14 +1,14 @@
 {
   "id": "javita",
-  "title_id": "JAVITA001",
-  "name": "JAVITA",
-  "description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
-  "long_description": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "JAVITA001",
+  "n": "JAVITA",
+  "d": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita.",
+  "ld": "Port of Star Wars Jedi Knight: Jedi Academy for PSVita based on OpenJK.\n\n- PsVitaAlive -",
+  "aids": [
     "ndrw"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "fps",
@@ -16,42 +16,42 @@
     "strategy",
     "other"
   ],
-  "version": "v.1.1.0",
-  "version_date": "2026-10-25",
-  "requirements": "- Game Data Files: PC",
-  "size": 4404019,
-  "status": "Verified",
-  "links": [
+  "v": "v.1.1.0",
+  "vd": "2026-10-25",
+  "req": "- Game Data Files: PC",
+  "sz": 4404019,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/javita-ps-vita/JAVITA_1.1.0.vpk",
-      "size": 4404019,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/javita-ps-vita/JAVITA_1.1.0.vpk",
+      "sz": 4404019,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/javita-ps-vita/Game%20Files.zip",
-      "size": 1181116006,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/javita-ps-vita/Game%20Files.zip",
+      "sz": 1181116006,
+      "xp": "ux0:data/",
+      "ips": [
         "JAVITA"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NDRWhun/JAVITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/NDRWhun/JAVITA"
     }
   ],
-  "icon": "https://archive.org/download/javita-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/javita-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/javita-ps-vita/shot0.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1481",
-  "source_url": "https://github.com/NDRWhun/JAVITA",
-  "release_page": "https://github.com/NDRWhun/JAVITA/releases",
-  "updated_at": "2026-08-22T15:39"
+  "sn": "VitaDB",
+  "si": "1481",
+  "su": "https://github.com/NDRWhun/JAVITA",
+  "rp": "https://github.com/NDRWhun/JAVITA/releases",
+  "ua": "2026-08-22T15:39"
 }

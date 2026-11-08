@@ -1,20 +1,20 @@
 {
   "id": "kolbie5874-weegeedeveloper",
-  "name": "Kolbie5874 & WeegeeDEVELOPER",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "",
-  "links": [
+  "n": "Kolbie5874 & WeegeeDEVELOPER",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "",
+  "l": [
     {
-      "type": "Download",
-      "name": "VitaHomebrewDB VPK",
-      "url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/620-FNaFVita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VitaHomebrewDB VPK",
+      "u": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/620-FNaFVita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com"
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

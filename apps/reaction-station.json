@@ -1,54 +1,54 @@
 {
   "id": "reaction-station",
-  "title_id": "REACTIONS",
-  "name": "Reaction Station",
-  "description": "Generator and player for QTE games.",
-  "long_description": "Have you ever seen or played games such as Dragons lair, Space Ace, Cobra Command? The gameplay fully relies on quick time responses like an interactive video.\nWith Reaction station (and a lot of time a patience) you can create or recreate your own with this tool.",
-  "author_ids": [
+  "tid": "REACTIONS",
+  "n": "Reaction Station",
+  "d": "Generator and player for QTE games.",
+  "ld": "Have you ever seen or played games such as Dragons lair, Space Ace, Cobra Command? The gameplay fully relies on quick time responses like an interactive video.\nWith Reaction station (and a lot of time a patience) you can create or recreate your own with this tool.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-10-07",
-  "requirements": "Not specified",
-  "size": 4268638,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-reaction-station/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-10-07",
+  "req": "Not specified",
+  "sz": 4268638,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-reaction-station/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-reaction-station/shot_01.png",
     "https://archive.org/download/psvitaalive-reaction-station/shot_02.png",
     "https://archive.org/download/psvitaalive-reaction-station/shot_03.png",
     "https://archive.org/download/psvitaalive-reaction-station/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-reaction-station/reaction-station.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-reaction-station/reaction-station.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://anthj.itch.io/reaction-station"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://anthj.itch.io/reaction-station"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/Reaction-Station/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/Reaction-Station/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/Reaction-Station"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/Reaction-Station"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1333",
-  "source_url": "https://anthj.itch.io/reaction-station",
-  "release_page": "https://anthj.itch.io/reaction-station",
-  "updated_at": "2026-08-13T15:34:48.381456+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1333",
+  "su": "https://anthj.itch.io/reaction-station",
+  "rp": "https://anthj.itch.io/reaction-station",
+  "ua": "2026-08-13T15:34:48.381456+00:00"
 }

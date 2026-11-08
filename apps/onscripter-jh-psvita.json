@@ -1,54 +1,54 @@
 {
   "id": "onscripter-jh-psvita",
-  "title_id": "VITAONSJH",
-  "name": "ONScripter-jh-PSVita",
-  "description": "Port of ONScripter-jh for PSVITA.",
-  "long_description": "Port of ONScripter-jh for PSVITA. ONScripter (O-N-Scripter) is a program that interprets and executes scripts written for NScripter in its own way. It can run games on Windows, Android, iOS, etc. using the exact same game data.",
-  "author_ids": [
+  "tid": "VITAONSJH",
+  "n": "ONScripter-jh-PSVita",
+  "d": "Port of ONScripter-jh for PSVITA.",
+  "ld": "Port of ONScripter-jh for PSVITA. ONScripter (O-N-Scripter) is a program that interprets and executes scripts written for NScripter in its own way. It can run games on Windows, Android, iOS, etc. using the exact same game data.",
+  "aids": [
     "yurisizuku"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.0.5.1.3",
-  "version_date": "2023-02-19",
-  "requirements": "Not specified",
-  "size": 10676517,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-onscripter-jh-psvita/icon0.png",
-  "screenshots": [
+  "v": "v.0.5.1.3",
+  "vd": "2023-02-19",
+  "req": "Not specified",
+  "sz": 10676517,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-onscripter-jh-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_01.png",
     "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_02.png",
     "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_03.png",
     "https://archive.org/download/psvitaalive-onscripter-jh-psvita/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-onscripter-jh-psvita/onscripter-jh-psvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-onscripter-jh-psvita/onscripter-jh-psvita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/YuriSizuku/psv-OnscripterJH/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/YuriSizuku/psv-OnscripterJH/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/YuriSizuku/psv-OnscripterJH/releases/tag/v0.5.1.3"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/YuriSizuku/psv-OnscripterJH/releases/tag/v0.5.1.3"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/YuriSizuku/psv-OnscripterJH"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/YuriSizuku/psv-OnscripterJH"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "985",
-  "source_url": "https://github.com/YuriSizuku/psv-OnscripterJH",
-  "release_page": "https://github.com/YuriSizuku/psv-OnscripterJH/releases",
-  "updated_at": "2026-08-13T15:34:48.512519+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "985",
+  "su": "https://github.com/YuriSizuku/psv-OnscripterJH",
+  "rp": "https://github.com/YuriSizuku/psv-OnscripterJH/releases",
+  "ua": "2026-08-13T15:34:48.512519+00:00"
 }

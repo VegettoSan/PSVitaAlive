@@ -1,49 +1,49 @@
 {
   "id": "touhou12-3vita-hisoutensoku",
-  "title_id": "THSV12302",
-  "name": "Touhou12.3Vita Hisoutensoku",
-  "description": "Experimental native PS Vita port research and practice prototype for Touhou 12.3",
-  "long_description": "Experimental native PS Vita port research and practice prototype for Touhou 12.3",
-  "author_ids": [
+  "tid": "THSV12302",
+  "n": "Touhou12.3Vita Hisoutensoku",
+  "d": "Experimental native PS Vita port research and practice prototype for Touhou 12.3",
+  "ld": "Experimental native PS Vita port research and practice prototype for Touhou 12.3",
+  "aids": [
     "botarguirix"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "puzzle",
     "strategy",
     "source-port"
   ],
-  "version": "0.1.1",
-  "version_date": "2026-11-01",
-  "requirements": "- Verify your shader compiler is at ur0:data/libshacccg.suprx (ur0:, not ux0:).\n- Create ux0:data/touhou123vita/ and copy the four required files from your lawful game installation directly into it. Do not put them in an extra subfolder or ZIP archive.",
-  "size": 24326963,
-  "status": "Verified",
-  "links": [
+  "v": "0.1.1",
+  "vd": "2026-11-01",
+  "req": "- Verify your shader compiler is at ur0:data/libshacccg.suprx (ur0:, not ux0:).\n- Create ux0:data/touhou123vita/ and copy the four required files from your lawful game installation directly into it. Do not put them in an extra subfolder or ZIP archive.",
+  "sz": 24326963,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/touhou-12-3-vita/T123Recomp.vpk",
-      "size": 24326963,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/touhou-12-3-vita/T123Recomp.vpk",
+      "sz": 24326963,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/touhou-12-3-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 2147483648,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/touhou-12-3-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2147483648,
+      "xp": "ux0:data/",
+      "ips": [
         "touhou123vita"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Botarguirix/Touhou123Vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Botarguirix/Touhou123Vita"
     }
   ],
-  "icon": "https://archive.org/download/touhou-12-3-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/touhou-12-3-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/touhou-12-3-vita/Shot0.png"
   ]
 }

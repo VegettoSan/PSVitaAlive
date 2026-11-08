@@ -1,43 +1,43 @@
 {
   "id": "super-console-wars",
-  "title_id": "LAPY30015",
-  "name": "Super Console Wars",
-  "description": "Shoot'em up for PSVITA.",
-  "long_description": "A side scrolling shoot'em up for PSVITA/PSTV made with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "LAPY30015",
+  "n": "Super Console Wars",
+  "d": "Shoot'em up for PSVITA.",
+  "ld": "A side scrolling shoot'em up for PSVITA/PSTV made with Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "lapy",
     "acekone",
     "dragonixplay"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.05",
-  "version_date": "2020-12-31",
-  "requirements": "Not specified",
-  "size": 52121578,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-console-wars/icon0.png",
-  "screenshots": [
+  "v": "v.1.05",
+  "vd": "2020-12-31",
+  "req": "Not specified",
+  "sz": 52121578,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-super-console-wars/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-console-wars/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-console-wars/super-console-wars.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-console-wars/super-console-wars.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://superconsolewars.com/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://superconsolewars.com/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "555",
-  "source_url": "https://superconsolewars.com/",
-  "release_page": "https://superconsolewars.com/",
-  "updated_at": "2026-08-13T15:34:48.601917+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "555",
+  "su": "https://superconsolewars.com/",
+  "rp": "https://superconsolewars.com/",
+  "ua": "2026-08-13T15:34:48.601917+00:00"
 }

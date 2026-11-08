@@ -1,54 +1,54 @@
 {
   "id": "hill-climb-racing-vita",
-  "title_id": "HCR000000",
-  "name": "Hill Climb Racing Vita",
-  "description": "Port of Hill Clamb Racing for PSVita.",
-  "long_description": "Hill Climb Racing is a game made by Fingersoft, a Finnish game engine where you can control a vehicle and try to survive as far as possible to get more coins for more upgrades, vehicles and stages! Each stage has a different layout, and different obstacles to overcome. Each vehicle has their own strengths and weaknesses, making certain vehicles excel in certain stages, and their vehicles have overalls.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HCR000000",
+  "n": "Hill Climb Racing Vita",
+  "d": "Port of Hill Clamb Racing for PSVita.",
+  "ld": "Hill Climb Racing is a game made by Fingersoft, a Finnish game engine where you can control a vehicle and try to survive as far as possible to get more coins for more upgrades, vehicles and stages! Each stage has a different layout, and different obstacles to overcome. Each vehicle has their own strengths and weaknesses, making certain vehicles excel in certain stages, and their vehicles have overalls.\n\n- PsVitaAlive -",
+  "aids": [
     "memoryhunter"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "beta2",
-  "version_date": "2025-10-31",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1999461,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/icon0.png",
-  "screenshots": [
+  "v": "beta2",
+  "vd": "2025-10-31",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1999461,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/hill-climb-racing-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/hill-climb-racing-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/memory-hunter/hill-climb-racing-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/memory-hunter/hill-climb-racing-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/memory-hunter/hill-climb-racing-vita/releases/tag/beta2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/memory-hunter/hill-climb-racing-vita/releases/tag/beta2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/memory-hunter/hill-climb-racing-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/memory-hunter/hill-climb-racing-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1340",
-  "source_url": "https://github.com/memory-hunter/hill-climb-racing-vita",
-  "release_page": "https://github.com/memory-hunter/hill-climb-racing-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.376238+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1340",
+  "su": "https://github.com/memory-hunter/hill-climb-racing-vita",
+  "rp": "https://github.com/memory-hunter/hill-climb-racing-vita/releases",
+  "ua": "2026-08-13T15:34:48.376238+00:00"
 }

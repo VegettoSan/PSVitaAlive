@@ -1,15 +1,15 @@
 {
   "id": "boomannotjeff",
-  "name": "boomannotjeff",
-  "avatar": "https://avatars.githubusercontent.com/u/342081000?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "boomannotjeff",
+  "av": "https://avatars.githubusercontent.com/u/342081000?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/boomannotjeff",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/boomannotjeff",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/342081000?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/342081000?v=4"
 }

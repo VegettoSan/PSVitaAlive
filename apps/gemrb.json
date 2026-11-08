@@ -1,52 +1,52 @@
 {
   "id": "gemrb",
-  "title_id": "GEMRB0001",
-  "name": "GemRB",
-  "description": "Port of GemRB for PSVITA/PSTV.",
-  "long_description": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and Planescape: Torment games, their expansions and mods.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GEMRB0001",
+  "n": "GemRB",
+  "d": "Port of GemRB for PSVITA/PSTV.",
+  "ld": "GemRB is a portable open-source implementation of BiowareÃ¢â‚¬â„¢s 8 Infinity Engine versions allowing to run the BaldurÃ¢â‚¬â„¢s Gate, Icewind Dale and Planescape: Torment games, their expansions and mods.\n\n- PsVitaAlive -",
+  "aids": [
     "northfear"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.8.8-vita.7",
-  "version_date": "2021-10-31",
-  "requirements": "- Game Data Files: PC",
-  "size": 4949129,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gemrb/icon0.png",
-  "screenshots": [
+  "v": "v.0.8.8-vita.7",
+  "vd": "2021-10-31",
+  "req": "- Game Data Files: PC",
+  "sz": 4949129,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gemrb/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gemrb/shot_01.png",
     "https://archive.org/download/psvitaalive-gemrb/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gemrb/gemrb.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gemrb/gemrb.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/gemrb-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/gemrb-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Northfear/gemrb-vita/releases/tag/v0.8.8-vita.7"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Northfear/gemrb-vita/releases/tag/v0.8.8-vita.7"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Northfear/gemrb-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Northfear/gemrb-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "572",
-  "source_url": "https://github.com/Northfear/gemrb-vita",
-  "release_page": "https://github.com/Northfear/gemrb-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.565692+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "572",
+  "su": "https://github.com/Northfear/gemrb-vita",
+  "rp": "https://github.com/Northfear/gemrb-vita/releases",
+  "ua": "2026-08-13T15:34:48.565692+00:00"
 }

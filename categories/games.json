@@ -1,97 +1,97 @@
 {
   "id": "games",
-  "name": "Games",
-  "description": "Homebrew games created for PlayStation Vita.",
-  "icon": "icons/games.png",
-  "order": 1,
-  "subcategories": [
+  "n": "Games",
+  "d": "Homebrew games created for PlayStation Vita.",
+  "ic": "icons/games.png",
+  "ord": 1,
+  "subs": [
     {
       "id": "action",
-      "name": "Action"
+      "n": "Action"
     },
     {
       "id": "adventure",
-      "name": "Adventure"
+      "n": "Adventure"
     },
     {
       "id": "arcade",
-      "name": "Arcade"
+      "n": "Arcade"
     },
     {
       "id": "board",
-      "name": "Board"
+      "n": "Board"
     },
     {
       "id": "card",
-      "name": "Card"
+      "n": "Card"
     },
     {
       "id": "casual",
-      "name": "Casual"
+      "n": "Casual"
     },
     {
       "id": "fighting",
-      "name": "Fighting"
+      "n": "Fighting"
     },
     {
       "id": "horror",
-      "name": "Horror"
+      "n": "Horror"
     },
     {
       "id": "music",
-      "name": "Music"
+      "n": "Music"
     },
     {
       "id": "platformer",
-      "name": "Platformer"
+      "n": "Platformer"
     },
     {
       "id": "puzzle",
-      "name": "Puzzle"
+      "n": "Puzzle"
     },
     {
       "id": "racing",
-      "name": "Racing"
+      "n": "Racing"
     },
     {
       "id": "rhythm",
-      "name": "Rhythm"
+      "n": "Rhythm"
     },
     {
       "id": "rpg",
-      "name": "RPG"
+      "n": "RPG"
     },
     {
       "id": "shooter",
-      "name": "Shooter"
+      "n": "Shooter"
     },
     {
       "id": "simulation",
-      "name": "Simulation"
+      "n": "Simulation"
     },
     {
       "id": "sports",
-      "name": "Sports"
+      "n": "Sports"
     },
     {
       "id": "strategy",
-      "name": "Strategy"
+      "n": "Strategy"
     },
     {
       "id": "tower-defense",
-      "name": "Tower Defense"
+      "n": "Tower Defense"
     },
     {
       "id": "trivia",
-      "name": "Trivia"
+      "n": "Trivia"
     },
     {
       "id": "visual-novel",
-      "name": "Visual Novel"
+      "n": "Visual Novel"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

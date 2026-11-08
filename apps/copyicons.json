@@ -1,51 +1,51 @@
 {
   "id": "copyicons",
-  "title_id": "CPIC00001",
-  "name": "CopyIcons",
-  "description": "Copies Livearea app assets to appmeta folder.",
-  "long_description": "This application is used for bulk copying icon0.png/pic0.png from the ux0:app/GAME_ID/sce_sys to the ur0:appmeta/GAME_ID folder. To be used in conjuction with Vita Launcher.",
-  "author_ids": [
+  "tid": "CPIC00001",
+  "n": "CopyIcons",
+  "d": "Copies Livearea app assets to appmeta folder.",
+  "ld": "This application is used for bulk copying icon0.png/pic0.png from the ux0:app/GAME_ID/sce_sys to the ur0:appmeta/GAME_ID folder. To be used in conjuction with Vita Launcher.",
+  "aids": [
     "cy33hc"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.01",
-  "version_date": "2020-09-30",
-  "requirements": "Not specified",
-  "size": 68132,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-copyicons/icon0.png",
-  "screenshots": [
+  "v": "v.1.01",
+  "vd": "2020-09-30",
+  "req": "Not specified",
+  "sz": 68132,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-copyicons/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-copyicons/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-copyicons/copyicons.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-copyicons/copyicons.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/cy33hc/copyicons/release"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/cy33hc/copyicons/release"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/cy33hc/copyicons/releases/tag/1.01"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/cy33hc/copyicons/releases/tag/1.01"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/cy33hc/copyicons"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/cy33hc/copyicons"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "584",
-  "source_url": "https://github.com/cy33hc/copyicons",
-  "release_page": "https://github.com/cy33hc/copyicons/release",
-  "updated_at": "2026-08-13T15:34:48.609445+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "584",
+  "su": "https://github.com/cy33hc/copyicons",
+  "rp": "https://github.com/cy33hc/copyicons/release",
+  "ua": "2026-08-13T15:34:48.609445+00:00"
 }

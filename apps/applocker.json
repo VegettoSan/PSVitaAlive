@@ -1,54 +1,54 @@
 {
   "id": "applocker",
-  "title_id": "APPLOCKER",
-  "name": "AppLocker",
-  "description": "Lock and Unlock your apps quickly and easily",
-  "long_description": "You can now Lock and Unlock access to your Vitas apps. Pressing X on your selected app will create a lock that is bypassable by a combo, Pressing Square will FULLY lock the app so it cannot be bypassed, and Pressing O will remove the app lock.\nTo bypass the lock : Hold the left analogue left, the right analogue right and press both L + R triggers all at the same time..",
-  "author_ids": [
+  "tid": "APPLOCKER",
+  "n": "AppLocker",
+  "d": "Lock and Unlock your apps quickly and easily",
+  "ld": "You can now Lock and Unlock access to your Vitas apps. Pressing X on your selected app will create a lock that is bypassable by a combo, Pressing Square will FULLY lock the app so it cannot be bypassed, and Pressing O will remove the app lock.\nTo bypass the lock : Hold the left analogue left, the right analogue right and press both L + R triggers all at the same time..",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2021-08-14",
-  "requirements": "Not specified",
-  "size": 3591941,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-applocker/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2021-08-14",
+  "req": "Not specified",
+  "sz": 3591941,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-applocker/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-applocker/shot_01.png",
     "https://archive.org/download/psvitaalive-applocker/shot_02.png",
     "https://archive.org/download/psvitaalive-applocker/shot_03.png",
     "https://archive.org/download/psvitaalive-applocker/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-applocker/applocker.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-applocker/applocker.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/AppLocker/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/AppLocker/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/AppLocker/releases/tag/v1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/AppLocker/releases/tag/v1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/AppLocker"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/AppLocker"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "720",
-  "source_url": "https://github.com/AntHJ/AppLocker/releases",
-  "release_page": "https://github.com/AntHJ/AppLocker/releases",
-  "updated_at": "2026-08-13T15:34:48.573612+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "720",
+  "su": "https://github.com/AntHJ/AppLocker/releases",
+  "rp": "https://github.com/AntHJ/AppLocker/releases",
+  "ua": "2026-08-13T15:34:48.573612+00:00"
 }

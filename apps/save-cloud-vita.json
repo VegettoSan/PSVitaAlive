@@ -1,46 +1,46 @@
 {
   "id": "save-cloud-vita",
-  "title_id": "SAVECLOUD",
-  "name": "Save Cloud Vita",
-  "description": "App to backup saves on the cloud.",
-  "long_description": "An app allowing to backup saves on the cloud for PSVita.",
-  "author_ids": [
+  "tid": "SAVECLOUD",
+  "n": "Save Cloud Vita",
+  "d": "App to backup saves on the cloud.",
+  "ld": "An app allowing to backup saves on the cloud for PSVita.",
+  "aids": [
     "iamcco"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2026.04.06",
-  "version_date": "2024-04-06",
-  "requirements": "Not specified",
-  "size": 6027607,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-save-cloud-vita/icon0.png",
-  "screenshots": [
+  "v": "v.2026.04.06",
+  "vd": "2024-04-06",
+  "req": "Not specified",
+  "sz": 6027607,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-save-cloud-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-save-cloud-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-save-cloud-vita/save-cloud-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-save-cloud-vita/save-cloud-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/save-cloud/save-cloud-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/save-cloud/save-cloud-vita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/save-cloud/save-cloud-vita/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/save-cloud/save-cloud-vita/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1419",
-  "source_url": "https://github.com/save-cloud/save-cloud-vita/",
-  "release_page": "https://github.com/save-cloud/save-cloud-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.443412+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1419",
+  "su": "https://github.com/save-cloud/save-cloud-vita/",
+  "rp": "https://github.com/save-cloud/save-cloud-vita/releases",
+  "ua": "2026-08-13T15:34:48.443412+00:00"
 }

@@ -1,55 +1,55 @@
 {
   "id": "msweep",
-  "title_id": "MSWEEPER1",
-  "name": "MSweep",
-  "description": "Minesweeper game for PSVITA.",
-  "long_description": "Simple Minesweeper game for PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "MSWEEPER1",
+  "n": "MSweep",
+  "d": "Minesweeper game for PSVITA.",
+  "ld": "Simple Minesweeper game for PSVITA/PSTV.",
+  "aids": [
     "creckeryop"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2.1",
-  "version_date": "2020-10-29",
-  "requirements": "Not specified",
-  "size": 686731,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-msweep/icon0.png",
-  "screenshots": [
+  "v": "v.1.2.1",
+  "vd": "2020-10-29",
+  "req": "Not specified",
+  "sz": 686731,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-msweep/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-msweep/shot_01.png",
     "https://archive.org/download/psvitaalive-msweep/shot_02.png",
     "https://archive.org/download/psvitaalive-msweep/shot_03.png",
     "https://archive.org/download/psvitaalive-msweep/shot_04.png",
     "https://archive.org/download/psvitaalive-msweep/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-msweep/msweep.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-msweep/msweep.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-msweep-simple-minesweeper-game-for-psvita.533165/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-msweep-simple-minesweeper-game-for-psvita.533165/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/MSweep/releases/tag/v1.2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/MSweep/releases/tag/v1.2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Creckeryop/MSweep"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Creckeryop/MSweep"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "434",
-  "source_url": "https://github.com/Creckeryop/MSweep",
-  "release_page": "https://gbatemp.net/threads/release-msweep-simple-minesweeper-game-for-psvita.533165/",
-  "updated_at": "2026-08-13T15:34:48.606915+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "434",
+  "su": "https://github.com/Creckeryop/MSweep",
+  "rp": "https://gbatemp.net/threads/release-msweep-simple-minesweeper-game-for-psvita.533165/",
+  "ua": "2026-08-13T15:34:48.606915+00:00"
 }

@@ -1,55 +1,55 @@
 {
   "id": "pang-adventures-vita",
-  "title_id": "PANG00001",
-  "name": "Pang Adventures Vita",
-  "description": "Port of Pang Adventures for PSVITA.",
-  "long_description": "This is a wrapper/port of Pang Adventures for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PANG00001",
+  "n": "Pang Adventures Vita",
+  "d": "Port of Pang Adventures for PSVITA.",
+  "ld": "This is a wrapper/port of Pang Adventures for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "shooter"
   ],
-  "version": "v.1.1",
-  "version_date": "2025-10-19",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1854842,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pang-adventures-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2025-10-19",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1854842,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pang-adventures-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pang-adventures-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-pang-adventures-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-pang-adventures-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-pang-adventures-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-pang-adventures-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pang-adventures-vita/pang-adventures-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pang-adventures-vita/pang-adventures-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/pang-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/pang-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/pang-vita/releases/tag/v.1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/pang-vita/releases/tag/v.1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/pang-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/pang-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1236",
-  "source_url": "https://github.com/Rinnegatamante/pang-vita",
-  "release_page": "https://github.com/Rinnegatamante/pang-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.379638+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1236",
+  "su": "https://github.com/Rinnegatamante/pang-vita",
+  "rp": "https://github.com/Rinnegatamante/pang-vita/releases",
+  "ua": "2026-08-13T15:34:48.379638+00:00"
 }

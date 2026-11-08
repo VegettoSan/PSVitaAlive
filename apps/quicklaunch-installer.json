@@ -1,55 +1,55 @@
 {
   "id": "quicklaunch-installer",
-  "title_id": "QLINSTLPP",
-  "name": "QuickLaunch Installer",
-  "description": "Customizer for Quick Menu shortcuts.",
-  "long_description": "QuickLaunch Installer allows you to customize the quick menu shortcuts of your Livearea.",
-  "author_ids": [
+  "tid": "QLINSTLPP",
+  "n": "QuickLaunch Installer",
+  "d": "Customizer for Quick Menu shortcuts.",
+  "ld": "QuickLaunch Installer allows you to customize the quick menu shortcuts of your Livearea.",
+  "aids": [
     "drok17"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2021-10-11",
-  "requirements": "Not specified",
-  "size": 4161531,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-quicklaunch-installer/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2021-10-11",
+  "req": "Not specified",
+  "sz": 4161531,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-quicklaunch-installer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_01.png",
     "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_02.png",
     "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_03.png",
     "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_04.png",
     "https://archive.org/download/psvitaalive-quicklaunch-installer/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-quicklaunch-installer/quicklaunch-installer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-quicklaunch-installer/quicklaunch-installer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DRok17/QuickLaunch-Installer/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DRok17/QuickLaunch-Installer/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DRok17/QuickLaunch-Installer/releases/tag/v1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DRok17/QuickLaunch-Installer/releases/tag/v1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DRok17/QuickLaunch-Installer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/DRok17/QuickLaunch-Installer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "663",
-  "source_url": "https://github.com/DRok17/QuickLaunch-Installer",
-  "release_page": "https://github.com/DRok17/QuickLaunch-Installer/releases",
-  "updated_at": "2026-08-13T15:34:48.567962+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "663",
+  "su": "https://github.com/DRok17/QuickLaunch-Installer",
+  "rp": "https://github.com/DRok17/QuickLaunch-Installer/releases",
+  "ua": "2026-08-13T15:34:48.567962+00:00"
 }

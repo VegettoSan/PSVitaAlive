@@ -1,52 +1,52 @@
 {
   "id": "immultiple",
-  "title_id": "IMMULT000",
-  "name": "ImMultiple",
-  "description": "Front time tracker for plural systems.",
-  "long_description": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "IMMULT000",
+  "n": "ImMultiple",
+  "d": "Front time tracker for plural systems.",
+  "ld": "A program for tracking front time for DID/Plural Systems\nCreated using the ImGui GUI framework.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "the-crystal-org",
     "thecrystalorg"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2026-08-13",
-  "requirements": "Not specified",
-  "size": 8224284,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-immultiple/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2026-08-13",
+  "req": "Not specified",
+  "sz": 8224284,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-immultiple/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-immultiple/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-immultiple/ImMultiple_VITA.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-immultiple/ImMultiple_VITA.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://git.silica.codes"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://git.silica.codes"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://git.silica.codes/TheCrystalOrg/ImMultiple/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://git.silica.codes/TheCrystalOrg/ImMultiple"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://git.silica.codes/TheCrystalOrg/ImMultiple"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1458",
-  "source_url": "https://git.silica.codes",
-  "release_page": "",
-  "updated_at": "2020-01-01T00:00:00+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1458",
+  "su": "https://git.silica.codes",
+  "rp": "",
+  "ua": "2020-01-01T00:00:00+00:00"
 }

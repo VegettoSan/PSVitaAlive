@@ -1,54 +1,54 @@
 {
   "id": "solstice",
-  "title_id": "WLSOLSTIC",
-  "name": "Solstice",
-  "description": "Port of Solstice for PSVITA.",
-  "long_description": "Solstice is a remake of the ZX Spectrum game Equinox. You control a droid with the mission to stabilize a nuclear mining complex under the attack of unknown entities. The droid has the ability to fly and shoot to destroy the enemies, to protect itself with a plasma shield and to pick items for accessing other areas. There are 8 areas to complete. Can you bring peace to the world and prevent nuclear winter?\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WLSOLSTIC",
+  "n": "Solstice",
+  "d": "Port of Solstice for PSVITA.",
+  "ld": "Solstice is a remake of the ZX Spectrum game Equinox. You control a droid with the mission to stabilize a nuclear mining complex under the attack of unknown entities. The droid has the ability to fly and shoot to destroy the enemies, to protect itself with a plasma shield and to pick items for accessing other areas. There are 8 areas to complete. Can you bring peace to the world and prevent nuclear winter?\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.4",
-  "version_date": "2024-01-12",
-  "requirements": "Not specified",
-  "size": 62286885,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-solstice/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.4",
+  "vd": "2024-01-12",
+  "req": "Not specified",
+  "sz": 62286885,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-solstice/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-solstice/shot_01.png",
     "https://archive.org/download/psvitaalive-solstice/shot_02.png",
     "https://archive.org/download/psvitaalive-solstice/shot_03.png",
     "https://archive.org/download/psvitaalive-solstice/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-solstice/solstice.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-solstice/solstice.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/solstice-godot/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/solstice-godot/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/solstice-godot/releases/tag/v1.0.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/solstice-godot/releases/tag/v1.0.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/solstice-godot"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/withLogic/solstice-godot"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1175",
-  "source_url": "https://github.com/withLogic/solstice-godot",
-  "release_page": "https://github.com/withLogic/solstice-godot/releases",
-  "updated_at": "2026-08-13T15:34:48.453709+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1175",
+  "su": "https://github.com/withLogic/solstice-godot",
+  "rp": "https://github.com/withLogic/solstice-godot/releases",
+  "ua": "2026-08-13T15:34:48.453709+00:00"
 }

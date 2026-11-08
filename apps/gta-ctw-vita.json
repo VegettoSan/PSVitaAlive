@@ -1,54 +1,54 @@
 {
   "id": "gta-ctw-vita",
-  "title_id": "GTACTW000",
-  "name": "GTA: CTW Vita",
-  "description": "Port of Grand Theft Auto: Chinatown Wars for PSVITA.",
-  "long_description": "A port of Grand Theft Auto: Chinatown Wars for PSVITA/PSTV based on the Android version of the game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GTACTW000",
+  "n": "GTA: CTW Vita",
+  "d": "Port of Grand Theft Auto: Chinatown Wars for PSVITA.",
+  "ld": "A port of Grand Theft Auto: Chinatown Wars for PSVITA/PSTV based on the Android version of the game.\n\n- PsVitaAlive -",
+  "aids": [
     "aap",
     "theflow",
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2021-06-04",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 977940,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2021-06-04",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 977940,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gta-ctw-vita/gta-ctw-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gta-ctw-vita/gta-ctw-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/gtactw_vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/TheOfficialFloW/gtactw_vita/releases/tag/v1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/TheOfficialFloW/gtactw_vita/releases/tag/v1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/gtactw_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/gtactw_vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "625",
-  "source_url": "https://github.com/TheOfficialFloW/gtactw_vita",
-  "release_page": "https://github.com/TheOfficialFloW/gtactw_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.586028+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "625",
+  "su": "https://github.com/TheOfficialFloW/gtactw_vita",
+  "rp": "https://github.com/TheOfficialFloW/gtactw_vita/releases",
+  "ua": "2026-08-13T15:34:48.586028+00:00"
 }

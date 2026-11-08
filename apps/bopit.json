@@ -1,55 +1,55 @@
 {
   "id": "bopit",
-  "title_id": "BOPIT0001",
-  "name": "BopIt",
-  "description": "A simple game of Bop It!",
-  "long_description": "This was just a quick project for something to do. It's not great and I wouldn't say it's a finished product but this is all I'm going to do with it so feel free to do what you want with it.",
-  "author_ids": [
+  "tid": "BOPIT0001",
+  "n": "BopIt",
+  "d": "A simple game of Bop It!",
+  "ld": "This was just a quick project for something to do. It's not great and I wouldn't say it's a finished product but this is all I'm going to do with it so feel free to do what you want with it.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1",
-  "version_date": "2022-05-25",
-  "requirements": "Not specified",
-  "size": 5091557,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bopit/icon0.png",
-  "screenshots": [
+  "v": "v.1",
+  "vd": "2022-05-25",
+  "req": "Not specified",
+  "sz": 5091557,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bopit/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bopit/shot_01.png",
     "https://archive.org/download/psvitaalive-bopit/shot_02.png",
     "https://archive.org/download/psvitaalive-bopit/shot_03.png",
     "https://archive.org/download/psvitaalive-bopit/shot_04.png",
     "https://archive.org/download/psvitaalive-bopit/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bopit/bopit.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bopit/bopit.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/BopIt-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/BopIt-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/BopIt-Vita/releases/tag/v1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/BopIt-Vita/releases/tag/v1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/BopIt-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/BopIt-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "826",
-  "source_url": "https://github.com/AntHJ/BopIt-Vita",
-  "release_page": "https://github.com/AntHJ/BopIt-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.545749+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "826",
+  "su": "https://github.com/AntHJ/BopIt-Vita",
+  "rp": "https://github.com/AntHJ/BopIt-Vita/releases",
+  "ua": "2026-08-13T15:34:48.545749+00:00"
 }

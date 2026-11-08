@@ -1,42 +1,42 @@
 {
   "id": "dzzee",
-  "title_id": "DZZEETHP0",
-  "name": "Dzzee",
-  "description": "Multiplatform Arcade game.",
-  "long_description": "A multiplaform arcade game. Control the white rectangle with the UP and DOWN buttons. Stay on the lanes, avoid the gaps. Survive longest and retain health points for high score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DZZEETHP0",
+  "n": "Dzzee",
+  "d": "Multiplatform Arcade game.",
+  "ld": "A multiplaform arcade game. Control the white rectangle with the UP and DOWN buttons. Stay on the lanes, avoid the gaps. Survive longest and retain health points for high score.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "thp"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2.0",
-  "version_date": "2021-10-16",
-  "requirements": "Not specified",
-  "size": 94239,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-dzzee/icon0.png",
-  "screenshots": [
+  "v": "v.1.2.0",
+  "vd": "2021-10-16",
+  "req": "Not specified",
+  "sz": 94239,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-dzzee/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dzzee/shot_01.png",
     "https://archive.org/download/psvitaalive-dzzee/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dzzee/dzzee.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dzzee/dzzee.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://thp.io/2021/dzzee/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://thp.io/2021/dzzee/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "741",
-  "source_url": "http://thp.io/2021/dzzee/",
-  "release_page": "http://thp.io/2021/dzzee/",
-  "updated_at": "2026-08-13T15:34:48.567420+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "741",
+  "su": "http://thp.io/2021/dzzee/",
+  "rp": "http://thp.io/2021/dzzee/",
+  "ua": "2026-08-13T15:34:48.567420+00:00"
 }

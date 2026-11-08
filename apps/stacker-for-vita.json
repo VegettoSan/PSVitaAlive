@@ -1,51 +1,51 @@
 {
   "id": "stacker-for-vita",
-  "title_id": "BUNKAI015",
-  "name": "Stacker for Vita",
-  "description": "Stacker arcade game for PSVITA.",
-  "long_description": "A stacker arcade game made with Godot 3.5.",
-  "author_ids": [
+  "tid": "BUNKAI015",
+  "n": "Stacker for Vita",
+  "d": "Stacker arcade game for PSVITA.",
+  "ld": "A stacker arcade game made with Godot 3.5.",
+  "aids": [
     "bunkai"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2024-02-27",
-  "requirements": "Not specified",
-  "size": 19596302,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-stacker-for-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2024-02-27",
+  "req": "Not specified",
+  "sz": 19596302,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-stacker-for-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-stacker-for-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-stacker-for-vita/stacker-for-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-stacker-for-vita/stacker-for-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Bunkai9448/StackerVitaGodot/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Bunkai9448/StackerVitaGodot/releases/tag/StackerVita-v.01.00"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Bunkai9448/StackerVitaGodot/releases/tag/StackerVita-v.01.00"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Bunkai9448/StackerVitaGodot"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Bunkai9448/StackerVitaGodot"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1189",
-  "source_url": "https://github.com/Bunkai9448/StackerVitaGodot",
-  "release_page": "https://github.com/Bunkai9448/StackerVitaGodot/releases",
-  "updated_at": "2026-08-13T15:34:48.446853+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1189",
+  "su": "https://github.com/Bunkai9448/StackerVitaGodot",
+  "rp": "https://github.com/Bunkai9448/StackerVitaGodot/releases",
+  "ua": "2026-08-13T15:34:48.446853+00:00"
 }

@@ -1,53 +1,53 @@
 {
   "id": "vita-doom",
-  "title_id": "DOOM00666",
-  "name": "Vita Doom",
-  "description": "Doom 1/Doom 2 port for PSVITA.",
-  "long_description": "Doom 1/Doom 2 port for PSVITA based on DoomPSP.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DOOM00666",
+  "n": "Vita Doom",
+  "d": "Doom 1/Doom 2 port for PSVITA.",
+  "ld": "Doom 1/Doom 2 port for PSVITA based on DoomPSP.\n\n- PsVitaAlive -",
+  "aids": [
     "aagallag",
     "mrnetrix"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2017-07-24",
-  "requirements": "- Game Data Files: PC",
-  "size": 648251,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-doom/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2017-07-24",
+  "req": "- Game Data Files: PC",
+  "sz": 648251,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-doom/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-doom/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-doom/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-doom/vita-doom.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-doom/vita-doom.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/aagallag/Vita_Doom/releases/"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/aagallag/Vita_Doom/releases/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/aagallag/Vita_Doom/releases/tag/aagallag_v1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/aagallag/Vita_Doom/releases/tag/aagallag_v1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/aagallag/Vita_Doom"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/aagallag/Vita_Doom"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "172",
-  "source_url": "https://github.com/aagallag/Vita_Doom",
-  "release_page": "https://github.com/aagallag/Vita_Doom/releases/",
-  "updated_at": "2026-08-13T15:34:48.680349+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "172",
+  "su": "https://github.com/aagallag/Vita_Doom",
+  "rp": "https://github.com/aagallag/Vita_Doom/releases/",
+  "ua": "2026-08-13T15:34:48.680349+00:00"
 }

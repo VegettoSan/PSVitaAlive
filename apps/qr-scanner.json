@@ -1,41 +1,41 @@
 {
   "id": "qr-scanner",
-  "title_id": "QRSCANNER",
-  "name": "QR Scanner",
-  "description": "Minimalistic QR scanner/downloader.",
-  "long_description": "A minimalistic QR scanner that allows to either download the targeted file or open it on the PSVita webbrowser.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "QRSCANNER",
+  "n": "QR Scanner",
+  "d": "Minimalistic QR scanner/downloader.",
+  "ld": "A minimalistic QR scanner that allows to either download the targeted file or open it on the PSVita webbrowser.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-04-20",
-  "requirements": "Not specified",
-  "size": 1579367,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-qr-scanner/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-04-20",
+  "req": "Not specified",
+  "sz": 1579367,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-qr-scanner/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-qr-scanner/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-qr-scanner/qr-scanner.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-qr-scanner/qr-scanner.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/psv-qr-scanner"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/psv-qr-scanner"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1267",
-  "source_url": "https://github.com/Rinnegatamante/psv-qr-scanner",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.410477+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1267",
+  "su": "https://github.com/Rinnegatamante/psv-qr-scanner",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.410477+00:00"
 }

@@ -1,15 +1,15 @@
 {
   "id": "siulpop",
-  "name": "SiulPop",
-  "avatar": "https://github.com/SiulPop.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "SiulPop",
+  "av": "https://github.com/SiulPop.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/SiulPop",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/SiulPop",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/SiulPop.png"
+  "ic": "https://github.com/SiulPop.png"
 }

@@ -1,15 +1,15 @@
 {
   "id": "skogaby",
-  "name": "skogaby",
-  "avatar": "https://github.com/skogaby.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "skogaby",
+  "av": "https://github.com/skogaby.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/skogaby",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/skogaby",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/skogaby.png"
+  "ic": "https://github.com/skogaby.png"
 }

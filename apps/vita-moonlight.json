@@ -1,54 +1,54 @@
 {
   "id": "vita-moonlight",
-  "title_id": "XYZZ00002",
-  "name": "Vita Moonlight",
-  "description": "NVIDIA Moonlight Streamer port.",
-  "long_description": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
-  "author_ids": [
+  "tid": "XYZZ00002",
+  "n": "Vita Moonlight",
+  "d": "NVIDIA Moonlight Streamer port.",
+  "ld": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
+  "aids": [
     "aorsiniyt",
     "xyzz",
     "d3m3vilurr",
     "shadowprince"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.13.2",
-  "version_date": "2025-11-16",
-  "requirements": "Not specified",
-  "size": 2788529,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-moonlight/icon0.png",
-  "screenshots": [
+  "v": "v.0.13.2",
+  "vd": "2025-11-16",
+  "req": "Not specified",
+  "sz": 2788529,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-moonlight/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-moonlight/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-moonlight/vita-moonlight.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-moonlight/vita-moonlight.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xyzz/vita-moonlight/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xyzz/vita-moonlight/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xyzz/vita-moonlight"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/xyzz/vita-moonlight"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "76",
-  "source_url": "https://github.com/xyzz/vita-moonlight",
-  "release_page": "https://github.com/xyzz/vita-moonlight/releases",
-  "updated_at": "2026-08-13T15:34:48.373632+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "76",
+  "su": "https://github.com/xyzz/vita-moonlight",
+  "rp": "https://github.com/xyzz/vita-moonlight/releases",
+  "ua": "2026-08-13T15:34:48.373632+00:00"
 }

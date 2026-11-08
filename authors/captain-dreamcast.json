@@ -1,15 +1,15 @@
 {
   "id": "captain-dreamcast",
-  "name": "Captain Dreamcast",
-  "avatar": "https://github.com/CaptainDreamcast.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Captain Dreamcast",
+  "av": "https://github.com/CaptainDreamcast.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/CaptainDreamcast",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/CaptainDreamcast",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/CaptainDreamcast.png"
+  "ic": "https://github.com/CaptainDreamcast.png"
 }

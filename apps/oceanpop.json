@@ -1,52 +1,52 @@
 {
   "id": "oceanpop",
-  "title_id": "OPOP00001",
-  "name": "OceanPop",
-  "description": "Match-3 game for PSVITA.",
-  "long_description": "Dive into the relaxing world of OceanPop and experience waves of match-3 gameplay with the three modes available!\nDon‘t get crushed by the tides before completing the 35 levels in regular mode, feel the rush of the currents in challenge mode or just go with the flow of the ocean breeze in relaxed mode!",
-  "author_ids": [
+  "tid": "OPOP00001",
+  "n": "OceanPop",
+  "d": "Match-3 game for PSVITA.",
+  "ld": "Dive into the relaxing world of OceanPop and experience waves of match-3 gameplay with the three modes available!\nDon‘t get crushed by the tides before completing the 35 levels in regular mode, feel the rush of the currents in challenge mode or just go with the flow of the ocean breeze in relaxed mode!",
+  "aids": [
     "sharkwouter"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.0",
-  "version_date": "2024-12-20",
-  "requirements": "Not specified",
-  "size": 28872251,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-oceanpop/icon0.png",
-  "screenshots": [
+  "v": "v.2.0",
+  "vd": "2024-12-20",
+  "req": "Not specified",
+  "sz": 28872251,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-oceanpop/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-oceanpop/shot_01.png",
     "https://archive.org/download/psvitaalive-oceanpop/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-oceanpop/oceanpop.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-oceanpop/oceanpop.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://sharkwouter.github.io/oceanpop/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://sharkwouter.github.io/oceanpop/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/sharkwouter/oceanpop/releases/tag/2.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/sharkwouter/oceanpop/releases/tag/2.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/sharkwouter/oceanpop"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/sharkwouter/oceanpop"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "792",
-  "source_url": "https://github.com/sharkwouter/oceanpop",
-  "release_page": "https://sharkwouter.github.io/oceanpop/",
-  "updated_at": "2026-08-13T15:34:48.421705+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "792",
+  "su": "https://github.com/sharkwouter/oceanpop",
+  "rp": "https://sharkwouter.github.io/oceanpop/",
+  "ua": "2026-08-13T15:34:48.421705+00:00"
 }

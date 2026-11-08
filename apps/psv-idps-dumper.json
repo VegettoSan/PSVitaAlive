@@ -1,51 +1,51 @@
 {
   "id": "psv-idps-dumper",
-  "title_id": "YPID00001",
-  "name": "PSV IDPS Dumper",
-  "description": "IDPS Dumper for PSVITA.",
-  "long_description": "A little utility that allows to dump your console IDPS-",
-  "author_ids": [
+  "tid": "YPID00001",
+  "n": "PSV IDPS Dumper",
+  "d": "IDPS Dumper for PSVITA.",
+  "ld": "A little utility that allows to dump your console IDPS-",
+  "aids": [
     "yoti"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2021-02-21",
-  "requirements": "Not specified",
-  "size": 275754,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psv-idps-dumper/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2021-02-21",
+  "req": "Not specified",
+  "sz": 275754,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psv-idps-dumper/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psv-idps-dumper/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psv-idps-dumper/PSV_IDPS_Dumper_v1.1.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psv-idps-dumper/PSV_IDPS_Dumper_v1.1.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Yoti/psv_idpsdump/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Yoti/psv_idpsdump/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Yoti/psv_idpsdump/releases/tag/v1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Yoti/psv_idpsdump"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Yoti/psv_idpsdump"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "619",
-  "source_url": "https://github.com/Yoti/psv_idpsdump",
-  "release_page": "https://github.com/Yoti/psv_idpsdump/releases",
-  "updated_at": "2026-08-13T15:34:48.595223+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "619",
+  "su": "https://github.com/Yoti/psv_idpsdump",
+  "rp": "https://github.com/Yoti/psv_idpsdump/releases",
+  "ua": "2026-08-13T15:34:48.595223+00:00"
 }

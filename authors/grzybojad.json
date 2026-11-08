@@ -1,15 +1,15 @@
 {
   "id": "grzybojad",
-  "name": "Grzybojad",
-  "avatar": "https://github.com/Grzybojad.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "Grzybojad",
+  "av": "https://github.com/Grzybojad.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Grzybojad",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Grzybojad",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Grzybojad.png"
+  "ic": "https://github.com/Grzybojad.png"
 }

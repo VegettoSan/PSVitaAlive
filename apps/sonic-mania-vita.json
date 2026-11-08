@@ -1,58 +1,58 @@
 {
   "id": "sonic-mania-vita",
-  "title_id": "MANIA0001",
-  "name": "Sonic Mania Vita",
-  "description": "Port of Sonic Mania for PSVITA.",
-  "long_description": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MANIA0001",
+  "n": "Sonic Mania Vita",
+  "d": "Port of Sonic Mania for PSVITA.",
+  "ld": "Port of Sonic Mania for PSVITA based on a decompilation project of the game and its engine.\n\n- PsVitaAlive -",
+  "aids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "platformer",
     "puzzle",
     "source-port",
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2023-09-05",
-  "requirements": "- Game Data Files: PC Steam OR PS4 OR Switch",
-  "size": 2111832,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.1",
+  "vd": "2023-09-05",
+  "req": "- Game Data Files: PC Steam OR PS4 OR Switch",
+  "sz": 2111832,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/sonic-mania-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-mania-vita/sonic-mania-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip",
-      "size": 210554061,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/psvitaalive-sonic-mania-vita/GameFiles.zip",
+      "sz": 210554061,
+      "xp": "ux0:data/",
+      "ips": [
         "Mania"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/Sonic-Mania-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SonicMastr/Sonic-Mania-Vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-sonic-mania-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-sonic-mania-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-sonic-mania-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "858",
-  "source_url": "https://github.com/SonicMastr/Sonic-Mania-Vita",
-  "release_page": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "858",
+  "su": "https://github.com/SonicMastr/Sonic-Mania-Vita",
+  "rp": "https://github.com/SonicMastr/Sonic-Mania-Vita/releases",
+  "ua": "2026-08-13T15:34"
 }

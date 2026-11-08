@@ -1,39 +1,39 @@
 {
   "id": "cartoon-combatt-flying-circus",
-  "title_id": "CCFC12345",
-  "name": "Cartoon Combatt: Flying Circus",
-  "description": "Tight dogfights and strategy map domination for PSVita.",
-  "long_description": "Cartoon Combatt: Flying Circus (CCFC) is a strategy flight combat game with a flair for the arcade. You play a pilot tasked to complete missions in order to expand the area controlled by your side of the conflict. This game is under active development.",
-  "author_ids": [
+  "tid": "CCFC12345",
+  "n": "Cartoon Combatt: Flying Circus",
+  "d": "Tight dogfights and strategy map domination for PSVita.",
+  "ld": "Cartoon Combatt: Flying Circus (CCFC) is a strategy flight combat game with a flair for the arcade. You play a pilot tasked to complete missions in order to expand the area controlled by your side of the conflict. This game is under active development.",
+  "aids": [
     "mrkane"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.45.5 Beta",
-  "version_date": "2025-05-16",
-  "requirements": "Not specified",
-  "size": 63007285,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/icon0.png",
-  "screenshots": [
+  "v": "v.0.45.5 Beta",
+  "vd": "2025-05-16",
+  "req": "Not specified",
+  "sz": 63007285,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/shot_01.png",
     "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/shot_02.png",
     "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/shot_03.png",
     "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/cartoon-combatt-flying-circus.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cartoon-combatt-flying-circus/cartoon-combatt-flying-circus.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1159",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1159",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.214180+00:00"
+  "sn": "VitaDB",
+  "si": "1159",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1159",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.214180+00:00"
 }

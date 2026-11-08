@@ -1,21 +1,21 @@
 {
   "id": "spliffcurrybeats",
-  "name": "SpliffCurryBeats",
-  "avatar": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png",
-  "bio": "Dev Ps Vita",
-  "links": [
+  "n": "SpliffCurryBeats",
+  "av": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png",
+  "b": "Dev Ps Vita",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitLab",
-      "url": "https://gitlab.com/sexcurrybeats",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitLab",
+      "u": "https://gitlab.com/sexcurrybeats",
+      "rec": true
     },
     {
-      "type": "Community",
-      "name": "X",
-      "url": "https://x.com/sexcurrybeats",
-      "recommended": false
+      "t": "Community",
+      "n": "X",
+      "u": "https://x.com/sexcurrybeats",
+      "rec": false
     }
   ],
-  "icon": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png"
+  "ic": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png"
 }

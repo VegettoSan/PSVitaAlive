@@ -1,15 +1,15 @@
 {
   "id": "zenoarrows",
-  "name": "ZenoArrows",
-  "avatar": "https://avatars.githubusercontent.com/u/129334871?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "ZenoArrows",
+  "av": "https://avatars.githubusercontent.com/u/129334871?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ZenoArrows",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ZenoArrows",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/129334871?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/129334871?v=4"
 }

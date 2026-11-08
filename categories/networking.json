@@ -1,69 +1,69 @@
 {
   "id": "networking",
-  "name": "Networking",
-  "description": "Applications focused on network communication and connectivity on PlayStation Vita.",
-  "icon": "icons/networking.png",
-  "order": 8,
-  "subcategories": [
+  "n": "Networking",
+  "d": "Applications focused on network communication and connectivity on PlayStation Vita.",
+  "ic": "icons/networking.png",
+  "ord": 8,
+  "subs": [
     {
       "id": "web-browser",
-      "name": "Web Browser"
+      "n": "Web Browser"
     },
     {
       "id": "ftp",
-      "name": "FTP"
+      "n": "FTP"
     },
     {
       "id": "http",
-      "name": "HTTP"
+      "n": "HTTP"
     },
     {
       "id": "download",
-      "name": "Download"
+      "n": "Download"
     },
     {
       "id": "streaming",
-      "name": "Streaming"
+      "n": "Streaming"
     },
     {
       "id": "remote-desktop",
-      "name": "Remote Desktop"
+      "n": "Remote Desktop"
     },
     {
       "id": "game-streaming",
-      "name": "Game Streaming"
+      "n": "Game Streaming"
     },
     {
       "id": "file-sharing",
-      "name": "File Sharing"
+      "n": "File Sharing"
     },
     {
       "id": "server",
-      "name": "Server"
+      "n": "Server"
     },
     {
       "id": "client",
-      "name": "Client"
+      "n": "Client"
     },
     {
       "id": "network-tools",
-      "name": "Network Tools"
+      "n": "Network Tools"
     },
     {
       "id": "dns",
-      "name": "DNS"
+      "n": "DNS"
     },
     {
       "id": "proxy",
-      "name": "Proxy"
+      "n": "Proxy"
     },
     {
       "id": "messaging",
-      "name": "Messaging"
+      "n": "Messaging"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

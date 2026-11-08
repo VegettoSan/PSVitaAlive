@@ -1,55 +1,55 @@
 {
   "id": "bartender",
-  "title_id": "BARTENDER",
-  "name": "Bartender",
-  "description": "Trophy app for homebrews.",
-  "long_description": "This is a homebrew implementation of the trophy system for the PSVita. The trophies unlocked in this ecosystem do not merge with the official trophies on the PSVita.",
-  "author_ids": [
+  "tid": "BARTENDER",
+  "n": "Bartender",
+  "d": "Trophy app for homebrews.",
+  "ld": "This is a homebrew implementation of the trophy system for the PSVita. The trophies unlocked in this ecosystem do not merge with the official trophies on the PSVita.",
+  "aids": [
     "island-games"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-11-10",
-  "requirements": "Not specified",
-  "size": 2041208,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-bartender/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-11-10",
+  "req": "Not specified",
+  "sz": 2041208,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-bartender/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-bartender/shot_01.png",
     "https://archive.org/download/psvitaalive-bartender/shot_02.png",
     "https://archive.org/download/psvitaalive-bartender/shot_03.png",
     "https://archive.org/download/psvitaalive-bartender/shot_04.png",
     "https://archive.org/download/psvitaalive-bartender/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-bartender/bartender.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-bartender/bartender.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/Bartender/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/Bartender/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/Bartender/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/Bartender/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/island-games/Bartender"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/island-games/Bartender"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "751",
-  "source_url": "https://github.com/island-games/Bartender/releases",
-  "release_page": "https://github.com/island-games/Bartender/releases",
-  "updated_at": "2026-08-13T15:34:48.564060+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "751",
+  "su": "https://github.com/island-games/Bartender/releases",
+  "rp": "https://github.com/island-games/Bartender/releases",
+  "ua": "2026-08-13T15:34:48.564060+00:00"
 }

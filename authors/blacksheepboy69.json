@@ -1,15 +1,15 @@
 {
   "id": "blacksheepboy69",
-  "name": "BlackSheepBoy69",
-  "avatar": "https://github.com/BlackSheepBoy69.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "BlackSheepBoy69",
+  "av": "https://github.com/BlackSheepBoy69.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/BlackSheepBoy69",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/BlackSheepBoy69",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/BlackSheepBoy69.png"
+  "ic": "https://github.com/BlackSheepBoy69.png"
 }

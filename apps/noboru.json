@@ -1,55 +1,55 @@
 {
   "id": "noboru",
-  "title_id": "NOBOR0001",
-  "name": "Noboru",
-  "description": "Manga/Comic reader for PSVITA.",
-  "long_description": "A Manga/Comic reader app for PSVITA with both online and offline modes support.",
-  "author_ids": [
+  "tid": "NOBOR0001",
+  "n": "Noboru",
+  "d": "Manga/Comic reader for PSVITA.",
+  "ld": "A Manga/Comic reader app for PSVITA with both online and offline modes support.",
+  "aids": [
     "creckeryop"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.911",
-  "version_date": "2023-07-09",
-  "requirements": "Not specified",
-  "size": 10066973,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-noboru/icon0.png",
-  "screenshots": [
+  "v": "v.0.911",
+  "vd": "2023-07-09",
+  "req": "Not specified",
+  "sz": 10066973,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-noboru/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-noboru/shot_01.png",
     "https://archive.org/download/psvitaalive-noboru/shot_02.png",
     "https://archive.org/download/psvitaalive-noboru/shot_03.png",
     "https://archive.org/download/psvitaalive-noboru/shot_04.png",
     "https://archive.org/download/psvitaalive-noboru/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-noboru/noboru.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-noboru/noboru.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/NOBORU/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/NOBORU/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Creckeryop/NOBORU/releases/tag/0.911"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Creckeryop/NOBORU/releases/tag/0.911"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Creckeryop/NOBORU"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Creckeryop/NOBORU"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "534",
-  "source_url": "https://github.com/Creckeryop/NOBORU",
-  "release_page": "https://github.com/Creckeryop/NOBORU/releases",
-  "updated_at": "2026-08-13T15:34:48.486794+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "534",
+  "su": "https://github.com/Creckeryop/NOBORU",
+  "rp": "https://github.com/Creckeryop/NOBORU/releases",
+  "ua": "2026-08-13T15:34:48.486794+00:00"
 }

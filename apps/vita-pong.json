@@ -1,38 +1,38 @@
 {
   "id": "vita-pong",
-  "title_id": "GDOT00039",
-  "name": "Vita Pong",
-  "description": "Pong clone for PSVita.",
-  "long_description": "A Pong clone for PSVita made in Godot.",
-  "author_ids": [
+  "tid": "GDOT00039",
+  "n": "Vita Pong",
+  "d": "Pong clone for PSVita.",
+  "ld": "A Pong clone for PSVita made in Godot.",
+  "aids": [
     "no-storage7413"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2026-05-11",
-  "requirements": "Not specified",
-  "size": 26285287,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-pong/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2026-05-11",
+  "req": "Not specified",
+  "sz": 26285287,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-pong/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-pong/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-pong/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-pong/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-pong/vita-pong.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-pong/vita-pong.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1397",
-  "source_url": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1397",
-  "release_page": "",
-  "updated_at": "2026-08-14T01:05:59.210317+00:00"
+  "sn": "VitaDB",
+  "si": "1397",
+  "su": "https://www.rinnegatamante.eu/vitadb/get_hb_url.php?id=1397",
+  "rp": "",
+  "ua": "2026-08-14T01:05:59.210317+00:00"
 }

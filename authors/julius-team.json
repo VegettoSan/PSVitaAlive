@@ -1,15 +1,15 @@
 {
   "id": "julius-team",
-  "name": "Julius Team",
-  "avatar": "https://github.com/bvschaik.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "Julius Team",
+  "av": "https://github.com/bvschaik.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/bvschaik",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/bvschaik",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/bvschaik.png"
+  "ic": "https://github.com/bvschaik.png"
 }

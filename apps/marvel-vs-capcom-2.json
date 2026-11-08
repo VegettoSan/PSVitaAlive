@@ -1,49 +1,49 @@
 {
   "id": "marvel-vs-capcom-2",
-  "title_id": "MVSC00001",
-  "name": "Marvel vs Capcom 2",
-  "description": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
-  "long_description": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
-  "author_ids": [
+  "tid": "MVSC00001",
+  "n": "Marvel vs Capcom 2",
+  "d": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
+  "ld": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
+  "aids": [
     "papileno"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade",
     "strategy",
     "source-port"
   ],
-  "version": "1.1",
-  "version_date": "2026-11-01",
-  "requirements": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
-  "size": 1782579,
-  "status": "Verified",
-  "links": [
+  "v": "1.1",
+  "vd": "2026-11-01",
+  "req": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
+  "sz": 1782579,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.1.vpk",
-      "size": 1782579,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.1.vpk",
+      "sz": 1782579,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 176265626,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 176265626,
+      "xp": "ux0:data/",
+      "ips": [
         "mvc2"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
     }
   ],
-  "icon": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
   ]
 }

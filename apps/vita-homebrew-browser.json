@@ -1,55 +1,55 @@
 {
   "id": "vita-homebrew-browser",
-  "title_id": "VHBB00001",
-  "name": "Vita HomeBrew Browser",
-  "description": "Homebrew Store for PSVITA linked with VitaDB.",
-  "long_description": "Vita Homebrew Browser is a homebrew store for the PS Vita.\nFind Homebrews. Download Them. Launch them.\nThe size of your memory card is the only limit!",
-  "author_ids": [
+  "tid": "VHBB00001",
+  "n": "Vita HomeBrew Browser",
+  "d": "Homebrew Store for PSVITA linked with VitaDB.",
+  "ld": "Vita Homebrew Browser is a homebrew store for the PS Vita.\nFind Homebrews. Download Them. Launch them.\nThe size of your memory card is the only limit!",
+  "aids": [
     "devnoname120"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.92",
-  "version_date": "2020-04-20",
-  "requirements": "Not specified",
-  "size": 9256314,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-homebrew-browser/icon0.png",
-  "screenshots": [
+  "v": "v.0.92",
+  "vd": "2020-04-20",
+  "req": "Not specified",
+  "sz": 9256314,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-homebrew-browser/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_02.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_03.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_04.png",
     "https://archive.org/download/psvitaalive-vita-homebrew-browser/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-homebrew-browser/vita-homebrew-browser.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-homebrew-browser/vita-homebrew-browser.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/devnoname120/vhbb/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/devnoname120/vhbb/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/devnoname120/vhbb/releases/tag/0.92"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/devnoname120/vhbb/releases/tag/0.92"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/devnoname120/vhbb"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/devnoname120/vhbb"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "205",
-  "source_url": "https://github.com/devnoname120/vhbb",
-  "release_page": "https://github.com/devnoname120/vhbb/releases",
-  "updated_at": "2026-08-13T15:34:48.620924+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "205",
+  "su": "https://github.com/devnoname120/vhbb",
+  "rp": "https://github.com/devnoname120/vhbb/releases",
+  "ua": "2026-08-13T15:34:48.620924+00:00"
 }

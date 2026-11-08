@@ -1,55 +1,55 @@
 {
   "id": "a-super-small-shmup",
-  "title_id": "ISLD00000",
-  "name": "A Super Small SHMUP",
-  "description": "Small Galaga type game for PSVITA.",
-  "long_description": "This is a small Galaga type game for the PSVita. It features 10 waves and a boss fight. It is also the first game to utilize the Bartender trophy system.",
-  "author_ids": [
+  "tid": "ISLD00000",
+  "n": "A Super Small SHMUP",
+  "d": "Small Galaga type game for PSVITA.",
+  "ld": "This is a small Galaga type game for the PSVita. It features 10 waves and a boss fight. It is also the first game to utilize the Bartender trophy system.",
+  "aids": [
     "island-games"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.02",
-  "version_date": "2021-12-02",
-  "requirements": "Not specified",
-  "size": 2687137,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-a-super-small-shmup/icon0.png",
-  "screenshots": [
+  "v": "v.1.02",
+  "vd": "2021-12-02",
+  "req": "Not specified",
+  "sz": 2687137,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-a-super-small-shmup/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-a-super-small-shmup/shot_01.png",
     "https://archive.org/download/psvitaalive-a-super-small-shmup/shot_02.png",
     "https://archive.org/download/psvitaalive-a-super-small-shmup/shot_03.png",
     "https://archive.org/download/psvitaalive-a-super-small-shmup/shot_04.png",
     "https://archive.org/download/psvitaalive-a-super-small-shmup/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-a-super-small-shmup/a-super-small-shmup.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-a-super-small-shmup/a-super-small-shmup.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/A-Super-Small-Shmup/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/A-Super-Small-Shmup/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/island-games/A-Super-Small-Shmup/releases/tag/v1.02"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/island-games/A-Super-Small-Shmup/releases/tag/v1.02"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/island-games/A-Super-Small-Shmup"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/island-games/A-Super-Small-Shmup"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "752",
-  "source_url": "https://github.com/island-games/A-Super-Small-Shmup",
-  "release_page": "https://github.com/island-games/A-Super-Small-Shmup/releases",
-  "updated_at": "2026-08-13T15:34:48.561993+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "752",
+  "su": "https://github.com/island-games/A-Super-Small-Shmup",
+  "rp": "https://github.com/island-games/A-Super-Small-Shmup/releases",
+  "ua": "2026-08-13T15:34:48.561993+00:00"
 }

@@ -1,50 +1,50 @@
 {
   "id": "beat-banger",
-  "title_id": "BEAT33322",
-  "name": "Beat Banger",
-  "description": "Adult rythm game for PSVita.",
-  "long_description": "A port of the adult rhythm game Beat Banger for the PSVita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BEAT33322",
+  "n": "Beat Banger",
+  "d": "Adult rythm game for PSVita.",
+  "ld": "A port of the adult rhythm game Beat Banger for the PSVita.\n\n- PsVitaAlive -",
+  "aids": [
     "masteroga"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.99",
-  "version_date": "2025-10-07",
-  "requirements": "- Game Data Files: Steam",
-  "size": 17276241,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-beat-banger/icon0.png",
-  "screenshots": [
+  "v": "v.0.99",
+  "vd": "2025-10-07",
+  "req": "- Game Data Files: Steam",
+  "sz": 17276241,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-beat-banger/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-beat-banger/shot_01.png",
     "https://archive.org/download/psvitaalive-beat-banger/shot_02.png",
     "https://archive.org/download/psvitaalive-beat-banger/shot_03.png",
     "https://archive.org/download/psvitaalive-beat-banger/shot_04.png",
     "https://archive.org/download/psvitaalive-beat-banger/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-beat-banger/beat-banger.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-beat-banger/beat-banger.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/masteroga101/Beat-Banger-PsVita-"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/masteroga101/Beat-Banger-PsVita-"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/masteroga101/Beat-Banger-PsVita-/releases/tag/v0.99"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/masteroga101/Beat-Banger-PsVita-/releases/tag/v0.99"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1329",
-  "source_url": "https://github.com/masteroga101/Beat-Banger-PsVita-",
-  "release_page": "https://github.com/masteroga101/Beat-Banger-PsVita-",
-  "updated_at": "2026-08-13T15:34:48.380973+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1329",
+  "su": "https://github.com/masteroga101/Beat-Banger-PsVita-",
+  "rp": "https://github.com/masteroga101/Beat-Banger-PsVita-",
+  "ua": "2026-08-13T15:34:48.380973+00:00"
 }

@@ -1,50 +1,50 @@
 {
   "id": "punch-club-vita",
-  "title_id": "PNCH11111",
-  "name": "Punch Club Vita",
-  "description": "Port of Punch Club for PSVita.",
-  "long_description": "Punch Club is a sporting management simulation developed by Lazy Bear Games and published by tinyBuild. In the game, the player manages an upcoming boxer in training and preparation for a series of boxing matches at a local club, while searching for clues of who killed their father.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PNCH11111",
+  "n": "Punch Club Vita",
+  "d": "Port of Punch Club for PSVita.",
+  "ld": "Punch Club is a sporting management simulation developed by Lazy Bear Games and published by tinyBuild. In the game, the player manages an upcoming boxer in training and preparation for a series of boxing matches at a local club, while searching for clues of who killed their father.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-09-18",
-  "requirements": "- Game Data Files: Steam",
-  "size": 17054914,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-punch-club-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-09-18",
+  "req": "- Game Data Files: Steam",
+  "sz": 17054914,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-punch-club-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-punch-club-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-punch-club-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-punch-club-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-punch-club-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-punch-club-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-punch-club-vita/punch-club-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-punch-club-vita/punch-club-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/PatnosDD/Punch-Club-Ps-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita/releases/tag/V1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/PatnosDD/Punch-Club-Ps-Vita/releases/tag/V1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1322",
-  "source_url": "https://github.com/PatnosDD/Punch-Club-Ps-Vita",
-  "release_page": "https://github.com/PatnosDD/Punch-Club-Ps-Vita",
-  "updated_at": "2026-08-13T15:34:48.388619+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1322",
+  "su": "https://github.com/PatnosDD/Punch-Club-Ps-Vita",
+  "rp": "https://github.com/PatnosDD/Punch-Club-Ps-Vita",
+  "ua": "2026-08-13T15:34:48.388619+00:00"
 }

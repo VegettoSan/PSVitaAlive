@@ -1,15 +1,15 @@
 {
   "id": "eli-crystal",
-  "name": "Eli Crystal",
-  "avatar": "https://github.com/EliCrystal.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "Eli Crystal",
+  "av": "https://github.com/EliCrystal.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/EliCrystal",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/EliCrystal",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/EliCrystal.png"
+  "ic": "https://github.com/EliCrystal.png"
 }

@@ -1,51 +1,51 @@
 {
   "id": "javitascript-snake",
-  "title_id": "SNEK00001",
-  "name": "JaVitaScript Snake",
-  "description": "Port of patorjk's JavaScript Snake for PSVITA.",
-  "long_description": "Port of patorjk's JavaScript Snake for PSVITA.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SNEK00001",
+  "n": "JaVitaScript Snake",
+  "d": "Port of patorjk's JavaScript Snake for PSVITA.",
+  "ld": "Port of patorjk's JavaScript Snake for PSVITA.\n\n- PsVitaAlive -",
+  "aids": [
     "largepelotas"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2.0",
-  "version_date": "2026-08-06",
-  "requirements": "A PS Vita or PS TV with homebrew enabled (Enso, HENkaku or h-encore). Install the VPK with VitaShell. Saves live in ux0:data/VitaSnake/ and are preserved across upgrades.",
-  "size": 1683846,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-javitascript-snake/icon0.png",
-  "screenshots": [
+  "v": "v.1.2.0",
+  "vd": "2026-08-06",
+  "req": "A PS Vita or PS TV with homebrew enabled (Enso, HENkaku or h-encore). Install the VPK with VitaShell. Saves live in ux0:data/VitaSnake/ and are preserved across upgrades.",
+  "sz": 1683846,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-javitascript-snake/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-javitascript-snake/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-javitascript-snake/snake.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-javitascript-snake/snake.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/largepelotas/JaVitaScript-Snake/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/largepelotas/JaVitaScript-Snake/releases/tag/v1.2.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/largepelotas/JaVitaScript-Snake/releases/tag/v1.2.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/largepelotas/JaVitaScript-Snake"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/largepelotas/JaVitaScript-Snake"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1464",
-  "source_url": "https://github.com/largepelotas/JaVitaScript-Snake",
-  "release_page": "https://github.com/largepelotas/JaVitaScript-Snake/releases",
-  "updated_at": "2026-08-13T15:34:48.322084+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1464",
+  "su": "https://github.com/largepelotas/JaVitaScript-Snake",
+  "rp": "https://github.com/largepelotas/JaVitaScript-Snake/releases",
+  "ua": "2026-08-13T15:34:48.322084+00:00"
 }

@@ -1,57 +1,57 @@
 {
   "id": "azahar-emulator-alpha",
-  "title_id": "AZAHARPSV",
-  "name": "Azahar Emulator (ALPHA)",
-  "description": "3DS Emulator from Ps Vita",
-  "long_description": "3DS Emulator from Ps Vita",
-  "author_ids": [
+  "tid": "AZAHARPSV",
+  "n": "Azahar Emulator (ALPHA)",
+  "d": "3DS Emulator from Ps Vita",
+  "ld": "3DS Emulator from Ps Vita",
+  "aids": [
     "grarak"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "0.1.0",
-  "version_date": "2026-09-12",
-  "requirements": "- Install both skprx files (azaharnative and CapUnlocker) to the KERNEL section in your config.txt\n- Put your decrypted ROMs in ux0:/data/azahar/roms\n- Set your CPU to 500MHz before launching a game",
-  "size": 8493466,
-  "status": "Verified",
-  "links": [
+  "v": "0.1.0",
+  "vd": "2026-09-12",
+  "req": "- Install both skprx files (azaharnative and CapUnlocker) to the KERNEL section in your config.txt\n- Put your decrypted ROMs in ux0:/data/azahar/roms\n- Set your CPU to 500MHz before launching a game",
+  "sz": 8493466,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/azahar-vita-/azahar_vita%200.1.0.vpk",
-      "size": 8493466,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/azahar-vita-/azahar_vita%200.1.0.vpk",
+      "sz": 8493466,
+      "rec": true
     },
     {
-      "type": "Plugin",
-      "name": "azaharnative.skprx",
-      "url": "https://archive.org/download/azahar-vita-/azaharnative.skprx",
-      "size": 24269,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/azaharnative.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "azaharnative.skprx",
+      "u": "https://archive.org/download/azahar-vita-/azaharnative.skprx",
+      "sz": 24269,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/azaharnative.skprx",
+      "rq": true
     },
     {
-      "type": "Plugin",
-      "name": "CapUnlocker 1.4",
-      "url": "https://archive.org/download/azahar-vita-/CapUnlocker.skprx",
-      "size": 5222,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/CapUnlocker.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "CapUnlocker 1.4",
+      "u": "https://archive.org/download/azahar-vita-/CapUnlocker.skprx",
+      "sz": 5222,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/CapUnlocker.skprx",
+      "rq": true
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Grarak/azahar"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Grarak/azahar"
     }
   ],
-  "icon": "https://archive.org/download/azahar-vita-/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/azahar-vita-/icon0.png",
+  "ss": [
     "https://archive.org/download/azahar-vita-/Shot0.png"
   ]
 }

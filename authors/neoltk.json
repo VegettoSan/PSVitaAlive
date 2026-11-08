@@ -1,15 +1,15 @@
 {
   "id": "neoltk",
-  "name": "NeoLTK",
-  "avatar": "https://github.com/NeoLTK.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "NeoLTK",
+  "av": "https://github.com/NeoLTK.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/NeoLTK",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/NeoLTK",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/NeoLTK.png"
+  "ic": "https://github.com/NeoLTK.png"
 }

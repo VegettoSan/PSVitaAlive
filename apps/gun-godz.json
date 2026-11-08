@@ -1,50 +1,50 @@
 {
   "id": "gun-godz",
-  "title_id": "GUNGODZ00",
-  "name": "GUN GODZ",
-  "description": "Port of GUN GODZ for PSVITA.",
-  "long_description": "Original game by Vlambeer. GUN GODZ is a first person shooter about gun, gangster rap and the rich culture of Venus. Players try to escape the jail of a hotel, which is the only building on Venus and is owned by a record-label owner who happens to be the God of Guns.\nPatch and install instructions in Release Page (Github).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "GUNGODZ00",
+  "n": "GUN GODZ",
+  "d": "Port of GUN GODZ for PSVITA.",
+  "ld": "Original game by Vlambeer. GUN GODZ is a first person shooter about gun, gangster rap and the rich culture of Venus. Players try to escape the jail of a hotel, which is the only building on Venus and is owned by a record-label owner who happens to be the God of Guns.\nPatch and install instructions in Release Page (Github).\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-06-07",
-  "requirements": "- Game Data Files: PC Steam",
-  "size": 2937475,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gun-godz/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-06-07",
+  "req": "- Game Data Files: PC Steam",
+  "sz": 2937475,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gun-godz/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gun-godz/shot_01.png",
     "https://archive.org/download/psvitaalive-gun-godz/shot_02.png",
     "https://archive.org/download/psvitaalive-gun-godz/shot_03.png",
     "https://archive.org/download/psvitaalive-gun-godz/shot_04.png",
     "https://archive.org/download/psvitaalive-gun-godz/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gun-godz/gun-godz.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gun-godz/gun-godz.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/m1s3ry/gungodz-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/m1s3ry/gungodz-vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/m1s3ry/gungodz-vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/m1s3ry/gungodz-vita/releases/tag/v1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "694",
-  "source_url": "https://github.com/m1s3ry/gungodz-vita",
-  "release_page": "https://github.com/m1s3ry/gungodz-vita",
-  "updated_at": "2026-08-13T15:34:48.580471+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "694",
+  "su": "https://github.com/m1s3ry/gungodz-vita",
+  "rp": "https://github.com/m1s3ry/gungodz-vita",
+  "ua": "2026-08-13T15:34:48.580471+00:00"
 }

@@ -1,51 +1,51 @@
 {
   "id": "fakename-changer",
-  "title_id": "BUBF00001",
-  "name": "FakeName Changer",
-  "description": "Bubble names changer for PSVita.",
-  "long_description": "FakeName Changer is a PS Vita homebrew app that lets you rename LiveArea bubble titles without touching PARAM.SFO. It reads installed bubbles from app.db, lets you edit names, creates backups, and requires a reboot/apply refresh so the new titles appear safely on the home screen after restart.",
-  "author_ids": [
+  "tid": "BUBF00001",
+  "n": "FakeName Changer",
+  "d": "Bubble names changer for PSVita.",
+  "ld": "FakeName Changer is a PS Vita homebrew app that lets you rename LiveArea bubble titles without touching PARAM.SFO. It reads installed bubbles from app.db, lets you edit names, creates backups, and requires a reboot/apply refresh so the new titles appear safely on the home screen after restart.",
+  "aids": [
     "eywa186"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2026-05-01",
-  "requirements": "Not specified",
-  "size": 4532316,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fakename-changer/icon0.png",
-  "screenshots": [
+  "v": "v.2.1",
+  "vd": "2026-05-01",
+  "req": "Not specified",
+  "sz": 4532316,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fakename-changer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fakename-changer/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fakename-changer/FakeNameChanger_v2.1.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fakename-changer/FakeNameChanger_v2.1.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases/tag/v2.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases/tag/v2.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Eywa186/FakeName-Changer-For-PSVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1392",
-  "source_url": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases",
-  "release_page": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases",
-  "updated_at": "2026-08-13T15:34:48.352156+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1392",
+  "su": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases",
+  "rp": "https://github.com/Eywa186/FakeName-Changer-For-PSVita/releases",
+  "ua": "2026-08-13T15:34:48.352156+00:00"
 }

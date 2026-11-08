@@ -1,42 +1,42 @@
 {
   "id": "ufe",
-  "title_id": "FIGH12345",
-  "name": "UFE",
-  "description": "A 3D fighting game for PSVITA.",
-  "long_description": "A 3D fighting game for PSVITA/PSTV made in Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "FIGH12345",
+  "n": "UFE",
+  "d": "A 3D fighting game for PSVITA.",
+  "ld": "A 3D fighting game for PSVITA/PSTV made in Unity.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "retrogamer74"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Demo",
-  "version_date": "2019-04-23",
-  "requirements": "Not specified",
-  "size": 57123701,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ufe/icon0.png",
-  "screenshots": [
+  "v": "Demo",
+  "vd": "2019-04-23",
+  "req": "Not specified",
+  "sz": 57123701,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ufe/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ufe/shot_01.png",
     "https://archive.org/download/psvitaalive-ufe/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ufe/ufe.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ufe/ufe.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://twitter.com/RetroGamer_74/status/1120398841071714305"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://twitter.com/RetroGamer_74/status/1120398841071714305"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "470",
-  "source_url": "https://twitter.com/RetroGamer_74/status/1120398841071714305",
-  "release_page": "https://twitter.com/RetroGamer_74/status/1120398841071714305",
-  "updated_at": "2026-08-13T15:34:48.645943+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "470",
+  "su": "https://twitter.com/RetroGamer_74/status/1120398841071714305",
+  "rp": "https://twitter.com/RetroGamer_74/status/1120398841071714305",
+  "ua": "2026-08-13T15:34:48.645943+00:00"
 }

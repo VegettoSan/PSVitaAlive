@@ -1,15 +1,15 @@
 {
   "id": "lukezgd",
-  "name": "LukeZGD",
-  "avatar": "https://github.com/LukeZGD.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "LukeZGD",
+  "av": "https://github.com/LukeZGD.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/LukeZGD",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/LukeZGD",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/LukeZGD.png"
+  "ic": "https://github.com/LukeZGD.png"
 }

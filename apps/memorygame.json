@@ -1,55 +1,55 @@
 {
   "id": "memorygame",
-  "title_id": "JJH000001",
-  "name": "MemoryGame",
-  "description": "Brain training game for PSVITA.",
-  "long_description": "MemoryGame is a simple brain training game for the PS Vita inspired to the popular Simon Says game.",
-  "author_ids": [
+  "tid": "JJH000001",
+  "n": "MemoryGame",
+  "d": "Brain training game for PSVITA.",
+  "ld": "MemoryGame is a simple brain training game for the PS Vita inspired to the popular Simon Says game.",
+  "aids": [
     "jjh"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-08-15",
-  "requirements": "Not specified",
-  "size": 685212,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-memorygame/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-08-15",
+  "req": "Not specified",
+  "sz": 685212,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-memorygame/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-memorygame/shot_01.png",
     "https://archive.org/download/psvitaalive-memorygame/shot_02.png",
     "https://archive.org/download/psvitaalive-memorygame/shot_03.png",
     "https://archive.org/download/psvitaalive-memorygame/shot_04.png",
     "https://archive.org/download/psvitaalive-memorygame/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-memorygame/memorygame.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-memorygame/memorygame.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/JJH47E/MemoryGame/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/JJH47E/MemoryGame/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/JJH47E/MemoryGame/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/JJH47E/MemoryGame/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/JJH47E/MemoryGame"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/JJH47E/MemoryGame"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "574",
-  "source_url": "https://github.com/JJH47E/MemoryGame",
-  "release_page": "https://github.com/JJH47E/MemoryGame/releases",
-  "updated_at": "2026-08-13T15:34:48.612994+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "574",
+  "su": "https://github.com/JJH47E/MemoryGame",
+  "rp": "https://github.com/JJH47E/MemoryGame/releases",
+  "ua": "2026-08-13T15:34:48.612994+00:00"
 }

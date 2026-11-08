@@ -1,55 +1,55 @@
 {
   "id": "minecraft-story-mode",
-  "title_id": "MCSM00001",
-  "name": "Minecraft: Story Mode",
-  "description": "Minecraft: Story Mode Season 1 port.",
-  "long_description": "Port of Minecraft: Story Mode Season 1 for PSVITA, based on the Android release. The game data has to be supplied by the user and converted with the MCSM Vita Data Builder available on the release page.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MCSM00001",
+  "n": "Minecraft: Story Mode",
+  "d": "Minecraft: Story Mode Season 1 port.",
+  "ld": "Port of Minecraft: Story Mode Season 1 for PSVITA, based on the Android release. The game data has to be supplied by the user and converted with the MCSM Vita Data Builder available on the release page.\n\n- PsVitaAlive -",
+  "aids": [
     "lezergan"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.11",
-  "version_date": "2026-08-12",
-  "requirements": "Game Data Files: Android",
-  "size": 3441189,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-minecraft-story-mode/icon0.png",
-  "screenshots": [
+  "v": "v.1.11",
+  "vd": "2026-08-12",
+  "req": "Game Data Files: Android",
+  "sz": 3441189,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-minecraft-story-mode/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-minecraft-story-mode/shot_01.png",
     "https://archive.org/download/psvitaalive-minecraft-story-mode/shot_02.png",
     "https://archive.org/download/psvitaalive-minecraft-story-mode/shot_03.png",
     "https://archive.org/download/psvitaalive-minecraft-story-mode/shot_04.png",
     "https://archive.org/download/psvitaalive-minecraft-story-mode/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-minecraft-story-mode/minecraft-story-mode.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-minecraft-story-mode/minecraft-story-mode.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/LeZergan/mcsm-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/LeZergan/mcsm-vita/releases/tag/v1.10"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/LeZergan/mcsm-vita/releases/tag/v1.10"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/LeZergan/mcsm-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/LeZergan/mcsm-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1450",
-  "source_url": "https://github.com/LeZergan/mcsm-vita",
-  "release_page": "https://github.com/LeZergan/mcsm-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.324263+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1450",
+  "su": "https://github.com/LeZergan/mcsm-vita",
+  "rp": "https://github.com/LeZergan/mcsm-vita/releases",
+  "ua": "2026-08-13T15:34:48.324263+00:00"
 }

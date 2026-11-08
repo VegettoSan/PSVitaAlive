@@ -1,45 +1,45 @@
 {
   "id": "agwoan",
-  "title_id": "AGWN00000",
-  "name": "AGWOAN",
-  "description": "Platformer game for PSVITA",
-  "long_description": "A platformer game with integrated level editor.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "AGWN00000",
+  "n": "AGWOAN",
+  "d": "Platformer game for PSVITA",
+  "ld": "A platformer game with integrated level editor.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "borad-games"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Demo",
-  "version_date": "2019-04-16",
-  "requirements": "Not specified",
-  "size": 3247855,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-agwoan/icon0.png",
-  "screenshots": [
+  "v": "Demo",
+  "vd": "2019-04-16",
+  "req": "Not specified",
+  "sz": 3247855,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-agwoan/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-agwoan/shot_01.png",
     "https://archive.org/download/psvitaalive-agwoan/shot_02.png",
     "https://archive.org/download/psvitaalive-agwoan/shot_03.png",
     "https://archive.org/download/psvitaalive-agwoan/shot_04.png",
     "https://archive.org/download/psvitaalive-agwoan/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-agwoan/agwoan.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-agwoan/agwoan.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "457",
-  "source_url": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.647128+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "457",
+  "su": "https://drive.google.com/file/d/1r23ZFlm_0RnJdARX2FEJ9JbbsciDeAnM/view",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.647128+00:00"
 }

@@ -1,45 +1,45 @@
 {
   "id": "love",
-  "title_id": "LOVEVITA0",
-  "name": "LOVE",
-  "description": "Port of LOVE for PSVITA.",
-  "long_description": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "LOVEVITA0",
+  "n": "LOVE",
+  "d": "Port of LOVE for PSVITA.",
+  "ld": "LOVE is a short and addictively challenging platformer with a minimalist design. It has a custom respawn system, 16 levels, 12 track original soundtrack, competitive scoring, and multiple ways to play.\nThis port uses the Android version to play.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-06-05",
-  "requirements": "- Game Data Files: Android",
-  "size": 2847533,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-love/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-06-05",
+  "req": "- Game Data Files: Android",
+  "sz": 2847533,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-love/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-love/shot_01.png",
     "https://archive.org/download/psvitaalive-love/shot_02.png",
     "https://archive.org/download/psvitaalive-love/shot_03.png",
     "https://archive.org/download/psvitaalive-love/shot_04.png",
     "https://archive.org/download/psvitaalive-love/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-love/love.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-love/love.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/love/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/love/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "683",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/love/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/love/",
-  "updated_at": "2026-08-13T15:34:48.583594+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "683",
+  "su": "https://kyuhen.customprotocol.com/en/submissions/love/",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/love/",
+  "ua": "2026-08-13T15:34:48.583594+00:00"
 }

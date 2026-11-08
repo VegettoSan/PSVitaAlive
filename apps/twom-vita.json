@@ -1,57 +1,57 @@
 {
   "id": "twom-vita",
-  "title_id": "TWOM00000",
-  "name": "TWoM Vita",
-  "description": "Port of This War of Mine for PSVITA.",
-  "long_description": "Port of This War of Mine and This War of Mine: Stores - Father's Promise for PSVITA based on the mobile (Android) version of the game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "TWOM00000",
+  "n": "TWoM Vita",
+  "d": "Port of This War of Mine for PSVITA.",
+  "ld": "Port of This War of Mine and This War of Mine: Stores - Father's Promise for PSVITA based on the mobile (Android) version of the game.\n\n- PsVitaAlive -",
+  "aids": [
     "aap",
     "rinnegatamante",
     "theflow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-03-30",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 1110442,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0",
+  "vd": "2022-03-30",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 1110442,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-twom-vita/twom-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-twom-vita/twom-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 574305075,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-twom-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 574305075,
+      "xp": "ux0:data/",
+      "ips": [
         "twom"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/TheOfficialFloW/twom_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/TheOfficialFloW/twom_vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-twom-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-twom-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-twom-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-twom-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-twom-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-twom-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-twom-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "802",
-  "source_url": "https://github.com/TheOfficialFloW/twom_vita",
-  "release_page": "https://github.com/TheOfficialFloW/twom_vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "802",
+  "su": "https://github.com/TheOfficialFloW/twom_vita",
+  "rp": "https://github.com/TheOfficialFloW/twom_vita/releases",
+  "ua": "2026-08-13T15:34"
 }

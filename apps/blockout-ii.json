@@ -1,54 +1,54 @@
 {
   "id": "blockout-ii",
-  "title_id": "BOUT00002",
-  "name": "BlockOut II",
-  "description": "BlockOut II port for PSVITA.",
-  "long_description": "BlockOut II is an addictive action puzzle game by Jean-Luc PONS. It is also the first OpenGL homebrew game for Playstation Vita.\n\nBlockOut II is reimplementation of original 1989 puzzle video game, developed in Poland by Aleksander Ustaszewski and Miroslaw Zablocki and published by California Dreams for multiple platforms. Original BlockOut was the first video game which transfered tetris from 2D into 3D.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BOUT00002",
+  "n": "BlockOut II",
+  "d": "BlockOut II port for PSVITA.",
+  "ld": "BlockOut II is an addictive action puzzle game by Jean-Luc PONS. It is also the first OpenGL homebrew game for Playstation Vita.\n\nBlockOut II is reimplementation of original 1989 puzzle video game, developed in Poland by Aleksander Ustaszewski and Miroslaw Zablocki and published by California Dreams for multiple platforms. Original BlockOut was the first video game which transfered tetris from 2D into 3D.\n\n- PsVitaAlive -",
+  "aids": [
     "bomblik"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.BlockOut_II_PSVITA_2.5",
-  "version_date": "2017-02-20",
-  "requirements": "Not specified",
-  "size": 6133397,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-blockout-ii/icon0.png",
-  "screenshots": [
+  "v": "v.BlockOut_II_PSVITA_2.5",
+  "vd": "2017-02-20",
+  "req": "Not specified",
+  "sz": 6133397,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-blockout-ii/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-blockout-ii/shot_01.png",
     "https://archive.org/download/psvitaalive-blockout-ii/shot_02.png",
     "https://archive.org/download/psvitaalive-blockout-ii/shot_03.png",
     "https://archive.org/download/psvitaalive-blockout-ii/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-blockout-ii/blockout-ii.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-blockout-ii/blockout-ii.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/BlockOut-II"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/BlockOut-II"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/bomblik/BlockOut_II_PSVITA/releases/tag/BlockOut_II_PSVITA_2.5"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/bomblik/BlockOut_II_PSVITA/releases/tag/BlockOut_II_PSVITA_2.5"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/bomblik/BlockOut_II_PSVITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/bomblik/BlockOut_II_PSVITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "18",
-  "source_url": "https://github.com/bomblik/BlockOut_II_PSVITA",
-  "release_page": "http://gekihen.customprotocol.com/en/project/BlockOut-II",
-  "updated_at": "2026-08-13T15:34:48.686346+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "18",
+  "su": "https://github.com/bomblik/BlockOut_II_PSVITA",
+  "rp": "http://gekihen.customprotocol.com/en/project/BlockOut-II",
+  "ua": "2026-08-13T15:34:48.686346+00:00"
 }

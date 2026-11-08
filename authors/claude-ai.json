@@ -1,15 +1,15 @@
 {
   "id": "claude-ai",
-  "name": "Claude AI",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
-  "links": [
+  "n": "Claude AI",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Asistente de IA de Anthropic usado como apoyo de programación, revisión y escritura.",
+  "l": [
     {
-      "type": "Official Website",
-      "name": "Claude",
-      "url": "https://www.anthropic.com/claude",
-      "recommended": true
+      "t": "Official Website",
+      "n": "Claude",
+      "u": "https://www.anthropic.com/claude",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

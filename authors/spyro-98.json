@@ -1,15 +1,15 @@
 {
   "id": "spyro-98",
-  "name": "spyro-98",
-  "avatar": "https://avatars.githubusercontent.com/u/31597742?v=4",
-  "bio": "🐉 Dev",
-  "links": [
+  "n": "spyro-98",
+  "av": "https://avatars.githubusercontent.com/u/31597742?v=4",
+  "b": "🐉 Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/spyro-98",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/spyro-98",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/31597742?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/31597742?v=4"
 }

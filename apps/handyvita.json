@@ -1,55 +1,55 @@
 {
   "id": "handyvita",
-  "title_id": "FRAN00002",
-  "name": "HandyVITA",
-  "description": "Atari Linx emulator.",
-  "long_description": "The first Atari Linx emulator for the PSVita.\nBased on Libretro Handy core.",
-  "author_ids": [
+  "tid": "FRAN00002",
+  "n": "HandyVITA",
+  "d": "Atari Linx emulator.",
+  "ld": "The first Atari Linx emulator for the PSVita.\nBased on Libretro Handy core.",
+  "aids": [
     "frangarcj"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2016-07-29",
-  "requirements": "Not specified",
-  "size": 233504,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-handyvita/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2016-07-29",
+  "req": "Not specified",
+  "sz": 233504,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-handyvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-handyvita/shot_01.png",
     "https://archive.org/download/psvitaalive-handyvita/shot_02.png",
     "https://archive.org/download/psvitaalive-handyvita/shot_03.png",
     "https://archive.org/download/psvitaalive-handyvita/shot_04.png",
     "https://archive.org/download/psvitaalive-handyvita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-handyvita/handyvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-handyvita/handyvita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/HandyVITA/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/HandyVITA/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/frangarcj/HandyVITA/releases/tag/1.4-Henkaku"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/frangarcj/HandyVITA/releases/tag/1.4-Henkaku"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/frangarcj/HandyVITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/frangarcj/HandyVITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "174",
-  "source_url": "https://github.com/frangarcj/HandyVITA",
-  "release_page": "https://github.com/frangarcj/HandyVITA/releases",
-  "updated_at": "2026-08-13T15:34:48.713280+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "174",
+  "su": "https://github.com/frangarcj/HandyVITA",
+  "rp": "https://github.com/frangarcj/HandyVITA/releases",
+  "ua": "2026-08-13T15:34:48.713280+00:00"
 }

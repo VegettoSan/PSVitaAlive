@@ -1,52 +1,52 @@
 {
   "id": "vitaki",
-  "title_id": "CHIAKI001",
-  "name": "Vitaki",
-  "description": "PS5 streaming application for PSVita.",
-  "long_description": "Port of Chiaki, an application allowing to stream PS5 to other devices.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CHIAKI001",
+  "n": "Vitaki",
+  "d": "PS5 streaming application for PSVita.",
+  "ld": "Port of Chiaki, an application allowing to stream PS5 to other devices.\n\n- PsVitaAlive -",
+  "aids": [
     "ywnico",
     "aagaming"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.06c",
-  "version_date": "2025-02-24",
-  "requirements": "Not specified",
-  "size": 1715588,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitaki/icon0.png",
-  "screenshots": [
+  "v": "v.0.06c",
+  "vd": "2025-02-24",
+  "req": "Not specified",
+  "sz": 1715588,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitaki/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitaki/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitaki/vitaki.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitaki/vitaki.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ywnico/vitaki-fork/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ywnico/vitaki-fork/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ywnico/vitaki-fork/releases/tag/v0.06d"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ywnico/vitaki-fork"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ywnico/vitaki-fork"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1293",
-  "source_url": "https://github.com/ywnico/vitaki-fork",
-  "release_page": "https://github.com/ywnico/vitaki-fork/releases",
-  "updated_at": "2026-08-13T15:34:48.414344+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1293",
+  "su": "https://github.com/ywnico/vitaki-fork",
+  "rp": "https://github.com/ywnico/vitaki-fork/releases",
+  "ua": "2026-08-13T15:34:48.414344+00:00"
 }

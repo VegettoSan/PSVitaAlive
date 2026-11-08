@@ -1,56 +1,56 @@
 {
   "id": "retroflow-launcher",
-  "title_id": "RETROFLOW",
-  "name": "RetroFlow Launcher",
-  "description": "3D Coverflow launcher for PSVITA.",
-  "long_description": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.\nThis version includes categories for retro games which can be launched without bubbles for RetroArch and DaedalusX64. Playstation and PSP games can also be launched without having to create bubbles for every game!",
-  "author_ids": [
+  "tid": "RETROFLOW",
+  "n": "RetroFlow Launcher",
+  "d": "3D Coverflow launcher for PSVITA.",
+  "ld": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.\nThis version includes categories for retro games which can be launched without bubbles for RetroArch and DaedalusX64. Playstation and PSP games can also be launched without having to create bubbles for every game!",
+  "aids": [
     "jimbob4000",
     "vitahex-games"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.8.3.0",
-  "version_date": "2026-08-20",
-  "requirements": "Not specified",
-  "size": 13704574,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-retroflow-launcher/icon0.png",
-  "screenshots": [
+  "v": "v.8.3.0",
+  "vd": "2026-08-20",
+  "req": "Not specified",
+  "sz": 13704574,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-retroflow-launcher/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-retroflow-launcher/shot_01.png",
     "https://archive.org/download/psvitaalive-retroflow-launcher/shot_02.png",
     "https://archive.org/download/psvitaalive-retroflow-launcher/shot_03.png",
     "https://archive.org/download/psvitaalive-retroflow-launcher/shot_04.png",
     "https://archive.org/download/psvitaalive-retroflow-launcher/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-retroflow-launcher/retroflow-launcher.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-retroflow-launcher/retroflow-launcher.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/tag/v8.2.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/tag/v8.2.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/jimbob4000/RetroFlow-Launcher"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/jimbob4000/RetroFlow-Launcher"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "745",
-  "source_url": "https://github.com/jimbob4000/RetroFlow-Launcher",
-  "release_page": "https://github.com/jimbob4000/RetroFlow-Launcher/releases",
-  "updated_at": "2026-08-13T15:34:48.332588+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "745",
+  "su": "https://github.com/jimbob4000/RetroFlow-Launcher",
+  "rp": "https://github.com/jimbob4000/RetroFlow-Launcher/releases",
+  "ua": "2026-08-13T15:34:48.332588+00:00"
 }

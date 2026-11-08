@@ -1,62 +1,62 @@
 {
   "id": "vitabright-lut-editor",
-  "title_id": "VBRIGHTTL",
-  "name": "Vitabright Lut Editor",
-  "description": "Companion app for vitabright plugin.",
-  "long_description": "A companion app for vitabright plugin that allows to easily tweak OLED gamma tables.",
-  "author_ids": [
+  "tid": "VBRIGHTTL",
+  "n": "Vitabright Lut Editor",
+  "d": "Companion app for vitabright plugin.",
+  "ld": "A companion app for vitabright plugin that allows to easily tweak OLED gamma tables.",
+  "aids": [
     "devnoname120",
     "zushikina-kun"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.4.2",
-  "version_date": "2026-08-18",
-  "requirements": "Not specified",
-  "size": 459389,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitabright-lut-editor/icon0.png",
-  "screenshots": [
+  "v": "v.4.2",
+  "vd": "2026-08-18",
+  "req": "Not specified",
+  "sz": 459389,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitabright-lut-editor/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitabright-lut-editor/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitabright-lut-editor/vitabright-lut-editor.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitabright-lut-editor/vitabright-lut-editor.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/devnoname120/vitabright-lut-editor/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/devnoname120/vitabright-lut-editor/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/devnoname120/vitabright-lut-editor/releases/tag/1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/devnoname120/vitabright-lut-editor/releases/tag/1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/devnoname120/vitabright-lut-editor"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/devnoname120/vitabright-lut-editor"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Zushikina-kun/VitaBrightEX/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Zushikina-kun/VitaBrightEX/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Zushikina-kun/VitaBrightEX"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Zushikina-kun/VitaBrightEX"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "601",
-  "source_url": "https://github.com/devnoname120/vitabright-lut-editor",
-  "release_page": "https://github.com/devnoname120/vitabright-lut-editor/releases",
-  "updated_at": "2026-08-13T15:34:48.603138+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "601",
+  "su": "https://github.com/devnoname120/vitabright-lut-editor",
+  "rp": "https://github.com/devnoname120/vitabright-lut-editor/releases",
+  "ua": "2026-08-13T15:34:48.603138+00:00"
 }

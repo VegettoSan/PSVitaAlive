@@ -1,45 +1,45 @@
 {
   "id": "circuit-dude",
-  "title_id": "CIRCDUDE1",
-  "name": "Circuit Dude",
-  "description": "Puzzle game for PSVITA/PSTV.",
-  "long_description": "Help Circuit Dude build his ultimate secret invention by plugging in chips, pushing blocks, stepping on switches, rotating walls and so much more in this game featuring over 15 hours of gameplay and 120 levels. What is he up to? What is Circuit Dude building? Finish the first 100 levels to find out!\n\nIf that's not enough, you can design your own master contraptions using the in-game level editor! (Cross-platform online level sharing coming soon!)\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "CIRCDUDE1",
+  "n": "Circuit Dude",
+  "d": "Puzzle game for PSVITA/PSTV.",
+  "ld": "Help Circuit Dude build his ultimate secret invention by plugging in chips, pushing blocks, stepping on switches, rotating walls and so much more in this game featuring over 15 hours of gameplay and 120 levels. What is he up to? What is Circuit Dude building? Finish the first 100 levels to find out!\n\nIf that's not enough, you can design your own master contraptions using the in-game level editor! (Cross-platform online level sharing coming soon!)\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "crait"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.6.6",
-  "version_date": "2021-03-17",
-  "requirements": "Not specified",
-  "size": 15533399,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-circuit-dude/icon0.png",
-  "screenshots": [
+  "v": "v.2.6.6",
+  "vd": "2021-03-17",
+  "req": "Not specified",
+  "sz": 15533399,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-circuit-dude/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-circuit-dude/shot_01.png",
     "https://archive.org/download/psvitaalive-circuit-dude/shot_02.png",
     "https://archive.org/download/psvitaalive-circuit-dude/shot_03.png",
     "https://archive.org/download/psvitaalive-circuit-dude/shot_04.png",
     "https://archive.org/download/psvitaalive-circuit-dude/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-circuit-dude/circuit-dude.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-circuit-dude/circuit-dude.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://www.crait.net/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://www.crait.net/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "626",
-  "source_url": "http://www.crait.net/",
-  "release_page": "http://www.crait.net/",
-  "updated_at": "2026-08-13T15:34:48.592672+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "626",
+  "su": "http://www.crait.net/",
+  "rp": "http://www.crait.net/",
+  "ua": "2026-08-13T15:34:48.592672+00:00"
 }

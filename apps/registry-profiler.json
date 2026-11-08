@@ -1,55 +1,55 @@
 {
   "id": "registry-profiler",
-  "title_id": "PSREGPROF",
-  "name": "Registry Profiler",
-  "description": "Registry editor for PSVITA.",
-  "long_description": "This app allows certain registry values like the ones for brightness & volume to change and saved into profiles. The first menu gives the options to manage the profiles stored in a created file. When the app is first launched it saves a default profile of the device's current values along with any others later created. The horizontal menu gives the registry categories each containing the settings, some are checkboxes and others are number entries.",
-  "author_ids": [
+  "tid": "PSREGPROF",
+  "n": "Registry Profiler",
+  "d": "Registry editor for PSVITA.",
+  "ld": "This app allows certain registry values like the ones for brightness & volume to change and saved into profiles. The first menu gives the options to manage the profiles stored in a created file. When the app is first launched it saves a default profile of the device's current values along with any others later created. The horizontal menu gives the registry categories each containing the settings, some are checkboxes and others are number entries.",
+  "aids": [
     "codiak101"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-01-09",
-  "requirements": "Not specified",
-  "size": 1710335,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-registry-profiler/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-01-09",
+  "req": "Not specified",
+  "sz": 1710335,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-registry-profiler/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-registry-profiler/shot_01.png",
     "https://archive.org/download/psvitaalive-registry-profiler/shot_02.png",
     "https://archive.org/download/psvitaalive-registry-profiler/shot_03.png",
     "https://archive.org/download/psvitaalive-registry-profiler/shot_04.png",
     "https://archive.org/download/psvitaalive-registry-profiler/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-registry-profiler/registry-profiler.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-registry-profiler/registry-profiler.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Codiak101/RegistryProfiler/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Codiak101/RegistryProfiler/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Codiak101/RegistryProfiler/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Codiak101/RegistryProfiler/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Codiak101/RegistryProfiler"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Codiak101/RegistryProfiler"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "774",
-  "source_url": "https://github.com/Codiak101/RegistryProfiler",
-  "release_page": "https://github.com/Codiak101/RegistryProfiler/releases",
-  "updated_at": "2026-08-13T15:34:48.559697+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "774",
+  "su": "https://github.com/Codiak101/RegistryProfiler",
+  "rp": "https://github.com/Codiak101/RegistryProfiler/releases",
+  "ua": "2026-08-13T15:34:48.559697+00:00"
 }

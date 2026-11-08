@@ -1,58 +1,58 @@
 {
   "id": "sonic-3-a-i-r",
-  "title_id": "SAIR30000",
-  "name": "Sonic 3 A.I.R.",
-  "description": "Port of Sonic 3 A.I.R. for PSVITA.",
-  "long_description": "Sonic 3 A.I.R. (Angel Island Revisited) is a fan-made remaster of the classic Sega game Sonic 3 & Knuckles. This project modernizes the original game by adding widescreen support, improved graphics and audio, and new gameplay features. It is designed to offer a superior playing experience on modern systems while requiring original game data to run.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SAIR30000",
+  "n": "Sonic 3 A.I.R.",
+  "d": "Port of Sonic 3 A.I.R. for PSVITA.",
+  "ld": "Sonic 3 A.I.R. (Angel Island Revisited) is a fan-made remaster of the classic Sega game Sonic 3 & Knuckles. This project modernizes the original game by adding widescreen support, improved graphics and audio, and new gameplay features. It is designed to offer a superior playing experience on modern systems while requiring original game data to run.\n\n- PsVitaAlive -",
+  "aids": [
     "danil-linad",
     "mdashk",
     "gl33ntwine",
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "platformer"
   ],
-  "version": "beta-2",
-  "version_date": "2024-04-25",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC/Genesis/MegaDrive",
-  "size": 4015203,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-3-a-i-r/icon0.png",
-  "screenshots": [
+  "v": "beta-2",
+  "vd": "2024-04-25",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC/Genesis/MegaDrive",
+  "sz": 4015203,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-3-a-i-r/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_04.png",
     "https://archive.org/download/psvitaalive-sonic-3-a-i-r/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-3-a-i-r/sonic-3-a-i-r.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-3-a-i-r/sonic-3-a-i-r.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/sonic3air/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/sonic3air/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/v-atamanenko/sonic3air/releases/tag/beta-2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/v-atamanenko/sonic3air/releases/tag/beta-2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/sonic3air"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/sonic3air"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1204",
-  "source_url": "https://github.com/v-atamanenko/sonic3air",
-  "release_page": "https://github.com/v-atamanenko/sonic3air/releases",
-  "updated_at": "2026-08-13T15:34:48.442832+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1204",
+  "su": "https://github.com/v-atamanenko/sonic3air",
+  "rp": "https://github.com/v-atamanenko/sonic3air/releases",
+  "ua": "2026-08-13T15:34:48.442832+00:00"
 }

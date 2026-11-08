@@ -1,37 +1,37 @@
 {
   "id": "minesweeper",
-  "title_id": "MINESWEEP",
-  "name": "Minesweeper",
-  "description": "Minesweeper clone for PSVITA.",
-  "long_description": "PSVITA/PSTV clone of the classic Minesweeper game for Windows PCs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "MINESWEEP",
+  "n": "Minesweeper",
+  "d": "Minesweeper clone for PSVITA.",
+  "ld": "PSVITA/PSTV clone of the classic Minesweeper game for Windows PCs.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "leestorm"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2016-08-22",
-  "requirements": "Not specified",
-  "size": 471103,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-minesweeper/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2016-08-22",
+  "req": "Not specified",
+  "sz": 471103,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-minesweeper/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-minesweeper/shot_01.png",
     "https://archive.org/download/psvitaalive-minesweeper/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-minesweeper/minesweeper.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-minesweeper/minesweeper.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "141",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/141-Minesweeper.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.704158+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "141",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/141-Minesweeper.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.704158+00:00"
 }

@@ -1,50 +1,50 @@
 {
   "id": "mighty-mike-vita",
-  "title_id": "MIGTYMIKE",
-  "name": "Mighty Mike Vita",
-  "description": "Port of Mighty Mike for PSVITA.",
-  "long_description": "Port of Mighty Mike for PSVITA.\nMighty Mike is an overhead view 2D run and gun video game developed by Pangea Software.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MIGTYMIKE",
+  "n": "Mighty Mike Vita",
+  "d": "Port of Mighty Mike for PSVITA.",
+  "ld": "Port of Mighty Mike for PSVITA.\nMighty Mike is an overhead view 2D run and gun video game developed by Pangea Software.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-02-01",
-  "requirements": "- libshacccg.suprx",
-  "size": 1564753,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mighty-mike-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-02-01",
+  "req": "- libshacccg.suprx",
+  "sz": 1564753,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mighty-mike-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-mighty-mike-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mighty-mike-vita/mighty-mike-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mighty-mike-vita/mighty-mike-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-mighty-mike-vita.45921/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-mighty-mike-vita.45921/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/MightyMike"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/MightyMike"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1254",
-  "source_url": "https://github.com/Rinnegatamante/MightyMike",
-  "release_page": "https://www.psx-place.com/threads/release-mighty-mike-vita.45921/",
-  "updated_at": "2026-08-13T15:34:48.415731+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1254",
+  "su": "https://github.com/Rinnegatamante/MightyMike",
+  "rp": "https://www.psx-place.com/threads/release-mighty-mike-vita.45921/",
+  "ua": "2026-08-13T15:34:48.415731+00:00"
 }

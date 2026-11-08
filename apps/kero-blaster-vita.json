@@ -1,52 +1,52 @@
 {
   "id": "kero-blaster-vita",
-  "title_id": "KEROBLAST",
-  "name": "Kero Blaster Vita",
-  "description": "Port of Kero Blaster for PSVITA.",
-  "long_description": "Port of Kero Blaster for PSVITA based on the mobile (Android) version of the game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "KEROBLAST",
+  "n": "Kero Blaster Vita",
+  "d": "Port of Kero Blaster for PSVITA.",
+  "ld": "Port of Kero Blaster for PSVITA based on the mobile (Android) version of the game.\n\n- PsVitaAlive -",
+  "aids": [
     "kaaass"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2022-07-19",
-  "requirements": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 2087673,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-kero-blaster-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2022-07-19",
+  "req": "- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 2087673,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-kero-blaster-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-kero-blaster-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-kero-blaster-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-kero-blaster-vita/kero-blaster-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-kero-blaster-vita/kero-blaster-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/kaaass/Kero-Blaster-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/kaaass/Kero-Blaster-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/kaaass/Kero-Blaster-vita/releases/tag/v1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/kaaass/Kero-Blaster-vita/releases/tag/v1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/kaaass/Kero-Blaster-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/kaaass/Kero-Blaster-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "825",
-  "source_url": "https://github.com/kaaass/Kero-Blaster-vita",
-  "release_page": "https://github.com/kaaass/Kero-Blaster-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.541230+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "825",
+  "su": "https://github.com/kaaass/Kero-Blaster-vita",
+  "rp": "https://github.com/kaaass/Kero-Blaster-vita/releases",
+  "ua": "2026-08-13T15:34:48.541230+00:00"
 }

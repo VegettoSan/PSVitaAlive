@@ -1,52 +1,52 @@
 {
   "id": "realboy",
-  "title_id": "XERP00003",
-  "name": "Realboy",
-  "description": "GB/GBC Emulator",
-  "long_description": "RealBoy is a Free, Fast and Accurate, Game Boy/Game Boy Color/Super Game Boy Emulator.",
-  "author_ids": [
+  "tid": "XERP00003",
+  "n": "Realboy",
+  "d": "GB/GBC Emulator",
+  "ld": "RealBoy is a Free, Fast and Accurate, Game Boy/Game Boy Color/Super Game Boy Emulator.",
+  "aids": [
     "xerpi"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2016-08-01",
-  "requirements": "Not specified",
-  "size": 140607,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-realboy/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2016-08-01",
+  "req": "Not specified",
+  "sz": 140607,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-realboy/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-realboy/shot_01.png",
     "https://archive.org/download/psvitaalive-realboy/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-realboy/realboy.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-realboy/realboy.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/downloads/index.php/download/8330"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/downloads/index.php/download/8330"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/xerpi/realboy-vita/releases/tag/1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/xerpi/realboy-vita/releases/tag/1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/xerpi/realboy-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/xerpi/realboy-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "167",
-  "source_url": "https://github.com/xerpi/realboy-vita",
-  "release_page": "https://wololo.net/downloads/index.php/download/8330",
-  "updated_at": "2026-08-13T15:34:48.709070+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "167",
+  "su": "https://github.com/xerpi/realboy-vita",
+  "rp": "https://wololo.net/downloads/index.php/download/8330",
+  "ua": "2026-08-13T15:34:48.709070+00:00"
 }

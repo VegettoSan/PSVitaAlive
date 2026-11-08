@@ -1,45 +1,45 @@
 {
   "id": "crashlands",
-  "title_id": "CRASHLAND",
-  "name": "Crashlands",
-  "description": "Port of Crashlands for PSVita.",
-  "long_description": "Craft, battle, and quest your way through Crashlands, a story-driven Crafting ARPG overflowing with sass! Original game by Butterscotch Shenanigans.\nInstall instructions in Release Page (Github).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CRASHLAND",
+  "n": "Crashlands",
+  "d": "Port of Crashlands for PSVita.",
+  "ld": "Craft, battle, and quest your way through Crashlands, a story-driven Crafting ARPG overflowing with sass! Original game by Butterscotch Shenanigans.\nInstall instructions in Release Page (Github).\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2021-05-20",
-  "requirements": "- Game Data Files: PC",
-  "size": 3002252,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-crashlands/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2021-05-20",
+  "req": "- Game Data Files: PC",
+  "sz": 3002252,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-crashlands/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-crashlands/shot_01.png",
     "https://archive.org/download/psvitaalive-crashlands/shot_02.png",
     "https://archive.org/download/psvitaalive-crashlands/shot_03.png",
     "https://archive.org/download/psvitaalive-crashlands/shot_04.png",
     "https://archive.org/download/psvitaalive-crashlands/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-crashlands/crashlands.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crashlands/crashlands.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/m1s3ry/crashlands-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/m1s3ry/crashlands-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "671",
-  "source_url": "https://github.com/m1s3ry/crashlands-vita",
-  "release_page": "https://github.com/m1s3ry/crashlands-vita",
-  "updated_at": "2026-08-13T15:34:48.587160+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "671",
+  "su": "https://github.com/m1s3ry/crashlands-vita",
+  "rp": "https://github.com/m1s3ry/crashlands-vita",
+  "ua": "2026-08-13T15:34:48.587160+00:00"
 }

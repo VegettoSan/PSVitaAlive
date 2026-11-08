@@ -1,15 +1,15 @@
 {
   "id": "usineur",
-  "name": "usineur",
-  "avatar": "https://github.com/usineur.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "usineur",
+  "av": "https://github.com/usineur.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/usineur",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/usineur",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/usineur.png"
+  "ic": "https://github.com/usineur.png"
 }

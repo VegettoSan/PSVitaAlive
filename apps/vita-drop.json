@@ -1,53 +1,53 @@
 {
   "id": "vita-drop",
-  "title_id": "VDRP00001",
-  "name": "Vita Drop",
-  "description": "Wireless file server for PSVita.",
-  "long_description": "VitaDrop transforms your PS Vita into a wireless file server. Browse, upload, download, and manage your entire Vita filesystem from any device with a web browser. No USB cables, no FTP clients, no hassle.",
-  "author_ids": [
+  "tid": "VDRP00001",
+  "n": "Vita Drop",
+  "d": "Wireless file server for PSVita.",
+  "ld": "VitaDrop transforms your PS Vita into a wireless file server. Browse, upload, download, and manage your entire Vita filesystem from any device with a web browser. No USB cables, no FTP clients, no hassle.",
+  "aids": [
     "claude-ai",
     "ibrahim-dogan"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2026-04-12",
-  "requirements": "Not specified",
-  "size": 324433,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-drop/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2026-04-12",
+  "req": "Not specified",
+  "sz": 324433,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-drop/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-drop/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-drop/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-drop/vita-drop.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-drop/vita-drop.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ibrahim-dogan/vita-drop/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ibrahim-dogan/vita-drop/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ibrahim-dogan/vita-drop/releases/tag/v1.0.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ibrahim-dogan/vita-drop/releases/tag/v1.0.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ibrahim-dogan/vita-drop"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ibrahim-dogan/vita-drop"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1383",
-  "source_url": "https://github.com/ibrahim-dogan/vita-drop",
-  "release_page": "https://github.com/ibrahim-dogan/vita-drop/releases",
-  "updated_at": "2026-08-13T15:34:48.355853+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1383",
+  "su": "https://github.com/ibrahim-dogan/vita-drop",
+  "rp": "https://github.com/ibrahim-dogan/vita-drop/releases",
+  "ua": "2026-08-13T15:34:48.355853+00:00"
 }

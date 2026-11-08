@@ -1,47 +1,47 @@
 {
   "id": "vita-chain",
-  "title_id": "CHAI00001",
-  "name": "vita-chain",
-  "description": "Chain reaction game for PSVITA.",
-  "long_description": "A chain reaction game for PSVITA/PSTV wrote in Lua.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "CHAI00001",
+  "n": "vita-chain",
+  "d": "Chain reaction game for PSVITA.",
+  "ld": "A chain reaction game for PSVITA/PSTV wrote in Lua.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "svennd"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2",
-  "version_date": "2017-10-22",
-  "requirements": "Not specified",
-  "size": 2300177,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-chain/icon0.png",
-  "screenshots": [
+  "v": "v.0.2",
+  "vd": "2017-10-22",
+  "req": "Not specified",
+  "sz": 2300177,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-chain/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-chain/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-chain/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-chain/vita-chain.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-chain/vita-chain.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48660"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48660"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/svennd/vita-chain"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/svennd/vita-chain"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "339",
-  "source_url": "https://github.com/svennd/vita-chain",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48660",
-  "updated_at": "2026-08-13T15:34:48.673089+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "339",
+  "su": "https://github.com/svennd/vita-chain",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=48660",
+  "ua": "2026-08-13T15:34:48.673089+00:00"
 }

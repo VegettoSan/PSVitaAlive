@@ -1,15 +1,15 @@
 {
   "id": "rikujoukoro",
-  "name": "rikujoukoro",
-  "avatar": "https://avatars.githubusercontent.com/u/70855093?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "rikujoukoro",
+  "av": "https://avatars.githubusercontent.com/u/70855093?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/rikujoukoro",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/rikujoukoro",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/70855093?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/70855093?v=4"
 }

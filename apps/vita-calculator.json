@@ -1,42 +1,42 @@
 {
   "id": "vita-calculator",
-  "title_id": "VITACALCI",
-  "name": "Vita Calculator",
-  "description": "Calculator for PSVITA.",
-  "long_description": "A standard calculator for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VITACALCI",
+  "n": "Vita Calculator",
+  "d": "Calculator for PSVITA.",
+  "ld": "A standard calculator for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "flappy-jesus"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2016-10-09",
-  "requirements": "Not specified",
-  "size": 1482666,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-calculator/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2016-10-09",
+  "req": "Not specified",
+  "sz": 1482666,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-calculator/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-calculator/shot_01.png",
     "https://archive.org/download/psvitaalive-vita-calculator/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-calculator/vita-calculator.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-calculator/vita-calculator.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/Vita-Calculator"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/Vita-Calculator"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "96",
-  "source_url": "http://gekihen.customprotocol.com/en/project/Vita-Calculator",
-  "release_page": "http://gekihen.customprotocol.com/en/project/Vita-Calculator",
-  "updated_at": "2026-08-13T15:34:48.695808+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "96",
+  "su": "http://gekihen.customprotocol.com/en/project/Vita-Calculator",
+  "rp": "http://gekihen.customprotocol.com/en/project/Vita-Calculator",
+  "ua": "2026-08-13T15:34:48.695808+00:00"
 }

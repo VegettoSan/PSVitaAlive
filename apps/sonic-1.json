@@ -1,55 +1,55 @@
 {
   "id": "sonic-1",
-  "title_id": "RSDK00002",
-  "name": "Sonic 1",
-  "description": "Port of Sonic The Hedgehog for PSVITA.",
-  "long_description": "A port of the first game of Sonic (Sonic The Hedgehog) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RSDK00002",
+  "n": "Sonic 1",
+  "d": "Port of Sonic The Hedgehog for PSVITA.",
+  "ld": "A port of the first game of Sonic (Sonic The Hedgehog) based on a full decompilation of the original game.\n\n- PsVitaAlive -",
+  "aids": [
     "xeeynamo"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1.0",
-  "version_date": "2021-01-20",
-  "requirements": "- Game Data Files: Android",
-  "size": 818584,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-1/icon0.png",
-  "screenshots": [
+  "v": "v.1.1.0",
+  "vd": "2021-01-20",
+  "req": "- Game Data Files: Android",
+  "sz": 818584,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-1/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-1/shot_01.png",
     "https://archive.org/download/psvitaalive-sonic-1/shot_02.png",
     "https://archive.org/download/psvitaalive-sonic-1/shot_03.png",
     "https://archive.org/download/psvitaalive-sonic-1/shot_04.png",
     "https://archive.org/download/psvitaalive-sonic-1/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-1/sonic-1.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-1/sonic-1.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/tag/v1.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/tag/v1.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "607",
-  "source_url": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation",
-  "release_page": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/",
-  "updated_at": "2026-08-13T15:34:48.598587+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "607",
+  "su": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation",
+  "rp": "https://github.com/Xeeynamo/Sonic-1-2-2013-Decompilation/releases/",
+  "ua": "2026-08-13T15:34:48.598587+00:00"
 }

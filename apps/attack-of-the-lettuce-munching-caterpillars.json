@@ -1,45 +1,45 @@
 {
   "id": "attack-of-the-lettuce-munching-caterpillars",
-  "title_id": "AOTLMC001",
-  "name": "Attack of the Lettuce Munching Caterpillars",
-  "description": "Shoot'em up for PSVITA/PSTV.",
-  "long_description": "Attack of the Lettuce Munching Caterpillars - Shoot 'em up / Beat 'em up style game where you must squash all the insects within a given time limit. All the characters are modelled in plasticine \"clay-mation  whilst the music and sound effects are in retro 8-bit style.  Several waves of enemies must be defeated, then a Boss Man is faced at the end of each level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "AOTLMC001",
+  "n": "Attack of the Lettuce Munching Caterpillars",
+  "d": "Shoot'em up for PSVITA/PSTV.",
+  "ld": "Attack of the Lettuce Munching Caterpillars - Shoot 'em up / Beat 'em up style game where you must squash all the insects within a given time limit. All the characters are modelled in plasticine \"clay-mation  whilst the music and sound effects are in retro 8-bit style.  Several waves of enemies must be defeated, then a Boss Man is faced at the end of each level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "gremlin-software"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-06-27",
-  "requirements": "Not specified",
-  "size": 13781129,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-06-27",
+  "req": "Not specified",
+  "sz": 13781129,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/shot_01.png",
     "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/shot_02.png",
     "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/shot_03.png",
     "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/shot_04.png",
     "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/attack-of-the-lettuce-munching-caterpillars.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-attack-of-the-lettuce-munching-caterpillars/attack-of-the-lettuce-munching-caterpillars.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "564",
-  "source_url": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.616357+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "564",
+  "su": "https://github.com/softwaregremlin/Attack-of-the-Lettuce-Munching-Caterpillars",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.616357+00:00"
 }

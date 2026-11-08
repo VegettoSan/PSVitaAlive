@@ -1,37 +1,37 @@
 {
   "id": "erre",
-  "title_id": "ABCD13370",
-  "name": "ERRE",
-  "description": "Port of ERRE for PSVITA.",
-  "long_description": "Port of ERRE for PSVITA/PSTV.\nRun, It's for your own good.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ABCD13370",
+  "n": "ERRE",
+  "d": "Port of ERRE for PSVITA.",
+  "ld": "Port of ERRE for PSVITA/PSTV.\nRun, It's for your own good.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "paulo"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2019-03-31",
-  "requirements": "Not specified",
-  "size": 38583611,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-erre/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2019-03-31",
+  "req": "Not specified",
+  "sz": 38583611,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-erre/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-erre/shot_01.png",
     "https://archive.org/download/psvitaalive-erre/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-erre/erre.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-erre/erre.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "451",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/451-ERRE.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.651319+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "451",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/451-ERRE.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.651319+00:00"
 }

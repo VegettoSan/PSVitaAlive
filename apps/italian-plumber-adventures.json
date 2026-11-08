@@ -1,55 +1,55 @@
 {
   "id": "italian-plumber-adventures",
-  "title_id": "IPAV00001",
-  "name": "Italian Plumber Adventures",
-  "description": "Port of Italian Plumber Adventures for PSVITA.",
-  "long_description": "Italian Plumber Adventures is a new adventure starring an unknown character and reimagined from the perspective of JDSoft.\nOriginal game by JDSoft.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "IPAV00001",
+  "n": "Italian Plumber Adventures",
+  "d": "Port of Italian Plumber Adventures for PSVITA.",
+  "ld": "Italian Plumber Adventures is a new adventure starring an unknown character and reimagined from the perspective of JDSoft.\nOriginal game by JDSoft.\n\n- PsVitaAlive -",
+  "aids": [
     "megagameboy"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2023-02-17",
-  "requirements": "Not specified",
-  "size": 10458605,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-italian-plumber-adventures/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2023-02-17",
+  "req": "Not specified",
+  "sz": 10458605,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-italian-plumber-adventures/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-italian-plumber-adventures/shot_01.png",
     "https://archive.org/download/psvitaalive-italian-plumber-adventures/shot_02.png",
     "https://archive.org/download/psvitaalive-italian-plumber-adventures/shot_03.png",
     "https://archive.org/download/psvitaalive-italian-plumber-adventures/shot_04.png",
     "https://archive.org/download/psvitaalive-italian-plumber-adventures/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-italian-plumber-adventures/italian-plumber-adventures.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-italian-plumber-adventures/italian-plumber-adventures.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases/tag/1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases/tag/1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1035",
-  "source_url": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita",
-  "release_page": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.512969+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1035",
+  "su": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita",
+  "rp": "https://github.com/MEGAgameBoy/Italian-Plumber-Adventures-PS-Vita/releases",
+  "ua": "2026-08-13T15:34:48.512969+00:00"
 }

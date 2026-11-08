@@ -1,52 +1,52 @@
 {
   "id": "pureya-vita",
-  "title_id": "PRYA22322",
-  "name": "Pureya Vita",
-  "description": "Port of Pureya for PSVITA.",
-  "long_description": "Pureya is a collection of arcade minigames that play with just 2 buttons.\nEvery 10 seconds, the game will jump from one random minigame to another.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PRYA22322",
+  "n": "Pureya Vita",
+  "d": "Port of Pureya for PSVITA.",
+  "ld": "Pureya is a collection of arcade minigames that play with just 2 buttons.\nEvery 10 seconds, the game will jump from one random minigame to another.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "arcade"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-09-19",
-  "requirements": "- Game Data Files: PC",
-  "size": 16882074,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0",
+  "vd": "2024-09-19",
+  "req": "- Game Data Files: PC",
+  "sz": 16882074,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pureya-vita/pureya-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pureya-vita/pureya-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-pureya-vita/Game%20Files%20Fix.zip",
-      "size": 63229133,
-      "extract_path": "ux0:app/"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-pureya-vita/Game%20Files%20Fix.zip",
+      "sz": 63229133,
+      "xp": "ux0:app/"
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Pureya-PS-VITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/PatnosDD/Pureya-PS-VITA"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-pureya-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-pureya-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pureya-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-pureya-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-pureya-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-pureya-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-pureya-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1234",
-  "source_url": "https://github.com/PatnosDD/Pureya-PS-VITA",
-  "release_page": "https://github.com/PatnosDD/Pureya-PS-VITA",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1234",
+  "su": "https://github.com/PatnosDD/Pureya-PS-VITA",
+  "rp": "https://github.com/PatnosDD/Pureya-PS-VITA",
+  "ua": "2026-08-13T15:34"
 }

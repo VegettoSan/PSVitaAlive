@@ -1,55 +1,55 @@
 {
   "id": "thimbleweed-park-vita",
-  "title_id": "THIMBPARK",
-  "name": "Thimbleweed Park Vita",
-  "description": "Port of Thimbleweed Park for PSVITA.",
-  "long_description": "This is a wrapper/port of Thimbleweed Park for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "THIMBPARK",
+  "n": "Thimbleweed Park Vita",
+  "d": "Port of Thimbleweed Park for PSVITA.",
+  "ld": "This is a wrapper/port of Thimbleweed Park for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2025-10-21",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2736197,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-thimbleweed-park-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2025-10-21",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2736197,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-thimbleweed-park-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-thimbleweed-park-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-thimbleweed-park-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-thimbleweed-park-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-thimbleweed-park-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-thimbleweed-park-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-thimbleweed-park-vita/thimbleweed-park-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-thimbleweed-park-vita/thimbleweed-park-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/thimbleweed-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/thimbleweed-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/thimbleweed-vita/releases/tag/v.1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/thimbleweed-vita/releases/tag/v.1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/thimbleweed-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/thimbleweed-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1062",
-  "source_url": "https://github.com/Rinnegatamante/thimbleweed-vita",
-  "release_page": "https://github.com/Rinnegatamante/thimbleweed-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.377874+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1062",
+  "su": "https://github.com/Rinnegatamante/thimbleweed-vita",
+  "rp": "https://github.com/Rinnegatamante/thimbleweed-vita/releases",
+  "ua": "2026-08-13T15:34:48.377874+00:00"
 }

@@ -1,48 +1,48 @@
 {
   "id": "prince-of-persia",
-  "title_id": "PRINCEPER",
-  "name": "Prince Of Persia",
-  "description": "Classic Prince of Persia port.",
-  "long_description": "An open-source port of Prince of Persia for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PRINCEPER",
+  "n": "Prince Of Persia",
+  "d": "Classic Prince of Persia port.",
+  "ld": "An open-source port of Prince of Persia for PSVITA/PSTV.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "cpasjuste"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.12",
-  "version_date": "2016-09-26",
-  "requirements": "Not specified",
-  "size": 279342,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-prince-of-persia/icon0.png",
-  "screenshots": [
+  "v": "v.1.12",
+  "vd": "2016-09-26",
+  "req": "Not specified",
+  "sz": 279342,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-prince-of-persia/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-prince-of-persia/shot_01.png",
     "https://archive.org/download/psvitaalive-prince-of-persia/shot_02.png",
     "https://archive.org/download/psvitaalive-prince-of-persia/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-prince-of-persia/prince-of-persia.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-prince-of-persia/prince-of-persia.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://gekihen.customprotocol.com/en/project/Prince-Of-Persia"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://gekihen.customprotocol.com/en/project/Prince-Of-Persia"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/SDLPoP"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Cpasjuste/SDLPoP"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "166",
-  "source_url": "https://github.com/Cpasjuste/SDLPoP",
-  "release_page": "http://gekihen.customprotocol.com/en/project/Prince-Of-Persia",
-  "updated_at": "2026-08-13T15:34:48.697563+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "166",
+  "su": "https://github.com/Cpasjuste/SDLPoP",
+  "rp": "http://gekihen.customprotocol.com/en/project/Prince-Of-Persia",
+  "ua": "2026-08-13T15:34:48.697563+00:00"
 }

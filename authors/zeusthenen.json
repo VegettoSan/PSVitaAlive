@@ -1,15 +1,15 @@
 {
   "id": "zeusthenen",
-  "name": "Zeusthenen",
-  "avatar": "https://avatars.githubusercontent.com/u/313163176?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "Zeusthenen",
+  "av": "https://avatars.githubusercontent.com/u/313163176?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Zeusthenen",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Zeusthenen",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/313163176?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/313163176?v=4"
 }

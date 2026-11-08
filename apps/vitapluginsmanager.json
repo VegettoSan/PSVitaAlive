@@ -1,46 +1,46 @@
 {
   "id": "vitapluginsmanager",
-  "title_id": "NLTK00001",
-  "name": "VITAPluginsManager",
-  "description": "Plugins manager for PSVITA.",
-  "long_description": "Plugins manager for PSVITA for Vitamin game dumps.",
-  "author_ids": [
+  "tid": "NLTK00001",
+  "n": "VITAPluginsManager",
+  "d": "Plugins manager for PSVITA.",
+  "ld": "Plugins manager for PSVITA for Vitamin game dumps.",
+  "aids": [
     "neoltk"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.6",
-  "version_date": "2016-10-20",
-  "requirements": "Not specified",
-  "size": 69673,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitapluginsmanager/icon0.png",
-  "screenshots": [
+  "v": "v.0.6",
+  "vd": "2016-10-20",
+  "req": "Not specified",
+  "sz": 69673,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitapluginsmanager/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitapluginsmanager/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitapluginsmanager/vitapluginsmanager.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitapluginsmanager/vitapluginsmanager.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/NeoLTK/VITAPluginsManager/releases/tag/0.6"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/NeoLTK/VITAPluginsManager/releases/tag/0.6"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NeoLTK/VITAPluginsManager"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/NeoLTK/VITAPluginsManager"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "152",
-  "source_url": "https://github.com/NeoLTK/VITAPluginsManager",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.695007+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "152",
+  "su": "https://github.com/NeoLTK/VITAPluginsManager",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.695007+00:00"
 }

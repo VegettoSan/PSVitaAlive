@@ -1,15 +1,15 @@
 {
   "id": "elpinguinoxd",
-  "name": "ElPinguinoXD",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "ElPinguinoXD",
-  "links": [
+  "n": "ElPinguinoXD",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "ElPinguinoXD",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Facebook",
-      "url": "https://www.facebook.com/groups/617210582301644/user/100003564806433/",
-      "recommended": true
+      "t": "Repository",
+      "n": "Facebook",
+      "u": "https://www.facebook.com/groups/617210582301644/user/100003564806433/",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

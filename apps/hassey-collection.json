@@ -1,55 +1,55 @@
 {
   "id": "hassey-collection",
-  "title_id": "HASSEYTWO",
-  "name": "Hassey Collection",
-  "description": "Port of Galcon 2/BREAKFINITY for PSVITA.",
-  "long_description": "This is a wrapper/port of Galcon 2: Galactic Conquest and BREAKFINITY for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HASSEYTWO",
+  "n": "Hassey Collection",
+  "d": "Port of Galcon 2/BREAKFINITY for PSVITA.",
+  "ld": "This is a wrapper/port of Galcon 2: Galactic Conquest and BREAKFINITY for the PS Vita.\nThe port works by loading the official Android ARMv7 executables in memory, resolving their imports with native functions and patching them in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.9",
-  "version_date": "2022-11-06",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 4914316,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-hassey-collection/icon0.png",
-  "screenshots": [
+  "v": "v.0.9",
+  "vd": "2022-11-06",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 4914316,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-hassey-collection/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hassey-collection/shot_01.png",
     "https://archive.org/download/psvitaalive-hassey-collection/shot_02.png",
     "https://archive.org/download/psvitaalive-hassey-collection/shot_03.png",
     "https://archive.org/download/psvitaalive-hassey-collection/shot_04.png",
     "https://archive.org/download/psvitaalive-hassey-collection/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hassey-collection/hassey-collection.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hassey-collection/hassey-collection.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/hassey-collection/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/hassey-collection/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/hassey-collection/releases/tag/v.0.9"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/hassey-collection/releases/tag/v.0.9"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/hassey-collection"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/hassey-collection"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1014",
-  "source_url": "https://github.com/Rinnegatamante/hassey-collection",
-  "release_page": "https://github.com/Rinnegatamante/hassey-collection/releases",
-  "updated_at": "2026-08-13T15:34:48.525353+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1014",
+  "su": "https://github.com/Rinnegatamante/hassey-collection",
+  "rp": "https://github.com/Rinnegatamante/hassey-collection/releases",
+  "ua": "2026-08-13T15:34:48.525353+00:00"
 }

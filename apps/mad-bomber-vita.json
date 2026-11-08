@@ -1,52 +1,52 @@
 {
   "id": "mad-bomber-vita",
-  "title_id": "BOMB00001",
-  "name": "Mad Bomber Vita",
-  "description": "Port of Mad Bomber for PSVITA/PSTV.",
-  "long_description": "Mad Bomber is a clone of the excellent 1981 Atari 2600 video game \"Kaboom!\" by Larry Kaplan of Activision. (Kaboom! was originally going to be an Atari-produced 2600 port of their 1978 arcade game, \"Avalanche.\")\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BOMB00001",
+  "n": "Mad Bomber Vita",
+  "d": "Port of Mad Bomber for PSVITA/PSTV.",
+  "ld": "Mad Bomber is a clone of the excellent 1981 Atari 2600 video game \"Kaboom!\" by Larry Kaplan of Activision. (Kaboom! was originally going to be an Atari-produced 2600 port of their 1978 arcade game, \"Avalanche.\")\n\n- PsVitaAlive -",
+  "aids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2020-01-14",
-  "requirements": "Not specified",
-  "size": 3290005,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mad-bomber-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2020-01-14",
+  "req": "Not specified",
+  "sz": 3290005,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mad-bomber-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mad-bomber-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-mad-bomber-vita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mad-bomber-vita/mad-bomber-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mad-bomber-vita/mad-bomber-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SonicMastr/Mad-Bomber-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SonicMastr/Mad-Bomber-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "867",
-  "source_url": "https://github.com/SonicMastr/Mad-Bomber-Vita",
-  "release_page": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases",
-  "updated_at": "2026-08-13T15:34:48.626107+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "867",
+  "su": "https://github.com/SonicMastr/Mad-Bomber-Vita",
+  "rp": "https://github.com/SonicMastr/Mad-Bomber-Vita/releases",
+  "ua": "2026-08-13T15:34:48.626107+00:00"
 }

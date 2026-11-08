@@ -1,45 +1,45 @@
 {
   "id": "unreal-vita",
-  "title_id": "UNRL00001",
-  "name": "Unreal Vita",
-  "description": "Port of Unreal for PSVita.",
-  "long_description": "Port of Unreal for PSVita based on the reconstructed sourcecode of the Unreal Engine 1 v200.\nUnreal is a first-person shooter video game developed by Epic MegaGames and Digital Extremes and published by GT Interactive for Microsoft Windows in May 1998.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "UNRL00001",
+  "n": "Unreal Vita",
+  "d": "Port of Unreal for PSVita.",
+  "ld": "Port of Unreal for PSVita based on the reconstructed sourcecode of the Unreal Engine 1 v200.\nUnreal is a first-person shooter video game developed by Epic MegaGames and Digital Extremes and published by GT Interactive for Microsoft Windows in May 1998.\n\n- PsVitaAlive -",
+  "aids": [
     "fgsfds"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "psvita-r7",
-  "version_date": "2026-07-13",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC",
-  "size": 2182087,
-  "status": "Legacy",
-  "links": [
+  "v": "psvita-r7",
+  "vd": "2026-07-13",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC",
+  "sz": 2182087,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-unreal-vita/unreal-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-unreal-vita/unreal-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/fgsfdsfgs/UE1"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/fgsfdsfgs/UE1"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-unreal-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-unreal-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-unreal-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-unreal-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-unreal-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-unreal-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-unreal-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1242",
-  "source_url": "https://github.com/fgsfdsfgs/UE1",
-  "release_page": "https://github.com/fgsfdsfgs/UE1/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1242",
+  "su": "https://github.com/fgsfdsfgs/UE1",
+  "rp": "https://github.com/fgsfdsfgs/UE1/releases",
+  "ua": "2026-08-13T15:34"
 }

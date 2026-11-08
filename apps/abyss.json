@@ -1,45 +1,45 @@
 {
   "id": "abyss",
-  "title_id": "BALD00003",
-  "name": "ABYSS",
-  "description": "Third person shooter for PSVita.",
-  "long_description": "Taking inspiration from Rengoku for the PSP, Armored Core and Blame!, ABYSS is a third person shooter duel game featuring randomly generated guns and enemies. How deep can you descend into the ABYSS?\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "BALD00003",
+  "n": "ABYSS",
+  "d": "Third person shooter for PSVita.",
+  "ld": "Taking inspiration from Rengoku for the PSP, Armored Core and Blame!, ABYSS is a third person shooter duel game featuring randomly generated guns and enemies. How deep can you descend into the ABYSS?\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "balder"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.2.1",
-  "version_date": "2026-01-06",
-  "requirements": "Not specified",
-  "size": 170851730,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-abyss/icon0.png",
-  "screenshots": [
+  "v": "v.2.1",
+  "vd": "2026-01-06",
+  "req": "Not specified",
+  "sz": 170851730,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-abyss/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-abyss/shot_01.png",
     "https://archive.org/download/psvitaalive-abyss/shot_02.png",
     "https://archive.org/download/psvitaalive-abyss/shot_03.png",
     "https://archive.org/download/psvitaalive-abyss/shot_04.png",
     "https://archive.org/download/psvitaalive-abyss/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-abyss/abyss.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-abyss/abyss.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://balderdragonslayer.itch.io/abyss"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://balderdragonslayer.itch.io/abyss"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1336",
-  "source_url": "https://balderdragonslayer.itch.io/abyss",
-  "release_page": "https://balderdragonslayer.itch.io/abyss",
-  "updated_at": "2026-08-13T15:34:48.370510+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1336",
+  "su": "https://balderdragonslayer.itch.io/abyss",
+  "rp": "https://balderdragonslayer.itch.io/abyss",
+  "ua": "2026-08-13T15:34:48.370510+00:00"
 }

@@ -1,58 +1,58 @@
 {
   "id": "dead-space-vita",
-  "title_id": "DEADSPACE",
-  "name": "Dead Space Vita",
-  "description": "Port of Dead Space Mobile for PSVITA.",
-  "long_description": "Dead Space is a 2011 survival horror mobile game for iOS and Android devices. A spin-off within the Dead Space series, the game is set after the events of original Dead Space and prior to the events of Dead Space 2 and shows how the Necromorph outbreak began and spread through the Titan Sprawl.\nThis homebrew is a loader of the Xperia Play release of Dead Space, based on the Android SO Loader by TheFloW. The loader provides a tailored, minimalistic Android-like environment to run the official ARMv6 game executable on the PS Vita.\nPlease, read the installation instructions on GitHub.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DEADSPACE",
+  "n": "Dead Space Vita",
+  "d": "Port of Dead Space Mobile for PSVITA.",
+  "ld": "Dead Space is a 2011 survival horror mobile game for iOS and Android devices. A spin-off within the Dead Space series, the game is set after the events of original Dead Space and prior to the events of Dead Space 2 and shows how the Necromorph outbreak began and spread through the Titan Sprawl.\nThis homebrew is a loader of the Xperia Play release of Dead Space, based on the Android SO Loader by TheFloW. The loader provides a tailored, minimalistic Android-like environment to run the official ARMv6 game executable on the PS Vita.\nPlease, read the installation instructions on GitHub.\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "strategy",
     "other"
   ],
-  "version": "v.1.3",
-  "version_date": "2023-01-13",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx v.0.3 or higher\n- Game Data Files: Android",
-  "size": 1468006,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.3",
+  "vd": "2023-01-13",
+  "req": "- libshacccg.suprx\n- kubridge.skprx v.0.3 or higher\n- Game Data Files: Android",
+  "sz": 1468006,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-dead-space-vita/dead-space-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-dead-space-vita/dead-space-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/psvitaalive-dead-space-vita/Game%20Files.zip",
-      "size": 318347674,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/psvitaalive-dead-space-vita/Game%20Files.zip",
+      "sz": 318347674,
+      "xp": "ux0:data/",
+      "ips": [
         "deadspace"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/deadspace-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/deadspace-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-dead-space-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-dead-space-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-dead-space-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-dead-space-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-dead-space-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-dead-space-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-dead-space-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "999",
-  "source_url": "https://github.com/v-atamanenko/deadspace-vita",
-  "release_page": "https://github.com/v-atamanenko/deadspace-vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "999",
+  "su": "https://github.com/v-atamanenko/deadspace-vita",
+  "rp": "https://github.com/v-atamanenko/deadspace-vita/releases",
+  "ua": "2026-08-13T15:34"
 }

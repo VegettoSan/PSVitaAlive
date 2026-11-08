@@ -1,41 +1,41 @@
 {
   "id": "psv-midi-player",
-  "title_id": "MIDI00001",
-  "name": "PSV MIDI Player",
-  "description": "MIDI player for PSVita.",
-  "long_description": "A native FluidSynth-based MIDI Player for Vita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "MIDI00001",
+  "n": "PSV MIDI Player",
+  "d": "MIDI player for PSVita.",
+  "ld": "A native FluidSynth-based MIDI Player for Vita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "snkilc"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-03-27",
-  "requirements": "Not specified",
-  "size": 225795,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-psv-midi-player/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-03-27",
+  "req": "Not specified",
+  "sz": 225795,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-psv-midi-player/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-psv-midi-player/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-psv-midi-player/psv-midi-player.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-psv-midi-player/psv-midi-player.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1382",
-  "source_url": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/",
-  "release_page": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/",
-  "updated_at": "2026-08-13T15:34:48.358483+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1382",
+  "su": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/",
+  "rp": "https://gbatemp.net/threads/psv-midi-player-v1-0-native-fluidsynth-based-midi-player-for-vita.680692/",
+  "ua": "2026-08-13T15:34:48.358483+00:00"
 }

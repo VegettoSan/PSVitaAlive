@@ -1,51 +1,51 @@
 {
   "id": "csd2vita",
-  "title_id": "CSD2VITA0",
-  "name": "CSD2Vita",
-  "description": "Port of Cook, Serve, Delicious! 2 for PSVITA.",
-  "long_description": "Cook, Serve, Delicious! 2 is the massive sequel to the surprise best selling original, one of the few games that gives players complete control on how they want to build their restaurant.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CSD2VITA0",
+  "n": "CSD2Vita",
+  "d": "Port of Cook, Serve, Delicious! 2 for PSVITA.",
+  "ld": "Cook, Serve, Delicious! 2 is the massive sequel to the surprise best selling original, one of the few games that gives players complete control on how they want to build their restaurant.\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-05-23",
-  "requirements": "- YoYo Loader\n- Game Data Files: PC Steam",
-  "size": 5131431,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-csd2vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-05-23",
+  "req": "- YoYo Loader\n- Game Data Files: PC Steam",
+  "sz": 5131431,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-csd2vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-csd2vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-csd2vita/csd2vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-csd2vita/csd2vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/csd2"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/csd2"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/hatoving/csd2-old-vita/releases/tag/1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/hatoving/csd2-old-vita/releases/tag/1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/hatoving/csd2-old-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/hatoving/csd2-old-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "824",
-  "source_url": "https://github.com/hatoving/csd2",
-  "release_page": "https://github.com/hatoving/csd2",
-  "updated_at": "2026-08-13T15:34:48.545866+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "824",
+  "su": "https://github.com/hatoving/csd2",
+  "rp": "https://github.com/hatoving/csd2",
+  "ua": "2026-08-13T15:34:48.545866+00:00"
 }

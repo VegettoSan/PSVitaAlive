@@ -1,15 +1,15 @@
 {
   "id": "scoobydouche",
-  "name": "ScoobyDouche",
-  "avatar": "https://avatars.githubusercontent.com/u/43378931?v=4",
-  "bio": "I understand all the code just too lazy to do it myself https://ko-fi.com/scoobydouche",
-  "links": [
+  "n": "ScoobyDouche",
+  "av": "https://avatars.githubusercontent.com/u/43378931?v=4",
+  "b": "I understand all the code just too lazy to do it myself https://ko-fi.com/scoobydouche",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ScoobyDouche",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ScoobyDouche",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/43378931?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/43378931?v=4"
 }

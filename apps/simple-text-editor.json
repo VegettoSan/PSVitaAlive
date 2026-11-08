@@ -1,44 +1,44 @@
 {
   "id": "simple-text-editor",
-  "title_id": "TXTE00001",
-  "name": "Simple Text Editor",
-  "description": "Text editor for PSVITA.",
-  "long_description": "Simple text editor wrote in Lua using Lua Player Plus.",
-  "author_ids": [
+  "tid": "TXTE00001",
+  "n": "Simple Text Editor",
+  "d": "Text editor for PSVITA.",
+  "ld": "Simple text editor wrote in Lua using Lua Player Plus.",
+  "aids": [
     "jakibaki"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1.1",
-  "version_date": "2016-09-06",
-  "requirements": "Not specified",
-  "size": 1677089,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-simple-text-editor/icon0.png",
-  "screenshots": [
+  "v": "v.1.1.1",
+  "vd": "2016-09-06",
+  "req": "Not specified",
+  "sz": 1677089,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-simple-text-editor/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-simple-text-editor/shot_01.png",
     "https://archive.org/download/psvitaalive-simple-text-editor/shot_02.png",
     "https://archive.org/download/psvitaalive-simple-text-editor/shot_03.png",
     "https://archive.org/download/psvitaalive-simple-text-editor/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-simple-text-editor/simple-text-editor.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-simple-text-editor/simple-text-editor.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://wololo.net/talk/viewtopic.php?f=116&t=47018"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://wololo.net/talk/viewtopic.php?f=116&t=47018"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "33",
-  "source_url": "https://wololo.net/talk/viewtopic.php?f=116&t=47018",
-  "release_page": "https://wololo.net/talk/viewtopic.php?f=116&t=47018",
-  "updated_at": "2026-08-14T01:05:59.234531+00:00"
+  "sn": "VitaDB",
+  "si": "33",
+  "su": "https://wololo.net/talk/viewtopic.php?f=116&t=47018",
+  "rp": "https://wololo.net/talk/viewtopic.php?f=116&t=47018",
+  "ua": "2026-08-14T01:05:59.234531+00:00"
 }

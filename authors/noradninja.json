@@ -1,15 +1,15 @@
 {
   "id": "noradninja",
-  "name": "noradninja",
-  "avatar": "https://github.com/noradninja.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "noradninja",
+  "av": "https://github.com/noradninja.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/noradninja",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/noradninja",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/noradninja.png"
+  "ic": "https://github.com/noradninja.png"
 }

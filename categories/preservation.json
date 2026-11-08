@@ -1,37 +1,37 @@
 {
   "id": "preservation",
-  "name": "Preservation",
-  "description": "Projects and tools focused on preserving, restoring and documenting PlayStation Vita software and history.",
-  "icon": "icons/preservation.png",
-  "order": 15,
-  "subcategories": [
+  "n": "Preservation",
+  "d": "Projects and tools focused on preserving, restoring and documenting PlayStation Vita software and history.",
+  "ic": "icons/preservation.png",
+  "ord": 15,
+  "subs": [
     {
       "id": "archival",
-      "name": "Archival"
+      "n": "Archival"
     },
     {
       "id": "restoration",
-      "name": "Restoration"
+      "n": "Restoration"
     },
     {
       "id": "compatibility",
-      "name": "Compatibility"
+      "n": "Compatibility"
     },
     {
       "id": "documentation",
-      "name": "Documentation"
+      "n": "Documentation"
     },
     {
       "id": "preservation-tools",
-      "name": "Preservation Tools"
+      "n": "Preservation Tools"
     },
     {
       "id": "legacy-projects",
-      "name": "Legacy Projects"
+      "n": "Legacy Projects"
     },
     {
       "id": "other",
-      "name": "Other"
+      "n": "Other"
     }
   ]
 }

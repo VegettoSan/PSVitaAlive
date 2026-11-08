@@ -1,46 +1,46 @@
 {
   "id": "super-dungeon-delta",
-  "title_id": "DUNGEON01",
-  "name": "Super Dungeon Delta",
-  "description": "Super Dungeon Delta port for PSVITA.",
-  "long_description": "Super Dungeon Delve is retro style 2D dungeon crawl game. It was created as a learning project to learn and get started with with the Godot Engine. The game was inspired by rougelikes and the 80s Gauntlet arcade game, Gauntlet.\nThe scope was kept deliberately small, in order to achieve some sembalance of a finished/playable game\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DUNGEON01",
+  "n": "Super Dungeon Delta",
+  "d": "Super Dungeon Delta port for PSVITA.",
+  "ld": "Super Dungeon Delve is retro style 2D dungeon crawl game. It was created as a learning project to learn and get started with with the Godot Engine. The game was inspired by rougelikes and the 80s Gauntlet arcade game, Gauntlet.\nThe scope was kept deliberately small, in order to achieve some sembalance of a finished/playable game\n\n- PsVitaAlive -",
+  "aids": [
     "parallel-productions"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v1.0.2-vita",
-  "version_date": "2023-02-07",
-  "requirements": "Not specified",
-  "size": 26937762,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-super-dungeon-delta/icon0.png",
-  "screenshots": [
+  "v": "v1.0.2-vita",
+  "vd": "2023-02-07",
+  "req": "Not specified",
+  "sz": 26937762,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-super-dungeon-delta/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-super-dungeon-delta/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-super-dungeon-delta/super-dungeon-delta.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-super-dungeon-delta/super-dungeon-delta.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/ParallelProductions/super-dungeon-delve-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/ParallelProductions/super-dungeon-delve-vita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ParallelProductions/super-dungeon-delve-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ParallelProductions/super-dungeon-delve-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1036",
-  "source_url": "https://github.com/ParallelProductions/super-dungeon-delve-vita",
-  "release_page": "https://github.com/ParallelProductions/super-dungeon-delve-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.514130+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1036",
+  "su": "https://github.com/ParallelProductions/super-dungeon-delve-vita",
+  "rp": "https://github.com/ParallelProductions/super-dungeon-delve-vita/releases",
+  "ua": "2026-08-13T15:34:48.514130+00:00"
 }

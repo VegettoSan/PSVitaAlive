@@ -1,55 +1,55 @@
 {
   "id": "anomaly-2-vita",
-  "title_id": "ANOMALY03",
-  "name": "Anomaly 2 Vita",
-  "description": "Port of Anomaly 2 for PSVITA.",
-  "long_description": "This is a wrapper/port of Anomaly 2 for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ANOMALY03",
+  "n": "Anomaly 2 Vita",
+  "d": "Port of Anomaly 2 for PSVITA.",
+  "ld": "This is a wrapper/port of Anomaly 2 for PSVITA.\nThe port works by loading the official Android ARMv6 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as it is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2023-03-03",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
-  "size": 14225527,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-anomaly-2-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2023-03-03",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
+  "sz": 14225527,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-anomaly-2-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-anomaly-2-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-anomaly-2-vita/anomaly-2-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-anomaly-2-vita/anomaly-2-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/anomaly2_vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/anomaly2_vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/anomaly2_vita/releases/tag/v.1.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/anomaly2_vita/releases/tag/v.1.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/anomaly2_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/anomaly2_vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1050",
-  "source_url": "https://github.com/Rinnegatamante/anomaly2_vita",
-  "release_page": "https://github.com/Rinnegatamante/anomaly2_vita/releases",
-  "updated_at": "2026-08-13T15:34:48.508036+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1050",
+  "su": "https://github.com/Rinnegatamante/anomaly2_vita",
+  "rp": "https://github.com/Rinnegatamante/anomaly2_vita/releases",
+  "ua": "2026-08-13T15:34:48.508036+00:00"
 }

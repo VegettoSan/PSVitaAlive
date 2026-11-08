@@ -1,45 +1,45 @@
 {
   "id": "i-will-be-there",
-  "title_id": "IWBTDEMO1",
-  "name": "I WILL BE THERE",
-  "description": "Procedurally-generated, point and click survival-adventure game.",
-  "long_description": "I WILL BE THERE is a procedurally-generated, point & click survival-adventure game.\nPlayStation Vita users can exclusively enjoy this demo provided they enabled homebrew features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "IWBTDEMO1",
+  "n": "I WILL BE THERE",
+  "d": "Procedurally-generated, point and click survival-adventure game.",
+  "ld": "I WILL BE THERE is a procedurally-generated, point & click survival-adventure game.\nPlayStation Vita users can exclusively enjoy this demo provided they enabled homebrew features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "tayfuntuna"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Demo",
-  "version_date": "2022-08-05",
-  "requirements": "Not specified",
-  "size": 39536958,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-i-will-be-there/icon0.png",
-  "screenshots": [
+  "v": "Demo",
+  "vd": "2022-08-05",
+  "req": "Not specified",
+  "sz": 39536958,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-i-will-be-there/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-i-will-be-there/shot_01.png",
     "https://archive.org/download/psvitaalive-i-will-be-there/shot_02.png",
     "https://archive.org/download/psvitaalive-i-will-be-there/shot_03.png",
     "https://archive.org/download/psvitaalive-i-will-be-there/shot_04.png",
     "https://archive.org/download/psvitaalive-i-will-be-there/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-i-will-be-there/i-will-be-there.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-i-will-be-there/i-will-be-there.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://tayfuntuna.itch.io/iwillbethere-vita"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://tayfuntuna.itch.io/iwillbethere-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "849",
-  "source_url": "https://tayfuntuna.itch.io/iwillbethere-vita",
-  "release_page": "https://tayfuntuna.itch.io/iwillbethere-vita",
-  "updated_at": "2026-08-13T15:34:48.537450+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "849",
+  "su": "https://tayfuntuna.itch.io/iwillbethere-vita",
+  "rp": "https://tayfuntuna.itch.io/iwillbethere-vita",
+  "ua": "2026-08-13T15:34:48.537450+00:00"
 }

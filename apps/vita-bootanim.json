@@ -1,46 +1,46 @@
 {
   "id": "vita-bootanim",
-  "title_id": "SKGVBANIM",
-  "name": "vita-bootanim",
-  "description": "Set a custom animation as console bootlogo.",
-  "long_description": "Simple app that installs a plugin allowing for custom animations usage as replacement for the splashscreen at console boot.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "SKGVBANIM",
+  "n": "vita-bootanim",
+  "d": "Set a custom animation as console bootlogo.",
+  "ld": "Simple app that installs a plugin allowing for custom animations usage as replacement for the splashscreen at console boot.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "skgleba"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2021-07-11",
-  "requirements": "Not specified",
-  "size": 491527,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-bootanim/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2021-07-11",
+  "req": "Not specified",
+  "sz": 491527,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-bootanim/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-bootanim/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-bootanim/vita-bootanim.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-bootanim/vita-bootanim.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/SKGleba/VitaTools"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/SKGleba/VitaTools"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "706",
-  "source_url": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source",
-  "release_page": "https://github.com/SKGleba/VitaTools",
-  "updated_at": "2026-08-13T15:34:48.577951+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "706",
+  "su": "https://github.com/SKGleba/VitaTools/tree/main/vita-bootanim/source",
+  "rp": "https://github.com/SKGleba/VitaTools",
+  "ua": "2026-08-13T15:34:48.577951+00:00"
 }

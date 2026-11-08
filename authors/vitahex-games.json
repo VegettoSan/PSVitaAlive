@@ -1,15 +1,15 @@
 {
   "id": "vitahex-games",
-  "name": "VitaHEX games",
-  "avatar": "https://github.com/BlackSheepBoy69.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "VitaHEX games",
+  "av": "https://github.com/BlackSheepBoy69.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/BlackSheepBoy69",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/BlackSheepBoy69",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/BlackSheepBoy69.png"
+  "ic": "https://github.com/BlackSheepBoy69.png"
 }

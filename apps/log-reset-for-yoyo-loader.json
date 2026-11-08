@@ -1,51 +1,51 @@
 {
   "id": "log-reset-for-yoyo-loader",
-  "title_id": "YYLLOGDEL",
-  "name": "Log Reset for YoYo Loader",
-  "description": "Logs purger and launcher for YoYo Loader.",
-  "long_description": "Small app that deletes the yyl.log file and then launches YoYo Loader Vita.",
-  "author_ids": [
+  "tid": "YYLLOGDEL",
+  "n": "Log Reset for YoYo Loader",
+  "d": "Logs purger and launcher for YoYo Loader.",
+  "ld": "Small app that deletes the yyl.log file and then launches YoYo Loader Vita.",
+  "aids": [
     "drok17"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-05-11",
-  "requirements": "Not specified",
-  "size": 3484788,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-05-11",
+  "req": "Not specified",
+  "sz": 3484788,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/log-reset-for-yoyo-loader.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-log-reset-for-yoyo-loader/log-reset-for-yoyo-loader.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DRok17/Log-Reset-for-YYL/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DRok17/Log-Reset-for-YYL/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DRok17/Log-Reset-for-YYL/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DRok17/Log-Reset-for-YYL"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/DRok17/Log-Reset-for-YYL"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "822",
-  "source_url": "https://github.com/DRok17/Log-Reset-for-YYL",
-  "release_page": "https://github.com/DRok17/Log-Reset-for-YYL/releases",
-  "updated_at": "2026-08-13T15:34:48.546721+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "822",
+  "su": "https://github.com/DRok17/Log-Reset-for-YYL",
+  "rp": "https://github.com/DRok17/Log-Reset-for-YYL/releases",
+  "ua": "2026-08-13T15:34:48.546721+00:00"
 }

@@ -1,47 +1,47 @@
 {
   "id": "vitawolfen",
-  "title_id": "WLFN0001",
-  "name": "vitaWolfen",
-  "description": "Wolfenstein 3D port for PSVITA.",
-  "long_description": "vitaWolfen is a port for PSVITA of the classic old school FPS Wolfenstein 3D (formerly WOLF3D). It's based on Wolf4SDL and supports both full game and its expansion (missionpacks included).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WLFN0001",
+  "n": "vitaWolfen",
+  "d": "Wolfenstein 3D port for PSVITA.",
+  "ld": "vitaWolfen is a port for PSVITA of the classic old school FPS Wolfenstein 3D (formerly WOLF3D). It's based on Wolf4SDL and supports both full game and its expansion (missionpacks included).\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.7",
-  "version_date": "2020-11-30",
-  "requirements": "Not specified",
-  "size": 1115769,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vitawolfen/icon0.png",
-  "screenshots": [
+  "v": "v.1.7",
+  "vd": "2020-11-30",
+  "req": "Not specified",
+  "sz": 1115769,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vitawolfen/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vitawolfen/shot_01.png",
     "https://archive.org/download/psvitaalive-vitawolfen/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vitawolfen/vitawolfen.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vitawolfen/vitawolfen.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/vitawolfen.31918/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/vitawolfen.31918/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/vitaWolfen"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/vitaWolfen"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "31",
-  "source_url": "https://github.com/Rinnegatamante/vitaWolfen",
-  "release_page": "https://www.psx-place.com/threads/vitawolfen.31918/",
-  "updated_at": "2026-08-13T15:34:48.606007+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "31",
+  "su": "https://github.com/Rinnegatamante/vitaWolfen",
+  "rp": "https://www.psx-place.com/threads/vitawolfen.31918/",
+  "ua": "2026-08-13T15:34:48.606007+00:00"
 }

@@ -1,57 +1,57 @@
 {
   "id": "fahrenheit-vita",
-  "title_id": "FAHRENEIT",
-  "name": "Fahrenheit Vita",
-  "description": "Port of Fahrenheit: Indigo Prophecy for the PSVITA.",
-  "long_description": "This is a wrapper/port of Fahrenheit: Indigo Prophecy Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FAHRENEIT",
+  "n": "Fahrenheit Vita",
+  "d": "Port of Fahrenheit: Indigo Prophecy for the PSVITA.",
+  "ld": "This is a wrapper/port of Fahrenheit: Indigo Prophecy Android for the PS Vita.\nThe port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run.\nBy doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "bythos",
     "rinnegatamante",
     "theflow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.9.1",
-  "version_date": "2023-09-05",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 3264037,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fahrenheit-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.9.1",
+  "vd": "2023-09-05",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 3264037,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fahrenheit-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-fahrenheit-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fahrenheit-vita/fahrenheit-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fahrenheit-vita/fahrenheit-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/fahrenheit-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/fahrenheit-vita/releases/tag/v.0.9.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/fahrenheit-vita/releases/tag/v.0.9.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/fahrenheit-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/fahrenheit-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "835",
-  "source_url": "https://github.com/Rinnegatamante/fahrenheit-vita",
-  "release_page": "https://github.com/Rinnegatamante/fahrenheit-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.479270+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "835",
+  "su": "https://github.com/Rinnegatamante/fahrenheit-vita",
+  "rp": "https://github.com/Rinnegatamante/fahrenheit-vita/releases",
+  "ua": "2026-08-13T15:34:48.479270+00:00"
 }

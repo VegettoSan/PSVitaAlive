@@ -1,15 +1,15 @@
 {
   "id": "g33",
-  "name": "G33",
-  "avatar": "https://github.com/G333333.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "G33",
+  "av": "https://github.com/G333333.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/G333333",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/G333333",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/G333333.png"
+  "ic": "https://github.com/G333333.png"
 }

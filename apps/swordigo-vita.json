@@ -1,55 +1,55 @@
 {
   "id": "swordigo-vita",
-  "title_id": "SWOR00001",
-  "name": "Swordigo Vita",
-  "description": "Port of Swordigo for PSVITA.",
-  "long_description": "This is a wrapper/port of Swordigo for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SWOR00001",
+  "n": "Swordigo Vita",
+  "d": "Port of Swordigo for PSVITA.",
+  "ld": "This is a wrapper/port of Swordigo for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2024-12-07",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 3549905,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-swordigo-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2024-12-07",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 3549905,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-swordigo-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-swordigo-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-swordigo-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-swordigo-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-swordigo-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-swordigo-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-swordigo-vita/swordigo-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-swordigo-vita/swordigo-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/swordigo-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/swordigo-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Rinnegatamante/swordigo-vita/releases/tag/v.1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Rinnegatamante/swordigo-vita/releases/tag/v.1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/swordigo-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/swordigo-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1181",
-  "source_url": "https://github.com/Rinnegatamante/swordigo-vita",
-  "release_page": "https://github.com/Rinnegatamante/swordigo-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.424002+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1181",
+  "su": "https://github.com/Rinnegatamante/swordigo-vita",
+  "rp": "https://github.com/Rinnegatamante/swordigo-vita/releases",
+  "ua": "2026-08-13T15:34:48.424002+00:00"
 }

@@ -1,46 +1,46 @@
 {
   "id": "zenonia-4-vita",
-  "title_id": "PSVZ00004",
-  "name": "Zenonia 4 Vita",
-  "description": "Port of Zenonia 4 for PSVita.",
-  "long_description": "ZENONIA 4: Return of the Legend is an action RPG developed and published by Gamevil. This is a port of the Android version for PSVita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PSVZ00004",
+  "n": "Zenonia 4 Vita",
+  "d": "Port of Zenonia 4 for PSVita.",
+  "ld": "ZENONIA 4: Return of the Legend is an action RPG developed and published by Gamevil. This is a port of the Android version for PSVita.\n\n- PsVitaAlive -",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2026-08-15",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 1634680,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-zenonia-4-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2026-08-15",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 1634680,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-zenonia-4-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-zenonia-4-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-zenonia-4-vita/zenonia-4-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-zenonia-4-vita/zenonia-4-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MetalSyntax/Zenonia4-psvita-port/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MetalSyntax/Zenonia4-psvita-port/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MetalSyntax/Zenonia4-psvita-port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MetalSyntax/Zenonia4-psvita-port"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1463",
-  "source_url": "https://github.com/MetalSyntax/Zenonia4-psvita-port",
-  "release_page": "https://github.com/MetalSyntax/Zenonia4-psvita-port/releases",
-  "updated_at": "2026-08-15T09:57:03.725442+00:00"
+  "sn": "VitaDB",
+  "si": "1463",
+  "su": "https://github.com/MetalSyntax/Zenonia4-psvita-port",
+  "rp": "https://github.com/MetalSyntax/Zenonia4-psvita-port/releases",
+  "ua": "2026-08-15T09:57:03.725442+00:00"
 }

@@ -1,14 +1,14 @@
 {
   "id": "jk2vita",
-  "title_id": "JK2VITA01",
-  "name": "JK2VITA",
-  "description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita.",
-  "long_description": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita based over OpenJK.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "JK2VITA01",
+  "n": "JK2VITA",
+  "d": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita.",
+  "ld": "Port of Star Wars Jedi Knight II: Jedi Outcast for PSVita based over OpenJK.\n\n- PsVitaAlive -",
+  "aids": [
     "ndrw"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "fps",
@@ -16,43 +16,43 @@
     "strategy",
     "other"
   ],
-  "version": "1.0.1",
-  "version_date": "2026-09-20",
-  "requirements": "- Game Data Files: PC",
-  "size": 3460301,
-  "status": "Verified",
-  "links": [
+  "v": "1.0.1",
+  "vd": "2026-09-20",
+  "req": "- Game Data Files: PC",
+  "sz": 3460301,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-jk2vita/JK2VITA_1.0.1.vpk",
-      "size": 3460301,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-jk2vita/JK2VITA_1.0.1.vpk",
+      "sz": 3460301,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-jk2vita/Game%20Files.zip",
-      "size": 626314445,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-jk2vita/Game%20Files.zip",
+      "sz": 626314445,
+      "xp": "ux0:data/",
+      "ips": [
         "JK2Vita"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NDRWhun/JK2VITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/NDRWhun/JK2VITA"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-jk2vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-jk2vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-jk2vita/shot_01.png",
     "https://archive.org/download/psvitaalive-jk2vita/shot_02.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1480",
-  "source_url": "https://github.com/NDRWhun/JK2VITA",
-  "release_page": "https://github.com/NDRWhun/JK2VITA/releases",
-  "updated_at": "2026-08-22T15:39"
+  "sn": "VitaDB",
+  "si": "1480",
+  "su": "https://github.com/NDRWhun/JK2VITA",
+  "rp": "https://github.com/NDRWhun/JK2VITA/releases",
+  "ua": "2026-08-22T15:39"
 }

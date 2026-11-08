@@ -1,63 +1,63 @@
 {
   "id": "cuphead-vita",
-  "title_id": "CPHD23233",
-  "name": "Cuphead Vita",
-  "description": "Port of Cuphead for PSVITA.",
-  "long_description": "Cuphead is a classic run and gun action game heavily focused on boss battles. Inspired by cartoons of the 1930s, the visuals and audio are painstakingly created with the same techniques of the era, i.e. traditional hand drawn cel animation, watercolor backgrounds, and original jazz recordings.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CPHD23233",
+  "n": "Cuphead Vita",
+  "d": "Port of Cuphead for PSVITA.",
+  "ld": "Cuphead is a classic run and gun action game heavily focused on boss battles. Inspired by cartoons of the 1930s, the visuals and audio are painstakingly created with the same techniques of the era, i.e. traditional hand drawn cel animation, watercolor backgrounds, and original jazz recordings.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "shooter"
   ],
-  "version": "v.0.82",
-  "version_date": "2024-10-10",
-  "requirements": "- Game Data Files: PC",
-  "size": 17406362,
-  "status": "Legacy",
-  "links": [
+  "v": "v.0.82",
+  "vd": "2024-10-10",
+  "req": "- Game Data Files: PC",
+  "sz": 17406362,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-cuphead-vita/Cuphead_v0.82.vpk",
-      "size": 17406362,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-cuphead-vita/Cuphead_v0.82.vpk",
+      "sz": 17406362,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-cuphead-vita/Game%20Files%20Fix.zip",
-      "size": 1181116006,
-      "extract_path": "ux0:app/"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-cuphead-vita/Game%20Files%20Fix.zip",
+      "sz": 1181116006,
+      "xp": "ux0:app/"
     },
     {
-      "type": "Plugin",
-      "name": "ioPlus-0.2 Plugin (Required)",
-      "url": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
-      "size": 3379,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/ioplus.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "ioPlus-0.2 Plugin (Required)",
+      "u": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
+      "sz": 3379,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/ioplus.skprx",
+      "rq": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/PatnosDD/Cuphead-PS-VITA"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/PatnosDD/Cuphead-PS-VITA"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-cuphead-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-cuphead-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-cuphead-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-cuphead-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-cuphead-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-cuphead-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-cuphead-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1202",
-  "source_url": "https://github.com/PatnosDD/Cuphead-PS-VITA",
-  "release_page": "https://github.com/PatnosDD/Cuphead-PS-VITA",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1202",
+  "su": "https://github.com/PatnosDD/Cuphead-PS-VITA",
+  "rp": "https://github.com/PatnosDD/Cuphead-PS-VITA",
+  "ua": "2026-08-13T15:34"
 }

@@ -1,15 +1,15 @@
 {
   "id": "anashalideen",
-  "name": "AnasHalideen",
-  "avatar": "https://github.com/anas-halid.png",
-  "bio": "Desarrollador de homebrew para PS Vita.",
-  "links": [
+  "n": "AnasHalideen",
+  "av": "https://github.com/anas-halid.png",
+  "b": "Desarrollador de homebrew para PS Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/anas-halid",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/anas-halid",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/anas-halid.png"
+  "ic": "https://github.com/anas-halid.png"
 }

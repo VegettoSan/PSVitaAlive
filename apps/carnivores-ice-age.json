@@ -1,49 +1,49 @@
 {
   "id": "carnivores-ice-age",
-  "title_id": "PSVCSIA01",
-  "name": "Carnivores Ice Age",
-  "description": "Android to PS Vita port of Carnivores: Ice Age",
-  "long_description": "Carnivores: Ice Age is Tatem Games' prehistoric hunting game, originally released for Android as Carnivores__Ice_Age_1.5.4_Android_4.0.apk (package com.tatemgames.iceage, version 1.5.4). This port runs the original ARM libraries from the Android release — the game (libIceAgeAndroid.so) and its audio engine (libfmodex.so), both armeabi — directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the OpenGL ES 1.1 rendering backend.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PSVCSIA01",
+  "n": "Carnivores Ice Age",
+  "d": "Android to PS Vita port of Carnivores: Ice Age",
+  "ld": "Carnivores: Ice Age is Tatem Games' prehistoric hunting game, originally released for Android as Carnivores__Ice_Age_1.5.4_Android_4.0.apk (package com.tatemgames.iceage, version 1.5.4). This port runs the original ARM libraries from the Android release — the game (libIceAgeAndroid.so) and its audio engine (libfmodex.so), both armeabi — directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the OpenGL ES 1.1 rendering backend.\n\n- PsVitaAlive -",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "fps",
     "shooter",
     "strategy"
   ],
-  "version": "1.2.0",
-  "version_date": "2026-11-05",
-  "requirements": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso).\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Carnivores: Ice Age 1.5.4 for Android",
-  "size": 1258291,
-  "status": "Verified",
-  "links": [
+  "v": "1.2.0",
+  "vd": "2026-11-05",
+  "req": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso).\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Carnivores: Ice Age 1.5.4 for Android",
+  "sz": 1258291,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.2.0.vpk",
-      "size": 1258291,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/carnivores-ice-age-ps-vita-port/carnivoresiceage%20v1.2.0.vpk",
+      "sz": 1258291,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
-      "size": 73610035,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/carnivores-ice-age-ps-vita-port/Game%20Files.zip",
+      "sz": 73610035,
+      "xp": "ux0:data/",
+      "ips": [
         "carnivoresiceage"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/MetalSyntax/Carnivores-Ice-Age-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/MetalSyntax/Carnivores-Ice-Age-vita"
     }
   ],
-  "icon": "https://archive.org/download/carnivores-ice-age-ps-vita-port/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/carnivores-ice-age-ps-vita-port/icon0.png",
+  "ss": [
     "https://archive.org/download/carnivores-ice-age-ps-vita-port/pic0.png"
   ]
 }

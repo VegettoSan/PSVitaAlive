@@ -1,40 +1,40 @@
 {
   "id": "crossy-road-clone",
-  "title_id": "VHCR93675",
-  "name": "Crossy Road Clone",
-  "description": "Clone of Crossy Road for PSVITA.",
-  "long_description": "This is the beta release of a clone of Crossy Road, with a base project made by David Yung-Sheng Lu, and expanded then adapted for Vita by MRKane where it runs at a silky 60fps. \nWhile there's only one character, and a lot of rough edges, the majority of the core Crossy Roads gameplay loop is present in game meaning you can enjoy the core experience of Crossy Road on the Vita.\nThe beta has been a lot of fun to make, but I'm far from finished and will be looking for good ideas to improve the game!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VHCR93675",
+  "n": "Crossy Road Clone",
+  "d": "Clone of Crossy Road for PSVITA.",
+  "ld": "This is the beta release of a clone of Crossy Road, with a base project made by David Yung-Sheng Lu, and expanded then adapted for Vita by MRKane where it runs at a silky 60fps. \nWhile there's only one character, and a lot of rough edges, the majority of the core Crossy Roads gameplay loop is present in game meaning you can enjoy the core experience of Crossy Road on the Vita.\nThe beta has been a lot of fun to make, but I'm far from finished and will be looking for good ideas to improve the game!\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "mrkane"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "casual"
   ],
-  "version": "v.0.70",
-  "version_date": "2024-08-18",
-  "requirements": "Not specified",
-  "size": 32541087,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-crossy-road-clone/icon0.png",
-  "screenshots": [
+  "v": "v.0.70",
+  "vd": "2024-08-18",
+  "req": "Not specified",
+  "sz": 32541087,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-crossy-road-clone/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-crossy-road-clone/shot_01.png",
     "https://archive.org/download/psvitaalive-crossy-road-clone/shot_02.png",
     "https://archive.org/download/psvitaalive-crossy-road-clone/shot_03.png",
     "https://archive.org/download/psvitaalive-crossy-road-clone/shot_04.png",
     "https://archive.org/download/psvitaalive-crossy-road-clone/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-crossy-road-clone/crossy-road-clone.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crossy-road-clone/crossy-road-clone.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1221",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1221-CrossyRoadsClone.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.433265+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1221",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1221-CrossyRoadsClone.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.433265+00:00"
 }

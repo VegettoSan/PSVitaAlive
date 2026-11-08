@@ -1,46 +1,46 @@
 {
   "id": "ftplaystation",
-  "title_id": "FTP200001",
-  "name": "FTPlaystation",
-  "description": "FTP server for PSVITA.",
-  "long_description": "Standalone FTP server utility for PSVITA/PSTV.",
-  "author_ids": [
+  "tid": "FTP200001",
+  "n": "FTPlaystation",
+  "d": "FTP server for PSVITA.",
+  "ld": "Standalone FTP server utility for PSVITA/PSTV.",
+  "aids": [
     "red7s"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1",
-  "version_date": "2016-10-24",
-  "requirements": "Not specified",
-  "size": 1966117,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ftplaystation/icon0.png",
-  "screenshots": [
+  "v": "v.0.1",
+  "vd": "2016-10-24",
+  "req": "Not specified",
+  "sz": 1966117,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ftplaystation/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ftplaystation/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ftplaystation/ftplaystation.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ftplaystation/ftplaystation.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/StonedModder/FTPlaystation/releases/tag/0.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/StonedModder/FTPlaystation/releases/tag/0.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/ItsDeidara/FTPlaystation"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/ItsDeidara/FTPlaystation"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "252",
-  "source_url": "https://github.com/ItsDeidara/FTPlaystation",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.693692+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "252",
+  "su": "https://github.com/ItsDeidara/FTPlaystation",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.693692+00:00"
 }

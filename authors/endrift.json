@@ -1,15 +1,15 @@
 {
   "id": "endrift",
-  "name": "endrift",
-  "avatar": "https://github.com/mgba-emu.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "endrift",
+  "av": "https://github.com/mgba-emu.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/mgba-emu",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/mgba-emu",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/mgba-emu.png"
+  "ic": "https://github.com/mgba-emu.png"
 }

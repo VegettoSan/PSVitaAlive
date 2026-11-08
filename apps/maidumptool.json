@@ -1,49 +1,49 @@
 {
   "id": "maidumptool",
-  "title_id": "MAIM00001",
-  "name": "MaiDumpTool",
-  "description": "Decrypts content and installs decrypted content to the system.",
-  "long_description": "Improved games dumper, alternative to Vitamin.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "MAIM00001",
+  "n": "MaiDumpTool",
+  "d": "Decrypts content and installs decrypted content to the system.",
+  "ld": "Improved games dumper, alternative to Vitamin.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "liomajor",
     "beniyukimai"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.233.2zEx",
-  "version_date": "2016-10-08",
-  "requirements": "Not specified",
-  "size": 4280113,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-maidumptool/icon0.png",
-  "screenshots": [
+  "v": "v.233.2zEx",
+  "vd": "2016-10-08",
+  "req": "Not specified",
+  "sz": 4280113,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-maidumptool/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-maidumptool/shot_01.png",
     "https://archive.org/download/psvitaalive-maidumptool/shot_02.png",
     "https://archive.org/download/psvitaalive-maidumptool/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-maidumptool/maidumptool.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-maidumptool/maidumptool.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/LioMajor/MaiDumpToolEN/releases/tag/V233.2zEx_eng"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/LioMajor/MaiDumpToolEN/releases/tag/V233.2zEx_eng"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/LioMajor/MaiDumpToolEN"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/LioMajor/MaiDumpToolEN"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "53",
-  "source_url": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.696314+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "53",
+  "su": "https://github.com/LioMajor/MaiDumpToolEN/releases/download/V233.2zEx_eng/MaiDumpTool_V233.2zEx_eng.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.696314+00:00"
 }

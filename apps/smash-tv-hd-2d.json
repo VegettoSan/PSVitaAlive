@@ -1,45 +1,45 @@
 {
   "id": "smash-tv-hd-2d",
-  "title_id": "SMTV00001",
-  "name": "Smash TV HD-2D",
-  "description": "Short action game for PSVITA.",
-  "long_description": "A short action game for PSVITA made in Godot.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "SMTV00001",
+  "n": "Smash TV HD-2D",
+  "d": "Short action game for PSVITA.",
+  "ld": "A short action game for PSVITA made in Godot.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "captkuso"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2024-03-11",
-  "requirements": "Not specified",
-  "size": 23896518,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-smash-tv-hd-2d/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2024-03-11",
+  "req": "Not specified",
+  "sz": 23896518,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-smash-tv-hd-2d/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_01.png",
     "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_02.png",
     "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_03.png",
     "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_04.png",
     "https://archive.org/download/psvitaalive-smash-tv-hd-2d/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-smash-tv-hd-2d/smash-tv-hd-2d.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-smash-tv-hd-2d/smash-tv-hd-2d.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://captkuso.itch.io/smash-tv-hd-2d"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://captkuso.itch.io/smash-tv-hd-2d"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1190",
-  "source_url": "https://captkuso.itch.io/smash-tv-hd-2d",
-  "release_page": "https://captkuso.itch.io/smash-tv-hd-2d",
-  "updated_at": "2026-08-13T15:34:48.446388+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1190",
+  "su": "https://captkuso.itch.io/smash-tv-hd-2d",
+  "rp": "https://captkuso.itch.io/smash-tv-hd-2d",
+  "ua": "2026-08-13T15:34:48.446388+00:00"
 }

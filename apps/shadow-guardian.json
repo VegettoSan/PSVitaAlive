@@ -1,50 +1,50 @@
 {
   "id": "shadow-guardian",
-  "title_id": "PSVSGHD01",
-  "name": "Shadow Guardian",
-  "description": "This is a wrapper/port of Shadow Guardian HD for the PS Vita.",
-  "long_description": "The port works by loading the official Android ARMv7 libshadowguardian.so executable in memory, resolving its imports with custom stubs, and patching it to properly run on the PS Vita using a fake JNI environment and translating OpenGL ES 2.0 calls to vitaGL.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PSVSGHD01",
+  "n": "Shadow Guardian",
+  "d": "This is a wrapper/port of Shadow Guardian HD for the PS Vita.",
+  "ld": "The port works by loading the official Android ARMv7 libshadowguardian.so executable in memory, resolving its imports with custom stubs, and patching it to properly run on the PS Vita using a fake JNI environment and translating OpenGL ES 2.0 calls to vitaGL.\n\n- PsVitaAlive -",
+  "aids": [
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "fps",
     "shooter",
     "strategy"
   ],
-  "version": "1.4.0",
-  "version_date": "2026-09-27",
-  "requirements": "- Install the kubridge and fd_fix plugins on your PS Vita.\n- Install libshacccg.suprx, if you don't have it already.",
-  "size": 1153434,
-  "status": "Verified",
-  "links": [
+  "v": "1.4.0",
+  "vd": "2026-09-27",
+  "req": "- Install the kubridge and fd_fix plugins on your PS Vita.\n- Install libshacccg.suprx, if you don't have it already.",
+  "sz": 1153434,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/shadow-guardian-ps-vita/shadowguardian%20v1.4.0.vpk",
-      "size": 1153434,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/shadow-guardian-ps-vita/shadowguardian%20v1.4.0.vpk",
+      "sz": 1153434,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
-      "size": 598946611,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/shadow-guardian-ps-vita/Game%20Files.zip",
+      "sz": 598946611,
+      "xp": "ux0:data/",
+      "ips": [
         "shadowguardian"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/MetalSyntax/Shadow-Guardian-vita"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/MetalSyntax/Shadow-Guardian-vita"
     }
   ],
-  "icon": "https://archive.org/download/shadow-guardian-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/shadow-guardian-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/shadow-guardian-ps-vita/shot0.png"
   ]
 }

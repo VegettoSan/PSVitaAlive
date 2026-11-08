@@ -1,44 +1,44 @@
 {
   "id": "batman-the-dark-knight-rises",
-  "title_id": "KRAS00000",
-  "name": "Batman - The Dark Knight Rises",
-  "description": "Batman - The Dark Knight Rises Port Ps Vita",
-  "long_description": "Batman - The Dark Knight Rises Port Ps Vita\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "KRAS00000",
+  "n": "Batman - The Dark Knight Rises",
+  "d": "Batman - The Dark Knight Rises Port Ps Vita",
+  "ld": "Batman - The Dark Knight Rises Port Ps Vita\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante",
     "theflow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "arcade"
   ],
-  "version": "0.8",
-  "version_date": "2026-08-27",
-  "requirements": "Install Kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder",
-  "size": 794112,
-  "status": "Verified",
-  "links": [
+  "v": "0.8",
+  "vd": "2026-08-27",
+  "req": "Install Kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder",
+  "sz": 794112,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/batman-the-dark-knight-rises/KRAS.vpk",
-      "size": 794112,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/batman-the-dark-knight-rises/KRAS.vpk",
+      "sz": 794112,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files ZIP",
-      "url": "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip",
-      "size": 1932735283,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files ZIP",
+      "u": "https://archive.org/download/batman-the-dark-knight-rises/Game%20Files.zip",
+      "sz": 1932735283,
+      "xp": "ux0:data/",
+      "ips": [
         "kras"
       ]
     }
   ],
-  "icon": "https://archive.org/download/batman-the-dark-knight-rises/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/batman-the-dark-knight-rises/icon0.png",
+  "ss": [
     "https://archive.org/download/batman-the-dark-knight-rises/shot0.png",
     "https://archive.org/download/batman-the-dark-knight-rises/shot1.png"
   ]

@@ -1,55 +1,55 @@
 {
   "id": "openttd",
-  "title_id": "ANGU00001",
-  "name": "OpenTTD",
-  "description": "Transport Tycoon Deluxe port.",
-  "long_description": "OpenTTD is an open source simulation game based upon Transport Tycoon Deluxe. Please note the game takes ~60 seconds to load.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ANGU00001",
+  "n": "OpenTTD",
+  "d": "Transport Tycoon Deluxe port.",
+  "ld": "OpenTTD is an open source simulation game based upon Transport Tycoon Deluxe. Please note the game takes ~60 seconds to load.\n\n- PsVitaAlive -",
+  "aids": [
     "angguss"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.0.3",
-  "version_date": "2019-03-07",
-  "requirements": "Not specified",
-  "size": 3727798,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-openttd/icon0.png",
-  "screenshots": [
+  "v": "v.0.3",
+  "vd": "2019-03-07",
+  "req": "Not specified",
+  "sz": 3727798,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-openttd/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-openttd/shot_01.png",
     "https://archive.org/download/psvitaalive-openttd/shot_02.png",
     "https://archive.org/download/psvitaalive-openttd/shot_03.png",
     "https://archive.org/download/psvitaalive-openttd/shot_04.png",
     "https://archive.org/download/psvitaalive-openttd/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-openttd/openttd.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-openttd/openttd.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/angguss/OpenTTD/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/angguss/OpenTTD/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/angguss/OpenTTD/releases/tag/0.3-vita"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/angguss/OpenTTD/"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/angguss/OpenTTD/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "299",
-  "source_url": "https://github.com/angguss/OpenTTD/",
-  "release_page": "https://github.com/angguss/OpenTTD/releases",
-  "updated_at": "2026-08-13T15:34:48.652862+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "299",
+  "su": "https://github.com/angguss/OpenTTD/",
+  "rp": "https://github.com/angguss/OpenTTD/releases",
+  "ua": "2026-08-13T15:34:48.652862+00:00"
 }

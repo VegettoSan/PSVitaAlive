@@ -1,55 +1,55 @@
 {
   "id": "repatch-manager",
-  "title_id": "REMGR0001",
-  "name": "rePatch Manager",
-  "description": "Tools to manage rePatch games",
-  "long_description": "Tool to enable and disable specific rePatch game. Useful to enable and disable mods that using rePatch.\nTested with FW 3.60 and 3.65.",
-  "author_ids": [
+  "tid": "REMGR0001",
+  "n": "rePatch Manager",
+  "d": "Tools to manage rePatch games",
+  "ld": "Tool to enable and disable specific rePatch game. Useful to enable and disable mods that using rePatch.\nTested with FW 3.60 and 3.65.",
+  "aids": [
     "eyeman"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.10",
-  "version_date": "2022-05-14",
-  "requirements": "Not specified",
-  "size": 3969733,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-repatch-manager/icon0.png",
-  "screenshots": [
+  "v": "v.1.10",
+  "vd": "2022-05-14",
+  "req": "Not specified",
+  "sz": 3969733,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-repatch-manager/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-repatch-manager/shot_01.png",
     "https://archive.org/download/psvitaalive-repatch-manager/shot_02.png",
     "https://archive.org/download/psvitaalive-repatch-manager/shot_03.png",
     "https://archive.org/download/psvitaalive-repatch-manager/shot_04.png",
     "https://archive.org/download/psvitaalive-repatch-manager/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-repatch-manager/repatch-manager.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-repatch-manager/repatch-manager.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Eyeman420/rePatch-Manager/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Eyeman420/rePatch-Manager/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Eyeman420/rePatch-Manager/releases/tag/v1.10"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Eyeman420/rePatch-Manager/releases/tag/v1.10"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Eyeman420/rePatch-Manager"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Eyeman420/rePatch-Manager"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "795",
-  "source_url": "https://github.com/Eyeman420/rePatch-Manager",
-  "release_page": "https://github.com/Eyeman420/rePatch-Manager/releases",
-  "updated_at": "2026-08-13T15:34:48.546456+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "795",
+  "su": "https://github.com/Eyeman420/rePatch-Manager",
+  "rp": "https://github.com/Eyeman420/rePatch-Manager/releases",
+  "ua": "2026-08-13T15:34:48.546456+00:00"
 }

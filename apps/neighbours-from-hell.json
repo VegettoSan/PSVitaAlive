@@ -1,54 +1,54 @@
 {
   "id": "neighbours-from-hell",
-  "title_id": "HELL12345",
-  "name": "Neighbours from Hell",
-  "description": "Port of Neighbours From Hell for PSVita.",
-  "long_description": "Port of Neighbours From Hell for PSVita based on the free 1.1.5 version of Neighbours From Hell.\nNOTE: All Season 1 levels are unlocked. Season 2 levels are disabled as they are missing from the game files. Social buttons have been disabled because they caused crashes.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HELL12345",
+  "n": "Neighbours from Hell",
+  "d": "Port of Neighbours From Hell for PSVita.",
+  "ld": "Port of Neighbours From Hell for PSVita based on the free 1.1.5 version of Neighbours From Hell.\nNOTE: All Season 1 levels are unlocked. Season 2 levels are disabled as they are missing from the game files. Social buttons have been disabled because they caused crashes.\n\n- PsVitaAlive -",
+  "aids": [
     "maloneczsd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-12-27",
-  "requirements": "- Game Data Files: Android",
-  "size": 13193713,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-neighbours-from-hell/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-12-27",
+  "req": "- Game Data Files: Android",
+  "sz": 13193713,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-neighbours-from-hell/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-neighbours-from-hell/shot_01.png",
     "https://archive.org/download/psvitaalive-neighbours-from-hell/shot_02.png",
     "https://archive.org/download/psvitaalive-neighbours-from-hell/shot_03.png",
     "https://archive.org/download/psvitaalive-neighbours-from-hell/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-neighbours-from-hell/neighbours-from-hell.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-neighbours-from-hell/neighbours-from-hell.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/malone46/NFH-PS-VITA/"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/malone46/NFH-PS-VITA/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MaloneCZSD/NFH-PS-VITA/releases/tag/V1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MaloneCZSD/NFH-PS-VITA/releases/tag/V1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MaloneCZSD/NFH-PS-VITA"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MaloneCZSD/NFH-PS-VITA"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1354",
-  "source_url": "https://github.com/malone46/NFH-PS-VITA/",
-  "release_page": "https://github.com/malone46/NFH-PS-VITA/",
-  "updated_at": "2026-08-13T15:34:48.371727+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1354",
+  "su": "https://github.com/malone46/NFH-PS-VITA/",
+  "rp": "https://github.com/malone46/NFH-PS-VITA/",
+  "ua": "2026-08-13T15:34:48.371727+00:00"
 }

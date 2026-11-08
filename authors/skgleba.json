@@ -1,15 +1,15 @@
 {
   "id": "skgleba",
-  "name": "SKGleba",
-  "avatar": "https://github.com/SKGleba.png",
-  "bio": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
-  "links": [
+  "n": "SKGleba",
+  "av": "https://github.com/SKGleba.png",
+  "b": "Desarrollador de homebrew y ports para PlayStation Vita, activo en la comunidad de custom firmware.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/SKGleba",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/SKGleba",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/SKGleba.png"
+  "ic": "https://github.com/SKGleba.png"
 }

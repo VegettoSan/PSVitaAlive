@@ -1,45 +1,45 @@
 {
   "id": "ink",
-  "title_id": "INKV00000",
-  "name": "INK",
-  "description": "INK port for PSVita",
-  "long_description": "INK is a fast-paced platformer about using colorful paint to uncover your surroundings. Defeat all enemies in the room and reach the goal! However, the terrain is invisible, so you need to discover the terrain by physically bumping into it, by performing a double jump or by, well, dying.\nPatch and install instructions in Release Page (Github).\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "INKV00000",
+  "n": "INK",
+  "d": "INK port for PSVita",
+  "ld": "INK is a fast-paced platformer about using colorful paint to uncover your surroundings. Defeat all enemies in the room and reach the goal! However, the terrain is invisible, so you need to discover the terrain by physically bumping into it, by performing a double jump or by, well, dying.\nPatch and install instructions in Release Page (Github).\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0.0",
-  "version_date": "2021-05-27",
-  "requirements": "- Game Data Files: PC Steam",
-  "size": 2947781,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ink/icon0.png",
-  "screenshots": [
+  "v": "v.1.0.0",
+  "vd": "2021-05-27",
+  "req": "- Game Data Files: PC Steam",
+  "sz": 2947781,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ink/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ink/shot_01.png",
     "https://archive.org/download/psvitaalive-ink/shot_02.png",
     "https://archive.org/download/psvitaalive-ink/shot_03.png",
     "https://archive.org/download/psvitaalive-ink/shot_04.png",
     "https://archive.org/download/psvitaalive-ink/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ink/ink.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ink/ink.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/m1s3ry/ink-vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/m1s3ry/ink-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "674",
-  "source_url": "https://github.com/m1s3ry/ink-vita",
-  "release_page": "https://github.com/m1s3ry/ink-vita",
-  "updated_at": "2026-08-13T15:34:48.586925+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "674",
+  "su": "https://github.com/m1s3ry/ink-vita",
+  "rp": "https://github.com/m1s3ry/ink-vita",
+  "ua": "2026-08-13T15:34:48.586925+00:00"
 }

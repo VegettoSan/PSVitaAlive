@@ -1,50 +1,50 @@
 {
   "id": "antiblacklist",
-  "title_id": "ABLK00001",
-  "name": "AntiBlacklist",
-  "description": "Advanced Whitelister for PSTV.",
-  "long_description": "AntiBlacklist is an homebrew-tool for PSTV that will remove the blacklist for games and apps inserted by Sony allowing you to play any game you want on your console.\nDifferently to the other tools, AntiBlacklist support both v1 and v2 patches and is also capable to remove v2 patch (if you want to update a game blocked by it and then re-enable it.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "ABLK00001",
+  "n": "AntiBlacklist",
+  "d": "Advanced Whitelister for PSTV.",
+  "ld": "AntiBlacklist is an homebrew-tool for PSTV that will remove the blacklist for games and apps inserted by Sony allowing you to play any game you want on your console.\nDifferently to the other tools, AntiBlacklist support both v1 and v2 patches and is also capable to remove v2 patch (if you want to update a game blocked by it and then re-enable it.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2",
-  "version_date": "2017-04-29",
-  "requirements": "Not specified",
-  "size": 527574,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-antiblacklist/icon0.png",
-  "screenshots": [
+  "v": "v.1.2",
+  "vd": "2017-04-29",
+  "req": "Not specified",
+  "sz": 527574,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-antiblacklist/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-antiblacklist/shot_01.png",
     "https://archive.org/download/psvitaalive-antiblacklist/shot_02.png",
     "https://archive.org/download/psvitaalive-antiblacklist/shot_03.png",
     "https://archive.org/download/psvitaalive-antiblacklist/shot_04.png",
     "https://archive.org/download/psvitaalive-antiblacklist/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-antiblacklist/antiblacklist.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-antiblacklist/antiblacklist.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=46522"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=46522"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/AntiBlacklist"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/AntiBlacklist"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "11",
-  "source_url": "https://github.com/Rinnegatamante/AntiBlacklist",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=46522",
-  "updated_at": "2026-08-13T15:34:48.683259+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "11",
+  "su": "https://github.com/Rinnegatamante/AntiBlacklist",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=46522",
+  "ua": "2026-08-13T15:34:48.683259+00:00"
 }

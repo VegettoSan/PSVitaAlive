@@ -1,54 +1,54 @@
 {
   "id": "lcd-color-saturation",
-  "title_id": "LCDSAT000",
-  "name": "LCD Color Saturation",
-  "description": "Color saturation enhancer for PSV Slim.",
-  "long_description": "A little utility that improves color saturation ons PSVITA Slim models.",
-  "author_ids": [
+  "tid": "LCDSAT000",
+  "n": "LCD Color Saturation",
+  "d": "Color saturation enhancer for PSV Slim.",
+  "ld": "A little utility that improves color saturation ons PSVITA Slim models.",
+  "aids": [
     "electric"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v1.2.0",
-  "version_date": "2020-09-13",
-  "requirements": "Not specified",
-  "size": 203913,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-lcd-color-saturation/icon0.png",
-  "screenshots": [
+  "v": "v1.2.0",
+  "vd": "2020-09-13",
+  "req": "Not specified",
+  "sz": 203913,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-lcd-color-saturation/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_01.png",
     "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_02.png",
     "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_03.png",
     "https://archive.org/download/psvitaalive-lcd-color-saturation/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lcd-color-saturation/lcdsat.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-lcd-color-saturation/lcdsat.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Electric1447/lcd-color-saturation"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Electric1447/lcd-color-saturation"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Electric1447/lcd-color-saturation/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Electric1447/lcd-color-saturation/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "561",
-  "source_url": "https://github.com/Electric1447/lcd-color-saturation",
-  "release_page": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0",
-  "updated_at": "2026-08-13T15:34:48.616879+00:00"
+  "sn": "NeoVitaDB",
+  "si": "561",
+  "su": "https://github.com/Electric1447/lcd-color-saturation",
+  "rp": "https://github.com/Electric1447/lcd-color-saturation/releases/tag/v1.2.0",
+  "ua": "2026-08-13T15:34:48.616879+00:00"
 }

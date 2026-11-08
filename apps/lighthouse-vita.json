@@ -1,57 +1,57 @@
 {
   "id": "lighthouse-vita",
-  "title_id": "BANJO0064",
-  "name": "Lighthouse Vita",
-  "description": "Port of Lighthouse for PSVita.",
-  "long_description": "Lighthouse Vita is a native port of Banjo Kazooie for PSVita based on Lighthouse, the PC port of the decompilation of Banjo Kazooie. It features several enhancements, new features, romhacks support, mods support, built-in randomizer, and much much more.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "BANJO0064",
+  "n": "Lighthouse Vita",
+  "d": "Port of Lighthouse for PSVita.",
+  "ld": "Lighthouse Vita is a native port of Banjo Kazooie for PSVita based on Lighthouse, the PC port of the decompilation of Banjo Kazooie. It features several enhancements, new features, romhacks support, mods support, built-in randomizer, and much much more.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "platformer",
     "puzzle",
     "other"
   ],
-  "version": "v.1.0.1",
-  "version_date": "2026-09-01",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: N64",
-  "size": 8493466,
-  "status": "Verified",
-  "links": [
+  "v": "v.1.0.1",
+  "vd": "2026-09-01",
+  "req": "- libshacccg.suprx\n- Game Data Files: N64",
+  "sz": 8493466,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-lighthouse-vita/Lighthouse%201.0.1.vpk",
-      "size": 8493466,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-lighthouse-vita/Lighthouse%201.0.1.vpk",
+      "sz": 8493466,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP Mediafire",
-      "url": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
-      "size": 257980105,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP Mediafire",
+      "u": "https://www.mediafire.com/file/9be1no8he289e2c/BanjoKazooieVita.zip/file",
+      "sz": 257980105,
+      "xp": "ux0:data/",
+      "ips": [
         "lighthouse"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/Lighthouse"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/Lighthouse"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-lighthouse-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-lighthouse-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-lighthouse-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-lighthouse-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-lighthouse-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-lighthouse-vita/shot_04.png"
   ],
-  "source_name": "VitaDB",
-  "source_id": "1468",
-  "source_url": "https://github.com/Rinnegatamante/Lighthouse",
-  "updated_at": "2026-08-16T21:38"
+  "sn": "VitaDB",
+  "si": "1468",
+  "su": "https://github.com/Rinnegatamante/Lighthouse",
+  "ua": "2026-08-16T21:38"
 }

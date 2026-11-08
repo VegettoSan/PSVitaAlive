@@ -1,15 +1,15 @@
 {
   "id": "callmebk",
-  "name": "CallmeBK",
-  "avatar": "https://github.com/CallmeBK.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "CallmeBK",
+  "av": "https://github.com/CallmeBK.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/CallmeBK",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/CallmeBK",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/CallmeBK.png"
+  "ic": "https://github.com/CallmeBK.png"
 }

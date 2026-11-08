@@ -1,51 +1,51 @@
 {
   "id": "isabelle-dance-studio",
-  "title_id": "PCSE69420",
-  "name": "Isabelle Dance Studio",
-  "description": "Port of Isabelle Dance Studio for PSVITA.",
-  "long_description": "Help Isabelle improve her ballet skills by playing Isabelle Dance Studio. Tap the stars so that Isabelle will reach and leap to keep them in the air. Touch stars to earn points. Let stars hit gems to fill up the starburst meter and unlock its special power. Tap megastars for more points and powers, but don’t touch the black pearl! If you do, you’ll have to start over. Remember, practice makes perfect!\nThis is an updated and modernised port of the game for the PS Vita (and later Android releases), built using Unity 2018.2.19f1.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "PCSE69420",
+  "n": "Isabelle Dance Studio",
+  "d": "Port of Isabelle Dance Studio for PSVITA.",
+  "ld": "Help Isabelle improve her ballet skills by playing Isabelle Dance Studio. Tap the stars so that Isabelle will reach and leap to keep them in the air. Touch stars to earn points. Let stars hit gems to fill up the starburst meter and unlock its special power. Tap megastars for more points and powers, but don’t touch the black pearl! If you do, you’ll have to start over. Remember, practice makes perfect!\nThis is an updated and modernised port of the game for the PS Vita (and later Android releases), built using Unity 2018.2.19f1.\n\n- PsVitaAlive -",
+  "aids": [
     "huckleberrypie",
     "parkinglotstudio"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.02-PSP2",
-  "version_date": "2023-03-19",
-  "requirements": "Not specified",
-  "size": 17515315,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-isabelle-dance-studio/icon0.png",
-  "screenshots": [
+  "v": "v.1.02-PSP2",
+  "vd": "2023-03-19",
+  "req": "Not specified",
+  "sz": 17515315,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-isabelle-dance-studio/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-isabelle-dance-studio/shot_01.png",
     "https://archive.org/download/psvitaalive-isabelle-dance-studio/shot_02.png",
     "https://archive.org/download/psvitaalive-isabelle-dance-studio/shot_03.png",
     "https://archive.org/download/psvitaalive-isabelle-dance-studio/shot_04.png",
     "https://archive.org/download/psvitaalive-isabelle-dance-studio/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-isabelle-dance-studio/isabelle-dance-studio.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-isabelle-dance-studio/isabelle-dance-studio.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/huckleberrypie/IsabelleDanceStudio"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/huckleberrypie/IsabelleDanceStudio"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1058",
-  "source_url": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
-  "release_page": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
-  "updated_at": "2026-08-13T15:34:48.502061+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1058",
+  "su": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
+  "rp": "https://github.com/huckleberrypie/IsabelleDanceStudio/releases",
+  "ua": "2026-08-13T15:34:48.502061+00:00"
 }

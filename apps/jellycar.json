@@ -1,55 +1,55 @@
 {
   "id": "jellycar",
-  "title_id": "JELY00001",
-  "name": "JellyCar",
-  "description": "2D game with soft body physics.",
-  "long_description": "JellyCar is a great 2d game with soft body physics created by Walaber. This is a reimplemented version for Playstation Vita.",
-  "author_ids": [
+  "tid": "JELY00001",
+  "n": "JellyCar",
+  "d": "2D game with soft body physics.",
+  "ld": "JellyCar is a great 2d game with soft body physics created by Walaber. This is a reimplemented version for Playstation Vita.",
+  "aids": [
     "drakon"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2020-03-22",
-  "requirements": "Not specified",
-  "size": 34519153,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-jellycar/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2020-03-22",
+  "req": "Not specified",
+  "sz": 34519153,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-jellycar/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-jellycar/shot_01.png",
     "https://archive.org/download/psvitaalive-jellycar/shot_02.png",
     "https://archive.org/download/psvitaalive-jellycar/shot_03.png",
     "https://archive.org/download/psvitaalive-jellycar/shot_04.png",
     "https://archive.org/download/psvitaalive-jellycar/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-jellycar/jellycar.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-jellycar/jellycar.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DrakonPL/JellyCar/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DrakonPL/JellyCar/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/DrakonPL/JellyCar/releases/tag/1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/DrakonPL/JellyCar/releases/tag/1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/DrakonPL/JellyCar"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/DrakonPL/JellyCar"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "27",
-  "source_url": "https://github.com/DrakonPL/JellyCar",
-  "release_page": "https://github.com/DrakonPL/JellyCar/releases",
-  "updated_at": "2026-08-13T15:34:48.622981+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "27",
+  "su": "https://github.com/DrakonPL/JellyCar",
+  "rp": "https://github.com/DrakonPL/JellyCar/releases",
+  "ua": "2026-08-13T15:34:48.622981+00:00"
 }

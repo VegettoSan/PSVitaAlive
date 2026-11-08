@@ -1,45 +1,45 @@
 {
   "id": "fran-bow---chapter-two",
-  "title_id": "FBCH20409",
-  "name": "Fran Bow - Chapter Two",
-  "description": "Port of Fran Bow - Chapter 2 for PSVITA.",
-  "long_description": "Fran Bow - Chapter 2 is the continuation of Fran Bow - Chapter 1.\nCredits to m1s3ry, Grossleymoo and Killmonday\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "FBCH20409",
+  "n": "Fran Bow - Chapter Two",
+  "d": "Port of Fran Bow - Chapter 2 for PSVITA.",
+  "ld": "Fran Bow - Chapter 2 is the continuation of Fran Bow - Chapter 1.\nCredits to m1s3ry, Grossleymoo and Killmonday\n\n- PsVitaAlive -",
+  "aids": [
     "hatoving"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.2.02",
-  "version_date": "2021-04-09",
-  "requirements": "- Game Data Files: Android OR PC",
-  "size": 2921361,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-fran-bow---chapter-two/icon0.png",
-  "screenshots": [
+  "v": "v.2.02",
+  "vd": "2021-04-09",
+  "req": "- Game Data Files: Android OR PC",
+  "sz": 2921361,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-fran-bow---chapter-two/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_01.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_02.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_03.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_04.png",
     "https://archive.org/download/psvitaalive-fran-bow---chapter-two/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-fran-bow---chapter-two/fran-bow---chapter-two.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fran-bow---chapter-two/fran-bow---chapter-two.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/hatoving/GMSVitaPortInstructions"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/hatoving/GMSVitaPortInstructions"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "641",
-  "source_url": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "release_page": "https://github.com/hatoving/GMSVitaPortInstructions",
-  "updated_at": "2026-08-13T15:34:48.589704+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "641",
+  "su": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "rp": "https://github.com/hatoving/GMSVitaPortInstructions",
+  "ua": "2026-08-13T15:34:48.589704+00:00"
 }

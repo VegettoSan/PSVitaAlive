@@ -1,50 +1,50 @@
 {
   "id": "contract-demon-vita",
-  "title_id": "RNPYDEMON",
-  "name": "Contract Demon Vita",
-  "description": "Port of Contract Demon for PSVITA/PSTV.",
-  "long_description": "Port of Contract Demon for PSVITA/PSTV.\nCONTRACT DEMON is a visual novel created for NaNoRenO 2019. an angel summons a demon, and they end up... in love?! it takes 20-30 minutes to read through the story. there are no choices or alternate endings.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RNPYDEMON",
+  "n": "Contract Demon Vita",
+  "d": "Port of Contract Demon for PSVITA/PSTV.",
+  "ld": "Port of Contract Demon for PSVITA/PSTV.\nCONTRACT DEMON is a visual novel created for NaNoRenO 2019. an angel summons a demon, and they end up... in love?! it takes 20-30 minutes to read through the story. there are no choices or alternate endings.\n\n- PsVitaAlive -",
+  "aids": [
     "sonicmastr"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.00",
-  "version_date": "2021-09-17",
-  "requirements": "- Game Data Files: PC",
-  "size": 14300706,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-contract-demon-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2021-09-17",
+  "req": "- Game Data Files: PC",
+  "sz": 14300706,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-contract-demon-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-contract-demon-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-contract-demon-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-contract-demon-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-contract-demon-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-contract-demon-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-contract-demon-vita/contract-demon-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-contract-demon-vita/contract-demon-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/SonicMastr/Contract-Demon-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/SonicMastr/Contract-Demon-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SonicMastr/Contract-Demon-Vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SonicMastr/Contract-Demon-Vita/releases/tag/v1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "863",
-  "source_url": "https://github.com/SonicMastr/Contract-Demon-Vita",
-  "release_page": "https://github.com/SonicMastr/Contract-Demon-Vita",
-  "updated_at": "2026-08-13T15:34:48.570828+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "863",
+  "su": "https://github.com/SonicMastr/Contract-Demon-Vita",
+  "rp": "https://github.com/SonicMastr/Contract-Demon-Vita",
+  "ua": "2026-08-13T15:34:48.570828+00:00"
 }

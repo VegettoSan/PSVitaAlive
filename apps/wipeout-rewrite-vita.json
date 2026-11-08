@@ -1,45 +1,45 @@
 {
   "id": "wipeout-rewrite-vita",
-  "title_id": "WIPEOUT95",
-  "name": "Wipeout Rewrite Vita",
-  "description": "Port of Wipeout Rewrite for PSVITA.",
-  "long_description": "Port of Wipeout Rewrite for PSVITA.\nWipeout Rewrite is a reimplementation of the 1995 Wipeout game for modern systems featuring high resolution, 60 FPS support, a modernized renderer, CRT post-processing effect and many more features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WIPEOUT95",
+  "n": "Wipeout Rewrite Vita",
+  "d": "Port of Wipeout Rewrite for PSVITA.",
+  "ld": "Port of Wipeout Rewrite for PSVITA.\nWipeout Rewrite is a reimplementation of the 1995 Wipeout game for modern systems featuring high resolution, 60 FPS support, a modernized renderer, CRT post-processing effect and many more features.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.3",
-  "version_date": "2025-04-21",
-  "requirements": "- libshacccg.suprx\n- Game Data Files: PC/PSX",
-  "size": 1375226,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.3",
+  "vd": "2025-04-21",
+  "req": "- libshacccg.suprx\n- Game Data Files: PC/PSX",
+  "sz": 1375226,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/wipeout-rewrite-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-wipeout-rewrite-vita/wipeout-rewrite-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/wipeout-rewrite"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/wipeout-rewrite"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1116",
-  "source_url": "https://github.com/Rinnegatamante/wipeout-rewrite",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.409378+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1116",
+  "su": "https://github.com/Rinnegatamante/wipeout-rewrite",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.409378+00:00"
 }

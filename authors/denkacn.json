@@ -1,15 +1,15 @@
 {
   "id": "denkacn",
-  "name": "Denis Puzik",
-  "avatar": "https://avatars.githubusercontent.com/u/13575066?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "Denis Puzik",
+  "av": "https://avatars.githubusercontent.com/u/13575066?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/denkacn",
-      "recommended": true
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/denkacn",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/13575066?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/13575066?v=4"
 }

@@ -1,51 +1,51 @@
 {
   "id": "vita-activator",
-  "title_id": "ACTI00000",
-  "name": "Vita Activator",
-  "description": "Activate your PSVITA.",
-  "long_description": "Use this homebrew to get activation data on an HENkaku enabled PlayStation Vita.",
-  "author_ids": [
+  "tid": "ACTI00000",
+  "n": "Vita Activator",
+  "d": "Activate your PSVITA.",
+  "ld": "Use this homebrew to get activation data on an HENkaku enabled PlayStation Vita.",
+  "aids": [
     "zombiewizzard"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2016-08-31",
-  "requirements": "Not specified",
-  "size": 66233,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vita-activator/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2016-08-31",
+  "req": "Not specified",
+  "sz": 66233,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vita-activator/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vita-activator/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vita-activator/vita-activator.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vita-activator/vita-activator.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/yhtez/vita-activator/releases/tag/v1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/yhtez/vita-activator/releases/tag/v1.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/jitZpc/vita-activator"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/jitZpc/vita-activator"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "171",
-  "source_url": "https://github.com/jitZpc/vita-activator",
-  "release_page": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/",
-  "updated_at": "2026-08-13T15:34:48.702272+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "171",
+  "su": "https://github.com/jitZpc/vita-activator",
+  "rp": "http://wololo.net/2016/08/20/release-vita-activator-activate-3-60-ps-vita-without-ps3/",
+  "ua": "2026-08-13T15:34:48.702272+00:00"
 }

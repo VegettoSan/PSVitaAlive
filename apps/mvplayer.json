@@ -1,52 +1,52 @@
 {
   "id": "mvplayer",
-  "title_id": "MVPLAYER0",
-  "name": "MVPlayer",
-  "description": "Stylish video player for PSVITA.",
-  "long_description": "Using the PC tools provided on the GitHub page to convert and prepare your downloaded movies, you can now have a professional looking video library and player with several features such as bookmarking and image stretch/zoom.",
-  "author_ids": [
+  "tid": "MVPLAYER0",
+  "n": "MVPlayer",
+  "d": "Stylish video player for PSVITA.",
+  "ld": "Using the PC tools provided on the GitHub page to convert and prepare your downloaded movies, you can now have a professional looking video library and player with several features such as bookmarking and image stretch/zoom.",
+  "aids": [
     "anthj"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.4",
-  "version_date": "2022-03-18",
-  "requirements": "Not specified",
-  "size": 4528105,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-mvplayer/icon0.png",
-  "screenshots": [
+  "v": "v.1.4",
+  "vd": "2022-03-18",
+  "req": "Not specified",
+  "sz": 4528105,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-mvplayer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mvplayer/shot_01.png",
     "https://archive.org/download/psvitaalive-mvplayer/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mvplayer/MVPLAYER0.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mvplayer/MVPLAYER0.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/MVPlayer/releases/"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/MVPlayer/releases/"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/AntHJ/MVPlayer/releases/tag/v1.4"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/AntHJ/MVPlayer/releases/tag/v1.4"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/AntHJ/MVPlayer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/AntHJ/MVPlayer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "796",
-  "source_url": "https://github.com/AntHJ/MVPlayer/releases/",
-  "release_page": "https://github.com/AntHJ/MVPlayer/releases/",
-  "updated_at": "2026-08-13T15:34:48.553775+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "796",
+  "su": "https://github.com/AntHJ/MVPlayer/releases/",
+  "rp": "https://github.com/AntHJ/MVPlayer/releases/",
+  "ua": "2026-08-13T15:34:48.553775+00:00"
 }

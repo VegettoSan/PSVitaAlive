@@ -1,46 +1,46 @@
 {
   "id": "miniretroxmb",
-  "title_id": "MNRXMB001",
-  "name": "MiniRetroXMB",
-  "description": "RetroArch theme editor for PSVita.",
-  "long_description": "MiniRetroXMB lets you pick colors, choose a wallpaper, preview everything, and save it as a theme for RetroArch.",
-  "author_ids": [
+  "tid": "MNRXMB001",
+  "n": "MiniRetroXMB",
+  "d": "RetroArch theme editor for PSVita.",
+  "ld": "MiniRetroXMB lets you pick colors, choose a wallpaper, preview everything, and save it as a theme for RetroArch.",
+  "aids": [
     "goobercx"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-04-14",
-  "requirements": "Not specified",
-  "size": 407701,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-miniretroxmb/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-04-14",
+  "req": "Not specified",
+  "sz": 407701,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-miniretroxmb/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-miniretroxmb/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-miniretroxmb/miniretroxmb.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-miniretroxmb/miniretroxmb.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/goobercx/MiniRetroXMB-v1.0"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/goobercx/MiniRetroXMB-v1.0"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1385",
-  "source_url": "https://github.com/goobercx/MiniRetroXMB-v1.0",
-  "release_page": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases",
-  "updated_at": "2026-08-13T15:34:48.354611+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1385",
+  "su": "https://github.com/goobercx/MiniRetroXMB-v1.0",
+  "rp": "https://github.com/goobercx/MiniRetroXMB-v1.0/releases",
+  "ua": "2026-08-13T15:34:48.354611+00:00"
 }

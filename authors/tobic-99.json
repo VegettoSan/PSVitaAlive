@@ -1,15 +1,15 @@
 {
   "id": "tobic-99",
-  "name": "Tobic-99",
-  "avatar": "https://avatars.githubusercontent.com/u/349544785?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "Tobic-99",
+  "av": "https://avatars.githubusercontent.com/u/349544785?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Tobic-99",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Tobic-99",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/349544785?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/349544785?v=4"
 }

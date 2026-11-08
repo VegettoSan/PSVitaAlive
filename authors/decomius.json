@@ -1,15 +1,15 @@
 {
   "id": "decomius",
-  "name": "Decomius",
-  "avatar": "https://github.com/Decomius.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "Decomius",
+  "av": "https://github.com/Decomius.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/Decomius",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/Decomius",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/Decomius.png"
+  "ic": "https://github.com/Decomius.png"
 }

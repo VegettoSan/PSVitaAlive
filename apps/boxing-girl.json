@@ -1,45 +1,45 @@
 {
   "id": "boxing-girl",
-  "title_id": "WIDE45325",
-  "name": "Boxing Girl",
-  "description": "Scrolling platform game for PSVITA.",
-  "long_description": "Boxing Girl is a scrolling platform game where you play as a little boxing girl.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "WIDE45325",
+  "n": "Boxing Girl",
+  "d": "Scrolling platform game for PSVITA.",
+  "ld": "Boxing Girl is a scrolling platform game where you play as a little boxing girl.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "widegcg"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-06-07",
-  "requirements": "Not specified",
-  "size": 36748619,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-boxing-girl/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-06-07",
+  "req": "Not specified",
+  "sz": 36748619,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-boxing-girl/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-boxing-girl/shot_01.png",
     "https://archive.org/download/psvitaalive-boxing-girl/shot_02.png",
     "https://archive.org/download/psvitaalive-boxing-girl/shot_03.png",
     "https://archive.org/download/psvitaalive-boxing-girl/shot_04.png",
     "https://archive.org/download/psvitaalive-boxing-girl/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-boxing-girl/boxing-girl.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-boxing-girl/boxing-girl.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "693",
-  "source_url": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/",
-  "release_page": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/",
-  "updated_at": "2026-08-13T15:34:48.580326+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "693",
+  "su": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/",
+  "rp": "https://kyuhen.customprotocol.com/en/submissions/boxingirl/",
+  "ua": "2026-08-13T15:34:48.580326+00:00"
 }

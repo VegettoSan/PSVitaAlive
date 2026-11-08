@@ -1,67 +1,67 @@
 {
   "id": "hollow-knight-vita",
-  "title_id": "HKVT12222",
-  "name": "Hollow Knight Vita",
-  "description": "Port of Hollow Knight for PSVITA.",
-  "long_description": "Port of Hollow Knight for PSVITA.\nHollow Knight is a classically styled 2D action adventure across a vast interconnected world. Explore twisting caverns, ancient cities and deadly wastes; battle tainted creatures and befriend bizarre bugs; and solve ancient mysteries at the kingdom's heart.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "HKVT12222",
+  "n": "Hollow Knight Vita",
+  "d": "Port of Hollow Knight for PSVITA.",
+  "ld": "Port of Hollow Knight for PSVITA.\nHollow Knight is a classically styled 2D action adventure across a vast interconnected world. Explore twisting caverns, ancient cities and deadly wastes; battle tainted creatures and befriend bizarre bugs; and solve ancient mysteries at the kingdom's heart.\n\n- PsVitaAlive -",
+  "aids": [
     "patnosd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "platformer",
     "strategy",
     "source-port",
     "other"
   ],
-  "version": "1.0",
-  "version_date": "2026-11-02",
-  "requirements": "- Game Data Files: PC",
-  "size": 22126002,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-11-02",
+  "req": "- Game Data Files: PC",
+  "sz": 22126002,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v1.0.vpk",
-      "size": 22124954,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-hollow-knight-vita/HollowKnight%20v1.0.vpk",
+      "sz": 22124954,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1033371648,
-      "extract_path": "ux0:app/"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-hollow-knight-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1033371648,
+      "xp": "ux0:app/"
     },
     {
-      "type": "Plugin",
-      "name": "ioPlus-0.2 Plugin (Required)",
-      "url": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
-      "size": 3379,
-      "extract_path": "ur0:tai/",
-      "section": "*KERNEL",
-      "line": "ur0:tai/ioplus.skprx",
-      "required": true
+      "t": "Plugin",
+      "n": "ioPlus-0.2 Plugin (Required)",
+      "u": "https://archive.org/download/plugins-ps-vita/ioplus.skprx",
+      "sz": 3379,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/ioplus.skprx",
+      "rq": true
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/PatnosDD/Hollow-Knight-PsVita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-hollow-knight-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-hollow-knight-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1168",
-  "source_url": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
-  "release_page": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1168",
+  "su": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
+  "rp": "https://github.com/PatnosDD/Hollow-Knight-PsVita",
+  "ua": "2026-08-13T15:34"
 }

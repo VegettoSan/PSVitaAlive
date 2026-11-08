@@ -1,15 +1,15 @@
 {
   "id": "falkenhawk",
-  "name": "falkenhawk",
-  "avatar": "https://github.com/falkenhawk.png",
-  "bio": "",
-  "links": [
+  "n": "falkenhawk",
+  "av": "https://github.com/falkenhawk.png",
+  "b": "",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/falkenhawk",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/falkenhawk",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/falkenhawk.png"
+  "ic": "https://github.com/falkenhawk.png"
 }

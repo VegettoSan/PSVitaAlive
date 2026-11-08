@@ -1,52 +1,52 @@
 {
   "id": "database-updater",
-  "title_id": "DBMA00001",
-  "name": "Database Updater",
-  "description": "app.db management tool.",
-  "long_description": "Triggers a rebuild/update for app.db database.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DBMA00001",
+  "n": "Database Updater",
+  "d": "app.db management tool.",
+  "ld": "Triggers a rebuild/update for app.db database.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "deltaclock",
     "kanadeengel"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v2.0",
-  "version_date": "2016-12-31",
-  "requirements": "Not specified",
-  "size": 2302266,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-database-updater/icon0.png",
-  "screenshots": [
+  "v": "v2.0",
+  "vd": "2016-12-31",
+  "req": "Not specified",
+  "sz": 2302266,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-database-updater/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-database-updater/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-database-updater/224-Database.Manager.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-database-updater/224-Database.Manager.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/deltaclock/Database-Manager"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/deltaclock/Database-Manager"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/deltaclock/Database-Manager/releases/tag/v1.20"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/deltaclock/Database-Manager/releases/tag/v1.20"
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48671"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48671"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "224",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/224-Database.Manager.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.673643+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "224",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/224-Database.Manager.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.673643+00:00"
 }

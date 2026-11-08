@@ -1,46 +1,46 @@
 {
   "id": "crash-dump-delete",
-  "title_id": "CRASHDUMP",
-  "name": "Crash Dump Delete",
-  "description": "Crashdumps deleter",
-  "long_description": "Simple application that deletes all crashdump files generated when an application crashes.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "CRASHDUMP",
+  "n": "Crash Dump Delete",
+  "d": "Crashdumps deleter",
+  "ld": "Simple application that deletes all crashdump files generated when an application crashes.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "princess-of-sleeping"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2018-05-08",
-  "requirements": "Not specified",
-  "size": 37256,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-crash-dump-delete/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2018-05-08",
+  "req": "Not specified",
+  "sz": 37256,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-crash-dump-delete/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-crash-dump-delete/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-crash-dump-delete/crash-dump-delete.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crash-dump-delete/crash-dump-delete.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "384",
-  "source_url": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete",
-  "release_page": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete/releases",
-  "updated_at": "2026-08-13T15:34:48.664066+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "384",
+  "su": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete",
+  "rp": "https://github.com/Princess-of-Sleeping/Crash-Dump-Delete/releases",
+  "ua": "2026-08-13T15:34:48.664066+00:00"
 }

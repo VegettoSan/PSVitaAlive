@@ -1,47 +1,47 @@
 {
   "id": "gravity-hunters",
-  "title_id": "GRAVHUNT1",
-  "name": "Gravity Hunters",
-  "description": "Physics-driven artillery space shooter.",
-  "long_description": "Pilot a nimble spaceship, bend your shots around planetary gravity, and clear handcrafted missions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "GRAVHUNT1",
+  "n": "Gravity Hunters",
+  "d": "Physics-driven artillery space shooter.",
+  "ld": "Pilot a nimble spaceship, bend your shots around planetary gravity, and clear handcrafted missions.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "nandxor96"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-10-21",
-  "requirements": "Not specified",
-  "size": 4303132,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gravity-hunters/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-10-21",
+  "req": "Not specified",
+  "sz": 4303132,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gravity-hunters/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gravity-hunters/shot_01.png",
     "https://archive.org/download/psvitaalive-gravity-hunters/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gravity-hunters/gravity-hunters.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gravity-hunters/gravity-hunters.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://nandxor96.itch.io/gravity-hunters"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://nandxor96.itch.io/gravity-hunters"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/NandXor96/gravity_hunters_vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/NandXor96/gravity_hunters_vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1330",
-  "source_url": "https://github.com/NandXor96/gravity_hunters_vita",
-  "release_page": "https://nandxor96.itch.io/gravity-hunters",
-  "updated_at": "2026-08-13T15:34:48.378338+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1330",
+  "su": "https://github.com/NandXor96/gravity_hunters_vita",
+  "rp": "https://nandxor96.itch.io/gravity-hunters",
+  "ua": "2026-08-13T15:34:48.378338+00:00"
 }

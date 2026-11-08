@@ -1,15 +1,15 @@
 {
   "id": "vogtmh",
-  "name": "vogtmh",
-  "avatar": "https://avatars.githubusercontent.com/u/37808063?v=4",
-  "bio": "Dev",
-  "links": [
+  "n": "vogtmh",
+  "av": "https://avatars.githubusercontent.com/u/37808063?v=4",
+  "b": "Dev",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/vogtmh",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/vogtmh",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/37808063?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/37808063?v=4"
 }

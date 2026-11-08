@@ -1,42 +1,42 @@
 {
   "id": "sunshine-cat",
-  "title_id": "ABCD12346",
-  "name": "Sunshine Cat",
-  "description": "Port of Sunshine-Cat-Platformer for PSVITA.",
-  "long_description": "Port of Sunshine-Cat-Platformer for PSVITA.\nSunshine-Cat-Platformer is a demo platformer inspired to the secret levels of Super Mario Sunshine made for an university task.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ABCD12346",
+  "n": "Sunshine Cat",
+  "d": "Port of Sunshine-Cat-Platformer for PSVITA.",
+  "ld": "Port of Sunshine-Cat-Platformer for PSVITA.\nSunshine-Cat-Platformer is a demo platformer inspired to the secret levels of Super Mario Sunshine made for an university task.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "spanishfreddy",
     "lapy"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.2",
-  "version_date": "2023-01-05",
-  "requirements": "Not specified",
-  "size": 55927557,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sunshine-cat/icon0.png",
-  "screenshots": [
+  "v": "v.2",
+  "vd": "2023-01-05",
+  "req": "Not specified",
+  "sz": 55927557,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sunshine-cat/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sunshine-cat/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sunshine-cat/sunshine-cat.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sunshine-cat/sunshine-cat.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1026",
-  "source_url": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port",
-  "release_page": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port",
-  "updated_at": "2026-08-13T15:34:48.521998+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1026",
+  "su": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port",
+  "rp": "https://github.com/SpanishFreddy/Sunshine-Cat-PSVita-Port",
+  "ua": "2026-08-13T15:34:48.521998+00:00"
 }

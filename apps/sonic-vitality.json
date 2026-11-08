@@ -1,41 +1,41 @@
 {
   "id": "sonic-vitality",
-  "title_id": "STHV01991",
-  "name": "Sonic Vitality",
-  "description": "Sonic fanmade game.",
-  "long_description": "Sonic Vitality is a currently indefinitely delayed fangame, worked on at an irregular pace since August 2019 and totalling an estimated 3,000+ hours of actual work. It was originally planned as a Generations-length Sonic adventure for both PC and PS Vita\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "STHV01991",
+  "n": "Sonic Vitality",
+  "d": "Sonic fanmade game.",
+  "ld": "Sonic Vitality is a currently indefinitely delayed fangame, worked on at an irregular pace since August 2019 and totalling an estimated 3,000+ hours of actual work. It was originally planned as a Generations-length Sonic adventure for both PC and PS Vita\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "soup-um"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "Demo",
-  "version_date": "2021-05-11",
-  "requirements": "Not specified",
-  "size": 259769917,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sonic-vitality/icon0.png",
-  "screenshots": [
+  "v": "Demo",
+  "vd": "2021-05-11",
+  "req": "Not specified",
+  "sz": 259769917,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sonic-vitality/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sonic-vitality/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sonic-vitality/sonic-vitality.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sonic-vitality/sonic-vitality.vpk",
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://drive.google.com/drive/mobile/folders/1vjaooZG7vKAfzxjRm98AVzNkygjUBiY9?usp=sharing"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://drive.google.com/drive/mobile/folders/1vjaooZG7vKAfzxjRm98AVzNkygjUBiY9?usp=sharing"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "668",
-  "source_url": "https://drive.google.com/drive/mobile/folders/1vjaooZG7vKAfzxjRm98AVzNkygjUBiY9?usp=sharing",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.588136+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "668",
+  "su": "https://drive.google.com/drive/mobile/folders/1vjaooZG7vKAfzxjRm98AVzNkygjUBiY9?usp=sharing",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.588136+00:00"
 }

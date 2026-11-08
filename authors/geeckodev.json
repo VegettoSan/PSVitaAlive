@@ -1,15 +1,15 @@
 {
   "id": "geeckodev",
-  "name": "GeeckoDev",
-  "avatar": "https://github.com/libcg.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "GeeckoDev",
+  "av": "https://github.com/libcg.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/libcg",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/libcg",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/libcg.png"
+  "ic": "https://github.com/libcg.png"
 }

@@ -1,46 +1,46 @@
 {
   "id": "quake-1-model-viewer",
-  "title_id": "MDLVIEWER",
-  "name": "Quake 1 Model Viewer",
-  "description": "Model viewer for Quake 1 models.",
-  "long_description": "PSVita Utility to view Models in the Quake 1 .mdl format.",
-  "author_ids": [
+  "tid": "MDLVIEWER",
+  "n": "Quake 1 Model Viewer",
+  "d": "Model viewer for Quake 1 models.",
+  "ld": "PSVita Utility to view Models in the Quake 1 .mdl format.",
+  "aids": [
     "gremlin-software"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-06-17",
-  "requirements": "- libshacccg.suprx",
-  "size": 12075762,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-quake-1-model-viewer/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-06-17",
+  "req": "- libshacccg.suprx",
+  "sz": 12075762,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-quake-1-model-viewer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-quake-1-model-viewer/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-quake-1-model-viewer/quake-1-model-viewer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-quake-1-model-viewer/quake-1-model-viewer.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/softwaregremlin2/Quake1ModelViewer"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/softwaregremlin2/Quake1ModelViewer"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1416",
-  "source_url": "https://github.com/softwaregremlin2/Quake1ModelViewer",
-  "release_page": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases",
-  "updated_at": "2026-08-13T15:34:48.338578+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1416",
+  "su": "https://github.com/softwaregremlin2/Quake1ModelViewer",
+  "rp": "https://github.com/softwaregremlin2/Quake1ModelViewer/releases",
+  "ua": "2026-08-13T15:34:48.338578+00:00"
 }

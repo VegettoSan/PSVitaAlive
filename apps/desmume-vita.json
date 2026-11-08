@@ -1,46 +1,46 @@
 {
   "id": "desmume-vita",
-  "title_id": "DSEMU0000",
-  "name": "DeSmuME-Vita",
-  "description": "PoC NDS Emulator.",
-  "long_description": "Port of DeSmuME DS Emulator for the PSVita.\nIt's currently a fully interpreted DS emulator, which means the performance is not so great.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "DSEMU0000",
+  "n": "DeSmuME-Vita",
+  "d": "PoC NDS Emulator.",
+  "ld": "Port of DeSmuME DS Emulator for the PSVita.\nIt's currently a fully interpreted DS emulator, which means the performance is not so great.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "masterfeizz"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.0.2",
-  "version_date": "2016-08-09",
-  "requirements": "Not specified",
-  "size": 1911737,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-desmume-vita/icon0.png",
-  "screenshots": [
+  "v": "v.0.2",
+  "vd": "2016-08-09",
+  "req": "Not specified",
+  "sz": 1911737,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-desmume-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-desmume-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-desmume-vita/desmume-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-desmume-vita/desmume-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://gbatemp.net/threads/release-desmume-ds-emulator.436418/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://gbatemp.net/threads/release-desmume-ds-emulator.436418/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/masterfeizz/DeSmuME-Vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/masterfeizz/DeSmuME-Vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "23",
-  "source_url": "https://github.com/masterfeizz/DeSmuME-Vita",
-  "release_page": "https://gbatemp.net/threads/release-desmume-ds-emulator.436418/",
-  "updated_at": "2026-08-13T15:34:48.706957+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "23",
+  "su": "https://github.com/masterfeizz/DeSmuME-Vita",
+  "rp": "https://gbatemp.net/threads/release-desmume-ds-emulator.436418/",
+  "ua": "2026-08-13T15:34:48.706957+00:00"
 }

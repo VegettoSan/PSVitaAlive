@@ -1,15 +1,15 @@
 {
   "id": "nzp-reboot-team",
-  "name": "NZP Reboot Team",
-  "avatar": "https://github.com/nzp-team.png",
-  "bio": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
-  "links": [
+  "n": "NZP Reboot Team",
+  "av": "https://github.com/nzp-team.png",
+  "b": "Equipo de desarrollo detras de proyectos open source y homebrew para PS Vita/PSP.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/nzp-team",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/nzp-team",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/nzp-team.png"
+  "ic": "https://github.com/nzp-team.png"
 }

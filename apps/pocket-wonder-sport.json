@@ -1,45 +1,45 @@
 {
   "id": "pocket-wonder-sport",
-  "title_id": "SPORTPACK",
-  "name": "Pocket Wonder Sport",
-  "description": "Port of Pocket Wonder Sport for PSVITA/PSTV.",
-  "long_description": "Collection of 10 ultra tiny minigames made by hwilson. Inspired by weird rom collections on pirate multicarts, but hopefully with a tiny bit more quality.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "SPORTPACK",
+  "n": "Pocket Wonder Sport",
+  "d": "Port of Pocket Wonder Sport for PSVITA/PSTV.",
+  "ld": "Collection of 10 ultra tiny minigames made by hwilson. Inspired by weird rom collections on pirate multicarts, but hopefully with a tiny bit more quality.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "m1s3ry"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2021-04-13",
-  "requirements": "Not specified",
-  "size": 5135873,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pocket-wonder-sport/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2021-04-13",
+  "req": "Not specified",
+  "sz": 5135873,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pocket-wonder-sport/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pocket-wonder-sport/shot_01.png",
     "https://archive.org/download/psvitaalive-pocket-wonder-sport/shot_02.png",
     "https://archive.org/download/psvitaalive-pocket-wonder-sport/shot_03.png",
     "https://archive.org/download/psvitaalive-pocket-wonder-sport/shot_04.png",
     "https://archive.org/download/psvitaalive-pocket-wonder-sport/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pocket-wonder-sport/pocket-wonder-sport.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pocket-wonder-sport/pocket-wonder-sport.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://hwilson.itch.io/pocket-wonder-sport"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://hwilson.itch.io/pocket-wonder-sport"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "648",
-  "source_url": "https://hwilson.itch.io/pocket-wonder-sport",
-  "release_page": "https://hwilson.itch.io/pocket-wonder-sport",
-  "updated_at": "2026-08-13T15:34:48.588927+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "648",
+  "su": "https://hwilson.itch.io/pocket-wonder-sport",
+  "rp": "https://hwilson.itch.io/pocket-wonder-sport",
+  "ua": "2026-08-13T15:34:48.588927+00:00"
 }

@@ -1,56 +1,56 @@
 {
   "id": "julius-vita",
-  "title_id": "JULIUS001",
-  "name": "Julius Vita",
-  "description": "Port of Caesar 3 for PSVITA.",
-  "long_description": "Caesar III is a video game that was released on September 30, 1998, developed by Impressions Games and published by Sierra On-Line. It is the third installment of the Caesar series of games and is part of Sierra's City Building Series. Players take on the role of a Roman governor, tasked with building up a grand Roman city, in which they must ensure their citizens have their needs met, that their city is safe and profitable, while meeting various goals set for them and dealing with various disasters, angry gods and hostile enemies.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "JULIUS001",
+  "n": "Julius Vita",
+  "d": "Port of Caesar 3 for PSVITA.",
+  "ld": "Caesar III is a video game that was released on September 30, 1998, developed by Impressions Games and published by Sierra On-Line. It is the third installment of the Caesar series of games and is part of Sierra's City Building Series. Players take on the role of a Roman governor, tasked with building up a grand Roman city, in which they must ensure their citizens have their needs met, that their city is safe and profitable, while meeting various goals set for them and dealing with various disasters, angry gods and hostile enemies.\n\n- PsVitaAlive -",
+  "aids": [
     "julius-team",
     "devnoname120"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.8.0",
-  "version_date": "2025-07-31",
-  "requirements": "- Game Data Files: PC",
-  "size": 2838611,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-julius-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.8.0",
+  "vd": "2025-07-31",
+  "req": "- Game Data Files: PC",
+  "sz": 2838611,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-julius-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-julius-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-julius-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-julius-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-julius-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-julius-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-julius-vita/julius-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-julius-vita/julius-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/bvschaik/julius/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/bvschaik/julius/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/bvschaik/julius/releases/tag/v1.8.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/bvschaik/julius/releases/tag/v1.8.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/bvschaik/julius"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/bvschaik/julius"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "427",
-  "source_url": "https://github.com/bvschaik/julius",
-  "release_page": "https://github.com/bvschaik/julius/releases",
-  "updated_at": "2026-08-13T15:34:48.400080+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "427",
+  "su": "https://github.com/bvschaik/julius",
+  "rp": "https://github.com/bvschaik/julius/releases",
+  "ua": "2026-08-13T15:34:48.400080+00:00"
 }

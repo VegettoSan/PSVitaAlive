@@ -1,55 +1,55 @@
 {
   "id": "ccleste-vita",
-  "title_id": "CCLESTVIT",
-  "name": "ccleste-vita",
-  "description": "Port of Celeste Classic for PSVITA.",
-  "long_description": "This is a port for PSVITA/PSTV of a C source port of the original celeste (Celeste classic) for the PICO-8, designed to be portable.\nCeleste is a platform game in which players control a girl named Madeline as she makes her way up a mountain while avoiding various deadly obstacles.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "CCLESTVIT",
+  "n": "ccleste-vita",
+  "d": "Port of Celeste Classic for PSVITA.",
+  "ld": "This is a port for PSVITA/PSTV of a C source port of the original celeste (Celeste classic) for the PICO-8, designed to be portable.\nCeleste is a platform game in which players control a girl named Madeline as she makes her way up a mountain while avoiding various deadly obstacles.\n\n- PsVitaAlive -",
+  "aids": [
     "decomius"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v1.0",
-  "version_date": "2021-03-06",
-  "requirements": "Not specified",
-  "size": 2408396,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-ccleste-vita/icon0.png",
-  "screenshots": [
+  "v": "v1.0",
+  "vd": "2021-03-06",
+  "req": "Not specified",
+  "sz": 2408396,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-ccleste-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-ccleste-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-ccleste-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-ccleste-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-ccleste-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-ccleste-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-ccleste-vita/ccleste-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-ccleste-vita/ccleste-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Decomius/ccleste-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Decomius/ccleste-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Decomius/ccleste-vita/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Decomius/ccleste-vita/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Decomius/ccleste-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Decomius/ccleste-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "621",
-  "source_url": "https://github.com/Decomius/ccleste-vita",
-  "release_page": "https://github.com/Decomius/ccleste-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.594096+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "621",
+  "su": "https://github.com/Decomius/ccleste-vita",
+  "rp": "https://github.com/Decomius/ccleste-vita/releases",
+  "ua": "2026-08-13T15:34:48.594096+00:00"
 }

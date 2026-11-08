@@ -1,50 +1,50 @@
 {
   "id": "illusia",
-  "title_id": "ILLU00001",
-  "name": "Illusia",
-  "description": "This is a wrapper/port of Illusia for the PS Vita.",
-  "long_description": "The port works by loading the Android ARMv6 executables from the Android release in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ILLU00001",
+  "n": "Illusia",
+  "d": "This is a wrapper/port of Illusia for the PS Vita.",
+  "ld": "The port works by loading the Android ARMv6 executables from the Android release in memory, resolving their imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executables as they are.\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "arcade",
     "platformer",
     "rpg"
   ],
-  "version": "1.0",
-  "version_date": "2026-08-31",
-  "requirements": "Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder (usually ux0:tai) and adding two entries to your config.txt under *KERNEL",
-  "size": 2768241,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-08-31",
+  "req": "Install kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder (usually ux0:tai) and adding two entries to your config.txt under *KERNEL",
+  "sz": 2768241,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/illusia-psvita/Illusia%201.0.vpk",
-      "size": 2768241,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/illusia-psvita/Illusia%201.0.vpk",
+      "sz": 2768241,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/illusia-psvita/Game%20Files.zip",
-      "size": 23592960,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/illusia-psvita/Game%20Files.zip",
+      "sz": 23592960,
+      "xp": "ux0:data/",
+      "ips": [
         "illusia"
       ]
     },
     {
-      "type": "Repository",
-      "name": "GitHub",
-      "url": "https://github.com/withLogic/illusia-vita"
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/withLogic/illusia-vita"
     }
   ],
-  "icon": "https://archive.org/download/illusia-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/illusia-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/illusia-psvita/shot0.jpg",
     "https://archive.org/download/illusia-psvita/shot1.jpg",
     "https://archive.org/download/illusia-psvita/shot2.jpg"

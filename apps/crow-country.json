@@ -1,38 +1,38 @@
 {
   "id": "crow-country",
-  "title_id": "Crow Country",
-  "name": "Crow Country",
-  "description": "Crow Country on a PS Vita.",
-  "long_description": "Crow Country on a PS Vita. A pipeline takes the PC release (Unity 2022.3.49f1) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.",
-  "author_ids": [
+  "tid": "Crow Country",
+  "n": "Crow Country",
+  "d": "Crow Country on a PS Vita.",
+  "ld": "Crow Country on a PS Vita. A pipeline takes the PC release (Unity 2022.3.49f1) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.",
+  "aids": [
     "xob0t"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2026-11-01",
-  "requirements": "- No Data",
-  "size": 531208602,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2026-11-01",
+  "req": "- No Data",
+  "sz": 531208602,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK + Game Files",
-      "url": "https://archive.org/download/crow-country-vita/CrowCountry%20v1.0.vpk",
-      "size": 531208602,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/crow-country-vita/CrowCountry%20v1.0.vpk",
+      "sz": 531208602,
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/xob0t/crow-country-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/xob0t/crow-country-vita"
     }
   ],
-  "icon": "https://archive.org/download/crow-country-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/crow-country-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/crow-country-vita/shot0.png",
     "https://archive.org/download/crow-country-vita/shot1.png"
   ]

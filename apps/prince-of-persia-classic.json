@@ -1,15 +1,15 @@
 {
   "id": "prince-of-persia-classic",
-  "title_id": "POPC00001",
-  "name": "Prince of Persia Classic",
-  "description": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
-  "long_description": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "POPC00001",
+  "n": "Prince of Persia Classic",
+  "d": "PS Vita homebrew port/wrapper for Prince of Persia Classic (Android), originally published by Ubisoft for Android,built on soloader-boilerplate.",
+  "ld": "Prince of Persia Classic is a 2012 release for Android and iOS devices that recreates the levels of the legendary 1989 classic game with modernized 3D graphics\n\n- PsVitaAlive -",
+  "aids": [
     "claude-ai",
     "metalsyntax"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "arcade",
@@ -18,47 +18,47 @@
     "rpg",
     "strategy"
   ],
-  "version": "01.55",
-  "version_date": "2026-11-04",
-  "requirements": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "size": 3323986,
-  "status": "Verified",
-  "links": [
+  "v": "01.55",
+  "vd": "2026-11-04",
+  "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+  "sz": 3323986,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/ppc-psvita/popclassic-v01.55.vpk",
-      "size": 3323986,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ppc-psvita/popclassic-v01.55.vpk",
+      "sz": 3323986,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP - MediaFire",
-      "url": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
-      "size": 81699799,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP - MediaFire",
+      "u": "https://www.mediafire.com/file/ovjjpaeqwidfqek/Game_Files.zip/file",
+      "sz": 81699799,
+      "xp": "ux0:data/",
+      "ips": [
         "popclassic"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Data Files ZIP",
-      "url": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
-      "size": 81699799,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Data Files ZIP",
+      "u": "https://archive.org/download/ppc-psvita/Game%20Files.zip",
+      "sz": 81699799,
+      "xp": "ux0:data/",
+      "ips": [
         "popclassic"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MetalSyntax/prince-of-persia-classic-psvita-port"
     }
   ],
-  "icon": "https://archive.org/download/ppc-psvita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/ppc-psvita/icon0.png",
+  "ss": [
     "https://archive.org/download/ppc-psvita/pic0.png"
   ]
 }

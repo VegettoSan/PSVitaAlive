@@ -1,15 +1,15 @@
 {
   "id": "deepseek-ai",
-  "name": "DeepSeek AI",
-  "avatar": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-  "bio": "Asistente de IA de DeepSeek orientado a razonamiento, código y asistencia de desarrollo.",
-  "links": [
+  "n": "DeepSeek AI",
+  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "b": "Asistente de IA de DeepSeek orientado a razonamiento, código y asistencia de desarrollo.",
+  "l": [
     {
-      "type": "Official Website",
-      "name": "DeepSeek",
-      "url": "https://www.deepseek.com/",
-      "recommended": true
+      "t": "Official Website",
+      "n": "DeepSeek",
+      "u": "https://www.deepseek.com/",
+      "rec": true
     }
   ],
-  "icon": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
 }

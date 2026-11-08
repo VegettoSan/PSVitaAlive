@@ -1,15 +1,15 @@
 {
   "id": "henrykun55",
-  "name": "HenryKun55",
-  "avatar": "https://avatars.githubusercontent.com/u/19267596?v=4",
-  "bio": "Secret, but not to much",
-  "links": [
+  "n": "HenryKun55",
+  "av": "https://avatars.githubusercontent.com/u/19267596?v=4",
+  "b": "Secret, but not to much",
+  "l": [
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/HenryKun55",
-      "recommended": true
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/HenryKun55",
+      "rec": true
     }
   ],
-  "icon": "https://avatars.githubusercontent.com/u/19267596?v=4"
+  "ic": "https://avatars.githubusercontent.com/u/19267596?v=4"
 }

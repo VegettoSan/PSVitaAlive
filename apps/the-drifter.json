@@ -1,46 +1,46 @@
 {
   "id": "the-drifter",
-  "title_id": "DRFT00001",
-  "name": "The Drifter",
-  "description": "The Drifter on the PS Vita",
-  "long_description": "The Drifter on a PS Vita. A pipeline takes the PC release (Unity 2020.3) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DRFT00001",
+  "n": "The Drifter",
+  "d": "The Drifter on the PS Vita",
+  "ld": "The Drifter on a PS Vita. A pipeline takes the PC release (Unity 2020.3) and rebuilds it as a Unity 2018.2 project, since 2018.2 is the last Unity with a Vita build module, then builds that for the Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "xob0t"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "strategy",
     "source-port",
     "other"
   ],
-  "version": "1.3.0",
-  "version_date": "2026-10-13",
-  "requirements": "You need Windows 10 or 11 with 8 GB of memory, The Drifter from Steam or GOG and a console on HENkaku/Ensō with VitaShell.",
-  "size": 16777216,
-  "status": "Verified",
-  "links": [
+  "v": "1.3.0",
+  "vd": "2026-10-13",
+  "req": "You need Windows 10 or 11 with 8 GB of memory, The Drifter from Steam or GOG and a console on HENkaku/Ensō with VitaShell.",
+  "sz": 16777216,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/the-drifter-ps-vita/drifter-vita-small.vpk",
-      "size": 16777216,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/the-drifter-ps-vita/drifter-vita-small.vpk",
+      "sz": 16777216,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 1288490189,
-      "extract_path": "ux0:app/"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/the-drifter-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1288490189,
+      "xp": "ux0:app/"
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/xob0t/the-drifter-vita"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/xob0t/the-drifter-vita"
     }
   ],
-  "icon": "https://archive.org/download/the-drifter-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/the-drifter-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/the-drifter-ps-vita/Shot0.png",
     "https://archive.org/download/the-drifter-ps-vita/Shot1.png"
   ]

@@ -1,55 +1,55 @@
 {
   "id": "vanish-vita",
-  "title_id": "NISH12345",
-  "name": "Vanish Vita",
-  "description": "Port of Vanish for PSVITA.",
-  "long_description": "Step into VANISH, an indie horror game testing your sanity in a labyrinth of unknown. Navigate shadowy corridors, outsmart lurking terrors, and uncover the path to freedom. Will you survive, or succumb to unspeakable horrors? Prepare for the ultimate test in this free indie horror. Vanish may be the most horrifiying experience of first person horror game on the Playstation Vita.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NISH12345",
+  "n": "Vanish Vita",
+  "d": "Port of Vanish for PSVITA.",
+  "ld": "Step into VANISH, an indie horror game testing your sanity in a labyrinth of unknown. Navigate shadowy corridors, outsmart lurking terrors, and uncover the path to freedom. Will you survive, or succumb to unspeakable horrors? Prepare for the ultimate test in this free indie horror. Vanish may be the most horrifiying experience of first person horror game on the Playstation Vita.\n\n- PsVitaAlive -",
+  "aids": [
     "maloneczsd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "Beta",
-  "version_date": "2024-07-30",
-  "requirements": "Not specified",
-  "size": 73348351,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vanish-vita/icon0.png",
-  "screenshots": [
+  "v": "Beta",
+  "vd": "2024-07-30",
+  "req": "Not specified",
+  "sz": 73348351,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vanish-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vanish-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-vanish-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-vanish-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-vanish-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-vanish-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vanish-vita/vanish-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vanish-vita/vanish-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/malone46/VanishVita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/malone46/VanishVita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MaloneCZSD/VanishVita/releases/tag/Beta"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MaloneCZSD/VanishVita/releases/tag/Beta"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MaloneCZSD/VanishVita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MaloneCZSD/VanishVita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1224",
-  "source_url": "https://github.com/malone46/VanishVita",
-  "release_page": "https://github.com/malone46/VanishVita",
-  "updated_at": "2026-08-13T15:34:48.435276+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1224",
+  "su": "https://github.com/malone46/VanishVita",
+  "rp": "https://github.com/malone46/VanishVita",
+  "ua": "2026-08-13T15:34:48.435276+00:00"
 }

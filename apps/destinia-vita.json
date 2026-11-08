@@ -1,48 +1,48 @@
 {
   "id": "destinia-vita",
-  "title_id": "DEST00001",
-  "name": "Destinia Vita",
-  "description": "Port of Destinia for PSVita.",
-  "long_description": "Destinia follows the journey of Duke, a former Imperial Guard member imprisoned for refusing to kill innocent civilians, who teams up with a rebel princess named Crystal to fight the oppressive Empire and find his missing childhood sweetheart, Lena.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "DEST00001",
+  "n": "Destinia Vita",
+  "d": "Port of Destinia for PSVita.",
+  "ld": "Destinia follows the journey of Duke, a former Imperial Guard member imprisoned for refusing to kill innocent civilians, who teams up with a rebel princess named Crystal to fight the oppressive Empire and find his missing childhood sweetheart, Lena.\n\n- PsVitaAlive -",
+  "aids": [
     "withlogic"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2026-08-20",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2395770,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-destinia-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2026-08-20",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2395770,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-destinia-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-destinia-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-destinia-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-destinia-vita/shot_03.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-destinia-vita/destinia-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-destinia-vita/destinia-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/withLogic/destinia-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/withLogic/destinia-vita/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/withLogic/destinia-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/withLogic/destinia-vita"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1476",
-  "source_url": "https://github.com/withLogic/destinia-vita",
-  "release_page": "https://github.com/withLogic/destinia-vita/releases",
-  "updated_at": "2026-08-21T19:00:51.317751+00:00"
+  "sn": "VitaDB",
+  "si": "1476",
+  "su": "https://github.com/withLogic/destinia-vita",
+  "rp": "https://github.com/withLogic/destinia-vita/releases",
+  "ua": "2026-08-21T19:00:51.317751+00:00"
 }

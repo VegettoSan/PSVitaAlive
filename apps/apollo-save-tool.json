@@ -1,55 +1,55 @@
 {
   "id": "apollo-save-tool",
-  "title_id": "NP0APOLLO",
-  "name": "Apollo Save Tool",
-  "description": "Save manager for PSVITA.",
-  "long_description": "Apollo Save Tool is an application to manage save-game files on the PlayStation Vita.\nThis homebrew allows to download, unlock, patch and resign save-game files directly on your Vita.",
-  "author_ids": [
+  "tid": "NP0APOLLO",
+  "n": "Apollo Save Tool",
+  "d": "Save manager for PSVITA.",
+  "ld": "Apollo Save Tool is an application to manage save-game files on the PlayStation Vita.\nThis homebrew allows to download, unlock, patch and resign save-game files directly on your Vita.",
+  "aids": [
     "bucanero"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "file-manager"
   ],
-  "version": "v.2.3.2",
-  "version_date": "2026-04-26",
-  "requirements": "Not specified",
-  "size": 6175022,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-apollo-save-tool/icon0.png",
-  "screenshots": [
+  "v": "v.2.3.2",
+  "vd": "2026-04-26",
+  "req": "Not specified",
+  "sz": 6175022,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-apollo-save-tool/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-apollo-save-tool/shot_01.png",
     "https://archive.org/download/psvitaalive-apollo-save-tool/shot_02.png",
     "https://archive.org/download/psvitaalive-apollo-save-tool/shot_03.png",
     "https://archive.org/download/psvitaalive-apollo-save-tool/shot_04.png",
     "https://archive.org/download/psvitaalive-apollo-save-tool/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-apollo-save-tool/apollo-save-tool.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-apollo-save-tool/apollo-save-tool.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/bucanero/apollo-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/bucanero/apollo-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/bucanero/apollo-vita/releases/tag/v2.3.2"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/bucanero/apollo-vita/releases/tag/v2.3.2"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/bucanero/apollo-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/bucanero/apollo-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "831",
-  "source_url": "https://github.com/bucanero/apollo-vita",
-  "release_page": "https://github.com/bucanero/apollo-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.352888+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "831",
+  "su": "https://github.com/bucanero/apollo-vita",
+  "rp": "https://github.com/bucanero/apollo-vita/releases",
+  "ua": "2026-08-13T15:34:48.352888+00:00"
 }

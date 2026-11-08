@@ -1,51 +1,51 @@
 {
   "id": "gmca",
-  "title_id": "GMCA00001",
-  "name": "GMCA",
-  "description": "Media center client for PSVita.",
-  "long_description": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
-  "author_ids": [
+  "tid": "GMCA00001",
+  "n": "GMCA",
+  "d": "Media center client for PSVita.",
+  "ld": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
+  "aids": [
     "thcolin"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v1.1.0",
-  "version_date": "2026-07-17",
-  "requirements": "Not specified",
-  "size": 14558256,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gmca/icon0.png",
-  "screenshots": [
+  "v": "v1.1.0",
+  "vd": "2026-07-17",
+  "req": "Not specified",
+  "sz": 14558256,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gmca/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gmca/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gmca/GMCA.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gmca/GMCA.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/thcolin/gamepad-media-center-aggregator"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/thcolin/gamepad-media-center-aggregator"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
     }
   ],
-  "source_name": "NeoVitaDB",
-  "source_id": "1411",
-  "source_url": "https://github.com/thcolin/gamepad-media-center-aggregator",
-  "release_page": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
-  "updated_at": "2026-08-13T15:34:48.329481+00:00"
+  "sn": "NeoVitaDB",
+  "si": "1411",
+  "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
+  "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
+  "ua": "2026-08-13T15:34:48.329481+00:00"
 }

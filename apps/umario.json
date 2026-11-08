@@ -1,51 +1,51 @@
 {
   "id": "umario",
-  "title_id": "WDEV75837",
-  "name": "uMario",
-  "description": "Port of uMario for PSVITA.",
-  "long_description": "Port of uMario for PSVITA. uMario is a recreation of Super Mario Bros with widescreen patch and some added options.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "WDEV75837",
+  "n": "uMario",
+  "d": "Port of uMario for PSVITA.",
+  "ld": "Port of uMario for PSVITA. uMario is a recreation of Super Mario Bros with widescreen patch and some added options.\n\n- PsVitaAlive -",
+  "aids": [
     "weegeedeveloper"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.2.7",
-  "version_date": "2021-11-23",
-  "requirements": "Not specified",
-  "size": 18786585,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-umario/icon0.png",
-  "screenshots": [
+  "v": "v.1.2.7",
+  "vd": "2021-11-23",
+  "req": "Not specified",
+  "sz": 18786585,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-umario/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-umario/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-umario/umario.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-umario/umario.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases/tag/1.2.7"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases/tag/1.2.7"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "748",
-  "source_url": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port",
-  "release_page": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases",
-  "updated_at": "2026-08-13T15:34:48.562791+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "748",
+  "su": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port",
+  "rp": "https://github.com/WeegeeDEVELOPER/uMario-PSVita-Port/releases",
+  "ua": "2026-08-13T15:34:48.562791+00:00"
 }

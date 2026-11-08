@@ -1,67 +1,67 @@
 {
   "id": "simpsons-hit-run",
-  "title_id": "ROADRAGE2",
-  "name": "Simpsons Hit & Run",
-  "description": "Switch port of The Simpsons: Hit & Run original source code from 2003",
-  "long_description": "This is a port of The Simpsons Hit & Run to the Nintendo Switch and PS Vita based on the leaked source code. The full game should be playable, including local multiplayer in the bonus game. The port is however still incomplete, so some glitches can be observed and some visual effects are missing compared to the PC version.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ROADRAGE2",
+  "n": "Simpsons Hit & Run",
+  "d": "Switch port of The Simpsons: Hit & Run original source code from 2003",
+  "ld": "This is a port of The Simpsons Hit & Run to the Nintendo Switch and PS Vita based on the leaked source code. The full game should be playable, including local multiplayer in the bonus game. The port is however still incomplete, so some glitches can be observed and some visual effects are missing compared to the PC version.\n\n- PsVitaAlive -",
+  "aids": [
     "zenoarrows"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "adventure",
     "arcade",
     "platformer",
     "puzzle"
   ],
-  "version": "0.6.1",
-  "version_date": "2024-07-22",
-  "requirements": "- no data",
-  "size": 19922944,
-  "status": "Verified",
-  "links": [
+  "v": "0.6.1",
+  "vd": "2024-07-22",
+  "req": "- no data",
+  "sz": 19922944,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK Multi-language",
-      "url": "https://archive.org/download/simpsons-hit-run-ps-vita/SimpsonsPAL.vpk",
-      "size": 19922944,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK Multi-language",
+      "u": "https://archive.org/download/simpsons-hit-run-ps-vita/SimpsonsPAL.vpk",
+      "sz": 19922944,
+      "rec": true
     },
     {
-      "type": "Download",
-      "name": "VPK Only English",
-      "url": "https://archive.org/download/simpsons-hit-run-ps-vita/SimpsonsNTSC.vpk",
-      "size": 19922944,
-      "recommended": false
+      "t": "Download",
+      "n": "VPK Only English",
+      "u": "https://archive.org/download/simpsons-hit-run-ps-vita/SimpsonsNTSC.vpk",
+      "sz": 19922944,
+      "rec": false
     },
     {
-      "type": "Game Files",
-      "name": "Game Files English",
-      "url": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20English.zip",
-      "size": 1932735283,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files English",
+      "u": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20English.zip",
+      "sz": 1932735283,
+      "xp": "ux0:data/",
+      "ips": [
         "simpsons"
       ]
     },
     {
-      "type": "Game Files",
-      "name": "Game Files Spanish",
-      "url": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20Spanish.zip",
-      "size": 1932735283,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files Spanish",
+      "u": "https://archive.org/download/simpsons-hit-run-ps-vita/Game%20Files%20Spanish.zip",
+      "sz": 1932735283,
+      "xp": "ux0:data/",
+      "ips": [
         "simpsons"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ZenoArrows/The-Simpsons-Hit-and-Run"
     }
   ],
-  "icon": "https://archive.org/download/simpsons-hit-run-ps-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/simpsons-hit-run-ps-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/simpsons-hit-run-ps-vita/icon0.png"
   ]
 }

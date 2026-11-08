@@ -1,36 +1,36 @@
 {
   "id": "vpkmirror",
-  "title_id": "VPKMIRROR",
-  "name": "VPKMirror",
-  "description": "Download homebrews directly from your PSVITA.",
-  "long_description": "Downloads and installs homebrews from VPKMirror directly on your PSVita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "VPKMIRROR",
+  "n": "VPKMirror",
+  "d": "Download homebrews directly from your PSVITA.",
+  "ld": "Downloads and installs homebrews from VPKMirror directly on your PSVita.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "namelessghoul0"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2016-09-22",
-  "requirements": "Not specified",
-  "size": 478817,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-vpkmirror/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2016-09-22",
+  "req": "Not specified",
+  "sz": 478817,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-vpkmirror/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-vpkmirror/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-vpkmirror/vpkmirror.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-vpkmirror/vpkmirror.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "82",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/82-VPKMirror.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.698027+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "82",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/82-VPKMirror.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.698027+00:00"
 }

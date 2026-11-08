@@ -1,49 +1,49 @@
 {
   "id": "kotor",
-  "title_id": "KOTR00001",
-  "name": "KOTOR",
-  "description": "Star Wars: Knights of the Old Republic on the PlayStation Vita.",
-  "long_description": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "KOTR00001",
+  "n": "KOTOR",
+  "d": "Star Wars: Knights of the Old Republic on the PlayStation Vita.",
+  "ld": "A native Vita port of the Android release of KOTOR, built with the so-loader technique: rather than reimplementing the game, the loader loads Aspyr's own ARM libraries straight from your copy of the Android build, resolves everything they import against Vita equivalents, and hands control to the game's real entry point. Graphics run through vitaGL, with a from-scratch FMOD audio implementation over sceAudiodec and sceAudioOut underneath.\n\n- PsVitaAlive -",
+  "aids": [
     "scoobydouche"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "adventure",
     "strategy"
   ],
-  "version": "0.5.0",
-  "version_date": "2026-10-24",
-  "requirements": "- A Vita or PS TV on firmware that can run HENkaku / taiHEN\n- kubridge.skprx installed as a taiHEN plugin\n- libshacccg.suprx in ur0:data/ — the runtime shader compiler. Use this installer if you don't have it. Without it the game hangs on a black screen at the first shader compile, with no error message.\n- Roughly 2.7 GB free on ux0:",
-  "size": 2726298,
-  "status": "Verified",
-  "links": [
+  "v": "0.5.0",
+  "vd": "2026-10-24",
+  "req": "- A Vita or PS TV on firmware that can run HENkaku / taiHEN\n- kubridge.skprx installed as a taiHEN plugin\n- libshacccg.suprx in ur0:data/ — the runtime shader compiler. Use this installer if you don't have it. Without it the game hangs on a black screen at the first shader compile, with no error message.\n- Roughly 2.7 GB free on ux0:",
+  "sz": 2726298,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/VitaKotor/KOTOR%20v0.5.0.vpk",
-      "size": 2726298,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/VitaKotor/KOTOR%20v0.5.0.vpk",
+      "sz": 2726298,
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/VitaKotor/Game%20Files.zip",
-      "size": 2576980378,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/VitaKotor/Game%20Files.zip",
+      "sz": 2576980378,
+      "xp": "ux0:data/",
+      "ips": [
         "kotor"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/ScoobyDouche/VitaKotor"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ScoobyDouche/VitaKotor"
     }
   ],
-  "icon": "https://archive.org/download/VitaKotor/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/VitaKotor/icon0.png",
+  "ss": [
     "https://archive.org/download/VitaKotor/shot0.png"
   ]
 }

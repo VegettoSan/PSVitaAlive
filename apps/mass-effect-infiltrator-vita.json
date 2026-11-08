@@ -1,55 +1,55 @@
 {
   "id": "mass-effect-infiltrator-vita",
-  "title_id": "MASSEFFEC",
-  "name": "Mass Effect Infiltrator Vita",
-  "description": "Port of Mass Effect Infiltrator for PSVITA.",
-  "long_description": "A loader for an iOS/Android-exclusive Third-Person Shooter with RPG Elements released as a tie-in game to Mass Effect 3. Please read the installation instructions on GitHub.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "MASSEFFEC",
+  "n": "Mass Effect Infiltrator Vita",
+  "d": "Port of Mass Effect Infiltrator for PSVITA.",
+  "ld": "A loader for an iOS/Android-exclusive Third-Person Shooter with RPG Elements released as a tie-in game to Mass Effect 3. Please read the installation instructions on GitHub.\n\n- PsVitaAlive -",
+  "aids": [
     "gl33ntwine"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-11-21",
-  "requirements": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "size": 2085618,
-  "status": "Legacy",
-  "links": [
+  "v": "v.1.0",
+  "vd": "2022-11-21",
+  "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+  "sz": 2085618,
+  "st": "Legacy",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/mass-effect-infiltrator-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/mass-effect-infiltrator-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Game Files",
-      "name": "Game Files",
-      "url": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/Game%20Files%20for%20PSVA.zip",
-      "size": 778462822,
-      "extract_path": "ux0:data/",
-      "installed_paths": [
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 778462822,
+      "xp": "ux0:data/",
+      "ips": [
         "masseffect"
       ]
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/v-atamanenko/masseffect-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/v-atamanenko/masseffect-vita"
     }
   ],
-  "icon": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-mass-effect-infiltrator-vita/shot_05.png"
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1019",
-  "source_url": "https://github.com/v-atamanenko/masseffect-vita",
-  "release_page": "https://github.com/v-atamanenko/masseffect-vita/releases",
-  "updated_at": "2026-08-13T15:34"
+  "sn": "VitaHomebrewDB",
+  "si": "1019",
+  "su": "https://github.com/v-atamanenko/masseffect-vita",
+  "rp": "https://github.com/v-atamanenko/masseffect-vita/releases",
+  "ua": "2026-08-13T15:34"
 }

@@ -1,15 +1,15 @@
 {
   "id": "elpapadelospollitos",
-  "name": "elpapadelospollitos",
-  "avatar": "https://github.com/elpapadelospollitos.png",
-  "bio": "Desarrollador de la escena homebrew de PlayStation Vita.",
-  "links": [
+  "n": "elpapadelospollitos",
+  "av": "https://github.com/elpapadelospollitos.png",
+  "b": "Desarrollador de la escena homebrew de PlayStation Vita.",
+  "l": [
     {
-      "type": "GitHub",
-      "name": "GitHub",
-      "url": "https://github.com/elpapadelospollitos",
-      "recommended": true
+      "t": "GitHub",
+      "n": "GitHub",
+      "u": "https://github.com/elpapadelospollitos",
+      "rec": true
     }
   ],
-  "icon": "https://github.com/elpapadelospollitos.png"
+  "ic": "https://github.com/elpapadelospollitos.png"
 }

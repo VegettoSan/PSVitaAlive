@@ -1,40 +1,40 @@
 {
   "id": "idleminer",
-  "title_id": "IDLEMINER",
-  "name": "IdleMiner",
-  "description": "Idle mining arcade game.",
-  "long_description": "IdleMiner is a game created in 2016 and re-coded in 2024 for PS Vita. It's an Idle mining arcade game where you hire workers, buy mines, mine and sell ores with the possibility of various upgrades and you'll also find a few mini-games to help you progress through the game. The PS Vita version is enriched with an cool upgrade, click on the display on the place you want to repeatedly click and for auto mining, sell ores or purchase workers upgrade hold the X button on the console. If you win the game, you can play the game again with a bonus mode, which is short but fun. The game is created in Game Maker Studio.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
-  "author_ids": [
+  "tid": "IDLEMINER",
+  "n": "IdleMiner",
+  "d": "Idle mining arcade game.",
+  "ld": "IdleMiner is a game created in 2016 and re-coded in 2024 for PS Vita. It's an Idle mining arcade game where you hire workers, buy mines, mine and sell ores with the possibility of various upgrades and you'll also find a few mini-games to help you progress through the game. The PS Vita version is enriched with an cool upgrade, click on the display on the place you want to repeatedly click and for auto mining, sell ores or purchase workers upgrade hold the X button on the console. If you win the game, you can play the game again with a bonus mode, which is short but fun. The game is created in Game Maker Studio.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "aids": [
     "c0rtax"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "arcade"
   ],
-  "version": "v.1.00",
-  "version_date": "2024-09-07",
-  "requirements": "Not specified",
-  "size": 17403699,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-idleminer/icon0.png",
-  "screenshots": [
+  "v": "v.1.00",
+  "vd": "2024-09-07",
+  "req": "Not specified",
+  "sz": 17403699,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-idleminer/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-idleminer/shot_01.png",
     "https://archive.org/download/psvitaalive-idleminer/shot_02.png",
     "https://archive.org/download/psvitaalive-idleminer/shot_03.png",
     "https://archive.org/download/psvitaalive-idleminer/shot_04.png",
     "https://archive.org/download/psvitaalive-idleminer/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-idleminer/idleminer.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-idleminer/idleminer.vpk",
+      "rec": true
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1231",
-  "source_url": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1231-IdleMiner.vpk",
-  "release_page": "",
-  "updated_at": "2026-08-13T15:34:48.432108+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1231",
+  "su": "https://github.com/DrDecki/VitaDBtoo-db/releases/download/mirror/1231-IdleMiner.vpk",
+  "rp": "",
+  "ua": "2026-08-13T15:34:48.432108+00:00"
 }

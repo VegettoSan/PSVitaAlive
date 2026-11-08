@@ -1,43 +1,43 @@
 {
   "id": "shadow-gun",
-  "title_id": "MOQI00010",
-  "name": "Shadow Gun",
-  "description": "Shadow Gun for Vita",
-  "long_description": "Shadow Gun for Vita",
-  "author_ids": [
+  "tid": "MOQI00010",
+  "n": "Shadow Gun",
+  "d": "Shadow Gun for Vita",
+  "ld": "Shadow Gun for Vita",
+  "aids": [
     "moqi01"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "action",
     "shooter",
     "strategy",
     "source-port"
   ],
-  "version": "1.0",
-  "version_date": "2022-10-20",
-  "requirements": "- kubridge.skprx\n- fd_fix.skprx\n- libshacccg.suprx",
-  "size": 310378496,
-  "status": "Verified",
-  "links": [
+  "v": "1.0",
+  "vd": "2022-10-20",
+  "req": "- kubridge.skprx\n- fd_fix.skprx\n- libshacccg.suprx",
+  "sz": 310378496,
+  "st": "Verified",
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK + Game Files",
-      "url": "https://archive.org/download/shadow-gun-for-vita/shadowgun%20v1.0.vpk",
-      "size": 310378496,
-      "recommended": true
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/shadow-gun-for-vita/shadowgun%20v1.0.vpk",
+      "sz": 310378496,
+      "rec": true
     },
     {
-      "type": "Repository",
-      "name": "Github",
-      "url": "https://github.com/Moqi01/Shadowgun"
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Moqi01/Shadowgun"
     }
   ],
-  "icon": "https://archive.org/download/shadow-gun-for-vita/icon0.png",
-  "screenshots": [
+  "ic": "https://archive.org/download/shadow-gun-for-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/shadow-gun-for-vita/shot0.png"
   ],
-  "source_name": "Github",
-  "release_page": "https://github.com/Moqi01",
-  "data_url": "https://github.com/Moqi01/Shadowgun"
+  "sn": "Github",
+  "rp": "https://github.com/Moqi01",
+  "du": "https://github.com/Moqi01/Shadowgun"
 }

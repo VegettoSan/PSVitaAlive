@@ -1,46 +1,46 @@
 {
   "id": "gbvitaex",
-  "title_id": "GBVX00001",
-  "name": "GBVitaEX",
-  "description": "GB/GBC/GBA emulator for PSVita.",
-  "long_description": "Combines the fastest GBA emulator (gpSP ARMv7 JIT dynarec) with the most accurate GB/GBC emulator (mGBA), in a single standalone native VPK no RetroArch required.",
-  "author_ids": [
+  "tid": "GBVX00001",
+  "n": "GBVitaEX",
+  "d": "GB/GBC/GBA emulator for PSVita.",
+  "ld": "Combines the fastest GBA emulator (gpSP ARMv7 JIT dynarec) with the most accurate GB/GBC emulator (mGBA), in a single standalone native VPK no RetroArch required.",
+  "aids": [
     "zushikina-kun"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.1.5.2",
-  "version_date": "2026-08-19",
-  "requirements": "Not specified",
-  "size": 792049,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-gbvitaex/icon0.png",
-  "screenshots": [
+  "v": "v.1.5.2",
+  "vd": "2026-08-19",
+  "req": "Not specified",
+  "sz": 792049,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-gbvitaex/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-gbvitaex/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-gbvitaex/gbvitaex.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-gbvitaex/gbvitaex.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Zushikina-kun/GBVitaEX/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Zushikina-kun/GBVitaEX/releases"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Zushikina-kun/GBVitaEX"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Zushikina-kun/GBVitaEX"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "1472",
-  "source_url": "https://github.com/Zushikina-kun/GBVitaEX",
-  "release_page": "https://github.com/Zushikina-kun/GBVitaEX/releases",
-  "updated_at": "2026-08-19T18:56:46.398303+00:00"
+  "sn": "VitaDB",
+  "si": "1472",
+  "su": "https://github.com/Zushikina-kun/GBVitaEX",
+  "rp": "https://github.com/Zushikina-kun/GBVitaEX/releases",
+  "ua": "2026-08-19T18:56:46.398303+00:00"
 }

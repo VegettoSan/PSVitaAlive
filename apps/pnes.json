@@ -1,52 +1,52 @@
 {
   "id": "pnes",
-  "title_id": "PNES00001",
-  "name": "pNES",
-  "description": "NES emulator for PSVITA.",
-  "long_description": "NES emulator, multiplatform port of Nestopia emulator.",
-  "author_ids": [
+  "tid": "PNES00001",
+  "n": "pNES",
+  "d": "NES emulator for PSVITA.",
+  "ld": "NES emulator, multiplatform port of Nestopia emulator.",
+  "aids": [
     "cpasjuste"
   ],
-  "category_id": "emulators",
-  "subcategory_ids": [
+  "cid": "emulators",
+  "sids": [
     "other"
   ],
-  "version": "v.7.1",
-  "version_date": "2025-12-30",
-  "requirements": "Not specified",
-  "size": 3966663,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-pnes/icon0.png",
-  "screenshots": [
+  "v": "v.7.1",
+  "vd": "2025-12-30",
+  "req": "Not specified",
+  "sz": 3966663,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-pnes/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-pnes/shot_01.png",
     "https://archive.org/download/psvitaalive-pnes/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-pnes/pnes.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-pnes/pnes.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Cpasjuste/pemu/releases/tag/v7.1"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Cpasjuste/pemu/tree/master/pnes"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Cpasjuste/pemu/tree/master/pnes"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "799",
-  "source_url": "https://github.com/Cpasjuste/pemu/tree/master/pnes",
-  "release_page": "https://github.com/Cpasjuste/pemu/releases",
-  "updated_at": "2026-08-13T15:34:48.370866+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "799",
+  "su": "https://github.com/Cpasjuste/pemu/tree/master/pnes",
+  "rp": "https://github.com/Cpasjuste/pemu/releases",
+  "ua": "2026-08-13T15:34:48.370866+00:00"
 }

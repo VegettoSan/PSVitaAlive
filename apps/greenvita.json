@@ -1,52 +1,52 @@
 {
   "id": "greenvita",
-  "title_id": "GREENVITA",
-  "name": "GreenVita",
-  "description": "Xbox Cloud Gaming on PlayStation Vita.",
-  "long_description": "Play your favorite Xbox games on your PS Vita with GreenVita.\nGreenVita connects to Xbox Cloud Gaming by establishing a WebRTC connection and replicating the web requests made by the official Xbox Cloud Gaming web client.",
-  "author_ids": [
+  "tid": "GREENVITA",
+  "n": "GreenVita",
+  "d": "Xbox Cloud Gaming on PlayStation Vita.",
+  "ld": "Play your favorite Xbox games on your PS Vita with GreenVita.\nGreenVita connects to Xbox Cloud Gaming by establishing a WebRTC connection and replicating the web requests made by the official Xbox Cloud Gaming web client.",
+  "aids": [
     "dayos"
   ],
-  "category_id": "utilities",
-  "subcategory_ids": [
+  "cid": "utilities",
+  "sids": [
     "other"
   ],
-  "version": "v.0.1.8",
-  "version_date": "2026-07-22",
-  "requirements": "Not specified",
-  "size": 14185797,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-greenvita/icon0.png",
-  "screenshots": [
+  "v": "v.0.1.8",
+  "vd": "2026-07-22",
+  "req": "Not specified",
+  "sz": 14185797,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-greenvita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-greenvita/shot_01.png",
     "https://archive.org/download/psvitaalive-greenvita/shot_02.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-greenvita/greenvita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-greenvita/greenvita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Day-OS/green-vita/releases"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Day-OS/green-vita/releases"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/Day-OS/green-vita/releases/tag/v0.1.8"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Day-OS/green-vita"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Day-OS/green-vita"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1438",
-  "source_url": "https://github.com/Day-OS/green-vita",
-  "release_page": "https://github.com/Day-OS/green-vita/releases",
-  "updated_at": "2026-08-13T15:34:48.327083+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1438",
+  "su": "https://github.com/Day-OS/green-vita",
+  "rp": "https://github.com/Day-OS/green-vita/releases",
+  "ua": "2026-08-13T15:34:48.327083+00:00"
 }

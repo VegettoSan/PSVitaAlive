@@ -1,54 +1,54 @@
 {
   "id": "slendrina-free",
-  "title_id": "ENDR00000",
-  "name": "Slendrina Free",
-  "description": "Port of Slendrina for PSVITA.",
-  "long_description": "Slendrina is a new horror game. Try to find 6 objects without being caught by Slendrina if you see her turn around as soon possible. There are three maps (1.0): the House, the Yard and the Hotel. Its a bit like Slender Man but Slendrina is more evil. Be careful. Removed the \"Full Version\" flag. I will update the version over time.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "ENDR00000",
+  "n": "Slendrina Free",
+  "d": "Port of Slendrina for PSVITA.",
+  "ld": "Slendrina is a new horror game. Try to find 6 objects without being caught by Slendrina if you see her turn around as soon possible. There are three maps (1.0): the House, the Yard and the Hotel. Its a bit like Slender Man but Slendrina is more evil. Be careful. Removed the \"Full Version\" flag. I will update the version over time.\n\n- PsVitaAlive -",
+  "aids": [
     "maloneczsd"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2025-04-08",
-  "requirements": "Not specified",
-  "size": 35394644,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-slendrina-free/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2025-04-08",
+  "req": "Not specified",
+  "sz": 35394644,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-slendrina-free/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-slendrina-free/shot_01.png",
     "https://archive.org/download/psvitaalive-slendrina-free/shot_02.png",
     "https://archive.org/download/psvitaalive-slendrina-free/shot_03.png",
     "https://archive.org/download/psvitaalive-slendrina-free/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-slendrina-free/slendrina-free.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-slendrina-free/slendrina-free.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/malone46/SlendrinaFree"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/malone46/SlendrinaFree"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/MaloneCZSD/SlendrinaFree/releases/tag/v1.0"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/MaloneCZSD/SlendrinaFree/releases/tag/v1.0"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/MaloneCZSD/SlendrinaFree"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/MaloneCZSD/SlendrinaFree"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "1266",
-  "source_url": "https://github.com/malone46/SlendrinaFree",
-  "release_page": "https://github.com/malone46/SlendrinaFree",
-  "updated_at": "2026-08-13T15:34:48.411554+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "1266",
+  "su": "https://github.com/malone46/SlendrinaFree",
+  "rp": "https://github.com/malone46/SlendrinaFree",
+  "ua": "2026-08-13T15:34:48.411554+00:00"
 }

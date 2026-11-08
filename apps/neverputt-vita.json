@@ -1,50 +1,50 @@
 {
   "id": "neverputt-vita",
-  "title_id": "NEVERPUTT",
-  "name": "Neverputt Vita",
-  "description": "Port of Neverputt for PSVITA/PSTV.",
-  "long_description": "A 3D Mini Golf game with lots of levels.\nTest your skills playing mini golf. This game provides variety of golf courses for players of any level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "NEVERPUTT",
+  "n": "Neverputt Vita",
+  "d": "Port of Neverputt for PSVITA/PSTV.",
+  "ld": "A 3D Mini Golf game with lots of levels.\nTest your skills playing mini golf. This game provides variety of golf courses for players of any level.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.\n\n- PsVitaAlive -",
+  "aids": [
     "rinnegatamante"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2022-09-01",
-  "requirements": "- libshacccg.suprx",
-  "size": 1493107,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-neverputt-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2022-09-01",
+  "req": "- libshacccg.suprx",
+  "sz": 1493107,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-neverputt-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-neverputt-vita/shot_01.png",
     "https://archive.org/download/psvitaalive-neverputt-vita/shot_02.png",
     "https://archive.org/download/psvitaalive-neverputt-vita/shot_03.png",
     "https://archive.org/download/psvitaalive-neverputt-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-neverputt-vita/shot_05.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-neverputt-vita/neverputt-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-neverputt-vita/neverputt-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/"
     },
     {
-      "type": "Repository",
-      "name": "Repositorio",
-      "url": "https://github.com/Rinnegatamante/neverball"
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/neverball"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "874",
-  "source_url": "https://github.com/Rinnegatamante/neverball",
-  "release_page": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/",
-  "updated_at": "2026-08-13T15:34:48.534144+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "874",
+  "su": "https://github.com/Rinnegatamante/neverball",
+  "rp": "https://www.psx-place.com/threads/release-neverputt-vita-port-of-neverputt-for-psvita-pstv.38248/",
+  "ua": "2026-08-13T15:34:48.534144+00:00"
 }

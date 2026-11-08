@@ -1,46 +1,46 @@
 {
   "id": "sakura-succubus-iv-vita",
-  "title_id": "RNPYSS004",
-  "name": "Sakura Succubus IV Vita",
-  "description": "Port of Sakura Succubus 4 for PSVITA.",
-  "long_description": "Ogasawara Hiroki was once an ordinary man, but his life has now taken a distinctly unordinary turn. Quite unwittingly, he stumbled upon a well-kept secret which flipped his humdrum existence upside-down: namely, that several of Japan’s most famous female celebrities are succubi.\nThese succubi fall for Hiroki in droves, and soon he obtains quite the harem. His gaggle of adoring succubi include the two-faced idol, Ikue Ayu; the ditzy social media star, Cosmos; the sadistic businesswoman, Marina; the elegant actress, Hifumi; the cheerful tennis player, Hazel; and the aloof succubus princess, Yue.\nAfter narrowly escaping a lifetime of imprisonment in the succubus realm, Hiroki is ready to kick back and relax. Ayu invites him on a vacation to her private beach house in Okinawa, and Hiroki is happy to refuse. The other succubi come along for the ride, and a week of summertime fun begins.\n\n- PsVitaAlive -",
-  "author_ids": [
+  "tid": "RNPYSS004",
+  "n": "Sakura Succubus IV Vita",
+  "d": "Port of Sakura Succubus 4 for PSVITA.",
+  "ld": "Ogasawara Hiroki was once an ordinary man, but his life has now taken a distinctly unordinary turn. Quite unwittingly, he stumbled upon a well-kept secret which flipped his humdrum existence upside-down: namely, that several of Japan’s most famous female celebrities are succubi.\nThese succubi fall for Hiroki in droves, and soon he obtains quite the harem. His gaggle of adoring succubi include the two-faced idol, Ikue Ayu; the ditzy social media star, Cosmos; the sadistic businesswoman, Marina; the elegant actress, Hifumi; the cheerful tennis player, Hazel; and the aloof succubus princess, Yue.\nAfter narrowly escaping a lifetime of imprisonment in the succubus realm, Hiroki is ready to kick back and relax. Ayu invites him on a vacation to her private beach house in Okinawa, and Hiroki is happy to refuse. The other succubi come along for the ride, and a week of summertime fun begins.\n\n- PsVitaAlive -",
+  "aids": [
     "silvercrow"
   ],
-  "category_id": "ports",
-  "subcategory_ids": [
+  "cid": "ports",
+  "sids": [
     "other"
   ],
-  "version": "v.1.1",
-  "version_date": "2022-04-07",
-  "requirements": "- Game Data Files: PC",
-  "size": 14567290,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-sakura-succubus-iv-vita/icon0.png",
-  "screenshots": [
+  "v": "v.1.1",
+  "vd": "2022-04-07",
+  "req": "- Game Data Files: PC",
+  "sz": 14567290,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-sakura-succubus-iv-vita/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-sakura-succubus-iv-vita/shot_01.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-sakura-succubus-iv-vita/sakura-succubus-iv-vita.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-sakura-succubus-iv-vita/sakura-succubus-iv-vita.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Repository",
-      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita"
+      "t": "Official Website",
+      "n": "Repository",
+      "u": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita"
     },
     {
-      "type": "Official Website",
-      "name": "Release Page",
-      "url": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita/releases/tag/v.1.1"
+      "t": "Official Website",
+      "n": "Release Page",
+      "u": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita/releases/tag/v.1.1"
     }
   ],
-  "source_name": "VitaHomebrewDB",
-  "source_id": "813",
-  "source_url": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita",
-  "release_page": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita",
-  "updated_at": "2026-08-13T15:34:48.550486+00:00"
+  "sn": "VitaHomebrewDB",
+  "si": "813",
+  "su": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita",
+  "rp": "https://github.com/SilverCrow2323/Sakura-Succubus-4-Vita",
+  "ua": "2026-08-13T15:34:48.550486+00:00"
 }

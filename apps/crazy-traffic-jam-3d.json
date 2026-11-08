@@ -1,44 +1,44 @@
 {
   "id": "crazy-traffic-jam-3d",
-  "title_id": "CTJ300001",
-  "name": "Crazy Traffic Jam 3D",
-  "description": "3D arcade driving game.",
-  "long_description": "Crazy Traffic Jam 3D is an endless arcade driving game with stylized 3D graphics. Drive your car through highway traffic, earn coins, collect lightning boosts to speed up and maximize your score.\nThe game features local hi-score. The faster you drive the more score you get.",
-  "author_ids": [
+  "tid": "CTJ300001",
+  "n": "Crazy Traffic Jam 3D",
+  "d": "3D arcade driving game.",
+  "ld": "Crazy Traffic Jam 3D is an endless arcade driving game with stylized 3D graphics. Drive your car through highway traffic, earn coins, collect lightning boosts to speed up and maximize your score.\nThe game features local hi-score. The faster you drive the more score you get.",
+  "aids": [
     "vitahex-games"
   ],
-  "category_id": "games",
-  "subcategory_ids": [
+  "cid": "games",
+  "sids": [
     "other"
   ],
-  "version": "v.1.0",
-  "version_date": "2017-08-06",
-  "requirements": "Not specified",
-  "size": 3118547,
-  "status": "Legacy",
-  "icon": "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/icon0.png",
-  "screenshots": [
+  "v": "v.1.0",
+  "vd": "2017-08-06",
+  "req": "Not specified",
+  "sz": 3118547,
+  "st": "Legacy",
+  "ic": "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/icon0.png",
+  "ss": [
     "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_01.png",
     "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_02.png",
     "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_03.png",
     "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/shot_04.png"
   ],
-  "links": [
+  "l": [
     {
-      "type": "Download",
-      "name": "VPK",
-      "url": "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/crazy-traffic-jam-3d.vpk",
-      "recommended": true
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crazy-traffic-jam-3d/crazy-traffic-jam-3d.vpk",
+      "rec": true
     },
     {
-      "type": "Official Website",
-      "name": "Official Website",
-      "url": "http://wololo.net/talk/viewtopic.php?f=116&t=48358"
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48358"
     }
   ],
-  "source_name": "VitaDB",
-  "source_id": "292",
-  "source_url": "http://wololo.net/talk/viewtopic.php?f=116&t=48358",
-  "release_page": "http://wololo.net/talk/viewtopic.php?f=116&t=48358",
-  "updated_at": "2026-08-14T01:05:59.231221+00:00"
+  "sn": "VitaDB",
+  "si": "292",
+  "su": "http://wololo.net/talk/viewtopic.php?f=116&t=48358",
+  "rp": "http://wololo.net/talk/viewtopic.php?f=116&t=48358",
+  "ua": "2026-08-14T01:05:59.231221+00:00"
 }
