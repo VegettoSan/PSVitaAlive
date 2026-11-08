@@ -13,6 +13,7 @@ not depend on a relative filesystem path.
 from __future__ import annotations
 
 import json
+from catalog_schema_v2 import to_v1, to_v2
 import re
 import urllib.error
 import urllib.request
@@ -262,7 +263,7 @@ def normalize_apps():
     apps = []
     for path in sorted((ROOT / "apps").glob("*.json")):
         try:
-            app = json.loads(path.read_text(encoding="utf-8"))
+            app = to_v1(json.loads(path.read_text(encoding="utf-8")))
         except Exception:
             continue
 
@@ -291,7 +292,7 @@ def normalize_apps():
             screenshots = [app["icon"]]
 
         app["screenshots"] = screenshots[:5]
-        path.write_text(json.dumps(app, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        path.write_text(json.dumps(to_v2(app), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         apps.append(app)
     return apps
 
@@ -369,7 +370,7 @@ def normalize_authors(apps):
 
     for path in sorted((ROOT / "authors").glob("*.json")):
         try:
-            author = json.loads(path.read_text(encoding="utf-8"))
+            author = to_v1(json.loads(path.read_text(encoding="utf-8")))
         except Exception:
             continue
 
@@ -378,7 +379,7 @@ def normalize_authors(apps):
             links = by_author.get(author.get("id"), [])[:5]
         author["links"] = normalize_author_links(links)
         author["icon"] = normalize_author_icon(author)
-        path.write_text(json.dumps(author, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        path.write_text(json.dumps(to_v2(author), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main():
