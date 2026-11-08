@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+from catalog_schema_v2 import to_v1
 import re
 import sys
 import urllib.error
@@ -104,7 +105,7 @@ def load_json_files(directory, errors):
 
         try:
             with path.open("r", encoding="utf-8") as handle:
-                value = json.load(handle)
+                value = to_v1(json.load(handle))
 
         except json.JSONDecodeError as exc:
             add_error(
