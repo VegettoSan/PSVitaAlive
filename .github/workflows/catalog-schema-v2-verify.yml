@@ -50,6 +50,24 @@ jobs:
               assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
               print(f'{name}: {len(old)} entries, identical semantic values')
           PY
+      - name: Compare every original source against main and report V1/V2 size
+        run: |
+          git fetch origin main --depth=1
+          python scripts/catalog_schema_v2_compare.py \
+            --base origin/main \
+            --v1-dir /tmp/catalog-v1 \
+            --v2-dir . \
+            --output catalog-v2-comparison.json
+
+      - name: Upload full comparison audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-schema-v2-full-comparison
+          path: catalog-v2-comparison.json
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Upload V2 test catalogs (not published to main)
         uses: actions/upload-artifact@v4
         with:
