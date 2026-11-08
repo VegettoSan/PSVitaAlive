@@ -42,11 +42,8 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
             for (const auto& relative : link.installedPaths) {
                 const std::string full = "ux0:data/" + relative;
                 if (!safeExternalDataPath(full) ||
-                    (extract.size() > 9 &&
-                     !(extract == full ||
-                       (extract.compare(0, full.size(), full) == 0 &&
-                        extract.size() > full.size() &&
-                        extract[full.size()] == '/')))) {
+                    !::psvitaalive::storage::installedDataExtractWithinRoot(
+                        extract, full)) {
                     app.unresolved = true;
                     continue;
                 }
