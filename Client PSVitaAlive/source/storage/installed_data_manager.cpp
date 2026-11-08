@@ -261,10 +261,10 @@ InstalledDataSnapshot InstalledDataManager::scan(
     for (auto& app : result.apps) {
         const bool selected = onlyTitleId.empty() || app.titleId == onlyTitleId;
         const bool titleOk = validInstalledTitleId(app.titleId);
-        if (titleOk) {
+        if (titleOk && (selected || !measureSizes)) {
             const std::string packageRoot = "ux0:app/" + app.titleId;
-            // No deep scan for other titles: only check their SFO presence
-            // once when displaying shared-root warnings.
+            // Other VPKs need a lightweight SFO check only for menu
+            // discovery/refresh, never for repeated per-game deep measures.
             app.packagePresent = exists(packageRoot + "/sce_sys/param.sfo");
             SceIoStat packageStat{};
             if (selected && app.packagePresent &&
