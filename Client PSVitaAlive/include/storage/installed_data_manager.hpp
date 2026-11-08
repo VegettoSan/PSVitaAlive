@@ -24,14 +24,16 @@ struct InstalledDataApp {
     std::string icon; // existing catalog icon URL; loaded lazily by ImageCache
     // Inputs are compact, extracted from links[].installed_paths on demand.
     std::vector<std::string> roots;
-    bool unresolved = false; // metadata missing, conflicting or ambiguous
+    bool unresolved = false; // unsafe or unidentifiable metadata
+    bool alternateGameRoots = false; // competing Game Files download roots
+    bool activeShared = false; // another installed package declares overlapping data
     bool packagePresent = false;
     // Measured installed package tree ux0:app/<titleId> (read-only).
     uint64_t packageBytes = 0;
     uint64_t packageRootStamp = 0;
     bool packageSizeKnown = false;
     bool packageSizeCached = false; // Historical cached size, not live proof.
-    bool blocked = false; // at least one path is shared, invalid or unresolved
+    bool blocked = false; // invalid/unidentified path, not catalog-only overlap
     uint64_t bytes = 0; // deduplicated within this app
     std::vector<InstalledDataPath> paths;
 };
@@ -130,12 +132,15 @@ public:
     // Must succeed BEFORE package uninstall when the user selected both.
     static bool prepareExternalRemoval(const InstalledDataSnapshot& snapshot,
                                        const std::string& titleId,
-                                       InstalledDataOperationProgress* progress);
-    // Revalidates the catalog snapshot and every path before deletion.
-    // Never attempts ux0:app/ or PSVitaAlive-owned directories.
+                                       InstalledDataOperationProgress* progress,
+                                       bool confirmedInstalledShare = false);
+    // Revalidates paths before deletion, including installed-app collisions.
+    // An explicit shared-root confirmation never bypasses protected roots.
     static bool removeExternal(const InstalledDataSnapshot& snapshot,
                                const std::string& titleId,
-                               InstalledDataOperationProgress* progress = nullptr);
+                               InstalledDataOperationProgress* progress = nullptr,
+                               bool confirmedInstalledShare = false,
+                               bool targetJustUninstalled = false);
     // Vita package manager only; no direct ux0:app recursive deletion.
     static bool uninstallPackage(const std::string& titleId,
                                  InstalledDataOperationProgress* progress = nullptr);
