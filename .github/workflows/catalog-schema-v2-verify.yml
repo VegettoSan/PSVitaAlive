@@ -1,0 +1,144 @@
+name: Catalog schema V2 - integration checks
+
+on:
+  push:
+    branches:
+      - feature/catalog-schema-v2
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    if: github.ref == 'refs/heads/feature/catalog-schema-v2'
+    runs-on: ubuntu-latest
+    env:
+      VITAHUB_REBUILD_FROM_EXTERNAL: 'false'
+      VITAHUB_SKIP_REMOTE_MEDIA: 'true'
+      VITAHUB_SKIP_REMOTE_CHECKS: 'true'
+      PSVA_SOURCE_SCHEMA_V2: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install catalog dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: V2 source migration in isolated CI checkout
+        run: |
+          python scripts/migrate_catalog_schema_v2.py --write
+          python scripts/migrate_catalog_schema_v2.py
+      - name: Normalization and source validation in V2
+        run: |
+          python scripts/normalize_persisted_sources.py
+          python scripts/validate_catalog_ci.py
+          python scripts/validate_installed_paths_audit.py
+      - name: Verify public V1 and V2 generators have identical values
+        run: |
+          python scripts/generate_catalog.py
+          mkdir -p /tmp/catalog-v1
+          cp catalog.json authors.json categories.json /tmp/catalog-v1/
+          PSVA_PUBLIC_SCHEMA_V2=true python scripts/generate_catalog.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1
+          for name in ('catalog.json', 'authors.json', 'categories.json'):
+              old = json.loads((Path('/tmp/catalog-v1') / name).read_text(encoding='utf8'))
+              new = json.loads(Path(name).read_text(encoding='utf8'))
+              assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
+              print(f'{name}: {len(old)} entries, identical semantic values')
+          PY
+      - name: Verify synchronized Python JavaScript VitaSDK field mappings
+        run: python scripts/catalog_schema_v2_consumers_test.py
+
+      - name: Exercise all six V1 and V2 catalogs through actual web loader paths
+        run: |
+          python scripts/compact_game_catalogs_v2.py \
+            --out-dir /tmp/psva-game-catalogs-v2 \
+            --report /tmp/psva-game-savings.json
+          node scripts/catalog_schema_v2_readers_test.cjs
+
+      - name: Package all six V2 JSONs for Vita3K and PS Vita smoke tests
+        run: |
+          mkdir -p /tmp/psva-all-six-v2
+          cp catalog.json authors.json categories.json /tmp/psva-all-six-v2/
+          cp /tmp/psva-game-catalogs-v2/catalog_*_games.json /tmp/psva-all-six-v2/
+          cat > /tmp/psva-all-six-v2/README-TESTING.txt <<'EOF'
+          EXPERIMENTAL V2 JSON - DO NOT PUBLISH OR INSTALL ON PRODUCTION MAIN.
+          The six JSONs are complete, reversible compact versions.
+          Make a backup of Vita3K's ux0:data/psvitaalive/cache/catalog/
+          before replacing catalog.json or catalog_*_games.json.
+          Do not replace/remove catalog_psvita_games.zrifidx.
+          For offline cache testing, disconnect the network before app launch.
+          These files alone do NOT update a running client to read V2.
+          Use the matching VPK built from the feature/catalog-schema-v2 branch.
+          EOF
+
+      - name: Upload one V2 bundle containing all six catalogs
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-ALL-SIX-catalogs-V2-test
+          path: /tmp/psva-all-six-v2/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Regenerate V1 from unchanged main in a temporary worktree
+        run: |
+          git fetch origin main --depth=1
+          git worktree add --detach /tmp/psva-main-baseline origin/main
+          (cd /tmp/psva-main-baseline && python scripts/generate_catalog.py)
+          mkdir -p /tmp/catalog-main-regenerated
+          cp /tmp/psva-main-baseline/catalog.json /tmp/catalog-main-regenerated/
+          cp /tmp/psva-main-baseline/authors.json /tmp/catalog-main-regenerated/
+          cp /tmp/psva-main-baseline/categories.json /tmp/catalog-main-regenerated/
+          git worktree remove --force /tmp/psva-main-baseline
+
+      - name: Compare every original source against main and report V1/V2 size
+        run: |
+          python scripts/catalog_schema_v2_compare.py \
+            --base origin/main \
+            --v1-dir /tmp/catalog-v1 \
+            --v2-dir . \
+            --main-regenerated /tmp/catalog-main-regenerated \
+            --output catalog-v2-comparison.json
+
+      - name: Upload full comparison audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-schema-v2-full-comparison
+          path: catalog-v2-comparison.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload V2 test catalogs (not published to main)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-catalog-v2-test
+          path: |
+            catalog.json
+            authors.json
+            categories.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Commit only lossless source-key changes to feature branch
+        if: github.actor != 'github-actions[bot]'
+        run: |
+          set -euo pipefail
+          # The integration checks above can normalize values in the test workspace.
+          # Discard those changes, then reapply ONLY the reversible key transformation.
+          git restore --worktree -- apps authors categories
+          python scripts/migrate_catalog_schema_v2.py --write
+          git add -- apps authors categories
+          if git diff --cached --quiet; then
+            echo "No source-key changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --cached --stat | tail -n 8
+          git commit -m "feat(schema-v2): convert all canonical JSON source keys"
+          git push origin HEAD:feature/catalog-schema-v2

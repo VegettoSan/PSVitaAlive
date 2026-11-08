@@ -1,5 +1,11 @@
 # `categories/` — Official taxonomy
 
+> **Catalog Schema V2:** Category files now use `id`, `n`,
+> `d`, `ic`, `ord` and `subs`; each subcategory contains
+> `id` and `n`. App references are `cid` / `sids`.
+> Category and subcategory ID **values** never change.
+> See [catalog_schema_v2.py](../scripts/catalog_schema_v2.py).
+
 Defines the category and subcategory IDs used by homebrew applications.
 
 ## Role

@@ -233,7 +233,7 @@ async function findAuthorWithRetry(authorId) {
 
         if (refreshed.ok) {
             const authors =
-                await refreshed.json();
+                window.PSVitaAliveCatalogSchemaV2.toV1(await refreshed.json());
 
             if (Array.isArray(authors)) {
                 VitaHubData.authors = authors;

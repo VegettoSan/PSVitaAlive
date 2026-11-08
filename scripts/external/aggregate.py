@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from catalog_schema_v2 import to_v1, to_v2
 import os
 import re
 import sys
@@ -35,14 +36,14 @@ def load_local():
     categories = []
     for path in sorted((ROOT / "apps").glob("*.json")):
         with path.open(encoding="utf-8") as f:
-            apps.append((path, json.load(f)))
+            apps.append((path, to_v1(json.load(f))))
     for path in sorted((ROOT / "authors").glob("*.json")):
         with path.open(encoding="utf-8") as f:
-            value = json.load(f)
+            value = to_v1(json.load(f))
             authors[value["id"]] = value
     for path in sorted((ROOT / "categories").glob("*.json")):
         with path.open(encoding="utf-8") as f:
-            categories.append(json.load(f))
+            categories.append(to_v1(json.load(f)))
     return apps, authors, categories
 
 
@@ -264,7 +265,9 @@ def app_id_from_candidate(candidate: Candidate, existing_ids: set[str]) -> str:
 
 
 def write_json_if_changed(path: Path, value: dict) -> bool:
-    serialized = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
+    # Hold canonical source JSON at V1 until official client 02.18 is released.
+    source_v2 = os.getenv("PSVA_SOURCE_SCHEMA_V2", "").lower() in ("1", "true", "yes")
+    serialized = json.dumps(to_v2(value) if source_v2 else value, ensure_ascii=False, indent=2) + "\n"
     if path.exists():
         try:
             current = path.read_text(encoding="utf-8")

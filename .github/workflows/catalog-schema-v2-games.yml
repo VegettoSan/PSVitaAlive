@@ -1,0 +1,93 @@
+name: Catalog schema V2 - game catalogs audit
+
+on:
+  push:
+    branches:
+      - feature/catalog-schema-v2
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  games:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout feature branch (does not modify main)
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate and verify PS Vita PSP PS1 V2 files (no source edits)
+        run: |
+          python scripts/compact_game_catalogs_v2.py \
+            --out-dir /tmp/psva-game-catalogs-v2 \
+            --report /tmp/game-catalog-v2-report.json
+          git diff --exit-code -- catalog_psvita_games.json catalog_psp_games.json catalog_ps1_games.json catalog_psvita_games.zrifidx
+      - name: Validate JavaScript web reader with entire V2 game catalogs
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const assert = require('node:assert/strict');
+          const path = require('node:path');
+          require('./web/js/catalog-schema-v2.js');
+          const codec = globalThis.PSVitaAliveCatalogSchemaV2;
+          assert.ok(codec && codec.toV1 && codec.toV2, 'Missing JS catalog codec');
+          const paths = [
+            'catalog_psvita_games.json',
+            'catalog_psp_games.json',
+            'catalog_ps1_games.json',
+          ];
+          for (const file of paths) {
+            const v1 = JSON.parse(fs.readFileSync(file,'utf8'));
+            const v2 = JSON.parse(fs.readFileSync(path.join('/tmp/psva-game-catalogs-v2', file),'utf8'));
+            assert.deepStrictEqual(codec.toV1(v2), v1, file + ': V2 browser decoder lost data');
+            assert.deepStrictEqual(codec.toV2(v1), v2, file + ': V2 browser encoder mismatch');
+            console.log(file, v1.length, 'records: browser V1/V2 roundtrip OK');
+          }
+          NODE
+      - name: Check PS Vita parser knows all game catalog V2 fields it reads
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s = Path('Client PSVitaAlive/source/catalog/catalog_parser.cpp').read_text(encoding='utf8')
+          from scripts.catalog_schema_v2 import KEYS
+          consumed = ('title_id','title_ids','name','description','category_id',
+                      'subcategory_ids','version','version_date','requirements',
+                      'size','cover','icon','screenshots','links',
+                      'type','url','recommended','region','content_id',
+                      'required_fw','pkg_name')
+          for key in consumed:
+              alias = KEYS[key]
+              assert f'{{"{key}", "{alias}"}}' in s, f'Missing C++ V2 alias for {key}->{alias}'
+          # Check every region present in actual V1 game JSONs, not only the
+          # individual Title IDs. The older reader omitted ASIA even in V1.
+          import json
+          import re
+          match = re.search(r'static const char\* regions\[\]\s*=\s*\{([^}]+)\}', s)
+          assert match, 'Cannot find PS Vita C++ regional Title ID table'
+          client_regions = set(re.findall(r'"([^"]+)"', match.group(1)))
+          for filename in ('catalog_psvita_games.json','catalog_psp_games.json','catalog_ps1_games.json'):
+              records = json.loads(Path(filename).read_text(encoding='utf8'))
+              source_regions = {region for app in records for region in app.get('title_ids', {})}
+              missing = sorted(source_regions - client_regions)
+              assert not missing, filename + ': unrecognized Vita C++ Title ID region(s): ' + repr(missing)
+              print(filename, ':', len(source_regions), 'regional identifiers recognized by Vita parser')
+          assert 'getCatalogField(application, "links")' in s, 'V2 link container not read'
+          print('All game parser keys and regional Title IDs have compatible C++ V1/V2 aliases.')
+          PY
+      - name: Upload PS Vita PSP PS1 catalog test files
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-game-catalogs-V2-test
+          path: /tmp/psva-game-catalogs-v2/catalog_*_games.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload detailed byte savings report
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-game-catalogs-V2-savings
+          path: /tmp/game-catalog-v2-report.json
+          if-no-files-found: error
+          retention-days: 14

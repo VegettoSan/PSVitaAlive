@@ -1,0 +1,31 @@
+name: Catalog schema V2 - branch audit
+
+on:
+  push:
+    branches:
+      - feature/catalog-schema-v2
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    if: github.ref == 'refs/heads/feature/catalog-schema-v2'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inventory all apps, authors and categories (read-only)
+        run: python scripts/catalog_schema_v2_audit.py --output schema-v2-audit.json
+      - name: Check lossless transformation, collisions and unmapped keys (read-only)
+        run: python scripts/migrate_catalog_schema_v2.py
+      - name: Upload inventory for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: schema-v2-inventory
+          path: schema-v2-audit.json
+          if-no-files-found: warn

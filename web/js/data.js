@@ -23,7 +23,11 @@ async function loadJSON(path) {
         );
     }
 
-    return response.json();
+    const data = await response.json();
+    // Keep all current UI components on their V1 object contract.
+    // Both V1 cached/public JSON and V2 compact JSON are accepted.
+    const adapter = window.PSVitaAliveCatalogSchemaV2;
+    return adapter ? adapter.toV1(data) : data;
 }
 
 

@@ -2,6 +2,7 @@
 """Standalone Discord notifier. Never modifies generated catalogs."""
 import argparse
 import json
+from catalog_schema_v2 import to_v1, to_v2
 import os
 import sys
 import time
@@ -148,7 +149,7 @@ def send(url, payload):
 
 
 def notify_catalog(catalog_path, state_path):
-    apps = read_json(catalog_path)
+    apps = to_v1(read_json(catalog_path))
     current = snapshot(apps)
     state = state_from_file(state_path)
     if not state["catalog_initialized"]:

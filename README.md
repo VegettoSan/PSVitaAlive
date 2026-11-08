@@ -1,5 +1,12 @@
 # PS Vita Alive Store
 
+> **Catalog Schema V2 migration (feature branch):** Individual app, author
+> and category records use compact JSON keys in
+> [feature/catalog-schema-v2](https://github.com/VegettoSan/PSVitaAlive/tree/feature/catalog-schema-v2).
+> The new Vita client can read both V1 and V2; public catalog URLs remain
+> V1 until a controlled post-release switch. See
+> [migration plan](docs/CATALOG_SCHEMA_V2_MIGRATION.md).
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/web/assets/logo/PSVitaAlive_Store_logo_text.png" alt="PS Vita Alive Store" width="520">
 </p>
