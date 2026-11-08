@@ -50,13 +50,24 @@ jobs:
               assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
               print(f'{name}: {len(old)} entries, identical semantic values')
           PY
-      - name: Compare every original source against main and report V1/V2 size
+      - name: Regenerate V1 from unchanged main in a temporary worktree
         run: |
           git fetch origin main --depth=1
+          git worktree add --detach /tmp/psva-main-baseline origin/main
+          (cd /tmp/psva-main-baseline && python scripts/generate_catalog.py)
+          mkdir -p /tmp/catalog-main-regenerated
+          cp /tmp/psva-main-baseline/catalog.json /tmp/catalog-main-regenerated/
+          cp /tmp/psva-main-baseline/authors.json /tmp/catalog-main-regenerated/
+          cp /tmp/psva-main-baseline/categories.json /tmp/catalog-main-regenerated/
+          git worktree remove --force /tmp/psva-main-baseline
+
+      - name: Compare every original source against main and report V1/V2 size
+        run: |
           python scripts/catalog_schema_v2_compare.py \
             --base origin/main \
             --v1-dir /tmp/catalog-v1 \
             --v2-dir . \
+            --main-regenerated /tmp/catalog-main-regenerated \
             --output catalog-v2-comparison.json
 
       - name: Upload full comparison audit
