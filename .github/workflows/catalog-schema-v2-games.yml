@@ -61,7 +61,21 @@ jobs:
           for key in consumed:
               alias = KEYS[key]
               assert f'{{"{key}", "{alias}"}}' in s, f'Missing C++ V2 alias for {key}->{alias}'
-          print('All game parser keys have compatible C++ V2 aliases.')
+          # Check every region present in actual V1 game JSONs, not only the
+          # individual Title IDs. The older reader omitted ASIA even in V1.
+          import json
+          import re
+          match = re.search(r'static const char\\* regions\\[\\]\\s*=\\s*\\{([^}]+)\\}', s)
+          assert match, 'Cannot find PS Vita C++ regional Title ID table'
+          client_regions = set(re.findall(r'"([^"]+)"', match.group(1)))
+          for filename in ('catalog_psvita_games.json','catalog_psp_games.json','catalog_ps1_games.json'):
+              records = json.loads(Path(filename).read_text(encoding='utf8'))
+              source_regions = {region for app in records for region in app.get('title_ids', {})}
+              missing = sorted(source_regions - client_regions)
+              assert not missing, filename + ': unrecognized Vita C++ Title ID region(s): ' + repr(missing)
+              print(filename, ':', len(source_regions), 'regional identifiers recognized by Vita parser')
+          assert 'getCatalogField(application, "links")' in s, 'V2 link container not read'
+          print('All game parser keys and regional Title IDs have compatible C++ V1/V2 aliases.')
           PY
       - name: Upload PS Vita PSP PS1 catalog test files
         uses: actions/upload-artifact@v4
