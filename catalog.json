@@ -1,5 +1,161 @@
 [
   {
+    "id": "super-mario-galaxy",
+    "tid": "SMGV00001",
+    "n": "Super Mario Galaxy",
+    "d": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
+    "ld": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
+    "aids": [
+      "cboc-vita-lab"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "v": "2.2.1",
+    "vd": "2026-11-08",
+    "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
+    "sz": 8912896,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/smg-vita/Galaxy-Vita%20v2.2.1.vpk",
+        "sz": 8912896,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files USA",
+        "u": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2469606195,
+        "xp": "ux0:data/",
+        "ips": [
+          "smg"
+        ]
+      },
+      {
+        "t": "Mod",
+        "n": "HD Textures",
+        "u": "https://archive.org/download/smg-vita/hdtex.pack",
+        "sz": 4718592,
+        "xp": "ux0:data/smg/"
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/smg-vita/New%20icon0.png",
+    "ss": [
+      "https://archive.org/download/smg-vita/shot0.png",
+      "https://archive.org/download/smg-vita/shot.png",
+      "https://archive.org/download/smg-vita/shot1.png"
+    ]
+  },
+  {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.4.0",
+    "vd": "2026-11-07",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1363149,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.4.0.vpk",
+        "sz": 1363149,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
+    "id": "nfs-most-wanted",
+    "tid": "NFSMWVITA",
+    "n": "NFS Most Wanted",
+    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "germanalvarez15"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.5.1",
+    "vd": "2026-11-07",
+    "req": "- No Data",
+    "sz": 3250586,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.5.1.vpk",
+        "sz": 3250586,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files Fix",
+        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+        "sz": 1610612736,
+        "xp": "ux0:data/",
+        "ips": [
+          "nfsmw"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Gihub",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
     "id": "ultimate-spider-man",
     "tid": "USMR00001",
     "n": "Ultimate Spider-Man",
@@ -48,6 +204,59 @@
     "ss": [
       "https://archive.org/download/ultimate-spider-man-vita/shot0.png",
       "https://archive.org/download/ultimate-spider-man-vita/shot2.jpg"
+    ]
+  },
+  {
+    "id": "crash-woc",
+    "tid": "CRWC00001",
+    "n": "Crash WOC",
+    "d": "Unofficial native PS Vita port of Crash Bandicoot: The Wrath of Cortex",
+    "ld": "Unofficial native PS Vita port of Crash Bandicoot: The Wrath of Cortex (GameCube), built on the community decompilation.",
+    "aids": [
+      "sebaz07"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.1.0",
+    "vd": "2026-11-06",
+    "req": "- A PS Vita or PS TV with HENkaku / Enso and VitaShell.\n- libshacccg.suprx on the console (vitaGL compiles shaders at runtime).\n- Your own dump of the USA GameCube disc (game ID GCBE7D): .iso, .gcm, .nkit.iso or .ciso.\n- About 1 GB free on ux0:.",
+    "sz": 4404019,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/crashwoc%20v0.1.0.vpk",
+        "sz": 4404019,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files USA",
+        "u": "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 936902656,
+        "xp": "ux0:data/",
+        "ips": [
+          "crashwoc"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/sebaz07/crashwoc-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot0.png",
+      "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot1.png",
+      "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot2.png",
+      "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot3.png"
     ]
   },
   {
@@ -432,51 +641,52 @@
     ]
   },
   {
-    "id": "nfs-most-wanted",
-    "tid": "NFSMWVITA",
-    "n": "NFS Most Wanted",
-    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "id": "marvel-vs-capcom-2",
+    "tid": "MVSC00001",
+    "n": "Marvel vs Capcom 2",
+    "d": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
+    "ld": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
     "aids": [
-      "germanalvarez15"
+      "papileno"
     ],
     "cid": "ports",
     "sids": [
-      "racing",
+      "arcade",
+      "strategy",
       "source-port"
     ],
-    "v": "1.4.2",
+    "v": "1.2",
     "vd": "2026-11-05",
-    "req": "- No Data",
-    "sz": 3250586,
+    "req": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
+    "sz": 1782579,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.4.2.vpk",
-        "sz": 3250586,
+        "u": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.2.vpk",
+        "sz": 1782579,
         "rec": true
       },
       {
         "t": "Game Files",
-        "n": "Game Files Fix",
-        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-        "sz": 1610612736,
+        "n": "Game Files",
+        "u": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 176265626,
         "xp": "ux0:data/",
         "ips": [
-          "nfsmw"
+          "mvc2"
         ]
       },
       {
         "t": "Repository",
-        "n": "Gihub",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita"
+        "n": "Github",
+        "u": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
       }
     ],
-    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "ic": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
     "ss": [
-      "https://archive.org/download/nfsmw-vita/shot0.png"
+      "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -1015,55 +1225,6 @@
     ]
   },
   {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.2.0",
-    "vd": "2026-11-02",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1048576,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.2.0.vpk",
-        "sz": 1048576
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases",
-        "rec": true
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
-    ]
-  },
-  {
     "id": "batman-arkham-origins",
     "tid": "BAOR00001",
     "n": "Batman Arkham Origins",
@@ -1201,55 +1362,6 @@
     "ss": [
       "https://archive.org/download/ff6-vita/shot0.png",
       "https://archive.org/download/ff6-vita/shot1.png"
-    ]
-  },
-  {
-    "id": "marvel-vs-capcom-2",
-    "tid": "MVSC00001",
-    "n": "Marvel vs Capcom 2",
-    "d": "Unofficial PS Vita port of the iOS version of Marvel vs. Capcom 2: New Age of Heroes (Capcom, 2012).",
-    "ld": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, OpenGL ES, OpenAL, threads) replaced by Vita code. No game files are included. You need your own copy of the iOS app (.ipa).",
-    "aids": [
-      "papileno"
-    ],
-    "cid": "ports",
-    "sids": [
-      "arcade",
-      "strategy",
-      "source-port"
-    ],
-    "v": "1.1",
-    "vd": "2026-11-01",
-    "req": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- kubridge v0.3.1 or later by bythos14.\n- ibshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- our own iOS .ipa of the game, version 1.00.00 (decrypted).\nAbout 330 MB free on ux0: for the first start (the .ipa and the unpacked game). After the first start the .ipa can be deleted; the unpacked game takes 167 MB.",
-    "sz": 1782579,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/mvc2%20v1.1.vpk",
-        "sz": 1782579,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 176265626,
-        "xp": "ux0:data/",
-        "ips": [
-          "mvc2"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/papilenote/vita-ports/tree/main/Marvel%20VS%20Capcom%202"
-      }
-    ],
-    "ic": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -2567,65 +2679,6 @@
       "https://archive.org/download/insurgency-vita/shot0.png",
       "https://archive.org/download/insurgency-vita/shot1.png",
       "https://archive.org/download/insurgency-vita/shot2.png"
-    ]
-  },
-  {
-    "id": "super-mario-galaxy",
-    "tid": "SMGV00001",
-    "n": "Super Mario Galaxy",
-    "d": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
-    "ld": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
-    "aids": [
-      "cboc-vita-lab"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
-    ],
-    "v": "1.1",
-    "vd": "2026-10-26",
-    "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-    "sz": 7235174,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/smg-vita/Galaxy-Vita%20v1.1.vpk",
-        "sz": 7235174,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files USA",
-        "u": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2469606195,
-        "xp": "ux0:data/",
-        "ips": [
-          "smg"
-        ]
-      },
-      {
-        "t": "Mod",
-        "n": "HD Textures",
-        "u": "https://archive.org/download/smg-vita/hdtex.pack",
-        "sz": 4718592,
-        "xp": "ux0:data/smg/"
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/smg-vita/New%20icon0.png",
-    "ss": [
-      "https://archive.org/download/smg-vita/shot0.png",
-      "https://archive.org/download/smg-vita/shot.png",
-      "https://archive.org/download/smg-vita/shot1.png"
     ]
   },
   {
