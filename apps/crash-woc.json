@@ -1,0 +1,53 @@
+{
+  "id": "crash-woc",
+  "tid": "CRWC00001",
+  "n": "Crash WOC",
+  "d": "Unofficial native PS Vita port of Crash Bandicoot: The Wrath of Cortex",
+  "ld": "Unofficial native PS Vita port of Crash Bandicoot: The Wrath of Cortex (GameCube), built on the community decompilation.",
+  "aids": [
+    "sebaz07"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.1.0",
+  "vd": "2026-11-06",
+  "req": "- A PS Vita or PS TV with HENkaku / Enso and VitaShell.\n- libshacccg.suprx on the console (vitaGL compiles shaders at runtime).\n- Your own dump of the USA GameCube disc (game ID GCBE7D): .iso, .gcm, .nkit.iso or .ciso.\n- About 1 GB free on ux0:.",
+  "sz": 4404019,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/crashwoc%20v0.1.0.vpk",
+      "sz": 4404019,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files USA",
+      "u": "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 936902656,
+      "xp": "ux0:data/",
+      "ips": [
+        "crashwoc"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/sebaz07/crashwoc-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/icon0.png",
+  "ss": [
+    "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot0.png",
+    "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot1.png",
+    "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot2.png",
+    "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot3.png"
+  ]
+}
