@@ -365,6 +365,10 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
             for (auto& fresh : refreshed.apps) {
                 if (fresh.titleId != titleId) continue;
                 app = std::move(fresh);
+                if (deepMeasure)
+                    app.activeShared =
+                        ::psvitaalive::storage::installedDataHasActiveShare(
+                            previous, app);
                 break;
             }
             break;
@@ -435,6 +439,11 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             for (auto& app : installedDataSnapshot_.apps)
                 if (app.titleId == measured) {
                     app = std::move(installedDataAutoResult_);
+                    // Deep measurement skips unrelated SFO checks; keep the
+                    // already discovered active collisions in the main UI.
+                    app.activeShared =
+                        ::psvitaalive::storage::installedDataHasActiveShare(
+                            installedDataSnapshot_, app);
                     break;
                 }
             installedDataSnapshot_.totalExternalBytes =
