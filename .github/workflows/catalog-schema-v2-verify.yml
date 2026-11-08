@@ -50,6 +50,13 @@ jobs:
               assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
               print(f'{name}: {len(old)} entries, identical semantic values')
           PY
+      - name: Exercise all six V1 and V2 catalogs through actual web loader paths
+        run: |
+          python scripts/compact_game_catalogs_v2.py \
+            --out-dir /tmp/psva-game-catalogs-v2 \
+            --report /tmp/psva-game-savings.json
+          node scripts/catalog_schema_v2_readers_test.cjs
+
       - name: Regenerate V1 from unchanged main in a temporary worktree
         run: |
           git fetch origin main --depth=1
