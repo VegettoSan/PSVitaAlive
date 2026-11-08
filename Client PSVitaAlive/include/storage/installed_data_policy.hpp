@@ -3,6 +3,7 @@
 // filesystem deletion authority without rechecking these rules at execution.
 #include <cctype>
 #include <string>
+#include "storage/installed_data_manager.hpp"
 
 namespace psvitaalive { namespace storage {
 
@@ -76,6 +77,40 @@ inline bool installedDataActiveCollision(const std::string& target,
                                          const std::string& other,
                                          bool otherInstalled) {
     return otherInstalled && installedPathsOverlap(target, other);
+}
+
+// A known root is deletable even without a VPK, unless another installed VPK
+// is actively claiming that same root. Metadata ambiguity and unsafe paths
+// remain blocked independently of directory size measurement.
+inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
+    if (app.blocked || app.unresolved ||
+        !validInstalledTitleId(app.titleId) || app.titleId == "PSVAS1178" ||
+        app.appId == "psvitaalive" || app.appId == "ps-vita-alive" ||
+        (app.activeShared && !app.packagePresent)) return false;
+    bool anyPresent = false;
+    for (const auto& p : app.paths) {
+        if (!p.exists) continue;
+        if (!safeExternalDataPath(p.path)) return false;
+        anyPresent = true;
+    }
+    return anyPresent;
+}
+
+// Read-only, cached collision hint for the UI. The deletion preflight still
+// checks actual package presence and root overlap immediately before use.
+inline bool installedDataHasActiveShare(const InstalledDataSnapshot& snapshot,
+                                       const InstalledDataApp& target) {
+    for (const auto& p : target.paths) {
+        if (!p.exists || !safeExternalDataPath(p.path)) continue;
+        for (const auto& other : snapshot.apps) {
+            if (other.titleId == target.titleId || !other.packagePresent ||
+                !validInstalledTitleId(other.titleId)) continue;
+            for (const auto& q : other.paths)
+                if (safeExternalDataPath(q.path) &&
+                    installedPathsOverlap(p.path, q.path)) return true;
+        }
+    }
+    return false;
 }
 
 // UI wording must reflect the observed installed roots, not just the
