@@ -216,6 +216,9 @@ def main():
             print("  published differences: added", main["added_count"],
                   "removed", main["removed_count"], "changed", main["changed_count"],
                   "order", main["order_matches"])
+            print("  changed IDs:", main["changed_ids"][:20])
+            for record_id, diffs in main["sample_differences"].items():
+                print("  ", record_id, "->", "; ".join(diffs[:8]))
     if errors:
         print("ERRORS:")
         for error in errors:
