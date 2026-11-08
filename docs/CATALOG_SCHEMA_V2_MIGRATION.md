@@ -1,7 +1,9 @@
 # PSVitaAlive — Catalog schema V2 migration (work branch)
 
-> Status: **phase 0 / inventory only**. No source catalog has been renamed.
-> Production `main`, public catalogs, website and client releases remain unchanged.
+> Status: **source migration committed on feature branch**, PR #65 remains a draft.
+> Production `main`, existing public catalogs, website and client releases remain unchanged.
+> CI integration verified reversible conversion and identical V1/V2 generated values.
+> **Hardware validation remains pending.**
 
 ## Goal
 
@@ -65,3 +67,41 @@ a separate inventory before any catalog-wide cutover.
 - Maintain an easy rollback to V1 generated catalog outputs and previous VPK;
   preserve V1 cached-content parsing in V2.
 - The complete field dictionary must be created **from inventory**, not guessed.
+
+
+## Implementation progress (feature branches only)
+
+- [x] Catalog key inventory across 1,198 app JSON, 679 author JSON, 15 category JSON.
+- [x] Reversible `scripts/catalog_schema_v2.py`; strict `scripts/migrate_catalog_schema_v2.py`.
+- [x] GitHub Actions converted and committed canonical source JSONs on the feature branch.
+- [x] Client parser supports V1/V2 direct field lookup (retains offline V1 cache).
+- [x] Web adapter normalizes V1/V2 to the current UI model; web app/author generator exports V2.
+- [x] Core catalog generator, validator, normalizer and GitHub workflow updated.
+- [x] Ancillary catalog scripts and Discord notifications adapted.
+- [x] Release tracker changes prepared in a **separate branch** of the monitor repository.
+- [x] CI checkout migration and V1/V2 output parity (all three canonical JSON files).
+- [ ] Final PR head CI jobs, especially VitaSDK build, after all commits.
+- [ ] Vita3K / physical PS Vita tests and release of dual-reading VPK.
+- [ ] Public V2 activation, after VPK release.
+
+## Publication switch
+
+`scripts/generate_catalog.py` generates **V1 by default** while its source
+files are V2. Set `PSVA_PUBLIC_SCHEMA_V2=true` only at the controlled catalog
+cutover; then the same generated `catalog.json`, `authors.json` and
+`categories.json` paths contain compact V2. The workflow's inline
+source-synchronization steps respect the same flag.
+
+The old public schema is intentionally retained until a new client with
+both V1 and V2 readers is tested, released, and verified to update at startup.
+No secondary authoritative catalog is introduced.
+
+## Related draft branches / PRs
+
+- [PSVitaAlive PR #65](https://github.com/VegettoSan/PSVitaAlive/pull/65)
+- [Release tracker V1/V2 branch](https://github.com/VegettoSan/PsVita-Homebrews-New-Releases/tree/feature/catalog-schema-v2)
+
+Do not merge the migration until both repositories and the Vita hardware path
+are validated. Enabling V2 on public URLs will still break old builds that
+disable, cancel or fail their startup self-update; document this tradeoff before
+the cutover.
