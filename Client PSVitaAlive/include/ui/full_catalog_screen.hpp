@@ -438,6 +438,7 @@ private:
     void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     int detailScreenshotContentOffset(const CatalogItem& item, int panelWidth);
+    std::vector<std::string> wrapDetailLines(const std::string& text, int contentWidth, bool bullets) const;
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void openWebQrModal();
     void openDiscordQrModal();

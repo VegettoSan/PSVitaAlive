@@ -4272,28 +4272,41 @@ int FullCatalogScreen::savedZipBlockHeight(const CatalogItem& item) {
     const int count = savedZipCountFor(item);
     return count ? LINK_SECTION_H + 4 + LINK_ROW_H * count + 8 : 0;
 }
+std::vector<std::string> FullCatalogScreen::wrapDetailLines(
+    const std::string& text, int contentWidth, bool bullets) const {
+    std::vector<std::string> lines;
+    if (text.empty()) return lines;
+    // Preserve source paragraph/newline boundaries and split bullet items.
+    // The old character-count wrapper ignored real PGF glyph widths and cut
+    // requirements/URLs off at the right edge of the detail viewport.
+    std::string normalized;
+    normalized.reserve(text.size() + 8);
+    for (size_t p = 0; p < text.size(); ++p) {
+        if (bullets && text[p] == '-' &&
+            (p == 0 || text[p - 1] == ' ') &&
+            p + 1 < text.size() && text[p + 1] == ' ' &&
+            !normalized.empty() && normalized.back() != '\n')
+            normalized.push_back('\n');
+        normalized.push_back(text[p]);
+    }
+    const int maxWidth = std::max(32, contentWidth - 6);
+    size_t begin = 0;
+    while (begin <= normalized.size()) {
+        const size_t end = normalized.find('\n', begin);
+        const std::string paragraph = normalized.substr(begin,
+            end == std::string::npos ? std::string::npos : end - begin);
+        const auto wrapped = wrapTextToWidth(&font_, 0.68f, paragraph, maxWidth);
+        lines.insert(lines.end(), wrapped.begin(), wrapped.end());
+        if (end == std::string::npos) break;
+        begin = end + 1;
+    }
+    return lines;
+}
+
 int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
     const int cw = std::max(1, w - 36);
-    const int mc = std::max(16, cw / 7);
-    auto bodyLines = [&](const std::string& text) -> int {
-        if (text.empty()) return 0;
-        std::vector<std::string> lines;
-        wrapText(text, mc, lines);
-        return (int)lines.size();
-    };
-    auto reqLines = [&](const std::string& text) -> int {
-        if (text.empty()) return 0;
-        std::string normalized;
-        normalized.reserve(text.size() + 8);
-        for (size_t p = 0; p < text.size(); ++p) {
-            if (text[p] == '-' && (p == 0 || text[p - 1] == ' ') && p + 1 < text.size() && text[p + 1] == ' ') {
-                if (!normalized.empty() && normalized.back() != '\n') normalized.push_back('\n');
-            }
-            normalized.push_back(text[p]);
-        }
-        std::vector<std::string> lines;
-        wrapText(normalized, mc, lines);
-        return (int)lines.size();
+    auto bodyLines = [&](const std::string& text, bool bullets = false) -> int {
+        return static_cast<int>(wrapDetailLines(text, cw, bullets).size());
     };
 
     int h = linkLayoutTotalHeight(buildLinkLayout(i)) + WEB_QR_BLOCK_H +
@@ -4310,7 +4323,7 @@ int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
     const int sc = std::min(5, (int)i.screenshots.size());
     if (sc > 0) h += DETAIL_SECTION_H + sc * SCREENSHOT_ROW_H + DETAIL_SECTION_GAP;
 
-    addSection(reqLines(i.requirements));
+    addSection(bodyLines(i.requirements, true));
 
     int meta = 0;
     if (!i.titleId.empty()) ++meta;
@@ -4903,9 +4916,20 @@ void FullCatalogScreen::handleTouch() {
                 return;
             }
             if(installedDataConfirm_){
-                if(hit(px,py,ox+30,oy+383,w-60,57))
+                // The confirmation dialog is intentionally smaller than the
+                // installed-data browser. Keep touch targets in exact sync
+                // with drawInstalledDataOverlay() and controller actions.
+                constexpr int dialogW=780,dialogH=400,buttonW=238,gap=20;
+                const int dialogX=(SCREEN_W-dialogW)/2;
+                const int dialogY=(SCREEN_H-dialogH)/2;
+                const int firstX=dialogX+(dialogW-(buttonW*2+gap))/2;
+                const int buttonY=dialogY+dialogH-58;
+                if(hit(px,py,firstX,buttonY,buttonW,46))
+                    installedDataConfirm_=false;
+                else if(hit(px,py,firstX+buttonW+gap,buttonY,buttonW,46))
                     activateInstalledDataSelection();
-                else installedDataConfirm_=false;
+                else if(!hit(px,py,dialogX,dialogY,dialogW,dialogH))
+                    installedDataConfirm_=false;
                 return;
             }
             if(!installedDataDetail_){
@@ -7540,15 +7564,11 @@ int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, in
     if (primaryActionFor(item) != PrimaryAction::None)
         offset += LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
 
-    const int maxChars = std::max(16, (panelWidth - 36) / 7);
-    std::vector<std::string> lines;
+    const int bodyWidth = std::max(1, panelWidth - 36);
     auto appendTextSection = [&](const std::string& text) {
-        if (text.empty()) return;
-        wrapText(text, maxChars, lines);
-        if (!lines.empty())
-            offset += DETAIL_SECTION_H +
-                      static_cast<int>(lines.size()) * LINE_H +
-                      DETAIL_SECTION_GAP;
+        const int count = static_cast<int>(wrapDetailLines(text, bodyWidth, false).size());
+        if (count > 0)
+            offset += DETAIL_SECTION_H + count * LINE_H + DETAIL_SECTION_GAP;
     };
     appendTextSection(item.description);
     appendTextSection(item.longDescription);
@@ -9054,22 +9074,9 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     const int cx = x + 18;
     const int cw = w - 36;
-    const int mc = std::max(16, cw / 7);
     const int top = y + DETAIL_HEADER_H + 10;
     const int bottom = y + h - 10;
     const float scroll = std::max(0.f, visualDetailScroll_);
-
-    auto normalizeBullets = [](const std::string& text) {
-        std::string out;
-        out.reserve(text.size() + 8);
-        for (size_t p = 0; p < text.size(); ++p) {
-            if (text[p] == '-' && (p == 0 || text[p - 1] == ' ') && p + 1 < text.size() && text[p + 1] == ' ') {
-                if (!out.empty() && out.back() != '\n') out.push_back('\n');
-            }
-            out.push_back(text[p]);
-        }
-        return out;
-    };
 
     auto drawSectionHeader = [&](int sx, int sy, const char* title) {
         if (sy + DETAIL_SECTION_H < top || sy > bottom) return;
@@ -9095,8 +9102,10 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
             ::psvitaalive::ui::uiDrawText(&font_, sx + 10, sy + 18, DIM, 0.64f, label);
             const int lw = ::psvitaalive::ui::uiTextWidth(&font_, 0.64f, label);
             const int vx = sx + std::max(120, lw + 20);
-            const int maxChars = std::max(8, (rowW - (vx - sx) - 12) / 8);
-            ::psvitaalive::ui::uiDrawText(&font_, vx, sy + 18, WHITE, 0.68f, ellipsize(value, maxChars).c_str());
+            const int pixelWidth = std::max(24, rowW - (vx - sx) - 12);
+            drawMarqueeText(&font_, vx, sy + 18, pixelWidth,
+                            WHITE, 0.68f, value, false,
+                            sx, top, sx + rowW, bottom);
         }
         return sy + DETAIL_META_H;
     };
@@ -9114,8 +9123,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     auto emitTextSection = [&](const char* title, const std::string& body, bool bullets) {
         if (body.empty()) return;
-        std::vector<std::string> lines;
-        wrapText(bullets ? normalizeBullets(body) : body, mc, lines);
+        const std::vector<std::string> lines = wrapDetailLines(body, cw, bullets);
         if (lines.empty()) return;
         drawSectionHeader(cx, cursor, title);
         cursor += DETAIL_SECTION_H;

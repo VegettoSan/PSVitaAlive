@@ -106,6 +106,16 @@ int main() {
     assert(installedDataMoveAction(-1, 1, false, true) == 1);
     assert(installedDataMoveAction(-1, 1, false, false) == -1);
 
+    // Copy for APP-only installs must not imply nonexistent data was retained.
+    assert(std::string(installedDataActionNoteKey(0, false)) == "ID_DELETE_APP_ONLY_NOTE");
+    assert(std::string(installedDataActionNoteKey(0, true)) == "ID_DELETE_APP_NOTE");
+    assert(std::string(installedDataActionNoteKey(1, false)) == "ID_DELETE_FILES_NOTE");
+    assert(std::string(installedDataActionNoteKey(2, true)) == "ID_DELETE_ALL_NOTE");
+    assert(std::string(installedDataConfirmImpactKey(0, false)) == "ID_CONFIRM_IMPACT_APP_ONLY");
+    assert(std::string(installedDataConfirmImpactKey(0, true)) == "ID_CONFIRM_IMPACT_APP_KEEP");
+    assert(std::string(installedDataConfirmImpactKey(1, true)) == "ID_CONFIRM_IMPACT_FILES_ONLY");
+    assert(std::string(installedDataConfirmImpactKey(2, true)) == "ID_CONFIRM_IMPACT_ALL");
+
     // GPU icon lifetime: dialog and catalog share the same path/texture.
     // An icon loaded by the dialog but still visible on returning to the
     // catalog must NOT be freed.
