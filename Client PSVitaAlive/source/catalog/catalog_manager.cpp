@@ -521,6 +521,37 @@ int CatalogManager::workerMain() {
 
         PSVA_TRACE_EVENT("worker_request",std::string("catalog=")+label(catalog)+
             " gen="+std::to_string(gen));
+        // EXCLUSIVE experimental VPK: never refresh the four catalogs over HTTP.
+        // Only parse JSON files already present in ux0:data/psvitaalive/cache/catalog.
+        // Images and other online services are not blocked by this test mode.
+#if PSVITAALIVE_CATALOG_OFFLINE_TEST
+        diagnostics::log(std::string("[V2-OFFLINE-TEST] cache-only request: ") + label(catalog));
+        std::vector<ui::CatalogItem> offlineItems;
+        const bool offlineOk = tryLoadDiskCache(catalog, offlineItems) && !offlineItems.empty();
+        sceKernelLockMutex(mutex_, 1, nullptr);
+        if (requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_) {
+            diagnostics::log(std::string("[V2-OFFLINE-TEST] discarded stale request: ") + label(catalog));
+            sceKernelUnlockMutex(mutex_, 1);
+            continue;
+        }
+        if (offlineOk) {
+            publishReady(catalog, offlineItems, "V2 TEST: local cache only", false);
+            diagnostics::log(std::string("[V2-OFFLINE-TEST] loaded local ") + label(catalog) +
+                             " items=" + std::to_string(offlineItems.size()));
+        } else {
+            status_.state = State::Failed;
+            status_.catalog = catalog;
+            status_.message = "V2 TEST: missing cached catalog";
+            status_.error = std::string("Copy ") + fileName(catalog) +
+                            " to ux0:data/psvitaalive/cache/catalog/";
+            status_.softRefresh = false;
+            status_.refreshPhase = RefreshPhase::None;
+            diagnostics::log(std::string("[V2-OFFLINE-TEST] missing/invalid JSON: ") + cachePath(catalog));
+        }
+        sceKernelUnlockMutex(mutex_, 1);
+        continue;
+#endif
+
         auto isStale = [&]() -> bool {
             sceKernelLockMutex(mutex_, 1, nullptr);
             const bool stale =
