@@ -127,14 +127,14 @@ def _transform(obj: Any, *, compact: bool, parent: str = "", passthrough: bool =
     for key, val in obj.items():
         if passthrough:
             new_key = key
+            nested_passthrough = False  # Preserve dynamic key only, not fields inside it.
         else:
             new_key = (KEYS if compact else REVERSE).get(key, key)
+            v1_key = key if compact else REVERSE.get(key, key)
+            # Source names ('vitadb'), region IDs ('US'), language IDs: data identifiers.
+            nested_passthrough = v1_key in PASSTHROUGH_CHILDREN
         if new_key in result:
             raise ValueError(f"Collision at {parent}: {key!r} -> {new_key!r}")
-        # Source names ('vitadb', 'neovitadb'), region IDs ('US', 'JP'),
-        # and translated language codes must not be shortened as schema keys.
-        v1_key = key if compact else REVERSE.get(key, key)
-        nested_passthrough = v1_key in PASSTHROUGH_CHILDREN
         result[new_key] = _transform(val, compact=compact, parent=parent + "." + new_key,
                                      passthrough=nested_passthrough)
     return result
