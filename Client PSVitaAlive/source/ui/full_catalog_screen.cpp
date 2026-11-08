@@ -9264,6 +9264,10 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
                 drawMarqueeText(&font_, bx + 8, by + 22, bw - 16, linkOn ? BG : ACCENT, 0.70f,
                                 linkLab, true, bx + 4, by, bx + bw - 4, by + bh);
             }
+            // The marquee restores its *text strip* scissor, not the panel.
+            // Restore the full header before drawing Uninstall / Request data.
+            vita2d_enable_clipping();
+            vita2d_set_clip_rectangle(x, y, x + w, y + h);
         }
         const LocalInstallInfo localUninstall=queryLocalInstall(it);
         const bool canUninstall=state_.catalog==CatalogType::Homebrew &&
@@ -9296,6 +9300,11 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
                             rbx + 4, rby, rbx + rbw - 4, rby + rbh);
         }
     }
+    // Secondary action labels can also marquee and leave a tight scissor.
+    // Reassert the enclosing detail panel so the missing-Game-Files notice
+    // can never be clipped away by an unrelated header button.
+    vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(x, y, x + w, y + h);
     if (detailNeedsGameFilesNotice(it, isInstallBadgeState(queryLocalInstall(it)))) {
         // Subtle bottom strip: keeps name, author, version and buttons free.
         const int nx = x + 12, ny = y + 89, nw = w - 24, nh = 18;
