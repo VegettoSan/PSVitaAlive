@@ -50,6 +50,16 @@ jobs:
               assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
               print(f'{name}: {len(old)} entries, identical semantic values')
           PY
+      - name: Upload V2 test catalogs (not published to main)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSVitaAlive-catalog-v2-test
+          path: |
+            catalog.json
+            authors.json
+            categories.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Commit only lossless source-key changes to feature branch
         if: github.actor != 'github-actions[bot]'
         run: |
