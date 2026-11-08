@@ -657,6 +657,9 @@
     "CROMAGRLY": {
       "version": "v.1.1"
     },
+    "CRWC00001": {
+      "version": "0.1.0"
+    },
     "CSD2VITA0": {
       "version": "v.1.0"
     },
@@ -1759,7 +1762,7 @@
       "version": "v.1.1"
     },
     "MHRE00001": {
-      "version": "0.2.0"
+      "version": "0.4.0"
     },
     "MIDI00001": {
       "version": "v.1.0"
@@ -1843,7 +1846,7 @@
       "version": "v.1.4"
     },
     "MVSC00001": {
-      "version": "1.1"
+      "version": "1.2"
     },
     "MYLEGNOOB": {
       "version": "v.1.1"
@@ -1909,7 +1912,7 @@
       "version": "v.1.0"
     },
     "NFSMWVITA": {
-      "version": "1.4.2"
+      "version": "1.5.1"
     },
     "NFSR00001": {
       "version": "1.00"
@@ -2710,7 +2713,7 @@
       "version": "v.0.1"
     },
     "SMGV00001": {
-      "version": "1.1"
+      "version": "2.2.1"
     },
     "SMLA00001": {
       "version": "v.3.9.6"
