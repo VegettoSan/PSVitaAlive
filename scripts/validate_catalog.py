@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 import json
-from catalog_schema_v2 import to_v1
+try:
+    from scripts.catalog_schema_v2 import to_v1
+except ModuleNotFoundError:
+    from catalog_schema_v2 import to_v1
 import re
 import sys
 import urllib.error
