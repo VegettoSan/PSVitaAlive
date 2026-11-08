@@ -76,8 +76,10 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import os
           import re
           from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1, to_v2
           from scripts.external.identity import canonical_author_id
 
           root = Path('.')
@@ -86,10 +88,13 @@ jobs:
           fallback = 'https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png'
 
           def load(path):
-              return json.loads(path.read_text(encoding='utf-8'))
+              return to_v1(json.loads(path.read_text(encoding='utf-8')))
 
           def save(path, value):
-              path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              sources = ('apps', 'authors', 'categories')
+              public_v2 = os.getenv('PSVA_PUBLIC_SCHEMA_V2', '').lower() in ('1', 'true', 'yes')
+              payload = to_v2(value) if path.parent.name in sources or public_v2 else value
+              path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
           def split_names(value):
               if not isinstance(value, str):
@@ -217,7 +222,9 @@ jobs:
         run: |
           python - <<'PY'
           import json
+          import os
           from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1, to_v2
 
           root = Path('.')
           authors_dir = root / 'authors'
@@ -226,7 +233,7 @@ jobs:
           referenced = set()
           for path in sorted((root / 'apps').glob('*.json')):
               try:
-                  app = json.loads(path.read_text(encoding='utf-8'))
+                  app = to_v1(json.loads(path.read_text(encoding='utf-8')))
               except Exception:
                   continue
               ids = app.get('author_ids', [])
@@ -236,7 +243,7 @@ jobs:
           authors_by_id = {}
           for path in sorted(authors_dir.glob('*.json')):
               try:
-                  author = json.loads(path.read_text(encoding='utf-8'))
+                  author = to_v1(json.loads(path.read_text(encoding='utf-8')))
               except Exception:
                   continue
               aid = author.get('id')
@@ -265,7 +272,7 @@ jobs:
               }
               path = authors_dir / f'{aid}.json'
               path.write_text(
-                  json.dumps(profile, ensure_ascii=False, indent=2) + '\n',
+                  json.dumps(to_v2(profile), ensure_ascii=False, indent=2) + '\n',
                   encoding='utf-8',
               )
               authors_by_id[aid] = profile
@@ -276,7 +283,10 @@ jobs:
           authors = list(authors_by_id.values())
           authors.sort(key=lambda a: str(a.get('name', a.get('id', ''))).lower())
           (root / 'authors.json').write_text(
-              json.dumps(authors, ensure_ascii=False, indent=2) + '\n',
+              json.dumps(
+                  to_v2(authors) if os.getenv('PSVA_PUBLIC_SCHEMA_V2', '').lower() in ('1', 'true', 'yes') else authors,
+                  ensure_ascii=False, indent=2
+              ) + '\n',
               encoding='utf-8',
           )
 
@@ -288,6 +298,9 @@ jobs:
               print('Auto-created missing author profiles: ' + ', '.join(missing))
           print(f'Authors published: {len(authors)} (orphans included: {orphan_count})')
           PY
+
+      - name: Check source catalog V2 key coverage and roundtrip
+        run: python scripts/migrate_catalog_schema_v2.py
 
       - name: Validate Game Files installed paths (offline)
         run: python scripts/validate_installed_paths_audit.py
