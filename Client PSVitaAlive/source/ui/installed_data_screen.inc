@@ -504,7 +504,8 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             bool hasData = false;
             for (const auto& p : app.paths) hasData = hasData || p.exists;
             const bool canApp = app.packagePresent && app.titleId != "PSVAS1178";
-            const bool canData = hasData && !app.blocked && !app.unresolved;
+            const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(app);
             installedDataActionFocus_ =
                 ::psvitaalive::storage::installedDataFirstAction(canApp, canData);
             break;
@@ -526,7 +527,8 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         bool hasData = false;
         for (const auto& p : app.paths) hasData = hasData || p.exists;
         const bool canApp = app.packagePresent && app.titleId != "PSVAS1178";
-        const bool canData = hasData && !app.blocked && !app.unresolved;
+        const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(app);
         installedDataActionFocus_ =
             ::psvitaalive::storage::installedDataFirstAction(canApp, canData);
         installedDataPathScroll_ = 0;
@@ -548,7 +550,8 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         hasData = hasData || path.exists;
     // Directory measurement is optional. A timeout, huge archive or unreadable
     // size must not disable deleting a path with a valid declared root.
-    const bool canData = hasData && !app->blocked && !app->unresolved;
+    const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
     if (!::psvitaalive::storage::installedDataActionAvailable(
             installedDataActionFocus_, canPackage, canData)) {
         showToast(::psvitaalive::L("ID_UNSAFE"), 3400);
@@ -559,6 +562,10 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         return;
     }
     installedDataConfirm_ = false;
+    // Shared-root consent is only granted by this visible confirmation.
+    // The worker still rechecks actual installed packages before deletion.
+    installedDataShareApproved_ =
+        installedDataActionFocus_ != 0 && app->activeShared && app->packagePresent;
     startInstalledDataOperation(installedDataActionFocus_);
 }
 void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav) {
@@ -608,7 +615,8 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
             bool hasData = false;
             for (const auto& p : app->paths) hasData = hasData || p.exists;
             const bool canApp = app->packagePresent && app->titleId != "PSVAS1178";
-            const bool canData = hasData && !app->blocked && !app->unresolved;
+            const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
             if (nav & (SCE_CTRL_LEFT | SCE_CTRL_UP))
                 installedDataActionFocus_ =
                     ::psvitaalive::storage::installedDataMoveAction(
@@ -651,6 +659,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             hasExternal=hasExternal||p.exists;
         const int action=installedDataActionFocus_;
         const bool deleteExternal=action==1||action==2;
+        const bool warnShared=deleteExternal && app && app->activeShared;
         const char* actionKey=action==0 ? "ID_DELETE_APP" :
                               action==1 ? "ID_DELETE_FILES" : "ID_DELETE_ALL";
         const char* impactKey=::psvitaalive::storage::installedDataConfirmImpactKey(
@@ -698,7 +707,9 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         }
 
         const int warningY=dy+(deleteExternal?274:246);
-        const char* warningKeys[]={"ID_WARNING1","ID_WARNING2","ID_WARNING3"};
+        const char* warningKeys[]={
+            warnShared ? "ID_SHARED_DELETE_WARNING" : "ID_WARNING1",
+            "ID_WARNING2","ID_WARNING3"};
         const unsigned warningColors[]={WHITE,TEXT,ACCENT};
         for(int i=0;i<3;++i){
             drawMarqueeText(&font_,dx+24,warningY+i*25,DW-48,
@@ -920,6 +931,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
             if (app.blocked) state += " | " + std::string(
                 ::psvitaalive::L("ID_PROTECTED"));
+            else if (app.activeShared) state += " | " +
+                std::string(::psvitaalive::L("ID_SHARED"));
             if (cachedSize) state += " | " + std::string(
                 ::psvitaalive::L("ID_LAST_MEASURED"));
             ::psvitaalive::ui::uiDrawText(&font_,x+118,ry+60,DIM,.67f,
@@ -1013,9 +1026,13 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             if (app->paths.empty())
                 ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,DIM,.75f,
                     ::psvitaalive::L("ID_NO_EXTERNAL"));
-            if (app->blocked)
-                ::psvitaalive::ui::uiDrawText(&font_,x+28,y+327,ACCENT,.65f,
-                    ::psvitaalive::L("ID_PROTECTED_DESC"));
+            if (app->blocked || app->activeShared) {
+                const char* key = app->blocked ? "ID_PROTECTED_DESC" :
+                    app->packagePresent ? "ID_SHARED_ACTIVE_HINT" :
+                                          "ID_SHARED_ORPHAN_WARNING";
+                drawMarqueeText(&font_,x+28,y+327,W-56,ACCENT,.65f,
+                    ::psvitaalive::L(key),false);
+            }
         }
         // Only render actions that are actually safe and meaningful.
         vita2d_draw_rectangle(x+24,y+341,W-48,28,SURFACE2);
@@ -1024,7 +1041,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         bool hasData = false;
         if (app) for (const auto& p : app->paths) hasData = hasData || p.exists;
         const bool canApp = app && app->packagePresent && app->titleId!="PSVAS1178";
-        const bool canData = app && hasData && !app->blocked && !app->unresolved;
+        const bool canData = app && hasData &&
+            ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
         const int count = (canApp?1:0) + (canData?1:0) + ((canApp&&canData)?1:0);
         const int buttonW = count==1 ? 420 : 260;
         const int firstX = x+(W-count*buttonW-(count-1)*12)/2;
