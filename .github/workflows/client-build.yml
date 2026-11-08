@@ -34,6 +34,12 @@ jobs:
             -o /tmp/psvitaalive-web-url-test
           /tmp/psvitaalive-web-url-test
 
+      - name: Test feedback panel and description scroll boundaries
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_feedback_scroll_math.cpp -o /tmp/psvitaalive-feedback-scroll-test
+          /tmp/psvitaalive-feedback-scroll-test
+
       - name: Test dynamic QR installation instructions
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \

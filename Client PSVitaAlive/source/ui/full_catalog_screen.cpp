@@ -1,4 +1,5 @@
 #include "ui/full_catalog_screen.hpp"
+#include "ui/feedback_scroll_math.hpp"
 #include "ui/game_files_notice_policy.hpp"
 #include "ui/detail_screenshot_visibility.hpp"
 #include "ui/installed_game_index.hpp"
@@ -2255,7 +2256,10 @@ constexpr int FB_INFO_X = FB_X + 18, FB_INFO_W = 302;
 constexpr int FB_FORM_X = FB_INFO_X + FB_INFO_W + 14, FB_FORM_W = 548;
 constexpr int FB_VIEW_Y = FB_Y + 94, FB_VIEW_H = 348;
 constexpr int FB_FORM_FIELD_X = FB_FORM_X + 14, FB_FORM_FIELD_W = FB_FORM_W - 36;
-constexpr int FB_BODY_H = 148, FB_BODY_TEXT_H = 112;
+constexpr int FB_BODY_H = 148;
+// Body lines begin at y+30 and finish 12 px above the field's lower edge.
+// Keep the scrollable span in sync with the 27 px rendered line spacing.
+constexpr int FB_BODY_TEXT_H = feedbackVisibleTextSpan(FB_BODY_H, 30, 12, 27);
 constexpr int FB_ACTION_Y = FB_Y + FB_H - 58, FB_ACTION_H = 43;
 struct FeedbackFormRects {
     int typeY = 0, appY = 0, appH = 0;
@@ -2290,10 +2294,16 @@ FeedbackFormRects feedbackFormRects(bool withApp, size_t nameLines, size_t notic
 void FullCatalogScreen::clampFeedbackPanelScroll() {
     const auto rect = feedbackFormRects(!feedbackAppName_.empty(),
         feedbackAppNameLines_.size(), feedbackNoticeLines_.size());
-    feedbackInfoScrollY_ = std::max(0, std::min(feedbackInfoScrollY_,
-        std::max(0, feedbackInfoContentH_ - FB_VIEW_H)));
-    feedbackFormScrollY_ = std::max(0, std::min(feedbackFormScrollY_,
-        std::max(0, rect.contentH - FB_VIEW_H)));
+    const int infoMax = std::max(0, feedbackInfoContentH_ - FB_VIEW_H);
+    const int formMax = std::max(0, rect.contentH - FB_VIEW_H);
+    feedbackInfoScrollY_ = std::max(0, std::min(feedbackInfoScrollY_, infoMax));
+    feedbackFormScrollY_ = std::max(0, std::min(feedbackFormScrollY_, formMax));
+    // When the selected report type shortens a pane, an old eased position
+    // must not leave its scrollbar or contents below the newly valid range.
+    feedbackInfoVisualY_ = std::max(0.f, std::min(feedbackInfoVisualY_,
+        static_cast<float>(infoMax)));
+    feedbackFormVisualY_ = std::max(0.f, std::min(feedbackFormVisualY_,
+        static_cast<float>(formMax)));
 }
 
 void FullCatalogScreen::refreshFeedbackGuidance() {
@@ -2833,7 +2843,8 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
         if(maxScroll<=0)return;
         const int trackH=FB_VIEW_H-12;
         const int thumbH=std::max(24,(trackH*FB_VIEW_H)/contentH);
-        const int thumbY=(scroll*(trackH-thumbH))/maxScroll;
+        const int safeScroll=std::max(0,std::min(scroll,maxScroll));
+        const int thumbY=(safeScroll*(trackH-thumbH))/maxScroll;
         vita2d_draw_rectangle(x,FB_VIEW_Y+6,4,trackH,BORDER);
         vita2d_draw_rectangle(x,FB_VIEW_Y+6+thumbY,4,thumbH,ACCENT);
     };
@@ -4820,8 +4831,13 @@ void FullCatalogScreen::handleTouch() {
                         if(hit(touchStartX_,touchStartY_,
                                FB_FORM_FIELD_X,initialBodyY,FB_FORM_FIELD_W,FB_BODY_H)
                            &&maxBodyScroll>0) {
-                            feedbackScrollY_+=delta;
-                            clampFeedbackScroll();
+                            // Forward the unused drag to the outer form once
+                            // the description reaches its top or bottom.
+                            const auto next=feedbackApplyNestedScroll(
+                                feedbackScrollY_,maxBodyScroll,feedbackFormScrollY_,
+                                std::max(0,rect.contentH-FB_VIEW_H),delta);
+                            feedbackScrollY_=next.inner;
+                            feedbackFormScrollY_=next.outer;
                         } else {
                             feedbackFormScrollY_+=delta;
                         }
@@ -7291,19 +7307,27 @@ if(pressed&SCE_CTRL_START){
         if(pressed&SCE_CTRL_CROSS){feedbackPanel_=1;ensureFeedbackFocusVisible();}
         return;
     }
+    const int previousFeedbackFocus=feedbackFocus_;
     if(nav&SCE_CTRL_UP) feedbackFocus_=std::max(0,feedbackFocus_-1);
     if(nav&SCE_CTRL_DOWN) feedbackFocus_=std::min(4,feedbackFocus_+1);
     if(feedbackFocus_==0 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)))
         setFeedbackSuggestion(!!(nav&SCE_CTRL_RIGHT));
     else if(feedbackFocus_==2 && (nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT))){
-        if(nav&SCE_CTRL_LEFT)feedbackScrollY_-=27;
-        if(nav&SCE_CTRL_RIGHT)feedbackScrollY_+=27;
-        clampFeedbackScroll();
+        const int delta=(nav&SCE_CTRL_RIGHT)?27:-27;
+        const auto rect=feedbackFormRects(!feedbackAppName_.empty(),
+            feedbackAppNameLines_.size(),feedbackNoticeLines_.size());
+        const auto next=feedbackApplyNestedScroll(
+            feedbackScrollY_,std::max(0,static_cast<int>(feedbackWrapped_.size())*27-FB_BODY_TEXT_H),
+            feedbackFormScrollY_,std::max(0,rect.contentH-FB_VIEW_H),delta);
+        feedbackScrollY_=next.inner;
+        feedbackFormScrollY_=next.outer;
     }else if(nav&(SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){
         feedbackFormScrollY_+=(nav&SCE_CTRL_RIGHT)?43:-43;
         clampFeedbackPanelScroll();
     }
-    ensureFeedbackFocusVisible();
+    // Auto-scroll only when navigating to another field. Manual left/right
+    // scrolling must not snap straight back to the previously focused field.
+    if(feedbackFocus_!=previousFeedbackFocus)ensureFeedbackFocusVisible();
     if(pressed&SCE_CTRL_CROSS)activateFeedbackFocus();
     return;
 }if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
