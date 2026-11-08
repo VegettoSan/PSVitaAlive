@@ -6,7 +6,7 @@ on:
       - feature/catalog-schema-v2
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   verify:
@@ -50,7 +50,21 @@ jobs:
               assert to_v1(new) == old, f'V1/V2 mismatch in {name}'
               print(f'{name}: {len(old)} entries, identical semantic values')
           PY
-      - name: Inspect source diff (test checkout only)
+      - name: Commit only lossless source-key changes to feature branch
+        if: github.actor != 'github-actions[bot]'
         run: |
-          git status --short | tail -n 15
-          echo "No changes from this workflow are pushed to GitHub."
+          set -euo pipefail
+          # The integration checks above can normalize values in the test workspace.
+          # Discard those changes, then reapply ONLY the reversible key transformation.
+          git restore --worktree -- apps authors categories
+          python scripts/migrate_catalog_schema_v2.py --write
+          git add -- apps authors categories
+          if git diff --cached --quiet; then
+            echo "No source-key changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --cached --stat | tail -n 8
+          git commit -m "feat(schema-v2): convert all canonical JSON source keys"
+          git push origin HEAD:feature/catalog-schema-v2
