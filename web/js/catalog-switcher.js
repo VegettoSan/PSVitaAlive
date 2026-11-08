@@ -84,7 +84,7 @@ async function fetchGameCatalogWithProgress(
             }
 
             if (!response.body) {
-                const games = await response.json();
+                const games = window.PSVitaAliveCatalogSchemaV2.toV1(await response.json());
 
                 if (!Array.isArray(games)) {
                     throw new Error(
@@ -172,7 +172,7 @@ async function fetchGameCatalogWithProgress(
                 );
 
             const games =
-                JSON.parse(text);
+                window.PSVitaAliveCatalogSchemaV2.toV1(JSON.parse(text));
 
             if (!Array.isArray(games)) {
                 throw new Error(
