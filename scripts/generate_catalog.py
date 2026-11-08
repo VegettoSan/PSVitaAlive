@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import re
 import sys
 import urllib.error
@@ -415,6 +416,10 @@ def generate():
     from external.aggregate import build
     from catalog_schema_v2 import to_v2
 
+    # Keep legacy public URLs V1 until the new dual-reader client VPK is released.
+    # Turn on only during the controlled post-release catalog cutover.
+    public_v2 = os.getenv("PSVA_PUBLIC_SCHEMA_V2", "").lower() in {"1", "true", "yes"}
+
     apps, authors, categories, conflicts = build(ROOT)
     if conflicts:
         report_dir = ROOT / "reports"
@@ -440,13 +445,16 @@ def generate():
     validate_final(apps, authors, categories)
 
     with (ROOT / "catalog.json").open("w", encoding="utf-8") as handle:
-        json.dump(to_v2(apps), handle, ensure_ascii=False, separators=(',', ':'))
+        json.dump(to_v2(apps) if public_v2 else apps, handle, ensure_ascii=False,
+                  indent=None if public_v2 else 2, separators=(',', ':') if public_v2 else None)
         handle.write("\n")
     with (ROOT / "authors.json").open("w", encoding="utf-8") as handle:
-        json.dump(to_v2(authors), handle, ensure_ascii=False, separators=(',', ':'))
+        json.dump(to_v2(authors) if public_v2 else authors, handle, ensure_ascii=False,
+                  indent=None if public_v2 else 2, separators=(',', ':') if public_v2 else None)
         handle.write("\n")
     with (ROOT / "categories.json").open("w", encoding="utf-8") as handle:
-        json.dump(to_v2(categories), handle, ensure_ascii=False, separators=(',', ':'))
+        json.dump(to_v2(categories) if public_v2 else categories, handle, ensure_ascii=False,
+                  indent=None if public_v2 else 2, separators=(',', ':') if public_v2 else None)
         handle.write("\n")
 
     print(f"Applications: {len(apps)}")
