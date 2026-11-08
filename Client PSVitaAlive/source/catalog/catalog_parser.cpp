@@ -409,7 +409,7 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         const sce::Json::Value& regionIds = getCatalogField(app, "title_ids");
         if (regionIds) {
             static const char* regions[] = {
-                "US", "EU", "JP", "AS", "AU", "KR", "CA", "CN", "TW",
+                "US", "EU", "JP", "AS", "ASIA", "AU", "KR", "CA", "CN", "TW",
                 "HK", "INT", "Other", "other", "World", "WORLD"
             };
             for (const char* region : regions)
