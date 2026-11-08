@@ -16,6 +16,7 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
         app.name = item.name;
         app.icon = !item.icon.empty() ? item.icon : item.cover;
         bool hasGameRoots = false;
+        bool missingGameRoot = false;
         bool missingDataRoot = false;
         std::set<std::string> gameVariants;
         for (const CatalogLink& link : item.linkDetails) {
@@ -33,31 +34,41 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
                 continue;
             }
             if (link.installedPaths.empty()) {
-                if (game) app.unresolved = true;
+                if (game) missingGameRoot = true;
                 else missingDataRoot = true; // may inherit known Game Files
                 continue;
             }
-            std::string signature;
+            std::vector<std::string> signatureParts;
             for (const auto& relative : link.installedPaths) {
                 const std::string full = "ux0:data/" + relative;
                 if (!safeExternalDataPath(full) ||
                     (extract.size() > 9 &&
-                     !(extract.compare(0, full.size(), full) == 0 &&
-                       extract.size() > full.size() &&
-                       extract[full.size()] == '/'))) {
+                     !(extract == full ||
+                       (extract.compare(0, full.size(), full) == 0 &&
+                        extract.size() > full.size() &&
+                        extract[full.size()] == '/')))) {
                     app.unresolved = true;
                     continue;
                 }
                 app.roots.push_back(full);
                 if (game) {
                     hasGameRoots = true;
-                    signature += full + "\n";
+                    signatureParts.push_back(full);
                 }
             }
-            if (game && !signature.empty()) gameVariants.insert(signature);
+            if (game && !signatureParts.empty()) {
+                // Identical destinations in different order are one variant.
+                std::sort(signatureParts.begin(), signatureParts.end());
+                signatureParts.erase(std::unique(signatureParts.begin(),
+                    signatureParts.end()), signatureParts.end());
+                std::string signature;
+                for (const auto& p : signatureParts) signature += p + "\n";
+                gameVariants.insert(signature);
+            }
         }
-        if (missingDataRoot && !hasGameRoots) app.unresolved = true;
-        if (gameVariants.size() > 1) app.unresolved = true;
+        if ((missingGameRoot || missingDataRoot) && !hasGameRoots)
+            app.unresolved = true;
+        app.alternateGameRoots = gameVariants.size() > 1;
         // Also include installed Homebrew without Game/Data links. Their
         // package presence is detected, but there is no external size to
         // calculate: show 'App only', never the misleading '0 B'.
@@ -98,6 +109,7 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     installedDataTargetId_ = titleId;
     installedDataDetail_ = !titleId.empty();
     installedDataConfirm_ = false;
+    installedDataShareApproved_ = false;
     installedDataResultVisible_ = false;
     installedDataAutoEnabled_ = fromStorage;
     installedDataAutoClosePending_ = false;
@@ -251,6 +263,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     if (!self) return -1;
     using ::psvitaalive::storage::InstalledDataManager;
     const int action = self->installedDataAction_;
+    const bool shareApproved = self->installedDataShareApproved_;
     const std::string titleId = action == -3 ?
         self->installedDataScanFocusId_ : self->installedDataTargetId_;
     bool ok = true;
@@ -261,7 +274,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
             // the package, so a known unsafe Game Files target leaves APP intact.
             ok = InstalledDataManager::prepareExternalRemoval(
                 self->installedDataSnapshot_, titleId,
-                &self->installedDataOpProgress_);
+                &self->installedDataOpProgress_, shareApproved);
             if (!ok)
                 self->installedDataPreflightFailed_.store(true,
                     std::memory_order_release);
@@ -276,7 +289,9 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         if (ok && (action == 1 || action == 2)) {
             const bool dataOk = InstalledDataManager::removeExternal(
                 self->installedDataSnapshot_, titleId,
-                &self->installedDataOpProgress_);
+                &self->installedDataOpProgress_, shareApproved,
+                action == 2 && self->installedDataVpkOk_.load(
+                    std::memory_order_acquire));
             self->installedDataFilesOk_.store(dataOk, std::memory_order_release);
             ok = dataOk;
             if (ok) {
@@ -300,6 +315,9 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                     app.packageSizeKnown = false;
                     app.packageSizeCached = false;
                 }
+            for (auto& app : self->installedDataSnapshot_.apps)
+                app.activeShared = ::psvitaalive::storage::installedDataHasActiveShare(
+                    self->installedDataSnapshot_, app);
         }
         self->installedDataOpProgress_.phase.store(4, std::memory_order_release);
         self->installedDataWorkerOk_.store(ok, std::memory_order_release);
@@ -309,7 +327,10 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     // Initial storage inspection: enumerate all declared Game/Data roots.
     // Initial detail inspection: touch ONLY the selected title's roots;
     // all other catalog entries remain metadata-only collision claims.
-    const std::string scope = action == -3 || action == -2 || action >= 0 ? titleId :
+    const bool refreshAllAfterSharedDelete = action >= 0 && shareApproved &&
+        self->installedDataFilesOk_.load(std::memory_order_acquire);
+    const std::string scope = refreshAllAfterSharedDelete ? std::string() :
+        action == -3 || action == -2 || action >= 0 ? titleId :
         !self->installedDataScanFocusId_.empty() ? self->installedDataScanFocusId_ :
         (self->installedDataFromStorage_ ? "" : self->installedDataPreferredId_);
     const bool deepMeasure = action == -2 || action == -3;
@@ -333,7 +354,8 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         self->installedDataWorkerDone_.store(true, std::memory_order_release);
         return 0;
     }
-    if (action == -1 && self->installedDataScanFocusId_.empty()) {
+    if ((action == -1 && self->installedDataScanFocusId_.empty()) ||
+        refreshAllAfterSharedDelete) {
         self->installedDataSnapshot_ = std::move(refreshed);
     } else {
         // A completed action or one focused row must not start another
