@@ -3764,6 +3764,10 @@ void FullCatalogScreen::drawStorageOverlay() {
         const int rh=row.kind==4?46:68;
         if(cy+rh<=listTop) {cy+=rh;continue;}
         if(cy>=listBottom) break;
+        // Text glyphs (especially custom PGF/FreeType) may not honor the Vita2D
+        // scissor on every renderer. Only draw complete rows, never the clipped
+        // last/first row where labels could overlap the modal footer/header.
+        if(cy<listTop || cy+rh>listBottom) {cy+=rh;continue;}
         const int bx=x+21,bw=w-59;
         const bool active=static_cast<int>(i)==storageFocus_;
         vita2d_draw_rectangle(bx,cy,bw,rh-5,active?SURFACE2:SURFACE);
@@ -3810,6 +3814,9 @@ void FullCatalogScreen::drawStorageOverlay() {
         cy+=rh;
     }
     vita2d_disable_clipping();
+    // Restore the footer background after list rendering. This also shields
+    // the hint/controls from glyphs outside the list's clipping area on Vita3K.
+    vita2d_draw_rectangle(x+21,listBottom,w-42,y+h-listBottom-10,PANEL);
     const int totalH=storageContentHeight();
     if(totalH>viewportH) {
         const int trackX=x+w-31;
@@ -4979,7 +4986,10 @@ void FullCatalogScreen::handleTouch() {
                 int rowY=listTop-storageScrollY_;
                 for(size_t i=0;i<storageRows_.size();++i) {
                     const int rh=storageRows_[i].kind==4?46:68;
-                    if(py>=rowY && py<rowY+rh) {
+                    // Match drawStorageOverlay: partially clipped rows
+                    // are not visible and must not accept touch input.
+                    if(rowY>=listTop && rowY+rh<=listBottom &&
+                       py>=rowY && py<rowY+rh) {
                         if(static_cast<int>(i)!=storageFocus_) {
                             storageFocus_=static_cast<int>(i);
                             storageConfirm_=false;
