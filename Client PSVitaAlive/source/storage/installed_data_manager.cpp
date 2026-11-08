@@ -186,13 +186,22 @@ void uniqueRoots(std::vector<std::string>& roots) {
 // installed package claiming an overlapping root blocks a destructive action.
 bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
                              const std::string& titleId,
-                             const InstalledDataApp*& target) {
+                             const InstalledDataApp*& target,
+                             bool confirmedInstalledShare,
+                             bool targetJustUninstalled) {
     target = nullptr;
     if (!validInstalledTitleId(titleId)) return false;
     for (const auto& app : snapshot.apps)
         if (app.titleId == titleId) { target = &app; break; }
-    if (!target || target->blocked || target->unresolved ||
-        target->paths.empty()) return false;
+    if (!target || !installedDataCanOfferExternalDelete(*target)) return false;
+    // Only a warning explicitly confirmed for an installed target package
+    // can override another installed app's root claim. The second check may
+    // follow a successful package uninstall within the same job.
+    const bool targetPresentNow = exists(std::string("ux0:app/") +
+                                        titleId + "/sce_sys/param.sfo");
+    const bool permitShared = installedDataSharedDeletePermitted(
+        confirmedInstalledShare, target->packagePresent, targetPresentNow,
+        targetJustUninstalled);
     bool anyPresent = false;
     for (const auto& p : target->paths) {
         if (!safeExternalDataPath(p.path)) return false;
@@ -208,9 +217,13 @@ bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
             for (const auto& q : other.paths) {
                 if (safeExternalDataPath(q.path) &&
                     installedDataActiveCollision(p.path, q.path, installed)) {
-                    diagnostics::log("[InstalledData] refusing to delete data used "
-                                     "by another installed VPK: " + other.titleId);
-                    return false;
+                    if (!permitShared) {
+                        diagnostics::log("[InstalledData] shared root requires "
+                            "installed-target confirmation: " + other.titleId);
+                        return false;
+                    }
+                    diagnostics::log("[InstalledData] confirmed shared root "
+                        "deletion also affects: " + other.titleId);
                 }
             }
         }
@@ -248,11 +261,14 @@ InstalledDataSnapshot InstalledDataManager::scan(
     for (auto& app : result.apps) {
         const bool selected = onlyTitleId.empty() || app.titleId == onlyTitleId;
         const bool titleOk = validInstalledTitleId(app.titleId);
-        if (selected && titleOk) {
+        if (titleOk && (selected || !measureSizes)) {
             const std::string packageRoot = "ux0:app/" + app.titleId;
+            // Other VPKs need a lightweight SFO check only for menu
+            // discovery/refresh, never for repeated per-game deep measures.
             app.packagePresent = exists(packageRoot + "/sce_sys/param.sfo");
             SceIoStat packageStat{};
-            if (app.packagePresent && exists(packageRoot, &packageStat)) {
+            if (selected && app.packagePresent &&
+                exists(packageRoot, &packageStat)) {
                 app.packageRootStamp = rootFingerprint(packageStat);
                 const auto* saved = InstalledDirectoryCache::find(
                     index, app.titleId, packageRoot);
@@ -298,8 +314,21 @@ InstalledDataSnapshot InstalledDataManager::scan(
             }
             app.paths.push_back(std::move(row));
         }
+        if (selected && app.alternateGameRoots) {
+            // Alternate download destinations with one existing root have
+            // an unambiguous deletion target; multiple roots need review.
+            unsigned present = 0;
+            for (const auto& path : app.paths) if (path.exists) ++present;
+            if (installedDataAlternativesAmbiguous(app.alternateGameRoots,
+                                                   present))
+                app.unresolved = true;
+        }
         if (app.unresolved) app.blocked = true;
     }
+    // Cache the active installed-app collision hint once, not per UI frame.
+    for (auto& app : result.apps)
+        if (onlyTitleId.empty() || app.titleId == onlyTitleId)
+            app.activeShared = installedDataHasActiveShare(result, app);
     // Do not mark a Game Files directory as shared/protected simply
     // because another catalog entry declares the same path. Declarations
     // are not evidence of multiple installations. In particular this must
@@ -483,12 +512,13 @@ void InstalledDataManager::invalidateCachedPackageTitle(
 
 bool InstalledDataManager::prepareExternalRemoval(
     const InstalledDataSnapshot& snapshot, const std::string& titleId,
-    InstalledDataOperationProgress* progress) {
+    InstalledDataOperationProgress* progress, bool confirmedInstalledShare) {
     const InstalledDataApp* target = nullptr;
     // Show the preflight stage immediately, including when ownership checks
     // reject the request. Never falsely label this as uninstalling the APP.
     if (progress) progress->phase.store(5, std::memory_order_release);
-    if (!validateExternalRemoval(snapshot, titleId, target)) return false;
+    if (!validateExternalRemoval(snapshot, titleId, target,
+                                 confirmedInstalledShare, false)) return false;
     uint64_t total = 0;
     for (const auto& path : target->paths) {
         if (!path.exists) continue;
@@ -509,10 +539,14 @@ bool InstalledDataManager::prepareExternalRemoval(
 
 bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                                           const std::string& titleId,
-                                          InstalledDataOperationProgress* progress) {
+                                          InstalledDataOperationProgress* progress,
+                                          bool confirmedInstalledShare,
+                                          bool targetJustUninstalled) {
     const InstalledDataApp* target = nullptr;
     // Recheck ownership and existence AFTER pre-count and package operations.
-    if (!validateExternalRemoval(snapshot, titleId, target)) return false;
+    if (!validateExternalRemoval(snapshot, titleId, target,
+                                 confirmedInstalledShare,
+                                 targetJustUninstalled)) return false;
     if (progress) {
         uint32_t roots = 0;
         for (const auto& path : target->paths)
@@ -524,6 +558,24 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
     // After any destructive attempt the old size must never be displayed
     // again, even when a partial filesystem deletion fails.
     invalidateCachedTitle(titleId);
+    // Another Homebrew may have cached the same physical directory. If it
+    // changes here, invalidate every overlapping historical measurement.
+    for (const auto& other : snapshot.apps) {
+        if (other.titleId == titleId) continue;
+        for (const auto& q : other.paths) {
+            if (!safeExternalDataPath(q.path)) continue;
+            bool overlap = false;
+            for (const auto& p : target->paths)
+                if (p.exists && installedPathsOverlap(p.path, q.path)) {
+                    overlap = true;
+                    break;
+                }
+            if (overlap) {
+                invalidateCachedTitle(other.titleId);
+                break;
+            }
+        }
+    }
     for (const auto& path : target->paths) {
         if (!path.exists) continue;
         uint32_t count = 0;

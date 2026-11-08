@@ -581,6 +581,7 @@ private:
     bool installedDataFromStorage_ = false;
     bool installedDataDetail_ = false;
     bool installedDataConfirm_ = false;
+    bool installedDataShareApproved_ = false; // explicit warning + X confirmation
     int installedDataListFocus_ = 0;
     int installedDataScroll_ = 0;
     int installedDataActionFocus_ = 0; // 0 app, 1 Game/Data Files, 2 all

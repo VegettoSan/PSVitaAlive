@@ -3,6 +3,7 @@
 // filesystem deletion authority without rechecking these rules at execution.
 #include <cctype>
 #include <string>
+#include "storage/installed_data_manager.hpp"
 
 namespace psvitaalive { namespace storage {
 
@@ -48,6 +49,34 @@ inline bool safeExternalDataPath(const std::string& path) {
     return validInstalledRelativePath(path.substr(9));
 }
 
+// The installer may extract directly into the declared data root, or into
+// one of its subfolders. Different prefixes such as game and game2 are distinct.
+inline bool installedDataExtractWithinRoot(const std::string& extract,
+                                           const std::string& root) {
+    return extract == "ux0:data/" || extract == root ||
+        (extract.size() > root.size() &&
+         extract.compare(0, root.size(), root) == 0 &&
+         extract[root.size()] == '/');
+}
+
+// Alternative mirrors cannot establish ownership over multiple independent
+// directories merely because all happen to exist on the card.
+inline bool installedDataAlternativesAmbiguous(bool hasAlternatives,
+                                               unsigned existingRootCount) {
+    return hasAlternatives && existingRootCount > 1;
+}
+
+// Explicit warning acceptance + installed-target proof are both required.
+// targetJustUninstalled is only set after successful PromoterUtility uninstall
+// within the same preflighted "delete both" operation.
+inline bool installedDataSharedDeletePermitted(bool confirmed,
+                                               bool targetWasInstalled,
+                                               bool targetPresentNow,
+                                               bool targetJustUninstalled) {
+    return confirmed && targetWasInstalled &&
+        (targetPresentNow || targetJustUninstalled);
+}
+
 // Component-aligned collision test. "game" does not overlap "game2".
 inline bool installedPathsOverlap(const std::string& a,
                                  const std::string& b) {
@@ -76,6 +105,40 @@ inline bool installedDataActiveCollision(const std::string& target,
                                          const std::string& other,
                                          bool otherInstalled) {
     return otherInstalled && installedPathsOverlap(target, other);
+}
+
+// A known root is deletable even without a VPK, unless another installed VPK
+// is actively claiming that same root. Metadata ambiguity and unsafe paths
+// remain blocked independently of directory size measurement.
+inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
+    if (app.blocked || app.unresolved ||
+        !validInstalledTitleId(app.titleId) || app.titleId == "PSVAS1178" ||
+        app.appId == "psvitaalive" || app.appId == "ps-vita-alive" ||
+        (app.activeShared && !app.packagePresent)) return false;
+    bool anyPresent = false;
+    for (const auto& p : app.paths) {
+        if (!p.exists) continue;
+        if (!safeExternalDataPath(p.path)) return false;
+        anyPresent = true;
+    }
+    return anyPresent;
+}
+
+// Read-only, cached collision hint for the UI. The deletion preflight still
+// checks actual package presence and root overlap immediately before use.
+inline bool installedDataHasActiveShare(const InstalledDataSnapshot& snapshot,
+                                       const InstalledDataApp& target) {
+    for (const auto& p : target.paths) {
+        if (!p.exists || !safeExternalDataPath(p.path)) continue;
+        for (const auto& other : snapshot.apps) {
+            if (other.titleId == target.titleId || !other.packagePresent ||
+                !validInstalledTitleId(other.titleId)) continue;
+            for (const auto& q : other.paths)
+                if (safeExternalDataPath(q.path) &&
+                    installedPathsOverlap(p.path, q.path)) return true;
+        }
+    }
+    return false;
 }
 
 // UI wording must reflect the observed installed roots, not just the

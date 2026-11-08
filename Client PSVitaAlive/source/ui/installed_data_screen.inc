@@ -15,7 +15,7 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
         app.titleId = item.titleId;
         app.name = item.name;
         app.icon = !item.icon.empty() ? item.icon : item.cover;
-        bool hasGameRoots = false;
+        bool missingGameRoot = false;
         bool missingDataRoot = false;
         std::set<std::string> gameVariants;
         for (const CatalogLink& link : item.linkDetails) {
@@ -33,31 +33,40 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
                 continue;
             }
             if (link.installedPaths.empty()) {
-                if (game) app.unresolved = true;
+                if (game) missingGameRoot = true;
                 else missingDataRoot = true; // may inherit known Game Files
                 continue;
             }
-            std::string signature;
+            std::vector<std::string> signatureParts;
             for (const auto& relative : link.installedPaths) {
                 const std::string full = "ux0:data/" + relative;
                 if (!safeExternalDataPath(full) ||
-                    (extract.size() > 9 &&
-                     !(extract.compare(0, full.size(), full) == 0 &&
-                       extract.size() > full.size() &&
-                       extract[full.size()] == '/'))) {
+                    !::psvitaalive::storage::installedDataExtractWithinRoot(
+                        extract, full)) {
                     app.unresolved = true;
                     continue;
                 }
                 app.roots.push_back(full);
                 if (game) {
-                    hasGameRoots = true;
-                    signature += full + "\n";
+                    signatureParts.push_back(full);
                 }
             }
-            if (game && !signature.empty()) gameVariants.insert(signature);
+            if (game && !signatureParts.empty()) {
+                // Identical destinations in different order are one variant.
+                std::sort(signatureParts.begin(), signatureParts.end());
+                signatureParts.erase(std::unique(signatureParts.begin(),
+                    signatureParts.end()), signatureParts.end());
+                std::string signature;
+                for (const auto& p : signatureParts) signature += p + "\n";
+                gameVariants.insert(signature);
+            }
         }
-        if (missingDataRoot && !hasGameRoots) app.unresolved = true;
-        if (gameVariants.size() > 1) app.unresolved = true;
+        // Missing metadata on one alternate link does not invalidate a
+        // different, explicitly declared safe root. We delete only the
+        // detected paths, never infer an undocumented directory.
+        if ((missingGameRoot || missingDataRoot) && app.roots.empty())
+            app.unresolved = true;
+        app.alternateGameRoots = gameVariants.size() > 1;
         // Also include installed Homebrew without Game/Data links. Their
         // package presence is detected, but there is no external size to
         // calculate: show 'App only', never the misleading '0 B'.
@@ -98,6 +107,7 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     installedDataTargetId_ = titleId;
     installedDataDetail_ = !titleId.empty();
     installedDataConfirm_ = false;
+    installedDataShareApproved_ = false;
     installedDataResultVisible_ = false;
     installedDataAutoEnabled_ = fromStorage;
     installedDataAutoClosePending_ = false;
@@ -251,6 +261,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     if (!self) return -1;
     using ::psvitaalive::storage::InstalledDataManager;
     const int action = self->installedDataAction_;
+    const bool shareApproved = self->installedDataShareApproved_;
     const std::string titleId = action == -3 ?
         self->installedDataScanFocusId_ : self->installedDataTargetId_;
     bool ok = true;
@@ -261,7 +272,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
             // the package, so a known unsafe Game Files target leaves APP intact.
             ok = InstalledDataManager::prepareExternalRemoval(
                 self->installedDataSnapshot_, titleId,
-                &self->installedDataOpProgress_);
+                &self->installedDataOpProgress_, shareApproved);
             if (!ok)
                 self->installedDataPreflightFailed_.store(true,
                     std::memory_order_release);
@@ -276,7 +287,9 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         if (ok && (action == 1 || action == 2)) {
             const bool dataOk = InstalledDataManager::removeExternal(
                 self->installedDataSnapshot_, titleId,
-                &self->installedDataOpProgress_);
+                &self->installedDataOpProgress_, shareApproved,
+                action == 2 && self->installedDataVpkOk_.load(
+                    std::memory_order_acquire));
             self->installedDataFilesOk_.store(dataOk, std::memory_order_release);
             ok = dataOk;
             if (ok) {
@@ -300,6 +313,9 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                     app.packageSizeKnown = false;
                     app.packageSizeCached = false;
                 }
+            for (auto& app : self->installedDataSnapshot_.apps)
+                app.activeShared = ::psvitaalive::storage::installedDataHasActiveShare(
+                    self->installedDataSnapshot_, app);
         }
         self->installedDataOpProgress_.phase.store(4, std::memory_order_release);
         self->installedDataWorkerOk_.store(ok, std::memory_order_release);
@@ -309,7 +325,10 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     // Initial storage inspection: enumerate all declared Game/Data roots.
     // Initial detail inspection: touch ONLY the selected title's roots;
     // all other catalog entries remain metadata-only collision claims.
-    const std::string scope = action == -3 || action == -2 || action >= 0 ? titleId :
+    const bool refreshAllAfterSharedDelete = action >= 0 && shareApproved &&
+        self->installedDataFilesOk_.load(std::memory_order_acquire);
+    const std::string scope = refreshAllAfterSharedDelete ? std::string() :
+        action == -3 || action == -2 || action >= 0 ? titleId :
         !self->installedDataScanFocusId_.empty() ? self->installedDataScanFocusId_ :
         (self->installedDataFromStorage_ ? "" : self->installedDataPreferredId_);
     const bool deepMeasure = action == -2 || action == -3;
@@ -333,7 +352,8 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         self->installedDataWorkerDone_.store(true, std::memory_order_release);
         return 0;
     }
-    if (action == -1 && self->installedDataScanFocusId_.empty()) {
+    if ((action == -1 && self->installedDataScanFocusId_.empty()) ||
+        refreshAllAfterSharedDelete) {
         self->installedDataSnapshot_ = std::move(refreshed);
     } else {
         // A completed action or one focused row must not start another
@@ -345,6 +365,10 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
             for (auto& fresh : refreshed.apps) {
                 if (fresh.titleId != titleId) continue;
                 app = std::move(fresh);
+                if (deepMeasure)
+                    app.activeShared =
+                        ::psvitaalive::storage::installedDataHasActiveShare(
+                            previous, app);
                 break;
             }
             break;
@@ -415,6 +439,11 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             for (auto& app : installedDataSnapshot_.apps)
                 if (app.titleId == measured) {
                     app = std::move(installedDataAutoResult_);
+                    // Deep measurement skips unrelated SFO checks; keep the
+                    // already discovered active collisions in the main UI.
+                    app.activeShared =
+                        ::psvitaalive::storage::installedDataHasActiveShare(
+                            installedDataSnapshot_, app);
                     break;
                 }
             installedDataSnapshot_.totalExternalBytes =
@@ -482,7 +511,8 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             bool hasData = false;
             for (const auto& p : app.paths) hasData = hasData || p.exists;
             const bool canApp = app.packagePresent && app.titleId != "PSVAS1178";
-            const bool canData = hasData && !app.blocked && !app.unresolved;
+            const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(app);
             installedDataActionFocus_ =
                 ::psvitaalive::storage::installedDataFirstAction(canApp, canData);
             break;
@@ -504,7 +534,8 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         bool hasData = false;
         for (const auto& p : app.paths) hasData = hasData || p.exists;
         const bool canApp = app.packagePresent && app.titleId != "PSVAS1178";
-        const bool canData = hasData && !app.blocked && !app.unresolved;
+        const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(app);
         installedDataActionFocus_ =
             ::psvitaalive::storage::installedDataFirstAction(canApp, canData);
         installedDataPathScroll_ = 0;
@@ -526,7 +557,8 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         hasData = hasData || path.exists;
     // Directory measurement is optional. A timeout, huge archive or unreadable
     // size must not disable deleting a path with a valid declared root.
-    const bool canData = hasData && !app->blocked && !app->unresolved;
+    const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
     if (!::psvitaalive::storage::installedDataActionAvailable(
             installedDataActionFocus_, canPackage, canData)) {
         showToast(::psvitaalive::L("ID_UNSAFE"), 3400);
@@ -537,6 +569,10 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         return;
     }
     installedDataConfirm_ = false;
+    // Shared-root consent is only granted by this visible confirmation.
+    // The worker still rechecks actual installed packages before deletion.
+    installedDataShareApproved_ =
+        installedDataActionFocus_ != 0 && app->activeShared && app->packagePresent;
     startInstalledDataOperation(installedDataActionFocus_);
 }
 void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav) {
@@ -586,7 +622,8 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
             bool hasData = false;
             for (const auto& p : app->paths) hasData = hasData || p.exists;
             const bool canApp = app->packagePresent && app->titleId != "PSVAS1178";
-            const bool canData = hasData && !app->blocked && !app->unresolved;
+            const bool canData = hasData &&
+                ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
             if (nav & (SCE_CTRL_LEFT | SCE_CTRL_UP))
                 installedDataActionFocus_ =
                     ::psvitaalive::storage::installedDataMoveAction(
@@ -629,6 +666,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             hasExternal=hasExternal||p.exists;
         const int action=installedDataActionFocus_;
         const bool deleteExternal=action==1||action==2;
+        const bool warnShared=deleteExternal && app && app->activeShared;
         const char* actionKey=action==0 ? "ID_DELETE_APP" :
                               action==1 ? "ID_DELETE_FILES" : "ID_DELETE_ALL";
         const char* impactKey=::psvitaalive::storage::installedDataConfirmImpactKey(
@@ -676,7 +714,9 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         }
 
         const int warningY=dy+(deleteExternal?274:246);
-        const char* warningKeys[]={"ID_WARNING1","ID_WARNING2","ID_WARNING3"};
+        const char* warningKeys[]={
+            warnShared ? "ID_SHARED_DELETE_WARNING" : "ID_WARNING1",
+            "ID_WARNING2","ID_WARNING3"};
         const unsigned warningColors[]={WHITE,TEXT,ACCENT};
         for(int i=0;i<3;++i){
             drawMarqueeText(&font_,dx+24,warningY+i*25,DW-48,
@@ -898,6 +938,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
             if (app.blocked) state += " | " + std::string(
                 ::psvitaalive::L("ID_PROTECTED"));
+            else if (app.activeShared) state += " | " +
+                std::string(::psvitaalive::L("ID_SHARED"));
             if (cachedSize) state += " | " + std::string(
                 ::psvitaalive::L("ID_LAST_MEASURED"));
             ::psvitaalive::ui::uiDrawText(&font_,x+118,ry+60,DIM,.67f,
@@ -991,9 +1033,13 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             if (app->paths.empty())
                 ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,DIM,.75f,
                     ::psvitaalive::L("ID_NO_EXTERNAL"));
-            if (app->blocked)
-                ::psvitaalive::ui::uiDrawText(&font_,x+28,y+327,ACCENT,.65f,
-                    ::psvitaalive::L("ID_PROTECTED_DESC"));
+            if (app->blocked || app->activeShared) {
+                const char* key = app->blocked ? "ID_PROTECTED_DESC" :
+                    app->packagePresent ? "ID_SHARED_ACTIVE_HINT" :
+                                          "ID_SHARED_ORPHAN_WARNING";
+                drawMarqueeText(&font_,x+28,y+327,W-56,ACCENT,.65f,
+                    ::psvitaalive::L(key),false);
+            }
         }
         // Only render actions that are actually safe and meaningful.
         vita2d_draw_rectangle(x+24,y+341,W-48,28,SURFACE2);
@@ -1002,7 +1048,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         bool hasData = false;
         if (app) for (const auto& p : app->paths) hasData = hasData || p.exists;
         const bool canApp = app && app->packagePresent && app->titleId!="PSVAS1178";
-        const bool canData = app && hasData && !app->blocked && !app->unresolved;
+        const bool canData = app && hasData &&
+            ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
         const int count = (canApp?1:0) + (canData?1:0) + ((canApp&&canData)?1:0);
         const int buttonW = count==1 ? 420 : 260;
         const int firstX = x+(W-count*buttonW-(count-1)*12)/2;
