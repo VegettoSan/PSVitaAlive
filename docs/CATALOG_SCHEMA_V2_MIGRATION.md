@@ -105,3 +105,45 @@ Do not merge the migration until both repositories and the Vita hardware path
 are validated. Enabling V2 on public URLs will still break old builds that
 disable, cancel or fail their startup self-update; document this tradeoff before
 the cutover.
+
+
+## Experimental PS Vita / PSP / PS1 game catalog V2 compaction
+
+Game catalogs are **separate public datasets**, not part of the official three
+Homebrew catalogs derived from `apps/`, `authors/` and `categories/`. Do not
+confuse them with those canonical sources. The commercial game JSON files are
+left in V1 until the controlled V2 client/publication switch.
+
+`scripts/compact_game_catalogs_v2.py` reads the three current JSONs
+*without editing them*, validates every original field path, and writes only
+to an explicitly separate output directory. CI performs full V1→V2→V1
+roundtrip checks, browser JavaScript decoding of **all 4,007 game records**,
+and verification of the Vita C++ parser's field aliases. It preserves every
+region key (US, EU, JP, ASIA, INT), Title ID, content ID, PKG URL, link
+order, `recommended`, update metadata, RAP and other scalar values.
+
+Special game-only fields now have aliases:
+`required_fw → rfw`, `pkg_name → pn`. `rap` is already short and
+is kept unchanged. Regional labels are **data**, not keys to rename.
+
+The `catalog_psvita_games.zrifidx` license sidecar remains **byte-for-byte
+unchanged**; its content-ID lookups must be regression-tested separately.
+
+Measured raw UTF-8 file sizes in GitHub Actions (V2 files use minified JSON):
+
+| Catalog | Existing V1 bytes | Experimental V2 bytes | Reduction |
+|---|---:|---:|---:|
+| PS Vita (1,969 games) | 8,230,576 | 5,701,324 | 30.73% |
+| PSP (1,228 games) | 1,712,289 | 1,171,943 | 31.56% |
+| PS1 (810 games) | 945,351 | 650,339 | 31.21% |
+| **Total** | **10,888,216** | **7,523,606** | **30.90%** |
+
+This reduces game JSON payloads by **3,364,610 bytes** before HTTP
+compression. The V2 files are built only as disposable workflow artifacts
+`PSVitaAlive-game-catalogs-V2-test` and are **not committed over the
+public V1 files**. See
+[game catalog V2 workflow](../.github/workflows/catalog-schema-v2-games.yml).
+
+Remaining validation before production: PS Vita / Vita3K hardware and license
+sidecar tests, offline V1 and V2 cache tests, update/install flows and
+deliberate publication after the compatible VPK has been released.
