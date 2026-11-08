@@ -7,6 +7,7 @@
 #include <psp2/io/fcntl.h>
 
 #include <cstdlib>
+#include <cstring>
 #include <cctype>
 #include <string>
 
@@ -29,14 +30,57 @@ public:
     }
 };
 
+// V1/V2 compatibility: lookup legacy field first, then its short V2 alias.
+// Keep this lightweight on PS Vita; no duplicate JSON tree or string rewriting.
+const sce::Json::Value& getCatalogField(const sce::Json::Value& object, const char* key) {
+    const sce::Json::Value& oldField = object[key];
+    if (oldField) return oldField;
+    static const struct { const char* oldKey; const char* newKey; } aliases[] = {
+        {"title_id", "tid"},
+        {"title_ids", "tids"},
+        {"name", "n"},
+        {"description", "d"},
+        {"author_ids", "aids"},
+        {"category_id", "cid"},
+        {"subcategory_ids", "sids"},
+        {"version", "v"},
+        {"version_date", "vd"},
+        {"date", "dt"},
+        {"icon", "ic"},
+        {"cover", "cv"},
+        {"screenshots", "ss"},
+        {"links", "l"},
+        {"status", "st"},
+        {"requirements", "req"},
+        {"size", "sz"},
+        {"extract_path", "xp"},
+        {"installed_paths", "ips"},
+        {"recommended", "rec"},
+        {"type", "t"},
+        {"url", "u"},
+        {"content_id", "coid"},
+        {"contentId", "coi"},
+        {"zrif", "zr"},
+        {"zRIF", "zR"},
+        {"license", "lic"},
+        {"required", "rq"},
+        {"section", "sec"},
+        {"line", "ln"},
+    };
+    for (const auto& alias : aliases) {
+        if (std::strcmp(key, alias.oldKey) == 0) return object[alias.newKey];
+    }
+    return oldField;
+}
+
 std::string getString(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& value = object[key];
+    const sce::Json::Value& value = getCatalogField(object, key);
     if (!value) return {};
     return value.getString().c_str();
 }
 
 uint64_t getUnsigned(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& value = object[key];
+    const sce::Json::Value& value = getCatalogField(object, key);
     if (!value) return 0;
     return value.getUInteger();
 }
@@ -63,7 +107,7 @@ std::string formatSize(uint64_t bytes) {
 }
 
 std::string firstArrayString(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& value = object[key];
+    const sce::Json::Value& value = getCatalogField(object, key);
     if (!value) return {};
     const sce::Json::Array& array = value.getArray();
     if (array.empty()) return {};
@@ -71,7 +115,7 @@ std::string firstArrayString(const sce::Json::Value& object, const char* key) {
 }
 
 void parseStringArray(const sce::Json::Value& object, const char* key, std::vector<std::string>& out) {
-    const sce::Json::Value& value = object[key];
+    const sce::Json::Value& value = getCatalogField(object, key);
     if (!value) return;
     const sce::Json::Array& array = value.getArray();
     for (SceSize i = 0; i < array.size(); ++i) {
@@ -178,7 +222,7 @@ void addCatalogTitleId(ui::CatalogItem& item, std::string tid) {
 }
 
 void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceUID zrifIdxFd, uint32_t* zrifWritten) {
-    const sce::Json::Value& linksValue = application["links"];
+    const sce::Json::Value& linksValue = getCatalogField(application, "links");
     if (!linksValue) return;
 
     const sce::Json::Array& links = linksValue.getArray();
@@ -217,9 +261,9 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
         }
         detail.contentId = getString(link, "content_id");
         if (detail.contentId.empty()) detail.contentId = getString(link, "contentId");
-        detail.recommended = link["recommended"].getBoolean();
+        detail.recommended = getCatalogField(link, "recommended").getBoolean();
         // Optional per-link size (numeric bytes preferred).
-        if (link["size"]) {
+        if (getCatalogField(link, "size")) {
             const uint64_t bytes = getUnsigned(link, "size");
             if (bytes > 0) detail.size = formatSize(bytes);
             else {
@@ -263,8 +307,8 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                 detail.extractPath = "ur0:tai/";
             }
             // Presence matters: false means Optional; missing means Unspecified.
-            if (isPlugin && link["required"].getType() == sce::Json::ValueType::BoolValue) {
-                detail.pluginRequirement = link["required"].getBoolean()
+            if (isPlugin && getCatalogField(link, "required").getType() == sce::Json::ValueType::BoolValue) {
+                detail.pluginRequirement = getCatalogField(link, "required").getBoolean()
                     ? ui::CatalogLink::PluginRequirement::Required
                     : ui::CatalogLink::PluginRequirement::Optional;
             }
@@ -359,7 +403,7 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         item.id = getString(app, "id");
         item.titleId = getString(app, "title_id");
         // Regional game IDs are grouped in title_ids rather than title_id.
-        const sce::Json::Value& regionIds = app["title_ids"];
+        const sce::Json::Value& regionIds = getCatalogField(app, "title_ids");
         if (regionIds) {
             static const char* regions[] = {
                 "US", "EU", "JP", "AS", "AU", "KR", "CA", "CN", "TW",
