@@ -60,6 +60,7 @@ const sce::Json::Value& getCatalogField(const sce::Json::Value& object, const ch
         {"url", "u"},
         {"required_fw", "rfw"},
         {"pkg_name", "pn"},
+        {"region", "rg"},
         {"content_id", "coid"},
         {"contentId", "coi"},
         {"zrif", "zr"},
