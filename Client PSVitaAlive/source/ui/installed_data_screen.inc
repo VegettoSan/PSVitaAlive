@@ -687,12 +687,12 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
 void FullCatalogScreen::drawInstalledDataOverlay() {
     if (!installedDataVisible_) return;
     if (installedDataConfirm_) {
-        // Same compact bordered two-button dialog as PSVitaAlive's other
-        // confirmation overlays; independent of the large storage browser.
-        constexpr int DW=780, DH=400, BW=238, BH=46, GAP=20;
+        // Large, legible confirmation that names ALL catalog users of shared
+        // roots; only three rows are rendered at once to avoid text overflow.
+        constexpr int DW=824, DH=474, BW=244, BH=46, GAP=22;
         const int dx=(SCREEN_W-DW)/2, dy=(SCREEN_H-DH)/2;
         const int firstButtonX=dx+(DW-(2*BW+GAP))/2;
-        const int buttonsY=dy+DH-58;
+        const int buttonsY=dy+DH-59;
         const ::psvitaalive::storage::InstalledDataApp* app=nullptr;
         for (const auto& candidate:installedDataSnapshot_.apps)
             if (candidate.titleId==installedDataTargetId_){app=&candidate;break;}
@@ -701,7 +701,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             hasExternal=hasExternal||p.exists;
         const int action=installedDataActionFocus_;
         const bool deleteExternal=action==1||action==2;
-        const bool warnShared=deleteExternal && app && app->activeShared;
+        const bool warnShared=deleteExternal && !installedDataShareLabels_.empty();
         const char* actionKey=action==0 ? "ID_DELETE_APP" :
                               action==1 ? "ID_DELETE_FILES" : "ID_DELETE_ALL";
         const char* impactKey=::psvitaalive::storage::installedDataConfirmImpactKey(
@@ -713,62 +713,91 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         vita2d_draw_rectangle(dx,dy+3,3,DH-6,ACCENT);
         vita2d_draw_rectangle(dx+DW-3,dy+3,3,DH-6,BORDER);
         vita2d_draw_rectangle(dx,dy+DH-3,DW,3,BORDER);
-        drawMarqueeText(&font_,dx+24,dy+38,DW-48,ACCENT,.88f,
+        drawMarqueeText(&font_,dx+24,dy+38,DW-48,ACCENT,1.07f,
             ::psvitaalive::L("ID_CONFIRM_TITLE"),false);
-        if(app)drawMarqueeText(&font_,dx+24,dy+73,DW-48,WHITE,.80f,
+        if(app)drawMarqueeText(&font_,dx+24,dy+75,DW-48,WHITE,.98f,
             app->name,false);
-        vita2d_draw_rectangle(dx+22,dy+90,DW-44,1,BORDER);
+        vita2d_draw_rectangle(dx+22,dy+91,DW-44,1,BORDER);
 
-        // Show the exact operation and its consequences. APP-only installs
-        // never claim that nonexistent external Game Files are preserved.
-        const int cardY=dy+107, cardH=deleteExternal?148:118;
+        const int cardY=dy+101, cardH=deleteExternal?131:108;
         vita2d_draw_rectangle(dx+22,cardY,DW-44,cardH,SURFACE2);
         vita2d_draw_rectangle(dx+22,cardY,3,cardH,ACCENT);
-        drawMarqueeText(&font_,dx+42,cardY+29,DW-84,ACCENT,.79f,
+        drawMarqueeText(&font_,dx+42,cardY+27,DW-84,ACCENT,.98f,
             ::psvitaalive::L(actionKey),false);
-        const auto impactLines=wrapTextToWidth(&font_,.66f,
+        const auto impactLines=wrapTextToWidth(&font_,.87f,
             ::psvitaalive::L(impactKey),DW-90);
         for(int i=0;i<(int)impactLines.size() && i<2;++i)
-            ::psvitaalive::ui::uiDrawText(&font_,dx+42,cardY+54+i*19,
-                TEXT,.66f,impactLines[i].c_str());
-        if(deleteExternal && app){
+            ::psvitaalive::ui::uiDrawText(&font_,dx+42,cardY+55+i*22,
+                TEXT,.87f,impactLines[i].c_str());
+        if(deleteExternal && app) {
             int shown=0,remaining=0;
             for(const auto& p:app->paths) {
                 if(!p.exists)continue;
-                if(shown<2){
-                    drawMarqueeText(&font_,dx+42,cardY+93+shown*20,
-                        DW-115,DIM,.59f,p.path,false);
+                if(shown<2) {
+                    drawMarqueeText(&font_,dx+42,cardY+95+shown*23,
+                        DW-115,DIM,.83f,p.path,false);
                     ++shown;
                 }else ++remaining;
             }
-            if(remaining>0){
+            if(remaining>0) {
                 const std::string extra="+"+std::to_string(remaining);
-                ::psvitaalive::ui::uiDrawText(&font_,dx+DW-66,cardY+134,
-                    ACCENT,.58f,extra.c_str());
+                ::psvitaalive::ui::uiDrawText(&font_,dx+DW-66,cardY+117,
+                    ACCENT,.83f,extra.c_str());
             }
         }
 
-        const int warningY=dy+(deleteExternal?274:246);
-        const char* warningKeys[]={
-            warnShared ? "ID_SHARED_DELETE_WARNING" : "ID_WARNING1",
-            "ID_WARNING2","ID_WARNING3"};
-        const unsigned warningColors[]={WHITE,TEXT,ACCENT};
-        for(int i=0;i<3;++i){
-            drawMarqueeText(&font_,dx+24,warningY+i*25,DW-48,
-                warningColors[i],.68f,::psvitaalive::L(warningKeys[i]),false);
+        if(warnShared) {
+            // A metadata match is NOT proof that other apps are installed.
+            // Every matching catalog entry remains visible via Up/Down.
+            const int listY=dy+240, listH=127;
+            vita2d_draw_rectangle(dx+22,listY,DW-44,listH,SURFACE);
+            vita2d_draw_rectangle(dx+22,listY,4,listH,ACCENT);
+            drawMarqueeText(&font_,dx+40,listY+25,DW-140,ACCENT,.91f,
+                ::psvitaalive::L("ID_SHARED_CATALOG_TITLE"),false);
+            const int total=static_cast<int>(installedDataShareLabels_.size());
+            const int maxScroll=std::max(0,total-3);
+            const int scroll=std::max(0,std::min(installedDataShareScroll_,maxScroll));
+            const std::string counter=std::to_string(scroll+1)+"-"+
+                std::to_string(std::min(total,scroll+3))+"/"+std::to_string(total);
+            ::psvitaalive::ui::uiDrawText(&font_,dx+DW-108,listY+25,
+                DIM,.83f,counter.c_str());
+            vita2d_enable_clipping();
+            vita2d_set_clip_rectangle(dx+38,listY+32,
+                dx+DW-48,listY+listH-8);
+            for(int n=0;n<3 && scroll+n<total;++n) {
+                const int rowY=listY+55+n*23;
+                drawMarqueeText(&font_,dx+43,rowY,DW-112,WHITE,.86f,
+                    installedDataShareLabels_[scroll+n],false);
+            }
+            vita2d_disable_clipping();
+            if(total>3) {
+                const int trackY=listY+34,trackH=78,thumbH=25;
+                vita2d_draw_rectangle(dx+DW-35,trackY,4,trackH,BORDER);
+                vita2d_draw_rectangle(dx+DW-35,trackY+
+                    (scroll*(trackH-thumbH))/maxScroll,4,thumbH,ACCENT);
+            }
+            drawMarqueeText(&font_,dx+25,dy+393,DW-50,WHITE,.87f,
+                ::psvitaalive::L("ID_SHARED_DELETE_WARNING"),false);
+            drawMarqueeText(&font_,dx+25,dy+411,DW-50,ACCENT,.81f,
+                ::psvitaalive::L("ID_WARNING3"),false);
+        } else {
+            const int warningY=dy+(deleteExternal?278:252);
+            const char* warningKeys[]={"ID_WARNING1","ID_WARNING2","ID_WARNING3"};
+            const unsigned warningColors[]={WHITE,TEXT,ACCENT};
+            for(int i=0;i<3;++i)
+                drawMarqueeText(&font_,dx+24,warningY+i*31,DW-48,
+                    warningColors[i],.88f,
+                    ::psvitaalive::L(warningKeys[i]),false);
         }
-        // Two clear hit targets. Touch and controller use the same action map.
         vita2d_draw_rectangle(firstButtonX,buttonsY,BW,BH,SURFACE2);
         vita2d_draw_rectangle(firstButtonX,buttonsY,BW,2,BORDER);
         vita2d_draw_rectangle(firstButtonX+BW+GAP,buttonsY,BW,BH,ACCENT);
         const char* cancelText=::psvitaalive::L("ID_CONFIRM_CANCEL_BUTTON");
         const char* deleteText=::psvitaalive::L("ID_CONFIRM_DELETE_BUTTON");
-        const int ctw=::psvitaalive::ui::uiTextWidth(&font_,.71f,cancelText);
-        const int dtw=::psvitaalive::ui::uiTextWidth(&font_,.71f,deleteText);
-        drawMarqueeText(&font_,firstButtonX+std::max(9,(BW-ctw)/2),
-            buttonsY+30,BW-18,WHITE,.71f,cancelText,false);
-        drawMarqueeText(&font_,firstButtonX+BW+GAP+std::max(9,(BW-dtw)/2),
-            buttonsY+30,BW-18,BG,.71f,deleteText,false);
+        drawMarqueeText(&font_,firstButtonX+12,buttonsY+31,BW-24,
+            WHITE,.92f,cancelText,false);
+        drawMarqueeText(&font_,firstButtonX+BW+GAP+12,buttonsY+31,
+            BW-24,BG,.92f,deleteText,false);
         return;
     }
     constexpr int W = 864, H = 500, VISIBLE = 3, ROW = 90;
