@@ -160,6 +160,58 @@
     ]
   },
   {
+    "id": "minecraft-modern-legacy",
+    "tid": "LCEM00001",
+    "n": "Minecraft Modern Legacy",
+    "d": "Modern Legacy is a custom homebrew fork of Minecraft PS Vita Edition that brings the console experience all the way up to date with Java 26.3.",
+    "ld": "Modern Legacy is a custom homebrew fork of Minecraft PS Vita Edition that brings the console experience all the way up to date with Java 26.3.",
+    "aids": [
+      "couchlight-studios"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "simulation",
+      "strategy",
+      "game-engine",
+      "other"
+    ],
+    "v": "0.8.8",
+    "vd": "2026-11-08",
+    "req": "- No Data",
+    "sz": 18035507,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/minecraft-modern-legacy-ps-vita/ML_v0.8.8.vpk",
+        "sz": 18035507,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/minecraft-modern-legacy-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1181116006,
+        "xp": "ux0:data/",
+        "ips": [
+          "Minecraft"
+        ]
+      },
+      {
+        "t": "Community",
+        "n": "Discord",
+        "u": "https://discord.gg/zyCc584JdA"
+      }
+    ],
+    "ic": "https://archive.org/download/minecraft-modern-legacy-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/minecraft-modern-legacy-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "monster-hunter-tri",
     "tid": "MH3WII001",
     "n": "Monster Hunter Tri",

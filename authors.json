@@ -1721,6 +1721,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "couchlight-studios",
+    "n": "Couchlight Studios",
+    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Community",
+        "n": "Discord",
+        "u": "https://discord.gg/zyCc584JdA",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "cpasjuste",
     "n": "cpasjuste",
     "av": "https://github.com/Cpasjuste.png",
