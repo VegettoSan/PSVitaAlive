@@ -3757,14 +3757,14 @@ void FullCatalogScreen::drawStorageOverlay() {
     const auto& snap=storageSnapshot_;
     // Summary and list are separate visual regions; no concatenated labels.
     vita2d_draw_rectangle(x+21,y+60,w-42,70,SURFACE);
-    drawMarqueeText(&font_,x+39,y+89,560,ACCENT,.96f,
+    drawMarqueeText(&font_,x+39,y+89,210,ACCENT,.96f,
         ::psvitaalive::L("STORAGE_TOTAL"),false);
     const bool estimated = snap.installedPartial || snap.installedHistorical;
     const std::string summaryTotal = formatBytesShort(snap.totalBytes()) +
         (estimated ? "*" : "");
     ::psvitaalive::ui::uiDrawText(&font_,x+39,y+117,WHITE,1.06f,
         summaryTotal.c_str());
-    drawMarqueeText(&font_,x+255,y+100,w-290,DIM,.88f,
+    drawMarqueeText(&font_,x+290,y+100,w-325,DIM,.88f,
         ::psvitaalive::L(snap.installedPartial ? "ID_TOTAL_PARTIAL" :
                          snap.installedHistorical ? "ID_LAST_MEASURED" :
                          "STORAGE_SELECT_HINT"),false);
@@ -3850,9 +3850,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         const int bw=191,bh=35,bx=x+w-bw-27,by=y+h-53;
         vita2d_draw_rectangle(bx,by,bw,bh,ACCENT);
         const char* lab=::psvitaalive::L("STORAGE_CLEAN_ALL");
-        const int tw=::psvitaalive::ui::uiTextWidth(&font_,.92f,lab);
-        ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-tw)/2,by+24,
-            BG,.92f,lab);
+        drawMarqueeText(&font_,bx+10,by+24,bw-20,BG,.92f,lab,false);
     }
     const char* help=storageConfirm_?
         ::psvitaalive::L(storagePendingAction_==-2 ?
