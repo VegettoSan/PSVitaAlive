@@ -9,13 +9,38 @@
   ],
   "cid": "ports",
   "sids": [
+    "arcade",
     "other"
   ],
-  "v": "v.1.1",
-  "vd": "2024-12-05",
+  "v": "v.1.2",
+  "vd": "2026-11-08",
   "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "sz": 2746549,
-  "st": "Legacy",
+  "sz": 2936013,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-soulcalibur-vita/soulcalibur%20v1.2.vpk",
+      "sz": 2936013,
+      "rec": true
+    },
+    {
+      "t": "Data Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-soulcalibur-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 239809331,
+      "xp": "ux0:data/",
+      "ips": [
+        "soulcalibur"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Repositorio",
+      "u": "https://github.com/Rinnegatamante/soulcalibur_vita"
+    }
+  ],
   "ic": "https://archive.org/download/psvitaalive-soulcalibur-vita/icon0.png",
   "ss": [
     "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_01.png",
@@ -24,32 +49,9 @@
     "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_04.png",
     "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_05.png"
   ],
-  "l": [
-    {
-      "t": "Download",
-      "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-soulcalibur-vita/soulcalibur-vita.vpk",
-      "rec": true
-    },
-    {
-      "t": "Official Website",
-      "n": "Release Page",
-      "u": "https://github.com/Rinnegatamante/soulcalibur_vita/releases"
-    },
-    {
-      "t": "Official Website",
-      "n": "Release Page",
-      "u": "https://github.com/Rinnegatamante/soulcalibur_vita/releases/tag/v.1.1"
-    },
-    {
-      "t": "Repository",
-      "n": "Repositorio",
-      "u": "https://github.com/Rinnegatamante/soulcalibur_vita"
-    }
-  ],
   "sn": "VitaHomebrewDB",
   "si": "1174",
   "su": "https://github.com/Rinnegatamante/soulcalibur_vita",
   "rp": "https://github.com/Rinnegatamante/soulcalibur_vita/releases",
-  "ua": "2026-08-13T15:34:48.425087+00:00"
+  "ua": "2026-08-13T15:34"
 }
