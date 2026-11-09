@@ -331,9 +331,8 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     // Initial storage inspection: enumerate all declared Game/Data roots.
     // Initial detail inspection: touch ONLY the selected title's roots;
     // all other catalog entries remain metadata-only collision claims.
-    const bool refreshAllAfterSharedDelete = action >= 0 &&
-        self->installedDataFilesOk_.load(std::memory_order_acquire) &&
-        (shareApproved || self->installedDataSnapshot_.apps.size() > 1);
+    const bool refreshAllAfterSharedDelete = action >= 0 && shareApproved &&
+        self->installedDataFilesOk_.load(std::memory_order_acquire);
     const std::string scope = refreshAllAfterSharedDelete ? std::string() :
         action == -3 || action == -2 || action >= 0 ? titleId :
         !self->installedDataScanFocusId_.empty() ? self->installedDataScanFocusId_ :
@@ -590,7 +589,7 @@ void FullCatalogScreen::activateInstalledDataSelection() {
                 const char* status = ::psvitaalive::L(other.installed ?
                     "ID_APP_PRESENT" : "ID_APP_MISSING");
                 installedDataShareLabels_.push_back(
-                    other.name + " (" + other.titleId + ") - " + status);
+                    other.titleId + "  |  " + other.name + " - " + status);
             }
         }
         installedDataConfirm_ = true;
