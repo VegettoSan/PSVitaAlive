@@ -108,6 +108,8 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     installedDataDetail_ = !titleId.empty();
     installedDataConfirm_ = false;
     installedDataShareApproved_ = false;
+    installedDataShareLabels_.clear();
+    installedDataShareScroll_ = 0;
     installedDataResultVisible_ = false;
     installedDataAutoEnabled_ = fromStorage;
     installedDataAutoClosePending_ = false;
@@ -221,6 +223,8 @@ void FullCatalogScreen::closeInstalledDataMenu() {
     installedDataResultVisible_ = false;
     installedDataSnapshot_.apps.clear();
     installedDataVisibleRows_.clear();
+    installedDataShareLabels_.clear();
+    installedDataShareScroll_ = 0;
 }
 void FullCatalogScreen::startInstalledDataOperation(int action) {
     if (installedDataWorker_ >= 0) {
@@ -287,9 +291,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         if (ok && (action == 1 || action == 2)) {
             const bool dataOk = InstalledDataManager::removeExternal(
                 self->installedDataSnapshot_, titleId,
-                &self->installedDataOpProgress_, shareApproved,
-                action == 2 && self->installedDataVpkOk_.load(
-                    std::memory_order_acquire));
+                &self->installedDataOpProgress_, shareApproved);
             self->installedDataFilesOk_.store(dataOk, std::memory_order_release);
             ok = dataOk;
             if (ok) {
@@ -314,8 +316,12 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                     app.packageSizeCached = false;
                 }
             for (auto& app : self->installedDataSnapshot_.apps)
-                app.activeShared = ::psvitaalive::storage::installedDataHasActiveShare(
-                    self->installedDataSnapshot_, app);
+                {
+                    app.activeShared = ::psvitaalive::storage::installedDataHasActiveShare(
+                        self->installedDataSnapshot_, app);
+                    app.catalogShared = ::psvitaalive::storage::installedDataHasCatalogShare(
+                        self->installedDataSnapshot_, app);
+                }
         }
         self->installedDataOpProgress_.phase.store(4, std::memory_order_release);
         self->installedDataWorkerOk_.store(ok, std::memory_order_release);
@@ -325,8 +331,9 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     // Initial storage inspection: enumerate all declared Game/Data roots.
     // Initial detail inspection: touch ONLY the selected title's roots;
     // all other catalog entries remain metadata-only collision claims.
-    const bool refreshAllAfterSharedDelete = action >= 0 && shareApproved &&
-        self->installedDataFilesOk_.load(std::memory_order_acquire);
+    const bool refreshAllAfterSharedDelete = action >= 0 &&
+        self->installedDataFilesOk_.load(std::memory_order_acquire) &&
+        (shareApproved || self->installedDataSnapshot_.apps.size() > 1);
     const std::string scope = refreshAllAfterSharedDelete ? std::string() :
         action == -3 || action == -2 || action >= 0 ? titleId :
         !self->installedDataScanFocusId_.empty() ? self->installedDataScanFocusId_ :
@@ -366,9 +373,14 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                 if (fresh.titleId != titleId) continue;
                 app = std::move(fresh);
                 if (deepMeasure)
-                    app.activeShared =
-                        ::psvitaalive::storage::installedDataHasActiveShare(
-                            previous, app);
+                    {
+                        app.activeShared =
+                            ::psvitaalive::storage::installedDataHasActiveShare(
+                                previous, app);
+                        app.catalogShared =
+                            ::psvitaalive::storage::installedDataHasCatalogShare(
+                                previous, app);
+                    }
                 break;
             }
             break;
@@ -443,6 +455,9 @@ void FullCatalogScreen::pollInstalledDataOperation() {
                     // already discovered active collisions in the main UI.
                     app.activeShared =
                         ::psvitaalive::storage::installedDataHasActiveShare(
+                            installedDataSnapshot_, app);
+                    app.catalogShared =
+                        ::psvitaalive::storage::installedDataHasCatalogShare(
                             installedDataSnapshot_, app);
                     break;
                 }
@@ -565,14 +580,27 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         return;
     }
     if (!installedDataConfirm_) {
+        installedDataShareLabels_.clear();
+        installedDataShareScroll_ = 0;
+        if (installedDataActionFocus_ != 0) {
+            const auto shared = ::psvitaalive::storage::installedDataCatalogShares(
+                installedDataSnapshot_, *app);
+            installedDataShareLabels_.reserve(shared.size());
+            for (const auto& other : shared) {
+                const char* status = ::psvitaalive::L(other.installed ?
+                    "ID_APP_PRESENT" : "ID_APP_MISSING");
+                installedDataShareLabels_.push_back(
+                    other.name + " (" + other.titleId + ") - " + status);
+            }
+        }
         installedDataConfirm_ = true;
         return;
     }
     installedDataConfirm_ = false;
-    // Shared-root consent is only granted by this visible confirmation.
-    // The worker still rechecks actual installed packages before deletion.
-    installedDataShareApproved_ =
-        installedDataActionFocus_ != 0 && app->activeShared && app->packagePresent;
+    // Only after the catalog matches have been shown and X was pressed.
+    // No package-installation requirement; users can delete orphaned data.
+    installedDataShareApproved_ = installedDataActionFocus_ != 0 &&
+                                  !installedDataShareLabels_.empty();
     startInstalledDataOperation(installedDataActionFocus_);
 }
 void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav) {
@@ -591,6 +619,13 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
     }
     if (installedDataConfirm_) {
         if (pressed & SCE_CTRL_CIRCLE) {installedDataConfirm_ = false; return;}
+        const int maxSharedScroll = std::max(0,
+            static_cast<int>(installedDataShareLabels_.size()) - 3);
+        if (nav & (SCE_CTRL_DOWN | SCE_CTRL_RIGHT))
+            installedDataShareScroll_ = std::min(maxSharedScroll,
+                installedDataShareScroll_ + 1);
+        if (nav & (SCE_CTRL_UP | SCE_CTRL_LEFT))
+            installedDataShareScroll_ = std::max(0,installedDataShareScroll_-1);
         if (pressed & SCE_CTRL_CROSS) activateInstalledDataSelection();
         return;
     }
@@ -938,7 +973,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
             if (app.blocked) state += " | " + std::string(
                 ::psvitaalive::L("ID_PROTECTED"));
-            else if (app.activeShared) state += " | " +
+            else if (app.catalogShared) state += " | " +
                 std::string(::psvitaalive::L("ID_SHARED"));
             if (cachedSize) state += " | " + std::string(
                 ::psvitaalive::L("ID_LAST_MEASURED"));
@@ -1033,10 +1068,9 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             if (app->paths.empty())
                 ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,DIM,.75f,
                     ::psvitaalive::L("ID_NO_EXTERNAL"));
-            if (app->blocked || app->activeShared) {
+            if (app->blocked || app->catalogShared) {
                 const char* key = app->blocked ? "ID_PROTECTED_DESC" :
-                    app->packagePresent ? "ID_SHARED_ACTIVE_HINT" :
-                                          "ID_SHARED_ORPHAN_WARNING";
+                    "ID_SHARED_ACTIVE_HINT";
                 drawMarqueeText(&font_,x+28,y+327,W-56,ACCENT,.65f,
                     ::psvitaalive::L(key),false);
             }
