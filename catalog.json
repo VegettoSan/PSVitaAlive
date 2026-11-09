@@ -57,6 +57,60 @@
     "ua": "2026-08-13T15:34"
   },
   {
+    "id": "bloxicon",
+    "tid": "RBXV00001",
+    "n": "Bloxicon",
+    "d": "Bloxicon: native PlayStation Vita development project.",
+    "ld": "An experimental native PlayStation Vita client for original places through 2016. It uses native controller input and implements compatibility in the shared loader, renderer, engine, APIs and core scripts.",
+    "aids": [
+      "lezergan"
+    ],
+    "cid": "ports",
+    "sids": [
+      "simulation",
+      "game-engine",
+      "other"
+    ],
+    "v": "1.1",
+    "vd": "2026-11-08",
+    "req": "- No Data",
+    "sz": 14575206,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/bloxicon-ps-vita/Bloxicon%20v1.1.vpk",
+        "sz": 14575206,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/bloxicon-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 309120205,
+        "xp": "ux0:data/",
+        "ips": [
+          "Bloxicon"
+        ]
+      },
+      {
+        "t": "Official Website",
+        "n": "Web Site",
+        "u": "https://bloxicon.lezergan.com/"
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/LeZergan/Bloxicon"
+      }
+    ],
+    "ic": "https://archive.org/download/bloxicon-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/bloxicon-ps-vita/bg.png"
+    ]
+  },
+  {
     "id": "manhunt",
     "tid": "MHRE00001",
     "n": "Manhunt",
