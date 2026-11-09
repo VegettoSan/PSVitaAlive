@@ -40,6 +40,10 @@ jobs:
             tests/test_feedback_scroll_math.cpp -o /tmp/psvitaalive-feedback-scroll-test
           /tmp/psvitaalive-feedback-scroll-test
 
+      - name: Test feedback viewport clipping and dynamic layout
+        run: |
+          python3 tests/test_feedback_render_clipping.py
+
       - name: Test dynamic QR installation instructions
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
