@@ -968,10 +968,10 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 : std::string(::psvitaalive::L("ID_SIZE_PENDING"))
             : formatBytesShort(installedDataSnapshot_.totalExternalBytes) +
                 (containsCachedSize ? " *" : ""));
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+82,ACCENT,.99f,total.c_str());
+    drawMarqueeText(&font_,x+28,y+82,W-290,ACCENT,.99f,total,false);
     if (!installedDataSnapshot_.complete)
-        ::psvitaalive::ui::uiDrawText(&font_,x+450,y+82,ACCENT,.88f,
-            ::psvitaalive::L("ID_INCOMPLETE"));
+        drawMarqueeText(&font_,x+W-240,y+82,205,ACCENT,.88f,
+            ::psvitaalive::L("ID_INCOMPLETE"),false);
     vita2d_draw_rectangle(x+20,y+96,W-40,1,BORDER);
     if (!installedDataDetail_) {
         ::psvitaalive::ui::uiDrawText(&font_,x+28,y+122,TEXT,.92f,
@@ -1048,8 +1048,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         for (const auto& candidate : installedDataSnapshot_.apps)
             if (candidate.titleId == installedDataTargetId_) { app=&candidate; break; }
         if (app) {
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+124,WHITE,1.06f,
-                ellipsize(app->name,48).c_str());
+            drawMarqueeText(&font_,x+28,y+124,W-60,WHITE,1.06f,
+                app->name,false);
             bool appPartial = false;
             for (const auto& path : app->paths)
                 if (path.exists && !path.sizeKnown) appPartial = true;
@@ -1106,7 +1106,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         // Only render actions that are actually safe and meaningful.
         vita2d_draw_rectangle(x+24,y+341,W-48,28,SURFACE2);
         const char* measureHint=::psvitaalive::L("ID_REFRESH_SIZES_HINT");
-        ::psvitaalive::ui::uiDrawText(&font_,x+40,y+361,TEXT,.84f,measureHint);
+        drawMarqueeText(&font_,x+40,y+361,W-80,TEXT,.84f,
+            measureHint,false);
         bool hasData = false;
         if (app) for (const auto& p : app->paths) hasData = hasData || p.exists;
         const bool canApp = app && app->packagePresent && app->titleId!="PSVAS1178";
