@@ -1,0 +1,49 @@
+{
+  "id": "happy-wheels-preview",
+  "tid": "HPWH00001",
+  "n": "Happy Wheels Preview",
+  "d": "Bring Happy Wheels to your PS Vita with this unofficial",
+  "ld": "Bring Happy Wheels to your PS Vita with this unofficial, experimental port of the Android edition! Features physical controls and a cleaner gameplay HUD, while retaining touch support for menus.",
+  "aids": [
+    "teedoofgames"
+  ],
+  "cid": "ports",
+  "sids": [
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.1.3",
+  "vd": "2026-11-08",
+  "req": "- kubridge.skprx\n- libshacccg.suprx",
+  "sz": 2411725,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/happy-wheels-preview-ps-vita/HappyWheels-Audio-0.1.3.vpk",
+      "sz": 2411725,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/happy-wheels-preview-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 44669338,
+      "xp": "ux0:data/",
+      "ips": [
+        "happywheels"
+      ]
+    },
+    {
+      "t": "Official Website",
+      "n": "itch.io",
+      "u": "https://teedoofgames.itch.io/happy-wheels-psvita"
+    }
+  ],
+  "ic": "https://archive.org/download/happy-wheels-preview-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/happy-wheels-preview-ps-vita/shot0.png"
+  ]
+}

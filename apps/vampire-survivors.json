@@ -1,0 +1,52 @@
+{
+  "id": "vampire-survivors",
+  "tid": "VSPH00001",
+  "n": "Vampire Survivors",
+  "d": "Native PS Vita port of Vampire Survivors (Phaser build rewritten in C).",
+  "ld": "A native PS Vita port of Vampire Survivors (poncle, 2022). Not an emulator and not a wrapper: the Phaser build of the game, the one Steam still ships as the old-engine beta branch, rewritten in C on top of raylib, SDL2 and vitaGL, logic class by class, so it plays like the original.",
+  "aids": [
+    "federicoilgrandebardo"
+  ],
+  "cid": "ports",
+  "sids": [
+    "rpg",
+    "strategy",
+    "engine-port"
+  ],
+  "v": "1.1",
+  "vd": "2026-11-07",
+  "req": "- Install libshacccg.suprx if you have not already (extract it with ShaRKBR33D).",
+  "sz": 13107200,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/vampire-survivors-ps-vita-port/VampireSurvivors-Vita-v1.1.vpk",
+      "sz": 13107200,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/vampire-survivors-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 170603315,
+      "xp": "ux0:data/",
+      "ips": [
+        "VampireSurvivors"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Federicoilgrandebardo/vampire-survivors-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/vampire-survivors-ps-vita-port/icon0.png",
+  "ss": [
+    "https://archive.org/download/vampire-survivors-ps-vita-port/shot0.png",
+    "https://archive.org/download/vampire-survivors-ps-vita-port/shot1.png",
+    "https://archive.org/download/vampire-survivors-ps-vita-port/shot2.png",
+    "https://archive.org/download/vampire-survivors-ps-vita-port/shot3.png"
+  ]
+}
