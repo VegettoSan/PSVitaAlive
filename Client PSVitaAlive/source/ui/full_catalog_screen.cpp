@@ -2706,7 +2706,8 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
             ::psvitaalive::L(panel==0?"FEEDBACK_INFO_PANEL":"FEEDBACK_FORM_PANEL"));
     }
 
-    // Left column: localized problem/suggestion guidance and usage instructions.
+    // Active stencil clip is required to contain scrolled content.
+    vita2d_enable_clipping();
     vita2d_set_clip_rectangle(FB_INFO_X+9,FB_VIEW_Y,
         FB_INFO_X+FB_INFO_W-14,FB_VIEW_Y+FB_VIEW_H);
     int infoY=FB_VIEW_Y+25-infoScroll;
@@ -2726,6 +2727,7 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     // Right column: selected type, optional frozen app context, title, body,
     // and the Homebrew responsibility notice. All content can be scrolled.
     const int fieldX=FB_FORM_FIELD_X, fieldW=FB_FORM_FIELD_W;
+    vita2d_enable_clipping();
     vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
         FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
     const int ty=r.typeY-formScroll;
@@ -2778,10 +2780,9 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
             feedbackTitle_.empty()?DIM:WHITE,.85f,
             feedbackTitle_.empty()?::psvitaalive::L("FEEDBACK_TITLE_PLACEHOLDER"):
                                    feedbackTitle_.c_str());
-        vita2d_disable_clipping();
     }
 
-    // Restore pane clipping before the description label / input container.
+    // Reapply the parent's enabled viewport after the title's narrow clip.
     vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
         FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
     ::psvitaalive::ui::uiDrawText(&font_,fieldX,r.bodyLabelY-formScroll,WHITE,.85f,
@@ -2807,23 +2808,21 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
                 lineY+=27;
             }
         }
-        vita2d_disable_clipping();
     }
+    // The inner message clip must not leak into the outer form contents.
+    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
+        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
     const int bodyH=static_cast<int>(feedbackWrapped_.size())*27;
     if(bodyH>FB_BODY_TEXT_H && bodyY+FB_BODY_H>FB_VIEW_Y &&
        bodyY<FB_VIEW_Y+FB_VIEW_H) {
         const int trackH=FB_BODY_H-20,thumbH=std::max(20,trackH*FB_BODY_TEXT_H/bodyH);
         const int thumbY=(feedbackScrollY_*(trackH-thumbH))/
             std::max(1,bodyH-FB_BODY_TEXT_H);
-        vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
-            FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
         vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10,4,trackH,BORDER);
         vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10+thumbY,4,thumbH,ACCENT);
-        vita2d_disable_clipping();
     }
 
-    vita2d_set_clip_rectangle(FB_FORM_X+8,FB_VIEW_Y,
-        FB_FORM_X+FB_FORM_W-13,FB_VIEW_Y+FB_VIEW_H);
+    // Keep clipping active around the warning panel at all scroll offsets.
     if (!feedbackNoticeLines_.empty()) {
         const int nY=r.noticeY-formScroll;
         vita2d_draw_rectangle(fieldX,nY,fieldW,r.noticeH,SURFACE);
@@ -2834,6 +2833,7 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
             lineY+=25;
         }
     }
+    // Scrollbars and action buttons are fixed outside the scrolled view.
     vita2d_disable_clipping();
 
     // Independent scrollbar for each pane; unlike the description scrollbar,
