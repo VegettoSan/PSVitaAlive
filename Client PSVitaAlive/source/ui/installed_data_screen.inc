@@ -108,6 +108,8 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     installedDataDetail_ = !titleId.empty();
     installedDataConfirm_ = false;
     installedDataShareApproved_ = false;
+    installedDataShareLabels_.clear();
+    installedDataShareScroll_ = 0;
     installedDataResultVisible_ = false;
     installedDataAutoEnabled_ = fromStorage;
     installedDataAutoClosePending_ = false;
@@ -221,6 +223,8 @@ void FullCatalogScreen::closeInstalledDataMenu() {
     installedDataResultVisible_ = false;
     installedDataSnapshot_.apps.clear();
     installedDataVisibleRows_.clear();
+    installedDataShareLabels_.clear();
+    installedDataShareScroll_ = 0;
 }
 void FullCatalogScreen::startInstalledDataOperation(int action) {
     if (installedDataWorker_ >= 0) {
@@ -287,9 +291,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
         if (ok && (action == 1 || action == 2)) {
             const bool dataOk = InstalledDataManager::removeExternal(
                 self->installedDataSnapshot_, titleId,
-                &self->installedDataOpProgress_, shareApproved,
-                action == 2 && self->installedDataVpkOk_.load(
-                    std::memory_order_acquire));
+                &self->installedDataOpProgress_, shareApproved);
             self->installedDataFilesOk_.store(dataOk, std::memory_order_release);
             ok = dataOk;
             if (ok) {
@@ -314,8 +316,12 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                     app.packageSizeCached = false;
                 }
             for (auto& app : self->installedDataSnapshot_.apps)
-                app.activeShared = ::psvitaalive::storage::installedDataHasActiveShare(
-                    self->installedDataSnapshot_, app);
+                {
+                    app.activeShared = ::psvitaalive::storage::installedDataHasActiveShare(
+                        self->installedDataSnapshot_, app);
+                    app.catalogShared = ::psvitaalive::storage::installedDataHasCatalogShare(
+                        self->installedDataSnapshot_, app);
+                }
         }
         self->installedDataOpProgress_.phase.store(4, std::memory_order_release);
         self->installedDataWorkerOk_.store(ok, std::memory_order_release);
@@ -366,9 +372,14 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                 if (fresh.titleId != titleId) continue;
                 app = std::move(fresh);
                 if (deepMeasure)
-                    app.activeShared =
-                        ::psvitaalive::storage::installedDataHasActiveShare(
-                            previous, app);
+                    {
+                        app.activeShared =
+                            ::psvitaalive::storage::installedDataHasActiveShare(
+                                previous, app);
+                        app.catalogShared =
+                            ::psvitaalive::storage::installedDataHasCatalogShare(
+                                previous, app);
+                    }
                 break;
             }
             break;
@@ -443,6 +454,9 @@ void FullCatalogScreen::pollInstalledDataOperation() {
                     // already discovered active collisions in the main UI.
                     app.activeShared =
                         ::psvitaalive::storage::installedDataHasActiveShare(
+                            installedDataSnapshot_, app);
+                    app.catalogShared =
+                        ::psvitaalive::storage::installedDataHasCatalogShare(
                             installedDataSnapshot_, app);
                     break;
                 }
@@ -565,14 +579,27 @@ void FullCatalogScreen::activateInstalledDataSelection() {
         return;
     }
     if (!installedDataConfirm_) {
+        installedDataShareLabels_.clear();
+        installedDataShareScroll_ = 0;
+        if (installedDataActionFocus_ != 0) {
+            const auto shared = ::psvitaalive::storage::installedDataCatalogShares(
+                installedDataSnapshot_, *app);
+            installedDataShareLabels_.reserve(shared.size());
+            for (const auto& other : shared) {
+                const char* status = ::psvitaalive::L(other.installed ?
+                    "ID_APP_PRESENT" : "ID_APP_MISSING");
+                installedDataShareLabels_.push_back(
+                    other.titleId + "  |  " + other.name + " - " + status);
+            }
+        }
         installedDataConfirm_ = true;
         return;
     }
     installedDataConfirm_ = false;
-    // Shared-root consent is only granted by this visible confirmation.
-    // The worker still rechecks actual installed packages before deletion.
-    installedDataShareApproved_ =
-        installedDataActionFocus_ != 0 && app->activeShared && app->packagePresent;
+    // Only after the catalog matches have been shown and X was pressed.
+    // No package-installation requirement; users can delete orphaned data.
+    installedDataShareApproved_ = installedDataActionFocus_ != 0 &&
+                                  !installedDataShareLabels_.empty();
     startInstalledDataOperation(installedDataActionFocus_);
 }
 void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav) {
@@ -591,6 +618,13 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
     }
     if (installedDataConfirm_) {
         if (pressed & SCE_CTRL_CIRCLE) {installedDataConfirm_ = false; return;}
+        const int maxSharedScroll = std::max(0,
+            static_cast<int>(installedDataShareLabels_.size()) - 3);
+        if (nav & (SCE_CTRL_DOWN | SCE_CTRL_RIGHT))
+            installedDataShareScroll_ = std::min(maxSharedScroll,
+                installedDataShareScroll_ + 1);
+        if (nav & (SCE_CTRL_UP | SCE_CTRL_LEFT))
+            installedDataShareScroll_ = std::max(0,installedDataShareScroll_-1);
         if (pressed & SCE_CTRL_CROSS) activateInstalledDataSelection();
         return;
     }
@@ -652,12 +686,12 @@ void FullCatalogScreen::handleInstalledDataInput(uint32_t pressed, uint32_t nav)
 void FullCatalogScreen::drawInstalledDataOverlay() {
     if (!installedDataVisible_) return;
     if (installedDataConfirm_) {
-        // Same compact bordered two-button dialog as PSVitaAlive's other
-        // confirmation overlays; independent of the large storage browser.
-        constexpr int DW=780, DH=400, BW=238, BH=46, GAP=20;
+        // Large, legible confirmation that names ALL catalog users of shared
+        // roots; only three rows are rendered at once to avoid text overflow.
+        constexpr int DW=824, DH=474, BW=244, BH=46, GAP=22;
         const int dx=(SCREEN_W-DW)/2, dy=(SCREEN_H-DH)/2;
         const int firstButtonX=dx+(DW-(2*BW+GAP))/2;
-        const int buttonsY=dy+DH-58;
+        const int buttonsY=dy+DH-59;
         const ::psvitaalive::storage::InstalledDataApp* app=nullptr;
         for (const auto& candidate:installedDataSnapshot_.apps)
             if (candidate.titleId==installedDataTargetId_){app=&candidate;break;}
@@ -666,7 +700,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             hasExternal=hasExternal||p.exists;
         const int action=installedDataActionFocus_;
         const bool deleteExternal=action==1||action==2;
-        const bool warnShared=deleteExternal && app && app->activeShared;
+        const bool warnShared=deleteExternal && !installedDataShareLabels_.empty();
         const char* actionKey=action==0 ? "ID_DELETE_APP" :
                               action==1 ? "ID_DELETE_FILES" : "ID_DELETE_ALL";
         const char* impactKey=::psvitaalive::storage::installedDataConfirmImpactKey(
@@ -678,62 +712,91 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         vita2d_draw_rectangle(dx,dy+3,3,DH-6,ACCENT);
         vita2d_draw_rectangle(dx+DW-3,dy+3,3,DH-6,BORDER);
         vita2d_draw_rectangle(dx,dy+DH-3,DW,3,BORDER);
-        drawMarqueeText(&font_,dx+24,dy+38,DW-48,ACCENT,.88f,
+        drawMarqueeText(&font_,dx+24,dy+38,DW-48,ACCENT,1.07f,
             ::psvitaalive::L("ID_CONFIRM_TITLE"),false);
-        if(app)drawMarqueeText(&font_,dx+24,dy+73,DW-48,WHITE,.80f,
+        if(app)drawMarqueeText(&font_,dx+24,dy+75,DW-48,WHITE,.98f,
             app->name,false);
-        vita2d_draw_rectangle(dx+22,dy+90,DW-44,1,BORDER);
+        vita2d_draw_rectangle(dx+22,dy+91,DW-44,1,BORDER);
 
-        // Show the exact operation and its consequences. APP-only installs
-        // never claim that nonexistent external Game Files are preserved.
-        const int cardY=dy+107, cardH=deleteExternal?148:118;
+        const int cardY=dy+101, cardH=deleteExternal?131:108;
         vita2d_draw_rectangle(dx+22,cardY,DW-44,cardH,SURFACE2);
         vita2d_draw_rectangle(dx+22,cardY,3,cardH,ACCENT);
-        drawMarqueeText(&font_,dx+42,cardY+29,DW-84,ACCENT,.79f,
+        drawMarqueeText(&font_,dx+42,cardY+27,DW-84,ACCENT,.98f,
             ::psvitaalive::L(actionKey),false);
-        const auto impactLines=wrapTextToWidth(&font_,.66f,
+        const auto impactLines=wrapTextToWidth(&font_,.87f,
             ::psvitaalive::L(impactKey),DW-90);
         for(int i=0;i<(int)impactLines.size() && i<2;++i)
-            ::psvitaalive::ui::uiDrawText(&font_,dx+42,cardY+54+i*19,
-                TEXT,.66f,impactLines[i].c_str());
-        if(deleteExternal && app){
+            ::psvitaalive::ui::uiDrawText(&font_,dx+42,cardY+55+i*22,
+                TEXT,.87f,impactLines[i].c_str());
+        if(deleteExternal && app) {
             int shown=0,remaining=0;
             for(const auto& p:app->paths) {
                 if(!p.exists)continue;
-                if(shown<2){
-                    drawMarqueeText(&font_,dx+42,cardY+93+shown*20,
-                        DW-115,DIM,.59f,p.path,false);
+                if(shown<2) {
+                    drawMarqueeText(&font_,dx+42,cardY+95+shown*23,
+                        DW-115,DIM,.83f,p.path,false);
                     ++shown;
                 }else ++remaining;
             }
-            if(remaining>0){
+            if(remaining>0) {
                 const std::string extra="+"+std::to_string(remaining);
-                ::psvitaalive::ui::uiDrawText(&font_,dx+DW-66,cardY+134,
-                    ACCENT,.58f,extra.c_str());
+                ::psvitaalive::ui::uiDrawText(&font_,dx+DW-66,cardY+117,
+                    ACCENT,.83f,extra.c_str());
             }
         }
 
-        const int warningY=dy+(deleteExternal?274:246);
-        const char* warningKeys[]={
-            warnShared ? "ID_SHARED_DELETE_WARNING" : "ID_WARNING1",
-            "ID_WARNING2","ID_WARNING3"};
-        const unsigned warningColors[]={WHITE,TEXT,ACCENT};
-        for(int i=0;i<3;++i){
-            drawMarqueeText(&font_,dx+24,warningY+i*25,DW-48,
-                warningColors[i],.68f,::psvitaalive::L(warningKeys[i]),false);
+        if(warnShared) {
+            // A metadata match is NOT proof that other apps are installed.
+            // Every matching catalog entry remains visible via Up/Down.
+            const int listY=dy+240, listH=127;
+            vita2d_draw_rectangle(dx+22,listY,DW-44,listH,SURFACE);
+            vita2d_draw_rectangle(dx+22,listY,4,listH,ACCENT);
+            drawMarqueeText(&font_,dx+40,listY+25,DW-140,ACCENT,.91f,
+                ::psvitaalive::L("ID_SHARED_CATALOG_TITLE"),false);
+            const int total=static_cast<int>(installedDataShareLabels_.size());
+            const int maxScroll=std::max(0,total-3);
+            const int scroll=std::max(0,std::min(installedDataShareScroll_,maxScroll));
+            const std::string counter=std::to_string(scroll+1)+"-"+
+                std::to_string(std::min(total,scroll+3))+"/"+std::to_string(total);
+            ::psvitaalive::ui::uiDrawText(&font_,dx+DW-108,listY+25,
+                DIM,.83f,counter.c_str());
+            vita2d_enable_clipping();
+            vita2d_set_clip_rectangle(dx+38,listY+32,
+                dx+DW-48,listY+listH-8);
+            for(int n=0;n<3 && scroll+n<total;++n) {
+                const int rowY=listY+55+n*23;
+                drawMarqueeText(&font_,dx+43,rowY,DW-112,WHITE,.86f,
+                    installedDataShareLabels_[scroll+n],false);
+            }
+            vita2d_disable_clipping();
+            if(total>3) {
+                const int trackY=listY+34,trackH=78,thumbH=25;
+                vita2d_draw_rectangle(dx+DW-35,trackY,4,trackH,BORDER);
+                vita2d_draw_rectangle(dx+DW-35,trackY+
+                    (scroll*(trackH-thumbH))/maxScroll,4,thumbH,ACCENT);
+            }
+            drawMarqueeText(&font_,dx+25,dy+393,DW-50,WHITE,.87f,
+                ::psvitaalive::L("ID_SHARED_DELETE_WARNING"),false);
+            drawMarqueeText(&font_,dx+25,dy+411,DW-50,ACCENT,.81f,
+                ::psvitaalive::L("ID_WARNING3"),false);
+        } else {
+            const int warningY=dy+(deleteExternal?278:252);
+            const char* warningKeys[]={"ID_WARNING1","ID_WARNING2","ID_WARNING3"};
+            const unsigned warningColors[]={WHITE,TEXT,ACCENT};
+            for(int i=0;i<3;++i)
+                drawMarqueeText(&font_,dx+24,warningY+i*31,DW-48,
+                    warningColors[i],.88f,
+                    ::psvitaalive::L(warningKeys[i]),false);
         }
-        // Two clear hit targets. Touch and controller use the same action map.
         vita2d_draw_rectangle(firstButtonX,buttonsY,BW,BH,SURFACE2);
         vita2d_draw_rectangle(firstButtonX,buttonsY,BW,2,BORDER);
         vita2d_draw_rectangle(firstButtonX+BW+GAP,buttonsY,BW,BH,ACCENT);
         const char* cancelText=::psvitaalive::L("ID_CONFIRM_CANCEL_BUTTON");
         const char* deleteText=::psvitaalive::L("ID_CONFIRM_DELETE_BUTTON");
-        const int ctw=::psvitaalive::ui::uiTextWidth(&font_,.71f,cancelText);
-        const int dtw=::psvitaalive::ui::uiTextWidth(&font_,.71f,deleteText);
-        drawMarqueeText(&font_,firstButtonX+std::max(9,(BW-ctw)/2),
-            buttonsY+30,BW-18,WHITE,.71f,cancelText,false);
-        drawMarqueeText(&font_,firstButtonX+BW+GAP+std::max(9,(BW-dtw)/2),
-            buttonsY+30,BW-18,BG,.71f,deleteText,false);
+        drawMarqueeText(&font_,firstButtonX+12,buttonsY+31,BW-24,
+            WHITE,.92f,cancelText,false);
+        drawMarqueeText(&font_,firstButtonX+BW+GAP+12,buttonsY+31,
+            BW-24,BG,.92f,deleteText,false);
         return;
     }
     constexpr int W = 864, H = 500, VISIBLE = 3, ROW = 90;
@@ -744,7 +807,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
     vita2d_draw_rectangle(x,y+3,3,H-6,ACCENT);
     vita2d_draw_rectangle(x+W-3,y+3,3,H-6,BORDER);
     vita2d_draw_rectangle(x,y+H-3,W,3,BORDER);
-    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+40,WHITE,1.02f,
+    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+40,WHITE,1.14f,
         ::psvitaalive::L("ID_TITLE"));
     if (installedDataWorker_ >= 0 && installedDataAction_ >= 0) {
         const auto& prog = installedDataOpProgress_;
@@ -755,15 +818,15 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         const char* stageText = preparingFiles ? "ID_OP_PREPARE_STAGE" :
             removingFiles ? "ID_OP_DATA_STAGE" :
             verifying ? "ID_OP_VERIFY_STAGE" : "ID_OP_APP_STAGE";
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+106,ACCENT,.98f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+106,ACCENT,1.13f,
             ::psvitaalive::L(stageText));
         const std::string actionName = installedDataAction_ == 0 ?
             ::psvitaalive::L("ID_DELETE_APP") : installedDataAction_ == 1 ?
             ::psvitaalive::L("ID_DELETE_FILES") :
             ::psvitaalive::L("ID_DELETE_ALL");
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+153,WHITE,.93f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+153,WHITE,1.09f,
             actionName.c_str());
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+196,TEXT,.73f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+196,TEXT,.90f,
             ::psvitaalive::L(preparingFiles ? "ID_OP_PREPARE_EXPLAIN" :
                 removingFiles ? "ID_OP_FILES_EXPLAIN" : "ID_OP_APP_EXPLAIN"));
         const int barX=x+30,barY=y+236,barW=W-60;
@@ -784,19 +847,19 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const int textWidth = ::psvitaalive::ui::uiTextWidth(&font_,1.25f,counter);
             ::psvitaalive::ui::uiDrawText(&font_,x+(W-textWidth)/2,y+316,
                 ACCENT,1.25f,counter);
-            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+354,TEXT,.78f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+354,TEXT,.95f,
                 ::psvitaalive::L("ID_OP_FILES_EXPLAIN"));
         } else {
             // PromoterUtility has no file-level percentage. During the safe
             // pre-count the total is not yet known, so both remain indeterminate.
-            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+308,WHITE,.81f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+308,WHITE,.98f,
                 ::psvitaalive::L(preparingFiles ? "ID_OP_PREPARE_EXPLAIN" :
                     verifying ? "ID_OP_VERIFY_STAGE" : "ID_OP_INDETERMINATE"));
             const int marker=barX+static_cast<int>(
                 (sceKernelGetProcessTimeWide()/19000ULL)%(barW-40));
             vita2d_draw_rectangle(marker,barY+18,40,4,ACCENT);
         }
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+420,DIM,.74f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+420,DIM,.92f,
             ::psvitaalive::L("ID_OP_DO_NOT_CLOSE"));
         return;
     }
@@ -808,14 +871,14 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         const uint32_t pct = phase < 2 ? 0 :
             ::psvitaalive::storage::installedDataProgressPercent(done, total);
         const bool cancelled = prog.cancelRequested.load(std::memory_order_acquire);
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+128,ACCENT,1.0f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+128,ACCENT,1.12f,
             ::psvitaalive::L(cancelled ? "ID_CANCELLING" :
                 installedDataAction_ == -2 ? "ID_MEASURING" :
                 installedDataAction_ < 0 ? "ID_DISCOVERING" : "ID_WORKING"));
         char textLine[160];
         sceClibSnprintf(textLine,sizeof(textLine),"%s %u / %u   (%u%%)",
             ::psvitaalive::L("ID_APPS_PROGRESS"),done,total,pct);
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,WHITE,.85f,textLine);
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,WHITE,1.02f,textLine);
         // Percentage reflects *completed applications*, not guessed bytes.
         // The animated stripe proves that a huge individual folder is still
         // being traversed even while that percentage does not move.
@@ -829,18 +892,18 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         sceClibSnprintf(textLine,sizeof(textLine),"%s %u",
             ::psvitaalive::L("ID_FOLDERS_FOUND"),
             prog.rootsFound.load(std::memory_order_relaxed));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+286,TEXT,.81f,textLine);
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+286,TEXT,.98f,textLine);
         sceClibSnprintf(textLine,sizeof(textLine),"%s %u  /  %s %u",
             ::psvitaalive::L("ID_FOLDERS_READ"),
             prog.dirsVisited.load(std::memory_order_relaxed),
             ::psvitaalive::L("ID_FILES_READ"),
             prog.filesVisited.load(std::memory_order_relaxed));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+328,TEXT,.80f,textLine);
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+390,DIM,.74f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+328,TEXT,.96f,textLine);
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+390,DIM,.92f,
             ::psvitaalive::L(phase==1 ? "ID_DISCOVERING" :
                 "ID_SCAN_LIMIT_HINT"));
         if(installedDataAction_ < 0)
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-28,DIM,.75f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-28,DIM,.92f,
                 ::psvitaalive::L("ID_CANCEL_SCAN"));
         return;
     }
@@ -854,25 +917,25 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         const char* headerKey = success ? "ID_RESULT_SUCCESS" :
             partial ? "ID_RESULT_PARTIAL" : "ID_RESULT_FAILURE";
         ::psvitaalive::ui::uiDrawText(&font_,x+30,y+105,
-            success?ACCENT:WHITE,1.03f,::psvitaalive::L(headerKey));
+            success?ACCENT:WHITE,1.14f,::psvitaalive::L(headerKey));
         const ::psvitaalive::storage::InstalledDataApp* app = nullptr;
         for (const auto& candidate : installedDataSnapshot_.apps)
             if (candidate.titleId == installedDataTargetId_) {
                 app=&candidate; break;
             }
-        if (app) ::psvitaalive::ui::uiDrawText(&font_,x+30,y+153,WHITE,.89f,
+        if (app) ::psvitaalive::ui::uiDrawText(&font_,x+30,y+153,WHITE,1.06f,
             ellipsize(app->name,50).c_str());
         const bool preflightFailed =
             installedDataPreflightFailed_.load(std::memory_order_acquire);
         if (preflightFailed) {
-            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+224,WHITE,.83f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+224,WHITE,1.00f,
                 ::psvitaalive::L("ID_UNSAFE"));
-            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+271,TEXT,.83f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+271,TEXT,1.00f,
                 ::psvitaalive::L("ID_RESULT_FILES_NOT_STARTED"));
         }
         if (!preflightFailed && (action == 0 || action == 2)) {
             ::psvitaalive::ui::uiDrawText(&font_,x+30,y+224,
-                appOk?ACCENT:WHITE,.83f,
+                appOk?ACCENT:WHITE,1.00f,
                 ::psvitaalive::L(appOk ? "ID_RESULT_APP_REMOVED" :
                     "ID_RESULT_APP_FAILED"));
         }
@@ -881,16 +944,16 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 action == 2 && !appOk ? "ID_RESULT_FILES_NOT_STARTED" :
                     "ID_RESULT_FILES_FAILED";
             ::psvitaalive::ui::uiDrawText(&font_,x+30,
-                y+(action==1?224:271),dataOk?ACCENT:WHITE,.83f,
+                y+(action==1?224:271),dataOk?ACCENT:WHITE,1.00f,
                 ::psvitaalive::L(dataText));
         }
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+345,DIM,.73f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+345,DIM,.90f,
             ::psvitaalive::L("ID_RESULT_RECHECK"));
         vita2d_draw_rectangle(x+30,y+381,W-60,62,ACCENT);
         const char* doneText=::psvitaalive::L("ID_RESULT_CONTINUE");
-        const int textW=::psvitaalive::ui::uiTextWidth(&font_,.87f,doneText);
+        const int textW=::psvitaalive::ui::uiTextWidth(&font_,1.04f,doneText);
         ::psvitaalive::ui::uiDrawText(&font_,x+(W-textW)/2,y+420,
-            BG,.87f,doneText);
+            BG,1.04f,doneText);
         return;
     }
     bool containsCachedSize = false;
@@ -905,13 +968,13 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 : std::string(::psvitaalive::L("ID_SIZE_PENDING"))
             : formatBytesShort(installedDataSnapshot_.totalExternalBytes) +
                 (containsCachedSize ? " *" : ""));
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+82,ACCENT,.82f,total.c_str());
+    drawMarqueeText(&font_,x+28,y+82,W-290,ACCENT,.99f,total,false);
     if (!installedDataSnapshot_.complete)
-        ::psvitaalive::ui::uiDrawText(&font_,x+450,y+82,ACCENT,.70f,
-            ::psvitaalive::L("ID_INCOMPLETE"));
+        drawMarqueeText(&font_,x+W-240,y+82,205,ACCENT,.88f,
+            ::psvitaalive::L("ID_INCOMPLETE"),false);
     vita2d_draw_rectangle(x+20,y+96,W-40,1,BORDER);
     if (!installedDataDetail_) {
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+122,TEXT,.74f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+122,TEXT,.92f,
             ::psvitaalive::L("ID_LIST_HINT"));
         for(int n=0;n<VISIBLE;++n) {
             const int i=installedDataScroll_+n;
@@ -922,8 +985,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             vita2d_draw_rectangle(x+23,ry,W-69,ROW-5,focused?SURFACE2:SURFACE);
             if (focused) vita2d_draw_rectangle(x+23,ry,4,ROW-5,ACCENT);
             drawImage(app.icon,"app",x+39,ry+11,64,64);
-            ::psvitaalive::ui::uiDrawText(&font_,x+118,ry+31,
-                focused?WHITE:TEXT,.85f,ellipsize(app.name,43).c_str());
+            drawMarqueeText(&font_,x+118,ry+32,W-332,
+                focused?WHITE:TEXT,1.02f,app.name,false);
             bool cachedSize = app.packagePresent && app.packageSizeCached;
             bool hasExternal = false;
             bool partial = false;
@@ -938,23 +1001,23 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
             if (app.blocked) state += " | " + std::string(
                 ::psvitaalive::L("ID_PROTECTED"));
-            else if (app.activeShared) state += " | " +
+            else if (app.catalogShared) state += " | " +
                 std::string(::psvitaalive::L("ID_SHARED"));
             if (cachedSize) state += " | " + std::string(
                 ::psvitaalive::L("ID_LAST_MEASURED"));
-            ::psvitaalive::ui::uiDrawText(&font_,x+118,ry+60,DIM,.67f,
-                ellipsize(state,65).c_str());
+            drawMarqueeText(&font_,x+118,ry+62,W-300,DIM,.85f,
+                state,false);
             const bool unknown = (app.packagePresent && !app.packageSizeKnown) ||
                 (hasExternal && partial);
             const std::string spaceLabel = unknown ?
                 std::string(::psvitaalive::L("ID_SIZE_PENDING")) :
                 formatBytesShort(app.bytes + (app.packagePresent ?
                     app.packageBytes : 0)) + (cachedSize ? "*" : "");
-            ::psvitaalive::ui::uiDrawText(&font_,x+W-172,ry+36,
-                focused?ACCENT:WHITE,.76f,spaceLabel.c_str());
+            drawMarqueeText(&font_,x+W-179,ry+37,146,
+                focused?ACCENT:WHITE,.93f,spaceLabel,false);
         }
         if(installedDataVisibleRows_.empty())
-            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+210,DIM,.85f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+210,DIM,1.02f,
                 ::psvitaalive::L("ID_NONE"));
         const int rows = static_cast<int>(installedDataVisibleRows_.size());
         if (rows > VISIBLE) {
@@ -974,10 +1037,10 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 ::psvitaalive::L("ID_FILES_READ"),
                 installedDataScanProgress_.filesVisited.load(
                     std::memory_order_relaxed));
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-55,ACCENT,.69f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-55,ACCENT,.86f,
                 scanInfo);
         } else {
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-55,DIM,.66f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-55,DIM,.84f,
                 ::psvitaalive::L("ID_CACHE_HINT"));
         }
     } else {
@@ -985,8 +1048,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         for (const auto& candidate : installedDataSnapshot_.apps)
             if (candidate.titleId == installedDataTargetId_) { app=&candidate; break; }
         if (app) {
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+124,WHITE,.89f,
-                ellipsize(app->name,48).c_str());
+            drawMarqueeText(&font_,x+28,y+124,W-60,WHITE,1.06f,
+                app->name,false);
             bool appPartial = false;
             for (const auto& path : app->paths)
                 if (path.exists && !path.sizeKnown) appPartial = true;
@@ -998,7 +1061,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 !app->packagePresent ? ::psvitaalive::L("ID_ONLY_FILES_LABEL") :
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
             const std::string details = app->titleId + "  |  " + contentType;
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+151,DIM,.73f,details.c_str());
+            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+151,DIM,.90f,details.c_str());
             const std::string packageSize = !app->packagePresent ? "-" :
                 !app->packageSizeKnown ? ::psvitaalive::L("ID_SIZE_PENDING") :
                 formatBytesShort(app->packageBytes) +
@@ -1011,10 +1074,10 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 std::string(::psvitaalive::L("ID_APP_SIZE")) + ": " + packageSize;
             const std::string dataLabel =
                 std::string(::psvitaalive::L("ID_DATA_SIZE")) + ": " + dataSize;
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+177,WHITE,.72f,
-                packageLabel.c_str());
-            ::psvitaalive::ui::uiDrawText(&font_,x+385,y+177,WHITE,.72f,
-                dataLabel.c_str());
+            drawMarqueeText(&font_,x+28,y+178,340,WHITE,.90f,
+                packageLabel,false);
+            drawMarqueeText(&font_,x+385,y+178,W-415,WHITE,.90f,
+                dataLabel,false);
             for (size_t i=0;i<app->paths.size() && i<5;i++) {
                 const auto& path=app->paths[i];
                 const int yy=y+203+static_cast<int>(i)*24;
@@ -1025,26 +1088,26 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 // Same-path catalog declarations no longer create a
                 // misleading "shared" badge; ownership is checked only
                 // immediately before a destructive operation.
-                ::psvitaalive::ui::uiDrawText(&font_,x+28,yy,TEXT,.67f,
-                    ellipsize(path.path,65).c_str());
-                ::psvitaalive::ui::uiDrawText(&font_,x+W-156,yy,ACCENT,.67f,
-                    ellipsize(status,20).c_str());
+                drawMarqueeText(&font_,x+28,yy,W-214,TEXT,.85f,
+                    path.path,false);
+                drawMarqueeText(&font_,x+W-158,yy,130,ACCENT,.85f,
+                    status,false);
             }
             if (app->paths.empty())
-                ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,DIM,.75f,
+                ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,DIM,.92f,
                     ::psvitaalive::L("ID_NO_EXTERNAL"));
-            if (app->blocked || app->activeShared) {
+            if (app->blocked || app->catalogShared) {
                 const char* key = app->blocked ? "ID_PROTECTED_DESC" :
-                    app->packagePresent ? "ID_SHARED_ACTIVE_HINT" :
-                                          "ID_SHARED_ORPHAN_WARNING";
-                drawMarqueeText(&font_,x+28,y+327,W-56,ACCENT,.65f,
+                    "ID_SHARED_ACTIVE_HINT";
+                drawMarqueeText(&font_,x+28,y+327,W-56,ACCENT,.83f,
                     ::psvitaalive::L(key),false);
             }
         }
         // Only render actions that are actually safe and meaningful.
         vita2d_draw_rectangle(x+24,y+341,W-48,28,SURFACE2);
         const char* measureHint=::psvitaalive::L("ID_REFRESH_SIZES_HINT");
-        ::psvitaalive::ui::uiDrawText(&font_,x+40,y+361,TEXT,.66f,measureHint);
+        drawMarqueeText(&font_,x+40,y+361,W-80,TEXT,.84f,
+            measureHint,false);
         bool hasData = false;
         if (app) for (const auto& p : app->paths) hasData = hasData || p.exists;
         const bool canApp = app && app->packagePresent && app->titleId!="PSVAS1178";
@@ -1071,17 +1134,17 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const bool on=installedDataActionFocus_==i;
             vita2d_draw_rectangle(bx,by,buttonW,61,on?ACCENT:SURFACE2);
             if(on) vita2d_draw_rectangle(bx,by,buttonW,3,WHITE);
-            const int titleW=::psvitaalive::ui::uiTextWidth(&font_,.70f,labels[i]);
+            const int titleW=::psvitaalive::ui::uiTextWidth(&font_,.88f,labels[i]);
             drawMarqueeText(&font_,bx+std::max(8,(buttonW-titleW)/2),
-                by+26,buttonW-16,on?BG:WHITE,.70f,labels[i],false);
-            const int noteW=::psvitaalive::ui::uiTextWidth(&font_,.58f,notes[i]);
+                by+26,buttonW-16,on?BG:WHITE,.88f,labels[i],false);
+            const int noteW=::psvitaalive::ui::uiTextWidth(&font_,.81f,notes[i]);
             drawMarqueeText(&font_,bx+std::max(8,(buttonW-noteW)/2),
-                by+47,buttonW-16,on?BG:DIM,.58f,notes[i],false);
+                by+47,buttonW-16,on?BG:DIM,.81f,notes[i],false);
         }
         if (count == 0)
-            ::psvitaalive::ui::uiDrawText(&font_,x+32,y+416,DIM,.78f,
+            ::psvitaalive::ui::uiDrawText(&font_,x+32,y+416,DIM,.95f,
                 ::psvitaalive::L("ID_UNSAFE"));
     }
-    ::psvitaalive::ui::uiDrawText(&font_,x+29,y+H-27,DIM,.71f,
-        ::psvitaalive::L("ID_CONTROLS"));
+    drawMarqueeText(&font_,x+29,y+H-27,W-58,DIM,.89f,
+        ::psvitaalive::L("ID_CONTROLS"),false);
 }

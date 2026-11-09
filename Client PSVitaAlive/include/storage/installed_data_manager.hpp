@@ -27,6 +27,7 @@ struct InstalledDataApp {
     bool unresolved = false; // unsafe or unidentifiable metadata
     bool alternateGameRoots = false; // competing Game Files download roots
     bool activeShared = false; // another installed package declares overlapping data
+    bool catalogShared = false; // another catalog entry declares same root
     bool packagePresent = false;
     // Measured installed package tree ux0:app/<titleId> (read-only).
     uint64_t packageBytes = 0;
@@ -133,14 +134,13 @@ public:
     static bool prepareExternalRemoval(const InstalledDataSnapshot& snapshot,
                                        const std::string& titleId,
                                        InstalledDataOperationProgress* progress,
-                                       bool confirmedInstalledShare = false);
+                                       bool confirmedCatalogShare = false);
     // Revalidates paths before deletion, including installed-app collisions.
     // An explicit shared-root confirmation never bypasses protected roots.
     static bool removeExternal(const InstalledDataSnapshot& snapshot,
                                const std::string& titleId,
                                InstalledDataOperationProgress* progress = nullptr,
-                               bool confirmedInstalledShare = false,
-                               bool targetJustUninstalled = false);
+                               bool confirmedCatalogShare = false);
     // Vita package manager only; no direct ux0:app recursive deletion.
     static bool uninstallPackage(const std::string& titleId,
                                  InstalledDataOperationProgress* progress = nullptr);

@@ -3745,33 +3745,34 @@ void FullCatalogScreen::drawStorageOverlay() {
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
     vita2d_draw_rectangle(x,y,w,h,PANEL);
     vita2d_draw_rectangle(x,y,w,3,ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_,x+26,y+44,WHITE,1.00f,
+    ::psvitaalive::ui::uiDrawText(&font_,x+26,y+44,WHITE,1.13f,
         ::psvitaalive::L("STORAGE_TITLE"));
     if (storageWorker_ >= 0) {
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+134,ACCENT,.88f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+134,ACCENT,1.05f,
             ::psvitaalive::L("STORAGE_WORKING"));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,TEXT,.77f,
+        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,TEXT,.94f,
             ::psvitaalive::L("STORAGE_WAIT"));
         return;
     }
     const auto& snap=storageSnapshot_;
     // Summary and list are separate visual regions; no concatenated labels.
     vita2d_draw_rectangle(x+21,y+60,w-42,70,SURFACE);
-    ::psvitaalive::ui::uiDrawText(&font_,x+39,y+89,ACCENT,.78f,
-        ::psvitaalive::L("STORAGE_TOTAL"));
+    drawMarqueeText(&font_,x+39,y+89,210,ACCENT,.96f,
+        ::psvitaalive::L("STORAGE_TOTAL"),false);
     const bool estimated = snap.installedPartial || snap.installedHistorical;
     const std::string summaryTotal = formatBytesShort(snap.totalBytes()) +
         (estimated ? "*" : "");
-    ::psvitaalive::ui::uiDrawText(&font_,x+39,y+117,WHITE,.91f,
+    ::psvitaalive::ui::uiDrawText(&font_,x+39,y+117,WHITE,1.06f,
         summaryTotal.c_str());
-    ::psvitaalive::ui::uiDrawText(&font_,x+255,y+100,DIM,.70f,
+    drawMarqueeText(&font_,x+290,y+100,w-325,DIM,.88f,
         ::psvitaalive::L(snap.installedPartial ? "ID_TOTAL_PARTIAL" :
                          snap.installedHistorical ? "ID_LAST_MEASURED" :
-                         "STORAGE_SELECT_HINT"));
+                         "STORAGE_SELECT_HINT"),false);
     // Draw only rows fully inside the viewport; the scrollbar/controls
     // remain anchored and the scroll can grow to hundreds of owned ZIPs.
     // Clip scroll contents to the list. Without clipping, partially visible
     // rows create gaps or can paint over the header and footer on real Vita.
+    vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x+21,listTop,x+w-34,listBottom);
     int cy=listTop-storageScrollY_;
     for(size_t i=0;i<storageRows_.size();++i) {
@@ -3794,10 +3795,10 @@ void FullCatalogScreen::drawStorageOverlay() {
             vita2d_set_clip_rectangle(bx+22,std::max(cy,listTop),
                 bx+bw-152,std::min(cy+rh-5,listBottom));
             ::psvitaalive::ui::uiDrawText(&font_,bx+26,cy+30,
-                active?WHITE:TEXT,.74f,item.label.c_str());
+                active?WHITE:TEXT,.92f,item.label.c_str());
             vita2d_set_clip_rectangle(x+21,listTop,x+w-34,listBottom);
             ::psvitaalive::ui::uiDrawText(&font_,bx+bw-125,cy+30,
-                active?ACCENT:WHITE,.75f,formatBytesShort(item.bytes).c_str());
+                active?ACCENT:WHITE,.92f,formatBytesShort(item.bytes).c_str());
         } else {
             const char* title=row.kind==0?::psvitaalive::L("STORAGE_TEMP"):
                 row.kind==1?::psvitaalive::L("STORAGE_ZIPS"):
@@ -3809,8 +3810,8 @@ void FullCatalogScreen::drawStorageOverlay() {
                 row.kind==2?snap.catalogBytes:
                 row.kind==3?snap.imageBytes:
                 row.kind==5?snap.installedBytes:0;
-            ::psvitaalive::ui::uiDrawText(&font_,bx+20,cy+29,
-                active?WHITE:TEXT,.84f,title);
+            drawMarqueeText(&font_,bx+20,cy+29,bw-230,
+                active?WHITE:TEXT,1.0f,title,false);
             const bool measuredPending = row.kind==5 &&
                 snap.installedFound && snap.installedBytes==0;
             const std::string rowSize = measuredPending ?
@@ -3818,13 +3819,14 @@ void FullCatalogScreen::drawStorageOverlay() {
                 formatBytesShort(bytes) +
                 (row.kind==5 && estimated ? "*" : "");
             ::psvitaalive::ui::uiDrawText(&font_,bx+bw-175,cy+29,
-                active?ACCENT:WHITE,.76f,rowSize.c_str());
+                active?ACCENT:WHITE,.93f,rowSize.c_str());
             const char* action=row.kind==5?::psvitaalive::L("ID_SECTION_HINT"):
                 row.kind>=2?::psvitaalive::L("STORAGE_PROTECTED"):
                 bytes==0?::psvitaalive::L("STORAGE_EMPTY"):
                 ::psvitaalive::L("STORAGE_CLEAR_SECTION");
-            ::psvitaalive::ui::uiDrawText(&font_,bx+20,cy+53,
-                (row.kind==5||(row.kind<2 && bytes>0))?ACCENT:DIM,.74f,action);
+            drawMarqueeText(&font_,bx+20,cy+54,bw-42,
+                (row.kind==5||(row.kind<2 && bytes>0))?ACCENT:DIM,.92f,
+                action,false);
         }
         cy+=rh;
     }
@@ -3848,21 +3850,15 @@ void FullCatalogScreen::drawStorageOverlay() {
         const int bw=191,bh=35,bx=x+w-bw-27,by=y+h-53;
         vita2d_draw_rectangle(bx,by,bw,bh,ACCENT);
         const char* lab=::psvitaalive::L("STORAGE_CLEAN_ALL");
-        const int tw=::psvitaalive::ui::uiTextWidth(&font_,.74f,lab);
-        ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-tw)/2,by+24,
-            BG,.74f,lab);
+        drawMarqueeText(&font_,bx+10,by+24,bw-20,BG,.92f,lab,false);
     }
     const char* help=storageConfirm_?
         ::psvitaalive::L(storagePendingAction_==-2 ?
             "STORAGE_CONFIRM_ALL" : "STORAGE_CONFIRM"):
         ::psvitaalive::L("STORAGE_CONTROLS");
-    float helpScale=storageConfirm_?.71f:.72f;
     const int hintMaxW=hasCleanable?580:w-57;
-    while(helpScale>.55f &&
-          ::psvitaalive::ui::uiTextWidth(&font_,helpScale,help)>hintMaxW)
-        helpScale-=.02f;
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+h-27,
-        storageConfirm_?ACCENT:TEXT,helpScale,help);
+    drawMarqueeText(&font_,x+28,y+h-27,hintMaxW,
+        storageConfirm_?ACCENT:TEXT,.90f,help,false);
 }
 
 void FullCatalogScreen::shutdown(){
@@ -4892,6 +4888,27 @@ void FullCatalogScreen::handleTouch() {
                 touchLastY_=py;
                 if(std::abs(px-touchStartX_)>20||std::abs(py-touchStartY_)>20)
                     touchMoved_=true;
+                // Scroll the names of ALL catalog users in the deletion
+                // warning without requiring a button press or changing focus.
+                if (touchMoved_ && installedDataConfirm_ &&
+                    installedDataShareLabels_.size()>3) {
+                    constexpr int dialogW=824,dialogH=474;
+                    const int dx=(SCREEN_W-dialogW)/2,dy0=(SCREEN_H-dialogH)/2;
+                    if(touchStartX_>=dx+22 && touchStartX_<=dx+dialogW-22 &&
+                       touchStartY_>=dy0+274 && touchStartY_<dy0+367) {
+                        touchAccumY_+=static_cast<float>(dy);
+                        const int limit=static_cast<int>(
+                            installedDataShareLabels_.size())-3;
+                        while(touchAccumY_<=-26.f){
+                            touchAccumY_+=26.f;
+                            installedDataShareScroll_=std::min(limit,installedDataShareScroll_+1);
+                        }
+                        while(touchAccumY_>=26.f){
+                            touchAccumY_-=26.f;
+                            installedDataShareScroll_=std::max(0,installedDataShareScroll_-1);
+                        }
+                    }
+                }
                 // Match catalog swipes: accumulate movement across frames;
                 // each 48 px moves one focused row, including slow drags.
                 if(touchMoved_&&(installedDataWorker_<0||installedDataAction_==-3)&&
@@ -4935,16 +4952,24 @@ void FullCatalogScreen::handleTouch() {
                 // The confirmation dialog is intentionally smaller than the
                 // installed-data browser. Keep touch targets in exact sync
                 // with drawInstalledDataOverlay() and controller actions.
-                constexpr int dialogW=780,dialogH=400,buttonW=238,gap=20;
+                constexpr int dialogW=824,dialogH=474,buttonW=244,gap=22;
                 const int dialogX=(SCREEN_W-dialogW)/2;
                 const int dialogY=(SCREEN_H-dialogH)/2;
                 const int firstX=dialogX+(dialogW-(buttonW*2+gap))/2;
-                const int buttonY=dialogY+dialogH-58;
+                const int buttonY=dialogY+dialogH-59;
                 if(hit(px,py,firstX,buttonY,buttonW,46))
                     installedDataConfirm_=false;
                 else if(hit(px,py,firstX+buttonW+gap,buttonY,buttonW,46))
                     activateInstalledDataSelection();
-                else if(!hit(px,py,dialogX,dialogY,dialogW,dialogH))
+                else if(hit(px,py,dialogX+30,dialogY+274,dialogW-60,93) &&
+                        installedDataShareLabels_.size()>3) {
+                    const int maxScroll=static_cast<int>(
+                        installedDataShareLabels_.size())-3;
+                    if(py<dialogY+320)
+                        installedDataShareScroll_=std::max(0,installedDataShareScroll_-1);
+                    else
+                        installedDataShareScroll_=std::min(maxScroll,installedDataShareScroll_+1);
+                }else if(!hit(px,py,dialogX,dialogY,dialogW,dialogH))
                     installedDataConfirm_=false;
                 return;
             }
@@ -4972,7 +4997,8 @@ void FullCatalogScreen::handleTouch() {
                 bool hasData=false;
                 if(app)for(const auto& p:app->paths)hasData=hasData||p.exists;
                 const bool canApp=app&&app->packagePresent&&app->titleId!="PSVAS1178";
-                const bool canData=app&&hasData&&!app->blocked&&!app->unresolved;
+                const bool canData=app&&hasData&&
+                    ::psvitaalive::storage::installedDataCanOfferExternalDelete(*app);
                 const int count=(canApp?1:0)+(canData?1:0)+((canApp&&canData)?1:0);
                 const int buttonW=count==1?420:260;
                 const int firstX=ox+(w-count*buttonW-(count-1)*12)/2;

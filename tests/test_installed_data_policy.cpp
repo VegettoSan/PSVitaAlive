@@ -57,41 +57,66 @@ int main() {
     assert(!installedDataAlternativesAmbiguous(true, 1));
     assert(installedDataAlternativesAmbiguous(true, 2));
 
-    assert(!installedDataSharedDeletePermitted(false, true, true, false));
-    assert(!installedDataSharedDeletePermitted(true, false, true, false));
-    assert(!installedDataSharedDeletePermitted(true, true, false, false));
-    assert(installedDataSharedDeletePermitted(true, true, true, false));
-    assert(installedDataSharedDeletePermitted(true, true, false, true));
-    assert(!installedDataSharedDeletePermitted(true, false, false, true));
+    // Shared paths are not forbidden. Confirmation is required but is NOT
+    // conditional on the selected Homebrew or other VPKs being installed.
+    assert(installedDataSharedDeletePermitted(false, false));
+    assert(installedDataSharedDeletePermitted(true, false));
+    assert(!installedDataSharedDeletePermitted(false, true));
+    assert(installedDataSharedDeletePermitted(true, true));
     {
         InstalledDataApp mario;
         mario.appId = "super-mario-world-vita";
+        mario.name = "Super Mario World Vita";
         mario.titleId = "SPRMRWRLD";
         InstalledDataPath root;
         root.path = "ux0:data/smworld";
         root.exists = true;
         mario.paths.push_back(root);
-        // Root exists without any VPK. It is not automatically unsafe.
         assert(installedDataCanOfferExternalDelete(mario));
+
         InstalledDataSnapshot snapshot;
         snapshot.apps.push_back(mario);
         InstalledDataApp stars;
+        stars.name = "Super Mario All-Stars Vita";
         stars.titleId = "ALLSTARSW";
         stars.paths.push_back(root);
-        stars.packagePresent = false;
         snapshot.apps.push_back(stars);
+        InstalledDataApp secondPort;
+        secondPort.name = "Super Mario All-Stars Alternate";
+        secondPort.titleId = "ALLSTARS1";
+        secondPort.paths.push_back(root);
+        snapshot.apps.push_back(secondPort);
+
+        // All catalog claimants appear, including those without a VPK.
+        auto claims = installedDataCatalogShares(snapshot, snapshot.apps[0]);
+        assert(claims.size() == 2);
+        assert(claims[0].name == "Super Mario All-Stars Vita");
+        assert(claims[0].titleId == "ALLSTARSW");
+        assert(!claims[0].installed);
+        assert(!claims[1].installed);
+        assert(installedDataHasCatalogShare(snapshot, snapshot.apps[0]));
         assert(!installedDataHasActiveShare(snapshot, snapshot.apps[0]));
+
+        // The user may remove orphaned smworld even if OTHER apps are installed.
         snapshot.apps[1].packagePresent = true;
-        assert(installedDataHasActiveShare(snapshot, snapshot.apps[0]));
-        snapshot.apps[0].activeShared = true;
-        // Orphan selected while another VPK is using the same directory.
-        assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
-        snapshot.apps[0].packagePresent = true;
         assert(installedDataCanOfferExternalDelete(snapshot.apps[0]));
-        snapshot.apps[1].paths[0].path = "ux0:data/smworld2";
-        assert(!installedDataHasActiveShare(snapshot, snapshot.apps[0]));
-        snapshot.apps[1].paths[0].path = "ux0:data/smworld/saves";
         assert(installedDataHasActiveShare(snapshot, snapshot.apps[0]));
+        claims = installedDataCatalogShares(snapshot, snapshot.apps[0]);
+        assert(claims.size() == 2 && claims[0].installed && !claims[1].installed);
+        snapshot.apps[0].catalogShared = true;
+        snapshot.apps[0].activeShared = true;
+        assert(installedDataCanOfferExternalDelete(snapshot.apps[0]));
+
+        // Partial prefixes do not constitute matching directories.
+        snapshot.apps[1].paths[0].path = "ux0:data/smworld2";
+        snapshot.apps[2].paths[0].path = "ux0:data/smworld_alt";
+        assert(!installedDataHasCatalogShare(snapshot, snapshot.apps[0]));
+        assert(installedDataCatalogShares(snapshot, snapshot.apps[0]).empty());
+        snapshot.apps[1].paths[0].path = "ux0:data/smworld/saves";
+        assert(installedDataHasCatalogShare(snapshot, snapshot.apps[0]));
+        assert(installedDataCatalogShares(snapshot, snapshot.apps[0]).size() == 1);
+
+        // Shared status never overrides filesystem safety and missing data.
         snapshot.apps[0].paths[0].path = "ux0:data/psvitaalive";
         assert(!installedDataCanOfferExternalDelete(snapshot.apps[0]));
         snapshot.apps[0].paths[0].path = "ux0:data/smworld";
