@@ -23,7 +23,6 @@ def verify_scale(label, fragment, minimum):
 
 main_storage = catalog.split("void FullCatalogScreen::drawStorageOverlay() {", 1)[1].split(
     "void FullCatalogScreen::shutdown(){", 1)[0]
-)
 inspector = installed.split("void FullCatalogScreen::drawInstalledDataOverlay() {", 1)[1]
 
 verify_scale("Storage manager", main_storage, 0.85)
