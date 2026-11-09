@@ -1,0 +1,50 @@
+{
+  "id": "the-house-of-the-dead-2",
+  "tid": "HOTD20001",
+  "n": "The House of the Dead 2",
+  "d": "Unofficial The House of the Dead 2 (Sega) port.",
+  "ld": "Unofficial The House of the Dead 2 (Sega) port.",
+  "aids": [
+    "papileno"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "shooter",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-10-30",
+  "req": "- A PS Vita with HENkaku (Ensō or h-encore). A PS TV was not tested.\n- Enable unsafe homebrew turned on in Settings > HENkaku Settings. The port is unsafe homebrew because vitaGL loads the shader compiler. VitaShell warns that it \"requests extended permissions\" when you install it.\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/. Extract it with ShaRKBR33D or ShaRKF00D.\n- The game data of the PC version of The House of the Dead 2.\nAbout 550 MB free on ux0:.",
+  "sz": 2936013,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/the-house-of-the-dead-2-ps-vita/hotd2%20v1.0.vpk",
+      "sz": 2936013,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/the-house-of-the-dead-2-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 636066202,
+      "xp": "ux0:data/",
+      "ips": [
+        "hotd2"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/papilenote/vita-ports/tree/main/The%20House%20of%20the%20Dead%202"
+    }
+  ],
+  "ic": "https://archive.org/download/the-house-of-the-dead-2-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/the-house-of-the-dead-2-ps-vita/shot0.png"
+  ]
+}
