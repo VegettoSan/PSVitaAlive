@@ -14,17 +14,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.2.2",
-  "vd": "2026-10-23",
+  "v": "0.3",
+  "vd": "2026-11-08",
   "req": "- kubridge.skprx (0.3.1 or newer)\n- CapUnlocker.skprx",
-  "sz": 18769510,
+  "sz": 19922944,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/monster-hunter-tri-ps-vita/mh3-vita%20v0.2.2.vpk",
-      "sz": 18769510,
+      "u": "https://archive.org/download/monster-hunter-tri-ps-vita/mh3-vita%20v0.3.vpk",
+      "sz": 19922944,
       "rec": true
     },
     {
