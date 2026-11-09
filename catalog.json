@@ -1,5 +1,62 @@
 [
   {
+    "id": "soulcalibur-vita",
+    "tid": "SOUL00001",
+    "n": "SoulCalibur Vita",
+    "d": "Port of SoulCalibur for PSVITA.",
+    "ld": "This is a wrapper/port of SoulCalibur for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
+    "aids": [
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "other"
+    ],
+    "v": "v.1.2",
+    "vd": "2026-11-08",
+    "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+    "sz": 2936013,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psvitaalive-soulcalibur-vita/soulcalibur%20v1.2.vpk",
+        "sz": 2936013,
+        "rec": true
+      },
+      {
+        "t": "Data Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psvitaalive-soulcalibur-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 239809331,
+        "xp": "ux0:data/",
+        "ips": [
+          "soulcalibur"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/Rinnegatamante/soulcalibur_vita"
+      }
+    ],
+    "ic": "https://archive.org/download/psvitaalive-soulcalibur-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_05.png"
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1174",
+    "su": "https://github.com/Rinnegatamante/soulcalibur_vita",
+    "rp": "https://github.com/Rinnegatamante/soulcalibur_vita/releases",
+    "ua": "2026-08-13T15:34"
+  },
+  {
     "id": "super-mario-galaxy",
     "tid": "SMGV00001",
     "n": "Super Mario Galaxy",
@@ -21671,61 +21728,6 @@
     "su": "https://github.com/Rinnegatamante/swordigo-vita",
     "rp": "https://github.com/Rinnegatamante/swordigo-vita/releases",
     "ua": "2026-08-13T15:34:48.424002+00:00"
-  },
-  {
-    "id": "soulcalibur-vita",
-    "tid": "SOUL00001",
-    "n": "SoulCalibur Vita",
-    "d": "Port of SoulCalibur for PSVITA.",
-    "ld": "This is a wrapper/port of SoulCalibur for the PS Vita. The port works by loading the official Android ARMv7 executable in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.\n\n- PsVitaAlive -",
-    "aids": [
-      "rinnegatamante"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "v.1.1",
-    "vd": "2024-12-05",
-    "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "sz": 2746549,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-soulcalibur-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-soulcalibur-vita/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-soulcalibur-vita/soulcalibur-vita.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Rinnegatamante/soulcalibur_vita/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Rinnegatamante/soulcalibur_vita/releases/tag/v.1.1"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/Rinnegatamante/soulcalibur_vita"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1174",
-    "su": "https://github.com/Rinnegatamante/soulcalibur_vita",
-    "rp": "https://github.com/Rinnegatamante/soulcalibur_vita/releases",
-    "ua": "2026-08-13T15:34:48.425087+00:00"
   },
   {
     "id": "vitavoyager",
