@@ -187,46 +187,25 @@ void uniqueRoots(std::vector<std::string>& roots) {
 bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
                              const std::string& titleId,
                              const InstalledDataApp*& target,
-                             bool confirmedInstalledShare,
-                             bool targetJustUninstalled) {
+                             bool confirmedCatalogShare) {
     target = nullptr;
     if (!validInstalledTitleId(titleId)) return false;
     for (const auto& app : snapshot.apps)
         if (app.titleId == titleId) { target = &app; break; }
+    // Metadata/routing security is mandatory even when the user has opted
+    // into deleting a catalog-shared folder.
     if (!target || !installedDataCanOfferExternalDelete(*target)) return false;
-    // Only a warning explicitly confirmed for an installed target package
-    // can override another installed app's root claim. The second check may
-    // follow a successful package uninstall within the same job.
-    const bool targetPresentNow = exists(std::string("ux0:app/") +
-                                        titleId + "/sce_sys/param.sfo");
-    const bool permitShared = installedDataSharedDeletePermitted(
-        confirmedInstalledShare, target->packagePresent, targetPresentNow,
-        targetJustUninstalled);
+    if (!installedDataSharedDeletePermitted(confirmedCatalogShare,
+            installedDataHasCatalogShare(snapshot, *target))) {
+        diagnostics::log("[InstalledData] shared root needs an informed confirmation");
+        return false;
+    }
     bool anyPresent = false;
     for (const auto& p : target->paths) {
         if (!safeExternalDataPath(p.path)) return false;
         if (!p.exists) continue;
         if (!exists(p.path)) return false; // snapshot may have become stale
         anyPresent = true;
-        for (const auto& other : snapshot.apps) {
-            if (other.titleId == titleId ||
-                !validInstalledTitleId(other.titleId)) continue;
-            const bool installed = exists(std::string("ux0:app/") +
-                                          other.titleId + "/sce_sys/param.sfo");
-            if (!installed) continue;
-            for (const auto& q : other.paths) {
-                if (safeExternalDataPath(q.path) &&
-                    installedDataActiveCollision(p.path, q.path, installed)) {
-                    if (!permitShared) {
-                        diagnostics::log("[InstalledData] shared root requires "
-                            "installed-target confirmation: " + other.titleId);
-                        return false;
-                    }
-                    diagnostics::log("[InstalledData] confirmed shared root "
-                        "deletion also affects: " + other.titleId);
-                }
-            }
-        }
     }
     return anyPresent;
 }
@@ -327,8 +306,10 @@ InstalledDataSnapshot InstalledDataManager::scan(
     }
     // Cache the active installed-app collision hint once, not per UI frame.
     for (auto& app : result.apps)
-        if (onlyTitleId.empty() || app.titleId == onlyTitleId)
+        if (onlyTitleId.empty() || app.titleId == onlyTitleId) {
             app.activeShared = installedDataHasActiveShare(result, app);
+            app.catalogShared = installedDataHasCatalogShare(result, app);
+        }
     // Do not mark a Game Files directory as shared/protected simply
     // because another catalog entry declares the same path. Declarations
     // are not evidence of multiple installations. In particular this must
@@ -512,13 +493,13 @@ void InstalledDataManager::invalidateCachedPackageTitle(
 
 bool InstalledDataManager::prepareExternalRemoval(
     const InstalledDataSnapshot& snapshot, const std::string& titleId,
-    InstalledDataOperationProgress* progress, bool confirmedInstalledShare) {
+    InstalledDataOperationProgress* progress, bool confirmedCatalogShare) {
     const InstalledDataApp* target = nullptr;
     // Show the preflight stage immediately, including when ownership checks
     // reject the request. Never falsely label this as uninstalling the APP.
     if (progress) progress->phase.store(5, std::memory_order_release);
     if (!validateExternalRemoval(snapshot, titleId, target,
-                                 confirmedInstalledShare, false)) return false;
+                                 confirmedCatalogShare)) return false;
     uint64_t total = 0;
     for (const auto& path : target->paths) {
         if (!path.exists) continue;
@@ -540,13 +521,11 @@ bool InstalledDataManager::prepareExternalRemoval(
 bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                                           const std::string& titleId,
                                           InstalledDataOperationProgress* progress,
-                                          bool confirmedInstalledShare,
-                                          bool targetJustUninstalled) {
+                                          bool confirmedCatalogShare) {
     const InstalledDataApp* target = nullptr;
     // Recheck ownership and existence AFTER pre-count and package operations.
     if (!validateExternalRemoval(snapshot, titleId, target,
-                                 confirmedInstalledShare,
-                                 targetJustUninstalled)) return false;
+                                 confirmedCatalogShare)) return false;
     if (progress) {
         uint32_t roots = 0;
         for (const auto& path : target->paths)

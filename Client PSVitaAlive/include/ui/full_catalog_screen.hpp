@@ -582,6 +582,8 @@ private:
     bool installedDataDetail_ = false;
     bool installedDataConfirm_ = false;
     bool installedDataShareApproved_ = false; // explicit warning + X confirmation
+    std::vector<std::string> installedDataShareLabels_; // cached when confirming
+    int installedDataShareScroll_ = 0;
     int installedDataListFocus_ = 0;
     int installedDataScroll_ = 0;
     int installedDataActionFocus_ = 0; // 0 app, 1 Game/Data Files, 2 all

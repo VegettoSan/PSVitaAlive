@@ -3,6 +3,7 @@
 // filesystem deletion authority without rechecking these rules at execution.
 #include <cctype>
 #include <string>
+#include <vector>
 #include "storage/installed_data_manager.hpp"
 
 namespace psvitaalive { namespace storage {
@@ -66,15 +67,10 @@ inline bool installedDataAlternativesAmbiguous(bool hasAlternatives,
     return hasAlternatives && existingRootCount > 1;
 }
 
-// Explicit warning acceptance + installed-target proof are both required.
-// targetJustUninstalled is only set after successful PromoterUtility uninstall
-// within the same preflighted "delete both" operation.
-inline bool installedDataSharedDeletePermitted(bool confirmed,
-                                               bool targetWasInstalled,
-                                               bool targetPresentNow,
-                                               bool targetJustUninstalled) {
-    return confirmed && targetWasInstalled &&
-        (targetPresentNow || targetJustUninstalled);
+// A matching catalog path alone is not proof that two apps are installed.
+// It still matters for informed deletion: the user can see every claimant.
+inline bool installedDataSharedDeletePermitted(bool confirmed, bool hasOverlap) {
+    return !hasOverlap || confirmed;
 }
 
 // Component-aligned collision test. "game" does not overlap "game2".
@@ -113,8 +109,7 @@ inline bool installedDataActiveCollision(const std::string& target,
 inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
     if (app.blocked || app.unresolved ||
         !validInstalledTitleId(app.titleId) || app.titleId == "PSVAS1178" ||
-        app.appId == "psvitaalive" || app.appId == "ps-vita-alive" ||
-        (app.activeShared && !app.packagePresent)) return false;
+        app.appId == "psvitaalive" || app.appId == "ps-vita-alive") return false;
     bool anyPresent = false;
     for (const auto& p : app.paths) {
         if (!p.exists) continue;
@@ -133,6 +128,56 @@ inline bool installedDataHasActiveShare(const InstalledDataSnapshot& snapshot,
         for (const auto& other : snapshot.apps) {
             if (other.titleId == target.titleId || !other.packagePresent ||
                 !validInstalledTitleId(other.titleId)) continue;
+            for (const auto& q : other.paths)
+                if (safeExternalDataPath(q.path) &&
+                    installedPathsOverlap(p.path, q.path)) return true;
+        }
+    }
+    return false;
+}
+
+struct InstalledDataShareInfo {
+    std::string titleId;
+    std::string name;
+    bool installed = false;
+};
+
+// Return one record per different title, including titles without installed
+// VPKs. Called when entering the delete confirmation, not every frame.
+inline std::vector<InstalledDataShareInfo> installedDataCatalogShares(
+    const InstalledDataSnapshot& snapshot, const InstalledDataApp& target) {
+    std::vector<InstalledDataShareInfo> found;
+    for (const auto& other : snapshot.apps) {
+        if (other.titleId == target.titleId ||
+            !validInstalledTitleId(other.titleId)) continue;
+        bool overlap = false;
+        for (const auto& p : target.paths) {
+            if (!p.exists || !safeExternalDataPath(p.path)) continue;
+            for (const auto& q : other.paths) {
+                if (safeExternalDataPath(q.path) &&
+                    installedPathsOverlap(p.path, q.path)) {
+                    overlap = true;
+                    break;
+                }
+            }
+            if (overlap) break;
+        }
+        if (!overlap) continue;
+        bool alreadyAdded = false;
+        for (const auto& row : found)
+            if (row.titleId == other.titleId) { alreadyAdded = true; break; }
+        if (!alreadyAdded)
+            found.push_back({other.titleId, other.name, other.packagePresent});
+    }
+    return found;
+}
+inline bool installedDataHasCatalogShare(const InstalledDataSnapshot& snapshot,
+                                        const InstalledDataApp& target) {
+    for (const auto& other : snapshot.apps) {
+        if (other.titleId == target.titleId ||
+            !validInstalledTitleId(other.titleId)) continue;
+        for (const auto& p : target.paths) {
+            if (!p.exists || !safeExternalDataPath(p.path)) continue;
             for (const auto& q : other.paths)
                 if (safeExternalDataPath(q.path) &&
                     installedPathsOverlap(p.path, q.path)) return true;
