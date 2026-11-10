@@ -1,0 +1,52 @@
+{
+  "id": "hebdomad-seven-vigils",
+  "tid": "HBDM00001",
+  "n": "Hebdomad: Seven Vigils",
+  "d": "Hebdomad: Seven Vigils - PlayStation Vita and Nokia N900 (Maemo) port of 7 Days Salvation",
+  "ld": "7 Days Salvation on the Nokia N900 and PS Vita.\n\nAn unofficial engine, rewritten with SDL3, to play 7 Days Salvation (Symbian, 2009) on the Nokia N900 (Maemo 5, OpenGL ES 2.0) and the PS Vita (SceGxm).",
+  "aids": [
+    "0x4d696e68"
+  ],
+  "cid": "ports",
+  "sids": [
+    "strategy",
+    "source-port",
+    "other"
+  ],
+  "v": "1.1.0",
+  "vd": "2026-10-12",
+  "req": "- No Data",
+  "sz": 2202010,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/hebdomad%20v1.1.0.vpk",
+      "sz": 2202010,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 52009370,
+      "xp": "ux0:data/",
+      "ips": [
+        "HebdomadSevenVigils"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/0x4d696e68/Hebdomad"
+    }
+  ],
+  "ic": "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot0.jpg",
+    "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot1.jpg",
+    "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot2.png",
+    "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot3.png"
+  ]
+}
