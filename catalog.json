@@ -1,5 +1,54 @@
 [
   {
+    "id": "harry-potter-flipendo",
+    "tid": "FLPD00001",
+    "n": "Harry Potter Flipendo",
+    "d": "PS Vita port of Flipendo (Harry Potter and the Philosopher's Stone PC on SurrealEngine)",
+    "ld": "A PS Vita port of Flipendo, the source port of KnowWonder's Harry Potter and the Philosopher's Stone (PC, 2001) on SurrealEngine.",
+    "aids": [
+      "31zzard"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "game-engine",
+      "other"
+    ],
+    "v": "0.0.3",
+    "vd": "2026-11-09",
+    "req": "- No Data",
+    "sz": 7549747,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/harry-potter-flipendo-ps-vita/flipendo%20v0.3.vpk",
+        "sz": 7549747,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/harry-potter-flipendo-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 449105101,
+        "xp": "ux0:data/",
+        "ips": [
+          "flipendo"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/31zzard/flipendo-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/harry-potter-flipendo-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/harry-potter-flipendo-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "soulcalibur-vita",
     "tid": "SOUL00001",
     "n": "SoulCalibur Vita",
@@ -318,6 +367,55 @@
     "ic": "https://archive.org/download/monster-hunter-tri-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/monster-hunter-tri-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "pac-n-jump",
+    "tid": "PNJN00001",
+    "n": "Pac'N-Jump",
+    "d": "Native port of Pac'N-Jump (Namco, 2011) for Ps Vita",
+    "ld": "A fan port of Pac'N-Jump, Namco's 2011 phone game that has since been pulled from the Android and iOS app stores. It plays like the original, with all 8 stages, the menus, Help pages and achievements, and it runs on Windows, macOS, Linux, Android, Nintendo 3DS, PS Vita, and Sega Dreamcast.",
+    "aids": [
+      "heyjonanderson"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.9.1",
+    "vd": "2026-11-08",
+    "req": "- No Data",
+    "sz": 1153434,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/pacn-jump-ps-vita/pacnjump%20v0.9.1.vpk",
+        "sz": 1153434,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/pacn-jump-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 20237517,
+        "xp": "ux0:data/",
+        "ips": [
+          "jon"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/heyjonanderson/PacNJumpNative"
+      }
+    ],
+    "ic": "https://archive.org/download/pacn-jump-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/pacn-jump-ps-vita/Shot0.png"
     ]
   },
   {
@@ -4551,6 +4649,58 @@
       "https://archive.org/download/crash-team-racing-high-optane/shot1.jpg",
       "https://archive.org/download/crash-team-racing-high-optane/shot2.jpg",
       "https://archive.org/download/crash-team-racing-high-optane/shot3.jpg"
+    ]
+  },
+  {
+    "id": "hebdomad-seven-vigils",
+    "tid": "HBDM00001",
+    "n": "Hebdomad: Seven Vigils",
+    "d": "Hebdomad: Seven Vigils - PlayStation Vita and Nokia N900 (Maemo) port of 7 Days Salvation",
+    "ld": "7 Days Salvation on the Nokia N900 and PS Vita.\n\nAn unofficial engine, rewritten with SDL3, to play 7 Days Salvation (Symbian, 2009) on the Nokia N900 (Maemo 5, OpenGL ES 2.0) and the PS Vita (SceGxm).",
+    "aids": [
+      "0x4d696e68"
+    ],
+    "cid": "ports",
+    "sids": [
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "v": "1.1.0",
+    "vd": "2026-10-12",
+    "req": "- No Data",
+    "sz": 2202010,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/hebdomad%20v1.1.0.vpk",
+        "sz": 2202010,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 52009370,
+        "xp": "ux0:data/",
+        "ips": [
+          "HebdomadSevenVigils"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/0x4d696e68/Hebdomad"
+      }
+    ],
+    "ic": "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot0.jpg",
+      "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot1.jpg",
+      "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot2.png",
+      "https://archive.org/download/hebdomad-seven-vigils-playstation-vita/shot3.png"
     ]
   },
   {

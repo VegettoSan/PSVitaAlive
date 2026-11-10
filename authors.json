@@ -15,6 +15,21 @@
     "ic": "https://github.com/Andiweli.png"
   },
   {
+    "id": "0x4d696e68",
+    "n": "0x4d696e68",
+    "av": "https://avatars.githubusercontent.com/u/62165056?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/0x4d696e68",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/62165056?v=4"
+  },
+  {
     "id": "10tr-ll-on-percent",
     "n": "10TR!LL!ON Percent%",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -43,6 +58,21 @@
       }
     ],
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "31zzard",
+    "n": "31zzard",
+    "av": "https://avatars.githubusercontent.com/u/353358462?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/31zzard",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/353358462?v=4"
   },
   {
     "id": "4brm01",
@@ -3911,6 +3941,21 @@
       }
     ],
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "heyjonanderson",
+    "n": "heyjonanderson",
+    "av": "https://avatars.githubusercontent.com/u/80368920?v=4",
+    "b": "Design portfolio: itsjonanderson.com GitHub is for my goofy side projects",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/heyjonanderson",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/80368920?v=4"
   },
   {
     "id": "hisarmman",
