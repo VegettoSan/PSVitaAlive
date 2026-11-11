@@ -49,6 +49,54 @@
     ]
   },
   {
+    "id": "thug2-vita",
+    "tid": "THUG20001",
+    "n": "THUG2 Vita",
+    "d": "Native port of Tony Hawk's Underground 2 for PSVita.",
+    "ld": "A native PS Vita port of Tony Hawk's Underground 2 (2004). Not an emulator: the game engine is rebuilt for the Vita's ARM processor with a vitaGL graphics backend, the same engine as THUG Vita (based on kisak-thug), extended to run the Xbox version of THUG2. Story mode (World Destruction Tour) and Classic mode can be played to the end, along with Free Skate and every create mode (Create-a-Skater, Create-a-Park, Create-a-Goal, Create-a-Trick, Create-a-Graphic). Most views run at or near 60 fps, FMV videos play, and the HUD uses the THUG Pro HD assets. No game data is included: the port reads the data files of the Xbox release.",
+    "aids": [
+      "iwannagooutside"
+    ],
+    "cid": "ports",
+    "sids": [
+      "source-port"
+    ],
+    "v": "v1.0.0",
+    "vd": "2026-11-09",
+    "req": "- libshacccg.suprx\n- Game Data Files: Xbox",
+    "sz": 8188023,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/iwannagooutside/thug2-vita/releases/download/v1.0.0/thug2_vita.vpk",
+        "sz": 8188023,
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/iwannagooutside/thug2-vita"
+      },
+      {
+        "t": "Issues",
+        "n": "Issues",
+        "u": "https://github.com/iwannagooutside/thug2-vita/issues"
+      },
+      {
+        "t": "Official Website",
+        "n": "Trailer",
+        "u": "https://www.youtube.com/watch?v=6RDFKMUtnxA"
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/iwannagooutside/thug2-vita/main/vita/livearea/thug2/icon0.png",
+    "ss": [
+      "https://img.youtube.com/vi/6RDFKMUtnxA/maxresdefault.jpg"
+    ],
+    "rp": "https://github.com/iwannagooutside/thug2-vita/releases"
+  },
+  {
     "id": "soulcalibur-vita",
     "tid": "SOUL00001",
     "n": "SoulCalibur Vita",
