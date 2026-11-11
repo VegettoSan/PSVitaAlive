@@ -1,5 +1,104 @@
 [
   {
+    "id": "bloodbornepsx-v",
+    "tid": "BBPS00001",
+    "n": "bloodbornePSX-V",
+    "d": "BloodbornePSX-V Ps Vita Port",
+    "ld": "BloodbornePSX-V Ps Vita Port",
+    "aids": [
+      "maximum-programmer32"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "v": "01.09",
+    "vd": "2026-11-10",
+    "req": "- No Data",
+    "sz": 1468006,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/bloodbornepsx-v-ps-vita/BloodBorne%20psx%20v01.09.vpk",
+        "sz": 1468006,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/bloodbornepsx-v-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 196712858,
+        "xp": "ux0:data/",
+        "ips": [
+          "bbpsx"
+        ]
+      },
+      {
+        "t": "Community",
+        "n": "Reddit",
+        "u": "https://www.reddit.com/r/VitaPiracy/comments/1xsfgok/comment/19sf9ymi1tkec/?force-legacy-sct=1"
+      }
+    ],
+    "ic": "https://archive.org/download/bloodbornepsx-v-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/bloodbornepsx-v-ps-vita/shot0.png",
+      "https://archive.org/download/bloodbornepsx-v-ps-vita/shot1.png"
+    ]
+  },
+  {
+    "id": "kof-a-2012",
+    "tid": "KOFA00001",
+    "n": "KOF-A 2012",
+    "d": "Unofficial PS Vita port of the Android version of THE KING OF FIGHTERS-A 2012 (SNK).",
+    "ld": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES, OpenSL ES, the movie player) replaced by Vita code.",
+    "aids": [
+      "papileno"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "source-port",
+      "other"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-10",
+    "req": "- kubridge v0.3.1 or later by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- Your own Android APK of the game, version 1.0.8, and its OBB file.\n- About 1.3 GB free on ux0: (the APK is 25 MB, the OBB 1.2 GB). The port reads both in place: nothing is unpacked.",
+    "sz": 3565158,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/kof2012.vpk",
+        "sz": 3565158,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1181116006,
+        "xp": "ux0:data/",
+        "ips": [
+          "kofa2012"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/papilenote/vita-ports/tree/main/The%20King%20of%20Fighters-A%202012"
+      }
+    ],
+    "ic": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "harry-potter-flipendo",
     "tid": "FLPD00001",
     "n": "Harry Potter Flipendo",
@@ -64,15 +163,25 @@
     "v": "v1.0.0",
     "vd": "2026-11-09",
     "req": "- libshacccg.suprx\n- Game Data Files: Xbox",
-    "sz": 8188023,
+    "sz": 8188330,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/iwannagooutside/thug2-vita/releases/download/v1.0.0/thug2_vita.vpk",
-        "sz": 8188023,
+        "u": "https://archive.org/download/thug2-vita/thug2_vita%20v1.0.0.vpk",
+        "sz": 8188330,
         "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/thug2-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2791728742,
+        "xp": "ux0:data/",
+        "ips": [
+          "thug2"
+        ]
       },
       {
         "t": "Repository",
@@ -90,9 +199,10 @@
         "u": "https://www.youtube.com/watch?v=6RDFKMUtnxA"
       }
     ],
-    "ic": "https://raw.githubusercontent.com/iwannagooutside/thug2-vita/main/vita/livearea/thug2/icon0.png",
+    "ic": "https://archive.org/download/thug2-vita/icon0.png",
     "ss": [
-      "https://img.youtube.com/vi/6RDFKMUtnxA/maxresdefault.jpg"
+      "https://img.youtube.com/vi/6RDFKMUtnxA/maxresdefault.jpg",
+      "https://archive.org/download/thug2-vita/Shot0.png"
     ],
     "rp": "https://github.com/iwannagooutside/thug2-vita/releases"
   },

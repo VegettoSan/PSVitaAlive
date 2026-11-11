@@ -6013,6 +6013,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "maximum-programmer32",
+    "n": "Maximum-Programmer32",
+    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Community",
+        "n": "Reddit",
+        "u": "https://www.reddit.com/user/Maximum-Programmer32/",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "mcallbosco",
     "n": "mcallbosco",
     "av": "https://github.com/mcallbosco.png",
