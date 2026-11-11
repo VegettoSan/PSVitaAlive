@@ -14,15 +14,25 @@
   "v": "v1.0.0",
   "vd": "2026-11-09",
   "req": "- libshacccg.suprx\n- Game Data Files: Xbox",
-  "sz": 8188023,
+  "sz": 8188330,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/iwannagooutside/thug2-vita/releases/download/v1.0.0/thug2_vita.vpk",
-      "sz": 8188023,
+      "u": "https://archive.org/download/thug2-vita/thug2_vita%20v1.0.0.vpk",
+      "sz": 8188330,
       "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/thug2-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2791728742,
+      "xp": "ux0:data/",
+      "ips": [
+        "thug2"
+      ]
     },
     {
       "t": "Repository",
@@ -40,9 +50,10 @@
       "u": "https://www.youtube.com/watch?v=6RDFKMUtnxA"
     }
   ],
-  "ic": "https://raw.githubusercontent.com/iwannagooutside/thug2-vita/main/vita/livearea/thug2/icon0.png",
+  "ic": "https://archive.org/download/thug2-vita/icon0.png",
   "ss": [
-    "https://img.youtube.com/vi/6RDFKMUtnxA/maxresdefault.jpg"
+    "https://img.youtube.com/vi/6RDFKMUtnxA/maxresdefault.jpg",
+    "https://archive.org/download/thug2-vita/Shot0.png"
   ],
   "rp": "https://github.com/iwannagooutside/thug2-vita/releases"
 }

@@ -1,0 +1,50 @@
+{
+  "id": "bloodbornepsx-v",
+  "tid": "BBPS00001",
+  "n": "bloodbornePSX-V",
+  "d": "BloodbornePSX-V Ps Vita Port",
+  "ld": "BloodbornePSX-V Ps Vita Port",
+  "aids": [
+    "maximum-programmer32"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "strategy",
+    "source-port"
+  ],
+  "v": "01.09",
+  "vd": "2026-11-10",
+  "req": "- No Data",
+  "sz": 1468006,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/bloodbornepsx-v-ps-vita/BloodBorne%20psx%20v01.09.vpk",
+      "sz": 1468006,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/bloodbornepsx-v-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 196712858,
+      "xp": "ux0:data/",
+      "ips": [
+        "bbpsx"
+      ]
+    },
+    {
+      "t": "Community",
+      "n": "Reddit",
+      "u": "https://www.reddit.com/r/VitaPiracy/comments/1xsfgok/comment/19sf9ymi1tkec/?force-legacy-sct=1"
+    }
+  ],
+  "ic": "https://archive.org/download/bloodbornepsx-v-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/bloodbornepsx-v-ps-vita/shot0.png",
+    "https://archive.org/download/bloodbornepsx-v-ps-vita/shot1.png"
+  ]
+}
