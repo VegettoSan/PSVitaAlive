@@ -321,6 +321,9 @@
     "BBFF12345": {
       "version": "v.0.92"
     },
+    "BBPS00001": {
+      "version": "01.09"
+    },
     "BBRM12345": {
       "version": "v.1.0"
     },
@@ -1550,6 +1553,9 @@
     },
     "KKRBROCRO": {
       "version": "v.1.0"
+    },
+    "KOFA00001": {
+      "version": "1.0"
     },
     "KOFM00000": {
       "version": "v.1.0"
