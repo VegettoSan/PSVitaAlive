@@ -793,7 +793,7 @@
       "version": "v.1.0"
     },
     "DLTVITA01": {
-      "version": "v.0.69"
+      "version": "0.81"
     },
     "DOGGYTEST": {
       "version": "v.0.2"
@@ -2398,7 +2398,7 @@
       "version": "v.1.0"
     },
     "RECVX0001": {
-      "version": "1.3"
+      "version": "1.4.1"
     },
     "REDG00001": {
       "version": "1.0"
@@ -2651,6 +2651,9 @@
     },
     "SHDWWRR32": {
       "version": "v.1.2"
+    },
+    "SHIL00002": {
+      "version": "0.1.0a2"
     },
     "SHIPOFHAR": {
       "version": "v.1.2"
@@ -3016,7 +3019,7 @@
       "version": "v.2.1"
     },
     "THSV12302": {
-      "version": "0.1.1"
+      "version": "0.2.0"
     },
     "THTR00001": {
       "version": "v.0.7A-TH1"
@@ -3038,6 +3041,9 @@
     },
     "TMBRAIDER": {
       "version": "v.1.2"
+    },
+    "TMNT02003": {
+      "version": "0.3"
     },
     "TNSJOB001": {
       "version": "v.1.0"
