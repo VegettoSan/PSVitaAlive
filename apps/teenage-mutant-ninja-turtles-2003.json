@@ -1,0 +1,52 @@
+{
+  "id": "teenage-mutant-ninja-turtles-2003",
+  "tid": "TMNT02003",
+  "n": "Teenage Mutant Ninja Turtles (2003)",
+  "d": "An unofficial port of Teenage Mutant Ninja Turtles (Konami, 2003, PC version) to the PS Vita.",
+  "ld": "An unofficial port of Teenage Mutant Ninja Turtles (Konami, 2003, PC version) to the PS Vita.",
+  "aids": [
+    "zeklab"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.3",
+  "vd": "2026-11-08",
+  "req": "- libshacccg.suprx\n- The PC game, English executable TMNT_EN.EXE\n- About 2.5 GB free on the Vita",
+  "sz": 911667,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/TMNTVita%20v0.3.vpk",
+      "sz": 911667,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1717986918,
+      "xp": "ux0:data/",
+      "ips": [
+        "TMNT2003"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ZekLab/TMNT-2003-PSVita-Port"
+    }
+  ],
+  "ic": "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/shot0.png",
+    "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/shot1.png",
+    "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/shot2.png"
+  ]
+}

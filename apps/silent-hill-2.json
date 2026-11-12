@@ -1,0 +1,47 @@
+{
+  "id": "silent-hill-2",
+  "tid": "SHIL00002",
+  "n": "Silent Hill 2",
+  "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+  "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+  "aids": [
+    "angelogalav"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "strategy",
+    "source-port",
+    "other"
+  ],
+  "v": "0.1.0a2",
+  "vd": "2026-11-11",
+  "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
+  "sz": 1258291,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/sh2-vita/sh2vita%20v0.1.0A2.vpk",
+      "sz": 1258291,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2684354560,
+      "xp": "ux0:data/",
+      "ips": [
+        "sh2-vita"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/AngeloGalav/sh2-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/sh2-vita/icon0.png"
+}
