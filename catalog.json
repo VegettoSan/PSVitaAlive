@@ -1,5 +1,55 @@
 [
   {
+    "id": "kof-a-2012",
+    "tid": "KOFA00001",
+    "n": "KOF-A 2012",
+    "d": "Unofficial PS Vita port of the Android version of THE KING OF FIGHTERS-A 2012 (SNK).",
+    "ld": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES, OpenSL ES, the movie player) replaced by Vita code.",
+    "aids": [
+      "papileno"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "source-port",
+      "other"
+    ],
+    "v": "1.0.1",
+    "vd": "2026-11-12",
+    "req": "- kubridge v0.3.1 or later by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- Your own Android APK of the game, version 1.0.8, and its OBB file.\n- About 1.3 GB free on ux0: (the APK is 25 MB, the OBB 1.2 GB). The port reads both in place: nothing is unpacked.",
+    "sz": 3565158,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/kof2012.vpk",
+        "sz": 3565158,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/Game%20Files%20for%20PSVA%20fix.zip",
+        "sz": 1181116006,
+        "xp": "ux0:data/",
+        "ips": [
+          "kof2012"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/papilenote/vita-ports/tree/main/The%20King%20of%20Fighters-A%202012"
+      }
+    ],
+    "dr": 1,
+    "ic": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "resident-evil-code-veronica-x",
     "tid": "RECVX0001",
     "n": "Resident Evil Code: Veronica X",
@@ -200,55 +250,6 @@
     "ss": [
       "https://archive.org/download/bloodbornepsx-v-ps-vita/shot0.png",
       "https://archive.org/download/bloodbornepsx-v-ps-vita/shot1.png"
-    ]
-  },
-  {
-    "id": "kof-a-2012",
-    "tid": "KOFA00001",
-    "n": "KOF-A 2012",
-    "d": "Unofficial PS Vita port of the Android version of THE KING OF FIGHTERS-A 2012 (SNK).",
-    "ld": "The port is a loader. It runs the game's own Android ARM code natively on the Vita, with the Android system parts (Java side, libc, OpenGL ES, OpenSL ES, the movie player) replaced by Vita code.",
-    "aids": [
-      "papileno"
-    ],
-    "cid": "ports",
-    "sids": [
-      "arcade",
-      "source-port",
-      "other"
-    ],
-    "v": "1.0",
-    "vd": "2026-11-10",
-    "req": "- kubridge v0.3.1 or later by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- Your own Android APK of the game, version 1.0.8, and its OBB file.\n- About 1.3 GB free on ux0: (the APK is 25 MB, the OBB 1.2 GB). The port reads both in place: nothing is unpacked.",
-    "sz": 3565158,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/kof2012.vpk",
-        "sz": 3565158,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 1181116006,
-        "xp": "ux0:data/",
-        "ips": [
-          "kofa2012"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/papilenote/vita-ports/tree/main/The%20King%20of%20Fighters-A%202012"
-      }
-    ],
-    "ic": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/shot0.png"
     ]
   },
   {
@@ -1675,6 +1676,46 @@
     "ic": "https://archive.org/download/twinsanityevolved-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
+    ]
+  },
+  {
+    "id": "insurgency",
+    "tid": "VITACQ001",
+    "n": "Insurgency BETA",
+    "d": "Insurgency: VITA - Multiplayer Beta",
+    "ld": "Insurgency: VITA - Multiplayer Beta\n\n- PsVitaAlive -",
+    "aids": [
+      "onedumbfox"
+    ],
+    "cid": "games",
+    "sids": [
+      "shooter",
+      "strategy"
+    ],
+    "v": "5",
+    "vd": "2026-11-04",
+    "req": "- No Data",
+    "sz": 809290957,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK  + Game Files",
+        "u": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
+        "sz": 809290957,
+        "rec": true
+      },
+      {
+        "t": "Community",
+        "n": "Post Reddit",
+        "u": "https://www.reddit.com/r/vitahacks/comments/1x7eotu/insurgency_vita_multiplayer_beta_feature_update/"
+      }
+    ],
+    "ic": "https://archive.org/download/insurgency-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/insurgency-vita/shot0.png",
+      "https://archive.org/download/insurgency-vita/shot1.png",
+      "https://archive.org/download/insurgency-vita/shot2.png"
     ]
   },
   {
@@ -3472,46 +3513,6 @@
     "si": "1402",
     "su": "https://gitee.com/Moqi01/bio4",
     "ua": "2026-08-13T15:34"
-  },
-  {
-    "id": "insurgency-beta",
-    "tid": "VITACQ001",
-    "n": "Insurgency BETA",
-    "d": "Insurgency: VITA - Multiplayer Beta",
-    "ld": "Insurgency: VITA - Multiplayer Beta\n\n- PsVitaAlive -",
-    "aids": [
-      "onedumbfox"
-    ],
-    "cid": "games",
-    "sids": [
-      "shooter",
-      "strategy"
-    ],
-    "v": "4",
-    "vd": "2026-10-26",
-    "req": "- No Data",
-    "sz": 688809574,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK  + Game Files",
-        "u": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
-        "sz": 688809574,
-        "rec": true
-      },
-      {
-        "t": "Community",
-        "n": "Post Reddit",
-        "u": "https://www.reddit.com/r/vitahacks/comments/1x7eotu/insurgency_vita_multiplayer_beta_feature_update/"
-      }
-    ],
-    "ic": "https://archive.org/download/insurgency-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/insurgency-vita/shot0.png",
-      "https://archive.org/download/insurgency-vita/shot1.png",
-      "https://archive.org/download/insurgency-vita/shot2.png"
-    ]
   },
   {
     "id": "javita",
