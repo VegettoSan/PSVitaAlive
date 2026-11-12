@@ -1,5 +1,5 @@
 {
-  "id": "insurgency-beta",
+  "id": "insurgency",
   "tid": "VITACQ001",
   "n": "Insurgency BETA",
   "d": "Insurgency: VITA - Multiplayer Beta",
@@ -12,17 +12,17 @@
     "shooter",
     "strategy"
   ],
-  "v": "4",
-  "vd": "2026-10-26",
+  "v": "5",
+  "vd": "2026-11-04",
   "req": "- No Data",
-  "sz": 688809574,
+  "sz": 809290957,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK  + Game Files",
       "u": "https://archive.org/download/insurgency-vita/Insurgency%20v4.vpk",
-      "sz": 688809574,
+      "sz": 809290957,
       "rec": true
     },
     {
