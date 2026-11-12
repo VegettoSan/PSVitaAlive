@@ -11,18 +11,11 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.69",
-  "vd": "2026-07-27",
+  "v": "0.81",
+  "vd": "2026-11-08",
   "req": "- libshacccg.suprx\n- Game Data Files: Steam",
-  "sz": 2359680,
+  "sz": 2359296,
   "st": "Legacy",
-  "ic": "https://archive.org/download/psvitaalive-deltarune-vita/icon0.png",
-  "ss": [
-    "https://archive.org/download/psvitaalive-deltarune-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-deltarune-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-deltarune-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-deltarune-vita/shot_04.png"
-  ],
   "l": [
     {
       "t": "Download",
@@ -31,24 +24,31 @@
       "rec": true
     },
     {
-      "t": "Official Website",
-      "n": "Release Page",
-      "u": "https://github.com/WolffsRoom/DeltaruneVita/releases"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-deltarune-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2040109466,
+      "xp": "ux0:data/",
+      "ips": [
+        "deltarune"
+      ]
     },
     {
       "t": "Repository",
       "n": "Repositorio",
       "u": "https://github.com/WolffsRoom/DeltaruneVita"
-    },
-    {
-      "t": "Official Website",
-      "n": "Release Page",
-      "u": "https://github.com/WolffsRoom/DeltaruneVita/releases/tag/v0.69"
     }
+  ],
+  "ic": "https://archive.org/download/psvitaalive-deltarune-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-deltarune-vita/shot_04.png"
   ],
   "sn": "VitaHomebrewDB",
   "si": "1439",
   "su": "https://github.com/WolffsRoom/DeltaruneVita",
   "rp": "https://github.com/WolffsRoom/DeltaruneVita/releases",
-  "ua": "2026-08-13T15:34:48.325121+00:00"
+  "ua": "2026-08-13T15:34"
 }

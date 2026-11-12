@@ -13,16 +13,16 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.1.1",
-  "vd": "2026-11-01",
+  "v": "0.2.0",
+  "vd": "2026-11-11",
   "req": "- Verify your shader compiler is at ur0:data/libshacccg.suprx (ur0:, not ux0:).\n- Create ux0:data/touhou123vita/ and copy the four required files from your lawful game installation directly into it. Do not put them in an extra subfolder or ZIP archive.",
-  "sz": 24326963,
+  "sz": 24851251,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/touhou-12-3-vita/T123Recomp.vpk",
+      "u": "https://archive.org/download/touhou-12-3-vita/Touhou123Vita-beta-0.2.0.vpk",
       "sz": 24326963,
       "rec": true
     },
