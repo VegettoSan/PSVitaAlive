@@ -43,5 +43,8 @@
       "u": "https://github.com/AngeloGalav/sh2-vita"
     }
   ],
-  "ic": "https://archive.org/download/sh2-vita/icon0.png"
+  "ic": "https://archive.org/download/sh2-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/sh2-vita/icon0.png"
+  ]
 }

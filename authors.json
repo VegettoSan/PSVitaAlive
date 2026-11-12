@@ -566,6 +566,21 @@
     "ic": "https://github.com/andyvand.png"
   },
   {
+    "id": "angelogalav",
+    "n": "AngeloGalav",
+    "av": "https://avatars.githubusercontent.com/u/30238671?v=4",
+    "b": "> I like making technology more accessible and efficient.",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/AngeloGalav",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/30238671?v=4"
+  },
+  {
     "id": "angguss",
     "n": "angguss",
     "av": "https://github.com/angguss.png",
@@ -10480,6 +10495,21 @@
       }
     ],
     "ic": "https://github.com/BenMcLean.png"
+  },
+  {
+    "id": "zeklab",
+    "n": "ZekLab",
+    "av": "https://avatars.githubusercontent.com/u/75732633?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/ZekLab",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/75732633?v=4"
   },
   {
     "id": "zenoarrows",
