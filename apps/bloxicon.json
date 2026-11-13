@@ -2,7 +2,7 @@
   "id": "bloxicon",
   "tid": "RBXV00001",
   "n": "Bloxicon",
-  "d": "Bloxicon: native PlayStation Vita development project.",
+  "d": "Bloxicon is a 2016 Roblox Source Code port for the PlayStation Vita",
   "ld": "An experimental native PlayStation Vita client for original places through 2016. It uses native controller input and implements compatibility in the shared loader, renderer, engine, APIs and core scripts.",
   "aids": [
     "lezergan"
@@ -13,17 +13,17 @@
     "game-engine",
     "other"
   ],
-  "v": "1.1",
-  "vd": "2026-11-08",
+  "v": "1.2",
+  "vd": "2026-11-11",
   "req": "- No Data",
-  "sz": 14575206,
+  "sz": 14680064,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/bloxicon-ps-vita/Bloxicon%20v1.1.vpk",
-      "sz": 14575206,
+      "u": "https://archive.org/download/bloxicon-ps-vita/Bloxicon%20v1.2.vpk",
+      "sz": 14680064,
       "rec": true
     },
     {
