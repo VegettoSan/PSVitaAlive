@@ -1,5 +1,6 @@
 #include "archive/zip_extractor.hpp"
 #include "archive/extraction_directory_cache.hpp"
+#include "archive/zip_work_pacer.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
@@ -26,9 +27,9 @@ namespace {
 // multi-megabyte entries. Still bounded to 256 KiB of extra heap RAM.
 constexpr size_t EXTRACT_CHUNK = 256 * 1024;
 constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
-// Let Vita's render thread run between large ux0 write bursts. 1ms per MiB
-// adds little overhead while reducing sustained worker/IO scheduling pressure.
-constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
+// Record cumulative I/O timings without logging every small ZIP member.
+constexpr uint64_t ZIP_IO_REPORT_INTERVAL_US = 15ULL * 1000ULL * 1000ULL;
+constexpr uint64_t ZIP_SLOW_FILE_OPEN_US = 2ULL * 1000ULL * 1000ULL;
 constexpr uint64_t ZIP_VERBOSE_ENTRY_MIN_SIZE = 4ULL * 1024ULL * 1024ULL;
 constexpr zip_int64_t ZIP_ENTRY_LOG_STEP = 64;
 
@@ -978,9 +979,17 @@ ZipResult ZipExtractor::extract(
                          std::to_string(staged.size()) + " base=" + stagingBase);
     }
 
-    // Preflight every actual output directory. The staged members are prepared
-    // in the temporary tree, never in their deep final paths during extraction.
+    // Preflight every actual output directory. Yield and honor cancellation
+    // during large metadata scans; on slow storage this phase is not instant.
+    // Staged members stay in the temporary tree until commit.
+    uint64_t preparedDirectories = 0;
+    const uint64_t directoryPreflightStartUs = sceKernelGetProcessTimeWide();
     for (const std::string& dir : requiredDirs) {
+        if (shouldCancel && shouldCancel()) {
+            setError("cancelled during ZIP directory preflight");
+            zip_close(za);
+            return ZipResult::Cancelled;
+        }
         if (findBranch(dir)) continue;
         if (!st.isDirectory(dir) && !st.createDirectories(dir)) {
             setError("cannot prepare ZIP directory: " + dir +
@@ -988,6 +997,16 @@ ZipResult ZipExtractor::extract(
             zip_close(za);
             return ZipResult::IoError;
         }
+        if (++preparedDirectories % 16 == 0) sceKernelDelayThread(1000);
+    }
+    if (numEntries >= 512) {
+        const uint64_t elapsedMs =
+            (sceKernelGetProcessTimeWide() - directoryPreflightStartUs) / 1000ULL;
+        char preflightDiag[240];
+        sceClibSnprintf(preflightDiag, sizeof(preflightDiag),
+            "[ZipIO] directory preflight dirs=%llu elapsed_ms=%llu",
+            (unsigned long long)preparedDirectories, (unsigned long long)elapsedMs);
+        diagnostics::log(preflightDiag);
     }
     for (StagedBranch& branch : staged) {
         const auto slash = branch.destination.find_last_of('/');
@@ -1093,7 +1112,58 @@ ZipResult ZipExtractor::extract(
     uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
     uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
     bool exclusiveCreationSupported = true;
-    uint64_t bytesSinceYield = 0;
+    // The previous byte-only yield could run thousands of tiny entries without
+    // releasing the worker. Pacing by BOTH entries and bytes prevents that.
+    ZipWorkPacer pacer;
+
+    // Large ZIPs get inexpensive cumulative timing snapshots. This is also
+    // useful after a hard shutdown: final [ZipPerf] may never be reached.
+    const bool profileIo = numEntries >= 512;
+    struct ZipIoCounters {
+        uint64_t zipOpenUs = 0;
+        uint64_t fileOpenUs = 0;
+        uint64_t zipReadUs = 0;
+        uint64_t fileWriteUs = 0;
+        uint64_t zipCloseUs = 0;
+        uint64_t fileCloseUs = 0;
+        uint64_t worstFileOpenUs = 0;
+    } io;
+    const uint64_t extractBeginUs = sceKernelGetProcessTimeWide();
+    uint64_t lastIoReportUs = extractBeginUs;
+    uint64_t lastSlowOpenLogUs = 0;
+    auto sampleStart = [&]() -> uint64_t {
+        return profileIo ? sceKernelGetProcessTimeWide() : 0;
+    };
+    auto sampleEnd = [&](uint64_t started, uint64_t& total) -> uint64_t {
+        if (!profileIo) return 0;
+        const uint64_t elapsed = sceKernelGetProcessTimeWide() - started;
+        total += elapsed;
+        return elapsed;
+    };
+    auto reportIo = [&](bool force = false) {
+        if (!profileIo) return;
+        const uint64_t now = sceKernelGetProcessTimeWide();
+        if (!force && now - lastIoReportUs < ZIP_IO_REPORT_INTERVAL_US) return;
+        lastIoReportUs = now;
+        char snapshot[480];
+        sceClibSnprintf(snapshot, sizeof(snapshot),
+            "[ZipIO] entries=%llu/%llu bytes=%llu/%llu wall_ms=%llu "
+            "zip_open_ms=%llu file_open_ms=%llu zip_read_ms=%llu "
+            "write_ms=%llu zip_close_ms=%llu file_close_ms=%llu max_open_ms=%llu",
+            (unsigned long long)prog.entriesDone,
+            (unsigned long long)prog.entriesTotal,
+            (unsigned long long)prog.bytesWritten,
+            (unsigned long long)prog.bytesTotal,
+            (unsigned long long)((now - extractBeginUs) / 1000ULL),
+            (unsigned long long)(io.zipOpenUs / 1000ULL),
+            (unsigned long long)(io.fileOpenUs / 1000ULL),
+            (unsigned long long)(io.zipReadUs / 1000ULL),
+            (unsigned long long)(io.fileWriteUs / 1000ULL),
+            (unsigned long long)(io.zipCloseUs / 1000ULL),
+            (unsigned long long)(io.fileCloseUs / 1000ULL),
+            (unsigned long long)(io.worstFileOpenUs / 1000ULL));
+        diagnostics::log(snapshot);
+    };
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         if (shouldCancel && shouldCancel()) {
@@ -1140,6 +1210,8 @@ ZipResult ZipExtractor::extract(
             lastEnsuredParent = outPath;
             ++prog.entriesDone;
             reportProgress();
+            if (pacer.afterEntry()) sceKernelDelayThread(1000);
+            reportIo();
             continue;
         }
 
@@ -1160,7 +1232,9 @@ ZipResult ZipExtractor::extract(
             lastEnsuredParent = parent;
         }
 
+        const uint64_t zipOpenStart = sampleStart();
         zip_file_t* zf = zip_fopen_index(za, i, 0);
+        sampleEnd(zipOpenStart, io.zipOpenUs);
         if (!zf) {
             setError(std::string("zip_fopen_index failed: ") + name + " (" + zipArchiveError(za) + ")");
             outcome = ZipResult::InvalidEntry;
@@ -1170,6 +1244,7 @@ ZipResult ZipExtractor::extract(
         // Create new files with EXCL first to distinguish them from existing
         // files without an extra stat call. All existing files are overwritten
         // directly with TRUNC: no .tmp/.bak copies, for every ZIP/VPK caller.
+        const uint64_t fileOpenStart = sampleStart();
         SceUID fd = -1;
         if (exclusiveCreationSupported)
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
@@ -1196,6 +1271,20 @@ ZipResult ZipExtractor::extract(
             }
             if (replacingExisting) ++existingFiles;
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+        }
+        const uint64_t openElapsedUs = sampleEnd(fileOpenStart, io.fileOpenUs);
+        io.worstFileOpenUs = std::max(io.worstFileOpenUs, openElapsedUs);
+        if (profileIo && openElapsedUs >= ZIP_SLOW_FILE_OPEN_US) {
+            const uint64_t now = sceKernelGetProcessTimeWide();
+            if (!lastSlowOpenLogUs || now - lastSlowOpenLogUs >= ZIP_IO_REPORT_INTERVAL_US) {
+                lastSlowOpenLogUs = now;
+                char slow[400];
+                sceClibSnprintf(slow, sizeof(slow),
+                    "[ZipIO] slow output create/check index=%llu elapsed_ms=%llu path=%s",
+                    (unsigned long long)i, (unsigned long long)(openElapsedUs / 1000ULL),
+                    outPath.c_str());
+                diagnostics::log(slow);
+            }
         }
         if (fd >= 0 && (definitelyNewFile || !replacingExisting))
             newlyCreatedFiles.push_back(outPath);
@@ -1243,7 +1332,9 @@ ZipResult ZipExtractor::extract(
                 break;
             }
 
+            const uint64_t readStart = sampleStart();
             const zip_int64_t n = zip_fread(zf, buffer.data(), buffer.size());
+            sampleEnd(readStart, io.zipReadUs);
             if (n < 0) {
                 const unsigned method = (zs.valid & ZIP_STAT_COMP_METHOD) ? static_cast<unsigned>(zs.comp_method) : 0u;
                 char detail[360];
@@ -1268,7 +1359,9 @@ ZipResult ZipExtractor::extract(
 
             int written = 0;
             while (written < static_cast<int>(n)) {
+                const uint64_t writeStart = sampleStart();
                 const int w = sceIoWrite(fd, buffer.data() + written, static_cast<int>(n) - written);
+                sampleEnd(writeStart, io.fileWriteUs);
                 if (w <= 0) {
                     uint64_t freeB = 0, totalB = 0;
                     const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
@@ -1293,17 +1386,18 @@ ZipResult ZipExtractor::extract(
             writtenTotal += static_cast<uint64_t>(n);
             prog.bytesWritten += static_cast<uint64_t>(n);
             reportProgress();
-            bytesSinceYield += static_cast<uint64_t>(n);
-            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
-                bytesSinceYield = 0;
-                // This worker is not the UI thread. Yield without allocating
-                // extra buffers or relaxing any ZIP validation/cancel checks.
+            // A large file yields by bytes; tiny files additionally yield
+            // by entry count below, even if their total payload is minuscule.
+            if (pacer.afterBytes(static_cast<uint64_t>(n)))
                 sceKernelDelayThread(1000);
-            }
         }
 
+        const uint64_t zipCloseStart = sampleStart();
         const int zipCloseResult = zip_fclose(zf);
+        sampleEnd(zipCloseStart, io.zipCloseUs);
+        const uint64_t fileCloseStart = sampleStart();
         const int ioCloseResult = sceIoClose(fd);
+        sampleEnd(fileCloseStart, io.fileCloseUs);
         if (fileOk && zipCloseResult != 0) {
             char detail[240];
             sceClibSnprintf(detail, sizeof(detail),
@@ -1365,8 +1459,13 @@ ZipResult ZipExtractor::extract(
         }
         ++prog.entriesDone;
         reportProgress();
+        if (pacer.afterEntry()) sceKernelDelayThread(1000);
+        reportIo();
     }
 
+    // Persist a final snapshot on success, cancellation, or a handled error.
+    // On a sudden power loss the last periodic snapshot remains most useful.
+    reportIo(true);
     const int archiveCloseResult = zip_close(za);
     if (archiveCloseResult != 0) {
         if (outcome == ZipResult::Ok) {
