@@ -3,7 +3,7 @@
   "tid": "BRNG00001",
   "n": "Burnout Legends 2.0",
   "d": "Native PS Vita port of Burnout Legends (PSP), with new rewards and custom soundtracks.",
-  "ld": "A native PS Vita port of Burnout Legends (PSP). Not an emulator: the game's PSP executable is statically recompiled to ARM, with a vitaGL renderer, sound, movies and saves rebuilt for the Vita. Races run in HD (960x544) at 30 fps. Version 2.0 adds a BONUS 2.0 menu with new rewards to earn in the game: Collector cars for the Signature Takedowns, new car colours for the Takedown trophies, 10 visual filters for the Special Events, and Heavyweights in Single Event for the Crash Headlines. Custom soundtracks: MP3 files put in ux0:data/burnout/musique_perso/ appear in EA GAMES TRAX. PSP/Adrenaline saves are used directly. No game file is included: the first launch installs the game from the player's own ISO/CSO.",
+  "ld": "A native PS Vita port of Burnout Legends (PSP). Not an emulator: the game's PSP executable is statically recompiled to ARM, with a vitaGL renderer, sound, movies and saves rebuilt for the Vita. Races run in HD (960x544) at 30 fps. Version 2.0 adds a BONUS 2.0 menu with new rewards to earn in the game: Collector cars for the Signature Takedowns, new car colours for the Takedown trophies, 10 visual filters for the Special Events, and Heavyweights in Single Event for the Crash Headlines. Custom soundtracks: MP3 files put in ux0:data/burnout/musique_perso/ appear in EA GAMES TRAX. PSP/Adrenaline saves are used directly. No game file is included: the first launch installs the game from the player's own ISO/CSO (European ULES00125 or US ULUS10025 version).",
   "aids": [
     "lab0ulange"
   ],
@@ -11,17 +11,17 @@
   "sids": [
     "racing"
   ],
-  "v": "0.0.2",
+  "v": "0.0.3",
   "vd": "2026-11-14",
-  "req": "- libshacccg.suprx\n- Your own Burnout Legends EU ISO/CSO (ULES00125 v1.01) in ux0:pspemu/ISO/ (the first launch installs the game from it, about 10 minutes)\n- About 700 MB free on ux0:",
-  "sz": 38459328,
+  "req": "- libshacccg.suprx\n- Your own Burnout Legends ISO/CSO: EU (ULES00125) or US (ULUS10025) in ux0:pspemu/ISO/ (the first launch installs the game from it, about 10 minutes)\n- About 700 MB free on ux0:",
+  "sz": 38469483,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.2/burnout-gl-0.0.2.vpk",
-      "sz": 38459328,
+      "u": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.3/burnout-gl-0.0.3.vpk",
+      "sz": 38469483,
       "rec": true
     },
     {
