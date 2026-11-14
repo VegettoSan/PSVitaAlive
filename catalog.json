@@ -208,6 +208,48 @@
     ]
   },
   {
+    "id": "tntv",
+    "tid": "NTET00001",
+    "n": "TNTV - The New Tetris",
+    "d": "Native PS Vita and PSTV port of the N64 game The New Tetris.",
+    "ld": "A native port of The New Tetris for PS Vita and PlayStation TV. All eight solo stages are optimized for approximately 60 FPS during normal gameplay, with restored Wonders construction, WONDERS Hall and finale, original music and sound effects, saved progression and secrets. PlayStation TV supports local 2-4 player games, hardware-tested using four DS3/DS4 controllers. This unofficial fan port involved substantial AI assistance together with extensive human-directed debugging and testing. All original game resources are generated locally from a user-supplied compatible USA 1.0 N64 ROM; no commercial ROM or extracted game media is included.",
+    "aids": [
+      "t64ncollection"
+    ],
+    "cid": "ports",
+    "sids": [
+      "puzzle"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-11",
+    "req": "Requires a user-supplied compatible USA 1.0 The New Tetris N64 ROM in ux0:/data/TNTV/ (accepts z64, v64, n64); first launch generates assets locally. Multiplayer requires a PlayStation TV and multiple paired controllers.",
+    "sz": 711691,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "TNTV v1.0 VPK",
+        "u": "https://github.com/T64NCollection/TNTV/releases/download/v1.0/TNTV_v1.0.vpk",
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "Source repository",
+        "u": "https://github.com/T64NCollection/TNTV"
+      },
+      {
+        "t": "Documentation",
+        "n": "Installation and requirements",
+        "u": "https://github.com/T64NCollection/TNTV/blob/main/INSTALLATION.md"
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.0/sce_sys/icon0.png",
+    "ss": [
+      "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.0/sce_sys/icon0.png"
+    ],
+    "rp": "https://github.com/T64NCollection/TNTV/releases/tag/v1.0"
+  },
+  {
     "id": "touhou12-3vita-hisoutensoku",
     "tid": "THSV12302",
     "n": "Touhou12.3Vita Hisoutensoku",

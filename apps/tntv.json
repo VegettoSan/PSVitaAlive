@@ -35,6 +35,8 @@
     }
   ],
   "ic": "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.0/sce_sys/icon0.png",
-  "ss": [],
+  "ss": [
+    "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.0/sce_sys/icon0.png"
+  ],
   "rp": "https://github.com/T64NCollection/TNTV/releases/tag/v1.0"
 }
