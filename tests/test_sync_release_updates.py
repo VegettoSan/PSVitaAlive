@@ -224,7 +224,7 @@ class TestReleaseSynchronization(unittest.TestCase):
             )
             path = root / "apps" / "vita-app.json"
             path.write_text(
-                json.dumps(to_v2(source), separators=(",", ":")) + "\\n",
+                json.dumps(to_v2(source), separators=(",", ":")) + "\n",
                 encoding="utf-8",
             )
             original_bytes = path.read_bytes()
