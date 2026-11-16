@@ -41,7 +41,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python scripts/sync_release_updates.py --monitor-ref "$MONITOR_REF" --apply
+          # A manual workflow_dispatch is always preview-only.
+          # Only the monitor's trusted repository_dispatch may apply changes.
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            python scripts/sync_release_updates.py --monitor-ref "$MONITOR_REF" --apply
+          else
+            echo "::notice::Manual preview: no catalog files will be modified."
+            python scripts/sync_release_updates.py --monitor-ref "$MONITOR_REF"
+          fi
           if git diff --quiet -- apps/; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
