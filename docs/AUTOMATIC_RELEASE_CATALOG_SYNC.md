@@ -50,17 +50,28 @@ Por defecto solo se actualizan aplicaciones `Verified` o `Legacy` cuando:
 - El Title ID no está duplicado; el tag estable es una versión numérica
   estrictamente superior y con fecha válida.
 - La release tiene exactamente un VPK oficial con tamaño confirmado.
-- Hay un solo `Download` VPK de GitHub del mismo repositorio y ningún enlace
-  recomendado distinto.
+- Hay un solo Download actual/recomendado que sea VPK oficial de GitHub
+  del mismo repositorio **o** VPK de Archive.org, y ningún recomendado distinto.
 - No hay Game Files, Data Files, plugins, mods o instalación compleja.
 
 Se preservan Title ID, autores, categorías, status, iconos, capturas, enlaces
 secundarios y otros metadatos. Se actualizan exclusivamente versión,
-fecha, tamaño y URL del VPK del enlace existente.
+fecha, tamaño y URL del VPK actual. Si el Download anterior apuntaba a
+Archive.org, se añade una copia como Mirror etiquetada claramente
+«respaldo anterior (versión previa)», antes de cambiar el Download principal
+al nuevo VPK de GitHub. Se mantiene como único enlace recomendado el
+Download actual; el Mirror antiguo queda con recommended=false.
+
+El monitor sigue mostrando ambos estados EN LA MISMA ficha del release:
+si el catálogo ya ofrece la nueva versión desde GitHub, marca
+«Falta respaldo en Archive.org» hasta que el mantenedor suba el VPK y cambie
+la URL principal a la nueva descarga de Archive.org. Los VPK antiguos con
+nombre sin número de versión siguen reconociéndose por el enlace principal
+y el contexto de la versión del catálogo. No hay página o apartado adicional.
 
 Se **omiten** (no se fuerzan) instalaciones complejas, GitLab, prereleases,
-versiones no numéricas, repositorios compartidos, enlaces de Archive.org
-como descarga principal y situaciones de identidad dudosa. El log indica
+versiones no numéricas, repositorios compartidos, fuentes de descarga
+ajenas a GitHub/Archive.org y situaciones de identidad dudosa. El log indica
 `REVIEW` para que puedan catalogarse manualmente.
 
 No se descargan ni ejecutan VPKs en este primer nivel. La correspondencia con
