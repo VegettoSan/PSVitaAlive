@@ -92,7 +92,7 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertIsNone(proposal)
         self.assertIn("exact release tag", reason)
 
-    def test_verify_downloads_prevents_writing_unverified_vpk(self):
+    def test_metadata_only_never_downloads_the_vpk(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "apps").mkdir()
@@ -100,21 +100,13 @@ class TestReleaseSynchronization(unittest.TestCase):
                 json.dumps(to_v2(app())), encoding="utf-8"
             )
             snapshot = {"schema_version": 1, "releases": [release()]}
-            with patch("scripts.sync_release_updates.verify_release_vpk",
-                       return_value=(False, "wrong param.sfo TITLE_ID")) as mocked:
-                changes, skipped = plan_changes(root, snapshot, verify_downloads=True)
-            self.assertEqual(changes, [])
-            self.assertTrue(any("manual review" in reason for reason in skipped))
-            mocked.assert_called_once_with(
-                NEW, repo=REPO, tag="v1.1",
-                expected_title_id="VITA00001", expected_size=400,
-            )
-            with patch("scripts.sync_release_updates.verify_release_vpk",
-                       return_value=(True, "matching VPK")):
-                changes, skipped = plan_changes(root, snapshot, verify_downloads=True)
+            with patch("urllib.request.urlopen", side_effect=AssertionError("must not download")):
+                changes, skipped = plan_changes(root, snapshot)
             self.assertEqual(len(changes), 1)
+            self.assertEqual(skipped, [])
+            self.assertEqual(changes[0][1]["version"], "1.1")
 
-    def test_non_verifiable_release_stays_pending_without_download(self):
+    def test_zero_or_multiple_vpks_stay_pending_for_manual_update(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "apps").mkdir()
@@ -128,14 +120,22 @@ class TestReleaseSynchronization(unittest.TestCase):
             ])
             for candidate in (no_vpk, multiple):
                 with self.subTest(assets=candidate["assets"]):
-                    with patch("scripts.sync_release_updates.verify_release_vpk") as mocked:
-                        changes, skipped = plan_changes(
-                            root, {"schema_version": 1, "releases": [candidate]},
-                            verify_downloads=True,
-                        )
+                    changes, skipped = plan_changes(
+                        root, {"schema_version": 1, "releases": [candidate]}
+                    )
                     self.assertEqual(changes, [])
                     self.assertTrue(any("manual update required" in message for message in skipped))
-                    mocked.assert_not_called()
+
+    def test_unknown_asset_size_does_not_block_single_vpk(self):
+        item = release()
+        item["assets"][0].pop("size")
+        original = app()
+        original["links"][0]["size"] = 100
+        updated, reason = release_update(original, item, REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version_date"], "2026-11-09")
+        self.assertNotIn("size", updated)
+        self.assertNotIn("size", updated["links"][0])
 
     def test_rejects_complex_installers_and_outside_recommended(self):
         item = app()
