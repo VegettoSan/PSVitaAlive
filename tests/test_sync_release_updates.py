@@ -28,7 +28,7 @@ def app():
         "author_ids": ["dev"],
         "source_url": "https://github.com/example/vita-app",
         "links": [
-            {"type": "Download", "name": "VPK oficial", "url": OLD, "recommended": True},
+            {"type": "Download", "name": "VPK", "url": OLD, "recommended": True},
             {"type": "Mirror", "name": "Preservación", "url": "https://archive.org/details/vita-app"},
             {"type": "Repository", "name": "Fuente", "url": "https://github.com/example/vita-app"},
         ],
@@ -137,14 +137,18 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertNotIn("size", updated)
         self.assertNotIn("size", updated["links"][0])
 
-    def test_rejects_complex_installers_and_outside_recommended(self):
+    def test_complex_installers_skip_but_vpk_name_controls_selection(self):
         item = app()
         item["links"].append({"type": "Game Files", "name": "Data", "url": "https://example.org/data.zip"})
         self.assertIsNone(release_update(item, release(), REPO)[0])
         item = app()
         item["links"][0]["recommended"] = False
         item["links"][1]["recommended"] = True
-        self.assertIsNone(release_update(item, release(), REPO)[0])
+        updated, reason = release_update(item, release(), REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["links"][0]["url"], NEW)
+        self.assertFalse(updated["links"][0]["recommended"])
+        self.assertEqual(updated["links"][1], item["links"][1])
 
     def test_rejects_unrelated_downloads(self):
         self.assertFalse(download_belongs_to_repo(
@@ -153,33 +157,54 @@ class TestReleaseSynchronization(unittest.TestCase):
         item["links"][0]["url"] = "https://example.com/unknown-download.vpk"
         self.assertIsNone(release_update(item, release(), REPO)[0])
 
-    def test_archive_version_upgrades_to_github_and_keeps_old_preserved_vpk(self):
+    def test_archive_update_replaces_vpk_url_without_creating_old_version_button(self):
         source = app()
         source["version"] = "v.1.0"
         old_archive = "https://archive.org/download/psvitaalive-vita-app/vita.vpk"
         source["links"][0]["url"] = old_archive
         original = json.loads(json.dumps(source))
-
         updated, reason = release_update(source, release(), REPO)
         self.assertEqual(reason, "ready")
         self.assertEqual(updated["version"], "1.1")
         self.assertEqual(updated["links"][0]["url"], NEW)
-        self.assertTrue(updated["links"][0]["recommended"])
-        historical = [
-            link for link in updated["links"]
-            if link.get("url") == old_archive and link.get("type") == "Mirror"
-        ]
-        self.assertEqual(len(historical), 1)
-        self.assertIn("anterior", historical[0]["name"])
-        self.assertIn("v.1.0", historical[0]["name"])
-        self.assertFalse(historical[0]["recommended"])
-        self.assertEqual(historical[0]["size"], original["size"])
+        self.assertEqual(updated["links"][0]["name"], "VPK")
+        self.assertEqual(len(updated["links"]), len(original["links"]))
+        self.assertEqual(updated["links"][1:], original["links"][1:])
+        self.assertFalse(any(link.get("url") == old_archive for link in updated["links"]))
         self.assertEqual(updated["title_id"], original["title_id"])
         self.assertEqual(updated["author_ids"], original["author_ids"])
         self.assertEqual(source, original)
-
-        # Idempotence: the same release must not trigger another edit.
         self.assertIsNone(release_update(updated, release(), REPO)[0])
+
+    def test_alternative_vpk_buttons_remain_untouched(self):
+        source = app()
+        source["links"].insert(0, {
+            "type": "Download", "name": "VPK Lite",
+            "url": "https://example.com/lite-v1.0.vpk", "recommended": True,
+        })
+        source["links"].append({
+            "type": "Download", "name": "VPK configuracion debug",
+            "url": "https://example.com/debug-v1.0.vpk",
+        })
+        original = json.loads(json.dumps(source))
+        updated, reason = release_update(source, release(), REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(len(updated["links"]), len(original["links"]))
+        self.assertEqual(updated["links"][1]["url"], NEW)
+        self.assertEqual(updated["links"][1]["name"], "VPK")
+        self.assertEqual(updated["links"][0], original["links"][0])
+        self.assertEqual(updated["links"][2:], original["links"][2:])
+
+    def test_ambiguous_or_missing_vpk_button_requires_manual_review(self):
+        source = app()
+        source["links"][0]["name"] = "VPK version Lite"
+        self.assertIsNone(release_update(source, release(), REPO)[0])
+        source = app()
+        source["links"].append({
+            "type": "Download", "name": "vPk",
+            "url": "https://archive.org/download/other/second.vpk",
+        })
+        self.assertIsNone(release_update(source, release(), REPO)[0])
 
     def test_catalog_already_current_never_overwrites_manual_archive_url(self):
         """A maintainer can swap GitHub URL for Archive.org after auto-updating."""
@@ -235,13 +260,14 @@ class TestReleaseSynchronization(unittest.TestCase):
                 self.assertEqual(skipped, [])
                 self.assertEqual(path.read_bytes(), original_bytes)
 
-    def test_next_new_version_can_promote_again_and_keep_archive_history(self):
+    def test_next_new_version_replaces_same_vpk_button_again(self):
         current = app()
         current["version"] = "1.1"
         current["version_date"] = "2026-11-09"
         current["links"][0]["url"] = (
             "https://archive.org/download/psvitaalive-vita-app/vita-v1.1.vpk"
         )
+        old_links = json.loads(json.dumps(current["links"]))
         new_vpk = "https://github.com/example/vita-app/releases/download/v1.2/vita-v1.2.vpk"
         newer = release(
             tag="v1.2",
@@ -253,13 +279,9 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertEqual(updated["version"], "1.2")
         self.assertEqual(updated["version_date"], "2026-11-16")
         self.assertEqual(updated["links"][0]["url"], new_vpk)
-        archives = [
-            link for link in updated["links"]
-            if str(link.get("url") or "").endswith("vita-v1.1.vpk")
-        ]
-        self.assertEqual(len(archives), 1)
-        self.assertEqual(archives[0]["type"], "Mirror")
-        self.assertFalse(archives[0]["recommended"])
+        self.assertEqual(updated["links"][0]["name"], "VPK")
+        self.assertEqual(len(updated["links"]), len(old_links))
+        self.assertEqual(updated["links"][1:], old_links[1:])
         self.assertIsNone(release_update(updated, newer, REPO)[0])
 
     def test_no_change_when_old_archive_is_only_in_a_mirror(self):
