@@ -337,6 +337,9 @@ jobs:
       - name: Test repeatable V1/V2 game catalog compaction
         run: python -m unittest discover -s tests -p test_compact_game_catalogs_v2.py -v
 
+      - name: Test safe automatic Homebrew release updates (offline)
+        run: python -m unittest discover -s tests -p test_sync_release_updates.py -v
+
       - name: Generate compact PS Vita / PSP / PS1 public JSON (post-02.18)
         run: |
           set -euo pipefail
@@ -401,3 +404,23 @@ jobs:
             echo "Remote main advanced; retrying publish (attempt $attempt)."
             sleep 5
           done
+
+      - name: Trigger release tracker after successful catalog publication
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.PSVA_TRACKER_DISPATCH_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::notice::PSVA_TRACKER_DISPATCH_TOKEN not configured; scheduled tracker remains the fallback."
+            exit 0
+          fi
+          # The publication step above finished before this one. Use the
+          # published commit, not a possibly stale raw.githubusercontent.com/main.
+          catalog_sha="$(git rev-parse HEAD)"
+          jq -n --arg sha "$catalog_sha" \
+            '{event_type:"psvitaalive_catalog_published",client_payload:{catalog_sha:$sha}}' \
+            > /tmp/psva-tracker-dispatch.json
+          gh api --method POST repos/VegettoSan/PsVita-Homebrews-New-Releases/dispatches \
+            --input /tmp/psva-tracker-dispatch.json

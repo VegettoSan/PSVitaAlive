@@ -1,0 +1,99 @@
+name: Sync Verified Homebrew Releases
+
+on:
+  repository_dispatch:
+    types: [release_monitor_synced]
+  workflow_dispatch:
+    inputs:
+      monitor_ref:
+        description: "Release monitor SHA (or main for a manual dry-run-like scan)"
+        required: false
+        default: main
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: vitahub-catalog-publisher
+  cancel-in-progress: false
+
+jobs:
+  update-canonical-apps:
+    if: github.event_name != 'repository_dispatch' || github.event.client_payload.monitor_repository == 'VegettoSan/PsVita-Homebrews-New-Releases'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout canonical PSVitaAlive
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Propose safe release metadata updates
+        id: propose
+        env:
+          MONITOR_REF: ${{ github.event.client_payload.monitor_sha || inputs.monitor_ref || 'main' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # A manual workflow_dispatch is always preview-only.
+          # Only the monitor's trusted repository_dispatch may apply changes.
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            python scripts/sync_release_updates.py --monitor-ref "$MONITOR_REF" --apply
+          else
+            echo "::notice::Manual preview: no catalog files will be modified."
+            python scripts/sync_release_updates.py --monitor-ref "$MONITOR_REF"
+          fi
+          if git diff --quiet -- apps/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate canonical sources before publishing
+        if: steps.propose.outputs.changed == 'true'
+        env:
+          VITAHUB_SKIP_REMOTE_CHECKS: "true"
+          VITAHUB_SKIP_REMOTE_MEDIA: "true"
+        run: python scripts/validate_catalog_ci.py
+
+      - name: Publish updated canonical app files
+        id: publish
+        if: steps.propose.outputs.changed == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- apps/
+          git commit -m "chore: sync Homebrew version from lone GitHub/GitLab VPK release"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "updated=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::Could not publish canonical updates; existing main left untouched."
+              exit 1
+            fi
+            sleep 5
+          done
+
+      - name: Regenerate official catalogs with existing validator
+        if: steps.publish.outputs.updated == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/validate.yml/dispatches" -f ref=main
