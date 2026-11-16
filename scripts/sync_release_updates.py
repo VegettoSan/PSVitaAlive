@@ -113,8 +113,10 @@ def release_asset_is_vpk(asset: dict) -> bool:
     """GitLab may call the asset 'VPK', with its .vpk extension in the URL."""
     if str(asset.get("name") or "").lower().endswith(".vpk"):
         return True
-    url = asset.get("download_url")
-    return isinstance(url, str) and unquote(urlparse(url).path).lower().endswith(".vpk")
+    for url in (asset.get("download_url"), asset.get("original_url")):
+        if isinstance(url, str) and unquote(urlparse(url).path).lower().endswith(".vpk"):
+            return True
+    return False
 
 
 def release_asset_url_matches(url: object, repo: str, platform: str, tag: str) -> bool:
@@ -280,6 +282,15 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
             changes.append((path, proposal, compact))
         elif newer_version(app.get("version"), release.get("tag")):
             skipped.append(f"{repo}: {reason}")
+    # A canonical Homebrew may reference more than one upstream repository.
+    # Never overwrite a single apps/*.json twice in one scan, which would make
+    # the chosen version dependent on release iteration order.
+    path_counts = Counter(path for path, _proposal, _compact in changes)
+    conflicted = {path for path, count in path_counts.items() if count > 1}
+    if conflicted:
+        changes = [candidate for candidate in changes if candidate[0] not in conflicted]
+        for path in sorted(conflicted):
+            skipped.append(f"{path.name}: multiple upstream release candidates; manual review")
     return changes, skipped
 
 
