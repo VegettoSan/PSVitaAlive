@@ -309,6 +309,108 @@ class TestReleaseSynchronization(unittest.TestCase):
             })
             self.assertEqual(changes, [])
 
+    def test_gitlab_subgroup_release_updates_existing_vpk_button(self):
+        project = "vita/homebrew/awesome-app"
+        url = ("https://gitlab.com/vita/homebrew/awesome-app/-/releases/"
+               "v1.1/downloads/builds/awesome.vpk")
+        source = app()
+        source["source_url"] = "https://gitlab.com/vita/homebrew/awesome-app"
+        source["links"][2]["url"] = source["source_url"]
+        source["links"][0]["url"] = "https://archive.org/download/awesome/awesome.vpk"
+        candidate = release(platform="gitlab", repo=project, assets=[
+            {"name": "awesome.vpk", "download_url": url, "size": 0},
+            {"name": "source.zip", "download_url": (
+                "https://gitlab.com/vita/homebrew/awesome-app/-/archive/v1.1/src.zip"
+            )},
+        ])
+        updated, reason = release_update(source, candidate, project)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version"], "1.1")
+        self.assertEqual(updated["version_date"], "2026-11-09")
+        self.assertEqual(updated["links"][0]["url"], url)
+        self.assertEqual(len(updated["links"]), len(source["links"]))
+        self.assertEqual(updated["links"][1:], source["links"][1:])
+        self.assertNotIn("size", updated)
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps" / "vita-app.json").write_text(
+                json.dumps(to_v2(source)), encoding="utf-8"
+            )
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [candidate],
+            })
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(skipped, [])
+            self.assertEqual(changes[0][1]["links"][0]["url"], url)
+
+    def test_gitlab_uses_original_vpk_extension_when_permalink_is_generic(self):
+        project = "team/vita"
+        asset = {
+            "name": "Installer",
+            "download_url": "https://gitlab.com/team/vita/-/releases/v1.1/downloads/release-installer",
+            "original_url": "https://gitlab.com/team/vita/-/uploads/abcd/vita.vpk",
+        }
+        source = app()
+        source["source_url"] = "https://gitlab.com/team/vita"
+        source["links"][2]["url"] = source["source_url"]
+        source["links"][0]["url"] = "https://archive.org/download/vita/vita.vpk"
+        updated, reason = release_update(
+            source, release(platform="gitlab", repo=project, assets=[asset]), project
+        )
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["links"][0]["url"], asset["download_url"])
+
+    def test_gitlab_zero_multiple_or_external_vpk_requires_review(self):
+        project = "team/vita"
+        source = app()
+        source["source_url"] = "https://gitlab.com/team/vita"
+        source["links"][2]["url"] = source["source_url"]
+        source["links"][0]["url"] = "https://archive.org/download/vita/vita.vpk"
+        good = {"name": "vita.vpk", "download_url": (
+            "https://gitlab.com/team/vita/-/releases/v1.1/downloads/vita.vpk"
+        )}
+        candidates = [
+            ([], "no .vpk"),
+            ([good, dict(good)], "2 .vpk"),
+            ([{"name": "vita.vpk", "download_url": "https://evil.com/vita.vpk"}], "trusted"),
+            ([{"name": "vita.vpk", "download_url": (
+                "https://gitlab.com/other/vita/-/releases/v1.1/downloads/vita.vpk"
+            )}], "trusted"),
+        ]
+        for assets, expected in candidates:
+            with self.subTest(assets=assets):
+                updated, reason = release_update(
+                    source, release(platform="gitlab", repo=project, assets=assets), project
+                )
+                self.assertIsNone(updated)
+                self.assertIn(expected, reason)
+
+    def test_conflicting_github_and_gitlab_sources_do_not_write_same_json_twice(self):
+        source = app()
+        source["links"].append({
+            "type": "Repository", "name": "GitLab mirror",
+            "url": "https://gitlab.com/team/vita",
+        })
+        candidate = release(
+            platform="gitlab", repo="team/vita", assets=[{
+                "name": "vita.vpk",
+                "download_url": "https://gitlab.com/team/vita/-/releases/v1.1/downloads/vita.vpk",
+            }]
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps" / "vita-app.json").write_text(
+                json.dumps(to_v2(source)), encoding="utf-8"
+            )
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [release(), candidate],
+            })
+            self.assertEqual(changes, [])
+            self.assertTrue(any("multiple upstream" in msg for msg in skipped))
+
     def test_ambiguity_detection_and_compact_v2(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
