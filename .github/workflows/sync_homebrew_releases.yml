@@ -71,7 +71,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- apps/
-          git commit -m "chore: update Homebrew from verified upstream VPK releases"
+          git commit -m "chore: sync Homebrew version from lone GitHub/GitLab VPK release"
           for attempt in 1 2 3; do
             git fetch origin main
             if git rebase origin/main; then
