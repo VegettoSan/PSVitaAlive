@@ -339,6 +339,8 @@ jobs:
 
       - name: Test safe automatic Homebrew release updates (offline)
         run: python -m unittest discover -s tests -p test_sync_release_updates.py -v
+      - name: Test GitHub VPK binary and TITLE_ID verification (offline)
+        run: python -m unittest discover -s tests -p test_vpk_release_verifier.py -v
 
       - name: Generate compact PS Vita / PSP / PS1 public JSON (post-02.18)
         run: |
