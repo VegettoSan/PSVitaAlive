@@ -4,6 +4,10 @@ on:
   workflow_run:
     workflows: ["Validate and Generate Local Catalog"]
     types: [completed]
+  # Explicit trigger from the catalog publisher. GITHUB_TOKEN can emit
+  # repository_dispatch even when push/workflow_run chaining is suppressed.
+  repository_dispatch:
+    types: [psvitaalive_catalog_ready]
   release:
     types: [published]
   workflow_dispatch:
@@ -26,6 +30,8 @@ jobs:
     # Privileged job: ignore PR-triggered runs and always checkout trusted main.
     if: >-
       (github.event_name == 'workflow_dispatch' && inputs.test_webhooks != true) ||
+      (github.event_name == 'repository_dispatch' &&
+       github.event.action == 'psvitaalive_catalog_ready') ||
       (github.event_name == 'workflow_run' &&
        github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.head_branch == 'main' &&
