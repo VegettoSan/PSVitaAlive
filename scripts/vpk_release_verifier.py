@@ -58,7 +58,7 @@ def parse_sfo_title_id(payload: bytes) -> str:
     if len(payload) < 20:
         raise ValueError("missing param.sfo header")
     magic, _version, keys, values, count = struct.unpack_from("<4sIIII", payload)
-    if magic != b"\\x00PSF" or count > 1024 or keys >= len(payload) or values >= len(payload):
+    if magic != b"\x00PSF" or count > 1024 or keys >= len(payload) or values >= len(payload):
         raise ValueError("invalid param.sfo structure")
 
     for index in range(count):
@@ -70,11 +70,11 @@ def parse_sfo_title_id(payload: bytes) -> str:
         value_start = values + data_offset
         if key_start >= len(payload) or value_size > padded_size or value_start + value_size > len(payload):
             raise ValueError("param.sfo entry exceeds file")
-        key_end = payload.find(b"\\x00", key_start, min(len(payload), key_start + 128))
+        key_end = payload.find(b"\x00", key_start, min(len(payload), key_start + 128))
         if key_end < 0:
             raise ValueError("invalid param.sfo key")
         if payload[key_start:key_end] == b"TITLE_ID":
-            title = payload[value_start:value_start + value_size].split(b"\\x00", 1)[0]
+            title = payload[value_start:value_start + value_size].split(b"\x00", 1)[0]
             try:
                 decoded = title.decode("ascii").strip().upper()
             except UnicodeDecodeError as exc:
