@@ -13,17 +13,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "1.0",
-  "vd": "2026-11-06",
+  "v": "1.1",
+  "vd": "2026-11-12",
   "req": "- libshacccg.suprx\n- CapUnlocker.skprx\n- Game Data Files: Gamecube",
-  "sz": 4928307,
+  "sz": 5100366,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/pokemon-colosseum-vita/PokemonColosseum%20v1.0.vpk",
-      "sz": 4928307,
+      "u": "https://github.com/Rinnegatamante/colosseum-vita/releases/download/v.1.1/PokemonColosseum.vpk",
+      "sz": 5100366,
       "rec": true
     },
     {

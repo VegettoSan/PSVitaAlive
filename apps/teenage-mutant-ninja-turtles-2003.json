@@ -14,17 +14,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.3",
-  "vd": "2026-11-08",
+  "v": "0.5",
+  "vd": "2026-11-12",
   "req": "- libshacccg.suprx\n- The PC game, English executable TMNT_EN.EXE\n- About 2.5 GB free on the Vita",
-  "sz": 911667,
+  "sz": 926073,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/teenage-mutant-ninja-turtles-2003-ps-vita/TMNTVita%20v0.3.vpk",
-      "sz": 911667,
+      "u": "https://github.com/ZekLab/TMNT-2003-PSVita-Port/releases/download/v0.5/TMNTVita.vpk",
+      "sz": 926073,
       "rec": true
     },
     {

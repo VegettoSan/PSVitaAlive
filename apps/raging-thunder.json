@@ -12,17 +12,17 @@
     "rpg",
     "source-port"
   ],
-  "v": "1.0.1",
-  "vd": "2026-10-17",
+  "v": "1.0.2",
+  "vd": "2026-11-13",
   "req": "- HENkaku / Enso\tAny recent firmware with homebrew support\n- kubridge.skprx\tRequired, loaded in taiHEN config (*KERNEL)\n- libshacccg.suprx\tRequired at ur0:data/libshacccg.suprx (via ShaRKBR33D)",
-  "sz": 922317,
+  "sz": 922121,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/raging-thunder-ps-vita-port/ragingthunder%20v1.0.1.vpk",
-      "sz": 922317,
+      "u": "https://github.com/MetalSyntax/Raging-Thunder-vita/releases/download/v1.0.2/ragingthunder.vpk",
+      "sz": 922121,
       "rec": true
     },
     {

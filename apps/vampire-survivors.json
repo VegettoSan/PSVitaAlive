@@ -13,17 +13,17 @@
     "strategy",
     "engine-port"
   ],
-  "v": "1.1",
-  "vd": "2026-11-07",
+  "v": "1.2.1",
+  "vd": "2026-11-14",
   "req": "- Install libshacccg.suprx if you have not already (extract it with ShaRKBR33D).",
-  "sz": 13107200,
+  "sz": 13368510,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/vampire-survivors-ps-vita-port/VampireSurvivors-Vita-v1.1.vpk",
-      "sz": 13107200,
+      "u": "https://github.com/Federicoilgrandebardo/vampire-survivors-vita/releases/download/v1.2.1/VampireSurvivors-Vita-v1.2.1.vpk",
+      "sz": 13368510,
       "rec": true
     },
     {

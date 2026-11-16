@@ -13,16 +13,16 @@
     "adventure",
     "arcade"
   ],
-  "v": "v.1.30",
-  "vd": "2026-07-24",
+  "v": "01.40",
+  "vd": "2026-11-06",
   "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "sz": 1663702,
+  "sz": 1812693,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/zenonia-3-psvita/ZEN3.vpk",
+      "u": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.40/zenonia_3.vpk",
       "rec": true
     },
     {

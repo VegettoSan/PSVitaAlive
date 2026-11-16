@@ -11,17 +11,17 @@
   "sids": [
     "source-port"
   ],
-  "v": "v1.0.0",
-  "vd": "2026-11-09",
+  "v": "1.0.2",
+  "vd": "2026-11-13",
   "req": "- libshacccg.suprx\n- Game Data Files: Xbox",
-  "sz": 8188330,
+  "sz": 8218504,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/thug2-vita/thug2_vita%20v1.0.0.vpk",
-      "sz": 8188330,
+      "u": "https://github.com/iwannagooutside/thug2-vita/releases/download/v1.0.2/thug2_vita.vpk",
+      "sz": 8218504,
       "rec": true
     },
     {
