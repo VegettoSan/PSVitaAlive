@@ -1,0 +1,39 @@
+{
+  "id": "pw-ace-attorney",
+  "tid": "OBJECTION",
+  "n": "PW:Ace Attorney",
+  "d": "Port of Phoenix Wright:Ace Attorney Trilogy for the PS Vita\n\nGame runs at 30 fps, you can change it to 45/60 but I'd recommend 30 for the best experience.\n\nThe game could have some minor artefacts but the game is still 100% playable.\n\nEvery part of the trilogy work perfectly fine!\n\nAdded NoTrpDrm trophies\n\nAdded russian language\n\nSave data is in ux0:data/PWAATrilogy.",
+  "ld": "The classic courtroom adventure series that has sold over 6.7 million copies worldwide is finally here. Become Phoenix Wright and experience the thrill of battle as you fight to save your innocent clients in a court of law. Play all 14 episodes, spanning the first three games, in one gorgeous collection. Solve the intriguing mysteries behind each case and witness the final truth for yourself!",
+  "aids": [
+    "suspect-wild"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "puzzle"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-16",
+  "req": "NoTrpDrm.suprx for local trophies\nkubridge.skprx\nfd_fix.skprx\nrepatch.skprx / repatch_ex.skprx\nioplus.skprx\nlibshacccg.suprx\nitls.skprx / iTLS-Enso\nNoNpDrm.skprx\n0syscall6.skprx\nPSVshellPlus.skprx",
+  "sz": 19922944,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/media_20261116/pwaatvita.vpk",
+      "sz": 19922944,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Data Files",
+      "u": "https://archive.org/download/media_20261116/media.zip",
+      "sz": 1513975972,
+      "xp": "ux0:app/OBJECTION",
+      "ips": [
+        "PWAATrilogy"
+      ]
+    }
+  ]
+}
