@@ -299,6 +299,61 @@
     ]
   },
   {
+    "id": "switchfin",
+    "tid": "SWITCHFIN",
+    "n": "Switchfin",
+    "d": "Jellyfin client for PSVITA.",
+    "ld": "Switchfin is a third-party client for Jellyfin that provides a native user interface to browse and play movies and series.",
+    "aids": [
+      "dragonflylee"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "0.9.5",
+    "vd": "2026-11-10",
+    "req": "Not specified",
+    "sz": 43118879,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-switchfin/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-switchfin/shot_01.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_02.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_03.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_04.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/dragonflylee/switchfin/releases/download/0.9.5/Switchfin.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/dragonflylee/switchfin"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/dragonflylee/switchfin/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1258",
+    "su": "https://github.com/dragonflylee/switchfin",
+    "rp": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
+    "ua": "2026-08-13T15:34:48.366005+00:00"
+  },
+  {
     "id": "bloodbornepsx-v",
     "tid": "BBPS00001",
     "n": "bloodbornePSX-V",
@@ -346,6 +401,52 @@
     "ss": [
       "https://archive.org/download/bloodbornepsx-v-ps-vita/shot0.png",
       "https://archive.org/download/bloodbornepsx-v-ps-vita/shot1.png"
+    ]
+  },
+  {
+    "id": "zenonia-2",
+    "tid": "PSVZ00002",
+    "n": "Zenonia 2",
+    "d": "PS Vita port/loader of the Android release of Zenonia 2, originally published by Gamevil for Android, built on soloader-boilerplate.",
+    "ld": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!\n\n- PsVitaAlive -",
+    "aids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "arcade",
+      "puzzle",
+      "rpg",
+      "strategy"
+    ],
+    "v": "1.40",
+    "vd": "2026-11-10",
+    "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "sz": 973727,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases/download/v1.40/zenonia_2.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port"
+      }
+    ],
+    "ic": "https://archive.org/download/psvitaalive-zenonia-2/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-zenonia-2/shot_01.png"
     ]
   },
   {
@@ -938,6 +1039,52 @@
     ]
   },
   {
+    "id": "autoplugin-2",
+    "tid": "AUTOPLUG2",
+    "n": "Autoplugin 2",
+    "d": "",
+    "ld": "AutoPlugin II is a PS Vita homebrew that lets users easily install, update, and manage plugins.",
+    "aids": [
+      "onelua"
+    ],
+    "cid": "games",
+    "sids": [
+      "other"
+    ],
+    "v": "2.20",
+    "vd": "2026-11-07",
+    "req": "Not specified",
+    "sz": 12643760,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-autoplugin-2/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-autoplugin-2/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/ONElua/AutoPlugin2/releases/download/2.20/AutoPlugin2.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/ONElua/AutoPlugin2"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1448",
+    "su": "https://github.com/ONElua/AutoPlugin2",
+    "rp": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18",
+    "ua": "2026-08-13T15:34:48.718920+00:00"
+  },
+  {
     "id": "nfs-most-wanted",
     "tid": "NFSMWVITA",
     "n": "NFS Most Wanted",
@@ -1139,6 +1286,47 @@
       "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot1.png",
       "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot2.png",
       "https://archive.org/download/crash-bandicoot-the-wrath-of-cortex-ps-vita-port/shot3.png"
+    ]
+  },
+  {
+    "id": "inotia-3-children-of-carnia",
+    "tid": "INOTIA3PV",
+    "n": "Inotia 3: Children of Carnia",
+    "d": "PS Vita port of the classic ARPG Inotia 3: Children of Carnia, originally published by Com2uS for Android, built on soloader-boilerplate.",
+    "ld": "An unofficial, native Android-to-PS Vita wrapper port of Inotia 3: Children of Carnia (originally developed by Com2uS). This port utilizes so-loader technology, FalsoJNI, and vitaGL to load the official ARMv6 shared library (libgame.so) directly in native PS Vita RAM.\n\n- PsVitaAlive -",
+    "aids": [
+      "claude-ai",
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "rpg",
+      "strategy"
+    ],
+    "v": "1.0.3",
+    "vd": "2026-11-06",
+    "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
+    "sz": 1141562,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Inotia3-vita/releases/download/1.0.3/inotia3.vpk",
+        "sz": 1141562,
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/MetalSyntax/Inotia3-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
+      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
     ]
   },
   {
@@ -1719,6 +1907,61 @@
     "ss": [
       "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
     ]
+  },
+  {
+    "id": "nekodrome",
+    "tid": "NEMIKO001",
+    "n": "NekoDrome",
+    "d": "Navidrome/Subsonic client for the PSVita.",
+    "ld": "A Navidrome/Subsonic client for the PS Vita to play songs from dedicated servers.",
+    "aids": [
+      "nekomimi"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "2.0.0",
+    "vd": "2026-11-04",
+    "req": "Not specified",
+    "sz": 5970018,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-nekodrome/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-nekodrome/shot_01.png",
+      "https://archive.org/download/psvitaalive-nekodrome/shot_02.png",
+      "https://archive.org/download/psvitaalive-nekodrome/shot_03.png",
+      "https://archive.org/download/psvitaalive-nekodrome/shot_04.png",
+      "https://archive.org/download/psvitaalive-nekodrome/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/NekoMimiOfficial/NekoDrome/releases/download/v2.0.0/nekodrome.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/NekoMimiOfficial/NekoDrome/releases/tag/v1.01"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/NekoMimiOfficial/NekoDrome"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/NekoMimiOfficial/NekoDrome/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1359",
+    "su": "https://github.com/NekoMimiOfficial/NekoDrome",
+    "rp": "https://github.com/NekoMimiOfficial/NekoDrome/releases/tag/v1.01",
+    "ua": "2026-08-13T15:34:48.370319+00:00"
   },
   {
     "id": "insurgency",
@@ -3614,6 +3857,121 @@
     "ua": "2026-08-22T15:39"
   },
   {
+    "id": "arx-libertatis",
+    "tid": "ARXL00001",
+    "n": "Arx Libertatis",
+    "d": "Port of Arx Fatalis to PSVita.",
+    "ld": "Arx Libertatis is an open-source reimplementation of the Arx Fatalis engine, ported to PS Vita via vitaGL. Explore the dungeons of Arx as you fight, sneak, and cast your way through a full-length RPG with an immersive underground world.\n\n- PsVitaAlive -",
+    "aids": [
+      "kingtorro"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "v": "2.0",
+    "vd": "2026-10-25",
+    "req": "- libshacccg.suprx\n- Game Data Files: PC",
+    "sz": 4151997,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-arx-libertatis/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-arx-libertatis/shot_01.png",
+      "https://archive.org/download/psvitaalive-arx-libertatis/shot_02.png",
+      "https://archive.org/download/psvitaalive-arx-libertatis/shot_03.png",
+      "https://archive.org/download/psvitaalive-arx-libertatis/shot_04.png",
+      "https://archive.org/download/psvitaalive-arx-libertatis/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases/download/v2.0/arx-vita.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases/tag/v1.003"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/TheLostPantheon/ArxLibertatis"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1367",
+    "su": "https://github.com/TheLostPantheon/ArxLibertatis",
+    "rp": "https://github.com/TheLostPantheon/ArxLibertatis/releases",
+    "ua": "2026-08-13T15:34:48.364116+00:00"
+  },
+  {
+    "id": "vitadb-downloader",
+    "tid": "VITADBDLD",
+    "n": "VitaDB Downloader",
+    "d": "Official Vita client for VitaDB.",
+    "ld": "VitaDB Downloader is the official Vita client for VitaDB allowing to easily install homebrews from VitaDB directly from your PSVITA/PSTV.",
+    "aids": [
+      "rinnegatamante"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "2.8",
+    "vd": "2026-10-25",
+    "req": "- libshacccg.suprx",
+    "sz": 3187194,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-vitadb-downloader/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_01.png",
+      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_02.png",
+      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_03.png",
+      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_04.png",
+      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.8/VitaDB.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.5"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "877",
+    "su": "https://github.com/Rinnegatamante/VitaDB-Downloader",
+    "rp": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
+    "ua": "2026-08-13T15:34:48.346042+00:00"
+  },
+  {
     "id": "resident-evil-4-gc",
     "tid": "BIOHAZ004",
     "n": "Resident Evil 4 GC",
@@ -3711,6 +4069,57 @@
     "ss": [
       "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Shot0.png"
     ]
+  },
+  {
+    "id": "gmca",
+    "tid": "GMCA00001",
+    "n": "GMCA",
+    "d": "Media center client for PSVita.",
+    "ld": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
+    "aids": [
+      "thcolin"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.4.0",
+    "vd": "2026-10-24",
+    "req": "Not specified",
+    "sz": 14915386,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-gmca/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-gmca/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.4.0/GMCA.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1411",
+    "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
+    "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
+    "ua": "2026-08-13T15:34:48.329481+00:00"
   },
   {
     "id": "ff3-vita",
@@ -4590,45 +4999,59 @@
     ]
   },
   {
-    "id": "inotia-3-children-of-carnia",
-    "tid": "INOTIA3PV",
-    "n": "Inotia 3: Children of Carnia",
-    "d": "PS Vita port of the classic ARPG Inotia 3: Children of Carnia, originally published by Com2uS for Android, built on soloader-boilerplate.",
-    "ld": "An unofficial, native Android-to-PS Vita wrapper port of Inotia 3: Children of Carnia (originally developed by Com2uS). This port utilizes so-loader technology, FalsoJNI, and vitaGL to load the official ARMv6 shared library (libgame.so) directly in native PS Vita RAM.\n\n- PsVitaAlive -",
+    "id": "apollo-save-tool",
+    "tid": "NP0APOLLO",
+    "n": "Apollo Save Tool",
+    "d": "Save manager for PSVITA.",
+    "ld": "Apollo Save Tool is an application to manage save-game files on the PlayStation Vita.\nThis homebrew allows to download, unlock, patch and resign save-game files directly on your Vita.",
     "aids": [
-      "claude-ai",
-      "metalsyntax"
+      "bucanero"
     ],
-    "cid": "ports",
+    "cid": "utilities",
     "sids": [
-      "adventure",
-      "rpg",
-      "strategy"
+      "file-manager"
     ],
-    "v": "v.1.0.2",
-    "vd": "2026-10-18",
-    "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-    "sz": 1001403,
-    "st": "Verified",
+    "v": "2.4.0",
+    "vd": "2026-10-17",
+    "req": "Not specified",
+    "sz": 7343637,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-apollo-save-tool/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_01.png",
+      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_02.png",
+      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_03.png",
+      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_04.png",
+      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_05.png"
+    ],
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/inotia3%20v1.0.2.vpk",
-        "sz": 1001370,
+        "u": "https://github.com/bucanero/apollo-vita/releases/download/v2.4.0/apollo-vita.vpk",
         "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/bucanero/apollo-vita/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/bucanero/apollo-vita/releases/tag/v2.3.2"
       },
       {
         "t": "Repository",
         "n": "Repositorio",
-        "u": "https://github.com/MetalSyntax/Inotia3-vita"
+        "u": "https://github.com/bucanero/apollo-vita"
       }
     ],
-    "ic": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
-      "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
-    ]
+    "sn": "VitaHomebrewDB",
+    "si": "831",
+    "su": "https://github.com/bucanero/apollo-vita",
+    "rp": "https://github.com/bucanero/apollo-vita/releases",
+    "ua": "2026-08-13T15:34:48.352888+00:00"
   },
   {
     "id": "link-s-awakening-dx-hd",
@@ -5112,6 +5535,62 @@
     ]
   },
   {
+    "id": "retroflow-launcher",
+    "tid": "RETROFLOW",
+    "n": "RetroFlow Launcher",
+    "d": "3D Coverflow launcher for PSVITA.",
+    "ld": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.\nThis version includes categories for retro games which can be launched without bubbles for RetroArch and DaedalusX64. Playstation and PSP games can also be launched without having to create bubbles for every game!",
+    "aids": [
+      "jimbob4000",
+      "vitahex-games"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "8.5.0",
+    "vd": "2026-10-11",
+    "req": "Not specified",
+    "sz": 14100541,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-retroflow-launcher/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_01.png",
+      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_02.png",
+      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_03.png",
+      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_04.png",
+      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/download/v8.5.0/RetroFlow_v8.5.0.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/tag/v8.2.0"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/jimbob4000/RetroFlow-Launcher"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "745",
+    "su": "https://github.com/jimbob4000/RetroFlow-Launcher",
+    "rp": "https://github.com/jimbob4000/RetroFlow-Launcher/releases",
+    "ua": "2026-08-13T15:34:48.332588+00:00"
+  },
+  {
     "id": "castle-of-illusion",
     "tid": "COIV00001",
     "n": "Castle of Illusion",
@@ -5159,6 +5638,58 @@
     "ss": [
       "https://archive.org/download/castle-of-illusion-starring-mickey-mouse-ps-vita/pic0.png"
     ]
+  },
+  {
+    "id": "psvident",
+    "tid": "PSVIDENT0",
+    "n": "PSVident",
+    "d": "Shows info about your PSVITA.",
+    "ld": "Tool that bring all your Vita/PSTV info in to one place. App has a very nostalgic design for first PSP users, interface is looking very similar to well known PSPident application for PSP.",
+    "aids": [
+      "freakler"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.01",
+    "vd": "2026-10-10",
+    "req": "Not specified",
+    "sz": 254897,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-psvident/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-psvident/shot_01.png",
+      "https://archive.org/download/psvitaalive-psvident/shot_02.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Freakler/vita-PSVident/releases/download/1.01/PSVident_v101.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Freakler/vita-PSVident/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Freakler/vita-PSVident/releases/tag/0.43"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/Freakler/vita-PSVident"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "108",
+    "su": "https://github.com/Freakler/vita-PSVident",
+    "rp": "https://github.com/Freakler/vita-PSVident/releases",
+    "ua": "2026-08-13T15:34:48.459516+00:00"
   },
   {
     "id": "predators",
@@ -5624,6 +6155,61 @@
     ]
   },
   {
+    "id": "emu4vita",
+    "tid": "EMU4VPLUS",
+    "n": "Emu4Vita++",
+    "d": "Libretro frontend for PSVITA.",
+    "ld": "A frontend for libretro cores for PSVITA.",
+    "aids": [
+      "noword"
+    ],
+    "cid": "emulators",
+    "sids": [
+      "other"
+    ],
+    "v": "0.81",
+    "vd": "2026-10-05",
+    "req": "Not specified",
+    "sz": 200486427,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-emu4vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-emu4vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-emu4vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-emu4vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-emu4vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-emu4vita/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.81/Emu4VitaPlus_v0.81.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/noword/Emu4VitaPlus/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/noword/Emu4VitaPlus"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1260",
+    "su": "https://github.com/noword/Emu4VitaPlus",
+    "rp": "https://github.com/noword/Emu4VitaPlus/releases",
+    "ua": "2026-08-13T15:34:48.333586+00:00"
+  },
+  {
     "id": "plants-vs-zombies-2",
     "tid": "PVZ2VITA1",
     "n": "Plants vs Zombies 2",
@@ -5670,6 +6256,45 @@
     "ic": "https://archive.org/download/plants-vs-zombies-2-psvita/icon0.png",
     "ss": [
       "https://archive.org/download/plants-vs-zombies-2-psvita/shot0.png"
+    ]
+  },
+  {
+    "id": "vita-romm",
+    "tid": "ROMM00001",
+    "n": "Vita RomM",
+    "d": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.",
+    "ld": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.\n\nIt is made for a simple handheld workflow: open the app, pick a platform, browse games with cover art, download or install a title, and keep your Vita/Adrenaline/RetroArch folders organized through one configurable client.",
+    "aids": [
+      "denkacn"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "installer",
+      "downloader",
+      "updater"
+    ],
+    "v": "0.8.1",
+    "vd": "2026-10-04",
+    "req": "- A homebrew-enabled PS Vita or PSTV.\n- VitaShell.\n- Network access from the Vita to your RomM server.\n- A RomM API token.\n- Enough free space on ux0:.\n- Adrenaline for PSP and PSX EBOOT.PBP games.\n- RetroArch or another emulator for retro ROM folders.",
+    "sz": 2374229,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/denkacn/vita-romm/releases/download/v0.8.1/vita_romm.vpk",
+        "sz": 2374229,
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/denkacn/vita-romm"
+      }
+    ],
+    "ic": "https://archive.org/download/vita-romm-psvita/icon0.png",
+    "ss": [
+      "https://archive.org/download/vita-romm-psvita/shot0.png"
     ]
   },
   {
@@ -6074,6 +6699,57 @@
     ]
   },
   {
+    "id": "psv-cleaner",
+    "tid": "CLEAN0000",
+    "n": "Psv Cleaner",
+    "d": "",
+    "ld": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
+    "aids": [
+      "theherogac"
+    ],
+    "cid": "games",
+    "sids": [
+      "other"
+    ],
+    "v": "1.17",
+    "vd": "2026-09-26",
+    "req": "Not specified",
+    "sz": 136582,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-psv-cleaner/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.17/PSV_Cleaner.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1454",
+    "su": "https://github.com/theheroGAC/PSV-Cleaner",
+    "rp": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
+    "ua": "2026-08-13T15:34:48.720960+00:00"
+  },
+  {
     "id": "asphalt-6",
     "tid": "ASPHALT06",
     "n": "Asphalt 6",
@@ -6121,6 +6797,52 @@
     "ss": [
       "https://archive.org/download/asphalt-6-ps-vita/shot0.png"
     ]
+  },
+  {
+    "id": "adrenaline-bubbles-manager",
+    "tid": "ADRBUBMAN",
+    "n": "Adrenaline Bubbles Manager",
+    "d": "",
+    "ld": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't work on Adrenaline 8).",
+    "aids": [
+      "onelua"
+    ],
+    "cid": "games",
+    "sids": [
+      "other"
+    ],
+    "v": "6.24",
+    "vd": "2026-09-25",
+    "req": "Not specified",
+    "sz": 10528394,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/ONElua/AdrenalineBubbleManager/releases/download/6.24/AdrenalineBubbleManager.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/ONElua/AdrenalineBubbleManager"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1453",
+    "su": "https://github.com/ONElua/AdrenalineBubbleManager",
+    "rp": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20",
+    "ua": "2026-08-13T15:34:48.720363+00:00"
   },
   {
     "id": "arcaea",
@@ -6437,6 +7159,58 @@
     "su": "https://github.com/NDRWhun/JK2VITA",
     "rp": "https://github.com/NDRWhun/JK2VITA/releases",
     "ua": "2026-08-22T15:39"
+  },
+  {
+    "id": "consoleid",
+    "tid": "CONSOLEID",
+    "n": "ConsoleID",
+    "d": "App showing console unique ID.",
+    "ld": "An application that displays the PlayStation's unique Console Identification String.",
+    "aids": [
+      "freakler"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.01",
+    "vd": "2026-09-20",
+    "req": "Not specified",
+    "sz": 193265,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-consoleid/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-consoleid/shot_01.png",
+      "https://archive.org/download/psvitaalive-consoleid/shot_02.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Freakler/vita-ConsoleID/releases/download/1.01/ConsoleID_v101.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Freakler/vita-ConsoleID/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Freakler/vita-ConsoleID/releases/tag/1.00"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/Freakler/vita-ConsoleID"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "544",
+    "su": "https://github.com/Freakler/vita-ConsoleID",
+    "rp": "https://github.com/Freakler/vita-ConsoleID/releases",
+    "ua": "2026-08-13T15:34:48.621898+00:00"
   },
   {
     "id": "dungeon-hunter-2",
@@ -7039,6 +7813,59 @@
     ]
   },
   {
+    "id": "skyrift",
+    "tid": "SKRF00001",
+    "n": "Skyrift",
+    "d": "Sky-gliding adventure game for PSVita.",
+    "ld": "An original sky-gliding pixel-art adventure for PSVita.",
+    "aids": [
+      "claude-ai",
+      "onur-kuru"
+    ],
+    "cid": "games",
+    "sids": [
+      "other"
+    ],
+    "v": "1.3.0",
+    "vd": "2026-09-06",
+    "req": "Not specified",
+    "sz": 981740,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-skyrift/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-skyrift/shot_01.png",
+      "https://archive.org/download/psvitaalive-skyrift/shot_02.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/onurkuru/skyrift/releases/download/v1.3.0/skyrift.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/onurkuru/skyrift/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/onurkuru/skyrift/releases/tag/v1.2.0"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/onurkuru/skyrift"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1427",
+    "su": "https://github.com/onurkuru/skyrift",
+    "rp": "https://github.com/onurkuru/skyrift/releases",
+    "ua": "2026-08-13T15:34:48.327427+00:00"
+  },
+  {
     "id": "vagachatvita",
     "tid": "VAGROUTE1",
     "n": "VagaChatVITA",
@@ -7070,45 +7897,6 @@
       "https://github.com/Frxn5J/VagaChatVITA/blob/main/assets/startup.png?raw=true",
       "https://github.com/Frxn5J/VagaChatVITA/blob/main/Screenshot%202026-09-06%20003733.png?raw=true",
       "https://github.com/Frxn5J/VagaChatVITA/blob/main/Screenshot%202026-09-06%20003720.png?raw=true"
-    ]
-  },
-  {
-    "id": "vita-romm",
-    "tid": "ROMM00001",
-    "n": "Vita RomM",
-    "d": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.",
-    "ld": "Vita RomM is a PS Vita homebrew client for browsing a self-hosted RomM library and downloading your own backed-up games directly on the Vita.\n\nIt is made for a simple handheld workflow: open the app, pick a platform, browse games with cover art, download or install a title, and keep your Vita/Adrenaline/RetroArch folders organized through one configurable client.",
-    "aids": [
-      "denkacn"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "installer",
-      "downloader",
-      "updater"
-    ],
-    "v": "0.8.0",
-    "vd": "2026-09-06",
-    "req": "- A homebrew-enabled PS Vita or PSTV.\n- VitaShell.\n- Network access from the Vita to your RomM server.\n- A RomM API token.\n- Enough free space on ux0:.\n- Adrenaline for PSP and PSX EBOOT.PBP games.\n- RetroArch or another emulator for retro ROM folders.",
-    "sz": 2411725,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/vita-romm-psvita/vita_romm%20v0.8.0.s.vpk",
-        "sz": 2411725,
-        "rec": true
-      },
-      {
-        "t": "Repository",
-        "n": "GitHub",
-        "u": "https://github.com/denkacn/vita-romm"
-      }
-    ],
-    "ic": "https://archive.org/download/vita-romm-psvita/icon0.png",
-    "ss": [
-      "https://archive.org/download/vita-romm-psvita/shot0.png"
     ]
   },
   {
@@ -7630,6 +8418,61 @@
     ]
   },
   {
+    "id": "fmvita",
+    "tid": "FILEMNGR1",
+    "n": "FMVita",
+    "d": "Multifunctional file manager for PSVita.",
+    "ld": "FMVita (File Manager Vita) is an enhanced VitaShell (by TheFloW) fork by WolffsRoom with animated backgrounds, full touchscreen dialogs, column view, undo system, QR code scanning/downloading, and independent settings at ux0:FMVita/.",
+    "aids": [
+      "wolff",
+      "theflow"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "0.6.2",
+    "vd": "2026-08-28",
+    "req": "Not specified",
+    "sz": 2071824,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-fmvita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-fmvita/shot_01.png",
+      "https://archive.org/download/psvitaalive-fmvita/shot_02.png",
+      "https://archive.org/download/psvitaalive-fmvita/shot_03.png",
+      "https://archive.org/download/psvitaalive-fmvita/shot_04.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/WolffsRoom/FMVita/releases/download/v0.6.2/FileManager_v0.6.2.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/WolffsRoom/FMVita/releases/tag/v0.6.1"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/WolffsRoom/FMVita"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/WolffsRoom/FMVita/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1401",
+    "su": "https://github.com/WolffsRoom/FMVita",
+    "rp": "https://github.com/WolffsRoom/FMVita/releases/tag/v0.6.1",
+    "ua": "2026-08-13T15:34:48.338246+00:00"
+  },
+  {
     "id": "modern-combat-2-black-pegasus",
     "tid": "MC2V00001",
     "n": "Modern Combat 2: Black Pegasus",
@@ -7990,6 +8833,57 @@
     "su": "https://github.com/M-Essa11/Bounce-Vita",
     "rp": "https://github.com/M-Essa11/Bounce-Vita/releases",
     "ua": "2026-08-24T21:47:26.671379+00:00"
+  },
+  {
+    "id": "drally-vita",
+    "tid": "DERA00002",
+    "n": "dRally Vita",
+    "d": "Port of Death Rally for PSVITA.",
+    "ld": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.\n\n- PsVitaAlive -",
+    "aids": [
+      "enrique-somolinos-perez"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "v": "0.3",
+    "vd": "2026-08-24",
+    "req": "Not specified",
+    "sz": 2497567,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-drally-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-drally-vita/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/enriquesomolinos/dRally-vita/releases/download/0.3/Death_rally.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/enriquesomolinos/dRally-vita/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/enriquesomolinos/dRally-vita/releases/tag/v0.2.1-vita"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "823",
+    "su": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita",
+    "rp": "https://github.com/enriquesomolinos/dRally-vita/releases",
+    "ua": "2026-08-13T15:34:48.546146+00:00"
   },
   {
     "id": "jet-set-knights",
@@ -8377,62 +9271,6 @@
     "su": "https://github.com/blastrock/pkgj",
     "rp": "https://github.com/blastrock/pkgj/releases/tag/v0.57",
     "ua": "2026-08-15T09:57:03.730733+00:00"
-  },
-  {
-    "id": "retroflow-launcher",
-    "tid": "RETROFLOW",
-    "n": "RetroFlow Launcher",
-    "d": "3D Coverflow launcher for PSVITA.",
-    "ld": "This is a modded version of HexFlow Launcher; a 3d coverflow like launcher for PS Vita.\nThis version includes categories for retro games which can be launched without bubbles for RetroArch and DaedalusX64. Playstation and PSP games can also be launched without having to create bubbles for every game!",
-    "aids": [
-      "jimbob4000",
-      "vitahex-games"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.8.3.0",
-    "vd": "2026-08-20",
-    "req": "Not specified",
-    "sz": 13704574,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-retroflow-launcher/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_01.png",
-      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_02.png",
-      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_03.png",
-      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_04.png",
-      "https://archive.org/download/psvitaalive-retroflow-launcher/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-retroflow-launcher/retroflow-launcher.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/tag/v8.2.0"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/jimbob4000/RetroFlow-Launcher"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "745",
-    "su": "https://github.com/jimbob4000/RetroFlow-Launcher",
-    "rp": "https://github.com/jimbob4000/RetroFlow-Launcher/releases",
-    "ua": "2026-08-13T15:34:48.332588+00:00"
   },
   {
     "id": "gbvitaex",
@@ -8852,66 +9690,6 @@
     "ua": "2026-08-15T09:57:03.725442+00:00"
   },
   {
-    "id": "vitadb-downloader",
-    "tid": "VITADBDLD",
-    "n": "VitaDB Downloader",
-    "d": "Official Vita client for VitaDB.",
-    "ld": "VitaDB Downloader is the official Vita client for VitaDB allowing to easily install homebrews from VitaDB directly from your PSVITA/PSTV.",
-    "aids": [
-      "rinnegatamante"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.2.7",
-    "vd": "2026-08-15",
-    "req": "- libshacccg.suprx",
-    "sz": 3101129,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-vitadb-downloader/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_01.png",
-      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_02.png",
-      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_03.png",
-      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_04.png",
-      "https://archive.org/download/psvitaalive-vitadb-downloader/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-vitadb-downloader/vitadb-downloader.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.5"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/tag/v.2.6"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "877",
-    "su": "https://github.com/Rinnegatamante/VitaDB-Downloader",
-    "rp": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases",
-    "ua": "2026-08-13T15:34:48.346042+00:00"
-  },
-  {
     "id": "red-ball-4",
     "tid": "RDBL40001",
     "n": "Red Ball 4 PS Vita",
@@ -9162,57 +9940,6 @@
     "su": "https://github.com/LuckyI13I/WoozyLLM",
     "rp": "https://github.com/LuckyI13I/WoozyLLM/releases",
     "ua": "2026-08-13T17:59:53.540062+00:00"
-  },
-  {
-    "id": "psv-cleaner",
-    "tid": "CLEAN0000",
-    "n": "Psv Cleaner",
-    "d": "",
-    "ld": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
-    "aids": [
-      "theherogac"
-    ],
-    "cid": "games",
-    "sids": [
-      "other"
-    ],
-    "v": "1.16",
-    "vd": "2026-08-14",
-    "req": "Not specified",
-    "sz": 114465,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-psv-cleaner/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-psv-cleaner/PSV_Cleaner.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1454",
-    "su": "https://github.com/theheroGAC/PSV-Cleaner",
-    "rp": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
-    "ua": "2026-08-13T15:34:48.720960+00:00"
   },
   {
     "id": "marmaladeboy_lcd",
@@ -10821,61 +11548,6 @@
     "ua": "2026-08-13T15:34:48.327643+00:00"
   },
   {
-    "id": "fmvita",
-    "tid": "FILEMNGR1",
-    "n": "FMVita",
-    "d": "Multifunctional file manager for PSVita.",
-    "ld": "FMVita (File Manager Vita) is an enhanced VitaShell (by TheFloW) fork by WolffsRoom with animated backgrounds, full touchscreen dialogs, column view, undo system, QR code scanning/downloading, and independent settings at ux0:FMVita/.",
-    "aids": [
-      "wolff",
-      "theflow"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v0.6.1",
-    "vd": "2026-08-01",
-    "req": "Not specified",
-    "sz": 2625944,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-fmvita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-fmvita/shot_01.png",
-      "https://archive.org/download/psvitaalive-fmvita/shot_02.png",
-      "https://archive.org/download/psvitaalive-fmvita/shot_03.png",
-      "https://archive.org/download/psvitaalive-fmvita/shot_04.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-fmvita/FileManager_v0.6.1.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/WolffsRoom/FMVita/releases/tag/v0.6.1"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/WolffsRoom/FMVita"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/WolffsRoom/FMVita/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1401",
-    "su": "https://github.com/WolffsRoom/FMVita",
-    "rp": "https://github.com/WolffsRoom/FMVita/releases/tag/v0.6.1",
-    "ua": "2026-08-13T15:34:48.338246+00:00"
-  },
-  {
     "id": "cut-the-rope-classic",
     "tid": "CTROPE001",
     "n": "Cut the Rope Classic",
@@ -11077,61 +11749,6 @@
     "su": "https://github.com/KiddRwxSsj/opensonic-vita",
     "rp": "https://github.com/KiddRwxSsj/opensonic-vita/releases",
     "ua": "2026-08-13T15:34:48.324788+00:00"
-  },
-  {
-    "id": "switchfin",
-    "tid": "SWITCHFIN",
-    "n": "Switchfin",
-    "d": "Jellyfin client for PSVITA.",
-    "ld": "Switchfin is a third-party client for Jellyfin that provides a native user interface to browse and play movies and series.",
-    "aids": [
-      "dragonflylee"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.0.9.3",
-    "vd": "2026-07-27",
-    "req": "Not specified",
-    "sz": 12915205,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-switchfin/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-switchfin/shot_01.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_02.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_03.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_04.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-switchfin/Switchfin.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/dragonflylee/switchfin"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/dragonflylee/switchfin/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1258",
-    "su": "https://github.com/dragonflylee/switchfin",
-    "rp": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
-    "ua": "2026-08-13T15:34:48.366005+00:00"
   },
   {
     "id": "9mm-hd",
@@ -11469,59 +12086,6 @@
     "ua": "2026-08-13T15:34"
   },
   {
-    "id": "skyrift",
-    "tid": "SKRF00001",
-    "n": "Skyrift",
-    "d": "Sky-gliding adventure game for PSVita.",
-    "ld": "An original sky-gliding pixel-art adventure for PSVita.",
-    "aids": [
-      "claude-ai",
-      "onur-kuru"
-    ],
-    "cid": "games",
-    "sids": [
-      "other"
-    ],
-    "v": "v.1.2.0",
-    "vd": "2026-07-20",
-    "req": "Not specified",
-    "sz": 978581,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-skyrift/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-skyrift/shot_01.png",
-      "https://archive.org/download/psvitaalive-skyrift/shot_02.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-skyrift/skyrift.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/onurkuru/skyrift/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/onurkuru/skyrift/releases/tag/v1.2.0"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/onurkuru/skyrift"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1427",
-    "su": "https://github.com/onurkuru/skyrift",
-    "rp": "https://github.com/onurkuru/skyrift/releases",
-    "ua": "2026-08-13T15:34:48.327427+00:00"
-  },
-  {
     "id": "bloons-td-5-vita",
     "tid": "BTD500001",
     "n": "Bloons TD 5 Vita",
@@ -11624,103 +12188,6 @@
     "su": "https://github.com/parindraaa867/AT-CardWars-Vita",
     "rp": "https://github.com/parindraaa867/AT-CardWars-Vita",
     "ua": "2026-08-13T15:34:48.328141+00:00"
-  },
-  {
-    "id": "zenonia-2",
-    "tid": "PSVZ00002",
-    "n": "Zenonia 2",
-    "d": "PS Vita port/loader of the Android release of Zenonia 2, originally published by Gamevil for Android, built on soloader-boilerplate.",
-    "ld": "ZENONIA® 2: The Lost Memories has been highly enhanced in every aspect compared to the original. Full character and control customization, four characters following individual epic storylines, three different modes, asynchronous online PvP feature and an extended world of ZENONIA guarantee greater enjoyment!\n\n- PsVitaAlive -",
-    "aids": [
-      "claude-ai",
-      "metalsyntax"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "arcade",
-      "puzzle",
-      "rpg",
-      "strategy"
-    ],
-    "v": "v.1.20",
-    "vd": "2026-07-18",
-    "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-    "sz": 848304,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-zenonia-2/zenonia-2.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port"
-      }
-    ],
-    "ic": "https://archive.org/download/psvitaalive-zenonia-2/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-zenonia-2/shot_01.png"
-    ]
-  },
-  {
-    "id": "gmca",
-    "tid": "GMCA00001",
-    "n": "GMCA",
-    "d": "Media center client for PSVita.",
-    "ld": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
-    "aids": [
-      "thcolin"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v1.1.0",
-    "vd": "2026-07-17",
-    "req": "Not specified",
-    "sz": 14558256,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-gmca/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-gmca/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-gmca/GMCA.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1411",
-    "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
-    "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
-    "ua": "2026-08-13T15:34:48.329481+00:00"
   },
   {
     "id": "beach-buggy-racing-vita",
@@ -12474,61 +12941,6 @@
     "ua": "2026-08-13T15:34:48.334131+00:00"
   },
   {
-    "id": "emu4vita",
-    "tid": "EMU4VPLUS",
-    "n": "Emu4Vita++",
-    "d": "Libretro frontend for PSVITA.",
-    "ld": "A frontend for libretro cores for PSVITA.",
-    "aids": [
-      "noword"
-    ],
-    "cid": "emulators",
-    "sids": [
-      "other"
-    ],
-    "v": "v.0.79",
-    "vd": "2026-06-26",
-    "req": "Not specified",
-    "sz": 197348129,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-emu4vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-emu4vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-emu4vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-emu4vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-emu4vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-emu4vita/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-emu4vita/emu4vita.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/noword/Emu4VitaPlus/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/noword/Emu4VitaPlus/releases/tag/v0.78"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/noword/Emu4VitaPlus"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1260",
-    "su": "https://github.com/noword/Emu4VitaPlus",
-    "rp": "https://github.com/noword/Emu4VitaPlus/releases",
-    "ua": "2026-08-13T15:34:48.333586+00:00"
-  },
-  {
     "id": "goldenidol-vita",
     "tid": "IDOL00001",
     "n": "GoldenIdol-Vita",
@@ -13023,52 +13435,6 @@
     "su": "https://github.com/withLogic/mog-vita",
     "rp": "https://github.com/withLogic/mog-vita/releases",
     "ua": "2026-08-13T15:34:48.340315+00:00"
-  },
-  {
-    "id": "autoplugin-2",
-    "tid": "AUTOPLUG2",
-    "n": "Autoplugin 2",
-    "d": "",
-    "ld": "AutoPlugin II is a PS Vita homebrew that lets users easily install, update, and manage plugins.",
-    "aids": [
-      "onelua"
-    ],
-    "cid": "games",
-    "sids": [
-      "other"
-    ],
-    "v": "2.18",
-    "vd": "2026-06-12",
-    "req": "Not specified",
-    "sz": 12385826,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-autoplugin-2/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-autoplugin-2/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-autoplugin-2/AutoPlugin2.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/ONElua/AutoPlugin2"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1448",
-    "su": "https://github.com/ONElua/AutoPlugin2",
-    "rp": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18",
-    "ua": "2026-08-13T15:34:48.718920+00:00"
   },
   {
     "id": "wrecking-wave",
@@ -14409,61 +14775,6 @@
     "ua": "2026-08-13T15:34:48.353682+00:00"
   },
   {
-    "id": "apollo-save-tool",
-    "tid": "NP0APOLLO",
-    "n": "Apollo Save Tool",
-    "d": "Save manager for PSVITA.",
-    "ld": "Apollo Save Tool is an application to manage save-game files on the PlayStation Vita.\nThis homebrew allows to download, unlock, patch and resign save-game files directly on your Vita.",
-    "aids": [
-      "bucanero"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "file-manager"
-    ],
-    "v": "v.2.3.2",
-    "vd": "2026-04-26",
-    "req": "Not specified",
-    "sz": 6175022,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-apollo-save-tool/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_01.png",
-      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_02.png",
-      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_03.png",
-      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_04.png",
-      "https://archive.org/download/psvitaalive-apollo-save-tool/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-apollo-save-tool/apollo-save-tool.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/bucanero/apollo-vita/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/bucanero/apollo-vita/releases/tag/v2.3.2"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/bucanero/apollo-vita"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "831",
-    "su": "https://github.com/bucanero/apollo-vita",
-    "rp": "https://github.com/bucanero/apollo-vita/releases",
-    "ua": "2026-08-13T15:34:48.352888+00:00"
-  },
-  {
     "id": "wiliwili",
     "tid": "WILIWILI0",
     "n": "wiliwili",
@@ -15543,61 +15854,6 @@
     "ua": "2026-08-13T15:34:48.363734+00:00"
   },
   {
-    "id": "arx-libertatis",
-    "tid": "ARXL00001",
-    "n": "Arx Libertatis",
-    "d": "Port of Arx Fatalis to PSVita.",
-    "ld": "Arx Libertatis is an open-source reimplementation of the Arx Fatalis engine, ported to PS Vita via vitaGL. Explore the dungeons of Arx as you fight, sneak, and cast your way through a full-length RPG with an immersive underground world.\n\n- PsVitaAlive -",
-    "aids": [
-      "kingtorro"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "v.1.003",
-    "vd": "2026-02-17",
-    "req": "- libshacccg.suprx\n- Game Data Files: PC",
-    "sz": 3586848,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-arx-libertatis/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-arx-libertatis/shot_01.png",
-      "https://archive.org/download/psvitaalive-arx-libertatis/shot_02.png",
-      "https://archive.org/download/psvitaalive-arx-libertatis/shot_03.png",
-      "https://archive.org/download/psvitaalive-arx-libertatis/shot_04.png",
-      "https://archive.org/download/psvitaalive-arx-libertatis/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-arx-libertatis/arx-libertatis.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases/tag/v1.003"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/TheLostPantheon/ArxLibertatis"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1367",
-    "su": "https://github.com/TheLostPantheon/ArxLibertatis",
-    "rp": "https://github.com/TheLostPantheon/ArxLibertatis/releases",
-    "ua": "2026-08-13T15:34:48.364116+00:00"
-  },
-  {
     "id": "toziuha-night-dracula-s-revenge-vita",
     "tid": "DRRE01002",
     "n": "Toziuha Night Dracula's Revenge Vita",
@@ -15646,61 +15902,6 @@
     "su": "https://github.com/Rocroverss/Toziuha-Night-Dracula-s-Revenge-patch-psvita",
     "rp": "https://github.com/Rocroverss/Toziuha-Night-Dracula-s-Revenge-patch-psvita",
     "ua": "2026-08-13T15:34:48.364673+00:00"
-  },
-  {
-    "id": "nekodrome",
-    "tid": "NEMIKO001",
-    "n": "NekoDrome",
-    "d": "Navidrome/Subsonic client for the PSVita.",
-    "ld": "A Navidrome/Subsonic client for the PS Vita to play songs from dedicated servers.",
-    "aids": [
-      "nekomimi"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v1.01",
-    "vd": "2026-02-13",
-    "req": "Not specified",
-    "sz": 5923761,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-nekodrome/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-nekodrome/shot_01.png",
-      "https://archive.org/download/psvitaalive-nekodrome/shot_02.png",
-      "https://archive.org/download/psvitaalive-nekodrome/shot_03.png",
-      "https://archive.org/download/psvitaalive-nekodrome/shot_04.png",
-      "https://archive.org/download/psvitaalive-nekodrome/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-nekodrome/nekodrome.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/NekoMimiOfficial/NekoDrome/releases/tag/v1.01"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/NekoMimiOfficial/NekoDrome"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/NekoMimiOfficial/NekoDrome/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1359",
-    "su": "https://github.com/NekoMimiOfficial/NekoDrome",
-    "rp": "https://github.com/NekoMimiOfficial/NekoDrome/releases/tag/v1.01",
-    "ua": "2026-08-13T15:34:48.370319+00:00"
   },
   {
     "id": "zato-vita",
@@ -26822,58 +27023,6 @@
     "ua": "2026-08-13T15:34:48.459206+00:00"
   },
   {
-    "id": "psvident",
-    "tid": "PSVIDENT0",
-    "n": "PSVident",
-    "d": "Shows info about your PSVITA.",
-    "ld": "Tool that bring all your Vita/PSTV info in to one place. App has a very nostalgic design for first PSP users, interface is looking very similar to well known PSPident application for PSP.",
-    "aids": [
-      "freakler"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.0.43",
-    "vd": "2023-11-12",
-    "req": "Not specified",
-    "sz": 159945,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-psvident/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-psvident/shot_01.png",
-      "https://archive.org/download/psvitaalive-psvident/shot_02.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-psvident/psvident.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Freakler/vita-PSVident/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Freakler/vita-PSVident/releases/tag/0.43"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/Freakler/vita-PSVident"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "108",
-    "su": "https://github.com/Freakler/vita-PSVident",
-    "rp": "https://github.com/Freakler/vita-PSVident/releases",
-    "ua": "2026-08-13T15:34:48.459516+00:00"
-  },
-  {
     "id": "ps-vita-sync",
     "tid": "SYNC00055",
     "n": "PS Vita Sync",
@@ -29519,52 +29668,6 @@
     "su": "https://fuhen.homebrew-contest.com/submissions/16/",
     "rp": "https://fuhen.homebrew-contest.com/submissions/16/",
     "ua": "2026-08-13T15:34:48.484962+00:00"
-  },
-  {
-    "id": "adrenaline-bubbles-manager",
-    "tid": "ADRBUBMAN",
-    "n": "Adrenaline Bubbles Manager",
-    "d": "",
-    "ld": "This useful application allows you to make personalized bubbles with 'icon' and 'title' of your PSP content (HBS/PSX/ISO/CSO) quick and easy.(It doesn't work on Adrenaline 8).",
-    "aids": [
-      "onelua"
-    ],
-    "cid": "games",
-    "sids": [
-      "other"
-    ],
-    "v": "6.20",
-    "vd": "2023-07-23",
-    "req": "Not specified",
-    "sz": 9728063,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/AdrenalineBubbleManager.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/ONElua/AdrenalineBubbleManager"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1453",
-    "su": "https://github.com/ONElua/AdrenalineBubbleManager",
-    "rp": "https://github.com/ONElua/AdrenalineBubbleManager/releases/tag/6.20",
-    "ua": "2026-08-13T15:34:48.720363+00:00"
   },
   {
     "id": "jftekwar-vita",
@@ -36203,57 +36306,6 @@
     "su": "https://github.com/hatoving/csd2",
     "rp": "https://github.com/hatoving/csd2",
     "ua": "2026-08-13T15:34:48.545866+00:00"
-  },
-  {
-    "id": "drally-vita",
-    "tid": "DERA00002",
-    "n": "dRally Vita",
-    "d": "Port of Death Rally for PSVITA.",
-    "ld": "Port of Death Rally, an arcade car simulation game released in 1996, for the PSVITA.\n\n- PsVitaAlive -",
-    "aids": [
-      "enrique-somolinos-perez"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "v.0.2.1",
-    "vd": "2022-05-18",
-    "req": "Not specified",
-    "sz": 1830404,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-drally-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-drally-vita/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-drally-vita/drally-vita.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/enriquesomolinos/dRally-vita/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/enriquesomolinos/dRally-vita/releases/tag/v0.2.1-vita"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "823",
-    "su": "https://github.com/enriquesomolinos/dRally-vita/tree/psvita",
-    "rp": "https://github.com/enriquesomolinos/dRally-vita/releases",
-    "ua": "2026-08-13T15:34:48.546146+00:00"
   },
   {
     "id": "repatch-manager",
@@ -46738,58 +46790,6 @@
     "su": "https://github.com/Freakler/vita-Fingerprint",
     "rp": "https://github.com/Freakler/vita-Fingerprint/releases",
     "ua": "2026-08-13T15:34:48.621613+00:00"
-  },
-  {
-    "id": "consoleid",
-    "tid": "CONSOLEID",
-    "n": "ConsoleID",
-    "d": "App showing console unique ID.",
-    "ld": "An application that displays the PlayStation's unique Console Identification String.",
-    "aids": [
-      "freakler"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.1.00",
-    "vd": "2020-03-31",
-    "req": "Not specified",
-    "sz": 187573,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-consoleid/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-consoleid/shot_01.png",
-      "https://archive.org/download/psvitaalive-consoleid/shot_02.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-consoleid/consoleid.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Freakler/vita-ConsoleID/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Freakler/vita-ConsoleID/releases/tag/1.00"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/Freakler/vita-ConsoleID"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "544",
-    "su": "https://github.com/Freakler/vita-ConsoleID",
-    "rp": "https://github.com/Freakler/vita-ConsoleID/releases",
-    "ua": "2026-08-13T15:34:48.621898+00:00"
   },
   {
     "id": "dvd-screensaver",
