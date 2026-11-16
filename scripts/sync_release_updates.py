@@ -122,6 +122,10 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
         return None, "Archive or unsupported status"
     if item.get("platform") != "github" or item.get("prerelease"):
         return None, "not a stable GitHub release"
+    # Check the canonical catalog version FIRST. When the developer's release
+    # is already catalogued, keep every manually preserved Archive.org URL,
+    # link order, recommendation and date untouched on later monitor scans.
+    # Only a strictly newer version may ever replace the current VPK URL.
     if not newer_version(app.get("version"), item.get("tag")):
         return None, "version not newer or cannot be compared safely"
     when = release_date(item.get("published"))
