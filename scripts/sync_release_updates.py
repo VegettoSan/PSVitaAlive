@@ -22,13 +22,16 @@ from urllib.parse import urlparse
 
 try:
     from scripts.catalog_schema_v2 import to_v1, to_v2
+    from scripts.vpk_release_verifier import release_asset_url, verify_release_vpk
 except ModuleNotFoundError:
     from catalog_schema_v2 import to_v1, to_v2
+    from vpk_release_verifier import release_asset_url, verify_release_vpk
 
 MONITOR_REPO = "VegettoSan/PsVita-Homebrews-New-Releases"
 MONITOR_SNAPSHOT = "data/upstream_latest.json"
 SHA_RE = re.compile(r"^[a-fA-F0-9]{40}$")
 NUMERIC_VERSION = re.compile(r"^[vV]?\.?(\d+(?:\.\d+){0,3})$")
+MAX_DOWNLOADS_PER_RUN = 6  # Limit unattended GitHub Actions bandwidth/runtime.
 COMPLEX_LINK_TYPES = {
     "game files", "data files", "mod", "mod pack", "patch", "plugin",
     "pkg", "dlc", "update",
@@ -139,12 +142,14 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
 
     assets = [asset for asset in (item.get("assets") or [])
               if isinstance(asset, dict) and str(asset.get("name") or "").lower().endswith(".vpk")]
-    if len(assets) != 1:
-        return None, "missing or ambiguous VPK assets"
+    if not assets:
+        return None, "no .vpk asset: manual update required"
+    if len(assets) > 1:
+        return None, f"{len(assets)} .vpk assets: manual update required"
     asset = assets[0]
     asset_url = asset.get("download_url")
-    if not download_belongs_to_repo(asset_url, repo):
-        return None, "VPK is not a GitHub release download from this repository"
+    if not release_asset_url(asset_url, repo, str(item.get("tag") or "")):
+        return None, "VPK URL is not a direct asset of this exact release tag"
     size = asset.get("size")
     if not isinstance(size, int) or isinstance(size, bool) or size <= 0:
         return None, "unknown VPK asset size"
@@ -194,7 +199,9 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
 
 
 
-def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
+def plan_changes(
+    root: Path, snapshot: dict, *, verify_downloads: bool = False
+) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
     if not isinstance(snapshot, dict) or snapshot.get("schema_version") != 1:
         raise ValueError("Unsupported upstream snapshot")
     releases = snapshot.get("releases")
@@ -215,6 +222,7 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
 
     changes = []
     skipped = []
+    attempted_downloads = 0
     seen = set()
     for release in releases:
         if not isinstance(release, dict):
@@ -236,6 +244,26 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
             continue
         proposal, reason = release_update(app, release, repo)
         if proposal is not None:
+            if verify_downloads:
+                if attempted_downloads >= MAX_DOWNLOADS_PER_RUN:
+                    skipped.append(f"{repo}: automatic VPK validation limit reached; pending manual/next scan")
+                    continue
+                attempted_downloads += 1
+                asset = next(
+                    asset for asset in release["assets"]
+                    if isinstance(asset, dict) and str(asset.get("name") or "").lower().endswith(".vpk")
+                )
+                valid, verification = verify_release_vpk(
+                    asset["download_url"],
+                    repo=repo,
+                    tag=str(release.get("tag") or ""),
+                    expected_title_id=str(app.get("title_id") or ""),
+                    expected_size=asset["size"],
+                )
+                if not valid:
+                    skipped.append(f"{repo}: VPK download/validation failed ({verification}); manual review")
+                    continue
+                print(f"VERIFIED {repo}: {verification}")
             changes.append((path, proposal, compact))
         elif newer_version(app.get("version"), release.get("tag")):
             skipped.append(f"{repo}: {reason}")
@@ -255,10 +283,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--monitor-ref", default="main")
-    parser.add_argument("--apply", action="store_true", help="write canonical apps/*.json; default dry run")
+    parser.add_argument("--apply", action="store_true",
+                        help="download and verify VPK ZIP/TITLE_ID before writing apps/*.json; default dry run")
     args = parser.parse_args()
 
-    changes, skipped = plan_changes(args.root, load_snapshot(args.monitor_ref))
+    changes, skipped = plan_changes(
+        args.root, load_snapshot(args.monitor_ref), verify_downloads=args.apply
+    )
     for path, app, compact in changes:
         print(f"{'UPDATE' if args.apply else 'DRY-RUN'} {path.relative_to(args.root)} → {app['version']}")
         if args.apply:
@@ -269,7 +300,8 @@ def main() -> int:
                             encoding="utf-8")
     for message in skipped:
         print("REVIEW", message)
-    print(f"Catalog update candidates={len(changes)}, skipped={len(skipped)}, applied={args.apply}")
+    print(f"Catalog update candidates={len(changes)}, skipped={len(skipped)}, applied={args.apply}; "
+          f"binary_verification={'required' if args.apply else 'not performed (preview only)'}")
     return 0
 
 
