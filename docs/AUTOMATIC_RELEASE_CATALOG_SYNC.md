@@ -21,6 +21,17 @@ un snapshot de releases y avisa al workflow oficial de PSVitaAlive.
 6. El workflow oficial `validate.yml` vuelve a validar y genera
    `catalog.json`, `authors.json` y `categories.json`.
 
+**Prioridad absoluta: respetar los respaldos manuales.** En cada escaneo,
+el actualizador primero compara la versión de la release contra la versión
+existente en el JSON canónico de `apps/`. Si son iguales, si el catálogo ya
+es más reciente, o si no se pueden comparar con seguridad, **no modifica
+ningún campo**: ni versión, ni fecha, ni tamaño, ni enlaces de descarga,
+ni Mirrors de Archive.org. Así, después de que el mantenedor reemplace el
+enlace automático de GitHub por su respaldo en Archive.org, futuras
+sincronizaciones de la misma versión nunca revierten ese cambio. Solo una
+release con una **versión estrictamente posterior** puede volver a modificar
+el Download principal, conservando el antiguo respaldo como Mirror.
+
 No hay un bucle infinito: una versión ya incorporada no genera más cambios.
 La tarea programada del monitor cada tres horas sigue como respaldo, a minuto
 17 para evitar la congestión de las horas en punto.
