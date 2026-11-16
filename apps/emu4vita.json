@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.79",
-  "vd": "2026-06-26",
+  "v": "0.81",
+  "vd": "2026-10-05",
   "req": "Not specified",
-  "sz": 197348129,
+  "sz": 200486427,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-emu4vita/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-emu4vita/emu4vita.vpk",
+      "u": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.81/Emu4VitaPlus_v0.81.vpk",
       "rec": true
     },
     {

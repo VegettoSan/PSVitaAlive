@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "1.16",
-  "vd": "2026-08-14",
+  "v": "1.17",
+  "vd": "2026-09-26",
   "req": "Not specified",
-  "sz": 114465,
+  "sz": 136582,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
   "ss": [
@@ -24,7 +24,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-psv-cleaner/PSV_Cleaner.vpk",
+      "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.17/PSV_Cleaner.vpk",
       "rec": true
     },
     {

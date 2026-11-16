@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.1.003",
-  "vd": "2026-02-17",
+  "v": "2.0",
+  "vd": "2026-10-25",
   "req": "- libshacccg.suprx\n- Game Data Files: PC",
-  "sz": 3586848,
+  "sz": 4151997,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-arx-libertatis/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-arx-libertatis/arx-libertatis.vpk",
+      "u": "https://github.com/TheLostPantheon/ArxLibertatis/releases/download/v2.0/arx-vita.vpk",
       "rec": true
     },
     {

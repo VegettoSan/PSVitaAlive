@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.1.00",
-  "vd": "2020-03-31",
+  "v": "1.01",
+  "vd": "2026-09-20",
   "req": "Not specified",
-  "sz": 187573,
+  "sz": 193265,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-consoleid/icon0.png",
   "ss": [
@@ -25,7 +25,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-consoleid/consoleid.vpk",
+      "u": "https://github.com/Freakler/vita-ConsoleID/releases/download/1.01/ConsoleID_v101.vpk",
       "rec": true
     },
     {

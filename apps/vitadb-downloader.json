@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.2.7",
-  "vd": "2026-08-15",
+  "v": "2.8",
+  "vd": "2026-10-25",
   "req": "- libshacccg.suprx",
-  "sz": 3101129,
+  "sz": 3187194,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-vitadb-downloader/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-vitadb-downloader/vitadb-downloader.vpk",
+      "u": "https://github.com/Rinnegatamante/VitaDB-Downloader/releases/download/v.2.8/VitaDB.vpk",
       "rec": true
     },
     {

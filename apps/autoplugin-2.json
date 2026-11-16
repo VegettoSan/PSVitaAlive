@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "2.18",
-  "vd": "2026-06-12",
+  "v": "2.20",
+  "vd": "2026-11-07",
   "req": "Not specified",
-  "sz": 12385826,
+  "sz": 12643760,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-autoplugin-2/icon0.png",
   "ss": [
@@ -24,7 +24,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-autoplugin-2/AutoPlugin2.vpk",
+      "u": "https://github.com/ONElua/AutoPlugin2/releases/download/2.20/AutoPlugin2.vpk",
       "rec": true
     },
     {

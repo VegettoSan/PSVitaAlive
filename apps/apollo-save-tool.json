@@ -11,10 +11,10 @@
   "sids": [
     "file-manager"
   ],
-  "v": "v.2.3.2",
-  "vd": "2026-04-26",
+  "v": "2.4.0",
+  "vd": "2026-10-17",
   "req": "Not specified",
-  "sz": 6175022,
+  "sz": 7343637,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-apollo-save-tool/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-apollo-save-tool/apollo-save-tool.vpk",
+      "u": "https://github.com/bucanero/apollo-vita/releases/download/v2.4.0/apollo-vita.vpk",
       "rec": true
     },
     {

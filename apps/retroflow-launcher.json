@@ -12,10 +12,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.8.3.0",
-  "vd": "2026-08-20",
+  "v": "8.5.0",
+  "vd": "2026-10-11",
   "req": "Not specified",
-  "sz": 13704574,
+  "sz": 14100541,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-retroflow-launcher/icon0.png",
   "ss": [
@@ -29,7 +29,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-retroflow-launcher/retroflow-launcher.vpk",
+      "u": "https://github.com/jimbob4000/RetroFlow-Launcher/releases/download/v8.5.0/RetroFlow_v8.5.0.vpk",
       "rec": true
     },
     {

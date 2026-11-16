@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.2.1",
-  "vd": "2022-05-18",
+  "v": "0.3",
+  "vd": "2026-08-24",
   "req": "Not specified",
-  "sz": 1830404,
+  "sz": 2497567,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-drally-vita/icon0.png",
   "ss": [
@@ -24,7 +24,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-drally-vita/drally-vita.vpk",
+      "u": "https://github.com/enriquesomolinos/dRally-vita/releases/download/0.3/Death_rally.vpk",
       "rec": true
     },
     {

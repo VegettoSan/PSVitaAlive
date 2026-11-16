@@ -13,17 +13,17 @@
     "downloader",
     "updater"
   ],
-  "v": "0.8.0",
-  "vd": "2026-09-06",
+  "v": "0.8.1",
+  "vd": "2026-10-04",
   "req": "- A homebrew-enabled PS Vita or PSTV.\n- VitaShell.\n- Network access from the Vita to your RomM server.\n- A RomM API token.\n- Enough free space on ux0:.\n- Adrenaline for PSP and PSX EBOOT.PBP games.\n- RetroArch or another emulator for retro ROM folders.",
-  "sz": 2411725,
+  "sz": 2374229,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/vita-romm-psvita/vita_romm%20v0.8.0.s.vpk",
-      "sz": 2411725,
+      "u": "https://github.com/denkacn/vita-romm/releases/download/v0.8.1/vita_romm.vpk",
+      "sz": 2374229,
       "rec": true
     },
     {

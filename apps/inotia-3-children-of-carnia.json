@@ -14,17 +14,17 @@
     "rpg",
     "strategy"
   ],
-  "v": "v.1.0.2",
-  "vd": "2026-10-18",
+  "v": "1.0.3",
+  "vd": "2026-11-06",
   "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "sz": 1001403,
+  "sz": 1141562,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/inotia3%20v1.0.2.vpk",
-      "sz": 1001370,
+      "u": "https://github.com/MetalSyntax/Inotia3-vita/releases/download/1.0.3/inotia3.vpk",
+      "sz": 1141562,
       "rec": true
     },
     {

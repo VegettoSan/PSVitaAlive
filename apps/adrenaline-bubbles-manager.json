@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "6.20",
-  "vd": "2023-07-23",
+  "v": "6.24",
+  "vd": "2026-09-25",
   "req": "Not specified",
-  "sz": 9728063,
+  "sz": 10528394,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/icon0.png",
   "ss": [
@@ -24,7 +24,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-adrenaline-bubbles-manager/AdrenalineBubbleManager.vpk",
+      "u": "https://github.com/ONElua/AdrenalineBubbleManager/releases/download/6.24/AdrenalineBubbleManager.vpk",
       "rec": true
     },
     {

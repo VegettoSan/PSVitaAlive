@@ -12,10 +12,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.1.2.0",
-  "vd": "2026-07-20",
+  "v": "1.3.0",
+  "vd": "2026-09-06",
   "req": "Not specified",
-  "sz": 978581,
+  "sz": 981740,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-skyrift/icon0.png",
   "ss": [
@@ -26,7 +26,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-skyrift/skyrift.vpk",
+      "u": "https://github.com/onurkuru/skyrift/releases/download/v1.3.0/skyrift.vpk",
       "rec": true
     },
     {

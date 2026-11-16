@@ -12,10 +12,10 @@
   "sids": [
     "other"
   ],
-  "v": "v0.6.1",
-  "vd": "2026-08-01",
+  "v": "0.6.2",
+  "vd": "2026-08-28",
   "req": "Not specified",
-  "sz": 2625944,
+  "sz": 2071824,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-fmvita/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-fmvita/FileManager_v0.6.1.vpk",
+      "u": "https://github.com/WolffsRoom/FMVita/releases/download/v0.6.2/FileManager_v0.6.2.vpk",
       "rec": true
     },
     {

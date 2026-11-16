@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.43",
-  "vd": "2023-11-12",
+  "v": "1.01",
+  "vd": "2026-10-10",
   "req": "Not specified",
-  "sz": 159945,
+  "sz": 254897,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-psvident/icon0.png",
   "ss": [
@@ -25,7 +25,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-psvident/psvident.vpk",
+      "u": "https://github.com/Freakler/vita-PSVident/releases/download/1.01/PSVident_v101.vpk",
       "rec": true
     },
     {

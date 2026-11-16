@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v1.01",
-  "vd": "2026-02-13",
+  "v": "2.0.0",
+  "vd": "2026-11-04",
   "req": "Not specified",
-  "sz": 5923761,
+  "sz": 5970018,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-nekodrome/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-nekodrome/nekodrome.vpk",
+      "u": "https://github.com/NekoMimiOfficial/NekoDrome/releases/download/v2.0.0/nekodrome.vpk",
       "rec": true
     },
     {

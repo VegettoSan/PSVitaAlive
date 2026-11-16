@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.9.3",
-  "vd": "2026-07-27",
+  "v": "0.9.5",
+  "vd": "2026-11-10",
   "req": "Not specified",
-  "sz": 12915205,
+  "sz": 43118879,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-switchfin/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-switchfin/Switchfin.vpk",
+      "u": "https://github.com/dragonflylee/switchfin/releases/download/0.9.5/Switchfin.vpk",
       "rec": true
     },
     {

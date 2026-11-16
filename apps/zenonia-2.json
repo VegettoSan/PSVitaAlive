@@ -16,16 +16,16 @@
     "rpg",
     "strategy"
   ],
-  "v": "v.1.20",
-  "vd": "2026-07-18",
+  "v": "1.40",
+  "vd": "2026-11-10",
   "req": "- (Recommended) Make sure that you are either on 3.60 enso or 3.65 enso firmware version. Other versions may work too, but no support are provided for them! - Install or update kubridge and FdFix by copying kubridge.skprx and fd_fix.skprx to your taiHEN plugins folder - Make sure you have libshacccg.suprx in the ur0:/data/ folder on your console. If you don't, use ShaRKBR33D to get it quickly and easily.",
-  "sz": 848304,
+  "sz": 973727,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-zenonia-2/zenonia-2.vpk",
+      "u": "https://github.com/MetalSyntax/Zenonia2-psvita-port/releases/download/v1.40/zenonia_2.vpk",
       "rec": true
     },
     {
