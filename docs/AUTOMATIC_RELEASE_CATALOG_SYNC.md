@@ -14,8 +14,9 @@ un snapshot de releases y avisa al workflow oficial de PSVitaAlive.
    `main`), descubre repositorios, revisa sus releases, actualiza GitHub Pages
    y guarda `data/upstream_latest.json`.
 4. El monitor emite `release_monitor_synced` a PSVitaAlive con su SHA de commit.
-5. PSVitaAlive evalúa el snapshot con `scripts/sync_release_updates.py` y solo
-   modifica `apps/*.json` cuando todas las comprobaciones son inequívocas.
+5. PSVitaAlive evalúa el snapshot con `scripts/sync_release_updates.py`,
+   descarga y verifica el único VPK candidato y solo modifica `apps/*.json`
+   cuando todas las comprobaciones son inequívocas.
 6. El workflow oficial `validate.yml` vuelve a validar y genera
    `catalog.json`, `authors.json` y `categories.json`.
 
@@ -49,7 +50,15 @@ Por defecto solo se actualizan aplicaciones `Verified` o `Legacy` cuando:
 - Hay un **único** Homebrew asociado explícitamente al repositorio de GitHub.
 - El Title ID no está duplicado; el tag estable es una versión numérica
   estrictamente superior y con fecha válida.
-- La release tiene exactamente un VPK oficial con tamaño confirmado.
+- La release tiene **exactamente un asset con extensión .vpk** y enlace de
+  descarga directa bajo el tag exacto publicado en GitHub. Si hay **cero VPK**
+  (por ejemplo, solo ZIP) o **dos o más VPK**, se registra `REVIEW` y
+  **no se edita el catálogo**: la app seguirá «Pendiente por actualizar».
+- En una ejecución automática real (`--apply`) se descarga temporalmente el
+  único VPK, se verifica el tamaño completo, el formato ZIP, la presencia de
+  `sce_sys/param.sfo` y el `TITLE_ID` interno contra el de `apps/*.json`.
+  Si el archivo no descarga, no abre o el Title ID difiere: `REVIEW` sin cambios.
+  El VPK temporal se elimina después de comprobarlo.
 - Hay un solo Download actual/recomendado que sea VPK oficial de GitHub
   del mismo repositorio **o** VPK de Archive.org, y ningún recomendado distinto.
 - No hay Game Files, Data Files, plugins, mods o instalación compleja.
@@ -74,10 +83,20 @@ versiones no numéricas, repositorios compartidos, fuentes de descarga
 ajenas a GitHub/Archive.org y situaciones de identidad dudosa. El log indica
 `REVIEW` para que puedan catalogarse manualmente.
 
-No se descargan ni ejecutan VPKs en este primer nivel. La correspondencia con
-el Title ID del VPK **no queda verificada a nivel binario**; si esa garantía
-es imprescindible, se debe añadir la comprobación de `param.sfo` antes de
-ampliar la cobertura automática.
+Los VPK se **descargan temporalmente para validación binaria**, pero
+**nunca se instalan ni ejecutan**; tampoco se guardan en GitHub Releases,
+GitHub Pages ni Archive.org. La comprobación del `TITLE_ID` se hace leyendo
+el `param.sfo` del ZIP, no deduciendo su identidad por el nombre del archivo.
+
+Hay límites para no agotar GitHub Actions: hasta 4 GiB por VPK,
+180 segundos por descarga y un máximo de 6 verificaciones por ejecución.
+Los casos que excedan estos límites quedan pendientes para revisión manual
+o un escaneo posterior. El hash SHA-256 del archivo descargado se registra
+en el log de Actions para diagnóstico; no se inventan hashes en los JSON.
+
+**Importante:** la ejecución manual sin `--apply` es solo un preview:
+no descarga binarios ni afirma haber verificado su Title ID. Solo la ejecución
+automática real acepta candidatos tras la descarga y comprobación.
 
 ## Prueba controlada y orden de activación
 
