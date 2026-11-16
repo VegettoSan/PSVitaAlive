@@ -181,6 +181,87 @@ class TestReleaseSynchronization(unittest.TestCase):
         # Idempotence: the same release must not trigger another edit.
         self.assertIsNone(release_update(updated, release(), REPO)[0])
 
+    def test_catalog_already_current_never_overwrites_manual_archive_url(self):
+        """A maintainer can swap GitHub URL for Archive.org after auto-updating."""
+        current = app()
+        current["version"] = "1.1"
+        current["version_date"] = "2026-11-09"
+        current["links"][0]["url"] = (
+            "https://archive.org/download/psvitaalive-vita-app/vita-v1.1.vpk"
+        )
+        current["links"][0]["name"] = "Respaldo actual en Archive.org"
+        # Preserve arbitrary user edits, not only links.
+        current["links"][0]["size"] = 400
+        current["links"].append({
+            "type": "Mirror",
+            "name": "Respaldo historico 1.0",
+            "url": "https://archive.org/download/psvitaalive-vita-app/vita-v1.0.vpk",
+            "recommended": False,
+        })
+        original = json.loads(json.dumps(current))
+        same_release = release()
+        result, reason = release_update(current, same_release, REPO)
+        self.assertIsNone(result)
+        self.assertIn("version not newer", reason)
+        self.assertEqual(current, original)
+
+        # Even if upstream publishes another release with an older tag,
+        # a later monitor run must not roll back the preserved URL.
+        older_release = release(tag="v1.0", published="2026-10-01T00:00:00Z")
+        self.assertIsNone(release_update(current, older_release, REPO)[0])
+        self.assertEqual(current, original)
+
+    def test_catalog_scan_is_noop_after_manual_archive_backup(self):
+        """The V2 canonical JSON stays byte-for-byte intact on repeated scans."""
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            source = app()
+            source["version"] = "v.1.1"
+            source["version_date"] = "2026-11-09"
+            source["links"][0]["url"] = (
+                "https://archive.org/download/psvitaalive-vita-app/vita-v1.1.vpk"
+            )
+            path = root / "apps" / "vita-app.json"
+            path.write_text(
+                json.dumps(to_v2(source), separators=(",", ":")) + "\\n",
+                encoding="utf-8",
+            )
+            original_bytes = path.read_bytes()
+            snapshot = {"schema_version": 1, "releases": [release()]}
+            for _ in range(3):
+                changes, skipped = plan_changes(root, snapshot)
+                self.assertEqual(changes, [])
+                self.assertEqual(skipped, [])
+                self.assertEqual(path.read_bytes(), original_bytes)
+
+    def test_next_new_version_can_promote_again_and_keep_archive_history(self):
+        current = app()
+        current["version"] = "1.1"
+        current["version_date"] = "2026-11-09"
+        current["links"][0]["url"] = (
+            "https://archive.org/download/psvitaalive-vita-app/vita-v1.1.vpk"
+        )
+        new_vpk = "https://github.com/example/vita-app/releases/download/v1.2/vita-v1.2.vpk"
+        newer = release(
+            tag="v1.2",
+            published="2026-11-16T12:00:00Z",
+            assets=[{"name": "vita-v1.2.vpk", "download_url": new_vpk, "size": 500}],
+        )
+        updated, reason = release_update(current, newer, REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version"], "1.2")
+        self.assertEqual(updated["version_date"], "2026-11-16")
+        self.assertEqual(updated["links"][0]["url"], new_vpk)
+        archives = [
+            link for link in updated["links"]
+            if str(link.get("url") or "").endswith("vita-v1.1.vpk")
+        ]
+        self.assertEqual(len(archives), 1)
+        self.assertEqual(archives[0]["type"], "Mirror")
+        self.assertFalse(archives[0]["recommended"])
+        self.assertIsNone(release_update(updated, newer, REPO)[0])
+
     def test_no_change_when_old_archive_is_only_in_a_mirror(self):
         source = app()
         source["links"][1]["url"] = "https://archive.org/download/vita/old.vpk"
