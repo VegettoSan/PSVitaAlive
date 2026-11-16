@@ -56,6 +56,15 @@ Se recomienda establecer una fecha de expiración y rotarlos periódicamente.
 Si faltan los secrets, el workflow registra un aviso y sigue funcionando; no
 se afirma que exista sincronización instantánea sin ellos.
 
+### Verificar la conexión sin activar la escritura de aplicaciones
+
+Una ejecución del workflow `Validate and Generate Local Catalog` en PSVitaAlive
+con `PSVA_TRACKER_DISPATCH_TOKEN` configurado debe enviar el evento
+`psvitaalive_catalog_published` a Orbit. Comprobar que el monitor reciba
+el evento y regenere `data/upstream_latest.json` antes de configurar
+`PSVA_AUTOUPDATE_DISPATCH_TOKEN`, que habilita el camino de vuelta.
+Nunca copiar el valor de un token en archivos o mensajes.
+
 ## Política estricta de actualizaciones automáticas
 
 Por defecto solo se actualizan aplicaciones `Verified` o `Legacy` cuando:
