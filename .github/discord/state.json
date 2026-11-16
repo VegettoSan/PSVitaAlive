@@ -109,7 +109,7 @@
       "version": "v.0.6"
     },
     "ADRBUBMAN": {
-      "version": "6.20"
+      "version": "6.24"
     },
     "ADRINSTAL": {
       "version": "v.1.15"
@@ -235,7 +235,7 @@
       "version": "v.1.0"
     },
     "ARXL00001": {
-      "version": "v.1.003"
+      "version": "2.0"
     },
     "ASES30300": {
       "version": "v.1.0"
@@ -256,7 +256,7 @@
       "version": "v.4.0.0"
     },
     "AUTOPLUG2": {
-      "version": "2.18"
+      "version": "2.20"
     },
     "AVPGOLD20": {
       "version": "v.0.8"
@@ -595,7 +595,7 @@
       "version": "v.2.6.6"
     },
     "CLEAN0000": {
-      "version": "1.16"
+      "version": "1.17"
     },
     "CLEM00001": {
       "version": "v.0.3"
@@ -622,7 +622,7 @@
       "version": "v.1.0"
     },
     "CONSOLEID": {
-      "version": "v.1.00"
+      "version": "1.01"
     },
     "COVID19AP": {
       "version": "v.1.0"
@@ -751,7 +751,7 @@
       "version": "1.0"
     },
     "DERA00002": {
-      "version": "v.0.2.1"
+      "version": "0.3"
     },
     "DEST00001": {
       "version": "v.1.0"
@@ -934,7 +934,7 @@
       "version": "v.1.0"
     },
     "EMU4VPLUS": {
-      "version": "v.0.79"
+      "version": "0.81"
     },
     "EMUARCH01": {
       "version": "v.1.10"
@@ -1039,7 +1039,7 @@
       "version": "Demo"
     },
     "FILEMNGR1": {
-      "version": "v0.6.1"
+      "version": "0.6.2"
     },
     "FISHPOD01": {
       "version": "v.1.0.0"
@@ -1219,7 +1219,7 @@
       "version": "v.1.3"
     },
     "GMCA00001": {
-      "version": "v1.1.0"
+      "version": "1.4.0"
     },
     "GMSGH0ATL": {
       "version": "v.0.8"
@@ -1435,7 +1435,7 @@
       "version": "v.1.0.0"
     },
     "INOTIA3PV": {
-      "version": "v.1.0.2"
+      "version": "1.0.3"
     },
     "INSC12345": {
       "version": "alpha.1"
@@ -1918,7 +1918,7 @@
       "version": "v.1.1"
     },
     "NEMIKO001": {
-      "version": "v1.01"
+      "version": "2.0.0"
     },
     "NEOVITADB": {
       "version": "v.2.9.1"
@@ -1978,7 +1978,7 @@
       "version": "0.1"
     },
     "NP0APOLLO": {
-      "version": "v.2.3.2"
+      "version": "2.4.0"
     },
     "NREDNECK1": {
       "version": "v.1.1"
@@ -2302,7 +2302,7 @@
       "version": "v.2-final"
     },
     "PSVIDENT0": {
-      "version": "v.0.43"
+      "version": "1.01"
     },
     "PSVNOVA02": {
       "version": "1.0.2"
@@ -2323,7 +2323,7 @@
       "version": "1.3.1"
     },
     "PSVZ00002": {
-      "version": "v.1.20"
+      "version": "1.40"
     },
     "PSVZ00003": {
       "version": "v.1.30"
@@ -2440,7 +2440,7 @@
       "version": "v.1.0"
     },
     "RETROFLOW": {
-      "version": "v.8.3.0"
+      "version": "8.5.0"
     },
     "RETROVITA": {
       "version": "Nightly"
@@ -2521,7 +2521,7 @@
       "version": "v.1.0.0"
     },
     "ROMM00001": {
-      "version": "0.8.0"
+      "version": "0.8.1"
     },
     "ROTT00001": {
       "version": "v1.0-vita.1"
@@ -2716,7 +2716,7 @@
       "version": "v.1.3.0"
     },
     "SKRF00001": {
-      "version": "v.1.2.0"
+      "version": "1.3.0"
     },
     "SKTV00001": {
       "version": "0.2.0"
@@ -2968,7 +2968,7 @@
       "version": "v.1.0"
     },
     "SWITCHFIN": {
-      "version": "v.0.9.3"
+      "version": "0.9.5"
     },
     "SWITCHSDV": {
       "version": "v.2.1"
@@ -3244,7 +3244,7 @@
       "version": "5"
     },
     "VITADBDLD": {
-      "version": "v.2.7"
+      "version": "2.8"
     },
     "VITADECK0": {
       "version": "v.1.0"
