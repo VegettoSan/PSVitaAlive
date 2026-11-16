@@ -90,7 +90,7 @@ class TestReleaseSynchronization(unittest.TestCase):
         item["assets"][0]["download_url"] = OLD
         proposal, reason = release_update(app(), item, REPO)
         self.assertIsNone(proposal)
-        self.assertIn("different GitHub release tag", reason)
+        self.assertIn("trusted GitHub/GitLab release link", reason)
 
     def test_metadata_only_never_downloads_the_vpk(self):
         with tempfile.TemporaryDirectory() as directory:
