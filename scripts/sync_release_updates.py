@@ -4,9 +4,10 @@
 Never writes generated catalog.json. Deliberately conservative:
 - Github stable releases and numeric higher versions only.
 - One canonical application must explicitly reference the upstream repository.
-- One VPK release asset and one existing matching GitHub Download link.
+- One VPK release asset and a unique GitHub or Archive.org VPK Download link.
 - Standalone VPK apps only: complicated Game Files / plugin setups need review.
 - Never changes Title ID, author, category, extra links or app status.
+- Keeps the earlier Archive.org VPK as a clearly labelled old-version Mirror.
 """
 from __future__ import annotations
 
@@ -27,7 +28,7 @@ except ModuleNotFoundError:
 MONITOR_REPO = "VegettoSan/PsVita-Homebrews-New-Releases"
 MONITOR_SNAPSHOT = "data/upstream_latest.json"
 SHA_RE = re.compile(r"^[a-fA-F0-9]{40}$")
-NUMERIC_VERSION = re.compile(r"^[vV]?(\d+(?:\.\d+){0,3})$")
+NUMERIC_VERSION = re.compile(r"^[vV]?\.?(\d+(?:\.\d+){0,3})$")
 COMPLEX_LINK_TYPES = {
     "game files", "data files", "mod", "mod pack", "patch", "plugin",
     "pkg", "dlc", "update",
@@ -88,6 +89,34 @@ def download_belongs_to_repo(url: object, repo: str) -> bool:
     return len(parts) >= 7 and [p.lower() for p in parts[3:5]] == ["releases", "download"]
 
 
+def archive_vpk_link(url: object) -> bool:
+    if not isinstance(url, str):
+        return False
+    parsed = urlparse(url.strip())
+    return (parsed.scheme == "https"
+            and parsed.hostname in {"archive.org", "www.archive.org"}
+            and parsed.path.startswith("/download/")
+            and len(parsed.path.split("/")) >= 4
+            and parsed.path.lower().endswith(".vpk"))
+
+
+def select_current_download(links: list) -> tuple[dict | None, str]:
+    recommended = [link for link in links
+                   if isinstance(link, dict) and link.get("recommended") is True]
+    if len(recommended) > 1:
+        return None, "multiple recommended links"
+    if recommended:
+        chosen = recommended[0]
+        if str(chosen.get("type") or "").lower() != "download":
+            return None, "recommended link is not a VPK Download"
+        return chosen, "ready"
+    download_links = [link for link in links if isinstance(link, dict)
+                      and str(link.get("type") or "").lower() == "download"]
+    if len(download_links) != 1:
+        return None, "no unique current Download link"
+    return download_links[0], "ready"
+
+
 def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     if app.get("status") not in {"Verified", "Legacy"}:
         return None, "Archive or unsupported status"
@@ -120,29 +149,49 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     if not isinstance(size, int) or isinstance(size, bool) or size <= 0:
         return None, "unknown VPK asset size"
 
-    matches = [link for link in links
-               if isinstance(link, dict) and str(link.get("type") or "").lower() == "download"
-               and download_belongs_to_repo(link.get("url"), repo)]
-    if len(matches) != 1:
-        return None, "no single existing official GitHub VPK Download link"
-    current_link = matches[0]
-    if not str(current_link.get("url") or "").lower().endswith(".vpk"):
-        return None, "existing official download is not a direct VPK"
-    if any(link is not current_link and link.get("recommended") is True
-           for link in links if isinstance(link, dict)):
-        return None, "another link is recommended; requires human review"
+    current_link, reason = select_current_download(links)
+    if current_link is None:
+        return None, reason
+    current_url = current_link.get("url")
+    current_archive = archive_vpk_link(current_url)
+    current_github = download_belongs_to_repo(current_url, repo)
+    if not (current_archive or current_github):
+        return None, "current Download is neither official GitHub nor Archive.org VPK"
+    if not urlparse(str(current_url)).path.lower().endswith(".vpk"):
+        return None, "current Download is not a direct VPK"
 
     proposal = json.loads(json.dumps(app))
-    proposal["version"] = str(item["tag"]).lstrip("vV")
+    proposal["version"] = str(item["tag"]).lstrip("vV.")
     proposal["version_date"] = when
     proposal["size"] = size
     index = links.index(current_link)
+
+    # Preserve previous Archive.org payload as a clearly labelled old Mirror.
+    # The new GitHub VPK is the only recommended current Download, and thus
+    # remains unbacked until its current primary URL switches to Archive.org.
+    if current_archive:
+        old_link = proposal["links"][index]
+        old_archive_url = old_link.get("url")
+        archive_exists = any(
+            isinstance(link, dict)
+            and link.get("url") == old_archive_url
+            and str(link.get("type") or "").lower() == "mirror"
+            for link in proposal["links"]
+        )
+        if not archive_exists:
+            previous = dict(old_link)
+            previous["type"] = "Mirror"
+            previous["name"] = f"Archive.org - respaldo anterior ({app['version']})"
+            previous["recommended"] = False
+            if "size" not in previous and isinstance(app.get("size"), int):
+                previous["size"] = app["size"]
+            proposal["links"].append(previous)
+
     proposal["links"][index]["url"] = asset_url
     if "size" in current_link:
         proposal["links"][index]["size"] = size
-    # Name/recommended/extract_path remain unchanged, so UI and download
-    # preference behave exactly as before the update.
     return proposal, "ready"
+
 
 
 def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
