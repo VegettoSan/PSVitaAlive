@@ -102,7 +102,12 @@ Por defecto solo se actualizan aplicaciones `Verified` o `Legacy` cuando:
 - El botón `VPK` existente apunta a Archive.org o a una fuente GitHub/GitLab
   registrada en esa aplicación. **No es necesario que sea el recomendado**;
   no se modifican sus atributos de recomendación ni los de otros botones.
-- No hay Game Files, Data Files, plugins, mods o instalación compleja.
+- Los enlaces **Game Files, Data Files, Plugin, Mod, Patch, otros Download y
+  Mirror no bloquean** la actualización de un VPK principal inequívoco.
+  Permanecen exactamente como están, con sus URLs, atributos y posiciones.
+  La compatibilidad de datos y plugins existentes con el nuevo VPK
+  **no se puede garantizar** sin inspeccionar archivos y requiere
+  comprobación manual cuando el desarrollador cambie los requisitos.
 
 Se preservan Title ID, autores, categorías, status, iconos, capturas,
 enlaces secundarios y otros metadatos. Se actualizan exclusivamente
@@ -120,10 +125,12 @@ la URL principal a la nueva descarga de Archive.org. Los VPK antiguos con
 nombre sin número de versión siguen reconociéndose por el enlace principal
 y el contexto de la versión del catálogo. No hay página o apartado adicional.
 
-Se **omiten** (no se fuerzan) instalaciones complejas, prereleases,
-versiones no numéricas, repositorios compartidos, enlaces VPK de fuentes
-ajenas al repositorio registrado o Archive.org, dos fuentes que intenten
-actualizar el mismo JSON en un escaneo y situaciones de identidad dudosa.
+Se **omiten** (no se fuerzan) prereleases, versiones no numéricas,
+repositorios compartidos, VPK con nombre principal ambiguo o ausente,
+enlaces VPK de fuentes ajenas al repositorio registrado o Archive.org,
+dos fuentes que intenten actualizar el mismo JSON en un escaneo y
+situaciones de identidad dudosa. La presencia de Game Files o plugins
+**ya no es un bloqueo** para cambiar solo el VPK principal.
 En GitLab sin `direct_asset_url` solo se aceptan adjuntos alojados en
 el mismo proyecto; enlaces externos requieren revisión manual. El log indica
 `REVIEW` para que puedan catalogarse manualmente.
@@ -131,8 +138,9 @@ el mismo proyecto; enlaces externos requieren revisión manual. El log indica
 La validación automática es deliberadamente ligera: comprueba versiones
 comparables, origen único y presencia de un solo archivo `.vpk` en los
 metadatos del release. **No demuestra que el VPK sea instalable ni que su
-Title ID interno coincida**. Los casos ambiguos o con instalación compleja
-se dejan pendientes para revisión manual.
+Title ID interno coincida**, ni que los Game Files o plugins existentes
+sean compatibles con la versión nueva. Los casos de identificación
+ambigua siguen pendientes para revisión manual.
 
 En los workflows manuales se muestra `DRY-RUN` sin editar el catálogo;
 las ejecuciones automáticas autorizadas modifican exclusivamente los JSON
