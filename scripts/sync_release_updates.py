@@ -6,7 +6,8 @@ Never writes generated catalog.json. Deliberately conservative:
 - One canonical application explicitly references the upstream repository.
 - Exactly one .vpk asset by metadata; never downloads or inspects files.
 - Replace ONLY the existing Download named VPK (no extra buttons).
-- Complex setups, shared repos and ambiguous cases require manual review.
+- Extra links (Game Files, Plugin, other Downloads) remain byte-for-byte unchanged.
+- Shared repos and ambiguous VPK choices require manual review.
 """
 from __future__ import annotations
 
@@ -28,11 +29,6 @@ MONITOR_REPO = "VegettoSan/PsVita-Homebrews-New-Releases"
 MONITOR_SNAPSHOT = "data/upstream_latest.json"
 SHA_RE = re.compile(r"^[a-fA-F0-9]{40}$")
 NUMERIC_VERSION = re.compile(r"^[vV]?\.?(\d+(?:\.\d+){0,3})$")
-COMPLEX_LINK_TYPES = {
-    "game files", "data files", "mod", "mod pack", "patch", "plugin",
-    "pkg", "dlc", "update",
-}
-
 
 def normalized_repo(url: object) -> str | None:
     """Return owner/repo for GitHub, gitlab:group/subgroup/repo for GitLab."""
@@ -186,9 +182,10 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     links = app.get("links")
     if not isinstance(links, list):
         return None, "missing links"
-    if any(str(link.get("type", "")).lower() in COMPLEX_LINK_TYPES
-           for link in links if isinstance(link, dict)):
-        return None, "complex install with extra files or plugins"
+    # Auxiliary downloads and dependencies do not block a VPK update:
+    # only the uniquely named Download/VPK entry may be touched. Game Files,
+    # Data Files, plugins, mods, and alternative VPK configurations retain
+    # their existing URLs and all metadata, regardless of compatibility.
 
     assets = [asset for asset in (item.get("assets") or [])
               if isinstance(asset, dict) and release_asset_is_vpk(asset)]
