@@ -87,8 +87,61 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertFalse(download_belongs_to_repo(
             "https://github.com/example/other/releases/download/v1.1/vita.vpk", REPO))
         item = app()
-        item["links"][0]["url"] = "https://archive.org/download/vita/vita.vpk"
+        item["links"][0]["url"] = "https://example.com/unknown-download.vpk"
         self.assertIsNone(release_update(item, release(), REPO)[0])
+
+    def test_archive_version_upgrades_to_github_and_keeps_old_preserved_vpk(self):
+        source = app()
+        source["version"] = "v.1.0"
+        old_archive = "https://archive.org/download/psvitaalive-vita-app/vita.vpk"
+        source["links"][0]["url"] = old_archive
+        original = json.loads(json.dumps(source))
+
+        updated, reason = release_update(source, release(), REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version"], "1.1")
+        self.assertEqual(updated["links"][0]["url"], NEW)
+        self.assertTrue(updated["links"][0]["recommended"])
+        historical = [
+            link for link in updated["links"]
+            if link.get("url") == old_archive and link.get("type") == "Mirror"
+        ]
+        self.assertEqual(len(historical), 1)
+        self.assertIn("anterior", historical[0]["name"])
+        self.assertIn("v.1.0", historical[0]["name"])
+        self.assertFalse(historical[0]["recommended"])
+        self.assertEqual(historical[0]["size"], original["size"])
+        self.assertEqual(updated["title_id"], original["title_id"])
+        self.assertEqual(updated["author_ids"], original["author_ids"])
+        self.assertEqual(source, original)
+
+        # Idempotence: the same release must not trigger another edit.
+        self.assertIsNone(release_update(updated, release(), REPO)[0])
+
+    def test_no_change_when_old_archive_is_only_in_a_mirror(self):
+        source = app()
+        source["links"][1]["url"] = "https://archive.org/download/vita/old.vpk"
+        updated, reason = release_update(source, release(), REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(len(updated["links"]), len(source["links"]))
+        self.assertEqual(updated["links"][1], source["links"][1])
+
+    def test_archive_cannot_be_used_to_prove_project_ownership(self):
+        source = app()
+        source["source_url"] = "https://github.com/other/repo"
+        source["links"] = [
+            {"type": "Download", "url": "https://archive.org/download/some/old.vpk", "recommended": True}
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps" / "vita-app.json").write_text(
+                json.dumps(to_v2(source)), encoding="utf-8"
+            )
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [release()]
+            })
+            self.assertEqual(changes, [])
 
     def test_ambiguity_detection_and_compact_v2(self):
         with tempfile.TemporaryDirectory() as directory:
