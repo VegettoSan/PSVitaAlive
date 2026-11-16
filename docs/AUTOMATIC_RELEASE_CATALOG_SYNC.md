@@ -56,6 +56,16 @@ Se recomienda establecer una fecha de expiración y rotarlos periódicamente.
 Si faltan los secrets, el workflow registra un aviso y sigue funcionando; no
 se afirma que exista sincronización instantánea sin ellos.
 
+### Diagnóstico de permisos de dispatch
+
+Si el paso `Trigger release tracker after successful catalog publication` responde
+`HTTP 403 Resource not accessible by personal access token`, revisar que el
+secreto `PSVA_TRACKER_DISPATCH_TOKEN` contenga un token con alcance al
+**repositorio receptor**, `VegettoSan/PsVita-Homebrews-New-Releases`, y permiso
+**Contents: Read and write**. Cambiar los permisos requiere volver a ejecutar
+la validación y comprobar el evento en el workflow del monitor; un commit de
+documentación también ejecuta `validate.yml` sin editar `apps/`.
+
 ### Verificar la conexión sin activar la escritura de aplicaciones
 
 Una ejecución del workflow `Validate and Generate Local Catalog` en PSVitaAlive
