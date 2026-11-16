@@ -15,8 +15,9 @@ un snapshot de releases y avisa al workflow oficial de PSVitaAlive.
    y guarda `data/upstream_latest.json`.
 4. El monitor emite `release_monitor_synced` a PSVitaAlive con su SHA de commit.
 5. PSVitaAlive evalúa el snapshot con `scripts/sync_release_updates.py`,
-   descarga y verifica el único VPK candidato y solo modifica `apps/*.json`
-   cuando todas las comprobaciones son inequívocas.
+   reconoce el **único enlace .vpk** entre los assets de la release y
+   solo modifica `apps/*.json` cuando la actualización es inequívoca.
+   No descarga, descomprime ni inspecciona binarios.
 6. El workflow oficial `validate.yml` vuelve a validar y genera
    `catalog.json`, `authors.json` y `categories.json`.
 
@@ -50,15 +51,15 @@ Por defecto solo se actualizan aplicaciones `Verified` o `Legacy` cuando:
 - Hay un **único** Homebrew asociado explícitamente al repositorio de GitHub.
 - El Title ID no está duplicado; el tag estable es una versión numérica
   estrictamente superior y con fecha válida.
-- La release tiene **exactamente un asset con extensión .vpk** y enlace de
-  descarga directa bajo el tag exacto publicado en GitHub. Si hay **cero VPK**
-  (por ejemplo, solo ZIP) o **dos o más VPK**, se registra `REVIEW` y
-  **no se edita el catálogo**: la app seguirá «Pendiente por actualizar».
-- En una ejecución automática real (`--apply`) se descarga temporalmente el
-  único VPK, se verifica el tamaño completo, el formato ZIP, la presencia de
-  `sce_sys/param.sfo` y el `TITLE_ID` interno contra el de `apps/*.json`.
-  Si el archivo no descarga, no abre o el Title ID difiere: `REVIEW` sin cambios.
-  El VPK temporal se elimina después de comprobarlo.
+- La release publica **exactamente un asset con extensión .vpk** y enlace
+  directo de GitHub bajo el mismo tag. Si hay **cero VPK** (por ejemplo,
+  solo ZIP) o **dos o más VPK**, se registra `REVIEW` y **no se edita
+  el catálogo**: la app seguirá «Pendiente por actualizar».
+- La identificación del VPK se hace **solo a partir del nombre y del enlace
+  incluidos en los metadatos de GitHub Releases**. No se descarga ni se abre
+  el VPK; tampoco se consulta `param.sfo` ni se calcula un hash.
+- La fecha `version_date` se obtiene de la publicación de la release;
+  el tamaño se actualiza cuando GitHub informa un valor positivo.
 - Hay un solo Download actual/recomendado que sea VPK oficial de GitHub
   del mismo repositorio **o** VPK de Archive.org, y ningún recomendado distinto.
 - No hay Game Files, Data Files, plugins, mods o instalación compleja.
@@ -83,20 +84,15 @@ versiones no numéricas, repositorios compartidos, fuentes de descarga
 ajenas a GitHub/Archive.org y situaciones de identidad dudosa. El log indica
 `REVIEW` para que puedan catalogarse manualmente.
 
-Los VPK se **descargan temporalmente para validación binaria**, pero
-**nunca se instalan ni ejecutan**; tampoco se guardan en GitHub Releases,
-GitHub Pages ni Archive.org. La comprobación del `TITLE_ID` se hace leyendo
-el `param.sfo` del ZIP, no deduciendo su identidad por el nombre del archivo.
+La validación automática es deliberadamente ligera: comprueba versiones
+comparables, origen único y presencia de un solo archivo `.vpk` en los
+metadatos del release. **No demuestra que el VPK sea instalable ni que su
+Title ID interno coincida**. Los casos ambiguos o con instalación compleja
+se dejan pendientes para revisión manual.
 
-Hay límites para no agotar GitHub Actions: hasta 4 GiB por VPK,
-180 segundos por descarga y un máximo de 6 verificaciones por ejecución.
-Los casos que excedan estos límites quedan pendientes para revisión manual
-o un escaneo posterior. El hash SHA-256 del archivo descargado se registra
-en el log de Actions para diagnóstico; no se inventan hashes en los JSON.
-
-**Importante:** la ejecución manual sin `--apply` es solo un preview:
-no descarga binarios ni afirma haber verificado su Title ID. Solo la ejecución
-automática real acepta candidatos tras la descarga y comprobación.
+En los workflows manuales se muestra `DRY-RUN` sin editar el catálogo;
+las ejecuciones automáticas autorizadas modifican exclusivamente los JSON
+de `apps/` y usan `validate.yml` para generar los catálogos oficiales.
 
 ## Prueba controlada y orden de activación
 
