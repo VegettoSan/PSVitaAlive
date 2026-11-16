@@ -106,7 +106,7 @@ class DiscordNotificationTests(unittest.TestCase):
                 for tid in originals
             ]
             catalog.write_text(json.dumps(apps), encoding="utf-8")
-            with patch.object(dn, "webhook_url", return_value="https://example.test/updates"), \\
+            with patch.object(dn, "webhook_url", return_value="https://example.test/updates"), \
                  patch.object(dn, "send") as send:
                 dn.notify_catalog(catalog, state)
                 self.assertEqual(send.call_count, 2)
