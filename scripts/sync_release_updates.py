@@ -209,8 +209,11 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     current_url = current_link.get("url")
     current_archive = archive_vpk_link(current_url)
     current_source = normalized_repo(current_url)
-    if not (current_archive or current_source in {repo, f"gitlab:{repo}"}):
-        return None, "current VPK Download is not GitHub, GitLab or Archive.org"
+    # Some catalog records list both GitHub and GitLab sources. The existing
+    # VPK link may point to either *registered* source. Never trust a random
+    # unrelated download domain.
+    if not (current_archive or current_source in app_repositories(app)):
+        return None, "current VPK Download is not a registered source or Archive.org"
 
     proposal = json.loads(json.dumps(app))
     proposal["version"] = str(item["tag"]).lstrip("vV.")
