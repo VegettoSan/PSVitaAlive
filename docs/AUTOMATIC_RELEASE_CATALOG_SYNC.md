@@ -74,12 +74,15 @@ ampliar la cobertura automática.
    secrets sin configurar.
 2. Fusionar luego la rama del **monitor**.
 3. Ejecutar el monitor manualmente y verificar `data/upstream_latest.json`.
-4. Ejecutar `python scripts/sync_release_updates.py` **sin** `--apply` en una
-   copia local de PSVitaAlive para revisar candidatos y exclusiones.
-5. Ejecutar la suite de tests de PSVitaAlive. Configurar los dos secrets solo
-   después de verificar los resultados.
+4. En PSVitaAlive → Actions → **Sync Verified Homebrew Releases** →
+   **Run workflow** (rama main, monitor_ref = main). Las ejecuciones
+   **manuales son siempre simulaciones**; revisa `DRY-RUN` y `REVIEW`
+   en los logs. No se modifica ningún JSON.
+5. Ejecutar la suite de tests de PSVitaAlive. Configurar el secret de salida
+   hacia el monitor primero; esperar a tener validados los candidatos antes
+   de configurar el token de retorno que activa escrituras automáticas.
 6. Ejecutar `validate.yml` manualmente y verificar que el monitor vuelve a
-   sincronizarse. Comprobar la segunda comunicación y que no modifica
-   innecesariamente `apps/`.
+   sincronizarse. Comprobar la segunda comunicación, el validador oficial,
+   y que no modifica innecesariamente `apps/`.
 
 No modificar nunca `catalog.json` a mano ni habilitar antiguos feeds externos.
