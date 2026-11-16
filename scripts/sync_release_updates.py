@@ -2,12 +2,11 @@
 """Safely update *canonical* apps/*.json from the release monitor snapshot.
 
 Never writes generated catalog.json. Deliberately conservative:
-- Github stable releases and numeric higher versions only.
-- One canonical application must explicitly reference the upstream repository.
-- One VPK release asset and a unique GitHub or Archive.org VPK Download link.
-- Standalone VPK apps only: complicated Game Files / plugin setups need review.
-- Never changes Title ID, author, category, extra links or app status.
-- Keeps the earlier Archive.org VPK as a clearly labelled old-version Mirror.
+- GitHub/GitLab releases with strictly newer numeric version only.
+- One canonical application explicitly references the upstream repository.
+- Exactly one .vpk asset by metadata; never downloads or inspects files.
+- Replace ONLY the existing Download named VPK (no extra buttons).
+- Complex setups, shared repos and ambiguous cases require manual review.
 """
 from __future__ import annotations
 
@@ -18,7 +17,7 @@ import urllib.request
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 try:
     from scripts.catalog_schema_v2 import to_v1, to_v2
@@ -36,27 +35,38 @@ COMPLEX_LINK_TYPES = {
 
 
 def normalized_repo(url: object) -> str | None:
+    """Return owner/repo for GitHub, gitlab:group/subgroup/repo for GitLab."""
     if not isinstance(url, str):
         return None
     parsed = urlparse(url.strip())
-    if parsed.scheme != "https" or parsed.netloc.lower() not in {"github.com", "www.github.com"}:
+    if parsed.scheme != "https" or parsed.username or parsed.password or parsed.port:
         return None
-    parts = [part for part in parsed.path.split("/") if part]
+    host = (parsed.hostname or "").lower()
+    if host not in {"github.com", "www.github.com", "gitlab.com", "www.gitlab.com"}:
+        return None
+    parts = [unquote(part) for part in parsed.path.split("/") if part]
+    if host in {"github.com", "www.github.com"}:
+        parts = parts[:2]
+        platform = "github"
+    else:
+        if "-" in parts:
+            parts = parts[:parts.index("-")]
+        platform = "gitlab"
     if len(parts) < 2:
         return None
-    owner, project = parts[:2]
-    project = project.removesuffix(".git")
-    if not re.fullmatch(r"[a-zA-Z0-9_.-]+", owner) or not re.fullmatch(r"[a-zA-Z0-9_.-]+", project):
+    parts[-1] = parts[-1].removesuffix(".git")
+    if not all(re.fullmatch(r"[a-zA-Z0-9_.-]+", item) for item in parts):
         return None
-    return f"{owner}/{project}".lower()
+    project = "/".join(parts).lower()
+    return f"gitlab:{project}" if platform == "gitlab" else project
 
 
 def app_repositories(app: dict) -> set[str]:
     urls = [app.get("source_url")]
-    for item in app.get("links") or []:
-        if isinstance(item, dict) and str(item.get("type", "")).lower() == "repository":
-            urls.append(item.get("url"))
-    return {repo for value in urls if (repo := normalized_repo(value))}
+    for link in app.get("links") or []:
+        if isinstance(link, dict) and str(link.get("type") or "").lower() == "repository":
+            urls.append(link.get("url"))
+    return {repo for url in urls if (repo := normalized_repo(url))}
 
 
 def numeric_version(value: object) -> tuple[int, ...] | None:
@@ -85,7 +95,6 @@ def download_belongs_to_repo(url: object, repo: str) -> bool:
         return False
     parsed = urlparse(str(url))
     parts = parsed.path.split("/")
-    # /owner/repository/releases/download/TAG/asset.vpk
     return len(parts) >= 7 and [p.lower() for p in parts[3:5]] == ["releases", "download"]
 
 
@@ -100,28 +109,66 @@ def archive_vpk_link(url: object) -> bool:
             and parsed.path.lower().endswith(".vpk"))
 
 
+def release_asset_is_vpk(asset: dict) -> bool:
+    """GitLab may call the asset 'VPK', with its .vpk extension in the URL."""
+    if str(asset.get("name") or "").lower().endswith(".vpk"):
+        return True
+    url = asset.get("download_url")
+    return isinstance(url, str) and unquote(urlparse(url).path).lower().endswith(".vpk")
+
+
+def release_asset_url_matches(url: object, repo: str, platform: str, tag: str) -> bool:
+    """Check only provider/project/tag metadata; do not fetch any VPK."""
+    if not isinstance(url, str) or not tag:
+        return False
+    parsed = urlparse(url.strip())
+    if parsed.scheme != "https" or parsed.username or parsed.password or parsed.port:
+        return False
+    if platform == "github":
+        if not download_belongs_to_repo(url, repo):
+            return False
+        parts = [unquote(part) for part in parsed.path.split("/") if part]
+        return (len(parts) == 6 and parts[2:4] == ["releases", "download"]
+                and parts[4] == tag and parts[5].lower().endswith(".vpk"))
+    if platform == "gitlab":
+        if (parsed.hostname or "").lower() not in {"gitlab.com", "www.gitlab.com"}:
+            return False
+        parts = [unquote(part) for part in parsed.path.split("/") if part]
+        expected = repo.lower().split("/")
+        if len(expected) < 2 or [p.lower() for p in parts[:len(expected)]] != expected:
+            return False
+        path = parts[len(expected):]
+        # GitLab release permalink (direct_asset_url), whose suffix can be
+        # arbitrary; the matching release asset must identify a .vpk.
+        if (len(path) >= 5 and path[:2] == ["-", "releases"]
+                and path[2] == tag and path[3] == "downloads"):
+            return True
+        # File attached through this project's GitLab uploads.
+        return (len(path) >= 4 and path[:2] == ["-", "uploads"]
+                and unquote(parsed.path).lower().endswith(".vpk"))
+    return False
+
+
 def select_current_download(links: list) -> tuple[dict | None, str]:
-    recommended = [link for link in links
-                   if isinstance(link, dict) and link.get("recommended") is True]
-    if len(recommended) > 1:
-        return None, "multiple recommended links"
-    if recommended:
-        chosen = recommended[0]
-        if str(chosen.get("type") or "").lower() != "download":
-            return None, "recommended link is not a VPK Download"
-        return chosen, "ready"
-    download_links = [link for link in links if isinstance(link, dict)
-                      and str(link.get("type") or "").lower() == "download"]
-    if len(download_links) != 1:
-        return None, "no unique current Download link"
-    return download_links[0], "ready"
+    """Choose only the existing Download button named VPK, not other variants."""
+    if not isinstance(links, list):
+        return None, "missing links"
+    selected = [
+        link for link in links if isinstance(link, dict)
+        and str(link.get("type") or "").strip().lower() == "download"
+        and str(link.get("name") or "").strip().casefold() == "vpk"
+    ]
+    if len(selected) != 1:
+        return None, "no unique Download button named VPK: manual review"
+    return selected[0], "ready"
 
 
 def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     if app.get("status") not in {"Verified", "Legacy"}:
         return None, "Archive or unsupported status"
-    if item.get("platform") != "github" or item.get("prerelease"):
-        return None, "not a stable GitHub release"
+    platform = str(item.get("platform") or "").lower()
+    if platform not in {"github", "gitlab"} or item.get("prerelease"):
+        return None, "not a stable GitHub/GitLab release"
     # Check the canonical catalog version FIRST. When the developer's release
     # is already catalogued, keep every manually preserved Archive.org URL,
     # link order, recommendation and date untouched on later monitor scans.
@@ -142,19 +189,15 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
         return None, "complex install with extra files or plugins"
 
     assets = [asset for asset in (item.get("assets") or [])
-              if isinstance(asset, dict) and str(asset.get("name") or "").lower().endswith(".vpk")]
+              if isinstance(asset, dict) and release_asset_is_vpk(asset)]
     if not assets:
         return None, "no .vpk asset: manual update required"
     if len(assets) > 1:
         return None, f"{len(assets)} .vpk assets: manual update required"
     asset = assets[0]
     asset_url = asset.get("download_url")
-    if not download_belongs_to_repo(asset_url, repo) or not urlparse(str(asset_url)).path.lower().endswith(".vpk"):
-        return None, "unique .vpk lacks a direct GitHub release download URL"
-    # Match the release tag using URL metadata only; no file is fetched.
-    actual_parts = urlparse(str(asset_url)).path.split("/")
-    if len(actual_parts) < 7 or actual_parts[5] != str(item.get("tag") or ""):
-        return None, "unique .vpk belongs to a different GitHub release tag"
+    if not release_asset_url_matches(asset_url, repo, platform, str(item.get("tag") or "")):
+        return None, "unique VPK lacks a trusted GitHub/GitLab release link"
     size = asset.get("size")
     size = size if isinstance(size, int) and not isinstance(size, bool) and size > 0 else None
 
@@ -163,11 +206,9 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
         return None, reason
     current_url = current_link.get("url")
     current_archive = archive_vpk_link(current_url)
-    current_github = download_belongs_to_repo(current_url, repo)
-    if not (current_archive or current_github):
-        return None, "current Download is neither official GitHub nor Archive.org VPK"
-    if not urlparse(str(current_url)).path.lower().endswith(".vpk"):
-        return None, "current Download is not a direct VPK"
+    current_source = normalized_repo(current_url)
+    if not (current_archive or current_source in {repo, f"gitlab:{repo}"}):
+        return None, "current VPK Download is not GitHub, GitLab or Archive.org"
 
     proposal = json.loads(json.dumps(app))
     proposal["version"] = str(item["tag"]).lstrip("vV.")
@@ -179,27 +220,7 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
         proposal.pop("size", None)
     index = links.index(current_link)
 
-    # Preserve previous Archive.org payload as a clearly labelled old Mirror.
-    # The new GitHub VPK is the only recommended current Download, and thus
-    # remains unbacked until its current primary URL switches to Archive.org.
-    if current_archive:
-        old_link = proposal["links"][index]
-        old_archive_url = old_link.get("url")
-        archive_exists = any(
-            isinstance(link, dict)
-            and link.get("url") == old_archive_url
-            and str(link.get("type") or "").lower() == "mirror"
-            for link in proposal["links"]
-        )
-        if not archive_exists:
-            previous = dict(old_link)
-            previous["type"] = "Mirror"
-            previous["name"] = f"Archive.org - respaldo anterior ({app['version']})"
-            previous["recommended"] = False
-            if "size" not in previous and isinstance(app.get("size"), int):
-                previous["size"] = app["size"]
-            proposal["links"].append(previous)
-
+    # Keep exactly the same buttons in the same order, no old-version Mirror.
     proposal["links"][index]["url"] = asset_url
     if size is not None:
         if "size" in current_link:
@@ -236,12 +257,16 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
         if not isinstance(release, dict):
             continue
         repo = str(release.get("repo") or "").lower()
-        if not re.fullmatch(r"[a-z0-9_.-]+/[a-z0-9_.-]+", repo):
+        platform = str(release.get("platform") or "").lower()
+        if (platform not in {"github", "gitlab"}
+                or not re.fullmatch(r"[a-z0-9_.-]+(?:/[a-z0-9_.-]+)+", repo)
+                or (platform == "github" and repo.count("/") != 1)):
             continue
-        if release.get("platform") != "github" or repo in seen:
+        key = f"gitlab:{repo}" if platform == "gitlab" else repo
+        if key in seen:
             continue
-        seen.add(repo)
-        matches = repo_index.get(repo, [])
+        seen.add(key)
+        matches = repo_index.get(key, [])
         if len(matches) != 1:
             if len(matches) > 1:
                 skipped.append(f"{repo}: shared repository ({len(matches)} apps), manual review required")
