@@ -83,6 +83,42 @@ class DiscordNotificationTests(unittest.TestCase):
                 dn.notify_catalog(catalog, state)
                 self.assertEqual(send.call_count, 2)
 
+    def test_recovers_twelve_unannounced_catalog_updates_in_two_batches_once(self):
+        """A regenerated catalog must announce missed bot-authored VPK updates."""
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            catalog, state = root / "catalog.json", root / "state.json"
+            originals = {
+                "FFSQ00007": "1.2.0",
+                "BTTD00010": "1.1",
+                **{f"APP{i:05d}": "1.0" for i in range(10)},
+            }
+            dn.save_json(state, {
+                "schema": 1, "catalog_initialized": True,
+                "apps": {tid: {"version": v} for tid, v in originals.items()},
+                "releases": [],
+            })
+            apps = [
+                {"title_id": tid, "name": tid, "version": (
+                    "1.3.1" if tid == "FFSQ00007" else
+                    "1.2.3" if tid == "BTTD00010" else "1.1"
+                )}
+                for tid in originals
+            ]
+            catalog.write_text(json.dumps(apps), encoding="utf-8")
+            with patch.object(dn, "webhook_url", return_value="https://example.test/updates"), \
+                 patch.object(dn, "send") as send:
+                dn.notify_catalog(catalog, state)
+                self.assertEqual(send.call_count, 2)
+                posts = [call.args[1]["embeds"] for call in send.call_args_list]
+                self.assertEqual(list(map(len, posts)), [10, 2])
+                self.assertEqual(sum(map(len, posts)), 12)
+                self.assertTrue(all("Homebrew Updated" in e["title"]
+                                    for group in posts for e in group))
+                self.assertEqual(json.loads(state.read_text())["apps"]["FFSQ00007"]["version"], "1.3.1")
+                dn.notify_catalog(catalog, state)
+                self.assertEqual(send.call_count, 2)
+
     def test_release_deduplication(self):
         with tempfile.TemporaryDirectory() as folder:
             base = Path(folder)

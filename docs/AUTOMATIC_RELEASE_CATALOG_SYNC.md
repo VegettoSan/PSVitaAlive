@@ -37,6 +37,33 @@ No hay un bucle infinito: una versión ya incorporada no genera más cambios.
 La tarea programada del monitor cada tres horas sigue como respaldo, a minuto
 17 para evitar la congestión de las horas en punto.
 
+## Notificaciones de Discord tras actualizaciones automáticas
+
+Cuando un release de GitHub/GitLab actualiza `apps/*.json`, el workflow
+`Sync Verified Homebrew Releases` ejecuta el validador oficial
+`Validate and Generate Local Catalog`. Una vez que el validador termina
+de publicar `catalog.json`, emite el evento interno
+`repository_dispatch: psvitaalive_catalog_ready` para ejecutar
+`PSVitaAlive Discord Notifications`.
+
+Este evento usa **el `GITHUB_TOKEN` existente** con el permiso
+`contents: write` del validador; no requiere un secreto nuevo. GitHub
+permite `repository_dispatch` entre workflows aunque los commits
+realizados por un bot no originen ejecuciones `push` adicionales.
+La vía anterior por `workflow_run` sigue presente como respaldo.
+
+El notificador compara el catálogo ya publicado con
+`.github/discord/state.json` mediante **Title ID y versión**. Si no
+hay cambios, no manda mensajes. Si hay versiones nuevas aún no
+anunciadas, publica los avisos a `#homebrew-updates` en grupos de hasta
+10 y guarda el estado confirmado; los avisos posteriores de las mismas
+versiones se omiten. Si falla una publicación, no avanza el estado.
+
+Las novedades de los desarrolladores detectadas por Orbit son un flujo
+**distinto**: el anuncio del catálogo solo ocurre después de incorporar
+la versión a PSVitaAlive. No se descargan VPK y no se modifica la
+arquitectura ni el formato de los catálogos.
+
 ## Configuración manual de los dos secrets
 
 GitHub limita el `GITHUB_TOKEN` a su propio repositorio. Por tanto, se necesitan
