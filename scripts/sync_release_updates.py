@@ -147,9 +147,12 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     asset_url = asset.get("download_url")
     if not download_belongs_to_repo(asset_url, repo) or not urlparse(str(asset_url)).path.lower().endswith(".vpk"):
         return None, "unique .vpk lacks a direct GitHub release download URL"
+    # Match the release tag using URL metadata only; no file is fetched.
+    actual_parts = urlparse(str(asset_url)).path.split("/")
+    if len(actual_parts) < 7 or actual_parts[5] != str(item.get("tag") or ""):
+        return None, "unique .vpk belongs to a different GitHub release tag"
     size = asset.get("size")
-    if not isinstance(size, int) or isinstance(size, bool) or size <= 0:
-        return None, "unknown VPK asset size"
+    size = size if isinstance(size, int) and not isinstance(size, bool) and size > 0 else None
 
     current_link, reason = select_current_download(links)
     if current_link is None:
@@ -165,7 +168,11 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     proposal = json.loads(json.dumps(app))
     proposal["version"] = str(item["tag"]).lstrip("vV.")
     proposal["version_date"] = when
-    proposal["size"] = size
+    if size is not None:
+        proposal["size"] = size
+    else:
+        # Do not report an old version's size for the new VPK.
+        proposal.pop("size", None)
     index = links.index(current_link)
 
     # Preserve previous Archive.org payload as a clearly labelled old Mirror.
@@ -190,8 +197,11 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
             proposal["links"].append(previous)
 
     proposal["links"][index]["url"] = asset_url
-    if "size" in current_link:
-        proposal["links"][index]["size"] = size
+    if size is not None:
+        if "size" in current_link:
+            proposal["links"][index]["size"] = size
+    else:
+        proposal["links"][index].pop("size", None)
     return proposal, "ready"
 
 
