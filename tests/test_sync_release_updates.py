@@ -137,18 +137,121 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertNotIn("size", updated)
         self.assertNotIn("size", updated["links"][0])
 
-    def test_complex_installers_skip_but_vpk_name_controls_selection(self):
-        item = app()
-        item["links"].append({"type": "Game Files", "name": "Data", "url": "https://example.org/data.zip"})
-        self.assertIsNone(release_update(item, release(), REPO)[0])
-        item = app()
-        item["links"][0]["recommended"] = False
-        item["links"][1]["recommended"] = True
-        updated, reason = release_update(item, release(), REPO)
+    def test_extra_game_files_and_plugins_do_not_block_only_vpk(self):
+        source = app()
+        source["links"][0]["url"] = "https://archive.org/download/vita-app/old.vpk"
+        source["links"][0]["size"] = 100
+        source["links"][0]["recommended"] = False
+        source["links"][1]["recommended"] = True
+        source["links"].extend([
+            {
+                "type": "Game Files", "name": "Game Data",
+                "url": "https://archive.org/download/vita-app/game-data.zip",
+                "size": 999999, "install_path": "ux0:data/example",
+                "required": True,
+            },
+            {
+                "type": "Plugin", "name": "CapUnlocker",
+                "url": "https://archive.org/download/vita-app/capunlocker.skprx",
+                "recommended": True,
+            },
+            {
+                "type": "Data Files", "name": "Expansion",
+                "url": "https://example.org/files/expansion.zip",
+            },
+            {
+                "type": "Download", "name": "VPK Lite",
+                "url": "https://archive.org/download/vita-app/lite.vpk",
+            },
+            {
+                "type": "Download", "name": "VPK Debug",
+                "url": "https://archive.org/download/vita-app/debug.vpk",
+            },
+            {
+                "type": "Mirror", "name": "Other source",
+                "url": "https://archive.org/download/vita-app/previous.vpk",
+            },
+        ])
+        source["requirements"] = "Own game files required"
+        source["data_size"] = 999999
+        before = json.loads(json.dumps(source))
+        updated, reason = release_update(source, release(), REPO)
         self.assertEqual(reason, "ready")
-        self.assertEqual(updated["links"][0]["url"], NEW)
-        self.assertFalse(updated["links"][0]["recommended"])
-        self.assertEqual(updated["links"][1], item["links"][1])
+        self.assertEqual(updated["version"], "1.1")
+        self.assertEqual(updated["version_date"], "2026-11-09")
+        self.assertEqual(updated["size"], 400)
+        self.assertEqual(len(updated["links"]), len(before["links"]))
+        self.assertEqual(updated["links"][0], {
+            **before["links"][0], "url": NEW, "size": 400,
+        })
+        self.assertEqual(updated["links"][1:], before["links"][1:])
+        for key, value in before.items():
+            if key not in {"version", "version_date", "size", "links"}:
+                self.assertEqual(updated[key], value, key)
+        self.assertEqual(source, before)
+
+        # Once this version is catalogued, a manual Archive.org replacement
+        # must never be overwritten by another scan for the same version.
+        updated["links"][0]["url"] = "https://archive.org/download/vita-app/new-v1.1.vpk"
+        stable = json.loads(json.dumps(updated))
+        again, reason = release_update(updated, release(), REPO)
+        self.assertIsNone(again)
+        self.assertEqual(updated, stable)
+
+    def test_compact_v2_plan_updates_only_vpk_with_auxiliary_links(self):
+        source = app()
+        source["links"][0]["url"] = "https://archive.org/download/vita-app/old.vpk"
+        source["links"].extend([
+            {"type": "Game Files", "name": "Optional data",
+             "url": "https://archive.org/download/vita-app/data.zip"},
+            {"type": "Plugin", "name": "Optional plugin",
+             "url": "https://archive.org/download/vita-app/plugin.skprx"},
+        ])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            path = root / "apps" / "vita-app.json"
+            original = to_v2(source)
+            path.write_text(json.dumps(original, separators=(",", ":")) + "\n", encoding="utf-8")
+            before = path.read_bytes()
+            with patch("urllib.request.urlopen", side_effect=AssertionError("no network/VPK downloads")):
+                changes, skipped = plan_changes(root, {
+                    "schema_version": 1, "releases": [release()],
+                })
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(skipped, [])
+            _path, proposal, compact = changes[0]
+            self.assertTrue(compact)
+            self.assertEqual(proposal["links"][0]["url"], NEW)
+            self.assertEqual(proposal["links"][1:], source["links"][1:])
+            self.assertEqual(path.read_bytes(), before)
+
+    def test_extra_links_do_not_override_vpk_asset_count_and_origin_checks(self):
+        source = app()
+        source["links"].append({
+            "type": "Game Files", "name": "Game Files",
+            "url": "https://archive.org/download/vita-app/data.zip",
+        })
+        source["links"].append({
+            "type": "Plugin", "name": "Plugin",
+            "url": "https://archive.org/download/vita-app/plugin.skprx",
+        })
+        for candidate in [
+            release(assets=[]),
+            release(assets=[
+                {"name": "one.vpk", "download_url": NEW},
+                {"name": "two.vpk", "download_url": NEW},
+            ]),
+            release(prerelease=True),
+            release(tag="nightly"),
+        ]:
+            with self.subTest(candidate=candidate):
+                self.assertIsNone(release_update(source, candidate, REPO)[0])
+        source["links"].append({
+            "type": "Download", "name": "vPk",
+            "url": "https://archive.org/download/vita-app/alternative.vpk",
+        })
+        self.assertIsNone(release_update(source, release(), REPO)[0])
 
     def test_rejects_unrelated_downloads(self):
         self.assertFalse(download_belongs_to_repo(
