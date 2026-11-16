@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts.catalog_schema_v2 import to_v1, to_v2
 from scripts.sync_release_updates import (
@@ -73,6 +74,68 @@ class TestReleaseSynchronization(unittest.TestCase):
         item = release()
         item["assets"].append({"name": "other.vpk", "size": 200, "download_url": NEW})
         self.assertIsNone(release_update(app(), item, REPO)[0])
+
+    def test_no_vpk_is_manual_even_if_zip_is_available(self):
+        item = release()
+        item["assets"] = [
+            {"name": "source.zip", "size": 400,
+             "download_url": "https://github.com/example/vita-app/releases/download/v1.1/source.zip"}
+        ]
+        proposal, reason = release_update(app(), item, REPO)
+        self.assertIsNone(proposal)
+        self.assertIn("no .vpk", reason)
+
+    def test_rejects_vpk_from_an_unrelated_release_tag(self):
+        item = release()
+        item["assets"][0]["download_url"] = OLD
+        proposal, reason = release_update(app(), item, REPO)
+        self.assertIsNone(proposal)
+        self.assertIn("exact release tag", reason)
+
+    def test_verify_downloads_prevents_writing_unverified_vpk(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps" / "vita-app.json").write_text(
+                json.dumps(to_v2(app())), encoding="utf-8"
+            )
+            snapshot = {"schema_version": 1, "releases": [release()]}
+            with patch("scripts.sync_release_updates.verify_release_vpk",
+                       return_value=(False, "wrong param.sfo TITLE_ID")) as mocked:
+                changes, skipped = plan_changes(root, snapshot, verify_downloads=True)
+            self.assertEqual(changes, [])
+            self.assertTrue(any("manual review" in reason for reason in skipped))
+            mocked.assert_called_once_with(
+                NEW, repo=REPO, tag="v1.1",
+                expected_title_id="VITA00001", expected_size=400,
+            )
+            with patch("scripts.sync_release_updates.verify_release_vpk",
+                       return_value=(True, "matching VPK")):
+                changes, skipped = plan_changes(root, snapshot, verify_downloads=True)
+            self.assertEqual(len(changes), 1)
+
+    def test_non_verifiable_release_stays_pending_without_download(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps" / "vita-app.json").write_text(
+                json.dumps(to_v2(app())), encoding="utf-8"
+            )
+            no_vpk = release(assets=[{"name": "bundle.zip", "size": 100}])
+            multiple = release(assets=[
+                {"name": "vita-a.vpk", "size": 200, "download_url": NEW},
+                {"name": "vita-b.vpk", "size": 250, "download_url": NEW},
+            ])
+            for candidate in (no_vpk, multiple):
+                with self.subTest(assets=candidate["assets"]):
+                    with patch("scripts.sync_release_updates.verify_release_vpk") as mocked:
+                        changes, skipped = plan_changes(
+                            root, {"schema_version": 1, "releases": [candidate]},
+                            verify_downloads=True,
+                        )
+                    self.assertEqual(changes, [])
+                    self.assertTrue(any("manual update required" in message for message in skipped))
+                    mocked.assert_not_called()
 
     def test_rejects_complex_installers_and_outside_recommended(self):
         item = app()
