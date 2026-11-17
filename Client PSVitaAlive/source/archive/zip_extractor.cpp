@@ -169,6 +169,7 @@ public:
         if (thread_ >= 0) { sceKernelDeleteThread(thread_); thread_ = -1; }
         if (ready_ >= 0) { sceKernelDeleteSema(ready_); ready_ = -1; }
         if (free_ >= 0) { sceKernelDeleteSema(free_); free_ = -1; }
+        for (auto& slot : buffers_) slot.data.reset();
     }
 
     bool failed() const { return failed_.load(std::memory_order_acquire); }
@@ -1383,8 +1384,10 @@ ZipResult ZipExtractor::extract(
         const bool wantedPipeline = shouldUseZipWritePipeline(
             method, (zs.valid & ZIP_STAT_SIZE) != 0, static_cast<uint64_t>(zs.size));
         const bool pipelined = wantedPipeline && writePipeline.start(fd);
-        if (wantedPipeline && !pipelined)
+        if (wantedPipeline && !pipelined) {
+            writePipeline.finish(); // release partial allocations on low-memory fallback
             diagnostics::log("[ZipExtractor] STORE pipeline unavailable; falling back to serial writes");
+        }
         if (pipelined) ++pipelinedEntries;
         const auto updateWriterProgress = [&]() {
             const uint64_t committed = writePipeline.bytesWritten();
