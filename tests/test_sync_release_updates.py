@@ -118,6 +118,124 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertIsNone(ignored)
         self.assertIn("version not newer", reason)
 
+    def test_github_folder_can_update_two_apps_from_same_repository(self):
+        from scripts.sync_release_updates import registered_folder_paths
+        repository = "papilenote/vita-ports"
+        commit = "a" * 40
+        blob = "b" * 40
+        def folder_app(app_id, tid, folder):
+            record = app()
+            record["id"] = app_id
+            record["title_id"] = tid
+            record["version"] = "1.0"
+            record["version_date"] = "2026-10-01"
+            record["links"][0]["url"] = "https://archive.org/download/" + app_id + "/old.vpk"
+            record["links"][1] = {"type": "Game Files", "name": "Game Files",
+                                   "url": "https://archive.org/download/" + app_id + "/data.zip"}
+            record["links"][2] = {"type": "Repository", "name": "GitHub",
+                "url": "https://github.com/" + repository + "/tree/main/" + folder.replace(" ", "%20")}
+            return record
+        def folder_release(folder, tid, version, filename):
+            url = ("https://raw.githubusercontent.com/" + repository + "/" + commit
+                   + "/" + folder.replace(" ", "%20") + "/" + filename)
+            return {
+                "platform": "github_folder", "repo": repository, "branch": "main",
+                "folder": folder, "title_id": tid, "tag": version,
+                "published": "2026-11-16T11:00:00Z",
+                "commit_sha": commit, "blob_sha": blob,
+                "assets": [{"name": filename, "download_url": url, "size": 1234567}],
+            }
+        first = folder_app("tap", "TPSN00001", "Tap Sonic")
+        second = folder_app("marvel", "MVSC00001", "Marvel VS Capcom 2")
+        self.assertIn((repository, "main", "tap sonic"), registered_folder_paths(first))
+        snapshot = {
+            "schema_version": 1, "releases": [],
+            "folder_releases": [
+                folder_release("Tap Sonic", "TPSN00001", "1.1", "tapsonic.vpk"),
+                folder_release("Marvel VS Capcom 2", "MVSC00001", "1.2", "mvc2_v1.2.vpk"),
+            ],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            for record in (first, second):
+                (root / "apps" / (record["id"] + ".json")).write_text(
+                    json.dumps(to_v2(record)), encoding="utf-8")
+            changes, skipped = plan_changes(root, snapshot)
+            self.assertEqual(skipped, [])
+            self.assertEqual(len(changes), 2)
+            output = {proposal["id"]: proposal for _path, proposal, _compact in changes}
+            self.assertEqual(output["tap"]["version"], "1.1")
+            self.assertEqual(output["marvel"]["version"], "1.2")
+            for record in (first, second):
+                updated = output[record["id"]]
+                self.assertTrue(updated["links"][0]["url"].startswith(
+                    "https://raw.githubusercontent.com/" + repository + "/" + commit + "/"))
+                self.assertEqual(updated["links"][1], record["links"][1])
+                self.assertEqual(updated["links"][2], record["links"][2])
+                self.assertEqual(updated["version_date"], "2026-11-16")
+                self.assertEqual(updated["size"], 1234567)
+
+    def test_github_folder_rejects_wrong_title_sha_branch_and_unpinned_url(self):
+        from scripts.sync_release_updates import folder_release_update
+        candidate = app()
+        candidate["title_id"] = "TPSN00001"
+        candidate["links"][0]["url"] = "https://archive.org/download/tap/old.vpk"
+        candidate["links"][2]["url"] = "https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic"
+        repo = "papilenote/vita-ports"
+        sha = "a" * 40
+        asset = {
+            "name": "tapsonic.vpk",
+            "size": 1113939,
+            "download_url": f"https://raw.githubusercontent.com/{repo}/{sha}/Tap%20Sonic/tapsonic.vpk",
+        }
+        record = {
+            "platform": "github_folder", "repo": repo, "branch": "main",
+            "folder": "Tap Sonic", "title_id": "TPSN00001", "tag": "1.1",
+            "published": "2026-11-16T16:00:00Z",
+            "commit_sha": sha, "blob_sha": "b" * 40, "assets": [asset],
+        }
+        ok, reason = folder_release_update(candidate, record, repo)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(ok["links"][0]["url"], asset["download_url"])
+        for change in [
+            {"title_id": "OTH000001"},
+            {"folder": "Marvel VS Capcom 2"},
+            {"branch": "dev"},
+            {"commit_sha": "main"},
+            {"blob_sha": "notsha"},
+            {"assets": [{**asset, "download_url": asset["download_url"].replace(sha, "main")}]},
+            {"assets": [asset, asset]},
+        ]:
+            failed, reason = folder_release_update(candidate, {**record, **change}, repo)
+            self.assertIsNone(failed, (change, reason))
+        candidate["version"] = "1.1"
+        failed, reason = folder_release_update(candidate, record, repo)
+        self.assertIsNone(failed)
+        self.assertIn("version not newer", reason)
+
+    def test_github_folder_does_not_override_equal_version_archive_backup(self):
+        from scripts.sync_release_updates import folder_release_update
+        record = app()
+        record["title_id"] = "TPSN00001"
+        record["version"] = "1.1"
+        record["links"][0]["url"] = "https://archive.org/download/tap/1.1.vpk"
+        record["links"][2]["url"] = "https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic"
+        remote = {
+            "platform": "github_folder", "repo": "papilenote/vita-ports",
+            "branch": "main", "folder": "Tap Sonic", "title_id": "TPSN00001",
+            "tag": "1.1", "published": "2026-11-16T16:00:00Z",
+            "commit_sha": "a" * 40, "blob_sha": "b" * 40,
+            "assets": [{
+                "name": "tapsonic.vpk", "size": 1113939,
+                "download_url": "https://raw.githubusercontent.com/papilenote/vita-ports/" +
+                                ("a" * 40) + "/Tap%20Sonic/tapsonic.vpk"
+            }],
+        }
+        updated, reason = folder_release_update(record, remote, "papilenote/vita-ports")
+        self.assertIsNone(updated)
+        self.assertEqual(record["links"][0]["url"], "https://archive.org/download/tap/1.1.vpk")
+
     def test_only_promotes_unambiguous_official_download(self):
         original = app()
         updated, reason = release_update(original, release(), REPO)
