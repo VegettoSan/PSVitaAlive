@@ -204,7 +204,7 @@ private:
         return self ? self->run() : -1;
     }
     int run() {
-        uint64_t consumed = 0, bytesSinceYield = 0, committed = 0;
+        uint64_t consumed = 0, bytesSinceYield = 0, committed = 0, writerTimeUs = 0;
         for (;;) {
             if (sceKernelWaitSema(ready_, 1, nullptr) < 0) {
                 failed_.store(true, std::memory_order_release);
@@ -221,9 +221,10 @@ private:
                     const int request = static_cast<int>(slot.length - offset);
                     const uint64_t writeBegin = profileIo_ ? sceKernelGetProcessTimeWide() : 0;
                     const int w = sceIoWrite(output_, slot.data.get() + offset, request);
-                    if (profileIo_)
-                        writeTimeUs_.fetch_add(sceKernelGetProcessTimeWide() - writeBegin,
-                                               std::memory_order_relaxed);
+                    if (profileIo_) {
+                        writerTimeUs += sceKernelGetProcessTimeWide() - writeBegin;
+                        writeTimeUs_.store(writerTimeUs, std::memory_order_release);
+                    }
                     if (w <= 0) {
                         writeReturn_ = w;
                         writeRequested_ = request;
