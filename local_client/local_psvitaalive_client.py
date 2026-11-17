@@ -5,10 +5,17 @@ A local Qt GUI for browsing, filtering, and downloading from the PSVitaAlive cat
 """
 
 import os
-import re
 import sys
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+
+# Use the repository\u0027s single canonical V1/V2 catalog codec, not a forked copy.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+from scripts.catalog_schema_v2 import to_v1
+from local_client.download_policy import (
+    safe_filename, safe_component, source_rank, file_identity, unique_destination,
+)
 
 from PySide6.QtCore import (
     Qt, QSortFilterProxyModel, QAbstractTableModel, QModelIndex, Signal,
@@ -70,13 +77,6 @@ def human_size(n) -> str:
     return f"{n:.1f} PB"
 
 
-def safe_filename(url: str) -> str:
-    path = unquote(urlparse(url).path)
-    name = path.rsplit("/", 1)[-1] or "file"
-    name = re.sub(r'[<>:"/\\|?*]', "_", name)
-    return name[:200]
-
-
 HTML_EXTENSIONS = {".html", ".htm", ".xhtml"}
 
 
@@ -101,28 +101,6 @@ def build_lookups(authors_data, categories_data) -> dict:
                               for s in c.get("subcategories", []) if s.get("id")},
         }
     return {"authors": authors, "categories": categories}
-
-
-def source_rank(link: dict) -> tuple:
-    """Rank copies of one file. The highest rank is kept: the recommended copy first,
-    then archive.org, which is the default source. Ties keep the first copy listed."""
-    host = urlparse(link.get("url", "")).hostname or ""
-    return (bool(link.get("recommended")), host == "archive.org" or host.endswith(".archive.org"))
-
-
-def file_identity(link: dict) -> tuple:
-    """Key that is equal for copies of one file and different for other files.
-
-    A copy is a link with the same type, PlayStation content ID and exact byte
-    size. The content ID alone is not enough: an Update keeps its content ID across
-    versions, and its size tells the versions apart. Links without a known size
-    are keyed by URL, so they are never collapsed.
-    """
-    kind = link.get("type", "")
-    size = int(link.get("size") or 0)
-    if not size:
-        return (kind, link["url"])
-    return (kind, link.get("content_id", ""), size)
 
 
 class CatalogEntry:
@@ -436,6 +414,9 @@ class DownloadWorker(QThread):
         try:
             with session.get(url, stream=True, timeout=(30, 300)) as r:
                 r.raise_for_status()
+                # A partial response without a Range request is not a full archive.
+                if r.status_code == 206:
+                    return FAILED, "unexpected partial HTTP 206 response"
                 if not allow_html and "html" in r.headers.get("Content-Type", "").lower():
                     return FAILED, html_error
                 encoding = r.headers.get("Content-Encoding", "identity").lower()
@@ -481,7 +462,7 @@ def discard(path: Path):
 def _get_json(session, filename: str):
     r = session.get(f"{RAW_BASE}/{filename}", timeout=30)
     r.raise_for_status()
-    return r.json()
+    return to_v1(r.json())  # V2 public catalogs, and legacy V1, share one model.
 
 
 class CatalogLoader(QThread):
@@ -646,8 +627,8 @@ class MainWindow(QMainWindow):
         self.recommended_only = QCheckBox("Recommended sources only")
         self.recommended_only.setChecked(True)
         self.recommended_only.setToolTip(
-            "When ticked, mirror copies of the same file are collapsed to one link, "
-            "preferring the recommended one, then archive.org. Other regions, DLC and updates are always kept. "
+            "When ticked, links proven to be copies of the same file are collapsed, "
+            "preferring the recommended one, then archive.org. Unverified potential mirrors, other regions, DLC and updates are kept. "
             "Untick to download every available link, including mirrors."
         )
         dl_row.addWidget(self.recommended_only)
@@ -856,15 +837,18 @@ class MainWindow(QMainWindow):
 
     def _build_tasks(self, entries: list[CatalogEntry], recommended_only: bool) -> list[dict]:
         tasks = []
-        seen = set()
+        reserved_destinations: set[str] = set()
         for entry in entries:
+            # The same URL may legitimately be used by different catalog entries.
+            seen_urls = set()
             for link in entry.selected_links(recommended_only):
                 url = link.get("url", "")
-                if not url or url in seen:
+                if not url or url in seen_urls:
                     continue
-                seen.add(url)
+                seen_urls.add(url)
                 fname = safe_filename(url)
-                dest = Path(self._download_dir) / entry.catalog / entry.id / fname
+                folder = Path(self._download_dir) / safe_component(entry.catalog) / safe_component(entry.id)
+                dest = unique_destination(folder / fname, reserved_destinations)
                 tasks.append({
                     "url": url,
                     "dest": str(dest),
@@ -976,8 +960,8 @@ def main():
     palette.setColor(QPalette.Text, QColor(220, 220, 220))
     palette.setColor(QPalette.Button, QColor(45, 45, 45))
     palette.setColor(QPalette.ButtonText, QColor(220, 220, 220))
-    palette.setColor(QPalette.Highlight, QColor(42, 130, 218))
-    palette.setColor(QPalette.HighlightedText, QColor(255, 255, 255))
+    palette.setColor(QPalette.Highlight, QColor(59, 255, 0))
+    palette.setColor(QPalette.HighlightedText, QColor(0, 0, 0))
     palette.setColor(QPalette.PlaceholderText, QColor(120, 120, 120))
     app.setPalette(palette)
 
