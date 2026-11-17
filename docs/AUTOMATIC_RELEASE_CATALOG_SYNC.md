@@ -152,7 +152,21 @@ la URL principal a la nueva descarga de Archive.org. Los VPK antiguos con
 nombre sin número de versión siguen reconociéndose por el enlace principal
 y el contexto de la versión del catálogo. No hay página o apartado adicional.
 
-Se **omiten** (no se fuerzan) prereleases, versiones no numéricas,
+**Canal pre-release optativo:** el campo `allow_prereleases: true`
+(V2 compacto: `apr: true`) habilita actualizaciones experimentales **solo**
+para ese Homebrew. Por defecto, las aplicaciones permanecen en el canal
+estable. Cuando GitHub devuelve un pre-release reciente, el monitor incluye
+una alternativa estable anterior si está entre los últimos 20 releases.
+El sincronizador elige de forma segura según la opción del Homebrew y
+nunca fuerza un downgrade. Las fases conocidas `dev/test`, `alpha`,
+`beta`, `pre/preview`, `rc` y estable se comparan con su base numérica:
+`1.2-beta2 < 1.2-beta3 < 1.2-rc1 < 1.2`.
+La política de un VPK único, origen registrado, fecha válida y preservación
+de URLs y Game/Data Files no cambia. Si el tag es ambiguo, se requiere
+revisión manual; los pre-releases con tag numérico sin sufijo también
+requieren opt-in cuando están marcados por GitHub.
+
+Se **omiten** (no se fuerzan) prereleases sin opt-in, versiones incomparables,
 repositorios compartidos, VPK con nombre principal ambiguo o ausente,
 enlaces VPK de fuentes ajenas al repositorio registrado o Archive.org,
 dos fuentes que intenten actualizar el mismo JSON en un escaneo y
