@@ -804,6 +804,9 @@
     "DLTVITA01": {
       "version": "0.81"
     },
+    "DMC300001": {
+      "version": "2.0"
+    },
     "DOGGYTEST": {
       "version": "v.0.2"
     },
@@ -1347,6 +1350,9 @@
     "HELL66645": {
       "version": "v.0.62"
     },
+    "HEMAN0001": {
+      "version": "1.0"
+    },
     "HERMES001": {
       "version": "v.1.10"
     },
@@ -1457,6 +1463,9 @@
     },
     "IPAV00001": {
       "version": "v.1.1"
+    },
+    "ISAACR001": {
+      "version": "0.2.0"
     },
     "ISITFAKE0": {
       "version": "v.2b"
@@ -3146,6 +3155,9 @@
     },
     "UFOAI0002": {
       "version": "v.0.5"
+    },
+    "UMKT00003": {
+      "version": "1.0.0"
     },
     "UNREALT99": {
       "version": "v.0.8"
