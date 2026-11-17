@@ -606,6 +606,9 @@
     "CLON00001": {
       "version": "v.1.1"
     },
+    "CLST00001": {
+      "version": "1.0"
+    },
     "CODVIT001": {
       "version": "1.02"
     },
@@ -2750,6 +2753,9 @@
     },
     "SMLA00001": {
       "version": "v.3.9.6"
+    },
+    "SMPA00001": {
+      "version": "1.1"
     },
     "SMRV00000": {
       "version": "v.1.00"
