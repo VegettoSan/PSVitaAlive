@@ -11,16 +11,16 @@
   "sids": [
     "other"
   ],
-  "v": "v.1.0",
+  "v": "1.4",
   "vd": "2026-08-31",
   "req": "- libshacccg.suprx\n- Game Data Files: N64",
-  "sz": 7201620,
+  "sz": 7494939,
   "st": "Legacy",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-battleship-vita/battleship%20v1.4.vpk",
+      "u": "https://github.com/robin994/battleship-vita/releases/download/1.4/battleship.vpk",
       "rec": true
     },
     {

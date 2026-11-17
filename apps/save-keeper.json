@@ -12,10 +12,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.1.3.0",
-  "vd": "2026-08-03",
+  "v": "1.3.1",
+  "vd": "2026-08-16",
   "req": "Not specified",
-  "sz": 3148166,
+  "sz": 3150095,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
   "ss": [
@@ -26,7 +26,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-save-keeper/save-keeper.vpk",
+      "u": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.3.1/save-keeper.vpk",
       "rec": true
     },
     {

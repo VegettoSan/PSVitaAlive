@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.3.2",
-  "vd": "2026-08-16",
+  "v": "0.3.3",
+  "vd": "2026-10-27",
   "req": "Not specified",
-  "sz": 9435152,
+  "sz": 9439097,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-opennow-vita/icon0.png",
   "ss": [
@@ -25,7 +25,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-opennow-vita/opennow-vita.vpk",
+      "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.3/opennow-vita.vpk",
       "rec": true
     },
     {
