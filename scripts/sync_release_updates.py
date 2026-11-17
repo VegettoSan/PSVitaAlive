@@ -2,7 +2,7 @@
 """Safely update *canonical* apps/*.json from the release monitor snapshot.
 
 Never writes generated catalog.json. Deliberately conservative:
-- GitHub/GitLab releases with strictly newer numeric version only.
+- Stable releases by default; opted-in prereleases with strictly newer comparable versions.
 - One canonical application explicitly references the upstream repository.
 - Exactly one .vpk asset by metadata; never downloads or inspects files.
 - Replace ONLY the existing Download named VPK (no extra buttons).
@@ -28,7 +28,15 @@ except ModuleNotFoundError:
 MONITOR_REPO = "VegettoSan/PsVita-Homebrews-New-Releases"
 MONITOR_SNAPSHOT = "data/upstream_latest.json"
 SHA_RE = re.compile(r"^[a-fA-F0-9]{40}$")
-NUMERIC_VERSION = re.compile(r"^[vV]?\.?(\d+(?:\.\d+){0,3})$")
+RELEASE_VERSION = re.compile(
+    r"^[vV]?\.?(\d+(?:\.\d+){0,3})"
+    r"(?:[-._]?(dev|test|alpha|a|beta|b|pre|preview|rc)(?:[-._]?(\d+))?)?$",
+    re.IGNORECASE,
+)
+PRERELEASE_STAGES = {
+    "dev": 0, "test": 0, "alpha": 1, "a": 1, "beta": 2,
+    "b": 2, "pre": 3, "preview": 3, "rc": 4,
+}
 
 def normalized_repo(url: object) -> str | None:
     """Return owner/repo for GitHub, gitlab:group/subgroup/repo for GitLab."""
@@ -66,11 +74,22 @@ def app_repositories(app: dict) -> set[str]:
 
 
 def numeric_version(value: object) -> tuple[int, ...] | None:
-    match = NUMERIC_VERSION.fullmatch(str(value or "").strip())
+    """Numeric core, then dev/alpha/beta/pre/rc/stable and stage number."""
+    if not isinstance(value, str):
+        return None
+    match = RELEASE_VERSION.fullmatch(value.strip())
     if not match:
         return None
     numbers = tuple(int(n) for n in match.group(1).split("."))
-    return numbers + (0,) * (4 - len(numbers))
+    core = numbers + (0,) * (4 - len(numbers))
+    stage = (PRERELEASE_STAGES[match.group(2).lower()]
+             if match.group(2) else 5)
+    return core + (stage, int(match.group(3) or 0))
+
+
+def is_prerelease_version(value: object) -> bool:
+    parsed = numeric_version(value)
+    return parsed is not None and parsed[4] < 5
 
 
 def newer_version(current: object, proposed: object) -> bool:
@@ -165,8 +184,11 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
     if app.get("status") not in {"Verified", "Legacy"}:
         return None, "Archive or unsupported status"
     platform = str(item.get("platform") or "").lower()
-    if platform not in {"github", "gitlab"} or item.get("prerelease"):
-        return None, "not a stable GitHub/GitLab release"
+    if platform not in {"github", "gitlab"}:
+        return None, "not a GitHub/GitLab release"
+    if item.get("prerelease") or is_prerelease_version(item.get("tag")):
+        if app.get("allow_prereleases") is not True:
+            return None, "prerelease updates disabled for this app"
     # Check the canonical catalog version FIRST. When the developer's release
     # is already catalogued, keep every manually preserved Archive.org URL,
     # link order, recommendation and date untouched on later monitor scans.
@@ -277,10 +299,34 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
         if title_ids[str(app.get("title_id", "")).upper()] != 1:
             skipped.append(f"{repo}: duplicate/ambiguous Title ID")
             continue
-        proposal, reason = release_update(app, release, repo)
+        # The monitor keeps its latest release and optionally a previous
+        # stable release. Stable-only apps must not be blocked by a beta.
+        candidate = release
+        if release.get("prerelease") or is_prerelease_version(release.get("tag")):
+            stable = release.get("stable_release")
+            if isinstance(stable, dict):
+                trusted_stable = (
+                    str(stable.get("repo") or "").lower() == repo
+                    and str(stable.get("platform") or "").lower() == platform
+                    and stable.get("prerelease") is False
+                    and not is_prerelease_version(stable.get("tag"))
+                )
+                if not trusted_stable:
+                    skipped.append(f"{repo}: invalid stable fallback: manual review")
+                    continue
+                if (app.get("allow_prereleases") is not True
+                        or not newer_version(stable.get("tag"), release.get("tag"))):
+                    # Stable wins on the same numeric core and on ambiguity.
+                    candidate = stable
+            elif app.get("allow_prereleases") is not True:
+                if newer_version(app.get("version"), release.get("tag")):
+                    skipped.append(f"{repo}: prerelease updates disabled for this app")
+                continue
+
+        proposal, reason = release_update(app, candidate, repo)
         if proposal is not None:
             changes.append((path, proposal, compact))
-        elif newer_version(app.get("version"), release.get("tag")):
+        elif newer_version(app.get("version"), candidate.get("tag")):
             skipped.append(f"{repo}: {reason}")
     # A canonical Homebrew may reference more than one upstream repository.
     # Never overwrite a single apps/*.json twice in one scan, which would make
