@@ -340,6 +340,14 @@ jobs:
       - name: Test safe automatic Homebrew release updates (offline)
         run: python -m unittest discover -s tests -p test_sync_release_updates.py -v
 
+      - name: Test PS Vita prerelease version decisions (host C++)
+        run: |
+          g++ -std=c++17 -I"Client PSVitaAlive/include" \
+            "tests/test_update_decision.cpp" \
+            "Client PSVitaAlive/source/update/update_decision.cpp" \
+            -o /tmp/psva-update-decision-test
+          /tmp/psva-update-decision-test
+
       - name: Test Discord catalog notification replay (offline)
         run: python -m unittest discover -s tests -p test_discord_notifications.py -v
 
