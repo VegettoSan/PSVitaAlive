@@ -15,25 +15,12 @@ std::string toLower(std::string s) {
     return s;
 }
 
-std::vector<int> parseVersionParts(const std::string& in) {
-    std::vector<int> parts;
-    int cur = 0;
-    bool inNum = false;
-    for (unsigned char ch : in) {
-        if (std::isdigit(ch)) {
-            cur = cur * 10 + (ch - '0');
-            inNum = true;
-        } else if (inNum) {
-            parts.push_back(cur);
-            cur = 0;
-            inNum = false;
-        }
-    }
-    if (inNum) parts.push_back(cur);
-    while (!parts.empty() && parts.back() == 0) parts.pop_back();
-    if (parts.empty()) parts.push_back(0);
-    return parts;
-}
+struct ParsedVersion {
+    int parts[4] = {0, 0, 0, 0};
+    int stage = 5; // dev/test=0, alpha=1, beta=2, pre=3, rc=4, stable=5
+    int sequence = 0;
+};
+
 
 std::string trimAscii(std::string s) {
     size_t first = 0;
@@ -52,6 +39,83 @@ bool parseUnsignedStrict(const std::string& s, int& out) {
         if (value > 9999) return false;
     }
     out = value;
+    return true;
+}
+
+
+bool parseNormalizedVersionStrict(const std::string& input, ParsedVersion& out) {
+    const std::string s = trimAscii(input);
+    size_t pos = 0;
+    if (pos < s.size() && (s[pos] == 'v' || s[pos] == 'V')) ++pos;
+    if (pos < s.size() && s[pos] == '.') ++pos;
+    if (pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos]))) return false;
+
+    for (int index = 0; index < 4; ++index) {
+        int num = 0;
+        while (pos < s.size() && std::isdigit(static_cast<unsigned char>(s[pos]))) {
+            const int digit = s[pos++] - '0';
+            if (num > 100000000) return false; // avoid integer overflow
+            num = num * 10 + digit;
+        }
+        out.parts[index] = num;
+        if (pos + 1 < s.size() && s[pos] == '.' &&
+            std::isdigit(static_cast<unsigned char>(s[pos + 1]))) {
+            if (index == 3) return false;
+            ++pos;
+        } else {
+            break;
+        }
+    }
+    if (pos == s.size()) return true;
+    if (s[pos] == '-' || s[pos] == '_' || s[pos] == '.') ++pos;
+
+    const size_t stageStart = pos;
+    while (pos < s.size() && std::isalpha(static_cast<unsigned char>(s[pos]))) ++pos;
+    if (stageStart == pos) return false;
+    const std::string stage = toLower(s.substr(stageStart, pos - stageStart));
+    if (stage == "dev" || stage == "test") out.stage = 0;
+    else if (stage == "alpha" || stage == "a") out.stage = 1;
+    else if (stage == "beta" || stage == "b") out.stage = 2;
+    else if (stage == "pre" || stage == "preview") out.stage = 3;
+    else if (stage == "rc") out.stage = 4;
+    else return false;
+
+    if (pos == s.size()) return true;
+    if (s[pos] == '-' || s[pos] == '_' || s[pos] == '.') ++pos;
+    if (pos >= s.size() || !std::isdigit(static_cast<unsigned char>(s[pos]))) return false;
+    int number = 0;
+    while (pos < s.size() && std::isdigit(static_cast<unsigned char>(s[pos]))) {
+        const int digit = s[pos++] - '0';
+        if (number > 100000000) return false;
+        number = number * 10 + digit;
+    }
+    if (pos != s.size()) return false;
+    out.sequence = number;
+    return true;
+}
+
+bool tryCompareNormalizedVersions(const std::string& a, const std::string& b, int& cmp) {
+    ParsedVersion left, right;
+    if (!parseNormalizedVersionStrict(a, left) || !parseNormalizedVersionStrict(b, right)) {
+        // An exact opaque version may still be recognised as the installed one,
+        // but never guess that an arbitrary tag represents a newer version.
+        if (!trimAscii(a).empty() && toLower(trimAscii(a)) == toLower(trimAscii(b))) {
+            cmp = 0;
+            return true;
+        }
+        return false;
+    }
+    for (int i = 0; i < 4; ++i) {
+        if (left.parts[i] != right.parts[i]) {
+            cmp = left.parts[i] < right.parts[i] ? -1 : 1;
+            return true;
+        }
+    }
+    if (left.stage != right.stage) {
+        cmp = left.stage < right.stage ? -1 : 1;
+        return true;
+    }
+    cmp = left.sequence < right.sequence ? -1 : (left.sequence > right.sequence ? 1 : 0);
     return true;
 }
 
@@ -91,38 +155,31 @@ bool parseVitaAppVer(const std::string& input, int& major, int& minorPatch) {
 } // namespace
 
 int compareNormalizedVersions(const std::string& a, const std::string& b) {
-    const auto pa = parseVersionParts(a);
-    const auto pb = parseVersionParts(b);
-    const size_t n = pa.size() > pb.size() ? pa.size() : pb.size();
-    for (size_t i = 0; i < n; ++i) {
-        const int x = i < pa.size() ? pa[i] : 0;
-        const int y = i < pb.size() ? pb[i] : 0;
-        if (x < y) return -1;
-        if (x > y) return 1;
-    }
-    return 0;
+    int cmp = 0;
+    (void)tryCompareNormalizedVersions(a, b, cmp);
+    return cmp;
 }
 
 namespace {
 
-int compareSfoToCatalogVersion(const std::string& sfoVersion, const std::string& catalogVersion) {
-    int catalogMajor = 0;
-    int catalogMinor = 0;
-    int catalogPatch = 0;
-    int sfoMajor = 0;
-    int sfoMinorPatch = 0;
-
-    if (parseSemanticTripleForVita(catalogVersion, catalogMajor, catalogMinor, catalogPatch) &&
+// SFO's XX.YY format cannot encode prerelease stage. Do not reinterpret a
+// known beta/RC as a stable release just because the Vita stores 01.20.
+bool tryCompareSfoToCatalogVersion(const std::string& sfoVersion,
+                                   const std::string& catalogVersion, int& cmp) {
+    ParsedVersion parsedCatalog;
+    int catalogMajor = 0, catalogMinor = 0, catalogPatch = 0;
+    int sfoMajor = 0, sfoMinorPatch = 0;
+    if (parseNormalizedVersionStrict(catalogVersion, parsedCatalog) &&
+        parsedCatalog.stage == 5 &&
+        parseSemanticTripleForVita(catalogVersion, catalogMajor, catalogMinor, catalogPatch) &&
         parseVitaAppVer(sfoVersion, sfoMajor, sfoMinorPatch)) {
         const int catalogMinorPatch = catalogMinor * 10 + catalogPatch;
-        if (sfoMajor < catalogMajor) return -1;
-        if (sfoMajor > catalogMajor) return 1;
-        if (sfoMinorPatch < catalogMinorPatch) return -1;
-        if (sfoMinorPatch > catalogMinorPatch) return 1;
-        return 0;
+        if (sfoMajor != catalogMajor) cmp = sfoMajor < catalogMajor ? -1 : 1;
+        else if (sfoMinorPatch != catalogMinorPatch) cmp = sfoMinorPatch < catalogMinorPatch ? -1 : 1;
+        else cmp = 0;
+        return true;
     }
-
-    return compareNormalizedVersions(sfoVersion, catalogVersion);
+    return tryCompareNormalizedVersions(sfoVersion, catalogVersion, cmp);
 }
 
 } // namespace
@@ -173,7 +230,11 @@ InstallDetectResult decideInstallState(
         out.source = "receipt";
         out.installedVersion = receipt.catalogVersion;
         if (!catalogVersion.empty() && !receipt.catalogVersion.empty()) {
-            const int cmp = compareNormalizedVersions(receipt.catalogVersion, catalogVersion);
+            int cmp = 0;
+            if (!tryCompareNormalizedVersions(receipt.catalogVersion, catalogVersion, cmp)) {
+                out.state = InstallDetectState::InstalledUnknown;
+                return out;
+            }
             if (cmp == 0) {
                 out.state = InstallDetectState::Installed;
                 return out;
@@ -218,14 +279,15 @@ InstallDetectResult decideInstallState(
         // that evidence over a potentially stale receipt. Never offer a downgrade.
         // APP_VER may use Vita's XX.YY encoding for semantic X.Y.Z (01.71 = 1.7.1).
         if (sfo.hasAppVer && !sfo.appVer.empty() && !isUnreliableSfoVersion(sfo.appVer)) {
-            const int sfoCmp = compareSfoToCatalogVersion(sfo.appVer, catalogVersion);
-            if (sfoCmp == 0) {
+            int sfoCmp = 0;
+            const bool comparable = tryCompareSfoToCatalogVersion(sfo.appVer, catalogVersion, sfoCmp);
+            if (comparable && sfoCmp == 0) {
                 out.state = InstallDetectState::Installed;
                 out.source = "sfo";
                 out.installedVersion = sfo.appVer;
                 return out;
             }
-            if (sfoCmp > 0) {
+            if (comparable && sfoCmp > 0) {
                 out.state = InstallDetectState::InstalledUnknown;
                 out.source = "sfo";
                 out.installedVersion = sfo.appVer;
@@ -235,7 +297,11 @@ InstallDetectResult decideInstallState(
 
         out.source = "receipt";
         out.installedVersion = receipt.catalogVersion;
-        const int cmp = compareNormalizedVersions(receipt.catalogVersion, catalogVersion);
+        int cmp = 0;
+        if (!tryCompareNormalizedVersions(receipt.catalogVersion, catalogVersion, cmp)) {
+            out.state = InstallDetectState::InstalledUnknown;
+            return out;
+        }
         if (cmp < 0) {
             out.state = InstallDetectState::UpdateAvailable;
             return out;
@@ -267,14 +333,17 @@ InstallDetectResult decideInstallState(
         out.source = "sfo";
         out.installedVersion = sfo.appVer;
 
-        if (!catalogVersion.empty() && compareSfoToCatalogVersion(sfo.appVer, catalogVersion) == 0) {
+        int sfoCmp = 0;
+        const bool comparable = !catalogVersion.empty() &&
+            tryCompareSfoToCatalogVersion(sfo.appVer, catalogVersion, sfoCmp);
+        if (comparable && sfoCmp == 0) {
             out.state = InstallDetectState::Installed;
             return out;
         }
 
         if (policy == SfoPolicy::Trusted && !catalogVersion.empty() &&
             !isUnreliableSfoVersion(sfo.appVer)) {
-            if (compareSfoToCatalogVersion(sfo.appVer, catalogVersion) < 0) {
+            if (comparable && sfoCmp < 0) {
                 out.state = InstallDetectState::UpdateAvailable;
                 return out;
             }
