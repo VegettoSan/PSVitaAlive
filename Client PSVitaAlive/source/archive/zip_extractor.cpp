@@ -1,6 +1,7 @@
 #include "archive/zip_extractor.hpp"
 #include "archive/extraction_directory_cache.hpp"
 #include "archive/zip_write_pipeline_policy.hpp"
+#include "archive/zip_preflight_directory_policy.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
@@ -790,6 +791,7 @@ ZipResult ZipExtractor::extract(
 ) {
     lastError_.clear();
     usedStagedMoves_ = false;
+    const uint64_t extractStartedUs = sceKernelGetProcessTimeWide();
     StorageManager st;
 
     // VitaDB extracts into an already-installed app folder (ux0:/app/TITLEID). On real
@@ -822,6 +824,12 @@ ZipResult ZipExtractor::extract(
 
     ZipProgress prog;
     prog.entriesTotal = static_cast<uint64_t>(numEntries);
+    // Metadata/directory preflight can take long on STORE ZIPs with many files.
+    if (onProgress) {
+        prog.currentEntry = "Preparing ZIP metadata";
+        onProgress(prog);
+        prog.currentEntry.clear();
+    }
 
     // Never overwrite the archive we are actively reading. The same protection
     // covers every part of a segmented download, regardless of ZIP/VPK routing.
@@ -1023,6 +1031,11 @@ ZipResult ZipExtractor::extract(
             zip_close(za);
             return ZipResult::Cancelled;
         }
+        if (onProgress && i > 0 && i % 256 == 0) {
+            prog.currentEntry = "Checking ZIP paths";
+            onProgress(prog);
+            prog.currentEntry.clear();
+        }
         zip_stat_t zs;
         zip_stat_init(&zs);
         if (zip_stat_index(za, i, 0, &zs) != 0) {
@@ -1205,9 +1218,11 @@ ZipResult ZipExtractor::extract(
             }
         }
     }
+    const uint64_t preflightUs = sceKernelGetProcessTimeWide() - extractStartedUs;
     diagnostics::log("[ZipExtractor] directory preflight unique=" +
                      std::to_string(requiredDirs.size()) +
-                     " staged_branches=" + std::to_string(staged.size()));
+                     " staged_branches=" + std::to_string(staged.size()) +
+                     " elapsed_ms=" + std::to_string(preflightUs / 1000ULL));
 
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
@@ -1292,6 +1307,10 @@ ZipResult ZipExtractor::extract(
         if (slash != std::string::npos) {
             const std::string parent = outPath.substr(0, slash);
             if (parent == lastEnsuredParent || ensuredParents.contains(parent)) {
+                ++directoryCacheHits;
+            } else if (zipParentReadyFromPreflight(requiredDirs, parent, branch != nullptr)) {
+                // This path was already validated AND prepared during preflight.
+                ensuredParents.remember(parent);
                 ++directoryCacheHits;
             } else {
                 ++directoryCacheChecks;
@@ -1653,6 +1672,14 @@ ZipResult ZipExtractor::extract(
         }
     }
     {
+        const uint64_t totalUs = sceKernelGetProcessTimeWide() - extractStartedUs;
+        char timing[190];
+        sceClibSnprintf(timing, sizeof(timing),
+            "[ZipTiming] total_us=%llu preflight_us=%llu extract_and_cleanup_us=%llu",
+            (unsigned long long)totalUs,
+            (unsigned long long)preflightUs,
+            (unsigned long long)(totalUs >= preflightUs ? totalUs - preflightUs : 0ULL));
+        diagnostics::log(timing);
         char perf[320];
         sceClibSnprintf(perf, sizeof(perf),
             "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
