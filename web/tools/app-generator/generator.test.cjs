@@ -16,6 +16,12 @@ test("generator JavaScript is syntactically valid", () => {
     assert.doesNotThrow(() => new vm.Script(source, { filename: "app-generator.js" }));
 });
 
+test("pre-release opt-in is visible and exported only when checked", () => {
+    assert.match(page, /id="allow_prereleases"[^>]*type="checkbox"/);
+    assert.ok(source.includes('if ($("allow_prereleases").checked) app.allow_prereleases = true;'));
+    assert.ok(source.includes('$("allow_prereleases").checked = app.allow_prereleases === true;'));
+});
+
 function section(start, end) {
     const from = source.indexOf(start);
     const to = source.indexOf(end, from + start.length);
