@@ -1,0 +1,51 @@
+{
+  "id": "devil-may-cry-3-se",
+  "tid": "DMC300001",
+  "n": "Devil May Cry 3 SE",
+  "d": "Devil May Cry 3 SE Ps Vita Port",
+  "ld": "Devil May Cry 3 SE Ps Vita Port",
+  "aids": [
+    "vitagamer-vg"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "adventure",
+    "strategy",
+    "source-port"
+  ],
+  "v": "2.0",
+  "vd": "2026-11-16",
+  "req": "- No Data",
+  "sz": 29884416,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/devil-may-cry-3-ps-vita/dmc3_vita.vpk",
+      "sz": 29884416,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/devil-may-cry-3-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1610612736,
+      "xp": "ux0:data/",
+      "ips": [
+        "dmc3se"
+      ]
+    },
+    {
+      "t": "Community",
+      "n": "Youtube",
+      "u": "https://www.youtube.com/watch?v=UvdsBickj-E"
+    }
+  ],
+  "ic": "https://archive.org/download/devil-may-cry-3-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/devil-may-cry-3-ps-vita/shot0.png",
+    "https://archive.org/download/devil-may-cry-3-ps-vita/shot1.png"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "he-man",
+  "tid": "HEMAN0001",
+  "n": "He-Man",
+  "d": "PS Vita port of the Android game He-Man: The Most Powerful Game in the Universe",
+  "ld": "The port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "aids": [
+    "gmejia11"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "adventure",
+    "platformer",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-11",
+  "req": "- kubridge.skprx",
+  "sz": 2202010,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/he-man-vita/heman%20v1.0.vpk",
+      "sz": 2202010,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/he-man-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 186541670,
+      "xp": "ux0:data/",
+      "ips": [
+        "heman"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/gmejia11/he-man_vita"
+    }
+  ],
+  "ic": "https://archive.org/download/he-man-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/he-man-vita/shot0.png",
+    "https://archive.org/download/he-man-vita/shot1.jpg",
+    "https://archive.org/download/he-man-vita/shot2.jpg",
+    "https://archive.org/download/he-man-vita/shot3.jpg"
+  ]
+}

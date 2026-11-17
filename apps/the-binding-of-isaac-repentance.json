@@ -1,0 +1,49 @@
+{
+  "id": "the-binding-of-isaac-repentance",
+  "tid": "ISAACR001",
+  "n": "The Binding of Isaac: Repentance",
+  "d": "PS Vita port of The Binding of Isaac: Repentance by static recompilation of the PC executable to ARM.",
+  "ld": "repentogxm is an experimental static-recompilation port of The Binding of Isaac: Repentance to the PlayStation Vita. The PC executable is translated ahead of time into C and compiled for the Vita's ARM CPU. There is no emulator. This repository contains no game code, resources or binaries; you supply your own PC copy. It is not affiliated with or endorsed by Edmund McMillen, Nicalis, Valve, Sony, or the maintainers of any dependency named below.",
+  "aids": [
+    "0xl0cal"
+  ],
+  "cid": "ports",
+  "sids": [
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.2.0",
+  "vd": "2026-11-13",
+  "req": "- kubridge.skprx\n- libshacccg.suprx\n- about 1.5 GiB free on ux0",
+  "sz": 36490445,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/repentogxm-v0.2.0-alpha.vpk",
+      "sz": 36490445,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1073741824,
+      "xp": "ux0:data/",
+      "ips": [
+        "isaacr001"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/0xl0cal/repentogxm"
+    }
+  ],
+  "ic": "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/shot0.png"
+  ]
+}

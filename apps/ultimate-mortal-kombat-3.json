@@ -1,0 +1,53 @@
+{
+  "id": "ultimate-mortal-kombat-3",
+  "tid": "UMKT00003",
+  "n": "Ultimate Mortal Kombat 3",
+  "d": "A native PlayStation Vita port of Ultimate Mortal Kombat 3 for iOS",
+  "ld": "A native PlayStation Vita port of Ultimate Mortal Kombat 3 for iOS, built from the decompilation of the iOS release (v1.2.59).",
+  "aids": [
+    "gmejia11"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "arcade",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0.0",
+  "vd": "2026-11-14",
+  "req": "- libshacccg.suprx\n- kubridge is not needed\n- The game's data, from your .ipa",
+  "sz": 2831155,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/UMK3-Vita%20v1.0.0.vpk",
+      "sz": 2831155,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 751199846,
+      "xp": "ux0:data/",
+      "ips": [
+        "umk3"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/gmejia11/UMK3-Vita"
+    }
+  ],
+  "ic": "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/icon0.png",
+  "ss": [
+    "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot0.jpg",
+    "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot1.jpg",
+    "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot2.jpg",
+    "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot3.jpg"
+  ]
+}
