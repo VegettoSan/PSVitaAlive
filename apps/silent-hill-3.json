@@ -1,0 +1,50 @@
+{
+  "id": "silent-hill-3",
+  "tid": "SILH00003",
+  "n": "Silent Hill 3",
+  "d": "Experimental recompilation of the PC version of Silent Hill 3 for the PS Vita",
+  "ld": "sh3-vita runs Silent Hill 3 from the PC version's own data. Unlike sh2-vita, which is a native port that rebuilds Silent Hill 2 as native code on the Vita's CPU and GPU, this is a static recompilation: a recompiler translates the game's sh3.exe (x86) to C, and a Win32 / Direct3D 8 / DirectInput / DirectSound compatibility layer runs it over vitaGL on the Vita. It is built on sh4vita by vallfrr, the Silent Hill 4 port that came first, and uses sh3-nx by cutarev as its rendering reference.",
+  "aids": [
+    "angelogalav"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.0.1",
+  "vd": "2026-11-14",
+  "req": "- libshacccg.suprx",
+  "sz": 6815744,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/sh3-vita/sh3%20v0.0.1.vpk",
+      "sz": 6815744,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/sh3-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 4831838208,
+      "xp": "ux0:data/",
+      "ips": [
+        "sh3-vita"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Gihub",
+      "u": "https://github.com/AngeloGalav/sh3-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/sh3-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/sh3-vita/shot0.png"
+  ]
+}

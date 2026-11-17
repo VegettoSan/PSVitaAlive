@@ -1,0 +1,49 @@
+{
+  "id": "shadow-of-the-colossus",
+  "tid": "CELO00001",
+  "n": "Shadow of the Colossus",
+  "d": "Native port of Shadow of the Colossus (PS2) to macOS and PS Vita",
+  "ld": "A native port of Shadow of the Colossus (PS2, USA, SCUS-97472) to macOS (Apple Silicon) and the PS Vita, built by statically recompiling the game's MIPS code to C++ with PS2Recomp.",
+  "aids": [
+    "henrykun55"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-14",
+  "req": "- No Data",
+  "sz": 34288435,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/celosia-ps-vita/colossusfinals.vpk",
+      "sz": 34288435,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/celosia-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2684354560,
+      "xp": "ux0:data/",
+      "ips": [
+        "celosia"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/HenryKun55/celosia"
+    }
+  ],
+  "ic": "https://archive.org/download/celosia-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/celosia-ps-vita/shot0.png"
+  ]
+}

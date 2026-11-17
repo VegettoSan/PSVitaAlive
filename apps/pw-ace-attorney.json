@@ -21,19 +21,20 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/media_20261116/pwaatrilogyvita.vpk",
-      "sz": 19922944,
+      "u": "https://archive.org/download/pwace-attorney-ps-vita/pwaatrilogyvita%20v1.0.vpk",
+      "sz": 19818086,
       "rec": true
     },
     {
       "t": "Game Files",
-      "n": "Data Files",
-      "u": "https://archive.org/download/media_20261116/media.zip",
-      "sz": 1513975972,
-      "xp": "ux0:app/OBJECTION",
-      "ips": [
-        "PWAATrilogy"
-      ]
+      "n": "Game Files",
+      "u": "https://archive.org/download/pwace-attorney-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1717986918,
+      "xp": "ux0:app/"
     }
+  ],
+  "ic": "https://archive.org/download/pwace-attorney-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/pwace-attorney-ps-vita/shot0.png"
   ]
 }

@@ -1,0 +1,40 @@
+{
+  "id": "pokemon-emerald-voxel",
+  "tid": "PKEV00001",
+  "n": "Pokemon Emerald Voxel",
+  "d": "A native PlayStation Vita port of the pokeemerald-multiplatform decompilation.",
+  "ld": "It has the classic 2D GBA renderer, a live 3D voxel overworld mode, follower Pokémon, NEON and multi-core PPU optimizations, and 42060 → 44100 Hz SDL2 audio. Both the 2D and 3D modes hold a locked 60 FPS at the default 222 MHz ARM clock.",
+  "aids": [
+    "arfatnaik0"
+  ],
+  "cid": "ports",
+  "sids": [
+    "arcade",
+    "puzzle",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.01",
+  "vd": "2026-11-15",
+  "req": "- No Data",
+  "sz": 16043213,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK + Game Files",
+      "u": "https://archive.org/download/pokemon-emerald-voxel-ps-vita-port/pokemon-emerald-voxel.vpk",
+      "sz": 16043213,
+      "rec": true
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Arfatnaik0/CLN-Pokemon-emerald-voxel-psvita"
+    }
+  ],
+  "ic": "https://archive.org/download/pokemon-emerald-voxel-ps-vita-port/icon0.png",
+  "ss": [
+    "https://archive.org/download/pokemon-emerald-voxel-ps-vita-port/shot0.png"
+  ]
+}

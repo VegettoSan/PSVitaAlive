@@ -1,0 +1,51 @@
+{
+  "id": "gh-vita",
+  "tid": "GHVT00001",
+  "n": "GH Vita",
+  "d": "Guitar Hero Port for PS Vita",
+  "ld": "A homebrew PS Vita port of Guitar Dream Engine's reimplementation of Guitar Hero (PlayStation 2, 2005), the engine's gd-game-01.",
+  "aids": [
+    "irxd"
+  ],
+  "cid": "ports",
+  "sids": [
+    "arcade",
+    "simulation",
+    "strategy",
+    "game-engine"
+  ],
+  "v": "0.1.1",
+  "vd": "2026-11-16",
+  "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
+  "sz": 3984589,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/ghvita-v0.1.1.vpk",
+      "sz": 3984589,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2254857830,
+      "xp": "ux0:data/",
+      "ips": [
+        "ghvita"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/irxd/guitar-hero-vita"
+    }
+  ],
+  "apr": true,
+  "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
+  ]
+}

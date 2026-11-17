@@ -5,7 +5,6 @@
   "d": "PS Vita port of Zombiewood (Android 1.5.3), Gameloft's top-down zombie shooter, running the original game libraries through a so-loader.",
   "ld": "Zombiewood is a top-down zombie shooter by Gameloft set on the backlots of a zombie-infested Hollywood, where each level is a scene in a B-movie.\n\nThis is a port of the Android version 1.5.3, made by loading the game's original ARMv7 libraries and patching their Android imports with native PS Vita equivalents, with rendering through vitaGL. Menus, the campaign, saves and the in-game shop work offline; online features (leaderboards, social, ads) are disabled. Physical controls are mapped to the analog sticks and face buttons, with on-screen badges for the power-ups, and the touch screen works as on Android.\n\nNo game files are included: the player needs their own Zombiewood 1.5.3 APK and both OBB files, prepared on a PC with prepare_data.py from the release.",
   "aids": [
-    "krisskash",
     "claude-ai"
   ],
   "cid": "ports",
@@ -22,9 +21,19 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/krisskash/zombiewood-vita/releases/download/v1.0.0/zombiewood-v1.0.0.vpk",
+      "u": "https://archive.org/download/zombiewood-ps-vita-port/zombiewood-v1.0.0.vpk",
       "sz": 897869,
       "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/zombiewood-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 595276595,
+      "xp": "ux0:data/",
+      "ips": [
+        "zombiewood"
+      ]
     },
     {
       "t": "Other",
@@ -33,7 +42,7 @@
     },
     {
       "t": "Repository",
-      "n": "Repository",
+      "n": "Github",
       "u": "https://github.com/krisskash/zombiewood-vita"
     },
     {
@@ -42,10 +51,11 @@
       "u": "https://github.com/krisskash/zombiewood-vita/issues"
     }
   ],
+  "ic": "https://archive.org/download/zombiewood-ps-vita-port/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/gameplay1.png",
-    "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/gameplay2.png",
-    "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/menu.png"
-  ],
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+    "https://archive.org/download/zombiewood-ps-vita-port/shot.png",
+    "https://archive.org/download/zombiewood-ps-vita-port/shot0.png",
+    "https://archive.org/download/zombiewood-ps-vita-port/shot1.png",
+    "https://archive.org/download/zombiewood-ps-vita-port/shot2.png"
+  ]
 }
