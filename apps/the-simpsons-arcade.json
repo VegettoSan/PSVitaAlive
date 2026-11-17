@@ -1,0 +1,49 @@
+{
+  "id": "the-simpsons-arcade",
+  "tid": "SMPA00001",
+  "n": "The Simpsons Arcade",
+  "d": "Unofficial PS Vita port of the iOS version of The Simpsons Arcade (EA Mobile).",
+  "ld": "The port is a loader. It runs the game's own iOS ARM code natively on the Vita, with the iOS system parts (Objective-C runtime, Foundation, UIKit, CoreGraphics, OpenGL ES, OpenAL and AudioQueue) replaced by Vita code.",
+  "aids": [
+    "papileno"
+  ],
+  "cid": "ports",
+  "sids": [
+    "platformer",
+    "puzzle",
+    "source-port"
+  ],
+  "v": "1.1",
+  "vd": "2026-11-14",
+  "req": "- kubridge by bythos14\n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- About 130 MB free on ux0: (the .ipa is 51 MB, the game it unpacks 66 MB).",
+  "sz": 1363149,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/the-simpsons-arcade-for-ps-vita/simpsons%20v1.1.vpk",
+      "sz": 1363149,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/the-simpsons-arcade-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 53372518,
+      "xp": "ux0:data/",
+      "ips": [
+        "thesimpsonsarcade"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/papilenote/vita-ports/tree/main/The%20Simpsons%20Arcade"
+    }
+  ],
+  "ic": "https://archive.org/download/the-simpsons-arcade-for-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/the-simpsons-arcade-for-ps-vita/shot0.png"
+  ]
+}

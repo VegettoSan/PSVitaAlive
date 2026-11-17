@@ -1,0 +1,50 @@
+{
+  "id": "celeste",
+  "tid": "CLST00001",
+  "n": "Celeste",
+  "d": "Unofficial PS Vita port of the PC version of Celeste (Maddy Makes Games / Extremely OK Games).",
+  "ld": "Unofficial PS Vita port of the PC version of Celeste (Maddy Makes Games / Extremely OK Games).",
+  "aids": [
+    "papileno"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-15",
+  "req": "- kubridge v0.3.1 or later by bythos14 \n- libshacccg.suprx (Sony's shader compiler) in ur0:data/ or ur0:data/external/.\n- About 1.3 GB free on ux0:.\n- Optional, for trophies: NoTrpDrm (see Trophies).",
+  "sz": 1992294,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/celeste-for-ps-vita/celeste%20v1.0.vpk",
+      "sz": 1992294,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/celeste-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1288490189,
+      "xp": "ux0:data/",
+      "ips": [
+        "celeste"
+      ]
+    },
+    {
+      "t": "Download",
+      "n": "Github",
+      "u": "https://github.com/papilenote/vita-ports/tree/main/Celeste"
+    }
+  ],
+  "ic": "https://archive.org/download/celeste-for-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/celeste-for-ps-vita/shot0.png"
+  ]
+}
