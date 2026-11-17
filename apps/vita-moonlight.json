@@ -14,10 +14,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.13.2",
-  "vd": "2025-11-16",
+  "v": "1.0.0",
+  "vd": "2026-11-17",
   "req": "Not specified",
-  "sz": 2788529,
+  "sz": 12886977,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-vita-moonlight/icon0.png",
   "ss": [
@@ -27,7 +27,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-vita-moonlight/vita-moonlight.vpk",
+      "u": "https://github.com/xyzz/vita-moonlight/releases/download/1.0.0/moonlight.vpk",
       "rec": true
     },
     {
