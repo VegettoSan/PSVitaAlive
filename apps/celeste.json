@@ -40,7 +40,8 @@
     {
       "t": "Download",
       "n": "Github",
-      "u": "https://github.com/papilenote/vita-ports/tree/main/Celeste"
+      "u": "https://github.com/papilenote/vita-ports/tree/main/Celeste",
+      "rec": false
     }
   ],
   "ic": "https://archive.org/download/celeste-for-ps-vita/icon0.png",
