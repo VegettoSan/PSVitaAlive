@@ -1,0 +1,33 @@
+{
+  "id": "standvita-2",
+  "tid": "STDF22222",
+  "n": "StandVita 2",
+  "d": "Standoff 2 Port to PS Vita.",
+  "ld": "Standoff 2 Port to PS Vita. Multiplayer with online and Ad-Hoc.\n\nThere are some stutters in the game, but it should work fine with 60 fps.",
+  "aids": [
+    "retroboy"
+  ],
+  "cid": "ports",
+  "sids": [
+    "fps",
+    "shooter",
+    "strategy"
+  ],
+  "v": "1.0",
+  "vd": "2026-10-15",
+  "req": "Basic plugins like kubridge etc.",
+  "sz": 681574400,
+  "st": "Legacy",
+  "l": [
+    {
+      "t": "Download",
+      "n": "Game VPK",
+      "u": "https://t.me/standoff_vita/109",
+      "sz": 640679936,
+      "rec": true
+    }
+  ],
+  "sn": "Telegram Channel",
+  "su": "https://t.me/standoff_vita",
+  "cl": "- Added gyroscopic aim (Can be enabled in settings)\n- Weapon drop with swiping back panel"
+}
