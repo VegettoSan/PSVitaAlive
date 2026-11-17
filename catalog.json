@@ -1,5 +1,110 @@
 [
   {
+    "id": "psv-cleaner",
+    "tid": "CLEAN0000",
+    "n": "Psv Cleaner",
+    "d": "",
+    "ld": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
+    "aids": [
+      "theherogac"
+    ],
+    "cid": "games",
+    "sids": [
+      "other"
+    ],
+    "v": "1.18",
+    "vd": "2026-11-17",
+    "req": "Not specified",
+    "sz": 223678,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-psv-cleaner/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.18/PSV_Cleaner.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1454",
+    "su": "https://github.com/theheroGAC/PSV-Cleaner",
+    "rp": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
+    "ua": "2026-08-13T15:34:48.720960+00:00"
+  },
+  {
+    "id": "vita-moonlight",
+    "tid": "XYZZ00002",
+    "n": "Vita Moonlight",
+    "d": "NVIDIA Moonlight Streamer port.",
+    "ld": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
+    "aids": [
+      "aorsiniyt",
+      "xyzz",
+      "d3m3vilurr",
+      "shadowprince"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.0.0",
+    "vd": "2026-11-17",
+    "req": "Not specified",
+    "sz": 12886977,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-vita-moonlight/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-vita-moonlight/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xyzz/vita-moonlight/releases/download/1.0.0/moonlight.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/xyzz/vita-moonlight/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/xyzz/vita-moonlight"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "76",
+    "su": "https://github.com/xyzz/vita-moonlight",
+    "rp": "https://github.com/xyzz/vita-moonlight/releases",
+    "ua": "2026-08-13T15:34:48.373632+00:00"
+  },
+  {
     "id": "nfs-most-wanted",
     "tid": "NFSMWVITA",
     "n": "NFS Most Wanted",
@@ -7699,57 +7804,6 @@
     "ss": [
       "https://archive.org/download/shadow-guardian-ps-vita/shot0.png"
     ]
-  },
-  {
-    "id": "psv-cleaner",
-    "tid": "CLEAN0000",
-    "n": "Psv Cleaner",
-    "d": "",
-    "ld": "PSV Cleaner is a powerful and user-friendly temporary files cleaner. This tool helps you free up valuable storage space by safely removing temporary files, cache data, and system dumps that accumulate over time.",
-    "aids": [
-      "theherogac"
-    ],
-    "cid": "games",
-    "sids": [
-      "other"
-    ],
-    "v": "1.17",
-    "vd": "2026-09-26",
-    "req": "Not specified",
-    "sz": 136582,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-psv-cleaner/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-psv-cleaner/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.17/PSV_Cleaner.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.16"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1454",
-    "su": "https://github.com/theheroGAC/PSV-Cleaner",
-    "rp": "https://github.com/theheroGAC/PSV-Cleaner/releases/tag/1.15",
-    "ua": "2026-08-13T15:34:48.720960+00:00"
   },
   {
     "id": "asphalt-6",
@@ -17969,60 +18023,6 @@
     "su": "https://github.com/Rinnegatamante/smashrush-vita",
     "rp": "https://github.com/Rinnegatamante/smashrush-vita/releases",
     "ua": "2026-08-13T15:34:48.374170+00:00"
-  },
-  {
-    "id": "vita-moonlight",
-    "tid": "XYZZ00002",
-    "n": "Vita Moonlight",
-    "d": "NVIDIA Moonlight Streamer port.",
-    "ld": "Vita Moonlight allows you to stream your full collection of Steam games from your powerful Windows desktop to your PSVITA.",
-    "aids": [
-      "aorsiniyt",
-      "xyzz",
-      "d3m3vilurr",
-      "shadowprince"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.0.13.2",
-    "vd": "2025-11-16",
-    "req": "Not specified",
-    "sz": 2788529,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-vita-moonlight/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-vita-moonlight/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-vita-moonlight/vita-moonlight.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/xyzz/vita-moonlight/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/xyzz/vita-moonlight/releases/tag/0.13.2"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/xyzz/vita-moonlight"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "76",
-    "su": "https://github.com/xyzz/vita-moonlight",
-    "rp": "https://github.com/xyzz/vita-moonlight/releases",
-    "ua": "2026-08-13T15:34:48.373632+00:00"
   },
   {
     "id": "froggy-s-battle-vita",
