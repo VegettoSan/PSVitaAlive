@@ -205,3 +205,14 @@ de `apps/` y usan `validate.yml` para generar los catálogos oficiales.
    y que no modifica innecesariamente `apps/`.
 
 No modificar nunca `catalog.json` a mano ni habilitar antiguos feeds externos.
+
+
+## VPKs almacenados en carpetas de GitHub (sin Releases)
+
+Para repositorios revisados que colocan cada port en una carpeta propia, el monitor recopila VPKs desde Git Trees y el README de cada carpeta, sin descargar los binarios. Primer proveedor habilitado: https://github.com/papilenote/vita-ports (rama main).
+
+El monitor publica las entradas independientes en folder_releases dentro de data/upstream_latest.json, sin modificar el esquema de releases tradicionales. Cada entrada proporciona carpeta, Title ID, version, fecha del commit que modifico el VPK, tamano, SHA del blob y URL RAW fijada al commit (no a main).
+
+Para asociar cada carpeta con un Homebrew, su JSON individual en apps/ debe contener un enlace Repository u Official Website a la carpeta exacta, por ejemplo https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic, y un enlace Download llamado VPK. El sincronizador exige coincidencia de repositorio, rama, carpeta y Title ID del README; una version mayor comparable; fecha valida y VPK unico con URL y SHA de commit confiables. Si hay varias versiones en la carpeta, el monitor exige que el nombre de un unico VPK corresponda a la version declarada. La ausencia de version, los duplicados y las ambiguedades impiden el cambio automatico.
+
+Los Game Files, espejos, plugins y cualquier otro boton se conservan. Si la version registrada es igual o mayor, nunca se reemplaza un enlace respaldado en Archive.org. No se crean aplicaciones automaticamente a partir de carpetas desconocidas: requieren un JSON canonico y validacion. Para habilitar un nuevo repositorio multiport es necesario revisar sus convenciones y agregarlo explicitamente a la lista de proveedores del monitor y del sincronizador.
