@@ -61,3 +61,22 @@ The footer on all six public pages links to the [official PSVitaAlive Discord se
 ## Mascot generator
 
 [`tools/mascot-generator/`](tools/mascot-generator/) — create/edit the planned protection-mode `mascot.json` format, import PNG frames or an existing mascot ZIP, simulate Idle/Run movement on a 960 × 544 canvas, validate 100 × 100 frames, and export `<id>/mascot.json` + PNG assets as a ready ZIP. See the tool's own README for the schema and compatibility rules.
+
+## Catalog freshness
+
+The public site reads the generated `catalog.json`, `authors.json`, and
+`categories.json` from the repository's GitHub RAW endpoint. The single
+`fetchFreshVitaHubCatalog` helper in `js/data.js` adds a unique request
+parameter and requests `cache: "no-store"` for these files (and the three
+public game catalogs). The home page's `js/catalog-loader.js` uses the same
+helper. This avoids reusing old browser/CDN cache entries after a catalog
+publication, including on author/app/category detail pages. No generated JSON
+or console client behavior changes.
+
+An already-open page keeps its loaded catalog until the user reloads it; this
+policy does not cause background downloads, nor can it guarantee zero latency
+from GitHub's upstream. To test locally, run:
+
+```bash
+node web/tests/catalog-freshness.test.cjs
+```

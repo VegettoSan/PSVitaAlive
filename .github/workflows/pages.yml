@@ -28,6 +28,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Set up Node.js for web regression tests
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test fresh catalog fetch policy
+        run: node web/tests/catalog-freshness.test.cjs
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 

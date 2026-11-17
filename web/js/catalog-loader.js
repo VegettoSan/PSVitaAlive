@@ -347,7 +347,7 @@
     async function loadJSONWithProgress(path) {
 
         const response =
-            await fetch(path);
+            await fetchFreshVitaHubCatalog(path);
 
         if (!response.ok) {
             throw new Error(

@@ -12,10 +12,33 @@ const VitaHubData = {
 
 
 /**
+ * Always request the six generated public catalogs fresh. GitHub RAW and
+ * browsers may cache URLs on the moving "main" ref after Actions publishes.
+ * A per-request URL token avoids reusing an older CDN cache entry; no-store
+ * avoids browser HTTP cache reuse. Leave media URLs untouched.
+ */
+let vitaHubCatalogRequestId = 0;
+const VITAHUB_GENERATED_CATALOG = /\/(?:catalog|authors|categories|catalog_psvita_games|catalog_psp_games|catalog_ps1_games)\.json(?:[?#]|$)/;
+
+function freshVitaHubCatalogUrl(path) {
+    if (typeof path !== "string" ||
+        !path.startsWith(`${VITAHUB_RAW_BASE}/`) ||
+        !VITAHUB_GENERATED_CATALOG.test(path)) {
+        return path;
+    }
+    const join = path.includes("?") ? "&" : "?";
+    return `${path}${join}psva_refresh=${Date.now()}-${++vitaHubCatalogRequestId}`;
+}
+
+function fetchFreshVitaHubCatalog(path) {
+    return fetch(freshVitaHubCatalogUrl(path), { cache: "no-store" });
+}
+
+/**
  * Carga un archivo JSON.
  */
 async function loadJSON(path) {
-    const response = await fetch(path);
+    const response = await fetchFreshVitaHubCatalog(path);
 
     if (!response.ok) {
         throw new Error(
