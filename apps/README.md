@@ -62,6 +62,8 @@ Optional: `changelog`, `requirements`, `size`, `data_size`, `data_url`, hashes, 
 ]
 ```
 
+**Recommended for automatic VPK updates:** give the main installable `.vpk` link `type: "Download"` and the exact `name: "VPK"` (in compact V2: `t: "Download"`, `n: "VPK"`). The GitHub/GitLab release synchronizer currently identifies only this exact name. Do not put the app title or version in that link name (for example, avoid `My App v1.0 VPK`). This is a recommendation, not a catalog validation requirement: links for alternate builds, data, plugins and mirrors retain their own descriptive names. Other safety requirements for automatic updates still apply; see [release synchronization policy](../docs/AUTOMATIC_RELEASE_CATALOG_SYNC.md).
+
 Common types: `Download`, `Mirror`, `Repository`, `Official Website`, `Documentation`, `Issues`, `Community`.  
 Commercial catalogs additionally use `DLC`, `Update`, and `Mod` (see root README).
 

@@ -25,6 +25,7 @@ Open [`index.html`](index.html) (GitHub Pages or local). Choose **Create** or **
 ## Links
 
 - **Types:** Download, PKG, DLC, Update, Patch, Mod, Mod Pack, Data Files, Game Files, Mirror, Repository, Official Website, Documentation, Issues, Community, **Plugin**, Other.
+- **Recommended main VPK name:** when adding the primary `.vpk` download, choose `Download` and set **Link name** to exactly `VPK` (not `App v1.0 VPK`). This enables the existing GitHub/GitLab release synchronizer to identify that button when all its other safety requirements pass. Other downloads, variants and mirrors may keep descriptive names; this is a recommendation, not a JSON validation requirement.
 - **Plugin** links: `extract_path` (default `ur0:tai/`), `section` (`*main` / `*KERNEL` / `*ALL` / custom / `none`), and `line` (exact config.txt entry to append).
 - **`extract_path`** is shown only for Data Files, Game Files, Mod, Mod Pack, Patch (default `ux0:data/`).
 - **Size:** enter a number + unit (B / KB / MB / GB); JSON stores **integer bytes**.

@@ -383,6 +383,8 @@ PSP **DLC** installs from the client require **LiveArea** target **or** Adrenali
 
 Prefer pull requests that edit **source** data (`apps/`, overrides, scripts) rather than generated catalogs.
 
+For a primary Homebrew `.vpk` link, prefer `type: "Download"` and the exact `name: "VPK"` (compact V2: `t: "Download"`, `n: "VPK"`) so the automatic release synchronizer can identify it. This is recommended rather than required; see [`apps/README.md`](apps/README.md) for details.
+
 1. Add or edit `apps/*.json` (and authors/categories when needed).
 2. Run validation / generation scripts (or rely on CI).
 3. Confirm website and client still load the public JSON endpoints.
