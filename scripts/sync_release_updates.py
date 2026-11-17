@@ -18,7 +18,7 @@ import urllib.request
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import quote, unquote, urlparse
 
 try:
     from scripts.catalog_schema_v2 import to_v1, to_v2
@@ -28,6 +28,9 @@ except ModuleNotFoundError:
 MONITOR_REPO = "VegettoSan/PsVita-Homebrews-New-Releases"
 MONITOR_SNAPSHOT = "data/upstream_latest.json"
 SHA_RE = re.compile(r"^[a-fA-F0-9]{40}$")
+# Explicitly reviewed GitHub folder repositories; add others after validating
+# their folder README and per-VPK release conventions in the monitor.
+FOLDER_SOURCE_REPOS = {"papilenote/vita-ports": "main"}
 RELEASE_VERSION = re.compile(
     r"^[vV]?\.?(\d+(?:\.\d+){0,3})"
     r"(?:[-._]?(dev|test|alpha|a|beta|b|pre|preview|rc)(?:[-._]?(\d+))?)?$",
@@ -255,14 +258,126 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
 
 
 
+
+def registered_folder_paths(app: dict) -> set[tuple[str, str, str]]:
+    """Only explicit per-port GitHub tree links are accepted as identities."""
+    found = set()
+    for link in app.get("links") or []:
+        if not isinstance(link, dict) or str(link.get("type") or "").strip().lower() not in {
+            "repository", "official website"
+        }:
+            continue
+        url = link.get("url")
+        if not isinstance(url, str):
+            continue
+        parsed = urlparse(url.strip())
+        if (parsed.scheme != "https" or parsed.hostname not in {"github.com", "www.github.com"}
+                or parsed.username or parsed.password or parsed.port
+                or parsed.query or parsed.fragment):
+            continue
+        parts = [unquote(part) for part in parsed.path.split("/") if part]
+        if len(parts) != 5 or parts[2] != "tree":
+            continue
+        repo = (parts[0] + "/" + parts[1]).lower()
+        branch, folder = parts[3], parts[4]
+        if (FOLDER_SOURCE_REPOS.get(repo) != branch
+                or not folder or folder in {".", ".."}
+                or not re.fullmatch(r"[A-Za-z0-9_. -]+", folder)):
+            continue
+        found.add((repo, branch, folder.casefold()))
+    return found
+
+
+def current_folder_download(url: object, repo: str, folder: str) -> bool:
+    """A previous immutable GitHub RAW VPK is a trusted source for this folder."""
+    if not isinstance(url, str):
+        return False
+    parsed = urlparse(url.strip())
+    if (parsed.scheme != "https" or parsed.hostname != "raw.githubusercontent.com"
+            or parsed.query or parsed.fragment or parsed.username or parsed.password):
+        return False
+    parts = [unquote(p) for p in parsed.path.split("/") if p]
+    return (len(parts) == 5
+            and (parts[0] + "/" + parts[1]).lower() == repo
+            and bool(SHA_RE.fullmatch(parts[2]))
+            and parts[3].casefold() == folder.casefold()
+            and parts[4].lower().endswith(".vpk"))
+
+
+def folder_release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
+    """Promote one folder VPK only after verifying its source and app identity."""
+    if app.get("status") not in {"Verified", "Legacy"}:
+        return None, "Archive or unsupported status"
+    if item.get("platform") != "github_folder" or item.get("branch") != FOLDER_SOURCE_REPOS.get(repo):
+        return None, "unknown folder source"
+    folder = item.get("folder")
+    if not isinstance(folder, str) or (repo, item["branch"], folder.casefold()) not in registered_folder_paths(app):
+        return None, "no matching registered folder"
+    title = app.get("title_id")
+    if (not isinstance(title, str) or title.upper() != item.get("title_id")
+            or not re.fullmatch(r"[A-Z0-9]{9}", item.get("title_id") or "")):
+        return None, "Title ID mismatch"
+    tag = item.get("tag")
+    if is_prerelease_version(tag) and app.get("allow_prereleases") is not True:
+        return None, "prerelease updates disabled"
+    if not newer_version(app.get("version"), tag):
+        return None, "version not newer or cannot be compared safely"
+    when = release_date(item.get("published"))
+    if not when or (release_date(app.get("version_date"))
+                    and when < str(app["version_date"])[:10]):
+        return None, "invalid or older VPK publication date"
+    commit_sha, blob_sha = item.get("commit_sha"), item.get("blob_sha")
+    if (not isinstance(commit_sha, str) or not SHA_RE.fullmatch(commit_sha)
+            or not isinstance(blob_sha, str) or not SHA_RE.fullmatch(blob_sha)):
+        return None, "invalid commit/blob SHA"
+    assets = item.get("assets")
+    if not isinstance(assets, list) or len(assets) != 1 or not isinstance(assets[0], dict):
+        return None, "VPK asset ambiguous"
+    asset = assets[0]
+    name = asset.get("name")
+    size = asset.get("size")
+    if (not isinstance(name, str) or not name.lower().endswith(".vpk")
+            or not re.fullmatch(r"[^/\\\x00-\x1f]+\.vpk", name, re.I)
+            or not isinstance(size, int) or isinstance(size, bool)
+            or not 1024 <= size <= 100_000_000):
+        return None, "invalid VPK asset metadata"
+    # Strict source/commit/folder/file match. No arbitrary host or redirect URL.
+    expected = (f"https://raw.githubusercontent.com/{repo}/{commit_sha}/"
+                f"{quote(folder, safe='')}/{quote(name, safe='')}")
+    if asset.get("download_url") != expected:
+        return None, "untrusted or unpinned VPK download URL"
+    links = app.get("links")
+    current, reason = select_current_download(links)
+    if current is None:
+        return None, reason
+    current_url = current.get("url")
+    if not (archive_vpk_link(current_url)
+            or current_folder_download(current_url, repo, folder)
+            or normalized_repo(current_url) in app_repositories(app)):
+        return None, "existing VPK link not a trusted source"
+    proposal = json.loads(json.dumps(app))
+    proposal["version"] = str(tag).lstrip("vV")
+    proposal["version_date"] = when
+    proposal["size"] = size
+    index = links.index(current)
+    proposal["links"][index]["url"] = expected
+    if "size" in current:
+        proposal["links"][index]["size"] = size
+    return proposal, "ready"
+
+
 def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
     if not isinstance(snapshot, dict) or snapshot.get("schema_version") != 1:
         raise ValueError("Unsupported upstream snapshot")
     releases = snapshot.get("releases")
     if not isinstance(releases, list):
         raise ValueError("Malformed release list")
+    folders = snapshot.get("folder_releases", [])
+    if not isinstance(folders, list):
+        raise ValueError("Malformed folder release list")
 
     repo_index: dict[str, list[tuple[Path, dict, bool]]] = defaultdict(list)
+    folder_index: dict[tuple[str, str, str], list[tuple[Path, dict, bool]]] = defaultdict(list)
     title_ids = Counter()
     for path in sorted((root / "apps").glob("*.json")):
         raw = path.read_text(encoding="utf-8")
@@ -273,6 +388,8 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
             title_ids[app["title_id"].upper()] += 1
         for repo in app_repositories(app):
             repo_index[repo].append((path, app, compact))
+        for folder_key in registered_folder_paths(app):
+            folder_index[folder_key].append((path, app, compact))
 
     changes = []
     skipped = []
@@ -328,6 +445,37 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
             changes.append((path, proposal, compact))
         elif newer_version(app.get("version"), candidate.get("tag")):
             skipped.append(f"{repo}: {reason}")
+    # Folder VPKs are per-app records, not conventional GitHub Releases.
+    # Repositories shared by many apps are safe only when folder + Title ID
+    # identify one canonical JSON, with no duplicates anywhere in apps/.
+    seen_folders = set()
+    for item in folders:
+        if not isinstance(item, dict) or item.get("platform") != "github_folder":
+            continue
+        repo = str(item.get("repo") or "").lower()
+        branch, folder = item.get("branch"), item.get("folder")
+        if (FOLDER_SOURCE_REPOS.get(repo) != branch or not isinstance(folder, str)):
+            continue
+        key = (repo, branch, folder.casefold())
+        if key in seen_folders:
+            skipped.append(f"{repo}/{folder}: repeated folder record; manual review")
+            continue
+        seen_folders.add(key)
+        matches = folder_index.get(key, [])
+        if len(matches) != 1:
+            if len(matches) > 1:
+                skipped.append(f"{repo}/{folder}: multiple catalog apps share folder")
+            continue
+        path, app, compact = matches[0]
+        if title_ids[str(app.get("title_id") or "").upper()] != 1:
+            skipped.append(f"{repo}/{folder}: duplicate Title ID")
+            continue
+        proposal, reason = folder_release_update(app, item, repo)
+        if proposal is not None:
+            changes.append((path, proposal, compact))
+        elif newer_version(app.get("version"), item.get("tag")):
+            skipped.append(f"{repo}/{folder}: {reason}")
+
     # A canonical Homebrew may reference more than one upstream repository.
     # Never overwrite a single apps/*.json twice in one scan, which would make
     # the chosen version dependent on release iteration order.
