@@ -22,21 +22,21 @@ dependencies, so nothing is added to the rest of your system.
 
 **macOS**
 
-1. Double-click `install_and_run.sh`. Finder opens it in Terminal. If macOS refuses,
-   run `chmod +x install_and_run.sh` once, then try again.
+1. Open Terminal in the `local_client/` folder and run `bash install_and_run.sh`.
+   Alternatively, first run `chmod +x install_and_run.sh` to make it executable.
 2. If Python is missing, install it with `brew install python@3.12` or from
    https://www.python.org/downloads/, then run it again.
 
 **Linux**
 
 ```sh
-./install_and_run.sh
+bash install_and_run.sh
 ```
 
 On Debian or Ubuntu, if it asks for `python3-venv`, install it with
 `sudo apt install python3-venv`.
 
-To install without starting the app, run `./install_and_run.sh --setup-only`
+To install without starting the app, run `bash install_and_run.sh --setup-only`
 (Linux and macOS).
 
 ## Using the app
