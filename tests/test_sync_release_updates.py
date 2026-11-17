@@ -46,6 +46,78 @@ def release(**overrides):
 
 
 class TestReleaseSynchronization(unittest.TestCase):
+    def test_prereleases_need_opt_in_and_are_semantically_ordered(self):
+        old = app()
+        old["version"] = "1.1"
+        beta = release(tag="v1.2-beta2", prerelease=True, assets=[{
+            "name": "vita.vpk",
+            "download_url": "https://github.com/example/vita-app/releases/download/v1.2-beta2/vita.vpk",
+            "size": 401,
+        }])
+        self.assertIn("prerelease updates disabled", release_update(old, beta, REPO)[1])
+        old["allow_prereleases"] = True
+        updated, reason = release_update(old, beta, REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version"], "1.2-beta2")
+        self.assertEqual(updated["links"][0]["url"], beta["assets"][0]["download_url"])
+        for lower, higher in [
+            ("1.2-beta2", "v1.2-beta3"),
+            ("1.2-beta3", "1.2-rc1"),
+            ("1.2-rc1", "1.2"),
+            ("1.2.0a", "1.2.0-beta1"),
+        ]:
+            self.assertTrue(newer_version(lower, higher), (lower, higher))
+        for lower, higher in [
+            ("1.2", "1.2-beta3"),
+            ("1.2", "v1.2.0"),
+            ("1.2", "continuous"),
+            ("1.2", "1.2-multicore2"),
+        ]:
+            self.assertFalse(newer_version(lower, higher), (lower, higher))
+
+    def test_stable_fallback_does_not_force_beta_on_stable_apps(self):
+        latest = release(tag="v1.3-beta2", prerelease=True, assets=[{
+            "name": "vita.vpk",
+            "download_url": "https://github.com/example/vita-app/releases/download/v1.3-beta2/vita.vpk",
+            "size": 502,
+        }])
+        latest["stable_release"] = release(tag="v1.2", prerelease=False, assets=[{
+            "name": "vita.vpk",
+            "download_url": "https://github.com/example/vita-app/releases/download/v1.2/vita.vpk",
+            "size": 501,
+        }])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            file = root / "apps" / "vita-app.json"
+            for allowed, expected in [(False, "1.2"), (True, "1.3-beta2")]:
+                source = app()
+                source["allow_prereleases"] = allowed
+                file.write_text(json.dumps(to_v2(source)), encoding="utf-8")
+                changes, skipped = plan_changes(root, {
+                    "schema_version": 1, "releases": [latest]})
+                self.assertEqual(skipped, [])
+                self.assertEqual(len(changes), 1)
+                self.assertEqual(changes[0][1]["version"], expected)
+
+    def test_stable_replaces_same_core_beta_but_never_downgrades(self):
+        source = app()
+        source["version"] = "1.2-beta2"
+        source["allow_prereleases"] = True
+        stable = release(tag="v1.2", prerelease=False, assets=[{
+            "name": "vita.vpk",
+            "download_url": "https://github.com/example/vita-app/releases/download/v1.2/vita.vpk",
+            "size": 501,
+        }])
+        updated, reason = release_update(source, stable, REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version"], "1.2")
+        updated["links"][0]["url"] = "https://archive.org/download/vita-app/v1.2.vpk"
+        prerelease = release(tag="v1.2-beta5", prerelease=True)
+        ignored, reason = release_update(updated, prerelease, REPO)
+        self.assertIsNone(ignored)
+        self.assertIn("version not newer", reason)
+
     def test_only_promotes_unambiguous_official_download(self):
         original = app()
         updated, reason = release_update(original, release(), REPO)
