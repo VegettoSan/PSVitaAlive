@@ -531,6 +531,54 @@
     ]
   },
   {
+    "id": "nfs-most-wanted",
+    "tid": "NFSMWVITA",
+    "n": "NFS Most Wanted",
+    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "germanalvarez15"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.6.0",
+    "vd": "2026-11-12",
+    "req": "- No Data",
+    "sz": 3294389,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.0/nfsmw.vpk",
+        "sz": 3294389,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files Fix",
+        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+        "sz": 1610612736,
+        "xp": "ux0:data/",
+        "ips": [
+          "nfsmw"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Gihub",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
     "id": "pokemon-colosseum",
     "tid": "PCOLN0010",
     "n": "Pokemon Colosseum",
@@ -1526,54 +1574,6 @@
     "su": "https://github.com/ONElua/AutoPlugin2",
     "rp": "https://github.com/ONElua/AutoPlugin2/releases/tag/2.18",
     "ua": "2026-08-13T15:34:48.718920+00:00"
-  },
-  {
-    "id": "nfs-most-wanted",
-    "tid": "NFSMWVITA",
-    "n": "NFS Most Wanted",
-    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
-    "aids": [
-      "germanalvarez15"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "source-port"
-    ],
-    "v": "1.5.1",
-    "vd": "2026-11-07",
-    "req": "- No Data",
-    "sz": 3250586,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/nfsmw-vita/nfsmw%20v1.5.1.vpk",
-        "sz": 3250586,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files Fix",
-        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-        "sz": 1610612736,
-        "xp": "ux0:data/",
-        "ips": [
-          "nfsmw"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Gihub",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/nfsmw-vita/shot0.png"
-    ]
   },
   {
     "id": "ultimate-spider-man",
@@ -3670,6 +3670,49 @@
     ]
   },
   {
+    "id": "vitamediadeck",
+    "tid": "VMDK00001",
+    "n": "VitaMediaDeck",
+    "d": "Private PS Vita media library and playback application",
+    "ld": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
+    "aids": [
+      "spyro-98"
+    ],
+    "cid": "media",
+    "sids": [
+      "audio",
+      "music-player",
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "v": "1.4.3",
+    "vd": "2026-10-29",
+    "req": "- No Data",
+    "sz": 6294292,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/spyro-98/VitaMediaDeck/releases/download/v1.4.3/VitaMediaDeck-1.4.3.vpk",
+        "sz": 6294292,
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/spyro-98/VitaMediaDeck"
+      }
+    ],
+    "ic": "https://archive.org/download/vita-media-deck/icon0.png",
+    "ss": [
+      "https://archive.org/download/vita-media-deck/shot0.jpeg",
+      "https://archive.org/download/vita-media-deck/shot1.jpeg",
+      "https://archive.org/download/vita-media-deck/shot2.jpeg"
+    ]
+  },
+  {
     "id": "zombie-infection",
     "tid": "PSVZI0001",
     "n": "Zombie Infection",
@@ -3872,6 +3915,58 @@
     ]
   },
   {
+    "id": "opennow-vita",
+    "tid": "OPENNOWV0",
+    "n": "OpenNow Vita",
+    "d": "Nvidia GeForce Now client for PSVita.",
+    "ld": "A native homebrew GeForce NOW client for the PlayStation Vita.",
+    "aids": [
+      "josephinoo"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "0.3.3",
+    "vd": "2026-10-27",
+    "req": "Not specified",
+    "sz": 9439097,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-opennow-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-opennow-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-opennow-vita/shot_02.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.3/opennow-vita.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1977",
+    "su": "https://github.com/OpenCloudGaming/OpenNOW-vita",
+    "rp": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
+    "ua": "2026-08-13T15:34:48.324387+00:00"
+  },
+  {
     "id": "skate-3-vita",
     "tid": "SKTV00001",
     "n": "Skate 3 Vita",
@@ -3919,49 +4014,6 @@
     "ss": [
       "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
       "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
-    ]
-  },
-  {
-    "id": "vitamediadeck",
-    "tid": "VMDK00001",
-    "n": "VitaMediaDeck",
-    "d": "Private PS Vita media library and playback application",
-    "ld": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
-    "aids": [
-      "spyro-98"
-    ],
-    "cid": "media",
-    "sids": [
-      "audio",
-      "music-player",
-      "video",
-      "video-player",
-      "streaming"
-    ],
-    "v": "1.4.1",
-    "vd": "2026-10-27",
-    "req": "- No Data",
-    "sz": 6081741,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/vita-media-deck/VitaMediaDeck%20v1.4.1.vpk",
-        "sz": 6081741,
-        "rec": true
-      },
-      {
-        "t": "Repository",
-        "n": "GitHub",
-        "u": "https://github.com/spyro-98/VitaMediaDeck"
-      }
-    ],
-    "ic": "https://archive.org/download/vita-media-deck/icon0.png",
-    "ss": [
-      "https://archive.org/download/vita-media-deck/shot0.jpeg",
-      "https://archive.org/download/vita-media-deck/shot1.jpeg",
-      "https://archive.org/download/vita-media-deck/shot2.jpeg"
     ]
   },
   {
@@ -8201,16 +8253,16 @@
     "sids": [
       "other"
     ],
-    "v": "v.1.0",
+    "v": "1.4",
     "vd": "2026-08-31",
     "req": "- libshacccg.suprx\n- Game Data Files: N64",
-    "sz": 7201620,
+    "sz": 7494939,
     "st": "Legacy",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-battleship-vita/battleship%20v1.4.vpk",
+        "u": "https://github.com/robin994/battleship-vita/releases/download/1.4/battleship.vpk",
         "rec": true
       },
       {
@@ -9618,56 +9670,57 @@
     "ua": "2026-08-13T15:34"
   },
   {
-    "id": "opennow-vita",
-    "tid": "OPENNOWV0",
-    "n": "OpenNow Vita",
-    "d": "Nvidia GeForce Now client for PSVita.",
-    "ld": "A native homebrew GeForce NOW client for the PlayStation Vita.",
+    "id": "save-keeper",
+    "tid": "SVK000001",
+    "n": "Save Keeper",
+    "d": "Save backup manager with Google Drive sync.",
+    "ld": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
     "aids": [
-      "josephinoo"
+      "claude-ai",
+      "falkenhawk"
     ],
     "cid": "utilities",
     "sids": [
       "other"
     ],
-    "v": "v.0.3.2",
+    "v": "1.3.1",
     "vd": "2026-08-16",
     "req": "Not specified",
-    "sz": 9435152,
+    "sz": 3150095,
     "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-opennow-vita/icon0.png",
+    "ic": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
     "ss": [
-      "https://archive.org/download/psvitaalive-opennow-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-opennow-vita/shot_02.png"
+      "https://archive.org/download/psvitaalive-save-keeper/shot_01.png",
+      "https://archive.org/download/psvitaalive-save-keeper/shot_02.png"
     ],
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-opennow-vita/opennow-vita.vpk",
+        "u": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.3.1/save-keeper.vpk",
         "rec": true
       },
       {
         "t": "Official Website",
         "n": "Release Page",
-        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1"
+        "u": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
       },
       {
         "t": "Repository",
         "n": "Repositorio",
-        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita"
+        "u": "https://github.com/falkenhawk/vita-save-keeper"
       },
       {
         "t": "Official Website",
         "n": "Release Page",
-        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases"
+        "u": "https://github.com/falkenhawk/vita-save-keeper/releases"
       }
     ],
     "sn": "NeoVitaDB",
-    "si": "1977",
-    "su": "https://github.com/OpenCloudGaming/OpenNOW-vita",
-    "rp": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
-    "ua": "2026-08-13T15:34:48.324387+00:00"
+    "si": "1430",
+    "su": "https://github.com/falkenhawk/vita-save-keeper",
+    "rp": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0",
+    "ua": "2026-08-13T15:34:48.327643+00:00"
   },
   {
     "id": "neovitadb-downloader",
@@ -11619,59 +11672,6 @@
       "https://archive.org/download/ctrm-psvita/bg0.png",
       "https://archive.org/download/ctrm-psvita/pic0.png"
     ]
-  },
-  {
-    "id": "save-keeper",
-    "tid": "SVK000001",
-    "n": "Save Keeper",
-    "d": "Save backup manager with Google Drive sync.",
-    "ld": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
-    "aids": [
-      "claude-ai",
-      "falkenhawk"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.1.3.0",
-    "vd": "2026-08-03",
-    "req": "Not specified",
-    "sz": 3148166,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-save-keeper/shot_01.png",
-      "https://archive.org/download/psvitaalive-save-keeper/shot_02.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-save-keeper/save-keeper.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/falkenhawk/vita-save-keeper"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/falkenhawk/vita-save-keeper/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1430",
-    "su": "https://github.com/falkenhawk/vita-save-keeper",
-    "rp": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0",
-    "ua": "2026-08-13T15:34:48.327643+00:00"
   },
   {
     "id": "cut-the-rope-classic",
