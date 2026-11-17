@@ -138,6 +138,10 @@ jobs:
             tests/test_zip_preflight_directory_policy.cpp \
             -o /tmp/psvitaalive-zip-preflight-dir-test
           /tmp/psvitaalive-zip-preflight-dir-test
+          c++ -std=c++11 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/zip_work_pacer_test.cpp \
+            -o /tmp/psvitaalive-zip-work-pacer-test
+          /tmp/psvitaalive-zip-work-pacer-test
 
       - name: Test unreachable source and HTTP response policy
         run: |
