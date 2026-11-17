@@ -364,7 +364,11 @@ InstallDispatchResult InstallDispatcher::installFile(
                 p.stage = InstallDispatchProgress::Extracting;
                 p.current = zp.bytesWritten;
                 p.total = zp.bytesTotal;
-                p.message = zp.currentEntry.empty() ? "Extracting ZIP" : std::string("Extracting: ") + zp.currentEntry;
+                // Byte percentage may remain nearly unchanged while creating
+                // thousands of tiny files. Show entry progress independently
+                // and avoid rendering unbounded archive paths in the UI.
+                p.message = "ZIP files: " + std::to_string(zp.entriesDone) +
+                    "/" + std::to_string(zp.entriesTotal);
                 onProgress(p);
             },
             shouldCancel,
