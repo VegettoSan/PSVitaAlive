@@ -106,6 +106,17 @@ set_source_files_properties(
   source/storage/installed_directory_codec.cpp
   PROPERTIES COMPILE_OPTIONS "-Os"
 )
+# Keep non-hot installer/catalog helpers compact: the ZIP worker added code to
+# segment 0 and vita-elf-create needs room for its 4 KiB SCE metadata trailer.
+# Do not change optimisation of hot archive reads/writes or zlib/libzip.
+set_source_files_properties(
+  source/installer/install_dispatcher.cpp
+  source/installer/homebrew_installer.cpp
+  source/update/update_checker.cpp
+  source/catalog/catalog_parser.cpp
+  source/ui/search_keyboard.cpp
+  PROPERTIES COMPILE_OPTIONS "-Os"
+)
 
 set_source_files_properties(source/network/curl_lifecycle.cpp PROPERTIES
   COMPILE_DEFINITIONS "PSVITAALIVE_CURL_LIFECYCLE_IMPL"
