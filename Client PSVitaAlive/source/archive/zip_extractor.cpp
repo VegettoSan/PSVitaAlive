@@ -194,7 +194,7 @@ private:
         return self ? self->run() : -1;
     }
     int run() {
-        uint64_t consumed = 0, bytesSinceYield = 0;
+        uint64_t consumed = 0, bytesSinceYield = 0, committed = 0;
         for (;;) {
             if (sceKernelWaitSema(ready_, 1, nullptr) < 0) {
                 failed_.store(true, std::memory_order_release);
@@ -217,7 +217,8 @@ private:
                         break;
                     }
                     offset += static_cast<size_t>(w);
-                    written_.fetch_add(static_cast<uint64_t>(w), std::memory_order_release);
+                    committed += static_cast<uint64_t>(w);
+                    written_.store(committed, std::memory_order_release);
                     bytesSinceYield += static_cast<uint64_t>(w);
                     if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
                         bytesSinceYield = 0;
@@ -1487,7 +1488,7 @@ ZipResult ZipExtractor::extract(
                 const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
                 char err[440];
                 sceClibSnprintf(err, sizeof(err),
-                    "sceIoWrite pipeline failed path=%s ret=%d tried=%d written_total=%llu free=%llu",
+                    "sceIoWrite failed (ZIP pipeline) path=%s ret=%d tried=%d written_total=%llu free=%llu",
                     outPath.c_str(), writePipeline.writeReturn(), writePipeline.writeRequested(),
                     (unsigned long long)writtenTotal,
                     (unsigned long long)(haveSpace ? freeB : 0ULL));
