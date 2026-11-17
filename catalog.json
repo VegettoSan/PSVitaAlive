@@ -1,5 +1,53 @@
 [
   {
+    "id": "nfs-most-wanted",
+    "tid": "NFSMWVITA",
+    "n": "NFS Most Wanted",
+    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "germanalvarez15"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.6.1",
+    "vd": "2026-11-17",
+    "req": "- No Data",
+    "sz": 3260233,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.1/nfsmw.vpk",
+        "sz": 3260233,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files Fix",
+        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+        "sz": 1610612736,
+        "xp": "ux0:data/",
+        "ips": [
+          "nfsmw"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Gihub",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
     "id": "2ship2harkinian-vita",
     "tid": "2SHIP2HAR",
     "n": "2ship2harkinian Vita",
@@ -528,54 +576,6 @@
     "ic": "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/the-king-of-fighters-a-2012-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "nfs-most-wanted",
-    "tid": "NFSMWVITA",
-    "n": "NFS Most Wanted",
-    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
-    "aids": [
-      "germanalvarez15"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "source-port"
-    ],
-    "v": "1.6.0",
-    "vd": "2026-11-12",
-    "req": "- No Data",
-    "sz": 3294389,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.0/nfsmw.vpk",
-        "sz": 3294389,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files Fix",
-        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-        "sz": 1610612736,
-        "xp": "ux0:data/",
-        "ips": [
-          "nfsmw"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Gihub",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/nfsmw-vita/shot0.png"
     ]
   },
   {
@@ -4338,7 +4338,7 @@
       {
         "t": "Official Website",
         "n": "Github",
-        "u": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Mercenaries%20VS"
+        "u": "https://github.com/papilenote/vita-ports/tree/main/Resident%20Evil%20Mercenaries%20VS"
       }
     ],
     "ic": "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/icon0.png",
@@ -4855,7 +4855,7 @@
       {
         "t": "Official Website",
         "n": "Github",
-        "u": "https://github.com/papileno/vita-ports/tree/main/Resident%20Evil%20Degeneration"
+        "u": "https://github.com/papilenote/vita-ports/tree/main/Resident%20Evil%20Degeneration"
       }
     ],
     "ic": "https://archive.org/download/resident-evil-degeneration-ps-vita/icon0.png",
