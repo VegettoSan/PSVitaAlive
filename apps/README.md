@@ -44,6 +44,23 @@ Do **not** edit `catalog.json` by hand.
 
 Optional: `changelog`, `requirements`, `size`, `data_size`, `data_url`, hashes, scores, etc. Consumers must tolerate missing optional fields.
 
+### Pre-release updates (opt-in)
+
+By default, automatic release synchronization prefers stable GitHub/GitLab
+releases. A Homebrew whose developer distributes beta/RC VPKs can opt in
+by adding `"allow_prereleases": true` to the readable V1 record or
+`"apr": true` to the compact V2 source JSON in `apps/`.
+This flag is **per application** and optional; the web app generator also
+offers an opt-in checkbox.
+
+Recognized version suffixes include `dev`, `test`, `alpha`, `beta`,
+`pre`, `preview`, and `rc`. Stable `1.2` ranks above `1.2-rc1`
+and `1.2-beta2`. Arbitrary labels such as `continuous` are not ordered
+automatically. A prerelease still requires a single trusted VPK, a unique
+registered repository and a unique `Download` link named `VPK`.
+Manual Archive.org backups are never overwritten at an equal or older version.
+
+
 ## Links
 
 ```json
