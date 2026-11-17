@@ -1,5 +1,8 @@
 #include "archive/zip_extractor.hpp"
 #include "archive/extraction_directory_cache.hpp"
+#include "archive/zip_write_pipeline_policy.hpp"
+#include "archive/zip_work_pacer.hpp"
+#include "archive/zip_preflight_directory_policy.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
@@ -8,14 +11,19 @@
 
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
+#include <psp2/kernel/threadmgr.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 #include <psp2/io/dirent.h>
 #include <zip.h>
 
 #include <algorithm>
+#include <array>
+#include <atomic>
 #include <cstdint>
 #include <cstring>
+#include <memory>
+#include <new>
 #include <string>
 #include <unordered_set>
 #include <vector>
@@ -26,6 +34,9 @@ namespace {
 // multi-megabyte entries. Still bounded to 256 KiB of extra heap RAM.
 constexpr size_t EXTRACT_CHUNK = 256 * 1024;
 constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
+// Report cumulative slow-I/O diagnostics, never log each tiny archive member.
+constexpr uint64_t ZIP_IO_REPORT_INTERVAL_US = 15ULL * 1000ULL * 1000ULL;
+constexpr uint64_t ZIP_SLOW_FILE_OPEN_US = 2ULL * 1000ULL * 1000ULL;
 // Let Vita's render thread run between large ux0 write bursts. 1ms per MiB
 // adds little overhead while reducing sustained worker/IO scheduling pressure.
 constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
@@ -94,6 +105,153 @@ std::string comparableVitaPath(const std::string& path) {
         if (c >= 'A' && c <= 'Z') c = static_cast<char>(c - 'A' + 'a');
     return normalized;
 }
+
+// Bounded single-producer/single-consumer pipeline for large STORE entries.
+// The installer thread is the only libzip reader; this worker only writes to
+// the already-open destination fd. It never accesses zip_t/zip_file_t or UI.
+// Semaphores cap outstanding chunks at three (768 KiB); a fourth ready token
+// is reserved for shutdown, including cancellation and read/CRC failures.
+class StoreZipWritePipeline {
+public:
+    ~StoreZipWritePipeline() { finish(); }
+
+    bool start(SceUID output, bool profileIo) {
+        output_ = output;
+        profileIo_ = profileIo;
+        for (auto& slot : buffers_) {
+            slot.data.reset(new (std::nothrow) char[EXTRACT_CHUNK]);
+            if (!slot.data) return false;
+        }
+        free_ = sceKernelCreateSema("PSVAZipFree", 0,
+            static_cast<int>(kZipWritePipelineSlots),
+            static_cast<int>(kZipWritePipelineSlots), nullptr);
+        if (free_ < 0) return false;
+        ready_ = sceKernelCreateSema("PSVAZipReady", 0, 0,
+            static_cast<int>(kZipWritePipelineSlots + 1), nullptr);
+        if (ready_ < 0) return false;
+        thread_ = sceKernelCreateThread("PSVAZipWriter", &StoreZipWritePipeline::entry,
+            0x10000110, 32 * 1024, 0, 0, nullptr);
+        if (thread_ < 0) return false;
+        StoreZipWritePipeline* self = this;
+        if (sceKernelStartThread(thread_, sizeof(self), &self) < 0) return false;
+        started_ = true;
+        return true;
+    }
+
+    bool acquire(char*& out) {
+        out = nullptr;
+        if (failed_.load(std::memory_order_acquire)) return false;
+        if (sceKernelWaitSema(free_, 1, nullptr) < 0) {
+            failed_.store(true, std::memory_order_release);
+            return false;
+        }
+        if (failed_.load(std::memory_order_acquire)) {
+            sceKernelSignalSema(free_, 1);
+            return false;
+        }
+        out = buffers_[produced_ % kZipWritePipelineSlots].data.get();
+        return true;
+    }
+
+    void releaseUnused() { sceKernelSignalSema(free_, 1); }
+
+    void submit(size_t length) {
+        buffers_[produced_ % kZipWritePipelineSlots].length = length;
+        published_.store(++produced_, std::memory_order_release);
+        if (sceKernelSignalSema(ready_, 1) < 0)
+            failed_.store(true, std::memory_order_release);
+    }
+
+    void finish() {
+        if (started_) {
+            done_.store(true, std::memory_order_release);
+            if (sceKernelSignalSema(ready_, 1) < 0)
+                failed_.store(true, std::memory_order_release);
+            int exitStatus = 0;
+            if (sceKernelWaitThreadEnd(thread_, &exitStatus, nullptr) < 0 || exitStatus != 0)
+                failed_.store(true, std::memory_order_release);
+            started_ = false;
+        }
+        if (thread_ >= 0) { sceKernelDeleteThread(thread_); thread_ = -1; }
+        if (ready_ >= 0) { sceKernelDeleteSema(ready_); ready_ = -1; }
+        if (free_ >= 0) { sceKernelDeleteSema(free_); free_ = -1; }
+        for (auto& slot : buffers_) slot.data.reset();
+    }
+
+    bool failed() const { return failed_.load(std::memory_order_acquire); }
+    uint64_t bytesWritten() const { return written_.load(std::memory_order_acquire); }
+    uint64_t writeTimeUs() const { return writeTimeUs_.load(std::memory_order_acquire); }
+    int writeReturn() const { return writeReturn_; } // read only after finish()
+    int writeRequested() const { return writeRequested_; }
+
+private:
+    struct Buffer { std::unique_ptr<char[]> data; size_t length = 0; };
+    std::array<Buffer, kZipWritePipelineSlots> buffers_{};
+    std::atomic<uint64_t> published_{0};
+    std::atomic<uint64_t> written_{0};
+    std::atomic<uint64_t> writeTimeUs_{0};
+    bool profileIo_ = false;
+    std::atomic<bool> failed_{false};
+    std::atomic<bool> done_{false};
+    uint64_t produced_ = 0; // installer thread only
+    SceUID output_ = -1, free_ = -1, ready_ = -1, thread_ = -1;
+    bool started_ = false;
+    int writeReturn_ = 0, writeRequested_ = 0; // writer thread, inspected after join
+
+    static int entry(SceSize args, void* argp) {
+        if (args != sizeof(StoreZipWritePipeline*) || !argp) return -1;
+        StoreZipWritePipeline* self = *static_cast<StoreZipWritePipeline**>(argp);
+        return self ? self->run() : -1;
+    }
+    int run() {
+        uint64_t consumed = 0, bytesSinceYield = 0, committed = 0, writerTimeUs = 0;
+        for (;;) {
+            if (sceKernelWaitSema(ready_, 1, nullptr) < 0) {
+                failed_.store(true, std::memory_order_release);
+                return -1;
+            }
+            if (consumed == published_.load(std::memory_order_acquire)) {
+                if (done_.load(std::memory_order_acquire)) return 0;
+                continue;
+            }
+            Buffer& slot = buffers_[consumed % kZipWritePipelineSlots];
+            if (!failed_.load(std::memory_order_acquire)) {
+                size_t offset = 0;
+                while (offset < slot.length) {
+                    const int request = static_cast<int>(slot.length - offset);
+                    const uint64_t writeBegin = profileIo_ ? sceKernelGetProcessTimeWide() : 0;
+                    const int w = sceIoWrite(output_, slot.data.get() + offset, request);
+                    if (profileIo_) {
+                        writerTimeUs += sceKernelGetProcessTimeWide() - writeBegin;
+                        writeTimeUs_.store(writerTimeUs, std::memory_order_release);
+                    }
+                    if (w <= 0) {
+                        writeReturn_ = w;
+                        writeRequested_ = request;
+                        failed_.store(true, std::memory_order_release);
+                        break;
+                    }
+                    offset += static_cast<size_t>(w);
+                    committed += static_cast<uint64_t>(w);
+                    written_.store(committed, std::memory_order_release);
+                    bytesSinceYield += static_cast<uint64_t>(w);
+                    if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
+                        bytesSinceYield = 0;
+                        sceKernelDelayThread(1000);
+                    }
+                }
+            }
+            // Even after an I/O error, drain queued tokens without writing.
+            // This releases the producer if it was waiting for a free slot.
+            ++consumed;
+            if (sceKernelSignalSema(free_, 1) < 0) {
+                failed_.store(true, std::memory_order_release);
+                return -1;
+            }
+        }
+    }
+};
+
 } // namespace
 
 const char* toString(ZipResult r) {
@@ -646,6 +804,7 @@ ZipResult ZipExtractor::extract(
 ) {
     lastError_.clear();
     usedStagedMoves_ = false;
+    const uint64_t extractStartedUs = sceKernelGetProcessTimeWide();
     StorageManager st;
 
     // VitaDB extracts into an already-installed app folder (ux0:/app/TITLEID). On real
@@ -678,6 +837,12 @@ ZipResult ZipExtractor::extract(
 
     ZipProgress prog;
     prog.entriesTotal = static_cast<uint64_t>(numEntries);
+    // Metadata/directory preflight can take long on STORE ZIPs with many files.
+    if (onProgress) {
+        prog.currentEntry = "Preparing ZIP metadata";
+        onProgress(prog);
+        prog.currentEntry.clear();
+    }
 
     // Never overwrite the archive we are actively reading. The same protection
     // covers every part of a segmented download, regardless of ZIP/VPK routing.
@@ -879,6 +1044,11 @@ ZipResult ZipExtractor::extract(
             zip_close(za);
             return ZipResult::Cancelled;
         }
+        if (onProgress && i > 0 && i % 256 == 0) {
+            prog.currentEntry = "Checking ZIP paths";
+            onProgress(prog);
+            prog.currentEntry.clear();
+        }
         zip_stat_t zs;
         zip_stat_init(&zs);
         if (zip_stat_index(za, i, 0, &zs) != 0) {
@@ -978,9 +1148,17 @@ ZipResult ZipExtractor::extract(
                          std::to_string(staged.size()) + " base=" + stagingBase);
     }
 
-    // Preflight every actual output directory. The staged members are prepared
-    // in the temporary tree, never in their deep final paths during extraction.
+
+    // PR #75 (Minecraft): allow cancellation and yield while preparing
+    // thousands of directory metadata entries. This preflight can be expensive.
+    uint64_t preparedDirectories = 0;
+    const uint64_t directoryPreflightStartUs = sceKernelGetProcessTimeWide();
     for (const std::string& dir : requiredDirs) {
+        if (shouldCancel && shouldCancel()) {
+            setError("cancelled during ZIP directory preflight");
+            zip_close(za);
+            return ZipResult::Cancelled;
+        }
         if (findBranch(dir)) continue;
         if (!st.isDirectory(dir) && !st.createDirectories(dir)) {
             setError("cannot prepare ZIP directory: " + dir +
@@ -988,6 +1166,15 @@ ZipResult ZipExtractor::extract(
             zip_close(za);
             return ZipResult::IoError;
         }
+        if (++preparedDirectories % 16 == 0) sceKernelDelayThread(1000);
+    }
+    if (numEntries >= 512) {
+        char preflightDiag[240];
+        sceClibSnprintf(preflightDiag, sizeof(preflightDiag),
+            "[ZipIO] directory preflight dirs=%llu elapsed_ms=%llu",
+            (unsigned long long)preparedDirectories,
+            (unsigned long long)((sceKernelGetProcessTimeWide() - directoryPreflightStartUs)/1000ULL));
+        diagnostics::log(preflightDiag);
     }
     for (StagedBranch& branch : staged) {
         const auto slash = branch.destination.find_last_of('/');
@@ -1061,9 +1248,11 @@ ZipResult ZipExtractor::extract(
             }
         }
     }
+    const uint64_t preflightUs = sceKernelGetProcessTimeWide() - extractStartedUs;
     diagnostics::log("[ZipExtractor] directory preflight unique=" +
                      std::to_string(requiredDirs.size()) +
-                     " staged_branches=" + std::to_string(staged.size()));
+                     " staged_branches=" + std::to_string(staged.size()) +
+                     " elapsed_ms=" + std::to_string(preflightUs / 1000ULL));
 
     std::vector<char> buffer(EXTRACT_CHUNK);
     ZipResult outcome = ZipResult::Ok;
@@ -1093,7 +1282,52 @@ ZipResult ZipExtractor::extract(
     uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
     uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
     bool exclusiveCreationSupported = true;
-    uint64_t bytesSinceYield = 0;
+    // PR #75: also yield by entry count. Byte-only pacing cannot keep a
+    // thousands-of-tiny-files ZIP responsive.
+    ZipWorkPacer pacer;
+    uint64_t pipelinedEntries = 0, pipelinedBytes = 0;
+
+    const bool profileIo = numEntries >= 512;
+    struct ZipIoCounters {
+        uint64_t zipOpenUs = 0, fileOpenUs = 0, zipReadUs = 0;
+        uint64_t fileWriteUs = 0, zipCloseUs = 0, fileCloseUs = 0;
+        uint64_t worstFileOpenUs = 0;
+    } io;
+    const uint64_t profileStartedUs = sceKernelGetProcessTimeWide();
+    uint64_t lastIoReportUs = profileStartedUs, lastSlowOpenLogUs = 0;
+    auto sampleStart = [&]() -> uint64_t {
+        return profileIo ? sceKernelGetProcessTimeWide() : 0;
+    };
+    auto sampleEnd = [&](uint64_t started, uint64_t& total) -> uint64_t {
+        if (!profileIo) return 0;
+        const uint64_t elapsed = sceKernelGetProcessTimeWide() - started;
+        total += elapsed;
+        return elapsed;
+    };
+    auto reportIo = [&](bool force = false) {
+        if (!profileIo) return;
+        const uint64_t now = sceKernelGetProcessTimeWide();
+        if (!force && now - lastIoReportUs < ZIP_IO_REPORT_INTERVAL_US) return;
+        lastIoReportUs = now;
+        char snapshot[480];
+        sceClibSnprintf(snapshot, sizeof(snapshot),
+            "[ZipIO] entries=%llu/%llu bytes=%llu/%llu wall_ms=%llu "
+            "zip_open_ms=%llu file_open_ms=%llu zip_read_ms=%llu "
+            "write_ms=%llu zip_close_ms=%llu file_close_ms=%llu max_open_ms=%llu",
+            (unsigned long long)prog.entriesDone,
+            (unsigned long long)prog.entriesTotal,
+            (unsigned long long)prog.bytesWritten,
+            (unsigned long long)prog.bytesTotal,
+            (unsigned long long)((now - profileStartedUs) / 1000ULL),
+            (unsigned long long)(io.zipOpenUs / 1000ULL),
+            (unsigned long long)(io.fileOpenUs / 1000ULL),
+            (unsigned long long)(io.zipReadUs / 1000ULL),
+            (unsigned long long)(io.fileWriteUs / 1000ULL),
+            (unsigned long long)(io.zipCloseUs / 1000ULL),
+            (unsigned long long)(io.fileCloseUs / 1000ULL),
+            (unsigned long long)(io.worstFileOpenUs / 1000ULL));
+        diagnostics::log(snapshot);
+    };
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         if (shouldCancel && shouldCancel()) {
@@ -1140,6 +1374,8 @@ ZipResult ZipExtractor::extract(
             lastEnsuredParent = outPath;
             ++prog.entriesDone;
             reportProgress();
+            if (pacer.afterEntry()) sceKernelDelayThread(1000);
+            reportIo();
             continue;
         }
 
@@ -1147,6 +1383,10 @@ ZipResult ZipExtractor::extract(
         if (slash != std::string::npos) {
             const std::string parent = outPath.substr(0, slash);
             if (parent == lastEnsuredParent || ensuredParents.contains(parent)) {
+                ++directoryCacheHits;
+            } else if (zipParentReadyFromPreflight(requiredDirs, parent, branch != nullptr)) {
+                // This path was already validated AND prepared during preflight.
+                ensuredParents.remember(parent);
                 ++directoryCacheHits;
             } else {
                 ++directoryCacheChecks;
@@ -1160,7 +1400,9 @@ ZipResult ZipExtractor::extract(
             lastEnsuredParent = parent;
         }
 
+        const uint64_t zipOpenStart = sampleStart();
         zip_file_t* zf = zip_fopen_index(za, i, 0);
+        sampleEnd(zipOpenStart, io.zipOpenUs);
         if (!zf) {
             setError(std::string("zip_fopen_index failed: ") + name + " (" + zipArchiveError(za) + ")");
             outcome = ZipResult::InvalidEntry;
@@ -1170,6 +1412,7 @@ ZipResult ZipExtractor::extract(
         // Create new files with EXCL first to distinguish them from existing
         // files without an extra stat call. All existing files are overwritten
         // directly with TRUNC: no .tmp/.bak copies, for every ZIP/VPK caller.
+        const uint64_t fileOpenStart = sampleStart();
         SceUID fd = -1;
         if (exclusiveCreationSupported)
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
@@ -1196,6 +1439,21 @@ ZipResult ZipExtractor::extract(
             }
             if (replacingExisting) ++existingFiles;
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+        }
+        const uint64_t openElapsedUs = sampleEnd(fileOpenStart, io.fileOpenUs);
+        io.worstFileOpenUs = std::max(io.worstFileOpenUs, openElapsedUs);
+        if (profileIo && openElapsedUs >= ZIP_SLOW_FILE_OPEN_US) {
+            const uint64_t now = sceKernelGetProcessTimeWide();
+            if (!lastSlowOpenLogUs ||
+                now - lastSlowOpenLogUs >= ZIP_IO_REPORT_INTERVAL_US) {
+                lastSlowOpenLogUs = now;
+                char slow[400];
+                sceClibSnprintf(slow, sizeof(slow),
+                    "[ZipIO] slow output create/check index=%llu elapsed_ms=%llu path=%s",
+                    (unsigned long long)i,
+                    (unsigned long long)(openElapsedUs / 1000ULL), outPath.c_str());
+                diagnostics::log(slow);
+            }
         }
         if (fd >= 0 && (definitelyNewFile || !replacingExisting))
             newlyCreatedFiles.push_back(outPath);
@@ -1235,6 +1493,23 @@ ZipResult ZipExtractor::extract(
                 (unsigned long long)archiveDiskSize);
             diagnostics::log(diag);
         }
+        StoreZipWritePipeline writePipeline;
+        const bool wantedPipeline = shouldUseZipWritePipeline(
+            method, (zs.valid & ZIP_STAT_SIZE) != 0, static_cast<uint64_t>(zs.size));
+        const bool pipelined = wantedPipeline && writePipeline.start(fd, profileIo);
+        if (wantedPipeline && !pipelined) {
+            writePipeline.finish(); // release partial allocations on low-memory fallback
+            diagnostics::log("[ZipExtractor] STORE pipeline unavailable; falling back to serial writes");
+        }
+        if (pipelined) ++pipelinedEntries;
+        const auto updateWriterProgress = [&]() {
+            const uint64_t committed = writePipeline.bytesWritten();
+            if (committed > writtenTotal) {
+                prog.bytesWritten += committed - writtenTotal;
+                writtenTotal = committed;
+                reportProgress();
+            }
+        };
         while (true) {
             if (shouldCancel && shouldCancel()) {
                 setError("cancelled");
@@ -1243,9 +1518,17 @@ ZipResult ZipExtractor::extract(
                 break;
             }
 
-            const zip_int64_t n = zip_fread(zf, buffer.data(), buffer.size());
+            char* readTarget = buffer.data();
+            if (pipelined && !writePipeline.acquire(readTarget)) {
+                outcome = ZipResult::IoError;
+                fileOk = false;
+                break;
+            }
+            const uint64_t readStart = sampleStart();
+            const zip_int64_t n = zip_fread(zf, readTarget, EXTRACT_CHUNK);
+            sampleEnd(readStart, io.zipReadUs);
             if (n < 0) {
-                const unsigned method = (zs.valid & ZIP_STAT_COMP_METHOD) ? static_cast<unsigned>(zs.comp_method) : 0u;
+                if (pipelined) writePipeline.releaseUnused();
                 char detail[360];
                 sceClibSnprintf(
                     detail, sizeof(detail),
@@ -1264,46 +1547,81 @@ ZipResult ZipExtractor::extract(
                 fileOk = false;
                 break;
             }
-            if (n == 0) break;
-
-            int written = 0;
-            while (written < static_cast<int>(n)) {
-                const int w = sceIoWrite(fd, buffer.data() + written, static_cast<int>(n) - written);
-                if (w <= 0) {
-                    uint64_t freeB = 0, totalB = 0;
-                    const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
-                    char err[420];
-                    sceClibSnprintf(
-                        err, sizeof(err),
-                        "sceIoWrite failed path=%s ret=%d tried=%d written_total=%llu free=%llu",
-                        outPath.c_str(),
-                        w,
-                        static_cast<int>(n) - written,
-                        (unsigned long long)writtenTotal,
-                        (unsigned long long)(haveSpace ? freeB : 0ULL));
-                    setError(err);
-                    diagnostics::log(std::string("[ZipExtractor] ") + err);
+            if (n == 0) {
+                if (pipelined) writePipeline.releaseUnused();
+                break;
+            }
+            if (pipelined) {
+                writePipeline.submit(static_cast<size_t>(n));
+                updateWriterProgress();
+                if (writePipeline.failed()) {
                     outcome = ZipResult::IoError;
                     fileOk = false;
                     break;
                 }
-                written += w;
+            } else {
+                int written = 0;
+                while (written < static_cast<int>(n)) {
+                    const uint64_t writeStart = sampleStart();
+                    const int w = sceIoWrite(fd, readTarget + written, static_cast<int>(n) - written);
+                    sampleEnd(writeStart, io.fileWriteUs);
+                    if (w <= 0) {
+                        uint64_t freeB = 0, totalB = 0;
+                        const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
+                        char err[420];
+                        sceClibSnprintf(
+                            err, sizeof(err),
+                            "sceIoWrite failed path=%s ret=%d tried=%d written_total=%llu free=%llu",
+                            outPath.c_str(),
+                            w,
+                            static_cast<int>(n) - written,
+                            (unsigned long long)writtenTotal,
+                            (unsigned long long)(haveSpace ? freeB : 0ULL));
+                        setError(err);
+                        diagnostics::log(std::string("[ZipExtractor] ") + err);
+                        outcome = ZipResult::IoError;
+                        fileOk = false;
+                        break;
+                    }
+                    written += w;
+                }
+                if (!fileOk) break;
+                writtenTotal += static_cast<uint64_t>(n);
+                prog.bytesWritten += static_cast<uint64_t>(n);
+                reportProgress();
             }
-            if (!fileOk) break;
-            writtenTotal += static_cast<uint64_t>(n);
-            prog.bytesWritten += static_cast<uint64_t>(n);
-            reportProgress();
-            bytesSinceYield += static_cast<uint64_t>(n);
-            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
-                bytesSinceYield = 0;
-                // This worker is not the UI thread. Yield without allocating
-                // extra buffers or relaxing any ZIP validation/cancel checks.
+            if (pacer.afterBytes(static_cast<uint64_t>(n)))
                 sceKernelDelayThread(1000);
+        }
+
+        if (pipelined) {
+            // Join BEFORE zip_fclose/sceIoClose or cleaning an output file.
+            // The worker may still own queued destination writes.
+            writePipeline.finish();
+            updateWriterProgress();
+            io.fileWriteUs += writePipeline.writeTimeUs();
+            pipelinedBytes += writtenTotal;
+            if (writePipeline.failed() && lastError_.empty()) {
+                uint64_t freeB = 0, totalB = 0;
+                const bool haveSpace = StorageManager::queryUx0Space(freeB, totalB);
+                char err[440];
+                sceClibSnprintf(err, sizeof(err),
+                    "sceIoWrite failed (ZIP pipeline) path=%s ret=%d tried=%d written_total=%llu free=%llu",
+                    outPath.c_str(), writePipeline.writeReturn(), writePipeline.writeRequested(),
+                    (unsigned long long)writtenTotal,
+                    (unsigned long long)(haveSpace ? freeB : 0ULL));
+                setError(err);
+                outcome = ZipResult::IoError;
+                fileOk = false;
             }
         }
 
+        const uint64_t zipCloseStart = sampleStart();
         const int zipCloseResult = zip_fclose(zf);
+        sampleEnd(zipCloseStart, io.zipCloseUs);
+        const uint64_t fileCloseStart = sampleStart();
         const int ioCloseResult = sceIoClose(fd);
+        sampleEnd(fileCloseStart, io.fileCloseUs);
         if (fileOk && zipCloseResult != 0) {
             char detail[240];
             sceClibSnprintf(detail, sizeof(detail),
@@ -1365,8 +1683,12 @@ ZipResult ZipExtractor::extract(
         }
         ++prog.entriesDone;
         reportProgress();
+        if (pacer.afterEntry()) sceKernelDelayThread(1000);
+        reportIo();
     }
 
+    // Store last sample on error/cancellation, not only on normal completion.
+    reportIo(true);
     const int archiveCloseResult = zip_close(za);
     if (archiveCloseResult != 0) {
         if (outcome == ZipResult::Ok) {
@@ -1454,16 +1776,26 @@ ZipResult ZipExtractor::extract(
         }
     }
     {
+        const uint64_t totalUs = sceKernelGetProcessTimeWide() - extractStartedUs;
+        char timing[190];
+        sceClibSnprintf(timing, sizeof(timing),
+            "[ZipTiming] total_us=%llu preflight_us=%llu extract_and_cleanup_us=%llu",
+            (unsigned long long)totalUs,
+            (unsigned long long)preflightUs,
+            (unsigned long long)(totalUs >= preflightUs ? totalUs - preflightUs : 0ULL));
+        diagnostics::log(timing);
         char perf[320];
         sceClibSnprintf(perf, sizeof(perf),
             "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
-            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu status=%s",
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu pipeline_files=%llu pipeline_bytes=%llu status=%s",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)directoryCacheHits,
             (unsigned long long)directoryCacheChecks,
             (unsigned long long)exclusiveCreated,
             (unsigned long long)existingFiles,
             (unsigned long long)exclusiveFallbacks,
+            (unsigned long long)pipelinedEntries,
+            (unsigned long long)pipelinedBytes,
             toString(outcome));
         diagnostics::log(perf);
     }
