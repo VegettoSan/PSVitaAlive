@@ -6028,6 +6028,21 @@
     "ic": "https://github.com/MaloneCZSD.png"
   },
   {
+    "id": "manumastro",
+    "n": "manumastro",
+    "av": "https://avatars.githubusercontent.com/u/98875624?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/manumastro",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/98875624?v=4"
+  },
+  {
     "id": "marcellus00",
     "n": "marcellus00",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -6041,6 +6056,21 @@
       }
     ],
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "marcocatena",
+    "n": "marcocatena",
+    "av": "https://avatars.githubusercontent.com/u/60403424?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/marcocatena",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/60403424?v=4"
   },
   {
     "id": "mariana-domingos",
