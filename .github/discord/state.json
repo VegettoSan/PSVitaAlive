@@ -558,6 +558,9 @@
     "CCST00100": {
       "version": "ST4"
     },
+    "CELO00001": {
+      "version": "1.0"
+    },
     "CEX2REX20": {
       "version": "v.2.0.1"
     },
@@ -1223,6 +1226,9 @@
     },
     "GHSTSHP01": {
       "version": "v.1.3"
+    },
+    "GHVT00001": {
+      "version": "0.1.1"
     },
     "GMCA00001": {
       "version": "1.4.0"
@@ -1944,6 +1950,9 @@
     "NFSR00001": {
       "version": "1.00"
     },
+    "NFSU2VITA": {
+      "version": "0.8.1"
+    },
     "NFSUG1VTA": {
       "version": "0.9"
     },
@@ -2012,6 +2021,9 @@
     },
     "NZZMBSPTB": {
       "version": "Nightly"
+    },
+    "OBJECTION": {
+      "version": "1.0"
     },
     "OBJL00001": {
       "version": "v.1.1"
@@ -2177,6 +2189,9 @@
     },
     "PIXC02137": {
       "version": "v.1.0"
+    },
+    "PKEV00001": {
+      "version": "1.01"
     },
     "PKGI00000": {
       "version": "v.0.05"
@@ -2678,6 +2693,9 @@
     },
     "SHXV00001": {
       "version": "v.1.0"
+    },
+    "SILH00003": {
+      "version": "0.0.1"
     },
     "SILH00004": {
       "version": "1.0.1"
