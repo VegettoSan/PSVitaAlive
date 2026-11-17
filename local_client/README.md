@@ -1,9 +1,14 @@
 # PSVitaAlive Catalog Browser (PC client)
 
 A desktop app for browsing the PSVitaAlive catalogs and downloading files for
-archiving. Files are saved in folders named after the catalog and entry.
+archiving. Files are saved in folders named after the catalog and entry. It supports
+both the legacy V1 JSON keys and the compact V2 keys published by PSVitaAlive.
 
 ## Install and run
+
+Clone or download the **complete PSVitaAlive repository**, including the sibling
+`scripts/catalog_schema_v2.py` file: it is the shared V1/V2 catalog decoder.
+Run the installer from the repository's `local_client/` folder.
 
 You need Python 3.10 or newer. The installer checks for it and tells you what to
 do if it is missing. It creates a private environment and installs the
@@ -41,9 +46,10 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
 - **Download Selected** downloads the files for the rows you have selected.
   **Download All Visible** downloads everything in the current filtered list, after
   asking you to confirm.
-- **Recommended sources only** (on by default) collapses mirror copies of the same
-  file into one download. It uses the recommended copy when the catalog marks one,
-  otherwise the archive.org copy.
+- **Recommended sources only** (on by default) collapses links only when they
+  are proven identical by URL, checksum or matching content ID and file metadata.
+  It prefers the recommended copy, then archive.org. Potential mirrors without
+  reliable identity are **retained** to avoid silently losing a different file.
   Other regions, DLC, updates and extra files are always kept. Untick it to download
   every available link, including every mirror. The confirmation dialog shows which
   mode is active.
@@ -79,3 +85,14 @@ To install without starting the app, run `./install_and_run.sh --setup-only`
 | Author or category shows as an ID | The catalog metadata could not be downloaded. Use Refresh Catalogs once you're back online. |
 | A file failed with "size mismatch" | The catalog size and the server copy disagree. Try again later; if it persists, report it. |
 | A file failed with "server returned an HTML page" | The link opened a web page instead of the file, usually a file-hosting page. Untick "Recommended sources only" to try the other links for that entry, or report the link. |
+
+## Development tests
+
+With the complete repository checked out and the dependencies installed, run:
+
+```bash
+QT_QPA_PLATFORM=offscreen python -m unittest discover -s tests -p 'test_pc_client.py' -v
+```
+
+The repository workflow `.github/workflows/pc-client-tests.yml` also runs these
+regressions for desktop-client changes. It does not build a PS Vita VPK.
