@@ -1,0 +1,50 @@
+{
+  "id": "zombiewood",
+  "tid": "ZMBW00001",
+  "n": "Zombiewood",
+  "d": "PS Vita port of Zombiewood (Android 1.5.3), Gameloft's top-down zombie shooter, running the original game libraries through a so-loader.",
+  "ld": "Zombiewood is a top-down zombie shooter by Gameloft set on the backlots of a zombie-infested Hollywood, where each level is a scene in a B-movie.\n\nThis is a port of the Android version 1.5.3, made by loading the game's original ARMv7 libraries and patching their Android imports with native PS Vita equivalents, with rendering through vitaGL. Menus, the campaign, saves and the in-game shop work offline; online features (leaderboards, social, ads) are disabled. Physical controls are mapped to the analog sticks and face buttons, with on-screen badges for the power-ups, and the touch screen works as on Android.\n\nNo game files are included: the player needs their own Zombiewood 1.5.3 APK and both OBB files, prepared on a PC with prepare_data.py from the release.",
+  "aids": [
+    "krisskash",
+    "claude-ai"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "shooter"
+  ],
+  "v": "1.0.0",
+  "vd": "2026-11-13",
+  "req": "- kubridge.skprx in your taiHEN plugins\n- libshacccg.suprx in ur0:data/\n- Your own Zombiewood 1.5.3 (Android) APK and both OBB files, prepared with prepare_data.py (from the release) and copied to ux0:data/zombiewood/",
+  "sz": 897869,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/krisskash/zombiewood-vita/releases/download/v1.0.0/zombiewood-v1.0.0.vpk",
+      "sz": 897869,
+      "rec": true
+    },
+    {
+      "t": "Other",
+      "n": "Data preparation script (prepare_data.py)",
+      "u": "https://github.com/krisskash/zombiewood-vita/releases/download/v1.0.0/prepare_data.py"
+    },
+    {
+      "t": "Repository",
+      "n": "Repository",
+      "u": "https://github.com/krisskash/zombiewood-vita"
+    },
+    {
+      "t": "Issues",
+      "n": "Issues",
+      "u": "https://github.com/krisskash/zombiewood-vita/issues"
+    }
+  ],
+  "ss": [
+    "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/gameplay1.png",
+    "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/gameplay2.png",
+    "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/menu.png"
+  ]
+}
