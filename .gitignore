@@ -19,3 +19,6 @@ Makefile
 *.Zone.Identifier
 **/*:Zone.Identifier
 **/Zone.Identifier
+
+# PC client virtualenv
+local_client/.venv/
