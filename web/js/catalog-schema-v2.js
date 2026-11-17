@@ -16,6 +16,7 @@
     "subcategory_ids": "sids",
     "version": "v",
     "version_date": "vd",
+    "allow_prereleases": "apr",
     "release_date": "rd",
     "updated_at": "ua",
     "date": "dt",

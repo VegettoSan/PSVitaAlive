@@ -611,6 +611,9 @@
             links: collectLinks()
         };
 
+        // Opt in only when explicitly checked. Stable-only remains default.
+        if ($("allow_prereleases").checked) app.allow_prereleases = true;
+
         // Small optional catalog revision for Game/Data Files; never emit it when blank.
         const drInput = $("dr").value.trim();
         if (drInput !== "") app.dr = Number(drInput);
@@ -904,6 +907,7 @@
         $("long_description").value = app.long_description || "";
         $("version").value = app.version || "";
         $("version_date").value = app.version_date || "";
+        $("allow_prereleases").checked = app.allow_prereleases === true;
         $("dr").value = app.dr ?? "";
         $("requirements").value = app.requirements || "";
         {

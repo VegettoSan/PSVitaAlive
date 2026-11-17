@@ -809,6 +809,10 @@ def validate_apps(
                 "must use YYYY-MM-DD format",
             )
 
+        # Optional per-Homebrew opt-in for beta/RC release synchronization.
+        if "allow_prereleases" in app and not isinstance(app["allow_prereleases"], bool):
+            add_error(errors, f"{rel}.allow_prereleases", "must be true or false")
+
         # Optional Game/Data Files revision. Old records remain unchanged.
         if "dr" in app:
             dr = app["dr"]
