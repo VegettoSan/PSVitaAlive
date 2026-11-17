@@ -277,6 +277,36 @@ int main() {
     expect(compareNormalizedVersions("2.3", "2.4") < 0, "version 2.3 < 2.4");
     expect(compareNormalizedVersions("1.7.1", "1.7.2") < 0, "version 1.7.1 < 1.7.2");
 
+    // Prerelease sequence and channel precedence on receipt-based installs.
+    expect(compareNormalizedVersions("1.2-beta2", "1.2-beta3") < 0, "beta2 < beta3");
+    expect(compareNormalizedVersions("1.2-beta3", "1.2-rc1") < 0, "beta3 < rc1");
+    expect(compareNormalizedVersions("1.2-rc1", "1.2") < 0, "rc1 < stable");
+    expect(compareNormalizedVersions("1.2", "1.2-beta3") > 0, "stable > beta");
+    expect(compareNormalizedVersions("v1.2.0", "1.2") == 0, "stable V1/V2 normalization");
+    {
+        ReceiptEvidence rec{};
+        rec.present = true;
+        rec.catalogVersion = "1.2-beta2";
+        auto r = decideInstallState(true, "1.2-beta3", emptyMeta, rec, noFp, sfo0000);
+        expectState(r.state, InstallDetectState::UpdateAvailable, "receipt beta2 -> beta3");
+        r = decideInstallState(true, "1.2", emptyMeta, rec, noFp, sfo0000);
+        expectState(r.state, InstallDetectState::UpdateAvailable, "receipt beta -> stable");
+    }
+    {
+        ReceiptEvidence rec{};
+        rec.present = true;
+        rec.catalogVersion = "1.2";
+        auto r = decideInstallState(true, "1.2-beta3", emptyMeta, rec, noFp, sfo0000);
+        expectState(r.state, InstallDetectState::InstalledUnknown, "no downgrade stable to beta");
+    }
+    {
+        ReceiptEvidence rec{};
+        rec.present = true;
+        rec.catalogVersion = "1.2-multicore2";
+        auto r = decideInstallState(true, "1.3", emptyMeta, rec, noFp, sfo0000);
+        expectState(r.state, InstallDetectState::InstalledUnknown, "ambiguous version fails closed");
+    }
+
     if (g_fails) {
         std::printf("\n%d failure(s)\n", g_fails);
         return 1;
