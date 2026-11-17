@@ -154,6 +154,157 @@
     ]
   },
   {
+    "id": "gh-vita",
+    "tid": "GHVT00001",
+    "n": "GH Vita",
+    "d": "Guitar Hero Port for PS Vita",
+    "ld": "A homebrew PS Vita port of Guitar Dream Engine's reimplementation of Guitar Hero (PlayStation 2, 2005), the engine's gd-game-01.",
+    "aids": [
+      "irxd"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "simulation",
+      "strategy",
+      "game-engine"
+    ],
+    "v": "0.1.1",
+    "vd": "2026-11-16",
+    "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
+    "sz": 3984589,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/ghvita-v0.1.1.vpk",
+        "sz": 3984589,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2254857830,
+        "xp": "ux0:data/",
+        "ips": [
+          "ghvita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/irxd/guitar-hero-vita"
+      }
+    ],
+    "apr": true,
+    "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "nfs-underground-2",
+    "tid": "NFSU2VITA",
+    "n": "NFS Underground 2",
+    "d": "Need for Speed Underground 2 port for the PS VITA",
+    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
+    "aids": [
+      "danos-x5"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.8.1",
+    "vd": "2026-11-16",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
+    "sz": 9856614,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/NFSUG2_VITA/NFSU2VITA%20v0.8.1.vpk",
+        "sz": 9856614,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
+        "sz": 2899102925,
+        "xp": "ux0:data/",
+        "ips": [
+          "NeedForSpeedUnderground2"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5837,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSUG2_VITA/shot0.png"
+    ]
+  },
+  {
+    "id": "pw-ace-attorney",
+    "tid": "OBJECTION",
+    "n": "PW:Ace Attorney",
+    "d": "Port of Phoenix Wright:Ace Attorney Trilogy for the PS Vita\n\nGame runs at 30 fps, you can change it to 45/60 but I'd recommend 30 for the best experience.\n\nThe game could have some minor artefacts but the game is still 100% playable.\n\nEvery part of the trilogy work perfectly fine!\n\nAdded NoTrpDrm trophies\n\nAdded russian language\n\nSave data is in ux0:data/PWAATrilogy.",
+    "ld": "The classic courtroom adventure series that has sold over 6.7 million copies worldwide is finally here. Become Phoenix Wright and experience the thrill of battle as you fight to save your innocent clients in a court of law. Play all 14 episodes, spanning the first three games, in one gorgeous collection. Solve the intriguing mysteries behind each case and witness the final truth for yourself!",
+    "aids": [
+      "suspect-wild"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "puzzle"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-16",
+    "req": "NoTrpDrm.suprx for local trophies\nkubridge.skprx\nfd_fix.skprx\nrepatch.skprx / repatch_ex.skprx\nioplus.skprx\nlibshacccg.suprx\nitls.skprx / iTLS-Enso\nNoNpDrm.skprx\n0syscall6.skprx\nPSVshellPlus.skprx",
+    "sz": 19922944,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/pwace-attorney-ps-vita/pwaatrilogyvita%20v1.0.vpk",
+        "sz": 19818086,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/pwace-attorney-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1717986918,
+        "xp": "ux0:app/"
+      }
+    ],
+    "ic": "https://archive.org/download/pwace-attorney-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/pwace-attorney-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "celeste",
     "tid": "CLST00001",
     "n": "Celeste",
@@ -276,6 +427,46 @@
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
+    ]
+  },
+  {
+    "id": "pokemon-emerald-voxel",
+    "tid": "PKEV00001",
+    "n": "Pokemon Emerald Voxel",
+    "d": "A native PlayStation Vita port of the pokeemerald-multiplatform decompilation.",
+    "ld": "It has the classic 2D GBA renderer, a live 3D voxel overworld mode, follower Pokémon, NEON and multi-core PPU optimizations, and 42060 → 44100 Hz SDL2 audio. Both the 2D and 3D modes hold a locked 60 FPS at the default 222 MHz ARM clock.",
+    "aids": [
+      "arfatnaik0"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "puzzle",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.01",
+    "vd": "2026-11-15",
+    "req": "- No Data",
+    "sz": 16043213,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK + Game Files",
+        "u": "https://archive.org/download/pokemon-emerald-voxel-ps-vita-port/pokemon-emerald-voxel.vpk",
+        "sz": 16043213,
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Arfatnaik0/CLN-Pokemon-emerald-voxel-psvita"
+      }
+    ],
+    "ic": "https://archive.org/download/pokemon-emerald-voxel-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/pokemon-emerald-voxel-ps-vita-port/shot0.png"
     ]
   },
   {
@@ -418,6 +609,105 @@
     "ic": "https://archive.org/download/VitaKotor2/icon0.png",
     "ss": [
       "https://archive.org/download/VitaKotor2/shot0.png"
+    ]
+  },
+  {
+    "id": "shadow-of-the-colossus",
+    "tid": "CELO00001",
+    "n": "Shadow of the Colossus",
+    "d": "Native port of Shadow of the Colossus (PS2) to macOS and PS Vita",
+    "ld": "A native port of Shadow of the Colossus (PS2, USA, SCUS-97472) to macOS (Apple Silicon) and the PS Vita, built by statically recompiling the game's MIPS code to C++ with PS2Recomp.",
+    "aids": [
+      "henrykun55"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-14",
+    "req": "- No Data",
+    "sz": 34288435,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/celosia-ps-vita/colossusfinals.vpk",
+        "sz": 34288435,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/celosia-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2684354560,
+        "xp": "ux0:data/",
+        "ips": [
+          "celosia"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/HenryKun55/celosia"
+      }
+    ],
+    "ic": "https://archive.org/download/celosia-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/celosia-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "silent-hill-3",
+    "tid": "SILH00003",
+    "n": "Silent Hill 3",
+    "d": "Experimental recompilation of the PC version of Silent Hill 3 for the PS Vita",
+    "ld": "sh3-vita runs Silent Hill 3 from the PC version's own data. Unlike sh2-vita, which is a native port that rebuilds Silent Hill 2 as native code on the Vita's CPU and GPU, this is a static recompilation: a recompiler translates the game's sh3.exe (x86) to C, and a Win32 / Direct3D 8 / DirectInput / DirectSound compatibility layer runs it over vitaGL on the Vita. It is built on sh4vita by vallfrr, the Silent Hill 4 port that came first, and uses sh3-nx by cutarev as its rendering reference.",
+    "aids": [
+      "angelogalav"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.0.1",
+    "vd": "2026-11-14",
+    "req": "- libshacccg.suprx",
+    "sz": 6815744,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/sh3-vita/sh3%20v0.0.1.vpk",
+        "sz": 6815744,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/sh3-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 4831838208,
+        "xp": "ux0:data/",
+        "ips": [
+          "sh3-vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Gihub",
+        "u": "https://github.com/AngeloGalav/sh3-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/sh3-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/sh3-vita/shot0.png"
     ]
   },
   {
@@ -685,7 +975,6 @@
     "d": "PS Vita port of Zombiewood (Android 1.5.3), Gameloft's top-down zombie shooter, running the original game libraries through a so-loader.",
     "ld": "Zombiewood is a top-down zombie shooter by Gameloft set on the backlots of a zombie-infested Hollywood, where each level is a scene in a B-movie.\n\nThis is a port of the Android version 1.5.3, made by loading the game's original ARMv7 libraries and patching their Android imports with native PS Vita equivalents, with rendering through vitaGL. Menus, the campaign, saves and the in-game shop work offline; online features (leaderboards, social, ads) are disabled. Physical controls are mapped to the analog sticks and face buttons, with on-screen badges for the power-ups, and the touch screen works as on Android.\n\nNo game files are included: the player needs their own Zombiewood 1.5.3 APK and both OBB files, prepared on a PC with prepare_data.py from the release.",
     "aids": [
-      "krisskash",
       "claude-ai"
     ],
     "cid": "ports",
@@ -702,9 +991,19 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/krisskash/zombiewood-vita/releases/download/v1.0.0/zombiewood-v1.0.0.vpk",
+        "u": "https://archive.org/download/zombiewood-ps-vita-port/zombiewood-v1.0.0.vpk",
         "sz": 897869,
         "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/zombiewood-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 595276595,
+        "xp": "ux0:data/",
+        "ips": [
+          "zombiewood"
+        ]
       },
       {
         "t": "Other",
@@ -713,7 +1012,7 @@
       },
       {
         "t": "Repository",
-        "n": "Repository",
+        "n": "Github",
         "u": "https://github.com/krisskash/zombiewood-vita"
       },
       {
@@ -722,12 +1021,13 @@
         "u": "https://github.com/krisskash/zombiewood-vita/issues"
       }
     ],
+    "ic": "https://archive.org/download/zombiewood-ps-vita-port/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/gameplay1.png",
-      "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/gameplay2.png",
-      "https://raw.githubusercontent.com/krisskash/zombiewood-vita/master/screenshots/menu.png"
-    ],
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/categories/icons/ports.png"
+      "https://archive.org/download/zombiewood-ps-vita-port/shot.png",
+      "https://archive.org/download/zombiewood-ps-vita-port/shot0.png",
+      "https://archive.org/download/zombiewood-ps-vita-port/shot1.png",
+      "https://archive.org/download/zombiewood-ps-vita-port/shot2.png"
+    ]
   },
   {
     "id": "kof-a-2012",

@@ -716,6 +716,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "arfatnaik0",
+    "n": "Arfatnaik0",
+    "av": "https://avatars.githubusercontent.com/u/174252222?v=4",
+    "b": "Im a Software Developer trying to make cool things",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Arfatnaik0",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/174252222?v=4"
+  },
+  {
     "id": "argarak",
     "n": "argarak",
     "av": "https://github.com/argarak.png",
@@ -2174,6 +2189,21 @@
       }
     ],
     "ic": "https://github.com/v-atamanenko.png"
+  },
+  {
+    "id": "danos-x5",
+    "n": "danos-x5",
+    "av": "https://avatars.githubusercontent.com/u/356806919?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/danos-x5",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/356806919?v=4"
   },
   {
     "id": "dark-duke",
@@ -4266,6 +4296,21 @@
       }
     ],
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "irxd",
+    "n": "irxd",
+    "av": "https://avatars.githubusercontent.com/u/19938514?v=4",
+    "b": "it ain't much, but it's honest works",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/irxd",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/19938514?v=4"
   },
   {
     "id": "isaque-sanches",
@@ -9071,6 +9116,21 @@
         "t": "Other",
         "n": "Buscar autor",
         "u": "https://github.com/search?q=Superfury1&type=users",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "suspect-wild",
+    "n": "Suspect_Wild",
+    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "b": "",
+    "l": [
+      {
+        "t": "Community",
+        "n": "Reddit",
+        "u": "https://www.reddit.com/user/Suspect_Wild/",
         "rec": true
       }
     ],
