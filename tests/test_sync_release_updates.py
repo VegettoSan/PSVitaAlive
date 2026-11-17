@@ -236,6 +236,34 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertIsNone(updated)
         self.assertEqual(record["links"][0]["url"], "https://archive.org/download/tap/1.1.vpk")
 
+    def test_duplicate_folder_records_are_rejected_before_applying(self):
+        source = app()
+        source["title_id"] = "TPSN00001"
+        source["links"][0]["url"] = "https://archive.org/download/tap/old.vpk"
+        source["links"][2]["url"] = "https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic"
+        sha = "a" * 40
+        item = {
+            "platform": "github_folder", "repo": "papilenote/vita-ports",
+            "branch": "main", "folder": "Tap Sonic", "title_id": "TPSN00001",
+            "tag": "1.1", "published": "2026-11-16T16:00:00Z",
+            "commit_sha": sha, "blob_sha": "b" * 40,
+            "assets": [{
+                "name": "tapsonic.vpk", "size": 1113939,
+                "download_url": "https://raw.githubusercontent.com/papilenote/vita-ports/" +
+                                sha + "/Tap%20Sonic/tapsonic.vpk",
+            }],
+        }
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "apps/tap.json").write_text(json.dumps(to_v2(source)), encoding="utf-8")
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [],
+                "folder_releases": [item, {**item, "tag": "1.2"}],
+            })
+            self.assertEqual(changes, [])
+            self.assertTrue(any("duplicate folder records" in message for message in skipped))
+
     def test_only_promotes_unambiguous_official_download(self):
         original = app()
         updated, reason = release_update(original, release(), REPO)
