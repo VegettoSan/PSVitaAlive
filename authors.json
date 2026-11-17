@@ -30,6 +30,21 @@
     "ic": "https://avatars.githubusercontent.com/u/62165056?v=4"
   },
   {
+    "id": "0xl0cal",
+    "n": "0xl0cal",
+    "av": "https://avatars.githubusercontent.com/u/32419704?v=4",
+    "b": "silly enthusiast",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/0xl0cal",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/32419704?v=4"
+  },
+  {
     "id": "10tr-ll-on-percent",
     "n": "10TR!LL!ON Percent%",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -3601,6 +3616,21 @@
       }
     ],
     "ic": "https://github.com/gm666q.png"
+  },
+  {
+    "id": "gmejia11",
+    "n": "gmejia11",
+    "av": "https://avatars.githubusercontent.com/u/6550033?v=4",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/gmejia11",
+        "rec": true
+      }
+    ],
+    "ic": "https://avatars.githubusercontent.com/u/6550033?v=4"
   },
   {
     "id": "gmorb",
@@ -9872,6 +9902,21 @@
         "t": "Other",
         "n": "Buscar autor",
         "u": "https://github.com/search?q=VitaDev+Games&type=users",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "vitagamer-vg",
+    "n": "VITAGAMER VG",
+    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "b": "Dev",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Youtube",
+        "u": "https://www.youtube.com/@V%C4%B0TAPROGAMER",
         "rec": true
       }
     ],

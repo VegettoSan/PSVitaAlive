@@ -103,6 +103,57 @@
     "ua": "2026-08-13T15:34"
   },
   {
+    "id": "devil-may-cry-3-se",
+    "tid": "DMC300001",
+    "n": "Devil May Cry 3 SE",
+    "d": "Devil May Cry 3 SE Ps Vita Port",
+    "ld": "Devil May Cry 3 SE Ps Vita Port",
+    "aids": [
+      "vitagamer-vg"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "strategy",
+      "source-port"
+    ],
+    "v": "2.0",
+    "vd": "2026-11-16",
+    "req": "- No Data",
+    "sz": 29884416,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/devil-may-cry-3-ps-vita/dmc3_vita.vpk",
+        "sz": 29884416,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/devil-may-cry-3-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1610612736,
+        "xp": "ux0:data/",
+        "ips": [
+          "dmc3se"
+        ]
+      },
+      {
+        "t": "Community",
+        "n": "Youtube",
+        "u": "https://www.youtube.com/watch?v=UvdsBickj-E"
+      }
+    ],
+    "ic": "https://archive.org/download/devil-may-cry-3-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/devil-may-cry-3-ps-vita/shot0.png",
+      "https://archive.org/download/devil-may-cry-3-ps-vita/shot1.png"
+    ]
+  },
+  {
     "id": "final-fantasy-vii",
     "tid": "FFSQ00007",
     "n": "FINAL FANTASY VII",
@@ -760,6 +811,59 @@
     ]
   },
   {
+    "id": "ultimate-mortal-kombat-3",
+    "tid": "UMKT00003",
+    "n": "Ultimate Mortal Kombat 3",
+    "d": "A native PlayStation Vita port of Ultimate Mortal Kombat 3 for iOS",
+    "ld": "A native PlayStation Vita port of Ultimate Mortal Kombat 3 for iOS, built from the decompilation of the iOS release (v1.2.59).",
+    "aids": [
+      "gmejia11"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0.0",
+    "vd": "2026-11-14",
+    "req": "- libshacccg.suprx\n- kubridge is not needed\n- The game's data, from your .ipa",
+    "sz": 2831155,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/UMK3-Vita%20v1.0.0.vpk",
+        "sz": 2831155,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 751199846,
+        "xp": "ux0:data/",
+        "ips": [
+          "umk3"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/gmejia11/UMK3-Vita"
+      }
+    ],
+    "ic": "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot0.jpg",
+      "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot1.jpg",
+      "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot2.jpg",
+      "https://archive.org/download/ultimate-mortal-kombat-3-ps-vita-port/shot3.jpg"
+    ]
+  },
+  {
     "id": "vampire-survivors",
     "tid": "VSPH00001",
     "n": "Vampire Survivors",
@@ -907,6 +1011,55 @@
     "ic": "https://archive.org/download/raging-thunder-ps-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/raging-thunder-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "the-binding-of-isaac-repentance",
+    "tid": "ISAACR001",
+    "n": "The Binding of Isaac: Repentance",
+    "d": "PS Vita port of The Binding of Isaac: Repentance by static recompilation of the PC executable to ARM.",
+    "ld": "repentogxm is an experimental static-recompilation port of The Binding of Isaac: Repentance to the PlayStation Vita. The PC executable is translated ahead of time into C and compiled for the Vita's ARM CPU. There is no emulator. This repository contains no game code, resources or binaries; you supply your own PC copy. It is not affiliated with or endorsed by Edmund McMillen, Nicalis, Valve, Sony, or the maintainers of any dependency named below.",
+    "aids": [
+      "0xl0cal"
+    ],
+    "cid": "ports",
+    "sids": [
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.2.0",
+    "vd": "2026-11-13",
+    "req": "- kubridge.skprx\n- libshacccg.suprx\n- about 1.5 GiB free on ux0",
+    "sz": 36490445,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/repentogxm-v0.2.0-alpha.vpk",
+        "sz": 36490445,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1073741824,
+        "xp": "ux0:data/",
+        "ips": [
+          "isaacr001"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/0xl0cal/repentogxm"
+      }
+    ],
+    "ic": "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/the-binding-of-isaac-repentance-ps-vita/shot0.png"
     ]
   },
   {
@@ -1246,6 +1399,59 @@
     "ic": "https://archive.org/download/bloxicon-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/bloxicon-ps-vita/bg.png"
+    ]
+  },
+  {
+    "id": "he-man",
+    "tid": "HEMAN0001",
+    "n": "He-Man",
+    "d": "PS Vita port of the Android game He-Man: The Most Powerful Game in the Universe",
+    "ld": "The port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+    "aids": [
+      "gmejia11"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "platformer",
+      "source-port"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-11",
+    "req": "- kubridge.skprx",
+    "sz": 2202010,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/he-man-vita/heman%20v1.0.vpk",
+        "sz": 2202010,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/he-man-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 186541670,
+        "xp": "ux0:data/",
+        "ips": [
+          "heman"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/gmejia11/he-man_vita"
+      }
+    ],
+    "ic": "https://archive.org/download/he-man-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/he-man-vita/shot0.png",
+      "https://archive.org/download/he-man-vita/shot1.jpg",
+      "https://archive.org/download/he-man-vita/shot2.jpg",
+      "https://archive.org/download/he-man-vita/shot3.jpg"
     ]
   },
   {
