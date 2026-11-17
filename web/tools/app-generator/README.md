@@ -30,6 +30,7 @@ Open [`index.html`](index.html) (GitHub Pages or local). Choose **Create** or **
 - **`extract_path`** is shown only for Data Files, Game Files, Mod, Mod Pack, Patch (default `ux0:data/`).
 - **Size:** enter a number + unit (B / KB / MB / GB); JSON stores **integer bytes**.
 - At most one link may be **Recommended**.
+- **Optional pre-release channel:** under Release, check **Allow automatic pre-release updates** only for projects that intentionally ship beta/RC builds. The generated app JSON contains `"apr": true` in compact V2 (logical `allow_prereleases: true`). Unchecked means stable-only. This does not relax VPK identity, version comparison or backup safety rules.
 
 ## Media
 
