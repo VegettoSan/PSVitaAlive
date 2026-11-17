@@ -448,6 +448,14 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
     # Folder VPKs are per-app records, not conventional GitHub Releases.
     # Repositories shared by many apps are safe only when folder + Title ID
     # identify one canonical JSON, with no duplicates anywhere in apps/.
+    # If a snapshot repeats a folder (potentially with conflicting versions),
+    # reject every candidate for that folder, including the first occurrence.
+    folder_counts = Counter(
+        (str(row.get("repo") or "").lower(), row.get("branch"),
+         str(row.get("folder") or "").casefold())
+        for row in folders if isinstance(row, dict)
+        and row.get("platform") == "github_folder"
+    )
     seen_folders = set()
     for item in folders:
         if not isinstance(item, dict) or item.get("platform") != "github_folder":
@@ -458,9 +466,11 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
             continue
         key = (repo, branch, folder.casefold())
         if key in seen_folders:
-            skipped.append(f"{repo}/{folder}: repeated folder record; manual review")
             continue
         seen_folders.add(key)
+        if folder_counts[key] != 1:
+            skipped.append(f"{repo}/{folder}: duplicate folder records; manual review")
+            continue
         matches = folder_index.get(key, [])
         if len(matches) != 1:
             if len(matches) > 1:
