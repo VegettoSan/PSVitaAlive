@@ -12,17 +12,17 @@
     "racing",
     "source-port"
   ],
-  "v": "1.6.0",
-  "vd": "2026-11-12",
+  "v": "1.6.1",
+  "vd": "2026-11-17",
   "req": "- No Data",
-  "sz": 3294389,
+  "sz": 3260233,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.0/nfsmw.vpk",
-      "sz": 3294389,
+      "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.1/nfsmw.vpk",
+      "sz": 3260233,
       "rec": true
     },
     {
