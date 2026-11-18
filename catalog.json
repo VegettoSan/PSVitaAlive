@@ -1,5 +1,65 @@
 [
   {
+    "id": "nfs-underground-2",
+    "tid": "NFSU2VITA",
+    "n": "NFS Underground 2",
+    "d": "Need for Speed Underground 2 port for the PS VITA",
+    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
+    "aids": [
+      "danos-x5"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.8.2",
+    "vd": "2026-11-18",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
+    "sz": 9778411,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.2/NFSU2VITA.vpk",
+        "sz": 9778411,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
+        "sz": 2899102925,
+        "xp": "ux0:data/",
+        "ips": [
+          "NeedForSpeedUnderground2"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5837,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSUG2_VITA/shot0.png"
+    ]
+  },
+  {
     "id": "psv-cleaner",
     "tid": "CLEAN0000",
     "n": "Psv Cleaner",
@@ -412,66 +472,6 @@
     "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "nfs-underground-2",
-    "tid": "NFSU2VITA",
-    "n": "NFS Underground 2",
-    "d": "Need for Speed Underground 2 port for the PS VITA",
-    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
-    "aids": [
-      "danos-x5"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.8.1",
-    "vd": "2026-11-16",
-    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
-    "sz": 9856614,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/NFSUG2_VITA/NFSU2VITA%20v0.8.1.vpk",
-        "sz": 9856614,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
-        "sz": 2899102925,
-        "xp": "ux0:data/",
-        "ips": [
-          "NeedForSpeedUnderground2"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5837,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSUG2_VITA/shot0.png"
     ]
   },
   {
