@@ -5,7 +5,7 @@
   "d": "Port of Beach Buggy Racing for PSVita.",
   "ld": "Unofficial wrapper/port of Beach Buggy Racing for PlayStation Vita.\nThe port loads the official Android ARMv7 executable directly into memory, links its dependencies to native Vita functions, and applies the compatibility layer required to run it. In practice, this provides a lightweight Android-like environment in which the original game code can run natively on the PS Vita.\n\n- PsVitaAlive -",
   "aids": [
-    "chatgpt-ai",
+    "meninosung",
     "wolff"
   ],
   "cid": "ports",
