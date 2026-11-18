@@ -152,29 +152,41 @@ la URL principal a la nueva descarga de Archive.org. Los VPK antiguos con
 nombre sin número de versión siguen reconociéndose por el enlace principal
 y el contexto de la versión del catálogo. No hay página o apartado adicional.
 
-**Canal pre-release optativo:** el campo `allow_prereleases: true`
-(V2 compacto: `apr: true`) habilita actualizaciones experimentales **solo**
-para ese Homebrew. Por defecto, las aplicaciones permanecen en el canal
-estable. Cuando GitHub devuelve un pre-release reciente, el monitor incluye
-una alternativa estable anterior si está entre los últimos 20 releases.
-El sincronizador elige de forma segura según la opción del Homebrew y
-nunca fuerza un downgrade. Las fases conocidas `dev/test`, `alpha`,
-`beta`, `pre/preview`, `rc` y estable se comparan con su base numérica:
-`1.2-beta2 < 1.2-beta3 < 1.2-rc1 < 1.2`.
-La política de un VPK único, origen registrado, fecha válida y preservación
-de URLs y Game/Data Files no cambia. Si el tag es ambiguo, se requiere
-revisión manual; los pre-releases con tag numérico sin sufijo también
-requieren opt-in cuando están marcados por GitHub.
+**Pre-releases con período de gracia:** por defecto se prefieren versiones
+estables. Un pre-release puede promoverse sin opt-in si tiene una versión
+estrictamente superior y se publicó **más de siete días completos después de
+la última versión estable**, o si GitHub confirma mediante `/releases/latest`
+(HTTP 404) que no existe ninguna estable. No se calcula una semana a partir
+de la fecha actual, sino entre las publicaciones de ambos releases. El monitor
+busca la estable entre los primeros 20 releases y consulta
+`/releases/latest` cuando no aparece ninguna. Los errores de la API, fechas
+incompletas y versiones no comparables se dejan para revisión.
 
-Se **omiten** (no se fuerzan) prereleases sin opt-in, versiones incomparables,
-repositorios compartidos, VPK con nombre principal ambiguo o ausente,
-enlaces VPK de fuentes ajenas al repositorio registrado o Archive.org,
-dos fuentes que intenten actualizar el mismo JSON en un escaneo y
-situaciones de identidad dudosa. La presencia de Game Files o plugins
-**ya no es un bloqueo** para cambiar solo el VPK principal.
-En GitLab sin `direct_asset_url` solo se aceptan adjuntos alojados en
-el mismo proyecto; enlaces externos requieren revisión manual. El log indica
-`REVIEW` para que puedan catalogarse manualmente.
+La opción por aplicación `allow_prereleases: true` (V2: `apr: true`)
+**elimina la espera** para desarrolladores que utilizan betas habitualmente,
+pero nunca permite versiones anteriores o un pre-release previo a la última
+estable. Los sufijos reconocidos incluyen `dev/test`, `alpha`, `beta`,
+`pre/preview` y `rc`; estable `1.2` es posterior a `1.2-rc1`.
+Fuentes GitLab y GitHub-folder sin confirmación de ausencia de estables
+mantienen el opt-in explícito para pre-releases.
+
+**Repositorios GitHub renombrados:** un repositorio puede cambiar de
+propietario sin perder sus releases. Cuando los assets pasan a un nombre
+distinto, el monitor consulta `/repos/{owner}/{repo}` del nombre original,
+sigue la redirección oficial de GitHub y verifica `full_name` e ID numérico.
+Solo entonces publica `canonical_repo` y `repo_id` en el snapshot.
+El sincronizador mantiene el vínculo de origen antiguo pero permite la URL
+GitHub Releases del repositorio canónico, únicamente cuando coincide el tag y
+hay un VPK inequívoco. Esto resuelve, por ejemplo, la migración
+`fr3dsp/sonic-r-vita` → `PupueStudios/sonic-r-vita`.
+
+Siguen excluidos los repositorios compartidos sin identidad única, los
+VPK ambiguos o ausentes, las fuentes no verificadas, las versiones iguales
+o anteriores, las múltiples fuentes que compitan por el mismo JSON y los
+metadatos sin una fecha fiable. Los enlaces de Game Files, plugins y mirrors
+no se modifican al sincronizar el VPK principal. Las fuentes GitLab sin
+`direct_asset_url` continúan sujetas a sus restricciones anteriores;
+se utiliza `REVIEW` para los casos que requieren intervención manual.
 
 La validación automática es deliberadamente ligera: comprueba versiones
 comparables, origen único y presencia de un solo archivo `.vpk` en los
