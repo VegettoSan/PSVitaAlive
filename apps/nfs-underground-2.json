@@ -14,17 +14,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.8.1",
-  "vd": "2026-11-16",
+  "v": "0.8.2",
+  "vd": "2026-11-18",
   "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
-  "sz": 9856614,
+  "sz": 9778411,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/NFSUG2_VITA/NFSU2VITA%20v0.8.1.vpk",
-      "sz": 9856614,
+      "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.2/NFSU2VITA.vpk",
+      "sz": 9778411,
       "rec": true
     },
     {
