@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.1.5.2",
-  "vd": "2026-08-19",
+  "v": "2.1.6",
+  "vd": "2026-08-21",
   "req": "Not specified",
-  "sz": 792049,
+  "sz": 793158,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-gbvitaex/icon0.png",
   "ss": [
@@ -24,7 +24,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-gbvitaex/gbvitaex.vpk",
+      "u": "https://github.com/Zushikina-kun/MGBAVitaEX/releases/download/v2.1.6/MGBAVitaEX-v2.1.6.vpk",
       "rec": true
     },
     {

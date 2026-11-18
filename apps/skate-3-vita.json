@@ -13,17 +13,17 @@
     "simulation",
     "source-port"
   ],
-  "v": "0.2.0",
-  "vd": "2026-10-27",
+  "v": "0.3.0-beta",
+  "vd": "2026-11-10",
   "req": "- No data",
-  "sz": 6815744,
+  "sz": 7048330,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/skate-3-ps-vita-ports/skate-3-vita-0.2.0-beta.vpk",
-      "sz": 7864320,
+      "u": "https://github.com/irolup/skate-3-vita/releases/download/v0.3.0-beta/skate-3-vita-0.3.0-beta.vpk",
+      "sz": 7048330,
       "rec": true
     },
     {

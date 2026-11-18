@@ -11,16 +11,16 @@
   "sids": [
     "other"
   ],
-  "v": "1.4",
-  "vd": "2026-08-31",
+  "v": "1.5.2",
+  "vd": "2026-10-09",
   "req": "- libshacccg.suprx\n- Game Data Files: N64",
-  "sz": 7494939,
+  "sz": 7499358,
   "st": "Legacy",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/robin994/battleship-vita/releases/download/1.4/battleship.vpk",
+      "u": "https://github.com/robin994/battleship-vita/releases/download/1.5.2/battleship.vpk",
       "rec": true
     },
     {

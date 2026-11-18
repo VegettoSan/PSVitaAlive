@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "V1.45",
-  "vd": "2025-03-23",
+  "v": "1.46",
+  "vd": "2026-11-02",
   "req": "Not specified",
-  "sz": 1129338,
+  "sz": 1129327,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-better-homebrew-browser/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-better-homebrew-browser/BetterHomebrewBrowser.vpk",
+      "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/download/V1.46/BetterHomebrewBrowser.vpk",
       "rec": true
     },
     {

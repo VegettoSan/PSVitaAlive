@@ -14,17 +14,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.0.1",
-  "vd": "2026-11-14",
+  "v": "0.0.2",
+  "vd": "2026-11-17",
   "req": "- libshacccg.suprx",
-  "sz": 6815744,
+  "sz": 6798515,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/sh3-vita/sh3%20v0.0.1.vpk",
-      "sz": 6815744,
+      "u": "https://github.com/AngeloGalav/sh3-vita/releases/download/v0.0.2/sh3.vpk",
+      "sz": 6798515,
       "rec": true
     },
     {

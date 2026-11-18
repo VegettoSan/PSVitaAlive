@@ -12,10 +12,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.1.5",
-  "vd": "2026-08-14",
+  "v": "0.1.11",
+  "vd": "2026-11-09",
   "req": "Not specified",
-  "sz": 8120593,
+  "sz": 8132562,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-save-sync/icon0.png",
   "ss": [
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-save-sync/vita-save-cloud.vpk",
+      "u": "https://github.com/unveroleone/save-sync/releases/download/v0.1.11/vita-save-cloud.vpk",
       "rec": true
     },
     {

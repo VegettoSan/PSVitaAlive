@@ -14,17 +14,17 @@
     "source-port",
     "other"
   ],
-  "v": "0.1.0a2",
-  "vd": "2026-11-11",
+  "v": "0.1.0-alpha.3",
+  "vd": "2026-11-13",
   "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
-  "sz": 1258291,
+  "sz": 1297848,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/sh2-vita/sh2vita%20v0.1.0A2.vpk",
-      "sz": 1258291,
+      "u": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.1.0-alpha.3/sh2vita.vpk",
+      "sz": 1297848,
       "rec": true
     },
     {
