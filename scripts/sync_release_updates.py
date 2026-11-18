@@ -119,13 +119,41 @@ def release_instant(value: object) -> datetime | None:
         return None
 
 
+def effective_release_version(item: dict) -> str | None:
+    """Resolved numeric version is distinct from the immutable release tag URL.
+
+    For rolling tags a matching numeric version is supplied by the monitor,
+    after checking the GitHub title and the unique VPK filename. Do not
+    normalize arbitrary release titles or invent version numbers here.
+    """
+    tag = item.get("tag")
+    if item.get("release_channel") != "rolling":
+        return str(tag) if numeric_version(tag) is not None else None
+    version = item.get("version")
+    if (item.get("platform") != "github"
+            or not isinstance(version, str)
+            or not re.fullmatch(r"\d+\.\d+(?:\.\d+){0,2}", version)
+            or numeric_version(version) is None
+            or str(tag).casefold() not in
+               {"vita-next", "next", "nightly", "continuous", "rolling"}):
+        return None
+    vpks = [asset for asset in (item.get("assets") or [])
+            if isinstance(asset, dict) and release_asset_is_vpk(asset)]
+    if len(vpks) != 1:
+        return None
+    name = str(vpks[0].get("name") or "")
+    token = re.findall(r"(?<![a-z0-9])v(\d+\.\d+(?:\.\d+){0,2})(?=[^0-9]|$)",
+                       name, flags=re.I)
+    return version if token == [version] else None
+
+
 def automatic_prerelease_allowed(app: dict, pre: dict, stable: dict | None) -> bool:
     """Choose beta automatically only after >7 days or confirmed no stable.
 
     An explicit app-level opt-in may accept a newer beta sooner, but never
     displaces a stable release published *after* that prerelease.
     """
-    if not newer_version(app.get("version"), pre.get("tag")):
+    if not newer_version(app.get("version"), effective_release_version(pre)):
         return False
     pre_date = release_instant(pre.get("published"))
     if pre_date is None:
@@ -137,7 +165,8 @@ def automatic_prerelease_allowed(app: dict, pre: dict, stable: dict | None) -> b
     stable_date = release_instant(stable.get("published"))
     if stable_date is None or pre_date <= stable_date:
         return False
-    if not newer_version(stable.get("tag"), pre.get("tag")):
+    if not newer_version(effective_release_version(stable),
+                         effective_release_version(pre)):
         return False
     return (app.get("allow_prereleases") is True
             or pre_date - stable_date > timedelta(days=7))
@@ -222,6 +251,8 @@ def select_current_download(links: list) -> tuple[dict | None, str]:
 def release_update(app: dict, item: dict, repo: str, *, auto_prerelease: bool = False) -> tuple[dict | None, str]:
     if app.get("status") not in {"Verified", "Legacy"}:
         return None, "Archive or unsupported status"
+    if item.get("review_required") is True:
+        return None, "developer marks this build as draft/untested: manual review"
     platform = str(item.get("platform") or "").lower()
     if platform not in {"github", "gitlab"}:
         return None, "not a GitHub/GitLab release"
@@ -232,7 +263,8 @@ def release_update(app: dict, item: dict, repo: str, *, auto_prerelease: bool = 
     # is already catalogued, keep every manually preserved Archive.org URL,
     # link order, recommendation and date untouched on later monitor scans.
     # Only a strictly newer version may ever replace the current VPK URL.
-    if not newer_version(app.get("version"), item.get("tag")):
+    new_version = effective_release_version(item)
+    if not newer_version(app.get("version"), new_version):
         return None, "version not newer or cannot be compared safely"
     when = release_date(item.get("published"))
     if not when:
@@ -286,7 +318,8 @@ def release_update(app: dict, item: dict, repo: str, *, auto_prerelease: bool = 
         return None, "current VPK Download is not a registered source or Archive.org"
 
     proposal = json.loads(json.dumps(app))
-    proposal["version"] = str(item["tag"]).lstrip("vV.")
+    proposal["version"] = (str(new_version) if item.get("release_channel") == "rolling"
+                           else str(item["tag"]).lstrip("vV."))
     proposal["version_date"] = when
     if size is not None:
         proposal["size"] = size
@@ -485,18 +518,21 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
                     skipped.append(f"{repo}: untrusted stable fallback: manual review")
                     continue
             accept_pre = automatic_prerelease_allowed(app, release, stable)
+            if release.get("review_required") is True:
+                skipped.append(f"{repo}: developer draft/untested rolling build requires manual review")
+                accept_pre = False
             if not accept_pre:
                 if isinstance(stable, dict):
                     candidate = stable
                 else:
-                    if newer_version(app.get("version"), release.get("tag")):
+                    if newer_version(app.get("version"), effective_release_version(release)):
                         skipped.append(f"{repo}: prerelease channel not eligible yet")
                     continue
 
         proposal, reason = release_update(app, candidate, repo, auto_prerelease=accept_pre)
         if proposal is not None:
             changes.append((path, proposal, compact))
-        elif newer_version(app.get("version"), candidate.get("tag")):
+        elif newer_version(app.get("version"), effective_release_version(candidate)):
             skipped.append(f"{repo}: {reason}")
     # Folder VPKs are per-app records, not conventional GitHub Releases.
     # Repositories shared by many apps are safe only when folder + Title ID
