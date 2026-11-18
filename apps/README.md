@@ -44,22 +44,26 @@ Do **not** edit `catalog.json` by hand.
 
 Optional: `changelog`, `requirements`, `size`, `data_size`, `data_url`, hashes, scores, etc. Consumers must tolerate missing optional fields.
 
-### Pre-release updates (opt-in)
+### Pre-release updates (automatic grace period and opt-in)
 
-By default, automatic release synchronization prefers stable GitHub/GitLab
-releases. A Homebrew whose developer distributes beta/RC VPKs can opt in
-by adding `"allow_prereleases": true` to the readable V1 record or
-`"apr": true` to the compact V2 source JSON in `apps/`.
-This flag is **per application** and optional; the web app generator also
-offers an opt-in checkbox.
+Stable GitHub releases are preferred by default. A newer pre-release becomes
+eligible automatically if it was published **more than seven full days after**
+the latest stable release, or if GitHub's API confirms that no stable release
+exists. When the first page contains only pre-releases, the monitor checks
+`/releases/latest` to avoid overlooking an older stable release.
+Unverified absence, invalid dates, ambiguous tags and downgrades require review.
 
-Recognized version suffixes include `dev`, `test`, `alpha`, `beta`,
-`pre`, `preview`, and `rc`. Stable `1.2` ranks above `1.2-rc1`
-and `1.2-beta2`. Arbitrary labels such as `continuous` are not ordered
-automatically. A prerelease still requires a single trusted VPK, a unique
-registered repository and a unique `Download` link named `VPK`.
-Manual Archive.org backups are never overwritten at an equal or older version.
+For projects intentionally distributing beta/RC builds immediately, set
+`"allow_prereleases": true` in readable V1 or `"apr": true` in compact V2.
+The generator's checkbox is an **early-access override** for that individual
+Homebrew; it does not bypass version or source checks. GitLab and GitHub-folder
+sources remain conservative unless opted in.
 
+Recognized suffixes: `dev`, `test`, `alpha`, `beta`, `pre`, `preview`,
+`rc`. The stable `1.2` ranks above `1.2-rc1` and `1.2-beta2`.
+A trusted and unique `Download` link named `VPK` is still mandatory for
+automatic release synchronization. Backups at the same or newer version are
+never overwritten.
 
 ## Links
 
