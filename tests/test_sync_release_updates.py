@@ -225,6 +225,85 @@ class TestReleaseSynchronization(unittest.TestCase):
         del unverified["repo_id"]
         self.assertIsNone(release_update(source, unverified, "fr3dsp/sonic-r-vita")[0])
 
+    def test_golden_balloon_rolling_release_is_detected_but_draft_is_not_promoted(self):
+        from scripts.sync_release_updates import effective_release_version
+        source = app()
+        source["id"] = "golden-balloon"
+        source["title_id"] = "GBLN00001"
+        source["version"] = "1.7.2"
+        source["version_date"] = "2026-09-17"
+        source["source_url"] = "https://github.com/zm2283145/goldenballoon-vita-port"
+        source["links"][0]["url"] = (
+            "https://archive.org/download/golden-balloon-psvita/GoldenBalloon-Vita-v1.7.2.vpk"
+        )
+        source["links"][1] = {
+            "type": "Game Files", "name": "Game Files",
+            "url": "https://archive.org/download/golden-balloon-psvita/Game%20Files%20goldenballoon.zip",
+            "extract_path": "ux0:data/",
+        }
+        source["links"][2]["url"] = source["source_url"]
+        vpk = "GoldenBalloon-Vita-v1.7.3-44079be4-44209555230-1.vpk"
+        updated_url = (
+            "https://github.com/zm2283145/goldenballoon-vita-port/releases/download/vita-next/" + vpk
+        )
+        rolling = {
+            "platform": "github",
+            "repo": "zm2283145/goldenballoon-vita-port",
+            "tag": "vita-next",
+            "version": "1.7.3",
+            "release_channel": "rolling",
+            "review_required": True,
+            "prerelease": True,
+            "published": "2026-11-18T03:49:45Z",
+            "assets": [{"name": vpk, "size": 4799043, "download_url": updated_url}],
+            "stable_release": {
+                "platform": "github", "repo": "zm2283145/goldenballoon-vita-port",
+                "tag": "v1.7.2", "prerelease": False,
+                "published": "2026-09-17T23:04:32Z",
+                "assets": [{
+                    "name": "GoldenBalloon-Vita-v1.7.2.vpk", "size": 4746335,
+                    "download_url": "https://github.com/zm2283145/goldenballoon-vita-port/releases/download/v1.7.2/GoldenBalloon-Vita-v1.7.2.vpk",
+                }],
+            },
+        }
+        self.assertEqual(effective_release_version(rolling), "1.7.3")
+        self.assertTrue(newer_version("1.7.2", effective_release_version(rolling)))
+        self.assertIsNone(release_update(
+            {**source, "allow_prereleases": True}, rolling,
+            "zm2283145/goldenballoon-vita-port", auto_prerelease=True,
+        )[0], "Even early-access opt-in must not promote an unvalidated draft")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            target = root / "apps/golden-balloon.json"
+            target.write_text(json.dumps(to_v2(source)), encoding="utf-8")
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [rolling],
+            })
+            self.assertEqual(changes, [])
+            self.assertTrue(any("draft/untested" in msg for msg in skipped))
+            published_build = {**rolling, "review_required": False}
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [published_build],
+            })
+            self.assertEqual(skipped, [])
+            self.assertEqual(len(changes), 1)
+            updated = changes[0][1]
+            self.assertEqual(updated["version"], "1.7.3")
+            self.assertEqual(updated["version_date"], "2026-11-18")
+            self.assertEqual(updated["size"], 4799043)
+            self.assertEqual(updated["links"][0]["url"], updated_url)
+            self.assertEqual(updated["links"][1], source["links"][1])
+            mismatched_vpk = {**published_build, "assets": [
+                {**rolling["assets"][0],
+                 "name": "GoldenBalloon-Vita-v1.7.2-44079be4.vpk"}
+            ]}
+            self.assertIsNone(effective_release_version(mismatched_vpk))
+            self.assertIsNone(release_update(
+                source, mismatched_vpk, "zm2283145/goldenballoon-vita-port",
+                auto_prerelease=True,
+            )[0])
+
     def test_stable_replaces_same_core_beta_but_never_downgrades(self):
         source = app()
         source["version"] = "1.2-beta2"
