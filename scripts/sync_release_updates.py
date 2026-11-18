@@ -464,31 +464,36 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
         if title_ids[str(app.get("title_id", "")).upper()] != 1:
             skipped.append(f"{repo}: duplicate/ambiguous Title ID")
             continue
-        # The monitor keeps its latest release and optionally a previous
-        # stable release. Stable-only apps must not be blocked by a beta.
+        # Github's latest may be a prerelease. Prefer the stable fallback
+        # until a newer prerelease is >7 days later, or there is positively
+        # no stable release. An explicit per-app opt-in can track it sooner.
         candidate = release
+        accept_pre = False
         if release.get("prerelease") or is_prerelease_version(release.get("tag")):
             stable = release.get("stable_release")
-            if isinstance(stable, dict):
+            if stable is not None:
                 trusted_stable = (
-                    str(stable.get("repo") or "").lower() == repo
+                    isinstance(stable, dict)
+                    and str(stable.get("repo") or "").lower() == repo
                     and str(stable.get("platform") or "").lower() == platform
                     and stable.get("prerelease") is False
                     and not is_prerelease_version(stable.get("tag"))
+                    and stable.get("canonical_repo") == release.get("canonical_repo")
+                    and stable.get("repo_id") == release.get("repo_id")
                 )
                 if not trusted_stable:
-                    skipped.append(f"{repo}: invalid stable fallback: manual review")
+                    skipped.append(f"{repo}: untrusted stable fallback: manual review")
                     continue
-                if (app.get("allow_prereleases") is not True
-                        or not newer_version(stable.get("tag"), release.get("tag"))):
-                    # Stable wins on the same numeric core and on ambiguity.
+            accept_pre = automatic_prerelease_allowed(app, release, stable)
+            if not accept_pre:
+                if isinstance(stable, dict):
                     candidate = stable
-            elif app.get("allow_prereleases") is not True:
-                if newer_version(app.get("version"), release.get("tag")):
-                    skipped.append(f"{repo}: prerelease updates disabled for this app")
-                continue
+                else:
+                    if newer_version(app.get("version"), release.get("tag")):
+                        skipped.append(f"{repo}: prerelease channel not eligible yet")
+                    continue
 
-        proposal, reason = release_update(app, candidate, repo)
+        proposal, reason = release_update(app, candidate, repo, auto_prerelease=accept_pre)
         if proposal is not None:
             changes.append((path, proposal, compact))
         elif newer_version(app.get("version"), candidate.get("tag")):
