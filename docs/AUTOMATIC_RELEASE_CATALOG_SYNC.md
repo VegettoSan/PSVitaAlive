@@ -228,3 +228,32 @@ El monitor publica las entradas independientes en folder_releases dentro de data
 Para asociar cada carpeta con un Homebrew, su JSON individual en apps/ debe contener un enlace Repository u Official Website a la carpeta exacta, por ejemplo https://github.com/papilenote/vita-ports/tree/main/Tap%20Sonic, y un enlace Download llamado VPK. El sincronizador exige coincidencia de repositorio, rama, carpeta y Title ID del README; una version mayor comparable; fecha valida y VPK unico con URL y SHA de commit confiables. Si hay varias versiones en la carpeta, el monitor exige que el nombre de un unico VPK corresponda a la version declarada. La ausencia de version, los duplicados y las ambiguedades impiden el cambio automatico.
 
 Los Game Files, espejos, plugins y cualquier otro boton se conservan. Si la version registrada es igual o mayor, nunca se reemplaza un enlace respaldado en Archive.org. No se crean aplicaciones automaticamente a partir de carpetas desconocidas: requieren un JSON canonico y validacion. Para habilitar un nuevo repositorio multiport es necesario revisar sus convenciones y agregarlo explicitamente a la lista de proveedores del monitor y del sincronizador.
+
+
+### Releases con etiquetas móviles (vita-next, nightly, continuous)
+
+Algunos desarrolladores publican VPKs en una etiqueta GitHub reutilizable
+como `vita-next`, mientras que la versión real figura en el título
+`Next Build (v1.7.3)` y en el nombre del VPK. El monitor solo interpreta
+una versión numérica si **un único VPK** y el título de la release coinciden;
+cuando el cuerpo declara `App version`, también debe coincidir.
+Se mantienen por separado el `tag` original (para validar el enlace
+`/releases/download/vita-next/`) y `version` (para comparar versiones),
+sin alterar el esquema oficial del catálogo.
+
+Se considera canal experimental aunque GitHub muestre `prerelease: false`.
+Se aplica la política existente de siete días respecto a la última estable,
+siempre con versión estrictamente superior, un VPK único y fuente verificada.
+**Si el desarrollador avisa explícitamente que el build aún necesita
+validación en hardware**, por ejemplo con el marcador
+`vita-next-build-draft` o el texto `Draft build: review ... validate on
+hardware before publishing`, se marca `review_required` y NO se actualiza
+automáticamente el catálogo, ni siquiera con `apr: true`.
+El dashboard mostrará revisión manual y conservará el VPK estable de
+Archive.org. Se evita anunciar un draft como nueva release verificada.
+
+Cuando el desarrollador sustituye un VPK en la misma etiqueta móvil, el
+monitor compara también la versión y la URL del VPK, actualiza el registro
+existente del historial sin duplicarlo y conserva las reglas de seguridad.
+Los escaneos completos programados detectan esos cambios; los refrescos
+rápidos provocados por publicación del catálogo siguen usando el snapshot.
