@@ -81,7 +81,8 @@ class TestReleaseSynchronization(unittest.TestCase):
             "download_url": "https://github.com/example/vita-app/releases/download/v1.3-beta2/vita.vpk",
             "size": 502,
         }])
-        latest["stable_release"] = release(tag="v1.2", prerelease=False, assets=[{
+        latest["stable_release"] = release(tag="v1.2", prerelease=False,
+                                             published="2026-11-07T00:00:00Z", assets=[{
             "name": "vita.vpk",
             "download_url": "https://github.com/example/vita-app/releases/download/v1.2/vita.vpk",
             "size": 501,
@@ -99,6 +100,130 @@ class TestReleaseSynchronization(unittest.TestCase):
                 self.assertEqual(skipped, [])
                 self.assertEqual(len(changes), 1)
                 self.assertEqual(changes[0][1]["version"], expected)
+
+    def test_prereleases_automatically_eligible_after_more_than_seven_days(self):
+        from scripts.sync_release_updates import automatic_prerelease_allowed
+        source = app()
+        stable = release(tag="v1.1", published="2026-11-01T00:00:00Z")
+        pre = release(
+            tag="v1.2-beta3", prerelease=True,
+            published="2026-11-08T00:00:00Z",
+            assets=[{"name": "vita.vpk", "size": 401,
+                     "download_url": "https://github.com/example/vita-app/releases/download/v1.2-beta3/vita.vpk"}],
+        )
+        self.assertFalse(automatic_prerelease_allowed(source, pre, stable),
+                         "Exactly seven days is not more than a week")
+        pre["published"] = "2026-11-08T00:00:01Z"
+        self.assertTrue(automatic_prerelease_allowed(source, pre, stable))
+        for bad_time in ["2026-11-01T00:00:00Z", "garbage", ""]:
+            pre["published"] = bad_time
+            self.assertFalse(automatic_prerelease_allowed(source, pre, stable))
+        pre["published"] = "2026-11-08T00:00:01Z"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps/vita-app.json").write_text(
+                json.dumps(to_v2(source)), encoding="utf-8"
+            )
+            release_item = {**pre, "stable_release": stable}
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [release_item],
+            })
+            self.assertEqual(skipped, [])
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(changes[0][1]["version"], "1.2-beta3")
+
+    def test_prerelease_auto_if_no_stable_confirmed_but_not_when_unknown(self):
+        from scripts.sync_release_updates import automatic_prerelease_allowed
+        source = app()
+        pre = release(
+            tag="v1.3-beta2", prerelease=True,
+            published="2026-11-09T00:00:00Z",
+            assets=[{"name": "vita.vpk", "size": 900,
+                     "download_url": "https://github.com/example/vita-app/releases/download/v1.3-beta2/vita.vpk"}],
+        )
+        self.assertFalse(automatic_prerelease_allowed(source, pre, None))
+        pre["no_stable_release"] = True
+        self.assertTrue(automatic_prerelease_allowed(source, pre, None))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps/vita-app.json").write_text(
+                json.dumps(to_v2(source)), encoding="utf-8")
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [pre],
+            })
+            self.assertEqual(skipped, [])
+            self.assertEqual(len(changes), 1)
+            self.assertEqual(changes[0][1]["version"], "1.3-beta2")
+            pre["no_stable_release"] = False
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [pre],
+            })
+            self.assertEqual(changes, [])
+            self.assertTrue(any("not eligible" in text for text in skipped))
+
+    def test_prerelease_age_still_cannot_downgrade_stable(self):
+        from scripts.sync_release_updates import automatic_prerelease_allowed
+        source = app()
+        source["version"] = "1.3"
+        stable = release(tag="v1.3", published="2026-11-01T00:00:00Z")
+        pre = release(tag="v1.3-beta9", prerelease=True,
+                      published="2026-11-17T00:00:00Z")
+        self.assertFalse(automatic_prerelease_allowed(source, pre, stable))
+        source["version"] = "1.0"
+        self.assertFalse(automatic_prerelease_allowed(source, pre, stable))
+
+    def test_renamed_github_repo_sonic_r_can_update_verified_assets(self):
+        source = app()
+        source["version"] = "2.0"
+        source["version_date"] = "2026-10-12"
+        source["title_id"] = "SONICR001"
+        source["source_url"] = "https://github.com/fr3dsp/sonic-r-vita"
+        source["links"][0]["url"] = (
+            "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v2.0.vpk"
+        )
+        source["links"][2]["url"] = source["source_url"]
+        new_url = (
+            "https://github.com/PupueStudios/sonic-r-vita/releases/download/v2.1/sonicr_vita.vpk"
+        )
+        item = {
+            "platform": "github", "repo": "fr3dsp/sonic-r-vita",
+            "canonical_repo": "PupueStudios/sonic-r-vita",
+            "repo_id": 1378201322, "tag": "v2.1",
+            "published": "2026-11-17T17:15:58Z", "prerelease": False,
+            "assets": [{"name": "sonicr_vita.vpk", "size": 4363896,
+                        "download_url": new_url}],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps/sonic-r.json").write_text(
+                json.dumps(to_v2(source)), encoding="utf-8"
+            )
+            changes, skipped = plan_changes(root, {
+                "schema_version": 1, "releases": [item],
+            })
+            self.assertEqual(skipped, [])
+            self.assertEqual(len(changes), 1)
+            updated = changes[0][1]
+            self.assertEqual(updated["version"], "2.1")
+            self.assertEqual(updated["version_date"], "2026-11-17")
+            self.assertEqual(updated["links"][0]["url"], new_url)
+            self.assertEqual(updated["links"][1], source["links"][1])
+        for change in [
+            {"canonical_repo": "Attacker/other"},
+            {"repo_id": 0},
+            {"repo_id": "1378201322"},
+            {"assets": [{**item["assets"][0],
+                         "download_url": "https://evil.example/sonicr_vita.vpk"}]},
+        ]:
+            altered, reason = release_update(source, {**item, **change}, "fr3dsp/sonic-r-vita")
+            self.assertIsNone(altered, (change, reason))
+        unverified = dict(item)
+        del unverified["canonical_repo"]
+        del unverified["repo_id"]
+        self.assertIsNone(release_update(source, unverified, "fr3dsp/sonic-r-vita")[0])
 
     def test_stable_replaces_same_core_beta_but_never_downgrades(self):
         source = app()
