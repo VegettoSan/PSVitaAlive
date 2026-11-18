@@ -2096,7 +2096,7 @@
     "d": "Port of Deltarune for PSVita.",
     "ld": "An unofficial port of DELTARUNE Chapters 1-5 for the PlayStation Vita.\n\n- PsVitaAlive -",
     "aids": [
-      "chatgpt-ai"
+      "wolff"
     ],
     "cid": "ports",
     "sids": [
@@ -13129,7 +13129,7 @@
     "d": "Port of Beach Buggy Racing for PSVita.",
     "ld": "Unofficial wrapper/port of Beach Buggy Racing for PlayStation Vita.\nThe port loads the official Android ARMv7 executable directly into memory, links its dependencies to native Vita functions, and applies the compatibility layer required to run it. In practice, this provides a lightweight Android-like environment in which the original game code can run natively on the PS Vita.\n\n- PsVitaAlive -",
     "aids": [
-      "chatgpt-ai",
+      "meninosung",
       "wolff"
     ],
     "cid": "ports",
@@ -13208,7 +13208,7 @@
     "d": "Port of Zombie Tsunami for PSVita.",
     "ld": "Unofficial wrapper/port of Zombie Tsunami for PlayStation Vita.\nThe port operates by loading the official Android ARMv7 executable directly into memory, linking its dependencies to native functions, and applying the necessary patches for it to run correctly. In practice, this creates a lightweight Android-like environment where the original executable can run natively without modification.\n\n- PsVitaAlive -",
     "aids": [
-      "chatgpt-ai",
+      "meninosung",
       "wolff"
     ],
     "cid": "ports",

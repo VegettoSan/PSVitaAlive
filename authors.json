@@ -6349,6 +6349,21 @@
     "ic": "https://avatars.githubusercontent.com/u/53198002?v=4"
   },
   {
+    "id": "meninosung",
+    "n": "MeninoSung",
+    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+    "b": "Desarrollador de ports para PS Vita, acreditado como autor del port de Zombie Tsunami y Beach Buggy Racing en los repositorios originales.",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "Créditos del port",
+        "u": "https://github.com/WolffsRoom/BeachBuggyRacing-Vita#credits",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "metalsyntax",
     "n": "MetalSyntax",
     "av": "https://avatars.githubusercontent.com/u/25257337?v=4",
@@ -10199,7 +10214,7 @@
   },
   {
     "id": "wolff",
-    "n": "Wolff",
+    "n": "WolffsRoom",
     "av": "https://github.com/WolffsRoom.png",
     "b": "Desarrollador de homebrew para PS Vita.",
     "l": [
