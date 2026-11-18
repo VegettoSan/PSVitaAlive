@@ -417,6 +417,62 @@
     ]
   },
   {
+    "id": "supertuxkart-vita",
+    "tid": "STKV00001",
+    "n": "SuperTuxKart Vita",
+    "d": "Port of SuperTuxKart 1.5 for PSVita.",
+    "ld": "SuperTuxKart is a free kart racing game. This port runs SuperTuxKart 1.5 with all the offline modes: races, time trials, follow the leader, battles (3 strikes and free-for-all), soccer and egg hunts, with up to 6 karts and about 60 FPS on most tracks. Based on the port by Rinnegatamante, rendered with vitaGL.\n\nThe game data is installed with the Game Files (extracted to ux0:data/supertuxkart/stk-data/).",
+    "aids": [
+      "edgarlugo",
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-17",
+    "req": "- libshacccg.suprx\n- Game Files (below)",
+    "sz": 12249623,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/supertuxkart.vpk",
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/supertuxkart-data.zip",
+        "sz": 135873387,
+        "xp": "ux0:data/",
+        "ips": [
+          "supertuxkart"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Source",
+        "u": "https://github.com/edgarlugo/stk-code/tree/vita-port"
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/edgarlugo/stk-code/vita-port/sce_sys/icon0.png",
+    "ss": [
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-2.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-3.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-4.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-5.png"
+    ],
+    "sn": "GitHub",
+    "su": "https://github.com/edgarlugo/stk-code",
+    "rp": "https://github.com/edgarlugo/stk-code/releases",
+    "cl": "- First release"
+  },
+  {
     "id": "world-of-warcraft",
     "tid": "WOWV00001",
     "n": "World of Warcraft",
