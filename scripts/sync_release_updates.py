@@ -2,7 +2,7 @@
 """Safely update *canonical* apps/*.json from the release monitor snapshot.
 
 Never writes generated catalog.json. Deliberately conservative:
-- Stable releases by default; opted-in prereleases with strictly newer comparable versions.
+- Stable releases by default; select newer pre-releases when opt-in, >7 days after the last stable or no stable exists.
 - One canonical application explicitly references the upstream repository.
 - Exactly one .vpk asset by metadata; never downloads or inspects files.
 - Replace ONLY the existing Download named VPK (no extra buttons).
@@ -16,7 +16,7 @@ import json
 import re
 import urllib.request
 from collections import Counter, defaultdict
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote, unquote, urlparse
 
@@ -107,6 +107,42 @@ def release_date(value: object) -> str | None:
     except ValueError:
         return None
 
+def release_instant(value: object) -> datetime | None:
+    """Strict UTC-aware ISO publication timestamp; never infer missing dates."""
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+    try:
+        result = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        return result.astimezone(timezone.utc) if result.tzinfo is not None else None
+    except (ValueError, OverflowError):
+        return None
+
+
+def automatic_prerelease_allowed(app: dict, pre: dict, stable: dict | None) -> bool:
+    """Choose beta automatically only after >7 days or confirmed no stable.
+
+    An explicit app-level opt-in may accept a newer beta sooner, but never
+    displaces a stable release published *after* that prerelease.
+    """
+    if not newer_version(app.get("version"), pre.get("tag")):
+        return False
+    pre_date = release_instant(pre.get("published"))
+    if pre_date is None:
+        return False
+    if stable is None:
+        return (app.get("allow_prereleases") is True
+                or (pre.get("platform") == "github"
+                    and pre.get("no_stable_release") is True))
+    stable_date = release_instant(stable.get("published"))
+    if stable_date is None or pre_date <= stable_date:
+        return False
+    if not newer_version(stable.get("tag"), pre.get("tag")):
+        return False
+    return (app.get("allow_prereleases") is True
+            or pre_date - stable_date > timedelta(days=7))
+
+
 
 def download_belongs_to_repo(url: object, repo: str) -> bool:
     if normalized_repo(url) != repo:
@@ -183,14 +219,14 @@ def select_current_download(links: list) -> tuple[dict | None, str]:
     return selected[0], "ready"
 
 
-def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
+def release_update(app: dict, item: dict, repo: str, *, auto_prerelease: bool = False) -> tuple[dict | None, str]:
     if app.get("status") not in {"Verified", "Legacy"}:
         return None, "Archive or unsupported status"
     platform = str(item.get("platform") or "").lower()
     if platform not in {"github", "gitlab"}:
         return None, "not a GitHub/GitLab release"
     if item.get("prerelease") or is_prerelease_version(item.get("tag")):
-        if app.get("allow_prereleases") is not True:
+        if not (app.get("allow_prereleases") is True or auto_prerelease):
             return None, "prerelease updates disabled for this app"
     # Check the canonical catalog version FIRST. When the developer's release
     # is already catalogued, keep every manually preserved Archive.org URL,
@@ -220,7 +256,19 @@ def release_update(app: dict, item: dict, repo: str) -> tuple[dict | None, str]:
         return None, f"{len(assets)} .vpk assets: manual update required"
     asset = assets[0]
     asset_url = asset.get("download_url")
-    if not release_asset_url_matches(asset_url, repo, platform, str(item.get("tag") or "")):
+    # A GitHub repository may have changed owner/name while its official API
+    # still resolves the old catalog URL. The monitor verifies the redirect
+    # against the original repository numeric identity, and only then emits
+    # these two fields. Never accept an arbitrary host supplied by a release.
+    asset_repo = repo
+    canonical = item.get("canonical_repo")
+    if canonical is not None:
+        if (platform != "github" or not isinstance(canonical, str)
+                or not re.fullmatch(r"[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+", canonical)
+                or type(item.get("repo_id")) is not int or item["repo_id"] <= 0):
+            return None, "invalid canonical GitHub repository provenance"
+        asset_repo = canonical.lower()
+    if not release_asset_url_matches(asset_url, asset_repo, platform, str(item.get("tag") or "")):
         return None, "unique VPK lacks a trusted GitHub/GitLab release link"
     size = asset.get("size")
     size = size if isinstance(size, int) and not isinstance(size, bool) and size > 0 else None
