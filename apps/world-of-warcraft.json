@@ -1,0 +1,53 @@
+{
+  "id": "world-of-warcraft",
+  "tid": "WOWV00001",
+  "n": "World of Warcraft",
+  "d": "World of Warcraft 1.12.1 (Vanilla) on the PS Vita - a native Vita client that plays on private servers.",
+  "ld": "World of Warcraft 1.12.1 (Vanilla) on the PS Vita - a native Vita client that plays on private servers.",
+  "aids": [
+    "raizhald"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "adventure",
+    "platformer",
+    "rpg",
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.4.0",
+  "vd": "2026-11-17",
+  "req": "- A 1.12.1 private server without Warden anticheat (for example Microbot WoW, logon.microbot-wow.net)\n- Your own WoW 1.12.1 game files (the Data folder with terrain.MPQ, model.MPQ, ...)\n- A PS Vita with HENkaku / h-encore / Enso and VitaShell",
+  "sz": 2621440,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/WoWVita/WoWVita%20v0.4.0.vpk",
+      "sz": 2621440,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/WoWVita/Game%20Files%20for%20PSVA.zip",
+      "sz": 4724464026,
+      "xp": "ux0:data/",
+      "ips": [
+        "wowvita"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Raizhald/WoWVita"
+    }
+  ],
+  "ic": "https://archive.org/download/WoWVita/icon0.png",
+  "ss": [
+    "https://archive.org/download/WoWVita/shot0.png"
+  ]
+}

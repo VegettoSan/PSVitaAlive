@@ -1,0 +1,49 @@
+{
+  "id": "mx-vs-atv-unleashed",
+  "tid": "MXVA00001",
+  "n": "MX vs. ATV Unleashed",
+  "d": "A recompilation of the PC version of MX vs. ATV Unleashed so it runs on the PS Vita.",
+  "ld": "A recompilation of the PC version of MX vs. ATV Unleashed so it runs on the PS Vita.",
+  "aids": [
+    "chuta7x"
+  ],
+  "cid": "ports",
+  "sids": [
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-17",
+  "req": "- libshacccg.suprx",
+  "sz": 5138022,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/MXVSATV%20v1.0.vpk",
+      "sz": 5138022,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1073741824,
+      "xp": "ux0:data/",
+      "ips": [
+        "mxvsatv"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/CHUTA7X/-PC-Recomps-for-PS-VITA-"
+    }
+  ],
+  "ic": "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/icon0.png"
+  ]
+}
