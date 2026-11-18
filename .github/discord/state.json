@@ -370,7 +370,7 @@
       "version": "v.1.3.4-vita.1"
     },
     "BHBB00001": {
-      "version": "V1.45"
+      "version": "1.46"
     },
     "BIO4AF000": {
       "version": "1.5"
@@ -1174,7 +1174,7 @@
       "version": "v.1.0"
     },
     "GBVX00001": {
-      "version": "v.1.5.2"
+      "version": "2.1.6"
     },
     "GCTK10000": {
       "version": "v.1.9"
@@ -2626,7 +2626,7 @@
       "version": "v.2.0.0"
     },
     "SAVSYNC01": {
-      "version": "v.0.1.5"
+      "version": "0.1.11"
     },
     "SBFH12345": {
       "version": "v.1.0"
@@ -2689,7 +2689,7 @@
       "version": "v.1.2"
     },
     "SHIL00002": {
-      "version": "0.1.0a2"
+      "version": "0.1.0-alpha.3"
     },
     "SHIPOFHAR": {
       "version": "v.1.2"
@@ -2707,7 +2707,7 @@
       "version": "v.1.0"
     },
     "SILH00003": {
-      "version": "0.0.1"
+      "version": "0.0.2"
     },
     "SILH00004": {
       "version": "1.0.1"
@@ -2755,7 +2755,7 @@
       "version": "1.3.0"
     },
     "SKTV00001": {
-      "version": "0.2.0"
+      "version": "0.3.0-beta"
     },
     "SLCE12345": {
       "version": "v.1.2"
@@ -2836,7 +2836,7 @@
       "version": "v.1.0"
     },
     "SONICR001": {
-      "version": "2.0"
+      "version": "2.1"
     },
     "SORT12345": {
       "version": "v.1.1.0"
@@ -2920,7 +2920,7 @@
       "version": "psvita2"
     },
     "SSB64VITA": {
-      "version": "1.4"
+      "version": "1.5.2"
     },
     "SSEC06000": {
       "version": "1.0"
