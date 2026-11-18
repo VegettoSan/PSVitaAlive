@@ -13,17 +13,17 @@
     "simulation",
     "source-port"
   ],
-  "v": "0.2.1",
-  "vd": "2026-09-26",
+  "v": "0.2.2",
+  "vd": "2026-11-18",
   "req": "- A PS Vita / PS TV console running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (required — the engine compiles its GLSL shaders at runtime).",
-  "sz": 2306867,
+  "sz": 2243949,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/asphalt-6-ps-vita/asphalt6%20v0.2.1.vpk",
-      "sz": 3355443,
+      "u": "https://github.com/MetalSyntax/Asphalt-6-Vita/releases/download/v0.2.2/asphalt6.vpk",
+      "sz": 2243949,
       "rec": true
     },
     {
