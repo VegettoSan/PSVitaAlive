@@ -267,6 +267,107 @@
     ]
   },
   {
+    "id": "silent-hill-3",
+    "tid": "SILH00003",
+    "n": "Silent Hill 3",
+    "d": "Experimental recompilation of the PC version of Silent Hill 3 for the PS Vita",
+    "ld": "sh3-vita runs Silent Hill 3 from the PC version's own data. Unlike sh2-vita, which is a native port that rebuilds Silent Hill 2 as native code on the Vita's CPU and GPU, this is a static recompilation: a recompiler translates the game's sh3.exe (x86) to C, and a Win32 / Direct3D 8 / DirectInput / DirectSound compatibility layer runs it over vitaGL on the Vita. It is built on sh4vita by vallfrr, the Silent Hill 4 port that came first, and uses sh3-nx by cutarev as its rendering reference.",
+    "aids": [
+      "angelogalav"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.0.2",
+    "vd": "2026-11-17",
+    "req": "- libshacccg.suprx",
+    "sz": 6798515,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/AngeloGalav/sh3-vita/releases/download/v0.0.2/sh3.vpk",
+        "sz": 6798515,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/sh3-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 4831838208,
+        "xp": "ux0:data/",
+        "ips": [
+          "sh3-vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Gihub",
+        "u": "https://github.com/AngeloGalav/sh3-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/sh3-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/sh3-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "sonic-r",
+    "tid": "SONICR001",
+    "n": "Sonic R",
+    "d": "A reimplementation of Sonic R for the PlayStation Vita.",
+    "ld": "A reimplementation of Sonic R for the PlayStation Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "fr3dsp"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "platformer",
+      "puzzle"
+    ],
+    "v": "2.1",
+    "vd": "2026-11-17",
+    "req": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
+    "sz": 4363896,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/PupueStudios/sonic-r-vita/releases/download/v2.1/sonicr_vita.vpk",
+        "sz": 4363896,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
+        "sz": 647705395,
+        "xp": "ux0:data/",
+        "ips": [
+          "sonicr"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/fr3dsp/sonic-r-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
+      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "2ship2harkinian-vita",
     "tid": "2SHIP2HAR",
     "n": "2ship2harkinian Vita",
@@ -935,56 +1036,6 @@
     ]
   },
   {
-    "id": "silent-hill-3",
-    "tid": "SILH00003",
-    "n": "Silent Hill 3",
-    "d": "Experimental recompilation of the PC version of Silent Hill 3 for the PS Vita",
-    "ld": "sh3-vita runs Silent Hill 3 from the PC version's own data. Unlike sh2-vita, which is a native port that rebuilds Silent Hill 2 as native code on the Vita's CPU and GPU, this is a static recompilation: a recompiler translates the game's sh3.exe (x86) to C, and a Win32 / Direct3D 8 / DirectInput / DirectSound compatibility layer runs it over vitaGL on the Vita. It is built on sh4vita by vallfrr, the Silent Hill 4 port that came first, and uses sh3-nx by cutarev as its rendering reference.",
-    "aids": [
-      "angelogalav"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.0.1",
-    "vd": "2026-11-14",
-    "req": "- libshacccg.suprx",
-    "sz": 6815744,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/sh3-vita/sh3%20v0.0.1.vpk",
-        "sz": 6815744,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/sh3-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 4831838208,
-        "xp": "ux0:data/",
-        "ips": [
-          "sh3-vita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Gihub",
-        "u": "https://github.com/AngeloGalav/sh3-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/sh3-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/sh3-vita/shot0.png"
-    ]
-  },
-  {
     "id": "the-simpsons-arcade",
     "tid": "SMPA00001",
     "n": "The Simpsons Arcade",
@@ -1287,6 +1338,56 @@
     "ic": "https://archive.org/download/raging-thunder-ps-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/raging-thunder-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "silent-hill-2",
+    "tid": "SHIL00002",
+    "n": "Silent Hill 2",
+    "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+    "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+    "aids": [
+      "angelogalav"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "v": "0.1.0-alpha.3",
+    "vd": "2026-11-13",
+    "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
+    "sz": 1297848,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.1.0-alpha.3/sh2vita.vpk",
+        "sz": 1297848,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2684354560,
+        "xp": "ux0:data/",
+        "ips": [
+          "sh2-vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/AngeloGalav/sh2-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/sh2-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/sh2-vita/icon0.png"
     ]
   },
   {
@@ -1791,56 +1892,6 @@
     ]
   },
   {
-    "id": "silent-hill-2",
-    "tid": "SHIL00002",
-    "n": "Silent Hill 2",
-    "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
-    "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
-    "aids": [
-      "angelogalav"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "source-port",
-      "other"
-    ],
-    "v": "0.1.0a2",
-    "vd": "2026-11-11",
-    "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
-    "sz": 1258291,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/sh2-vita/sh2vita%20v0.1.0A2.vpk",
-        "sz": 1258291,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2684354560,
-        "xp": "ux0:data/",
-        "ips": [
-          "sh2-vita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/AngeloGalav/sh2-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/sh2-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/sh2-vita/icon0.png"
-    ]
-  },
-  {
     "id": "touhou12-3vita-hisoutensoku",
     "tid": "THSV12302",
     "n": "Touhou12.3Vita Hisoutensoku",
@@ -1995,6 +2046,56 @@
     ]
   },
   {
+    "id": "skate-3-vita",
+    "tid": "SKTV00001",
+    "n": "Skate 3 Vita",
+    "d": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+    "ld": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
+    "aids": [
+      "irolup"
+    ],
+    "cid": "ports",
+    "sids": [
+      "platformer",
+      "simulation",
+      "source-port"
+    ],
+    "v": "0.3.0-beta",
+    "vd": "2026-11-10",
+    "req": "- No data",
+    "sz": 7048330,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/irolup/skate-3-vita/releases/download/v0.3.0-beta/skate-3-vita-0.3.0-beta.vpk",
+        "sz": 7048330,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
+        "sz": 1073741824,
+        "xp": "ux0:data/",
+        "ips": [
+          "SKATEVITA"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/irolup/skate-3-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/skate-3-ps-vita-ports/icon0.png",
+    "ss": [
+      "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
+      "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
+    ]
+  },
+  {
     "id": "zenonia-2",
     "tid": "PSVZ00002",
     "n": "Zenonia 2",
@@ -2039,6 +2140,66 @@
     "ss": [
       "https://archive.org/download/psvitaalive-zenonia-2/shot_01.png"
     ]
+  },
+  {
+    "id": "save-sync",
+    "tid": "SAVSYNC01",
+    "n": "Save Sync",
+    "d": "Self-hosted manual cloud save sync for PSVita.",
+    "ld": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server. Download and restore on another device to keep saves in sync. Works with any number of Vitas and PSTVs sharing one server.\nThe server can be created with the prebuilt docker image.",
+    "aids": [
+      "iamcco",
+      "claude-ai"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "0.1.11",
+    "vd": "2026-11-09",
+    "req": "Not specified",
+    "sz": 8132562,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-save-sync/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-save-sync/shot_01.png",
+      "https://archive.org/download/psvitaalive-save-sync/shot_02.png",
+      "https://archive.org/download/psvitaalive-save-sync/shot_03.png",
+      "https://archive.org/download/psvitaalive-save-sync/shot_04.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/unveroleone/save-sync/releases/download/v0.1.11/vita-save-cloud.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/unveroleone/vita-save-sync/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/unveroleone/vita-save-sync"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1418",
+    "su": "https://github.com/unveroleone/vita-save-sync",
+    "rp": "https://github.com/unveroleone/vita-save-sync/releases",
+    "ua": "2026-08-13T15:34:48.333453+00:00"
   },
   {
     "id": "harry-potter-flipendo",
@@ -3445,6 +3606,61 @@
       "https://archive.org/download/halo-ce-ps-vita-direct3d/shot2.png",
       "https://archive.org/download/halo-ce-ps-vita-direct3d/shot3.png"
     ]
+  },
+  {
+    "id": "better-homebrew-browser",
+    "tid": "BHBB00001",
+    "n": "Better Homebrew Browser",
+    "d": "Homebrew Downloader for PSVITA.",
+    "ld": "Homebrew Browser and Downloader for PSVITA with background downloads support.",
+    "aids": [
+      "m-ibrahim"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.46",
+    "vd": "2026-11-02",
+    "req": "Not specified",
+    "sz": 1129327,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-better-homebrew-browser/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_01.png",
+      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_02.png",
+      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_03.png",
+      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_04.png",
+      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/download/V1.46/BetterHomebrewBrowser.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "734",
+    "su": "https://github.com/Ibrahim778/BetterHomebrewBrowser",
+    "rp": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45",
+    "ua": "2026-08-13T15:34:48.431997+00:00"
   },
   {
     "id": "hollow-knight-vita",
@@ -4894,56 +5110,6 @@
     "su": "https://github.com/OpenCloudGaming/OpenNOW-vita",
     "rp": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
     "ua": "2026-08-13T15:34:48.324387+00:00"
-  },
-  {
-    "id": "skate-3-vita",
-    "tid": "SKTV00001",
-    "n": "Skate 3 Vita",
-    "d": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
-    "ld": "A PS Vita Skate 3 port of the skate-3-rust-engine from the Xbox 360 Skate 3.",
-    "aids": [
-      "irolup"
-    ],
-    "cid": "ports",
-    "sids": [
-      "platformer",
-      "simulation",
-      "source-port"
-    ],
-    "v": "0.2.0",
-    "vd": "2026-10-27",
-    "req": "- No data",
-    "sz": 6815744,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/skate-3-ps-vita-ports/skate-3-vita-0.2.0-beta.vpk",
-        "sz": 7864320,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/skate-3-ps-vita-ports/Game%20Files%20for%20PSVA.zip",
-        "sz": 1073741824,
-        "xp": "ux0:data/",
-        "ips": [
-          "SKATEVITA"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/irolup/skate-3-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/skate-3-ps-vita-ports/icon0.png",
-    "ss": [
-      "https://archive.org/download/skate-3-ps-vita-ports/shot0.png",
-      "https://archive.org/download/skate-3-ps-vita-ports/shot1.png"
-    ]
   },
   {
     "id": "biohazard4-vita",
@@ -6591,57 +6757,6 @@
     ]
   },
   {
-    "id": "sonic-r",
-    "tid": "SONICR001",
-    "n": "Sonic R",
-    "d": "A reimplementation of Sonic R for the PlayStation Vita.",
-    "ld": "A reimplementation of Sonic R for the PlayStation Vita.\n\n- PsVitaAlive -",
-    "aids": [
-      "fr3dsp"
-    ],
-    "cid": "ports",
-    "sids": [
-      "arcade",
-      "platformer",
-      "puzzle"
-    ],
-    "v": "2.0",
-    "vd": "2026-10-12",
-    "req": "Get the PC 1998 release files from Sonic R (ux0:data/sonicr)\n\nThe VPK bundles the DATA folder and copies any of its files missing from ux0:data/sonicr on launch\n\nGet libshacccg.suprx",
-    "sz": 4299162,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/sonic-r-ps-vita/sonicr_vita%20v2.0.vpk",
-        "sz": 4299162,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/sonic-r-ps-vita/Game%20Files.zip",
-        "sz": 647705395,
-        "xp": "ux0:data/",
-        "ips": [
-          "sonicr"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "GitHub",
-        "u": "https://github.com/fr3dsp/sonic-r-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/sonic-r-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/sonic-r-ps-vita/shot0.png",
-      "https://archive.org/download/sonic-r-ps-vita/shot1.png",
-      "https://archive.org/download/sonic-r-ps-vita/shot2.png"
-    ]
-  },
-  {
     "id": "retroflow-launcher",
     "tid": "RETROFLOW",
     "n": "RetroFlow Launcher",
@@ -6844,6 +6959,59 @@
       "https://archive.org/download/predators-psvita-port/shot0.png",
       "https://archive.org/download/predators-psvita-port/shot1.png"
     ]
+  },
+  {
+    "id": "battleship-vita",
+    "tid": "SSB64VITA",
+    "n": "Battleship Vita",
+    "d": "Port of Battleship for PSVita.",
+    "ld": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.\n\n- PsVitaAlive -",
+    "aids": [
+      "robin994"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "v": "1.5.2",
+    "vd": "2026-10-09",
+    "req": "- libshacccg.suprx\n- Game Data Files: N64",
+    "sz": 7499358,
+    "st": "Legacy",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/robin994/battleship-vita/releases/download/1.5.2/battleship.vpk",
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
+        "sz": 12163482,
+        "xp": "ux0:data/",
+        "ips": [
+          "battleship"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/robin994/battleship-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/psvitaalive-battleship-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-battleship-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-battleship-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-battleship-vita/shot_03.png"
+    ],
+    "sn": "VitaDB",
+    "si": "1483",
+    "su": "https://github.com/robin994/battleship-vita",
+    "rp": "https://github.com/robin994/battleship-vita/releases",
+    "ua": "2026-08-23T23:03"
   },
   {
     "id": "ghostship-vita",
@@ -9119,59 +9287,6 @@
     ]
   },
   {
-    "id": "battleship-vita",
-    "tid": "SSB64VITA",
-    "n": "Battleship Vita",
-    "d": "Port of Battleship for PSVita.",
-    "ld": "Port of Battleship for PSVita. Battleship is a port of Super Smash Bros based on the decompilation efforts of the game.\n\n- PsVitaAlive -",
-    "aids": [
-      "robin994"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "1.4",
-    "vd": "2026-08-31",
-    "req": "- libshacccg.suprx\n- Game Data Files: N64",
-    "sz": 7494939,
-    "st": "Legacy",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/robin994/battleship-vita/releases/download/1.4/battleship.vpk",
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/psvitaalive-battleship-vita/Game%20Files.zip",
-        "sz": 12163482,
-        "xp": "ux0:data/",
-        "ips": [
-          "battleship"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/robin994/battleship-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/psvitaalive-battleship-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-battleship-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-battleship-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-battleship-vita/shot_03.png"
-    ],
-    "sn": "VitaDB",
-    "si": "1483",
-    "su": "https://github.com/robin994/battleship-vita",
-    "rp": "https://github.com/robin994/battleship-vita/releases",
-    "ua": "2026-08-23T23:03"
-  },
-  {
     "id": "illusia",
     "tid": "ILLU00001",
     "n": "Illusia",
@@ -10182,6 +10297,52 @@
     "ua": "2026-08-21T23:38:25.795507+00:00"
   },
   {
+    "id": "gbvitaex",
+    "tid": "GBVX00001",
+    "n": "GBVitaEX",
+    "d": "GB/GBC/GBA emulator for PSVita.",
+    "ld": "Combines the fastest GBA emulator (gpSP ARMv7 JIT dynarec) with the most accurate GB/GBC emulator (mGBA), in a single standalone native VPK no RetroArch required.",
+    "aids": [
+      "zushikina-kun"
+    ],
+    "cid": "emulators",
+    "sids": [
+      "other"
+    ],
+    "v": "2.1.6",
+    "vd": "2026-08-21",
+    "req": "Not specified",
+    "sz": 793158,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-gbvitaex/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-gbvitaex/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Zushikina-kun/MGBAVitaEX/releases/download/v2.1.6/MGBAVitaEX-v2.1.6.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/Zushikina-kun/GBVitaEX/releases"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/Zushikina-kun/GBVitaEX"
+      }
+    ],
+    "sn": "VitaDB",
+    "si": "1472",
+    "su": "https://github.com/Zushikina-kun/GBVitaEX",
+    "rp": "https://github.com/Zushikina-kun/GBVitaEX/releases",
+    "ua": "2026-08-19T18:56:46.398303+00:00"
+  },
+  {
     "id": "destinia-vita",
     "tid": "DEST00001",
     "n": "Destinia Vita",
@@ -10327,52 +10488,6 @@
     "su": "https://github.com/blastrock/pkgj",
     "rp": "https://github.com/blastrock/pkgj/releases/tag/v0.57",
     "ua": "2026-08-15T09:57:03.730733+00:00"
-  },
-  {
-    "id": "gbvitaex",
-    "tid": "GBVX00001",
-    "n": "GBVitaEX",
-    "d": "GB/GBC/GBA emulator for PSVita.",
-    "ld": "Combines the fastest GBA emulator (gpSP ARMv7 JIT dynarec) with the most accurate GB/GBC emulator (mGBA), in a single standalone native VPK no RetroArch required.",
-    "aids": [
-      "zushikina-kun"
-    ],
-    "cid": "emulators",
-    "sids": [
-      "other"
-    ],
-    "v": "v.1.5.2",
-    "vd": "2026-08-19",
-    "req": "Not specified",
-    "sz": 792049,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-gbvitaex/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-gbvitaex/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-gbvitaex/gbvitaex.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Zushikina-kun/GBVitaEX/releases"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/Zushikina-kun/GBVitaEX"
-      }
-    ],
-    "sn": "VitaDB",
-    "si": "1472",
-    "su": "https://github.com/Zushikina-kun/GBVitaEX",
-    "rp": "https://github.com/Zushikina-kun/GBVitaEX/releases",
-    "ua": "2026-08-19T18:56:46.398303+00:00"
   },
   {
     "id": "zenonia-1-remastered-vita",
@@ -11052,66 +11167,6 @@
     "su": "https://fuhen.homebrew-contest.com/submissions/23/",
     "rp": "https://fuhen.homebrew-contest.com/submissions/23/",
     "ua": "2026-08-13T15:34:48.484525+00:00"
-  },
-  {
-    "id": "save-sync",
-    "tid": "SAVSYNC01",
-    "n": "Save Sync",
-    "d": "Self-hosted manual cloud save sync for PSVita.",
-    "ld": "Save Sync backs up PS Vita save data to a zip and uploads it to your own server. Download and restore on another device to keep saves in sync. Works with any number of Vitas and PSTVs sharing one server.\nThe server can be created with the prebuilt docker image.",
-    "aids": [
-      "iamcco",
-      "claude-ai"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "v.0.1.5",
-    "vd": "2026-08-14",
-    "req": "Not specified",
-    "sz": 8120593,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-save-sync/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-save-sync/shot_01.png",
-      "https://archive.org/download/psvitaalive-save-sync/shot_02.png",
-      "https://archive.org/download/psvitaalive-save-sync/shot_03.png",
-      "https://archive.org/download/psvitaalive-save-sync/shot_04.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-save-sync/vita-save-cloud.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/unveroleone/vita-save-sync/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.4"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/unveroleone/vita-save-sync"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/unveroleone/save-sync/releases/tag/v0.1.5"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1418",
-    "su": "https://github.com/unveroleone/vita-save-sync",
-    "rp": "https://github.com/unveroleone/vita-save-sync/releases",
-    "ua": "2026-08-13T15:34:48.333453+00:00"
   },
   {
     "id": "my-shut-in-demon-port",
@@ -22038,61 +22093,6 @@
     "su": "https://cybertokyo.itch.io/bubblepunk",
     "rp": "https://cybertokyo.itch.io/bubblepunk",
     "ua": "2026-08-13T15:34:48.411112+00:00"
-  },
-  {
-    "id": "better-homebrew-browser",
-    "tid": "BHBB00001",
-    "n": "Better Homebrew Browser",
-    "d": "Homebrew Downloader for PSVITA.",
-    "ld": "Homebrew Browser and Downloader for PSVITA with background downloads support.",
-    "aids": [
-      "m-ibrahim"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "V1.45",
-    "vd": "2025-03-23",
-    "req": "Not specified",
-    "sz": 1129338,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-better-homebrew-browser/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_01.png",
-      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_02.png",
-      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_03.png",
-      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_04.png",
-      "https://archive.org/download/psvitaalive-better-homebrew-browser/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-better-homebrew-browser/BetterHomebrewBrowser.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "734",
-    "su": "https://github.com/Ibrahim778/BetterHomebrewBrowser",
-    "rp": "https://github.com/Ibrahim778/BetterHomebrewBrowser/releases/tag/V1.45",
-    "ua": "2026-08-13T15:34:48.431997+00:00"
   },
   {
     "id": "crystal-psm",
