@@ -14,17 +14,17 @@
     "strategy",
     "game-engine"
   ],
-  "v": "0.1.1",
-  "vd": "2026-11-16",
+  "v": "0.2.0",
+  "vd": "2026-11-19",
   "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
-  "sz": 3984589,
+  "sz": 4109056,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/ghvita-v0.1.1.vpk",
-      "sz": 3984589,
+      "u": "https://github.com/irxd/guitar-hero-vita/releases/download/v0.2.0/ghvita-v0.2.0.vpk",
+      "sz": 4109056,
       "rec": true
     },
     {
