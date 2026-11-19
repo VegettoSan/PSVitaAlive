@@ -176,6 +176,103 @@
     ]
   },
   {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.7.0",
+    "vd": "2026-11-19",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1536135,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.7.0/manhunt-v0.7.0-vita.vpk",
+        "sz": 1536135,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
+    "id": "nfs-most-wanted",
+    "tid": "NFSMWVITA",
+    "n": "NFS Most Wanted",
+    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
+    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "germanalvarez15"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.6.2",
+    "vd": "2026-11-19",
+    "req": "- No Data",
+    "sz": 3274720,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.2/nfsmw.vpk",
+        "sz": 3274720,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files Fix",
+        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
+        "sz": 1610612736,
+        "xp": "ux0:data/",
+        "ips": [
+          "nfsmw"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Gihub",
+        "u": "https://github.com/germanalvarez15/nfsmw-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/nfsmw-vita/shot0.png"
+    ]
+  },
+  {
     "id": "asphalt-6",
     "tid": "ASPHALT06",
     "n": "Asphalt 6",
@@ -500,54 +597,6 @@
     "ic": "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/icon0.png"
-    ]
-  },
-  {
-    "id": "nfs-most-wanted",
-    "tid": "NFSMWVITA",
-    "n": "NFS Most Wanted",
-    "d": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.",
-    "ld": "An unofficial port of Need for Speed: Most Wanted (PS2, Black Edition, SLUS-21351) to the PS Vita.\n\n- PsVitaAlive -",
-    "aids": [
-      "germanalvarez15"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "source-port"
-    ],
-    "v": "1.6.1",
-    "vd": "2026-11-17",
-    "req": "- No Data",
-    "sz": 3260233,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.1/nfsmw.vpk",
-        "sz": 3260233,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files Fix",
-        "u": "https://archive.org/download/nfsmw-vita/Game%20Files%20Fix%20for%20PSVA.zip",
-        "sz": 1610612736,
-        "xp": "ux0:data/",
-        "ips": [
-          "nfsmw"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Gihub",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/nfsmw-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/nfsmw-vita/shot0.png"
     ]
   },
   {
@@ -2666,55 +2715,6 @@
     "ic": "https://archive.org/download/happy-wheels-preview-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/happy-wheels-preview-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.5.1",
-    "vd": "2026-11-08",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1363149,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.5.1.vpk",
-        "sz": 1363149,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases"
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
     ]
   },
   {
