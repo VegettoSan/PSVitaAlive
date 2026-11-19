@@ -1,5 +1,56 @@
 [
   {
+    "id": "gmca",
+    "tid": "GMCA00001",
+    "n": "GMCA",
+    "d": "Media center client for PSVita.",
+    "ld": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
+    "aids": [
+      "thcolin"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.5.0",
+    "vd": "2026-11-19",
+    "req": "Not specified",
+    "sz": 14915966,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-gmca/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-gmca/shot_01.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.5.0/GMCA.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1411",
+    "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
+    "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
+    "ua": "2026-08-13T15:34:48.329481+00:00"
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "tid": "BTTD00010",
     "n": "Dragon Ball Z: BT3",
@@ -71,6 +122,57 @@
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
+    ]
+  },
+  {
+    "id": "gh-vita",
+    "tid": "GHVT00001",
+    "n": "GH Vita",
+    "d": "Guitar Hero Port for PS Vita",
+    "ld": "A homebrew PS Vita port of Guitar Dream Engine's reimplementation of Guitar Hero (PlayStation 2, 2005), the engine's gd-game-01.",
+    "aids": [
+      "irxd"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "simulation",
+      "strategy",
+      "game-engine"
+    ],
+    "v": "0.2.0",
+    "vd": "2026-11-19",
+    "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
+    "sz": 4109056,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/irxd/guitar-hero-vita/releases/download/v0.2.0/ghvita-v0.2.0.vpk",
+        "sz": 4109056,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2254857830,
+        "xp": "ux0:data/",
+        "ips": [
+          "ghvita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/irxd/guitar-hero-vita"
+      }
+    ],
+    "apr": true,
+    "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
     ]
   },
   {
@@ -867,57 +969,6 @@
     "ss": [
       "https://archive.org/download/meteor-vii-vita/shot_0.png",
       "https://archive.org/download/meteor-vii-vita/shot_1.png"
-    ]
-  },
-  {
-    "id": "gh-vita",
-    "tid": "GHVT00001",
-    "n": "GH Vita",
-    "d": "Guitar Hero Port for PS Vita",
-    "ld": "A homebrew PS Vita port of Guitar Dream Engine's reimplementation of Guitar Hero (PlayStation 2, 2005), the engine's gd-game-01.",
-    "aids": [
-      "irxd"
-    ],
-    "cid": "ports",
-    "sids": [
-      "arcade",
-      "simulation",
-      "strategy",
-      "game-engine"
-    ],
-    "v": "0.1.1",
-    "vd": "2026-11-16",
-    "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
-    "sz": 3984589,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/ghvita-v0.1.1.vpk",
-        "sz": 3984589,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2254857830,
-        "xp": "ux0:data/",
-        "ips": [
-          "ghvita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/irxd/guitar-hero-vita"
-      }
-    ],
-    "apr": true,
-    "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
     ]
   },
   {
@@ -5647,57 +5698,6 @@
     "ss": [
       "https://archive.org/download/resident-evil-mercenaries-vs-for-ps-vita/Shot0.png"
     ]
-  },
-  {
-    "id": "gmca",
-    "tid": "GMCA00001",
-    "n": "GMCA",
-    "d": "Media center client for PSVita.",
-    "ld": "GMCA is one native, controller-first client. Point it at any media center â€” Plex, Jellyfin, Emby or Stremio â€” and run it on any device you left in a drawer: Nintendo Switch, PS Vita or a Raspberry Pi wired to the TV. The interface never changes; only the accent colour and the tabs follow your server.",
-    "aids": [
-      "thcolin"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "1.4.0",
-    "vd": "2026-10-24",
-    "req": "Not specified",
-    "sz": 14915386,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-gmca/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-gmca/shot_01.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.4.0/GMCA.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/thcolin/gamepad-media-center-aggregator/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1411",
-    "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
-    "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
-    "ua": "2026-08-13T15:34:48.329481+00:00"
   },
   {
     "id": "ff3-vita",
