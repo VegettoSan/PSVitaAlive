@@ -1,5 +1,79 @@
 [
   {
+    "id": "dragon-ball-z-bt3",
+    "tid": "BTTD00010",
+    "n": "Dragon Ball Z: BT3",
+    "d": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3, based on Tenkaichi3Decomp",
+    "ld": "A native PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3 (PlayStation 2, USA release, SLUS-21678), based on z3xox's Tenkaichi3Decomp, the PC port built on the BT3-Decompiled decompilation. The game's own code is compiled for the Vita, with a renderer for the Vita's GPU (vitaGL), sound, touch and controls written for the handheld. It is not an emulator.\n\n- PsVitaAlive -",
+    "aids": [
+      "arielxflores"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "arcade",
+      "source-port",
+      "other"
+    ],
+    "v": "1.2.4",
+    "vd": "2026-11-19",
+    "req": "- A PS Vita running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (see this guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core. Without it the game runs, but heavy scenes are slower.\n- About 3 GB free on ux0: for the game files",
+    "sz": 6032211,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/arielxflores/Tenkaichi3Decomp-Vita/releases/download/v1.2.4/Tenkaichi3Decomp-Vita.vpk",
+        "sz": 6032211,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files English",
+        "u": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20English%20for%20PSVA.zip",
+        "sz": 3006477107,
+        "xp": "ux0:data/",
+        "ips": [
+          "bt3"
+        ]
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files Latino MOD",
+        "u": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20Latino%20for%20PSVA.zip",
+        "sz": 4294967296,
+        "xp": "ux0:data/",
+        "ips": [
+          "bt3"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/arielxflores/Tenkaichi3Decomp-Vita"
+      }
+    ],
+    "ic": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot.png",
+      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot0.png",
+      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
+      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
+      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
+    ]
+  },
+  {
     "id": "asphalt-6",
     "tid": "ASPHALT06",
     "n": "Asphalt 6",
@@ -128,17 +202,17 @@
       "strategy",
       "source-port"
     ],
-    "v": "0.8.2",
+    "v": "0.8.3",
     "vd": "2026-11-18",
     "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
-    "sz": 9778411,
+    "sz": 9759628,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.2/NFSU2VITA.vpk",
-        "sz": 9778411,
+        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.3/NFSU2VITA.vpk",
+        "sz": 9759628,
         "rec": true
       },
       {
@@ -935,80 +1009,6 @@
     "ic": "https://archive.org/download/celeste-for-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/celeste-for-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "dragon-ball-z-bt3",
-    "tid": "BTTD00010",
-    "n": "Dragon Ball Z: BT3",
-    "d": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3, based on Tenkaichi3Decomp",
-    "ld": "A native PS Vita port of Dragon Ball Z: Budokai Tenkaichi 3 (PlayStation 2, USA release, SLUS-21678), based on z3xox's Tenkaichi3Decomp, the PC port built on the BT3-Decompiled decompilation. The game's own code is compiled for the Vita, with a renderer for the Vita's GPU (vitaGL), sound, touch and controls written for the handheld. It is not an emulator.\n\n- PsVitaAlive -",
-    "aids": [
-      "arielxflores"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "arcade",
-      "source-port",
-      "other"
-    ],
-    "v": "1.2.3",
-    "vd": "2026-11-15",
-    "req": "- A PS Vita running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (see this guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core. Without it the game runs, but heavy scenes are slower.\n- About 3 GB free on ux0: for the game files",
-    "sz": 6028730,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/arielxflores/Tenkaichi3Decomp-Vita/releases/download/v1.2.3/Tenkaichi3Decomp-Vita.vpk",
-        "sz": 6028730,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files English",
-        "u": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20English%20for%20PSVA.zip",
-        "sz": 3006477107,
-        "xp": "ux0:data/",
-        "ips": [
-          "bt3"
-        ]
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files Latino MOD",
-        "u": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/Game%20Files%20Latino%20for%20PSVA.zip",
-        "sz": 4294967296,
-        "xp": "ux0:data/",
-        "ips": [
-          "bt3"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/arielxflores/Tenkaichi3Decomp-Vita"
-      }
-    ],
-    "ic": "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot.png",
-      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot0.png",
-      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
-      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
-      "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
     ]
   },
   {
