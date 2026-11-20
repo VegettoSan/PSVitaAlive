@@ -11,16 +11,16 @@
   "sids": [
     "video-player"
   ],
-  "v": "1.31",
+  "v": "1.32",
   "vd": "2026-11-20",
   "req": "- Wi-Fi connection",
-  "sz": 2215951,
+  "sz": 2221609,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Dexlei/VitaTwitch/releases/download/v1.31/VitaTwitch.vpk",
+      "u": "https://github.com/Dexlei/VitaTwitch/releases/download/v1.32/VitaTwitch.vpk",
       "rec": true
     },
     {
@@ -33,5 +33,6 @@
   "sn": "GitHub",
   "su": "https://github.com/Dexlei/VitaTwitch",
   "rp": "https://github.com/Dexlei/VitaTwitch/releases",
-  "cl": "- First public release"
+  "cl": "- 1.32: fixed channels streaming in fMP4/CMAF format (stuck on loading)
+- 1.31: first public release"
 }
