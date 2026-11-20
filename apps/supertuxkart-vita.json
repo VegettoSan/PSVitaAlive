@@ -13,16 +13,16 @@
     "racing",
     "source-port"
   ],
-  "v": "1.0",
-  "vd": "2026-11-17",
+  "v": "1.01",
+  "vd": "2026-11-18",
   "req": "- libshacccg.suprx\n- Game Files (below)",
-  "sz": 12249623,
+  "sz": 12250864,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/supertuxkart.vpk",
+      "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.01/supertuxkart.vpk",
       "rec": true
     },
     {
@@ -52,5 +52,5 @@
   "sn": "GitHub",
   "su": "https://github.com/edgarlugo/stk-code",
   "rp": "https://github.com/edgarlugo/stk-code/releases",
-  "cl": "- First release"
+  "cl": "- Fixes a crash when going from the story mode overworld to a track with a model of the same name, or back (for example Mines)"
 }
