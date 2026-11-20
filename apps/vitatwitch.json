@@ -1,0 +1,37 @@
+{
+  "id": "vitatwitch",
+  "tid": "VTWI00001",
+  "n": "VitaTwitch",
+  "d": "Twitch client for PS Vita: live streams, login, chat with 7TV emotes.",
+  "ld": "Native Twitch client for PS Vita made with VitaSDK. Watch live streams with the hardware H.264/AAC decoders (480p, 720p and 720p60) with Twitch ads skipped, and log in with your Twitch account using a code on twitch.tv/activate (no password typed on the console).\n\nBrowse your followed channels, the most watched streams and search, with thumbnails. While watching, press Square to show the live chat with Twitch and 7TV emotes and badges (moderator, VIP, subscriber...).\n\nInterface in Spanish. A diagnostic log is written to ux0:data/VitaTwitch/log.txt.",
+  "aids": [
+    "dexlei"
+  ],
+  "cid": "media",
+  "sids": [
+    "video-player"
+  ],
+  "v": "1.31",
+  "vd": "2026-11-20",
+  "req": "- Wi-Fi connection",
+  "sz": 2215951,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Dexlei/VitaTwitch/releases/download/v1.31/VitaTwitch.vpk",
+      "rec": true
+    },
+    {
+      "t": "Repository",
+      "n": "Source",
+      "u": "https://github.com/Dexlei/VitaTwitch"
+    }
+  ],
+  "ic": "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png",
+  "sn": "GitHub",
+  "su": "https://github.com/Dexlei/VitaTwitch",
+  "rp": "https://github.com/Dexlei/VitaTwitch/releases",
+  "cl": "- First public release"
+}
