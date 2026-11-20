@@ -14,17 +14,17 @@
     "source-port",
     "other"
   ],
-  "v": "1.2.4",
-  "vd": "2026-11-19",
+  "v": "1.3",
+  "vd": "2026-11-20",
   "req": "- A PS Vita running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (see this guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core. Without it the game runs, but heavy scenes are slower.\n- About 3 GB free on ux0: for the game files",
-  "sz": 6032211,
+  "sz": 6104994,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/arielxflores/Tenkaichi3Decomp-Vita/releases/download/v1.2.4/Tenkaichi3Decomp-Vita.vpk",
-      "sz": 6032211,
+      "u": "https://github.com/arielxflores/Tenkaichi3Decomp-Vita/releases/download/v1.3/Tenkaichi3Decomp-Vita.vpk",
+      "sz": 6104994,
       "rec": true
     },
     {
