@@ -16,7 +16,7 @@
   ],
   "v": "1.2",
   "vd": "2026-11-20",
-  "req": "- PlayStation Vita with compatible custom firmware.\n- libshacccg.suprx.\n- Original Windows PC copy of Silent Hill 3.",
+  "req": "- PlayStation Vita with compatible custom firmware.\n- libshacccg.suprx.\n- Original Windows PC copy of Silent Hill 3.\n- sh3prep to prepare the required game data.",
   "sz": 25480397,
   "st": "Verified",
   "l": [
@@ -24,15 +24,15 @@
       "t": "Download",
       "n": "VPK",
       "u": "https://github.com/matfsouza/sh3vita/releases/download/v1.2/sh3vita.vpk",
-      "sz": 25480397
+      "sz": 25480397,
+      "rec": true
     },
     {
       "t": "Data Files",
       "n": "DATA FILES",
       "u": "https://archive.org/download/data-files_202611/DATA%20FILES.zip",
       "sz": 5239860101,
-      "xp": "ux0:data/",
-      "rec": true
+      "xp": "ux0:data/"
     },
     {
       "t": "Repository",
@@ -41,7 +41,7 @@
     }
   ],
   "dr": 1,
-  "ic": "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/icon0.png?utm_source=chatgpt.com",
+  "ic": "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/icon0.png",
   "ss": [
     "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot0.png",
     "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot1.png",
