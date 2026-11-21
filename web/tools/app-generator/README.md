@@ -93,6 +93,8 @@ The main **Authors & category** search accepts names, author IDs, and account/re
 
 - **First priority:** extract the account username from the pasted URL (for example, `github.com/DevName/project` → `DevName`) and compare it against existing author **IDs**, case-insensitively, including the normalized ID format. This uses the already-loaded official authors and locally created/imported profiles.
 - **Only if no ID matches:** try the exact saved GitHub/GitLab link, then linked account, then author display name. Potential matches are displayed for confirmation, never silently selected. The ID-first lookup prevents a secondary link match from outranking an existing ID.
+- **Typo-tolerant suggestions:** when no confident match exists, compare the username (for URLs) or entered text (for manual searches) against existing IDs and display names, plus same-provider linked account names for URLs. The search ignores case, accents and separators, and catches common short misspellings or adjacent swapped letters. Suggestions are labelled **Similar ID**, **Similar name** or **Similar linked account**, and visually differentiated from confirmed matches. Suggestions are not proof of identity and are never auto-selected.
+- **Keep the manual choice:** if the results are only approximate, users can select the correct suggested author **or** choose **Create a different author**; the latter still runs normal duplicate checks for exact IDs/names. Queries shorter than four normalized characters do not trigger fuzzy suggestions, avoiding unrelated results.
 - If no author matches, choose **Create author from this link**. The author dialog opens with the account username and ID, stores the original project link as an editable author link when applicable, and automatically invokes the existing public profile lookup for name/avatar/bio and account URL. This does not submit or publish anything.
 - The account can be detected from a repository URL, but a repository does not prove authorship. On GitLab, the leading namespace may be a group instead of a user; lookup failures leave the form editable and should be reviewed before saving.
 - If the URL/API cannot provide full metadata, all fields remain editable. The normal name/ID search, manual creation and imported JSON reuse still work unchanged.
@@ -103,12 +105,15 @@ The main **Authors & category** search accepts names, author IDs, and account/re
 1. Search by partial name or ID; verify the existing list behaves as before.
 2. Paste `https://github.com/devname/homebrew` when an existing author has ID `devname`, even if its visible name differs; confirm the ID match is offered first and no new author is suggested.
 3. If the username does not match an ID, paste a repository URL already saved in an author's links; verify the matching author is offered and can be selected without creating a duplicate.
-4. Paste a profile URL where the author has a matching account link but a different internal ID; verify the existing profile is offered.
-5. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
-6. Paste a new repository URL; choose **Create author from this link**, verify profile metadata auto-fills and the project link is retained as an editable extra link.
-7. Simulate an API failure or missing profile; verify the username, suggested ID, profile URL and project link remain in the editable dialog.
-8. Create a new author by typing only a name; verify the bio is initially empty and manual links still work.
-9. Export and import author JSON; verify the same compact V2 schema remains intact.
+4. Mistype a name, ID or repository URL username (including adjacent swaps such as `joshau` versus `joshua`); verify that possible matches appear with a clear **Similar** label, without being selected automatically.
+5. Paste a username whose ID is written with different separators (e.g. `cooldev` versus `cool-dev`); verify a suggested match is offered before creating.
+6. Verify that selecting a similar result reuses the existing author, while **Create a different author** still opens an editable new-author form.
+7. Paste a profile URL where the author has a matching account link but a different internal ID; verify the existing profile is offered.
+8. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
+9. Paste a new repository URL; choose **Create author from this link**, verify profile metadata auto-fills and the project link is retained as an editable extra link.
+10. Simulate an API failure or missing profile; verify the username, suggested ID, profile URL and project link remain in the editable dialog.
+11. Create a new author by typing only a name; verify the bio is initially empty and manual links still work.
+12. Export and import author JSON; verify the same compact V2 schema remains intact.
 
 ## Creating authors from GitHub or GitLab
 
