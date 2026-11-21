@@ -543,6 +543,7 @@
         $("new-author-error").textContent = "";
         authorDialogPreviousFocus = document.activeElement;
         dialog.hidden = false;
+        checkAuthorDuplicateInDialog();
         document.body.classList.add("author-dialog-open");
         dialog.dispatchEvent(new Event("author-dialog-open"));
         if (source?.profileUrl && typeof window.autofillAuthorFromUrl === "function") {
@@ -583,16 +584,9 @@
             return null;
         }
 
-        const existingById = getOptions().find(option => option.value === id);
-        if (existingById && !createdAuthors.has(id)) {
-            const existingName = String(existingById.textContent || "").split(" — ")[0].trim();
-            error.textContent = `That author ID already exists (${existingName}). Search for it instead.`;
-            return null;
-        }
-
-        const existingByName = getExistingAuthorByName(name);
-        if (existingByName && !createdAuthors.has(existingByName.id)) {
-            error.textContent = `That author already exists as '${existingByName.name}' (ID: ${existingByName.id}). Search for that profile instead.`;
+        const existing = checkAuthorDuplicateInDialog()[0];
+        if (existing) {
+            error.textContent = `Author already registered: ${existing.name} (ID: ${existing.id}). ${existing.reason}. Select the existing profile instead.`;
             return null;
         }
 
@@ -644,9 +638,16 @@
             <label class="author-link-check"><input class="author-link-recommended" type="checkbox" ${value.recommended ? "checked" : ""}> Recommended</label>
             <button type="button" class="remove-button">Remove</button>`;
         if (value.type) row.querySelector(".author-link-type").value = value.type;
-        row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", () => { $("new-author-error").textContent = ""; }));
-        row.querySelector(".remove-button").addEventListener("click", () => row.remove());
+        row.querySelectorAll("input,select").forEach(element => element.addEventListener("input", () => {
+            $("new-author-error").textContent = "";
+            checkAuthorDuplicateInDialog();
+        }));
+        row.querySelector(".remove-button").addEventListener("click", () => {
+            row.remove();
+            checkAuthorDuplicateInDialog();
+        });
         list.appendChild(row);
+        checkAuthorDuplicateInDialog();
     }
 
     function createLocalAuthor() {
@@ -761,6 +762,15 @@
         }
         if (byName && byName.id !== author.id) {
             throw new Error("Author name '" + author.name + "' already uses ID " + byName.id + ".");
+        }
+        const existing = findAuthorConflicts({
+            id: author.id,
+            name: author.name,
+            urls: (author.links || []).map(link => link.url)
+        })[0];
+        if (existing) {
+            throw new Error("Author already exists as " + existing.name +
+                " (ID: " + existing.id + "). " + existing.reason + ".");
         }
 
         importedAuthors.set(author.id, author);
@@ -919,6 +929,7 @@
                                 <div id="new-author-links" class="author-links-list"></div>
                             </div>
                         </div>
+                        <div id="author-duplicate-panel" class="author-duplicate-panel" role="alert" aria-live="polite" hidden></div>
                         <p id="new-author-error" class="author-create-error" role="alert"></p>
                     </div>
                     <div class="dialog-actions">
@@ -961,6 +972,7 @@
         $("save-author").addEventListener("click", createLocalAuthor);
         $("download-author").addEventListener("click", downloadCreatedAuthorJson);
         $("add-author-link").addEventListener("click", () => addAuthorLinkRow());
+        $("new-author-profile-url").addEventListener("input", checkAuthorDuplicateInDialog);
         $("new-author-name").addEventListener("input", event => {
             const currentId = $("new-author-id").value;
             const previousSlug = slugify(event.target.dataset.previousName || "");
@@ -969,15 +981,18 @@
             }
             event.target.dataset.previousName = event.target.value;
             $("new-author-error").textContent = "";
+            checkAuthorDuplicateInDialog();
         });
         $("new-author-id").addEventListener("input", () => {
             $("new-author-id").dataset.profileSource = "manual";
             $("new-author-error").textContent = "";
+            checkAuthorDuplicateInDialog();
         });
 
         const observer = new MutationObserver(() => {
             renderSelected();
             renderResults($("author-search")?.value || "");
+            checkAuthorDuplicateInDialog();
         });
         observer.observe(select, { childList: true });
 
