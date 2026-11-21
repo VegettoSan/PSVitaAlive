@@ -1807,7 +1807,7 @@
       "version": "v.1.1"
     },
     "MHRE00001": {
-      "version": "0.8.0"
+      "version": "0.9.0"
     },
     "MIDI00001": {
       "version": "v.1.0"
@@ -2036,9 +2036,6 @@
     },
     "NZZMBSPTB": {
       "version": "Nightly"
-    },
-    "OBJECTION": {
-      "version": "1.0"
     },
     "OBJL00001": {
       "version": "v.1.1"
@@ -3013,7 +3010,7 @@
       "version": "v.1.0"
     },
     "SWITCHFIN": {
-      "version": "0.9.5"
+      "version": "0.9.6"
     },
     "SWITCHSDV": {
       "version": "v.2.1"
