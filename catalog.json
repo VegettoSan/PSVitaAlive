@@ -1,5 +1,109 @@
 [
   {
+    "id": "switchfin",
+    "tid": "SWITCHFIN",
+    "n": "Switchfin",
+    "d": "Jellyfin client for PSVITA.",
+    "ld": "Switchfin is a third-party client for Jellyfin that provides a native user interface to browse and play movies and series.",
+    "aids": [
+      "dragonflylee"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "0.9.6",
+    "vd": "2026-11-21",
+    "req": "Not specified",
+    "sz": 17850456,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-switchfin/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-switchfin/shot_01.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_02.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_03.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_04.png",
+      "https://archive.org/download/psvitaalive-switchfin/shot_05.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/dragonflylee/switchfin/releases/download/0.9.6/Switchfin.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/dragonflylee/switchfin"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/dragonflylee/switchfin/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1258",
+    "su": "https://github.com/dragonflylee/switchfin",
+    "rp": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
+    "ua": "2026-08-13T15:34:48.366005+00:00"
+  },
+  {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.9.0",
+    "vd": "2026-11-21",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1804461,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.9.0/manhunt-v0.9.0-vita.vpk",
+        "sz": 1804461,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt3",
     "tid": "BTTD00010",
     "n": "Dragon Ball Z: BT3",
@@ -122,55 +226,6 @@
     "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.8.0",
-    "vd": "2026-11-20",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1769302,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.8.0/manhunt-v0.8.0-vita.vpk",
-        "sz": 1769302,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases"
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
     ]
   },
   {
@@ -2206,61 +2261,6 @@
     "ss": [
       "https://archive.org/download/touhou-12-3-vita/Shot0.png"
     ]
-  },
-  {
-    "id": "switchfin",
-    "tid": "SWITCHFIN",
-    "n": "Switchfin",
-    "d": "Jellyfin client for PSVITA.",
-    "ld": "Switchfin is a third-party client for Jellyfin that provides a native user interface to browse and play movies and series.",
-    "aids": [
-      "dragonflylee"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "0.9.5",
-    "vd": "2026-11-10",
-    "req": "Not specified",
-    "sz": 43118879,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-switchfin/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-switchfin/shot_01.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_02.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_03.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_04.png",
-      "https://archive.org/download/psvitaalive-switchfin/shot_05.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/dragonflylee/switchfin/releases/download/0.9.5/Switchfin.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/dragonflylee/switchfin"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/dragonflylee/switchfin/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1258",
-    "su": "https://github.com/dragonflylee/switchfin",
-    "rp": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
-    "ua": "2026-08-13T15:34:48.366005+00:00"
   },
   {
     "id": "bloodbornepsx-v",
