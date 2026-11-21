@@ -104,11 +104,11 @@ The main **Authors & category** search accepts names, author IDs, and account/re
 2. Paste `https://github.com/devname/homebrew` when an existing author has ID `devname`, even if its visible name differs; confirm the ID match is offered first and no new author is suggested.
 3. If the username does not match an ID, paste a repository URL already saved in an author's links; verify the matching author is offered and can be selected without creating a duplicate.
 4. Paste a profile URL where the author has a matching account link but a different internal ID; verify the existing profile is offered.
-9. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
-5. Paste a new repository URL; choose **Create author from this link**, verify profile metadata auto-fills and the project link is retained as an editable extra link.
-6. Simulate an API failure or missing profile; verify the username, suggested ID, profile URL and project link remain in the editable dialog.
-7. Create a new author by typing only a name; verify the bio is initially empty and manual links still work.
-8. Export and import author JSON; verify the same compact V2 schema remains intact.
+5. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
+6. Paste a new repository URL; choose **Create author from this link**, verify profile metadata auto-fills and the project link is retained as an editable extra link.
+7. Simulate an API failure or missing profile; verify the username, suggested ID, profile URL and project link remain in the editable dialog.
+8. Create a new author by typing only a name; verify the bio is initially empty and manual links still work.
+9. Export and import author JSON; verify the same compact V2 schema remains intact.
 
 ## Creating authors from GitHub or GitLab
 
