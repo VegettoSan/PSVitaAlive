@@ -15,15 +15,22 @@ function sliceFunction(start, end) {
     return source.slice(from, to);
 }
 
+// Import validation now reuses the same real duplicate-detection helpers as
+// the author-creation modal. Include their dependencies in this VM harness.
 const rawFunctions = [
+    sliceFunction("    const HOSTED_PROFILE_DOMAINS = new Set(", "    function normalizeHostedLink(value) {"),
+    sliceFunction("    function slugify(value) {", "    function getExistingAuthorByName(name) {"),
+    sliceFunction("    function duplicateLinkKey(value) {", "    function getDraftAuthorConflicts() {"),
     sliceFunction("    function parseImportedAuthorProfile(value) {", "    function registerImportedAuthor(author) {"),
     sliceFunction("    function registerImportedAuthor(author) {", "    async function importAuthorFiles(event) {")
 ].join("\n");
 
-function harness() {
+function harness(publishedAuthors = []) {
     const createdAuthors = new Map();
     const importedAuthors = new Map();
-    const options = [];
+    const options = publishedAuthors.map(author => ({
+        value: author.id, textContent: author.name + " — " + author.id, selected: false
+    }));
     const select = { options, appendChild: option => options.push(option) };
     let renders = 0;
     const normalized = value => String(value || "").toLowerCase().trim();
@@ -41,7 +48,9 @@ function harness() {
     };
     const context = {
         createdAuthors, importedAuthors, select, getOptions, selectedIds, getExistingAuthorByName,
-        normalizeAuthorName: normalized, syncHiddenSelect, renderSelected, isHttpUrl,
+        syncHiddenSelect, renderSelected, isHttpUrl, URL,
+        AUTHOR_FALLBACK: "https://example.org/fallback.png",
+        window: { getGeneratorAuthorProfiles: () => publishedAuthors },
         document: { createElement: tag => {
             assert.equal(tag, "option");
             return { value: "", textContent: "", selected: false };
@@ -119,10 +128,36 @@ test("published author with matching ID is selected but is not imported again", 
     assert.equal(h.importedAuthors.size, 0);
 });
 
+test("import cannot register a second author with an already published profile link", () => {
+    const h = harness([{
+        id: "existing-author", name: "Existing Author",
+        links: [{ type: "Repository", name: "GitHub", url: "https://github.com/existing-author" }]
+    }]);
+    assert.throws(() => h.api.registerImportedAuthor({
+        ...example(), id: "duplicate-author", name: "Different Name",
+        links: [{ type: "Repository", name: "Account", url: "https://github.com/existing-author/" }]
+    }), /Same registered link/);
+    assert.equal(h.importedAuthors.size, 0);
+});
+
+test("separate imported profiles cannot silently reuse the same repository URL", () => {
+    const h = harness();
+    h.api.registerImportedAuthor({
+        ...example(), id: "first", name: "First Developer",
+        links: [{ type: "Repository", name: "Project", url: "https://github.com/code/project" }]
+    });
+    assert.throws(() => h.api.registerImportedAuthor({
+        ...example(), id: "second", name: "Second Developer",
+        links: [{ type: "Repository", name: "Project", url: "https://github.com/code/project.git" }]
+    }), /Same registered link/);
+    assert.equal(h.importedAuthors.size, 1);
+});
+
 test("app export downloads only newly created authors, not imported author profiles", () => {
     assert.match(source, /window\.getCreatedAuthorProfiles = \(\) => selectedIds\(\)\.map\(id => createdAuthors\.get\(id\)\)/);
     assert.match(source, /window\.getSelectedImportedAuthorIds =/);
     assert.match(source, /window\.restoreImportedAuthorSelection =/);
     assert.match(source, /window\.restoreLocalAuthorOptions =/);
+    assert.match(source, /window\.resetAuthorPickerSession =/);
     assert.match(source, /id="import-author-json"/);
 });
