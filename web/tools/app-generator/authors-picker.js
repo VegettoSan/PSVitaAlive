@@ -149,25 +149,33 @@
         $("new-author-name").value = searchName;
         $("new-author-id").value = slugify(searchName);
         $("new-author-avatar").value = AUTHOR_FALLBACK;
-        $("new-author-icon").value = AUTHOR_FALLBACK;
-        $("new-author-bio").value = "";
+        $("new-author-bio").value = "Developer";
+        $("new-author-profile-url").value = "";
+        $("new-author-lookup-status").textContent = "";
+        $("new-author-lookup-status").dataset.state = "";
+        $("new-author-name").dataset.previousName = searchName;
         $("new-author-links").innerHTML = "";
         addAuthorLinkRow();
         $("new-author-error").textContent = "";
         dialog.hidden = false;
-        $("new-author-name").focus();
+        document.body.classList.add("author-dialog-open");
+        dialog.dispatchEvent(new Event("author-dialog-open"));
+        $("new-author-profile-url").focus();
     }
 
     function closeCreateDialog() {
         const dialog = $("new-author-dialog");
-        if (dialog) dialog.hidden = true;
+        if (dialog) {
+            dialog.hidden = true;
+            dialog.dispatchEvent(new Event("author-dialog-close"));
+        }
+        document.body.classList.remove("author-dialog-open");
     }
 
     function validateAuthorForm() {
         const name = $("new-author-name").value.trim();
         const id = $("new-author-id").value.trim() || slugify(name);
         const avatar = $("new-author-avatar").value.trim();
-        const icon = $("new-author-icon").value.trim();
         const error = $("new-author-error");
         error.textContent = "";
 
@@ -193,11 +201,9 @@
             return null;
         }
 
-        for (const [label, url] of [["Avatar", avatar], ["Icon", icon]]) {
-            if (url && !isHttpUrl(url)) {
-                error.textContent = `${label} must use an http:// or https:// URL.`;
-                return null;
-            }
+        if (avatar && !isHttpUrl(avatar)) {
+            error.textContent = "Avatar must use an http:// or https:// URL.";
+            return null;
         }
         const links = getAuthorLinks();
         const recommended = links.filter(link => link.recommended).length;
@@ -220,9 +226,8 @@
             id,
             name,
             avatar: avatar || AUTHOR_FALLBACK,
-            bio: $("new-author-bio").value.trim(),
-            links,
-            icon: icon || AUTHOR_FALLBACK
+            bio: $("new-author-bio").value.trim() || "Developer",
+            links
         };
     }
 
@@ -471,28 +476,77 @@
             <p id="author-import-status" class="author-import-status" role="status" aria-live="polite"></p>
             <p id="author-create-note" class="author-create-note"></p>
             <div id="new-author-dialog" class="new-author-dialog" hidden>
-                <div class="new-author-dialog-card" role="dialog" aria-modal="true" aria-labelledby="new-author-title">
-                    <h3 id="new-author-title">Create author profile</h3>
-                    <p>Fill in the author profile. If you create a new author, the final generator download will include the author JSON and the application JSON.</p>
-                    <div class="author-dialog-grid">
-                        <label>Author name<input id="new-author-name" type="text" required></label>
-                        <label>Author ID<input id="new-author-id" type="text" placeholder="generated-from-name" required></label>
-                        <label>Avatar URL<input id="new-author-avatar" type="url" placeholder="https://example.org/avatar.png"></label>
-                        <label>Icon URL<input id="new-author-icon" type="url" placeholder="https://example.org/icon.png"></label>
-                        <label class="author-dialog-full">Bio<textarea id="new-author-bio" rows="4" placeholder="Short author biography..."></textarea></label>
-                        <div class="author-dialog-full">
-                            <div class="author-links-heading"><strong>Author links</strong><button id="add-author-link" type="button" class="small-button">+ Add link</button></div>
-                            <div id="new-author-links" class="author-links-list"></div>
+                <div class="new-author-dialog-card" role="dialog" aria-modal="true" aria-labelledby="new-author-title" aria-describedby="new-author-desc">
+                    <div class="author-dialog-header">
+                        <div>
+                            <span class="author-dialog-eyebrow">AUTHOR PROFILE</span>
+                            <h3 id="new-author-title">Create new author</h3>
+                            <p id="new-author-desc">Import a public GitHub or GitLab profile, or enter the details manually.</p>
                         </div>
+                        <button id="close-author-dialog" class="author-dialog-close" type="button" aria-label="Close author dialog">&times;</button>
                     </div>
-                    <p id="new-author-error" class="author-create-error"></p>
-                    <div class="dialog-actions"><button id="cancel-author" type="button" class="small-button">Cancel</button><button id="save-author" type="button" class="small-button primary-small-button">Add author</button><button id="download-author" type="button" class="small-button">Download author JSON</button></div>
+                    <div class="author-dialog-body">
+                        <section class="author-lookup-panel" aria-label="Import public developer profile">
+                            <label for="new-author-profile-url">GitHub / GitLab profile URL</label>
+                            <div class="author-lookup-controls">
+                                <input id="new-author-profile-url" type="url" inputmode="url" autocomplete="off" placeholder="https://github.com/username">
+                                <button id="lookup-author-profile" type="button" class="small-button">Auto-fill</button>
+                            </div>
+                            <p class="author-lookup-help">Paste a public user profile URL to fill the details automatically. Review all fields before saving.</p>
+                            <p id="new-author-lookup-status" class="author-lookup-status" role="status" aria-live="polite"></p>
+                        </section>
+                        <div class="author-profile-preview">
+                            <img id="new-author-avatar-preview" src="https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png" alt="Author avatar preview" width="64" height="64">
+                            <div class="author-preview-meta">
+                                <strong id="new-author-name-preview">New author</strong>
+                                <span id="new-author-id-preview">Profile details</span>
+                            </div>
+                            <span class="author-profile-tag">PREVIEW</span>
+                        </div>
+                        <div class="author-dialog-grid">
+                            <label for="new-author-name">Display name <span class="author-required">*</span>
+                                <input id="new-author-name" type="text" maxlength="120" required placeholder="Developer name">
+                            </label>
+                            <label for="new-author-id">Author ID <span class="author-required">*</span>
+                                <input id="new-author-id" type="text" maxlength="80" placeholder="developer-username" required>
+                            </label>
+                            <label class="author-dialog-full" for="new-author-avatar">Avatar URL
+                                <input id="new-author-avatar" type="url" placeholder="https://example.org/avatar.png">
+                            </label>
+                            <label class="author-dialog-full" for="new-author-bio">Biography
+                                <textarea id="new-author-bio" rows="3" placeholder="Developer"></textarea>
+                            </label>
+                            <div class="author-dialog-full author-links-section">
+                                <div class="author-links-heading">
+                                    <div><strong>Profile links</strong><small>Public links shown on the author page</small></div>
+                                    <button id="add-author-link" type="button" class="small-button">+ Add link</button>
+                                </div>
+                                <div id="new-author-links" class="author-links-list"></div>
+                            </div>
+                        </div>
+                        <p id="new-author-error" class="author-create-error" role="alert"></p>
+                    </div>
+                    <div class="dialog-actions">
+                        <button id="cancel-author" type="button" class="small-button">Cancel</button>
+                        <button id="download-author" type="button" class="small-button">Download author JSON</button>
+                        <button id="save-author" type="button" class="small-button primary-small-button">Add author</button>
+                    </div>
                 </div>
             </div>`;
 
         $("author-search").addEventListener("input", event => renderResults(event.target.value));
         $("import-author-json").addEventListener("change", importAuthorFiles);
         $("cancel-author").addEventListener("click", closeCreateDialog);
+        $("close-author-dialog").addEventListener("click", closeCreateDialog);
+        $("new-author-dialog").addEventListener("click", event => {
+            if (event.target === $("new-author-dialog")) closeCreateDialog();
+        });
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && !$("new-author-dialog").hidden) {
+                event.preventDefault();
+                closeCreateDialog();
+            }
+        });
         $("save-author").addEventListener("click", createLocalAuthor);
         $("download-author").addEventListener("click", downloadCreatedAuthorJson);
         $("add-author-link").addEventListener("click", () => addAuthorLinkRow());
