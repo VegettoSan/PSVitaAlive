@@ -30,6 +30,11 @@
         mode: "create"
     };
 
+    // Read-only access to the official, already-loaded author metadata.
+    // The picker uses links to detect accounts and repositories without a second fetch.
+    window.getGeneratorAuthorProfiles = () => state.authors;
+    window.isGeneratorCatalogReady = () => state.ready;
+
     const $ = (id) => document.getElementById(id);
 
     function today() {
