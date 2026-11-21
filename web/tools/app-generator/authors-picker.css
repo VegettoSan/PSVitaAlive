@@ -541,6 +541,7 @@ body.author-dialog-open {
     font-size: .88rem;
     line-height: 1.45;
     overflow-wrap: anywhere;
+    order: -3;
 }
 
 .dialog-actions #existing-author-choice {
@@ -554,6 +555,7 @@ body.author-dialog-open {
     color: #fff;
     font: inherit;
     font-size: .9rem;
+    order: -2;
 }
 
 .dialog-actions #use-existing-author {
