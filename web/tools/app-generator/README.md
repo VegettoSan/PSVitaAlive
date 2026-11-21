@@ -99,6 +99,8 @@ Paste a public **user profile** URL such as `https://github.com/octocat` or `htt
 - **Biography:** the publicly available bio, or the exact fallback `Developer`.
 - **Profile link:** one recommended link with `type: "Repository"`, `name: "GitHub"` or `"GitLab"`, and the profile URL.
 
+**Manual entry remains unchanged:** if the profile URL field is empty, the form never calls an API. Name and ID can be entered as before; the bio starts empty and may be left empty. The `Developer` fallback is only applied when autofill is attempted and the biography is unavailable. If the API is unavailable or rejects a lookup, the entered account URL and inferred username can still prefill the matching fields while the remaining fields stay editable. Nothing is automatically published or verified.
+
 All fields are editable before the author JSON is created. The redundant separate **Icon URL** field was removed; the official `avatar` field is used and the catalog normalizer can derive any legacy icon fallback. The editor still accepts older imported author JSON files containing `icon`, and exports compact V2 keys like `av`, `b`, `l` and `rec`.
 
 The URL must identify a public **user profile**, not a repository, project or unsupported hostname. Existing author IDs are flagged to avoid duplicates. Remote API errors, missing profiles or rate limits do not prevent manual author creation. GitLab's unauthenticated API may not expose the user's biography, in which case the editor uses `Developer` and keeps the bio field editable. Autofill is informational and does **not** prove developer ownership or publish an author automatically. Final review and GitHub Actions validation still apply.
