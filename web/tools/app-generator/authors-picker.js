@@ -407,6 +407,101 @@
         }));
     }
 
+    // Strict URL identity check; never infer a duplicate from a similar repository owner.
+    function duplicateLinkKey(value) {
+        try {
+            const url = new URL(String(value || "").trim());
+            if (!["https:", "http:"].includes(url.protocol) || url.username || url.password) return "";
+            let host = url.hostname.toLowerCase();
+            if (host.startsWith("www.")) host = host.slice(4);
+            let pathname = url.pathname.toLowerCase();
+            while (pathname.length > 1 && pathname.endsWith("/")) pathname = pathname.slice(0, -1);
+            if (pathname.endsWith(".git")) pathname = pathname.slice(0, -4);
+            const profile = parseAuthorSearchLink(url.href);
+            const accountRoot = profile && !profile.error && !profile.repositoryUrl;
+            return host + (url.port ? ":" + url.port : "") + pathname + (accountRoot ? "" : url.search);
+        } catch {
+            return "";
+        }
+    }
+
+    function findAuthorConflicts(draft) {
+        const id = String(draft.id || "").trim().toLowerCase();
+        const name = normalizeAuthorName(draft.name);
+        const nameSlug = slugify(draft.name || "");
+        const urls = new Set((draft.urls || []).map(duplicateLinkKey).filter(Boolean));
+        const profiles = authorProfileMetadata();
+        const matches = [];
+        for (const option of getOptions()) {
+            const existing = profiles.get(option.value);
+            const existingId = option.value;
+            const existingName = String(existing?.name ||
+                String(option.textContent || "").split(" — ")[0]).trim();
+            const idMatch = Boolean(id && existingId.toLowerCase() === id);
+            const nameMatch = Boolean(name && (normalizeAuthorName(existingName) === name ||
+                (nameSlug.length >= 3 && slugify(existingName) === nameSlug)));
+            const crossMatch = Boolean(
+                (nameSlug.length >= 3 && existingId.toLowerCase() === nameSlug) ||
+                (id.length >= 3 && slugify(existingName) === id));
+            const linkMatch = Boolean(urls.size && Array.isArray(existing?.links) &&
+                existing.links.some(link => link?.url && urls.has(duplicateLinkKey(link.url))));
+            const reason = idMatch ? "Same author ID" : nameMatch ? "Same author name" :
+                crossMatch ? "Name/ID matches an existing profile" :
+                linkMatch ? "Same registered link" : "";
+            if (!reason) continue;
+            matches.push({
+                id: existingId,
+                name: existingName || existingId,
+                avatar: existing?.avatar || existing?.icon || AUTHOR_FALLBACK,
+                reason,
+                rank: idMatch ? 0 : nameMatch ? 1 : crossMatch ? 2 : 3
+            });
+        }
+        return matches.sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name));
+    }
+
+    function getDraftAuthorConflicts() {
+        return findAuthorConflicts({
+            id: $("new-author-id").value.trim() || slugify($("new-author-name").value.trim()),
+            name: $("new-author-name").value.trim(),
+            urls: [$("new-author-profile-url").value.trim(), ...getAuthorLinks().map(link => link.url)]
+        });
+    }
+
+    function selectExistingAuthorFromDialog(id) {
+        if (!getOptions().some(option => option.value === id)) return;
+        syncHiddenSelect([...new Set([...selectedIds(), id])]);
+        renderSelected();
+        $("author-search").value = "";
+        renderResults("");
+        closeCreateDialog();
+    }
+
+    function checkAuthorDuplicateInDialog() {
+        const dialog = $("new-author-dialog");
+        if (!dialog || dialog.hidden) return [];
+        const matches = getDraftAuthorConflicts();
+        const panel = $("author-duplicate-panel");
+        panel.hidden = matches.length === 0;
+        panel.innerHTML = matches.length ? 
+            '<strong>This author already exists — creation is blocked.</strong>' +
+            '<p>Select the existing author instead of registering another profile.</p>' +
+            matches.slice(0, 4).map(match =>
+                '<div class="author-duplicate-card">' +
+                    '<img alt="" width="44" height="44" src="' + escapeHtml(isHttpUrl(match.avatar) ? match.avatar : AUTHOR_FALLBACK) + '">' +
+                    '<div class="author-duplicate-meta"><strong>' + escapeHtml(match.name) + '</strong>' +
+                    '<span>ID: ' + escapeHtml(match.id) + ' · ' + escapeHtml(match.reason) + '</span></div>' +
+                    '<button type="button" data-select-existing-author="' + escapeHtml(match.id) + '">Use existing author</button>' +
+                '</div>').join("") : "";
+        panel.querySelectorAll("[data-select-existing-author]").forEach(button =>
+            button.addEventListener("click", () => selectExistingAuthorFromDialog(button.dataset.selectExistingAuthor)));
+        $("save-author").disabled = matches.length > 0;
+        $("download-author").disabled = matches.length > 0;
+        return matches;
+    }
+
+    window.checkAuthorDuplicateInDialog = checkAuthorDuplicateInDialog;
+
     function getAuthorLinks() {
         return [...document.querySelectorAll(".author-link-item")].map(row => {
             const type = row.querySelector(".author-link-type").value;
