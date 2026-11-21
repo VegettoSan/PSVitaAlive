@@ -173,6 +173,99 @@
         return null;
     }
 
+    // Similarity is advisory only; never select or merge authors automatically.
+    function authorSearchKey(value) {
+        return slugify(value || "").replace(/-/g, "");
+    }
+
+    function editDistanceWithTransposition(a, b) {
+        // Optimal string alignment: insertions, deletions, substitutions and adjacent swaps.
+        let previousPrevious = null;
+        let previous = Array.from({ length: b.length + 1 }, (_, i) => i);
+        for (let i = 1; i <= a.length; i++) {
+            const current = [i];
+            for (let j = 1; j <= b.length; j++) {
+                const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+                let distance = Math.min(previous[j] + 1,
+                    current[j - 1] + 1, previous[j - 1] + cost);
+                if (i > 1 && j > 1 &&
+                    a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+                    distance = Math.min(distance, previousPrevious[j - 2] + 1);
+                }
+                current[j] = distance;
+            }
+            previousPrevious = previous;
+            previous = current;
+        }
+        return previous[b.length];
+    }
+
+    function possibleAuthorTypo(query, candidate) {
+        const a = authorSearchKey(query);
+        const b = authorSearchKey(candidate);
+        // Very short queries produce too many false positives.
+        if (a.length < 4 || b.length < 4) return null;
+        const maxDistance = a.length <= 4 ? 1 : a.length <= 8 ? 2 : 3;
+        if (Math.abs(a.length - b.length) > maxDistance) return null;
+        const distance = editDistanceWithTransposition(a, b);
+        if (distance === 0 || distance > maxDistance ||
+            distance / Math.max(a.length, b.length) > 0.30) return null;
+        return distance;
+    }
+
+    function fuzzyAuthorMatches(query, options, profiles, provider = "") {
+        const matches = [];
+        for (const option of options) {
+            const name = String(option.textContent || "").split(" — ")[0].trim();
+            const candidates = [
+                { value: option.value, reason: "Similar ID", rank: 0 },
+                { value: name, reason: "Similar name", rank: 1 }
+            ];
+            if (provider) {
+                const author = profiles.get(option.value);
+                for (const link of Array.isArray(author?.links) ? author.links : []) {
+                    const account = parseAuthorSearchLink(link?.url);
+                    if (account && !account.error && account.provider === provider) {
+                        candidates.push({ value: account.username, reason: "Similar linked account", rank: 2 });
+                    }
+                }
+            }
+            let closest = null;
+            for (const candidate of candidates) {
+                const distance = possibleAuthorTypo(query, candidate.value);
+                if (distance === null) continue;
+                if (!closest || distance < closest.distance ||
+                    (distance === closest.distance && candidate.rank < closest.rank)) {
+                    closest = { option, reason: candidate.reason, rank: candidate.rank,
+                        distance, similar: true };
+                }
+            }
+            if (closest) matches.push(closest);
+        }
+        return matches.sort((a, b) => a.distance - b.distance ||
+            a.rank - b.rank || a.option.textContent.localeCompare(b.option.textContent)).slice(0, 8);
+    }
+
+    function findExistingAuthorsFromText(query) {
+        const needle = query.trim().toLocaleLowerCase();
+        const normalized = normalizeAuthorName(query);
+        const matches = getOptions().map(option => {
+            const id = option.value.toLocaleLowerCase();
+            const name = String(option.textContent || "").split(" — ")[0].trim();
+            const lowerName = name.toLocaleLowerCase();
+            if (id === needle) return { option, rank: 0, reason: "Exact ID" };
+            if (normalizeAuthorName(name) === normalized) return { option, rank: 1, reason: "Exact name" };
+            if (id.includes(needle)) return { option, rank: 2, reason: "" };
+            if (lowerName.includes(needle)) return { option, rank: 3, reason: "" };
+            return null;
+        }).filter(Boolean);
+        if (matches.length) {
+            return matches.sort((a, b) => a.rank - b.rank ||
+                a.option.textContent.localeCompare(b.option.textContent));
+        }
+        return fuzzyAuthorMatches(query, getOptions(), authorProfileMetadata());
+    }
+
     function findExistingAuthorsFromUrl(source) {
         const options = getOptions();
 
@@ -187,8 +280,12 @@
             .filter(Boolean);
         if (byLink.length) return byLink.sort((a, b) => a.rank - b.rank);
 
-        return options.map(option => authorNameMatches(option, source))
+        const byName = options.map(option => authorNameMatches(option, source))
             .filter(Boolean);
+        if (byName.length) return byName;
+
+        // No confirmed ID, link or name match: show possible typos for review.
+        return fuzzyAuthorMatches(source.username, options, profiles, source.provider);
     }
 
     function renderResults(query = "") {
@@ -214,30 +311,37 @@
         if (hosted) {
             matches = findExistingAuthorsFromUrl(hosted);
         } else {
-            matches = getOptions().filter(option =>
-                option.textContent.toLocaleLowerCase().includes(needle) ||
-                option.value.toLocaleLowerCase().includes(needle)
-            ).map(option => ({ option, reason: "" }));
+            matches = findExistingAuthorsFromText(trimmed);
         }
 
+        const tentative = matches.length > 0 && matches.every(item => item.similar);
         const available = matches.filter(item => !selected.has(item.option.value));
         const listed = available.slice(0, 12);
         const matchedSelected = matches.length > 0 && available.length === 0;
         const found = listed.map(item => `<button type="button" class="author-result" data-author-id="${escapeHtml(item.option.value)}"><strong>${escapeHtml(item.option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(item.option.value)}${item.reason ? " · " + escapeHtml(item.reason) : ""}</small></button>`).join("");
 
         if (hosted) {
-            const info = matches.length
-                ? (matchedSelected ? "This author is already selected." : "Existing author found. Select the correct profile:")
-                : "No existing author matched this link or account. You can create a profile.";
+            const info = tentative
+                ? "Similar authors found. Please review them before creating a new profile."
+                : matches.length
+                    ? (matchedSelected ? "This author is already selected." : "Existing author found. Select the correct profile:")
+                    : "No existing author matched this link or account. You can create a profile.";
             const warning = typeof window.isGeneratorCatalogReady === "function" &&
                 !window.isGeneratorCatalogReady()
                 ? '<p class="author-link-search-note">The official author catalog has not loaded; duplicates cannot be fully checked yet.</p>'
                 : "";
+            const allowCreate = !matches.length || tentative;
             results.innerHTML = `<div class="author-empty">${escapeHtml(info)}</div>${found}${warning}` +
-                (!matches.length ? `<div class="author-create-actions">
-                    <button id="create-author" type="button" class="small-button">+ Create author from this link</button>
+                (allowCreate ? `<div class="author-create-actions">
+                    <button id="create-author" type="button" class="small-button">+ ${tentative ? "Create a different author" : "Create author from this link"}</button>
                 </div>` : "");
-            if (!matches.length) $("create-author").addEventListener("click", () => showCreateDialog(hosted));
+            if (allowCreate) $("create-author").addEventListener("click", () => showCreateDialog(hosted));
+        } else if (tentative) {
+            results.innerHTML = `<div class="author-empty">Did you mean one of these authors? Check before creating a new profile.</div>${found}
+                <div class="author-create-actions">
+                    <button id="create-author" type="button" class="small-button">+ Create a different author</button>
+                </div>`;
+            $("create-author").addEventListener("click", () => showCreateDialog());
         } else if (available.length) {
             results.innerHTML = found;
         } else if (matches.length) {
