@@ -94,6 +94,15 @@
     text-align: left;
 }
 
+.author-result-similar {
+    border-left: 3px solid var(--accent, #3bff00);
+    background: rgba(59, 255, 0, 0.055);
+}
+
+.author-result-similar small {
+    color: #d2efc9;
+}
+
 .author-result strong {
     color: #fff;
 }
