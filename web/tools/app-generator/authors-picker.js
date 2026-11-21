@@ -855,6 +855,37 @@
         createdAuthors.clear();
         if (typeof window.refreshAuthorPicker === "function") window.refreshAuthorPicker();
     };
+
+    // A new application is a fresh session: no author drafts, imports or selections
+    // should carry over. Keep official catalog options available but unselected.
+    window.resetAuthorPickerSession = () => {
+        if ($("new-author-dialog") && !$("new-author-dialog").hidden) closeCreateDialog();
+
+        const published = new Set(
+            (typeof window.getGeneratorAuthorProfiles === "function"
+                ? window.getGeneratorAuthorProfiles() : [])
+                .map(author => author.id)
+        );
+        const localIds = new Set([...createdAuthors.keys(), ...importedAuthors.keys()]);
+        getOptions().forEach(option => {
+            option.selected = false;
+            if (localIds.has(option.value) && !published.has(option.value)) {
+                option.remove();
+            }
+        });
+        createdAuthors.clear();
+        importedAuthors.clear();
+
+        if ($("author-search")) $("author-search").value = "";
+        if ($("import-author-json")) $("import-author-json").value = "";
+        if ($("author-import-status")) {
+            $("author-import-status").textContent = "";
+            $("author-import-status").classList.remove("import-error");
+        }
+        syncHiddenSelect([]);
+        renderSelected();
+        renderResults("");
+    };
     window.downloadAuthorProfiles = (authors) => {
         authors.forEach(author => downloadBlob(`${author.id}.json`, author));
     };
