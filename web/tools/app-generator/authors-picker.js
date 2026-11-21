@@ -484,14 +484,14 @@
         const panel = $("author-duplicate-panel");
         panel.hidden = matches.length === 0;
         panel.innerHTML = matches.length ? 
-            '<strong>This author already exists — creation is blocked.</strong>' +
-            '<p>Select the existing author instead of registering another profile.</p>' +
+            '<strong>This author is already registered.</strong>' +
+            '<p>Would you like to use this existing author for the application? Creating or downloading a duplicate author JSON is disabled, but reusing the registered profile is allowed.</p>' +
             matches.slice(0, 4).map(match =>
                 '<div class="author-duplicate-card">' +
                     '<img alt="" width="44" height="44" src="' + escapeHtml(isHttpUrl(match.avatar) ? match.avatar : AUTHOR_FALLBACK) + '">' +
                     '<div class="author-duplicate-meta"><strong>' + escapeHtml(match.name) + '</strong>' +
                     '<span>ID: ' + escapeHtml(match.id) + ' · ' + escapeHtml(match.reason) + '</span></div>' +
-                    '<button type="button" data-select-existing-author="' + escapeHtml(match.id) + '">Use existing author</button>' +
+                    '<button type="button" data-select-existing-author="' + escapeHtml(match.id) + '">Yes, use this author</button>' +
                 '</div>').join("") : "";
         panel.querySelectorAll("[data-select-existing-author]").forEach(button =>
             button.addEventListener("click", () => selectExistingAuthorFromDialog(button.dataset.selectExistingAuthor)));
