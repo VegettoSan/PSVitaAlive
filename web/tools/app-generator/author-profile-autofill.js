@@ -212,6 +212,7 @@
             const avatar = isImageUrl(data.avatar) ? data.avatar : DEFAULT_AVATAR;
             setField("new-author-name", name);
             setField("new-author-id", id);
+            $("new-author-id").dataset.profileSource = "profile";
             setField("new-author-avatar", avatar);
             setField("new-author-bio", bio);
             ensureProfileLink(profile, data.url);
