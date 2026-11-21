@@ -13,17 +13,17 @@
     "strategy",
     "engine-port"
   ],
-  "v": "0.8.0",
-  "vd": "2026-11-20",
+  "v": "0.9.0",
+  "vd": "2026-11-21",
   "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-  "sz": 1769302,
+  "sz": 1804461,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.8.0/manhunt-v0.8.0-vita.vpk",
-      "sz": 1769302,
+      "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.9.0/manhunt-v0.9.0-vita.vpk",
+      "sz": 1804461,
       "rec": true
     },
     {
