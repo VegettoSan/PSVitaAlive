@@ -91,7 +91,8 @@ The application-level **Main file size (VPK)** remains required. The per-link \`
 
 The main **Authors & category** search accepts names, author IDs, and account/repository URLs. Paste a URL such as `github.com/example-dev`, `https://github.com/example-dev/vita-project` or `https://gitlab.com/example-dev/port`.
 
-- The picker checks the loaded official author profiles and locally created/imported profiles. An **exact saved link** is preferred, followed by a matching linked account, then the username matching an existing author ID or name. Potential matches are displayed for confirmation, not silently selected.
+- **First priority:** extract the account username from the pasted URL (for example, `github.com/DevName/project` → `DevName`) and compare it against existing author **IDs**, case-insensitively, including the normalized ID format. This uses the already-loaded official authors and locally created/imported profiles.
+- **Only if no ID matches:** try the exact saved GitHub/GitLab link, then linked account, then author display name. Potential matches are displayed for confirmation, never silently selected. The ID-first lookup prevents a secondary link match from outranking an existing ID.
 - If no author matches, choose **Create author from this link**. The author dialog opens with the account username and ID, stores the original project link as an editable author link when applicable, and automatically invokes the existing public profile lookup for name/avatar/bio and account URL. This does not submit or publish anything.
 - The account can be detected from a repository URL, but a repository does not prove authorship. On GitLab, the leading namespace may be a group instead of a user; lookup failures leave the form editable and should be reviewed before saving.
 - If the URL/API cannot provide full metadata, all fields remain editable. The normal name/ID search, manual creation and imported JSON reuse still work unchanged.
@@ -100,9 +101,10 @@ The main **Authors & category** search accepts names, author IDs, and account/re
 ### Search verification
 
 1. Search by partial name or ID; verify the existing list behaves as before.
-2. Paste a repository URL already saved in an author's links; verify the matching author is offered and can be selected without creating a duplicate.
-3. Paste a profile URL where the author has a matching account link but a different internal ID; verify the existing profile is offered.
-4. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
+2. Paste `https://github.com/devname/homebrew` when an existing author has ID `devname`, even if its visible name differs; confirm the ID match is offered first and no new author is suggested.
+3. If the username does not match an ID, paste a repository URL already saved in an author's links; verify the matching author is offered and can be selected without creating a duplicate.
+4. Paste a profile URL where the author has a matching account link but a different internal ID; verify the existing profile is offered.
+9. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
 5. Paste a new repository URL; choose **Create author from this link**, verify profile metadata auto-fills and the project link is retained as an editable extra link.
 6. Simulate an API failure or missing profile; verify the username, suggested ID, profile URL and project link remain in the editable dialog.
 7. Create a new author by typing only a name; verify the bio is initially empty and manual links still work.
