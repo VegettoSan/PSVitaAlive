@@ -151,7 +151,7 @@
         $("new-author-id").value = slugify(searchName);
         $("new-author-id").dataset.profileSource = "";
         $("new-author-avatar").value = AUTHOR_FALLBACK;
-        $("new-author-bio").value = "Developer";
+        $("new-author-bio").value = "";
         $("new-author-profile-url").value = "";
         $("new-author-lookup-status").textContent = "";
         $("new-author-lookup-status").dataset.state = "";
@@ -235,7 +235,7 @@
             id,
             name,
             avatar: avatar || AUTHOR_FALLBACK,
-            bio: $("new-author-bio").value.trim() || "Developer",
+            bio: $("new-author-bio").value.trim(),
             links
         };
     }
@@ -584,7 +584,10 @@
             event.target.dataset.previousName = event.target.value;
             $("new-author-error").textContent = "";
         });
-        $("new-author-id").addEventListener("input", () => { $("new-author-error").textContent = ""; });
+        $("new-author-id").addEventListener("input", () => {
+            $("new-author-id").dataset.profileSource = "manual";
+            $("new-author-error").textContent = "";
+        });
 
         const observer = new MutationObserver(() => {
             renderSelected();
