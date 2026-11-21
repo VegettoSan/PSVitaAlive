@@ -149,6 +149,7 @@
         }
         $("new-author-name").value = searchName;
         $("new-author-id").value = slugify(searchName);
+        $("new-author-id").dataset.profileSource = "";
         $("new-author-avatar").value = AUTHOR_FALLBACK;
         $("new-author-bio").value = "Developer";
         $("new-author-profile-url").value = "";
@@ -577,7 +578,9 @@
         $("new-author-name").addEventListener("input", event => {
             const currentId = $("new-author-id").value;
             const previousSlug = slugify(event.target.dataset.previousName || "");
-            if (!currentId || currentId === previousSlug) $("new-author-id").value = slugify(event.target.value);
+            if (!$("new-author-id").dataset.profileSource && (!currentId || currentId === previousSlug)) {
+                $("new-author-id").value = slugify(event.target.value);
+            }
             event.target.dataset.previousName = event.target.value;
             $("new-author-error").textContent = "";
         });
