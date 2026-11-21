@@ -87,6 +87,33 @@ The application-level **Main file size (VPK)** remains required. The per-link \`
 - Switching to an informational link hides its size, and switching back to a downloadable type restores the typed value during that editing session. Importing older JSONs does not change their canonical source files.
 - Existing extraction behavior for ZIP-oriented types and plugin-specific taiHEN configuration stays unchanged.
 
+## Creating authors from GitHub or GitLab
+
+The **Create new author** dialog has the same dark, grey and green styling as the rest of the JSON generator, including a mobile-friendly layout and live avatar/name preview.
+
+Paste a public **user profile** URL such as `https://github.com/octocat` or `https://gitlab.com/username`. The dialog fetches public metadata automatically after the URL is entered, or via **Auto-fill**, without any token, server or paid service. It fills:
+
+- **Display name:** the public profile name, falling back to its username.
+- **Author ID:** normalized from the URL username to a stable lowercase ID (for example, `My.Dev` becomes `my-dev`).
+- **Avatar:** the public profile avatar URL, or the existing PSVitaAlive default avatar when unavailable.
+- **Biography:** the publicly available bio, or the exact fallback `Developer`.
+- **Profile link:** one recommended link with `type: "Repository"`, `name: "GitHub"` or `"GitLab"`, and the profile URL.
+
+All fields are editable before the author JSON is created. The redundant separate **Icon URL** field was removed; the official `avatar` field is used and the catalog normalizer can derive any legacy icon fallback. The editor still accepts older imported author JSON files containing `icon`, and exports compact V2 keys like `av`, `b`, `l` and `rec`.
+
+The URL must identify a public **user profile**, not a repository, project or unsupported hostname. Existing author IDs are flagged to avoid duplicates. Remote API errors, missing profiles or rate limits do not prevent manual author creation. GitLab's unauthenticated API may not expose the user's biography, in which case the editor uses `Developer` and keeps the bio field editable. Autofill is informational and does **not** prove developer ownership or publish an author automatically. Final review and GitHub Actions validation still apply.
+
+### Profile lookup verification
+
+1. Paste a valid GitHub user URL: confirm that display name, normalized ID, avatar, bio (or `Developer`) and a recommended `Repository / GitHub` link appear.
+2. Repeat with a GitLab user URL, including an account without a publicly retrievable bio.
+3. Check a profile without a display name or avatar, then manually change fields before saving; confirm the preview follows edits.
+4. Enter a project URL, unsupported host, unknown user and a malformed URL; confirm understandable feedback and manual entry remains possible.
+5. Try an already registered author ID; confirm the duplicate warning and that final validation rejects creating a duplicate.
+6. Add extra author links and export the new author JSON; verify its compact V2 data contains the chosen avatar and links, without duplicated icon input.
+7. On a narrow screen, verify the modal scrolls internally, its buttons remain reachable, Escape closes it, and keyboard focus remains within the modal.
+8. Verify selecting an existing author, importing an unpublished author JSON, and downloading an app JSON still work as before.
+
 ## Import unpublished author JSON profiles
 
 Inside **Authors & category**, select **Import author JSON** and choose one or more files saved from \`authors/*.json\`. The generator checks the imported profile, prevents conflicting IDs/names, and selects it. Previously imported profiles remain available during this browser session.
