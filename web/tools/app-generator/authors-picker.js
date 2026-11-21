@@ -208,8 +208,9 @@
         const maxDistance = a.length <= 4 ? 1 : a.length <= 8 ? 2 : 3;
         if (Math.abs(a.length - b.length) > maxDistance) return null;
         const distance = editDistanceWithTransposition(a, b);
-        if (distance === 0 || distance > maxDistance ||
-            distance / Math.max(a.length, b.length) > 0.30) return null;
+        // Identical letters with different separators are also worth suggesting.
+        if (distance > maxDistance ||
+            distance / Math.max(a.length, b.length) > 0.35) return null;
         return distance;
     }
 
@@ -318,7 +319,7 @@
         const available = matches.filter(item => !selected.has(item.option.value));
         const listed = available.slice(0, 12);
         const matchedSelected = matches.length > 0 && available.length === 0;
-        const found = listed.map(item => `<button type="button" class="author-result" data-author-id="${escapeHtml(item.option.value)}"><strong>${escapeHtml(item.option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(item.option.value)}${item.reason ? " · " + escapeHtml(item.reason) : ""}</small></button>`).join("");
+        const found = listed.map(item => `<button type="button" class="author-result${item.similar ? " author-result-similar" : ""}" data-author-id="${escapeHtml(item.option.value)}"><strong>${escapeHtml(item.option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(item.option.value)}${item.reason ? " · " + escapeHtml(item.reason) : ""}</small></button>`).join("");
 
         if (hosted) {
             const info = tentative
