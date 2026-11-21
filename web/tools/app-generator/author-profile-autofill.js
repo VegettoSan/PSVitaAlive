@@ -179,6 +179,9 @@
         row.querySelector(".author-link-url").value = url;
         list.querySelectorAll(".author-link-recommended").forEach(check => { check.checked = false; });
         row.querySelector(".author-link-recommended").checked = true;
+        if (typeof window.checkAuthorDuplicateInDialog === "function") {
+            window.checkAuthorDuplicateInDialog();
+        }
     }
 
     function fillFromProfileUrlIfMissing(profile) {
@@ -238,9 +241,10 @@
             ensureProfileLink(profile, data.url);
             updatePreview();
 
-            const conflict = [...$("authors").options].find(option => option.value === id);
-            if (conflict) {
-                setStatus(`Profile loaded, but author ID "${id}" already exists. Select the existing author instead of creating a duplicate.`, "warning");
+            const conflicts = typeof window.checkAuthorDuplicateInDialog === "function"
+                ? window.checkAuthorDuplicateInDialog() : [];
+            if (conflicts.length) {
+                setStatus(`Profile loaded, but ${conflicts[0].name} (ID: ${conflicts[0].id}) is already registered. Use the existing author profile below.`, "warning");
             } else {
                 setStatus(`${profile.provider} profile imported. Review the details before adding the author.`, "success");
             }
