@@ -273,6 +273,17 @@
         lookupTimer = setTimeout(lookupProfile, 650);
     }
 
+    // Called by the main author search when a pasted repository link has no match.
+    // The modal is already open; use the account root, not the repository path.
+    window.autofillAuthorFromUrl = profileUrl => {
+        const dialog = $("new-author-dialog");
+        const input = $("new-author-profile-url");
+        if (!input || !dialog || dialog.hidden) return Promise.resolve();
+        input.value = profileUrl;
+        input.focus();
+        return lookupProfile();
+    };
+
     function setup() {
         const dialog = $("new-author-dialog");
         if (!dialog || !$("new-author-profile-url")) return;
