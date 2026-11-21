@@ -181,6 +181,26 @@
         row.querySelector(".author-link-recommended").checked = true;
     }
 
+    function fillFromProfileUrlIfMissing(profile) {
+        // The pasted URL is useful even if the public API is offline.
+        // Preserve user-entered text rather than replacing it after an error.
+        const nameField = $("new-author-name");
+        if (!nameField.value.trim()) setField("new-author-name", profile.username);
+
+        const idField = $("new-author-id");
+        if (idField.dataset.profileSource !== "manual") {
+            const id = slugify(profile.username);
+            if (id) {
+                setField("new-author-id", id);
+                idField.dataset.profileSource = "profile";
+            }
+        }
+
+        if (!$("new-author-bio").value.trim()) setField("new-author-bio", "Developer");
+        ensureProfileLink(profile, profile.url);
+        updatePreview();
+    }
+
     async function lookupProfile() {
         clearTimeout(lookupTimer);
         lookupTimer = null;
@@ -226,9 +246,11 @@
             }
         } catch (error) {
             if (!controller.signal.aborted && version === requestVersion) {
-                setStatus(error instanceof TypeError
-                    ? "Could not connect to the public profile API. You can enter the details manually."
-                    : (error.message || "Could not load this profile."), "error");
+                fillFromProfileUrlIfMissing(profile);
+                const reason = error instanceof TypeError
+                    ? "Could not connect to the public profile API."
+                    : (error.message || "Could not load this profile.");
+                setStatus(`${reason} The account name and profile link were filled from the URL where possible. Review and complete the details manually.`, "error");
             }
         } finally {
             if (version === requestVersion) {
