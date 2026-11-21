@@ -81,9 +81,10 @@
 
 .author-result {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    gap: 12px;
     width: 100%;
+    min-width: 0;
     box-sizing: border-box;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -92,6 +93,26 @@
     padding: 9px 10px;
     cursor: pointer;
     text-align: left;
+}
+
+.author-result-avatar {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border: 1px solid #575757;
+    border-radius: 9px;
+    box-sizing: border-box;
+    background: #252525;
+    object-fit: cover;
+}
+
+.author-result-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .author-result-similar {
@@ -509,98 +530,46 @@ body.author-dialog-open {
     background: #414141;
 }
 
-.author-duplicate-panel {
-    margin-top: 16px;
-    padding: 14px;
-    border: 1px solid #d9a35b;
-    border-radius: 11px;
-    background: #2a2118;
-    color: #f4e6d2;
-    overflow-wrap: anywhere;
-}
-
-.author-duplicate-panel[hidden] {
-    display: none !important;
-}
-
-.author-duplicate-panel > strong {
-    display: block;
+/* Sticky modal footer: confirmed duplicates use the existing profile,
+   never create a second author JSON. This stays visible on mobile. */
+.dialog-actions .author-duplicate-summary {
+    flex: 1 1 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0 2px 3px;
     color: #ffe0b5;
-    font-size: .92rem;
+    font-size: .88rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
 }
 
-.author-duplicate-panel > p {
-    margin: 7px 0 12px;
-    color: #dfcbb3;
-    font-size: .82rem;
-    line-height: 1.5;
-}
-
-.author-duplicate-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    padding: 9px;
-    border: 1px solid #705a42;
+.dialog-actions #existing-author-choice {
+    flex: 1 1 100%;
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid #8b755c;
     border-radius: 9px;
-    background: #201d19;
-}
-
-.author-duplicate-card + .author-duplicate-card {
-    margin-top: 8px;
-}
-
-.author-duplicate-card img {
-    width: 44px;
-    height: 44px;
-    flex: 0 0 44px;
-    object-fit: cover;
-    border-radius: 8px;
-    background: #333;
-}
-
-.author-duplicate-meta {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-}
-
-.author-duplicate-meta strong {
-    color: #fff;
-    overflow-wrap: anywhere;
-}
-
-.author-duplicate-meta span {
-    color: #dbc6aa;
-    font-size: .8rem;
-    overflow-wrap: anywhere;
-}
-
-.author-duplicate-card button {
-    flex: 0 0 auto;
-    min-height: 39px;
     padding: 8px 10px;
-    border: 1px solid var(--accent, #3bff00);
-    border-radius: 8px;
-    background: #24321e;
-    color: var(--accent, #3bff00);
-    font-weight: 700;
-    cursor: pointer;
+    background: #22201d;
+    color: #fff;
+    font: inherit;
+    font-size: .9rem;
+}
+
+.dialog-actions #use-existing-author {
+    border-color: var(--accent, #3bff00);
+    background: var(--accent, #3bff00);
+    color: #090909;
+}
+
+.dialog-actions [hidden] {
+    display: none !important;
 }
 
 .dialog-actions button:disabled {
     opacity: .38;
     cursor: not-allowed;
     filter: none;
-}
-
-@media (max-width: 560px) {
-    .author-duplicate-card { flex-wrap: wrap; }
-    .author-duplicate-meta { flex-basis: calc(100% - 58px); }
-    .author-duplicate-card button { width: 100%; }
 }
 
 .author-create-error {
@@ -727,7 +696,8 @@ body.author-dialog-open {
         margin-right: 0;
     }
 
-    .dialog-actions #save-author {
+    .dialog-actions #save-author,
+    .dialog-actions #use-existing-author {
         flex: 1 1 100%;
         order: -1;
     }
