@@ -880,15 +880,12 @@
     }
 
     function resetForm() {
-        // Imported author JSONs remain available, selected and reusable during
-        // this browser session, even when starting the next application.
-        const importedSelection = typeof window.getSelectedImportedAuthorIds === "function"
-            ? window.getSelectedImportedAuthorIds() : [];
-        if (typeof window.clearCreatedAuthors === "function") window.clearCreatedAuthors();
-        $("app-form").reset();
-        if (typeof window.restoreImportedAuthorSelection === "function") {
-            window.restoreImportedAuthorSelection(importedSelection);
+        // New app / imported app editing must begin without stale temporary authors.
+        // Published catalog authors remain searchable but none stays selected.
+        if (typeof window.resetAuthorPickerSession === "function") {
+            window.resetAuthorPickerSession();
         }
+        $("app-form").reset();
         state.lastDownloadedSnapshot = null;
         const downloadStatus = $("download-status");
         if (downloadStatus) { downloadStatus.hidden = true; downloadStatus.textContent = ""; }
