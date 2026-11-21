@@ -321,7 +321,16 @@
         const available = matches.filter(item => !selected.has(item.option.value));
         const listed = available.slice(0, 12);
         const matchedSelected = matches.length > 0 && available.length === 0;
-        const found = listed.map(item => `<button type="button" class="author-result${item.similar ? " author-result-similar" : ""}" data-author-id="${escapeHtml(item.option.value)}"><strong>${escapeHtml(item.option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(item.option.value)}${item.reason ? " · " + escapeHtml(item.reason) : ""}</small></button>`).join("");
+        const profiles = authorProfileMetadata();
+        const found = listed.map(item => {
+            const author = profiles.get(item.option.value);
+            const avatar = author?.avatar || author?.icon || AUTHOR_FALLBACK;
+            const safeAvatar = isHttpUrl(avatar) ? avatar : AUTHOR_FALLBACK;
+            return `<button type="button" class="author-result${item.similar ? " author-result-similar" : ""}" data-author-id="${escapeHtml(item.option.value)}">
+                <img class="author-result-avatar" src="${escapeHtml(safeAvatar)}" alt="" width="44" height="44" loading="lazy">
+                <span class="author-result-details"><strong>${escapeHtml(item.option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(item.option.value)}${item.reason ? " · " + escapeHtml(item.reason) : ""}</small></span>
+            </button>`;
+        }).join("");
 
         if (hosted) {
             const info = tentative
@@ -358,6 +367,11 @@
             $("create-author").addEventListener("click", () => showCreateDialog());
         }
 
+        results.querySelectorAll("img.author-result-avatar").forEach(img => {
+            img.addEventListener("error", () => {
+                if (img.getAttribute("src") !== AUTHOR_FALLBACK) img.src = AUTHOR_FALLBACK;
+            });
+        });
         results.querySelectorAll("[data-author-id]").forEach(button => {
             button.addEventListener("click", () => {
                 const ids = selectedIds();
@@ -481,23 +495,40 @@
         const dialog = $("new-author-dialog");
         if (!dialog || dialog.hidden) return [];
         const matches = getDraftAuthorConflicts();
-        const panel = $("author-duplicate-panel");
-        panel.hidden = matches.length === 0;
-        panel.innerHTML = matches.length ? 
-            '<strong>This author is already registered.</strong>' +
-            '<p>Would you like to use this existing author for the application? Creating or downloading a duplicate author JSON is disabled, but reusing the registered profile is allowed.</p>' +
-            matches.slice(0, 4).map(match =>
-                '<div class="author-duplicate-card">' +
-                    '<img alt="" width="44" height="44" src="' + escapeHtml(isHttpUrl(match.avatar) ? match.avatar : AUTHOR_FALLBACK) + '">' +
-                    '<div class="author-duplicate-meta"><strong>' + escapeHtml(match.name) + '</strong>' +
-                    '<span>ID: ' + escapeHtml(match.id) + ' · ' + escapeHtml(match.reason) + '</span></div>' +
-                    '<button type="button" data-select-existing-author="' + escapeHtml(match.id) + '">Yes, use this author</button>' +
-                '</div>').join("") : "";
-        panel.querySelectorAll("[data-select-existing-author]").forEach(button =>
-            button.addEventListener("click", () => selectExistingAuthorFromDialog(button.dataset.selectExistingAuthor)));
-        $("save-author").disabled = matches.length > 0;
-        $("download-author").disabled = matches.length > 0;
+        const hasMatch = matches.length > 0;
+        const summary = $("author-duplicate-summary");
+        const choice = $("existing-author-choice");
+
+        summary.hidden = !hasMatch;
+        summary.textContent = !hasMatch ? "" : matches.length === 1
+            ? `This author already exists: ${matches[0].name} (ID: ${matches[0].id}). Do you want to use this author for the application?`
+            : "Several existing authors match these details. Choose the correct author to use for this application.";
+
+        const previousChoice = choice.value;
+        choice.hidden = matches.length <= 1;
+        choice.innerHTML = matches.length > 1 ? matches.map(match =>
+            `<option value="${escapeHtml(match.id)}">${escapeHtml(match.name)} — ${escapeHtml(match.id)} (${escapeHtml(match.reason)})</option>`
+        ).join("") : "";
+        if (matches.length > 1) {
+            choice.value = matches.some(match => match.id === previousChoice)
+                ? previousChoice : matches[0].id;
+        }
+
+        $("save-author").hidden = hasMatch;
+        $("download-author").hidden = hasMatch;
+        $("save-author").disabled = hasMatch;
+        $("download-author").disabled = hasMatch;
+        $("use-existing-author").hidden = !hasMatch;
+        $("use-existing-author").disabled = !hasMatch;
         return matches;
+    }
+
+    function useExistingAuthorFromDialog() {
+        // Refresh the matches before acting; never reuse an unconfirmed author ID.
+        const matches = checkAuthorDuplicateInDialog();
+        if (!matches.length) return;
+        const id = matches.length === 1 ? matches[0].id : $("existing-author-choice").value;
+        if (matches.some(match => match.id === id)) selectExistingAuthorFromDialog(id);
     }
 
     window.checkAuthorDuplicateInDialog = checkAuthorDuplicateInDialog;
@@ -960,13 +991,15 @@
                                 <div id="new-author-links" class="author-links-list"></div>
                             </div>
                         </div>
-                        <div id="author-duplicate-panel" class="author-duplicate-panel" role="alert" aria-live="polite" hidden></div>
                         <p id="new-author-error" class="author-create-error" role="alert"></p>
                     </div>
                     <div class="dialog-actions">
+                        <p id="author-duplicate-summary" class="author-duplicate-summary" role="status" aria-live="polite" hidden></p>
+                        <select id="existing-author-choice" aria-label="Choose an existing author" hidden></select>
                         <button id="cancel-author" type="button" class="small-button">Cancel</button>
                         <button id="download-author" type="button" class="small-button">Download author JSON</button>
                         <button id="save-author" type="button" class="small-button primary-small-button">Add author</button>
+                        <button id="use-existing-author" type="button" class="small-button primary-small-button" hidden>Use this author</button>
                     </div>
                 </div>
             </div>`;
@@ -1002,6 +1035,7 @@
         });
         $("save-author").addEventListener("click", createLocalAuthor);
         $("download-author").addEventListener("click", downloadCreatedAuthorJson);
+        $("use-existing-author").addEventListener("click", useExistingAuthorFromDialog);
         $("add-author-link").addEventListener("click", () => addAuthorLinkRow());
         $("new-author-profile-url").addEventListener("input", checkAuthorDuplicateInDialog);
         $("new-author-name").addEventListener("input", event => {
