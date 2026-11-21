@@ -149,22 +149,26 @@ The URL must identify a public **user profile**, not a repository, project or un
 7. On a narrow screen, verify the modal scrolls internally, its buttons remain reachable, Escape closes it, and keyboard focus remains within the modal.
 8. Verify selecting an existing author, importing an unpublished author JSON, and downloading an app JSON still work as before.
 
+### Author search result avatars
+
+Every author suggestion in the main **Authors & category** search includes the author avatar, display name and internal ID, including matches by profile/repository URL and typo-tolerant suggestions. Official profiles use avatar metadata from the loaded `authors.json`; locally created/imported profiles use their corresponding session metadata. Missing, invalid or broken image URLs fall back to the existing default author icon. The matching rules and confirmation flow remain unchanged.
+
 ## Duplicate author protection inside Create new author
 
 The create-author modal runs its own duplicate check regardless of what was typed into the main search before opening it. It checks the official `authors.json` profiles plus previously imported or newly created authors during the current session.
 
 - **Block on confirmed duplicates:** identical author ID, identical normalized display name, a value entered as a name that already belongs to an ID (or vice versa), or a registered link matching the same full URL. GitHub/GitLab profile URLs are canonicalized for case/trailing slash; the same repository URL with a `.git` suffix also matches. Repository owners with different project URLs are *not* automatically considered duplicates just because the account name is the same.
-- **Live feedback:** editing the name, ID, profile URL, or author link fields immediately updates a card showing the existing author's name, ID, avatar and the reason for the match. **Yes, use this author** selects that profile as an author of the current application, without downloading or creating a duplicate. It keeps the user's other selected authors intact; only the application references the reused author's ID.
-- **Save and Download author JSON** are disabled while there is a duplicate, and both paths re-check synchronously before writing anything. This also prevents overwriting an unpublished author already created during the session. Imported author JSON profiles undergo the same link check.
+- **Live feedback in the fixed footer:** editing the name, ID, profile URL, or author link fields immediately updates a short notice in the dialog's always-visible bottom action area, showing the existing author's name and ID. The previous detailed duplicate card below the form has been removed. **Use this author** selects the existing author for the current application, preserving any other selected authors and without generating another author JSON. If several authors match, choose the correct existing profile in the footer first.
+- **Save and Download author JSON** are hidden and disabled while there is a duplicate; **Use this author** replaces them alongside **Cancel**. Both create/export paths still re-check before writing anything. This also prevents overwriting an unpublished author already created during the session. Imported author JSON profiles undergo the same link check.
 - Public GitHub/GitLab autofill invokes the duplicate check after writing its profile link, including when a network failure leaves the user to fill the remaining data manually. The regular new-author workflow is unchanged when no collision is found.
 
 ### Modal duplicate verification
 
-1. Search for a made-up author name to open the modal, then manually change its ID to an existing author ID. Confirm saving and downloading are blocked and the original author's card appears.
+1. Search for a made-up author name to open the modal, then manually change its ID to an existing author ID. Confirm the fixed footer shows the registered name/ID and **Use this author** instead of Add author and Download author JSON. No separate duplicate card appears below the form.
 2. Repeat with a *different* ID but an existing author display name (including case/accent variations). Confirm the same block.
 3. Enter a new name and ID but paste the GitHub/GitLab profile URL already linked from a published author. Confirm the saved link alone blocks duplication.
 4. Enter an existing repository URL with a different casing, trailing slash or `.git` suffix. Confirm it is detected; a different repository under the same account must not trigger an exact-link block on its own.
-5. Click **Yes, use this author**, confirm it closes the modal, adds the existing author's ID to the application, preserves other selected authors and does not generate another author JSON.
+5. Click **Use this author**, confirm it closes the modal, adds the existing author's ID to the application, preserves other selected authors and does not generate another author JSON. With multiple conflicts, test the author selection dropdown before confirming.
 6. Modify a conflicting field to a unique value; verify the block disappears as soon as no ID, name or link conflicts remain.
 7. Repeat the test with a new author created in the same browser session, and with an imported author JSON. Confirm duplicates cannot silently replace either.
 8. Verify completely new authors can still be created and downloaded, and manual creation does not depend on public GitHub/GitLab API access.
