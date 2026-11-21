@@ -270,22 +270,24 @@
     function findExistingAuthorsFromUrl(source) {
         const options = getOptions();
 
-        // Run fallback searches ONLY when no username-to-ID match exists.
-        // This avoids unrelated saved links outranking the canonical author ID.
+        // Prefer an author ID, then a display name. The two fields are
+        // independent: a developer can have a completely different ID and name.
         const byId = options.map(option => authorUsernameIdMatches(option, source))
             .filter(Boolean);
         if (byId.length) return byId.sort((a, b) => a.rank - b.rank);
-
-        const profiles = authorProfileMetadata();
-        const byLink = options.map(option => authorLinkMatches(option, source, profiles))
-            .filter(Boolean);
-        if (byLink.length) return byLink.sort((a, b) => a.rank - b.rank);
 
         const byName = options.map(option => authorNameMatches(option, source))
             .filter(Boolean);
         if (byName.length) return byName;
 
-        // No confirmed ID, link or name match: show possible typos for review.
+        // Fall back to a URL recorded on an existing author profile. This also
+        // finds authors whose ID and public display name differ from the handle.
+        const profiles = authorProfileMetadata();
+        const byLink = options.map(option => authorLinkMatches(option, source, profiles))
+            .filter(Boolean);
+        if (byLink.length) return byLink.sort((a, b) => a.rank - b.rank);
+
+        // No confident match: offer spelling suggestions but never auto-select.
         return fuzzyAuthorMatches(source.username, options, profiles, source.provider);
     }
 
