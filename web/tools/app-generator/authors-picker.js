@@ -173,7 +173,10 @@
             dialog.dispatchEvent(new Event("author-dialog-close"));
         }
         document.body.classList.remove("author-dialog-open");
-        if (wasOpen && authorDialogPreviousFocus?.isConnected) authorDialogPreviousFocus.focus();
+        if (wasOpen) {
+            const target = authorDialogPreviousFocus?.isConnected ? authorDialogPreviousFocus : $("author-search");
+            target?.focus();
+        }
         authorDialogPreviousFocus = null;
     }
 
