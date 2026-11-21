@@ -128,6 +128,20 @@
         return "";
     }
 
+    function authorUsernameIdMatches(option, source) {
+        // The username in the URL is the primary author identifier in VitaAlive.
+        // Prefer a case-insensitive exact ID before trying the generator's normalized slug.
+        const username = source.username.toLowerCase();
+        const id = option.value.toLowerCase();
+        if (id === username) {
+            return { option, rank: 0, reason: "Username matches ID" };
+        }
+        if (id === slugify(source.username)) {
+            return { option, rank: 1, reason: "Username matches normalized ID" };
+        }
+        return null;
+    }
+
     function authorLinkMatches(option, source, profiles) {
         const author = profiles.get(option.value);
         const authorLinks = Array.isArray(author?.links) ? author.links : [];
@@ -148,14 +162,33 @@
                 return { option, rank: 1, reason: "Same account" };
             }
         }
-        if (slugify(option.value) === slugify(source.username)) {
-            return { option, rank: 2, reason: "Matching ID" };
-        }
+        return null;
+    }
+
+    function authorNameMatches(option, source) {
         const name = String(option.textContent || "").split(" — ")[0].trim();
         if (slugify(name) === slugify(source.username)) {
-            return { option, rank: 3, reason: "Matching name" };
+            return { option, rank: 0, reason: "Matching name" };
         }
         return null;
+    }
+
+    function findExistingAuthorsFromUrl(source) {
+        const options = getOptions();
+
+        // Run fallback searches ONLY when no username-to-ID match exists.
+        // This avoids unrelated saved links outranking the canonical author ID.
+        const byId = options.map(option => authorUsernameIdMatches(option, source))
+            .filter(Boolean);
+        if (byId.length) return byId.sort((a, b) => a.rank - b.rank);
+
+        const profiles = authorProfileMetadata();
+        const byLink = options.map(option => authorLinkMatches(option, source, profiles))
+            .filter(Boolean);
+        if (byLink.length) return byLink.sort((a, b) => a.rank - b.rank);
+
+        return options.map(option => authorNameMatches(option, source))
+            .filter(Boolean);
     }
 
     function renderResults(query = "") {
@@ -179,9 +212,7 @@
 
         let matches;
         if (hosted) {
-            const profiles = authorProfileMetadata();
-            matches = getOptions().map(option => authorLinkMatches(option, hosted, profiles))
-                .filter(Boolean).sort((a, b) => a.rank - b.rank || a.option.textContent.localeCompare(b.option.textContent));
+            matches = findExistingAuthorsFromUrl(hosted);
         } else {
             matches = getOptions().filter(option =>
                 option.textContent.toLocaleLowerCase().includes(needle) ||
