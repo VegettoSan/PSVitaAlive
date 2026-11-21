@@ -51,32 +51,171 @@
         if (typeof window.updatePreview === "function") window.updatePreview();
     }
 
+    const HOSTED_PROFILE_DOMAINS = new Set(["github.com", "gitlab.com"]);
+    const RESERVED_PATHS = {
+        "github.com": new Set(["about", "apps", "collections", "contact", "enterprise",
+            "events", "explore", "features", "issues", "join", "login", "marketplace",
+            "new", "notifications", "orgs", "organizations", "pricing", "pulls",
+            "search", "settings", "site", "sponsors", "topics", "trending"]),
+        "gitlab.com": new Set(["-", "admin", "dashboard", "explore", "groups", "help",
+            "issues", "login", "merge_requests", "oauth", "profile", "projects",
+            "public", "search", "snippets", "users"])
+    };
+
+    function parseAuthorSearchLink(value) {
+        const raw = String(value || "").trim();
+        if (!/^(?:https?:\/\/)?(?:www\.)?(?:github|gitlab)\.com(?:[\/:?#]|$)/i.test(raw)) return null;
+        let url;
+        try {
+            url = new URL(/^https?:\/\//i.test(raw) ? raw : "https://" + raw);
+        } catch {
+            return { error: "Invalid GitHub or GitLab URL." };
+        }
+        const domain = url.hostname.toLowerCase().replace(/^www\./, "");
+        if (!HOSTED_PROFILE_DOMAINS.has(domain) ||
+            !["http:", "https:"].includes(url.protocol) ||
+            url.username || url.password || url.port) {
+            return { error: "Enter a valid public GitHub or GitLab account or repository URL." };
+        }
+        const segments = url.pathname.split("/").filter(Boolean);
+        if (!segments.length) return { error: "Include a username in the profile or repository URL." };
+        let username;
+        try { username = decodeURIComponent(segments[0]); }
+        catch { return { error: "The URL contains an invalid username." }; }
+        if (!/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$/.test(username) ||
+            RESERVED_PATHS[domain].has(username.toLowerCase()) ||
+            (domain === "github.com" &&
+                !/^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(username))) {
+            return { error: "This link is not a supported developer account URL." };
+        }
+        const provider = domain === "github.com" ? "GitHub" : "GitLab";
+        const profileUrl = `https://${domain}/${encodeURIComponent(username)}`;
+        let repositoryUrl = "";
+        if (segments.length > 1) {
+            if (domain === "github.com") {
+                repositoryUrl = `https://github.com/${encodeURIComponent(username)}/${encodeURIComponent(segments[1].replace(/\.git$/i, ""))}`;
+            } else {
+                const cleanPath = segments.slice(0, Math.max(1, segments.indexOf("-") < 0 ?
+                    segments.length : segments.indexOf("-"))).join("/").replace(/\.git$/i, "");
+                repositoryUrl = `https://gitlab.com/${cleanPath}`;
+            }
+        }
+        return { provider, username, profileUrl, repositoryUrl,
+            enteredUrl: `https://${domain}${url.pathname.replace(/\/$/, "")}` };
+    }
+
+    function authorProfileMetadata() {
+        const profiles = new Map();
+        const published = typeof window.getGeneratorAuthorProfiles === "function"
+            ? window.getGeneratorAuthorProfiles() : [];
+        for (const author of published || []) {
+            if (author && author.id) profiles.set(author.id, author);
+        }
+        for (const author of importedAuthors.values()) profiles.set(author.id, author);
+        for (const author of createdAuthors.values()) profiles.set(author.id, author);
+        return profiles;
+    }
+
+    function normalizeHostedLink(value) {
+        const parsed = parseAuthorSearchLink(value);
+        if (parsed && !parsed.error) {
+            try {
+                const url = new URL(/^https?:\/\//i.test(value) ? value : "https://" + value);
+                return url.hostname.toLowerCase().replace(/^www\./, "") +
+                    url.pathname.replace(/\.git\/?$/i, "").replace(/\/+$/, "").toLowerCase();
+            } catch { return ""; }
+        }
+        return "";
+    }
+
+    function authorLinkMatches(option, source, profiles) {
+        const author = profiles.get(option.value);
+        const authorLinks = Array.isArray(author?.links) ? author.links : [];
+        const exact = normalizeHostedLink(source.enteredUrl);
+        for (const link of authorLinks) {
+            if (!link || typeof link.url !== "string") continue;
+            const normalized = normalizeHostedLink(link.url);
+            if (normalized && (normalized === exact ||
+                (source.repositoryUrl && normalized === normalizeHostedLink(source.repositoryUrl)))) {
+                return { option, rank: 0, reason: "Same link" };
+            }
+        }
+        // Compare only URLs already attributed to the author, not unrelated content.
+        for (const link of authorLinks) {
+            const parsed = parseAuthorSearchLink(link?.url);
+            if (parsed && !parsed.error && parsed.provider === source.provider &&
+                parsed.username.toLowerCase() === source.username.toLowerCase()) {
+                return { option, rank: 1, reason: "Same account" };
+            }
+        }
+        if (slugify(option.value) === slugify(source.username)) {
+            return { option, rank: 2, reason: "Matching ID" };
+        }
+        const name = String(option.textContent || "").split(" — ")[0].trim();
+        if (slugify(name) === slugify(source.username)) {
+            return { option, rank: 3, reason: "Matching name" };
+        }
+        return null;
+    }
+
     function renderResults(query = "") {
         const results = $("author-results");
         if (!results) return;
 
-        const needle = query.trim().toLocaleLowerCase();
+        const trimmed = String(query || "").trim();
+        const needle = trimmed.toLocaleLowerCase();
         const selected = new Set(selectedIds());
+        const hosted = parseAuthorSearchLink(trimmed);
 
         if (!needle) {
-            results.innerHTML = `<div class="author-empty">Start typing an author name or ID to search.</div>`;
+            results.innerHTML = `<div class="author-empty">Search by name, ID, GitHub/GitLab profile or repository link.</div>`;
             return;
         }
 
-        const matches = getOptions().filter(option => {
-            if (selected.has(option.value)) return false;
-            return option.textContent.toLocaleLowerCase().includes(needle) || option.value.toLocaleLowerCase().includes(needle);
-        }).slice(0, 12);
+        if (hosted?.error) {
+            results.innerHTML = `<div class="author-empty">${escapeHtml(hosted.error)}</div>`;
+            return;
+        }
 
-        if (matches.length) {
-            results.innerHTML = matches.map(option => `<button type="button" class="author-result" data-author-id="${escapeHtml(option.value)}"><strong>${escapeHtml(option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(option.value)}</small></button>`).join("");
+        let matches;
+        if (hosted) {
+            const profiles = authorProfileMetadata();
+            matches = getOptions().map(option => authorLinkMatches(option, hosted, profiles))
+                .filter(Boolean).sort((a, b) => a.rank - b.rank || a.option.textContent.localeCompare(b.option.textContent));
+        } else {
+            matches = getOptions().filter(option =>
+                option.textContent.toLocaleLowerCase().includes(needle) ||
+                option.value.toLocaleLowerCase().includes(needle)
+            ).map(option => ({ option, reason: "" }));
+        }
+
+        const available = matches.filter(item => !selected.has(item.option.value));
+        const listed = available.slice(0, 12);
+        const matchedSelected = matches.length > 0 && available.length === 0;
+        const found = listed.map(item => `<button type="button" class="author-result" data-author-id="${escapeHtml(item.option.value)}"><strong>${escapeHtml(item.option.textContent.split(" — ")[0])}</strong><small>${escapeHtml(item.option.value)}${item.reason ? " · " + escapeHtml(item.reason) : ""}</small></button>`).join("");
+
+        if (hosted) {
+            const info = matches.length
+                ? (matchedSelected ? "This author is already selected." : "Existing author found. Select the correct profile:")
+                : "No existing author matched this link or account. You can create a profile.";
+            const warning = typeof window.isGeneratorCatalogReady === "function" &&
+                !window.isGeneratorCatalogReady()
+                ? '<p class="author-link-search-note">The official author catalog has not loaded; duplicates cannot be fully checked yet.</p>'
+                : "";
+            results.innerHTML = `<div class="author-empty">${escapeHtml(info)}</div>${found}${warning}` +
+                (!matches.length ? `<div class="author-create-actions">
+                    <button id="create-author" type="button" class="small-button">+ Create author from this link</button>
+                </div>` : "");
+            if (!matches.length) $("create-author").addEventListener("click", () => showCreateDialog(hosted));
+        } else if (available.length) {
+            results.innerHTML = found;
         } else {
             results.innerHTML = `
                 <div class="author-empty">No matching author found.</div>
                 <div class="author-create-actions">
                     <button id="create-author" type="button" class="small-button">+ Create new author</button>
                 </div>`;
-            $("create-author").addEventListener("click", showCreateDialog);
+            $("create-author").addEventListener("click", () => showCreateDialog());
         }
 
         results.querySelectorAll("[data-author-id]").forEach(button => {
@@ -138,11 +277,11 @@
         }).filter(link => link.name || link.url);
     }
 
-    function showCreateDialog() {
+    function showCreateDialog(source = null) {
         const dialog = $("new-author-dialog");
         if (!dialog) return;
-        const searchName = $("author-search").value.trim();
-        const existing = getExistingAuthorByName(searchName);
+        const searchName = source?.username || $("author-search").value.trim();
+        const existing = source ? null : getExistingAuthorByName(searchName);
         if (existing) {
             $("new-author-error").textContent = `This author already exists: ${existing.name} (${existing.id}). Search and select that profile instead.`;
             return;
@@ -157,13 +296,25 @@
         $("new-author-lookup-status").dataset.state = "";
         $("new-author-name").dataset.previousName = searchName;
         $("new-author-links").innerHTML = "";
-        addAuthorLinkRow();
+        if (source?.repositoryUrl) {
+            addAuthorLinkRow({
+                type: "Repository",
+                name: "Project repository",
+                url: source.repositoryUrl
+            });
+        } else {
+            addAuthorLinkRow();
+        }
         $("new-author-error").textContent = "";
         authorDialogPreviousFocus = document.activeElement;
         dialog.hidden = false;
         document.body.classList.add("author-dialog-open");
         dialog.dispatchEvent(new Event("author-dialog-open"));
-        $("new-author-profile-url").focus();
+        if (source?.profileUrl && typeof window.autofillAuthorFromUrl === "function") {
+            window.autofillAuthorFromUrl(source.profileUrl);
+        } else {
+            $("new-author-profile-url").focus();
+        }
     }
 
     function closeCreateDialog() {
@@ -473,7 +624,7 @@
         wrapper.innerHTML = `
             <div class="author-picker-box">
                 <div id="selected-authors" class="selected-authors"></div>
-                <input id="author-search" class="author-search" type="search" autocomplete="off" placeholder="Search authors by name or ID..." aria-label="Search authors">
+                <input id="author-search" class="author-search" type="search" autocomplete="off" placeholder="Search author name, ID or GitHub/GitLab URL..." aria-label="Search authors">
             </div>
             <div id="author-results" class="author-results" role="listbox"></div>
             <div class="author-picker-actions">
