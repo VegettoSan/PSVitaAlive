@@ -209,6 +209,8 @@
             if (!matches.length) $("create-author").addEventListener("click", () => showCreateDialog(hosted));
         } else if (available.length) {
             results.innerHTML = found;
+        } else if (matches.length) {
+            results.innerHTML = `<div class="author-empty">This author is already selected.</div>`;
         } else {
             results.innerHTML = `
                 <div class="author-empty">No matching author found.</div>
