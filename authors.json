@@ -9227,21 +9227,6 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
-    "id": "suspect-wild",
-    "n": "Suspect_Wild",
-    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-    "b": "",
-    "l": [
-      {
-        "t": "Community",
-        "n": "Reddit",
-        "u": "https://www.reddit.com/user/Suspect_Wild/",
-        "rec": true
-      }
-    ],
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
-  },
-  {
     "id": "svennd",
     "n": "svennd",
     "av": "https://github.com/svennd.png",
