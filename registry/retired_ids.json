@@ -2,15 +2,19 @@
   "version": 2,
   "apps": {
     "ids": [
-      "aleph-one-vita"
+      "aleph-one-vita",
+      "pw-ace-attorney"
     ],
     "title_ids": [
-      "ALPH00001"
+      "ALPH00001",
+      "OBJECTION"
     ],
     "restorable": []
   },
   "authors": {
-    "ids": [],
+    "ids": [
+      "suspect-wild"
+    ],
     "restorable": []
   },
   "categories": {

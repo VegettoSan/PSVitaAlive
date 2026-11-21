@@ -504,7 +504,7 @@ def validate_registry_against_current(errors, registry, current):
             (
                 app.get("id"),
                 app.get("title_id"),
-                app.get("author_id"),
+                tuple(sorted(app.get("author_ids", []))),
             )
             in restorable_apps
             for app in matches
@@ -620,7 +620,7 @@ def validate_removed_identifiers(errors, registry, previous, current):
                     (
                         app.get("id"),
                         app.get("title_id"),
-                        app.get("author_id"),
+                        tuple(sorted(app.get("author_ids", []))),
                     )
                     in restorable_apps
                     for app in current_apps
@@ -657,7 +657,7 @@ def validate_removed_identifiers(errors, registry, previous, current):
                     (
                         app.get("id"),
                         app.get("title_id"),
-                        app.get("author_id"),
+                        tuple(sorted(app.get("author_ids", []))),
                     )
                     in restorable_apps
                     for app in current_apps
