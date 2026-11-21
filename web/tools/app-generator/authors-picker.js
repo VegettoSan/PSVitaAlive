@@ -11,6 +11,7 @@
     // Imported files already exist on the contributor's PC; never export them
     // again as new author JSON files when downloading an application.
     const importedAuthors = new Map();
+    let authorDialogPreviousFocus = null;
 
     function getOptions() {
         return [...select.options];
@@ -157,6 +158,7 @@
         $("new-author-links").innerHTML = "";
         addAuthorLinkRow();
         $("new-author-error").textContent = "";
+        authorDialogPreviousFocus = document.activeElement;
         dialog.hidden = false;
         document.body.classList.add("author-dialog-open");
         dialog.dispatchEvent(new Event("author-dialog-open"));
@@ -165,11 +167,14 @@
 
     function closeCreateDialog() {
         const dialog = $("new-author-dialog");
+        const wasOpen = dialog && !dialog.hidden;
         if (dialog) {
             dialog.hidden = true;
             dialog.dispatchEvent(new Event("author-dialog-close"));
         }
         document.body.classList.remove("author-dialog-open");
+        if (wasOpen && authorDialogPreviousFocus?.isConnected) authorDialogPreviousFocus.focus();
+        authorDialogPreviousFocus = null;
     }
 
     function validateAuthorForm() {
@@ -542,9 +547,25 @@
             if (event.target === $("new-author-dialog")) closeCreateDialog();
         });
         document.addEventListener("keydown", event => {
-            if (event.key === "Escape" && !$("new-author-dialog").hidden) {
+            const dialog = $("new-author-dialog");
+            if (dialog.hidden) return;
+            if (event.key === "Escape") {
                 event.preventDefault();
                 closeCreateDialog();
+            } else if (event.key === "Tab") {
+                const focusable = [...dialog.querySelectorAll(
+                    "button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled])"
+                )].filter(element => element.getClientRects().length > 0);
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
             }
         });
         $("save-author").addEventListener("click", createLocalAuthor);
