@@ -61,7 +61,7 @@ Layout uses a dedicated CSS grid area so controls are not collapsed on desktop.
 - **Actionable validation:** each missing/invalid field appears as a button in the final summary. Select it to scroll to the matching field and focus it. Advanced metadata expands automatically when necessary.
 - **Main file size:** the mandatory VPK/main-download size is called out explicitly and an empty or zero value links back to that input.
 - **Extraction destinations:** only **Data Files, Game Files, Mod, Mod Pack, Patch** and **Plugin** show a destination input. Non-file links (e.g. Download, Mirror, Repository, PKG, DLC, Update) never serialize a hidden \`extract_path\`. Plugin keeps its existing \`ur0:tai/\` default, config section, line and requirement controls.
-- **Create another JSON:** a second reset action appears next to Download. It returns to Create mode, clears the form and new-author drafts, and focuses Name. Unsaved changes prompt for confirmation; data already downloaded does not.
+- **Create another JSON / Reset:** both actions return to a completely clean Create form, remove created and imported temporary author profiles from the current browser session, clear all author selections and search/import status, and focus Name. Official catalog authors remain available to search again, but none stays selected. Unsaved changes prompt for confirmation; data already downloaded does not.
 - **Download confirmation:** after export, a local confirmation shows which JSON file(s) were prepared. This is not proof that a pull request passed GitHub Actions.
 
 ### Manual verification checklist
@@ -72,8 +72,10 @@ Layout uses a dedicated CSS grid area so controls are not collapsed on desktop.
 4. Leave the main VPK size empty. The final summary must show a size-specific issue; select it and confirm the page scrolls to and focuses the size input.
 5. Repeat the jump for a missing author, category, subcategory and invalid link URL. For invalid optional metadata URLs, selecting the issue should also expand **Optional metadata**.
 6. Complete all required fields and verify the **Download** action enables and produces \`apps/<id>.json\` with numeric sizes in bytes and an unchanged schema.
-7. After downloading, select **Create another JSON**. Verify that the form returns to Create mode, authors and links reset, the confirmation disappears, and Name receives focus. Editing an unfinished record should warn about discarding changes.
-8. Verify links and error navigation on a narrow mobile viewport and using keyboard Tab/Enter.
+7. After downloading, select **Create another JSON**. Verify that the form returns to Create mode, all author selections, imported and created author session entries, links and import status reset, the confirmation disappears, and Name receives focus. Editing an unfinished record should warn about discarding changes.
+8. Repeat the reset after creating an author manually and importing an author JSON, and using **Reset**. Check that the next app has no stale author IDs and official authors remain available but unselected.
+9. Import an existing app JSON after working with temporary authors; verify that only the imported application's declared authors are selected, not authors left over from the previous form.
+10. Verify links and error navigation on a narrow mobile viewport and using keyboard Tab/Enter.
 
 Repository scripts and GitHub Actions remain authoritative for final data validation. The generator does not edit the generated catalog files.
 
@@ -169,18 +171,18 @@ The create-author modal runs its own duplicate check regardless of what was type
 
 ## Import unpublished author JSON profiles
 
-Inside **Authors & category**, select **Import author JSON** and choose one or more files saved from \`authors/*.json\`. The generator checks the imported profile, prevents conflicting IDs/names, and selects it. Previously imported profiles remain available during this browser session.
+Inside **Authors & category**, select **Import author JSON** and choose files from \`authors/*.json\`. The generator validates the profiles and selects them **only for the current application**. Imported profiles are removed when starting a different JSON.
 
-Select **Create another JSON** to begin another application while keeping selected imported authors, so the same \`author_ids\` can be reused. The generated application references the imported ID. **It does not re-download an imported author JSON** on every app export: the original file already exists on the contributor's computer and must be submitted to \`authors/\` separately if unpublished.
+Select **Create another JSON** to start with no imported authors or new-author drafts. If the next app needs an unpublished author, import its original JSON again. Imported author JSON files remain on the contributor's computer and are not downloaded again on app export.
 
-New authors created in the generator (rather than imported) continue to be included in the app download until submitted. This is a browser-session helper, not a shared database or an additional generated catalog. Author registration and final validation still occur through GitHub Actions.
+New authors created in the generator (rather than imported) are included in the current application's download when selected. They are removed by **Create another JSON**, **Reset** or importing another application JSON. These profiles are only temporary local form state; GitHub Actions remains responsible for final author registration and validation.
 
 ### Additional checks
 
 1. Enter a size for Download; change to Repository or Community and confirm that the size disappears and is omitted from exported JSON.
 2. Switch back to Download, Game Files, Plugin and Mirror; confirm that the input reappears, its value is retained and sizes are converted to bytes.
 3. Import an unpublished author JSON, check its chip/ID selection, download an app and ensure only the app JSON is downloaded (the imported author file must not be duplicated).
-4. Choose Create another JSON, check that the imported author remains selected, and generate a second app referencing the same ID.
+4. Choose **Create another JSON**: verify that imported and newly created author profiles disappear, all author selections clear and no previous author JSON is exported with the next application. Reimport an unpublished author if needed.
 5. Try importing the same author again, an app JSON, malformed JSON and profiles with conflicting ID/name; verify informative feedback and no duplicate author options.
 6. Confirm the old create-new-author flow still exports an author JSON alongside the app, and official authors continue to behave as before.
 
