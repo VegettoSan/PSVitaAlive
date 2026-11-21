@@ -87,6 +87,27 @@ The application-level **Main file size (VPK)** remains required. The per-link \`
 - Switching to an informational link hides its size, and switching back to a downloadable type restores the typed value during that editing session. Importing older JSONs does not change their canonical source files.
 - Existing extraction behavior for ZIP-oriented types and plugin-specific taiHEN configuration stays unchanged.
 
+## Search authors by name or GitHub/GitLab link
+
+The main **Authors & category** search accepts names, author IDs, and account/repository URLs. Paste a URL such as `github.com/example-dev`, `https://github.com/example-dev/vita-project` or `https://gitlab.com/example-dev/port`.
+
+- The picker checks the loaded official author profiles and locally created/imported profiles. An **exact saved link** is preferred, followed by a matching linked account, then the username matching an existing author ID or name. Potential matches are displayed for confirmation, not silently selected.
+- If no author matches, choose **Create author from this link**. The author dialog opens with the account username and ID, stores the original project link as an editable author link when applicable, and automatically invokes the existing public profile lookup for name/avatar/bio and account URL. This does not submit or publish anything.
+- The account can be detected from a repository URL, but a repository does not prove authorship. On GitLab, the leading namespace may be a group instead of a user; lookup failures leave the form editable and should be reviewed before saving.
+- If the URL/API cannot provide full metadata, all fields remain editable. The normal name/ID search, manual creation and imported JSON reuse still work unchanged.
+- The lookup reuses the already-loaded `authors.json` data and does not fetch a second catalog, change any canonical source file or create a separate database. Final author validation and publication remain under GitHub Actions.
+
+### Search verification
+
+1. Search by partial name or ID; verify the existing list behaves as before.
+2. Paste a repository URL already saved in an author's links; verify the matching author is offered and can be selected without creating a duplicate.
+3. Paste a profile URL where the author has a matching account link but a different internal ID; verify the existing profile is offered.
+4. Paste a username whose slug matches an existing author ID/name but not its links; verify it is suggested for manual confirmation.
+5. Paste a new repository URL; choose **Create author from this link**, verify profile metadata auto-fills and the project link is retained as an editable extra link.
+6. Simulate an API failure or missing profile; verify the username, suggested ID, profile URL and project link remain in the editable dialog.
+7. Create a new author by typing only a name; verify the bio is initially empty and manual links still work.
+8. Export and import author JSON; verify the same compact V2 schema remains intact.
+
 ## Creating authors from GitHub or GitLab
 
 The **Create new author** dialog has the same dark, grey and green styling as the rest of the JSON generator, including a mobile-friendly layout and live avatar/name preview.
