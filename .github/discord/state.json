@@ -330,6 +330,9 @@
     "BBRV00001": {
       "version": "v.1.0"
     },
+    "BBVT00002": {
+      "version": "1.0"
+    },
     "BC2000000": {
       "version": "v.1.0"
     },
@@ -803,6 +806,9 @@
     },
     "DLA000000": {
       "version": "v.1.0"
+    },
+    "DLTA00001": {
+      "version": "1.0"
     },
     "DLTVITA01": {
       "version": "0.81"
@@ -1806,6 +1812,9 @@
     "MH3WII001": {
       "version": "0.3.1"
     },
+    "MH4UVITA0": {
+      "version": "0.3.2"
+    },
     "MHDH00001": {
       "version": "v.1.1"
     },
@@ -1958,6 +1967,9 @@
     },
     "NEVERPUTT": {
       "version": "v.1.0"
+    },
+    "NFSCVITA0": {
+      "version": "0.1.5"
     },
     "NFSHP0000": {
       "version": "v.1.0"
@@ -3209,6 +3221,9 @@
     },
     "VAIH00001": {
       "version": "v.0.2"
+    },
+    "VALDIS001": {
+      "version": "0.7.0"
     },
     "VALHEARTS": {
       "version": "v.1.1.1"
