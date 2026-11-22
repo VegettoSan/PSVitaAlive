@@ -163,6 +163,65 @@
     ]
   },
   {
+    "id": "nfs-carbon",
+    "tid": "NFSCVITA0",
+    "n": "NFS Carbon",
+    "d": "Need for Speed Carbon, on the PS Vita",
+    "ld": "Need for Speed Carbon (PC v1.4) on the PS Vita: static recompilation of your own NFSC.exe with a sceGxm renderer. Unofficial fan port.",
+    "aids": [
+      "swisha33"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "0.1.5",
+    "vd": "2026-11-21",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
+    "sz": 14470349,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/NFSCVita/NFSCVita%20v0.1.5.vpk",
+        "sz": 14470349,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSCVita/Game%20Files%20for%20PSVA.zip",
+        "sz": 4187593114,
+        "xp": "ux0:data/",
+        "ips": [
+          "NFSCVITA"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Swisha33/NFSCVita"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSCVita/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSCVita/shot0.png"
+    ]
+  },
+  {
     "id": "silent-hill-3-2003",
     "tid": "SILHIL003",
     "n": "Silent Hill 3 2003",
@@ -209,6 +268,56 @@
     "ic": "https://archive.org/download/silent-hill-3-2003-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/silent-hill-3-2003-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "valdis-story-psvita",
+    "tid": "VALDIS001",
+    "n": "Valdis Story PSVITA",
+    "d": "Native port of Valdis Story: Abyssal City to PlayStation Vita",
+    "ld": "ULTRA AI VIBECODED! Native port of Valdis Story: Abyssal City to PlayStation Vita: a custom GameMaker Studio 1.x runner written from scratch in C++17 (VM, events, rooms, rendering, particles, audio). It is not an emulator and does not use YoYo Loader.",
+    "aids": [
+      "botarguirix"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.7.0",
+    "vd": "2026-11-21",
+    "req": "- libshacccg.suprx\n- Launch the game. The first boot converts the data (a few minutes, with a progress bar).\n-",
+    "sz": 1572864,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/valdis-story-psvita/vsvita%20v0.7.0.vpk",
+        "sz": 1572864,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/valdis-story-psvita/Game%20Files%20for%20PSVA.zip",
+        "sz": 796183757,
+        "xp": "ux0:data/",
+        "ips": [
+          "valdis"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Botarguirix/ValdisStoryVita"
+      }
+    ],
+    "ic": "https://archive.org/download/valdis-story-psvita/icon0.png",
+    "ss": [
+      "https://archive.org/download/valdis-story-psvita/shot0.png"
     ]
   },
   {
@@ -586,6 +695,59 @@
     "ua": "2026-08-13T15:34:48.329481+00:00"
   },
   {
+    "id": "delta-squad",
+    "tid": "DLTA00001",
+    "n": "Delta Squad",
+    "d": "Delta Squad is a decompilation of Star Wars: Republic Commando for the original Xbox (USA release).",
+    "ld": "Delta Squad is a decompilation of Star Wars: Republic Commando for the original Xbox (USA release).",
+    "aids": [
+      "ianfrombailey"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-19",
+    "req": "- libshacccg.suprx\n- About 3.5 GB free on ux0:, or about 8 GB free for a full disc image\n- A disc image of the USA Xbox release (full disc image or XISO).",
+    "sz": 6606029,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/delta-squad-ps-vita/deltasquad%20v1.0.vpk",
+        "sz": 6606029,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/delta-squad-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 3650722202,
+        "xp": "ux0:data/",
+        "ips": [
+          "deltasquad"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/ianfrombailey/deltasquad"
+      }
+    ],
+    "ic": "https://archive.org/download/delta-squad-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/delta-squad-ps-vita/shot0.png",
+      "https://archive.org/download/delta-squad-ps-vita/shot1.png",
+      "https://archive.org/download/delta-squad-ps-vita/shot2.png"
+    ]
+  },
+  {
     "id": "n-o-v-a-3-vita",
     "tid": "NOVA30001",
     "n": "N.O.V.A. 3 Vita",
@@ -683,11 +845,64 @@
     ]
   },
   {
+    "id": "spongebob-battle-for-bikini-bottom",
+    "tid": "BBVT00002",
+    "n": "Spongebob: Battle for Bikini Bottom",
+    "d": "Port of Spongebob: Battle for Bikini Bottom for PSVita.",
+    "ld": "Port of Spongebob: Battle for Bikini Bottom for PSVita based off the decompilation of the Gamecube version.",
+    "aids": [
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-19",
+    "req": "- libshacccg.suprx",
+    "sz": 4404019,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/bfbb%20v1.0.vpk",
+        "sz": 4404019,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1503238554,
+        "xp": "ux0:data/",
+        "ips": [
+          "bfbb"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Rinnegatamante/bfbb-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
+    ]
+  },
+  {
     "id": "zuma-ps-vita",
     "tid": "ZUMAR3VNG",
     "n": "Zuma's Revenge!",
     "d": "A native C++ port for the classic PopCap game Zuma's Revenge! Deluxe for the PS Vita.",
-    "ld": "Currently a beta build. (v0.46)",
+    "ld": "A PlayStation Vita port of Zuma's Revenge! Not affiliated with PopCap, EA or Sony.",
     "aids": [
       "kartingsackboy06"
     ],
@@ -709,25 +924,30 @@
       {
         "t": "Download",
         "n": "v0.46",
-        "u": "https://github.com/KartingSackboy06/zuma-vita/releases/download/beta-v0.46/ZumasRevengeVita.vpk",
-        "sz": 6490685
+        "u": "https://archive.org/download/zumas-revenge-vita/ZumasRevengeVita%20v0.46.vpk",
+        "sz": 6490685,
+        "rec": true
       },
       {
         "t": "Game Files",
         "n": "iOS Assets",
-        "u": "https://github.com/KartingSackboy06/zuma-vita/releases/download/beta-v0.46/zuma-assets.zip",
+        "u": "https://archive.org/download/zumas-revenge-vita/Game%20Files%20for%20PSVA.zip",
         "sz": 621805568,
         "xp": "ux0:data/",
         "ips": [
           "zuma"
-        ],
-        "rec": true
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/KartingSackboy06/zuma-vita"
       }
     ],
     "dr": 1,
-    "ic": "https://raw.githubusercontent.com/KartingSackboy06/zuma-vita/refs/heads/main/sce_sys/icon0.png",
+    "ic": "https://archive.org/download/zumas-revenge-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/KartingSackboy06/zuma-vita/refs/heads/main/sce_sys/pic0.png"
+      "https://archive.org/download/zumas-revenge-vita/shot0.png"
     ]
   },
   {
@@ -909,6 +1129,79 @@
     "su": "https://github.com/ATSPwang618/mofa-vita",
     "sn": "GitHub",
     "cl": "1.20: support for the updated higher-quality asset pack; assets must be regenerated. See the release page and preparation guide for the current pipeline."
+  },
+  {
+    "id": "monster-hunter-4-ultimate",
+    "tid": "MH4UVITA0",
+    "n": "Monster Hunter 4 Ultimate",
+    "d": "A port of the Azahar 3DS emulator, built on Grarak's PS Vita port and tuned for one game: Monster Hunter 4 Ultimate.",
+    "ld": "A port of the Azahar 3DS emulator, built on Grarak's PS Vita port and tuned for one game: Monster Hunter 4 Ultimate.",
+    "aids": [
+      "sanch0se"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "rpg",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.3.2",
+    "vd": "2026-11-18",
+    "req": "- ur0:tai/mh4unative.skprx\n- ur0:tai/CapUnlocker.skprx\n- Monster Hunter 4 Ultimate, USA, decrypted (.3ds, .cci or .cxi)",
+    "sz": 8703181,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/MH4U%20v0.3.2a.vpk",
+        "sz": 8703181,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2791728742,
+        "xp": "ux0:data/",
+        "ips": [
+          "mh4u"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "mh4unative.skprx",
+        "u": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/mh4unative.skprx",
+        "sz": 24678,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/mh4unative.skprx",
+        "rq": true
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": true
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/SaNch0sE/azahar-vita-mh4u"
+      }
+    ],
+    "ic": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/shot0.png",
+      "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/shot1.png"
+    ]
   },
   {
     "id": "nfs-underground-2",

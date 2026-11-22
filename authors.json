@@ -4253,6 +4253,21 @@
     "ic": "https://github.com/unveroleone.png"
   },
   {
+    "id": "ianfrombailey",
+    "n": "Ian Garnett",
+    "av": "https://avatars.githubusercontent.com/u/343399067?v=4",
+    "b": "Developer",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/ianfrombailey",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "ibrahim-dogan",
     "n": "Ibrahim Dogan",
     "av": "https://github.com/Ibrahim778.png",
@@ -8486,6 +8501,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "sanch0se",
+    "n": "SaNch0sE",
+    "av": "https://avatars.githubusercontent.com/u/22202508?v=4",
+    "b": "Developer",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/SaNch0sE",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "sandberg",
     "n": "Sandberg",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -9300,6 +9330,21 @@
       }
     ],
     "ic": "https://github.com/svennd.png"
+  },
+  {
+    "id": "swisha33",
+    "n": "Swisha33",
+    "av": "https://avatars.githubusercontent.com/u/96265569?v=4",
+    "b": "Developer",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/Swisha33",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
     "id": "t64ncollection",
