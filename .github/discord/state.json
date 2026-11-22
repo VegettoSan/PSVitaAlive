@@ -2008,7 +2008,7 @@
       "version": "v.1.0"
     },
     "NOVA30001": {
-      "version": "0.1"
+      "version": "0.1f"
     },
     "NP0APOLLO": {
       "version": "2.4.0"
@@ -2177,6 +2177,9 @@
     },
     "PEND00000": {
       "version": "v.2.4"
+    },
+    "PESV00006": {
+      "version": "0.0.4"
     },
     "PFBN00001": {
       "version": "v.7.1"
@@ -2717,6 +2720,9 @@
     },
     "SILH00004": {
       "version": "1.0.1"
+    },
+    "SILHIL003": {
+      "version": "1.0.3"
     },
     "SKEN12345": {
       "version": "v.1.0"
