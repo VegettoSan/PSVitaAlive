@@ -1,0 +1,49 @@
+{
+  "id": "silent-hill-3-2003",
+  "tid": "SILHIL003",
+  "n": "Silent Hill 3 2003",
+  "d": "Native port of Silent Hill 3 for PlayStationVita",
+  "ld": "Native port of Silent Hill 3 for PlayStationVita",
+  "aids": [
+    "vallfrr"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0.3",
+  "vd": "2026-11-21",
+  "req": "- libshacccg.suprx",
+  "sz": 6710886,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/silent-hill-3-2003-ps-vita/sh3vita%20v1.0.3.vpk",
+      "sz": 6710886,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/silent-hill-3-2003-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 4831838208,
+      "xp": "ux0:data/",
+      "ips": [
+        "sh3"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/vallfrr/sh3vita"
+    }
+  ],
+  "ic": "https://archive.org/download/silent-hill-3-2003-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/silent-hill-3-2003-ps-vita/shot0.png"
+  ]
+}
