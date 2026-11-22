@@ -1,5 +1,64 @@
 [
   {
+    "id": "need-for-speed-underground",
+    "tid": "NFSUG1VTA",
+    "n": "Need for Speed Underground",
+    "d": "Need for Speed Underground, on the PS Vita",
+    "ld": "A fan port of the PC version of Need for Speed Underground (2003, US and European versions)",
+    "aids": [
+      "ndrw"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0.1",
+    "vd": "2026-11-22",
+    "req": "- Need for Speed Underground for PC, US or European, version 1.4 (your own copy)\n- The game's Speed.exe must have the no-DVD patch applied\n- PS Vita with HENkaku / Ensō and VitaShell\n- About 1.5 GB free on the memory card\n- Overclocking is mandatory, for example with PSVshell\n- CapUnlocker is highly recommended",
+    "sz": 7174660,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/NDRWhun/UG1VITA/releases/download/v1.0.1/NFSUG1VITA_1.0.1_EU_US.vpk",
+        "sz": 7174660,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSUG1VITA/Game%20Files%20for%20PSVA.zip",
+        "sz": 1395864371,
+        "xp": "ux0:data/",
+        "ips": [
+          "NFSUG1VITA"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/NDRWhun/UG1VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSUG1VITA/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSUG1VITA/shot0.png"
+    ]
+  },
+  {
     "id": "switchfin",
     "tid": "SWITCHFIN",
     "n": "Switchfin",
@@ -3026,65 +3085,6 @@
     "ss": [
       "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_01.png",
       "https://archive.org/download/psvitaalive-inotia-3-children-of-carnia/shot_02.png"
-    ]
-  },
-  {
-    "id": "need-for-speed-underground",
-    "tid": "NFSUG1VTA",
-    "n": "Need for Speed Underground",
-    "d": "Need for Speed Underground, on the PS Vita",
-    "ld": "A fan port of the PC version of Need for Speed Underground (2003, US and European versions)",
-    "aids": [
-      "ndrw"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.9",
-    "vd": "2026-11-06",
-    "req": "- Need for Speed Underground for PC, US or European, version 1.4 (your own copy)\n- The game's Speed.exe must have the no-DVD patch applied\n- PS Vita with HENkaku / Ensō and VitaShell\n- About 1.5 GB free on the memory card\n- Overclocking is mandatory, for example with PSVshell\n- CapUnlocker is highly recommended",
-    "sz": 7025459,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/NFSUG1VITA/NFSUG1VITA_0.9_playtest_hotfix2_EU_US.vpk",
-        "sz": 7025459,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSUG1VITA/Game%20Files%20for%20PSVA.zip",
-        "sz": 1395864371,
-        "xp": "ux0:data/",
-        "ips": [
-          "NFSUG1VITA"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/NDRWhun/UG1VITA"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSUG1VITA/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSUG1VITA/shot0.png"
     ]
   },
   {
