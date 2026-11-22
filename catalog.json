@@ -59,6 +59,119 @@
     ]
   },
   {
+    "id": "nfs-underground-2",
+    "tid": "NFSU2VITA",
+    "n": "NFS Underground 2",
+    "d": "Need for Speed Underground 2 port for the PS VITA",
+    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
+    "aids": [
+      "danos-x5"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.8.5",
+    "vd": "2026-11-22",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
+    "sz": 10405723,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.5/NFSU2VITA.vpk",
+        "sz": 10405723,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
+        "sz": 2899102925,
+        "xp": "ux0:data/",
+        "ips": [
+          "NeedForSpeedUnderground2"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5837,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSUG2_VITA/shot0.png"
+    ]
+  },
+  {
+    "id": "spongebob-battle-for-bikini-bottom",
+    "tid": "BBVT00002",
+    "n": "Spongebob: Battle for Bikini Bottom",
+    "d": "Port of Spongebob: Battle for Bikini Bottom for PSVita.",
+    "ld": "Port of Spongebob: Battle for Bikini Bottom for PSVita based off the decompilation of the Gamecube version.",
+    "aids": [
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "v": "1.1",
+    "vd": "2026-11-22",
+    "req": "- libshacccg.suprx",
+    "sz": 4458266,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Rinnegatamante/bfbb-vita/releases/download/v.1.1/bfbb.vpk",
+        "sz": 4458266,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1503238554,
+        "xp": "ux0:data/",
+        "ips": [
+          "bfbb"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Rinnegatamante/bfbb-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
+    ]
+  },
+  {
     "id": "switchfin",
     "tid": "SWITCHFIN",
     "n": "Switchfin",
@@ -848,59 +961,6 @@
     ]
   },
   {
-    "id": "spongebob-battle-for-bikini-bottom",
-    "tid": "BBVT00002",
-    "n": "Spongebob: Battle for Bikini Bottom",
-    "d": "Port of Spongebob: Battle for Bikini Bottom for PSVita.",
-    "ld": "Port of Spongebob: Battle for Bikini Bottom for PSVita based off the decompilation of the Gamecube version.",
-    "aids": [
-      "rinnegatamante"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
-    ],
-    "v": "1.0",
-    "vd": "2026-11-19",
-    "req": "- libshacccg.suprx",
-    "sz": 4404019,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/bfbb%20v1.0.vpk",
-        "sz": 4404019,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 1503238554,
-        "xp": "ux0:data/",
-        "ips": [
-          "bfbb"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/Rinnegatamante/bfbb-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.jpg",
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
-    ]
-  },
-  {
     "id": "zuma-ps-vita",
     "tid": "ZUMAR3VNG",
     "n": "Zuma's Revenge!",
@@ -1204,66 +1264,6 @@
     "ss": [
       "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/shot0.png",
       "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/shot1.png"
-    ]
-  },
-  {
-    "id": "nfs-underground-2",
-    "tid": "NFSU2VITA",
-    "n": "NFS Underground 2",
-    "d": "Need for Speed Underground 2 port for the PS VITA",
-    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
-    "aids": [
-      "danos-x5"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.8.3",
-    "vd": "2026-11-18",
-    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
-    "sz": 9759628,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.3/NFSU2VITA.vpk",
-        "sz": 9759628,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
-        "sz": 2899102925,
-        "xp": "ux0:data/",
-        "ips": [
-          "NeedForSpeedUnderground2"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5837,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSUG2_VITA/shot0.png"
     ]
   },
   {
