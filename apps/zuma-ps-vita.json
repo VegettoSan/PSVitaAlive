@@ -24,14 +24,14 @@
   "l": [
     {
       "t": "Download",
-      "n": "v0.46",
+      "n": "VPK",
       "u": "https://archive.org/download/zumas-revenge-vita/ZumasRevengeVita%20v0.46.vpk",
       "sz": 6490685,
       "rec": true
     },
     {
       "t": "Game Files",
-      "n": "iOS Assets",
+      "n": "Game Files iOS Assets",
       "u": "https://archive.org/download/zumas-revenge-vita/Game%20Files%20for%20PSVA.zip",
       "sz": 621805568,
       "xp": "ux0:data/",
