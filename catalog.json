@@ -163,6 +163,55 @@
     ]
   },
   {
+    "id": "silent-hill-3-2003",
+    "tid": "SILHIL003",
+    "n": "Silent Hill 3 2003",
+    "d": "Native port of Silent Hill 3 for PlayStationVita",
+    "ld": "Native port of Silent Hill 3 for PlayStationVita",
+    "aids": [
+      "vallfrr"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0.3",
+    "vd": "2026-11-21",
+    "req": "- libshacccg.suprx",
+    "sz": 6710886,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/silent-hill-3-2003-ps-vita/sh3vita%20v1.0.3.vpk",
+        "sz": 6710886,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/silent-hill-3-2003-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 4831838208,
+        "xp": "ux0:data/",
+        "ips": [
+          "sh3"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/vallfrr/sh3vita"
+      }
+    ],
+    "ic": "https://archive.org/download/silent-hill-3-2003-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/silent-hill-3-2003-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "silent-hill-3-enhanced-edition",
     "tid": "SH3EE0001",
     "n": "Silent Hill 3 Enhanced Edition",
@@ -344,6 +393,55 @@
     ]
   },
   {
+    "id": "pes6-vita",
+    "tid": "PESV00006",
+    "n": "PES6 Vita",
+    "d": "PES6 (PSP) port to PS Vita",
+    "ld": "An unofficial port of Pro Evolution Soccer 6 (PSP, Europe, ULES00476) to the PS Vita.",
+    "aids": [
+      "germanalvarez15"
+    ],
+    "cid": "ports",
+    "sids": [
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.0.4",
+    "vd": "2026-11-20",
+    "req": "- libshacccg.suprx\n- About 1.3 GB free on the Vita.",
+    "sz": 27262976,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/pes6-psp-port-ps-vita/pes6vita%20v0.0.4.vpk",
+        "sz": 27262976,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/pes6-psp-port-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1288490189,
+        "xp": "ux0:data/",
+        "ips": [
+          "pes6vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/germanalvarez15/pes6-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/pes6-psp-port-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/pes6-psp-port-ps-vita/bg.png"
+    ]
+  },
+  {
     "id": "the-sims",
     "tid": "TSVITA001",
     "n": "The Sims",
@@ -486,6 +584,55 @@
     "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
     "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
     "ua": "2026-08-13T15:34:48.329481+00:00"
+  },
+  {
+    "id": "n-o-v-a-3-vita",
+    "tid": "NOVA30001",
+    "n": "N.O.V.A. 3 Vita",
+    "d": "N.O.V.A. 3 Android v1.0.7 for PlayStation Vita.",
+    "ld": "N.O.V.A. 3 Android v1.0.7 for PlayStation Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "spliffcurrybeats"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "fps",
+      "shooter"
+    ],
+    "v": "0.1f",
+    "vd": "2026-11-19",
+    "req": "- kubridge and libshacccg.suprx installed\n- Your own exact supported Android 1.0.7 APK and both OBB files\n- Approximately 3.4 GB for prepared game data, plus space for the VPK and runtime caches",
+    "sz": 2516582,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK Fix By u/puzik228",
+        "u": "https://archive.org/download/n.o.v.a.-3-vita/NOVA3Vita_v0.1%20Fix.vpk",
+        "sz": 2516582,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/n.o.v.a.-3-vita/Game%20Files.zip",
+        "sz": 3328599654,
+        "xp": "ux0:data/",
+        "ips": [
+          "nova3"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "GitLab",
+        "u": "https://gitlab.com/sexcurrybeats/nova3-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/n.o.v.a.-3-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/n.o.v.a.-3-vita/shot0.png"
+    ]
   },
   {
     "id": "nfs-most-wanted",
@@ -9133,55 +9280,6 @@
     "ic": "https://archive.org/download/asphalt-8-psvita/icon0.png",
     "ss": [
       "https://archive.org/download/asphalt-8-psvita/bg0.png"
-    ]
-  },
-  {
-    "id": "n-o-v-a-3-vita",
-    "tid": "NOVA30001",
-    "n": "N.O.V.A. 3 Vita",
-    "d": "N.O.V.A. 3 Android v1.0.7 for PlayStation Vita.",
-    "ld": "N.O.V.A. 3 Android v1.0.7 for PlayStation Vita.\n\n- PsVitaAlive -",
-    "aids": [
-      "spliffcurrybeats"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "fps",
-      "shooter"
-    ],
-    "v": "0.1",
-    "vd": "2026-09-13",
-    "req": "- kubridge and libshacccg.suprx installed\n- Your own exact supported Android 1.0.7 APK and both OBB files\n- Approximately 3.4 GB for prepared game data, plus space for the VPK and runtime caches",
-    "sz": 2516582,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/n.o.v.a.-3-vita/NOVA3Vita_v0.1.vpk",
-        "sz": 2516582,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/n.o.v.a.-3-vita/Game%20Files.zip",
-        "sz": 3328599654,
-        "xp": "ux0:data/",
-        "ips": [
-          "nova3"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "GitLab",
-        "u": "https://gitlab.com/sexcurrybeats/nova3-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/n.o.v.a.-3-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/n.o.v.a.-3-vita/shot0.png"
     ]
   },
   {
