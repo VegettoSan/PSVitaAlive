@@ -15,17 +15,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "1.4",
-  "vd": "2026-11-18",
+  "v": "1.5",
+  "vd": "2026-11-22",
   "req": "- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core.\n- About 6 GB free on ux0: for the game files (the .iso as it is, or the files unpacked from it)",
-  "sz": 9691713,
+  "sz": 12591093,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.4/BT4-Vita.vpk",
-      "sz": 9691713,
+      "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.5/BT4-Vita.vpk",
+      "sz": 12591093,
       "rec": true
     },
     {
