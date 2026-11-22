@@ -1,0 +1,53 @@
+{
+  "id": "ridge-racer-slipstream",
+  "tid": "RRSS00001",
+  "n": "Ridge Racer Slipstream",
+  "d": "PS Vita port of the Android game Ridge Racer Slipstream (based on soloader-boilerplate)",
+  "ld": "The port works by loading the official Android ARMv7 executables in memory, resolving its imports with native functions and patching it in order to properly run. By doing so, it's basically as if we emulate a minimalist Android environment in which we run natively the executable as is.",
+  "aids": [
+    "gmejia11"
+  ],
+  "cid": "ports",
+  "sids": [
+    "racing",
+    "simulation",
+    "strategy",
+    "game-engine"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-18",
+  "req": "- ux0:tai/kubridge.skprx\n- libshacccg.suprx",
+  "sz": 2306867,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/ridge-racer-slipstream-vita/ridgeracer_slipstream%20v1.0.vpk",
+      "sz": 2306867,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/ridge-racer-slipstream-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 801112064,
+      "xp": "ux0:data/",
+      "ips": [
+        "ridgeracer"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/gmejia11/ridgeracer_slipstream_vita"
+    }
+  ],
+  "ic": "https://archive.org/download/ridge-racer-slipstream-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/ridge-racer-slipstream-vita/shot0.jpg",
+    "https://archive.org/download/ridge-racer-slipstream-vita/shot1.jpg",
+    "https://archive.org/download/ridge-racer-slipstream-vita/shot2.jpg",
+    "https://archive.org/download/ridge-racer-slipstream-vita/shot3.jpg"
+  ]
+}
