@@ -1,0 +1,53 @@
+{
+  "id": "delta-squad",
+  "tid": "DLTA00001",
+  "n": "Delta Squad",
+  "d": "Delta Squad is a decompilation of Star Wars: Republic Commando for the original Xbox (USA release).",
+  "ld": "Delta Squad is a decompilation of Star Wars: Republic Commando for the original Xbox (USA release).",
+  "aids": [
+    "ianfrombailey"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "adventure",
+    "shooter",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-19",
+  "req": "- libshacccg.suprx\n- About 3.5 GB free on ux0:, or about 8 GB free for a full disc image\n- A disc image of the USA Xbox release (full disc image or XISO).",
+  "sz": 6606029,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/delta-squad-ps-vita/deltasquad%20v1.0.vpk",
+      "sz": 6606029,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/delta-squad-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 3650722202,
+      "xp": "ux0:data/",
+      "ips": [
+        "deltasquad"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/ianfrombailey/deltasquad"
+    }
+  ],
+  "ic": "https://archive.org/download/delta-squad-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/delta-squad-ps-vita/shot0.png",
+    "https://archive.org/download/delta-squad-ps-vita/shot1.png",
+    "https://archive.org/download/delta-squad-ps-vita/shot2.png"
+  ]
+}

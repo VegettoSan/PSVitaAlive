@@ -1,0 +1,73 @@
+{
+  "id": "monster-hunter-4-ultimate",
+  "tid": "MH4UVITA0",
+  "n": "Monster Hunter 4 Ultimate",
+  "d": "A port of the Azahar 3DS emulator, built on Grarak's PS Vita port and tuned for one game: Monster Hunter 4 Ultimate.",
+  "ld": "A port of the Azahar 3DS emulator, built on Grarak's PS Vita port and tuned for one game: Monster Hunter 4 Ultimate.",
+  "aids": [
+    "sanch0se"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "adventure",
+    "rpg",
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.3.2",
+  "vd": "2026-11-18",
+  "req": "- ur0:tai/mh4unative.skprx\n- ur0:tai/CapUnlocker.skprx\n- Monster Hunter 4 Ultimate, USA, decrypted (.3ds, .cci or .cxi)",
+  "sz": 8703181,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/MH4U%20v0.3.2a.vpk",
+      "sz": 8703181,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2791728742,
+      "xp": "ux0:data/",
+      "ips": [
+        "mh4u"
+      ]
+    },
+    {
+      "t": "Plugin",
+      "n": "mh4unative.skprx",
+      "u": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/mh4unative.skprx",
+      "sz": 24678,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/mh4unative.skprx",
+      "rq": true
+    },
+    {
+      "t": "Plugin",
+      "n": "CapUnlocker 1.4 (Recommended)",
+      "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+      "sz": 5222,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/CapUnlocker.skprx",
+      "rq": true
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/SaNch0sE/azahar-vita-mh4u"
+    }
+  ],
+  "ic": "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/shot0.png",
+    "https://archive.org/download/monster-hunter-4-ultimate-ps-vita/shot1.png"
+  ]
+}

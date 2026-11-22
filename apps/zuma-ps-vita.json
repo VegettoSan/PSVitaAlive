@@ -3,7 +3,7 @@
   "tid": "ZUMAR3VNG",
   "n": "Zuma's Revenge!",
   "d": "A native C++ port for the classic PopCap game Zuma's Revenge! Deluxe for the PS Vita.",
-  "ld": "Currently a beta build. (v0.46)",
+  "ld": "A PlayStation Vita port of Zuma's Revenge! Not affiliated with PopCap, EA or Sony.",
   "aids": [
     "kartingsackboy06"
   ],
@@ -25,24 +25,29 @@
     {
       "t": "Download",
       "n": "v0.46",
-      "u": "https://github.com/KartingSackboy06/zuma-vita/releases/download/beta-v0.46/ZumasRevengeVita.vpk",
-      "sz": 6490685
+      "u": "https://archive.org/download/zumas-revenge-vita/ZumasRevengeVita%20v0.46.vpk",
+      "sz": 6490685,
+      "rec": true
     },
     {
       "t": "Game Files",
       "n": "iOS Assets",
-      "u": "https://github.com/KartingSackboy06/zuma-vita/releases/download/beta-v0.46/zuma-assets.zip",
+      "u": "https://archive.org/download/zumas-revenge-vita/Game%20Files%20for%20PSVA.zip",
       "sz": 621805568,
       "xp": "ux0:data/",
       "ips": [
         "zuma"
-      ],
-      "rec": true
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/KartingSackboy06/zuma-vita"
     }
   ],
   "dr": 1,
-  "ic": "https://raw.githubusercontent.com/KartingSackboy06/zuma-vita/refs/heads/main/sce_sys/icon0.png",
+  "ic": "https://archive.org/download/zumas-revenge-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/KartingSackboy06/zuma-vita/refs/heads/main/sce_sys/pic0.png"
+    "https://archive.org/download/zumas-revenge-vita/shot0.png"
   ]
 }

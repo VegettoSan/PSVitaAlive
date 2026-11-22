@@ -1,0 +1,53 @@
+{
+  "id": "spongebob-battle-for-bikini-bottom",
+  "tid": "BBVT00002",
+  "n": "Spongebob: Battle for Bikini Bottom",
+  "d": "Port of Spongebob: Battle for Bikini Bottom for PSVita.",
+  "ld": "Port of Spongebob: Battle for Bikini Bottom for PSVita based off the decompilation of the Gamecube version.",
+  "aids": [
+    "rinnegatamante"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "platformer",
+    "puzzle",
+    "source-port"
+  ],
+  "v": "1.0",
+  "vd": "2026-11-19",
+  "req": "- libshacccg.suprx",
+  "sz": 4404019,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/battle-for-bikini-bottom-vita/bfbb%20v1.0.vpk",
+      "sz": 4404019,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/battle-for-bikini-bottom-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1503238554,
+      "xp": "ux0:data/",
+      "ips": [
+        "bfbb"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Rinnegatamante/bfbb-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.jpg",
+    "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
+    "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
+    "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
+  ]
+}

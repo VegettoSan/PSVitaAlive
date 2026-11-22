@@ -1,0 +1,50 @@
+{
+  "id": "valdis-story-psvita",
+  "tid": "VALDIS001",
+  "n": "Valdis Story PSVITA",
+  "d": "Native port of Valdis Story: Abyssal City to PlayStation Vita",
+  "ld": "ULTRA AI VIBECODED! Native port of Valdis Story: Abyssal City to PlayStation Vita: a custom GameMaker Studio 1.x runner written from scratch in C++17 (VM, events, rooms, rendering, particles, audio). It is not an emulator and does not use YoYo Loader.",
+  "aids": [
+    "botarguirix"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "platformer",
+    "strategy",
+    "source-port"
+  ],
+  "v": "0.7.0",
+  "vd": "2026-11-21",
+  "req": "- libshacccg.suprx\n- Launch the game. The first boot converts the data (a few minutes, with a progress bar).\n-",
+  "sz": 1572864,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/valdis-story-psvita/vsvita%20v0.7.0.vpk",
+      "sz": 1572864,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/valdis-story-psvita/Game%20Files%20for%20PSVA.zip",
+      "sz": 796183757,
+      "xp": "ux0:data/",
+      "ips": [
+        "valdis"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Botarguirix/ValdisStoryVita"
+    }
+  ],
+  "ic": "https://archive.org/download/valdis-story-psvita/icon0.png",
+  "ss": [
+    "https://archive.org/download/valdis-story-psvita/shot0.png"
+  ]
+}

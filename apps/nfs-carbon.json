@@ -1,0 +1,59 @@
+{
+  "id": "nfs-carbon",
+  "tid": "NFSCVITA0",
+  "n": "NFS Carbon",
+  "d": "Need for Speed Carbon, on the PS Vita",
+  "ld": "Need for Speed Carbon (PC v1.4) on the PS Vita: static recompilation of your own NFSC.exe with a sceGxm renderer. Unofficial fan port.",
+  "aids": [
+    "swisha33"
+  ],
+  "cid": "ports",
+  "sids": [
+    "racing",
+    "simulation",
+    "source-port"
+  ],
+  "v": "0.1.5",
+  "vd": "2026-11-21",
+  "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
+  "sz": 14470349,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/NFSCVita/NFSCVita%20v0.1.5.vpk",
+      "sz": 14470349,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/NFSCVita/Game%20Files%20for%20PSVA.zip",
+      "sz": 4187593114,
+      "xp": "ux0:data/",
+      "ips": [
+        "NFSCVITA"
+      ]
+    },
+    {
+      "t": "Plugin",
+      "n": "CapUnlocker 1.4 (Recommended)",
+      "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+      "sz": 5222,
+      "xp": "ur0:tai/",
+      "sec": "*KERNEL",
+      "ln": "ur0:tai/CapUnlocker.skprx",
+      "rq": false
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/Swisha33/NFSCVita"
+    }
+  ],
+  "ic": "https://archive.org/download/NFSCVita/icon0.png",
+  "ss": [
+    "https://archive.org/download/NFSCVita/shot0.png"
+  ]
+}
