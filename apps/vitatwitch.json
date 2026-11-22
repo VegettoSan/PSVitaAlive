@@ -33,5 +33,8 @@
   "sn": "GitHub",
   "su": "https://github.com/Dexlei/VitaTwitch",
   "rp": "https://github.com/Dexlei/VitaTwitch/releases",
-  "cl": "- 1.32: fixed channels streaming in fMP4/CMAF format (stuck on loading)\n- 1.31: first public release"
+  "cl": "- 1.32: fixed channels streaming in fMP4/CMAF format (stuck on loading)\n- 1.31: first public release",
+  "ss": [
+    "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png"
+  ]
 }
