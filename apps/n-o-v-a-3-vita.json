@@ -13,16 +13,16 @@
     "fps",
     "shooter"
   ],
-  "v": "0.1",
-  "vd": "2026-09-13",
+  "v": "0.1f",
+  "vd": "2026-11-19",
   "req": "- kubridge and libshacccg.suprx installed\n- Your own exact supported Android 1.0.7 APK and both OBB files\n- Approximately 3.4 GB for prepared game data, plus space for the VPK and runtime caches",
   "sz": 2516582,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
-      "n": "VPK",
-      "u": "https://archive.org/download/n.o.v.a.-3-vita/NOVA3Vita_v0.1.vpk",
+      "n": "VPK Fix By u/puzik228",
+      "u": "https://archive.org/download/n.o.v.a.-3-vita/NOVA3Vita_v0.1%20Fix.vpk",
       "sz": 2516582,
       "rec": true
     },
