@@ -1,13 +1,13 @@
 {
   "id": "spritelisen",
-  "n": "SpriteLisen",
-  "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
+  "n": "lisen (SpriteLisen)",
+  "av": "https://avatars.githubusercontent.com/u/36694450?v=4",
   "b": "Desarrollador de homebrew para PS Vita.",
   "l": [
     {
       "t": "Other",
-      "n": "Buscar autor",
-      "u": "https://github.com/search?q=SpriteLisen&type=users",
+      "n": "GitHub",
+      "u": "https://github.com/SpriteLisen",
       "rec": true
     }
   ],

@@ -1,0 +1,67 @@
+{
+  "id": "mofa-vita",
+  "tid": "KNIF00540",
+  "n": "mofa-vita - Witch on the Holy Night",
+  "d": "Unofficial PS Vita port of Witch on the Holy Night, based on knife, with a native GXM renderer. Requires user-supplied game data.",
+  "ld": "mofa-vita is an unofficial PS Vita port of Witch on the Holy Night (Mahoutsukai no Yoru / 魔法使之夜), based on AuroraWright/knife 0.9.4. Its Rust engine uses a native GXM renderer to display 960x540 scenes centered on the Vita's 960x544 screen.\n\nProject contributors: ATSPwang618, lisen (SpriteLisen), and DeQxJ00. Upstream engine credit: AuroraWright and knife contributors.\n\nThis download contains the engine only, not a complete game. Supply your own supported Nintendo Switch game data, translation, keys and system fonts, then follow the linked asset preparation guide. Place generated assets in ux0:data/WitchontheHolyNight/assets/.\n\nVersion 1.20 requires regenerated, matching assets. Do not reuse an older asset pack or mix executable and asset deliveries. Back up saves before upgrading; replace the assets directory without deleting saves and settings in its parent.\n\nThe current asset preparation workflow also needs separately supplied tools and firmware fonts; it is not a game-data-only, one-click setup. See the documentation for exact inputs and dependencies. No complete game data pack, keys, fonts or Sony shader compiler module is supplied by this catalog entry.\n\nThe project author confirmed successful testing of version 1.20 on a real PS Vita on 2026-11-18. This is author-reported hardware verification, not a claim of full-game completion or universal device compatibility. The linked screenshots show historical hardware runs. This is not an official TYPE-MOON release.",
+  "aids": [
+    "atspwang618",
+    "spritelisen",
+    "deqxj00"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "engine-port"
+  ],
+  "v": "1.20",
+  "vd": "2026-11-18",
+  "req": "A homebrew-enabled PS Vita and user-supplied supported Switch game data. The documented conversion workflow uses the BASE game, update 1.02 and Chengkong MOD RomFS, plus your own keys, firmware fonts and the separately required conversion tools. Follow the linked English guide for exact requirements.\nInstall the VPK and copy matching generated assets to ux0:data/WitchontheHolyNight/assets/. Version 1.20 requires regenerated assets. The documented current asset delivery is about 4.69 GiB; allow additional free space for installation and saves, and substantially more PC space for conversion.\nRuntime shader fallback uses an existing ur0:data/libshacccg.suprx (not included). A minimum supported firmware version is not specified by this submission. Installing the VPK alone is insufficient to play.",
+  "sz": 4939696,
+  "st": "Verified",
+  "ic": "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/knife/vita/sce_sys/icon0.png",
+  "ss": [
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/01-title.jpg",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/02-voices.jpg",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/03-archive.jpg",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/04-story.jpg"
+  ],
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/ATSPwang618/mofa-vita/releases/download/1.20/mofa-vita-1.20.vpk",
+      "sz": 4939696,
+      "rec": true
+    },
+    {
+      "t": "Repository",
+      "n": "Source code",
+      "u": "https://github.com/ATSPwang618/mofa-vita"
+    },
+    {
+      "t": "Official Website",
+      "n": "Project website (unofficial port)",
+      "u": "https://atspwang618.github.io/myvita.github.io/mofa-vita/"
+    },
+    {
+      "t": "Documentation",
+      "n": "Asset preparation guide (English)",
+      "u": "https://github.com/ATSPwang618/mofa-vita/blob/main/doc/10-switch-asset-extraction.en.md"
+    },
+    {
+      "t": "Documentation",
+      "n": "Installation and settings (Chinese)",
+      "u": "https://github.com/ATSPwang618/mofa-vita/blob/main/doc/08-%E7%B4%A0%E6%9D%90%E4%B8%8E%E5%AE%89%E8%A3%85.md"
+    },
+    {
+      "t": "Issues",
+      "n": "Report an issue",
+      "u": "https://github.com/ATSPwang618/mofa-vita/issues"
+    }
+  ],
+  "rp": "https://github.com/ATSPwang618/mofa-vita/releases/tag/1.20",
+  "su": "https://github.com/ATSPwang618/mofa-vita",
+  "sn": "GitHub",
+  "cl": "1.20: support for the updated higher-quality asset pack; assets must be regenerated. See the release page and preparation guide for the current pipeline."
+}
