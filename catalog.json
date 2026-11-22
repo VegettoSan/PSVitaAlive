@@ -1,5 +1,118 @@
 [
   {
+    "id": "dragon-ball-z-bt4",
+    "tid": "BTFV00010",
+    "n": "Dragon Ball Z: BT4",
+    "d": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 4 (BT4decomp), based on DBZ-BT4-Tag-Team-Decomp and Tenkaichi3Decomp-Vita",
+    "ld": "A native PS Vita port of Budokai Tenkaichi 4 (Team BT4's B14 Rev2 of Dragon Ball Z: Budokai Tenkaichi 3), based on NauTaro's DBZ-BT4-Tag-Team-Decomp (BT4decomp, built on z3xox's Tenkaichi3Decomp) and on arielxflores's Tenkaichi3Decomp-Vita, the BT3 port for the Vita, through my fork of it (its optimized branch: the same speed-ups in both). The game's own code is compiled for the Vita, with the renderer for the Vita's GPU (vitaGL), the sound, touch and controls of the BT3 Vita port and all of its speed-ups. It is not an emulator.",
+    "aids": [
+      "manumastro"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.5",
+    "vd": "2026-11-22",
+    "req": "- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core.\n- About 6 GB free on ux0: for the game files (the .iso as it is, or the files unpacked from it)",
+    "sz": 12591093,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.5/BT4-Vita.vpk",
+        "sz": 12591093,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/dbz-bt4-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 5905580032,
+        "xp": "ux0:data/",
+        "ips": [
+          "bt4"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita"
+      }
+    ],
+    "ic": "https://archive.org/download/dbz-bt4-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/dbz-bt4-ps-vita/shot0.png",
+      "https://archive.org/download/dbz-bt4-ps-vita/shot1.jpg",
+      "https://archive.org/download/dbz-bt4-ps-vita/shot2.jpg",
+      "https://archive.org/download/dbz-bt4-ps-vita/shot3.jpg"
+    ]
+  },
+  {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.10.0",
+    "vd": "2026-11-22",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1815912,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.0/manhunt-v0.10.0-vita.vpk",
+        "sz": 1815912,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
     "id": "need-for-speed-underground",
     "tid": "NFSUG1VTA",
     "n": "Need for Speed Underground",
@@ -225,55 +338,6 @@
     "su": "https://github.com/dragonflylee/switchfin",
     "rp": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
     "ua": "2026-08-13T15:34:48.366005+00:00"
-  },
-  {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.9.0",
-    "vd": "2026-11-21",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1804461,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.9.0/manhunt-v0.9.0-vita.vpk",
-        "sz": 1804461,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases"
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
-    ]
   },
   {
     "id": "nfs-carbon",
@@ -1060,70 +1124,6 @@
     "ic": "https://archive.org/download/asphalt-6-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/asphalt-6-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "dragon-ball-z-bt4",
-    "tid": "BTFV00010",
-    "n": "Dragon Ball Z: BT4",
-    "d": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 4 (BT4decomp), based on DBZ-BT4-Tag-Team-Decomp and Tenkaichi3Decomp-Vita",
-    "ld": "A native PS Vita port of Budokai Tenkaichi 4 (Team BT4's B14 Rev2 of Dragon Ball Z: Budokai Tenkaichi 3), based on NauTaro's DBZ-BT4-Tag-Team-Decomp (BT4decomp, built on z3xox's Tenkaichi3Decomp) and on arielxflores's Tenkaichi3Decomp-Vita, the BT3 port for the Vita, through my fork of it (its optimized branch: the same speed-ups in both). The game's own code is compiled for the Vita, with the renderer for the Vita's GPU (vitaGL), the sound, touch and controls of the BT3 Vita port and all of its speed-ups. It is not an emulator.",
-    "aids": [
-      "manumastro"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "adventure",
-      "arcade",
-      "strategy",
-      "source-port"
-    ],
-    "v": "1.4",
-    "vd": "2026-11-18",
-    "req": "- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core.\n- About 6 GB free on ux0: for the game files (the .iso as it is, or the files unpacked from it)",
-    "sz": 9691713,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.4/BT4-Vita.vpk",
-        "sz": 9691713,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/dbz-bt4-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 5905580032,
-        "xp": "ux0:data/",
-        "ips": [
-          "bt4"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita"
-      }
-    ],
-    "ic": "https://archive.org/download/dbz-bt4-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/dbz-bt4-ps-vita/shot0.png",
-      "https://archive.org/download/dbz-bt4-ps-vita/shot1.jpg",
-      "https://archive.org/download/dbz-bt4-ps-vita/shot2.jpg",
-      "https://archive.org/download/dbz-bt4-ps-vita/shot3.jpg"
     ]
   },
   {
