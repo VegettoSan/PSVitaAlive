@@ -806,6 +806,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "atspwang618",
+    "n": "ATSPwang618",
+    "av": "https://avatars.githubusercontent.com/u/212236324?v=4",
+    "b": "Contributor to mofa-vita, an unofficial PS Vita port of Witch on the Holy Night.",
+    "l": [
+      {
+        "t": "Other",
+        "n": "GitHub",
+        "u": "https://github.com/ATSPwang618",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "aurora",
     "n": "Aurora",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -2371,6 +2386,21 @@
         "t": "Other",
         "n": "Buscar autor",
         "u": "https://github.com/search?q=DeNitro&type=users",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "deqxj00",
+    "n": "DeQxJ00",
+    "av": "https://avatars.githubusercontent.com/u/6488246?v=4",
+    "b": "Contributor to mofa-vita, an unofficial PS Vita port of Witch on the Holy Night.",
+    "l": [
+      {
+        "t": "Other",
+        "n": "GitHub",
+        "u": "https://github.com/DeQxJ00",
         "rec": true
       }
     ],
@@ -5662,6 +5692,21 @@
         "t": "Other",
         "n": "Buscar autor",
         "u": "https://github.com/search?q=LiquiFire&type=users",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "spritelisen",
+    "n": "lisen (SpriteLisen)",
+    "av": "https://avatars.githubusercontent.com/u/36694450?v=4",
+    "b": "Desarrollador de homebrew para PS Vita.",
+    "l": [
+      {
+        "t": "Other",
+        "n": "GitHub",
+        "u": "https://github.com/SpriteLisen",
         "rec": true
       }
     ],
@@ -9105,21 +9150,6 @@
       }
     ],
     "ic": "https://gitlab.com/uploads/-/system/user/avatar/41207472/avatar.png"
-  },
-  {
-    "id": "spritelisen",
-    "n": "SpriteLisen",
-    "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
-    "b": "Desarrollador de homebrew para PS Vita.",
-    "l": [
-      {
-        "t": "Other",
-        "n": "Buscar autor",
-        "u": "https://github.com/search?q=SpriteLisen&type=users",
-        "rec": true
-      }
-    ],
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
     "id": "spyro-98",
