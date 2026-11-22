@@ -13,17 +13,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.9",
-  "vd": "2026-11-06",
+  "v": "1.0.1",
+  "vd": "2026-11-22",
   "req": "- Need for Speed Underground for PC, US or European, version 1.4 (your own copy)\n- The game's Speed.exe must have the no-DVD patch applied\n- PS Vita with HENkaku / Ensō and VitaShell\n- About 1.5 GB free on the memory card\n- Overclocking is mandatory, for example with PSVshell\n- CapUnlocker is highly recommended",
-  "sz": 7025459,
+  "sz": 7174660,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/NFSUG1VITA/NFSUG1VITA_0.9_playtest_hotfix2_EU_US.vpk",
-      "sz": 7025459,
+      "u": "https://github.com/NDRWhun/UG1VITA/releases/download/v1.0.1/NFSUG1VITA_1.0.1_EU_US.vpk",
+      "sz": 7174660,
       "rec": true
     },
     {
