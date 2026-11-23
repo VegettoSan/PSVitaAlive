@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "pokemon-colosseum": {
-      "version": "1.1",
-      "source_url": "https://github.com/Rinnegatamante/colosseum-vita/releases/download/v.1.1/PokemonColosseum.vpk",
-      "archive_identifier": "pokemon-colosseum-vita",
-      "filename": "pokemon-colosseum v1.1.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T21:05:56+00:00"
-    }
-  }
+  "inflight": {}
 }
