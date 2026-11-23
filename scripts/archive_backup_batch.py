@@ -137,6 +137,11 @@ def source_matches_approved(item: dict, policy: dict, app: dict) -> bool:
     repo = normalized_repo(url)
     if not repo or repo not in app_repositories(app):
         return False
+    # Reject contradictory primary repository metadata rather than trusting a
+    # stale Repository link in the same app. Missing source_url may rely on links.
+    canonical_repo = normalized_repo(app.get("source_url"))
+    if canonical_repo is not None and canonical_repo != repo:
+        return False
     parsed = urlparse(url)
     if parsed.hostname != "github.com" or "/releases/download/" not in parsed.path:
         return False
