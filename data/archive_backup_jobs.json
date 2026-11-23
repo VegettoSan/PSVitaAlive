@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "autoplugin-2": {
-      "version": "2.20",
-      "source_url": "https://github.com/ONElua/AutoPlugin2/releases/download/2.20/AutoPlugin2.vpk",
-      "archive_identifier": "psvitaalive-autoplugin-2",
-      "filename": "autoplugin-2 v2.20.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T18:21:32+00:00"
-    }
-  }
+  "inflight": {}
 }
