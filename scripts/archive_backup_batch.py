@@ -104,17 +104,6 @@ def git_publish(root: Path, paths: list[str], message: str, *, validate: bool) -
             raise Deferred("CATALOG_PUSH_BLOCKED", "GitHub main changed or rejected commit; stop batch before any other uploads")
 
 
-def send_validate_dispatch() -> None:
-    # Github's GITHUB_TOKEN push suppresses push-event workflows. Workflow
-    # dispatch IS an allowed exception, and runs the official generator.
-    r = subprocess.run(
-        ["gh", "api", "--method", "POST",
-         "repos/VegettoSan/PSVitaAlive/actions/workflows/validate.yml/dispatches",
-         "-f", "ref=main"], capture_output=True, text=True)
-    if r.returncode:
-        raise Deferred("VALIDATION_PENDING", "Canonical changed; official validator dispatch failed")
-
-
 def expected_filename(item: dict) -> str:
     app_id = item["app_id"]
     version = item["version"]
@@ -500,11 +489,8 @@ def main() -> int:
             status, detail = "PENDING_MANUAL", "Unexpected error; no automatic retry"
         results.append({"app_id": app_id, "status": status, "bytes": size, "detail": detail})
         print(f"{app_id}: {status} — {detail}", flush=True)
-        if status == "PUBLISHED_VERIFIED":
-            try:
-                send_validate_dispatch()
-            except Deferred as err:
-                results.append({"app_id": app_id, "status": err.status, "bytes": 0, "detail": err.reason})
+        # validate.yml is triggered by workflow_run only after this batch finishes.
+        # Its publisher lock then sees all successfully committed apps at once.
         if should_stop_batch(status):
             # Only systemic outages or uncertain PUTs stop the whole batch.
             # VERIFYING (public 404 during Archive.org processing) is per-file:
