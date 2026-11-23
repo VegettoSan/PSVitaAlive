@@ -4,7 +4,7 @@
 
 ## Funcionamiento
 
-`apps/*.json` + `scripts/archive_upload_log.csv` → `scripts/archive_backup_batch.py` → propietario del ítem y VPK oficial → `Archive.org` → comprobación de metadatos + **descarga pública completa con SHA-256** → solo entonces `apps/<id>.json` → `validate.yml` → catálogo oficial.
+`apps/*.json` (enlaces VPK + icono/capturas) + `scripts/archive_upload_log.csv` → `scripts/archive_backup_batch.py` → propietario del ítem y VPK oficial → `Archive.org` → comprobación de metadatos + **descarga pública completa con SHA-256** → solo entonces `apps/<id>.json` → `validate.yml` → catálogo oficial.
 
 El motor parte **siempre del JSON individual actual**:
 - **CATALOG_BACKFILL**: `apps/<id>.json` ya tiene un único botón `Download/VPK` con URL de GitHub Releases y versión actual. Si el ítem propio de Archive.org aún no es ese destino, selecciona el archivo aunque **Orbit no lo haya descubierto en su último snapshot**.
@@ -21,12 +21,22 @@ El motor parte **siempre del JSON individual actual**:
 
 **No se reinterpretan los 74 avisos anteriores como 74 VPK faltantes.** Esos avisos procedían del validador del monitor. El nuevo `run.json` informa por separado los verdaderos bloqueos del respaldo en el catálogo actual.
 
+## Detección de ítems por multimedia del catálogo (2026-11-23)
+
+Antes, el lote exigía que `scripts/archive_upload_log.csv` contuviera una subida histórica exitosa para *cada* aplicación. Esta condición excluía actualizaciones cuyos íconos y capturas ya estaban guardados en ítems existentes de la cuenta, pero cuyo registro histórico no aparecía en ese CSV.
+
+Ahora se identifica el ítem candidato mediante `icon` + **todas las** `screenshots` del JSON. Las direcciones deben ser imágenes directas HTTPS de Archive.org (`.png`, `.jpg`, `.jpeg`, `.webp`) y coincidir en un único identificador. Si falta una imagen o hay distintos identificadores, se requiere revisión. Los elementos `Game Files` y `Plugin` no participan, aunque apunten a otros ítems.
+
+**Ejemplos revisados:** `dragon-ball-z-bt3` → `dragon-ball-z-budokai-tenkaichi-3-ps-vita`; `dragon-ball-z-bt4` → `dbz-bt4-ps-vita`; `spongebob-battle-for-bikini-bottom` → `battle-for-bikini-bottom-vita`. Sus VPK principales ya estaban registrados en el catálogo con URL de GitHub Releases, aunque ninguno tenía historial exitoso en el CSV de uploads. Los tres siguen sujetos al control `metadata.uploader`, comprobación de origen, tamaño, archivo remoto existente, checkpoint previo al PUT y verificación SHA-256 pública antes de cambiar el botón del catálogo.
+
+Un ítem identificado por medios públicos **no se considera propio hasta superar el control privado**; si se trata de un archivo gestionado por otro usuario, no se escribirá en él. No se tocan capturas, íconos ni Game Files, ni se altera la arquitectura de generación de catálogos.
+
 ## Configuración y seguridad
 
 - Credenciales en GitHub Actions Secrets: `IA_ACCESS_KEY`, `IA_SECRET_KEY`, `IA_EXPECTED_UPLOADER`; no se publican sus valores.
-- Solo permite escrituras en ítems con una subida propia registrada como `ok` y con `metadata.uploader` igual al valor de la cuenta esperado. Un Archive.org de terceros en Game Files/capturas/iconos no acredita propiedad.
+- Detecta el **ítem destino existente** por dos vías: (1) un identificador único en el registro histórico de subidas propias marcadas `ok`; o (2) si falta ese registro, **el ícono Y todas las capturas del JSON deben señalar exactamente el mismo ítem de Archive.org**. Una URL pública es solo una pista: ambas vías exigen `metadata.uploader` idéntico al secreto `IA_EXPECTED_UPLOADER` **antes de descargar o subir el VPK**. En caso contrario queda `PENDING_MANUAL`. Game Files y plugins nunca determinan el destino. No se crean ítems nuevos.
 - Las aplicaciones elegibles se descubren automáticamente: no hace falta habilitar una por una. **La versión ni la actualización del catálogo se bloquean por el tipo de licencia o por ausencia de SPDX.** `config/archive_backup_approved_apps.json` define únicamente `default_enabled: true` y `excluded_apps` para detener una redistribución cuando corresponda.
-- El sistema automático exige un VPK de release oficial identificable, versión única validada, tamaño comprobable, un ítem administrado previamente por PSVitaAlive y `metadata.uploader` de la cuenta esperada. Lo que no cumpla sigue pendiente/manual; un enlace externo de Archive.org no concede permisos sobre la cuenta ajena.
+- El sistema automático exige un VPK del repositorio oficial, tamaño comprobable, un ítem Archive.org existente inferido sin ambigüedad, y la verificación real de su propietario mediante `metadata.uploader`. **Tener ícono y capturas en Archive.org no demuestra propiedad**; solo permite encontrar el ítem candidato que se verificará antes de cualquier transferencia. Game Files de otros repositorios o ítems nunca se copian.
 - **Preservación y redistribución no son lo mismo:** la ausencia de SPDX no debe bloquear la detección de actualizaciones, pero un binario publicado en GitHub tampoco implica autorización universal para rehosting. Ante restricciones de redistribución o solicitudes de retirada, añadir el `app_id` a `excluded_apps`, manteniendo la información y el enlace original del catálogo.
 - Nombre remoto determinista: `<app-id> v<version>.vpk`. Rechaza cualquier colisión de nombre, incluso diferencias de mayúsculas; no borra ni sobrescribe nada.
 - Para las transferencias automáticas actuales admite fuentes HTTPS de **GitHub Releases expresamente registradas en el botón `Download/VPK` del catálogo**, con repositorio de origen comprobable, tamaño registrado y verificable, redirecciones restringidas, cabecera ZIP/VPK y SHA-256. No necesita coincidencia con el último snapshot de Orbit. Si el tamaño registrado difiere del VPK descargado, el caso queda pendiente para revisar la metadata, en lugar de subir archivos ambiguos. Otros proveedores (GitLab, MediaFire, servidores propios) quedan identificados como `SOURCE_ADAPTER_PENDING` hasta implementar un adaptador seguro; no se declara que no exista la actualización.
