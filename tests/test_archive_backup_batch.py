@@ -82,6 +82,23 @@ class BatchTests(unittest.TestCase):
         self.assertFalse(source_matches_approved(candidate(), policy(),
                         {**release_app(), "source_url": "https://github.com/other/app"}))
 
+    def test_media_owned_item_without_psvitaalive_prefix_is_allowed_only_for_canonical_source(self):
+        app = release_app()
+        item = dict(candidate(), kind="CATALOG_BACKFILL",
+                    archive_identifier="dragon-ball-z-budokai-tenkaichi-3-ps-vita")
+        self.assertTrue(source_matches_approved(item, {"*": {"enabled": True}}, app))
+        self.assertFalse(source_matches_approved(
+            dict(item, archive_identifier="https://archive.org/evil"),
+            {"*": {"enabled": True}}, app))
+        self.assertFalse(source_matches_approved(
+            dict(item, archive_identifier="../escape"),
+            {"*": {"enabled": True}}, app))
+        self.assertFalse(source_matches_approved(
+            dict(item, source_url="https://github.com/foreign/app/releases/download/v1.0/a.vpk"),
+            {"*": {"enabled": True}}, app))
+        self.assertFalse(source_matches_approved(
+            item, {"*": {"enabled": True}, "fmvita": {"enabled": False}}, app))
+
     def test_target_collision_any_case_never_overwrites(self):
         files = [{"name": "FMVITA V0.6.2.VPK", "size": "0"}]
         with self.assertRaises(Deferred):
@@ -203,10 +220,10 @@ class BatchTests(unittest.TestCase):
 
     def test_media_inferred_item_requires_private_owner_check_before_download(self):
         app = release_app()
-        app["icon"] = "https://archive.org/download/psvitaalive-fmvita/icon0.png"
+        app["icon"] = "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png"
         app["screenshots"] = [
-            "https://archive.org/download/psvitaalive-fmvita/shot0.png",
-            "https://archive.org/download/psvitaalive-fmvita/shot1.png",
+            "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.png",
+            "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.png",
         ]
         app["links"].append({
             "type": "Game Files", "name": "Game Files other item",
@@ -226,11 +243,12 @@ class BatchTests(unittest.TestCase):
                  patch("scripts.archive_backup_batch.download_source") as download, \
                  patch("scripts.archive_backup_batch.attempt_upload") as upload:
                 with self.assertRaises(Deferred) as caught:
-                    run_one(root, dict(candidate(), kind="CATALOG_BACKFILL"), {},
+                    run_one(root, dict(candidate(), kind="CATALOG_BACKFILL",
+                                       archive_identifier="battle-for-bikini-bottom-vita"), {},
                             {"schema_version": 1, "inflight": {}},
                             ("ACCESS", "SECRET", "owner@example.test"), max_file=10*MIB)
             self.assertEqual(caught.exception.status, "PENDING_MANUAL")
-            owner.assert_called_once_with("psvitaalive-fmvita", "owner@example.test")
+            owner.assert_called_once_with("battle-for-bikini-bottom-vita", "owner@example.test")
             download.assert_not_called()
             upload.assert_not_called()
 
