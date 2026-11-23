@@ -1,14 +1,6 @@
 {
   "schema_version": 1,
   "inflight": {
-    "nfs-most-wanted": {
-      "version": "1.6.2",
-      "source_url": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.2/nfsmw.vpk",
-      "archive_identifier": "nfsmw-vita",
-      "filename": "nfs-most-wanted v1.6.2.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T20:08:33+00:00"
-    },
     "sonic-r": {
       "version": "2.1",
       "source_url": "https://github.com/PupueStudios/sonic-r-vita/releases/download/v2.1/sonicr_vita.vpk",
