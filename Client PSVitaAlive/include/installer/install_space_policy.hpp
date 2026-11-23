@@ -105,11 +105,19 @@ struct InstallAllSpaceBudget {
     uint64_t extraBytes = 0;
     uint64_t pluginBytes = 0;
     unsigned unknownSizeCount = 0; // Missing catalog hints cannot prove capacity.
+    unsigned unknownAppCount = 0;
+    unsigned unknownExtraCount = 0;
+    unsigned unknownPluginCount = 0;
 };
 
 inline void addInstallAllSpaceEntry(InstallAllSpaceBudget& budget,
                                    InstallAllSpaceLinkKind kind, uint64_t bytes) {
-    if (!bytes) ++budget.unknownSizeCount;
+    if (!bytes) {
+        ++budget.unknownSizeCount;
+        if (kind == InstallAllSpaceLinkKind::App) ++budget.unknownAppCount;
+        else if (kind == InstallAllSpaceLinkKind::Extra) ++budget.unknownExtraCount;
+        else ++budget.unknownPluginCount;
+    }
     uint64_t* sum = &budget.extraBytes;
     if (kind == InstallAllSpaceLinkKind::App) sum = &budget.appBytes;
     else if (kind == InstallAllSpaceLinkKind::Plugin) sum = &budget.pluginBytes;
@@ -122,9 +130,15 @@ inline uint64_t installAllQueueRequiredSpaceBytes(const InstallAllSpaceBudget& b
     if (budget.unknownSizeCount == 0) return known;
     // Even with unknown links, NEVER discard the combined known ZIP budget.
     // Remote HTTP metadata is still authoritative before payload writes.
-    const uint64_t unknownCount = budget.unknownSizeCount;
-    const uint64_t unknown = unknownCount > UINT64_MAX / kSpaceUnknownZipReserve
-        ? UINT64_MAX : unknownCount * kSpaceUnknownZipReserve;
+    // Type-aware minimums avoid penalizing a 3 MiB plugin like a large ZIP.
+    const auto scaled = [](unsigned count, uint64_t each) -> uint64_t {
+        return count > UINT64_MAX / each ? UINT64_MAX : count * each;
+    };
+    const uint64_t unknown = saturatingSpaceAdd(
+        saturatingSpaceAdd(
+            scaled(budget.unknownAppCount, kSpaceUnknownDirectReserve),
+            scaled(budget.unknownExtraCount, kSpaceUnknownZipReserve)),
+        scaled(budget.unknownPluginCount, kSpaceUnknownPluginReserve));
     return saturatingSpaceAdd(
         known ? known : kSpaceInstallAllReserve, unknown);
 }
