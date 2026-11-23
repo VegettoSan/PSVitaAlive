@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "gmca": {
-      "version": "1.5.0",
-      "source_url": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/download/v1.5.0/GMCA.vpk",
-      "archive_identifier": "psvitaalive-gmca",
-      "filename": "gmca v1.5.0.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T18:27:33+00:00"
-    }
-  }
+  "inflight": {}
 }
