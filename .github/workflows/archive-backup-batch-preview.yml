@@ -6,12 +6,18 @@ on:
     paths:
       - 'scripts/archive_backup_batch_preview.py'
       - 'tests/test_archive_backup_batch_preview.py'
+      - 'scripts/archive_owner_preflight.py'
+      - 'tests/test_archive_owner_preflight.py'
+      - '.github/workflows/archive-owner-preflight.yml'
       - '.github/workflows/archive-backup-batch-preview.yml'
   push:
     branches: [feature/archive-backup-actions-batch-preview]
     paths:
       - 'scripts/archive_backup_batch_preview.py'
       - 'tests/test_archive_backup_batch_preview.py'
+      - 'scripts/archive_owner_preflight.py'
+      - 'tests/test_archive_owner_preflight.py'
+      - '.github/workflows/archive-owner-preflight.yml'
       - '.github/workflows/archive-backup-batch-preview.yml'
   workflow_dispatch:
     inputs:
@@ -45,7 +51,9 @@ jobs:
         with:
           python-version: '3.11'
       - name: Unit tests (offline)
-        run: python -m unittest discover -s tests -p 'test_archive_backup_batch_preview.py' -v
+        run: |
+          python -m unittest discover -s tests -p 'test_archive_backup_batch_preview.py' -v
+          python -m unittest discover -s tests -p 'test_archive_owner_preflight.py' -v
       - name: Build read-only preview
         env:
           MAX_FILES: ${{ inputs.max_files || '12' }}
