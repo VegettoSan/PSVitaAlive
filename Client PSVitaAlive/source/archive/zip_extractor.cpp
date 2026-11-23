@@ -37,6 +37,9 @@ constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
 // Report cumulative slow-I/O diagnostics, never log each tiny archive member.
 constexpr uint64_t ZIP_IO_REPORT_INTERVAL_US = 15ULL * 1000ULL * 1000ULL;
 constexpr uint64_t ZIP_SLOW_FILE_OPEN_US = 2ULL * 1000ULL * 1000ULL;
+// Vita file-manager errno EEXIST: EXCL failed because the output already exists.
+// Handle this case without extra existence/stat syscalls for every tiny file.
+constexpr uint32_t ZIP_VITA_FILE_EXISTS = 0x80010011u;
 // Let Vita's render thread run between large ux0 write bursts. 1ms per MiB
 // adds little overhead while reducing sustained worker/IO scheduling pressure.
 constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
@@ -1281,6 +1284,7 @@ ZipResult ZipExtractor::extract(
     std::string lastEnsuredParent;
     uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
     uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
+    uint64_t fastExistingOpens = 0, checkedExistingOpens = 0;
     bool exclusiveCreationSupported = true;
     // PR #75: also yield by entry count. Byte-only pacing cannot keep a
     // thousands-of-tiny-files ZIP responsive.
@@ -1290,6 +1294,7 @@ ZipResult ZipExtractor::extract(
     const bool profileIo = numEntries >= 512;
     struct ZipIoCounters {
         uint64_t zipOpenUs = 0, fileOpenUs = 0, zipReadUs = 0;
+        uint64_t fileExclUs = 0, fileCheckUs = 0, fileReplaceUs = 0;
         uint64_t fileWriteUs = 0, zipCloseUs = 0, fileCloseUs = 0;
         uint64_t worstFileOpenUs = 0;
     } io;
@@ -1309,11 +1314,12 @@ ZipResult ZipExtractor::extract(
         const uint64_t now = sceKernelGetProcessTimeWide();
         if (!force && now - lastIoReportUs < ZIP_IO_REPORT_INTERVAL_US) return;
         lastIoReportUs = now;
-        char snapshot[480];
+        char snapshot[600];
         sceClibSnprintf(snapshot, sizeof(snapshot),
             "[ZipIO] entries=%llu/%llu bytes=%llu/%llu wall_ms=%llu "
             "zip_open_ms=%llu file_open_ms=%llu zip_read_ms=%llu "
-            "write_ms=%llu zip_close_ms=%llu file_close_ms=%llu max_open_ms=%llu",
+            "write_ms=%llu zip_close_ms=%llu file_close_ms=%llu max_open_ms=%llu "
+            "excl_ms=%llu check_ms=%llu replace_ms=%llu fast_existing=%llu checked_existing=%llu",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)prog.entriesTotal,
             (unsigned long long)prog.bytesWritten,
@@ -1325,7 +1331,12 @@ ZipResult ZipExtractor::extract(
             (unsigned long long)(io.fileWriteUs / 1000ULL),
             (unsigned long long)(io.zipCloseUs / 1000ULL),
             (unsigned long long)(io.fileCloseUs / 1000ULL),
-            (unsigned long long)(io.worstFileOpenUs / 1000ULL));
+            (unsigned long long)(io.worstFileOpenUs / 1000ULL),
+            (unsigned long long)(io.fileExclUs / 1000ULL),
+            (unsigned long long)(io.fileCheckUs / 1000ULL),
+            (unsigned long long)(io.fileReplaceUs / 1000ULL),
+            (unsigned long long)fastExistingOpens,
+            (unsigned long long)checkedExistingOpens);
         diagnostics::log(snapshot);
     };
 
@@ -1409,24 +1420,37 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
-        // Create new files with EXCL first to distinguish them from existing
-        // files without an extra stat call. All existing files are overwritten
-        // directly with TRUNC: no .tmp/.bak copies, for every ZIP/VPK caller.
+        // EXCL identifies newly created files for failure cleanup, protecting
+        // pre-existing user files. A successful EXCL still needs only one open.
         const uint64_t fileOpenStart = sampleStart();
+        const uint64_t exclusiveStart = sampleStart();
         SceUID fd = -1;
         if (exclusiveCreationSupported)
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
+        sampleEnd(exclusiveStart, io.fileExclUs);
 
-        // Only a successful exclusive open proves the file was absent.
-        // If EXCL is unsupported and getstat is inconclusive, preserve the
-        // output on failure rather than risking deletion of user data.
+        // On the standard Vita EEXIST result we already KNOW the file exists:
+        // skip the additional exists() and isDirectory() calls. TRUNC without
+        // CREAT cannot inadvertently create a new file if it vanishes meanwhile.
+        // Other EXCL failures retain the conservative compatible stat fallback.
         const bool definitelyNewFile = fd >= 0;
         bool replacingExisting = false;
         if (fd >= 0) {
             ++exclusiveCreated;
+        } else if (exclusiveCreationSupported &&
+                   static_cast<uint32_t>(fd) == ZIP_VITA_FILE_EXISTS) {
+            replacingExisting = true;
+            ++existingFiles;
+            ++fastExistingOpens;
+            const uint64_t replaceStart = sampleStart();
+            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_TRUNC, 0777);
+            sampleEnd(replaceStart, io.fileReplaceUs);
         } else {
+            const uint64_t checkStart = sampleStart();
             replacingExisting = st.exists(outPath);
-            if (replacingExisting && st.isDirectory(outPath)) {
+            const bool collisionIsDirectory = replacingExisting && st.isDirectory(outPath);
+            sampleEnd(checkStart, io.fileCheckUs);
+            if (collisionIsDirectory) {
                 zip_fclose(zf);
                 setError("ZIP file destination is a directory: " + outPath);
                 outcome = ZipResult::InvalidEntry;
@@ -1437,8 +1461,13 @@ ZipResult ZipExtractor::extract(
                 ++exclusiveFallbacks;
                 diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
             }
-            if (replacingExisting) ++existingFiles;
+            if (replacingExisting) {
+                ++existingFiles;
+                ++checkedExistingOpens;
+            }
+            const uint64_t replaceStart = sampleStart();
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+            sampleEnd(replaceStart, io.fileReplaceUs);
         }
         const uint64_t openElapsedUs = sampleEnd(fileOpenStart, io.fileOpenUs);
         io.worstFileOpenUs = std::max(io.worstFileOpenUs, openElapsedUs);
@@ -1787,13 +1816,15 @@ ZipResult ZipExtractor::extract(
         char perf[320];
         sceClibSnprintf(perf, sizeof(perf),
             "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
-            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu pipeline_files=%llu pipeline_bytes=%llu status=%s",
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu fast_existing=%llu checked_existing=%llu pipeline_files=%llu pipeline_bytes=%llu status=%s",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)directoryCacheHits,
             (unsigned long long)directoryCacheChecks,
             (unsigned long long)exclusiveCreated,
             (unsigned long long)existingFiles,
             (unsigned long long)exclusiveFallbacks,
+            (unsigned long long)fastExistingOpens,
+            (unsigned long long)checkedExistingOpens,
             (unsigned long long)pipelinedEntries,
             (unsigned long long)pipelinedBytes,
             toString(outcome));
