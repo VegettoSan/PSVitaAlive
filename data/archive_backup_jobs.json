@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "zenonia-3": {
-      "version": "01.40",
-      "source_url": "https://github.com/MetalSyntax/zenonia3-psvita-port/releases/download/v01.40/zenonia_3.vpk",
-      "archive_identifier": "zenonia-3-psvita",
-      "filename": "zenonia-3 v01.40.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T21:10:20+00:00"
-    }
-  }
+  "inflight": {}
 }
