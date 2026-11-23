@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "consoleid": {
+      "version": "1.01",
+      "source_url": "https://github.com/Freakler/vita-ConsoleID/releases/download/1.01/ConsoleID_v101.vpk",
+      "archive_identifier": "psvitaalive-consoleid",
+      "filename": "consoleid v1.01.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T17:54:31+00:00"
+    }
+  }
 }
