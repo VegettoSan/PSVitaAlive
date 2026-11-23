@@ -394,16 +394,19 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
                 or checkpoint.get("source_url") != item["source_url"]
                 or checkpoint.get("archive_identifier") != archive):
             raise Deferred("PENDING_MANUAL", "Older unresolved upload checkpoint needs review")
+        if remote is None:
+            # Previous IA-S3 PUT may have been accepted. The file has not
+            # appeared in the owned item yet, so NEVER send another PUT.
+            # Do not re-download the origin VPK either: there is nothing to
+            # compare until Archive.org advertises the uploaded filename.
+            # VERIFYING is per-file and must not block other catalog updates.
+            raise Deferred("VERIFYING",
+                           "Checkpoint exists; Archive.org file not visible yet; read-only reconciliation only")
 
     with tempfile.TemporaryDirectory(prefix="psva_batch_") as td:
         local = Path(td) / "origin.vpk"
         md5, sha256 = download_source(item, local, max_file=max_file)
         if remote is None:
-            if checkpoint:
-                # The previous attempt may still be processing. Never send
-                # another PUT automatically until manual reconciliation.
-                raise Deferred("UPLOAD_RESULT_UNCERTAIN",
-                               "Prior upload checkpoint exists, target not yet visible; no automatic reupload")
             owned_metadata(archive, owner)  # Ensure Archive.org still responds.
             final_md = owned_metadata(archive, owner)
             if existing_file(final_md, name) is not None:
