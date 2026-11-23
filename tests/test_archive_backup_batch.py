@@ -201,6 +201,39 @@ class BatchTests(unittest.TestCase):
             write_state(root, state)
             self.assertEqual(load_state(root)["inflight"]["fmvita"]["status"], "TRANSFER_PREPARED")
 
+    def test_media_inferred_item_requires_private_owner_check_before_download(self):
+        app = release_app()
+        app["icon"] = "https://archive.org/download/psvitaalive-fmvita/icon0.png"
+        app["screenshots"] = [
+            "https://archive.org/download/psvitaalive-fmvita/shot0.png",
+            "https://archive.org/download/psvitaalive-fmvita/shot1.png",
+        ]
+        app["links"].append({
+            "type": "Game Files", "name": "Game Files other item",
+            "url": "https://archive.org/download/foreign-assets/data.zip",
+        })
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            (root / "apps/fmvita.json").write_text(json.dumps(app), encoding="utf-8")
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n", encoding="utf-8")
+            with patch("scripts.archive_backup_batch.load_policy",
+                       return_value={"*": {"enabled": True}}), \
+                 patch("scripts.archive_backup_batch.owned_metadata",
+                       side_effect=Deferred("PENDING_MANUAL", "wrong uploader")) as owner, \
+                 patch("scripts.archive_backup_batch.download_source") as download, \
+                 patch("scripts.archive_backup_batch.attempt_upload") as upload:
+                with self.assertRaises(Deferred) as caught:
+                    run_one(root, dict(candidate(), kind="CATALOG_BACKFILL"), {},
+                            {"schema_version": 1, "inflight": {}},
+                            ("ACCESS", "SECRET", "owner@example.test"), max_file=10*MIB)
+            self.assertEqual(caught.exception.status, "PENDING_MANUAL")
+            owner.assert_called_once_with("psvitaalive-fmvita", "owner@example.test")
+            download.assert_not_called()
+            upload.assert_not_called()
+
     def test_unconfirmed_checkpoint_prevents_second_upload(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
