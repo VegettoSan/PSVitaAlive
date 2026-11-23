@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.archive_backup_batch_preview import candidates, resolve_item, select_batch
+from scripts.archive_backup_batch_preview import (candidates, item_owned_by_account, resolve_item, select_batch)
 
 
 def app(app_id, version, url):
@@ -65,11 +65,51 @@ class PreviewTests(unittest.TestCase):
                          ['SELECTED_PREVIEW', 'TOO_LARGE_PENDING', 'DEFERRED'])
         self.assertEqual(sample[0]['status'], 'READY', 'Do not modify caller data')
 
-    def test_unverified_item_or_conflicting_id_requires_review(self):
-        a = app('alpha', '1.0', 'https://archive.org/download/one/file.vpk')
-        self.assertEqual(resolve_item(a, {'alpha': {'two'}})[0], None)
-        a['icon'] = ''
-        self.assertEqual(resolve_item(a, {})[1], 'app references (manual confirmation needed)')
+    def test_foreign_media_never_becomes_upload_destination(self):
+        a = app('alpha', '1.0', 'https://github.com/example/alpha/releases/download/v1.0/alpha.vpk')
+        a['icon'] = 'https://archive.org/download/another-person/icon0.png'
+        a['screenshots'] = ['https://archive.org/download/third-party/screens.png']
+        a['links'].append({
+            'type': 'Game Files', 'name': 'Game Files',
+            'url': 'https://archive.org/download/gamefiles-by-other-user/data.zip',
+        })
+        self.assertEqual(resolve_item(a, {'alpha': {'psvitaalive-alpha'}}),
+                         ('psvitaalive-alpha', 'historical-upload-log'))
+        # Without successful historical upload, foreign media must not
+        # authorize writing to *any* item.
+        item, reason = resolve_item(a, {})
+        self.assertIsNone(item)
+        self.assertIn('manual backup', reason)
+
+    def test_foreign_primary_vpk_or_ambiguous_log_needs_manual_review(self):
+        a = app('alpha', '1.0', 'https://archive.org/download/other-person/file.vpk')
+        self.assertIsNone(resolve_item(a, {'alpha': {'psvitaalive-alpha'}})[0])
+        self.assertIsNone(resolve_item(a, {'alpha': {'one', 'two'}})[0])
+
+    def test_uploader_must_match_private_configured_account(self):
+        record = {'metadata': {'uploader': 'my-owner@example.test'}}
+        self.assertEqual(item_owned_by_account(record, 'my-owner@example.test'),
+                         (True, 'uploader verified'))
+        self.assertEqual(item_owned_by_account(record, 'MY-OWNER@example.test')[0], True)
+        self.assertEqual(item_owned_by_account(record, 'another@example.test'),
+                         (False, 'Archive.org item managed by a different account'))
+        self.assertEqual(item_owned_by_account(record, '')[0], False)
+        self.assertEqual(item_owned_by_account({'metadata': {}}, 'my-owner@example.test')[0], False)
+        self.assertEqual(item_owned_by_account({}, 'my-owner@example.test')[0], False)
+
+    def test_no_own_upload_log_never_queued_for_automatic_upload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / 'apps').mkdir()
+            (root / 'scripts').mkdir()
+            item = app('alpha', '1.0', 'https://github.com/example/alpha/releases/download/v1.0/alpha.vpk')
+            item['icon'] = 'https://archive.org/download/other-person/icon.png'
+            (root / 'apps/alpha.json').write_text(json.dumps(item), encoding='utf-8')
+            queue, reviews = candidates(root, {'schema_version': 1, 'releases': [release('alpha', '1.1', 1000000)]})
+            self.assertEqual(queue, [])
+            self.assertTrue(any(entry.get('status') == 'PENDING_MANUAL' and entry.get('app_id') == 'alpha'
+                                for entry in reviews))
+
 
 
 if __name__ == '__main__':
