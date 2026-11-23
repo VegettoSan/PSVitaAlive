@@ -4,14 +4,22 @@
 
 ## Funcionamiento
 
-`Orbit (release snapshot)` + `apps/*.json` + `scripts/archive_upload_log.csv` → `scripts/archive_backup_batch.py` → propietario del ítem y VPK oficial → `Archive.org` → comprobación de metadatos + **descarga pública completa con SHA-256** → solo entonces `apps/<id>.json` → `validate.yml` → catálogo oficial.
+`apps/*.json` + `scripts/archive_upload_log.csv` → `scripts/archive_backup_batch.py` → propietario del ítem y VPK oficial → `Archive.org` → comprobación de metadatos + **descarga pública completa con SHA-256** → solo entonces `apps/<id>.json` → `validate.yml` → catálogo oficial.
 
-El motor aprovecha el validador de nuevas versiones `plan_changes()` y soporta:
-- **SAME_VERSION_BACKFILL**: la versión ya está en el JSON pero el botón VPK todavía apunta al origen.
-- **NEW_RELEASE**: el monitor validó una versión superior y debe preservarse antes de publicar su nueva versión y enlace.
-- Solo cambia el botón principal `Download/VPK` y, cuando corresponde, `version`, `version_date`, `size`. Los enlaces de **Game Files, iconos, mirrors, repositorios, autoría y demás datos no cambian**.
+El motor parte **siempre del JSON individual actual**:
+- **CATALOG_BACKFILL**: `apps/<id>.json` ya tiene un único botón `Download/VPK` con URL de GitHub Releases y versión actual. Si el ítem propio de Archive.org aún no es ese destino, selecciona el archivo aunque **Orbit no lo haya descubierto en su último snapshot**.
+- No intenta anticipar la siguiente versión por cuenta propia: el flujo de sincronización de versiones es independiente.
+- Después de verificar la descarga pública, **solo modifica el URL del botón VPK**. Mantiene `version`, `version_date`, `title_id`, tamaño publicado y los enlaces de Game Files, iconos, mirrors y autoría. Una versión nueva debe llegar primero mediante el workflow normal del catálogo.
 
 **Nunca** edita a mano los archivos `catalog.json`, `authors.json` o `categories.json`.
+
+## Corrección de prioridad: el catálogo manda (2026-11-23)
+
+**Motivo:** tras preservar los 24 VPK que coincidían con releases detectados por Orbit, el selector dejó de encontrar candidatos aunque el catálogo ya tuviera enlaces `Download/VPK` oficiales sin esa coincidencia exacta. Esto confundía revisiones del monitor con pendientes de preservación.
+
+**Regla nueva:** `apps/*.json` es la única autoridad de la versión y URL VPK actualmente publicadas. El backup puede funcionar sin snapshot de Orbit. Si el VPK ya apunta al **mismo ítem propio** en Archive.org, no se sube ni cuenta como pendiente. Si apunta a un GitHub Releases VPK del repositorio registrado, con tamaño registrado, `title_id` único e ítem propio confirmado, puede entrar al lote y solo cambiar de hosting tras verificar checksum y descarga pública completa. Los ítems de otra cuenta, las versiones ambiguas y proveedores no soportados requieren revisión; ningún fallo del respaldo bloquea las actualizaciones habituales.
+
+**No se reinterpretan los 74 avisos anteriores como 74 VPK faltantes.** Esos avisos procedían del validador del monitor. El nuevo `run.json` informa por separado los verdaderos bloqueos del respaldo en el catálogo actual.
 
 ## Configuración y seguridad
 
@@ -21,7 +29,7 @@ El motor aprovecha el validador de nuevas versiones `plan_changes()` y soporta:
 - El sistema automático exige un VPK de release oficial identificable, versión única validada, tamaño comprobable, un ítem administrado previamente por PSVitaAlive y `metadata.uploader` de la cuenta esperada. Lo que no cumpla sigue pendiente/manual; un enlace externo de Archive.org no concede permisos sobre la cuenta ajena.
 - **Preservación y redistribución no son lo mismo:** la ausencia de SPDX no debe bloquear la detección de actualizaciones, pero un binario publicado en GitHub tampoco implica autorización universal para rehosting. Ante restricciones de redistribución o solicitudes de retirada, añadir el `app_id` a `excluded_apps`, manteniendo la información y el enlace original del catálogo.
 - Nombre remoto determinista: `<app-id> v<version>.vpk`. Rechaza cualquier colisión de nombre, incluso diferencias de mayúsculas; no borra ni sobrescribe nada.
-- Admite solo fuentes HTTPS en GitHub Releases con redirecciones restringidas a hosts oficiales, exactamente un asset VPK validado por el monitor, tamaño conocido, cabecera ZIP/VPK y SHA-256. No intenta respaldar juegos o paquetes de datos externos.
+- Para las transferencias automáticas actuales admite fuentes HTTPS de **GitHub Releases expresamente registradas en el botón `Download/VPK` del catálogo**, con repositorio de origen comprobable, tamaño registrado y verificable, redirecciones restringidas, cabecera ZIP/VPK y SHA-256. No necesita coincidencia con el último snapshot de Orbit. Si el tamaño registrado difiere del VPK descargado, el caso queda pendiente para revisar la metadata, en lugar de subir archivos ambiguos. Otros proveedores (GitLab, MediaFire, servidores propios) quedan identificados como `SOURCE_ADAPTER_PENDING` hasta implementar un adaptador seguro; no se declara que no exista la actualización.
 - Se ejecuta solo en `main` del repositorio oficial; sin subidas desde PR. Usa el mismo bloqueo de concurrencia que la publicación del catálogo.
 
 ## Protección contra cortes
@@ -51,7 +59,7 @@ Los VPK que exceden el límite siguen **`TOO_LARGE_PENDING`**, los identificador
 
 Después de confirmar que la descarga pública de Archive.org devuelve el mismo VPK, Actions valida los JSON canónicos y publica **solo los JSON individuales**. **Al completarse el lote**, el evento GitHub Actions `workflow_run` lanza el workflow oficial `validate.yml` (únicamente para la ejecución exitosa del repositorio oficial y rama `main`). Así se regenera el catálogo con **todos** los respaldos que haya publicado esa tanda y se evita saturar o cancelar validadores en la misma cola de concurrencia. Los commits hechos con `GITHUB_TOKEN` no activan por sí solos los workflows normales de tipo `push`.
 
-La página de cada ejecución muestra una tabla de `PUBLISHED_VERIFIED`, `DEFERRED`, `WAITING_ARCHIVE`, `UPLOAD_RESULT_UNCERTAIN`, `PENDING_MANUAL`, `TOO_LARGE_PENDING`, etc. El archivo `archive-backup-batch-report` se conserva durante 14 días. No contiene secretos.
+La página de cada ejecución muestra una tabla de `PUBLISHED_VERIFIED`, `DEFERRED`, `WAITING_ARCHIVE`, `UPLOAD_RESULT_UNCERTAIN`, `PENDING_MANUAL`, `TOO_LARGE_PENDING`, etc. El archivo `archive-backup-batch-report` se conserva durante 14 días y su `run.json` separa el listado de candidatos de los registros de revisión por aplicación y motivo (`SOURCE_ADAPTER_PENDING`, falta de ítem propio, falta de tamaño, URL ambigua, etc.). **Ya no mezcla avisos de nuevas versiones de Orbit con respaldos pendientes.** No contiene secretos.
 
 **No borrar ni editar manualmente un checkpoint `TRANSFER_PREPARED` sin comprobar primero el archivo objetivo en Archive.org.** Las claves IA-S3 se configuran directamente en GitHub, nunca se deben copiar a commits ni a este documento.
 
