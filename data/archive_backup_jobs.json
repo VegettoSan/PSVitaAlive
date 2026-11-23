@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "inotia-3-children-of-carnia": {
-      "version": "1.0.3",
-      "source_url": "https://github.com/MetalSyntax/Inotia3-vita/releases/download/1.0.3/inotia3.vpk",
-      "archive_identifier": "psvitaalive-inotia-3-children-of-carnia",
-      "filename": "inotia-3-children-of-carnia v1.0.3.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T18:03:23+00:00"
-    }
-  }
+  "inflight": {}
 }
