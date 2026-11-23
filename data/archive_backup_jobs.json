@@ -8,6 +8,14 @@
       "filename": "vitamediadeck v1.4.3.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T21:11:43+00:00"
+    },
+    "vita-romm": {
+      "version": "0.8.1",
+      "source_url": "https://github.com/denkacn/vita-romm/releases/download/v0.8.1/vita_romm.vpk",
+      "archive_identifier": "vita-romm-psvita",
+      "filename": "vita-romm v0.8.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T21:13:08+00:00"
     }
   }
 }
