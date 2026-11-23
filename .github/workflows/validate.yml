@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
+  # Rebuild public catalogs only AFTER a verified Archive.org batch ends.
+  # GITHUB_TOKEN commits do not emit normal push-triggered workflow runs.
+  workflow_run:
+    workflows: ['Archive.org owned VPK backups (BATCH)']
+    types: [completed]
 
 permissions:
   contents: write
@@ -20,6 +25,12 @@ concurrency:
 
 jobs:
   validate:
+    # workflow_run is privileged; accept only the official successful main batch.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == 'VegettoSan/PSVitaAlive')
     runs-on: ubuntu-latest
     # Activated only AFTER official Release 02.18 is available.
     env:
