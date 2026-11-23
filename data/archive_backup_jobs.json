@@ -8,6 +8,14 @@
       "filename": "nfs-underground-2 v0.8.5.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T20:01:38+00:00"
+    },
+    "gh-vita": {
+      "version": "0.2.2",
+      "source_url": "https://github.com/irxd/guitar-hero-vita/releases/download/v0.2.2/ghvita-v0.2.2.vpk",
+      "archive_identifier": "guitar-hero-ps2-ps-vita",
+      "filename": "gh-vita v0.2.2.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T20:03:20+00:00"
     }
   }
 }
