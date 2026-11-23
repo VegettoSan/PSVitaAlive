@@ -50,35 +50,46 @@ def upload_map(path: Path) -> dict[str, set[str]]:
 
 
 def resolve_item(app: dict, known: dict[str, set[str]]) -> tuple[str | None, str]:
-    """Treat log + current primary links/icon as evidence; no guessing from Game Files."""
+    """Only a historical *successful own upload* may nominate a destination.
+
+    Third-party Archive.org screenshots, icons and Game Files are never proof
+    of account ownership. The historical log is a hint, NOT final permission:
+    a future uploader MUST verify metadata.uploader against the private
+    configured Archive.org account before it writes anything.
+    """
     app_id = str(app.get("id") or "")
     logged = known.get(app_id, set())
     if len(logged) > 1:
-        return None, "several successful upload-log identifiers"
-    evidences = set()
+        return None, "several historical identifiers: manual backup required"
+    if not logged:
+        return None, "no previously managed Archive.org item: manual backup required"
+    chosen = next(iter(logged))
+    # Only a conflicting PRIMARY VPK URL is significant. Screenshots, icon,
+    # Game Files and data packs legitimately live in other people's items.
     current, _ = select_current_download(app.get("links", []))
-    if current:
-        v = archive_id(current.get("url"))
-        if v:
-            evidences.add(v)
-    v = archive_id(app.get("icon"))
-    if v:
-        evidences.add(v)
-    # Screenshots and Game Files are weaker evidence. Do not use as exclusive proof.
-    for shot in app.get("screenshots") or []:
-        v = archive_id(shot)
-        if v:
-            evidences.add(v)
-    if len(evidences) > 1:
-        return None, "conflicting Archive.org identifiers in app media/downloads"
-    if logged:
-        chosen = next(iter(logged))
-        if evidences and chosen not in evidences:
-            return None, "upload log and app metadata disagree"
-        return chosen, "upload-log"
-    if evidences:
-        return next(iter(evidences)), "app references (manual confirmation needed)"
-    return None, "no confirmed existing Archive.org item"
+    primary = archive_id(current.get("url")) if current else None
+    if primary and primary != chosen:
+        return None, "main VPK link conflicts with historical own item: manual backup required"
+    return chosen, "historical-upload-log"
+
+
+def item_owned_by_account(metadata: object, expected_uploader: str) -> tuple[bool, str]:
+    """Mandatory pre-upload ownership gate. Never report the account's email.
+
+    expected_uploader comes from a GitHub Actions secret, never the public
+    catalog or this module. This does not test upload permissions; a future
+    transfer must still handle 403/permission errors as PENDING_MANUAL.
+    """
+    if not isinstance(expected_uploader, str) or not expected_uploader.strip():
+        return False, "expected Archive.org uploader not configured"
+    if not isinstance(metadata, dict) or not isinstance(metadata.get("metadata"), dict):
+        return False, "Archive.org item metadata unavailable"
+    actual = metadata["metadata"].get("uploader")
+    if not isinstance(actual, str) or not actual.strip():
+        return False, "Archive.org uploader metadata missing"
+    if actual.strip().casefold() != expected_uploader.strip().casefold():
+        return False, "Archive.org item managed by a different account"
+    return True, "uploader verified"
 
 
 def same_version_asset(app: dict, snapshot: dict, repo_usage: Counter) -> dict | None:
@@ -148,13 +159,13 @@ def candidates(root: Path, snapshot: dict) -> tuple[list[dict], list[dict]]:
         target, evidence = resolve_item(app, known)
         link, _ = select_current_download(proposed.get("links"))
         size = proposed.get("size")
-        if (not target or not evidence == "upload-log"
+        if (not target or evidence != "historical-upload-log"
                 or not isinstance(size, int) or isinstance(size, bool) or size <= 0 or link is None):
-            report.append({"app_id": app.get("id"), "status": "REVIEW", "reason": evidence if not target or evidence != "upload-log" else "no trustworthy release asset size"})
+            report.append({"app_id": app.get("id"), "status": "PENDING_MANUAL" if not target or evidence != "historical-upload-log" else "REVIEW", "reason": evidence if not target or evidence != "historical-upload-log" else "no trustworthy release asset size"})
             continue
         planned[path] = {"app_id": app["id"], "title_id": app["title_id"], "version": proposed["version"],
                          "source_url": link["url"], "size_bytes": size, "archive_identifier": target,
-                         "kind": "NEW_RELEASE", "status": "READY"}
+                         "kind": "NEW_RELEASE", "status": "READY_OWNER_PREFLIGHT"}
 
     for path, app in apps.items():
         if path in planned or app.get("status") not in {"Verified", "Legacy"}:
@@ -165,12 +176,12 @@ def candidates(root: Path, snapshot: dict) -> tuple[list[dict], list[dict]]:
         if not matched:
             continue
         target, evidence = resolve_item(app, known)
-        if not target or evidence != "upload-log":
-            report.append({"app_id": app.get("id"), "status": "REVIEW", "reason": evidence})
+        if not target or evidence != "historical-upload-log":
+            report.append({"app_id": app.get("id"), "status": "PENDING_MANUAL", "reason": evidence})
             continue
         planned[path] = {"app_id": app["id"], "title_id": app["title_id"], "version": matched["version"],
                          "source_url": matched["url"], "size_bytes": matched["size"],
-                         "archive_identifier": target, "kind": "SAME_VERSION_BACKFILL", "status": "READY"}
+                         "archive_identifier": target, "kind": "SAME_VERSION_BACKFILL", "status": "READY_OWNER_PREFLIGHT"}
 
     # Stable reproducible ordering. Large jobs not allowed to starve smaller jobs.
     result = sorted(planned.values(), key=lambda a: (a["size_bytes"], a["app_id"]))
@@ -199,7 +210,7 @@ def select_batch(items: list[dict], *, max_files: int, max_file_bytes: int, max_
 def report_markdown(items: list[dict], reviews: list[dict], *, limits: dict) -> str:
     tally = Counter(r["status"] for r in items + reviews)
     lines = ["# Archive.org backup batch — READ-ONLY preview", "",
-             "**No VPK downloaded/uploaded and no catalog changes made.**", "",
+             "**No VPK downloaded/uploaded and no catalog changes made. A historical upload log is not proof of ownership; verify metadata.uploader with a private expected account before enabling any upload.**", "",
              f"Limits: {limits['max_files']} files, {limits['max_file_mb']} MB per VPK, {limits['max_total_mb']} MB total. Time cap: {limits['max_minutes']} min (future upload step).", "",
              "| Status | Number |", "|---|---:|"]
     lines += [f"| {key} | {count} |" for key, count in sorted(tally.items())]
