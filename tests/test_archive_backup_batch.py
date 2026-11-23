@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from scripts.archive_backup_batch import (
     Deferred, expected_filename, source_matches_approved, candidate_proposal,
-    save_canonical, existing_file, safe_host, stream_download, run_one, load_state,
+    save_canonical, existing_file, safe_host, stream_download, run_one, load_state, MIB,
     write_state, public_url, verify_public_download, check_source_license,
 )
 
