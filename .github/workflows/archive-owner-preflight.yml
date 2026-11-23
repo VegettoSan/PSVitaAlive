@@ -43,6 +43,6 @@ jobs:
           IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
           IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
           IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
-          TARGET_ITEM: ${{ inputs.archive_item }}
+          TARGET_ITEM: ${{ inputs.archive_item || 'psvitaalive-z2' }}
         run: |
           python -m scripts.archive_owner_preflight --identifier "$TARGET_ITEM"

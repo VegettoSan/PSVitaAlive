@@ -117,7 +117,7 @@ def main() -> int:
             fh.write(f"- State: **{outcome['status']}**\n")
             fh.write(f"- Result: {outcome['message']}\n\n")
             fh.write("No VPK downloaded/uploaded, no catalog edits. IA-S3 write access not tested.\n")
-    return 1 if outcome["status"] == STATUS_CONFIG else 0
+    return 0 if outcome["status"] == STATUS_READY else 1
 
 
 if __name__ == "__main__":
