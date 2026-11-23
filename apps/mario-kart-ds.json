@@ -1,0 +1,49 @@
+{
+  "id": "mario-kart-ds",
+  "tid": "MKDS00001",
+  "n": "Mario Kart DS",
+  "d": "A Mario Kart DS PSVita Port.",
+  "ld": "This is a native PS Vita port of Mario Kart DS, made from the Mario Kart DS decompilation. It's not an emulator: the game's own code (in game/) runs directly on the Vita, and the parts of the DS it relies on (graphics, sound, timers, save chip, wireless and so on) are rebuilt in platform/. The 3D is drawn by the Vita's GPU.",
+  "aids": [
+    "pupuestudios"
+  ],
+  "cid": "ports",
+  "sids": [
+    "racing",
+    "simulation",
+    "source-port"
+  ],
+  "v": "1.1",
+  "vd": "2026-11-22",
+  "req": "- ur0:tai/CapUnlocker.skprx\n- libshacccg.suprx in ur0:data/.\n- Your own dump of Mario Kart DS (Europe, AMCP).\nInstalling",
+  "sz": 2306867,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/mario-kart-ds-vita/mkds%20v1.1.vpk",
+      "sz": 2306867,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/mario-kart-ds-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 33554432,
+      "xp": "ux0:data/",
+      "ips": [
+        "mkds"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/PupueStudios/mkds-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/mario-kart-ds-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/mario-kart-ds-vita/shot0.png"
+  ]
+}

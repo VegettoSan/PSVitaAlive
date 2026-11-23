@@ -1,0 +1,49 @@
+{
+  "id": "street-fighter-iii-3rd-strike",
+  "tid": "TSXV00001",
+  "n": "Street Fighter III: 3rd Strike",
+  "d": "Street Fighter 3rd Strike Native Vita Port",
+  "ld": "A native PS Vita and PS TV port of Street Fighter III: 3rd Strike – Fight for the Future, built on 3SX, the C decompilation of the PlayStation 2 version by the crowded-street team.",
+  "aids": [
+    "unclejahjah"
+  ],
+  "cid": "ports",
+  "sids": [
+    "arcade",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.02",
+  "vd": "2026-11-21",
+  "req": "- SF33RD.AFS (about 642 MB) from your own PS2 disc, see below\n- About 650 MB on ux0:",
+  "sz": 2621440,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/3sx%20v1.02.vpk",
+      "sz": 2621440,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/Game%20Files%20for%20PSVA.zip",
+      "sz": 642462515,
+      "xp": "ux0:data/",
+      "ips": [
+        "3sx"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/unclejahjah/sf3-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/icon0.png",
+  "ss": [
+    "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/shot0.png"
+  ]
+}
