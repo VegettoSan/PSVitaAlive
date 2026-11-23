@@ -42,6 +42,7 @@ constexpr uint64_t ZIP_SLOW_FILE_OPEN_US = 250ULL * 1000ULL;
 // Vita file-manager errno EEXIST: EXCL failed because the output already exists.
 // Handle this case without extra existence/stat syscalls for every tiny file.
 constexpr uint32_t ZIP_VITA_FILE_EXISTS = 0x80010011u;
+constexpr uint32_t ZIP_VITA_FILE_MISSING = 0x80010002u;
 // Let Vita's render thread run between large ux0 write bursts. 1ms per MiB
 // adds little overhead while reducing sustained worker/IO scheduling pressure.
 constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
@@ -1287,6 +1288,12 @@ ZipResult ZipExtractor::extract(
     uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
     uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
     uint64_t fastExistingOpens = 0, checkedExistingOpens = 0;
+    uint64_t directExistingOpens = 0, directExistingMisses = 0;
+    // ZIPs tend to group entries by parent directory. Learn whether the
+    // current group mostly replaces files or creates new ones without a large
+    // in-RAM directory index. Never infer ownership from this preference.
+    std::string lastOpenParent;
+    bool preferExistingOpen = true;
     bool exclusiveCreationSupported = true;
     // PR #75: also yield by entry count. Byte-only pacing cannot keep a
     // thousands-of-tiny-files ZIP responsive.
@@ -1321,7 +1328,8 @@ ZipResult ZipExtractor::extract(
             "[ZipIO] entries=%llu/%llu bytes=%llu/%llu wall_ms=%llu "
             "zip_open_ms=%llu file_open_ms=%llu zip_read_ms=%llu "
             "write_ms=%llu zip_close_ms=%llu file_close_ms=%llu max_open_ms=%llu "
-            "excl_ms=%llu check_ms=%llu replace_ms=%llu fast_existing=%llu checked_existing=%llu",
+            "excl_ms=%llu check_ms=%llu replace_ms=%llu fast_existing=%llu checked_existing=%llu "
+            "direct_existing=%llu direct_miss=%llu",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)prog.entriesTotal,
             (unsigned long long)prog.bytesWritten,
@@ -1338,7 +1346,9 @@ ZipResult ZipExtractor::extract(
             (unsigned long long)(io.fileCheckUs / 1000ULL),
             (unsigned long long)(io.fileReplaceUs / 1000ULL),
             (unsigned long long)fastExistingOpens,
-            (unsigned long long)checkedExistingOpens);
+            (unsigned long long)checkedExistingOpens,
+            (unsigned long long)directExistingOpens,
+            (unsigned long long)directExistingMisses);
         diagnostics::log(snapshot);
     };
 
@@ -1422,54 +1432,87 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
-        // EXCL identifies newly created files for failure cleanup, protecting
-        // pre-existing user files. A successful EXCL still needs only one open.
+        // Prefer a single existing-file open when the current directory
+        // contains existing output. The previous EXCL-first path attempted
+        // the expensive "does this already exist?" lookup for *every* file
+        // before opening it again to overwrite. Vita exFAT becomes very slow
+        // when one directory holds thousands of names.
+        //
+        // IMPORTANT: O_TRUNC has NO O_CREAT. It can only overwrite an existing
+        // file, never create a file whose ownership would be ambiguous.
+        // When ENOENT is observed, switch to EXCL-first for new-file runs;
+        // successful EXCL still proves ownership for safe failure cleanup.
+        const std::string openParent = slash == std::string::npos
+            ? destinationDir : outPath.substr(0, slash);
+        if (openParent != lastOpenParent) {
+            lastOpenParent = openParent;
+            preferExistingOpen = true;
+        }
         const uint64_t fileOpenStart = sampleStart();
-        const uint64_t exclusiveStart = sampleStart();
         SceUID fd = -1;
-        if (exclusiveCreationSupported)
-            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
-        sampleEnd(exclusiveStart, io.fileExclUs);
-
-        // On the standard Vita EEXIST result we already KNOW the file exists:
-        // skip the additional exists() and isDirectory() calls. TRUNC without
-        // CREAT cannot inadvertently create a new file if it vanishes meanwhile.
-        // Other EXCL failures retain the conservative compatible stat fallback.
-        const bool definitelyNewFile = fd >= 0;
+        bool definitelyNewFile = false;
         bool replacingExisting = false;
-        if (fd >= 0) {
-            ++exclusiveCreated;
-        } else if (exclusiveCreationSupported &&
-                   static_cast<uint32_t>(fd) == ZIP_VITA_FILE_EXISTS) {
-            replacingExisting = true;
-            ++existingFiles;
-            ++fastExistingOpens;
+
+        if (preferExistingOpen) {
             const uint64_t replaceStart = sampleStart();
             fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_TRUNC, 0777);
             sampleEnd(replaceStart, io.fileReplaceUs);
-        } else {
-            const uint64_t checkStart = sampleStart();
-            replacingExisting = st.exists(outPath);
-            const bool collisionIsDirectory = replacingExisting && st.isDirectory(outPath);
-            sampleEnd(checkStart, io.fileCheckUs);
-            if (collisionIsDirectory) {
-                zip_fclose(zf);
-                setError("ZIP file destination is a directory: " + outPath);
-                outcome = ZipResult::InvalidEntry;
-                break;
-            }
-            if (!replacingExisting && exclusiveCreationSupported) {
-                exclusiveCreationSupported = false;
-                ++exclusiveFallbacks;
-                diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
-            }
-            if (replacingExisting) {
+            if (fd >= 0) {
+                replacingExisting = true;
                 ++existingFiles;
-                ++checkedExistingOpens;
+                ++directExistingOpens;
+            } else if (static_cast<uint32_t>(fd) == ZIP_VITA_FILE_MISSING) {
+                ++directExistingMisses;
+                preferExistingOpen = false;
             }
-            const uint64_t replaceStart = sampleStart();
-            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
-            sampleEnd(replaceStart, io.fileReplaceUs);
+        }
+
+        if (fd < 0) {
+            const uint64_t exclusiveStart = sampleStart();
+            if (exclusiveCreationSupported)
+                fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
+            sampleEnd(exclusiveStart, io.fileExclUs);
+
+            if (fd >= 0) {
+                definitelyNewFile = true;
+                ++exclusiveCreated;
+                preferExistingOpen = false;
+            } else if (exclusiveCreationSupported &&
+                       static_cast<uint32_t>(fd) == ZIP_VITA_FILE_EXISTS) {
+                replacingExisting = true;
+                ++existingFiles;
+                ++fastExistingOpens;
+                preferExistingOpen = true;
+                const uint64_t replaceStart = sampleStart();
+                fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_TRUNC, 0777);
+                sampleEnd(replaceStart, io.fileReplaceUs);
+            } else {
+                // Unexpected EXCL failure: keep the conservative stat fallback
+                // for older kernels or unusual mount/permission behavior.
+                const uint64_t checkStart = sampleStart();
+                replacingExisting = st.exists(outPath);
+                const bool collisionIsDirectory = replacingExisting && st.isDirectory(outPath);
+                sampleEnd(checkStart, io.fileCheckUs);
+                if (collisionIsDirectory) {
+                    zip_fclose(zf);
+                    setError("ZIP file destination is a directory: " + outPath);
+                    outcome = ZipResult::InvalidEntry;
+                    break;
+                }
+                if (!replacingExisting && exclusiveCreationSupported) {
+                    exclusiveCreationSupported = false;
+                    ++exclusiveFallbacks;
+                    diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
+                }
+                if (replacingExisting) {
+                    ++existingFiles;
+                    ++checkedExistingOpens;
+                    preferExistingOpen = true;
+                }
+                const uint64_t replaceStart = sampleStart();
+                fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
+                sampleEnd(replaceStart, io.fileReplaceUs);
+            }
         }
         const uint64_t openElapsedUs = sampleEnd(fileOpenStart, io.fileOpenUs);
         io.worstFileOpenUs = std::max(io.worstFileOpenUs, openElapsedUs);
@@ -1818,7 +1861,7 @@ ZipResult ZipExtractor::extract(
         char perf[320];
         sceClibSnprintf(perf, sizeof(perf),
             "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
-            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu fast_existing=%llu checked_existing=%llu pipeline_files=%llu pipeline_bytes=%llu status=%s",
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu fast_existing=%llu checked_existing=%llu direct_existing=%llu direct_miss=%llu pipeline_files=%llu pipeline_bytes=%llu status=%s",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)directoryCacheHits,
             (unsigned long long)directoryCacheChecks,
@@ -1827,6 +1870,8 @@ ZipResult ZipExtractor::extract(
             (unsigned long long)exclusiveFallbacks,
             (unsigned long long)fastExistingOpens,
             (unsigned long long)checkedExistingOpens,
+            (unsigned long long)directExistingOpens,
+            (unsigned long long)directExistingMisses,
             (unsigned long long)pipelinedEntries,
             (unsigned long long)pipelinedBytes,
             toString(outcome));
