@@ -446,7 +446,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.5/NFSU2VITA.vpk",
+        "u": "https://archive.org/download/NFSUG2_VITA/nfs-underground-2%20v0.8.5.vpk",
         "sz": 10405723,
         "rec": true
       },
@@ -1396,7 +1396,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.2/nfsmw.vpk",
+        "u": "https://archive.org/download/nfsmw-vita/nfs-most-wanted%20v1.6.2.vpk",
         "sz": 3274720,
         "rec": true
       },
@@ -2054,7 +2054,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/PupueStudios/sonic-r-vita/releases/download/v2.1/sonicr_vita.vpk",
+        "u": "https://archive.org/download/sonic-r-ps-vita/sonic-r%20v2.1.vpk",
         "sz": 4363896,
         "rec": true
       },
@@ -2499,7 +2499,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/pyjabox/VitaKotor2/releases/download/v0.6.0/KOTOR2.vpk",
+        "u": "https://archive.org/download/VitaKotor2/kotor-ii%20v0.6.0.vpk",
         "sz": 2194649,
         "rec": true
       },
@@ -2699,7 +2699,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Federicoilgrandebardo/vampire-survivors-vita/releases/download/v1.2.1/VampireSurvivors-Vita-v1.2.1.vpk",
+        "u": "https://archive.org/download/vampire-survivors-ps-vita-port/vampire-survivors%20v1.2.1.vpk",
         "sz": 13368510,
         "rec": true
       },
@@ -2752,7 +2752,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/ggdrn/KH-DAYS-VITA/releases/download/1.1/khdays-vita-1.1.0.vpk",
+        "u": "https://archive.org/download/kh-days-vita/kingdom-hearts-358-2-days%20v1.1.vpk",
         "sz": 3978210,
         "rec": true
       },
@@ -2800,7 +2800,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Raging-Thunder-vita/releases/download/v1.0.2/ragingthunder.vpk",
+        "u": "https://archive.org/download/raging-thunder-ps-vita-port/raging-thunder%20v1.0.2.vpk",
         "sz": 922121,
         "rec": true
       },
@@ -2850,7 +2850,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.1.0-alpha.3/sh2vita.vpk",
+        "u": "https://archive.org/download/sh2-vita/silent-hill-2%20v0.1.0-alpha.3.vpk",
         "sz": 1297848,
         "rec": true
       },
