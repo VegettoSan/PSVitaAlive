@@ -1,0 +1,64 @@
+name: Archive.org backup batch preview (NO UPLOAD)
+
+on:
+  push:
+    branches: [feature/archive-backup-actions-batch-preview]
+    paths:
+      - 'scripts/archive_backup_batch_preview.py'
+      - 'tests/test_archive_backup_batch_preview.py'
+      - '.github/workflows/archive-backup-batch-preview.yml'
+  workflow_dispatch:
+    inputs:
+      max_files:
+        description: 'Maximum VPK per run (preview only)'
+        required: false
+        default: '12'
+      max_file_mb:
+        description: 'Skip single files larger than this number of MB'
+        required: false
+        default: '200'
+      max_total_mb:
+        description: 'Total planned VPK size in MB'
+        required: false
+        default: '800'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: archive-backup-preview-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  audit-pending-batch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests (offline)
+        run: python -m unittest discover -s tests -p 'test_archive_backup_batch_preview.py' -v
+      - name: Build read-only preview
+        env:
+          MAX_FILES: ${{ inputs.max_files || '12' }}
+          MAX_FILE_MB: ${{ inputs.max_file_mb || '200' }}
+          MAX_TOTAL_MB: ${{ inputs.max_total_mb || '800' }}
+        run: |
+          mkdir -p archive-batch-report
+          python -m scripts.archive_backup_batch_preview \
+            --max-files "$MAX_FILES" \
+            --max-file-mb "$MAX_FILE_MB" \
+            --max-total-mb "$MAX_TOTAL_MB" \
+            --max-minutes 45 \
+            --output archive-batch-report/preview.json \
+            --summary archive-batch-report/preview.md
+          cat archive-batch-report/preview.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Save read-only report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: archive-backup-batch-preview
+          path: archive-batch-report/
+          retention-days: 7
