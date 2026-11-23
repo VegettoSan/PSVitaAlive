@@ -89,7 +89,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita/releases/download/v0.4.0/gangstarmiamivindication.vpk",
+        "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/gangstar-miami-vindication%20v0.4.0.vpk",
         "sz": 2339815,
         "rec": true
       },
@@ -138,7 +138,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.1/manhunt-v0.10.1-vita.vpk",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.10.1.vpk",
         "sz": 1819197,
         "rec": true
       },
@@ -297,7 +297,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/N.O.V.A-2-vita/releases/download/v1.1/nova2.vpk",
+        "u": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova-2-hd%20v1.1.vpk",
         "sz": 2069864,
         "rec": true
       },
