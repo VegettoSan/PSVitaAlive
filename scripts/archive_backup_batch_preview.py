@@ -48,29 +48,66 @@ def upload_map(path: Path) -> dict[str, set[str]]:
     return result
 
 
-def resolve_item(app: dict, known: dict[str, set[str]]) -> tuple[str | None, str]:
-    """Only a historical *successful own upload* may nominate a destination.
+def media_archive_id(url: object) -> str | None:
+    """Use only direct Archive.org image files, never a game-data or VPK link."""
+    if not isinstance(url, str):
+        return None
+    parsed = urlparse(url)
+    if (parsed.scheme != "https" or (parsed.hostname or "").lower()
+            not in {"archive.org", "www.archive.org"}
+            or parsed.username or parsed.password or parsed.port):
+        return None
+    pieces = [unquote(x) for x in parsed.path.split("/") if x]
+    if (len(pieces) < 3 or pieces[0] != "download"
+            or not pieces[-1].lower().endswith((".png", ".jpg", ".jpeg", ".webp"))):
+        return None
+    return archive_id(url)
 
-    Third-party Archive.org screenshots, icons and Game Files are never proof
-    of account ownership. The historical log is a hint, NOT final permission:
-    a future uploader MUST verify metadata.uploader against the private
-    configured Archive.org account before it writes anything.
+
+def catalog_media_item(app: dict) -> tuple[str | None, str]:
+    """Infer the destination from BOTH icon and all supplied screenshots.
+
+    This is only an item *candidate*, not proof of ownership or permission.
+    The upload engine must validate metadata.uploader with its private secret.
+    """
+    icon = media_archive_id(app.get("icon"))
+    shots = app.get("screenshots")
+    if not icon or not isinstance(shots, list) or not shots:
+        return None, "no consistent Archive.org icon and screenshots for candidate item"
+    shot_items = [media_archive_id(url) for url in shots]
+    if any(item != icon for item in shot_items):
+        return None, "catalog icon and screenshots reference different or unsupported items"
+    return icon, "catalog-media-candidate"
+
+
+def resolve_item(app: dict, known: dict[str, set[str]]) -> tuple[str | None, str]:
+    """Resolve an existing Archive.org item, not necessarily from a prior upload.
+
+    The historic owned-upload record has priority. Without a record, the icon
+    and ALL screenshots can nominate a single existing item. None of those
+    public URLs prove account ownership: only a successful private uploader
+    metadata check may authorize an upload or reconcile an existing VPK.
+    Game Files and plugins are never considered when selecting the item.
     """
     app_id = str(app.get("id") or "")
     logged = known.get(app_id, set())
     if len(logged) > 1:
         return None, "several historical identifiers: manual backup required"
-    if not logged:
-        return None, "no previously managed Archive.org item: manual backup required"
-    chosen = next(iter(logged))
-    # Only a conflicting PRIMARY VPK URL is significant. Screenshots, icon,
-    # Game Files and data packs legitimately live in other people's items.
+    if logged:
+        chosen = next(iter(logged))
+        evidence = "historical-upload-log"
+    else:
+        chosen, evidence = catalog_media_item(app)
+        if not chosen:
+            return None, evidence
+
+    # Only a conflicting PRIMARY VPK URL is significant. Game Files, plugins
+    # and other media links legitimately belong to different IA items.
     current, _ = select_current_download(app.get("links", []))
     primary = archive_id(current.get("url")) if current else None
     if primary and primary != chosen:
-        return None, "main VPK link conflicts with historical own item: manual backup required"
-    return chosen, "historical-upload-log"
-
+        return None, "main VPK link conflicts with candidate own item: manual review"
+    return chosen, evidence
 
 def item_owned_by_account(metadata: object, expected_uploader: str) -> tuple[bool, str]:
     """Mandatory pre-upload ownership gate. Never report the account's email.
@@ -170,7 +207,7 @@ def candidates(root: Path, snapshot: dict | None = None) -> tuple[list[dict], li
                            "reason": "duplicate or missing Title ID"})
             continue
 
-        if target is None or evidence != "historical-upload-log":
+        if target is None or evidence not in {"historical-upload-log", "catalog-media-candidate"}:
             report.append({"app_id": app.get("id"), "status": "PENDING_MANUAL",
                            "reason": evidence})
             continue
