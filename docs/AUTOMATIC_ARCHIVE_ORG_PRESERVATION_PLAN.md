@@ -120,7 +120,7 @@ Si hay varios ítems candidatos, el registro indica otro ítem, no puede confirm
 
 ### A. Cola de respaldos pendientes (backfill)
 
-Auditoría en **modo lectura** usando el catálogo canónico, snapshot de Orbit, vínculos del ítem y metadatos de Archive.org. No basta con el estado visual del monitor.
+**Inventario ligero, sin reauditar versiones antiguas:** tomar los pendientes que Orbit ya clasifica y cruzarlos con el JSON canónico y el mapeo autorizado de ítems. **Las versiones que el mantenedor ya respaldó manualmente se consideran respaldadas**; no descargar, comparar hashes ni listar todo su historial. La metadata de Archive.org se consulta para validar un destino aún no confirmado, confirmar una **nueva subida** o resolver un resultado incierto (p. ej., reintento tras desconexión). El estado visual del monitor es una señal para crear trabajos, no un comprobante técnico de la nueva subida.
 
 Posibles casos:
 
@@ -153,7 +153,7 @@ Propuesta de nombre remoto: `<nombre seguro> v<version-normalizada>.vpk` (ejempl
 
 Identificador idempotente recomendado: `app_id + title_id + upstream_repo_id/canonical_source + release_id/tag + normalized_version + source_asset_id/URL`, procesado de forma determinista. No bastarse únicamente con `app_id + version` cuando el upstream reutiliza una etiqueta móvil; si su contenido cambia, revisión explícita y sin sobreescribir un nombre existente.
 
-Antes de transferir: listar nombres del ítem, comprobar nombre final reservado, tamaño/hash si existen, verificar versión y evitar duplicado. Si mismo nombre y mismos bytes **verificados**, marcar ya respaldado sin resubir. Si mismo nombre pero contenido diferente, detener y escalar a revisión.
+Antes de transferir: comprobar la identidad del ítem y reservar el nombre final en la bitácora idempotente del trabajo. **No hacer un escaneo general de versiones existentes** en cada actualización nueva. Si hay indicios de duplicado o un resultado anterior incierto, consultar **solo el archivo de la versión objetivo**: si existe con tamaño/hash coincidente y verificable, marcar respaldado sin resubir; si tiene contenido diferente o no se puede resolver el conflicto, detener y escalar a revisión. Evitar sobrescribir versiones antiguas incluso cuando Archive.org permita sobrescribir nombres.
 
 ## 7. Transferencia y verificación — experimento obligatorio
 
@@ -178,6 +178,21 @@ Fuentes técnicas (revalidar en la implementación):
 - https://developers.cloudflare.com/workers/runtime-apis/request/
 - https://developers.cloudflare.com/r2/objects/upload-objects/
 
+### Archive.org fuera de servicio, lento o intermitente
+
+**Principio operativo:** una caída de Archive.org no debe perder actualizaciones ni bloquear Orbit/PSVitaAlive. Los trabajos se guardan en una cola **durable**; el monitor sigue detectando releases y el cliente sigue utilizando el enlace/version canónicos que ya tenía (o la versión ya publicada por el flujo antiguo mientras se migra).
+
+- **Antes de subir:** si Archive.org no responde o devuelve 502/503/504, dejar el trabajo en `RETRYABLE_ERROR` o `WAITING_ARCHIVE`, guardando el `app_id`, release, URL fuente, `archive_identifier` y nombre esperado. No modificar el JSON canónico.
+- **Durante la subida:** si ocurre timeout, caída de conexión o HTTP incierto, **no asumir fallo ni repetir ciegamente**; cuando el servicio vuelva, consultar únicamente el nombre del VPK que se estaba subiendo. Si el archivo está completo y coincide con los metadatos disponibles, continuar con verificación; si está ausente, reintentar; si está incompleto o en conflicto, `REVIEW`.
+- **Subida aceptada pero procesamiento tardío:** pasar a `VERIFYING` y sondear solo el nuevo archivo con intervalos moderados. No subir una segunda copia solo porque el enlace `/download/` todavía no está listo.
+- **Reintentos:** backoff exponencial con jitter, límite de concurrencia y respeto de `Retry-After` para 429/503 cuando se proporcione; introducir un **circuit breaker** que pause nuevas transferencias ante fallo generalizado y retome con una prueba pequeña cuando Archive.org se recupere. No saturar Archive.org con reintentos.
+- **Errores no transitorios:** credenciales inválidas (401/403), bloqueo antispam, permisos sobre el ítem, rechazo por políticas o nombre en colisión no se reintentan en bucle: pasan a `BLOCKED`/`REVIEW` para intervención.
+- **Caídas prolongadas:** permitir trabajos pendientes durante días sin caducar ni perder su identidad; persistir los datos fuera de la memoria/ejecución efímera de Workers/Workflows, con reconciliación periódica desde la cola durable. Al volver Archive.org, procesar por lotes con cuota y límites.
+- **R2 opcional:** si ya hay un VPK temporal en R2, conservarlo dentro de una política de retención y presupuesto claramente definida para no repetir la descarga del origen; nunca dejar staging sin límite de tiempo/coste. Si no hay R2, guardar la referencia upstream y reintentar después.
+- **Visibilidad:** exponer estado `Esperando Archive.org`, último error no sensible, siguiente intento y número de reintentos; poder pausar/reanudar manualmente. Evitar avisar a Discord de una nueva versión como «respaldada» hasta que el catálogo oficial realmente la publique.
+
+El sistema **nunca elimina ni sustituye archivos históricos** a causa de una caída. La única verificación obligatoria en el camino normal es la **subida nueva**, su disponibilidad y su enlace final.
+
 ## 8. Estado y API interna de trabajos (propuesto)
 
 Estados sugeridos:
@@ -189,7 +204,8 @@ Estados sugeridos:
 - `BACKED_UP`: VPK corroborado en ítem correcto.
 - `PUBLISHING`: relectura del catálogo y escritura canónica controlada.
 - `DONE`: JSON y catálogos validados y enlace confirmado.
-- `RETRYABLE_ERROR` / `BLOCKED`: errores temporales o bloqueo permanente.
+- `WAITING_ARCHIVE` / `RETRYABLE_ERROR`: servicio externo caído, procesamiento lento o fallo temporal; mantener trabajo y reintentar luego.
+- `BLOCKED`: permisos inválidos, rechazo permanente, conflicto o revisión humana obligatoria.
 
 Registrar como mínimo: `job_id`, `app_id`, `title_id`, versión/tag, ID de release/asset, URL upstream, `archive_identifier`, nombre remoto, tamaño y hashes conocidos, timestamp, estado, intentos, causa del fallo y SHA de catálogo leído/publicado. Los registros de progreso no deben incluir tokens ni descargas privadas.
 
@@ -226,10 +242,10 @@ Retención: el historial verificable de jobs debe sobrevivir al vencimiento de l
 
 ## 10. Despliegue por fases: no avanzar sin validar la anterior
 
-**Fase 0 — solo auditoría**
-- Cruzar JSON canónicos, estado Orbit y `archive_upload_log.csv` con la metadata de Archive.org.
-- Emitir informe `ready / missing / outdated / review / no_item / already_backed_up`.
-- Distinguir «enlace apunta a IA» de «archivo existente e íntegro». Revisar muestras manualmente.
+**Fase 0 — inventario ligero de pendientes, sin subir**
+- Cruzar JSON canónicos, **pendientes señalados por Orbit** y `archive_upload_log.csv` para elegir destino y versión; dar por respaldadas las versiones antiguas que el mantenedor ya publicó, **sin recorrer ni revalidar todo el historial**.
+- Consultar Archive.org **solo cuando sea necesario** para confirmar un destino dudoso o un archivo objetivo con resultado incierto; no hacer inspección masiva de VPK históricos.
+- Emitir informe `ready / missing / outdated / review / no_item / already_backed_up` y revisar las excepciones.
 - No escribir JSON ni tocar archivos de Archive.org.
 
 **Fase 1 — prueba de IA sobre un ítem controlado**
@@ -253,7 +269,7 @@ Retención: el historial verificable de jobs debe sobrevivir al vencimiento de l
 - Verificar no regresión de versiones, edición manual, enlaces Game Files y notificaciones Discord (solo después de catálogo publicado).
 
 **Fase 5 — operación, auditoría y ampliación**
-- Auditoría periódica de integridad, manejo de fallos permanentes, panel de pendientes y procedimientos de recuperación.
+- Seguimiento de nuevos respaldos, manejo de caídas prolongadas de Archive.org, panel de pendientes y procedimientos de recuperación. No reauditar innecesariamente el historial antiguo.
 - Expandir elegibilidad con evidencia de permisos y prueba de costes/salud operativa.
 
 **Criterios mínimos de aceptación antes de activar producción:**
@@ -278,7 +294,9 @@ Retención: el historial verificable de jobs debe sobrevivir al vencimiento de l
 
 ## 12. Regla final
 
-**Primero preservar y verificar; después actualizar el enlace canónico.**
+**Una nueva versión detectada se considera pendiente, sin inspección masiva de versiones anteriores.**
+**Si Archive.org falla, encolar/reintentar después sin modificar el catálogo ni perder el trabajo.**
+**Primero preservar y verificar el archivo NUEVO; después actualizar el enlace canónico.**
 **Los pendientes actuales y las actualizaciones futuras deben usar el mismo motor.**
 **Nunca borrar versiones previas ni crear un ítem nuevo por actualización.**
 **No romper ni desactivar el sincronizador actual hasta superar las pruebas.**
