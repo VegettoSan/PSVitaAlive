@@ -27,7 +27,11 @@ Antes, el lote exigía que `scripts/archive_upload_log.csv` contuviera una subid
 
 Ahora se identifica el ítem candidato mediante `icon` + **todas las** `screenshots` del JSON. Las direcciones deben ser imágenes directas HTTPS de Archive.org (`.png`, `.jpg`, `.jpeg`, `.webp`) y coincidir en un único identificador. Si falta una imagen o hay distintos identificadores, se requiere revisión. Los elementos `Game Files` y `Plugin` no participan, aunque apunten a otros ítems.
 
-**Ejemplos revisados:** `dragon-ball-z-bt3` → `dragon-ball-z-budokai-tenkaichi-3-ps-vita`; `dragon-ball-z-bt4` → `dbz-bt4-ps-vita`; `spongebob-battle-for-bikini-bottom` → `battle-for-bikini-bottom-vita`. Sus VPK principales ya estaban registrados en el catálogo con URL de GitHub Releases, aunque ninguno tenía historial exitoso en el CSV de uploads. Los tres siguen sujetos al control `metadata.uploader`, comprobación de origen, tamaño, archivo remoto existente, checkpoint previo al PUT y verificación SHA-256 pública antes de cambiar el botón del catálogo.
+**Ejemplos revisados:** `dragon-ball-z-bt3` → `dragon-ball-z-budokai-tenkaichi-3-ps-vita`; `dragon-ball-z-bt4` → `dbz-bt4-ps-vita`; `spongebob-battle-for-bikini-bottom` → `battle-for-bikini-bottom-vita`.
+
+El planificador ahora **prioriza la fecha de versión de `apps/` más reciente**; en caso de empate procesa primero los VPK más pequeños. El límite de 12 archivos por lote se conserva, y las aplicaciones restantes aparecen como `DEFERRED` para la siguiente ejecución.
+
+ Sus VPK principales ya estaban registrados en el catálogo con URL de GitHub Releases, aunque ninguno tenía historial exitoso en el CSV de uploads. Los tres siguen sujetos al control `metadata.uploader`, comprobación de origen, tamaño, archivo remoto existente, checkpoint previo al PUT y verificación SHA-256 pública antes de cambiar el botón del catálogo.
 
 Un ítem identificado por medios públicos **no se considera propio hasta superar el control privado**; si se trata de un archivo gestionado por otro usuario, no se escribirá en él. No se tocan capturas, íconos ni Game Files, ni se altera la arquitectura de generación de catálogos.
 
