@@ -9815,17 +9815,17 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllRecoveryAutoAttempted_ = false;
     installAllRecoveryAutoFailed_ = false;
 
-    // The queue is final: check exactly its app, selected Game/Data Files and
-    // explicitly approved plugins, with the existing staging/safety reserve.
-    // A single missing selected size switches the whole queue to individual
-    // checks. Each request checks known hints, then real HTTP 200/206 headers
-    // before writing, using the DownloadManager's existing safety policy.
-    const bool individual = spaceBudget.unknownSizeCount != 0;
-    installAllRequiredBytes_ = individual ? 0 :
+    // One combined check BEFORE the first download, for exactly the links
+    // selected by the user. Never disable the whole check because a single
+    // selected link has no declared size: count all known ZIPs AND a reserve
+    // for unknown links. HTTP headers still check an unknown real size before
+    // the downloader writes the first payload byte.
+    installAllRequiredBytes_ =
         ::psvitaalive::installAllQueueRequiredSpaceBytes(spaceBudget);
-    if (individual)
-        diagnostics::log("[UI] Install All individual space preflight: missing size in " +
-            std::to_string(spaceBudget.unknownSizeCount) + " queued link(s)");
+    if (spaceBudget.unknownSizeCount)
+        diagnostics::log("[UI] Install All preflight includes minimum reserve for " +
+            std::to_string(spaceBudget.unknownSizeCount) +
+            " link(s) with missing size; real HTTP size checked before payload");
     installAllFreeBytes_ = 0;
     installAllSpaceProbeFailed_ = false;
     if (installAllRequiredBytes_) {
