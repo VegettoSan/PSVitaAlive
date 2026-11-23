@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "dragon-ball-z-bt4": {
+      "version": "1.5.1",
+      "source_url": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.5.1/BT4-Vita.vpk",
+      "archive_identifier": "dbz-bt4-ps-vita",
+      "filename": "dragon-ball-z-bt4 v1.5.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T19:41:28+00:00"
+    }
+  }
 }
