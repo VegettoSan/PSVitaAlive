@@ -4603,6 +4603,21 @@
     "ic": "https://github.com/Daexxxx.png"
   },
   {
+    "id": "unclejahjah",
+    "n": "Jah Jah",
+    "av": "https://avatars.githubusercontent.com/u/340081497?v=4",
+    "b": "Porting games to a once dead console with the help of my boyfriend Claude and an unhealthy amount of caffeine.",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/unclejahjah",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "jakibaki",
     "n": "jakibaki",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -7954,6 +7969,21 @@
       }
     ],
     "ic": "https://github.com/PuppetHuggerDX.png"
+  },
+  {
+    "id": "pupuestudios",
+    "n": "PupueStudios",
+    "av": "https://avatars.githubusercontent.com/u/344288626?v=4",
+    "b": "pupue!",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/PupueStudios",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
     "id": "pyjabox",

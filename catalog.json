@@ -220,6 +220,55 @@
     ]
   },
   {
+    "id": "mario-kart-ds",
+    "tid": "MKDS00001",
+    "n": "Mario Kart DS",
+    "d": "A Mario Kart DS PSVita Port.",
+    "ld": "This is a native PS Vita port of Mario Kart DS, made from the Mario Kart DS decompilation. It's not an emulator: the game's own code (in game/) runs directly on the Vita, and the parts of the DS it relies on (graphics, sound, timers, save chip, wireless and so on) are rebuilt in platform/. The 3D is drawn by the Vita's GPU.",
+    "aids": [
+      "pupuestudios"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "1.1",
+    "vd": "2026-11-22",
+    "req": "- ur0:tai/CapUnlocker.skprx\n- libshacccg.suprx in ur0:data/.\n- Your own dump of Mario Kart DS (Europe, AMCP).\nInstalling",
+    "sz": 2306867,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/mario-kart-ds-vita/mkds%20v1.1.vpk",
+        "sz": 2306867,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/mario-kart-ds-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 33554432,
+        "xp": "ux0:data/",
+        "ips": [
+          "mkds"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/PupueStudios/mkds-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/mario-kart-ds-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/mario-kart-ds-vita/shot0.png"
+    ]
+  },
+  {
     "id": "need-for-speed-underground",
     "tid": "NFSUG1VTA",
     "n": "Need for Speed Underground",
@@ -552,6 +601,55 @@
     "ic": "https://archive.org/download/silent-hill-3-2003-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/silent-hill-3-2003-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "street-fighter-iii-3rd-strike",
+    "tid": "TSXV00001",
+    "n": "Street Fighter III: 3rd Strike",
+    "d": "Street Fighter 3rd Strike Native Vita Port",
+    "ld": "A native PS Vita and PS TV port of Street Fighter III: 3rd Strike – Fight for the Future, built on 3SX, the C decompilation of the PlayStation 2 version by the crowded-street team.",
+    "aids": [
+      "unclejahjah"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.02",
+    "vd": "2026-11-21",
+    "req": "- SF33RD.AFS (about 642 MB) from your own PS2 disc, see below\n- About 650 MB on ux0:",
+    "sz": 2621440,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/3sx%20v1.02.vpk",
+        "sz": 2621440,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 642462515,
+        "xp": "ux0:data/",
+        "ips": [
+          "3sx"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/unclejahjah/sf3-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/shot0.png"
     ]
   },
   {
@@ -980,6 +1078,104 @@
     "su": "https://github.com/thcolin/gamepad-media-center-aggregator",
     "rp": "https://github.com/thcolin/gamepad-media-center-aggregator/releases/tag/v1.1.0",
     "ua": "2026-08-13T15:34:48.329481+00:00"
+  },
+  {
+    "id": "crash-nitro-kart-2",
+    "tid": "PSVCNK002",
+    "n": "Crash Nitro Kart 2",
+    "d": "iOS to PS Vita port of Crash Nitro Kart 2",
+    "ld": "An unofficial, native iOS-to-PS Vita wrapper port of Crash Bandicoot Nitro Kart 2 (iOS 1.0.4, originally developed by Polarbit on its Fuse engine). There is no .so here: the port ships its own Mach-O loader, which maps the original 32-bit ARMv6 iOS executable (CBNK2) into Vita RAM and replaces the Apple frameworks it uses (Foundation/UIKit, OpenGL ES 1.1, AudioQueue) with native implementations built on vitaGL and the Vita system libraries. The game engine runs unmodified.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.1",
+    "vd": "2026-11-19",
+    "req": "- ur0:tai/kubridge.skprx\n- Shader Compiler: libshacccg.suprx must be in ur0:data/ (extract it with ShaRKBR33D).\n- Game Files: a decrypted Crash Bandicoot Nitro Kart 2 1.0.4 .ipa",
+    "sz": 1468006,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/crash-nitro-kart-2-ps-vita-port/crashnitro2%20v0.1.vpk",
+        "sz": 1468006,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/crash-nitro-kart-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 77175194,
+        "xp": "ux0:data/",
+        "ips": [
+          "crashnitro2"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/MetalSyntax/Crash-Nitro-Kart-2-iOS-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/crash-nitro-kart-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/crash-nitro-kart-2-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "crash-nitro-kart-3d",
+    "tid": "PSVCNK001",
+    "n": "Crash Nitro Kart 3D",
+    "d": "iOS to PS Vita port of Crash Nitro Kart",
+    "ld": "An unofficial, native iOS-to-PS Vita wrapper port of Crash Bandicoot Nitro Kart 3D (iOS 1.0, originally developed by Polarbit on its Fuse engine). There is no .so here: the port ships its own Mach-O loader, which maps the original 32-bit ARMv6 iOS executable (iFuse) into Vita RAM and replaces the Apple frameworks it uses (Foundation/UIKit, OpenGL ES 1.1, AudioQueue) with native implementations built on vitaGL and the Vita system libraries. The game engine runs unmodified.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "0.1",
+    "vd": "2026-11-19",
+    "req": "- ur0:tai/kubridge.skprx\n- Shader Compiler: libshacccg.suprx must be in ur0:data/ (extract it with ShaRKBR33D).\n- Game Files: a decrypted Crash Bandicoot Nitro Kart 3D 1.0 .ipa",
+    "sz": 1258291,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/crash-nitro-kart-3d-ps-vita-port/crashnitro1%20v0.1.vpk",
+        "sz": 1258291,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/crash-nitro-kart-3d-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 7759462,
+        "xp": "ux0:data/",
+        "ips": [
+          "crashnitro1"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/MetalSyntax/Crash-Nitro-Kart-iOS-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/crash-nitro-kart-3d-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/crash-nitro-kart-3d-ps-vita-port/shot0.png"
+    ]
   },
   {
     "id": "delta-squad",
