@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "monster-hunter-tri": {
+      "version": "0.3.1",
+      "source_url": "https://github.com/Grarak/mh3-wii/releases/download/0.3.1/mh3-vita.vpk",
+      "archive_identifier": "monster-hunter-tri-ps-vita",
+      "filename": "monster-hunter-tri v0.3.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T21:07:18+00:00"
+    }
+  }
 }
