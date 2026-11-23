@@ -18025,22 +18025,24 @@
     "v": "v.1.01",
     "vd": "2026-01-25",
     "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "sz": 1956223,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_04.png",
-      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_05.png"
-    ],
+    "sz": 1956643,
+    "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
         "u": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/door-kickers-action-squad-vita.vpk",
         "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 108422758,
+        "xp": "ux0:data/",
+        "ips": [
+          "com.khg.actionsquad"
+        ]
       },
       {
         "t": "Official Website",
@@ -18053,11 +18055,19 @@
         "u": "https://github.com/elliencode/actionsquad-psv-internal/"
       }
     ],
+    "ic": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_05.png"
+    ],
     "sn": "VitaHomebrewDB",
     "si": "1364",
     "su": "https://github.com/elliencode/actionsquad-psv-internal/",
     "rp": "https://github.com/elliencode/actionsquad-psv",
-    "ua": "2026-08-13T15:34:48.366245+00:00"
+    "ua": "2026-08-13T15:34"
   },
   {
     "id": "gunman-clive",
@@ -19289,60 +19299,6 @@
     "ua": "2026-08-13T15:34:48.375318+00:00"
   },
   {
-    "id": "hill-climb-racing-vita",
-    "tid": "HCR000000",
-    "n": "Hill Climb Racing Vita",
-    "d": "Port of Hill Clamb Racing for PSVita.",
-    "ld": "Hill Climb Racing is a game made by Fingersoft, a Finnish game engine where you can control a vehicle and try to survive as far as possible to get more coins for more upgrades, vehicles and stages! Each stage has a different layout, and different obstacles to overcome. Each vehicle has their own strengths and weaknesses, making certain vehicles excel in certain stages, and their vehicles have overalls.\n\n- PsVitaAlive -",
-    "aids": [
-      "memoryhunter"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "beta2",
-    "vd": "2025-10-31",
-    "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-    "sz": 1999461,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_04.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/hill-climb-racing-vita.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/memory-hunter/hill-climb-racing-vita/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/memory-hunter/hill-climb-racing-vita/releases/tag/beta2"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/memory-hunter/hill-climb-racing-vita"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1340",
-    "su": "https://github.com/memory-hunter/hill-climb-racing-vita",
-    "rp": "https://github.com/memory-hunter/hill-climb-racing-vita/releases",
-    "ua": "2026-08-13T15:34:48.376238+00:00"
-  },
-  {
     "id": "howard",
     "tid": "HOWD42069",
     "n": "Howard",
@@ -19395,6 +19351,60 @@
     "su": "https://github.com/Narwher/Howard",
     "rp": "https://github.com/Narwher/Howard/releases/tag/0.1a",
     "ua": "2026-08-13T15:34:48.375803+00:00"
+  },
+  {
+    "id": "hill-climb-racing-vita",
+    "tid": "HCR000000",
+    "n": "Hill Climb Racing Vita",
+    "d": "Port of Hill Clamb Racing for PSVita.",
+    "ld": "Hill Climb Racing is a game made by Fingersoft, a Finnish game engine where you can control a vehicle and try to survive as far as possible to get more coins for more upgrades, vehicles and stages! Each stage has a different layout, and different obstacles to overcome. Each vehicle has their own strengths and weaknesses, making certain vehicles excel in certain stages, and their vehicles have overalls.\n\n- PsVitaAlive -",
+    "aids": [
+      "memoryhunter"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "v": "beta2",
+    "vd": "2025-10-31",
+    "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
+    "sz": 1999634,
+    "st": "Legacy",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/hill-climb-racing-vita.vpk",
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 44669338,
+        "xp": "ux0:data/",
+        "ips": [
+          "hcr"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/memory-hunter/hill-climb-racing-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/psvitaalive-hill-climb-racing-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-hill-climb-racing-vita/shot_04.png"
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1340",
+    "su": "https://github.com/memory-hunter/hill-climb-racing-vita",
+    "rp": "https://github.com/memory-hunter/hill-climb-racing-vita/releases",
+    "ua": "2026-08-13T15:34"
   },
   {
     "id": "devilutionx",
@@ -43503,8 +43513,8 @@
     "ld": "A port of Grand Theft Auto: Chinatown Wars for PSVITA/PSTV based on the Android version of the game.\n\n- PsVitaAlive -",
     "aids": [
       "aap",
-      "theflow",
-      "rinnegatamante"
+      "rinnegatamante",
+      "theflow"
     ],
     "cid": "ports",
     "sids": [
@@ -43515,11 +43525,6 @@
     "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
     "sz": 977940,
     "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_02.png"
-    ],
     "l": [
       {
         "t": "Download",
@@ -43528,14 +43533,14 @@
         "rec": true
       },
       {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/TheOfficialFloW/gtactw_vita/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/TheOfficialFloW/gtactw_vita/releases/tag/v1.2"
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psvitaalive-gta-ctw-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 932288922,
+        "xp": "ux0:data/",
+        "ips": [
+          "gtactw"
+        ]
       },
       {
         "t": "Repository",
@@ -43543,11 +43548,16 @@
         "u": "https://github.com/TheOfficialFloW/gtactw_vita"
       }
     ],
+    "ic": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_02.png"
+    ],
     "sn": "VitaHomebrewDB",
     "si": "625",
     "su": "https://github.com/TheOfficialFloW/gtactw_vita",
     "rp": "https://github.com/TheOfficialFloW/gtactw_vita/releases",
-    "ua": "2026-08-13T15:34:48.586028+00:00"
+    "ua": "2026-08-13T15:34"
   },
   {
     "id": "bookr-mod-vita",
