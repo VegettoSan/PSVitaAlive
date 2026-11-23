@@ -90,6 +90,8 @@ public:
     bool promptTextBlocking(const std::string& initial, const std::string& title,
                             std::string& output);
     void setLinkActionCallback(LinkActionFn callback);
+    /** True only after the Install All queue passed its ONE combined ux0 preflight. */
+    bool installAllSpaceApproved() const;
     void setSavedZipCallbacks(SavedZipListFn list, SavedZipRetryFn retry) {
         savedZipList_ = std::move(list); savedZipRetry_ = std::move(retry);
         savedZipProbeAtUs_ = 0;
