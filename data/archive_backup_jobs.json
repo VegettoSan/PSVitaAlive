@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "adrenaline-bubbles-manager": {
+      "version": "6.24",
+      "source_url": "https://github.com/ONElua/AdrenalineBubbleManager/releases/download/6.24/AdrenalineBubbleManager.vpk",
+      "archive_identifier": "psvitaalive-adrenaline-bubbles-manager",
+      "filename": "adrenaline-bubbles-manager v6.24.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T18:19:41+00:00"
+    }
+  }
 }
