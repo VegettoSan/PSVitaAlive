@@ -2,8 +2,9 @@
 """Preserve approved PSVitaAlive VPK releases in owned Archive.org items, in batches.
 
 All eligible apps with owned existing Archive.org items can be uploaded,
-except explicit opt-outs. All candidates originate from the conservative release
-monitor / canonical app rules. Existing items only; no overwrite or deletion.
+except explicit opt-outs. Candidates originate from the CURRENT canonical
+Download/VPK URL, without waiting for an Orbit release-snapshot match.
+Existing items only; no overwrite or deletion.
 Each attempted upload gets a durable Git checkpoint BEFORE IA-S3 is called.
 Never touch generated catalog.json, authors.json or categories.json.
 """
@@ -31,7 +32,7 @@ from scripts.archive_owner_preflight import fetch_item_metadata
 from scripts.archive_upload_one_pilot import has_remote_name, safe_redirect
 from scripts.catalog_schema_v2 import to_v1, to_v2
 from scripts.sync_release_updates import (
-    app_repositories, load_snapshot, normalized_repo, plan_changes, select_current_download,
+    app_repositories, normalized_repo, select_current_download,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +43,7 @@ HARD_MAX_FILE = 200 * MIB
 HARD_MAX_BATCH = 800 * MIB
 HARD_MAX_FILES = 12
 VALID_ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,90}$")
-VALID_VERSION = re.compile(r"^[0-9]+(?:\.[0-9]+){0,3}(?:[-._]?(?:dev|test|alpha|beta|pre|preview|rc)[-._]?[0-9]*)?$", re.I)
+VALID_VERSION = re.compile(r"^(?:v\.?)?[0-9]+(?:\.[0-9]+){0,3}(?:[-._]?(?:dev|test|alpha|beta|pre|preview|rc)[-._]?[0-9]*)?$", re.I)
 REPO_PATH = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 
 
@@ -120,7 +121,8 @@ def expected_filename(item: dict) -> str:
     version = item["version"]
     if not VALID_ID.fullmatch(app_id) or not isinstance(version, str) or not VALID_VERSION.fullmatch(version):
         raise Deferred("PENDING_MANUAL", "Unsupported VPK filename/version")
-    return f"{app_id} v{version}.vpk"
+    label = version if version.casefold().startswith("v") else "v" + version
+    return f"{app_id} {label}.vpk"
 
 
 def policy_entry(policy: dict, app_id: str) -> dict:
@@ -322,10 +324,11 @@ def candidate_proposal(root: Path, item: dict, proposal_map: dict) -> tuple[Path
     raw = json.loads(path.read_text("utf-8"))
     app = to_v1(raw)
     link, _ = select_current_download(app.get("links"))
+    allowed_status = ("Legacy", "Verified", "Archive") if item["kind"] == "CATALOG_BACKFILL" else ("Legacy", "Verified")
     if (app.get("id") != item["app_id"] or app.get("title_id") != item["title_id"]
-            or app.get("status") not in ("Legacy", "Verified") or link is None):
+            or app.get("status") not in allowed_status or link is None):
         raise Deferred("PENDING_MANUAL", "Canonical application changed")
-    if item["kind"] == "SAME_VERSION_BACKFILL":
+    if item["kind"] in ("SAME_VERSION_BACKFILL", "CATALOG_BACKFILL"):
         if app.get("version") != item["version"] or link.get("url") != item["source_url"]:
             raise Deferred("PENDING_MANUAL", "Current VPK is no longer the approved release")
         proposed = app
@@ -443,10 +446,10 @@ def main() -> int:
     root = args.root.resolve()
     state = load_state(root)
     policy = load_policy(root)
-    snapshot = load_snapshot("main")
-    candidates_list, reviews = candidates(root, snapshot)
-    proposals, _skipped = plan_changes(root, snapshot)
-    proposal_map = {p: value for p, value, _ in proposals}
+    # Read the canonical apps/ files directly; Orbit is useful for update
+    # detection, not a prerequisite for preserving the current catalog VPK.
+    candidates_list, reviews = candidates(root)
+    proposal_map = {}
     deadline = time.monotonic() + args.max_minutes * 60
     results = []
     attempts, total = 0, 0
@@ -498,7 +501,8 @@ def main() -> int:
         "mode": "EXECUTE" if args.execute else "DRY_RUN",
         "limits": {"files": args.max_files, "file_mib": args.max_file_mib,
                    "batch_mib": args.max_batch_mib, "minutes": args.max_minutes},
-        "results": results, "review_count": len(reviews), "generated_at": now_utc(),
+        "results": results, "review_count": len(reviews),
+        "reviews": reviews, "generated_at": now_utc(),
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", "utf-8")
@@ -507,7 +511,12 @@ def main() -> int:
                "| App | Result | MiB |", "|---|---|---:|"]
     summary += [f"| {row['app_id']} | {row['status']} | {row['bytes']/MIB:.2f} |"
                 for row in results]
-    summary += ["", f"Review notices from monitor: **{len(reviews)}**",
+    from collections import Counter
+    tally = Counter(x["status"] for x in reviews)
+    summary += ["", f"Current-catalog backup review notices: **{len(reviews)}**",
+                f"By reason class: **{', '.join(f'{name}={amount}' for name, amount in sorted(tally.items())) or 'none'}**",
+                "These review notices are not uninstalled apps or missing upstream updates.",
+                "See run.json for each app_id and exact reason.",
                 "All generated catalogs are owned exclusively by validate.yml."]
     text = "\n".join(summary) + "\n"
     print(text, flush=True)

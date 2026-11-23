@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - 'scripts/archive_backup_batch.py'
+      - 'scripts/archive_backup_batch_preview.py'
       - 'tests/test_archive_backup_batch.py'
+      - 'tests/test_archive_backup_batch_preview.py'
       - 'config/archive_backup_approved_apps.json'
       - '.github/workflows/archive-backup-batch.yml'
       - '.github/workflows/archive-backup-batch-tests.yml'

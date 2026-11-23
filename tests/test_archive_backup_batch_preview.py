@@ -33,25 +33,87 @@ def release(app_id, ver, size):
 
 
 class PreviewTests(unittest.TestCase):
-    def test_batch_includes_new_release_and_same_version_pending(self):
+    def test_backup_starts_from_current_catalog_even_if_orbit_is_stale(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            (root / 'apps').mkdir()
-            (root / 'scripts').mkdir()
-            (root / 'scripts/archive_upload_log.csv').write_text(
-                'app_id,identifier,status,files,error,url\n'
-                'alpha,psvitaalive-alpha,ok,alpha.vpk,,\n'
-                'bravo,psvitaalive-bravo,ok,bravo.vpk,,\n', encoding='utf-8')
-            (root / 'apps/alpha.json').write_text(json.dumps(app(
-                'alpha', '1.0', 'https://archive.org/download/psvitaalive-alpha/alpha.vpk')))
-            (root / 'apps/bravo.json').write_text(json.dumps(app(
-                'bravo', '1.1', 'https://github.com/example/bravo/releases/download/v1.1/bravo.vpk')))
-            snapshot = {'schema_version': 1, 'releases': [release('alpha', '1.1', 1000000),
-                                                           release('bravo', '1.1', 1500000)]}
-            queue, reviews = candidates(root, snapshot)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "alpha,psvitaalive-alpha,ok,old.vpk,,\n"
+                "bravo,psvitaalive-bravo,ok,old.vpk,,\n", encoding="utf-8")
+            # Alpha is already hosted in our IA item: no second upload.
+            (root / "apps/alpha.json").write_text(json.dumps(app(
+                "alpha", "1.0",
+                "https://archive.org/download/psvitaalive-alpha/alpha.vpk")))
+            # Bravo already has the new VPK in the catalog, but the monitor
+            # snapshot is stale (or missing the release altogether).
+            (root / "apps/bravo.json").write_text(json.dumps(app(
+                "bravo", "1.1",
+                "https://github.com/example/bravo/releases/download/v1.1/bravo.vpk")))
+            queue, reviews = candidates(root, {"schema_version": 1, "releases": [
+                release("bravo", "1.0", 1000)]})
             self.assertEqual(reviews, [])
-            self.assertEqual({x['kind'] for x in queue}, {'NEW_RELEASE', 'SAME_VERSION_BACKFILL'})
-            self.assertEqual({x['app_id'] for x in queue}, {'alpha', 'bravo'})
+            self.assertEqual([(x["app_id"], x["version"], x["kind"]) for x in queue],
+                             [("bravo", "1.1", "CATALOG_BACKFILL")])
+            self.assertEqual(queue[0]["size_bytes"], 1024)
+            self.assertEqual(queue, candidates(root)[0], "Orbit must be optional")
+
+    def test_catalog_archive_status_can_be_preserved_without_version_change(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "alpha,psvitaalive-alpha,ok,old.vpk,,\n", encoding="utf-8")
+            a = app("alpha", "v.0.8",
+                    "https://github.com/example/alpha/releases/download/v.0.8/alpha.vpk")
+            a["status"] = "Archive"
+            (root / "apps/alpha.json").write_text(json.dumps(a))
+            queue, reviews = candidates(root)
+            self.assertEqual(reviews, [])
+            self.assertEqual(queue[0]["version"], "v.0.8")
+            self.assertEqual(queue[0]["kind"], "CATALOG_BACKFILL")
+
+    def test_current_vpk_without_size_requires_specific_review(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "alpha,psvitaalive-alpha,ok,old.vpk,,\n", encoding="utf-8")
+            a = app("alpha", "1.2",
+                    "https://github.com/example/alpha/releases/download/v1.2/alpha.vpk")
+            a["size"] = None
+            (root / "apps/alpha.json").write_text(json.dumps(a))
+            queue, reviews = candidates(root)
+            self.assertEqual(queue, [])
+            self.assertEqual(reviews[0]["app_id"], "alpha")
+            self.assertEqual(reviews[0]["status"], "SOURCE_ADAPTER_PENDING")
+            self.assertIn("size", reviews[0]["reason"])
+
+    def test_shared_repository_is_not_rejected_when_catalog_identifies_exact_vpk(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "alpha,psvitaalive-alpha,ok,old.vpk,,\n"
+                "bravo,psvitaalive-bravo,ok,old.vpk,,\n", encoding="utf-8")
+            a = app("alpha", "1.0",
+                    "https://github.com/example/shared/releases/download/v1.0/alpha.vpk")
+            b = app("bravo", "1.0",
+                    "https://github.com/example/shared/releases/download/v1.0/bravo.vpk")
+            a["source_url"] = b["source_url"] = "https://github.com/example/shared"
+            a["links"][1]["url"] = b["links"][1]["url"] = "https://github.com/example/shared"
+            (root / "apps/alpha.json").write_text(json.dumps(a))
+            (root / "apps/bravo.json").write_text(json.dumps(b))
+            queue, reviews = candidates(root)
+            self.assertEqual(reviews, [])
+            self.assertEqual([x["app_id"] for x in queue], ["alpha", "bravo"])
 
     def test_size_budget_does_not_lose_large_pending_app(self):
         sample = [

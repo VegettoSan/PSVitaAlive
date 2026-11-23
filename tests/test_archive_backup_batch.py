@@ -65,6 +65,7 @@ class DownloadFake:
 class BatchTests(unittest.TestCase):
     def test_public_url_and_versioned_name_are_deterministic(self):
         self.assertEqual(expected_filename(candidate()), "fmvita v0.6.2.vpk")
+        self.assertEqual(expected_filename(dict(candidate(), version="v.0.8")), "fmvita v.0.8.vpk")
         self.assertEqual(public_url("psvitaalive-fmvita", "fmvita v0.6.2.vpk"),
                          "https://archive.org/download/psvitaalive-fmvita/fmvita%20v0.6.2.vpk")
         bad = dict(candidate(), version="../../foo")
@@ -145,6 +146,27 @@ class BatchTests(unittest.TestCase):
             save_canonical(path, proposal, compact)
             after = json.loads(path.read_text("utf-8"))
             self.assertEqual(after["links"][1], app["links"][1])
+
+    def test_catalog_backfill_never_changes_approved_version_or_other_links(self):
+        app = release_app()
+        app["status"] = "Archive"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            path = root / "apps/fmvita.json"
+            path.write_text(json.dumps(app), encoding="utf-8")
+            input_candidate = dict(candidate(), kind="CATALOG_BACKFILL")
+            output_path, updated, compact = candidate_proposal(root, input_candidate, {})
+            self.assertEqual(output_path, path)
+            self.assertFalse(compact)
+            self.assertEqual(updated["status"], "Archive")
+            self.assertEqual(updated["version"], app["version"])
+            self.assertEqual(updated["version_date"], app["version_date"])
+            self.assertEqual(updated["links"][1:], app["links"][1:])
+            self.assertEqual(
+                updated["links"][0]["url"],
+                public_url("psvitaalive-fmvita", "fmvita v0.6.2.vpk"),
+            )
 
     def test_new_release_cannot_use_unrelated_proposal(self):
         app = release_app()
