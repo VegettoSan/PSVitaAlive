@@ -14,22 +14,24 @@
   "v": "v.1.01",
   "vd": "2026-01-25",
   "req": "- libshacccg.suprx\n- kubridge.skprx\n- Game Data Files: Android",
-  "sz": 1956223,
-  "st": "Legacy",
-  "ic": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/icon0.png",
-  "ss": [
-    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_02.png",
-    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_03.png",
-    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_04.png",
-    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_05.png"
-  ],
+  "sz": 1956643,
+  "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
       "u": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/door-kickers-action-squad-vita.vpk",
       "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 108422758,
+      "xp": "ux0:data/",
+      "ips": [
+        "com.khg.actionsquad"
+      ]
     },
     {
       "t": "Official Website",
@@ -42,9 +44,17 @@
       "u": "https://github.com/elliencode/actionsquad-psv-internal/"
     }
   ],
+  "ic": "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-door-kickers-action-squad-vita/shot_05.png"
+  ],
   "sn": "VitaHomebrewDB",
   "si": "1364",
   "su": "https://github.com/elliencode/actionsquad-psv-internal/",
   "rp": "https://github.com/elliencode/actionsquad-psv",
-  "ua": "2026-08-13T15:34:48.366245+00:00"
+  "ua": "2026-08-13T15:34"
 }

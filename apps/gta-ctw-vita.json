@@ -6,8 +6,8 @@
   "ld": "A port of Grand Theft Auto: Chinatown Wars for PSVITA/PSTV based on the Android version of the game.\n\n- PsVitaAlive -",
   "aids": [
     "aap",
-    "theflow",
-    "rinnegatamante"
+    "rinnegatamante",
+    "theflow"
   ],
   "cid": "ports",
   "sids": [
@@ -18,11 +18,6 @@
   "req": "- libshacccg.suprx\n- kubridge.skprx\n- fd_fix.skprx OR repatch_ex.skprx\n- Game Data Files: Android",
   "sz": 977940,
   "st": "Legacy",
-  "ic": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
-  "ss": [
-    "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_01.png",
-    "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_02.png"
-  ],
   "l": [
     {
       "t": "Download",
@@ -31,14 +26,14 @@
       "rec": true
     },
     {
-      "t": "Official Website",
-      "n": "Release Page",
-      "u": "https://github.com/TheOfficialFloW/gtactw_vita/releases"
-    },
-    {
-      "t": "Official Website",
-      "n": "Release Page",
-      "u": "https://github.com/TheOfficialFloW/gtactw_vita/releases/tag/v1.2"
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psvitaalive-gta-ctw-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 932288922,
+      "xp": "ux0:data/",
+      "ips": [
+        "gtactw"
+      ]
     },
     {
       "t": "Repository",
@@ -46,9 +41,14 @@
       "u": "https://github.com/TheOfficialFloW/gtactw_vita"
     }
   ],
+  "ic": "https://archive.org/download/psvitaalive-gta-ctw-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-gta-ctw-vita/shot_02.png"
+  ],
   "sn": "VitaHomebrewDB",
   "si": "625",
   "su": "https://github.com/TheOfficialFloW/gtactw_vita",
   "rp": "https://github.com/TheOfficialFloW/gtactw_vita/releases",
-  "ua": "2026-08-13T15:34:48.586028+00:00"
+  "ua": "2026-08-13T15:34"
 }
