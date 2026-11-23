@@ -24,14 +24,6 @@
       "filename": "sonic-r v2.1.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T20:12:18+00:00"
-    },
-    "silent-hill-3": {
-      "version": "0.0.2",
-      "source_url": "https://github.com/AngeloGalav/sh3-vita/releases/download/v0.0.2/sh3.vpk",
-      "archive_identifier": "sh3-vita",
-      "filename": "silent-hill-3 v0.0.2.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T20:13:41+00:00"
     }
   }
 }
