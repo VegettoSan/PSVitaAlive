@@ -1,5 +1,7 @@
 # Sincronización automática con PSVitaAlive
 
+> **Diseño futuro (todavía no implementado):** [Respaldos pendientes y preservación automática en Archive.org](AUTOMATIC_ARCHIVE_ORG_PRESERVATION_PLAN.md). Este documento describe la sincronización actual; el plan enlazado no cambia su comportamiento.
+
 Esta integración conecta el monitor de releases con el catálogo canónico de PSVitaAlive.
 **No convierte el monitor en una fuente de verdad para el catálogo.** Solo genera
 un snapshot de releases y avisa al workflow oficial de PSVitaAlive.
