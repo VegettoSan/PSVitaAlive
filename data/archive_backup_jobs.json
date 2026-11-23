@@ -8,14 +8,6 @@
       "filename": "final-fantasy-vii v1.3.1.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T20:53:58+00:00"
-    },
-    "kotor-ii": {
-      "version": "0.6.0",
-      "source_url": "https://github.com/pyjabox/VitaKotor2/releases/download/v0.6.0/KOTOR2.vpk",
-      "archive_identifier": "VitaKotor2",
-      "filename": "kotor-ii v0.6.0.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T20:55:20+00:00"
     }
   }
 }
