@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "opennow-vita": {
-      "version": "0.3.3",
-      "source_url": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.3/opennow-vita.vpk",
-      "archive_identifier": "psvitaalive-opennow-vita",
-      "filename": "opennow-vita v0.3.3.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T18:16:35+00:00"
-    }
-  }
+  "inflight": {}
 }
