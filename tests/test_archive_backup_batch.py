@@ -252,7 +252,7 @@ class BatchTests(unittest.TestCase):
             download.assert_not_called()
             upload.assert_not_called()
 
-    def test_unconfirmed_checkpoint_prevents_second_upload(self):
+    def test_unconfirmed_checkpoint_is_read_only_and_does_not_block_others(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "apps").mkdir()
@@ -269,13 +269,68 @@ class BatchTests(unittest.TestCase):
             with patch("scripts.archive_backup_batch.load_policy", return_value=policy()), \
                  patch("scripts.archive_backup_batch.owned_metadata", return_value=mock_md), \
                  patch("scripts.archive_backup_batch.download_source",
-                       return_value=("a" * 32, "b" * 64)), \
+                       return_value=("a" * 32, "b" * 64)) as download, \
                  patch("scripts.archive_backup_batch.attempt_upload") as upload:
                 with self.assertRaises(Deferred) as caught:
                     run_one(root, candidate(), {}, state, ("ACCESS", "SECRET", "owner@example.test"),
                             max_file=10 * MIB)
-            self.assertEqual(caught.exception.status, "UPLOAD_RESULT_UNCERTAIN")
+            # Do not download the GitHub VPK again while the Archive.org
+            # manifest has not yet shown the old checkpointed filename.
+            self.assertEqual(caught.exception.status, "VERIFYING")
+            self.assertIn("read-only", caught.exception.reason)
+            download.assert_not_called()
             upload.assert_not_called()
+            self.assertFalse(should_stop_batch("VERIFYING"))
+
+    def test_existing_checkpoint_verifies_remote_and_publishes_without_second_put(self):
+        app = release_app()
+        name = "fmvita v0.6.2.vpk"
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            path = root / "apps/fmvita.json"
+            path.write_text(json.dumps(app), encoding="utf-8")
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "fmvita,psvitaalive-fmvita,ok,old.vpk,,\n", encoding="utf-8")
+            state = {"schema_version": 1, "inflight": {"fmvita": {
+                "version": "0.6.2", "filename": name,
+                "source_url": candidate()["source_url"],
+                "archive_identifier": "psvitaalive-fmvita",
+                "status": "TRANSFER_PREPARED",
+            }}}
+            md = {"metadata": {"uploader": "owner@example.test"},
+                  "files": [{"name": name, "size": "2071824",
+                             "md5": "a" * 32}]}
+            with patch("scripts.archive_backup_batch.load_policy",
+                       return_value=policy()), \
+                 patch("scripts.archive_backup_batch.owned_metadata",
+                       return_value=md), \
+                 patch("scripts.archive_backup_batch.download_source",
+                       return_value=("a" * 32, "b" * 64)) as download, \
+                 patch("scripts.archive_backup_batch.verify_file_metadata") as verify_md, \
+                 patch("scripts.archive_backup_batch.verify_public_download") as verify_public, \
+                 patch("scripts.archive_backup_batch.attempt_upload") as upload:
+                published = []
+                status, detail = run_one(
+                    root, dict(candidate(), kind="CATALOG_BACKFILL"), {},
+                    state, ("ACCESS", "SECRET", "owner@example.test"),
+                    max_file=10 * MIB, publish=lambda *args, **kwargs: published.append(args)
+                )
+            self.assertEqual(status, "PUBLISHED_VERIFIED")
+            download.assert_called_once()
+            verify_md.assert_called_once()
+            verify_public.assert_called_once()
+            upload.assert_not_called()
+            self.assertNotIn("fmvita", state["inflight"])
+            self.assertEqual(len(published), 1)
+            updated = json.loads(path.read_text("utf-8"))
+            self.assertEqual(updated["version"], app["version"])
+            self.assertEqual(updated["version_date"], app["version_date"])
+            self.assertEqual(updated["links"][1:], app["links"][1:])
+            self.assertEqual(updated["links"][0]["url"], public_url(
+                "psvitaalive-fmvita", name))
 
     def test_all_nonexcluded_apps_are_autoeligible_without_spdx(self):
         default_policy = {"*": {"enabled": True}}
