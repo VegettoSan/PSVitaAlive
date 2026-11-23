@@ -64,6 +64,265 @@
     ]
   },
   {
+    "id": "gangstar-miami-vindication",
+    "tid": "PSVGMV002",
+    "n": "Gangstar Miami Vindication",
+    "d": "Android to PS Vita port of Gameloft's Gangstar Miami Vindication",
+    "ld": "Gangstar Miami Vindication is Gameloft's open-world action game, originally released for Android as Gangstar-Miami-Vindication-HD.apk. This port runs the compiled native library (libGangster2.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend. The .so has no JNI_OnLoad/RegisterNatives — every JNI entry point is resolved by symbol name and invoked by hand, following the exact lifecycle order of the real Android Activity/Renderer.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "shooter",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.4.0",
+    "vd": "2026-11-23",
+    "req": "- A PS Vita running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Gangstar Miami Vindication HD (Gangstar-Miami-Vindication-HD.apk, package com.gameloft.android.TBFV.GloftGMHP.ML).",
+    "sz": 2339815,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita/releases/download/v0.4.0/gangstarmiamivindication.vpk",
+        "sz": 2339815,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 427609293,
+        "xp": "ux0:data/",
+        "ips": [
+          "gangstarmiamivindication"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita"
+      }
+    ],
+    "ic": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/shot0.png"
+    ]
+  },
+  {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.10.1",
+    "vd": "2026-11-23",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1819197,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.1/manhunt-v0.10.1-vita.vpk",
+        "sz": 1819197,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
+    "id": "mario-kart-ds",
+    "tid": "MKDS00001",
+    "n": "Mario Kart DS",
+    "d": "A Mario Kart DS PSVita Port.",
+    "ld": "This is a native PS Vita port of Mario Kart DS, made from the Mario Kart DS decompilation. It's not an emulator: the game's own code (in game/) runs directly on the Vita, and the parts of the DS it relies on (graphics, sound, timers, save chip, wireless and so on) are rebuilt in platform/. The 3D is drawn by the Vita's GPU.",
+    "aids": [
+      "pupuestudios"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "1.2",
+    "vd": "2026-11-23",
+    "req": "- ur0:tai/CapUnlocker.skprx\n- libshacccg.suprx in ur0:data/.\n- Your own dump of Mario Kart DS (Europe, AMCP).\nInstalling",
+    "sz": 2288161,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/PupueStudios/mkds-vita/releases/download/v1.2/mkds.vpk",
+        "sz": 2288161,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/mario-kart-ds-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 33554432,
+        "xp": "ux0:data/",
+        "ips": [
+          "mkds"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/PupueStudios/mkds-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/mario-kart-ds-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/mario-kart-ds-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "nfs-carbon",
+    "tid": "NFSCVITA0",
+    "n": "NFS Carbon",
+    "d": "Need for Speed Carbon, on the PS Vita",
+    "ld": "Need for Speed Carbon (PC v1.4) on the PS Vita: static recompilation of your own NFSC.exe with a sceGxm renderer. Unofficial fan port.",
+    "aids": [
+      "swisha33"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "0.1.6",
+    "vd": "2026-11-23",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
+    "sz": 14418241,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.6/NFSCVita.vpk",
+        "sz": 14418241,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSCVita/Game%20Files%20for%20PSVA.zip",
+        "sz": 4187593114,
+        "xp": "ux0:data/",
+        "ips": [
+          "NFSCVITA"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Swisha33/NFSCVita"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSCVita/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSCVita/shot0.png"
+    ]
+  },
+  {
+    "id": "nova-2-hd",
+    "tid": "PSVNOVA02",
+    "n": "NOVA 2 HD",
+    "d": "Android to PS Vita port of Gameloft's N.O.V.A 2",
+    "ld": "N.O.V.A. 2 is Gameloft's sci-fi first-person shooter, originally released for Android as NOVA-2-HD-v1-0-5.apk (package com.gameloft.android.GAND.GloftN2HP). This port runs the compiled native library (libnova2.so, armeabi-v7a) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 2.0 rendering backend.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.1",
+    "vd": "2026-11-23",
+    "req": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
+    "sz": 2069864,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/N.O.V.A-2-vita/releases/download/v1.1/nova2.vpk",
+        "sz": 2069864,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 849031987,
+        "xp": "ux0:data/",
+        "ips": [
+          "nova2"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/MetalSyntax/N.O.V.A-2-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/n.o.v.a-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/n.o.v.a-2-ps-vita-port/shot0.png"
+    ]
+  },
+  {
     "id": "all-is-lost",
     "tid": "AILO69420",
     "n": "All is Lost",
@@ -262,104 +521,6 @@
     "ic": "https://archive.org/download/gta-vc-vita/icon0.png",
     "ss": [
       "https://archive.org/download/gta-vc-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.10.0",
-    "vd": "2026-11-22",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1815912,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.10.0.vpk",
-        "sz": 1815912,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases"
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
-    ]
-  },
-  {
-    "id": "mario-kart-ds",
-    "tid": "MKDS00001",
-    "n": "Mario Kart DS",
-    "d": "A Mario Kart DS PSVita Port.",
-    "ld": "This is a native PS Vita port of Mario Kart DS, made from the Mario Kart DS decompilation. It's not an emulator: the game's own code (in game/) runs directly on the Vita, and the parts of the DS it relies on (graphics, sound, timers, save chip, wireless and so on) are rebuilt in platform/. The 3D is drawn by the Vita's GPU.",
-    "aids": [
-      "pupuestudios"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "source-port"
-    ],
-    "v": "1.1",
-    "vd": "2026-11-22",
-    "req": "- ur0:tai/CapUnlocker.skprx\n- libshacccg.suprx in ur0:data/.\n- Your own dump of Mario Kart DS (Europe, AMCP).\nInstalling",
-    "sz": 2306867,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/mario-kart-ds-vita/mkds%20v1.1.vpk",
-        "sz": 2306867,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/mario-kart-ds-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 33554432,
-        "xp": "ux0:data/",
-        "ips": [
-          "mkds"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/PupueStudios/mkds-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/mario-kart-ds-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/mario-kart-ds-vita/shot0.png"
     ]
   },
   {
@@ -588,65 +749,6 @@
     "su": "https://github.com/dragonflylee/switchfin",
     "rp": "https://github.com/dragonflylee/switchfin/releases/tag/0.9.3",
     "ua": "2026-08-13T15:34:48.366005+00:00"
-  },
-  {
-    "id": "nfs-carbon",
-    "tid": "NFSCVITA0",
-    "n": "NFS Carbon",
-    "d": "Need for Speed Carbon, on the PS Vita",
-    "ld": "Need for Speed Carbon (PC v1.4) on the PS Vita: static recompilation of your own NFSC.exe with a sceGxm renderer. Unofficial fan port.",
-    "aids": [
-      "swisha33"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "source-port"
-    ],
-    "v": "0.1.5",
-    "vd": "2026-11-21",
-    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
-    "sz": 14470349,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/NFSCVita/NFSCVita%20v0.1.5.vpk",
-        "sz": 14470349,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSCVita/Game%20Files%20for%20PSVA.zip",
-        "sz": 4187593114,
-        "xp": "ux0:data/",
-        "ips": [
-          "NFSCVITA"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/Swisha33/NFSCVita"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSCVita/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSCVita/shot0.png"
-    ]
   },
   {
     "id": "silent-hill-3-2003",
@@ -5553,57 +5655,6 @@
     ]
   },
   {
-    "id": "nova-2-hd",
-    "tid": "PSVNOVA02",
-    "n": "NOVA 2 HD",
-    "d": "Android to PS Vita port of Gameloft's N.O.V.A 2",
-    "ld": "N.O.V.A. 2 is Gameloft's sci-fi first-person shooter, originally released for Android as NOVA-2-HD-v1-0-5.apk (package com.gameloft.android.GAND.GloftN2HP). This port runs the compiled native library (libnova2.so, armeabi-v7a) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 2.0 rendering backend.",
-    "aids": [
-      "metalsyntax"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "fps",
-      "shooter",
-      "strategy",
-      "source-port"
-    ],
-    "v": "1.0.2",
-    "vd": "2026-10-31",
-    "req": "- A PS Vita / PS TV on Custom Firmware (HENkaku / h-encore / Enso), 3.60-3.74.\n- kubridge and FdFix installed as kernel plugins (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/ (extraction guide).",
-    "sz": 2097152,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/n.o.v.a-2-ps-vita-port/nova2%20v1.0.2.vpk",
-        "sz": 2097152,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/n.o.v.a-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 849031987,
-        "xp": "ux0:data/",
-        "ips": [
-          "nova2"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/MetalSyntax/N.O.V.A-2-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/n.o.v.a-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/n.o.v.a-2-ps-vita-port/shot0.png"
-    ]
-  },
-  {
     "id": "romance-detective",
     "tid": "RPYRD1701",
     "n": "Romance Detective",
@@ -9142,57 +9193,6 @@
     "su": "https://github.com/Brendonm17/ACGC-Vita-Port",
     "rp": "https://github.com/Brendonm17/ACGC-Vita-Port/releases",
     "ua": "2026-08-13T15:34"
-  },
-  {
-    "id": "gangstar-miami-vindication",
-    "tid": "PSVGMV002",
-    "n": "Gangstar Miami Vindication",
-    "d": "Android to PS Vita port of Gameloft's Gangstar Miami Vindication",
-    "ld": "Gangstar Miami Vindication is Gameloft's open-world action game, originally released for Android as Gangstar-Miami-Vindication-HD.apk. This port runs the compiled native library (libGangster2.so) from the Android release directly on the PS Vita's ARM Cortex-A9 processor, using a dynamic loader (soloader) and an Android environment emulation layer (FalsoJNI), with vitaGL providing the GLES 1.1 fixed-function rendering backend. The .so has no JNI_OnLoad/RegisterNatives — every JNI entry point is resolved by symbol name and invoked by hand, following the exact lifecycle order of the real Android Activity/Renderer.",
-    "aids": [
-      "metalsyntax"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "shooter",
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.2.0",
-    "vd": "2026-09-27",
-    "req": "- A PS Vita running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Gangstar Miami Vindication HD (Gangstar-Miami-Vindication-HD.apk, package com.gameloft.android.TBFV.GloftGMHP.ML).",
-    "sz": 2411725,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/gangstarmiamivindication%20v0.2.0.vpk",
-        "sz": 2411725,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 427609293,
-        "xp": "ux0:data/",
-        "ips": [
-          "gangstarmiamivindication"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita"
-      }
-    ],
-    "ic": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/shot0.png"
-    ]
   },
   {
     "id": "shadow-guardian",
