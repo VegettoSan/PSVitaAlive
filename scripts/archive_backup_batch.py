@@ -89,19 +89,19 @@ def git_publish(root: Path, paths: list[str], message: str, *, validate: bool) -
         r = subprocess.run([sys.executable, "scripts/validate_catalog_ci.py"],
                            cwd=root, capture_output=True, text=True, env=env)
         if r.returncode:
-            raise Deferred("PENDING_MANUAL", "Canonical catalog validation failed; no publishing")
+            raise Deferred("CATALOG_PUSH_BLOCKED", "Canonical validation failed; stop batch to avoid unsafe later commits")
     r = git("add", "--", *paths)
     if r.returncode:
-        raise Deferred("PENDING_MANUAL", "Unable to stage canonical/checkpoint changes")
+        raise Deferred("CATALOG_PUSH_BLOCKED", "Unable to stage canonical/checkpoint changes; stop batch")
     r = git("diff", "--cached", "--quiet")
     if r.returncode == 0:
         return
     if r.returncode != 1:
-        raise Deferred("PENDING_MANUAL", "Unable to examine staged changes")
+        raise Deferred("CATALOG_PUSH_BLOCKED", "Unable to inspect Git staged changes; stop batch")
     for args in (("commit", "-m", message), ("push", "origin", "HEAD:main")):
         r = git(*args)
         if r.returncode:
-            raise Deferred("PENDING_MANUAL", "GitHub main changed or refused a push; intervention required")
+            raise Deferred("CATALOG_PUSH_BLOCKED", "GitHub main changed or rejected commit; stop batch before any other uploads")
 
 
 def send_validate_dispatch() -> None:
@@ -500,7 +500,7 @@ def main() -> int:
                 send_validate_dispatch()
             except Deferred as err:
                 results.append({"app_id": app_id, "status": err.status, "bytes": 0, "detail": err.reason})
-        if status in {"WAITING_ARCHIVE", "UPLOAD_RESULT_UNCERTAIN", "VERIFYING"}:
+        if status in {"WAITING_ARCHIVE", "UPLOAD_RESULT_UNCERTAIN", "VERIFYING", "CATALOG_PUSH_BLOCKED"}:
             # Stop putting more traffic onto an unavailable/unstable IA service.
             break
         time.sleep(8)
