@@ -1,6 +1,12 @@
 name: Archive.org backup batch preview (NO UPLOAD)
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/archive_backup_batch_preview.py'
+      - 'tests/test_archive_backup_batch_preview.py'
+      - '.github/workflows/archive-backup-batch-preview.yml'
   push:
     branches: [feature/archive-backup-actions-batch-preview]
     paths:
