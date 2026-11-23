@@ -1,14 +1,6 @@
 {
   "schema_version": 1,
   "inflight": {
-    "nfs-underground-2": {
-      "version": "0.8.5",
-      "source_url": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.8.5/NFSU2VITA.vpk",
-      "archive_identifier": "NFSUG2_VITA",
-      "filename": "nfs-underground-2 v0.8.5.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T20:01:38+00:00"
-    },
     "nfs-most-wanted": {
       "version": "1.6.2",
       "source_url": "https://github.com/germanalvarez15/nfsmw-vita/releases/download/1.6.2/nfsmw.vpk",
