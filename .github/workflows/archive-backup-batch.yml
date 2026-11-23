@@ -11,7 +11,7 @@ on:
     workflows: ['Sync Verified Homebrew Releases']
     types: [completed]
   schedule:
-    # Orbit scans at 17 */3; backup scan at minute 47 is a fallback.
+    # Orbit scans at 17 */3; backup scan at minute 47 is the safe fallback.
     - cron: '47 */3 * * *'
   workflow_dispatch:
     inputs:
