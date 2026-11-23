@@ -113,7 +113,7 @@ def main() -> int:
     if summary:
         with open(summary, "a", encoding="utf-8") as fh:
             fh.write("# Internet Archive ownership preflight (read only)\n\n")
-            fh.write(f"- Item: \`{outcome['identifier']}\`\n")
+            fh.write(f"- Item: {outcome['identifier']}\n")
             fh.write(f"- State: **{outcome['status']}**\n")
             fh.write(f"- Result: {outcome['message']}\n\n")
             fh.write("No VPK downloaded/uploaded, no catalog edits. IA-S3 write access not tested.\n")
