@@ -370,8 +370,11 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
     log_map = upload_map(root / "scripts/archive_upload_log.csv")
     original = to_v1(json.loads((root / "apps" / (item_id + ".json")).read_text("utf-8")))
     target, evidence = resolve_item(original, log_map)
-    if target != archive or evidence != "historical-upload-log":
-        raise Deferred("PENDING_MANUAL", "Archive.org target not confirmed by historical own-upload record")
+    if target != archive or evidence not in {"historical-upload-log", "catalog-media-candidate"}:
+        raise Deferred("PENDING_MANUAL", "No unambiguous candidate Archive.org destination")
+    # For catalog-media-candidate, the icon and screenshots are ONLY an item
+    # locator. owned_metadata() below verifies the exact private uploader before
+    # even downloading the VPK or attempting a write to Archive.org.
     if not source_matches_approved(item, load_policy(root), original):
         raise Deferred("PENDING_MANUAL", "App excluded or source does not match canonical repository")
 
