@@ -6,7 +6,7 @@ on:
     paths:
       - '.github/workflows/archive-backup-batch.yml'
   schedule:
-    # Four controlled batches per day. Per-file VERIFYING does not block the next app.
+    # Four controlled batches per day. Recheck VitaDB pending public URL without another PUT.
     - cron: '47 */6 * * *'
   workflow_dispatch:
     inputs:
