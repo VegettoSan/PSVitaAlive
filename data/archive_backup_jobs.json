@@ -16,6 +16,14 @@
       "filename": "nfs-most-wanted v1.6.2.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T20:08:33+00:00"
+    },
+    "sonic-r": {
+      "version": "2.1",
+      "source_url": "https://github.com/PupueStudios/sonic-r-vita/releases/download/v2.1/sonicr_vita.vpk",
+      "archive_identifier": "sonic-r-ps-vita",
+      "filename": "sonic-r v2.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T20:12:18+00:00"
     }
   }
 }
