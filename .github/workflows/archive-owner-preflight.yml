@@ -1,6 +1,13 @@
 name: Internet Archive ownership preflight (NO UPLOAD)
 
 on:
+  # Read-only one-time check after merging this workflow to main.
+  # PRs never receive secrets; only an owner-authored main push may use them.
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/archive-owner-preflight.yml'
+      - 'scripts/archive_owner_preflight.py'
   workflow_dispatch:
     inputs:
       archive_item:
