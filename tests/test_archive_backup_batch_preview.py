@@ -115,6 +115,29 @@ class PreviewTests(unittest.TestCase):
             self.assertEqual(reviews, [])
             self.assertEqual([x["app_id"] for x in queue], ["alpha", "bravo"])
 
+    def test_newer_catalog_versions_are_prioritized_over_smaller_legacy_vpks(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n", encoding="utf-8")
+            old = app("old", "1.0",
+                      "https://github.com/example/old/releases/download/v1.0/old.vpk")
+            new = app("new", "2.0",
+                      "https://github.com/example/new/releases/download/v2.0/new.vpk")
+            old["icon"] = "https://archive.org/download/old-owned/icon.png"
+            old["screenshots"] = ["https://archive.org/download/old-owned/shot.png"]
+            old["version_date"], old["size"] = "2019-05-01", 1_000
+            new["icon"] = "https://archive.org/download/new-owned/icon.png"
+            new["screenshots"] = ["https://archive.org/download/new-owned/shot.png"]
+            new["version_date"], new["size"] = "2026-11-23", 5_000_000
+            (root / "apps/old.json").write_text(json.dumps(old))
+            (root / "apps/new.json").write_text(json.dumps(new))
+            queue, reviews = candidates(root)
+            self.assertEqual(reviews, [])
+            self.assertEqual([x["app_id"] for x in queue], ["new", "old"])
+
     def test_size_budget_does_not_lose_large_pending_app(self):
         sample = [
             {'app_id': 'small', 'size_bytes': 10_000_000, 'status': 'READY'},
