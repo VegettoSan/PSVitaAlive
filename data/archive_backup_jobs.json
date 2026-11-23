@@ -8,14 +8,6 @@
       "filename": "vitadb-downloader v2.8.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T17:20:10+00:00"
-    },
-    "arx-libertatis": {
-      "version": "2.0",
-      "source_url": "https://github.com/TheLostPantheon/ArxLibertatis/releases/download/v2.0/arx-vita.vpk",
-      "archive_identifier": "psvitaalive-arx-libertatis",
-      "filename": "arx-libertatis v2.0.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T17:23:16+00:00"
     }
   }
 }
