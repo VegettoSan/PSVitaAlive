@@ -8,6 +8,14 @@
       "filename": "final-fantasy-vii v1.3.1.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T20:53:58+00:00"
+    },
+    "vampire-survivors": {
+      "version": "1.2.1",
+      "source_url": "https://github.com/Federicoilgrandebardo/vampire-survivors-vita/releases/download/v1.2.1/VampireSurvivors-Vita-v1.2.1.vpk",
+      "archive_identifier": "vampire-survivors-ps-vita-port",
+      "filename": "vampire-survivors v1.2.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T20:56:44+00:00"
     }
   }
 }
