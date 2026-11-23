@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "note": "Private admin approval is still required for actual binary redistribution and may be revoked by setting enabled false; links in the public catalog are not ownership proof.",
+  "approved_apps": {
+    "fmvita": {
+      "enabled": true,
+      "github_repo": "WolffsRoom/FMVita",
+      "spdx_id": "GPL-3.0"
+    },
+    "vitadb-downloader": {
+      "enabled": true,
+      "github_repo": "Rinnegatamante/VitaDB-Downloader",
+      "spdx_id": "GPL-3.0"
+    },
+    "arx-libertatis": {
+      "enabled": true,
+      "github_repo": "TheLostPantheon/ArxLibertatis",
+      "spdx_id": "GPL-3.0"
+    },
+    "apollo-save-tool": {
+      "enabled": false,
+      "github_repo": "bucanero/apollo-vita",
+      "spdx_id": "GPL-3.0"
+    },
+    "vita-moonlight": {
+      "enabled": false,
+      "github_repo": "xyzz/vita-moonlight",
+      "spdx_id": "GPL-3.0"
+    },
+    "retroflow-launcher": {
+      "enabled": false,
+      "github_repo": "jimbob4000/RetroFlow-Launcher",
+      "spdx_id": "MIT"
+    }
+  }
+}
