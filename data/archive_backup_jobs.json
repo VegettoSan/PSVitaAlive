@@ -8,14 +8,6 @@
       "filename": "mario-kart-ds v1.2.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T23:32:24+00:00"
-    },
-    "gangstar-miami-vindication": {
-      "version": "0.4.0",
-      "source_url": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita/releases/download/v0.4.0/gangstarmiamivindication.vpk",
-      "archive_identifier": "gangstar-miami-vindication-ps-vita-port",
-      "filename": "gangstar-miami-vindication v0.4.0.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T23:33:43+00:00"
     }
   }
 }
