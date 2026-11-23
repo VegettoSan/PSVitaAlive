@@ -1,0 +1,46 @@
+name: Verify first Archive.org VPK download (READ ONLY)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/archive-verify-one-vpk.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-public-download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Download entire newly uploaded VPK and verify SHA256
+        shell: bash
+        env:
+          VPK_URL: 'https://archive.org/download/psvitaalive-better-homebrew-browser/BetterHomebrewBrowser%20v1.46.vpk'
+          EXPECTED_SHA256: '776b429c050eefad60914d7d8ac0a8d0034e8ef113d0443cb76c7761a4359c15'
+          EXPECTED_BYTES: '1129327'
+        run: |
+          set -euo pipefail
+          curl -fLsS --retry 2 --retry-delay 5 --connect-timeout 20 --max-time 120 \
+            --output /tmp/psva-vpk-check.vpk "$VPK_URL"
+          ACTUAL_BYTES="$(stat -c '%s' /tmp/psva-vpk-check.vpk)"
+          test "$ACTUAL_BYTES" = "$EXPECTED_BYTES"
+          printf '%s  %s\n' "$EXPECTED_SHA256" /tmp/psva-vpk-check.vpk | sha256sum --check --status
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('/tmp/psva-vpk-check.vpk')
+          with path.open('rb') as f:
+              assert f.read(4) == b'PK\x03\x04'
+          PY
+          echo "Public Archive.org VPK full download verified: $ACTUAL_BYTES bytes"
+          {
+            echo '## Verified public Archive.org download'
+            echo
+            echo '- Item: psvitaalive-better-homebrew-browser'
+            echo '- File: BetterHomebrewBrowser v1.46.vpk'
+            echo "- Bytes: $ACTUAL_BYTES"
+            echo '- SHA-256: verified against original GitHub Actions upload checksum'
+            echo '- No catalog edits made by this workflow'
+          } >> "$GITHUB_STEP_SUMMARY"
