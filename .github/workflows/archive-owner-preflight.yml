@@ -1,0 +1,41 @@
+name: Internet Archive ownership preflight (NO UPLOAD)
+
+on:
+  workflow_dispatch:
+    inputs:
+      archive_item:
+        description: 'Existing PSVitaAlive item to check (must appear in successful upload log)'
+        required: true
+        default: 'psvitaalive-z2'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: archive-ownership-preflight
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    # Never execute secret-bearing code from a branch/PR or another actor.
+    if: github.ref == 'refs/heads/main' && github.actor == 'VegettoSan'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run offline ownership regression tests
+        run: python -m unittest discover -s tests -p 'test_archive_owner_preflight.py' -v
+      - name: Verify existing item owner (read only)
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+          IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
+          TARGET_ITEM: ${{ inputs.archive_item }}
+        run: |
+          python -m scripts.archive_owner_preflight --identifier "$TARGET_ITEM"
