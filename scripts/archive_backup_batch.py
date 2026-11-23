@@ -153,7 +153,14 @@ def source_matches_approved(item: dict, policy: dict, app: dict) -> bool:
                               or not REPO_PATH.fullmatch(pinned)
                               or pinned.lower() != repo):
         return False
-    return item.get("archive_identifier", "").startswith("psvitaalive-")
+    # Real managed items are not always named "psvitaalive-*".
+    # Their identifier comes either from the unique historical upload log
+    # or matching canonical icon/screenshots. Neither is sufficient to upload:
+    # run_one() independently checks metadata.uploader against the PRIVATE
+    # owner secret before downloading or writing anything.
+    identifier = item.get("archive_identifier")
+    return (isinstance(identifier, str)
+            and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,100}", identifier) is not None)
 
 
 def owned_metadata(identifier: str, owner: str, *, fetch=fetch_item_metadata) -> dict:
