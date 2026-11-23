@@ -13,17 +13,17 @@
     "simulation",
     "source-port"
   ],
-  "v": "0.1.5",
-  "vd": "2026-11-21",
+  "v": "0.1.6",
+  "vd": "2026-11-23",
   "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
-  "sz": 14470349,
+  "sz": 14418241,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/NFSCVita/NFSCVita%20v0.1.5.vpk",
-      "sz": 14470349,
+      "u": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.6/NFSCVita.vpk",
+      "sz": 14418241,
       "rec": true
     },
     {

@@ -13,17 +13,17 @@
     "strategy",
     "engine-port"
   ],
-  "v": "0.10.0",
-  "vd": "2026-11-22",
+  "v": "0.10.1",
+  "vd": "2026-11-23",
   "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-  "sz": 1815912,
+  "sz": 1819197,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.10.0.vpk",
-      "sz": 1815912,
+      "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.1/manhunt-v0.10.1-vita.vpk",
+      "sz": 1819197,
       "rec": true
     },
     {

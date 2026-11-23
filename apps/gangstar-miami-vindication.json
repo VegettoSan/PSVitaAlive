@@ -15,17 +15,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.2.0",
-  "vd": "2026-09-27",
+  "v": "0.4.0",
+  "vd": "2026-11-23",
   "req": "- A PS Vita running Custom Firmware (HENkaku or Enso), firmware 3.60/3.65 or later recommended.\n- kubridge installed as a kernel plugin (ur0:tai/config.txt under *KERNEL).\n- libshacccg.suprx installed in ur0:data/.\n- A legally obtained copy of Gangstar Miami Vindication HD (Gangstar-Miami-Vindication-HD.apk, package com.gameloft.android.TBFV.GloftGMHP.ML).",
-  "sz": 2411725,
+  "sz": 2339815,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/gangstarmiamivindication%20v0.2.0.vpk",
-      "sz": 2411725,
+      "u": "https://github.com/MetalSyntax/Gangstar-Miami-Vindication-Vita/releases/download/v0.4.0/gangstarmiamivindication.vpk",
+      "sz": 2339815,
       "rec": true
     },
     {
