@@ -29,7 +29,7 @@ El motor aprovecha el validador de nuevas versiones `plan_changes()` y soporta:
 
 Las consultas de metadatos no revisan todo el historial de versiones anteriores. Solo se consulta el ítem destino y el nuevo nombre.
 
-El motor **no reintenta a ciegas** escrituras que podrían haber terminado correctamente. Ante 429/503/preflight temporal queda `WAITING_ARCHIVE` para la siguiente ejecución. Si el servicio está inestable, detiene el resto de la tanda.
+El motor **no reintenta a ciegas** escrituras que podrían haber terminado correctamente. Ante 429/503/preflight temporal queda `WAITING_ARCHIVE` para la siguiente ejecución. Si el servicio está inestable, detiene el resto de la tanda. **Si los metadatos ya confirman el VPK pero su descarga pública aún devuelve 404, marca solo ese archivo `VERIFYING`, conserva el checkpoint y continúa con las otras aplicaciones aprobadas**; una ejecución posterior reconciliará el archivo sin repetir el PUT.
 
 ## Límites iniciales
 
@@ -60,3 +60,8 @@ La página de cada ejecución muestra una tabla de `PUBLISHED_VERIFIED`, `DEFERR
 4. Mantener el workflow cada 6 horas para las futuras versiones detectadas; incorporar más apps gradualmente, sin revisar todos los VPK históricos.
 
 Documentos relacionados: [selector de lotes](ARCHIVE_BACKUP_ACTIONS_BATCH_PILOT.md), [primer piloto exitoso](ARCHIVE_UPLOAD_FIRST_VPK_PILOT.md) y [plan general](AUTOMATIC_ARCHIVE_ORG_PRESERVATION_PLAN.md).
+
+## Primer lote y ajuste de publicación tardía
+
+- Primera ejecución: [GitHub Actions #45225329131](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45225329131). FMVita v0.6.2 alcanzó verificación de tamaño y MD5 en Archive.org, pero la descarga pública todavía no respondió; quedó `VERIFYING`, sin actualizar el catálogo, con checkpoint en `data/archive_backup_jobs.json`.
+- Ajuste: cuando solo falte que Archive.org exponga la URL pública de un archivo ya subido, procesar el resto de las aplicaciones habilitadas. Mantener la detención ante cortes del servicio o un resultado de subida incierto. No eliminar el checkpoint ni hacer una segunda subida de FMVita por un 404 temporal.
