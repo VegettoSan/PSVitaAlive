@@ -30,7 +30,7 @@ on:
 
 permissions:
   contents: write
-  actions: write
+  # No actions:write token: validate.yml handles this batch via workflow_run.
 
 # Same publisher lock as validate.yml and sync_homebrew_releases.yml.
 concurrency:
