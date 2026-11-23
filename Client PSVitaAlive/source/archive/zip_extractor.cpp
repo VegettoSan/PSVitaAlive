@@ -36,7 +36,9 @@ constexpr size_t EXTRACT_CHUNK = 256 * 1024;
 constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
 // Report cumulative slow-I/O diagnostics, never log each tiny archive member.
 constexpr uint64_t ZIP_IO_REPORT_INTERVAL_US = 15ULL * 1000ULL * 1000ULL;
-constexpr uint64_t ZIP_SLOW_FILE_OPEN_US = 2ULL * 1000ULL * 1000ULL;
+// Report output-file creation stalls before they exceed a full second;
+// messages remain rate-limited to one every 15 seconds.
+constexpr uint64_t ZIP_SLOW_FILE_OPEN_US = 250ULL * 1000ULL;
 // Vita file-manager errno EEXIST: EXCL failed because the output already exists.
 // Handle this case without extra existence/stat syscalls for every tiny file.
 constexpr uint32_t ZIP_VITA_FILE_EXISTS = 0x80010011u;
