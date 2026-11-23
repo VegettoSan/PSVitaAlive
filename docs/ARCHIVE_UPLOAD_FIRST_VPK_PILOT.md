@@ -1,6 +1,6 @@
 # Archive.org — Primera prueba real (un solo VPK)
 
-**Estado:** código experimental en rama `feature/archive-org-one-vpk-pilot`. Antes de fusionar, únicamente pruebas offline. Al fusionar este workflow a `main` **con la cuenta VegettoSan**, se intentará una única subida al ítem autorizado si todas las comprobaciones son correctas.
+**Estado:** piloto integrado en `main` mediante [PR #100](https://github.com/VegettoSan/PSVitaAlive/pull/100), ejecutado correctamente el 23 de noviembre de 2026. La transferencia real del VPK y su descarga pública quedaron verificadas. **Los lotes siguen desactivados.**
 
 ## Objeto exacto
 
@@ -37,3 +37,11 @@
 - `VERIFYING`: subida intentada, archivo todavía sin metadata íntegra.
 
 El sistema por lotes sigue desactivado hasta validar este experimento. Nunca reinterpretar el resultado como autorización genérica para subir a ítems ajenos. Una vez validado, implementar reconciliación de URL de la versión actual con el JSON de `apps/`, luego lotes y pendientes.
+
+## Resultado verificado del piloto — 2026-11-23
+
+- Subida real a ítem propio: [GitHub Actions #45220569891](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45220569891), `UPLOADED_VERIFIED`, **1.129.327 bytes**, SHA-256 `776b429c050eefad60914d7d8ac0a8d0034e8ef113d0443cb76c7761a4359c15`.
+- La primera comprobación GET pública devolvió **HTTP 404** por indisponibilidad temporal del archivo recientemente subido. **No se repitió la subida**.
+- La comprobación posterior, con reintentos limitados de lectura, [GitHub Actions #45221263409](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45221263409), descargó el archivo completo y verificó bytes, SHA-256 y cabecera VPK.
+- En [commit `730228e`](https://github.com/VegettoSan/PSVitaAlive/commit/730228ecd368eddabfae4796c3ebc9c5f832b209) se modificó **solamente** el enlace VPK de `apps/better-homebrew-browser.json`, manteniendo la versión `1.46`. La validación oficial terminó con éxito y [commit `0186874`](https://github.com/VegettoSan/PSVitaAlive/commit/018687428d18d7fa1b05ea530123996bc4c9dd4e) regeneró `catalog.json`.
+- No se borraron versiones antiguas ni se activó el motor por lotes. Los trabajos pendientes requieren el control de licencias, propiedad e idempotencia antes de automatizarse.

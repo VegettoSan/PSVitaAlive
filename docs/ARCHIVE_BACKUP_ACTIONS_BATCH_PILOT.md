@@ -1,6 +1,6 @@
 # GitHub Actions: prueba inicial de selección por lotes de Archive.org
 
-**Estado: prototipo en rama `feature/archive-backup-actions-batch-preview`. NO SUBE ARCHIVOS.**
+**Estado: selector de lotes integrado en `main` mediante [PR #99](https://github.com/VegettoSan/PSVitaAlive/pull/99); sigue siendo solo lectura y NO SUBE ARCHIVOS. El primer VPK de prueba se respaldó mediante un [workflow separado](ARCHIVE_UPLOAD_FIRST_VPK_PILOT.md).**
 
 El script `scripts/archive_backup_batch_preview.py` reutiliza el `plan_changes()` del sincronizador actual para versiones futuras, y añade la identificación conservadora de casos donde la versión catalogada ya está en GitHub/GitLab pero falta cambiar la URL al respaldo. Toma solo el archivo principal `Download/VPK`, no Game Files.
 
