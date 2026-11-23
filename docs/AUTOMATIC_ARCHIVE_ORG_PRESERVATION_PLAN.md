@@ -3,6 +3,7 @@
 > **Estado: propuesta de arquitectura / NO IMPLEMENTADA.**
 > Fecha de documentación: 2026-11-23.
 > Alcance de este cambio: **solo documentación**. No se habilitan subidas, servicios Cloudflare, credenciales, modificaciones del sincronizador ni escrituras nuevas sobre el catálogo.
+> **Actualización de diseño 2026-11-23:** la primera implementación se está probando con **GitHub Actions por lotes**, sin Cloudflare, en el [PR experimental #99](https://github.com/VegettoSan/PSVitaAlive/pull/99). Cloudflare/R2 queda como alternativa opcional si Actions no resulta suficiente. **No inferir propiedad por URLs de iconos, capturas, Game Files o VPK públicos:** únicamente los ítems gestionados por la cuenta autorizada podrán recibir subidas automáticas; lo demás queda pendiente manual.
 
 ## 1. Objetivo aprobado para estudiar
 
@@ -115,6 +116,8 @@ No inferir permisos ni destino solamente por el nombre de la aplicación.
 4. Consultar los metadatos del ítem y verificar su existencia, que pertenezca al conjunto autorizado y que las credenciales de subida tengan acceso antes de escribir.
 
 Si hay varios ítems candidatos, el registro indica otro ítem, no puede confirmarse propiedad/permiso, faltan datos o el destino tiene una identidad ambigua: `REVIEW`, **sin subida**. No crear automáticamente un ítem inexistente. La creación inicial requiere una decisión/flujo aparte, incluidos metadatos correctos y licencia/redistribución autorizada.
+
+**Regla estricta para ítems de terceros:** el histórico de subidas propias (`archive_upload_log.csv`) sirve como candidato de ítem administrado; iconos, screenshots y Game Files externos no sirven de autorización, y tampoco deben bloquear un ítem propio ya identificado. **Antes de escribir** comprobar `https://archive.org/metadata/<identifier>` y que `metadata.uploader` coincida con la cuenta esperada guardada en secreto (`IA_EXPECTED_UPLOADER` previsto); no publicar ni registrar el correo en logs. Ausencia, discrepancia o falta de permiso implica `PENDING_MANUAL`, sin intento de subida. Error temporal de Archive.org implica `WAITING_ARCHIVE`, no clasificar erróneamente como ajeno. Para evitar errores y más trabajo manual, no auditar versiones históricas por esta comprobación: verificar solo la propiedad del ítem destino antes de subir la versión nueva.
 
 ## 5. Dos vías que deben funcionar
 
