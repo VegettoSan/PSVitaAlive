@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "skate-3-vita": {
+      "version": "0.3.0-beta",
+      "source_url": "https://github.com/irolup/skate-3-vita/releases/download/v0.3.0-beta/skate-3-vita-0.3.0-beta.vpk",
+      "archive_identifier": "skate-3-ps-vita-ports",
+      "filename": "skate-3-vita v0.3.0-beta.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T21:08:56+00:00"
+    }
+  }
 }
