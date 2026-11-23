@@ -35,6 +35,14 @@ El planificador ahora **prioriza la fecha de versión de `apps/` más reciente**
 
 Un ítem identificado por medios públicos **no se considera propio hasta superar el control privado**; si se trata de un archivo gestionado por otro usuario, no se escribirá en él. No se tocan capturas, íconos ni Game Files, ni se altera la arquitectura de generación de catálogos.
 
+## Recuperación automática segura de subidas pendientes (2026-11-23)
+
+Cuando Archive.org acepta una transferencia pero todavía no publica su archivo o sus metadatos, el motor conserva un checkpoint en `data/archive_backup_jobs.json` antes del PUT. La subida **no se repite** mientras exista ese checkpoint.
+
+En ejecuciones posteriores se comprueba primero el manifiesto del ítem verificado como propio. Si el archivo sigue sin aparecer, el caso queda en `VERIFYING` y se continúa con los demás Homebrew elegibles (sin descargar de nuevo el origen). Si ya aparece, el motor vuelve a descargar el VPK oficial, compara tamaño, MD5 de los metadatos, descarga pública completa y SHA-256; solo entonces actualiza el enlace `Download/VPK` de `apps/<id>.json` y elimina su checkpoint.
+
+Los errores de nueva subida `UPLOAD_RESULT_UNCERTAIN` detienen preventivamente la tanda en que ocurren, para evitar generar muchos PUT inciertos durante una caída del servicio. En la tanda siguiente, esos mismos checkpoints pasan a revisión de solo lectura, sin bloquear respaldos independientes. No se borra un checkpoint simplemente por antigüedad, ni se sobrescribe un VPK existente.
+
 ## Configuración y seguridad
 
 - Credenciales en GitHub Actions Secrets: `IA_ACCESS_KEY`, `IA_SECRET_KEY`, `IA_EXPECTED_UPLOADER`; no se publican sus valores.
