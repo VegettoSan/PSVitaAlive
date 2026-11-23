@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "emu4vita": {
+      "version": "0.81",
+      "source_url": "https://github.com/noword/Emu4VitaPlus/releases/download/v0.81/Emu4VitaPlus_v0.81.vpk",
+      "archive_identifier": "psvitaalive-emu4vita",
+      "filename": "emu4vita v0.81.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T18:31:48+00:00"
+    }
+  }
 }
