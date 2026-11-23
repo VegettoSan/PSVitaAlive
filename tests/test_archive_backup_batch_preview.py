@@ -156,9 +156,12 @@ class PreviewTests(unittest.TestCase):
             (root / "scripts").mkdir()
             (root / "scripts/archive_upload_log.csv").write_text(
                 "app_id,identifier,status,files,error,url\n", encoding="utf-8")
-            for app_id, ia_item in names:
+            for index, (app_id, ia_item) in enumerate(names):
                 a = app(app_id, "1.3",
                         f"https://github.com/example/{app_id}/releases/download/v1.3/app.vpk")
+                # Unlike the short generic fixture helper, actual BT3/BT4
+                # have distinct Title IDs; model that invariant here.
+                a["title_id"] = f"TEST{index:05d}"
                 a["icon"] = f"https://archive.org/download/{ia_item}/icon0.png"
                 a["screenshots"] = [
                     f"https://archive.org/download/{ia_item}/shot0.jpg",
