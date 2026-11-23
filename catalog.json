@@ -171,6 +171,100 @@
     ]
   },
   {
+    "id": "gta-3-vita",
+    "tid": "GTA300000",
+    "n": "GTA 3 Vita",
+    "d": "Grand Theft Auto III Ps Vita Port",
+    "ld": "Grand Theft Auto III Ps Vita Port",
+    "aids": [
+      "rinnegatamante",
+      "theflow"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "shooter",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.4",
+    "vd": "2026-11-22",
+    "req": "- no data",
+    "sz": 5033165,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/gta3-vita/GTA3_re3_v1.4.vpk",
+        "sz": 5033165,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/gta3-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2362232013,
+        "xp": "ux0:data/",
+        "ips": [
+          "gta3"
+        ]
+      }
+    ],
+    "ic": "https://archive.org/download/gta3-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/gta3-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "gta-vc-vita",
+    "tid": "GTAVCECTY",
+    "n": "GTA VC Vita",
+    "d": "Grand Theft Auto: Vice City Port Ps Vita",
+    "ld": "Grand Theft Auto: Vice City Port Ps Vita",
+    "aids": [
+      "rinnegatamante",
+      "theflow"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "shooter",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.1",
+    "vd": "2026-11-22",
+    "req": "- No Data",
+    "sz": 5347738,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/gta-vc-vita/GTAVC_v1.1.vpk",
+        "sz": 5347738,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/gta-vc-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1610612736,
+        "xp": "ux0:data/",
+        "ips": [
+          "gtavc"
+        ]
+      }
+    ],
+    "ic": "https://archive.org/download/gta-vc-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/gta-vc-vita/shot0.png"
+    ]
+  },
+  {
     "id": "manhunt",
     "tid": "MHRE00001",
     "n": "Manhunt",
