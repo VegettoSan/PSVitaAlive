@@ -1,0 +1,98 @@
+name: Archive.org owned VPK backups (BATCH)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/archive-backup-batch.yml'
+  schedule:
+    # Four controlled batches per day. No parallel Archive.org writer.
+    - cron: '47 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      execute:
+        description: 'Perform authorized uploads? Disable for dry-run'
+        type: boolean
+        required: true
+        default: false
+      max_files:
+        description: 'Maximum files this run (hard cap 12)'
+        required: false
+        default: '3'
+      max_file_mib:
+        description: 'Single file cap in MiB (hard cap 200)'
+        required: false
+        default: '30'
+      max_batch_mib:
+        description: 'Batch transfer budget in MiB (hard cap 800)'
+        required: false
+        default: '60'
+
+permissions:
+  contents: write
+  actions: write
+
+# Same publisher lock as validate.yml and sync_homebrew_releases.yml.
+concurrency:
+  group: vitahub-catalog-publisher
+  cancel-in-progress: false
+
+jobs:
+  preserve-approved-vpks:
+    if: github.repository == 'VegettoSan/PSVitaAlive' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.actor == 'VegettoSan')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout canonical sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned Archive.org client
+        run: python -m pip install 'internetarchive==5.13.0' 'requests==2.32.5'
+      - name: Run offline safety tests before any transfer
+        run: |
+          python -m unittest discover -s tests -p 'test_archive_backup_batch.py' -v
+          python -m unittest discover -s tests -p 'test_archive_owner_preflight.py' -v
+          python -m unittest discover -s tests -p 'test_archive_upload_one_pilot.py' -v
+      - name: Configure bot commit identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Process approved owned-item VPK batch
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+          IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_EXECUTE: ${{ inputs.execute || 'false' }}
+          INPUT_FILES: ${{ inputs.max_files || '3' }}
+          INPUT_FILE_MIB: ${{ inputs.max_file_mib || '30' }}
+          INPUT_BATCH_MIB: ${{ inputs.max_batch_mib || '60' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p archive-batch-report
+          if [[ "$EVENT_NAME" != "workflow_dispatch" || "$INPUT_EXECUTE" == "true" ]]; then
+            python -m scripts.archive_backup_batch --execute \
+              --max-files "$INPUT_FILES" --max-file-mib "$INPUT_FILE_MIB" \
+              --max-batch-mib "$INPUT_BATCH_MIB" --max-minutes 38 \
+              --report archive-batch-report/run.json
+          else
+            python -m scripts.archive_backup_batch \
+              --max-files "$INPUT_FILES" --max-file-mib "$INPUT_FILE_MIB" \
+              --max-batch-mib "$INPUT_BATCH_MIB" --max-minutes 38 \
+              --report archive-batch-report/run.json
+          fi
+      - name: Store diagnostic report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: archive-backup-batch-report
+          path: archive-batch-report/
+          if-no-files-found: ignore
+          retention-days: 14
