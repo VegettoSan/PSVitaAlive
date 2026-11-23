@@ -1,5 +1,69 @@
 [
   {
+    "id": "dragon-ball-z-bt4",
+    "tid": "BTFV00010",
+    "n": "Dragon Ball Z: BT4",
+    "d": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 4 (BT4decomp), based on DBZ-BT4-Tag-Team-Decomp and Tenkaichi3Decomp-Vita",
+    "ld": "A native PS Vita port of Budokai Tenkaichi 4 (Team BT4's B14 Rev2 of Dragon Ball Z: Budokai Tenkaichi 3), based on NauTaro's DBZ-BT4-Tag-Team-Decomp (BT4decomp, built on z3xox's Tenkaichi3Decomp) and on arielxflores's Tenkaichi3Decomp-Vita, the BT3 port for the Vita, through my fork of it (its optimized branch: the same speed-ups in both). The game's own code is compiled for the Vita, with the renderer for the Vita's GPU (vitaGL), the sound, touch and controls of the BT3 Vita port and all of its speed-ups. It is not an emulator.",
+    "aids": [
+      "manumastro"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "adventure",
+      "arcade",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.5.1",
+    "vd": "2026-11-23",
+    "req": "- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core.\n- About 6 GB free on ux0: for the game files (the .iso as it is, or the files unpacked from it)",
+    "sz": 12589859,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.5.1/BT4-Vita.vpk",
+        "sz": 12589859,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/dbz-bt4-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 5905580032,
+        "xp": "ux0:data/",
+        "ips": [
+          "bt4"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita"
+      }
+    ],
+    "ic": "https://archive.org/download/dbz-bt4-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/dbz-bt4-ps-vita/shot0.png",
+      "https://archive.org/download/dbz-bt4-ps-vita/shot1.jpg",
+      "https://archive.org/download/dbz-bt4-ps-vita/shot2.jpg",
+      "https://archive.org/download/dbz-bt4-ps-vita/shot3.jpg"
+    ]
+  },
+  {
     "id": "all-is-lost",
     "tid": "AILO69420",
     "n": "All is Lost",
@@ -104,70 +168,6 @@
     "ic": "https://archive.org/download/azahar-vita-/icon0.png",
     "ss": [
       "https://archive.org/download/azahar-vita-/Shot0.png"
-    ]
-  },
-  {
-    "id": "dragon-ball-z-bt4",
-    "tid": "BTFV00010",
-    "n": "Dragon Ball Z: BT4",
-    "d": "PS Vita port of Dragon Ball Z: Budokai Tenkaichi 4 (BT4decomp), based on DBZ-BT4-Tag-Team-Decomp and Tenkaichi3Decomp-Vita",
-    "ld": "A native PS Vita port of Budokai Tenkaichi 4 (Team BT4's B14 Rev2 of Dragon Ball Z: Budokai Tenkaichi 3), based on NauTaro's DBZ-BT4-Tag-Team-Decomp (BT4decomp, built on z3xox's Tenkaichi3Decomp) and on arielxflores's Tenkaichi3Decomp-Vita, the BT3 port for the Vita, through my fork of it (its optimized branch: the same speed-ups in both). The game's own code is compiled for the Vita, with the renderer for the Vita's GPU (vitaGL), the sound, touch and controls of the BT3 Vita port and all of its speed-ups. It is not an emulator.",
-    "aids": [
-      "manumastro"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "adventure",
-      "arcade",
-      "strategy",
-      "source-port"
-    ],
-    "v": "1.5",
-    "vd": "2026-11-22",
-    "req": "- Recommended: the CapUnlocker kernel plugin, which lets the game use the Vita's fourth CPU core.\n- About 6 GB free on ux0: for the game files (the .iso as it is, or the files unpacked from it)",
-    "sz": 12591093,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita/releases/download/v1.5/BT4-Vita.vpk",
-        "sz": 12591093,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/dbz-bt4-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 5905580032,
-        "xp": "ux0:data/",
-        "ips": [
-          "bt4"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/manumastro/DBZ-BT4-Tag-Team-Decomp-Vita"
-      }
-    ],
-    "ic": "https://archive.org/download/dbz-bt4-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/dbz-bt4-ps-vita/shot0.png",
-      "https://archive.org/download/dbz-bt4-ps-vita/shot1.jpg",
-      "https://archive.org/download/dbz-bt4-ps-vita/shot2.jpg",
-      "https://archive.org/download/dbz-bt4-ps-vita/shot3.jpg"
     ]
   },
   {
