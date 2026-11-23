@@ -9853,6 +9853,13 @@ void FullCatalogScreen::installAllStartQueue() {
     installAllStartNextStep();
 }
 
+bool FullCatalogScreen::installAllSpaceApproved() const {
+    return installAllPhase_ == InstallAllPhase::Running &&
+           !installAllSpaceProbeFailed_ &&
+           installAllRequiredBytes_ > 0 &&
+           installAllFreeBytes_ >= installAllRequiredBytes_;
+}
+
 void FullCatalogScreen::installAllStartNextStep() {
     if (installAllPhase_ != InstallAllPhase::Running || installAllWaitingRecovery_) return;
     // The active catalog/filter can rebuild after a successful VPK. Never use
