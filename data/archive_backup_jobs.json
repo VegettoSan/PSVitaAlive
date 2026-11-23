@@ -1,13 +1,4 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "nova-2-hd": {
-      "version": "1.1",
-      "source_url": "https://github.com/MetalSyntax/N.O.V.A-2-vita/releases/download/v1.1/nova2.vpk",
-      "archive_identifier": "n.o.v.a-2-ps-vita-port",
-      "filename": "nova-2-hd v1.1.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T23:31:01+00:00"
-    }
-  }
+  "inflight": {}
 }
