@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "psv-cleaner": {
+      "version": "1.18",
+      "source_url": "https://github.com/theheroGAC/PSV-Cleaner/releases/download/1.18/PSV_Cleaner.vpk",
+      "archive_identifier": "psvitaalive-psv-cleaner",
+      "filename": "psv-cleaner v1.18.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T17:55:52+00:00"
+    }
+  }
 }
