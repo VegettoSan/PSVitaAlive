@@ -11,17 +11,17 @@
   "sids": [
     "other"
   ],
-  "v": "0.1.0",
-  "vd": "2026-09-12",
+  "v": "beta-1",
+  "vd": "2026-11-22",
   "req": "- Install both skprx files (azaharnative and CapUnlocker) to the KERNEL section in your config.txt\n- Put your decrypted ROMs in ux0:/data/azahar/roms\n- Set your CPU to 500MHz before launching a game",
-  "sz": 8493466,
+  "sz": 8283750,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/azahar-vita-/azahar_vita%200.1.0.vpk",
-      "sz": 8493466,
+      "u": "https://archive.org/download/azahar-vita-/azahar_vita%20beta1.vpk",
+      "sz": 8283750,
       "rec": true
     },
     {
