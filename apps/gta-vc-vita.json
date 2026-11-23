@@ -1,0 +1,47 @@
+{
+  "id": "gta-vc-vita",
+  "tid": "GTAVCECTY",
+  "n": "GTA VC Vita",
+  "d": "Grand Theft Auto: Vice City Port Ps Vita",
+  "ld": "Grand Theft Auto: Vice City Port Ps Vita",
+  "aids": [
+    "rinnegatamante",
+    "theflow"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "shooter",
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.1",
+  "vd": "2026-11-22",
+  "req": "- No Data",
+  "sz": 5347738,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/gta-vc-vita/GTAVC_v1.1.vpk",
+      "sz": 5347738,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/gta-vc-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 1610612736,
+      "xp": "ux0:data/",
+      "ips": [
+        "gtavc"
+      ]
+    }
+  ],
+  "ic": "https://archive.org/download/gta-vc-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/gta-vc-vita/shot0.png"
+  ]
+}
