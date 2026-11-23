@@ -434,6 +434,11 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
     return "PUBLISHED_VERIFIED", f"{item['size_bytes'] / MIB:.2f} MiB verified; only canonical VPK link/version updated"
 
 
+def should_stop_batch(status: str) -> bool:
+    """A not-yet-public VPK does not block unrelated uploads."""
+    return status in {"WAITING_ARCHIVE", "UPLOAD_RESULT_UNCERTAIN", "CATALOG_PUSH_BLOCKED"}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
@@ -500,8 +505,10 @@ def main() -> int:
                 send_validate_dispatch()
             except Deferred as err:
                 results.append({"app_id": app_id, "status": err.status, "bytes": 0, "detail": err.reason})
-        if status in {"WAITING_ARCHIVE", "UPLOAD_RESULT_UNCERTAIN", "VERIFYING", "CATALOG_PUSH_BLOCKED"}:
-            # Stop putting more traffic onto an unavailable/unstable IA service.
+        if should_stop_batch(status):
+            # Only systemic outages or uncertain PUTs stop the whole batch.
+            # VERIFYING (public 404 during Archive.org processing) is per-file:
+            # keep its checkpoint and continue to the next approved candidate.
             break
         time.sleep(8)
     report = {
