@@ -11,7 +11,7 @@ from unittest.mock import patch
 from scripts.archive_backup_batch import (
     Deferred, expected_filename, source_matches_approved, candidate_proposal,
     save_canonical, existing_file, safe_host, stream_download, run_one, load_state, MIB,
-    write_state, public_url, verify_public_download, check_source_license,
+    write_state, public_url, verify_public_download, check_source_license, should_stop_batch,
 )
 
 
@@ -163,6 +163,13 @@ class BatchTests(unittest.TestCase):
             self.assertEqual(updated["version"], "0.6.3")
             self.assertEqual(updated["version_date"], "2026-11-22")
             self.assertEqual(updated["links"][1], app["links"][1])
+
+    def test_processing_404_does_not_abort_other_jobs(self):
+        self.assertFalse(should_stop_batch("VERIFYING"))
+        self.assertFalse(should_stop_batch("PUBLISHED_VERIFIED"))
+        self.assertTrue(should_stop_batch("WAITING_ARCHIVE"))
+        self.assertTrue(should_stop_batch("UPLOAD_RESULT_UNCERTAIN"))
+        self.assertTrue(should_stop_batch("CATALOG_PUSH_BLOCKED"))
 
     def test_state_persists_for_recovery(self):
         with tempfile.TemporaryDirectory() as tmp:
