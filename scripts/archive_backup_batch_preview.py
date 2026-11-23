@@ -12,6 +12,7 @@ import argparse
 import csv
 import json
 from collections import Counter, defaultdict
+from datetime import date
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
@@ -222,13 +223,23 @@ def candidates(root: Path, snapshot: dict | None = None) -> tuple[list[dict], li
             "app_id": app["id"], "title_id": app["title_id"],
             "version": asset["version"], "source_url": asset["url"],
             "size_bytes": asset["size"], "archive_identifier": target,
+            "version_date": app.get("version_date"),
             "kind": "CATALOG_BACKFILL",
             "ownership_status": "REQUIRED_BEFORE_UPLOAD",
             "status": "READY_OWNER_PREFLIGHT",
         })
 
-    # Stable ordering, with smaller VPKs processed before larger downloads.
-    result.sort(key=lambda item: (item["size_bytes"], item["app_id"]))
+    # Preserve the most recently catalogued versions first. When dates tie
+    # or are missing, smaller files go first. A new VPK must not wait behind
+    # years-old legacy releases simply because it is larger.
+    def priority(item: dict) -> tuple[int, int, str]:
+        try:
+            day = date.fromisoformat(str(item.get("version_date") or "")[:10]).toordinal()
+        except ValueError:
+            day = 0
+        return (-day, item["size_bytes"], item["app_id"])
+
+    result.sort(key=priority)
     return result, report
 
 def select_batch(items: list[dict], *, max_files: int, max_file_bytes: int, max_total_bytes: int) -> list[dict]:
