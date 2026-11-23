@@ -91,6 +91,15 @@ int main() {
     InstallAllSpaceBudget mixed = manual;
     addInstallAllSpaceEntry(mixed, InstallAllSpaceLinkKind::Extra, 0);
     assert(installAllQueueRequiredSpaceBytes(mixed) == (852 + 256) * MiB);
+    InstallAllSpaceBudget unknownPlugin;
+    addInstallAllSpaceEntry(unknownPlugin, InstallAllSpaceLinkKind::Plugin, 0);
+    assert(installAllQueueRequiredSpaceBytes(unknownPlugin) == (128 + 16) * MiB);
+    InstallAllSpaceBudget unknownVpk;
+    addInstallAllSpaceEntry(unknownVpk, InstallAllSpaceLinkKind::App, 0);
+    assert(installAllQueueRequiredSpaceBytes(unknownVpk) == (128 + 64) * MiB);
+    // The combined preflight is checked once before any Install All step.
+    assert(installAllQueueRequiredSpaceBytes(mixed) >
+           installAllQueueRequiredSpaceBytes(manual));
     assert(chooseSelectedLinkSizeBytes(0, 300 * MiB, "mirror.vpk", "main.vpk") == 0);
 
     // Retain the existing 2.1x VPK staging and saturating-overflow guarantees.
