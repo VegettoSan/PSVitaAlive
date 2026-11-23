@@ -165,7 +165,7 @@ def candidates(root: Path, snapshot: dict) -> tuple[list[dict], list[dict]]:
             continue
         planned[path] = {"app_id": app["id"], "title_id": app["title_id"], "version": proposed["version"],
                          "source_url": link["url"], "size_bytes": size, "archive_identifier": target,
-                         "kind": "NEW_RELEASE", "status": "READY_OWNER_PREFLIGHT"}
+                         "kind": "NEW_RELEASE", "ownership_status": "REQUIRED_BEFORE_UPLOAD", "status": "READY_OWNER_PREFLIGHT"}
 
     for path, app in apps.items():
         if path in planned or app.get("status") not in {"Verified", "Legacy"}:
@@ -181,7 +181,7 @@ def candidates(root: Path, snapshot: dict) -> tuple[list[dict], list[dict]]:
             continue
         planned[path] = {"app_id": app["id"], "title_id": app["title_id"], "version": matched["version"],
                          "source_url": matched["url"], "size_bytes": matched["size"],
-                         "archive_identifier": target, "kind": "SAME_VERSION_BACKFILL", "status": "READY_OWNER_PREFLIGHT"}
+                         "archive_identifier": target, "kind": "SAME_VERSION_BACKFILL", "ownership_status": "REQUIRED_BEFORE_UPLOAD", "status": "READY_OWNER_PREFLIGHT"}
 
     # Stable reproducible ordering. Large jobs not allowed to starve smaller jobs.
     result = sorted(planned.values(), key=lambda a: (a["size_bytes"], a["app_id"]))
