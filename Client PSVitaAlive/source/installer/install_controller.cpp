@@ -851,7 +851,8 @@ bool InstallController::requestInstall(
     const std::string& displayTitle,
     uint64_t expectedBytes,
     const std::string& pluginSection,
-    const std::string& pluginLine
+    const std::string& pluginLine,
+    bool installAllSpaceApproved
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
     // Game Files / Data Files are extraction-only. Do not enqueue a download
@@ -938,7 +939,13 @@ bool InstallController::requestInstall(
     const uint64_t requiredSpace = initialInstallSpaceBytes(expectedBytes, budgetMode);
     if (wantBgdl) diagnostics::log("[Installer] PKG space preflight on ux0 before system BGDL");
 
-    if (requiredSpace > 0) {
+    // A successful Install All wizard already checked the COMPLETE batch.
+    // Do not re-charge previous downloads or extracted folders in later
+    // steps. Unknown/changed authoritative HTTP size and runtime I/O
+    // safeguards still protect against actual exhaustion.
+    if (installAllSpaceApproved) {
+        diagnostics::log("[Installer] Install All: using approved initial batch space preflight (no duplicate per-step estimate)");
+    } else if (requiredSpace > 0) {
         uint64_t freeB = 0, totalB = 0;
         if (StorageManager::queryUx0Space(freeB, totalB)) {
             const uint64_t needExact = requiredSpace;
