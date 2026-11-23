@@ -46,7 +46,7 @@ Los VPK grandes siguen **`TOO_LARGE_PENDING`**, los no aprobados no se suben y l
 
 ## Publicación y seguimiento
 
-Después de confirmar que la descarga pública de Archive.org devuelve el mismo VPK, Actions valida los JSON canónicos, publica **solo los JSON individuales** y llama explícitamente a `validate.yml` con `workflow_dispatch`. Este paso es indispensable porque los commits hechos con `GITHUB_TOKEN` no activan automáticamente workflows normales de tipo `push`. El validador oficial genera el catálogo.
+Después de confirmar que la descarga pública de Archive.org devuelve el mismo VPK, Actions valida los JSON canónicos y publica **solo los JSON individuales**. **Al completarse el lote**, el evento GitHub Actions `workflow_run` lanza el workflow oficial `validate.yml` (únicamente para la ejecución exitosa del repositorio oficial y rama `main`). Así se regenera el catálogo con **todos** los respaldos que haya publicado esa tanda y se evita saturar o cancelar validadores en la misma cola de concurrencia. Los commits hechos con `GITHUB_TOKEN` no activan por sí solos los workflows normales de tipo `push`.
 
 La página de cada ejecución muestra una tabla de `PUBLISHED_VERIFIED`, `DEFERRED`, `WAITING_ARCHIVE`, `UPLOAD_RESULT_UNCERTAIN`, `PENDING_MANUAL`, `TOO_LARGE_PENDING`, etc. El archivo `archive-backup-batch-report` se conserva durante 14 días. No contiene secretos.
 
@@ -65,3 +65,10 @@ Documentos relacionados: [selector de lotes](ARCHIVE_BACKUP_ACTIONS_BATCH_PILOT.
 
 - Primera ejecución: [GitHub Actions #45225329131](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45225329131). FMVita v0.6.2 alcanzó verificación de tamaño y MD5 en Archive.org, pero la descarga pública todavía no respondió; quedó `VERIFYING`, sin actualizar el catálogo, con checkpoint en `data/archive_backup_jobs.json`.
 - Ajuste: cuando solo falte que Archive.org exponga la URL pública de un archivo ya subido, procesar el resto de las aplicaciones habilitadas. Mantener la detención ante cortes del servicio o un resultado de subida incierto. No eliminar el checkpoint ni hacer una segunda subida de FMVita por un 404 temporal.
+
+## Resultado validado de las tres aplicaciones iniciales
+
+- [Primera ejecución #45225329131](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45225329131): FMVita v0.6.2 quedó inicialmente `VERIFYING` por disponibilidad pública tardía.
+- [Segunda ejecución #45226443852](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45226443852): FMVita `PUBLISHED_VERIFIED`, Arx Libertatis v2.0 `PUBLISHED_VERIFIED`, VitaDB Downloader v2.8 `VERIFYING`.
+- [Reconciliación #45227721334](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45227721334): VitaDB Downloader `PUBLISHED_VERIFIED` sin resubirlo. El archivo de checkpoints quedó con `inflight: {}`.
+- Hallazgo operativo: una validación solicitada mediante `workflow_dispatch` durante el lote podía quedar cancelada por el bloqueo de concurrencia. Corregido usando `workflow_run` **después** de la finalización del lote, con pruebas de CI antes de promover la corrección.
