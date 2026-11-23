@@ -1,4 +1,13 @@
 {
   "schema_version": 1,
-  "inflight": {}
+  "inflight": {
+    "manhunt": {
+      "version": "0.10.1",
+      "source_url": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.1/manhunt-v0.10.1-vita.vpk",
+      "archive_identifier": "manhunt-1-2-ps-vita-port",
+      "filename": "manhunt v0.10.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-23T23:29:39+00:00"
+    }
+  }
 }
