@@ -11,7 +11,7 @@ from unittest.mock import patch
 from scripts.archive_backup_batch import (
     Deferred, expected_filename, source_matches_approved, candidate_proposal,
     save_canonical, existing_file, safe_host, stream_download, run_one, load_state, MIB,
-    write_state, public_url, verify_public_download, check_source_license, should_stop_batch,
+    write_state, public_url, verify_public_download, load_policy, policy_entry, should_stop_batch,
 )
 
 
@@ -194,7 +194,6 @@ class BatchTests(unittest.TestCase):
                           "archive_identifier": candidate()["archive_identifier"]}}}
             mock_md = {"metadata": {"uploader": "owner@example.test"}, "files": []}
             with patch("scripts.archive_backup_batch.load_policy", return_value=policy()), \
-                 patch("scripts.archive_backup_batch.check_source_license"), \
                  patch("scripts.archive_backup_batch.owned_metadata", return_value=mock_md), \
                  patch("scripts.archive_backup_batch.download_source",
                        return_value=("a" * 32, "b" * 64)), \
@@ -205,15 +204,36 @@ class BatchTests(unittest.TestCase):
             self.assertEqual(caught.exception.status, "UPLOAD_RESULT_UNCERTAIN")
             upload.assert_not_called()
 
-    def test_expected_license_is_required(self):
-        class Response:
-            status_code = 200
-            def json(self):
-                return {"full_name": "WolffsRoom/FMVita", "license": {"spdx_id": "GPL-3.0"}}
-        check_source_license("fmvita", policy(), request=lambda *a, **k: Response())
-        with self.assertRaises(Deferred):
-            check_source_license("fmvita", policy(), request=lambda *a, **k:
-                                 SimpleNamespace(status_code=404))
+    def test_all_nonexcluded_apps_are_autoeligible_without_spdx(self):
+        default_policy = {"*": {"enabled": True}}
+        app = release_app()
+        self.assertTrue(source_matches_approved(candidate(), default_policy, app))
+        another = dict(candidate(), app_id="another-psvita-app")
+        self.assertTrue(source_matches_approved(another, default_policy, app))
+        disabled = {**default_policy, "fmvita": {"enabled": False}}
+        self.assertFalse(source_matches_approved(candidate(), disabled, app))
+        foreign = dict(candidate(), source_url="https://github.com/stranger/repo/releases/download/a/file.vpk")
+        self.assertFalse(source_matches_approved(foreign, default_policy, app))
+
+    def test_policy_v2_defaults_on_and_explicit_exclusions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "config").mkdir()
+            policy_file = root / "config/archive_backup_approved_apps.json"
+            policy_file.write_text(json.dumps({
+                "schema_version": 2, "default_enabled": True,
+                "excluded_apps": ["blocked-game"],
+            }), encoding="utf-8")
+            rules = load_policy(root)
+            self.assertTrue(policy_entry(rules, "fmvita")["enabled"])
+            self.assertFalse(policy_entry(rules, "blocked-game")["enabled"])
+            policy_file.write_text(json.dumps({
+                "schema_version": 2, "default_enabled": True,
+                "excluded_apps": ["blocked-game", "blocked-game"],
+            }), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                load_policy(root)
+
 
 
 if __name__ == "__main__":

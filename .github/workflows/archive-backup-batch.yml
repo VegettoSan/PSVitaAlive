@@ -5,9 +5,14 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/archive-backup-batch.yml'
+  # Follow Orbit's normal release-monitor dispatch, but do not write at
+  # the same moment as the catalog synchronization: shared lock serializes.
+  workflow_run:
+    workflows: ['Sync Verified Homebrew Releases']
+    types: [completed]
   schedule:
-    # Four controlled batches per day. Recheck VitaDB pending public URL without another PUT.
-    - cron: '47 */6 * * *'
+    # Orbit scans at 17 */3; backup scan at minute 47 is a fallback.
+    - cron: '47 */3 * * *'
   workflow_dispatch:
     inputs:
       execute:
@@ -18,15 +23,15 @@ on:
       max_files:
         description: 'Maximum files this run (hard cap 12)'
         required: false
-        default: '3'
+        default: '12'
       max_file_mib:
         description: 'Single file cap in MiB (hard cap 200)'
         required: false
-        default: '30'
+        default: '200'
       max_batch_mib:
         description: 'Batch transfer budget in MiB (hard cap 800)'
         required: false
-        default: '60'
+        default: '800'
 
 permissions:
   contents: write
@@ -39,7 +44,19 @@ concurrency:
 
 jobs:
   preserve-approved-vpks:
-    if: github.repository == 'VegettoSan/PSVitaAlive' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.actor == 'VegettoSan')
+    if: >-
+      github.repository == 'VegettoSan/PSVitaAlive' &&
+      github.ref == 'refs/heads/main' &&
+      (
+        github.event_name == 'schedule' ||
+        (github.event_name == 'workflow_run' &&
+         github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.event == 'repository_dispatch' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.event.workflow_run.head_repository.full_name == 'VegettoSan/PSVitaAlive') ||
+        ((github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+         github.actor == 'VegettoSan')
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -70,9 +87,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_NAME: ${{ github.event_name }}
           INPUT_EXECUTE: ${{ inputs.execute || 'false' }}
-          INPUT_FILES: ${{ inputs.max_files || '3' }}
-          INPUT_FILE_MIB: ${{ inputs.max_file_mib || '30' }}
-          INPUT_BATCH_MIB: ${{ inputs.max_batch_mib || '60' }}
+          INPUT_FILES: ${{ inputs.max_files || '12' }}
+          INPUT_FILE_MIB: ${{ inputs.max_file_mib || '200' }}
+          INPUT_BATCH_MIB: ${{ inputs.max_batch_mib || '800' }}
         shell: bash
         run: |
           set -euo pipefail

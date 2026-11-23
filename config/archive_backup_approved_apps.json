@@ -1,36 +1,6 @@
 {
-  "schema_version": 1,
-  "note": "Private admin approval is still required for actual binary redistribution and may be revoked by setting enabled false; links in the public catalog are not ownership proof.",
-  "approved_apps": {
-    "fmvita": {
-      "enabled": true,
-      "github_repo": "WolffsRoom/FMVita",
-      "spdx_id": "GPL-3.0"
-    },
-    "vitadb-downloader": {
-      "enabled": true,
-      "github_repo": "Rinnegatamante/VitaDB-Downloader",
-      "spdx_id": "GPL-3.0"
-    },
-    "arx-libertatis": {
-      "enabled": true,
-      "github_repo": "TheLostPantheon/ArxLibertatis",
-      "spdx_id": "GPL-3.0"
-    },
-    "apollo-save-tool": {
-      "enabled": false,
-      "github_repo": "bucanero/apollo-vita",
-      "spdx_id": "GPL-3.0"
-    },
-    "vita-moonlight": {
-      "enabled": false,
-      "github_repo": "xyzz/vita-moonlight",
-      "spdx_id": "GPL-3.0"
-    },
-    "retroflow-launcher": {
-      "enabled": false,
-      "github_repo": "jimbob4000/RetroFlow-Launcher",
-      "spdx_id": "MIT"
-    }
-  }
+  "schema_version": 2,
+  "default_enabled": true,
+  "excluded_apps": [],
+  "note": "Preservation eligibility is automatic for verified unique upstream VPKs with a previously managed Archive.org item and matching private uploader. No SPDX/license type filter. Keep any app that must not be redistributed in excluded_apps; catalog updates are independent of this policy."
 }

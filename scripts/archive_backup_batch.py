@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Preserve approved PSVitaAlive VPK releases in owned Archive.org items, in batches.
 
-Only apps explicitly opted into config/archive_backup_approved_apps.json can
-be uploaded. All candidates must originate from the conservative release
+All eligible apps with owned existing Archive.org items can be uploaded,
+except explicit opt-outs. All candidates originate from the conservative release
 monitor / canonical app rules. Existing items only; no overwrite or deletion.
 Each attempted upload gets a durable Git checkpoint BEFORE IA-S3 is called.
 Never touch generated catalog.json, authors.json or categories.json.
@@ -31,7 +31,7 @@ from scripts.archive_owner_preflight import fetch_item_metadata
 from scripts.archive_upload_one_pilot import has_remote_name, safe_redirect
 from scripts.catalog_schema_v2 import to_v1, to_v2
 from scripts.sync_release_updates import (
-    load_snapshot, normalized_repo, plan_changes, select_current_download,
+    app_repositories, load_snapshot, normalized_repo, plan_changes, select_current_download,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,7 +44,6 @@ HARD_MAX_FILES = 12
 VALID_ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,90}$")
 VALID_VERSION = re.compile(r"^[0-9]+(?:\.[0-9]+){0,3}(?:[-._]?(?:dev|test|alpha|beta|pre|preview|rc)[-._]?[0-9]*)?$", re.I)
 REPO_PATH = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
-ALLOWED_LICENSES = {"MIT", "GPL-3.0", "GPL-2.0", "Apache-2.0", "BSD-3-Clause", "BSD-2-Clause"}
 
 
 class Deferred(Exception):
@@ -58,10 +57,22 @@ def now_utc() -> str:
 
 
 def load_policy(root: Path) -> dict:
+    """Use an explicit opt-out list; no per-app license or whitelist gate.
+
+    The asterisk is a default entry for all otherwise eligible canonical
+    apps. Exclusions are deliberately preserved across release versions.
+    """
     obj = json.loads((root / POLICY).read_text("utf-8"))
-    if obj.get("schema_version") != 1 or not isinstance(obj.get("approved_apps"), dict):
-        raise ValueError("Invalid Archive.org upload policy")
-    return obj["approved_apps"]
+    excluded = obj.get("excluded_apps")
+    if (obj.get("schema_version") != 2 or obj.get("default_enabled") is not True
+            or not isinstance(excluded, list)
+            or any(not isinstance(app_id, str) or not VALID_ID.fullmatch(app_id)
+                   for app_id in excluded)
+            or len(excluded) != len(set(excluded))):
+        raise ValueError("Invalid automatic Archive.org upload policy")
+    policy = {"*": {"enabled": True}}
+    policy.update({app_id: {"enabled": False} for app_id in excluded})
+    return policy
 
 
 def load_state(root: Path) -> dict:
@@ -112,48 +123,35 @@ def expected_filename(item: dict) -> str:
     return f"{app_id} v{version}.vpk"
 
 
+def policy_entry(policy: dict, app_id: str) -> dict:
+    """Absent app entries inherit the automatic default; explicit opt-outs win."""
+    return policy.get(app_id, policy.get("*", {}))
+
+
 def source_matches_approved(item: dict, policy: dict, app: dict) -> bool:
-    entry = policy.get(item["app_id"])
+    """Source/ownership gates remain strict; SPDX metadata is not an upload gate."""
+    entry = policy_entry(policy, item["app_id"])
     if not isinstance(entry, dict) or entry.get("enabled") is not True:
         return False
-    repo = entry.get("github_repo")
-    if not isinstance(repo, str) or not REPO_PATH.fullmatch(repo):
+    url = item.get("source_url")
+    repo = normalized_repo(url)
+    if not repo or repo not in app_repositories(app):
         return False
-    if entry.get("spdx_id") not in ALLOWED_LICENSES:
+    # Reject contradictory primary repository metadata rather than trusting a
+    # stale Repository link in the same app. Missing source_url may rely on links.
+    canonical_repo = normalized_repo(app.get("source_url"))
+    if canonical_repo is not None and canonical_repo != repo:
         return False
-    actual = normalized_repo(item["source_url"])
-    upstream = str(app.get("source_url") or "")
-    return (actual == repo.lower() and normalized_repo(upstream) == repo.lower()
-            and urlparse(item["source_url"]).hostname == "github.com"
-            and "/releases/download/" in urlparse(item["source_url"]).path
-            and item.get("archive_identifier", "").startswith("psvitaalive-"))
-
-
-def check_source_license(app_id: str, policy: dict, *, request=requests.get) -> None:
-    entry = policy[app_id]
-    expected = entry["spdx_id"]
-    repo = entry["github_repo"]
-    try:
-        response = request(
-            f"https://api.github.com/repos/{repo}",
-            headers={"Accept": "application/vnd.github+json",
-                     "User-Agent": "PSVitaAlive-Archive-Batch/1.0",
-                     **({"Authorization": "Bearer " + os.environ["GH_TOKEN"]}
-                        if os.environ.get("GH_TOKEN") else {})},
-            timeout=(12, 25),
-        )
-        if response.status_code == 429 or response.status_code >= 500:
-            raise Deferred("WAITING_SOURCE", "GitHub license API temporarily unavailable")
-        if response.status_code != 200:
-            raise Deferred("PENDING_MANUAL", "Cannot verify upstream repository license")
-        data = response.json()
-    except Deferred:
-        raise
-    except Exception:
-        raise Deferred("WAITING_SOURCE", "GitHub license API unavailable") from None
-    if (data.get("full_name", "").lower() != repo.lower()
-            or (data.get("license") or {}).get("spdx_id") != expected):
-        raise Deferred("PENDING_MANUAL", "Expected upstream redistribution license not confirmed")
+    parsed = urlparse(url)
+    if parsed.hostname != "github.com" or "/releases/download/" not in parsed.path:
+        return False
+    # A policy entry may specify one exact repository as a stricter override.
+    pinned = entry.get("github_repo")
+    if pinned is not None and (not isinstance(pinned, str)
+                              or not REPO_PATH.fullmatch(pinned)
+                              or pinned.lower() != repo):
+        return False
+    return item.get("archive_identifier", "").startswith("psvitaalive-")
 
 
 def owned_metadata(identifier: str, owner: str, *, fetch=fetch_item_metadata) -> dict:
@@ -372,8 +370,7 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
     if target != archive or evidence != "historical-upload-log":
         raise Deferred("PENDING_MANUAL", "Archive.org target not confirmed by historical own-upload record")
     if not source_matches_approved(item, load_policy(root), original):
-        raise Deferred("PENDING_MANUAL", "App not enabled or source no longer approved")
-    check_source_license(item_id, load_policy(root))
+        raise Deferred("PENDING_MANUAL", "App excluded or source does not match canonical repository")
 
     md = owned_metadata(archive, owner)
     remote = existing_file(md, name)
@@ -431,9 +428,9 @@ def should_stop_batch(status: str) -> bool:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
-    parser.add_argument("--max-files", type=int, default=3)
-    parser.add_argument("--max-file-mib", type=int, default=30)
-    parser.add_argument("--max-batch-mib", type=int, default=60)
+    parser.add_argument("--max-files", type=int, default=12)
+    parser.add_argument("--max-file-mib", type=int, default=200)
+    parser.add_argument("--max-batch-mib", type=int, default=800)
     parser.add_argument("--max-minutes", type=int, default=38)
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--report", type=Path, default=Path("archive-batch-report/run.json"))
@@ -463,7 +460,7 @@ def main() -> int:
         parser.error("Missing Archive.org secrets for real upload")
     for item in candidates_list:
         app_id = item["app_id"]
-        if not isinstance(policy.get(app_id), dict) or policy[app_id].get("enabled") is not True:
+        if policy_entry(policy, app_id).get("enabled") is not True:
             continue
         size = item["size_bytes"]
         if size > args.max_file_mib * MIB:
