@@ -1,0 +1,42 @@
+name: Archive.org one-VPK pilot (WRITE, owner only)
+
+on:
+  # Owner-merge to main triggers one real upload attempt.
+  # All later runs are manual. No pull_request trigger.
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/archive-upload-one-pilot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: psvitaalive-archive-single-writer
+  cancel-in-progress: false
+
+jobs:
+  upload-one:
+    if: github.repository == 'VegettoSan/PSVitaAlive' && github.ref == 'refs/heads/main' && github.actor == 'VegettoSan'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout canonical repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned IA client
+        run: python -m pip install 'internetarchive==5.13.0'
+      - name: Run offline first-pilot safety tests
+        run: python -m unittest discover -s tests -p 'test_archive_upload_one_pilot.py' -v
+      - name: Transfer only BetterHomebrewBrowser 1.46 into owned existing item
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+          IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
+        run: python -m scripts.archive_upload_one_pilot
