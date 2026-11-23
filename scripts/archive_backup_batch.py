@@ -1,0 +1,531 @@
+#!/usr/bin/env python3
+"""Preserve approved PSVitaAlive VPK releases in owned Archive.org items, in batches.
+
+Only apps explicitly opted into config/archive_backup_approved_apps.json can
+be uploaded. All candidates must originate from the conservative release
+monitor / canonical app rules. Existing items only; no overwrite or deletion.
+Each attempted upload gets a durable Git checkpoint BEFORE IA-S3 is called.
+Never touch generated catalog.json, authors.json or categories.json.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from urllib.parse import quote, urljoin, urlparse
+
+import requests
+
+from scripts.archive_backup_batch_preview import (
+    candidates, item_owned_by_account, resolve_item, upload_map,
+)
+from scripts.archive_owner_preflight import fetch_item_metadata
+from scripts.archive_upload_one_pilot import has_remote_name, safe_redirect
+from scripts.catalog_schema_v2 import to_v1, to_v2
+from scripts.sync_release_updates import (
+    load_snapshot, normalized_repo, plan_changes, select_current_download,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+POLICY = Path("config/archive_backup_approved_apps.json")
+STATE = Path("data/archive_backup_jobs.json")
+MIB = 1024 * 1024
+HARD_MAX_FILE = 200 * MIB
+HARD_MAX_BATCH = 800 * MIB
+HARD_MAX_FILES = 12
+VALID_ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,90}$")
+VALID_VERSION = re.compile(r"^[0-9]+(?:\.[0-9]+){0,3}(?:[-._]?(?:dev|test|alpha|beta|pre|preview|rc)[-._]?[0-9]*)?$", re.I)
+REPO_PATH = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+ALLOWED_LICENSES = {"MIT", "GPL-3.0", "GPL-2.0", "Apache-2.0", "BSD-3-Clause", "BSD-2-Clause"}
+
+
+class Deferred(Exception):
+    def __init__(self, status: str, reason: str):
+        super().__init__(reason)
+        self.status, self.reason = status, reason
+
+
+def now_utc() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def load_policy(root: Path) -> dict:
+    obj = json.loads((root / POLICY).read_text("utf-8"))
+    if obj.get("schema_version") != 1 or not isinstance(obj.get("approved_apps"), dict):
+        raise ValueError("Invalid Archive.org upload policy")
+    return obj["approved_apps"]
+
+
+def load_state(root: Path) -> dict:
+    path = root / STATE
+    if not path.exists():
+        return {"schema_version": 1, "inflight": {}}
+    obj = json.loads(path.read_text("utf-8"))
+    if obj.get("schema_version") != 1 or not isinstance(obj.get("inflight"), dict):
+        raise ValueError("Corrupt backup checkpoint. Stop without uploads.")
+    return obj
+
+
+def write_state(root: Path, obj: dict) -> None:
+    path = root / STATE
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def git_publish(root: Path, paths: list[str], message: str, *, validate: bool) -> None:
+    """No upload starts unless its checkpoint was already pushed to main."""
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=root, text=True, capture_output=True)
+    if validate:
+        env = dict(os.environ, VITAHUB_SKIP_REMOTE_CHECKS="true", VITAHUB_SKIP_REMOTE_MEDIA="true")
+        r = subprocess.run([sys.executable, "scripts/validate_catalog_ci.py"],
+                           cwd=root, capture_output=True, text=True, env=env)
+        if r.returncode:
+            raise Deferred("PENDING_MANUAL", "Canonical catalog validation failed; no publishing")
+    r = git("add", "--", *paths)
+    if r.returncode:
+        raise Deferred("PENDING_MANUAL", "Unable to stage canonical/checkpoint changes")
+    r = git("diff", "--cached", "--quiet")
+    if r.returncode == 0:
+        return
+    if r.returncode != 1:
+        raise Deferred("PENDING_MANUAL", "Unable to examine staged changes")
+    for args in (("commit", "-m", message), ("push", "origin", "HEAD:main")):
+        r = git(*args)
+        if r.returncode:
+            raise Deferred("PENDING_MANUAL", "GitHub main changed or refused a push; intervention required")
+
+
+def send_validate_dispatch() -> None:
+    # Github's GITHUB_TOKEN push suppresses push-event workflows. Workflow
+    # dispatch IS an allowed exception, and runs the official generator.
+    r = subprocess.run(
+        ["gh", "api", "--method", "POST",
+         "repos/VegettoSan/PSVitaAlive/actions/workflows/validate.yml/dispatches",
+         "-f", "ref=main"], capture_output=True, text=True)
+    if r.returncode:
+        raise Deferred("VALIDATION_PENDING", "Canonical changed; official validator dispatch failed")
+
+
+def expected_filename(item: dict) -> str:
+    app_id = item["app_id"]
+    version = item["version"]
+    if not VALID_ID.fullmatch(app_id) or not isinstance(version, str) or not VALID_VERSION.fullmatch(version):
+        raise Deferred("PENDING_MANUAL", "Unsupported VPK filename/version")
+    return f"{app_id} v{version}.vpk"
+
+
+def source_matches_approved(item: dict, policy: dict, app: dict) -> bool:
+    entry = policy.get(item["app_id"])
+    if not isinstance(entry, dict) or entry.get("enabled") is not True:
+        return False
+    repo = entry.get("github_repo")
+    if not isinstance(repo, str) or not REPO_PATH.fullmatch(repo):
+        return False
+    if entry.get("spdx_id") not in ALLOWED_LICENSES:
+        return False
+    actual = normalized_repo(item["source_url"])
+    upstream = str(app.get("source_url") or "")
+    return (actual == repo.lower() and normalized_repo(upstream) == repo.lower()
+            and urlparse(item["source_url"]).hostname == "github.com"
+            and "/releases/download/" in urlparse(item["source_url"]).path
+            and item.get("archive_identifier", "").startswith("psvitaalive-"))
+
+
+def check_source_license(app_id: str, policy: dict, *, request=requests.get) -> None:
+    entry = policy[app_id]
+    expected = entry["spdx_id"]
+    repo = entry["github_repo"]
+    try:
+        response = request(
+            f"https://api.github.com/repos/{repo}",
+            headers={"Accept": "application/vnd.github+json",
+                     "User-Agent": "PSVitaAlive-Archive-Batch/1.0",
+                     **({"Authorization": "Bearer " + os.environ["GH_TOKEN"]}
+                        if os.environ.get("GH_TOKEN") else {})},
+            timeout=(12, 25),
+        )
+        if response.status_code == 429 or response.status_code >= 500:
+            raise Deferred("WAITING_SOURCE", "GitHub license API temporarily unavailable")
+        if response.status_code != 200:
+            raise Deferred("PENDING_MANUAL", "Cannot verify upstream repository license")
+        data = response.json()
+    except Deferred:
+        raise
+    except Exception:
+        raise Deferred("WAITING_SOURCE", "GitHub license API unavailable") from None
+    if (data.get("full_name", "").lower() != repo.lower()
+            or (data.get("license") or {}).get("spdx_id") != expected):
+        raise Deferred("PENDING_MANUAL", "Expected upstream redistribution license not confirmed")
+
+
+def owned_metadata(identifier: str, owner: str, *, fetch=fetch_item_metadata) -> dict:
+    try:
+        data = fetch(identifier)
+    except Exception:
+        raise Deferred("WAITING_ARCHIVE", "Archive.org temporarily unavailable") from None
+    valid, _ = item_owned_by_account(data, owner)
+    if not valid:
+        raise Deferred("PENDING_MANUAL", "Archive.org item ownership not confirmed")
+    if not isinstance(data.get("files"), list):
+        raise Deferred("WAITING_ARCHIVE", "Archive.org file manifest unavailable")
+    return data
+
+
+def existing_file(metadata: dict, filename: str) -> dict | None:
+    if not has_remote_name(metadata, filename):
+        return None
+    exact = [f for f in metadata["files"]
+             if isinstance(f, dict) and f.get("name") == filename]
+    if len(exact) != 1:
+        raise Deferred("PENDING_MANUAL", "Archive.org target filename collides with an existing file")
+    return exact[0]
+
+
+def safe_host(url: str, *, archive: bool = False) -> bool:
+    try:
+        obj = urlparse(url)
+        host = (obj.hostname or "").lower()
+        if (obj.scheme != "https" or obj.username or obj.password or obj.port
+                or not host):
+            return False
+        return (host == "archive.org" or host.endswith(".archive.org")) if archive else safe_redirect(url)
+    except ValueError:
+        return False
+
+
+def stream_download(url: str, filename: Path, maximum: int, *, archive: bool = False,
+                    session=None) -> tuple[int, str, str]:
+    """Validate EACH redirect before connecting to it; do not fetch arbitrary URLs."""
+    sess = session or requests.Session()
+    current = url
+    response = None
+    try:
+        for _ in range(6):
+            if not safe_host(current, archive=archive):
+                raise Deferred("PENDING_MANUAL", "Untrusted asset/redirect host")
+            try:
+                response = sess.get(current, stream=True, allow_redirects=False,
+                                    timeout=(20, 45),
+                                    headers={"User-Agent": "PSVitaAlive-Archive-Batch/1.0"})
+            except requests.RequestException:
+                raise Deferred("WAITING_ARCHIVE" if archive else "WAITING_SOURCE",
+                               "Temporary source/download connection problem") from None
+            if response.status_code in (301, 302, 303, 307, 308):
+                location = response.headers.get("Location")
+                response.close()
+                if not location:
+                    raise Deferred("PENDING_MANUAL", "HTTP redirect without destination")
+                current = urljoin(current, location)
+                continue
+            break
+        else:
+            raise Deferred("PENDING_MANUAL", "Too many upstream redirects")
+        if response.status_code != 200:
+            status = "WAITING_ARCHIVE" if archive else "WAITING_SOURCE"
+            raise Deferred(status, f"Download not available: HTTP {response.status_code}")
+        cl = response.headers.get("Content-Length")
+        if cl and (not cl.isdigit() or int(cl) > maximum):
+            raise Deferred("TOO_LARGE_PENDING", "Asset exceeds maximum download size")
+        md5, sha256, size = hashlib.md5(), hashlib.sha256(), 0
+        with filename.open("wb") as out:
+            try:
+                for chunk in response.iter_content(chunk_size=128 * 1024):
+                    if not chunk:
+                        continue
+                    size += len(chunk)
+                    if size > maximum:
+                        raise Deferred("TOO_LARGE_PENDING", "Asset exceeded per-file limit")
+                    out.write(chunk)
+                    md5.update(chunk)
+                    sha256.update(chunk)
+            except requests.RequestException:
+                raise Deferred("WAITING_ARCHIVE" if archive else "WAITING_SOURCE",
+                               "Download interrupted") from None
+        return size, md5.hexdigest(), sha256.hexdigest()
+    finally:
+        if response is not None:
+            response.close()
+        if session is None:
+            sess.close()
+
+
+def download_source(item: dict, local: Path, *, max_file: int) -> tuple[str, str]:
+    size, md5, sha256 = stream_download(item["source_url"], local, max_file)
+    if size != item["size_bytes"]:
+        raise Deferred("PENDING_MANUAL", "Original release differs from monitor asset size")
+    with local.open("rb") as f:
+        if f.read(4) != b"PK\x03\x04":
+            raise Deferred("PENDING_MANUAL", "Source download is not a valid VPK header")
+    return md5, sha256
+
+
+def verify_file_metadata(identifier: str, name: str, expected_bytes: int, md5: str,
+                         owner: str, *, sleep=time.sleep) -> None:
+    for delay in (0, 5, 12, 20, 28):
+        if delay:
+            sleep(delay)
+        try:
+            md = owned_metadata(identifier, owner)
+        except Deferred as err:
+            if err.status == "WAITING_ARCHIVE":
+                continue
+            raise
+        f = existing_file(md, name)
+        if f is None:
+            continue
+        if (str(f.get("size")) != str(expected_bytes)
+                or str(f.get("md5") or "").lower() != md5.lower()):
+            raise Deferred("PENDING_MANUAL", "Archive.org target file size/checksum conflicts with source")
+        return
+    raise Deferred("VERIFYING", "Archive.org upload not yet visible with verified checksum")
+
+
+def public_url(identifier: str, name: str) -> str:
+    return f"https://archive.org/download/{identifier}/{quote(name, safe='')}"
+
+
+def verify_public_download(identifier: str, name: str, size: int, sha256: str,
+                           *, sleep=time.sleep) -> None:
+    with tempfile.TemporaryDirectory(prefix="psva_verify_") as folder:
+        target = Path(folder) / "verify.vpk"
+        for i, delay in enumerate((0, 8, 18, 32, 45)):
+            if delay:
+                sleep(delay)
+            try:
+                received, _md5, final_sha = stream_download(
+                    public_url(identifier, name), target, size, archive=True)
+            except Deferred as err:
+                if err.status == "WAITING_ARCHIVE" and i < 4:
+                    continue
+                raise Deferred("VERIFYING", "Archive.org VPK public download unavailable") from None
+            if received != size or final_sha != sha256:
+                raise Deferred("PENDING_MANUAL", "Public VPK bytes or SHA256 do not match upstream")
+            with target.open("rb") as stream:
+                if stream.read(4) != b"PK\x03\x04":
+                    raise Deferred("PENDING_MANUAL", "Public VPK header does not match ZIP")
+            return
+    raise Deferred("VERIFYING", "Archive.org public download still unavailable")
+
+
+def attempt_upload(item: dict, path: Path, access: str, secret: str) -> None:
+    import internetarchive
+    try:
+        result = internetarchive.get_item(item["archive_identifier"]).upload_file(
+            str(path), key=expected_filename(item), access_key=access,
+            secret_key=secret, verify=True, retries=0, queue_derive=False,
+            verbose=False, request_kwargs={"timeout": 110})
+    except Exception:
+        raise Deferred("UPLOAD_RESULT_UNCERTAIN", "IA-S3 upload may have started; manual-safe reconciliation only") from None
+    code = getattr(result, "status_code", 0)
+    if code not in (200, 201, 204):
+        raise Deferred("UPLOAD_RESULT_UNCERTAIN", "IA-S3 upload status uncertain")
+
+
+def candidate_proposal(root: Path, item: dict, proposal_map: dict) -> tuple[Path, dict, bool]:
+    path = root / "apps" / (item["app_id"] + ".json")
+    raw = json.loads(path.read_text("utf-8"))
+    app = to_v1(raw)
+    link, _ = select_current_download(app.get("links"))
+    if (app.get("id") != item["app_id"] or app.get("title_id") != item["title_id"]
+            or app.get("status") not in ("Legacy", "Verified") or link is None):
+        raise Deferred("PENDING_MANUAL", "Canonical application changed")
+    if item["kind"] == "SAME_VERSION_BACKFILL":
+        if app.get("version") != item["version"] or link.get("url") != item["source_url"]:
+            raise Deferred("PENDING_MANUAL", "Current VPK is no longer the approved release")
+        proposed = app
+    elif item["kind"] == "NEW_RELEASE":
+        proposed = proposal_map.get(path)
+        if not proposed or proposed.get("version") != item["version"]:
+            raise Deferred("PENDING_MANUAL", "New upstream version has no trusted catalog proposal")
+        future_link, _ = select_current_download(proposed.get("links"))
+        if not future_link or future_link.get("url") != item["source_url"]:
+            raise Deferred("PENDING_MANUAL", "New upstream VPK link changed")
+        # Merge only the exact approved metadata fields; all other links and
+        # metadata remain untouched (including Game Files and Repository).
+        app["version"] = proposed["version"]
+        app["version_date"] = proposed["version_date"]
+        app["size"] = proposed["size"]
+        if "size" in link:
+            link["size"] = proposed["size"]
+    else:
+        raise Deferred("PENDING_MANUAL", "Unsupported candidate kind")
+    link["url"] = public_url(item["archive_identifier"], expected_filename(item))
+    compact = "tid" in raw and "title_id" not in raw
+    return path, app, compact
+
+
+def save_canonical(path: Path, app: dict, compact: bool) -> None:
+    raw = path.read_text("utf-8")
+    payload = to_v2(app) if compact else app
+    formatting = {"separators": (",", ":")} if raw.count("\n") <= 1 else {"indent": 2}
+    path.write_text(json.dumps(payload, ensure_ascii=False, **formatting) + "\n", encoding="utf-8")
+
+
+def run_one(root: Path, item: dict, proposals: dict, state: dict,
+            credentials: tuple[str, str, str], *, max_file: int,
+            publish=git_publish) -> tuple[str, str]:
+    access, secret, owner = credentials
+    item_id, archive = item["app_id"], item["archive_identifier"]
+    name = expected_filename(item)
+    _path, proposed, _compact = candidate_proposal(root, item, proposals)
+    log_map = upload_map(root / "scripts/archive_upload_log.csv")
+    original = to_v1(json.loads((root / "apps" / (item_id + ".json")).read_text("utf-8")))
+    target, evidence = resolve_item(original, log_map)
+    if target != archive or evidence != "historical-upload-log":
+        raise Deferred("PENDING_MANUAL", "Archive.org target not confirmed by historical own-upload record")
+    if not source_matches_approved(item, load_policy(root), original):
+        raise Deferred("PENDING_MANUAL", "App not enabled or source no longer approved")
+    check_source_license(item_id, load_policy(root))
+
+    md = owned_metadata(archive, owner)
+    remote = existing_file(md, name)
+    checkpoint = state["inflight"].get(item_id)
+    if checkpoint:
+        if (checkpoint.get("version") != item["version"]
+                or checkpoint.get("filename") != name
+                or checkpoint.get("source_url") != item["source_url"]
+                or checkpoint.get("archive_identifier") != archive):
+            raise Deferred("PENDING_MANUAL", "Older unresolved upload checkpoint needs review")
+
+    with tempfile.TemporaryDirectory(prefix="psva_batch_") as td:
+        local = Path(td) / "origin.vpk"
+        md5, sha256 = download_source(item, local, max_file=max_file)
+        if remote is None:
+            if checkpoint:
+                # The previous attempt may still be processing. Never send
+                # another PUT automatically until manual reconciliation.
+                raise Deferred("UPLOAD_RESULT_UNCERTAIN",
+                               "Prior upload checkpoint exists, target not yet visible; no automatic reupload")
+            owned_metadata(archive, owner)  # Ensure Archive.org still responds.
+            final_md = owned_metadata(archive, owner)
+            if existing_file(final_md, name) is not None:
+                raise Deferred("REVIEW", "Target appeared during transfer; rerun to verify safely")
+            state["inflight"][item_id] = {
+                "version": item["version"], "source_url": item["source_url"],
+                "archive_identifier": archive, "filename": name,
+                "status": "TRANSFER_PREPARED", "created_at": now_utc(),
+            }
+            write_state(root, state)
+            publish(root, [str(STATE)], f"chore: checkpoint Archive.org transfer for {item_id}", validate=False)
+            # Checkpoint is now durably in GitHub. Even if the runner dies,
+            # next run will not blindly upload another copy.
+            attempt_upload(item, local, access, secret)
+            remote = None
+        # One of: upload accepted now; or remote file already existed from a
+        # previous uncertain run. In both cases require strong checks.
+        verify_file_metadata(archive, name, item["size_bytes"], md5, owner)
+        verify_public_download(archive, name, item["size_bytes"], sha256)
+    path, updated, compact = candidate_proposal(root, item, proposals)
+    save_canonical(path, updated, compact)
+    state["inflight"].pop(item_id, None)
+    write_state(root, state)
+    publish(root, [str(path.relative_to(root)), str(STATE)],
+            f"chore: publish verified Archive.org VPK for {item_id} v{item['version']}",
+            validate=True)
+    return "PUBLISHED_VERIFIED", f"{item['size_bytes'] / MIB:.2f} MiB verified; only canonical VPK link/version updated"
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--max-files", type=int, default=3)
+    parser.add_argument("--max-file-mib", type=int, default=30)
+    parser.add_argument("--max-batch-mib", type=int, default=60)
+    parser.add_argument("--max-minutes", type=int, default=38)
+    parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--report", type=Path, default=Path("archive-batch-report/run.json"))
+    args = parser.parse_args()
+    if (not 1 <= args.max_files <= HARD_MAX_FILES
+            or not 1 <= args.max_file_mib * MIB <= HARD_MAX_FILE
+            or not 1 <= args.max_batch_mib * MIB <= HARD_MAX_BATCH
+            or not 1 <= args.max_minutes <= 38):
+        parser.error("Requested batch limits exceed the supported safe range")
+    root = args.root.resolve()
+    state = load_state(root)
+    policy = load_policy(root)
+    snapshot = load_snapshot("main")
+    candidates_list, reviews = candidates(root, snapshot)
+    proposals, _skipped = plan_changes(root, snapshot)
+    proposal_map = {p: value for p, value, _ in proposals}
+    deadline = time.monotonic() + args.max_minutes * 60
+    results = []
+    attempts, total = 0, 0
+    uploads_ready = (os.environ.get("GITHUB_REPOSITORY") == "VegettoSan/PSVitaAlive"
+                     and os.environ.get("GITHUB_REF") == "refs/heads/main")
+    if args.execute and not uploads_ready:
+        parser.error("Write mode is only permitted in the official main branch")
+    creds = tuple(os.environ.get(key, "") for key in
+                  ("IA_ACCESS_KEY", "IA_SECRET_KEY", "IA_EXPECTED_UPLOADER"))
+    if args.execute and not all(x.strip() for x in creds):
+        parser.error("Missing Archive.org secrets for real upload")
+    for item in candidates_list:
+        app_id = item["app_id"]
+        if not isinstance(policy.get(app_id), dict) or policy[app_id].get("enabled") is not True:
+            continue
+        size = item["size_bytes"]
+        if size > args.max_file_mib * MIB:
+            results.append({"app_id": app_id, "status": "TOO_LARGE_PENDING", "bytes": size})
+            continue
+        if attempts >= args.max_files or total + size > args.max_batch_mib * MIB:
+            results.append({"app_id": app_id, "status": "DEFERRED", "bytes": size})
+            continue
+        if time.monotonic() + 180 >= deadline:
+            results.append({"app_id": app_id, "status": "TIME_BUDGET_PENDING", "bytes": size})
+            continue
+        attempts += 1
+        total += size
+        if not args.execute:
+            results.append({"app_id": app_id, "status": "SELECTED_PREVIEW", "bytes": size})
+            continue
+        try:
+            status, detail = run_one(root, item, proposal_map, state, creds,
+                                     max_file=args.max_file_mib * MIB)
+        except Deferred as err:
+            status, detail = err.status, err.reason
+        except Exception:
+            status, detail = "PENDING_MANUAL", "Unexpected error; no automatic retry"
+        results.append({"app_id": app_id, "status": status, "bytes": size, "detail": detail})
+        print(f"{app_id}: {status} — {detail}", flush=True)
+        if status == "PUBLISHED_VERIFIED":
+            try:
+                send_validate_dispatch()
+            except Deferred as err:
+                results.append({"app_id": app_id, "status": err.status, "bytes": 0, "detail": err.reason})
+        if status in {"WAITING_ARCHIVE", "UPLOAD_RESULT_UNCERTAIN", "VERIFYING"}:
+            # Stop putting more traffic onto an unavailable/unstable IA service.
+            break
+        time.sleep(8)
+    report = {
+        "mode": "EXECUTE" if args.execute else "DRY_RUN",
+        "limits": {"files": args.max_files, "file_mib": args.max_file_mib,
+                   "batch_mib": args.max_batch_mib, "minutes": args.max_minutes},
+        "results": results, "review_count": len(reviews), "generated_at": now_utc(),
+    }
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", "utf-8")
+    summary = ["# Archive.org VPK backup batch", "",
+               f"Mode: **{report['mode']}** — selected apps only, no third-party items.", "",
+               "| App | Result | MiB |", "|---|---|---:|"]
+    summary += [f"| {row['app_id']} | {row['status']} | {row['bytes']/MIB:.2f} |"
+                for row in results]
+    summary += ["", f"Review notices from monitor: **{len(reviews)}**",
+                "All generated catalogs are owned exclusively by validate.yml."]
+    text = "\n".join(summary) + "\n"
+    print(text, flush=True)
+    if os.environ.get("GITHUB_STEP_SUMMARY"):
+        with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as fh:
+            fh.write(text)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
