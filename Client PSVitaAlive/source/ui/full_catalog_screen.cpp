@@ -11787,7 +11787,8 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
     // Input belongs to the visible screen, not to the catalog behind a
     // loading splash. First-run theme/news/plugins and other interactive
     // overlays remain usable even if the catalog is still settling.
-    const bool interactiveOverlay = themeSetupVisible_ || newsVisible_ ||
+    const auto refreshLoadingInputGate = [&]() {
+        const bool interactiveOverlay = themeSetupVisible_ || newsVisible_ ||
         essentialPluginsModal_ || pluginRebootModal_ || pluginChoiceModal_ ||
         pspSetupModal_ || installProgressActive_ || keyboard_.active() ||
         storageVisible_ || installedDataVisible_ || reportConfirmVisible_ ||
@@ -11795,8 +11796,10 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         savedZipActionVisible_ || archiveWarningVisible_ ||
         installAllPhase_ != InstallAllPhase::Hidden ||
         state_.mode == UiMode::SETTINGS;
-    loadingInputGate_.update(loadingInputBlocked(startupCatalogInputPending_,
-        catalogLoading_, catalogSplashAlpha_ > 0.01f, interactiveOverlay));
+        loadingInputGate_.update(loadingInputBlocked(startupCatalogInputPending_,
+            catalogLoading_, catalogSplashAlpha_ > 0.01f, interactiveOverlay));
+    };
+    refreshLoadingInputGate();
     if(keyboard_.active()){
         keyboard_.update();
         std::string result; bool accepted=false;
@@ -11838,6 +11841,7 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         if(now>=toastExpiresMs_){toastMessage_.clear();toastExpiresMs_=0;}
     }
     if (filterModalOpen_ && !canShowFilterButton()) closeFilterMenu();
+    refreshLoadingInputGate();
     if (loadingInputGate_.blocked()) {
         // Discard gestures and do not dispatch any shortcuts or loading toasts.
         touchDown_ = touchMoved_ = false;
@@ -11854,7 +11858,14 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         if (controllerReady) handleInput();
         else verticalNavHeld_ = false;
 
-        if (!keyboard_.active()) {
+        // L/R may have started another catalog load in this same frame.
+        // Do not let a simultaneous touch leak through the new splash.
+        refreshLoadingInputGate();
+        if (loadingInputGate_.blocked()) {
+            touchDown_ = touchMoved_ = false;
+            touchAccumY_ = 0.f;
+            verticalNavHeld_ = false;
+        } else if (!keyboard_.active()) {
             bool touchReady = true;
             if (loadingInputGate_.touchPending()) {
                 SceTouchData touch{};
