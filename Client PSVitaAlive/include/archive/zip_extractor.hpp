@@ -21,7 +21,9 @@ const char* toString(ZipResult r);
 struct ZipProgress {
     uint64_t entriesDone = 0;
     uint64_t entriesTotal = 0;
-    uint64_t bytesWritten = 0;
+    uint64_t bytesWritten = 0; // bytes actually written on this attempt
+    uint64_t bytesReused = 0;  // existing output verified against ZIP size + CRC32
+    uint64_t entriesReused = 0;
     uint64_t bytesTotal = 0;
     std::string currentEntry;
 };
@@ -36,7 +38,8 @@ public:
         const std::string& destinationDir,
         ZipProgressFn onProgress = nullptr,
         ZipCancelFn shouldCancel = nullptr,
-        bool segmentedZip = false
+        bool segmentedZip = false,
+        bool resumeVerifiedExisting = false // only for explicit saved-ZIP retries
     );
 
     const std::string& lastError() const { return lastError_; }

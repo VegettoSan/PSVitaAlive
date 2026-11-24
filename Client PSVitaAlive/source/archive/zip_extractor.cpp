@@ -1,5 +1,6 @@
 #include "archive/zip_extractor.hpp"
 #include "archive/extraction_directory_cache.hpp"
+#include "archive/zip_resume_policy.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
@@ -642,7 +643,8 @@ ZipResult ZipExtractor::extract(
     const std::string& destinationDir,
     ZipProgressFn onProgress,
     ZipCancelFn shouldCancel,
-    bool segmentedZip
+    bool segmentedZip,
+    bool resumeVerifiedExisting
 ) {
     lastError_.clear();
     usedStagedMoves_ = false;
@@ -1092,6 +1094,11 @@ ZipResult ZipExtractor::extract(
     std::string lastEnsuredParent;
     uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
     uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
+    uint64_t resumeChecked = 0, resumeDifferent = 0, resumeVerified = 0;
+    std::string resumeProbeParent;
+    bool resumeProbeExistingInParent = true;
+    if (resumeVerifiedExisting)
+        diagnostics::log("[ZipResume] verified reuse enabled for saved ZIP retry (size + CRC32, no metadata-only skips)");
     bool exclusiveCreationSupported = true;
     uint64_t bytesSinceYield = 0;
 
@@ -1158,6 +1165,89 @@ ZipResult ZipExtractor::extract(
                 ensuredParents.remember(parent);
             }
             lastEnsuredParent = parent;
+        }
+
+        // A saved ZIP retry can preserve fully extracted output after a
+        // power cut. Reuse it ONLY when the existing on-disk file's complete
+        // contents match the entry's uncompressed length and central-directory
+        // CRC32. Never trust an existing name or size alone.
+        //
+        // Skip probing the remainder of a same-parent run once the first file
+        // is missing. A crashed extraction commonly leaves a valid prefix,
+        // followed by files that were never created; this avoids doubling the
+        // costly sceIoOpen lookups on the latter portion of dense directories.
+        // At each new parent, probing is enabled again. Staged branches are
+        // excluded: they must be fully assembled in a new staging directory.
+        if (resumeVerifiedExisting && !branch &&
+            (zs.valid & ZIP_STAT_SIZE) && (zs.valid & ZIP_STAT_CRC)) {
+            const std::string resumeParent = slash == std::string::npos
+                ? destinationDir : outPath.substr(0, slash);
+            if (resumeParent != resumeProbeParent) {
+                resumeProbeParent = resumeParent;
+                resumeProbeExistingInParent = true;
+            }
+            if (resumeProbeExistingInParent) {
+                const SceUID readFd = sceIoOpen(outPath.c_str(), SCE_O_RDONLY, 0);
+                if (readFd >= 0) {
+                    ++resumeChecked;
+                    // sceIoLseek uses 64-bit SceOff (safe for ZIP64 entries).
+                    // Checking length before reading avoids scanning partial
+                    // outputs that cannot possibly match.
+                    const SceOff localSize = sceIoLseek(readFd, 0, SCE_SEEK_END);
+                    bool reachedEof = false;
+                    bool accepted = localSize >= 0 &&
+                        static_cast<uint64_t>(localSize) == static_cast<uint64_t>(zs.size) &&
+                        sceIoLseek(readFd, 0, SCE_SEEK_SET) == 0;
+                    ZipResumeVerifier verifier(static_cast<uint64_t>(zs.size), zs.crc);
+                    if (accepted) {
+                        for (;;) {
+                            if (shouldCancel && shouldCancel()) {
+                                setError("cancelled during ZIP resume verification");
+                                outcome = ZipResult::Cancelled;
+                                accepted = false;
+                                break;
+                            }
+                            const int readSize = sceIoRead(readFd, buffer.data(),
+                                                           static_cast<SceSize>(buffer.size()));
+                            if (readSize < 0) { accepted = false; break; }
+                            if (readSize == 0) { reachedEof = true; break; }
+                            if (!verifier.accept(buffer.data(),
+                                                 static_cast<size_t>(readSize))) {
+                                accepted = false;
+                                break;
+                            }
+                            bytesSinceYield += static_cast<uint64_t>(readSize);
+                            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
+                                bytesSinceYield = 0;
+                                sceKernelDelayThread(1000);
+                            }
+                        }
+                    }
+                    const bool closedCleanly = sceIoClose(readFd) >= 0;
+                    if (outcome != ZipResult::Ok) break;
+                    if (accepted && verifier.matches(reachedEof, closedCleanly)) {
+                        ++resumeVerified;
+                        ++prog.entriesReused;
+                        ++prog.entriesDone;
+                        prog.bytesReused += static_cast<uint64_t>(zs.size);
+                        if (resumeVerified % 256 == 0) {
+                            diagnostics::log("[ZipResume] verified_files=" +
+                                std::to_string(static_cast<unsigned long long>(resumeVerified)) +
+                                " reused_bytes=" +
+                                std::to_string(static_cast<unsigned long long>(prog.bytesReused)));
+                        }
+                        reportProgress();
+                        continue;
+                    }
+                    ++resumeDifferent;
+                    // An existing but partial/corrupt file is processed by
+                    // the unchanged extractor, not silently skipped.
+                } else if (static_cast<uint32_t>(readFd) == 0x80010002u) {
+                    // SCE_ERROR_ERRNO_ENOENT: avoid a second read probe for
+                    // subsequent new files in this directory.
+                    resumeProbeExistingInParent = false;
+                }
+            }
         }
 
         zip_file_t* zf = zip_fopen_index(za, i, 0);
@@ -1457,13 +1547,18 @@ ZipResult ZipExtractor::extract(
         char perf[320];
         sceClibSnprintf(perf, sizeof(perf),
             "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
-            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu status=%s",
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu "
+            "resume_checked=%llu resume_verified=%llu resume_mismatch=%llu resume_bytes=%llu status=%s",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)directoryCacheHits,
             (unsigned long long)directoryCacheChecks,
             (unsigned long long)exclusiveCreated,
             (unsigned long long)existingFiles,
             (unsigned long long)exclusiveFallbacks,
+            (unsigned long long)resumeChecked,
+            (unsigned long long)resumeVerified,
+            (unsigned long long)resumeDifferent,
+            (unsigned long long)prog.bytesReused,
             toString(outcome));
         diagnostics::log(perf);
     }
@@ -1476,7 +1571,9 @@ ZipResult ZipExtractor::extract(
             std::to_string(static_cast<unsigned long long>(prog.entriesDone)) +
             " entries, " +
             std::to_string(static_cast<unsigned long long>(prog.bytesWritten)) +
-            " bytes -> " + destinationDir);
+            " bytes written, " +
+            std::to_string(static_cast<unsigned long long>(prog.bytesReused)) +
+            " bytes verified/reused -> " + destinationDir);
     }
     return outcome;
 }

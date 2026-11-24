@@ -1443,7 +1443,8 @@ int InstallController::workerSavedZipMain() {
             if (!progress.message.empty()) setMessage(progress.message.c_str());
         },
         [this]() { return installCancelRequested_.load(std::memory_order_acquire); },
-        target, std::string(), true, savedZipPartCount_ > 1);
+        target, std::string(), true, savedZipPartCount_ > 1,
+        true /* verify/reuse already completed files on explicit saved-ZIP retry */);
     if (result == InstallDispatchResult::Ok) {
         const bool staged = dispatcher_.lastZipUsedStagedMoves();
         // All ZIP entries and whole-directory relocations completed successfully.
