@@ -96,8 +96,8 @@ inline void finishFrame() {
     vita2d_end_drawing();
     vita2d_swap_buffers();
     if (!skin::ready() || !skinFrameStartedUs) return;
-    const auto now = sceKernelGetProcessTimeWide();
-    const auto us = now - skinFrameStartedUs;
+    const uint64_t now = sceKernelGetProcessTimeWide();
+    const uint64_t us = now - skinFrameStartedUs;
     skinFrameStartedUs = 0;
     static uint64_t since = now, sum = 0, worst = 0;
     static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
@@ -3495,7 +3495,21 @@ void FullCatalogScreen::setInstallDisplayItem(const CatalogItem& item) {
         installDisplayTexture_ = it->second;
         textures_.erase(it);
         textureOrder_.erase(std::remove(textureOrder_.begin(), textureOrder_.end(), path), textureOrder_.end());
+        return;
     }
+    // If the icon is not resident, only decode a completed local cache file.
+    // No network request, and no additional full-catalog texture residency.
+    if (!imageCache_->isReady(path) || imageCache_->isFailed(path)) return;
+    SceIoStat st{};
+    if (sceIoGetstat(path.c_str(), &st) < 0 || st.st_size <= 0 || st.st_size > 512*1024) return;
+    const char* e = extOf(path);
+    auto* t = (std::strcmp(e, ".jpg")==0 || std::strcmp(e, ".jpeg")==0)
+        ? vita2d_load_JPEG_file(path.c_str()) : vita2d_load_PNG_file(path.c_str());
+    if (t && (vita2d_texture_get_width(t)>128 || vita2d_texture_get_height(t)>128)) {
+        vita2d_free_texture(t);
+        t = nullptr;
+    }
+    installDisplayTexture_ = t;
 }
 void FullCatalogScreen::prepareForHeavyWork(){
     // Called on the UI thread before starting a transfer, never by an install worker.
