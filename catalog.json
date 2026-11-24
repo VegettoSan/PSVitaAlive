@@ -114,17 +114,17 @@
       "simulation",
       "source-port"
     ],
-    "v": "0.1.7",
+    "v": "0.1.8",
     "vd": "2026-11-24",
     "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
-    "sz": 15130705,
+    "sz": 15297426,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.7/NFSCVita.vpk",
-        "sz": 15130705,
+        "u": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.8/NFSCVita.vpk",
+        "sz": 15297426,
         "rec": true
       },
       {
@@ -156,6 +156,68 @@
     "ic": "https://archive.org/download/NFSCVita/icon0.png",
     "ss": [
       "https://archive.org/download/NFSCVita/shot0.png"
+    ]
+  },
+  {
+    "id": "nitronic-rush",
+    "tid": "NRSH00001",
+    "n": "Nitronic Rush",
+    "d": "PS Vita port of Nitronic Rush, DigiPen's free futuristic racing game",
+    "ld": "A native PS Vita port of Nitronic Rush (2011), the free futuristic racing game made by Team Nitronic, a student team at DigiPen Institute of Technology. The game is rebuilt in C on VitaSDK and vitaGL: it loads the PC version's own levels, models, textures, sounds and menus, and its handling, level objects, camera and race rules follow the PC game's code. It is not an emulator.",
+    "aids": [
+      "arielxflores"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.1",
+    "vd": "2026-11-24",
+    "req": "- A PS Vita or PS TV running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game load sounds on the Vita's fourth CPU core. Without it the game still runs.\n- About 400 MB free on ux0:",
+    "sz": 1404774,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/arielxflores/NitronicRush-Vita/releases/download/v1.1/NitronicRush-Vita.vpk",
+        "sz": 1404774,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 407791206,
+        "xp": "ux0:data/",
+        "ips": [
+          "nitronic"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/arielxflores/NitronicRush-Vita"
+      }
+    ],
+    "ic": "https://archive.org/download/nitronic-rush-for-the-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot0.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot1.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot2.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot3.jpg",
+      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot4.jpg"
     ]
   },
   {
@@ -6329,68 +6391,6 @@
       "https://archive.org/download/gun-bros-ps-vita/shot0.png",
       "https://archive.org/download/gun-bros-ps-vita/shot1.png",
       "https://archive.org/download/gun-bros-ps-vita/shot2.png"
-    ]
-  },
-  {
-    "id": "nitronic-rush",
-    "tid": "NRSH00001",
-    "n": "Nitronic Rush",
-    "d": "PS Vita port of Nitronic Rush, DigiPen's free futuristic racing game",
-    "ld": "A native PS Vita port of Nitronic Rush (2011), the free futuristic racing game made by Team Nitronic, a student team at DigiPen Institute of Technology. The game is rebuilt in C on VitaSDK and vitaGL: it loads the PC version's own levels, models, textures, sounds and menus, and its handling, level objects, camera and race rules follow the PC game's code. It is not an emulator.",
-    "aids": [
-      "arielxflores"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "source-port"
-    ],
-    "v": "1.0",
-    "vd": "2026-10-28",
-    "req": "- A PS Vita or PS TV running HENkaku / Ensō\n- libshacccg.suprx extracted to ur0:data/ (guide)\n- Recommended: the CapUnlocker kernel plugin, which lets the game load sounds on the Vita's fourth CPU core. Without it the game still runs.\n- About 400 MB free on ux0:",
-    "sz": 1258291,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/nitronic-rush-for-the-ps-vita/NitronicRush-Vita%20v1.0.vpk",
-        "sz": 1258291,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/nitronic-rush-for-the-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 407791206,
-        "xp": "ux0:data/",
-        "ips": [
-          "nitronic"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/arielxflores/NitronicRush-Vita"
-      }
-    ],
-    "ic": "https://archive.org/download/nitronic-rush-for-the-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot0.jpg",
-      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot1.jpg",
-      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot2.jpg",
-      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot3.jpg",
-      "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot4.jpg"
     ]
   },
   {
