@@ -28,13 +28,21 @@ inspector = installed.split("void FullCatalogScreen::drawInstalledDataOverlay() 
 verify_scale("Storage manager", main_storage, 0.85)
 verify_scale("Installed Game/Data inspector", inspector, 0.80)
 
-# Main storage list must be clipped, including the larger text sizes.
-assert main_storage.index("vita2d_enable_clipping();") < main_storage.index(
-    "vita2d_set_clip_rectangle(x+21,listTop,x+w-34,listBottom);"
+# The overlay resets inherited clipping before drawing. The list must then
+# enable its own clip and keep it active through the row loop, before the
+# scrollbar and footer are drawn outside that clip.
+enable = main_storage.index("vita2d_enable_clipping();")
+clip = main_storage.index(
+    "vita2d_set_clip_rectangle(x+21,listTop,x+w-34,listBottom);", enable
 )
-assert main_storage.index("vita2d_disable_clipping();") > main_storage.index(
-    "int cy=listTop-storageScrollY_;"
-)
+rows = main_storage.index("int cy=listTop-storageScrollY_;", clip)
+loop = main_storage.index("for(size_t i=0;i<storageRows_.size();++i)", rows)
+footer = main_storage.index("const int totalH=storageContentHeight();", loop)
+disable = main_storage.index("vita2d_disable_clipping();", enable)
+row_end = main_storage.rindex("cy+=rh;", loop, footer)
+assert enable < clip < rows < loop < row_end < disable < footer
+assert "vita2d_disable_clipping();" not in main_storage[enable:row_end]
+assert "Layout::fullyVisible(" in main_storage[loop:row_end]
 
 # Every matching app is cached when the confirmation opens, with Title ID.
 assert "installedDataCatalogShares(" in installed
