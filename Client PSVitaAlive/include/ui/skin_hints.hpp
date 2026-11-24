@@ -104,9 +104,11 @@ inline void hint(const ui::UiFont* font, int x, int base, int width,
     const bool clipped=vita2d_get_clipping_enabled()!=0;
     int l=0,t=0,r=960,b=544;
     if (clipped) vita2d_get_clip_rectangle(&l,&t,&r,&b);
-    vita2d_enable_clipping();
-    vita2d_set_clip_rectangle(std::max(l,x),std::max(t,base-34),
-                              std::min(r,x+width),std::min(b,base+8));
+    const int left=std::max(l,x), top=std::max(t,base-34);
+    const int right=std::min(r,x+width), bottom=std::min(b,base+8);
+    if (left>=right || top>=bottom) return;
+    if (!clipped) vita2d_enable_clipping();
+    vita2d_set_clip_rectangle(left,top,right,bottom);
     hintRun(font,text,x+(centered?std::max(0,(width-w)/2):0),base,scale,color,true);
     if (clipped) vita2d_set_clip_rectangle(l,t,r,b); else vita2d_disable_clipping();
 }
