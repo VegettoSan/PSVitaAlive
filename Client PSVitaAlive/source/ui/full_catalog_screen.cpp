@@ -7167,7 +7167,8 @@ void FullCatalogScreen::handleInput(){
         pluginChoiceAwaitRelease_ = false;
     }
 if(isTransitioning())return;SceCtrlData p{};::psvitaalive::ui::peekClientController(p);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;
-if ((p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
+if (!themeSetupVisible_ && !newsVisible_ &&
+    (p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
         (SCE_CTRL_SELECT | SCE_CTRL_SQUARE) &&
     (pressed & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE))) {
     openStorageMenu(); return; // controller / PS TV access to the UX0 footer
@@ -7186,6 +7187,8 @@ if(webQrVisible_){
         if (pressed & SCE_CTRL_CROSS) { selectFilterOption(filterFocus_); return; }
         return; // Filters have modal input priority over SELECT/L/R and catalog actions.
     }
+    // News owns its input before SELECT or shoulder shortcuts.
+    if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}
     if(state_.mode==UiMode::SETTINGS){handleSettingsInput(pressed,nav);return;}
 // The final Install All report remains modal until Continue/Restart. Do not
 // let SELECT open Settings behind it (and hide the fixed summary).
@@ -7335,7 +7338,7 @@ if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
     if(feedbackFocus_!=previousFeedbackFocus)ensureFeedbackFocusVisible();
     if(pressed&SCE_CTRL_CROSS)activateFeedbackFocus();
     return;
-}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(newsVisible_){if(pressed&SCE_CTRL_CIRCLE){closeNewsModal(newsMarkSeenOnClose_);return;}if(pressed&SCE_CTRL_UP||(nav&SCE_CTRL_UP)){if(newsScrollLine_>0)--newsScrollLine_;return;}if(pressed&SCE_CTRL_DOWN||(nav&SCE_CTRL_DOWN)){const int mv=std::max(1,(420-56-88)/22);const int ms=std::max(0,(int)newsLines_.size()-mv);if(newsScrollLine_<ms)++newsScrollLine_;return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
+}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
         if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
             installAllResolveRecovery(true);
@@ -11781,6 +11784,19 @@ void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clea
 }
 void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
+    // Input belongs to the visible screen, not to the catalog behind a
+    // loading splash. First-run theme/news/plugins and other interactive
+    // overlays remain usable even if the catalog is still settling.
+    const bool interactiveOverlay = themeSetupVisible_ || newsVisible_ ||
+        essentialPluginsModal_ || pluginRebootModal_ || pluginChoiceModal_ ||
+        pspSetupModal_ || installProgressActive_ || keyboard_.active() ||
+        storageVisible_ || installedDataVisible_ || reportConfirmVisible_ ||
+        dataRequestConfirmVisible_ || filterModalOpen_ || webQrVisible_ ||
+        savedZipActionVisible_ || archiveWarningVisible_ ||
+        installAllPhase_ != InstallAllPhase::Hidden ||
+        state_.mode == UiMode::SETTINGS;
+    loadingInputGate_.update(loadingInputBlocked(startupCatalogInputPending_,
+        catalogLoading_, catalogSplashAlpha_ > 0.01f, interactiveOverlay));
     if(keyboard_.active()){
         keyboard_.update();
         std::string result; bool accepted=false;
@@ -11822,8 +11838,34 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         if(now>=toastExpiresMs_){toastMessage_.clear();toastExpiresMs_=0;}
     }
     if (filterModalOpen_ && !canShowFilterButton()) closeFilterMenu();
-    handleInput();
-    if(!keyboard_.active()) handleTouch();
+    if (loadingInputGate_.blocked()) {
+        // Discard gestures and do not dispatch any shortcuts or loading toasts.
+        touchDown_ = touchMoved_ = false;
+        touchAccumY_ = 0.f;
+        verticalNavHeld_ = false;
+    } else {
+        bool controllerReady = true;
+        if (loadingInputGate_.controllerPending()) {
+            SceCtrlData pad{};
+            const int ret = sceCtrlPeekBufferPositive(0, &pad, 1);
+            const bool neutral = pad.buttons == 0 && leftStickNavMask(pad) == 0;
+            controllerReady = loadingInputGate_.controllerReady(ret > 0, neutral);
+        }
+        if (controllerReady) handleInput();
+        else verticalNavHeld_ = false;
+
+        if (!keyboard_.active()) {
+            bool touchReady = true;
+            if (loadingInputGate_.touchPending()) {
+                SceTouchData touch{};
+                const int ret = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1);
+                touchReady = loadingInputGate_.touchReady(ret > 0, touch.reportNum == 0);
+                touchDown_ = touchMoved_ = false;
+                touchAccumY_ = 0.f;
+            }
+            if (touchReady) handleTouch();
+        }
+    }
     // Install All ZIP recovery must not stall forever when the Vita is left
     // unattended. One automatic Keep attempt after 10s; if disk/metadata
     // preservation fails, stop retrying and let the user decide manually.
