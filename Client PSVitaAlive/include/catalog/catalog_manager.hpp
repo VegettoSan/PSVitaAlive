@@ -43,6 +43,9 @@ public:
     bool isBusy() const;
     Status status() const;
     bool takeReady(std::vector<ui::CatalogItem>& outItems, ui::CatalogType& catalog);
+    // Read only display fields from already-loaded catalogs. No new parsing/downloads.
+    bool savedZipAppDisplay(const std::string& appId, const std::string& titleId,
+                            std::string& name, std::string& icon) const;
 
 private:
     SceUID mutex_ = -1;
