@@ -4507,9 +4507,17 @@ FullCatalogScreen::savedZipsFor(const CatalogItem& item) {
         now < savedZipProbeAtUs_ || now - savedZipProbeAtUs_ >= 5000000ULL) {
         savedZipProbeKey_ = key;
         savedZipProbeResult_.clear();
-        if (savedZipList_ && (!item.id.empty() || !item.titleId.empty()))
+        if (savedZipList_ && (!item.id.empty() || !item.titleId.empty())) {
+            const uint64_t probeStart=sceKernelGetProcessTimeWide();
             savedZipProbeResult_ = savedZipList_(item);
-        savedZipProbeAtUs_ = now;
+            const uint64_t elapsed=sceKernelGetProcessTimeWide()-probeStart;
+            if(elapsed>=50000ULL) {
+                char msg[128];
+                sceClibSnprintf(msg,sizeof(msg),"[Perf] saved ZIP probe slow us=%llu",(unsigned long long)elapsed);
+                diagnostics::log(msg);
+            }
+        }
+        savedZipProbeAtUs_ = sceKernelGetProcessTimeWide();
     }
     return savedZipProbeResult_;
 }
