@@ -53,3 +53,20 @@ assert "constexpr int glyphSize=22" in hints
 assert "ctrl_triangle_classic,barX+barW-30" in source
 assert "sx+padX+iconW,cy+17" in source
 print("Third-pass control and storage skin coverage OK")
+
+# GPU investigation: normal mode must not add a synchronous GPU wait.
+renderer = (root / "include/ui/skin_renderer.hpp").read_text(encoding="utf-8")
+assert "inline bool gpuSyncTest = false;" in renderer
+assert "if (gpuSyncTest) vita2d_wait_rendering_done();" in renderer
+assert "vita2d_pool_memalign(bytes, 16u)" in renderer
+assert "std::isfinite" in renderer
+frame = body("inline void startSkinFrame()", "constexpr uint32_t NAV_DIRECTION_MASK")
+assert frame.index("skin::beforeFrame();") < frame.index("vita2d_start_drawing();")
+assert "if (skin::gpuSyncTest)" in frame
+assert "clip_leaks=%u" in frame and "low_pool_frames=%u" in frame
+assert "pool_min_scene=%s" in frame and "5000000ULL" in frame
+assert "gpu_sync_test.flag" in source
+assert "if (i < 0) { vita2d_disable_clipping(); return; }" in source
+assert "if(w<=36)" in source
+assert "skin::beforeFrame();" in main
+print("GPU diagnostic and frame guard source checks OK")
