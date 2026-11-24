@@ -9379,8 +9379,13 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     const int savedCount = static_cast<int>(savedZipOptions.size());
     const int focusOff=(showAll?1:0)+1+savedCount;
     int yOff = 0;
+    const int viewportTop=HEADER_H+TABS_H+DETAIL_HEADER_H+10;
+    const int viewportBottom=SCREEN_H-FOOTER_H-10;
+    auto visible=[&](int top,int height){return top+height>=viewportTop && top<=viewportBottom;};
 
     if (showAll) {
+        yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+        if(visible(y,yOff)) {
         const char* actionTitle=action==PrimaryAction::UpdateAll
             ?::psvitaalive::L("DR_UPDATE_ALL_TITLE")
             :action==PrimaryAction::Update
@@ -9418,19 +9423,22 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 24, tc, 0.84f, actionTitle);
         ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 48, sub, 0.66f,
             actionSubtitle);
-        yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+        }
     }
 
     // App-specific recovery archives, one focusable button per ZIP.
     // This entire section disappears when no validated archives are found.
     if (savedCount > 0) {
         const int savedHeaderY = y + yOff;
-        vita2d_draw_rectangle(x, savedHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
-        ::psvitaalive::ui::uiDrawText(&font_, x + 4, savedHeaderY + 18, ACCENT, 0.76f,
-                                      ::psvitaalive::L("ZIP_SAVED_SECTION"));
+        if(visible(savedHeaderY,LINK_SECTION_H)) {
+            vita2d_draw_rectangle(x, savedHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
+            ::psvitaalive::ui::uiDrawText(&font_, x + 4, savedHeaderY + 18, ACCENT, 0.76f,
+                                          ::psvitaalive::L("ZIP_SAVED_SECTION"));
+        }
         const int baseY = savedHeaderY + LINK_SECTION_H + 4;
         for (int z = 0; z < savedCount; ++z) {
             const int btnY = baseY + z * LINK_ROW_H;
+            if(!visible(btnY,LINK_ROW_H)) continue;
             const bool focused = state_.linkNavigation &&
                 chromeFocusVisible(FocusZone::Catalog) && state_.linkFocus == (showAll ? 1 : 0) + z;
             skin::surface(focused?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,x,btnY,w,LINK_ROW_H,focused?ACCENT:SURFACE2);
@@ -9449,6 +9457,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 
     // Permanent section between primary OPEN/UPDATE/INSTALL ALL and Downloads.
     const int webHeaderY = y + yOff;
+    if(visible(webHeaderY,WEB_QR_BLOCK_H)) {
     vita2d_draw_rectangle(x, webHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
     ::psvitaalive::ui::uiDrawText(&font_, x + 4, webHeaderY + 18, ACCENT, 0.76f,
         ::psvitaalive::L("WEB_QR_SECTION"));
@@ -9459,10 +9468,12 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         webFocused ? BG : WHITE, 0.80f, ::psvitaalive::L("WEB_QR_BUTTON"));
     ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 35,
         webFocused ? BG : DIM, 0.66f, ::psvitaalive::L("WEB_QR_SUBTITLE"));
+    }
     yOff += WEB_QR_BLOCK_H;
 
     for (const auto& row : rows) {
         const int ry = y + yOff + row.y;
+        if(!visible(ry,row.isSection?LINK_SECTION_H:LINK_ROW_H)) continue;
         if (row.isSection) {
             vita2d_draw_rectangle(x, ry + LINK_SECTION_H - 1, w, 1, BORDER);
             ::psvitaalive::ui::uiDrawText(&font_, x + 4, ry + 18, ACCENT, 0.76f, linkSectionTitle(row.section));
@@ -12264,7 +12275,9 @@ void FullCatalogScreen::draw(){
     pollDataRequestWorker();
     pollStorageOperation();
     pollInstalledDataOperation();
+    const uint64_t perfBeforeFreeUs=sceKernelGetProcessTimeWide();
     flushDeferredTextureFrees();
+    const uint64_t perfAfterFreeUs=sceKernelGetProcessTimeWide();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
     // Expire toast
     if(toastExpiresMs_!=0){
@@ -12345,7 +12358,9 @@ void FullCatalogScreen::draw(){
     updateAnimations();
     advanceInstallFilterScan();
     // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
+    const uint64_t perfBeforeImageUs=sceKernelGetProcessTimeWide();
     if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
+    const uint64_t perfBeforeDrawUs=sceKernelGetProcessTimeWide();
     draw();
     const uint64_t frameEndUs=sceKernelGetProcessTimeWide();
     const uint64_t frameUs=frameEndUs>=frameStartUs?frameEndUs-frameStartUs:0;
@@ -12355,6 +12370,15 @@ void FullCatalogScreen::draw(){
     static uint64_t perfWorstUs=0;
     static unsigned perfOver25ms=0;
     static unsigned perfOver100ms=0;
+    static uint64_t perfPeakFreeUs=0,perfPeakImageUs=0,perfPeakDrawUs=0,perfPeakOtherUs=0;
+    const uint64_t freeUs=perfAfterFreeUs-perfBeforeFreeUs;
+    const uint64_t imageUs=perfBeforeDrawUs-perfBeforeImageUs;
+    const uint64_t drawUs=frameEndUs-perfBeforeDrawUs;
+    const uint64_t otherUs=frameUs>=freeUs+imageUs+drawUs?frameUs-freeUs-imageUs-drawUs:0;
+    perfPeakFreeUs=std::max(perfPeakFreeUs,freeUs);
+    perfPeakImageUs=std::max(perfPeakImageUs,imageUs);
+    perfPeakDrawUs=std::max(perfPeakDrawUs,drawUs);
+    perfPeakOtherUs=std::max(perfPeakOtherUs,otherUs);
     if(perfWindowStartUs==0)perfWindowStartUs=frameEndUs;
     if(frameUs>=25000ULL){
         ++perfOver25ms;
@@ -12369,7 +12393,14 @@ void FullCatalogScreen::draw(){
                 perfOver25ms,perfOver100ms,(unsigned long long)perfWorstUs,
                 (int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
             diagnostics::log(pm);
+            char phase[224];
+            sceClibSnprintf(phase,sizeof(phase),
+                "[Perf] phases peak_free_us=%llu peak_image_us=%llu peak_draw_us=%llu peak_other_us=%llu",
+                (unsigned long long)perfPeakFreeUs,(unsigned long long)perfPeakImageUs,
+                (unsigned long long)perfPeakDrawUs,(unsigned long long)perfPeakOtherUs);
+            diagnostics::log(phase);
         }
+        perfPeakFreeUs=perfPeakImageUs=perfPeakDrawUs=perfPeakOtherUs=0;
         perfWindowStartUs=frameEndUs;
         perfOver25ms=perfOver100ms=0;
         perfWorstUs=0;
