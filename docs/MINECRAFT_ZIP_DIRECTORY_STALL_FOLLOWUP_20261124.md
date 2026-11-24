@@ -78,6 +78,36 @@ excl_ms=678237 check_ms=0 replace_ms=965757 direct_existing=6193 direct_miss=1
 
 La CI de Builds #644 y #645 pasó, pero el problema reprodujo en Vita real. **No reutilizar el PR #85 completo para una fusión**: tras el squash del PR #110, la rama está atrasada y debe actualizarse/recrearse desde `main` trasladando solamente lo experimental.
 
+## 3 bis. Función aprovechable: archivos existentes frente a nuevos, y posible reanudación
+
+**Petición de continuidad (24/11/2026):** conservar y, en una futura rama pequeña basada en `main`, evaluar por separado el comportamiento que ya mostró resultados funcionales con archivos existentes. También se plantea que, después de una interrupción, una extracción pueda continuar sin rehacer innecesariamente archivos que ya fueron extraídos.
+
+**Aclaración fundamental: son dos funcionalidades DIFERENTES.**
+
+### A. Lo que sí funcionó en Build #645 (detección y apertura directa)
+
+- El extractor experimental intentaba `sceIoOpen(ruta, SCE_O_WRONLY | SCE_O_TRUNC, 0777)` **sin `SCE_O_CREAT`** al trabajar con nombres que presumía existentes. Si el archivo existe, se abre **para reemplazar su contenido**.
+- Cuando retornaba `ENOENT` se cambiaba a `SCE_O_CREAT | SCE_O_EXCL` para distinguir la creación de un archivo nuevo, y registrar correctamente los archivos nuevos propiedad de la extracción.
+- En los logs esta ruta registró **6.193 aperturas directas de archivos existentes**, `direct_miss=1` y `excl_ms=0` durante la primera fase. Es evidencia de que se ejecutó la ruta prevista y evitó intentos de EXCL anteriores; **no demuestra que el archivo preexistente fuera correcto ni que se ahorrara su escritura**.
+- **Muy importante:** `SCE_O_TRUNC` trunca el archivo existente para volver a escribirlo, así que esto **NO es una función de «omitir los archivos ya instalados» ni una reanudación real**. Un apagado forzado durante la escritura podría dejar ese archivo incompleto. No integrar esta ruta automáticamente en `main` sin pruebas independientes de sobreescritura/cancelación/seguridad.
+
+### B. Idea nueva por estudiar: continuar sin repetir archivos completados
+
+Objetivo deseado: si la extracción fue interrumpida, detectar cuáles entradas del MISMO ZIP se extrajeron **completamente** en el destino y, **solo después de verificarlas**, evitar volver a escribirlas. El progreso debería reflejar tanto el trabajo confirmado como el pendiente.
+
+Posible diseño a validar, **NO IMPLEMENTADO**:
+
+1. Asociar una sesión de extracción recuperable al archivo ZIP concreto (identidad/fingerprint del archivo y todas las partes, tamaño de entrada, versión del manifiesto). El simple nombre del ZIP no basta.
+2. Mantener un registro acotado y persistente de entradas **confirmadas como completas**: ruta normalizada, tamaño, resultado de CRC (el que corresponda al ZIP) y estado confirmado **después** del cierre exitoso. Al reiniciar, un archivo a medias nunca puede contarse como completo.
+3. Antes de omitir un archivo, comprobar con una política segura que coincide con la entrada esperada. **La existencia o igualdad de tamaño por sí solas NO garantizan integridad**; un registro puede quedar desactualizado tras un apagado forzado. Evaluar coste/seguridad de una verificación por CRC o hash frente al coste del directorio grande.
+4. Reutilizar primero archivos existentes **solo con confianza verificable**, sin truncarlos. Los archivos nuevos seguirían un flujo de creación y limpieza que no borre ni cambie los archivos previos del usuario.
+5. Diseñar la escritura del registro para resistir apagados, con checkpoints confirmados, fallos de escritura y reemplazo de archivos. Si la identidad del ZIP cambia o hay discrepancias, **no omitir**, informar y volver al flujo seguro.
+6. Mantener intactos paths que requiere Minecraft, staging de directorios profundos, ZIP64/ZIP segmentados, CRC, límite de memoria y `session.log` observabilidad. Mostrar conteos de **verificados/omitidos/extractados** sin presentar datos omitidos como bytes recién escritos.
+
+**Riesgo técnico:** en `sound/bee` hasta una consulta de existencia/`sceIoGetstat` puede costar mucho; por tanto, comprobar miles de archivos uno por uno podría **no** mejorar el rendimiento. Antes hay que medir el coste de verificar/omitir comparado con reescribir, especialmente con archivos pequeños y directorios densos. No sustituye el plan de microbenchmark ni la protección de UI.
+
+**Estrategia de entrega:** separar «apertura directa de existentes» y «reanudación con omisión verificada» en propuestas/PR distintos; no mezclar ambas con el pipeline ZIP y no cambiar `main` hasta que el primer paso tenga pruebas host + VitaSDK + hardware.
+
 ## 4. Plan de mejora futura por fases (sin saltarse validaciones)
 
 ### Fase A — Auditoría en PC del ZIP original (sin modificarlo)
