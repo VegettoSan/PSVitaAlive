@@ -1,3 +1,4 @@
+#include "ui/controller_input.hpp"
 /* PSVitaAlive - native client entry point. */
 #include "localization/localization.hpp"
 #include <psp2/kernel/processmgr.h>
@@ -98,7 +99,7 @@ ZipDestChoice promptZipDestinationChoice() {
     uint32_t prev = 0;
     {
         SceCtrlData pad{};
-        sceCtrlPeekBufferPositive(0, &pad, 1);
+        ::psvitaalive::ui::peekClientController(pad);
         prev = pad.buttons;
     }
 
@@ -120,7 +121,7 @@ ZipDestChoice promptZipDestinationChoice() {
 
     while (!decided) {
         SceCtrlData pad{};
-        sceCtrlPeekBufferPositive(0, &pad, 1);
+        ::psvitaalive::ui::peekClientController(pad);
         const uint32_t pressed = pad.buttons & ~prev;
         prev = pad.buttons;
 
