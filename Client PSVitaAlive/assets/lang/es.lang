@@ -240,12 +240,12 @@ INFO_FONT_SIZE_1=Escala todo el texto de la UI (cualquier fuente).
 INFO_FONT_SIZE_2=Útil para afinar TTF/OTF.
 INFO_FONT_SIZE_3=100% es el tamaño predeterminado.
 FONT_FALLBACK_TOAST=Fuente no disponible — usando Predeterminada
-THEME_SETUP_TITLE=Bienvenido — elige tu tema de color
+THEME_SETUP_TITLE=Elige tu tema de color
 THEME_SETUP_BODY_1=Cada botón muestra el color de acento del tema.
-THEME_SETUP_BODY_2=X una vez: vista previa. X otra o Guardar: confirmar. Luego en Ajustes.
-THEME_SETUP_NAV_HINT=D-Pad: mover  ·  X: previsualizar / confirmar  ·  Touch: scroll, tocar
+THEME_SETUP_BODY_2=X: vista previa   X otra vez: guardar   O: guardar y volver
+THEME_SETUP_NAV_HINT=D-Pad: mover   X / O: guardar   Toca: elegir / Guardar
 THEME_SAVED_TOAST=Tema guardado — puedes cambiarlo en Ajustes
-THEME_PREVIEW_TOAST=Vista previa — pulsa X de nuevo o Guardar para confirmar
+THEME_PREVIEW_TOAST=Vista previa — X u O para guardar
 THEME_APPLIED_PREFIX=Tema
 BTN_SAVE=Guardar
 

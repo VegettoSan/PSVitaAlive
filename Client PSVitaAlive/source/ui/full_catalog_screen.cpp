@@ -1768,6 +1768,13 @@ void FullCatalogScreen::closeNewsModal(bool markSeen) {
 
 
 /** Keep theme picker focus row inside the visible window (like clampCatalogScroll). */
+// One geometry for both rendering and touch; coordinates are in Vita pixels.
+struct ThemePickerLayout {
+    static constexpr int w=920,h=508,cols=3,btnW=250,btnH=52,gapX=14,gapY=12;
+    static constexpr int gridW=cols*btnW+(cols-1)*gapX,rowH=btnH+gapY;
+    static constexpr int top=118,bottom=h-108,visibleRows=(bottom-top)/rowH;
+    static constexpr int saveW=260,saveH=44,saveY=h-96;
+};
 static void clampThemePickerScroll(int focus, int& scrollRow, int themeCount, int cols, int visibleRows) {
     if (themeCount <= 0) { scrollRow = 0; return; }
     const int rows = (themeCount + cols - 1) / cols;
@@ -1790,8 +1797,10 @@ void FullCatalogScreen::openThemePicker() {
     visualThemeSetupScroll_ = 0.f;
     themeSetupAppliedFocus_ = themeSetupFocus_; // current theme already active
     // Keep focused row roughly in view
-    const int cols = 3;
+    const int cols = ThemePickerLayout::cols;
     themeSetupScrollRow_ = std::max(0, themeSetupFocus_ / cols - 1);
+    clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,n,cols,ThemePickerLayout::visibleRows);
+    visualThemeSetupScroll_ = static_cast<float>(themeSetupScrollRow_);
     applyColorTheme(settingsEdit_.colorTheme, false);
     diagnostics::log("[UI] theme picker opened");
 }
@@ -1820,6 +1829,10 @@ void FullCatalogScreen::applyThemeSetupFocus() {
 void FullCatalogScreen::closeThemeSetup(bool save) {
     if (!themeSetupVisible_) return;
     if (save) {
+        // Circle or Save commits the highlighted theme even if it has
+        // not yet been previewed. The Save row preserves the last preview.
+        if(themeSetupFocus_>=0 && themeSetupFocus_<static_cast<int>(::psvitaalive::ColorTheme::Count))
+            settingsEdit_.colorTheme=static_cast<::psvitaalive::ColorTheme>(themeSetupFocus_);
         settingsEdit_.themeSetupDone = true;
         applyColorTheme(settingsEdit_.colorTheme, false);
         if (settingsSave_) settingsSave_(settingsEdit_);
@@ -1835,16 +1848,10 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
 
     using TID = ::psvitaalive::TextId;
     const int themeCount = static_cast<int>(::psvitaalive::ColorTheme::Count);
-    const int cols = 3;
+    using P=ThemePickerLayout;
+    constexpr int cols=P::cols,btnW=P::btnW,btnH=P::btnH,gapX=P::gapX,gapY=P::gapY,gridW=P::gridW;
     const int rows = (themeCount + cols - 1) / cols;
-    const int btnW = 250;
-    const int btnH = 52;
-    const int gapX = 14;
-    const int gapY = 12;
-    const int gridW = cols * btnW + (cols - 1) * gapX;
-
-    // Near full-screen panel for readability on 960x544.
-    const int w = 920, h = 508;
+    constexpr int w=P::w,h=P::h;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
 
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 170));
@@ -1859,15 +1866,15 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
         vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
     }
 
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 36, ACCENT, 1.12f,
-                         ::psvitaalive::L(TID::ThemeSetupTitle));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 68, TEXT, 0.84f,
-                         ::psvitaalive::L(TID::ThemeSetupBody1));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 96, DIM, 0.80f,
-                         ::psvitaalive::L(TID::ThemeSetupBody2));
+    skin::icon(skin::ui_atlas::icon_customization,x+24,y+12,36,ACCENT,skin::Atlas::Ui);
+    drawMarqueeText(&font_,x+70,y+36,w-94,WHITE,1.12f,
+        ::psvitaalive::L(TID::ThemeSetupTitle),false);
+    drawMarqueeText(&font_,x+24,y+68,w-48,TEXT,.90f,
+        ::psvitaalive::L(TID::ThemeSetupBody1),false);
+    skin::hint(&font_,x+24,y+96,w-48,TEXT,.84f,::psvitaalive::L(TID::ThemeSetupBody2));
 
-    const int gridTop = y + 118;
-    const int gridBottom = y + h - 88;
+    const int gridTop = y + P::top;
+    const int gridBottom = y + P::bottom;
     const int gridH = gridBottom - gridTop;
     const int rowH = btnH + gapY;
     const int visibleRows = std::max(1, gridH / rowH);
@@ -1894,6 +1901,7 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     for (int r = startRow - 1; r <= startRow + visibleRows + 1; ++r) {
         if (r < 0 || r >= rows) continue;
         const int ry = gridTop + (int)(((float)r - vs) * (float)rowH);
+        if(ry+btnH<=gridTop || ry>=gridBottom) continue;
         for (int c = 0; c < cols; ++c) {
             const int idx = r * cols + c;
             if (idx < 0 || idx >= themeCount) continue;
@@ -1901,48 +1909,47 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
             unsigned ar, ag, ab;
             colorThemeAccentRgb(th, ar, ag, ab);
             const unsigned accent = RGBA8(ar, ag, ab, 255);
-            const unsigned soft = RGBA8(ar, ag, ab, 55);
+            // Each palette is visible without focus; opaque dark tint keeps
+            // white names legible even for white, gold and very dark themes.
+            const unsigned tile=RGBA8(18+ar/5,18+ag/5,22+ab/5,255);
             const int bx = gridX + c * (btnW + gapX);
             const int by = ry;
             const bool focused = (themeSetupFocus_ == idx);
             const bool selected = (settingsEdit_.colorTheme == th);
 
-            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,btnW,btnH,SURFACE);
-            if (selected) skin::surface(skin::ui_atlas::ui_badge,bx+10,by+8,btnW-20,btnH-16,soft);
-            skin::focus(bx,by,btnW,btnH,focused?accent:BORDER);
+            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,btnW,btnH,tile);
+            skin::surface(skin::ui_atlas::ui_badge,bx+10,by+9,34,btnH-18,accent);
+            skin::focus(bx,by,btnW,btnH,focused?RGBA8(255,255,255,255):accent);
+            if(selected) {
+                const unsigned mark=(ar*299+ag*587+ab*114)>140000 ? RGBA8(12,12,12,255):RGBA8(255,255,255,255);
+                if(!skin::icon(skin::icons_atlas::icon_check,bx+15,by+14,24,mark))
+                    ::psvitaalive::ui::uiDrawText(&font_,bx+18,by+34,mark,.9f,"X");
+            }
             const char* name = colorThemeDisplayName(th);
-            const float sc = 0.88f;
-            const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, name);
-            ::psvitaalive::ui::uiDrawText(&font_, bx + (btnW - tw) / 2 + 4, by + 34,
-                                 focused ? WHITE : TEXT, sc, name);
+            drawMarqueeText(&font_,bx+55,by+34,btnW-69,RGBA8(248,248,248,255),
+                .94f,name,focused,x+12,gridTop,x+w-12,gridBottom);
         }
     }
     vita2d_disable_clipping();
 
     if (maxScroll > 0) {
         const int tx = x + w - 14, ty = gridTop, th = gridH;
-        vita2d_draw_rectangle(tx, ty, 4, th, BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_track,tx,ty,4,th,BORDER);
         const int thumb = std::max(20, th * visibleRows / std::max(1, rows));
         const float scrollT = std::min(1.f, visualThemeSetupScroll_ / (float)std::max(1, maxScroll));
         const int yy = ty + (int)((th - thumb) * scrollT);
-        vita2d_draw_rectangle(tx, yy, 4, thumb, ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,tx,yy,4,thumb,ACCENT);
     }
 
-    const int saveW = 260, saveH = 48;
+    constexpr int saveW=P::saveW,saveH=P::saveH;
     const int saveX = x + (w - saveW) / 2;
-    const int saveY = y + h - 72;
+    const int saveY = y + P::saveY;
     const bool saveFocus = (themeSetupFocus_ == themeCount);
     skin::surface(saveFocus?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,saveX,saveY,saveW,saveH,saveFocus?ACCENT:SURFACE2);
     if (saveFocus) skin::focus(saveX,saveY,saveW,saveH,BG);
-    {
-        const char* saveLab = ::psvitaalive::L(TID::BtnSave);
-        const float ssc = 0.94f;
-        const int stw = ::psvitaalive::ui::uiTextWidth(&font_, ssc, saveLab);
-        ::psvitaalive::ui::uiDrawText(&font_, saveX + (saveW - stw) / 2, saveY + 32,
-                             saveFocus ? RGBA8(0,0,0,255) : WHITE, ssc, saveLab);
-    }
-
-    skin::hint(&font_,x+24,y+h-18,w-48,DIM,.72f,::psvitaalive::L(TID::ThemeSetupNavHint));
+    skin::action(&font_,saveX,saveY,saveW,saveH,saveFocus?BG:WHITE,.96f,
+        skin::controls_atlas::ctrl_cross_classic,::psvitaalive::L(TID::BtnSave),::psvitaalive::L(TID::BtnSave));
+    skin::hint(&font_,x+24,y+h-17,w-48,TEXT,.82f,::psvitaalive::L(TID::ThemeSetupNavHint),true,22);
 }
 
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
@@ -5574,22 +5581,21 @@ void FullCatalogScreen::handleTouch() {
     // --- First-run theme setup: scroll grid + tap theme / Save ---
     if (themeSetupVisible_) {
         const int themeCount = static_cast<int>(::psvitaalive::ColorTheme::Count);
-        const int cols = 3;
+        using P=ThemePickerLayout;
+        constexpr int cols=P::cols,btnW=P::btnW,btnH=P::btnH,gapX=P::gapX,gapY=P::gapY,gridW=P::gridW;
         const int rows = (themeCount + cols - 1) / cols;
-        const int btnW = 220, btnH = 44, gapX = 12, gapY = 10;
-        const int gridW = cols * btnW + (cols - 1) * gapX;
-        const int ow = 760, oh = 460;
+        constexpr int ow=P::w,oh=P::h;
         const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-        const int gridTop = oy + 118;
-        const int gridBottom = oy + oh - 88;
+        const int gridTop = oy + P::top;
+        const int gridBottom = oy + P::bottom;
         const int gridH = gridBottom - gridTop;
         const int rowH = btnH + gapY;
         const int visibleRows = std::max(1, gridH / rowH);
         const int maxScroll = std::max(0, rows - visibleRows);
         const int gridX = ox + (ow - gridW) / 2;
-        const int saveW = 260, saveH = 48;
+        constexpr int saveW=P::saveW,saveH=P::saveH;
         const int saveX = ox + (ow - saveW) / 2;
-        const int saveY = oy + oh - 72;
+        const int saveY = oy + P::saveY;
 
         if (td.reportNum > 0) {
             const int px = mapX(td.report[0].x);
@@ -5643,9 +5649,9 @@ void FullCatalogScreen::handleTouch() {
             touchDown_ = false;
             touchAccumY_ = 0.f;
             if (!wasMoved) {
-                if (hit(px, py, saveX - 8, saveY - 8, saveW + 16, saveH + 16)) {
+                if (hit(px, py, saveX, saveY, saveW, saveH)) {
                     closeThemeSetup(true);
-                } else {
+                } else if(py>=gridTop && py<gridBottom) {
                     for (int r = 0; r < rows; ++r) {
                         for (int c = 0; c < cols; ++c) {
                             const int idx = r * cols + c;
@@ -5661,7 +5667,7 @@ void FullCatalogScreen::handleTouch() {
                                     themeSetupAppliedFocus_ = themeSetupFocus_;
                                     showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast), 1800);
                                 }
-                                break;
+                                return; // one touch, one card
                             }
                         }
                     }
@@ -6009,7 +6015,8 @@ void FullCatalogScreen::handleTouch() {
     // --- Settings: must run before generic drag/scroll handling ---
     if (state_.mode == UiMode::SETTINGS) {
         const int margin = 20;
-        const int contentTop = HEADER_H + 56;
+        const int contentTop = HEADER_H + 56 + static_cast<int>((1.f-settingsEnter_)*28.f);
+        const int listClipBottom=SCREEN_H-FOOTER_H-14;
         const int colW = SCREEN_W - margin * 2;
         const int listX = margin;
         const int listW = (colW * 58) / 100;
@@ -6034,7 +6041,7 @@ void FullCatalogScreen::handleTouch() {
         }
         const int rowH = 52;
         const int measured = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline ? 11 : 9) * (52 + 8) + 3 * 22;
-        const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
+        const int listViewH = listClipBottom-contentTop;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
         if (td.reportNum > 0) {
@@ -6052,8 +6059,13 @@ void FullCatalogScreen::handleTouch() {
                 touchLastY_ = yy;
                 if (std::abs(x - touchStartX_) > 20 || std::abs(yy - touchStartY_) > 20)
                     touchMoved_ = true;
+                if(touchMoved_ && touchStartX_>=sideX && touchStartY_>=contentTop && touchStartY_<listClipBottom){
+                    settingsInfoScrollY_=std::max(0.f,std::min(settingsInfoMaxScroll_,settingsInfoScrollY_-dy));
+                    return;
+                }
                 // Same as main catalog: drag steps move focus like D-Pad up/down
-                if (touchMoved_) {
+                if (touchMoved_ && touchStartX_>=listX && touchStartX_<listX+listW &&
+                    touchStartY_>=contentTop && touchStartY_<listClipBottom) {
                     constexpr float kScrollPx = 48.f;
                     constexpr int kRows = 11;
                     touchAccumY_ += static_cast<float>(dy);
@@ -6067,21 +6079,22 @@ void FullCatalogScreen::handleTouch() {
                         do { settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows; }
                         while (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
                     }
+                    settingsInfoScrollY_=0.f;
                     (void)maxScroll; // auto-scroll in drawSettings follows focus
                 }
             }
         } else if (touchDown_) {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
-            // Allow slight finger jitter — still treat as tap if not a long drag
+            if(touchMoved_){touchMoved_=false;touchAccumY_=0.f;return;}
             for (int i = 0; i < 11; ++i) {
-                if (hit(x, yy, listX, rowY[i], listW, rowH)) {
+                if (yy>=contentTop && yy<listClipBottom && hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
-                    else settingsFocus_ = i;
+                    else {settingsFocus_ = i;settingsInfoScrollY_=0.f;}
                     return;
                 }
             }
-            if (yy < HEADER_H + 48) {
+            if (yy>=HEADER_H && yy<contentTop && x>=SCREEN_W-430) {
                 closeSettings(true);
                 return;
             }
@@ -6746,6 +6759,8 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
     constexpr int kRows = 11;
     const bool adrenaline = settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline;
+    if(pressed&SCE_CTRL_LTRIGGER){settingsInfoScrollY_=std::max(0.f,settingsInfoScrollY_-100.f);return;}
+    if(pressed&SCE_CTRL_RTRIGGER){settingsInfoScrollY_=std::min(settingsInfoMaxScroll_,settingsInfoScrollY_+100.f);return;}
     if (nav & SCE_CTRL_UP) {
         do { settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows; }
         while (!adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
@@ -6775,17 +6790,12 @@ void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
 void FullCatalogScreen::drawSettings() {
     const float enter = settingsEnter_;
     const int slide = static_cast<int>((1.f - enter) * 28.f);
-    const unsigned dimA = static_cast<unsigned>(enter * 255.f);
-
     startSkinFrame();
     vita2d_set_clear_color(BG);vita2d_clear_screen();
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, BG);
     drawHeader(SCREEN_W);
 
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 44, SURFACE2);
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 3, ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, ::psvitaalive::L(::psvitaalive::TextId::Settings));
-    ::psvitaalive::ui::uiDrawText(&font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, ::psvitaalive::L(::psvitaalive::TextId::SettingsSaveBack));
+
 
     const int margin = 20;
     const int contentTop = HEADER_H + 56 + slide;
@@ -6930,42 +6940,52 @@ void FullCatalogScreen::drawSettings() {
     for (int i = 0; i < 11; ++i) {
         if (!showAdrenalineRows && (i == 2 || i == 3)) continue;
         if (opts[i].sectionStart && opts[i].section[0]) {
-            ::psvitaalive::ui::uiDrawText(&font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
+            if(y+sectionH>contentTop && y<listClipBottom)
+                drawMarqueeText(&font_,listX+8,y+17,listW-16,ACCENT,.78f,opts[i].section,false);
             y += sectionH;
         }
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
-        {
+        if(y+rowH>contentTop && y<listClipBottom) {
             skin::surface(skin::ui_atlas::ui_card,listX,y,listW,rowH,focus?SURFACE:SURFACE2);
             if (focus) skin::focus(listX,y,listW,rowH,ACCENT);
-            /* Keep label/value inside the row card; ellipsize long values. */
-            const int chipW = 110;
-            const int chipX = listX + listW - chipW - 10;
-            const int chipY = y + 12;
-            const int labelMaxW = chipX - (listX + 14) - 8;
-            (void)labelMaxW;
-            ::psvitaalive::ui::uiDrawText(&font_, listX + 14, y + 22, focus ? WHITE : TEXT, 0.76f, opts[i].label);
-            skin::surface(skin::ui_atlas::ui_badge,chipX,chipY,chipW,24,focus?ACCENT:SURFACE);
-            ::psvitaalive::ui::uiDrawText(&font_, chipX + 8, chipY + 17, focus ? BG : ACCENT, 0.54f,
-                                 ellipsize(opts[i].value, 14).c_str());
-            ::psvitaalive::ui::uiDrawText(&font_, listX + 14, y + 42, DIM, 0.48f,
-                                 ellipsize(std::string(opts[i].hint), 42).c_str());
-            if (focus) ::psvitaalive::ui::uiDrawText(&font_, chipX - 32, chipY + 17, ACCENT, 0.52f, "<>");
+            const skin::Sprite* symbol=&skin::icons_atlas::icon_settings;
+            skin::Atlas atlas=skin::Atlas::Icons;
+            if(i==0)symbol=&skin::icons_atlas::icon_download;
+            else if(i==1||i==2)symbol=&skin::icons_atlas::icon_gamepad;
+            else if(i==3)symbol=&skin::icons_atlas::icon_storage;
+            else if(i==7){symbol=&skin::ui_atlas::icon_customization;atlas=skin::Atlas::Ui;}
+            else if(i==8)symbol=&skin::icons_atlas::icon_user;
+            else if(i==9){symbol=&skin::ui_atlas::icon_plugin;atlas=skin::Atlas::Ui;}
+            else if(i==10)symbol=&skin::icons_atlas::icon_update;
+            skin::icon(*symbol,listX+13,y+11,30,focus?ACCENT:TEXT,atlas);
+            const int tx=listX+56, textW=listW-76;
+            drawMarqueeText(&font_,tx,y+21,textW,WHITE,.88f,opts[i].label,focus,
+                listX,contentTop,listX+listW,listClipBottom);
+            // Two separate lines prevent translated values covering the label.
+            if(i==9) {
+                skin::surface(settingsEdit_.warnMissingPlugins?skin::ui_atlas::ui_toggle_on:skin::ui_atlas::ui_toggle_off,
+                    listX+listW-58,y+23,44,25,settingsEdit_.warnMissingPlugins?ACCENT:TEXT);
+            }
+            drawMarqueeText(&font_,tx,y+42,textW-(i==9?58:0),ACCENT,.84f,opts[i].value,focus,
+                listX,contentTop,listX+listW,listClipBottom);
         }
         y += rowH + rowGap;
     }
     vita2d_disable_clipping();
 
     /* Repaint Settings title strip so nothing from the list can sit on top of it. */
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 44, SURFACE2);
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 3, ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, ::psvitaalive::L(::psvitaalive::TextId::Settings));
-    ::psvitaalive::ui::uiDrawText(&font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, ::psvitaalive::L(::psvitaalive::TextId::SettingsSaveBack));
+    skin::surface(skin::ui_atlas::ui_panel_inset,20,HEADER_H+slide+4,SCREEN_W-40,44,SURFACE2);
+    skin::icon(skin::icons_atlas::icon_settings,34,HEADER_H+slide+11,30,ACCENT);
+    drawMarqueeText(&font_,74,HEADER_H+slide+34,400,WHITE,1.10f,::psvitaalive::L(TID::Settings),false);
+    skin::hint(&font_,SCREEN_W-430,HEADER_H+slide+33,390,TEXT,.80f,::psvitaalive::L(TID::SettingsSaveBack),true,22);
 
     {
         const int panelH = listClipBottom - contentTop;
         skin::surface(skin::ui_atlas::ui_panel,sideX,contentTop,sideW,panelH,SURFACE2);
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 24, ACCENT, 0.90f, ::psvitaalive::L(TID::Info));
+        skin::surface(skin::ui_atlas::ui_panel_inset,sideX+8,contentTop+7,sideW-16,34,SURFACE);
+        skin::icon(skin::icons_atlas::icon_info,sideX+16,contentTop+12,24,ACCENT);
+        drawMarqueeText(&font_,sideX+48,contentTop+30,sideW-62,WHITE,.92f,::psvitaalive::L(TID::Info),false);
 
         const char* title = opts[settingsFocus_].label;
         const char* body1 = "";
@@ -7031,14 +7051,14 @@ void FullCatalogScreen::drawSettings() {
         }
         // INFO body: wrap long lines + vertical scroll (touch / fits large fonts)
         {
-            const int infoPadX = 12;
-            const int infoTextW = std::max(40, sideW - infoPadX * 2);
-            const float titleSc = 0.84f;
-            const float bodySc = 0.68f;
-            const float plugSc = 0.66f;
-            const int titleLH = 24;
-            const int bodyLH = 20;
-            const int plugLH = 20;
+            const int infoPadX = 16;
+            const int infoTextW = std::max(40, sideW - infoPadX * 2-8);
+            const float titleSc = .98f;
+            const float bodySc = .85f;
+            const float plugSc = .80f;
+            const int titleLH = 29;
+            const int bodyLH = 25;
+            const int plugLH = 24;
 
             struct InfoLine {
                 std::string text;
@@ -7056,18 +7076,19 @@ void FullCatalogScreen::drawSettings() {
                 }
             };
             pushWrapped(title, WHITE, titleSc, titleLH);
-            lines.push_back({"", TEXT, bodySc, 6}); // small gap
+            pushWrapped(opts[settingsFocus_].value.c_str(),ACCENT,.90f,26);
+            lines.push_back({"", TEXT, bodySc, 8}); // small gap
             pushWrapped(body1, TEXT, bodySc, bodyLH);
             pushWrapped(body2, TEXT, bodySc, bodyLH);
             pushWrapped(body3, TEXT, bodySc, bodyLH);
             lines.push_back({"", TEXT, bodySc, 10});
-            pushWrapped(::psvitaalive::L(TID::System), DIM, 0.74f, 22);
+            pushWrapped(::psvitaalive::L(TID::System), ACCENT, .88f, 27);
 
             auto pushPlug = [&](const char* label, bool ok) {
                 char plug[96];
                 sceClibSnprintf(plug, sizeof(plug), "%s: %s", label,
                                 ok ? ::psvitaalive::L(TID::StatusOk) : ::psvitaalive::L(TID::StatusMissing));
-                pushWrapped(plug, ok ? TEXT : ACCENT, plugSc, plugLH);
+                pushWrapped(plug, ok ? WHITE : ACCENT, plugSc, plugLH);
             };
             pushPlug("NoNpDrm", pluginsStatus_.nonpdrm);
             pushPlug("NoPspEmuDrm", pluginsStatus_.nopspemudrmKern);
@@ -7077,7 +7098,7 @@ void FullCatalogScreen::drawSettings() {
             pushPlug("fd_fix", settingsFdFixOk_);
             pushPlug("libshacccg", settingsLibshacccgOk_);
             if (!pluginsStatus_.configPathUsed.empty()) {
-                pushWrapped(pluginsStatus_.configPathUsed.c_str(), DIM, 0.60f, 18);
+                pushWrapped(pluginsStatus_.configPathUsed.c_str(), TEXT, .80f, 24);
             }
             if (settingsFocus_ == 10) {
                 char ver[96];
@@ -7100,7 +7121,7 @@ void FullCatalogScreen::drawSettings() {
 
             int contentH = 0;
             for (const auto& ln : lines) contentH += ln.lineH;
-            const int viewTop = contentTop + 36;
+            const int viewTop = contentTop + 49;
             const int viewBot = listClipBottom - 4;
             const int viewH = std::max(1, viewBot - viewTop);
             settingsInfoMaxScroll_ = static_cast<float>(std::max(0, contentH - viewH));
@@ -7111,7 +7132,7 @@ void FullCatalogScreen::drawSettings() {
             vita2d_set_clip_rectangle(sideX + 2, viewTop, sideX + sideW - 2, viewBot);
             int iy = viewTop - static_cast<int>(settingsInfoScrollY_);
             for (const auto& ln : lines) {
-                if (!ln.text.empty()) {
+                if (!ln.text.empty() && iy+ln.lineH>viewTop && iy<viewBot) {
                     ::psvitaalive::ui::uiDrawText(&font_, sideX + infoPadX, iy + ln.lineH - 4,
                                                   ln.color, ln.scale, ln.text.c_str());
                 }
@@ -7122,10 +7143,10 @@ void FullCatalogScreen::drawSettings() {
             if (settingsInfoMaxScroll_ > 1.f) {
                 const float ratio = settingsInfoScrollY_ / settingsInfoMaxScroll_;
                 const int trackH = viewH - 8;
-                const int thumbH = std::max(20, trackH / 5);
+                const int thumbH = std::max(20, trackH * viewH / std::max(1,contentH));
                 const int thumbY = viewTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
-                vita2d_draw_rectangle(sideX + sideW - 5, viewTop + 4, 3, trackH, BORDER);
-                vita2d_draw_rectangle(sideX + sideW - 5, thumbY, 3, thumbH, ACCENT);
+                skin::surface(skin::ui_atlas::ui_scroll_track,sideX+sideW-8,viewTop+4,4,trackH,BORDER);
+                skin::surface(skin::ui_atlas::ui_scroll_thumb,sideX+sideW-8,thumbY,4,thumbH,ACCENT);
             }
         }
     }
@@ -7133,10 +7154,10 @@ void FullCatalogScreen::drawSettings() {
     if (maxScroll > 1.f) {
         const float ratio = settingsScrollY_ / maxScroll;
         const int trackH = listViewH - 8;
-        const int thumbH = std::max(24, trackH / 4);
+        const int thumbH = std::max(24, trackH * listViewH / std::max(1,measured));
         const int thumbY = contentTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
-        vita2d_draw_rectangle(listX + listW + 2, contentTop + 4, 3, trackH, BORDER);
-        vita2d_draw_rectangle(listX + listW + 2, thumbY, 3, thumbH, ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_track,listX+listW+3,contentTop+4,4,trackH,BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,listX+listW+3,thumbY,4,thumbH,ACCENT);
     }
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
@@ -7522,7 +7543,30 @@ if(webQrVisible_){
     else if((nav&SCE_CTRL_LEFT)&&webQrUrlScrollLine_>0)--webQrUrlScrollLine_;
     else if((nav&SCE_CTRL_RIGHT)&&webQrUrlScrollLine_+WEB_QR_URL_VISIBLE_LINES<(int)webQrUrlLines_.size())++webQrUrlScrollLine_;
     return;
-}if(gProtectionActive&&(pressed!=0||direct!=0)){protectionDismiss();return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}return;}return;}if (filterModalOpen_) {
+}if(gProtectionActive&&(pressed!=0||direct!=0)){protectionDismiss();return;}if(themeSetupVisible_){
+    const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);
+    constexpr int cols=ThemePickerLayout::cols;
+    auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,ThemePickerLayout::visibleRows);};
+    if(pressed&SCE_CTRL_CIRCLE){closeThemeSetup(true);return;}
+    if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount&&themeSetupFocus_%cols>0)--themeSetupFocus_;afterMove();return;}
+    if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount&&themeSetupFocus_%cols<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;afterMove();return;}
+    if(nav&SCE_CTRL_UP){if(themeSetupFocus_==themeCount)themeSetupFocus_=std::max(0,themeCount-1);else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;afterMove();return;}
+    if(nav&SCE_CTRL_DOWN){
+        if(themeSetupFocus_<themeCount){
+            const int next=themeSetupFocus_+cols;
+            if(next<themeCount)themeSetupFocus_=next;
+            else if(themeSetupFocus_/cols<(themeCount-1)/cols)themeSetupFocus_=themeCount-1;
+            else themeSetupFocus_=themeCount;
+        }
+        afterMove();return;
+    }
+    if(pressed&SCE_CTRL_CROSS){
+        if(themeSetupFocus_==themeCount||themeSetupAppliedFocus_==themeSetupFocus_)closeThemeSetup(true);
+        else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;}
+        return;
+    }
+    return;
+}if (filterModalOpen_) {
         if (pressed & (SCE_CTRL_CIRCLE | SCE_CTRL_SQUARE)) { closeFilterMenu(); return; }
         if (nav & SCE_CTRL_UP) { moveFilterFocus(-1); return; }
         if (nav & SCE_CTRL_DOWN) { moveFilterFocus(1); return; }
@@ -7680,7 +7724,7 @@ if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
     if(feedbackFocus_!=previousFeedbackFocus)ensureFeedbackFocusVisible();
     if(pressed&SCE_CTRL_CROSS)activateFeedbackFocus();
     return;
-}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
+}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
         if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
             installAllResolveRecovery(true);

@@ -159,3 +159,19 @@ for marker in ("ui_panel_inset","icon_storage","ui_progress_track","ui_progress_
     assert marker in scan_loading, marker
 assert "phase>=2 && total>0" in scan_loading
 print("Split panel focus and installed-data loading style checks OK")
+
+# Theme picker uses shared touch/render geometry; each tile exposes its accent,
+# and Circle commits the focused theme before the settings callback.
+picker = body("void FullCatalogScreen::drawThemeSetupOverlay()", "void FullCatalogScreen::runNewsCheck(")
+assert "ThemePickerLayout" in picker and "skin::ui_atlas::ui_badge,bx+10" in picker
+assert "colorThemeAccentRgb(th" in picker and "ctrl_cross_classic" in picker
+assert source.count("using P=ThemePickerLayout;") == 2
+assert "if(pressed&SCE_CTRL_CIRCLE){closeThemeSetup(true);return;}" in source
+close_theme = body("void FullCatalogScreen::closeThemeSetup(", "void FullCatalogScreen::drawThemeSetupOverlay()")
+assert close_theme.index("settingsEdit_.colorTheme=static_cast") < close_theme.index("settingsSave_(settingsEdit_)")
+settings = body("void FullCatalogScreen::drawSettings()", "bool FullCatalogScreen::chromeNavigationAvailable()")
+assert "icon_settings" in settings and "ui_toggle_on" in settings
+assert "drawMarqueeText(&font_,tx,y+21" in settings and "drawMarqueeText(&font_,tx,y+42" in settings
+assert "if(y+rowH>contentTop && y<listClipBottom)" in settings
+assert "settingsInfoScrollY_-dy" in source and "if(touchMoved_){touchMoved_=false;touchAccumY_=0.f;return;}" in source
+print("Theme picker geometry, save semantics and settings readability checks OK")
