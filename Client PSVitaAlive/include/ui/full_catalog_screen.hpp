@@ -457,7 +457,7 @@ private:
     void drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact,
                           int clipLeft, int clipTop, int clipRight, int clipBottom);
     void drawScrollFades(int x, int y, int width, int height) const;
-    void drawActivePanelFrame(int x, int y, int width, int height, const char* label) const;
+    void drawActivePanelFrame(int x, int y, int width, int height) const;
     float focusPulse() const;
     float easeInOut(float t) const;
     void updateAnimations();

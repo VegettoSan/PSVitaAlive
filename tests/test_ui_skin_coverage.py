@@ -145,3 +145,19 @@ worker_storage = body("int FullCatalogScreen::storageWorkerEntry(", "void FullCa
 for phase in ("ScanStorage", "ResolveZips", "ScanInstalled"):
     assert "storageWorkPhase_.store(StorageWorkPhase::"+phase in worker_storage
 print("Storage loading activity indicator and worker phases checks OK")
+
+# Split-view focus outline must not obscure the content with LIST/DETAIL chips.
+panel_frame = body("void FullCatalogScreen::drawActivePanelFrame(", "namespace {\nbool readSfoStringKey")
+assert "skin::focus(" in panel_frame
+assert "ui_badge" not in panel_frame and "uiDrawText" not in panel_frame
+assert source.count("drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4);") == 2
+assert "((nav&SCE_CTRL_RIGHT)||(pressed&SCE_CTRL_CROSS))&&selectedIndex()>=0" in source
+split_tap = body("// --- Left list ---", "// --- Right detail panel ---")
+assert "state_.activePanel = UiPanel::Detail;" in split_tap
+assert "releaseScreenshotTextures();" in split_tap and "state_.linkNavigation=false;" in split_tap
+assert source.count("if (touchStartX_ >= SCREEN_W / 2)") == 2
+scan_loading = inspector.split("if (installedDataWorker_ >= 0 && installedDataAction_ != -3)",1)[1].split("if (installedDataResultVisible_)",1)[0]
+for marker in ("ui_panel_inset","icon_storage","ui_progress_track","ui_progress_fill","StorageLayout::loadingSegmentOffset","knownTotal","ID_APPS_PROGRESS","ID_FOLDERS_READ","ID_FILES_READ","ID_CANCEL_SCAN"):
+    assert marker in scan_loading, marker
+assert "phase>=2 && total>0" in scan_loading
+print("Split panel focus and installed-data loading style checks OK")

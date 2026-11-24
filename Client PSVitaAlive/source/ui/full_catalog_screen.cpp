@@ -6169,10 +6169,11 @@ void FullCatalogScreen::handleTouch() {
                 if (state_.mode == UiMode::FULL_CATALOG) {
                     moveCatalogFocus(1);
                 } else if (state_.mode == UiMode::SPLIT_DETAIL) {
-                    if (state_.activePanel == UiPanel::Detail || touchStartX_ >= SCREEN_W / 2) {
+                    if (touchStartX_ >= SCREEN_W / 2) {
                         state_.activePanel = UiPanel::Detail;
                         moveDetailScroll(1);
                     } else {
+                        state_.activePanel = UiPanel::Catalog;
                         moveCatalogFocus(1);
                     }
                 }
@@ -6182,10 +6183,11 @@ void FullCatalogScreen::handleTouch() {
                 if (state_.mode == UiMode::FULL_CATALOG) {
                     moveCatalogFocus(-1);
                 } else if (state_.mode == UiMode::SPLIT_DETAIL) {
-                    if (state_.activePanel == UiPanel::Detail || touchStartX_ >= SCREEN_W / 2) {
+                    if (touchStartX_ >= SCREEN_W / 2) {
                         state_.activePanel = UiPanel::Detail;
                         moveDetailScroll(-1);
                     } else {
+                        state_.activePanel = UiPanel::Catalog;
                         moveCatalogFocus(-1);
                     }
                 }
@@ -6333,20 +6335,35 @@ void FullCatalogScreen::handleTouch() {
 
     // --- Left list ---
     if (x < mid) {
-        state_.activePanel = UiPanel::Catalog;
         const float rowH = static_cast<float>(SPLIT_CARD_H + CARD_GAP);
         const int localY = y - (panelTop + GRID_PAD);
-        if (localY >= 0) {
-            const int idx = static_cast<int>(localY / rowH + visualCatalogScroll_);
-            if (idx >= 0 && idx < (int)catalogView().size()) {
+        const float row = localY / rowH + visualCatalogScroll_;
+        const int idx = static_cast<int>(std::floor(row));
+        // Use the same visible card geometry as drawCatalogPanel; gaps
+        // and scrollbar taps do not activate the detail panel.
+        const float rowY = static_cast<float>(panelTop + GRID_PAD) +
+            (static_cast<float>(idx)-visualCatalogScroll_)*rowH;
+        if (x >= GRID_PAD && x < mid-GRID_PAD-4 &&
+            y >= static_cast<int>(rowY) && y < static_cast<int>(rowY)+SPLIT_CARD_H &&
+            idx >= 0 && idx < (int)catalogView().size()) {
+            if(idx != state_.focusIndex) {
+                releaseScreenshotTextures();
                 state_.focusIndex = idx;
                 state_.detailScroll = 0;
                 visualDetailScroll_ = 0.f;
+                detailScrollBeforeLinkMode_=0;
+                state_.linkNavigation=false;
+                state_.linkFocus=-1;
                 clampCatalogFocus();
                 clampCatalogScroll();
+                refreshDetailPluginStatus();
+            } else if(state_.linkNavigation) {
+                exitLinkNavigation();
             }
+            state_.activePanel = UiPanel::Detail;
+        } else {
+            state_.activePanel = UiPanel::Catalog;
         }
-        // Tap near left edge bottom could close — not needed
         return;
     }
 
@@ -7775,7 +7792,7 @@ if((pressed&SCE_CTRL_TRIANGLE)&&state_.mode==UiMode::SPLIT_DETAIL&&
         }
     }
 }
-if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);if(((nav&SCE_CTRL_RIGHT)||(pressed&SCE_CTRL_CROSS))&&selectedIndex()>=0)state_.activePanel=UiPanel::Detail;return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -8527,16 +8544,9 @@ void FullCatalogScreen::drawScrollFades(int x, int y, int width, int height) con
     }
 }
 
-void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height, const char* label) const {
-    const unsigned solid=ACCENT;
-    skin::focus(x,y,width,height,solid);
-    // Label chip
-    if (label && font_) {
-        const int lw = 78, lh = 22;
-        const int lx = x + 10, ly = y + 8;
-skin::surface(skin::ui_atlas::ui_badge,lx,ly,lw,lh,solid);
-        ::psvitaalive::ui::uiDrawText(&font_, lx + 10, ly + 16, BG, 0.58f, label);
-    }
+void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height) const {
+    // Keep the active panel's outline without covering icons or content.
+    skin::focus(x,y,width,height,ACCENT);
 }
 
 
@@ -9139,7 +9149,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         }
         drawScrollFades(x, y, w, h);
         if (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Catalog && chromeFocusVisible(FocusZone::Catalog))
-            drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, "LIST");
+            drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4);
     }
     if (dimPanel)
         vita2d_draw_rectangle(x, y, w, h, dimPanel);
@@ -9700,8 +9710,7 @@ skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
     const bool active = (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Detail);
     skin::surface(skin::ui_atlas::ui_panel,x,y,w,DETAIL_HEADER_H,SURFACE);
     drawImage(!it.icon.empty() ? it.icon : it.cover, "app", x + 12, y + 14, 72, 72);
-    // Leave room for active-panel label chip on the left when focused
-    const int titleX = active ? x + 100 : x + 96;
+    const int titleX = x + 96;
     {
         // Leave room for Select-links / Request-data buttons on the right.
         const int titleMaxW = std::max(60, (x + w - 160) - titleX);
@@ -9796,7 +9805,7 @@ skin::surface(skin::ui_atlas::ui_badge,nx,ny,nw,nh,warningBg);
     // Fade over scrollable body (below header)
     drawScrollFades(x, y + DETAIL_HEADER_H, w, std::max(1, h - DETAIL_HEADER_H));
     if (active && chromeFocusVisible(FocusZone::Catalog))
-        drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, ::psvitaalive::L(::psvitaalive::TextId::PanelDetail));
+        drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4);
 }
 
 
