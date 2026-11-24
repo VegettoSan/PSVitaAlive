@@ -86,34 +86,75 @@ constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
 // The catalog and its embedded keyboard render with vita2d only.
 uint64_t skinFrameStartedUs = 0;
+uint64_t skinFrameSyncUs = 0;
+unsigned skinFramePoolStart = 0, skinFrameClipLeaks = 0;
+unsigned skinFrameFlags = 0, skinFramePendingFrees = 0;
+const char* skinFrameScene = "unknown";
 inline void startSkinFrame() {
     skin::resetFrameCounters();
     skinFrameStartedUs = sceKernelGetProcessTimeWide();
+    skinFrameSyncUs = 0;
+    skinFrameClipLeaks = 0;
+    // Only enabled by a local marker file at startup, for an A/B test.
+    // Normal mode keeps the existing asynchronous frame pipeline.
+    if (skin::gpuSyncTest) {
+        skin::beforeFrame();
+        skinFrameSyncUs = sceKernelGetProcessTimeWide() - skinFrameStartedUs;
+    }
     vita2d_start_drawing();
+    skinFramePoolStart = vita2d_pool_free_space();
+    if (vita2d_get_clipping_enabled()) {
+        ++skinFrameClipLeaks;
+        vita2d_disable_clipping();
+    }
 }
 inline void finishFrame() {
+    // libvita2d preserves its clip across scenes. Never allow an unfinished
+    // overlay or an early return to clip the next frame's clear/drawing.
+    if (vita2d_get_clipping_enabled()) {
+        ++skinFrameClipLeaks;
+        vita2d_disable_clipping();
+    }
     const unsigned pool = vita2d_pool_free_space();
     vita2d_end_drawing();
     vita2d_swap_buffers();
-    if (!skin::ready() || !skinFrameStartedUs) return;
+    if (!skinFrameStartedUs) return;
     const uint64_t now = sceKernelGetProcessTimeWide();
     const uint64_t us = now - skinFrameStartedUs;
     skinFrameStartedUs = 0;
-    static uint64_t since = now, sum = 0, worst = 0;
+    static uint64_t since = now, sum = 0, worst = 0, syncWorst = 0;
     static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
-    sum += us; worst = std::max(worst, us); ++frames;
+    static unsigned peakPoolUsed = 0, lowPoolFrames = 0, clipLeaks = 0, invalid = 0, maxPendingFrees = 0;
+    static unsigned minFlags = 0, worstFlags = 0;
+    static const char* minScene = "unknown";
+    static const char* worstScene = "unknown";
+    sum += us; ++frames;
+    if (us >= worst) { worst=us; worstScene=skinFrameScene; worstFlags=skinFrameFlags; }
+    syncWorst=std::max(syncWorst,skinFrameSyncUs);
     draws += skin::calls; verts += skin::vertices; fallbacks += skin::poolFallbacks;
-    minPool = std::min(minPool, pool);
+    if(pool<minPool) { minPool=pool; minScene=skinFrameScene; minFlags=skinFrameFlags; }
+    if(skinFramePoolStart>=pool) peakPoolUsed=std::max(peakPoolUsed,skinFramePoolStart-pool);
+    if(pool<64u*1024u) ++lowPoolFrames;
+    clipLeaks+=skinFrameClipLeaks; invalid+=skin::invalidGeometry;
+    maxPendingFrees=std::max(maxPendingFrees,skinFramePendingFrees);
     if (now - since >= 5000000ULL) {
-        char msg[220];
+        char msg[448];
         sceClibSnprintf(msg, sizeof(msg),
             "[Perf] skin frames=%u avg_frame_us=%llu max_frame_us=%llu draws/frame=%u verts/frame=%u pool_min=%u fallbacks=%u",
             frames, (unsigned long long)(sum/frames), (unsigned long long)worst,
             draws/frames, verts/frames, minPool, fallbacks);
         diagnostics::log(msg);
-        since=now; sum=worst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
+        sceClibSnprintf(msg,sizeof(msg),
+            "[GPU] sync=%u sync_wait_max_us=%llu pool_used_peak=%u low_pool_frames=%u clip_leaks=%u invalid_geometry=%u deferred_peak=%u pool_min_scene=%s pool_min_flags=%u slow_scene=%s slow_flags=%u",
+            skin::gpuSyncTest?1u:0u,(unsigned long long)syncWorst,peakPoolUsed,lowPoolFrames,
+            clipLeaks,invalid,maxPendingFrees,minScene,minFlags,worstScene,worstFlags);
+        diagnostics::log(msg);
+        since=now; sum=worst=syncWorst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
+        peakPoolUsed=lowPoolFrames=clipLeaks=invalid=maxPendingFrees=0;
+        minFlags=worstFlags=0; minScene=worstScene="unknown";
     }
 }
+
 
 constexpr uint32_t NAV_DIRECTION_MASK =
     SCE_CTRL_UP | SCE_CTRL_DOWN | SCE_CTRL_LEFT | SCE_CTRL_RIGHT;
@@ -3389,6 +3430,11 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
+    SceIoStat gpuTestMarker{};
+    skin::gpuSyncTest = sceIoGetstat("ux0:data/psvitaalive/logs/gpu_sync_test.flag",&gpuTestMarker)>=0;
+    diagnostics::log(skin::gpuSyncTest ?
+        "[GPU] sync test ON: wait before vertex pool reuse" :
+        "[GPU] sync test OFF: normal asynchronous rendering");
     vita2d_set_clear_color(BG);
     ::psvitaalive::ui::setUiFontScalePercent(settingsEdit_.uiFontScalePct);
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
@@ -9472,6 +9518,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 
 
 void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, int w, int h) {
+    if(w<=36 || h<=DETAIL_HEADER_H+20) { vita2d_disable_clipping(); return; }
     if (detailCrossfade_ < 0.99f) {
         vita2d_draw_rectangle(x, y, w, h, RGBA8(0, 0, 0, static_cast<unsigned>((1.f - detailCrossfade_) * 140)));
     }
@@ -9622,11 +9669,18 @@ skin::surface(skin::ui_atlas::ui_panel,cx,cardTop,cw,cardH,SURFACE2);
 
 
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
+    if(w<=0 || h<=0) return;
+    // During the first/last pixels of the sliding panel, the content's
+    // inner width would be negative. Draw only the visible background.
+    if(w<=36) {
+        skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
+        return;
+    }
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x, y, x + w, y + h);
 skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
     int i = selectedIndex();
-    if (i < 0) return;
+    if (i < 0) { vita2d_disable_clipping(); return; }
     const CatalogItem& it = catalogView()[i];
     const bool active = (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Detail);
     skin::surface(skin::ui_atlas::ui_panel,x,y,w,DETAIL_HEADER_H,SURFACE);
@@ -12142,7 +12196,21 @@ void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_colo
     if(installedDataVisible_) drawInstalledDataOverlay();
     finishFrame();
 }
-void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::draw(){
+    // Compact diagnostic context, no strings allocated per frame.
+    switch(state_.mode) {
+        case UiMode::FULL_CATALOG: skinFrameScene="catalog"; break;
+        case UiMode::OPENING_DETAIL: skinFrameScene="opening"; break;
+        case UiMode::SPLIT_DETAIL: skinFrameScene="detail"; break;
+        case UiMode::CLOSING_DETAIL: skinFrameScene="closing"; break;
+        case UiMode::SETTINGS: skinFrameScene="settings"; break;
+        default: skinFrameScene="unknown"; break;
+    }
+    skinFrameFlags=(catalogLoading_?1u:0u)|(installProgressActive_?2u:0u)|
+        (keyboard_.active()?4u:0u)|(storageVisible_?8u:0u)|(installedDataVisible_?16u:0u)|
+        (verticalNavHeld_?32u:0u)|(catalogSplashAlpha_>0.01f?64u:0u);
+    skinFramePendingFrees=static_cast<unsigned>(deferredFreeTextures_.size());
+    switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     // Input belongs to the visible screen, not to the catalog behind a
     // loading splash. First-run theme/news/plugins and other interactive
