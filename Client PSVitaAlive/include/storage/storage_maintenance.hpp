@@ -12,6 +12,8 @@ struct UsageItem {
     uint64_t bytes = 0;
     bool savedZip = false;
     std::vector<std::string> ownedPaths;
+    // Display-only recovery identity; never used to authorize cleanup.
+    std::string appId, titleId, appName, archiveName, icon;
 };
 
 struct UsageSnapshot {
