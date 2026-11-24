@@ -1,4 +1,5 @@
 #include "ui/full_catalog_screen.hpp"
+#include "ui/catalog_grid_navigation.hpp"
 #include "ui/feedback_scroll_math.hpp"
 #include "ui/game_files_notice_policy.hpp"
 #include "ui/detail_screenshot_visibility.hpp"
@@ -4360,7 +4361,7 @@ int FullCatalogScreen::detailLinkScrollLimit(const CatalogItem&i,int w,int h){
 void FullCatalogScreen::clampDetailScroll(){int i=selectedIndex();if(i<0){state_.detailScroll=0;return;}int vh=std::max(1,SCREEN_H-HEADER_H-TABS_H-FOOTER_H-DETAIL_HEADER_H-18),total=detailContentHeight(catalogView()[i],SCREEN_W/2),mx=std::max(0,total-vh);state_.detailScroll=std::max(0,std::min(state_.detailScroll,mx));const int focusCount=(int)downloadLinkIndices(catalogView()[i]).size()+(primaryActionFor(catalogView()[i])!=PrimaryAction::None?1:0)+1+savedZipCountFor(catalogView()[i]);
     if(focusCount==0){state_.linkFocus=-1;state_.linkNavigation=false;}
     else if(state_.linkFocus>=focusCount)state_.linkFocus=focusCount-1;if(state_.linkNavigation){int lim=detailLinkScrollLimit(catalogView()[i],SCREEN_W/2,SCREEN_H-HEADER_H-TABS_H-FOOTER_H);state_.detailScroll=std::max(0,std::min(state_.detailScroll,lim));}}
-void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){if(d<0&&state_.focusIndex>=3)state_.focusIndex-=3;if(d>0&&state_.focusIndex+3<(int)catalogView().size())state_.focusIndex+=3;}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;if(state_.mode==UiMode::SPLIT_DETAIL)refreshDetailPluginStatus();}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
+void FullCatalogScreen::moveCatalogFocus(int d){if(catalogView().empty())return;if(state_.mode!=UiMode::FULL_CATALOG)releaseScreenshotTextures();if(state_.mode==UiMode::FULL_CATALOG){state_.focusIndex=moveCatalogGridVertical(state_.focusIndex,static_cast<int>(catalogView().size()),d);}else{if(d<0&&state_.focusIndex>0)--state_.focusIndex;if(d>0&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;}clampCatalogFocus();clampCatalogScroll();state_.detailScroll=0;detailScrollBeforeLinkMode_=0;state_.linkFocus=-1;state_.linkNavigation=false;if(state_.mode==UiMode::SPLIT_DETAIL)refreshDetailPluginStatus();}void FullCatalogScreen::moveDetailScroll(int d){state_.detailScroll+=d<0?-72:72;clampDetailScroll();}void FullCatalogScreen::enterLinkNavigation(){
     int i=selectedIndex();
     if(i<0)return;
     refreshDetailPluginStatus();
