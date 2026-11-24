@@ -1230,6 +1230,12 @@ ZipResult ZipExtractor::extract(
                         ++prog.entriesReused;
                         ++prog.entriesDone;
                         prog.bytesReused += static_cast<uint64_t>(zs.size);
+                        if (resumeVerified % 256 == 0) {
+                            diagnostics::log("[ZipResume] verified_files=" +
+                                std::to_string(static_cast<unsigned long long>(resumeVerified)) +
+                                " reused_bytes=" +
+                                std::to_string(static_cast<unsigned long long>(prog.bytesReused)));
+                        }
                         reportProgress();
                         continue;
                     }
