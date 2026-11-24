@@ -855,3 +855,6 @@ ID_RESULT_RECHECK=Состояние установки обновлено.
 ID_RESULT_CONTINUE=X: Продолжить   O: Назад
 ID_APP_SIZE=Приложение
 ID_DATA_SIZE=Game Files
+NET_PAUSED_AUTO_LINK=Wi-Fi отключён. Ожидание сети.
+NET_PAUSED_AUTO_SOURCE=Источник не отвечает. Автоповтор.
+NET_PAUSED_AUTO_HINT=Прогресс сохранён. Автовозобновление.

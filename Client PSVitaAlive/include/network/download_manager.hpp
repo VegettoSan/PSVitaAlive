@@ -1,6 +1,7 @@
 #pragma once
 
 #include "network/http_client.hpp"
+#include "network/download_recovery_policy.hpp"
 #include "installer/install_space_policy.hpp"
 
 #include <atomic>
@@ -47,6 +48,7 @@ struct DownloadJob {
     bool segmentedZip = false; // Verified ZIP/VPK range parts ready for virtual reading.
     bool sourceUnavailable = false; // Failed before bytes or HTTP terminal response.
     bool pausedForConnectivity = false; // Runtime-only; manual pause remains distinct.
+    DownloadRecoveryPolicy recovery; // accessed only after worker completion
     InstallSpaceMode spaceMode = InstallSpaceMode::DirectPackage; // runtime preflight only
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =

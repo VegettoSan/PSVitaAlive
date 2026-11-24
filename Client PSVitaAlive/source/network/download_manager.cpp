@@ -205,7 +205,9 @@ bool DownloadManager::pause(const std::string& jobId) {
     if (!job || job->cancelRequested->load(std::memory_order_acquire) ||
         job->pauseRequested->load(std::memory_order_acquire))
         return false;
-    job->pauseRequested->store(true, std::memory_order_release);
+    bool expected = false;
+    if (!job->pauseRequested->compare_exchange_strong(expected, true, std::memory_order_acq_rel))
+        return false;
     diagnostics::log("[DownloadManager] pause requested job=" + jobId);
     return true;
 }
@@ -356,6 +358,15 @@ bool DownloadManager::runJob(DownloadJob& job) {
         }
     };
     bool automaticNetworkPause = false;
+    DownloadLinkGrace linkGrace;
+    auto requestNetworkPause = [&]() {
+        bool expected = false;
+        if (job.cancelRequested->load(std::memory_order_acquire)) return false;
+        if (!job.pauseRequested->compare_exchange_strong(expected, true, std::memory_order_acq_rel))
+            return false; // a manual request won; never relabel it
+        automaticNetworkPause = true;
+        return true;
+    };
     uint64_t nextLinkCheckUs = 0;
     auto cancelFn = [&]() -> bool {
         if (!job.cancelRequested->load(std::memory_order_acquire) &&
@@ -365,9 +376,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             const uint64_t now = sceKernelGetProcessTimeWide();
             if (now >= nextLinkCheckUs) {
                 nextLinkCheckUs = now + 500000ULL;
-                if (linkUnavailable(queryLinkConnectivity())) {
-                    automaticNetworkPause = true;
-                    job.pauseRequested->store(true, std::memory_order_release);
+                if (linkGrace.observe(now, linkUnavailable(queryLinkConnectivity())) &&
+                    requestNetworkPause()) {
                     diagnostics::log("[DownloadManager] link disconnected; requesting safe checkpoint pause");
                 }
             }
@@ -506,6 +516,16 @@ bool DownloadManager::runJob(DownloadJob& job) {
         if (offset > 0 && job.validatorUrl == effectiveUrl) {
             ifRangeValidator = !job.etag.empty() ? job.etag : job.lastModified;
         }
+        // Automatic recovery must not append a serial prefix without a
+        // same-resource validator. The existing range checkpoint path is
+        // independently verified, so leave its files untouched.
+        if (job.pausedForConnectivity && offset > 0 &&
+            (ifRangeValidator.empty() || ifRangeValidator.compare(0, 2, "W/") == 0)) {
+            offset = 0;
+            job.downloadedSize = 0;
+            ifRangeValidator.clear();
+            diagnostics::log("[DownloadManager] automatic recovery: serial validator unavailable; restarting safely");
+        }
         statusFn(savedParallel > 0 && outer == 0
             ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_CONNECTING");
         hr = http_.downloadToFile(
@@ -531,9 +551,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
         // Keep safe partials after an exhausted range-network interruption.
         // This never changes explicit cancellation or on-disk integrity rules.
         if (hr == HttpResult::NetworkError && !cancelFn() &&
-            parallelSavedBytes(job.temporaryPath) > 0) {
-            automaticNetworkPause = true;
-            job.pauseRequested->store(true, std::memory_order_release);
+            parallelSavedBytes(job.temporaryPath) > 0 && requestNetworkPause()) {
             diagnostics::log("[DownloadManager] network interrupted; validated range checkpoint retained");
         }
         // DNS/connect failure with HTTP 0 is NOT evidence that a provider is
@@ -561,6 +579,16 @@ bool DownloadManager::runJob(DownloadJob& job) {
             break;
     }
     job.lastHttpStatus = http_.lastStatusCode();
+    // Existing inner/outer retries have finished. Only transient HTTP/transport
+    // failures qualify; cancellation, invalid content, storage and SSL errors
+    // keep their original terminal handling.
+    if (!diskSpaceHit && !sizeLimitHit &&
+        recoverableDownloadStatus(hr == HttpResult::NetworkError,
+                                  hr == HttpResult::HttpError, job.lastHttpStatus) &&
+        requestNetworkPause()) {
+        diagnostics::log("[DownloadManager] transient source failure; automatic recovery pending status=" +
+                         std::to_string(job.lastHttpStatus));
+    }
     activeJobId_.clear();
 
     if (diskSpaceHit) {
@@ -615,6 +643,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             onProgress_(ev);
         }
         diagnostics::log("[DownloadManager] paused job=" + job.id +
+                         " reason=" + (automaticNetworkPause ? "network" : "manual") +
                          " saved_bytes=" + std::to_string(job.downloadedSize));
         return false;
     }

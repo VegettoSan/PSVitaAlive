@@ -11451,13 +11451,21 @@ if (!stageFinalizing && !installProgressMessage_.empty()) {
       installProgressMessage_ == ::psvitaalive::L("HTTP_STAGE_RECOVERING_PARTS");
   // The elapsed connection/verification phase is intentionally prominent:
   // users must never mistake a 206 safety probe for a stalled download.
-  ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244,
-      preparingNetwork ? ACCENT : DIM, preparingNetwork ? 0.87f : 0.78f,
-      ellipsize(installProgressMessage_, preparingNetwork ? 66 : 58).c_str());
+  if (installProgressStage_ == "Paused") {
+    drawMarqueeText(&font_, x + 28, y + 244, w - 56, ACCENT, 0.86f,
+        installProgressMessage_, false);
+  } else {
+    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 244,
+        preparingNetwork ? ACCENT : DIM, preparingNetwork ? 0.87f : 0.78f,
+        ellipsize(installProgressMessage_, preparingNetwork ? 66 : 58).c_str());
+  }
 }
+const bool automaticRecovery = installProgressStage_ == "Paused" &&
+    (installProgressMessage_ == ::psvitaalive::L("NET_PAUSED_AUTO_LINK") ||
+     installProgressMessage_ == ::psvitaalive::L("NET_PAUSED_AUTO_SOURCE"));
 const char* waitHint = nullptr;
 if (installProgressStage_ == "Paused")
-  waitHint = ::psvitaalive::L("DOWNLOAD_PAUSED_HINT");
+  waitHint = ::psvitaalive::L(automaticRecovery ? "NET_PAUSED_AUTO_HINT" : "DOWNLOAD_PAUSED_HINT");
 else if (stageFinalizing)
   waitHint = ::psvitaalive::L("DOWNLOAD_VERIFYING_HINT");
 else if (msgRetry && stageDownload)
@@ -11474,9 +11482,9 @@ else if (stageDownload)
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintDownloadSpeed);
 else
   waitHint = ::psvitaalive::L(::psvitaalive::TextId::HintPleaseWait);
-::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 276,
+drawMarqueeText(&font_, x + 28, y + 276, w - 56,
     (stageDownload && !indeterminate && !msgRetry) ? DIM : ACCENT,
-    0.80f, waitHint);
+    0.80f, waitHint, false);
 // Show the destination while PSP/PS1 media is actually being installed.
 if ((stageInstall || stageExtract) &&
     installResultPath_.find(":pspemu/") != std::string::npos) {
@@ -11492,8 +11500,8 @@ if ((stageInstall || stageExtract) &&
   if (isPaused) {
     vita2d_draw_rectangle(lbX, lbY, lbW, lbH, SURFACE2);
     vita2d_draw_rectangle(lbX, lbY, lbW, 3, BORDER);
-    ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 38, TEXT, 0.88f,
-        ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE"));
+    drawMarqueeText(&font_, lbX + 16, lbY + 38, lbW - 32, TEXT, 0.88f,
+        ::psvitaalive::L(automaticRecovery ? "NET_PAUSED_AUTO_HINT" : "DOWNLOAD_PAUSED_NOTE"), false);
   } else {
   vita2d_draw_rectangle(lbX, lbY, lbW, lbH, RGBA8(0x40, 0x10, 0x10, 255));
   vita2d_draw_rectangle(lbX, lbY, lbW, 3, RED);

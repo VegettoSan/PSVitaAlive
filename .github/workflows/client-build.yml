@@ -39,6 +39,11 @@ jobs:
       - name: Verify Vita and web catalog field mappings
         run: python3 scripts/catalog_schema_v2_consumers_test.py
 
+      - name: Test automatic download recovery policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_download_recovery_policy.cpp -o /tmp/psvitaalive-download-recovery
+          /tmp/psvitaalive-download-recovery
+
       - name: Test storage manager layout and ZIP display identity
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \

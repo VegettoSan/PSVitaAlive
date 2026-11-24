@@ -85,10 +85,12 @@ public:
         bool installAllSpaceApproved = false // checked once, before batch start
     );
     void cancel();
-    /** Testing-only cooperative stop; preserves serial partial bytes. */
+    /** Cooperative manual pause; preserves validated partial bytes. */
     bool pauseDownload();
     /** Restart the same download job after the old worker has exited. */
     bool resumeDownload();
+    /** Main-loop poll; never does HTTP on the UI thread. */
+    void pollDownloadRecovery();
     /** User dismissed the success/error result panel (or UI timeout). */
     void acknowledgeResult();
     /** Resolve a pending ZIP extraction recovery. keep=true preserves it; false deletes it. */
@@ -208,6 +210,8 @@ private:
     std::atomic<uint64_t> total_{0};
     std::atomic<uint64_t> speed_{0};
     std::atomic<bool> workerDone_{true};
+    uint64_t nextRecoveryPollUs_ = 0; // main-thread only
+    bool resumeDownloadImpl(bool automatic);
     std::atomic<bool> liveAreaOk_{false};
     std::atomic<uint64_t> resultShownAtMs_{0};
 

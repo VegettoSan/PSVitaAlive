@@ -855,3 +855,6 @@ ID_RESULT_RECHECK=Stato installazione aggiornato.
 ID_RESULT_CONTINUE=X: Continua   O: Indietro
 ID_APP_SIZE=App
 ID_DATA_SIZE=Game Files
+NET_PAUSED_AUTO_LINK=Wi-Fi disconnesso. In attesa della rete.
+NET_PAUSED_AUTO_SOURCE=Fonte non raggiungibile. Nuovo tentativo automatico.
+NET_PAUSED_AUTO_HINT=Progresso salvato. Ripresa automatica.

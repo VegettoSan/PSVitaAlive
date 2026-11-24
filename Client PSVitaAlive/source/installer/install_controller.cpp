@@ -361,8 +361,7 @@ bool InstallController::pauseDownload() {
         activeBgdlJob_ || activeJobId_.empty() ||
         workerThread_ < 0 || workerDone_.load(std::memory_order_acquire))
         return false;
-    // Cooperative HTTP abort. DownloadManager decides whether a validated
-    // serial .part can be resumed; incomplete parallel ranges are discarded.
+    // Cooperative HTTP abort; validated serial and range checkpoints are retained.
     if (!downloads_.pause(activeJobId_)) return false;
     setStage("Pausing");
     setMessage("Pausing download safely...");
@@ -371,6 +370,36 @@ bool InstallController::pauseDownload() {
 }
 
 bool InstallController::resumeDownload() {
+    return resumeDownloadImpl(false);
+}
+
+void InstallController::pollDownloadRecovery() {
+    // Never inspect worker-owned job metadata before release/acquire handoff.
+    if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Paused ||
+        !workerDone_.load(std::memory_order_acquire) || activeJobId_.empty()) return;
+    const uint64_t now = sceKernelGetProcessTimeWide();
+    if (now < nextRecoveryPollUs_) return;
+    nextRecoveryPollUs_ = now + 500000ULL;
+    auto* job = downloads_.findJob(activeJobId_);
+    if (!job || !job->pausedForConnectivity || job->state != DownloadState::Paused ||
+        job->cancelRequested->load(std::memory_order_acquire)) return;
+    const auto link = queryLinkConnectivity();
+    const bool usable = !downloadPreflightStatusKey(link);
+    const bool retry = job->recovery.poll(now, usable, job->downloadedSize);
+    if (retry) {
+        diagnostics::log("[Installer] automatic resume attempt=" +
+                         std::to_string(job->recovery.attempts));
+        if (resumeDownloadImpl(true)) return;
+        return; // resume may have cleaned the job on a worker creation failure
+    }
+    const char* key = job->recovery.exhausted()
+        ? (usable ? "NET_PAUSED_SOURCE_UNREACHABLE" : "NET_PAUSED_DISCONNECTED")
+        : (usable ? "NET_PAUSED_AUTO_SOURCE" : "NET_PAUSED_AUTO_LINK");
+    const char* message = ::psvitaalive::L(key);
+    if (std::strcmp(message_, message) != 0) setMessage(message);
+}
+
+bool InstallController::resumeDownloadImpl(bool automatic) {
     // Do not destroy/requeue an intact checkpoint while the device has no
     // network link. The user may retry from the same saved bytes later.
     if (downloadPreflightStatusKey(queryLinkConnectivity())) {
@@ -385,6 +414,9 @@ bool InstallController::resumeDownload() {
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
+    auto* resumeJob = downloads_.findJob(activeJobId_);
+    if (!resumeJob) return false;
+    if (!automatic) resumeJob->recovery = DownloadRecoveryPolicy{};
     if (!downloads_.resume(activeJobId_)) return false;
     installCancelRequested_.store(false, std::memory_order_release);
     archiveSourceUnavailable_.store(false, std::memory_order_release);
@@ -1504,8 +1536,8 @@ int InstallController::workerMain() {
         speed_.store(0);
         setStage("Paused");
         setState(InstallStatus::State::Paused, job->pausedForConnectivity
-            ? ::psvitaalive::L(linkUnavailable(queryLinkConnectivity())
-                ? "NET_PAUSED_DISCONNECTED" : "NET_PAUSED_SOURCE_UNREACHABLE")
+            ? ::psvitaalive::L(downloadPreflightStatusKey(queryLinkConnectivity())
+                ? "NET_PAUSED_AUTO_LINK" : "NET_PAUSED_AUTO_SOURCE")
             : ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE"));
         diagnostics::log("[Installer] download paused without installation job=" + activeJobId_);
         workerDone_.store(true, std::memory_order_release);

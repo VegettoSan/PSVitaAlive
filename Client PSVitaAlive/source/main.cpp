@@ -790,6 +790,7 @@ while(true){
             }
         }
 
+        installer.pollDownloadRecovery();
 const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;
         // One refresh on Downloading -> Installing (download finished), and
         // one on any terminal install outcome (success/error/cancel/cleanup).

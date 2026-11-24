@@ -8,7 +8,7 @@
 - Durante una descarga gestionada por PSVitaAlive, pulsa **CUADRADO** o el botón **Pausar** de la pantalla táctil. El porcentaje queda guardado junto con los datos válidos.
 - Con el trabajo **Pausado**, pulsa **CUADRADO** o **Reanudar** para continuar desde las partes guardadas. El servidor y la versión del archivo se comprueban antes de reutilizar esos datos.
 - **CÍRCULO** cancela y descarta los archivos temporales del trabajo. Pausar **no** equivale a cancelar.
-- Si se pierde la conexión Wi-Fi mientras descargas, el cliente intenta detener el trabajo con seguridad y **mantener el progreso validado**. Vuelve a conectarte y pulsa **Reanudar**.
+- Si se pierde la conexión Wi-Fi mientras descargas, el cliente intenta detener el trabajo con seguridad y **mantener el progreso validado**. Al volver la conexión, el cliente intenta reanudar automáticamente; CUADRADO también permite solicitar la reanudación manual.
 - Si intentas iniciar una descarga con la consola desconectada, PSVitaAlive muestra un aviso **antes de abrir el selector de destino o el asistente**. Cuando la consola se está conectando, pide que esperes a que la red esté preparada.
 - Si hay conexión a una red pero no llega respuesta HTTP, se advierte que **Internet o la fuente de descarga podrían no estar disponibles**; no se atribuye sin prueba el problema a Archive.org, MediaFire ni a ningún proveedor.
 - Los archivos incompletos se conservan **únicamente durante la sesión abierta de PSVitaAlive**. Cerrar la aplicación o reiniciar la consola permite que la limpieza del siguiente inicio los elimine. No se promete reanudación entre sesiones.
@@ -45,7 +45,7 @@ Interfaz (CUADRADO o toque) / Monitor NetCtl
 - `Client PSVitaAlive/include/network/connectivity_state.hpp` clasifica **Ready**, **Connecting**, **Disconnected** y **Unknown**; un estado desconocido no se trata automáticamente como Wi-Fi apagado (compatibilidad Vita3K/NetCtl).
 - `source/main.cpp` y la UI bloquean nuevas descargas o asistentes cuando la red está desconectada o conectándose, antes de mostrar los pasos de instalación. Las acciones sobre ZIP ya descargados pueden seguir sin internet.
 - `DownloadManager` consulta el enlace periódicamente (hasta dos veces por segundo) desde el callback cooperativo de transferencia; **no introduce un hilo de vigilancia** ni prueba continuamente proveedores externos.
-- Al desaparecer el enlace se solicita pausa, se vacían buffers y se preservan únicamente las partes verificables. Si se agotan los intentos paralelos pero el checkpoint es válido, se devuelve `NetworkInterrupted` sin eliminarlo.
+- Al desaparecer el enlace durante tres segundos consecutivos se solicita pausa, se vacían buffers y se preservan únicamente las partes verificables. Si se agotan los intentos paralelos pero el checkpoint es válido, se devuelve `NetworkInterrupted` sin eliminarlo.
 - `HttpClient` no inicia una descarga serial que sobreescriba partes previas cuando no puede completar la verificación 206. La reanudación valida de nuevo cada parte; nunca concatena versiones diferentes del mismo archivo.
 - Archive.org puede reutilizar temporalmente el nodo de almacenamiento anterior **solo dentro del trabajo actual**, con una nueva prueba de 206. Ante fallo usa las rutas de respaldo existentes; este atajo no se habilita genéricamente para URL HTTP de terceros.
 - El cálculo de velocidad por sesión excluye bytes conservados antes de reanudar y suaviza el resultado; no hay un supuesto “aumento de velocidad” por reanudar.
@@ -55,7 +55,7 @@ Interfaz (CUADRADO o toque) / Monitor NetCtl
 
 - La verificación HTTP 206, `Content-Range`, los límites de tamaño, el hash de identidad del checkpoint, los validadores y las comprobaciones de espacio siguen siendo obligatorios.
 - Un validador ausente, cambiado o inconsistente puede obligar a **descartar los segmentos inseguros**, en lugar de reutilizarlos. Conservar **datos verificados** tiene prioridad sobre fingir progreso.
-- El sistema puede mostrar una pausa que requiere **reanudación manual**. No se promete reconexión automática a Internet ni que todas las fuentes admitan HTTP Range.
+- Una pausa manual nunca se reanuda sola. Las interrupciones automáticas esperan una red utilizable y reintentan la fuente real con esperas de 5/15/30/60 s; cuatro intentos sin progreso significativo dejan la pausa disponible para reintento manual. Si no hay enlace, se conserva el trabajo sin enviar peticiones. NetCtl no certifica acceso a Internet. El progreso adicional de al menos 1 MiB respecto al máximo observado reinicia el presupuesto. No se promete que todas las fuentes admitan HTTP Range. Un prefijo serial sin validador reutilizable se reinicia de forma segura; los segmentos mantienen su verificación propia.
 - La pausa del descargador HTTP no desbloquea el botón PS, el menú de energía, las instalaciones/extracciones en marcha, BGDL ni la actualización del propio cliente. Se mantiene la seguridad y política OLED.
 - Los archivos `apps/`, `authors/`, `categories/`, catálogos generados y la web no forman parte de esta modificación. La arquitectura oficial de GitHub Actions continúa intacta.
 
@@ -70,3 +70,7 @@ Referencias:
 - [Diagnóstico y estados de red](HTTP206_WIFI_INTERRUPTION_RECOVERY_20261026.md)
 - [Guía de mensajes independientes de la fuente](UI_PROVIDER_NEUTRAL_MESSAGING.md)
 - [PR de validación #57](https://github.com/VegettoSan/PSVitaAlive/pull/57)
+
+## Recuperación automática (2026-11-24)
+
+El bucle principal consulta la política de recuperación solo después de que el worker anterior termine. Se reutiliza el mismo trabajo y no se crean hilos de vigilancia ni peticiones a servicios de prueba externos. La pausa manual compite de forma atómica con la solicitud de red. Los errores HTTP definitivos, de disco y de TLS no entran en el nuevo ciclo de reintento. El comportamiento físico y táctil de Reanudar y Cancelar permanece disponible. Validar en hardware: desconexión breve, desconexión sostenida, router sin Internet, HTTP 429/503/404, cancelación durante espera, pausa manual, reanudación con ETag cambiado, Install All y protector OLED.
