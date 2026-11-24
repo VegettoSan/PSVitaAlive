@@ -16,14 +16,6 @@
       "filename": "nfs-carbon v0.1.6.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T23:35:11+00:00"
-    },
-    "gh-vita": {
-      "version": "0.2.3",
-      "source_url": "https://github.com/irxd/guitar-hero-vita/releases/download/v0.2.3/ghvita-v0.2.3.vpk",
-      "archive_identifier": "guitar-hero-ps2-ps-vita",
-      "filename": "gh-vita v0.2.3.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-24T02:15:56+00:00"
     }
   }
 }
