@@ -10733,7 +10733,7 @@ void FullCatalogScreen::drawInstallAllSummary() {
             while(scale>.59f &&
                   ::psvitaalive::ui::uiTextWidth(&font_,scale,lab)>buttonW-10)
                 scale-=.02f;
-            if (reportable && !sending && !reported)
+            if (focused && reportable && !sending && !reported)
                 skin::action(&font_,bx,by,buttonW,buttonH,WHITE,.79f,skin::controls_atlas::ctrl_select,lab,lab);
             else {
                 const int tw=::psvitaalive::ui::uiTextWidth(&font_,scale,lab);
@@ -10756,8 +10756,13 @@ void FullCatalogScreen::drawInstallAllSummary() {
             chosenKept?RGBA8(0xAA,0x37,0x42,255):SURFACE);
         const char* keepLab=::psvitaalive::L("ALL_REPORT_KEEP_ZIP");
         const char* deleteLab=::psvitaalive::L("ALL_REPORT_DELETE_ZIP");
-        skin::action(&font_,bx0,by,bw,bh,chosenKept?BG:DIM,.80f,skin::controls_atlas::ctrl_triangle_classic,keepLab,keepLab);
-        skin::action(&font_,bx1,by,bw,bh,chosenKept?WHITE:DIM,.80f,skin::controls_atlas::ctrl_square_classic,deleteLab,deleteLab);
+        if (chosenKept) {
+            skin::action(&font_,bx0,by,bw,bh,BG,.80f,skin::controls_atlas::ctrl_triangle_classic,keepLab,keepLab);
+            skin::action(&font_,bx1,by,bw,bh,WHITE,.80f,skin::controls_atlas::ctrl_square_classic,deleteLab,deleteLab);
+        } else {
+            skin::hint(&font_,bx0+8,by+27,bw-16,DIM,.80f,keepLab,true);
+            skin::hint(&font_,bx1+8,by+27,bw-16,DIM,.80f,deleteLab,true);
+        }
     }
     if(installAllPluginInstalled_) {
         // With limited space below three result rows and optional ZIP actions,
