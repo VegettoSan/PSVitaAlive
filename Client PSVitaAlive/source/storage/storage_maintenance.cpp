@@ -1,6 +1,7 @@
 #include "storage/storage_maintenance.hpp"
 #include "storage/storage_manager.hpp"
 #include "storage/storage_cleanup_policy.hpp"
+#include "storage/saved_zip_metadata.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
@@ -97,11 +98,10 @@ void add(UsageSnapshot& snap,const std::string& path,const std::string& label,bo
     else snap.temporaryBytes+=item.bytes;
     snap.items.push_back(std::move(item));
 }
-unsigned readPartCount(const std::string& info) {
+unsigned readPartCount(const std::string& info, std::string& data) {
     StorageManager st;
     const int64_t sz=st.fileSize(info);
     if(sz<=0 || sz>8192) return 0;
-    std::string data;
     if(!st.readTextFile(info,data)) return 0;
     const std::string key="Archive parts: ";
     const size_t i=data.find(key);
@@ -120,7 +120,8 @@ void scanSaved(UsageSnapshot& snap) {
         for(const auto& name:entries(dir)) {
             if(!ends(name,".zip.info.txt")) continue;
             const std::string info=dir+"/"+name;
-            const unsigned count=readPartCount(info);
+            std::string metadata;
+            const unsigned count=readPartCount(info, metadata);
             if(count!=1 && count!=2 && count!=4) continue;
             const std::string zip=dir+"/"+name.substr(0,name.size()-9);
             std::vector<std::string> paths;
@@ -133,7 +134,16 @@ void scanSaved(UsageSnapshot& snap) {
             }
             if(!complete) continue;
             paths.push_back(info);
+            const auto before = snap.items.size();
             add(snap,info,"ZIP: "+folder+"/"+name.substr(0,name.size()-9),true,paths);
+            if (snap.items.size() != before) {
+                auto& item = snap.items.back();
+                item.appId = savedZipField(metadata, "App ID: ");
+                item.titleId = savedZipField(metadata, "Title ID: ");
+                item.appName = savedZipField(metadata, "App: ");
+                // Use the actual validated filename, not an untrusted path in the sidecar.
+                item.archiveName = name.substr(0,name.size()-9);
+            }
         }
     }
 }
