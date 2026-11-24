@@ -1,6 +1,7 @@
 #pragma once
 #include "ui/skin_atlas_coords.hpp"
 #include <algorithm>
+#include <cmath>
 #include <vita2d.h>
 
 namespace psvitaalive::skin {
@@ -12,8 +13,12 @@ inline vita2d_texture* textures[3] = {};
 inline unsigned calls = 0;
 inline unsigned vertices = 0;
 inline unsigned poolFallbacks = 0;
+inline unsigned invalidGeometry = 0;
+// A/B diagnostic only: never stall normal frame submission.
+inline bool gpuSyncTest = false;
+inline void beforeFrame() { if (gpuSyncTest) vita2d_wait_rendering_done(); }
 inline bool ready() { return textures[0] && textures[1] && textures[2]; }
-inline void resetFrameCounters() { calls = vertices = poolFallbacks = 0; }
+inline void resetFrameCounters() { calls = vertices = poolFallbacks = invalidGeometry = 0; }
 inline void release() {
     if (textures[0] || textures[1] || textures[2]) vita2d_wait_rendering_done();
     for (auto& t : textures) {
@@ -57,6 +62,9 @@ inline Axis axis(float position, float length, int start, int size,
 // scissor; don't modify clip state, blend mode, or frame/swap ownership.
 inline bool draw(Atlas atlas, const Sprite& s, float x, float y,
                  float w, float h, unsigned tint = 0xffffffffu) {
+    if (!std::isfinite(x) || !std::isfinite(y) || !std::isfinite(w) || !std::isfinite(h)) {
+        ++invalidGeometry; return true;
+    }
     if (w <= 0.f || h <= 0.f) return true;
     auto* t = textures[static_cast<int>(atlas)];
     if (!t) return false;
@@ -75,8 +83,9 @@ inline bool draw(Atlas atlas, const Sprite& s, float x, float y,
             if (ax.dst[i+1] > ax.dst[i] && ay.dst[j+1] > ay.dst[j]) count += 6;
     const unsigned bytes = count * sizeof(vita2d_texture_vertex);
     if (!count || vita2d_pool_free_space() < bytes + 64) { ++poolFallbacks; return false; }
+    // libvita2d uses bitmask alignment: pass a power of two, not the 20-byte vertex stride.
     auto* v = static_cast<vita2d_texture_vertex*>(
-        vita2d_pool_memalign(bytes, sizeof(vita2d_texture_vertex)));
+        vita2d_pool_memalign(bytes, 16u));
     if (!v) { ++poolFallbacks; return false; }
     const float invW = 1.f / vita2d_texture_get_width(t);
     const float invH = 1.f / vita2d_texture_get_height(t);
