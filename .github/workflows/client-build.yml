@@ -5,11 +5,13 @@ on:
     branches: [main, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
     paths:
       - "Client PSVitaAlive/**"
+      - "tests/**"
       - ".github/workflows/client-build.yml"
   pull_request:
     branches: [main]
     paths:
       - "Client PSVitaAlive/**"
+      - "tests/**"
       - ".github/workflows/client-build.yml"
   workflow_dispatch:
 
