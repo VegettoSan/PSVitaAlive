@@ -108,3 +108,18 @@ assert prepare.count("++loads;") == 4
 assert "||isTransitioning()" in prepare
 assert "submit_peak_us=%llu swap_peak_us=%llu" in source
 print("Image worker disk probe, decode budget and present diagnostics checks OK")
+
+# Only the topmost storage modal is drawn, without a catalog or a hidden
+# storage dialog underneath. The normal frame path still owns other modals.
+modal = body("void FullCatalogScreen::draw(){", "bool FullCatalogScreen::updateAndDraw()")
+assert 'skinFrameScene=installedDataVisible_?"installed_data":"storage";' in modal
+assert "if (installedDataVisible_) drawInstalledDataOverlay();" in modal
+assert "else drawStorageOverlay();" in modal
+assert modal.index("else drawStorageOverlay();") < modal.index("return;",modal.index("else drawStorageOverlay();")) < modal.index("drawFullCatalog();")
+assert "storage_draw_peak_us=%llu installed_draw_peak_us=%llu" in modal
+finish = body("void FullCatalogScreen::finishUiFrame(){", "void FullCatalogScreen::draw(){")
+assert "drawStorageOverlay()" not in finish and "drawInstalledDataOverlay()" not in finish
+catalog = body("void FullCatalogScreen::drawCatalogPanel(", "void FullCatalogScreen::wrapText(")
+assert catalog.count("catalogCardFocus && i == state_.focusIndex") == 2
+assert "navigationFocus_.catalogCardFocused(" in catalog
+print("Exclusive navigation focus and topmost storage rendering checks OK")

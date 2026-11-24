@@ -31,6 +31,16 @@ int main() {
     f.controller(); assert(f.visible && f.zone == Z::Catalog);
     f.footer(2); f.touch(); assert(!f.visible && f.zone == Z::Catalog);
     f.controller(); f.cycle(); assert(f.visible && f.zone == Z::Header);
+    // Logical selection survives, but only the active zone owns the card
+    // highlight. Touch returns to content even with chrome hidden.
+    f.catalog(); assert(f.catalogCardFocused(true));
+    assert(!f.catalogCardFocused(false));
+    f.header(); assert(!f.catalogCardFocused(true));
+    f.tab(2); assert(!f.catalogCardFocused(true));
+    f.footer(2); assert(!f.catalogCardFocused(true));
+    f.touch(); assert(f.catalogCardFocused(true) && !f.visible);
+    f.controller(); assert(f.catalogCardFocused(true));
+    f.cycle(); assert(!f.catalogCardFocused(true));
     // Every combination of dynamic header controls: no invisible focus.
     for (bool clear : {false, true}) {
         for (bool filters : {false, true}) {

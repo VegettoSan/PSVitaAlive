@@ -9093,8 +9093,10 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
 
-    // The selected app is independent of the controller-only chrome focus.
-    // Keep its original border during touch scrolling and zone navigation.
+    // Preserve the app index across zone changes, but highlight only the
+    // active navigation target. Touch resets the zone to Catalog.
+    const bool catalogCardFocus = navigationFocus_.catalogCardFocused(
+        !split || state_.activePanel == UiPanel::Catalog);
     if (!split) {
         const int vis = visibleRowsFull();
         const int rows = totalRows();
@@ -9107,7 +9109,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 if (i < 0 || i >= (int)catalogView().size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex,
+                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, catalogCardFocus && i == state_.focusIndex,
                                 x + 1, y + 1, x + w - 1, y + h - 1);
                 // Re-assert panel clip: focused card marquee disables global scissor.
                 vita2d_enable_clipping();
@@ -9134,7 +9136,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)catalogView().size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex,
+            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, catalogCardFocus && i == state_.focusIndex,
                             x + 1, y + 1, x + w - 1, y + h - 1);
             // Re-assert panel clip: focused card marquee disables global scissor.
             vita2d_enable_clipping();
@@ -12221,8 +12223,6 @@ void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_colo
     // updating input, animations or new image textures underneath.
     if(keyboard_.active())
         keyboard_.drawOverlay(&font_, {BG,SURFACE,SURFACE2,BORDER,TEXT,DIM,ACCENT});
-    if(storageVisible_) drawStorageOverlay();
-    if(installedDataVisible_) drawInstalledDataOverlay();
     finishFrame();
 }
 void FullCatalogScreen::draw(){
@@ -12239,6 +12239,40 @@ void FullCatalogScreen::draw(){
         (keyboard_.active()?4u:0u)|(storageVisible_?8u:0u)|(installedDataVisible_?16u:0u)|
         (verticalNavHeld_?32u:0u)|(catalogSplashAlpha_>0.01f?64u:0u);
     skinFramePendingFrees=static_cast<unsigned>(deferredFreeTextures_.size());
+    // Storage dialogs own all input. Draw just the topmost dialog over a
+    // theme-colored backdrop, not a live catalog or another hidden dialog.
+    // Do not change update/poll/input logic or GPU pool lifetime.
+    if (installedDataVisible_ || storageVisible_) {
+        skinFrameScene=installedDataVisible_?"installed_data":"storage";
+        startSkinFrame();
+        vita2d_set_clear_color(BG);
+        vita2d_clear_screen();
+        const uint64_t overlayStart=sceKernelGetProcessTimeWide();
+        if (installedDataVisible_) drawInstalledDataOverlay();
+        else drawStorageOverlay();
+        const uint64_t overlayUs=sceKernelGetProcessTimeWide()-overlayStart;
+        drawToast();
+        finishFrame();
+        // Aggregate modal draw cost without per-frame logging.
+        static uint64_t windowStart=0,storagePeak=0,installedPeak=0;
+        static unsigned storageFrames=0,installedFrames=0;
+        const uint64_t now=sceKernelGetProcessTimeWide();
+        if(!windowStart)windowStart=overlayStart;
+        if(installedDataVisible_){
+            ++installedFrames;installedPeak=std::max(installedPeak,overlayUs);
+        }else{
+            ++storageFrames;storagePeak=std::max(storagePeak,overlayUs);
+        }
+        if(now-windowStart>=5000000ULL){
+            char pm[224];
+            sceClibSnprintf(pm,sizeof(pm),
+                "[Perf] storage modal storage_frames=%u installed_frames=%u storage_draw_peak_us=%llu installed_draw_peak_us=%llu",
+                storageFrames,installedFrames,(unsigned long long)storagePeak,(unsigned long long)installedPeak);
+            diagnostics::log(pm);
+            windowStart=now;storageFrames=installedFrames=0;storagePeak=installedPeak=0;
+        }
+        return;
+    }
     switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     // Input belongs to the visible screen, not to the catalog behind a
