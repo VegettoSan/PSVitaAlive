@@ -13,17 +13,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "1.2",
-  "vd": "2026-11-20",
+  "v": "1.2.1",
+  "vd": "2026-11-24",
   "req": "- libshacccg.suprx\n- About 3 GB free on the Vita's memory card (ux0:).",
-  "sz": 5006776,
+  "sz": 5041417,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/the-sims-ps-vita/the-sims%20v1.2.vpk",
-      "sz": 5006776,
+      "u": "https://github.com/marcocatena/TheSimsVita-release/releases/download/v1.2.1/TheSimsVita-v1.2.1.vpk",
+      "sz": 5041417,
       "rec": true
     },
     {
