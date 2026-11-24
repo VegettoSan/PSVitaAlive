@@ -39,22 +39,38 @@ def check() -> None:
         fail(f"Python/JS aliases mismatch: missing={missing}, extra={extra}, changed={divergent}")
 
     cpp = VITA.read_text(encoding="utf-8")
-    match = re.search(r'static const struct\s*\{.*?\}\s*aliases\[\]\s*=\s*\{(.*?)\n\s*\};',
-                      cpp, re.S)
-    if not match:
-        fail("Vita C++ field alias table not found")
-    cpp_map = dict(re.findall(r'\{"([^"]+)",\s*"([^"]+)"\}', match.group(1)))
-    for old, short in cpp_map.items():
-        if KEYS.get(old) != short:
-            fail(f"C++ alias {old} -> {short} differs from Python alias {KEYS.get(old)}")
-
-    accessors = re.findall(
-        r'\b(?:getString|getUnsigned|firstArrayString|parseStringArray|getCatalogField)'
-        r'\s*\(\s*[A-Za-z_][\w]*\s*,\s*"([^"]+)"\s*\)', cpp)
-    for old in set(accessors):
-        short = KEYS.get(old, old)
-        if short != old and cpp_map.get(old) != short:
-            fail(f"C++ reads {old} but cannot read V2 alias {short}")
+    # The Vita reader now passes aliases at each call site rather than
+    # scanning a runtime table. Check every literal read independently.
+    scalar_reads = re.findall(
+        r'\b(?:getString|getUnsigned|firstArrayString|getCatalogField)'
+        r'\s*\(\s*[A-Za-z_]\w*\s*,\s*"([^"]+)"'
+        r'(?:\s*,\s*"([^"]+)")?\s*\)', cpp)
+    array_reads = re.findall(
+        r'\bparseStringArray\s*\(\s*[A-Za-z_]\w*\s*,\s*"([^"]+)"'
+        r'\s*,\s*[\w.]+(?:\s*,\s*"([^"]+)")?(?:\s*,\s*\d+)?\s*\)', cpp)
+    reads = scalar_reads + array_reads
+    if not reads:
+        fail("Vita C++ literal field reads not found")
+    cpp_map = {}
+    accessors = []
+    for old, compact in reads:
+        expected = KEYS.get(old, old)
+        if (compact or old) != expected:
+            fail(f"C++ reads {old} with alias {compact or old}, expected {expected}")
+        if compact:
+            cpp_map[old] = compact
+        accessors.append(old)
+    # Critical existing fields must not disappear from the optimized reader.
+    required_reads = {
+        "title_id", "title_ids", "name", "description", "author_ids",
+        "category_id", "subcategory_ids", "version", "version_date", "date",
+        "icon", "cover", "screenshots", "links", "status", "requirements",
+        "size", "extract_path", "installed_paths", "recommended", "type",
+        "url", "content_id", "contentId", "zrif", "zRIF", "license",
+        "required", "section", "line",
+    }
+    if not required_reads.issubset(cpp_map):
+        fail(f"C++ lost existing aliases: {required_reads - cpp_map.keys()}")
 
     # Mixed values exercise all error-prone nested metadata that must remain
     # stable as application data (not be mistaken for schema names).
