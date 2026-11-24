@@ -15,6 +15,7 @@
 
 #include <vita2d.h>
 #include "ui/ui_font.hpp"
+#include "ui/detail_wrap_cache.hpp"
 #include <psp2/io/stat.h>
 #include <psp2/kernel/threadmgr.h>
 
@@ -222,6 +223,7 @@ private:
     int savedZipBlockHeight(const CatalogItem& item);
     ImageCache* imageCache_ = nullptr;
     ::psvitaalive::ui::UiFont font_;
+    mutable DetailWrapCache detailWrapCache_;
     /** Full-screen splash while catalogs download/load at startup (app0:ui/catalog_loading.png). */
     vita2d_texture* catalogLoadingTex_ = nullptr;
     /** Monochrome splash for non-brand theme tinting. */
@@ -462,7 +464,7 @@ private:
     void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     int detailScreenshotContentOffset(const CatalogItem& item, int panelWidth);
-    std::vector<std::string> wrapDetailLines(const std::string& text, int contentWidth, bool bullets) const;
+    const std::vector<std::string>& wrapDetailLines(const std::string& text, int contentWidth, bool bullets) const;
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void openWebQrModal();
     void openDiscordQrModal();

@@ -3433,6 +3433,7 @@ bool FullCatalogScreen::init(){
     diagnostics::log("[GPU] batched vertex pool: 2097152 bytes, reserve 1048576; no per-frame full sync");
     vita2d_set_clear_color(BG);
     ::psvitaalive::ui::setUiFontScalePercent(settingsEdit_.uiFontScalePct);
+    detailWrapCache_.clear();
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
     if(!font_) font_=::psvitaalive::ui::loadDefaultUiFont();
     if(!font_)return false;
@@ -4085,6 +4086,7 @@ void FullCatalogScreen::shutdown(){
         vita2d_free_texture(headerLogoMonoTex_);
         headerLogoMonoTex_ = nullptr;
     }
+    detailWrapCache_.clear();
     font_.reset();
     if(ready_){vita2d_fini();ready_=false;}
     diagnostics::log("[UI] shutdown");
@@ -4534,35 +4536,37 @@ int FullCatalogScreen::savedZipBlockHeight(const CatalogItem& item) {
     const int count = savedZipCountFor(item);
     return count ? LINK_SECTION_H + 4 + LINK_ROW_H * count + 8 : 0;
 }
-std::vector<std::string> FullCatalogScreen::wrapDetailLines(
+const std::vector<std::string>& FullCatalogScreen::wrapDetailLines(
     const std::string& text, int contentWidth, bool bullets) const {
-    std::vector<std::string> lines;
-    if (text.empty()) return lines;
-    // Preserve source paragraph/newline boundaries and split bullet items.
-    // The old character-count wrapper ignored real PGF glyph widths and cut
-    // requirements/URLs off at the right edge of the detail viewport.
-    std::string normalized;
-    normalized.reserve(text.size() + 8);
-    for (size_t p = 0; p < text.size(); ++p) {
-        if (bullets && text[p] == '-' &&
-            (p == 0 || text[p - 1] == ' ') &&
-            p + 1 < text.size() && text[p + 1] == ' ' &&
-            !normalized.empty() && normalized.back() != '\n')
-            normalized.push_back('\n');
-        normalized.push_back(text[p]);
-    }
-    const int maxWidth = std::max(32, contentWidth - 6);
-    size_t begin = 0;
-    while (begin <= normalized.size()) {
-        const size_t end = normalized.find('\n', begin);
-        const std::string paragraph = normalized.substr(begin,
-            end == std::string::npos ? std::string::npos : end - begin);
-        const auto wrapped = wrapTextToWidth(&font_, 0.68f, paragraph, maxWidth);
-        lines.insert(lines.end(), wrapped.begin(), wrapped.end());
-        if (end == std::string::npos) break;
-        begin = end + 1;
-    }
-    return lines;
+    return detailWrapCache_.get(text, contentWidth, bullets,
+        ::psvitaalive::ui::getUiFontScalePercent(), [&] {
+        std::vector<std::string> lines;
+        // Preserve source paragraph/newline boundaries and split bullet items.
+        // The old character-count wrapper ignored real PGF glyph widths and cut
+        // requirements/URLs off at the right edge of the detail viewport.
+        std::string normalized;
+        normalized.reserve(text.size() + 8);
+        for (size_t p = 0; p < text.size(); ++p) {
+            if (bullets && text[p] == '-' &&
+                (p == 0 || text[p - 1] == ' ') &&
+                p + 1 < text.size() && text[p + 1] == ' ' &&
+                !normalized.empty() && normalized.back() != '\n')
+                normalized.push_back('\n');
+            normalized.push_back(text[p]);
+        }
+        const int maxWidth = std::max(32, contentWidth - 6);
+        size_t begin = 0;
+        while (begin <= normalized.size()) {
+            const size_t end = normalized.find('\n', begin);
+            const std::string paragraph = normalized.substr(begin,
+                end == std::string::npos ? std::string::npos : end - begin);
+            const auto wrapped = wrapTextToWidth(&font_, 0.68f, paragraph, maxWidth);
+            lines.insert(lines.end(), wrapped.begin(), wrapped.end());
+            if (end == std::string::npos) break;
+            begin = end + 1;
+        }
+        return lines;
+    });
 }
 
 int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
@@ -6484,7 +6488,10 @@ void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& set
     vita2d_wait_rendering_done();
     {
         auto nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
-        if (nf) font_ = std::move(nf);
+        if (nf) {
+            detailWrapCache_.clear();
+            font_ = std::move(nf);
+        }
     }
 }
 
@@ -6751,6 +6758,7 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         vita2d_wait_rendering_done();
         auto nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
         if (nf) {
+            detailWrapCache_.clear();
             font_ = std::move(nf);
             diagnostics::log(std::string("[UI] font file=") +
                              (settingsEdit_.uiFontFile.empty() ? "(default)" : settingsEdit_.uiFontFile));
@@ -9591,7 +9599,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     auto emitTextSection = [&](const char* title, const std::string& body, bool bullets) {
         if (body.empty()) return;
-        const std::vector<std::string> lines = wrapDetailLines(body, cw, bullets);
+        const auto& lines = wrapDetailLines(body, cw, bullets);
         if (lines.empty()) return;
         drawSectionHeader(cx, cursor, title);
         cursor += DETAIL_SECTION_H;

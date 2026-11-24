@@ -84,6 +84,11 @@ jobs:
             tests/test_catalog_grid_navigation.cpp -o /tmp/psvitaalive-catalog-grid-test
           /tmp/psvitaalive-catalog-grid-test
 
+      - name: Test bounded detail text layout cache
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_detail_wrap_cache.cpp -o /tmp/psvitaalive-detail-wrap-cache
+          /tmp/psvitaalive-detail-wrap-cache
+
       - name: Test feedback panel and description scroll boundaries
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
