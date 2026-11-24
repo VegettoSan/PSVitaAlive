@@ -1,5 +1,6 @@
 #include "archive/zip_extractor.hpp"
 #include "archive/extraction_directory_cache.hpp"
+#include "archive/zip_existing_open_policy.hpp"
 #include "archive/segmented_zip_layout.hpp"
 #include "installer/saved_zip_parts.hpp"
 #include "diagnostic_logger.hpp"
@@ -31,6 +32,9 @@ constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
 constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
 constexpr uint64_t ZIP_VERBOSE_ENTRY_MIN_SIZE = 4ULL * 1024ULL * 1024ULL;
 constexpr zip_int64_t ZIP_ENTRY_LOG_STEP = 64;
+// Tested Vita I/O return codes used to avoid redundant metadata lookups.
+constexpr uint32_t ZIP_VITA_FILE_EXISTS = 0x80010011u;  // EEXIST
+constexpr uint32_t ZIP_VITA_FILE_MISSING = 0x80010002u; // ENOENT
 
 std::string zipArchiveError(zip_t* za) {
     if (!za) return "null archive";
@@ -1092,6 +1096,9 @@ ZipResult ZipExtractor::extract(
     std::string lastEnsuredParent;
     uint64_t directoryCacheHits = 0, directoryCacheChecks = 0;
     uint64_t exclusiveCreated = 0, existingFiles = 0, exclusiveFallbacks = 0;
+    uint64_t directExistingOpens = 0, directExistingMisses = 0;
+    uint64_t fastExistingOpens = 0, checkedExistingOpens = 0;
+    ZipExistingOpenPolicy openPolicy;
     bool exclusiveCreationSupported = true;
     uint64_t bytesSinceYield = 0;
 
@@ -1167,35 +1174,72 @@ ZipResult ZipExtractor::extract(
             break;
         }
 
-        // Create new files with EXCL first to distinguish them from existing
-        // files without an extra stat call. All existing files are overwritten
-        // directly with TRUNC: no .tmp/.bak copies, for every ZIP/VPK caller.
+        // Proven on Vita Build #645: when replaying already existing files,
+        // use ONE O_TRUNC open, without O_CREAT, rather than a failed EXCL
+        // plus a second stat/open. Never treat an existing file as complete:
+        // this path still re-extracts it and leaves CRC checks unchanged.
+        //
+        // When an existing-file probe returns ENOENT, prefer O_EXCL for the
+        // remainder of this parent directory. Successful EXCL uniquely
+        // identifies newly created output for safe failure cleanup.
+        const std::string openParent = slash == std::string::npos
+            ? destinationDir : outPath.substr(0, slash);
         SceUID fd = -1;
-        if (exclusiveCreationSupported)
-            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
-
-        // Only a successful exclusive open proves the file was absent.
-        // If EXCL is unsupported and getstat is inconclusive, preserve the
-        // output on failure rather than risking deletion of user data.
-        const bool definitelyNewFile = fd >= 0;
+        bool definitelyNewFile = false;
         bool replacingExisting = false;
-        if (fd >= 0) {
-            ++exclusiveCreated;
-        } else {
-            replacingExisting = st.exists(outPath);
-            if (replacingExisting && st.isDirectory(outPath)) {
-                zip_fclose(zf);
-                setError("ZIP file destination is a directory: " + outPath);
-                outcome = ZipResult::InvalidEntry;
-                break;
+
+        if (openPolicy.tryExistingFirst(openParent)) {
+            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_TRUNC, 0777);
+            if (fd >= 0) {
+                replacingExisting = true;
+                ++existingFiles;
+                ++directExistingOpens;
+                openPolicy.existingOpened();
+            } else if (static_cast<uint32_t>(fd) == ZIP_VITA_FILE_MISSING) {
+                ++directExistingMisses;
+                openPolicy.existingMissing();
             }
-            if (!replacingExisting && exclusiveCreationSupported) {
-                exclusiveCreationSupported = false;
-                ++exclusiveFallbacks;
-                diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
+        }
+
+        if (fd < 0) {
+            if (exclusiveCreationSupported)
+                fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_EXCL, 0777);
+
+            if (fd >= 0) {
+                definitelyNewFile = true;
+                ++exclusiveCreated;
+                openPolicy.newFileCreated();
+            } else if (exclusiveCreationSupported &&
+                       static_cast<uint32_t>(fd) == ZIP_VITA_FILE_EXISTS) {
+                // EXCL already established that this path exists.
+                // Avoid a redundant exists()+isDirectory() lookup.
+                replacingExisting = true;
+                ++existingFiles;
+                ++fastExistingOpens;
+                openPolicy.existingOpened();
+                fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_TRUNC, 0777);
+            } else {
+                // Unexpected errno/kernel behavior: retain conservative
+                // original stat/mkdir fallback. Do not infer ownership.
+                replacingExisting = st.exists(outPath);
+                if (replacingExisting && st.isDirectory(outPath)) {
+                    zip_fclose(zf);
+                    setError("ZIP file destination is a directory: " + outPath);
+                    outcome = ZipResult::InvalidEntry;
+                    break;
+                }
+                if (!replacingExisting && exclusiveCreationSupported) {
+                    exclusiveCreationSupported = false;
+                    ++exclusiveFallbacks;
+                    diagnostics::log("[ZipExtractor] exclusive-create unsupported/failed for new file; using compatible checked create path");
+                }
+                if (replacingExisting) {
+                    ++existingFiles;
+                    ++checkedExistingOpens;
+                    openPolicy.existingOpened();
+                }
+                fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
             }
-            if (replacingExisting) ++existingFiles;
-            fd = sceIoOpen(outPath.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
         }
         if (fd >= 0 && (definitelyNewFile || !replacingExisting))
             newlyCreatedFiles.push_back(outPath);
@@ -1457,13 +1501,18 @@ ZipResult ZipExtractor::extract(
         char perf[320];
         sceClibSnprintf(perf, sizeof(perf),
             "[ZipPerf] entries=%llu dir_cache_hits=%llu dir_checks=%llu "
-            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu status=%s",
+            "excl_created=%llu existing_replaced=%llu excl_fallbacks=%llu "
+            "direct_existing=%llu direct_miss=%llu fast_existing=%llu checked_existing=%llu status=%s",
             (unsigned long long)prog.entriesDone,
             (unsigned long long)directoryCacheHits,
             (unsigned long long)directoryCacheChecks,
             (unsigned long long)exclusiveCreated,
             (unsigned long long)existingFiles,
             (unsigned long long)exclusiveFallbacks,
+            (unsigned long long)directExistingOpens,
+            (unsigned long long)directExistingMisses,
+            (unsigned long long)fastExistingOpens,
+            (unsigned long long)checkedExistingOpens,
             toString(outcome));
         diagnostics::log(perf);
     }

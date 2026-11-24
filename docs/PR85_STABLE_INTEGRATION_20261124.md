@@ -6,6 +6,8 @@
 **Rama de aislamiento utilizada:** `fix/pr85-stable-space-preflight-20261124`.  
 **Release:** no se publicó una nueva versión al fusionar; que el código esté en `main` no implica que los usuarios de la release instalada lo tengan.
 
+> **Seguimiento de integración separada:** tras #110, el usuario solicitó incorporar también la **ruta rápida de apertura de archivos ya existentes** observada en el Build #645. Está aislada y documentada en [ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md](ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md). Los puntos de este documento corresponden exclusivamente al alcance de **PR #110**; la rama paralela y el problema de crear archivos nuevos siguen sin resolverse.
+
 ## Por qué se separó la integración
 
 El PR #85 agrupaba mejoras de espacio de almacenamiento, progreso, paralelismo ZIP STORE, pausas cooperativas y experimentos de apertura de archivos. Durante tres pruebas en PS Vita física, el ZIP de Minecraft Modern Legacy siguió sufriendo una ralentización severa cerca del 17 % en bytes y congelamientos de interfaz, con apagados forzados.

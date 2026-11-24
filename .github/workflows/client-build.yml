@@ -181,6 +181,13 @@ jobs:
             -o /tmp/psvitaalive-extraction-cache-test
           /tmp/psvitaalive-extraction-cache-test
 
+      - name: Test Vita-tested existing ZIP output open policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_zip_existing_open_policy.cpp \
+            -o /tmp/psvitaalive-zip-existing-open-test
+          /tmp/psvitaalive-zip-existing-open-test
+
       - name: Test unreachable source and HTTP response policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
