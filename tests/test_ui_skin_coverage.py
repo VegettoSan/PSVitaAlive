@@ -54,21 +54,24 @@ assert "ctrl_triangle_classic,barX+barW-30" in source
 assert "sx+padX+iconW,cy+17" in source
 print("Third-pass control and storage skin coverage OK")
 
-# GPU investigation: normal mode must not add a synchronous GPU wait.
+# Batched GPU pool: preserve allocations until proven idle, never reset every frame.
 renderer = (root / "include/ui/skin_renderer.hpp").read_text(encoding="utf-8")
-assert "inline bool gpuSyncTest = false;" in renderer
-assert "if (gpuSyncTest) vita2d_wait_rendering_done();" in renderer
+assert "framePoolBytes = 2u * 1024u * 1024u" in renderer
+assert "frameReserveBytes = 1024u * 1024u" in renderer
+begin = renderer.split("inline bool beginFrame()",1)[1].split("inline bool ready()",1)[0]
+assert "if (vita2d_pool_free_space() < frameReserveBytes)" in begin
+assert begin.index("vita2d_wait_rendering_done();") < begin.index("vita2d_pool_reset();") < begin.index("vita2d_start_drawing_advanced(nullptr, 0);")
+assert "vita2d_start_drawing();" not in source and "vita2d_start_drawing();" not in main
+assert "vita2d_init_advanced(skin::framePoolBytes);" in source
+assert "skin::beginFrame()" in source and "skin::beginFrame()" in main
 assert "vita2d_pool_memalign(bytes, 16u)" in renderer
 assert "std::isfinite" in renderer
 frame = body("inline void startSkinFrame()", "constexpr uint32_t NAV_DIRECTION_MASK")
-assert frame.index("skin::beforeFrame();") < frame.index("vita2d_start_drawing();")
-assert "if (skin::gpuSyncTest)" in frame
 assert "clip_leaks=%u" in frame and "low_pool_frames=%u" in frame
+assert "pool_reset_waits=%u" in frame and "pool_reset_idle=%u" in frame
 assert "pool_min_scene=%s" in frame and "5000000ULL" in frame
-assert "skin::gpuSyncTest = true;" in source
-assert "gpu_sync_test.flag" not in source
-assert "forced for diagnostic build" in source
 assert "if (i < 0) { vita2d_disable_clipping(); return; }" in source
 assert "if(w<=36)" in source
-assert "skin::beforeFrame();" in main
-print("GPU diagnostic and frame guard source checks OK")
+flush = body("void FullCatalogScreen::flushDeferredTextureFrees()", "void FullCatalogScreen::")
+assert flush.index("vita2d_wait_rendering_done();") < flush.index("skin::recycleAfterIdle();")
+print("Batched GPU arena and safe recycling source checks OK")
