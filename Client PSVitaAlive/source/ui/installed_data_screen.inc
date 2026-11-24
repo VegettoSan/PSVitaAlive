@@ -799,14 +799,12 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                     ::psvitaalive::L(warningKeys[i]),false);
         }
         skin::surface(skin::ui_atlas::ui_button_secondary,firstButtonX,buttonsY,BW,BH,SURFACE2);
-        vita2d_draw_rectangle(firstButtonX,buttonsY,BW,2,BORDER);
+        if (!skin::ready()) vita2d_draw_rectangle(firstButtonX,buttonsY,BW,2,BORDER);
         skin::surface(skin::ui_atlas::ui_button_primary,firstButtonX+BW+GAP,buttonsY,BW,BH,ACCENT);
         const char* cancelText=::psvitaalive::L("ID_CONFIRM_CANCEL_BUTTON");
         const char* deleteText=::psvitaalive::L("ID_CONFIRM_DELETE_BUTTON");
-        drawMarqueeText(&font_,firstButtonX+12,buttonsY+31,BW-24,
-            WHITE,.92f,cancelText,false);
-        drawMarqueeText(&font_,firstButtonX+BW+GAP+12,buttonsY+31,
-            BW-24,BG,.92f,deleteText,false);
+        skin::hint(&font_,firstButtonX+12,buttonsY+31,BW-24,WHITE,.92f,cancelText,true,28);
+        skin::hint(&font_,firstButtonX+BW+GAP+12,buttonsY+31,BW-24,BG,.92f,deleteText,true,28);
         return;
     }
     constexpr int W = 864, H = 500, VISIBLE = 3, ROW = 90;
@@ -845,7 +843,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             ::psvitaalive::L(preparingFiles ? "ID_OP_PREPARE_EXPLAIN" :
                 removingFiles ? "ID_OP_FILES_EXPLAIN" : "ID_OP_APP_EXPLAIN"));
         const int barX=x+30,barY=y+236,barW=W-60;
-        vita2d_draw_rectangle(barX,barY,barW,23,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,23,SURFACE2);
         char counter[32];
         if (removingFiles) {
             const uint64_t total = prog.entriesTotal.load(std::memory_order_acquire);
@@ -855,7 +853,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const uint32_t pct = ::psvitaalive::storage::installedDataDeletionPercent(
                 done, total);
             if (pct > 0)
-                vita2d_draw_rectangle(barX,barY,
+                skin::surface(skin::ui_atlas::ui_progress_fill,barX,barY,
                     static_cast<int>(static_cast<uint64_t>(barW)*pct/100u),
                     23,ACCENT);
             sceClibSnprintf(counter,sizeof(counter),"%u%%",pct);
@@ -872,7 +870,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                     verifying ? "ID_OP_VERIFY_STAGE" : "ID_OP_INDETERMINATE"));
             const int marker=barX+static_cast<int>(
                 (sceKernelGetProcessTimeWide()/19000ULL)%(barW-40));
-            vita2d_draw_rectangle(marker,barY+18,40,4,ACCENT);
+            skin::surface(skin::ui_atlas::ui_progress_fill,marker,barY,40,23,ACCENT);
         }
         ::psvitaalive::ui::uiDrawText(&font_,x+30,y+420,DIM,.92f,
             ::psvitaalive::L("ID_OP_DO_NOT_CLOSE"));
@@ -898,12 +896,12 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         // The animated stripe proves that a huge individual folder is still
         // being traversed even while that percentage does not move.
         const int barX=x+28,barY=y+205,barW=W-56,barH=26;
-        vita2d_draw_rectangle(barX,barY,barW,barH,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,SURFACE2);
         const int fill=static_cast<int>((static_cast<uint64_t>(barW)*pct)/100);
-        if(fill>0) vita2d_draw_rectangle(barX,barY,fill,barH,ACCENT);
+        if(fill>0) skin::surface(skin::ui_atlas::ui_progress_fill,barX,barY,fill,barH,ACCENT);
         const int scanX=barX+static_cast<int>(
             (sceKernelGetProcessTimeWide()/18000ULL) % (barW-44));
-        vita2d_draw_rectangle(scanX,barY+barH-6,44,4,ACCENT);
+        skin::surface(skin::ui_atlas::ui_progress_fill,scanX,barY+barH-6,44,4,ACCENT);
         sceClibSnprintf(textLine,sizeof(textLine),"%s %u",
             ::psvitaalive::L("ID_FOLDERS_FOUND"),
             prog.rootsFound.load(std::memory_order_relaxed));
@@ -918,8 +916,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             ::psvitaalive::L(phase==1 ? "ID_DISCOVERING" :
                 "ID_SCAN_LIMIT_HINT"));
         if(installedDataAction_ < 0)
-            ::psvitaalive::ui::uiDrawText(&font_,x+28,y+H-28,DIM,.92f,
-                ::psvitaalive::L("ID_CANCEL_SCAN"));
+            skin::hint(&font_,x+28,y+H-28,W-56,DIM,.92f,::psvitaalive::L("ID_CANCEL_SCAN"),false,28);
         return;
     }
     if (installedDataResultVisible_) {
@@ -964,11 +961,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         }
         ::psvitaalive::ui::uiDrawText(&font_,x+30,y+345,DIM,.90f,
             ::psvitaalive::L("ID_RESULT_RECHECK"));
-        vita2d_draw_rectangle(x+30,y+381,W-60,62,ACCENT);
-        const char* doneText=::psvitaalive::L("ID_RESULT_CONTINUE");
-        const int textW=::psvitaalive::ui::uiTextWidth(&font_,1.04f,doneText);
-        ::psvitaalive::ui::uiDrawText(&font_,x+(W-textW)/2,y+420,
-            BG,1.04f,doneText);
+        skin::surface(skin::ui_atlas::ui_button_primary,x+30,y+381,W-60,62,ACCENT);
+        skin::hint(&font_,x+46,y+420,W-92,BG,1.04f,::psvitaalive::L("ID_RESULT_CONTINUE"),true,30);
         return;
     }
     bool containsCachedSize = false;
@@ -1119,10 +1113,9 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             }
         }
         // Only render actions that are actually safe and meaningful.
-        vita2d_draw_rectangle(x+24,y+341,W-48,28,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_panel_inset,x+24,y+341,W-48,28,SURFACE2);
         const char* measureHint=::psvitaalive::L("ID_REFRESH_SIZES_HINT");
-        drawMarqueeText(&font_,x+40,y+361,W-80,TEXT,.84f,
-            measureHint,false);
+        skin::hint(&font_,x+40,y+361,W-80,TEXT,.84f,measureHint,false,23);
         bool hasData = false;
         if (app) for (const auto& p : app->paths) hasData = hasData || p.exists;
         const bool canApp = app && app->packagePresent && app->titleId!="PSVAS1178";
@@ -1148,7 +1141,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const int bx=firstX+slot*(buttonW+12), by=y+382;
             const bool on=installedDataActionFocus_==i;
             skin::surface(on?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,bx,by,buttonW,61,on?ACCENT:SURFACE2);
-            if(on) vita2d_draw_rectangle(bx,by,buttonW,3,WHITE);
+            if(on) skin::focus(bx,by,buttonW,61,BG);
             const int titleW=::psvitaalive::ui::uiTextWidth(&font_,.88f,labels[i]);
             drawMarqueeText(&font_,bx+std::max(8,(buttonW-titleW)/2),
                 by+26,buttonW-16,on?BG:WHITE,.88f,labels[i],false);
@@ -1160,6 +1153,5 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             ::psvitaalive::ui::uiDrawText(&font_,x+32,y+416,DIM,.95f,
                 ::psvitaalive::L("ID_UNSAFE"));
     }
-    drawMarqueeText(&font_,x+29,y+H-27,W-58,DIM,.89f,
-        ::psvitaalive::L("ID_CONTROLS"),false);
+    skin::hint(&font_,x+29,y+H-27,W-58,DIM,.89f,::psvitaalive::L("ID_CONTROLS"),false,27);
 }
