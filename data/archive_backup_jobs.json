@@ -8,6 +8,14 @@
       "filename": "nfs-carbon v0.1.6.vpk",
       "status": "TRANSFER_PREPARED",
       "created_at": "2026-11-23T23:35:11+00:00"
+    },
+    "nitronic-rush": {
+      "version": "1.1",
+      "source_url": "https://github.com/arielxflores/NitronicRush-Vita/releases/download/v1.1/NitronicRush-Vita.vpk",
+      "archive_identifier": "nitronic-rush-for-the-ps-vita",
+      "filename": "nitronic-rush v1.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-24T23:56:10+00:00"
     }
   }
 }
