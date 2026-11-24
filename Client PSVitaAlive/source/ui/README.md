@@ -18,6 +18,14 @@ Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00
 - Essential plugins modal and plugin **reboot** modal
 - Report / data-request confirms
 
+## Controller-only navigation (Vita / PlayStation TV)
+
+- The initial focus is the application grid. D-pad or left stick navigates the grid as before; a fresh Up at the first row enters the active tab, and Down at the final row enters the footer.
+- START cycles catalog → header → footer → catalog after startup; in the header, Down reaches the tabs and Up from the tabs reaches the header. In the split detail view, START preserves the existing detail navigation.
+- X activates the selected search, clear-search, filter, catalog tab, Discord, report or UX0 storage button; Circle returns to catalog focus from the surrounding controls. Existing L/R, Triangle, Square and SELECT shortcuts remain available.
+- Only the focused surrounding control receives a thin theme-colored frame. Touch hides the controller focus and resets its zone to the catalog without discarding the selected item; physical navigation restores it.
+- The shared navigation policy is in `include/ui/navigation_focus.hpp`. Loading and modal input ownership remain in FullCatalogScreen. START never exits the process and retains its keyboard-confirm behavior.
+
 ## Built-in QWERTY modal (Sony IME retired)
 
 **Code:** `include/ui/search_keyboard.hpp`, `source/ui/search_keyboard.cpp`, `source/ui/full_catalog_screen.cpp` and `source/main.cpp`.
