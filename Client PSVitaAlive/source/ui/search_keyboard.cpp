@@ -73,6 +73,7 @@ bool SearchKeyboard::open(const std::string& initial, const std::string& title,
     numbers_ = more_ = shift_ = false;
     closing_ = accepted_ = ready_ = eraseHeld_ = false;
     focused_ = 0;
+    lastInputSource_ = InputSource::None;
     touchBackspace_ = -1;
     openedAtUs_ = timeUs();
     closeAtUs_ = nextNavUs_ = nextEraseUs_ = 0;
@@ -273,6 +274,7 @@ void SearchKeyboard::update() {
     }
 
     if (down && !touchWasDown_ && touchKey >= 0) {
+        lastInputSource_ = InputSource::Touch;
         touchBackspace_ = (keys_[touchKey].action == Action::Backspace) ? touchKey : -1;
         activate(touchKey, now);
     }
@@ -296,6 +298,7 @@ void SearchKeyboard::update() {
     if (nav != lastNav_) {
         nextNavUs_ = now + 290000ULL;
     }
+    if (pressed || nav) lastInputSource_ = InputSource::Controller;
     if (nav && (nav != lastNav_ || now >= nextNavUs_)) {
         if (nav & SCE_CTRL_LEFT) navigate(-1);
         else if (nav & SCE_CTRL_RIGHT) navigate(1);
