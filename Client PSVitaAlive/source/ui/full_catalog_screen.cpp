@@ -11942,6 +11942,10 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         std::string result; bool accepted=false;
         if(keyboard_.takeResult(result,accepted)) {
             chromeConfirmAwaitRelease_ = true;
+            if (keyboard_.lastInputSource() == SearchKeyboard::InputSource::Touch)
+                navigationFocus_.touch();
+            else if (keyboard_.lastInputSource() == SearchKeyboard::InputSource::Controller)
+                navigationFocus_.controller();
             const int target=feedbackKeyboardField_;
             feedbackKeyboardField_=0;
             if(accepted && target==1 && reportConfirmVisible_) {
