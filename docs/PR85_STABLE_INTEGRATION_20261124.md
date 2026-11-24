@@ -6,7 +6,7 @@
 **Rama de aislamiento utilizada:** `fix/pr85-stable-space-preflight-20261124`.  
 **Release:** no se publicó una nueva versión al fusionar; que el código esté en `main` no implica que los usuarios de la release instalada lo tengan.
 
-> **Seguimiento de integración separada:** tras #110, el usuario solicitó incorporar también la **ruta rápida de apertura de archivos ya existentes** observada en el Build #645. Está aislada y documentada en [ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md](ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md). Los puntos de este documento corresponden exclusivamente al alcance de **PR #110**; la rama paralela y el problema de crear archivos nuevos siguen sin resolverse.
+> **Seguimiento posterior — PR #113 integrado en main:** tras #110, se incorporó por separado la **apertura directa de archivos existentes** validada funcionalmente en Build #645. El [PR #113](https://github.com/VegettoSan/PSVitaAlive/pull/113) se fusionó con commit [`fb21bc0e3038d65137c7dd7b1ba6055176031485`](https://github.com/VegettoSan/PSVitaAlive/commit/fb21bc0e3038d65137c7dd7b1ba6055176031485). Ver [ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md](ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md). La lista histórica de este documento describe **solo PR #110**; el pipeline ZIP, la reanudación CRC32 (PR #112) y el problema de crear archivos nuevos siguen pendientes.
 
 ## Por qué se separó la integración
 
