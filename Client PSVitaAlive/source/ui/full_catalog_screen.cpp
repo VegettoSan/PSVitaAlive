@@ -2094,6 +2094,7 @@ void FullCatalogScreen::drawDiscordChip() {
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, label);
     ::psvitaalive::ui::uiDrawText(&font_, chipX + (chipW - tw)/2,
         chipY + (chipH + 20)/2 - 2, white, scale, label);
+    drawChromeFocus(FocusZone::Footer, 0, chipX, chipY, chipW, chipH);
 }
 
 void FullCatalogScreen::drawNewsOverlay() {
@@ -2246,6 +2247,7 @@ void FullCatalogScreen::drawReportChip() {
         const int th = 20;
         ::psvitaalive::ui::uiDrawText(&font_, chipX + (chipW - tw) / 2, chipY + (chipH + th) / 2 - 2, textCol, scale, lab);
     }
+    drawChromeFocus(FocusZone::Footer, 1, chipX, chipY, chipW, chipH);
 }
 
 
@@ -3194,6 +3196,7 @@ void FullCatalogScreen::setActiveCatalog(CatalogType c){
         releaseTextures();
     }
     state_.catalog=c;
+    navigationFocus_.catalog();
     // Check removable media / external installers after switching catalogs.
     invalidateInstallStatus("");
     installStatusWarmupUntilMs_ = sceKernelGetProcessTimeWide() / 1000ULL + 1500ULL;
@@ -4694,6 +4697,7 @@ void FullCatalogScreen::changeCatalog(int d){
     catalogError_.clear();
     showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::LoadingCatalog)) + " " + catalogName(n) + "...", 2200);
     state_.catalog=n;
+    navigationFocus_.catalog();
     items_.clear();
     // Drop previous catalog payload early to free RAM before the next load.
     {
@@ -4761,6 +4765,7 @@ void FullCatalogScreen::handleTouch() {
 
     SceTouchData td{};
     const int touchRet = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &td, 1);
+    if (touchRet > 0 && td.reportNum > 0) navigationFocus_.touch();
     if (archiveWarningVisible_) {
         if (touchRet > 0 && td.reportNum > 0) {
             touchDown_ = true;
@@ -6938,7 +6943,124 @@ void FullCatalogScreen::drawSettings() {
     (void)rowY;
 }
 
+bool FullCatalogScreen::chromeNavigationAvailable() const {
+    return (state_.mode == UiMode::FULL_CATALOG || state_.mode == UiMode::SPLIT_DETAIL)
+        && !startupCatalogInputPending_ && !catalogLoading_ && catalogSplashAlpha_ <= 0.01f
+        && !installProgressActive_ && !selfUpdateBusy_.load() && !gProtectionActive
+        && !newsVisible_ && !themeSetupVisible_ && !keyboard_.active()
+        && !reportConfirmVisible_ && !dataRequestConfirmVisible_ && !filterModalOpen_
+        && !webQrVisible_ && !essentialPluginsModal_ && !essentialInstallRunning_
+        && !pluginRebootModal_ && !pluginChoiceModal_ && !pspSetupModal_
+        && !savedZipActionVisible_ && !archiveWarningVisible_
+        && !storageVisible_ && !installedDataVisible_
+        && installAllPhase_ == InstallAllPhase::Hidden;
+}
+
+bool FullCatalogScreen::chromeFocusVisible(FocusZone zone) const {
+    return navigationFocus_.visible && navigationFocus_.zone == zone &&
+        chromeNavigationAvailable();
+}
+
+void FullCatalogScreen::drawChromeFocus(FocusZone zone, int index,
+                                        int x, int y, int w, int h) const {
+    if (!chromeFocusVisible(zone) || navigationFocus_.index != index || w < 8 || h < 8)
+        return;
+    // One thin, steady theme-colored frame; the dark inner edge makes it
+    // readable on bright buttons too. No extra textures or flashing.
+    const auto frame = [](int px, int py, int pw, int ph, int t, unsigned color) {
+        vita2d_draw_rectangle(px, py, pw, t, color);
+        vita2d_draw_rectangle(px, py + ph - t, pw, t, color);
+        vita2d_draw_rectangle(px, py, t, ph, color);
+        vita2d_draw_rectangle(px + pw - t, py, t, ph, color);
+    };
+    frame(x + 1, y + 1, w - 2, h - 2, 2, ACCENT);
+    frame(x + 3, y + 3, w - 6, h - 6, 1, BG);
+}
+
+bool FullCatalogScreen::handleChromeNavigation(uint32_t pressed, uint32_t nav,
+                                               uint32_t direct) {
+    if (!chromeNavigationAvailable()) return false;
+    const bool filters = canShowFilterButton();
+    const bool clear = !searchQuery_.empty();
+    const int tabs = static_cast<int>(CatalogType::Count);
+    const int activeTab = static_cast<int>(state_.catalog);
+    navigationFocus_.normalize(clear, filters, tabs);
+    if (pressed & SCE_CTRL_START) {
+        navigationFocus_.controller();
+        navigationFocus_.cycle();
+        return true;
+    }
+    // Existing shortcuts retain priority over chrome selection.
+    if (pressed & (SCE_CTRL_TRIANGLE | SCE_CTRL_SQUARE)) {
+        navigationFocus_.catalog();
+        return false;
+    }
+    if (navigationFocus_.zone == FocusZone::Catalog) {
+        if (state_.mode != UiMode::FULL_CATALOG) return false;
+        const int count = static_cast<int>(catalogView().size());
+        // Only a fresh directional edge crosses a zone boundary. Holding
+        // Down still scrolls the list rather than skipping through buttons.
+        if ((direct & SCE_CTRL_UP) && !(direct & SCE_CTRL_DOWN) &&
+            (count == 0 || state_.focusIndex < GRID_COLS)) {
+            navigationFocus_.tab(activeTab);
+            return true;
+        }
+        if ((direct & SCE_CTRL_DOWN) && !(direct & SCE_CTRL_UP) &&
+            (count == 0 || state_.focusIndex / GRID_COLS == (count - 1) / GRID_COLS)) {
+            navigationFocus_.footer();
+            return true;
+        }
+        return false;
+    }
+    if (pressed & SCE_CTRL_CIRCLE) {
+        navigationFocus_.catalog();
+        return true;
+    }
+    if (pressed & SCE_CTRL_CROSS) {
+        switch (navigationFocus_.zone) {
+        case FocusZone::Header:
+            if (navigationFocus_.index == 0 && searchRequest_) searchRequest_(searchQuery_);
+            else if (navigationFocus_.index == 1 && clear) {
+                applySearch("");
+                navigationFocus_.header();
+            } else if (navigationFocus_.index == 2 && filters) openFilterMenu();
+            break;
+        case FocusZone::Tabs:
+            if (navigationFocus_.index != activeTab)
+                changeCatalog(navigationFocus_.index - activeTab);
+            else navigationFocus_.catalog();
+            break;
+        case FocusZone::Footer:
+            if (navigationFocus_.index == 0) openDiscordQrModal();
+            else if (navigationFocus_.index == 1) openReportConfirm();
+            else if (navigationFocus_.index == 2) openStorageMenu();
+            break;
+        case FocusZone::Catalog: break;
+        }
+        // Do not let the same held X activate a newly opened modal.
+        chromeConfirmAwaitRelease_ = true;
+        return true;
+    }
+    // Fresh Up/Down only between zones; left/right can repeat within a row.
+    if (nav & SCE_CTRL_LEFT)
+        navigationFocus_.move(FocusDirection::Left, clear, filters, activeTab, tabs);
+    else if (nav & SCE_CTRL_RIGHT)
+        navigationFocus_.move(FocusDirection::Right, clear, filters, activeTab, tabs);
+    else if (direct & SCE_CTRL_UP)
+        navigationFocus_.move(FocusDirection::Up, clear, filters, activeTab, tabs);
+    else if (direct & SCE_CTRL_DOWN)
+        navigationFocus_.move(FocusDirection::Down, clear, filters, activeTab, tabs);
+    return true;
+}
+
 void FullCatalogScreen::handleInput(){
+    if (chromeConfirmAwaitRelease_) {
+        SceCtrlData pad{};
+        const int ret = ::psvitaalive::ui::peekClientController(pad);
+        if (ret <= 0 || (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE | SCE_CTRL_START)))
+            return;
+        chromeConfirmAwaitRelease_ = false;
+    }
     if (installedDataVisible_) {
         SceCtrlData pad{};
         ::psvitaalive::ui::peekClientController(pad);
@@ -7169,6 +7291,7 @@ void FullCatalogScreen::handleInput(){
         pluginChoiceAwaitRelease_ = false;
     }
 if(isTransitioning())return;SceCtrlData p{};::psvitaalive::ui::peekClientController(p);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;
+if (pressed || nav) navigationFocus_.controller();
 if (!themeSetupVisible_ && !newsVisible_ &&
     (p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
         (SCE_CTRL_SELECT | SCE_CTRL_SQUARE) &&
@@ -7386,6 +7509,7 @@ if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
     }
     return;
 }if(installProgressActive_&&(pressed&SCE_CTRL_SQUARE)&&(installOutcome_==2)&&!installArchiveSourceUnavailable_&&shouldReportInstallFailure(installFailureKind_)&&!isNonReportableInstallError(installProgressMessage_)&&installProgressStage_!="Space"){trySendErrorReport("Installation failed",installProgressMessage_+" | file="+installProgressFile_);return;}if(installProgressActive_&&(pressed&SCE_CTRL_CIRCLE)){if(installOutcome_==1||installOutcome_==2||installOutcome_==3){if(installAcknowledge_)installAcknowledge_();if(installOutcome_==1&&installAllFinishedToast_){installAllFinishedToast_=false;showToast(::psvitaalive::L(::psvitaalive::TextId::ToastAllInstalled),2800);}reportUiState_=0;}else if(installCancel_)installCancel_();return;}if(installProgressActive_){if(pressed&(SCE_CTRL_CROSS|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT)){if(installOutcome_==0)showToast(::psvitaalive::L(::psvitaalive::TextId::ToastLockedCircleOnly),2400);}return;}if(catalogLoading_)return;
+if (handleChromeNavigation(pressed, nav, direct)) return;
 if((pressed&SCE_CTRL_TRIANGLE)&&state_.mode==UiMode::SPLIT_DETAIL&&
    state_.activePanel==UiPanel::Detail&&!state_.linkNavigation&&
    state_.catalog==CatalogType::Homebrew){
@@ -7460,6 +7584,10 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         ::psvitaalive::ui::uiDrawText(&font_, barX + 78, barY + 22, WHITE, 0.66f, ellipsize(searchQuery_, 20).c_str());
         ::psvitaalive::ui::uiDrawText(&font_, barX + barW - 52, barY + 21, DIM, 0.52f, ::psvitaalive::L(::psvitaalive::TextId::FilterClearHint));
     }
+    const int clearWidth = searchQuery_.empty() ? 0 : 56;
+    drawChromeFocus(FocusZone::Header, 0, barX, barY, barW - clearWidth, barH);
+    if (clearWidth)
+        drawChromeFocus(FocusZone::Header, 1, barX + barW - clearWidth, barY, clearWidth, barH);
     // Square is drawn geometrically: it works even if a .pgf font lacks '□'.
     // The label gets its own clipping strip and scrolls if localized text overflows.
     if (showContentFilter) {
@@ -7496,6 +7624,7 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         drawFilterMarqueeText(&font_, gdX + 43, FILTER_CHIP_Y + 26,
             gdW - 54, FILTER_CHIP_Y + 3, FILTER_CHIP_Y + FILTER_CHIP_H - 3,
             chipFg, 0.89f, activeFilterLabel, true);
+        drawChromeFocus(FocusZone::Header, 2, gdX, FILTER_CHIP_Y, gdW, FILTER_CHIP_H);
     }
     {
         const std::string clock = currentTimeLabel();
@@ -7538,6 +7667,12 @@ void FullCatalogScreen::drawTabs(int w){
         } else {
             ::psvitaalive::ui::uiDrawText(&font_, x + 12, HEADER_H + 24, a ? ACCENT : TEXT, a ? 0.86f : 0.76f, name);
         }
+    }
+    if (chromeFocusVisible(FocusZone::Tabs)) {
+        const int tab = navigationFocus_.index;
+        if (tab >= 0 && tab < static_cast<int>(CatalogType::Count))
+            drawChromeFocus(FocusZone::Tabs, tab, static_cast<int>(tab * tw) + 3,
+                HEADER_H + 2, static_cast<int>(tw) - 6, TABS_H - 7);
     }
     // Reuse the bottom edge of the tabs as a progress divider: no layout changes.
     if (catalogSyncActive_) {
@@ -8671,7 +8806,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 if (i < 0 || i >= (int)catalogView().size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex,
+                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex && chromeFocusVisible(FocusZone::Catalog),
                                 x + 1, y + 1, x + w - 1, y + h - 1);
                 // Re-assert panel clip: focused card marquee disables global scissor.
                 vita2d_enable_clipping();
@@ -8698,7 +8833,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)catalogView().size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex,
+            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex && chromeFocusVisible(FocusZone::Catalog) && state_.activePanel == UiPanel::Catalog,
                             x + 1, y + 1, x + w - 1, y + h - 1);
             // Re-assert panel clip: focused card marquee disables global scissor.
             vita2d_enable_clipping();
@@ -8716,7 +8851,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             vita2d_draw_rectangle(tx, yy, 4, thumb, ACCENT);
         }
         drawScrollFades(x, y, w, h);
-        if (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Catalog)
+        if (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Catalog && chromeFocusVisible(FocusZone::Catalog))
             drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, "LIST");
     }
     if (dimPanel)
@@ -8987,7 +9122,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         vita2d_draw_rectangle(x,y+LINK_SECTION_H-1,w,1,BORDER);
         ::psvitaalive::ui::uiDrawText(&font_,x+4,y+18,ACCENT,0.76f,actionTitle);
         const int by = y + LINK_SECTION_H + 4;
-        const bool fAll = state_.linkNavigation && state_.linkFocus == 0;
+        const bool fAll = chromeFocusVisible(FocusZone::Catalog) && state_.linkNavigation && state_.linkFocus == 0;
         // Same look as download rows (SURFACE2 / ACCENT focus) + soft border pulse
         const float pulse = 0.40f + 0.60f * focusPulse();
         const unsigned borderA = (unsigned)(120.f + 135.f * pulse);
@@ -9016,7 +9151,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         for (int z = 0; z < savedCount; ++z) {
             const int btnY = baseY + z * LINK_ROW_H;
             const bool focused = state_.linkNavigation &&
-                state_.linkFocus == (showAll ? 1 : 0) + z;
+                chromeFocusVisible(FocusZone::Catalog) && state_.linkFocus == (showAll ? 1 : 0) + z;
             vita2d_draw_rectangle(x, btnY, w, LINK_ROW_H, focused ? ACCENT : SURFACE2);
             vita2d_draw_rectangle(x, btnY, w, 1, focused ? ACCENT : BORDER);
             const std::string name = ellipsize(savedZipOptions[z].fileName, 46);
@@ -9038,7 +9173,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     ::psvitaalive::ui::uiDrawText(&font_, x + 4, webHeaderY + 18, ACCENT, 0.76f,
         ::psvitaalive::L("WEB_QR_SECTION"));
     const int webButtonY = webHeaderY + LINK_SECTION_H + 4;
-    const bool webFocused = state_.linkNavigation && state_.linkFocus == ((showAll ? 1 : 0) + savedCount);
+    const bool webFocused = chromeFocusVisible(FocusZone::Catalog) && state_.linkNavigation && state_.linkFocus == ((showAll ? 1 : 0) + savedCount);
     vita2d_draw_rectangle(x, webButtonY, w, LINK_ROW_H, webFocused ? ACCENT : SURFACE2);
     vita2d_draw_rectangle(x, webButtonY, w, 1, webFocused ? ACCENT : BORDER);
     ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 17,
@@ -9055,7 +9190,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
             continue;
         }
         const CatalogLink& l = it.linkDetails[row.detailIndex];
-        const bool f = state_.linkNavigation && state_.linkFocus == (row.focusIndex + focusOff);
+        const bool f = chromeFocusVisible(FocusZone::Catalog) && state_.linkNavigation && state_.linkFocus == (row.focusIndex + focusOff);
         const bool can = actionableLink(l);
         const bool pluginDone = isPluginTypeLink(l) && row.detailIndex >= 0 &&
             static_cast<size_t>(row.detailIndex) < detailPluginInstalled_.size() &&
@@ -9374,7 +9509,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     drawDetailContent(it, x, y, w, h);
     // Fade over scrollable body (below header)
     drawScrollFades(x, y + DETAIL_HEADER_H, w, std::max(1, h - DETAIL_HEADER_H));
-    if (active)
+    if (active && chromeFocusVisible(FocusZone::Catalog))
         drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, ::psvitaalive::L(::psvitaalive::TextId::PanelDetail));
 }
 
@@ -11774,7 +11909,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter), w - 56);
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawDiscordChip();if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
+void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.
@@ -11806,6 +11941,7 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
         keyboard_.update();
         std::string result; bool accepted=false;
         if(keyboard_.takeResult(result,accepted)) {
+            chromeConfirmAwaitRelease_ = true;
             const int target=feedbackKeyboardField_;
             feedbackKeyboardField_=0;
             if(accepted && target==1 && reportConfirmVisible_) {
