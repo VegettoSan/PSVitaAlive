@@ -1,4 +1,5 @@
 #include "catalog/catalog_manager.hpp"
+#include "storage/saved_zip_metadata.hpp"
 
 #include "catalog/catalog_parser.hpp"
 #include "catalog/catalog_trace.hpp"
@@ -171,6 +172,29 @@ bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
     requestedCatalog_ = catalog;
     sceKernelUnlockMutex(mutex_, 1);
     return true;
+}
+
+bool CatalogManager::savedZipAppDisplay(const std::string& appId, const std::string& titleId,
+                                       std::string& name, std::string& icon) const {
+    if (mutex_ < 0 || (appId.empty() && titleId.empty())) return false;
+    if (sceKernelLockMutex(mutex_, 1, nullptr) < 0) return false;
+    const ui::CatalogItem* found = nullptr;
+    bool ambiguous = false;
+    for (int i = 0; i < static_cast<int>(ui::CatalogType::Count) && !ambiguous; ++i) {
+        if (!cachedValid_[i]) continue;
+        for (const auto& app : cachedItems_[i]) {
+            if (!storage::savedZipMatchesApp(appId, titleId, app.id, app.titleId)) continue;
+            if (found) { ambiguous = true; break; }
+            found = &app;
+        }
+    }
+    const bool matched = found && !ambiguous;
+    if (matched) {
+        name = found->name;
+        icon = found->icon.empty() ? found->cover : found->icon;
+    }
+    sceKernelUnlockMutex(mutex_, 1);
+    return matched;
 }
 
 CatalogManager::Status CatalogManager::status()const{Status result;if(mutex_<0)return result;sceKernelLockMutex(mutex_,1,nullptr);result=status_;sceKernelUnlockMutex(mutex_,1);return result;}
