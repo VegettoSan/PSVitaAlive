@@ -512,7 +512,7 @@ private:
     void drawThemeSetupOverlay();
     void closeThemeSetup(bool save);
     void applyThemeSetupFocus();
-    void prepareImageTexture(const std::string& url, const std::string& namespaceName);
+    bool prepareImageTexture(const std::string& url, const std::string& namespaceName);
     void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void drawImageLoadingPlaceholder(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);

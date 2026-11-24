@@ -84,3 +84,27 @@ assert "heightOut = linkLayoutTotalHeight(rows) + yOff;" in links
 assert "peak_image_us=%llu" in source and "peak_draw_us=%llu" in source
 assert "saved ZIP probe slow us=%llu" in source
 print("Offscreen link culling and frame phase diagnostics checks OK")
+
+# Image performance pass: source guards for queue-only UI requests and the
+# actual decode-attempt budget (an LRU replacement leaves map size unchanged).
+image = (root / "source/ui/image_cache.cpp").read_text(encoding="utf-8")
+request = image.split("std::string ImageCache::request(",1)[1].split("void ImageCache::preload(",1)[0]
+for forbidden in ("sceIoGetstat", "cachedNormalizedPngLooksValid", "pruneSupersededVersions", "sceIoRemove"):
+    assert forbidden not in request, forbidden
+worker = image.split("int ImageCache::workerMain()",1)[1]
+assert "return !candidate.diskChecked;" in worker
+assert "cachedNormalizedPngLooksValid(job.path,maxDim)" in worker
+assert "job.diskChecked=true;" in worker
+assert worker.index("cachedNormalizedPngLooksValid(job.path,maxDim)") < worker.index("http.downloadToFile")
+assert "if(cancelledAfterNormalize){if(valid){markReady(job.path);}else{sceIoRemove(job.path.c_str());}" in worker
+assert image.count("PNG_IMAGE_FLAG_FAST") == 2
+load = body("bool FullCatalogScreen::prepareImageTexture(", "int FullCatalogScreen::detailScreenshotContentOffset(")
+assert load.index("textures_.find(path)") < load.index("imageCache_->request(url,ns)")
+assert load.index("vita2d_load_PNG_file") < load.index("evictTextureIfNeeded(ns)")
+assert "return true;" in load
+prepare = body("void FullCatalogScreen::prepareVisibleTextures()", "void FullCatalogScreen::drawImageLoadingPlaceholder(")
+assert "textures_.size()>before" not in prepare
+assert prepare.count("++loads;") == 4
+assert "||isTransitioning()" in prepare
+assert "submit_peak_us=%llu swap_peak_us=%llu" in source
+print("Image worker disk probe, decode budget and present diagnostics checks OK")

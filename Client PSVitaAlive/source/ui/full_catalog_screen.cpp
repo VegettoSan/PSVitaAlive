@@ -113,7 +113,9 @@ inline void finishFrame() {
         vita2d_disable_clipping();
     }
     const unsigned pool = vita2d_pool_free_space();
+    const uint64_t submitStart = sceKernelGetProcessTimeWide();
     vita2d_end_drawing();
+    const uint64_t swapStart = sceKernelGetProcessTimeWide();
     vita2d_swap_buffers();
     if (!skinFrameStartedUs) return;
     const uint64_t now = sceKernelGetProcessTimeWide();
@@ -121,6 +123,9 @@ inline void finishFrame() {
     skinFrameStartedUs = 0;
     static uint64_t since = now, sum = 0, worst = 0, syncWorst = 0;
     static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
+    static uint64_t submitPeak=0,swapPeak=0;
+    submitPeak=std::max(submitPeak,swapStart-submitStart);
+    swapPeak=std::max(swapPeak,now-swapStart);
     static unsigned peakPoolUsed = 0, lowPoolFrames = 0, clipLeaks = 0, invalid = 0, maxPendingFrees = 0;
     static unsigned lastResetWaits = 0, lastResetIdle = 0;
     static unsigned minFlags = 0, worstFlags = 0;
@@ -149,6 +154,10 @@ inline void finishFrame() {
             skin::poolResetWaits-lastResetWaits,skin::poolResetIdle-lastResetIdle);
         lastResetWaits=skin::poolResetWaits; lastResetIdle=skin::poolResetIdle;
         diagnostics::log(msg);
+        sceClibSnprintf(msg,sizeof(msg),"[Perf] present frames=%u elapsed_us=%llu submit_peak_us=%llu swap_peak_us=%llu",
+            frames,(unsigned long long)(now-since),(unsigned long long)submitPeak,(unsigned long long)swapPeak);
+        diagnostics::log(msg);
+        submitPeak=swapPeak=0;
         since=now; sum=worst=syncWorst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
         peakPoolUsed=lowPoolFrames=clipLeaks=invalid=maxPendingFrees=0;
         minFlags=worstFlags=0; minScene=worstScene="unknown";
@@ -7967,18 +7976,17 @@ void FullCatalogScreen::drawTabs(int w){
         }
     }
 }
-void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
+bool FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
     static std::set<std::string> failedTextureLoads;
-    if(!imageCache_||url.empty())return;
-    std::string path=imageCache_->request(url,ns);
-    if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;
-    if(failedTextureLoads.find(path)!=failedTextureLoads.end())return;
+    if(!imageCache_||url.empty())return false;
+    const std::string path=imageCache_->pathFor(url,ns);
     auto it=textures_.find(path);
-    if(it!=textures_.end()){touchTexture(path);return;}
-    evictTextureIfNeeded(ns);
-    // Avoid decoding a file the worker may still be writing.
-    SceIoStat stCheck={};
-    if(sceIoGetstat(path.c_str(),&stCheck)<0||stCheck.st_size<=0)return;
+    if(it!=textures_.end()&&it->second){touchTexture(path);return false;}
+    imageCache_->request(url,ns);
+    if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return false;
+    if(failedTextureLoads.find(path)!=failedTextureLoads.end())return false;
+    // Only completed, validated cache files are published as ready.
+    // Count a decode attempt even if it fails or replaces an LRU texture.
     vita2d_texture*t=nullptr;
     const char*e=extOf(path);
     const uint64_t perfStartUs=sceKernelGetProcessTimeWide();
@@ -7994,8 +8002,10 @@ void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
         diagnostics::log(pm);
         lastTexturePerfLogUs=perfEndUs;
     }
-    if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
+    if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return true;}
+    evictTextureIfNeeded(ns);
     textures_[path]=t;textureOrder_.push_back(path);
+    return true;
 }
 int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, int panelWidth) {
     // Exactly mirror drawDetailLinks + emitTextSection. Old visibility code
@@ -8037,13 +8047,13 @@ void FullCatalogScreen::prepareVisibleTextures(){
     // At most one new GPU texture decode per frame (avoids hitch + free/load storms).
     constexpr int kLoadsPerFrame = 1;
     // UI-first scheduling: do not enqueue missing network images while animated scroll is still moving.
-    // Already-ready cache entries may still be decoded one per frame, preserving fast cached browsing.
+    // Do not decode even cached entries while navigation or a panel transition is active.
     const float targetCatalogScroll=static_cast<float>(state_.catalogScrollRow);
     const bool catalogScrollMoving=std::fabs(targetCatalogScroll-visualCatalogScroll_)>0.08f;
     const float targetDetailScroll=static_cast<float>(state_.detailScroll);
     const bool detailScrollMoving=std::fabs(targetDetailScroll-visualDetailScroll_)>4.0f;
     const uint64_t imageNowUs=sceKernelGetProcessTimeWide();
-    const bool navigationBusy=verticalNavHeld_||imageWorkResumeAfterUs_>imageNowUs||catalogScrollMoving||detailScrollMoving;
+    const bool navigationBusy=verticalNavHeld_||imageWorkResumeAfterUs_>imageNowUs||catalogScrollMoving||detailScrollMoving||isTransitioning();
     auto syncImageNetwork=[&](const std::unordered_set<std::string>& keepSet){
         if(navigationBusy){
             // Cancel once on entry. Repeating this every frame would create log/mutex churn.
@@ -8088,7 +8098,8 @@ void FullCatalogScreen::prepareVisibleTextures(){
                 const std::string path=imageCache_->pathFor(url,"app");
                 if(path.empty())continue;
                 const bool alreadyResident=textures_.find(path)!=textures_.end();
-                prepareImageTexture(url,"app");
+                const bool attempted=prepareImageTexture(url,"app");
+                if(attempted)++loads;
                 // Check the exact image key, not texture-map size: the LRU
                 // can evict one icon while adding another in the same frame.
                 if(!alreadyResident&&textures_.find(path)!=textures_.end()){
@@ -8101,7 +8112,6 @@ void FullCatalogScreen::prepareVisibleTextures(){
                         else ++it;
                     }
                     installedDataIntroducedIconTextures_.insert(path);
-                    ++loads;
                 }
             }
         }
@@ -8135,9 +8145,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
                 if(loads>=kLoadsPerFrame) break;
                 const auto path=pathOnly(*url,"app");
                 if(path.empty()) continue;
-                const bool resident=textures_.find(path)!=textures_.end();
-                prepareImageTexture(*url,"app");
-                if(!resident&&textures_.find(path)!=textures_.end()) ++loads;
+                if(prepareImageTexture(*url,"app"))++loads;
             }
         }
         return;
@@ -8162,9 +8170,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             // Navigation gets absolute priority: no network request and no new GPU decode
             // while UP/DOWN is held, during animated motion, or during the post-release grace.
             if(navigationBusy)continue;
-            const size_t before=textures_.size();
-            prepareImageTexture(url, "app");
-            if(textures_.size()>before)++loads;
+            if(prepareImageTexture(url, "app"))++loads;
         }
         return;
     }
@@ -8212,9 +8218,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
         auto prepareOne=[&](const std::string& url, const char* ns){
             if(loads>=kLoadsPerFrame||url.empty())return;
             if(navigationBusy)return;
-            const size_t before=textures_.size();
-            prepareImageTexture(url, ns);
-            if(textures_.size()>before)++loads;
+            if(prepareImageTexture(url, ns))++loads;
         };
         for(int i=first;i<last;++i){
             const CatalogItem& it=catalogView()[i];
