@@ -1,13 +1,20 @@
 #pragma once
 #include <psp2/ctrl.h>
+#include "ui/controller_start_policy.hpp"
 
 namespace psvitaalive::ui {
 
-// START is intentionally unused throughout the client. Filter it before
-// edge detection, including any-button wakeups and startup rendering.
+// All client controller polling runs on the UI thread. Only the startup
+// phase suppresses START; normal input handlers retain their own shortcuts.
+inline ControllerStartGate clientStartGate;
+inline void finishClientControllerStartup() {
+    clientStartGate.finishStartup();
+}
+
 inline int peekClientController(SceCtrlData& pad) {
     const int result = sceCtrlPeekBufferPositive(0, &pad, 1);
-    pad.buttons &= ~static_cast<unsigned>(SCE_CTRL_START);
+    pad.buttons = clientStartGate.filter(pad.buttons,
+        static_cast<unsigned>(SCE_CTRL_START), result > 0);
     return result;
 }
 
