@@ -1,5 +1,8 @@
 # Install All: combined ux0: storage preflight (2026-10-25)
 
+> **NOTA HISTÓRICA (24/11/2026):** este documento describe la política original de octubre. Desde el merge del [PR #110](https://github.com/VegettoSan/PSVitaAlive/pull/110), **ya no es cierto** que un solo enlace de tamaño desconocido desactive el preflight conjunto, ni que los ZIP STORE se calculen con la antigua reserva de 25 % + 128 MiB. Ahora se usa la suma de paquetes seleccionados, ZIP descargado + extraído con margen, reservas mínimas por tipo y una aprobación inicial de `Install All`. Leer [política vigente](PREDOWNLOAD_SPACE_RESERVATION_20261122.md) y [registro de integración](PR85_STABLE_INTEGRATION_20261124.md). Se conserva aquí el texto original como historial técnico.
+
+
 ## Bug fixed
 
 The previous Install All wizard only logged an estimated aggregate size. It did
