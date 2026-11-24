@@ -30,5 +30,12 @@ int main() {
     constexpr uint64_t bigStart = 5ULL*1024*MiB;
     assert(parallelNextByte(bigStart, 10*MiB) == bigStart+10*MiB);
     assert(parallelPartLength(bigStart, bigStart+12*MiB-1) == 12*MiB);
+    // One failed connection may return an error body without writing bytes.
+    // The other three validated prefixes remain recoverable.
+    assert(parallelReceivedPrefixSafe(0, false, true, 503, false, false));
+    assert(parallelReceivedPrefixSafe(128*MiB, false, false, 206, true, true));
+    assert(!parallelReceivedPrefixSafe(128*MiB, false, false, 206, true, false));
+    assert(!parallelReceivedPrefixSafe(128*MiB, false, true, 206, true, true));
+    assert(!parallelReceivedPrefixSafe(0, true, false, 0, false, false));
     return 0;
 }

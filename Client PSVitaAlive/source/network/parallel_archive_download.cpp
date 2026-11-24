@@ -490,6 +490,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     // HTTP 206 probe proves the same resource size and strong validator.
     RangeCheckpoint checkpoint;
     const std::string validator = strongValidator(probeEtag, probeModified);
+    session.requiredValidator = validator; // also enforce known fresh-probe identity
     bool prefixesValid = false;
     const bool checkpointFound = readCheckpoint(destination, checkpoint);
     const bool reuse = checkpointFound &&
@@ -720,10 +721,10 @@ ParallelArchiveOutcome downloadArchiveRanges(
 
     std::string captureEtag = probeEtag;
     std::string captureModified = probeModified;
-    if (captureEtag.empty() && captureModified.empty()) {
+    if (strongValidator(captureEtag, captureModified).empty()) {
         for (const Part& p : parts) {
-            if (!p.skipped && p.status == 206 && p.validRange &&
-                (!p.etag.empty() || !p.lastModified.empty())) {
+            if (!p.skipped && p.received > 0 && p.status == 206 && p.validRange &&
+                !strongValidator(p.etag, p.lastModified).empty()) {
                 captureEtag = p.etag;
                 captureModified = p.lastModified;
                 break;
@@ -734,16 +735,12 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool rangeSafe = !ioError && !resourceIdentity.empty() &&
                      !captureValidator.empty();
     for (const Part& p : parts) {
-        if (p.ioError || (p.rangeError && (!reuse || p.received > 0)) ||
-            (p.received > 0 && (p.status != 206 || !p.validRange))) {
-            rangeSafe = false;
-            break;
-        }
-        // Every preserved received prefix must belong to the same content
-        // version. Do not combine bytes when any active server gives a
-        // different or missing validator.
-        if (!p.skipped && p.received > 0 &&
-            strongValidator(p.etag, p.lastModified) != captureValidator) {
+        // A 5xx/ignored range that wrote zero bytes cannot spoil the valid
+        // prefixes of other connections. Bytes actually written still need
+        // the full range and identity checks.
+        if (!parallelReceivedPrefixSafe(p.received, p.ioError, p.rangeError,
+                p.status, p.validRange,
+                p.skipped || strongValidator(p.etag, p.lastModified) == captureValidator)) {
             rangeSafe = false;
             break;
         }

@@ -1983,6 +1983,11 @@ HttpResult HttpClient::downloadToFile(
                 setError("connection interrupted; saved download paused");
                 return HttpResult::Cancelled;
             }
+            if (isArchive) {
+                fastResumeSourceUrl_ = url;
+                fastResumeDestination_ = destinationPath;
+                failedResumeServer_ = activeUrl;
+            }
             setError("connection interrupted; parallel checkpoint retained");
             httpDiagnostic("[HTTP] 206 verification unavailable; keeping existing checkpoint and avoiding serial truncation");
             return HttpResult::NetworkError;
