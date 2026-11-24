@@ -27,6 +27,24 @@ bool readTextFile(const std::string& path,std::string& out){out.clear();SceIoSta
 bool writeTextFile(const std::string& path,const std::string& text){SceUID fd=sceIoOpen(path.c_str(),SCE_O_WRONLY|SCE_O_CREAT|SCE_O_TRUNC,0666);if(fd<0)return false;size_t written=0;while(written<text.size()){const int result=sceIoWrite(fd,text.data()+written,(unsigned int)(text.size()-written));if(result<=0){sceIoClose(fd);return false;}written+=(size_t)result;}sceIoClose(fd);return true;}
 void parseValidators(const std::string& text,std::string& etag,std::string& modified){etag.clear();modified.clear();const size_t e=text.find("etag=");if(e!=std::string::npos){const size_t end=text.find('\n',e);etag=text.substr(e+5,end==std::string::npos?std::string::npos:end-(e+5));}const size_t m=text.find("last_modified=");if(m!=std::string::npos){const size_t end=text.find('\n',m);modified=text.substr(m+14,end==std::string::npos?std::string::npos:end-(m+14));}}
 bool validatorsMatch(const std::string& oldEtag,const std::string& oldModified,const std::string& newEtag,const std::string& newModified){const bool remoteHas=!newEtag.empty()||!newModified.empty();const bool storedHas=!oldEtag.empty()||!oldModified.empty();if(!remoteHas||!storedHas)return false;if(!newEtag.empty()&&oldEtag!=newEtag)return false;if(!newModified.empty()&&oldModified!=newModified)return false;return true;}
+// Replace only a validated payload. If the filesystem cannot replace in
+// place, retain the previous file until the new rename has succeeded.
+bool promoteCatalogCache(const std::string& temp, const std::string& path) {
+    if (sceIoRename(temp.c_str(), path.c_str()) >= 0) return true;
+    SceIoStat st{};
+    if (sceIoGetstat(path.c_str(), &st) < 0) return false;
+    const std::string backup = path + ".previous";
+    // Never overwrite an existing recovery copy.
+    if (sceIoGetstat(backup.c_str(), &st) >= 0) return false;
+    if (sceIoRename(path.c_str(), backup.c_str()) < 0) return false;
+    if (sceIoRename(temp.c_str(), path.c_str()) >= 0) {
+        sceIoRemove(backup.c_str());
+        return true;
+    }
+    if (sceIoRename(backup.c_str(), path.c_str()) < 0)
+        diagnostics::log("[CatalogManager] cache restore failed; previous file retained");
+    return false;
+}
 }
 // Compare identical remote payload without allocating a second JSON tree.
 bool filesIdentical(const std::string& left,const std::string& right){
@@ -83,11 +101,16 @@ bool CatalogManager::isBusy() const {
     return busy;
 }
 
-bool CatalogManager::request(ui::CatalogType catalog) {
+bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
     if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);
 
-    if (status_.state == State::Loading && requestedCatalog_ == catalog) {
+    if (forceNetwork && readyPending_ && readyCatalog_ == catalog && !readyItems_.empty()) {
+        // A valid publication is waiting for the main thread.
+        sceKernelUnlockMutex(mutex_, 1);
+        return true;
+    }
+    if (!forceNetwork && status_.state == State::Loading && requestedCatalog_ == catalog) {
         sceKernelUnlockMutex(mutex_, 1);
         return true;
     }
@@ -97,6 +120,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
         ++requestGeneration_;
         requestedCatalog_ = catalog;
         requestPending_ = true;
+        forceNetworkPending_ = forceNetwork;
         status_.catalog = catalog;
         status_.label = label(catalog);
         status_.message = "Switching catalog — please wait...";
@@ -109,7 +133,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
     }
 
     const int idx = static_cast<int>(catalog);
-    if (idx >= 0 && idx < static_cast<int>(ui::CatalogType::Count) &&
+    if (!forceNetwork && idx >= 0 && idx < static_cast<int>(ui::CatalogType::Count) &&
         cachedValid_[idx] && !cachedItems_[idx].empty()) {
         readyItems_ = cachedItems_[idx];
         readyCatalog_ = catalog;
@@ -140,6 +164,7 @@ bool CatalogManager::request(ui::CatalogType catalog) {
     status_.error.clear();
     status_.refreshPhase = RefreshPhase::None;
     requestPending_ = true;
+    forceNetworkPending_ = forceNetwork;
     requestedCatalog_ = catalog;
     sceKernelUnlockMutex(mutex_, 1);
     return true;
@@ -336,8 +361,8 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
         if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
-            sceIoRemove(path.c_str());
-            if (sceIoRename(temp.c_str(), path.c_str()) >= 0) {
+            const bool saved = promoteCatalogCache(temp, path);
+            if (saved) {
                 std::string etag, modified;
                 http.fetchRemoteValidators(url, etag, modified);
                 writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
@@ -346,6 +371,12 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
                 http.shutdown();
                 return true;
             }
+            // The validated download can still be displayed if caching fails.
+            diagnostics::log("[CatalogManager] soft refresh: disk save failed; using validated payload in RAM");
+            sceIoRemove(temp.c_str());
+            outItems = std::move(fresh);
+            http.shutdown();
+            return true;
         }
     }
     sceIoRemove(temp.c_str());
@@ -360,7 +391,9 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     return false;
 }
 
-bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
+bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems,
+                                 bool forceNetwork) {
+    outItems.clear();
     const std::string path = cachePath(catalog);
     const std::string meta = metadataPath(catalog);
     const std::string temp = path + ".new";
@@ -371,7 +404,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
     if (http.init() != HttpResult::Ok) return false;
     ensureZrifIndexDownloaded(catalog, http);
 
-    if (haveCache) {
+    if (haveCache && !forceNetwork) {
         std::vector<ui::CatalogItem> cached;
         if (CatalogParser::parseFile(path, cached) && !cached.empty()) {
             std::string storedText, storedEtag, storedModified;
@@ -384,14 +417,14 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
             if (validatorResult == HttpResult::Ok &&
                 validatorsMatch(storedEtag, storedModified, remoteEtag, remoteModified)) {
                 outItems = std::move(cached);
-                setStatus(State::Ready, catalog, "Using cached catalog");
+                // Worker publishes Ready together with its non-empty payload.
                 diagnostics::log(std::string("[CatalogManager] cache valid: ") + label(catalog));
                 http.shutdown();
                 return true;
             }
             if (validatorResult != HttpResult::Ok) {
                 outItems = std::move(cached);
-                setStatus(State::Ready, catalog, "Using cached catalog (offline)");
+                // Worker publishes Ready together with its non-empty payload.
                 diagnostics::log(std::string("[CatalogManager] offline/cache fallback: ") +
                                  label(catalog) + " validatorErr=" + http.lastError());
                 http.shutdown();
@@ -400,7 +433,9 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
         }
     }
 
-    setStatus(State::Loading, catalog, "Downloading catalog...");
+    setStatus(State::Loading, catalog, forceNetwork ? "Recovering catalog from network..." : "Downloading catalog...");
+    // Never resume a previous incomplete catalog download.
+    sceIoRemove(temp.c_str());
     sceKernelLockMutex(mutex_, 1, nullptr);
     status_.refreshPhase = RefreshPhase::Downloading;
     ++status_.refreshSerial;
@@ -425,8 +460,8 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
         sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
         if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
-            sceIoRemove(path.c_str());
-            if (sceIoRename(temp.c_str(), path.c_str()) >= 0) {
+            const bool saved = promoteCatalogCache(temp, path);
+            if (saved) {
                 std::string etag, modified;
                 http.fetchRemoteValidators(url, etag, modified);
                 writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
@@ -438,6 +473,11 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
                 http.shutdown();
                 return true;
             }
+            diagnostics::log("[CatalogManager] disk save failed; using validated catalog in RAM");
+            sceIoRemove(temp.c_str());
+            outItems = std::move(fresh);
+            http.shutdown();
+            return true;
         }
     }
     sceIoRemove(temp.c_str());
@@ -493,6 +533,7 @@ int CatalogManager::workerMain() {
     while (!stopping_) {
         ui::CatalogType catalog = ui::CatalogType::Homebrew;
         bool haveRequest = false;
+        bool forceNetwork = false;
         unsigned gen = 0;
 
         sceKernelLockMutex(mutex_, 1, nullptr);
@@ -501,6 +542,8 @@ int CatalogManager::workerMain() {
             gen = requestGeneration_;
             loadingGeneration_ = gen;
             requestPending_ = false;
+            forceNetwork = forceNetworkPending_;
+            forceNetworkPending_ = false;
             haveRequest = true;
             status_.state = State::Loading;
             status_.catalog = catalog;
@@ -539,7 +582,7 @@ int CatalogManager::workerMain() {
 
 #if PSVITAALIVE_CACHE_FIRST_REFRESH
         std::vector<ui::CatalogItem> diskItems;
-        if (tryLoadDiskCache(catalog, diskItems)) {
+        if (!forceNetwork && tryLoadDiskCache(catalog, diskItems)) {
             diagnostics::log(std::string("[CatalogManager] cache-first show: ") + label(catalog) +
                              " items=" + std::to_string(diskItems.size()));
             sceKernelLockMutex(mutex_, 1, nullptr);
@@ -585,7 +628,15 @@ int CatalogManager::workerMain() {
 #endif
 
         std::vector<ui::CatalogItem> loaded;
-        const bool ok = loadCatalog(catalog, loaded) && !loaded.empty();
+        bool ok = loadCatalog(catalog, loaded, forceNetwork) && !loaded.empty();
+        // No valid payload: one bounded full network recovery per load.
+        // Keep this on the existing worker and never retry a stale request.
+        if (!ok && !forceNetwork && !stopping_ && !isStale()) {
+            diagnostics::log(std::string("[CatalogManager] empty/unavailable catalog; forced recovery: ") + label(catalog));
+            sceKernelDelayThread(750 * 1000);
+            if (!stopping_ && !isStale())
+                ok = loadCatalog(catalog, loaded, true) && !loaded.empty();
+        }
 
         sceKernelLockMutex(mutex_, 1, nullptr);
         if (requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_) {
