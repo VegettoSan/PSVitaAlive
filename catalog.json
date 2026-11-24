@@ -51,6 +51,55 @@
     ]
   },
   {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.10.2",
+    "vd": "2026-11-24",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1835963,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.2/manhunt-v0.10.2-vita.vpk",
+        "sz": 1835963,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
     "id": "nfs-carbon",
     "tid": "NFSCVITA0",
     "n": "NFS Carbon",
@@ -157,6 +206,59 @@
     "ic": "https://archive.org/download/sh2-vita/icon0.png",
     "ss": [
       "https://archive.org/download/sh2-vita/icon0.png"
+    ]
+  },
+  {
+    "id": "the-sims",
+    "tid": "TSVITA001",
+    "n": "The Sims",
+    "d": "The Sims (2000) on PS Vita: an unofficial native port that plays from your own Legacy Collection files",
+    "ld": "A native PS Vita engine that plays The Sims (2000), with all seven expansion packs, from your own copy of the game's files. It isn't an emulator and not a PC port: a new engine, written for the Vita, that reads the original game's data and runs the game's own code for the Sims and their objects.",
+    "aids": [
+      "marcocatena"
+    ],
+    "cid": "ports",
+    "sids": [
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.2.1",
+    "vd": "2026-11-24",
+    "req": "- libshacccg.suprx\n- About 3 GB free on the Vita's memory card (ux0:).",
+    "sz": 5041417,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/marcocatena/TheSimsVita-release/releases/download/v1.2.1/TheSimsVita-v1.2.1.vpk",
+        "sz": 5041417,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/the-sims-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 3650722202,
+        "xp": "ux0:data/",
+        "ips": [
+          "TheSims"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/marcocatena/TheSimsVita-release"
+      }
+    ],
+    "ic": "https://archive.org/download/the-sims-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/the-sims-ps-vita/shot.png",
+      "https://archive.org/download/the-sims-ps-vita/shot0.jpg",
+      "https://archive.org/download/the-sims-ps-vita/shot1.jpg",
+      "https://archive.org/download/the-sims-ps-vita/shot2.jpg",
+      "https://archive.org/download/the-sims-ps-vita/shot3.jpg"
     ]
   },
   {
@@ -272,55 +374,6 @@
     "ic": "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/gangstar-miami-vindication-ps-vita-port/shot0.png"
-    ]
-  },
-  {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.10.1",
-    "vd": "2026-11-23",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1819197,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.10.1.vpk",
-        "sz": 1819197,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases"
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
     ]
   },
   {
@@ -1179,59 +1232,6 @@
     "ic": "https://archive.org/download/pes6-psp-port-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/pes6-psp-port-ps-vita/bg.png"
-    ]
-  },
-  {
-    "id": "the-sims",
-    "tid": "TSVITA001",
-    "n": "The Sims",
-    "d": "The Sims (2000) on PS Vita: an unofficial native port that plays from your own Legacy Collection files",
-    "ld": "A native PS Vita engine that plays The Sims (2000), with all seven expansion packs, from your own copy of the game's files. It isn't an emulator and not a PC port: a new engine, written for the Vita, that reads the original game's data and runs the game's own code for the Sims and their objects.",
-    "aids": [
-      "marcocatena"
-    ],
-    "cid": "ports",
-    "sids": [
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "1.2",
-    "vd": "2026-11-20",
-    "req": "- libshacccg.suprx\n- About 3 GB free on the Vita's memory card (ux0:).",
-    "sz": 5006776,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/the-sims-ps-vita/the-sims%20v1.2.vpk",
-        "sz": 5006776,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/the-sims-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 3650722202,
-        "xp": "ux0:data/",
-        "ips": [
-          "TheSims"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/marcocatena/TheSimsVita-release"
-      }
-    ],
-    "ic": "https://archive.org/download/the-sims-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/the-sims-ps-vita/shot.png",
-      "https://archive.org/download/the-sims-ps-vita/shot0.jpg",
-      "https://archive.org/download/the-sims-ps-vita/shot1.jpg",
-      "https://archive.org/download/the-sims-ps-vita/shot2.jpg",
-      "https://archive.org/download/the-sims-ps-vita/shot3.jpg"
     ]
   },
   {
