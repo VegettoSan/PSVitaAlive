@@ -1,5 +1,6 @@
 #include "catalog/catalog_parser.hpp"
 #include "catalog/catalog_trace.hpp"
+#include "catalog/catalog_parse_policy.hpp"
 
 #include <psp2/json.h>
 #include <psp2/sysmodule.h>
@@ -30,60 +31,22 @@ public:
     }
 };
 
-// V1/V2 compatibility: lookup legacy field first, then its short V2 alias.
-// Keep this lightweight on PS Vita; no duplicate JSON tree or string rewriting.
-const sce::Json::Value& getCatalogField(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& oldField = object[key];
-    if (oldField) return oldField;
-    static const struct { const char* oldKey; const char* newKey; } aliases[] = {
-        {"title_id", "tid"},
-        {"title_ids", "tids"},
-        {"name", "n"},
-        {"description", "d"},
-        {"author_ids", "aids"},
-        {"category_id", "cid"},
-        {"subcategory_ids", "sids"},
-        {"version", "v"},
-        {"version_date", "vd"},
-        {"date", "dt"},
-        {"icon", "ic"},
-        {"cover", "cv"},
-        {"screenshots", "ss"},
-        {"links", "l"},
-        {"status", "st"},
-        {"requirements", "req"},
-        {"size", "sz"},
-        {"extract_path", "xp"},
-        {"installed_paths", "ips"},
-        {"recommended", "rec"},
-        {"type", "t"},
-        {"url", "u"},
-        {"required_fw", "rfw"},
-        {"pkg_name", "pn"},
-        {"region", "rg"},
-        {"content_id", "coid"},
-        {"contentId", "coi"},
-        {"zrif", "zr"},
-        {"zRIF", "zR"},
-        {"license", "lic"},
-        {"required", "rq"},
-        {"section", "sec"},
-        {"line", "ln"},
-    };
-    for (const auto& alias : aliases) {
-        if (std::strcmp(key, alias.oldKey) == 0) return object[alias.newKey];
-    }
-    return oldField;
+// V1/V2 compatibility: lookup legacy field first, then its explicit compact alias.
+const sce::Json::Value& getCatalogField(const sce::Json::Value& object, const char* key,
+                                       const char* compactKey = nullptr) {
+    return catalog_parse::field(object, key, compactKey);
 }
 
-std::string getString(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& value = getCatalogField(object, key);
+std::string getString(const sce::Json::Value& object, const char* key,
+                      const char* compactKey = nullptr) {
+    const sce::Json::Value& value = getCatalogField(object, key, compactKey);
     if (!value) return {};
     return value.getString().c_str();
 }
 
-uint64_t getUnsigned(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& value = getCatalogField(object, key);
+uint64_t getUnsigned(const sce::Json::Value& object, const char* key,
+                     const char* compactKey = nullptr) {
+    const sce::Json::Value& value = getCatalogField(object, key, compactKey);
     if (!value) return 0;
     return value.getUInteger();
 }
@@ -109,25 +72,19 @@ std::string formatSize(uint64_t bytes) {
     return buffer;
 }
 
-std::string firstArrayString(const sce::Json::Value& object, const char* key) {
-    const sce::Json::Value& value = getCatalogField(object, key);
+std::string firstArrayString(const sce::Json::Value& object, const char* key,
+                             const char* compactKey = nullptr) {
+    const sce::Json::Value& value = getCatalogField(object, key, compactKey);
     if (!value) return {};
     const sce::Json::Array& array = value.getArray();
     if (array.empty()) return {};
     return value[static_cast<SceSize>(0)].getString().c_str();
 }
 
-void parseStringArray(const sce::Json::Value& object, const char* key, std::vector<std::string>& out) {
-    const sce::Json::Value& value = getCatalogField(object, key);
-    if (!value) return;
-    const sce::Json::Array& array = value.getArray();
-    for (SceSize i = 0; i < array.size(); ++i) {
-        const sce::Json::Value& entry = value[i];
-        if (entry) {
-            const std::string text = entry.getString().c_str();
-            if (!text.empty()) out.push_back(text);
-        }
-    }
+void parseStringArray(const sce::Json::Value& object, const char* key,
+                      std::vector<std::string>& out, const char* compactKey = nullptr,
+                      size_t limit = std::numeric_limits<size_t>::max()) {
+    catalog_parse::appendStrings(getCatalogField(object, key, compactKey), out, limit);
 }
 
 const char* imageCatalogPrefixForPath(const std::string& path) {
@@ -137,45 +94,30 @@ const char* imageCatalogPrefixForPath(const std::string& path) {
     return "H";
 }
 
-uint64_t fnv1a64(const std::string& value) {
-    uint64_t hash = 1469598103934665603ULL;
-    for (unsigned char c : value) {
-        hash ^= c;
-        hash *= 1099511628211ULL;
-    }
-    return hash;
-}
-
 std::string hex64(uint64_t value) {
     char buffer[24];
     sceClibSnprintf(buffer, sizeof(buffer), "%016llX", static_cast<unsigned long long>(value));
     return buffer;
 }
 
-std::string imageResourceKey(const ui::CatalogItem& item, const char* catalogPrefix, const std::string& role) {
-    const std::string owner = item.titleId.empty() ? item.id : item.titleId;
-    std::string identity = catalogPrefix ? catalogPrefix : "U";
-    identity.push_back('|');
-    identity += owner;
-    identity.push_back('|');
-    identity += role;
-    return hex64(fnv1a64(identity));
+std::string imageResourceKey(const ui::CatalogItem& item, const char* catalogPrefix,
+                             std::string_view role) {
+    const std::string& owner = item.titleId.empty() ? item.id : item.titleId;
+    return hex64(catalog_parse::imageResourceHash(catalogPrefix ? catalogPrefix : "U", owner, role));
 }
 
-std::string tagCatalogImageUrl(
-    const std::string& url,
+void tagCatalogImageUrl(
+    std::string& url,
     const char* catalogPrefix,
     const std::string& resourceKey
 ) {
-    if (url.empty() || !catalogPrefix || !*catalogPrefix || resourceKey.empty()) return url;
+    if (url.empty() || !catalogPrefix || !*catalogPrefix || resourceKey.empty()) return;
 
-    std::string tagged = url;
-    tagged += (url.find('#') == std::string::npos) ? '#' : '&';
-    tagged += IMAGE_CACHE_TAG;
-    tagged += catalogPrefix;
-    tagged.push_back(':');
-    tagged += resourceKey;
-    return tagged;
+    url += (url.find('#') == std::string::npos) ? '#' : '&';
+    url += IMAGE_CACHE_TAG;
+    url += catalogPrefix;
+    url.push_back(':');
+    url += resourceKey;
 }
 
 std::string makeDownloadFileName(const std::string& url, const std::string& id) {
@@ -225,7 +167,7 @@ void addCatalogTitleId(ui::CatalogItem& item, std::string tid) {
 }
 
 void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceUID zrifIdxFd, uint32_t* zrifWritten) {
-    const sce::Json::Value& linksValue = getCatalogField(application, "links");
+    const sce::Json::Value& linksValue = getCatalogField(application, "links", "l");
     if (!linksValue) return;
 
     const sce::Json::Array& links = linksValue.getArray();
@@ -234,13 +176,13 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
 
     for (SceSize i = 0; i < links.size(); ++i) {
         const sce::Json::Value& link = linksValue[i];
-        const std::string type = getString(link, "type");
-        const std::string name = getString(link, "name");
-        const std::string url = getString(link, "url");
+        const std::string type = getString(link, "type", "t");
+        const std::string name = getString(link, "name", "n");
+        const std::string url = getString(link, "url", "u");
         // DLC-specific IDs never identify the base game as installed.
         if (type == "Download" || type == "Downloads" || type == "download" ||
             type == "Mirror" || type == "mirror")
-            addCatalogTitleId(item, getString(link, "title_id"));
+            addCatalogTitleId(item, getString(link, "title_id", "tid"));
         if (url.empty()) continue;
 
         ui::CatalogLink detail;
@@ -249,9 +191,9 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
         detail.url = url;
         // Keep zRIF off the heap: write to sidecar index, leave detail.zrif empty.
         {
-            std::string z = getString(link, "zrif");
-            if (z.empty()) z = getString(link, "zRIF");
-            if (z.empty()) z = getString(link, "license");
+            std::string z = getString(link, "zrif", "zr");
+            if (z.empty()) z = getString(link, "zRIF", "zR");
+            if (z.empty()) z = getString(link, "license", "lic");
             if (!z.empty() && zrifIdxFd >= 0) {
                 sceIoWrite(zrifIdxFd, url.c_str(), static_cast<SceSize>(url.size()));
                 const char tab = static_cast<char>(9);
@@ -262,33 +204,33 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                 if (zrifWritten) ++(*zrifWritten);
             }
         }
-        detail.contentId = getString(link, "content_id");
-        if (detail.contentId.empty()) detail.contentId = getString(link, "contentId");
-        detail.recommended = getCatalogField(link, "recommended").getBoolean();
+        detail.contentId = getString(link, "content_id", "coid");
+        if (detail.contentId.empty()) detail.contentId = getString(link, "contentId", "coi");
+        detail.recommended = getCatalogField(link, "recommended", "rec").getBoolean();
         // Optional per-link size (numeric bytes preferred).
-        if (getCatalogField(link, "size")) {
-            const uint64_t bytes = getUnsigned(link, "size");
+        const sce::Json::Value& linkSize = getCatalogField(link, "size", "sz");
+        if (linkSize) {
+            const uint64_t bytes = linkSize.getUInteger();
             if (bytes > 0) detail.size = formatSize(bytes);
             else {
-                const std::string raw = getString(link, "size");
-                if (!raw.empty()) detail.size = raw;
+                detail.size = linkSize.getString().c_str();
             }
         }
         // Optional ZIP extract destination (skip path picker when set).
         {
-            std::string ep = getString(link, "extract_path");
+            std::string ep = getString(link, "extract_path", "xp");
             if (ep.empty()) ep = getString(link, "extractPath");
             while (!ep.empty() && (ep.front() == ' ' || ep.front() == static_cast<char>(9))) ep.erase(ep.begin());
             while (!ep.empty() && (ep.back() == ' ' || ep.back() == static_cast<char>(9))) ep.pop_back();
             if (!ep.empty()) {
                 if (ep.back() != '/' && ep.back() != ':') ep.push_back('/');
-                detail.extractPath = ep;
+                detail.extractPath = std::move(ep);
             }
         }
         // Plugin link metadata (taiHEN config append).
         {
-            detail.section = getString(link, "section");
-            detail.line = getString(link, "line");
+            detail.section = getString(link, "section", "sec");
+            detail.line = getString(link, "line", "ln");
             while (!detail.section.empty() && (detail.section.front() == ' ' || detail.section.front() == static_cast<char>(9)))
                 detail.section.erase(detail.section.begin());
             while (!detail.section.empty() && (detail.section.back() == ' ' || detail.section.back() == static_cast<char>(9)))
@@ -298,11 +240,11 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
             while (!detail.line.empty() && (detail.line.back() == ' ' || detail.line.back() == static_cast<char>(9)))
                 detail.line.pop_back();
             // Default extract_path for plugins when omitted.
-            const std::string typLower = type;
             // type is original case; compare loosely
             auto isPlugin = false;
             {
                 std::string tl;
+                tl.reserve(type.size());
                 for (char c : type) tl.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(c))));
                 isPlugin = (tl == "plugin" || tl == "plugins");
             }
@@ -310,24 +252,26 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                 detail.extractPath = "ur0:tai/";
             }
             // Presence matters: false means Optional; missing means Unspecified.
-            if (isPlugin && getCatalogField(link, "required").getType() == sce::Json::ValueType::BoolValue) {
-                detail.pluginRequirement = getCatalogField(link, "required").getBoolean()
-                    ? ui::CatalogLink::PluginRequirement::Required
-                    : ui::CatalogLink::PluginRequirement::Optional;
+            if (isPlugin) {
+                const sce::Json::Value& required = getCatalogField(link, "required", "rq");
+                if (required.getType() == sce::Json::ValueType::BoolValue) {
+                    detail.pluginRequirement = required.getBoolean()
+                        ? ui::CatalogLink::PluginRequirement::Required
+                        : ui::CatalogLink::PluginRequirement::Optional;
+                }
             }
         }
         // Keep installed_paths metadata for Game/Data Files; no scanning or
         // filesystem access during catalog parsing. Legacy links remain valid.
         if (type == "Game Files" || type == "Data Files")
-            parseStringArray(link, "installed_paths", detail.installedPaths);
-        item.linkDetails.push_back(detail);
+            parseStringArray(link, "installed_paths", detail.installedPaths, "ips");
 
         std::string display = type;
         if (!name.empty()) {
             if (!display.empty()) display += ": ";
             display += name;
         }
-        if (!display.empty()) item.links.push_back(display);
+        if (!display.empty()) item.links.push_back(std::move(display));
 
         if (type == "Download" || type == "download" || type == "Downloads") {
             const std::string fileName = makeDownloadFileName(url, item.id);
@@ -339,11 +283,12 @@ void parseLinks(const sce::Json::Value& application, ui::CatalogItem& item, SceU
                 fallbackDownloadName = fileName;
             }
         }
+        item.linkDetails.push_back(std::move(detail));
     }
 
     if (item.downloadUrl.empty() && !fallbackDownloadUrl.empty()) {
-        item.downloadUrl = fallbackDownloadUrl;
-        item.downloadFileName = fallbackDownloadName;
+        item.downloadUrl = std::move(fallbackDownloadUrl);
+        item.downloadFileName = std::move(fallbackDownloadName);
     }
 }
 
@@ -398,15 +343,17 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
     const char* imagePrefix = imageCatalogPrefixForPath(path);
     const uint64_t conversionStart=catalog_trace::nowUs();
     const sce::Json::Array& applications = root.getArray();
+    const size_t initialReserve = catalog_parse::initialItemReserve(applications.size());
+    if (outItems.capacity() < initialReserve) outItems.reserve(initialReserve);
     PSVA_TRACE_EVENT("parser_conversion_begin","entries="+std::to_string(applications.size()));
     for (SceSize i = 0; i < applications.size(); ++i) {
         const sce::Json::Value& app = root[i];
         ui::CatalogItem item;
 
         item.id = getString(app, "id");
-        item.titleId = getString(app, "title_id");
+        item.titleId = getString(app, "title_id", "tid");
         // Regional game IDs are grouped in title_ids rather than title_id.
-        const sce::Json::Value& regionIds = getCatalogField(app, "title_ids");
+        const sce::Json::Value& regionIds = getCatalogField(app, "title_ids", "tids");
         if (regionIds) {
             static const char* regions[] = {
                 "US", "EU", "JP", "AS", "ASIA", "AU", "KR", "CA", "CN", "TW",
@@ -415,28 +362,27 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
             for (const char* region : regions)
                 addCatalogTitleId(item, getString(regionIds, region));
         }
-        item.name = getString(app, "name");
-        item.description = getString(app, "description");
+        item.name = getString(app, "name", "n");
+        item.description = getString(app, "description", "d");
         // long_description skipped — was a major RAM cost on Vita Games catalog.
         if (item.description.size() > 480) item.description.resize(480);
         item.longDescription.clear();
-        item.version = getString(app, "version");
+        item.version = getString(app, "version", "v");
         const uint64_t dr = getUnsigned(app, "dr");
         item.dataRevision = (dr >= 1 && dr <= 65535) ? static_cast<uint32_t>(dr) : 0;
-        item.versionDate = getString(app, "version_date");
-        if (item.versionDate.empty()) item.versionDate = getString(app, "date");
-        item.requirements = getString(app, "requirements");
-        item.status = getString(app, "status");
-        item.category = getString(app, "category_id");
+        item.versionDate = getString(app, "version_date", "vd");
+        if (item.versionDate.empty()) item.versionDate = getString(app, "date", "dt");
+        item.requirements = getString(app, "requirements", "req");
+        item.status = getString(app, "status", "st");
+        item.category = getString(app, "category_id", "cid");
         if (item.category.empty()) item.category = getString(app, "category");
-        item.subcategory = firstArrayString(app, "subcategory_ids");
+        item.subcategory = firstArrayString(app, "subcategory_ids", "sids");
         item.changelog.clear(); // skipped for RAM (detail can show description only)
-        item.size = formatSize(getUnsigned(app, "size"));
-        item.icon = getString(app, "icon");
-        item.cover = getString(app, "cover");
-        parseStringArray(app, "screenshots", item.screenshots);
-        if (item.screenshots.size() > 4) item.screenshots.resize(4);
-        item.author = firstArrayString(app, "author_ids");
+        item.size = formatSize(getUnsigned(app, "size", "sz"));
+        item.icon = getString(app, "icon", "ic");
+        item.cover = getString(app, "cover", "cv");
+        parseStringArray(app, "screenshots", item.screenshots, "ss", 4);
+        item.author = firstArrayString(app, "author_ids", "aids");
         if (item.author.empty()) item.author = getString(app, "author");
 
         parseLinks(app, item, zrifIdxFd, &zrifWritten);
@@ -452,14 +398,14 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         // the URL. The stable resource key lets one changed image replace only
         // its own previous cached version instead of scanning a whole catalog.
         if (!item.cover.empty()) {
-            item.cover = tagCatalogImageUrl(
+            tagCatalogImageUrl(
                 item.cover,
                 imagePrefix,
                 imageResourceKey(item, imagePrefix, "cover"));
         }
 
         if (!item.icon.empty()) {
-            item.icon = tagCatalogImageUrl(
+            tagCatalogImageUrl(
                 item.icon,
                 imagePrefix,
                 imageResourceKey(item, imagePrefix, "icon"));
@@ -472,7 +418,7 @@ bool CatalogParser::parseFile(const std::string& path, std::vector<ui::CatalogIt
         for (size_t shotIndex = 0; shotIndex < item.screenshots.size(); ++shotIndex) {
             char role[24];
             sceClibSnprintf(role, sizeof(role), "shot%u", static_cast<unsigned>(shotIndex));
-            item.screenshots[shotIndex] = tagCatalogImageUrl(
+            tagCatalogImageUrl(
                 item.screenshots[shotIndex],
                 imagePrefix,
                 imageResourceKey(item, imagePrefix, role));
