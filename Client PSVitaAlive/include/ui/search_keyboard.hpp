@@ -24,6 +24,8 @@ public:
     bool open(const std::string& initial, const std::string& title,
               size_t maxCharacters = 128);
     bool active() const { return active_; }
+    enum class InputSource { None, Controller, Touch };
+    InputSource lastInputSource() const { return lastInputSource_; }
     void update();
     /** Render over the already-drawn catalog in a single vita2d frame. */
     void drawOverlay(const UiFont* font, const KeyboardPalette& colors) const;
@@ -65,6 +67,7 @@ private:
     bool more_ = false;
     bool shift_ = false;
     bool touchWasDown_ = false;
+    InputSource lastInputSource_ = InputSource::None;
     bool eraseHeld_ = false;
     unsigned previousButtons_ = 0;
     unsigned lastNav_ = 0;
