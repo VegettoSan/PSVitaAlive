@@ -75,3 +75,12 @@ assert "if(w<=36)" in source
 flush = body("void FullCatalogScreen::flushDeferredTextureFrees()", "void FullCatalogScreen::")
 assert flush.index("vita2d_wait_rendering_done();") < flush.index("skin::recycleAfterIdle();")
 print("Batched GPU arena and safe recycling source checks OK")
+
+# Perf pass: offscreen links keep their original layout and navigation indices.
+links = body("void FullCatalogScreen::drawDetailLinks(", "void FullCatalogScreen::drawDetailContent(")
+assert "if(!visible(ry,row.isSection?LINK_SECTION_H:LINK_ROW_H)) continue;" in links
+assert "if(!visible(btnY,LINK_ROW_H)) continue;" in links
+assert "heightOut = linkLayoutTotalHeight(rows) + yOff;" in links
+assert "peak_image_us=%llu" in source and "peak_draw_us=%llu" in source
+assert "saved ZIP probe slow us=%llu" in source
+print("Offscreen link culling and frame phase diagnostics checks OK")
