@@ -17,10 +17,18 @@ int main() {
     assert(bg == InstallSpaceMode::SystemBgdl);
     assert(selectInstallSpaceMode(true, true, true) == bg);
     assert(preflightRequiredSpaceBytes(0, z) == 0);
-    assert(preflightRequiredSpaceBytes(100 * MiB, z) == 137 * MiB);
+    assert(preflightRequiredSpaceBytes(100 * MiB, z) == 289 * MiB);
+    // For STORE, download (100 MiB) + extracted copy (100 MiB)
+    // coexist. Reject a card with only 180 MiB free BEFORE download.
+    assert(preflightRequiredSpaceBytes(100 * MiB, z) > 180 * MiB);
     assert(preflightRequiredSpaceBytes(100 * MiB, p) == 210 * MiB);
     assert(preflightRequiredSpaceBytes(100 * MiB, pl) == 104 * MiB);
-    assert(preflightRequiredSpaceBytes(100 * MiB, bg) == 0);
+    assert(preflightRequiredSpaceBytes(100 * MiB, bg) == 210 * MiB);
+    assert(initialInstallSpaceBytes(0, z) == 256 * MiB);
+    assert(initialInstallSpaceBytes(0, p) == 64 * MiB);
+    assert(initialInstallSpaceBytes(0, pl) == 16 * MiB);
+    assert(initialInstallSpaceBytes(0, bg) == 64 * MiB);
+    assert(initialInstallSpaceBytes(100 * MiB, z) == 289 * MiB);
     assert(preflightRequiredSpaceBytes(std::numeric_limits<uint64_t>::max(), z)
            == std::numeric_limits<uint64_t>::max());
     assert(preflightRequiredSpaceBytes(std::numeric_limits<uint64_t>::max(), p)
@@ -38,7 +46,7 @@ int main() {
     assert(manual.extraBytes == 200 * MiB);
     assert(manual.pluginBytes == 0);
     assert(manual.unknownSizeCount == 0);
-    assert(installAllQueueRequiredSpaceBytes(manual) == 538 * MiB); // 2.1x VPK floor
+    assert(installAllQueueRequiredSpaceBytes(manual) == 852 * MiB); // VPK + ZIP archive + extract + 128 MiB
 
     // An auto-selected link uses exactly the same accounting as a manual pick.
     InstallAllSpaceBudget automatic;
@@ -51,7 +59,7 @@ int main() {
     InstallAllSpaceBudget bigger;
     addInstallAllSpaceEntry(bigger, InstallAllSpaceLinkKind::App, 100 * MiB);
     addInstallAllSpaceEntry(bigger, InstallAllSpaceLinkKind::Extra, 800 * MiB);
-    assert(installAllQueueRequiredSpaceBytes(bigger) == (900 + 225 + 128) * MiB);
+    assert(installAllQueueRequiredSpaceBytes(bigger) == (210 + 1800 + 64 + 128) * MiB);
 
     // If both Game Files and Data Files go in the queue, count both.
     InstallAllSpaceBudget both;
@@ -59,26 +67,39 @@ int main() {
     addInstallAllSpaceEntry(both, InstallAllSpaceLinkKind::Extra, 800 * MiB);
     addInstallAllSpaceEntry(both, InstallAllSpaceLinkKind::Extra, 200 * MiB);
     assert(both.extraBytes == 1000 * MiB);
-    assert(installAllQueueRequiredSpaceBytes(both) == (1100 + 275 + 128) * MiB);
+    assert(installAllQueueRequiredSpaceBytes(both) == (210 + 2250 + 64 + 128) * MiB);
 
     // Approved plugins are included; unapproved plugins never enter the queue.
     InstallAllSpaceBudget withPlugin = manual;
     addInstallAllSpaceEntry(withPlugin, InstallAllSpaceLinkKind::Plugin, 30 * MiB);
     assert(withPlugin.pluginBytes == 30 * MiB);
     assert(installAllQueueRequiredSpaceBytes(withPlugin) ==
-           (210 + 200 + 30 + 128) * MiB);
+           852 * MiB + 30 * MiB + 30 * MiB / 4);
 
     // No app selected: do NOT charge item.size. ZIP-only queue is supported.
     InstallAllSpaceBudget dataOnly;
     addInstallAllSpaceEntry(dataOnly, InstallAllSpaceLinkKind::Extra, 500 * MiB);
-    assert(installAllQueueRequiredSpaceBytes(dataOnly) == (500 + 125 + 128) * MiB);
+    assert(installAllQueueRequiredSpaceBytes(dataOnly) == (1125 + 64 + 128) * MiB);
 
     // Missing sizes are explicitly reported, not replaced with item.size.
     InstallAllSpaceBudget missing;
     addInstallAllSpaceEntry(missing, InstallAllSpaceLinkKind::Extra, 0);
     assert(missing.extraBytes == 0);
     assert(missing.unknownSizeCount == 1);
-    assert(installAllQueueRequiredSpaceBytes(missing) == 0);
+    assert(installAllQueueRequiredSpaceBytes(missing) == (128 + 256) * MiB);
+    // Missing metadata must NOT disable the preflight for known files.
+    InstallAllSpaceBudget mixed = manual;
+    addInstallAllSpaceEntry(mixed, InstallAllSpaceLinkKind::Extra, 0);
+    assert(installAllQueueRequiredSpaceBytes(mixed) == (852 + 256) * MiB);
+    InstallAllSpaceBudget unknownPlugin;
+    addInstallAllSpaceEntry(unknownPlugin, InstallAllSpaceLinkKind::Plugin, 0);
+    assert(installAllQueueRequiredSpaceBytes(unknownPlugin) == (128 + 16) * MiB);
+    InstallAllSpaceBudget unknownVpk;
+    addInstallAllSpaceEntry(unknownVpk, InstallAllSpaceLinkKind::App, 0);
+    assert(installAllQueueRequiredSpaceBytes(unknownVpk) == (128 + 64) * MiB);
+    // The combined preflight is checked once before any Install All step.
+    assert(installAllQueueRequiredSpaceBytes(mixed) >
+           installAllQueueRequiredSpaceBytes(manual));
     assert(chooseSelectedLinkSizeBytes(0, 300 * MiB, "mirror.vpk", "main.vpk") == 0);
 
     // Retain the existing 2.1x VPK staging and saturating-overflow guarantees.
@@ -97,15 +118,30 @@ int main() {
     assert(remainingInstallSpaceBytes(100 * MiB, 25 * MiB,
                                       InstallSpaceMode::DirectPackage) == 185 * MiB);
     assert(remainingInstallSpaceBytes(100 * MiB, 0, InstallSpaceMode::ZipArchive)
-           == 137 * MiB);
+           == 289 * MiB);
     assert(remainingInstallSpaceBytes(100 * MiB, 100 * MiB, InstallSpaceMode::ZipArchive)
-           == 37 * MiB);
+           == 189 * MiB);
     assert(remainingInstallSpaceBytes(100 * MiB, 200 * MiB, InstallSpaceMode::ZipArchive)
-           == 0);
+           == 89 * MiB);
     assert(remainingInstallSpaceBytes(0, 0, InstallSpaceMode::DirectPackage) == 0);
     assert(remainingInstallSpaceBytes(std::numeric_limits<uint64_t>::max(), 42,
                                       InstallSpaceMode::DirectPackage) ==
            std::numeric_limits<uint64_t>::max() - 42);
+    // Minecraft and BT4 regression: metadata for huge STORE ZIPs cannot
+    // pass with room for just one copy of their downloaded archive.
+    const uint64_t minecraftZip = 1181116006ULL; // Catalog hint; real response can differ.
+    const uint64_t bt4Zip = 5905580032ULL;
+    const uint64_t minecraftRequired = preflightRequiredSpaceBytes(minecraftZip, z);
+    const uint64_t bt4Required = preflightRequiredSpaceBytes(bt4Zip, z);
+    assert(minecraftRequired == minecraftZip * 2 + minecraftZip / 4 + 64 * MiB);
+    assert(bt4Required == bt4Zip * 2 + bt4Zip / 4 + 64 * MiB);
+    assert(minecraftRequired > minecraftZip * 2);
+    assert(bt4Required > bt4Zip * 2);
+    InstallAllSpaceBudget minecraftAll;
+    addInstallAllSpaceEntry(minecraftAll, InstallAllSpaceLinkKind::App, 18035507ULL);
+    addInstallAllSpaceEntry(minecraftAll, InstallAllSpaceLinkKind::Extra, minecraftZip);
+    assert(installAllQueueRequiredSpaceBytes(minecraftAll) >
+           minecraftRequired + 128 * MiB);
     // Missing metadata is detected by the existing queue budget.
     assert(missing.unknownSizeCount != 0);
     assert(manual.unknownSizeCount == 0);

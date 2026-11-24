@@ -81,7 +81,8 @@ public:
         const std::string& displayTitle = std::string(),
         uint64_t expectedBytes = 0,
         const std::string& pluginSection = std::string(),
-        const std::string& pluginLine = std::string()
+        const std::string& pluginLine = std::string(),
+        bool installAllSpaceApproved = false // checked once, before batch start
     );
     void cancel();
     /** Testing-only cooperative stop; preserves serial partial bytes. */

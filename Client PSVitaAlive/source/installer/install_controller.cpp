@@ -851,7 +851,8 @@ bool InstallController::requestInstall(
     const std::string& displayTitle,
     uint64_t expectedBytes,
     const std::string& pluginSection,
-    const std::string& pluginLine
+    const std::string& pluginLine,
+    bool installAllSpaceApproved
 ) {
     if (url.empty() || fileName.empty() || busy()) return false;
     // Game Files / Data Files are extraction-only. Do not enqueue a download
@@ -925,16 +926,26 @@ bool InstallController::requestInstall(
         pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline;
     const bool wantBgdl = pkgInstall && !pspPs1Adrenaline;
 
-    // ZIP preflight covers compressed download only; ZipExtractor later checks
-    // the *actual uncompressed* size. System BGDL never uses this local budget.
+    // Always reserve the downloaded payload AND its expected installed size
+    // before enqueuing. For STORE ZIPs this includes both copies on ux0.
+    // The extractor's exact post-download ZIP scan remains an emergency
+    // safeguard for unexpected expansion/corruption, not a second estimate.
+    // For unknown catalog sizes, enforce a minimum and check HTTP headers
+    // before writing body bytes.
     const bool isZipExtraction = !isPluginLinkType(linkType) && !zipDestination.empty() &&
         (isDataOrGameFilesLinkType(linkType) || FormatDetector::extensionOf(fileName) == "zip");
     const InstallSpaceMode budgetMode = selectInstallSpaceMode(
         wantBgdl, isZipExtraction, isPluginLinkType(linkType));
-    const uint64_t requiredSpace = preflightRequiredSpaceBytes(expectedBytes, budgetMode);
-    if (wantBgdl) diagnostics::log("[Installer] space preflight delegated to system BGDL");
+    const uint64_t requiredSpace = initialInstallSpaceBytes(expectedBytes, budgetMode);
+    if (wantBgdl) diagnostics::log("[Installer] PKG space preflight on ux0 before system BGDL");
 
-    if (requiredSpace > 0) {
+    // A successful Install All wizard already checked the COMPLETE batch.
+    // Do not re-charge previous downloads or extracted folders in later
+    // steps. Unknown/changed authoritative HTTP size and runtime I/O
+    // safeguards still protect against actual exhaustion.
+    if (installAllSpaceApproved) {
+        diagnostics::log("[Installer] Install All: using approved initial batch space preflight (no duplicate per-step estimate)");
+    } else if (requiredSpace > 0) {
         uint64_t freeB = 0, totalB = 0;
         if (StorageManager::queryUx0Space(freeB, totalB)) {
             const uint64_t needExact = requiredSpace;
@@ -965,12 +976,26 @@ bool InstallController::requestInstall(
             diagnostics::log(std::string("[Installer] space check OK need=") +
                              formatBytesShort(needExact) + " free=" + formatBytesShort(freeB));
         } else {
-            diagnostics::log("[Installer] ux0 space probe failed; skipping pre-check");
+            // Never start a download if ux0 free space is unknown. Starting a
+            // large ZIP without a valid capacity probe caused late failures.
+            setFileName(niceTitle.empty() ? fileName.c_str() : niceTitle.c_str());
+            setStage("Space");
+            setInstallPath("");
+            setTitleId("");
+            liveAreaOk_.store(false);
+            current_.store(0);
+            total_.store(expectedBytes);
+            speed_.store(0);
+            resultShownAtMs_.store(0);
+            setState(InstallStatus::State::Failed,
+                     ::psvitaalive::L("ALL_SPACE_READ_FAILED"));
+            diagnostics::log("[Installer] blocked before download: cannot read actual ux0 free space");
+            resultShownAtMs_.store(sceKernelGetSystemTimeWide() / 1000ULL);
+            return true;
         }
-    } else {
-        if (!wantBgdl)
-            diagnostics::log("[Installer] no usable payload size hint; space pre-check skipped");
     }
+    if (expectedBytes == 0)
+        diagnostics::log("[Installer] unknown catalog size: using minimum initial reserve; server headers must determine real size before payload");
 
     installCancelRequested_.store(false, std::memory_order_release);
     activeZrif_ = zrif;
