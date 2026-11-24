@@ -30,9 +30,12 @@ bool validatorsMatch(const std::string& oldEtag,const std::string& oldModified,c
 // Replace only a validated payload. If the filesystem cannot replace in
 // place, retain the previous file until the new rename has succeeded.
 bool promoteCatalogCache(const std::string& temp, const std::string& path) {
-    if (sceIoRename(temp.c_str(), path.c_str()) >= 0) return true;
     SceIoStat st{};
-    if (sceIoGetstat(path.c_str(), &st) < 0) return false;
+    const bool exists = sceIoGetstat(path.c_str(), &st) >= 0;
+    // Never rename a directory masquerading as a catalog file.
+    if (exists && SCE_S_ISDIR(st.st_mode)) return false;
+    if (sceIoRename(temp.c_str(), path.c_str()) >= 0) return true;
+    if (!exists) return false;
     const std::string backup = path + ".previous";
     // Never overwrite an existing recovery copy.
     if (sceIoGetstat(backup.c_str(), &st) >= 0) return false;
@@ -242,6 +245,17 @@ void ensureZrifIndexDownloaded(ui::CatalogType catalog, HttpClient& http) {
 bool CatalogManager::tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems) {
     outItems.clear();
     const std::string path = cachePath(catalog);
+    // A power loss between the two rename operations can leave the
+    // previous file alone. Restore it before validating the disk cache.
+    SceIoStat original{}, previous{};
+    const std::string backup = path + ".previous";
+    if (sceIoGetstat(path.c_str(), &original) < 0 &&
+        sceIoGetstat(backup.c_str(), &previous) >= 0 &&
+        !SCE_S_ISDIR(previous.st_mode) &&
+        sceIoRename(backup.c_str(), path.c_str()) >= 0) {
+        sceIoRemove(metadataPath(catalog).c_str());
+        diagnostics::log("[CatalogManager] restored previous catalog after interrupted cache replacement");
+    }
     const uint64_t t=catalog_trace::nowUs();
     SceIoStat stat{};
     if(!fileExists(path)){PSVA_TRACE_EVENT("disk_miss",label(catalog));return false;}
@@ -475,6 +489,9 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
             }
             diagnostics::log("[CatalogManager] disk save failed; using validated catalog in RAM");
             sceIoRemove(temp.c_str());
+            sceKernelLockMutex(mutex_, 1, nullptr);
+            status_.refreshPhase = RefreshPhase::Updated;
+            sceKernelUnlockMutex(mutex_, 1);
             outItems = std::move(fresh);
             http.shutdown();
             return true;
