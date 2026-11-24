@@ -24,7 +24,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/irxd/guitar-hero-vita/releases/download/v0.2.3/ghvita-v0.2.3.vpk",
+        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/gh-vita%20v0.2.3.vpk",
         "sz": 4110349,
         "rec": true
       },
@@ -134,7 +134,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.2.1/sh2vita.vpk",
+        "u": "https://archive.org/download/sh2-vita/silent-hill-2%20v0.2.1.vpk",
         "sz": 1313767,
         "rec": true
       },
@@ -347,7 +347,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/PupueStudios/mkds-vita/releases/download/v1.2/mkds.vpk",
+        "u": "https://archive.org/download/mario-kart-ds-vita/mario-kart-ds%20v1.2.vpk",
         "sz": 2288161,
         "rec": true
       },
