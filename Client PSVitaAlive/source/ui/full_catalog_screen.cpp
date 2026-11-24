@@ -3181,6 +3181,8 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     installStatusWarmupUntilMs_=sceKernelGetProcessTimeWide()/1000ULL+1500ULL;
     catalogLoading_=false;
     catalogError_.clear();
+    diagnostics::log(std::string("[CatalogPerf] ui_refresh items=") + std::to_string(allItems_.size()) +
+        " ms=" + std::to_string((psvitaalive::catalog_trace::nowUs()-t)/1000ULL));
     PSVA_TRACE_DURATION("ui_refresh_preserve_state",t,
         "items="+std::to_string(allItems_.size())+
         " selected_found="+std::to_string(found>=0?1:0));
