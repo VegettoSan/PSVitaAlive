@@ -47,4 +47,19 @@ assert "emptyCatalogRecoveryRequested[recoveryIndex] = true;" in main
 assert "catalogs.request(recoveryCatalog, true)" in main
 assert "csBusy.state == psvitaalive::CatalogManager::State::Failed" in main
 
+# Applying a downloaded catalog must not issue another HEAD request.
+# Metadata must identify the downloaded bytes, not a later server revision.
+for loader in (hard, soft):
+    after_download = loader.split("const HttpResult result = http.downloadToFile(", 1)[1]
+    assert "fetchRemoteValidators(" not in after_download
+    assert "http.lastEtag()" in after_download
+    assert "http.lastModified()" in after_download
+    assert "[CatalogPerf] apply catalog=" in after_download
+
+http = (root / "source/network/http_client.cpp").read_text(encoding="utf-8")
+parallel = http.split("lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;", 1)[1].split("return HttpResult::Ok;", 1)[0]
+assert "if (!isArchive)" in parallel
+assert "lastEtag_ = rangeProbe.etag;" in parallel
+assert "lastModified_ = rangeProbe.lastModified;" in parallel
+
 print("Catalog recovery source integration checks passed")
