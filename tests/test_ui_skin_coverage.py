@@ -30,3 +30,26 @@ for start,end in [
     assert not re.search(r"vita2d_draw_rectangle\([^;]*,\s*WHITE\s*\);",body(start,end))
 assert "skin::ui_atlas::ui_dialog" in main and "skin::hint(&font,boxX+28" in main
 print("Second-pass UI skin coverage OK")
+
+# Third pass: installed data operations, explicit controller shortcuts and
+# footer layout. These are source guards; actual readability is tested on Vita.
+installed = (root / "source/ui/installed_data_screen.inc").read_text(encoding="utf-8")
+hints = (root / "include/ui/skin_hints.hpp").read_text(encoding="utf-8")
+inspector = installed.split("void FullCatalogScreen::drawInstalledDataOverlay()",1)[1]
+assert not re.search(r"vita2d_draw_rectangle\([^;]*,\s*WHITE\s*\);",inspector)
+assert "ui_progress_track,barX,barY,barW,23" in inspector
+assert "ui_progress_track,barX,barY,barW,barH" in inspector
+assert re.search(r'skin::hint\([^;]*"ID_RESULT_CONTINUE"',inspector)
+assert re.search(r'skin::hint\([^;]*"ID_CONTROLS"',inspector)
+summary = body("void FullCatalogScreen::drawInstallAllSummary()", "void FullCatalogScreen::drawInstallAllOverlay()")
+assert re.search(r'skin::hint\([^;]*"ALL_REPORT_SELECT_REPORT_HINT"',summary)
+assert "ctrl_cross_classic,action,action" in summary
+assert "ctrl_select,lab,lab" in summary
+download = body("const int cancelH = DOWNLOAD_TOUCH_BUTTON_H;", "void drawFooterBar(")
+assert "ctrl_square_classic,label,plab" in download
+assert "ctrl_touch_front" not in download
+assert "skin::footer(font,12,SCREEN_H-FOOTER_H" in source
+assert "constexpr int glyphSize=22" in hints
+assert "ctrl_triangle_classic,barX+barW-30" in source
+assert "sx+padX+iconW,cy+17" in source
+print("Third-pass control and storage skin coverage OK")
