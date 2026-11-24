@@ -34,6 +34,9 @@ jobs:
             -o /tmp/psvitaalive-web-url-test
           /tmp/psvitaalive-web-url-test
 
+      - name: Verify Vita and web catalog field mappings
+        run: python3 scripts/catalog_schema_v2_consumers_test.py
+
       - name: Test catalog parser compatibility and bounded allocations
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
