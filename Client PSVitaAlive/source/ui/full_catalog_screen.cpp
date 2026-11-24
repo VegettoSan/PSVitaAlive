@@ -466,7 +466,7 @@ BatteryDisplayState batteryDisplayState() {
     return cached;
 }
 
-// The outlined icon uses only vita2d rectangles: no textures or localized glyphs.
+// Atlas-backed outline, live charge fill and unchanged 15-second battery polling.
 void drawBatteryIndicator(const ::psvitaalive::ui::UiFont* font,
                           int anchorX, int topY, float textScale, bool centered) {
     const BatteryDisplayState state = batteryDisplayState();
@@ -1961,8 +1961,7 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
                              saveFocus ? RGBA8(0,0,0,255) : WHITE, ssc, saveLab);
     }
 
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + h - 18, DIM, 0.72f,
-                         ::psvitaalive::L(TID::ThemeSetupNavHint));
+    skin::hint(&font_,x+24,y+h-18,w-48,DIM,.72f,::psvitaalive::L(TID::ThemeSetupNavHint));
 }
 
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
@@ -2220,7 +2219,7 @@ void FullCatalogScreen::drawNewsOverlay() {
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
         ::psvitaalive::ui::uiDrawText(&font_, x + (w - bw) / 2 + (bw - tw) / 2, by + 25, BLACK, sc, clab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + h - 14, DIM, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::NewsNavHint));
+    skin::hint(&font_,x+24,y+h-14,w-48,DIM,.72f,::psvitaalive::L(::psvitaalive::TextId::NewsNavHint));
 }
 
 void FullCatalogScreen::drawReportChip() {
@@ -8990,11 +8989,9 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
                 skin::surface(skin::ui_atlas::ui_badge,sx,cy,cw,ch,folderBg);
                 skin::focus(sx,cy,cw,ch,folderEdge);
                 if (iconW) skin::icon(symbol,sx+padX,cy+3,18,folderText,atlas);
-                // Use the existing card scissor and a narrower label strip.
+                // Static label: the existing card scissor stays enabled.
                 drawMarqueeText(&font_,sx+padX+iconW,sy+1,std::max(1,cw-padX*2-iconW),
                     folderText,sc,label,false,cardL,cardT,cardR,cardB);
-                vita2d_enable_clipping();
-                vita2d_set_clip_rectangle(cardL,cardT,cardR,cardB);
                 sy-=24;
             };
             const std::string sz = itemCardSizeLabel(it);
@@ -10908,7 +10905,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
             const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
             ::psvitaalive::ui::uiDrawText(&font_, bxCancel + (bw - tw) / 2, by + 30, fCancel ? BG : WHITE, sc, lab);
         }
-        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + oh - 92, DIM, 0.74f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
+        skin::hint(&font_,ox+28,oy+oh-92,ow-56,DIM,.74f,::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
         return;
     }
 
@@ -10952,7 +10949,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
                                  ::psvitaalive::L(::psvitaalive::TextId::BadgeRecommended));
         }
     }
-    ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + oh - 28, DIM, 0.74f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
+    skin::hint(&font_,ox+28,oy+oh-28,ow-56,DIM,.74f,::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
 }
 
 void FullCatalogScreen::drawLoadingOverlay(){
@@ -11373,8 +11370,7 @@ if(installOutcome_==2){
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
     ::psvitaalive::ui::uiDrawText(&font_, bxClose + (bwClose - tw) / 2,
                                  byClose + 34, WHITE, sc, clab);
-    ::psvitaalive::ui::uiDrawText(&font_, x+28, y+h-18, DIM, 0.70f,
-                                 ::psvitaalive::L(TID::CircleCloseHint));
+    skin::hint(&font_,x+28,y+h-18,w-56,DIM,.70f,::psvitaalive::L(TID::CircleCloseHint));
     return;
   }
 
@@ -12102,7 +12098,7 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
         ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 38,
                              essentialPluginsFocus_ == 1 ? BG : WHITE, sc, lab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 16, DIM, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::EssentialNavHint));
+    skin::hint(&font_,x+28,y+h-16,w-56,DIM,.72f,::psvitaalive::L(::psvitaalive::TextId::EssentialNavHint));
 }
 
 void FullCatalogScreen::drawPluginRebootOverlay() {
@@ -12550,7 +12546,7 @@ void FullCatalogScreen::drawPspSetupOverlay() {
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
         ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 36, canOn ? BG : WHITE, sc, lab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_, x + pad, y + h - 12, DIM, 0.72f, ::psvitaalive::L(TID::PspSetupNavHint));
+    skin::hint(&font_,x+pad,y+h-12,w-2*pad,DIM,.72f,::psvitaalive::L(TID::PspSetupNavHint));
 }
 
 
