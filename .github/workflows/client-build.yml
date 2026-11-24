@@ -37,6 +37,12 @@ jobs:
       - name: Verify Vita and web catalog field mappings
         run: python3 scripts/catalog_schema_v2_consumers_test.py
 
+      - name: Test storage manager layout and ZIP display identity
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_storage_layout.cpp -o /tmp/psvitaalive-storage-layout-test
+          /tmp/psvitaalive-storage-layout-test
+
       - name: Test controller navigation zones and touch focus
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
