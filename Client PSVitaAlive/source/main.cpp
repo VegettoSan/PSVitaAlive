@@ -794,6 +794,10 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
         images.setNetworkPaused(screen.keyboardVisible()||cur.state==InstallState::Downloading||cur.state==InstallState::Paused||cur.state==InstallState::Installing);const bool active=cur.state==InstallState::Downloading||cur.state==InstallState::Paused||cur.state==InstallState::Installing||cur.state==InstallState::Completed||cur.state==InstallState::Failed||cur.state==InstallState::Cancelled;int outcome=0;if(cur.state==InstallState::Completed)outcome=1;else if(cur.state==InstallState::Cancelled)outcome=3;else if(cur.state==InstallState::Failed)outcome=2;screen.setInstallProgress(active,cur.current,cur.total,cur.bytesPerSecond,cur.stage,cur.fileName,cur.message,outcome,cur.liveAreaOk,cur.installPath,cur.titleId,cur.resultAutoCloseRemainingMs,cur.needsReboot,cur.zipRecoveryAvailable,cur.zipRecoveryPath,cur.zipRecoveryExtractPath,cur.zipRecoveryMayBeCorrupt,cur.archiveSourceUnavailable,
             (cur.state==InstallState::Downloading && cur.stage=="Downloading") ||
             cur.state==InstallState::Paused);
+        // A ready or failed initial request has reached its terminal state.
+        // The UI still waits for its visible splash to fade, except for
+        // interactive first-run dialogs drawn above it.
+        if (!startupCatalogs) screen.finishInitialCatalogInput();
         if(startupThemePending && !active && !screen.isThemeSetupVisible()){
             screen.openThemeSetupIfNeeded();
             if(!screen.isThemeSetupVisible()){
