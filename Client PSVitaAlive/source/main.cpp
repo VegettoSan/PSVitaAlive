@@ -453,7 +453,7 @@ int main(){
                 link.url, item.downloadUrl);
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
             screen.prepareForHeavyWork();
-            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line);
+            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line,screen.installAllSpaceApproved());
         }
     });
 
