@@ -347,6 +347,10 @@ int main(){
     screen.setInstallPauseCallbacks([&installer](){ return installer.pauseDownload(); },
                                     [&installer](){ return installer.resumeDownload(); });
     screen.setStorageBusyCallback([&installer](){ return installer.busy(); });
+    screen.setStorageAppDisplayCallback([&catalogs](const std::string& appId,
+        const std::string& titleId, std::string& name, std::string& icon) {
+        return catalogs.savedZipAppDisplay(appId, titleId, name, icon);
+    });
     screen.setInstallAcknowledgeCallback([&installer](){ installer.acknowledgeResult(); });
     screen.setInstallZipRecoveryCallback([&installer, &screen](bool keep, std::string& savedPath){ const bool resolved=installer.resolveZipRecovery(keep, &savedPath); if(resolved) screen.requestUx0SpaceRefresh(); return resolved; });
     screen.setDeleteSavedZipCallback([&installer, &screen](const std::string& appId, const std::string& titleId, const std::string& archivePath){
