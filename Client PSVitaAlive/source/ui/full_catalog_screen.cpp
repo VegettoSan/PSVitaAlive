@@ -95,13 +95,10 @@ inline void startSkinFrame() {
     skinFrameStartedUs = sceKernelGetProcessTimeWide();
     skinFrameSyncUs = 0;
     skinFrameClipLeaks = 0;
-    // Enabled automatically in this temporary A/B diagnostic build.
-    // Normal mode keeps the existing asynchronous frame pipeline.
-    if (skin::gpuSyncTest) {
-        skin::beforeFrame();
+    // Append to the shared vertex arena. Wait only at a safe recycle point.
+    if (skin::beginFrame()) {
         skinFrameSyncUs = sceKernelGetProcessTimeWide() - skinFrameStartedUs;
     }
-    vita2d_start_drawing();
     skinFramePoolStart = vita2d_pool_free_space();
     if (vita2d_get_clipping_enabled()) {
         ++skinFrameClipLeaks;
@@ -125,6 +122,7 @@ inline void finishFrame() {
     static uint64_t since = now, sum = 0, worst = 0, syncWorst = 0;
     static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
     static unsigned peakPoolUsed = 0, lowPoolFrames = 0, clipLeaks = 0, invalid = 0, maxPendingFrees = 0;
+    static unsigned lastResetWaits = 0, lastResetIdle = 0;
     static unsigned minFlags = 0, worstFlags = 0;
     static const char* minScene = "unknown";
     static const char* worstScene = "unknown";
@@ -145,9 +143,11 @@ inline void finishFrame() {
             draws/frames, verts/frames, minPool, fallbacks);
         diagnostics::log(msg);
         sceClibSnprintf(msg,sizeof(msg),
-            "[GPU] sync=%u sync_wait_max_us=%llu pool_used_peak=%u low_pool_frames=%u clip_leaks=%u invalid_geometry=%u deferred_peak=%u pool_min_scene=%s pool_min_flags=%u slow_scene=%s slow_flags=%u",
-            skin::gpuSyncTest?1u:0u,(unsigned long long)syncWorst,peakPoolUsed,lowPoolFrames,
-            clipLeaks,invalid,maxPendingFrees,minScene,minFlags,worstScene,worstFlags);
+            "[GPU] mode=batched sync_wait_max_us=%llu pool_used_peak=%u low_pool_frames=%u clip_leaks=%u invalid_geometry=%u deferred_peak=%u pool_min_scene=%s pool_min_flags=%u slow_scene=%s slow_flags=%u pool_reset_waits=%u pool_reset_idle=%u",
+            (unsigned long long)syncWorst,peakPoolUsed,lowPoolFrames,
+            clipLeaks,invalid,maxPendingFrees,minScene,minFlags,worstScene,worstFlags,
+            skin::poolResetWaits-lastResetWaits,skin::poolResetIdle-lastResetIdle);
+        lastResetWaits=skin::poolResetWaits; lastResetIdle=skin::poolResetIdle;
         diagnostics::log(msg);
         since=now; sum=worst=syncWorst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
         peakPoolUsed=lowPoolFrames=clipLeaks=invalid=maxPendingFrees=0;
@@ -3429,10 +3429,8 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     updateMediaTextureSuspension();
 }
 bool FullCatalogScreen::init(){
-    vita2d_init();
-    // Temporary diagnostic build: no marker file or user setup required.
-    skin::gpuSyncTest = true;
-    diagnostics::log("[GPU] sync test ON: forced for diagnostic build");
+    vita2d_init_advanced(skin::framePoolBytes);
+    diagnostics::log("[GPU] batched vertex pool: 2097152 bytes, reserve 1048576; no per-frame full sync");
     vita2d_set_clear_color(BG);
     ::psvitaalive::ui::setUiFontScalePercent(settingsEdit_.uiFontScalePct);
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
@@ -3487,6 +3485,8 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
     // Cap per frame so spam L/R cannot free dozens of textures in one shot (Vita3K crash).
     const uint64_t perfStartUs=sceKernelGetProcessTimeWide();
     vita2d_wait_rendering_done();
+    // The GPU is already idle here, so recycling is free of additional waits.
+    skin::recycleAfterIdle();
     size_t n=0;
     while(!deferredFreeTextures_.empty() && n<MAX_DEFERRED_FREES_PER_FRAME){
         vita2d_texture* t=deferredFreeTextures_.front();
