@@ -6309,7 +6309,7 @@ void FullCatalogScreen::pollSelfUpdateProgress() {
             0,
             ::psvitaalive::L(::psvitaalive::TextId::SelfUpdateStage),
             "PSVitaAlive.vpk",
-            selfUpdateMsg_[0] ? selfUpdateMsg_ : (ok ? "Update installed — press START to exit, then reopen" : "Update failed"),
+            selfUpdateMsg_[0] ? selfUpdateMsg_ : (ok ? "Update installed — close from LiveArea, then reopen" : "Update failed"),
             ok ? 1 : 2,
             false
         );
@@ -6337,7 +6337,7 @@ int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
     self->selfUpdateOk_.store(ok);
     if (ok) {
         sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_),
-                        "Update installed — press START to exit, then reopen");
+                        "Update installed — close from LiveArea, then reopen");
     } else if (self->selfUpdateMsg_[0] == 0) {
         sceClibSnprintf(self->selfUpdateMsg_, sizeof(self->selfUpdateMsg_), "Update failed");
     }
