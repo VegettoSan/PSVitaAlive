@@ -182,11 +182,8 @@ Native client (Title ID **PSVAS1178**). Users only need to **open the client**: 
 - **Plugin** catalog links: download to `extract_path`, append line to taiHEN `config.txt` (section-aware, append-only), reboot prompt
 - **Essential plugins** prompt after theme + News: detects missing **kubridge**, **fd_fix** (file + config line) and **libshacccg** (file only); one-tap install + reboot
 - **Plugin updates (planned):** remote manifest + size/hash checks — see [docs/PLUGIN_UPDATES.md](docs/PLUGIN_UPDATES.md) (not implemented yet)
-- **Space protection for Install All:** when all selected links have sizes, check
-  the sum of the **actual queue** + safety reserve; if one lacks a size,
-  check **each job individually** using the real HTTP 200/206 total before
-  payload writes (when supplied by the server). ZIP extraction has its own
-  uncompressed-growth preflight. See [current space policy](docs/INSTALL_ALL_SPACE_PREFLIGHT_20261025.md).
+- **Space protection (individual + Install All, integrated in main 2026-11-24):** check free `ux0:` space **before** queuing downloads. Game/Data ZIP STORE estimates include the downloaded package and extracted files; Install All checks the selected queue once, keeps known-size budgets even when some links have unknown size, and retains HTTP 200/206/runtime guards. See [current predownload policy](docs/PREDOWNLOAD_SPACE_RESERVATION_20261122.md) and [PR #110 integration record](docs/PR85_STABLE_INTEGRATION_20261124.md).
+- **Minecraft ZIP small-file slowdown (open):** a very dense directory under `Minecraft/Common/Modern/sound/bee/` still causes severe delays around 17% of extracted bytes in hardware tests. Experimental work remains in [draft PR #85](https://github.com/VegettoSan/PSVitaAlive/pull/85), **not in main**. See the [investigation and safe follow-up plan](docs/MINECRAFT_ZIP_DIRECTORY_STALL_FOLLOWUP_20261124.md).
 - During download/install/extract: **screen forced on**, **PS button locked**, soft power-off menu locked (see [Downloads & installations](#downloads--installations-ps-vita-client))
 - Voluntary **Download cancelled** UI (no false “Installation failed” / no Report)
 - Self-update from [Releases](https://github.com/VegettoSan/PSVitaAlive/releases) (see below)
