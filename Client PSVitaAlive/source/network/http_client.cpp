@@ -11,6 +11,7 @@
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
 
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
 #include <strings.h>
@@ -1257,7 +1258,7 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
     if (ctx->preservePartial && ctx->resumeOffset == 0 && ctx->downloaded == 0) {
         ctx->savedValidator = resumeValidator(ctx->etag, ctx->lastModified);
     }
-    if (ctx->preservePartial) {
+    if (ctx->preservePartial && ctx->downloaded == 0) {
         ctx->acceptedEtag = ctx->etag;
         ctx->acceptedModified = ctx->lastModified;
     }
@@ -2136,6 +2137,16 @@ HttpResult HttpClient::downloadToFile(
                 ctx.onProgress(reset);
             }
         }
+    }
+
+    // A saved range-0 file is not a serial prefix. If the adaptive path
+    // was skipped entirely, never let the serial writer touch that checkpoint.
+    if (savedParallel > 0 && parallelSavedBytes(destinationPath) > 0) {
+        if (ctx.fd >= 0) sceIoClose(ctx.fd);
+        curl_slist_free_all(headers);
+        curl_easy_cleanup(curl);
+        setError("range verification unavailable; partial download retained");
+        return HttpResult::NetworkError;
     }
 
     for (int attempt = 0; attempt < kMaxAttempts; ++attempt) {

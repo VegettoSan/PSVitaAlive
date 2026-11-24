@@ -858,3 +858,4 @@ ID_DATA_SIZE=Game Files
 NET_PAUSED_AUTO_LINK=Wi-Fi отключён. Ожидание сети.
 NET_PAUSED_AUTO_SOURCE=Источник не отвечает. Автоповтор.
 NET_PAUSED_AUTO_HINT=Прогресс сохранён. Автовозобновление.
+NET_PAUSED_KEEP=Прогресс сохранён. Безопасное продолжение недоступно.

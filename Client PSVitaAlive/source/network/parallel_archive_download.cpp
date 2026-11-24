@@ -186,7 +186,7 @@ static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
     // Never accept a full 200 response to a Range request or an error page.
     const uint64_t length = p->end - p->start + 1;
     if (p->status != 206 || !p->validRange ||
-        (!s.requiredValidator.empty() &&
+        (p->received == 0 && !s.requiredValidator.empty() &&
          strongValidator(p->etag, p->lastModified) != s.requiredValidator) ||
         p->received > length || n > length - p->received) {
         p->rangeError = true;

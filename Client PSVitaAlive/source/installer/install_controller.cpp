@@ -433,6 +433,16 @@ bool InstallController::resumeDownloadImpl(bool automatic) {
     if (!resumeJob) return false;
     if (!automatic) resumeJob->recovery = DownloadRecoveryPolicy{};
     if (!downloads_.resume(activeJobId_)) return false;
+    auto restorePause = [&]() {
+        resumeJob->state = DownloadState::Paused;
+        resumeJob->retainedFailure = true;
+        resumeJob->pausedForConnectivity = false;
+        resumeJob->pauseRequested->store(true, std::memory_order_release);
+        setStage("Paused");
+        setState(InstallStatus::State::Paused, ::psvitaalive::L("NET_PAUSED_KEEP"));
+        workerDone_.store(true, std::memory_order_release);
+        diagnostics::log("[Installer] resume worker unavailable; job and partial retained");
+    };
     installCancelRequested_.store(false, std::memory_order_release);
     archiveSourceUnavailable_.store(false, std::memory_order_release);
     speed_.store(0);
@@ -442,22 +452,14 @@ bool InstallController::resumeDownloadImpl(bool automatic) {
     workerThread_ = sceKernelCreateThread("PSVitaAliveInstall", &InstallController::workerEntry,
         0x10000100, 512 * 1024, 0, 0, nullptr);
     if (workerThread_ < 0) {
-        workerDone_.store(true, std::memory_order_release);
-        setStage("Error");
-        setState(InstallStatus::State::Failed, "Could not create download resume worker");
-        downloads_.cleanupCompletedJob(activeJobId_);
-        activeJobId_.clear();
+        restorePause();
         return false;
     }
     InstallController* self = this;
     if (sceKernelStartThread(workerThread_, sizeof(self), &self) < 0) {
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
-        workerDone_.store(true, std::memory_order_release);
-        setStage("Error");
-        setState(InstallStatus::State::Failed, "Could not start download resume worker");
-        downloads_.cleanupCompletedJob(activeJobId_);
-        activeJobId_.clear();
+        restorePause();
         return false;
     }
     diagnostics::log("[Installer] resumed existing job=" + activeJobId_);

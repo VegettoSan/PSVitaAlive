@@ -901,3 +901,4 @@ ID_DATA_SIZE=Game Files
 NET_PAUSED_AUTO_LINK=Wi-Fi disconnected. Waiting for the network.
 NET_PAUSED_AUTO_SOURCE=Source not responding. Retrying automatically.
 NET_PAUSED_AUTO_HINT=Saved progress. Auto-resume is enabled.
+NET_PAUSED_KEEP=Progress kept. Cannot safely continue yet.

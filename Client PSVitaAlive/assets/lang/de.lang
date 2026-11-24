@@ -858,3 +858,4 @@ ID_DATA_SIZE=Game Files
 NET_PAUSED_AUTO_LINK=WLAN getrennt. Warte auf Verbindung.
 NET_PAUSED_AUTO_SOURCE=Quelle antwortet nicht. Automatischer Versuch.
 NET_PAUSED_AUTO_HINT=Fortschritt gespeichert. Automatische Fortsetzung.
+NET_PAUSED_KEEP=Fortschritt gesichert. Sichere Fortsetzung nicht möglich.

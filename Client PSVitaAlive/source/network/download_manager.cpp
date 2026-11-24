@@ -298,8 +298,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 const uint64_t needed = remainingInstallSpaceBytes(
                     p.total, alreadyOnDisk, job.spaceMode);
                 if (!StorageManager::queryUx0Space(freeB, totalB) || freeB < needed) {
-                    diskSpaceHit = true;
-                    job.cancelRequested->store(true, std::memory_order_release);
+                    diskSpaceHit = true; // local stop, not an explicit user cancellation
                     diagnostics::log("[DownloadManager] HTTP size preflight blocked need=" +
                         std::to_string(needed) + " free=" + std::to_string(freeB) +
                         " remote=" + std::to_string(p.total));
@@ -323,8 +322,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
              job.downloadedSize - lastSpaceCheck >= kSpaceCheckStep)) {
             uint64_t freeB = 0, totalB = 0;
             if (StorageManager::queryUx0Space(freeB, totalB) && freeB < kFreeSpaceReserve) {
-                diskSpaceHit = true;
-                job.cancelRequested->store(true, std::memory_order_release);
+                diskSpaceHit = true; // keep validated bytes when possible
                 char m[180];
                 sceClibSnprintf(m, sizeof(m),
                     "[DownloadManager] low-space guard free=%llu downloaded=%llu reserve=%llu",
@@ -370,6 +368,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     };
     uint64_t nextLinkCheckUs = 0;
     auto cancelFn = [&]() -> bool {
+        if (diskSpaceHit || sizeLimitHit) return true;
         if (!job.cancelRequested->load(std::memory_order_acquire) &&
             !job.pauseRequested->load(std::memory_order_acquire)) {
             // Check NetCtl at most twice per second; no network requests or
@@ -442,6 +441,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     auto holdSavedFailure = [&](const std::string& error) {
         job.retainedFailure = true;
         job.lastError = error;
+        diagnostics::log("[DownloadManager] retaining partial after failure: " + error);
         job.pauseRequested->store(true, std::memory_order_release);
         return finishPaused();
     };
@@ -581,6 +581,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
         std::string ifRangeValidator;
         if (offset > 0 && job.validatorUrl == effectiveUrl) {
             ifRangeValidator = resumeValidator(job.etag, job.lastModified);
+        } else if (offset > 0 && mediafire && !job.validatorUrl.empty() &&
+                   !job.etag.empty() && job.etag.compare(0, 2, "W/") != 0) {
+            // Same share page, refreshed CDN link: require exact strong ETag
+            // on the new 206 response; never carry a date-only validator across URLs.
+            ifRangeValidator = job.etag;
         }
         if (offset > 0 && ifRangeValidator.empty()) {
             diagnostics::log("[DownloadManager] resume validator unavailable; existing prefix retained");
@@ -600,7 +605,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             job.preferSegmentedZip,
             true, // pre-body size notification; no second HEAD/GET request
             [&]() -> bool {
-                return job.pauseRequested->load(std::memory_order_acquire) &&
+                return (diskSpaceHit || job.pauseRequested->load(std::memory_order_acquire)) &&
                        !job.cancelRequested->load(std::memory_order_acquire);
             },
             statusFn,
@@ -656,6 +661,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
     activeJobId_.clear();
 
     if (diskSpaceHit) {
+        if (hasSavedProgress()) {
+            diagnostics::log("[DownloadManager] low space; existing download retained");
+            return holdSavedFailure("not enough free space while downloading");
+        }
         st.removeFile(job.temporaryPath);
         job.downloadedSize = 0;
         job.state = DownloadState::Failed;

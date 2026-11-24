@@ -858,3 +858,4 @@ ID_DATA_SIZE=Game Files
 NET_PAUSED_AUTO_LINK=Wi-Fi desconectado. Aguardando a rede.
 NET_PAUSED_AUTO_SOURCE=Fonte sem resposta. Nova tentativa automática.
 NET_PAUSED_AUTO_HINT=Progresso salvo. Retomada automática.
+NET_PAUSED_KEEP=Progresso salvo. Retomada segura indisponível.
