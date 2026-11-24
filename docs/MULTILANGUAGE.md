@@ -287,7 +287,7 @@ The titles and surrounding buttons do use the normal `LocalizationManager::get` 
 | `KEYBOARD_SEARCH_TITLE` | Catalog search modal title |
 | `KEYBOARD_ZIP_TITLE` | Custom ZIP extraction path modal title |
 | `KEYBOARD_PLACEHOLDER` | Empty text field |
-| `KEYBOARD_NAV_HINT` | D-pad / X / Square quick guide |
+| `KEYBOARD_NAV_HINT` | D-pad / X / Square / Start quick guide |
 | `KEYBOARD_TOUCH_HINT` | Touch and hold-to-delete hint |
 | `KEYBOARD_SHIFT` | Right-side persistent SHIFT toggle |
 | `KEYBOARD_DELETE` | Right-side delete button (tap or hold) |
