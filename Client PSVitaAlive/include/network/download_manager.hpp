@@ -49,6 +49,7 @@ struct DownloadJob {
     bool sourceUnavailable = false; // Failed before bytes or HTTP terminal response.
     bool pausedForConnectivity = false; // Runtime-only; manual pause remains distinct.
     DownloadRecoveryPolicy recovery; // accessed only after worker completion
+    bool retainedFailure = false;
     InstallSpaceMode spaceMode = InstallSpaceMode::DirectPackage; // runtime preflight only
     // Shared atomic remains stable when DownloadJob objects are copied/moved.
     std::shared_ptr<std::atomic<bool>> cancelRequested =

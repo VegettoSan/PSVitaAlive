@@ -392,7 +392,8 @@ void InstallController::pollDownloadRecovery() {
         // A user press racing the worker's final publication must not leave
         // the overlay in "Pausing" or accidentally rearm recovery.
         if (std::strcmp(stage_, "Paused") != 0) setStage("Paused");
-        const char* note = ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE");
+        const char* note = ::psvitaalive::L(job->retainedFailure
+            ? "NET_PAUSED_KEEP" : "DOWNLOAD_PAUSED_NOTE");
         if (std::strcmp(message_, note) != 0) setMessage(note);
         return;
     }
@@ -1556,10 +1557,12 @@ int InstallController::workerMain() {
         total_.store(job->expectedSize);
         speed_.store(0);
         setStage("Paused");
-        setState(InstallStatus::State::Paused, job->pausedForConnectivity
+        setState(InstallStatus::State::Paused, job->retainedFailure
+            ? ::psvitaalive::L("NET_PAUSED_KEEP")
+            : (job->pausedForConnectivity
             ? ::psvitaalive::L(downloadPreflightStatusKey(queryLinkConnectivity())
                 ? "NET_PAUSED_AUTO_LINK" : "NET_PAUSED_AUTO_SOURCE")
-            : ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE"));
+            : ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE")));
         diagnostics::log("[Installer] download paused without installation job=" + activeJobId_);
         workerDone_.store(true, std::memory_order_release);
         return 0; // Do not clear the job, partial file, install metadata or queue.

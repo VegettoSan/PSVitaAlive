@@ -14,7 +14,8 @@ enum class HttpResult {
     SslError,
     IoError,
     Cancelled,
-    InvalidArgument
+    InvalidArgument,
+    ResumeRejected // Existing bytes kept; source did not prove safe continuation.
 };
 
 struct HttpProgress {
@@ -55,7 +56,8 @@ public:
         bool keepZipParts = false, // opt-in for direct ZIP/VPK extraction
         bool checkSizeAtHeaders = false, // notify progress before payload writes
         HttpCancelFn shouldPause = nullptr, // used only to preserve range checkpoints
-        HttpStatusFn onStatus = nullptr // intermediate connection / recovery phase
+        HttpStatusFn onStatus = nullptr, // intermediate connection / recovery phase
+        bool preservePartial = false
     );
 
     /**
@@ -112,6 +114,7 @@ private:
     std::string fastResumeDestination_;
     std::string fastResumeServer_;
     uint64_t fastResumeSize_ = 0;
+    std::string failedResumeServer_;
 
     int tplHttp_ = -1;
     int tplSsl_ = -1;

@@ -44,5 +44,16 @@ int main() {
     assert(!recoverableDownloadStatus(false, true, 404));
     assert(!recoverableDownloadStatus(true, false, 403));
     assert(!recoverableDownloadStatus(false, false, 0));
+    assert(resumeValidator("\"a\"", "date") == "\"a\"");
+    assert(resumeValidator("W/\"a\"", "date") == "date");
+    assert(resumeValidator("W/\"a\"", "").empty());
+    assert(resumeValidatorMatches("\"a\"", "\"a\"", "date"));
+    assert(!resumeValidatorMatches("\"a\"", "\"b\"", "date"));
+    assert(!resumeValidatorMatches("", "\"a\"", "date"));
+    assert(!resumeValidatorMatches("W/\"a\"", "W/\"a\"", "date"));
+    assert(resumeValidatorMatches("date", "", "date"));
+    assert(preserveDownloadOnFailure(5ULL*1024*1024*1024, false));
+    assert(!preserveDownloadOnFailure(5ULL*1024*1024*1024, true));
+    assert(!preserveDownloadOnFailure(0, false));
     return 0;
 }

@@ -1,4 +1,5 @@
 #include "network/http_client.hpp"
+#include "network/download_recovery_policy.hpp"
 #include "network/http_range_size_policy.hpp"
 #include "network/parallel_archive_download.hpp"
 #include "network/download_failure_policy.hpp"
@@ -421,6 +422,9 @@ struct TransferContext {
     bool cancelled = false;
     bool ioError = false;
     bool restartedFromZero = false;
+    bool preservePartial = false;
+    bool resumeRejected = false;
+    std::string savedValidator, acceptedEtag, acceptedModified;
     bool totalFromContentRange = false;
     // Content-Range from the *current* response only (reset each attempt).
     bool rangeValid = false;
@@ -1129,6 +1133,13 @@ static size_t headerCallback(char* buffer, size_t size, size_t nitems, void* use
         (ctx->responseCode == 200 || ctx->responseCode == 206) &&
         ((bytes == 2 && buffer[0] == '\r' && buffer[1] == '\n') ||
          (bytes == 1 && buffer[0] == '\n'))) {
+        if (ctx->preservePartial && ctx->resumeOffset > 0 &&
+            (ctx->responseCode != 206 || ctx->rangeMismatch ||
+             !ctx->rangeValid || !resumeValidatorMatches(ctx->savedValidator,
+                 ctx->etag, ctx->lastModified))) {
+            ctx->resumeRejected = true;
+            return 0;
+        }
         HttpProgress p;
         p.total = ctx->total;
         p.absoluteDownloaded = ctx->responseCode == 206 ? ctx->resumeOffset : 0;
@@ -1199,6 +1210,12 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
 
     if (ctx->firstWrite) {
         ctx->firstWrite = false;
+        if (ctx->preservePartial && ctx->resumeOffset > 0 &&
+            (responseCode != 206 || !resumeValidatorMatches(ctx->savedValidator,
+                ctx->etag, ctx->lastModified))) {
+            ctx->resumeRejected = true;
+            return 0;
+        }
         char first[260];
         sceClibSnprintf(first, sizeof(first),
             "first-write status=%ld resume=%llu total=%llu rangeValid=%d rangeStart=%llu mismatch=%d",
@@ -1236,6 +1253,13 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
 
     if (ctx->rangeMismatch) {
         return 0;
+    }
+    if (ctx->preservePartial && ctx->resumeOffset == 0 && ctx->downloaded == 0) {
+        ctx->savedValidator = resumeValidator(ctx->etag, ctx->lastModified);
+    }
+    if (ctx->preservePartial) {
+        ctx->acceptedEtag = ctx->etag;
+        ctx->acceptedModified = ctx->lastModified;
     }
     // Reject a CDN that sends more bytes than its declared 206 range;
     // the caller's one-time clean-restart handles the mismatch safely.
@@ -1316,6 +1340,7 @@ const char* toString(HttpResult r) {
         case HttpResult::IoError: return "IoError";
         case HttpResult::Cancelled: return "Cancelled";
         case HttpResult::InvalidArgument: return "InvalidArgument";
+        case HttpResult::ResumeRejected: return "ResumeRejected";
         default: return "Unknown";
     }
 }
@@ -1632,7 +1657,8 @@ HttpResult HttpClient::downloadToFile(
     bool keepZipParts,
     bool checkSizeAtHeaders,
     HttpCancelFn shouldPause,
-    HttpStatusFn onStatus
+    HttpStatusFn onStatus,
+    bool preservePartial
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1682,6 +1708,8 @@ HttpResult HttpClient::downloadToFile(
     TransferContext ctx;
     ctx.curl = curl;
     ctx.resumeOffset = resumeOffset;
+    ctx.preservePartial = preservePartial;
+    ctx.savedValidator = ifRangeValidator;
     ctx.onProgress = std::move(onProgress);
     ctx.shouldCancel = std::move(shouldCancel);
     ctx.sizeHeaderPreflight = checkSizeAtHeaders;
@@ -1824,11 +1852,13 @@ HttpResult HttpClient::downloadToFile(
     // probe is mandatory before trusting the stored segments.
     ArchiveProbeResult resumeEdgeProbe;
     bool resumeEdgeVerified = false;
+    if (fastResumeSourceUrl_ != url || fastResumeDestination_ != destinationPath)
+        failedResumeServer_.clear();
     const bool canTryResumeEdge = isArchive && savedParallel > 0 &&
         fastResumeSourceUrl_ == url &&
         fastResumeDestination_ == destinationPath &&
         fastResumeSize_ > 0 && !fastResumeServer_.empty() &&
-        archiveEffectiveUrlUsable(fastResumeServer_);
+        archiveEffectiveUrlUsable(fastResumeServer_) && failedResumeServer_.empty();
     if (canTryResumeEdge && (!ctx.shouldCancel || !ctx.shouldCancel())) {
         if (onStatus) onStatus("HTTP_STAGE_VERIFYING_SAVED");
         if (probeArchiveStorageUrl(fastResumeServer_, 1, ctx.shouldCancel, resumeEdgeProbe) &&
@@ -1879,6 +1909,13 @@ HttpResult HttpClient::downloadToFile(
             if (rankArchiveAlternateUrls(archiveAltUrls, ctx.shouldCancel, archiveSelectionSizeHint,
                                          &selectedArchiveTotal, true,
                                          &selectedArchiveHttpUrl) && !archiveAltUrls.empty()) {
+                if (savedParallel > 0 && !failedResumeServer_.empty() &&
+                    archiveAltUrls.size() > 1 &&
+                    archiveUrlHostLower(archiveAltUrls.front()) == archiveUrlHostLower(failedResumeServer_)) {
+                    std::rotate(archiveAltUrls.begin(), archiveAltUrls.begin()+1, archiveAltUrls.end());
+                    selectedArchiveHttpUrl.clear();
+                    httpDiagnostic("[HTTP] recovery selecting alternate measured Archive edge");
+                }
                 activeUrl = archiveAltUrls.front();
                 archiveAltIndex = 1;
                 char selected[420];
@@ -2018,10 +2055,12 @@ HttpResult HttpClient::downloadToFile(
                 parallel == ParallelArchiveOutcome::Cancelled ||
                 parallel == ParallelArchiveOutcome::Paused ||
                 parallel == ParallelArchiveOutcome::NetworkInterrupted ||
+                parallel == ParallelArchiveOutcome::CheckpointRejected ||
                 parallel == ParallelArchiveOutcome::IoError) {
                 if (isArchive && rangeReady &&
                     (parallel == ParallelArchiveOutcome::Paused ||
                      parallel == ParallelArchiveOutcome::NetworkInterrupted ||
+                     parallel == ParallelArchiveOutcome::CheckpointRejected ||
                      parallel == ParallelArchiveOutcome::Complete ||
                      parallel == ParallelArchiveOutcome::Segmented)) {
                     // Only the validated checkpoint may reuse this in-memory
@@ -2030,6 +2069,11 @@ HttpResult HttpClient::downloadToFile(
                     fastResumeDestination_ = destinationPath;
                     fastResumeServer_ = parallelUrl;
                     fastResumeSize_ = rangeProbe.total;
+                    if (parallel == ParallelArchiveOutcome::NetworkInterrupted ||
+                        parallel == ParallelArchiveOutcome::CheckpointRejected)
+                        failedResumeServer_ = parallelUrl;
+                    else
+                        failedResumeServer_.clear();
                 }
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
@@ -2045,6 +2089,10 @@ HttpResult HttpClient::downloadToFile(
                         lastModified_ = rangeProbe.lastModified;
                     }
                     return HttpResult::Ok;
+                }
+                if (parallel == ParallelArchiveOutcome::CheckpointRejected) {
+                    setError("range checkpoint rejected; existing data retained");
+                    return isArchive ? HttpResult::NetworkError : HttpResult::ResumeRejected;
                 }
                 if (parallel == ParallelArchiveOutcome::NetworkInterrupted) {
                     setError("connection interrupted; partial download saved");
@@ -2063,7 +2111,7 @@ HttpResult HttpClient::downloadToFile(
             // parallel ranges, preserve the previously saved checkpoint.
             // No byte of the old transfer may be appended to an unverified
             // serial response. The next explicit retry can probe again.
-            if (savedParallel > 0 && !rangeReady) {
+            if (savedParallel > 0 && parallelSavedBytes(destinationPath) > 0) {
                 curl_slist_free_all(headers);
                 curl_easy_cleanup(curl);
                 setError("connection verification unavailable; partial download saved");
@@ -2204,6 +2252,7 @@ HttpResult HttpClient::downloadToFile(
         ctx.rangeStart = 0;
         ctx.rangeEnd = 0;
         ctx.rangeMismatch = false;
+        ctx.resumeRejected = false;
         ctx.responseCode = 0;
         ctx.discardedErrorBody = false;
         ctx.firstWrite = true;
@@ -2260,6 +2309,32 @@ HttpResult HttpClient::downloadToFile(
 
         if (ctx.cancelled) break;
 
+        // A refused resume may be node-specific. Never truncate valid user bytes.
+        if (ctx.preservePartial && ctx.resumeOffset > 0 &&
+            (ctx.resumeRejected || ctx.rangeMismatch || result == CURLE_RANGE_ERROR ||
+             responseCode == 200 ||
+             (responseCode == 416 && (ctx.resumeOffset != ctx.total ||
+               !resumeValidatorMatches(ctx.savedValidator, ctx.etag, ctx.lastModified))))) {
+            ctx.resumeRejected = true;
+            if (isArchive && !archiveMetaTried) {
+                archiveMetaTried = true;
+                buildArchiveAlternateUrls(url, archiveAltUrls);
+                archiveAltIndex = 0;
+            }
+            if (isArchive) {
+                while (archiveAltIndex < archiveAltUrls.size() &&
+                       archiveUrlHostLower(archiveAltUrls[archiveAltIndex]) == archiveUrlHostLower(activeUrl))
+                    ++archiveAltIndex;
+                if (archiveAltIndex < archiveAltUrls.size() && attempt+1 < kMaxAttempts) {
+                    activeUrl = archiveAltUrls[archiveAltIndex++];
+                    httpDiagnostic("[HTTP] resume refused; trying alternate Archive edge without truncation");
+                    continue;
+                }
+            }
+            httpDiagnostic("[HTTP] resume refused; preserving existing serial prefix");
+            break;
+        }
+
         // A 416 can mean the partial file is already exactly complete. HTTP servers
         // commonly report the resource size as "Content-Range: bytes */TOTAL".
         if (result == CURLE_OK &&
@@ -2275,6 +2350,10 @@ HttpResult HttpClient::downloadToFile(
         // Content-Range mismatch on 206 (or aborted write): never keep corrupted partial.
         // Clean-restart from zero at most once.
         if (ctx.rangeMismatch && !rangeFallbackUsed) {
+            if (ctx.preservePartial && ctx.downloaded > 0) {
+                ctx.resumeRejected = true;
+                break;
+            }
             rangeFallbackUsed = true;
             char mm[240];
             sceClibSnprintf(mm, sizeof(mm),
@@ -2558,7 +2637,7 @@ HttpResult HttpClient::downloadToFile(
             const char* eff = nullptr;
             curl_easy_getinfo(curl, CURLINFO_EFFECTIVE_URL, &eff);
             const bool badEdge = hostLooksLikeBadArchiveEdge(eff) || hostLooksLikeBadArchiveEdge(activeUrl.c_str());
-            if (badEdge || !archiveMetaTried) {
+            if (badEdge || !archiveMetaTried || archiveAltIndex < archiveAltUrls.size()) {
                 if (!archiveMetaTried) {
                     archiveMetaTried = true;
                     buildArchiveAlternateUrls(url, archiveAltUrls);
@@ -2606,8 +2685,8 @@ HttpResult HttpClient::downloadToFile(
     }
 
     lastStatus_ = static_cast<int>(responseCode);
-    lastEtag_ = ctx.etag;
-    lastModified_ = ctx.lastModified;
+    lastEtag_ = preservePartial ? ctx.acceptedEtag : ctx.etag;
+    lastModified_ = preservePartial ? ctx.acceptedModified : ctx.lastModified;
     if (ctx.resumeOffset > 0 && responseCode == 206) lastRangeAccepted_ = true;
 
     curl_slist_free_all(headers);
@@ -2640,6 +2719,10 @@ HttpResult HttpClient::downloadToFile(
         if (isArchive) archiveNodeDiagnostic("OUTCOME cancelled_by_user_or_callback");
         setError("cancelled");
         return HttpResult::Cancelled;
+    }
+    if (ctx.resumeRejected) {
+        setError("source refused safe continuation; partial download retained");
+        return HttpResult::ResumeRejected;
     }
     if (result == CURLE_ABORTED_BY_CALLBACK) {
         if (isArchive) archiveNodeDiagnostic("OUTCOME error=transfer_aborted_by_callback");

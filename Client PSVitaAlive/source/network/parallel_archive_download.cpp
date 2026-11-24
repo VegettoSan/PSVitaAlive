@@ -51,6 +51,7 @@ struct Session {
     uint64_t lastReportUs = 0;
     bool stopped = false;
     bool reusedCheckpoint = false;
+    std::string requiredValidator;
     uint64_t initialReceived = 0;
     TransferSpeedSampler speed;
 };
@@ -171,6 +172,8 @@ static bool flushPartBuffer(Part& p) {
     return true;
 }
 
+static std::string strongValidator(const std::string& etag, const std::string& modified);
+
 static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
     Part* p = static_cast<Part*>(userdata);
     const size_t n = size * nmemb;
@@ -183,6 +186,8 @@ static size_t onWrite(char* data, size_t size, size_t nmemb, void* userdata) {
     // Never accept a full 200 response to a Range request or an error page.
     const uint64_t length = p->end - p->start + 1;
     if (p->status != 206 || !p->validRange ||
+        (!s.requiredValidator.empty() &&
+         strongValidator(p->etag, p->lastModified) != s.requiredValidator) ||
         p->received > length || n > length - p->received) {
         p->rangeError = true;
         return 0;
@@ -495,11 +500,13 @@ ParallelArchiveOutcome downloadArchiveRanges(
         savedPrefixes(destination, authoritativeSize, partCount, prefixesValid) <= authoritativeSize &&
         prefixesValid;
     if (!reuse && checkpointFound) {
-        diagnostics::log("[HTTP] parallel checkpoint rejected (size/resource/validator/length changed); clean restart");
-        clearPartFiles(destination, true);
+        diagnostics::log("[HTTP] parallel checkpoint rejected; existing files retained");
+        closeParts(multi, parts);
+        return ParallelArchiveOutcome::CheckpointRejected;
     }
     if (reuse) {
         session.reusedCheckpoint = true;
+        session.requiredValidator = validator;
         session.received = savedPrefixes(destination, authoritativeSize, partCount, prefixesValid);
         diagnostics::log("[HTTP] parallel verified checkpoint; reuse_bytes=" +
                          std::to_string(session.received));
@@ -727,7 +734,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     bool rangeSafe = !ioError && !resourceIdentity.empty() &&
                      !captureValidator.empty();
     for (const Part& p : parts) {
-        if (p.ioError || p.rangeError ||
+        if (p.ioError || (p.rangeError && (!reuse || p.received > 0)) ||
             (p.received > 0 && (p.status != 206 || !p.validRange))) {
             rangeSafe = false;
             break;

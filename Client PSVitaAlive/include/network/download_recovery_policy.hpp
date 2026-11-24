@@ -1,9 +1,22 @@
 #pragma once
 #include <cstdint>
+#include <string>
 
 namespace psvitaalive {
 
 // Runtime-only policy. No network or filesystem work here.
+inline std::string resumeValidator(const std::string& etag, const std::string& modified) {
+    return !etag.empty() && etag.compare(0, 2, "W/") != 0 ? etag : modified;
+}
+inline bool resumeValidatorMatches(const std::string& expected,
+                                   const std::string& etag, const std::string& modified) {
+    return !expected.empty() && expected.compare(0, 2, "W/") != 0 &&
+        ((!etag.empty() && etag.compare(0, 2, "W/") != 0 && expected == etag) ||
+         (!modified.empty() && expected == modified));
+}
+inline bool preserveDownloadOnFailure(uint64_t bytes, bool userCancelled) {
+    return bytes > 0 && !userCancelled;
+}
 inline bool recoverableDownloadStatus(bool networkError, bool httpError, int status) {
     const bool transientHttp = status == 408 || status == 429 ||
         (status >= 500 && status <= 599);

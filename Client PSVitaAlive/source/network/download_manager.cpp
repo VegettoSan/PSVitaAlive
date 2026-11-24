@@ -405,7 +405,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
 
     auto finishPaused = [&]() -> bool {
         job.pausedForConnectivity = automaticNetworkPause &&
-            !job.manualPauseRequested->load(std::memory_order_acquire);
+            !job.manualPauseRequested->load(std::memory_order_acquire) && !job.retainedFailure;
         activeJobId_.clear();
         // HttpClient has returned and flushed its serial buffer. Preserve the
         // actual file length (not an unflushed progress counter) for Range resume.
@@ -417,7 +417,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             (bytes > 0 ? static_cast<uint64_t>(bytes) : 0);
         job.bytesPerSecond = 0;
         job.state = DownloadState::Paused;
-        job.lastError.clear();
+        if (!job.retainedFailure) job.lastError.clear();
         saveMetadata(job);
         if (onProgress_) {
             DownloadProgressEvent ev;
@@ -426,16 +426,31 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ev.downloaded = job.downloadedSize;
             ev.total = job.expectedSize;
             ev.state = DownloadState::Paused;
-            ev.message = job.pausedForConnectivity
+            ev.message = job.retainedFailure ? ::psvitaalive::L("NET_PAUSED_KEEP") :
+                (job.pausedForConnectivity
                 ? ::psvitaalive::L(downloadPreflightStatusKey(queryLinkConnectivity())
                     ? "NET_PAUSED_AUTO_LINK" : "NET_PAUSED_AUTO_SOURCE")
-                : ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
+                : ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE"));
             onProgress_(ev);
         }
         diagnostics::log("[DownloadManager] paused job=" + job.id +
                          " reason=" + (job.pausedForConnectivity ? "network" : "manual") +
                          " saved_bytes=" + std::to_string(job.downloadedSize));
         return false;
+    };
+    job.retainedFailure = false;
+    auto holdSavedFailure = [&](const std::string& error) {
+        job.retainedFailure = true;
+        job.lastError = error;
+        job.pauseRequested->store(true, std::memory_order_release);
+        return finishPaused();
+    };
+    auto hasSavedProgress = [&]() {
+        return preserveDownloadOnFailure(parallelSavedBytes(job.temporaryPath),
+                   job.cancelRequested->load(std::memory_order_acquire)) ||
+               preserveDownloadOnFailure(static_cast<uint64_t>(
+                   std::max<int64_t>(0, st.fileSize(job.temporaryPath))),
+                   job.cancelRequested->load(std::memory_order_acquire));
     };
     std::string effectiveUrl = job.url;
     const bool mediafire = isMediaFireUrl(job.url);
@@ -459,6 +474,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 saveMetadata(job);
                 return false;
             }
+            if (hasSavedProgress()) return holdSavedFailure("download link resolution failed");
             job.state = DownloadState::Failed;
             // Preserve provider details in diagnostics, not end-user messages.
             job.lastError = "download link resolution failed";
@@ -520,8 +536,9 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 // direct URL. HttpClient will safely truncate/restart if that CDN edge
                 // ignores Range or serves a changed resource.
                 const int64_t sz = st.fileSize(job.temporaryPath);
-                offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
-                job.downloadedSize = offset;
+                const uint64_t checkpointBytes = parallelSavedBytes(job.temporaryPath);
+                offset = checkpointBytes > 0 ? 0 : (sz > 0 ? static_cast<uint64_t>(sz) : 0);
+                job.downloadedSize = checkpointBytes > 0 ? checkpointBytes : offset;
                 std::string direct;
                 std::string mfErr;
                 uint64_t mfSize = 0;
@@ -529,9 +546,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 if (resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize, &fetchResult) && !direct.empty()) {
                     effectiveUrl = direct;
                     if (mfSize > 0) job.expectedSize = mfSize;
-                    job.validatorUrl.clear();
-                    job.etag.clear();
-                    job.lastModified.clear();
+                    // Preserve the original validator and its URL.
                     remoteTotalKnown = false;
                     char mfMsg[180];
                     sceClibSnprintf(mfMsg, sizeof(mfMsg),
@@ -547,13 +562,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
                         http_.lastStatusCode())) continue;
                     break;
                 }
-            } else if (job.downloadedSize == 0) {
-                st.removeFile(job.temporaryPath);
-                offset = 0;
             } else {
+                const uint64_t checkpointBytes = parallelSavedBytes(job.temporaryPath);
                 const int64_t sz = st.fileSize(job.temporaryPath);
-                offset = sz > 0 ? static_cast<uint64_t>(sz) : 0;
-                job.downloadedSize = offset;
+                offset = checkpointBytes > 0 ? 0 : (sz > 0 ? static_cast<uint64_t>(sz) : 0);
+                job.downloadedSize = checkpointBytes > 0 ? checkpointBytes : offset;
             }
             sizeLimitHit = false;
             diskSpaceHit = false;
@@ -567,17 +580,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
         // direct links are short-lived, so do not reuse a validator across a new URL.
         std::string ifRangeValidator;
         if (offset > 0 && job.validatorUrl == effectiveUrl) {
-            ifRangeValidator = !job.etag.empty() ? job.etag : job.lastModified;
+            ifRangeValidator = resumeValidator(job.etag, job.lastModified);
         }
-        // Automatic recovery must not append a serial prefix without a
-        // same-resource validator. The existing range checkpoint path is
-        // independently verified, so leave its files untouched.
-        if (job.pausedForConnectivity && offset > 0 &&
-            (ifRangeValidator.empty() || ifRangeValidator.compare(0, 2, "W/") == 0)) {
-            offset = 0;
-            job.downloadedSize = 0;
-            ifRangeValidator.clear();
-            diagnostics::log("[DownloadManager] automatic recovery: serial validator unavailable; restarting safely");
+        if (offset > 0 && ifRangeValidator.empty()) {
+            diagnostics::log("[DownloadManager] resume validator unavailable; existing prefix retained");
+            return holdSavedFailure("resume validator unavailable");
         }
         statusFn(savedParallel > 0 && outer == 0
             ? "HTTP_STAGE_VERIFYING_SAVED" : "HTTP_STAGE_CONNECTING");
@@ -596,7 +603,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 return job.pauseRequested->load(std::memory_order_acquire) &&
                        !job.cancelRequested->load(std::memory_order_acquire);
             },
-            statusFn
+            statusFn,
+            true
         );
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
@@ -617,9 +625,11 @@ bool DownloadManager::runJob(DownloadJob& job) {
             hr != HttpResult::Ok && job.downloadedSize == 0;
         if (job.sourceUnavailable)
             diagnostics::log("[DownloadManager] Archive.org service connection issue classified");
-        if (!http_.lastEtag().empty()) job.etag = http_.lastEtag();
-        if (!http_.lastModified().empty()) job.lastModified = http_.lastModified();
-        job.validatorUrl = effectiveUrl;
+        if (!http_.lastEtag().empty() || !http_.lastModified().empty()) {
+            job.etag = http_.lastEtag();
+            job.lastModified = http_.lastModified();
+            job.validatorUrl = effectiveUrl;
+        }
         saveMetadata(job);
         // A nonexistent resource (HTTP 404/410/etc.) or repeated pre-response
         // connection failure cannot benefit from 2–4 more full HTTP sessions.
@@ -628,7 +638,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             diagnostics::log("[DownloadManager] source unavailable; skipping outer retries");
             break;
         }
-        if (hr == HttpResult::Ok || hr == HttpResult::Cancelled || cancelFn() || sizeLimitHit)
+        if (hr == HttpResult::Ok || hr == HttpResult::ResumeRejected ||
+            hr == HttpResult::Cancelled || cancelFn() || sizeLimitHit)
             break;
     }
     job.lastHttpStatus = http_.lastStatusCode();
@@ -670,6 +681,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
     if (job.pauseRequested->load(std::memory_order_acquire) &&
         !job.cancelRequested->load(std::memory_order_acquire)) {
         return finishPaused();
+    }
+    if (!job.cancelRequested->load(std::memory_order_acquire) &&
+        hr != HttpResult::Ok && hasSavedProgress()) {
+        return holdSavedFailure(http_.lastError().empty() ? "download interrupted" : http_.lastError());
     }
     if (hr == HttpResult::Cancelled || cancelFn()) {
         st.removeFile(job.temporaryPath);
