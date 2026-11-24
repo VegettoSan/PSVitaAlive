@@ -4,7 +4,7 @@
 **Estado:** **ABIERTO / NO RESUELTO**. No fusionar el extractor experimental ni declarar arreglado Minecraft.  
 **Seguimiento técnico:** [Issue #111 — acciones pendientes](https://github.com/VegettoSan/PSVitaAlive/issues/111) · [PR #85, borrador](https://github.com/VegettoSan/PSVitaAlive/pull/85) · [Cambios estables ya integrados en PR #110](PR85_STABLE_INTEGRATION_20261124.md).
 
-> **Seguimiento posterior:** la ruta rápida de `SCE_O_TRUNC` para archivos existentes, comprobada en Build #645, se aisló para integración independiente sobre el `main` vigente: [detalle técnico](ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md). **No** incluye ni la reanudación por CRC32 de PR #112 ni la solución al bloqueo al crear nuevos archivos; esta incidencia permanece abierta.
+> **Seguimiento posterior — integrado parcialmente en `main`:** la ruta rápida de `SCE_O_TRUNC` para archivos existentes, comprobada en Build #645, quedó integrada mediante [PR #113](https://github.com/VegettoSan/PSVitaAlive/pull/113), commit `fb21bc0e3038d65137c7dd7b1ba6055176031485`. Ver [detalle técnico](ZIP_EXISTING_FILE_OPEN_FASTPATH_20261124.md). **No** incluye ni la reanudación por CRC32 de PR #112 ni la solución al bloqueo al crear nuevos archivos; esta incidencia permanece abierta.
 
 ## 1. Caso reproducible y síntoma
 
