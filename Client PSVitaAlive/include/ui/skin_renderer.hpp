@@ -14,9 +14,37 @@ inline unsigned calls = 0;
 inline unsigned vertices = 0;
 inline unsigned poolFallbacks = 0;
 inline unsigned invalidGeometry = 0;
-// A/B diagnostic only: never stall normal frame submission.
-inline bool gpuSyncTest = false;
-inline void beforeFrame() { if (gpuSyncTest) vita2d_wait_rendering_done(); }
+// libvita2d's ordinary start resets the shared CPU/GPU vertex arena every
+// frame. Keep allocations alive across scenes instead. Reserve at least the
+// original 1 MiB at each frame start; recycle only after a proven GPU idle.
+// One extra MiB in USER_RW (not an extra atlas or framebuffer).
+inline constexpr unsigned framePoolBytes = 2u * 1024u * 1024u;
+inline constexpr unsigned frameReserveBytes = 1024u * 1024u;
+inline unsigned poolResetWaits = 0;
+inline unsigned poolResetIdle = 0;
+
+// Called exclusively outside a scene, immediately after an existing GPU wait.
+inline void recycleAfterIdle() {
+    if (vita2d_pool_free_space() < framePoolBytes) {
+        vita2d_pool_reset();
+        ++poolResetIdle;
+    }
+}
+
+// No per-frame full-GPU synchronization. The advanced entry point does not
+// reset the arena. GPU-visible allocations from different frames never
+// overlap until all outstanding work has been completed.
+inline bool beginFrame() {
+    bool waited = false;
+    if (vita2d_pool_free_space() < frameReserveBytes) {
+        vita2d_wait_rendering_done();
+        vita2d_pool_reset();
+        ++poolResetWaits;
+        waited = true;
+    }
+    vita2d_start_drawing_advanced(nullptr, 0);
+    return waited;
+}
 inline bool ready() { return textures[0] && textures[1] && textures[2]; }
 inline void resetFrameCounters() { calls = vertices = poolFallbacks = invalidGeometry = 0; }
 inline void release() {
@@ -58,7 +86,7 @@ inline Axis axis(float position, float length, int start, int size,
 }
 
 // Each nine-slice uses ONE GXM draw, not nine. Vertices live in vita2d's
-// per-frame GPU-visible pool, never on the stack or heap. Reuse the caller's
+// GPU-visible pool, never on the stack or heap. Reuse the caller's
 // scissor; don't modify clip state, blend mode, or frame/swap ownership.
 inline bool draw(Atlas atlas, const Sprite& s, float x, float y,
                  float w, float h, unsigned tint = 0xffffffffu) {
