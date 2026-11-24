@@ -181,6 +181,13 @@ jobs:
             -o /tmp/psvitaalive-extraction-cache-test
           /tmp/psvitaalive-extraction-cache-test
 
+      - name: Test saved-ZIP verified resume CRC32 and partial files
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_zip_resume_policy.cpp -lz \
+            -o /tmp/psvitaalive-zip-resume-policy-test
+          /tmp/psvitaalive-zip-resume-policy-test
+
       - name: Test unreachable source and HTTP response policy
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
