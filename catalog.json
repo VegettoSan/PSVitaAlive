@@ -1,5 +1,165 @@
 [
   {
+    "id": "gh-vita",
+    "tid": "GHVT00001",
+    "n": "GH Vita",
+    "d": "Guitar Hero Port for PS Vita",
+    "ld": "A homebrew PS Vita port of Guitar Dream Engine's reimplementation of Guitar Hero (PlayStation 2, 2005), the engine's gd-game-01.",
+    "aids": [
+      "irxd"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "simulation",
+      "strategy",
+      "game-engine"
+    ],
+    "v": "0.2.3",
+    "vd": "2026-11-24",
+    "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
+    "sz": 4110349,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/irxd/guitar-hero-vita/releases/download/v0.2.3/ghvita-v0.2.3.vpk",
+        "sz": 4110349,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2254857830,
+        "xp": "ux0:data/",
+        "ips": [
+          "ghvita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/irxd/guitar-hero-vita"
+      }
+    ],
+    "apr": true,
+    "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "nfs-carbon",
+    "tid": "NFSCVITA0",
+    "n": "NFS Carbon",
+    "d": "Need for Speed Carbon, on the PS Vita",
+    "ld": "Need for Speed Carbon (PC v1.4) on the PS Vita: static recompilation of your own NFSC.exe with a sceGxm renderer. Unofficial fan port.",
+    "aids": [
+      "swisha33"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "0.1.7",
+    "vd": "2026-11-24",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
+    "sz": 15130705,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.7/NFSCVita.vpk",
+        "sz": 15130705,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSCVita/Game%20Files%20for%20PSVA.zip",
+        "sz": 4187593114,
+        "xp": "ux0:data/",
+        "ips": [
+          "NFSCVITA"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5222,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Swisha33/NFSCVita"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSCVita/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSCVita/shot0.png"
+    ]
+  },
+  {
+    "id": "silent-hill-2",
+    "tid": "SHIL00002",
+    "n": "Silent Hill 2",
+    "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+    "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+    "aids": [
+      "angelogalav"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "v": "0.2.1",
+    "vd": "2026-11-24",
+    "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
+    "sz": 1313767,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.2.1/sh2vita.vpk",
+        "sz": 1313767,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2684354560,
+        "xp": "ux0:data/",
+        "ips": [
+          "sh2-vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/AngeloGalav/sh2-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/sh2-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/sh2-vita/icon0.png"
+    ]
+  },
+  {
     "id": "dragon-ball-z-bt4",
     "tid": "BTFV00010",
     "n": "Dragon Ball Z: BT4",
@@ -210,65 +370,6 @@
     "ic": "https://archive.org/download/mario-kart-ds-vita/icon0.png",
     "ss": [
       "https://archive.org/download/mario-kart-ds-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "nfs-carbon",
-    "tid": "NFSCVITA0",
-    "n": "NFS Carbon",
-    "d": "Need for Speed Carbon, on the PS Vita",
-    "ld": "Need for Speed Carbon (PC v1.4) on the PS Vita: static recompilation of your own NFSC.exe with a sceGxm renderer. Unofficial fan port.",
-    "aids": [
-      "swisha33"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "source-port"
-    ],
-    "v": "0.1.6",
-    "vd": "2026-11-23",
-    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 5.5 GB free on the memory card\n- CapUnlocker is strongly recommended: it lets the port use the Vita's fourth CPU core.",
-    "sz": 14418241,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.6/NFSCVita.vpk",
-        "sz": 14418241,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSCVita/Game%20Files%20for%20PSVA.zip",
-        "sz": 4187593114,
-        "xp": "ux0:data/",
-        "ips": [
-          "NFSCVITA"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5222,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/Swisha33/NFSCVita"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSCVita/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSCVita/shot0.png"
     ]
   },
   {
@@ -1029,57 +1130,6 @@
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
-    ]
-  },
-  {
-    "id": "gh-vita",
-    "tid": "GHVT00001",
-    "n": "GH Vita",
-    "d": "Guitar Hero Port for PS Vita",
-    "ld": "A homebrew PS Vita port of Guitar Dream Engine's reimplementation of Guitar Hero (PlayStation 2, 2005), the engine's gd-game-01.",
-    "aids": [
-      "irxd"
-    ],
-    "cid": "ports",
-    "sids": [
-      "arcade",
-      "simulation",
-      "strategy",
-      "game-engine"
-    ],
-    "v": "0.2.2",
-    "vd": "2026-11-20",
-    "req": "- libshacccg.suprx\n- Your own Guitar Hero PS2 disc, ripped to an .iso",
-    "sz": 4109234,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/gh-vita%20v0.2.2.vpk",
-        "sz": 4109234,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/guitar-hero-ps2-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2254857830,
-        "xp": "ux0:data/",
-        "ips": [
-          "ghvita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/irxd/guitar-hero-vita"
-      }
-    ],
-    "apr": true,
-    "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
     ]
   },
   {
@@ -2925,56 +2975,6 @@
     "ic": "https://archive.org/download/raging-thunder-ps-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/raging-thunder-ps-vita-port/shot0.png"
-    ]
-  },
-  {
-    "id": "silent-hill-2",
-    "tid": "SHIL00002",
-    "n": "Silent Hill 2",
-    "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
-    "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
-    "aids": [
-      "angelogalav"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "source-port",
-      "other"
-    ],
-    "v": "0.1.0-alpha.3",
-    "vd": "2026-11-13",
-    "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
-    "sz": 1297848,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/sh2-vita/silent-hill-2%20v0.1.0-alpha.3.vpk",
-        "sz": 1297848,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2684354560,
-        "xp": "ux0:data/",
-        "ips": [
-          "sh2-vita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/AngeloGalav/sh2-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/sh2-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/sh2-vita/icon0.png"
     ]
   },
   {
