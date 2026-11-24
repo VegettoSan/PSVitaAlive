@@ -38,7 +38,7 @@ public:
 
     bool init();
     void shutdown();
-    bool request(ui::CatalogType catalog);
+    bool request(ui::CatalogType catalog, bool forceNetwork = false);
     /** True while a load is in flight (UI must ignore further tab switches). */
     bool isBusy() const;
     Status status() const;
@@ -51,6 +51,7 @@ private:
 
     ui::CatalogType requestedCatalog_ = ui::CatalogType::Homebrew;
     bool requestPending_ = false;
+    bool forceNetworkPending_ = false;
     /** Bumped on every request; worker only publishes matching generation. */
     unsigned requestGeneration_ = 0;
     unsigned loadingGeneration_ = 0;
@@ -67,7 +68,8 @@ private:
 
     static int workerEntry(SceSize args, void* argp);
     int workerMain();
-    bool loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
+    bool loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems,
+                     bool forceNetwork = false);
     bool tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
     bool trySoftNetworkRefresh(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
     void publishReady(ui::CatalogType catalog, std::vector<ui::CatalogItem>& items,
