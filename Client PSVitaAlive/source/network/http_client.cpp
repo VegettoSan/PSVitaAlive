@@ -2037,6 +2037,13 @@ HttpResult HttpClient::downloadToFile(
                     parallel == ParallelArchiveOutcome::Segmented) {
                     lastSegmentedZip_ = parallel == ParallelArchiveOutcome::Segmented;
                     lastStatus_ = 206;
+                    // Generic HTTPS range downloads validate each part against
+                    // the probe's resource identity before reporting completion.
+                    // Expose those validators just like a successful serial GET.
+                    if (!isArchive) {
+                        lastEtag_ = rangeProbe.etag;
+                        lastModified_ = rangeProbe.lastModified;
+                    }
                     return HttpResult::Ok;
                 }
                 if (parallel == ParallelArchiveOutcome::NetworkInterrupted) {
