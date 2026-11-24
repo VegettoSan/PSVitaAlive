@@ -34,6 +34,12 @@ jobs:
             -o /tmp/psvitaalive-web-url-test
           /tmp/psvitaalive-web-url-test
 
+      - name: Test incomplete catalog grid navigation
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_catalog_grid_navigation.cpp -o /tmp/psvitaalive-catalog-grid-test
+          /tmp/psvitaalive-catalog-grid-test
+
       - name: Test feedback panel and description scroll boundaries
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
