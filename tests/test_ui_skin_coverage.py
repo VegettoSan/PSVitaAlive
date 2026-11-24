@@ -72,8 +72,8 @@ frame = body("inline void startSkinFrame()", "constexpr uint32_t NAV_DIRECTION_M
 assert frame.count("if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();") == 2
 assert frame.index("skin::beginFrame()") < frame.index("vita2d_end_drawing()")
 assert frame.index("vita2d_end_drawing()") < frame.index("vita2d_swap_buffers()")
-assert "10000000ULL" in frame and frame.count("diagnostics::log(") == 1
-for obsolete in ("clip_leaks", "low_pool_frames", "pool_reset_waits", "pool_reset_idle", "[GPU]", "[Perf] skin"):
+assert "diagnostics::log(" not in frame and "sceKernelGetProcessTimeWide()" not in frame
+for obsolete in ("clip_leaks", "low_pool_frames", "pool_reset_waits", "pool_reset_idle", "[GPU]", "[Perf]", "skinFrameStartedUs", "skinFrameScene", "perfBeforeFreeUs", "perfBeforeImageUs", "perfWindowStartUs"):
     assert obsolete not in source, obsolete
 for obsolete in ("resetFrameCounters", "poolFallbacks", "invalidGeometry", "poolResetWaits", "poolResetIdle", "++calls", "vertices +="):
     assert obsolete not in renderer, obsolete
@@ -90,9 +90,9 @@ links = body("void FullCatalogScreen::drawDetailLinks(", "void FullCatalogScreen
 assert "if(!visible(ry,row.isSection?LINK_SECTION_H:LINK_ROW_H)) continue;" in links
 assert "if(!visible(btnY,LINK_ROW_H)) continue;" in links
 assert "heightOut = linkLayoutTotalHeight(rows) + yOff;" in links
-assert "peak_image_us=%llu" in source and "peak_draw_us=%llu" in source
-assert "saved ZIP probe slow us=%llu" in source
-print("Offscreen link culling and frame phase diagnostics checks OK")
+assert "savedZipProbeResult_ = savedZipList_(item);" in source
+assert "savedZipProbeAtUs_ = sceKernelGetProcessTimeWide();" in source
+print("Offscreen link culling and saved ZIP cache checks OK")
 
 # Image performance pass: source guards for queue-only UI requests and the
 # actual decode-attempt budget (an LRU replacement leaves map size unchanged).
@@ -115,18 +115,16 @@ prepare = body("void FullCatalogScreen::prepareVisibleTextures()", "void FullCat
 assert "textures_.size()>before" not in prepare
 assert prepare.count("++loads;") == 4
 assert "||isTransitioning()" in prepare
-assert "elapsed_us=%llu avg_frame_us=%llu max_frame_us=%llu slow_scene=%s" in frame
-print("Image worker disk probe, decode budget and present diagnostics checks OK")
+assert "[Perf]" not in image and "normStart" not in image and "probeUs" not in image
+assert "[UI] texture load failed" in load and "[ImageCache] failed" in image
+print("Image worker disk probe, decode budget and production error logging checks OK")
 
 # Only the topmost storage modal is drawn, without a catalog or a hidden
 # storage dialog underneath. The normal frame path still owns other modals.
 modal = body("void FullCatalogScreen::draw(){", "bool FullCatalogScreen::updateAndDraw()")
-assert 'skinFrameScene=installedDataVisible_?"installed_data":"storage";' in modal
 assert "if (installedDataVisible_) drawInstalledDataOverlay();" in modal
 assert "else drawStorageOverlay();" in modal
 assert modal.index("else drawStorageOverlay();") < modal.index("return;",modal.index("else drawStorageOverlay();")) < modal.index("drawFullCatalog();")
-assert "storage_frame_peak_us=%llu installed_frame_peak_us=%llu" in frame
-assert "storage_frames=%u installed_frames=%u" in frame
 finish = body("void FullCatalogScreen::finishUiFrame(){", "void FullCatalogScreen::draw(){")
 assert "drawStorageOverlay()" not in finish and "drawInstalledDataOverlay()" not in finish
 catalog = body("void FullCatalogScreen::drawCatalogPanel(", "void FullCatalogScreen::wrapText(")

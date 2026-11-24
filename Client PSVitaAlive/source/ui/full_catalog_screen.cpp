@@ -85,10 +85,7 @@ constexpr int DOWNLOAD_TOUCH_Y = 410;
 constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
 // The catalog and its embedded keyboard render with vita2d only.
-uint64_t skinFrameStartedUs = 0;
-const char* skinFrameScene = "unknown";
 inline void startSkinFrame() {
-    skinFrameStartedUs = sceKernelGetProcessTimeWide();
     // Preserve the verified GPU arena lifetime and scissor safety.
     skin::beginFrame();
     if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
@@ -97,34 +94,6 @@ inline void finishFrame() {
     if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
     vita2d_end_drawing();
     vita2d_swap_buffers();
-    if (!skinFrameStartedUs) return;
-    const uint64_t now = sceKernelGetProcessTimeWide();
-    const uint64_t us = now - skinFrameStartedUs;
-    static uint64_t since = skinFrameStartedUs, sum = 0, worst = 0;
-    static unsigned frames = 0, storageFrames = 0, installedFrames = 0;
-    static const char* worstScene = "unknown";
-    static uint64_t storagePeak = 0, installedPeak = 0;
-    skinFrameStartedUs = 0;
-    sum += us; ++frames;
-    if (us >= worst) { worst = us; worstScene = skinFrameScene; }
-    if (std::strcmp(skinFrameScene,"storage")==0) {
-        ++storageFrames; storagePeak=std::max(storagePeak,us);
-    } else if (std::strcmp(skinFrameScene,"installed_data")==0) {
-        ++installedFrames; installedPeak=std::max(installedPeak,us);
-    }
-    // Single compact report per 10s, including both storage managers.
-    // No per-sprite counters or GPU debug logging.
-    if (now - since >= 10000000ULL) {
-        char msg[320];
-        sceClibSnprintf(msg,sizeof(msg),
-            "[Perf] present frames=%u elapsed_us=%llu avg_frame_us=%llu max_frame_us=%llu slow_scene=%s storage_frames=%u installed_frames=%u storage_frame_peak_us=%llu installed_frame_peak_us=%llu",
-            frames,(unsigned long long)(now-since),(unsigned long long)(sum/frames),
-            (unsigned long long)worst,worstScene,storageFrames,installedFrames,
-            (unsigned long long)storagePeak,(unsigned long long)installedPeak);
-        diagnostics::log(msg);
-        since=now; sum=worst=0; frames=storageFrames=installedFrames=0;
-        storagePeak=installedPeak=0; worstScene="unknown";
-    }
 }
 
 constexpr uint32_t NAV_DIRECTION_MASK =
@@ -3454,7 +3423,6 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
     if(deferredFreeTextures_.empty())return;
     // Previous frame has been presented; safe to return memory to vita2d.
     // Cap per frame so spam L/R cannot free dozens of textures in one shot (Vita3K crash).
-    const uint64_t perfStartUs=sceKernelGetProcessTimeWide();
     vita2d_wait_rendering_done();
     // The GPU is already idle here, so recycling is free of additional waits.
     skin::recycleAfterIdle();
@@ -3464,16 +3432,6 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
         deferredFreeTextures_.erase(deferredFreeTextures_.begin());
         if(t)vita2d_free_texture(t);
         ++n;
-    }
-    const uint64_t perfEndUs=sceKernelGetProcessTimeWide();
-    const uint64_t perfUs=perfEndUs>=perfStartUs?perfEndUs-perfStartUs:0;
-    static uint64_t lastPerfLogUs=0;
-    if(perfUs>=50000ULL&&(lastPerfLogUs==0||perfEndUs-lastPerfLogUs>=10000000ULL)){
-        char m[160];
-        sceClibSnprintf(m,sizeof(m),"[Perf] deferred texture free slow us=%llu freed=%u remaining=%u",
-            (unsigned long long)perfUs,(unsigned)n,(unsigned)deferredFreeTextures_.size());
-        diagnostics::log(m);
-        lastPerfLogUs=perfEndUs;
     }
 }
 void FullCatalogScreen::clearInstallDisplayItem() {
@@ -4503,14 +4461,7 @@ FullCatalogScreen::savedZipsFor(const CatalogItem& item) {
         savedZipProbeKey_ = key;
         savedZipProbeResult_.clear();
         if (savedZipList_ && (!item.id.empty() || !item.titleId.empty())) {
-            const uint64_t probeStart=sceKernelGetProcessTimeWide();
             savedZipProbeResult_ = savedZipList_(item);
-            const uint64_t elapsed=sceKernelGetProcessTimeWide()-probeStart;
-            if(elapsed>=50000ULL) {
-                char msg[128];
-                sceClibSnprintf(msg,sizeof(msg),"[Perf] saved ZIP probe slow us=%llu",(unsigned long long)elapsed);
-                diagnostics::log(msg);
-            }
         }
         savedZipProbeAtUs_ = sceKernelGetProcessTimeWide();
     }
@@ -7990,19 +7941,8 @@ bool FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     // Count a decode attempt even if it fails or replaces an LRU texture.
     vita2d_texture*t=nullptr;
     const char*e=extOf(path);
-    const uint64_t perfStartUs=sceKernelGetProcessTimeWide();
     if(std::strcmp(e,".jpg")==0||std::strcmp(e,".jpeg")==0)t=vita2d_load_JPEG_file(path.c_str());
     else t=vita2d_load_PNG_file(path.c_str());
-    const uint64_t perfEndUs=sceKernelGetProcessTimeWide();
-    const uint64_t perfUs=perfEndUs>=perfStartUs?perfEndUs-perfStartUs:0;
-    static uint64_t lastTexturePerfLogUs=0;
-    if(perfUs>=50000ULL&&(lastTexturePerfLogUs==0||perfEndUs-lastTexturePerfLogUs>=5000000ULL)){
-        char pm[240];
-        sceClibSnprintf(pm,sizeof(pm),"[Perf] texture decode slow us=%llu ns=%s path=%s",
-            (unsigned long long)perfUs,ns.c_str(),path.c_str());
-        diagnostics::log(pm);
-        lastTexturePerfLogUs=perfEndUs;
-    }
     if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return true;}
     evictTextureIfNeeded(ns);
     textures_[path]=t;textureOrder_.push_back(path);
@@ -12219,20 +12159,10 @@ void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_colo
     finishFrame();
 }
 void FullCatalogScreen::draw(){
-    // Compact diagnostic context, no strings allocated per frame.
-    switch(state_.mode) {
-        case UiMode::FULL_CATALOG: skinFrameScene="catalog"; break;
-        case UiMode::OPENING_DETAIL: skinFrameScene="opening"; break;
-        case UiMode::SPLIT_DETAIL: skinFrameScene="detail"; break;
-        case UiMode::CLOSING_DETAIL: skinFrameScene="closing"; break;
-        case UiMode::SETTINGS: skinFrameScene="settings"; break;
-        default: skinFrameScene="unknown"; break;
-    }
     // Storage dialogs own all input. Draw just the topmost dialog over a
     // theme-colored backdrop, not a live catalog or another hidden dialog.
     // Do not change update/poll/input logic or GPU pool lifetime.
     if (installedDataVisible_ || storageVisible_) {
-        skinFrameScene=installedDataVisible_?"installed_data":"storage";
         startSkinFrame();
         vita2d_set_clear_color(BG);
         vita2d_clear_screen();
@@ -12286,7 +12216,6 @@ void FullCatalogScreen::draw(){
             return !state_.requestExit;
         }
     }
-    const uint64_t frameStartUs=sceKernelGetProcessTimeWide();
     {
         static bool once = false;
         if (!once) {
@@ -12298,9 +12227,7 @@ void FullCatalogScreen::draw(){
     pollDataRequestWorker();
     pollStorageOperation();
     pollInstalledDataOperation();
-    const uint64_t perfBeforeFreeUs=sceKernelGetProcessTimeWide();
     flushDeferredTextureFrees();
-    const uint64_t perfAfterFreeUs=sceKernelGetProcessTimeWide();
     if(catalogSwitchCooldownFrames_>0)--catalogSwitchCooldownFrames_;
     // Expire toast
     if(toastExpiresMs_!=0){
@@ -12381,53 +12308,8 @@ void FullCatalogScreen::draw(){
     updateAnimations();
     advanceInstallFilterScan();
     // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
-    const uint64_t perfBeforeImageUs=sceKernelGetProcessTimeWide();
     if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
-    const uint64_t perfBeforeDrawUs=sceKernelGetProcessTimeWide();
     draw();
-    const uint64_t frameEndUs=sceKernelGetProcessTimeWide();
-    const uint64_t frameUs=frameEndUs>=frameStartUs?frameEndUs-frameStartUs:0;
-    // Aggregate frame hitches in RAM instead of doing string/log I/O per slow frame.
-    // One concise diagnostic every 10s keeps performance reports actionable.
-    static uint64_t perfWindowStartUs=0;
-    static uint64_t perfWorstUs=0;
-    static unsigned perfOver25ms=0;
-    static unsigned perfOver100ms=0;
-    static uint64_t perfPeakFreeUs=0,perfPeakImageUs=0,perfPeakDrawUs=0,perfPeakOtherUs=0;
-    const uint64_t freeUs=perfAfterFreeUs-perfBeforeFreeUs;
-    const uint64_t imageUs=perfBeforeDrawUs-perfBeforeImageUs;
-    const uint64_t drawUs=frameEndUs-perfBeforeDrawUs;
-    const uint64_t otherUs=frameUs>=freeUs+imageUs+drawUs?frameUs-freeUs-imageUs-drawUs:0;
-    perfPeakFreeUs=std::max(perfPeakFreeUs,freeUs);
-    perfPeakImageUs=std::max(perfPeakImageUs,imageUs);
-    perfPeakDrawUs=std::max(perfPeakDrawUs,drawUs);
-    perfPeakOtherUs=std::max(perfPeakOtherUs,otherUs);
-    if(perfWindowStartUs==0)perfWindowStartUs=frameEndUs;
-    if(frameUs>=25000ULL){
-        ++perfOver25ms;
-        if(frameUs>=100000ULL)++perfOver100ms;
-        if(frameUs>perfWorstUs)perfWorstUs=frameUs;
-    }
-    if(frameEndUs-perfWindowStartUs>=10000000ULL){
-        if(perfOver25ms){
-            char pm[180];
-            sceClibSnprintf(pm,sizeof(pm),
-                "[Perf] 10s summary slow_25ms=%u severe_100ms=%u worst_us=%llu mode=%d textures=%u deferred=%u",
-                perfOver25ms,perfOver100ms,(unsigned long long)perfWorstUs,
-                (int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
-            diagnostics::log(pm);
-            char phase[224];
-            sceClibSnprintf(phase,sizeof(phase),
-                "[Perf] phases peak_free_us=%llu peak_image_us=%llu peak_draw_us=%llu peak_other_us=%llu",
-                (unsigned long long)perfPeakFreeUs,(unsigned long long)perfPeakImageUs,
-                (unsigned long long)perfPeakDrawUs,(unsigned long long)perfPeakOtherUs);
-            diagnostics::log(phase);
-        }
-        perfPeakFreeUs=perfPeakImageUs=perfPeakDrawUs=perfPeakOtherUs=0;
-        perfWindowStartUs=frameEndUs;
-        perfOver25ms=perfOver100ms=0;
-        perfWorstUs=0;
-    }
     return !state_.requestExit;
 }
 
