@@ -3670,7 +3670,7 @@ void FullCatalogScreen::rebuildStorageRows() {
     storageRows_.push_back({3,-1}); // images, read-only
     if(storageFocus_>=static_cast<int>(storageRows_.size()))
         storageFocus_=std::max(0,static_cast<int>(storageRows_.size())-1);
-    clampStorageScroll();
+    ensureStorageFocusVisible();
 }
 int FullCatalogScreen::storageContentHeight() const {
     int h=0;
@@ -3895,7 +3895,7 @@ void FullCatalogScreen::drawStorageOverlay() {
     vita2d_draw_rectangle(x+21,by,Layout::closeWidth,bh,SURFACE2);
     vita2d_draw_rectangle(x+21,by,Layout::closeWidth,1,BORDER);
     drawMarqueeText(&font_,x+33,by+24,Layout::closeWidth-24,WHITE,.92f,
-        ::psvitaalive::L("BTN_O_CLOSE"),false);
+        ::psvitaalive::L(storageConfirm_?"ID_CONFIRM_CANCEL_BUTTON":"BTN_O_CLOSE"),false);
     if(hasCleanable) {
         const int bx=x+w-21-Layout::cleanWidth;
         vita2d_draw_rectangle(bx,by,Layout::cleanWidth,bh,ACCENT);
