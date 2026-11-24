@@ -840,6 +840,10 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
             !screen.isThemeSetupVisible() && !screen.isNewsVisible() &&
             !screen.isEssentialPluginsVisible() && !screen.isEssentialPluginsInstalling() &&
             !screen.isPluginRebootModal();
+        // START shortcuts become available only after the startup sequence.
+        // The gate also requires a released START sample before accepting it.
+        if (startupDialogsFinished)
+            ::psvitaalive::ui::finishClientControllerStartup();
         if (startupDialogsFinished && !archiveProbeStarted) {
             archiveProbeStarted = true;
             if (archiveProbe.start())
