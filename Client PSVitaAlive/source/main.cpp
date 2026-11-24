@@ -1,4 +1,6 @@
 #include "ui/controller_input.hpp"
+#include "ui/skin_hints.hpp"
+namespace skin = psvitaalive::skin;
 /* PSVitaAlive - native client entry point. */
 #include "localization/localization.hpp"
 #include <psp2/kernel/processmgr.h>
@@ -180,11 +182,8 @@ ZipDestChoice promptZipDestinationChoice() {
         vita2d_clear_screen();
         vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 120));
 
-        vita2d_draw_rectangle(boxX, boxY, boxW, boxH, PANEL);
-        vita2d_draw_rectangle(boxX, boxY, boxW, 3, ACCENT);
-        vita2d_draw_rectangle(boxX, boxY + boxH - 1, boxW, 1, ACCENT_SOFT);
-        vita2d_draw_rectangle(boxX, boxY, 2, boxH, ACCENT);
-        vita2d_draw_rectangle(boxX + boxW - 2, boxY, 2, boxH, ACCENT_SOFT);
+        skin::surface(skin::ui_atlas::ui_dialog,boxX,boxY,boxW,boxH,PANEL);
+        skin::focus(boxX,boxY,boxW,boxH,ACCENT);
 
         ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + 32, ACCENT, 0.62f, "PSVitaAlive");
         ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + 58, WHITE, 1.00f, "ZIP file detected");
@@ -194,21 +193,17 @@ ZipDestChoice promptZipDestinationChoice() {
         for (int i = 0; i < kCount; ++i) {
             const int ry = listTop + i * rowH;
             const bool on = (i == focus);
-            if (on) {
-                vita2d_draw_rectangle(listLeft, ry, listW, rowH - 6, ROW_BG);
-                vita2d_draw_rectangle(listLeft, ry, 4, rowH - 6, ACCENT);
-            } else {
-                vita2d_draw_rectangle(listLeft, ry, listW, rowH - 6, SURFACE2);
-            }
+            skin::surface(skin::ui_atlas::ui_card,listLeft,ry,listW,rowH-6,on?ROW_BG:SURFACE2);
+            if (on) skin::focus(listLeft,ry,listW,rowH-6,ACCENT);
             const unsigned pathCol = on ? ACCENT : WHITE;
             const unsigned descCol = on ? TEXT : DIM;
             ::psvitaalive::ui::uiDrawText(&font, listLeft + 16, ry + 18, pathCol, 0.72f, kOptions[i].path);
             ::psvitaalive::ui::uiDrawText(&font, listLeft + 16, ry + 38, descCol, 0.52f, kOptions[i].desc);
         }
 
-        vita2d_draw_rectangle(boxX + 1, boxY + boxH - 36, boxW - 2, 35, SURFACE2);
-        ::psvitaalive::ui::uiDrawText(&font, boxX + 28, boxY + boxH - 14, DIM, 0.52f,
-            "D-Pad / Touch: select    Cross: confirm    Circle: cancel");
+        skin::surface(skin::ui_atlas::ui_panel_inset,boxX+1,boxY+boxH-36,boxW-2,35,SURFACE2);
+        skin::hint(&font,boxX+28,boxY+boxH-14,boxW-56,DIM,.52f,
+            "D-Pad / Touch: select    X: confirm    Circle: cancel");
 
         vita2d_end_drawing();
         vita2d_swap_buffers();
@@ -367,9 +362,11 @@ int main(){
         },
         [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
                              const std::string& archivePath) {
+            screen.setInstallDisplayItem(item);
             const bool started = installer.requestSavedZipExtraction(
                 item.id, item.titleId, archivePath);
             if (started) screen.requestUx0SpaceRefresh();
+            else screen.clearInstallDisplayItem();
             return started;
         });
     screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){
@@ -402,8 +399,11 @@ int main(){
                 }
             }
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
+            screen.setInstallDisplayItem(item);
             screen.prepareForHeavyWork();
-            return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
+            const bool started = installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
+            if (!started) screen.clearInstallDisplayItem();
+            return started;
         }},[&installer](){return installStatusText(installer.status());});
     screen.setLinkActionCallback([&installer, &screen](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
         const std::string type=link.type;
@@ -457,8 +457,11 @@ int main(){
                 parseCatalogSizeBytes(link.size), parseCatalogSizeBytes(item.size),
                 link.url, item.downloadUrl);
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
+            screen.setInstallDisplayItem(item);
             screen.prepareForHeavyWork();
-            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line,screen.installAllSpaceApproved());
+            const bool started = installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line,screen.installAllSpaceApproved());
+            if (!started) screen.clearInstallDisplayItem();
+            return started;
         }
     });
 

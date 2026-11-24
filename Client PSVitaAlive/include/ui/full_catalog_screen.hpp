@@ -108,6 +108,8 @@ public:
     void setImageCache(ImageCache* cache);
     /** Free catalog icons/covers/screenshots before starting a heavy install worker. UI thread only. */
     void prepareForHeavyWork();
+    void setInstallDisplayItem(const CatalogItem& item);
+    void clearInstallDisplayItem();
     void setCatalogItems(std::vector<CatalogItem> items);
     void setActiveCatalog(CatalogType catalog);
     CatalogType activeCatalog() const { return state_.catalog; }
@@ -332,6 +334,8 @@ private:
     uint64_t installPhaseStartedUs_ = 0;
     std::string installProgressStage_;
     std::string installProgressFile_;
+    std::string installDisplayName_, installDisplayId_, installDisplayUrl_;
+    vita2d_texture* installDisplayTexture_ = nullptr;
     std::string installProgressMessage_;
     int installOutcome_ = 0;
     uint64_t installResultAutoCloseMs_ = 0; // 0 progress, 1 success, 2 error

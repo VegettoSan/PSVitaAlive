@@ -1,4 +1,5 @@
 #include "ui/controller_input.hpp"
+#include "ui/skin_hints.hpp"
 #include "ui/full_catalog_screen.hpp"
 #include "ui/catalog_grid_navigation.hpp"
 #include "ui/feedback_scroll_math.hpp"
@@ -84,9 +85,34 @@ constexpr int DOWNLOAD_TOUCH_Y = 410;
 constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
 // The catalog and its embedded keyboard render with vita2d only.
+uint64_t skinFrameStartedUs = 0;
+inline void startSkinFrame() {
+    skin::resetFrameCounters();
+    skinFrameStartedUs = sceKernelGetProcessTimeWide();
+    vita2d_start_drawing();
+}
 inline void finishFrame() {
+    const unsigned pool = vita2d_pool_free_space();
     vita2d_end_drawing();
     vita2d_swap_buffers();
+    if (!skin::ready() || !skinFrameStartedUs) return;
+    const uint64_t now = sceKernelGetProcessTimeWide();
+    const uint64_t us = now - skinFrameStartedUs;
+    skinFrameStartedUs = 0;
+    static uint64_t since = now, sum = 0, worst = 0;
+    static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
+    sum += us; worst = std::max(worst, us); ++frames;
+    draws += skin::calls; verts += skin::vertices; fallbacks += skin::poolFallbacks;
+    minPool = std::min(minPool, pool);
+    if (now - since >= 5000000ULL) {
+        char msg[220];
+        sceClibSnprintf(msg, sizeof(msg),
+            "[Perf] skin frames=%u avg_frame_us=%llu max_frame_us=%llu draws/frame=%u verts/frame=%u pool_min=%u fallbacks=%u",
+            frames, (unsigned long long)(sum/frames), (unsigned long long)worst,
+            draws/frames, verts/frames, minPool, fallbacks);
+        diagnostics::log(msg);
+        since=now; sum=worst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
+    }
 }
 
 constexpr uint32_t NAV_DIRECTION_MASK =
@@ -440,7 +466,7 @@ BatteryDisplayState batteryDisplayState() {
     return cached;
 }
 
-// The outlined icon uses only vita2d rectangles: no textures or localized glyphs.
+// Atlas-backed outline, live charge fill and unchanged 15-second battery polling.
 void drawBatteryIndicator(const ::psvitaalive::ui::UiFont* font,
                           int anchorX, int topY, float textScale, bool centered) {
     const BatteryDisplayState state = batteryDisplayState();
@@ -453,17 +479,30 @@ void drawBatteryIndicator(const ::psvitaalive::ui::UiFont* font,
     const int x = centered ? anchorX - (28 + labelWidth) / 2 : anchorX;
     const unsigned levelColor = state.percent >= 0 && state.percent <= 15
         ? RGBA8(0xE0, 0x55, 0x48, 255) : ACCENT;
-    vita2d_draw_rectangle(x, topY + 1, 22, 14, levelColor);
-    vita2d_draw_rectangle(x + 2, topY + 3, 18, 10, SURFACE2);
-    vita2d_draw_rectangle(x + 22, topY + 5, 3, 6, levelColor);
-    if (state.percent > 0) {
-        const int fill = 18 * state.percent / 100;
-        if (fill > 0) vita2d_draw_rectangle(x + 2, topY + 3, fill, 10, levelColor);
-    }
-    if (state.charging) {
-        // A small plus denotes charging without a special font character.
-        vita2d_draw_rectangle(x + 9, topY + 7, 6, 2, WHITE);
-        vita2d_draw_rectangle(x + 11, topY + 5, 2, 6, WHITE);
+    if (skin::ready()) {
+        // Empty battery frame from the atlas; only the level is live geometry.
+        // A 30px sprite maps the SVG's inner bounds to this existing 28px slot.
+        const float ix=x-4.f, iy=topY-7.f;
+        if (state.percent > 0) {
+            const float charge=std::min(100,state.percent)/100.f;
+            vita2d_draw_rectangle(ix+7.f,iy+11.f,15.f*charge,9.f,levelColor);
+        }
+        skin::icon(skin::icons_atlas::icon_battery,ix,iy,30.f,levelColor);
+        if (state.charging)
+            skin::icon(skin::icons_atlas::icon_charging,ix,iy,30.f,WHITE);
+    } else {
+        vita2d_draw_rectangle(x, topY + 1, 22, 14, levelColor);
+        vita2d_draw_rectangle(x + 2, topY + 3, 18, 10, SURFACE2);
+        vita2d_draw_rectangle(x + 22, topY + 5, 3, 6, levelColor);
+        if (state.percent > 0) {
+            const int fill = 18 * state.percent / 100;
+            if (fill > 0) vita2d_draw_rectangle(x + 2, topY + 3, fill, 10, levelColor);
+        }
+        if (state.charging) {
+            // A small plus denotes charging without a special font character.
+            vita2d_draw_rectangle(x + 9, topY + 7, 6, 2, WHITE);
+            vita2d_draw_rectangle(x + 11, topY + 5, 2, 6, WHITE);
+        }
     }
     ::psvitaalive::ui::uiDrawText(font, x + 28, topY + 14,
                                   state.percent >= 0 ? SILVER : DIM, textScale, label);
@@ -1828,11 +1867,16 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
 
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 170));
-    vita2d_draw_rectangle(x, y, w, h, PANEL);
-    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
-    vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACCENT);
-    vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
-    vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,PANEL);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, PANEL);
+        vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+        vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACCENT);
+        vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
+        vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    }
 
     ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 36, ACCENT, 1.12f,
                          ::psvitaalive::L(TID::ThemeSetupTitle));
@@ -1882,19 +1926,9 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
             const bool focused = (themeSetupFocus_ == idx);
             const bool selected = (settingsEdit_.colorTheme == th);
 
-            vita2d_draw_rectangle(bx, by, btnW, btnH, SURFACE);
-            vita2d_draw_rectangle(bx, by, 6, btnH, accent);
-            if (focused) {
-                vita2d_draw_rectangle(bx, by, btnW, 3, accent);
-                vita2d_draw_rectangle(bx, by + btnH - 3, btnW, 3, accent);
-                vita2d_draw_rectangle(bx, by, 3, btnH, accent);
-                vita2d_draw_rectangle(bx + btnW - 3, by, 3, btnH, accent);
-            } else {
-                vita2d_draw_rectangle(bx, by, btnW, 1, BORDER);
-            }
-            if (selected) {
-                vita2d_draw_rectangle(bx + 10, by + 8, btnW - 20, btnH - 16, soft);
-            }
+            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,btnW,btnH,SURFACE);
+            if (selected) skin::surface(skin::ui_atlas::ui_badge,bx+10,by+8,btnW-20,btnH-16,soft);
+            skin::focus(bx,by,btnW,btnH,focused?accent:BORDER);
             const char* name = colorThemeDisplayName(th);
             const float sc = 0.88f;
             const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, name);
@@ -1917,11 +1951,8 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const int saveX = x + (w - saveW) / 2;
     const int saveY = y + h - 72;
     const bool saveFocus = (themeSetupFocus_ == themeCount);
-    vita2d_draw_rectangle(saveX, saveY, saveW, saveH, saveFocus ? ACCENT : SURFACE2);
-    if (saveFocus) {
-        vita2d_draw_rectangle(saveX, saveY, saveW, 2, WHITE);
-        vita2d_draw_rectangle(saveX, saveY + saveH - 2, saveW, 2, WHITE);
-    }
+    skin::surface(saveFocus?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,saveX,saveY,saveW,saveH,saveFocus?ACCENT:SURFACE2);
+    if (saveFocus) skin::focus(saveX,saveY,saveW,saveH,BG);
     {
         const char* saveLab = ::psvitaalive::L(TID::BtnSave);
         const float ssc = 0.94f;
@@ -1930,8 +1961,7 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
                              saveFocus ? RGBA8(0,0,0,255) : WHITE, ssc, saveLab);
     }
 
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + h - 18, DIM, 0.72f,
-                         ::psvitaalive::L(TID::ThemeSetupNavHint));
+    skin::hint(&font_,x+24,y+h-18,w-48,DIM,.72f,::psvitaalive::L(TID::ThemeSetupNavHint));
 }
 
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
@@ -2085,10 +2115,8 @@ void FullCatalogScreen::drawDiscordChip() {
     const unsigned blurple = RGBA8(0x58, 0x65, 0xF2, 255);
     const unsigned edge = RGBA8(0x79, 0x83, 0xF5, 255);
     const unsigned white = RGBA8(255, 255, 255, 255);
-    const int borderW = 2 + static_cast<int>(focusPulse());
-    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, edge);
-    vita2d_draw_rectangle(chipX + borderW, chipY + borderW,
-                          chipW - borderW * 2, chipH - borderW * 2, blurple);
+    skin::surface(skin::ui_atlas::ui_button_primary,chipX,chipY,chipW,chipH,blurple);
+    if (!skin::ready()) skin::focus(chipX,chipY,chipW,chipH,edge);
     const char* label = "Discord";
     const float scale = 0.70f;
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, label);
@@ -2104,11 +2132,16 @@ void FullCatalogScreen::drawNewsOverlay() {
     const int w = 700, h = 420;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 140));
-    vita2d_draw_rectangle(x, y, w, h, PANEL);
-    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
-    vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACCENT);
-    vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
-    vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,PANEL);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, PANEL);
+        vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+        vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACCENT);
+        vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
+        vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    }
 
     ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 36, ACCENT, 0.82f, ::psvitaalive::L(::psvitaalive::TextId::NewsTitle));
     ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 68, WHITE, 1.00f,
@@ -2179,14 +2212,14 @@ void FullCatalogScreen::drawNewsOverlay() {
     }
 
     const int by = y + h - 48, bw = 220, bh = 36;
-    vita2d_draw_rectangle(x + (w - bw) / 2, by, bw, bh, ACCENT);
+    skin::surface(skin::ui_atlas::ui_button_primary,x + (w - bw) / 2, by, bw, bh, ACCENT);
     {
         const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
         const float sc = 0.68f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
         ::psvitaalive::ui::uiDrawText(&font_, x + (w - bw) / 2 + (bw - tw) / 2, by + 25, BLACK, sc, clab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + h - 14, DIM, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::NewsNavHint));
+    skin::hint(&font_,x+24,y+h-14,w-48,DIM,.72f,::psvitaalive::L(::psvitaalive::TextId::NewsNavHint));
 }
 
 void FullCatalogScreen::drawReportChip() {
@@ -2228,7 +2261,7 @@ void FullCatalogScreen::drawReportChip() {
         lab = ::psvitaalive::L(::psvitaalive::TextId::ChipFail);
     }
 
-    vita2d_draw_rectangle(chipX, chipY, chipW, chipH, fill);
+    skin::surface(skin::ui_atlas::ui_button_secondary,chipX,chipY,chipW,chipH,fill);
 
     if (reportUiState_ == 1) {
         // Indeterminate bar (same idea as image loading placeholders)
@@ -2236,11 +2269,11 @@ void FullCatalogScreen::drawReportChip() {
         const int barW = chipW - 16;
         const int barH = 8;
         const int barY = chipY + (chipH - barH) / 2;
-        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+        skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,BORDER);
         const float t = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
         const float phase = t < 0.5f ? (t * 2.f) : (2.f - t * 2.f);
         const int fillW = (int)(barW * (0.25f + 0.55f * phase));
-        if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RED);
+        if (fillW > 0) skin::surface(skin::ui_atlas::ui_progress_fill,barX,barY,fillW,barH,RED);
     } else {
         const float scale = 0.70f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, scale, lab);
@@ -2530,11 +2563,16 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     const int w = 560, h = 280;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 160));
-    vita2d_draw_rectangle(x, y, w, h, PANEL);
-    vita2d_draw_rectangle(x, y, w, 3, ACC);
-    vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACC);
-    vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
-    vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,PANEL);
+        skin::focus(x,y,w,h,withAlpha(ACC,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, PANEL);
+        vita2d_draw_rectangle(x, y, w, 3, ACC);
+        vita2d_draw_rectangle(x, y + 3, 3, h - 6, ACC);
+        vita2d_draw_rectangle(x + w - 3, y + 3, 3, h - 6, BORDER);
+        vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
+    }
 
     ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 40, ACC, 0.86f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestTitle));
     ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 78, WHITE, 0.78f, ::psvitaalive::L(::psvitaalive::TextId::DataRequestBody1));
@@ -2546,16 +2584,16 @@ void FullCatalogScreen::drawDataRequestConfirmOverlay() {
     const int bxCancel = x + (w - (bw * 2 + gap)) / 2;
     const int bxSend = bxCancel + bw + gap;
 
-    vita2d_draw_rectangle(bxCancel, by, bw, bh, SURFACE2);
-    vita2d_draw_rectangle(bxCancel, by, bw, 1, BORDER);
-    vita2d_draw_rectangle(bxCancel, by + bh - 1, bw, 1, BORDER);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bxCancel, by, bw, bh, SURFACE2);
+    
+    
     {
         const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnOCancel);
         const float sc = 0.74f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
         ::psvitaalive::ui::uiDrawText(&font_, bxCancel + (bw - tw) / 2, by + 27, WHITE, sc, lab);
     }
-    vita2d_draw_rectangle(bxSend, by, bw, bh, ACC);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bxSend, by, bw, bh, ACC);
     {
         const char* lab = ::psvitaalive::L(::psvitaalive::TextId::DataRequestSend);
         const float sc = 0.74f;
@@ -2691,8 +2729,13 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
 
     vita2d_disable_clipping();
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,215));
-    vita2d_draw_rectangle(FB_X,FB_Y,FB_W,FB_H,PANEL);
-    vita2d_draw_rectangle(FB_X,FB_Y,FB_W,3,ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,FB_X,FB_Y,FB_W,FB_H,PANEL);
+        skin::focus(FB_X,FB_Y,FB_W,FB_H,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(FB_X,FB_Y,FB_W,FB_H,PANEL);
+        vita2d_draw_rectangle(FB_X,FB_Y,FB_W,3,ACCENT);
+    }
     ::psvitaalive::ui::uiDrawText(&font_, FB_X+20, FB_Y+38, ACCENT,1.09f,
         ::psvitaalive::L("FEEDBACK_HEADING"));
 
@@ -2702,9 +2745,8 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     for (int panel=0;panel<2;++panel) {
         const int px=panel==0?FB_INFO_X:FB_FORM_X;
         const int pw=panel==0?FB_INFO_W:FB_FORM_W;
-        vita2d_draw_rectangle(px,panelY,pw,panelH,
-            feedbackPanel_==panel ? ACCENT : BORDER);
-        vita2d_draw_rectangle(px+2,panelY+2,pw-4,panelH-4,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_panel,px,panelY,pw,panelH,SURFACE2);
+        skin::focus(px,panelY,pw,panelH,feedbackPanel_==panel?ACCENT:BORDER);
         ::psvitaalive::ui::uiDrawText(&font_,px+12,FB_VIEW_Y-14,
             feedbackPanel_==panel?ACCENT:WHITE,.91f,
             ::psvitaalive::L(panel==0?"FEEDBACK_INFO_PANEL":"FEEDBACK_FORM_PANEL"));
@@ -2740,9 +2782,10 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     for (int i=0;i<2;++i) {
         const int x=fieldX+i*(fieldW/2+5),w=fieldW/2-5;
         const bool selected=(feedbackSuggestion_==(i==1));
-        vita2d_draw_rectangle(x,ty,w,40,selected?ACCENT:SURFACE);
+        skin::surface(selected?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,
+                      x,ty,w,40,selected?ACCENT:SURFACE);
         if (feedbackPanel_==1 && feedbackFocus_==0 && selected)
-            vita2d_draw_rectangle(x,ty,w,2,WHITE);
+            skin::focus(x,ty,w,40,BG);
         const int tw=::psvitaalive::ui::uiTextWidth(&font_,.82f,types[i]);
         ::psvitaalive::ui::uiDrawText(&font_,x+(w-tw)/2,ty+27,
             selected?BG:WHITE,.82f,types[i]);
@@ -2750,8 +2793,7 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
 
     if (!feedbackAppName_.empty()) {
         const int y=r.appY-formScroll;
-        vita2d_draw_rectangle(fieldX,y,fieldW,r.appH,SURFACE);
-        vita2d_draw_rectangle(fieldX,y,4,r.appH,ACCENT);
+skin::surface(skin::ui_atlas::ui_panel,fieldX,y,fieldW,r.appH,SURFACE);
         ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,y+20,ACCENT,.78f,
             ::psvitaalive::L("FEEDBACK_APP_LABEL"));
         int rowY=y+46;
@@ -2773,9 +2815,8 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     sceClibSnprintf(count,sizeof(count),"%u/64",(unsigned)feedbackTitle_.size());
     ::psvitaalive::ui::uiDrawText(&font_,fieldX+fieldW-62,r.titleLabelY-formScroll,DIM,.75f,count);
     const int titleY=r.titleY-formScroll;
-    vita2d_draw_rectangle(fieldX,titleY,fieldW,46,
-        feedbackPanel_==1 && feedbackFocus_==1?ACCENT:BORDER);
-    vita2d_draw_rectangle(fieldX+2,titleY+2,fieldW-4,42,SURFACE);
+    skin::surface(skin::ui_atlas::ui_input,fieldX,titleY,fieldW,46,SURFACE);
+    skin::focus(fieldX,titleY,fieldW,46,feedbackPanel_==1 && feedbackFocus_==1?ACCENT:BORDER);
     // Intersect field and panel to keep both horizontal and vertical clipping.
     if (titleY+43>FB_VIEW_Y && titleY+3<FB_VIEW_Y+FB_VIEW_H) {
         vita2d_set_clip_rectangle(fieldX+12,std::max(FB_VIEW_Y,titleY+3),
@@ -2794,9 +2835,8 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     sceClibSnprintf(count,sizeof(count),"%u/700",(unsigned)feedbackBody_.size());
     ::psvitaalive::ui::uiDrawText(&font_,fieldX+fieldW-72,r.bodyLabelY-formScroll,DIM,.75f,count);
     const int bodyY=r.bodyY-formScroll;
-    vita2d_draw_rectangle(fieldX,bodyY,fieldW,FB_BODY_H,
-        feedbackPanel_==1 && feedbackFocus_==2?ACCENT:BORDER);
-    vita2d_draw_rectangle(fieldX+2,bodyY+2,fieldW-4,FB_BODY_H-4,SURFACE);
+    skin::surface(skin::ui_atlas::ui_input,fieldX,bodyY,fieldW,FB_BODY_H,SURFACE);
+    skin::focus(fieldX,bodyY,fieldW,FB_BODY_H,feedbackPanel_==1 && feedbackFocus_==2?ACCENT:BORDER);
     const int clipTop=std::max(FB_VIEW_Y,bodyY+8);
     const int clipBot=std::min(FB_VIEW_Y+FB_VIEW_H,bodyY+FB_BODY_H-8);
     if (clipBot>clipTop) {
@@ -2822,15 +2862,14 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
         const int trackH=FB_BODY_H-20,thumbH=std::max(20,trackH*FB_BODY_TEXT_H/bodyH);
         const int thumbY=(feedbackScrollY_*(trackH-thumbH))/
             std::max(1,bodyH-FB_BODY_TEXT_H);
-        vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10,4,trackH,BORDER);
-        vita2d_draw_rectangle(fieldX+fieldW-13,bodyY+10+thumbY,4,thumbH,ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_track,fieldX+fieldW-13,bodyY+10,4,trackH,BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,fieldX+fieldW-13,bodyY+10+thumbY,4,thumbH,ACCENT);
     }
 
     // Keep clipping active around the warning panel at all scroll offsets.
     if (!feedbackNoticeLines_.empty()) {
         const int nY=r.noticeY-formScroll;
-        vita2d_draw_rectangle(fieldX,nY,fieldW,r.noticeH,SURFACE);
-        vita2d_draw_rectangle(fieldX,nY,4,r.noticeH,ACCENT);
+skin::surface(skin::ui_atlas::ui_panel,fieldX,nY,fieldW,r.noticeH,SURFACE);
         int lineY=nY+27;
         for(const auto& line:feedbackNoticeLines_){
             ::psvitaalive::ui::uiDrawText(&font_,fieldX+14,lineY,TEXT,.80f,line.c_str());
@@ -2849,8 +2888,8 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
         const int thumbH=std::max(24,(trackH*FB_VIEW_H)/contentH);
         const int safeScroll=std::max(0,std::min(scroll,maxScroll));
         const int thumbY=(safeScroll*(trackH-thumbH))/maxScroll;
-        vita2d_draw_rectangle(x,FB_VIEW_Y+6,4,trackH,BORDER);
-        vita2d_draw_rectangle(x,FB_VIEW_Y+6+thumbY,4,thumbH,ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_track,x,FB_VIEW_Y+6,4,trackH,BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,x,FB_VIEW_Y+6+thumbY,4,thumbH,ACCENT);
     };
     drawScrollbar(FB_INFO_X+FB_INFO_W-10,infoScroll,feedbackInfoContentH_);
     drawScrollbar(FB_FORM_X+FB_FORM_W-10,formScroll,r.contentH);
@@ -2858,9 +2897,9 @@ void FullCatalogScreen::drawReportConfirmOverlay() {
     // These controls never scroll out of view.
     const int sendX=FB_FORM_FIELD_X,sendW=284;
     const int cancelX=sendX+sendW+12,cancelW=FB_FORM_FIELD_W-sendW-12;
-    vita2d_draw_rectangle(sendX,FB_ACTION_Y,sendW,FB_ACTION_H,
-        feedbackPanel_==1 && feedbackFocus_==3?ACCENT:SURFACE2);
-    vita2d_draw_rectangle(cancelX,FB_ACTION_Y,cancelW,FB_ACTION_H,
+    skin::surface(feedbackSending_?skin::ui_atlas::ui_button_disabled:skin::ui_atlas::ui_button_secondary,
+        sendX,FB_ACTION_Y,sendW,FB_ACTION_H,feedbackPanel_==1 && feedbackFocus_==3?ACCENT:SURFACE2);
+    skin::surface(skin::ui_atlas::ui_button_secondary,cancelX,FB_ACTION_Y,cancelW,FB_ACTION_H,
         feedbackPanel_==1 && feedbackFocus_==4?ACCENT:SURFACE2);
     const char* sendLabel=::psvitaalive::L(feedbackSending_?"FEEDBACK_SENDING":"FEEDBACK_SEND");
     const char* cancelLabel=::psvitaalive::L("FEEDBACK_CANCEL");
@@ -3275,6 +3314,8 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
         (state_.catalog == CatalogType::PspGames ||
          state_.catalog == CatalogType::Ps1Games))
         pendingGameInstallRefresh_ = true;
+    if (!active && installProgressActive_ && installAllPhase_ != InstallAllPhase::Running)
+        clearInstallDisplayItem();
     installProgressActive_ = active;
     installPauseSupported_ = active && pauseSupported && outcome == 0;
     if (needsReboot && outcome == 1) {
@@ -3353,6 +3394,7 @@ bool FullCatalogScreen::init(){
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
     if(!font_) font_=::psvitaalive::ui::loadDefaultUiFont();
     if(!font_)return false;
+    diagnostics::log(skin::load() ? "[UI] skin loaded: 125 sprites, 1572864 nominal bytes" : "[UI] skin unavailable: using legacy rendering");
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
     sceTouchSetSamplingState(SCE_TOUCH_PORT_FRONT, SCE_TOUCH_SAMPLING_STATE_START);
     // Optional full-screen catalog splash (bundled in VPK as ui/catalog_loading.png)
@@ -3418,6 +3460,49 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
         diagnostics::log(m);
         lastPerfLogUs=perfEndUs;
     }
+}
+void FullCatalogScreen::clearInstallDisplayItem() {
+    if (installDisplayTexture_) scheduleTextureFree(installDisplayTexture_);
+    installDisplayTexture_ = nullptr;
+    installDisplayName_.clear();
+    installDisplayId_.clear();
+    installDisplayUrl_.clear();
+}
+void FullCatalogScreen::setInstallDisplayItem(const CatalogItem& item) {
+    const std::string& url = item.icon.empty() ? item.cover : item.icon;
+    if (item.id == installDisplayId_ && url == installDisplayUrl_ && installDisplayTexture_) {
+        installDisplayName_ = item.name;
+        return;
+    }
+    clearInstallDisplayItem();
+    installDisplayName_ = item.name;
+    installDisplayId_ = item.id;
+    installDisplayUrl_ = url;
+    if (!imageCache_ || url.empty()) return;
+    const auto path = imageCache_->pathFor(url, "app");
+    if (path.empty()) return;
+    // Transfer ownership of a single already-resident texture before heavy-work
+    // suspension releases the rest of the catalog. No new network request.
+    auto it = textures_.find(path);
+    if (it != textures_.end() && it->second) {
+        installDisplayTexture_ = it->second;
+        textures_.erase(it);
+        textureOrder_.erase(std::remove(textureOrder_.begin(), textureOrder_.end(), path), textureOrder_.end());
+        return;
+    }
+    // If the icon is not resident, only decode a completed local cache file.
+    // No network request, and no additional full-catalog texture residency.
+    if (!imageCache_->isReady(path) || imageCache_->isFailed(path)) return;
+    SceIoStat st{};
+    if (sceIoGetstat(path.c_str(), &st) < 0 || st.st_size <= 0 || st.st_size > 512*1024) return;
+    const char* e = extOf(path);
+    auto* t = (std::strcmp(e, ".jpg")==0 || std::strcmp(e, ".jpeg")==0)
+        ? vita2d_load_JPEG_file(path.c_str()) : vita2d_load_PNG_file(path.c_str());
+    if (t && (vita2d_texture_get_width(t)>128 || vita2d_texture_get_height(t)>128)) {
+        vita2d_free_texture(t);
+        t = nullptr;
+    }
+    installDisplayTexture_ = t;
 }
 void FullCatalogScreen::prepareForHeavyWork(){
     // Called on the UI thread before starting a transfer, never by an install worker.
@@ -3761,11 +3846,16 @@ void FullCatalogScreen::drawStorageOverlay() {
     const int listBottom=listTop+viewportH;
     vita2d_disable_clipping();
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,190));
-    vita2d_draw_rectangle(x,y,w,h,PANEL);
-    vita2d_draw_rectangle(x,y,w,3,ACCENT);
-    vita2d_draw_rectangle(x,y+3,3,h-6,ACCENT);
-    vita2d_draw_rectangle(x+w-3,y+3,3,h-6,BORDER);
-    vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,PANEL);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x,y,w,h,PANEL);
+        vita2d_draw_rectangle(x,y,w,3,ACCENT);
+        vita2d_draw_rectangle(x,y+3,3,h-6,ACCENT);
+        vita2d_draw_rectangle(x+w-3,y+3,3,h-6,BORDER);
+        vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
+    }
     drawMarqueeText(&font_,x+26,y+39,w-52,WHITE,1.13f,
         ::psvitaalive::L("STORAGE_TITLE"),false);
     if (storageWorker_ >= 0) {
@@ -3781,7 +3871,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         (estimated ? "*" : "");
     // Separate summary from the scroll region. Total and its explanation
     // occupy independent columns so long translations do not collide.
-    vita2d_draw_rectangle(x+21,y+53,w-42,58,SURFACE);
+    skin::surface(skin::ui_atlas::ui_panel_inset,x+21,y+53,w-42,58,SURFACE);
     drawMarqueeText(&font_,x+37,y+75,250,ACCENT,.86f,
         ::psvitaalive::L("STORAGE_TOTAL"),false);
     drawMarqueeText(&font_,x+37,y+100,250,WHITE,1.06f,summaryTotal,false);
@@ -3808,10 +3898,15 @@ void FullCatalogScreen::drawStorageOverlay() {
         const int bx=x+21+(file?24:0),bw=w-59-(file?24:0);
         const int cardH=rh-Layout::gap;
         const bool active=static_cast<int>(i)==storageFocus_;
-        vita2d_draw_rectangle(bx,cy,bw,cardH,active?SURFACE2:SURFACE);
-        vita2d_draw_rectangle(bx,cy,bw,1,active?ACCENT:BORDER);
-        vita2d_draw_rectangle(bx,cy+cardH-1,bw,1,active?ACCENT:BORDER);
-        if(active) vita2d_draw_rectangle(bx,cy,4,cardH,ACCENT);
+        if (skin::ready()) {
+            skin::surface(skin::ui_atlas::ui_card,bx,cy,bw,cardH,active?SURFACE2:SURFACE);
+            if (active) skin::focus(bx,cy,bw,cardH,ACCENT);
+        } else {
+            vita2d_draw_rectangle(bx,cy,bw,cardH,active?SURFACE2:SURFACE);
+            vita2d_draw_rectangle(bx,cy,bw,1,active?ACCENT:BORDER);
+            vita2d_draw_rectangle(bx,cy+cardH-1,bw,1,active?ACCENT:BORDER);
+            if(active) vita2d_draw_rectangle(bx,cy,4,cardH,ACCENT);
+        }
         const int sizeX=bx+bw-177;
         const auto sizeLabel=[&](const std::string& value,int baseline) {
             drawMarqueeText(&font_,sizeX,baseline,158,active?ACCENT:WHITE,
@@ -3851,7 +3946,14 @@ void FullCatalogScreen::drawStorageOverlay() {
                 row.kind==1?snap.savedZipBytes:
                 row.kind==2?snap.catalogBytes:
                 row.kind==3?snap.imageBytes:snap.installedBytes;
-            drawMarqueeText(&font_,bx+20,cy+29,bw-218,active?WHITE:TEXT,
+            const int iconPad=skin::ready()?40:0;
+            if (skin::ready()) {
+                if(row.kind==0) skin::icon(skin::ui_atlas::icon_clean,bx+18,cy+10,32,TEXT,skin::Atlas::Ui);
+                else if(row.kind==1) skin::icon(skin::ui_atlas::icon_zip,bx+18,cy+10,32,TEXT,skin::Atlas::Ui);
+                else if(row.kind==2||row.kind==3) skin::icon(skin::ui_atlas::icon_lock,bx+18,cy+10,32,DIM,skin::Atlas::Ui);
+                else skin::icon(skin::icons_atlas::icon_storage,bx+18,cy+10,32,TEXT);
+            }
+            drawMarqueeText(&font_,bx+20+iconPad,cy+29,bw-218-iconPad,active?WHITE:TEXT,
                 1.0f,title,active,x+21,listTop,x+w-34,listBottom);
             const bool measuredPending = row.kind==5 &&
                 snap.installedFound && snap.installedBytes==0;
@@ -3863,7 +3965,7 @@ void FullCatalogScreen::drawStorageOverlay() {
                 row.kind>=2?::psvitaalive::L("STORAGE_PROTECTED"):
                 bytes==0?::psvitaalive::L("STORAGE_EMPTY"):
                 ::psvitaalive::L("STORAGE_CLEAR_SECTION");
-            drawMarqueeText(&font_,bx+20,cy+56,bw-42,
+            drawMarqueeText(&font_,bx+20+iconPad,cy+56,bw-42-iconPad,
                 (row.kind==5||(row.kind<2&&bytes>0))?ACCENT:DIM,.88f,action,false);
         }
         cy+=rh;
@@ -3872,11 +3974,11 @@ void FullCatalogScreen::drawStorageOverlay() {
     const int totalH=storageContentHeight();
     if(totalH>viewportH) {
         const int trackX=x+w-31;
-        vita2d_draw_rectangle(trackX,listTop,4,viewportH,BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_track,trackX,listTop,4,viewportH,BORDER);
         const int thumbH=std::max(32,(viewportH*viewportH)/totalH);
         const int thumbY=listTop+(storageScrollY_*(viewportH-thumbH))/
             std::max(1,totalH-viewportH);
-        vita2d_draw_rectangle(trackX,thumbY,4,thumbH,ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,trackX,thumbY,4,thumbH,ACCENT);
     }
 
     // The footer is a dedicated region: instructions on their own lines,
@@ -3889,16 +3991,15 @@ void FullCatalogScreen::drawStorageOverlay() {
         ::psvitaalive::L("STORAGE_CONTROLS");
     const auto helpLines=wrapTextToWidth(&font_,.87f,help,w-56);
     for(int i=0;i<(int)helpLines.size()&&i<2;++i)
-        drawMarqueeText(&font_,x+28,y+440+i*18,w-56,
-            storageConfirm_?ACCENT:TEXT,.87f,helpLines[i],false);
+        skin::hint(&font_,x+28,y+440+i*18,w-56,storageConfirm_?ACCENT:TEXT,.87f,helpLines[i].c_str());
     const int by=y+Layout::buttonOffset,bh=Layout::buttonHeight;
-    vita2d_draw_rectangle(x+21,by,Layout::closeWidth,bh,SURFACE2);
-    vita2d_draw_rectangle(x+21,by,Layout::closeWidth,1,BORDER);
-    drawMarqueeText(&font_,x+33,by+24,Layout::closeWidth-24,WHITE,.92f,
-        ::psvitaalive::L(storageConfirm_?"ID_CONFIRM_CANCEL_BUTTON":"BTN_O_CLOSE"),false);
+    skin::surface(skin::ui_atlas::ui_button_secondary,x+21,by,Layout::closeWidth,bh,SURFACE2);
+    if (!skin::ready()) vita2d_draw_rectangle(x+21,by,Layout::closeWidth,1,BORDER);
+    skin::hint(&font_,x+33,by+24,Layout::closeWidth-24,WHITE,.92f,
+        ::psvitaalive::L(storageConfirm_?"ID_CONFIRM_CANCEL_BUTTON":"BTN_O_CLOSE"),true);
     if(hasCleanable) {
         const int bx=x+w-21-Layout::cleanWidth;
-        vita2d_draw_rectangle(bx,by,Layout::cleanWidth,bh,ACCENT);
+        skin::surface(skin::ui_atlas::ui_button_primary,bx,by,Layout::cleanWidth,bh,ACCENT);
         drawMarqueeText(&font_,bx+12,by+24,Layout::cleanWidth-24,BG,.92f,
             ::psvitaalive::L("STORAGE_CLEAN_ALL"),false);
     }
@@ -3920,8 +4021,10 @@ void FullCatalogScreen::shutdown(){
     gProtectionMascotStartPending = false;
     gProtectionMascotStopPending = false;
     gProtectionMascotManager.stop();
+    clearInstallDisplayItem();
     releaseTextures();
     flushDeferredTextureFrees();
+    skin::release();
     if (catalogLoadingTex_) {
         vita2d_free_texture(catalogLoadingTex_);
         catalogLoadingTex_ = nullptr;
@@ -4245,13 +4348,17 @@ void FullCatalogScreen::drawFilterOverlay() {
     constexpr int top = FILTER_MODAL_LIST_TOP, rowH = FILTER_MODAL_ROW_H;
     constexpr int visible = FILTER_MODAL_VISIBLE;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 184));
-    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 2, w, 2, BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE2);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+        vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+        vita2d_draw_rectangle(x, y + h - 2, w, 2, BORDER);
+    }
     drawFilterMarqueeText(&font_, x + 26, y + 47, w - 52, y + 5, y + 57,
         WHITE, 1.40f, ::psvitaalive::L("FILTERS_MENU_TITLE"), false);
-    drawFilterMarqueeText(&font_, x + 25, y + h - 18, w - 50, y + h - 47, y + h - 5,
-        DIM, 0.94f, ::psvitaalive::L("FILTERS_HINT"), false);
+    skin::hint(&font_,x+25,y+h-18,w-50,DIM,.94f,::psvitaalive::L("FILTERS_HINT"));
     int count = 0;
     const FilterOption* options = filterOptionsForCatalog(count);
     const int last = std::min(count, filterScrollRow_ + visible);
@@ -4268,12 +4375,65 @@ void FullCatalogScreen::drawFilterOverlay() {
         const bool selected = option.mode == filterMode_ &&
             ((option.mode != ContentFilter::Category && option.mode != ContentFilter::Genre) ||
              std::strcmp(option.category, filterCategory_) == 0);
-        if (focused) vita2d_draw_rectangle(x + 15, ry + 2, w - 30, rowH - 4, SURFACE);
-        if (selected) vita2d_draw_rectangle(x + 17, ry + 9, 4, rowH - 18, ACCENT);
-        drawFilterMarqueeText(&font_, x + 34, ry + 43, w - 109,
-            ry + 4, ry + rowH - 3, focused ? WHITE : TEXT, 1.30f, label, focused);
-        if (selected)
-            ::psvitaalive::ui::uiDrawText(&font_, x + w - 53, ry + 42, ACCENT, 1.05f, "X");
+        if (skin::ready()) {
+            using namespace skin;
+            const Sprite* symbol = &icons_atlas::icon_grid;
+            Atlas atlas=Atlas::Icons;
+            switch (option.mode) {
+                case ContentFilter::Installed: symbol=&icons_atlas::icon_installed; break;
+                case ContentFilter::Updates: symbol=&icons_atlas::icon_update; break;
+                case ContentFilter::Unrecognized: symbol=&ui_atlas::icon_unknown; atlas=Atlas::Ui; break;
+                case ContentFilter::DataOrGame: symbol=&ui_atlas::icon_data; atlas=Atlas::Ui; break;
+                case ContentFilter::Dlc: symbol=&ui_atlas::icon_dlc; atlas=Atlas::Ui; break;
+                case ContentFilter::Category:
+                case ContentFilter::Genre: {
+                    struct Entry { const char* id; const Sprite* sprite; Atlas atlas; };
+                    static const Entry map[] = {
+                        {"customization",&ui_atlas::icon_customization,Atlas::Ui},
+                        {"emulators",&ui_atlas::icon_emulator,Atlas::Ui},
+                        {"games",&icons_atlas::icon_gamepad,Atlas::Icons},
+                        {"media",&ui_atlas::icon_media,Atlas::Ui},
+                        {"networking",&icons_atlas::icon_wifi,Atlas::Icons},
+                        {"plugins",&ui_atlas::icon_plugin,Atlas::Ui},
+                        {"ports",&ui_atlas::icon_port,Atlas::Ui},
+                        {"utilities",&icons_atlas::icon_settings,Atlas::Icons},
+                        {"action",&ui_atlas::icon_genre_action,Atlas::Ui},
+                        {"adventure",&ui_atlas::icon_genre_adventure,Atlas::Ui},
+                        {"arcade",&icons_atlas::icon_gamepad,Atlas::Icons},
+                        {"fighting",&ui_atlas::icon_genre_action,Atlas::Ui},
+                        {"horror",&ui_atlas::icon_genre_horror,Atlas::Ui},
+                        {"music",&ui_atlas::icon_genre_music,Atlas::Ui},
+                        {"platformer",&icons_atlas::icon_gamepad,Atlas::Icons},
+                        {"puzzle",&ui_atlas::icon_genre_puzzle,Atlas::Ui},
+                        {"racing",&ui_atlas::icon_genre_racing,Atlas::Ui},
+                        {"rpg",&ui_atlas::icon_genre_adventure,Atlas::Ui},
+                        {"shooter",&ui_atlas::icon_genre_action,Atlas::Ui},
+                        {"simulation",&icons_atlas::icon_settings,Atlas::Icons},
+                        {"sports",&ui_atlas::icon_genre_sport,Atlas::Ui},
+                        {"strategy",&ui_atlas::icon_genre_strategy,Atlas::Ui}
+                    };
+                    for (const auto& e : map) if (std::strcmp(option.category,e.id)==0) {
+                        symbol=e.sprite; atlas=e.atlas; break;
+                    }
+                    break;
+                }
+                default: break;
+            }
+            surface(ui_atlas::ui_card,x+15,ry+2,w-30,rowH-4,focused?SURFACE:SURFACE2);
+            if (focused) skin::focus(x+15,ry+2,w-30,rowH-4,ACCENT);
+            icon(*symbol,x+31,ry+(rowH-34)/2,34,selected?ACCENT:TEXT,atlas);
+            drawFilterMarqueeText(&font_,x+76,ry+43,w-151,ry+4,ry+rowH-3,
+                                  focused?WHITE:TEXT,1.30f,label,focused);
+            icon(selected?ui_atlas::ui_radio_on:ui_atlas::ui_radio_off,
+                 x+w-58,ry+(rowH-32)/2,32,selected?ACCENT:DIM,Atlas::Ui);
+        } else {
+            if (focused) vita2d_draw_rectangle(x + 15, ry + 2, w - 30, rowH - 4, SURFACE);
+            if (selected) vita2d_draw_rectangle(x + 17, ry + 9, 4, rowH - 18, ACCENT);
+            drawFilterMarqueeText(&font_, x + 34, ry + 43, w - 109,
+                ry + 4, ry + rowH - 3, focused ? WHITE : TEXT, 1.30f, label, focused);
+            if (selected)
+                ::psvitaalive::ui::uiDrawText(&font_, x + w - 53, ry + 42, ACCENT, 1.05f, "X");
+        }
     }
     if (filterScrollRow_ > 0)
         vita2d_draw_rectangle(x + w - 12, top + 5, 4, 16, ACCENT);
@@ -4544,8 +4704,13 @@ void FullCatalogScreen::drawSavedZipActionOverlay() {
     vita2d_disable_clipping();
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0,0,0,205));
     const int w = 720, h = 395, x = (SCREEN_W-w)/2, y = (SCREEN_H-h)/2;
-    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE2);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+        vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+    }
     ::psvitaalive::ui::uiDrawText(&font_, x+25, y+42, ACCENT, 1.02f,
         ::psvitaalive::L("ZIP_SAVED_ACTION_TITLE"));
     ::psvitaalive::ui::uiDrawText(&font_, x+25, y+83, WHITE, 0.83f,
@@ -4567,7 +4732,7 @@ void FullCatalogScreen::drawSavedZipActionOverlay() {
             choice==1?(savedZipActionDeleteConfirm_?"ZIP_SAVED_CONFIRM_BUTTON":
                         "ZIP_SAVED_ACTION_DELETE"):"ZIP_SAVED_ACTION_CANCEL");
         const int by=btnY+n*62;
-        vita2d_draw_rectangle(btnX,by,btnW,btnH,focus?ACCENT:SURFACE);
+        skin::surface(skin::ui_atlas::ui_button_secondary,btnX,by,btnW,btnH,focus?ACCENT:SURFACE);
         const int tw=::psvitaalive::ui::uiTextWidth(&font_,0.81f,label);
         ::psvitaalive::ui::uiDrawText(&font_,btnX+(btnW-tw)/2,by+33,
             focus?BG:WHITE,0.81f,label);
@@ -6591,7 +6756,7 @@ void FullCatalogScreen::drawSettings() {
     const int slide = static_cast<int>((1.f - enter) * 28.f);
     const unsigned dimA = static_cast<unsigned>(enter * 255.f);
 
-    vita2d_start_drawing();
+    startSkinFrame();
     vita2d_set_clear_color(BG);vita2d_clear_screen();
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, BG);
     drawHeader(SCREEN_W);
@@ -6750,14 +6915,8 @@ void FullCatalogScreen::drawSettings() {
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
         {
-            vita2d_draw_rectangle(listX, y, listW, rowH, focus ? SURFACE : SURFACE2);
-            if (focus) {
-                vita2d_draw_rectangle(listX, y, 4, rowH, ACCENT);
-                vita2d_draw_rectangle(listX, y, listW, 2, ACCENT);
-                vita2d_draw_rectangle(listX, y + rowH - 2, listW, 2, ACCENT);
-            } else {
-                vita2d_draw_rectangle(listX, y + rowH - 1, listW, 1, BORDER);
-            }
+            skin::surface(skin::ui_atlas::ui_card,listX,y,listW,rowH,focus?SURFACE:SURFACE2);
+            if (focus) skin::focus(listX,y,listW,rowH,ACCENT);
             /* Keep label/value inside the row card; ellipsize long values. */
             const int chipW = 110;
             const int chipX = listX + listW - chipW - 10;
@@ -6765,7 +6924,7 @@ void FullCatalogScreen::drawSettings() {
             const int labelMaxW = chipX - (listX + 14) - 8;
             (void)labelMaxW;
             ::psvitaalive::ui::uiDrawText(&font_, listX + 14, y + 22, focus ? WHITE : TEXT, 0.76f, opts[i].label);
-            vita2d_draw_rectangle(chipX, chipY, chipW, 24, focus ? ACCENT : SURFACE);
+            skin::surface(skin::ui_atlas::ui_badge,chipX,chipY,chipW,24,focus?ACCENT:SURFACE);
             ::psvitaalive::ui::uiDrawText(&font_, chipX + 8, chipY + 17, focus ? BG : ACCENT, 0.54f,
                                  ellipsize(opts[i].value, 14).c_str());
             ::psvitaalive::ui::uiDrawText(&font_, listX + 14, y + 42, DIM, 0.48f,
@@ -6784,8 +6943,7 @@ void FullCatalogScreen::drawSettings() {
 
     {
         const int panelH = listClipBottom - contentTop;
-        vita2d_draw_rectangle(sideX, contentTop, sideW, panelH, SURFACE2);
-        vita2d_draw_rectangle(sideX, contentTop, 3, panelH, ACCENT);
+        skin::surface(skin::ui_atlas::ui_panel,sideX,contentTop,sideW,panelH,SURFACE2);
         ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 24, ACCENT, 0.90f, ::psvitaalive::L(TID::Info));
 
         const char* title = opts[settingsFocus_].label;
@@ -6965,14 +7123,7 @@ void FullCatalogScreen::drawSettings() {
         const char* sf = ::psvitaalive::L(TID::SettingsFooter);
         // Keep clear of any right-side chrome (match catalog footer reserve)
         const int maxW = SCREEN_W - 40;
-        auto hlines = wrapTextToWidth(&font_, 0.56f, sf, maxW);
-        if (hlines.size() > 2) hlines.resize(2);
-        if (hlines.size() == 1)
-            ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - 16, TEXT, 0.56f, hlines[0].c_str());
-        else if (hlines.size() >= 2) {
-            ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - FOOTER_H + 18, TEXT, 0.52f, hlines[0].c_str());
-            ::psvitaalive::ui::uiDrawText(&font_, 12, SCREEN_H - FOOTER_H + 36, TEXT, 0.52f, hlines[1].c_str());
-        }
+        skin::footer(&font_,12,SCREEN_H-FOOTER_H,maxW,FOOTER_H,TEXT,sf);
     }
     drawToast();
     if (themeSetupVisible_) drawThemeSetupOverlay();
@@ -7015,6 +7166,7 @@ void FullCatalogScreen::drawChromeFocus(FocusZone zone, int index,
         vita2d_draw_rectangle(px, py, t, ph, color);
         vita2d_draw_rectangle(px + pw - t, py, t, ph, color);
     };
+    if (skin::ready()) { skin::focus(x,y,w,h,ACCENT); return; }
     frame(x + 1, y + 1, w - 2, h - 2, 2, ACCENT);
     frame(x + 3, y + 3, w - 6, h - 6, 1, BG);
 }
@@ -7612,21 +7764,34 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
     const int barW = std::max(100, w - barX - HEADER_STATUS_RESERVE -
         (showContentFilter ? gdW + FILTER_CHIP_GAP : 0));
     const int gdX = barX + barW + FILTER_CHIP_GAP;
-    vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
-    vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, withAlpha(ACCENT, 50));
-    vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, withAlpha(ACCENT, 50));
-    vita2d_draw_rectangle(barX - 1, barY - 1, 1, barH + 2, withAlpha(ACCENT, 50));
-    vita2d_draw_rectangle(barX + barW, barY - 1, 1, barH + 2, withAlpha(ACCENT, 50));
-    vita2d_draw_rectangle(barX, barY, barW, 1, withAlpha(ACCENT, 140));
-    vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, withAlpha(ACCENT, 140));
-    vita2d_draw_rectangle(barX, barY, 1, barH, withAlpha(ACCENT, 140));
-    vita2d_draw_rectangle(barX + barW - 1, barY, 1, barH, withAlpha(ACCENT, 140));
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_input,barX,barY,barW,barH,SURFACE);
+        if (searchQuery_.empty()) skin::icon(skin::icons_atlas::icon_search,barX+7,barY+5,22,DIM);
+    } else {
+        vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
+        vita2d_draw_rectangle(barX - 1, barY - 1, barW + 2, 1, withAlpha(ACCENT, 50));
+        vita2d_draw_rectangle(barX - 1, barY + barH, barW + 2, 1, withAlpha(ACCENT, 50));
+        vita2d_draw_rectangle(barX - 1, barY - 1, 1, barH + 2, withAlpha(ACCENT, 50));
+        vita2d_draw_rectangle(barX + barW, barY - 1, 1, barH + 2, withAlpha(ACCENT, 50));
+        vita2d_draw_rectangle(barX, barY, barW, 1, withAlpha(ACCENT, 140));
+        vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, withAlpha(ACCENT, 140));
+        vita2d_draw_rectangle(barX, barY, 1, barH, withAlpha(ACCENT, 140));
+        vita2d_draw_rectangle(barX + barW - 1, barY, 1, barH, withAlpha(ACCENT, 140));
+    }
     if (searchQuery_.empty()) {
-        ::psvitaalive::ui::uiDrawText(&font_, barX + 12, barY + 22, DIM, 0.66f, ::psvitaalive::L(::psvitaalive::TextId::SearchPlaceholder));
+        const char* placeholder=::psvitaalive::L(::psvitaalive::TextId::SearchPlaceholder);
+        if (skin::ready()) {
+            std::string label=placeholder;
+            const auto suffix=label.rfind('(');
+            if(suffix!=std::string::npos) label.erase(suffix);
+            while(!label.empty() && label.back()==' ') label.pop_back();
+            skin::hint(&font_,barX+32,barY+22,std::max(1,barW-66),DIM,.66f,label.c_str());
+            skin::control(skin::controls_atlas::ctrl_triangle_classic,barX+barW-30,barY+3,26);
+        } else ::psvitaalive::ui::uiDrawText(&font_,barX+12,barY+22,DIM,.66f,placeholder);
     } else {
         ::psvitaalive::ui::uiDrawText(&font_, barX + 12, barY + 22, ACCENT, 0.64f, ::psvitaalive::L(::psvitaalive::TextId::FilterActiveLabel));
         ::psvitaalive::ui::uiDrawText(&font_, barX + 78, barY + 22, WHITE, 0.66f, ellipsize(searchQuery_, 20).c_str());
-        ::psvitaalive::ui::uiDrawText(&font_, barX + barW - 52, barY + 21, DIM, 0.52f, ::psvitaalive::L(::psvitaalive::TextId::FilterClearHint));
+        skin::hint(&font_,barX+barW-54,barY+21,52,DIM,.56f,::psvitaalive::L(::psvitaalive::TextId::FilterClearHint),true,20);
     }
     const int clearWidth = searchQuery_.empty() ? 0 : 56;
     drawChromeFocus(FocusZone::Header, 0, barX, barY, barW - clearWidth, barH);
@@ -7654,17 +7819,22 @@ unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Veri
         }
         const unsigned chipBg = filterMode_ != ContentFilter::All ? SURFACE : SURFACE2;
         const unsigned chipFg = filterMode_ != ContentFilter::All ? WHITE : ACCENT;
-        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, FILTER_CHIP_H, chipBg);
-        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, 3, ACCENT);
-        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, 3, FILTER_CHIP_H, ACCENT);
-        vita2d_draw_rectangle(gdX + gdW - 2, FILTER_CHIP_Y, 2, FILTER_CHIP_H, ACCENT);
-        vita2d_draw_rectangle(gdX, FILTER_CHIP_Y + FILTER_CHIP_H - 2, gdW, 2, ACCENT);
-        constexpr int side = 17;
-        const int sx = gdX + 13, sy = FILTER_CHIP_Y + (FILTER_CHIP_H - side) / 2;
-        vita2d_draw_rectangle(sx, sy, side, 2, chipFg);
-        vita2d_draw_rectangle(sx, sy + side - 2, side, 2, chipFg);
-        vita2d_draw_rectangle(sx, sy, 2, side, chipFg);
-        vita2d_draw_rectangle(sx + side - 2, sy, 2, side, chipFg);
+        if (skin::ready()) {
+            skin::surface(skin::ui_atlas::ui_button_secondary,gdX,FILTER_CHIP_Y,gdW,FILTER_CHIP_H,chipBg);
+            skin::control(skin::controls_atlas::ctrl_square_classic,gdX+9,FILTER_CHIP_Y+4,28);
+        } else {
+            vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, FILTER_CHIP_H, chipBg);
+            vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, gdW, 3, ACCENT);
+            vita2d_draw_rectangle(gdX, FILTER_CHIP_Y, 3, FILTER_CHIP_H, ACCENT);
+            vita2d_draw_rectangle(gdX + gdW - 2, FILTER_CHIP_Y, 2, FILTER_CHIP_H, ACCENT);
+            vita2d_draw_rectangle(gdX, FILTER_CHIP_Y + FILTER_CHIP_H - 2, gdW, 2, ACCENT);
+            constexpr int side = 17;
+            const int sx = gdX + 13, sy = FILTER_CHIP_Y + (FILTER_CHIP_H - side) / 2;
+            vita2d_draw_rectangle(sx, sy, side, 2, chipFg);
+            vita2d_draw_rectangle(sx, sy + side - 2, side, 2, chipFg);
+            vita2d_draw_rectangle(sx, sy, 2, side, chipFg);
+            vita2d_draw_rectangle(sx + side - 2, sy, 2, side, chipFg);
+        }
         drawFilterMarqueeText(&font_, gdX + 43, FILTER_CHIP_Y + 26,
             gdW - 54, FILTER_CHIP_Y + 3, FILTER_CHIP_Y + FILTER_CHIP_H - 3,
             chipFg, 0.89f, activeFilterLabel, true);
@@ -7694,7 +7864,7 @@ void FullCatalogScreen::drawTabs(int w){
         int x = (int)(i * tw);
         bool a = (int)state_.catalog == i;
         if (a) {
-            vita2d_draw_rectangle(x + 4, HEADER_H + 4, (int)tw - 8, TABS_H - 8, SURFACE);
+            skin::surface(skin::ui_atlas::ui_tab_idle,x + 4, HEADER_H + 4, (int)tw - 8, TABS_H - 8, SURFACE);
         }
         const char* name = catalogName((CatalogType)i);
         // Count only on the active catalog tab (total apps currently loaded for it).
@@ -8287,9 +8457,8 @@ void FullCatalogScreen::drawToast() const {
     const int th = padY * 2 + (int)lines.size() * lineH;
     const int x = (SCREEN_W - tw) / 2;
     const int y = SCREEN_H - FOOTER_H - th - 12;
-    vita2d_draw_rectangle(x, y, tw, th, RGBA8(0x18, 0x18, 0x18, alpha));
-    vita2d_draw_rectangle(x, y, tw, 2, withAlpha(ACCENT, alpha));
-    vita2d_draw_rectangle(x, y + th - 1, tw, 1, withAlpha(ACCENT, static_cast<unsigned>(alpha * 0.5f)));
+    skin::surface(skin::ui_atlas::ui_toast,x,y,tw,th,RGBA8(0x18,0x18,0x18,alpha));
+    skin::focus(x,y,tw,th,withAlpha(ACCENT,alpha));
     if (font_) {
         int ty = y + padY + 22;
         for (const auto& ln : lines) {
@@ -8311,35 +8480,13 @@ void FullCatalogScreen::drawScrollFades(int x, int y, int width, int height) con
 }
 
 void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height, const char* label) const {
-    const float pulse = focusPulse();
-    const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(40 + pulse * 70));
-    const unsigned solid = ACCENT;
-    // Outer soft glow
-    vita2d_draw_rectangle(x - 2, y - 2, width + 4, 2, glow);
-    vita2d_draw_rectangle(x - 2, y + height, width + 4, 2, glow);
-    vita2d_draw_rectangle(x - 2, y, 2, height, glow);
-    vita2d_draw_rectangle(x + width, y, 2, height, glow);
-    // Solid frame
-    vita2d_draw_rectangle(x, y, width, 3, solid);
-    vita2d_draw_rectangle(x, y + height - 3, width, 3, solid);
-    vita2d_draw_rectangle(x, y, 3, height, solid);
-    vita2d_draw_rectangle(x + width - 3, y, 3, height, solid);
-    // Corner ticks
-    const int tick = 14;
-    vita2d_draw_rectangle(x, y, tick, 3, WHITE);
-    vita2d_draw_rectangle(x, y, 3, tick, WHITE);
-    vita2d_draw_rectangle(x + width - tick, y, tick, 3, WHITE);
-    vita2d_draw_rectangle(x + width - 3, y, 3, tick, WHITE);
-    vita2d_draw_rectangle(x, y + height - 3, tick, 3, WHITE);
-    vita2d_draw_rectangle(x, y + height - tick, 3, tick, WHITE);
-    vita2d_draw_rectangle(x + width - tick, y + height - 3, tick, 3, WHITE);
-    vita2d_draw_rectangle(x + width - 3, y + height - tick, 3, tick, WHITE);
+    const unsigned solid=ACCENT;
+    skin::focus(x,y,width,height,solid);
     // Label chip
     if (label && font_) {
         const int lw = 78, lh = 22;
         const int lx = x + 10, ly = y + 8;
-        vita2d_draw_rectangle(lx, ly, lw, lh, solid);
-        vita2d_draw_rectangle(lx, ly, lw, 1, WHITE);
+skin::surface(skin::ui_atlas::ui_badge,lx,ly,lw,lh,solid);
         ::psvitaalive::ui::uiDrawText(&font_, lx + 10, ly + 16, BG, 0.58f, label);
     }
 }
@@ -8687,7 +8834,7 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
     vita2d_set_clip_rectangle(drawClipL, drawClipT, drawClipR, drawClipB);
 
     // The update badge never disappears: only its outer glow breathes softly.
-    if (upd) {
+    if (upd && !skin::ready()) {
         const float pulse = focusPulse();
         const unsigned a = static_cast<unsigned>(80.f + pulse * 150.f);
         const unsigned glow = RGBA8(0xFF, 0xB4, 0x38, std::min(255u, a));
@@ -8697,7 +8844,7 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
         vita2d_draw_rectangle(x + bw, y - 1, 1, bh + 2, glow);
     }
 
-    vita2d_draw_rectangle(x, y, bw, bh, bg);
+    skin::surface(skin::ui_atlas::ui_badge,x,y,bw,bh,bg);
     const int baselineY = y + (compact ? 13 : 14);
     if (tw <= innerW) {
         ::psvitaalive::ui::uiDrawText(&font_, x + (bw - tw) / 2, baselineY, fg, scale, label);
@@ -8749,22 +8896,27 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     int ww = w;
     int hh = h;
     const unsigned bg = focus ? SURFACE2 : SURFACE;
-    vita2d_draw_rectangle(x + ox, y + oy, ww, hh, bg);
-    // Brand accent rail on every card (stronger when focused)
-    vita2d_draw_rectangle(x + ox, y + oy, focus ? 3 : 2, hh, focus ? ACCENT : ACCENT_SOFT);
-    if (focus) {
-        const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(55 + pulse * 100));
-        vita2d_draw_rectangle(x + ox - 2, y + oy - 2, ww + 4, 2, glow);
-        vita2d_draw_rectangle(x + ox - 2, y + oy + hh, ww + 4, 2, glow);
-        vita2d_draw_rectangle(x + ox - 2, y + oy, 2, hh, glow);
-        vita2d_draw_rectangle(x + ox + ww, y + oy, 2, hh, glow);
-        const int bw = 2 + static_cast<int>(pulse * 2.0f);
-        vita2d_draw_rectangle(x + ox, y + oy, ww, bw, ACCENT);
-        vita2d_draw_rectangle(x + ox, y + oy + hh - bw, ww, bw, ACCENT);
-        vita2d_draw_rectangle(x + ox, y + oy, bw, hh, ACCENT);
-        vita2d_draw_rectangle(x + ox + ww - bw, y + oy, bw, hh, ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_card,x+ox,y+oy,ww,hh,bg);
+        if (focus) skin::focus(x+ox,y+oy,ww,hh,ACCENT);
     } else {
-        vita2d_draw_rectangle(x, y, w, 1, BORDER);
+        vita2d_draw_rectangle(x + ox, y + oy, ww, hh, bg);
+        // Brand accent rail on every card (stronger when focused)
+        vita2d_draw_rectangle(x + ox, y + oy, focus ? 3 : 2, hh, focus ? ACCENT : ACCENT_SOFT);
+        if (focus) {
+            const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(55 + pulse * 100));
+            vita2d_draw_rectangle(x + ox - 2, y + oy - 2, ww + 4, 2, glow);
+            vita2d_draw_rectangle(x + ox - 2, y + oy + hh, ww + 4, 2, glow);
+            vita2d_draw_rectangle(x + ox - 2, y + oy, 2, hh, glow);
+            vita2d_draw_rectangle(x + ox + ww, y + oy, 2, hh, glow);
+            const int bw = 2 + static_cast<int>(pulse * 2.0f);
+            vita2d_draw_rectangle(x + ox, y + oy, ww, bw, ACCENT);
+            vita2d_draw_rectangle(x + ox, y + oy + hh - bw, ww, bw, ACCENT);
+            vita2d_draw_rectangle(x + ox, y + oy, bw, hh, ACCENT);
+            vita2d_draw_rectangle(x + ox + ww - bw, y + oy, bw, hh, ACCENT);
+        } else {
+            vita2d_draw_rectangle(x, y, w, 1, BORDER);
+        }
     }
     const bool compact = h < 125;
     int is = compact ? 64 : 80;
@@ -8815,36 +8967,41 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
                 const int ch = 19;
                 const int sx = right - cw - 6;
                 const int cy = sy - ch + 3;
-                vita2d_draw_rectangle(sx, cy, cw, ch, SURFACE2);
-                ::psvitaalive::ui::uiDrawText(&font_, sx + padX, sy, TEXT, sc, label.c_str());
+                skin::surface(skin::ui_atlas::ui_badge,sx,cy,cw,ch,SURFACE2);
+                ::psvitaalive::ui::uiDrawText(&font_, sx + padX, cy+14, TEXT, sc, label.c_str());
                 sy -= 21;
             };
             // Folder-style amber chips so Data / Game Files stand out
-            auto drawFolderChip = [&](const std::string& label) {
+            auto drawFolderChip = [&](const std::string& label, const skin::Sprite& symbol, skin::Atlas atlas) {
                 if (label.empty()) return;
-                const float sc = 0.76f;
-                const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, label.c_str());
-                const int padX = 8;
-                const int cw = tw + padX * 2;
-                const int ch = 24;
-                const int sx = right - cw - 6;
-                const int cy = sy - ch + 4;
-                const unsigned folderBg = RGBA8(0x3A, 0x2C, 0x10, 255);
-                const unsigned folderEdge = RGBA8(0xE8, 0xB4, 0x3A, 255);
-                const unsigned folderText = RGBA8(0xFF, 0xD2, 0x6A, 255);
-                vita2d_draw_rectangle(sx, cy, cw, ch, folderBg);
-                vita2d_draw_rectangle(sx, cy, cw, 2, folderEdge); // top tab highlight
-                vita2d_draw_rectangle(sx, cy, 2, ch, folderEdge);
-                ::psvitaalive::ui::uiDrawText(&font_, sx + padX, sy + 1, folderText, sc, label.c_str());
-                sy -= 24;
+                const int padX=6, ch=24, iconW=skin::ready()?22:0;
+                const int maxW=std::max(40,ww-is-30);
+                float sc=.76f;
+                int tw=::psvitaalive::ui::uiTextWidth(&font_,sc,label.c_str());
+                while (sc>.46f && tw+padX*2+iconW>maxW) {
+                    sc-=.04f;
+                    tw=::psvitaalive::ui::uiTextWidth(&font_,sc,label.c_str());
+                }
+                const int cw=std::min(maxW,tw+padX*2+iconW);
+                const int sx=right-cw-6, cy=sy-ch+4;
+                const unsigned folderBg=RGBA8(0x3A,0x2C,0x10,255);
+                const unsigned folderEdge=RGBA8(0xE8,0xB4,0x3A,255);
+                const unsigned folderText=RGBA8(0xFF,0xD2,0x6A,255);
+                skin::surface(skin::ui_atlas::ui_badge,sx,cy,cw,ch,folderBg);
+                skin::focus(sx,cy,cw,ch,folderEdge);
+                if (iconW) skin::icon(symbol,sx+padX,cy+3,18,folderText,atlas);
+                // Static label: the existing card scissor stays enabled.
+                drawMarqueeText(&font_,sx+padX+iconW,cy+17,std::max(1,cw-padX*2-iconW),
+                    folderText,sc,label,false,cardL,cardT,cardR,cardB);
+                sy-=24;
             };
             const std::string sz = itemCardSizeLabel(it);
             // Allow a bit more room for "16 MB + 1.5 GB"
             if (!sz.empty()) drawSizeChip(ellipsize(sz, 22));
             // Amber folder-style marks (same visual language as Homebrew G/D Files)
-            if (itemHasLinkType(it, "data files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles));
-            if (itemHasLinkType(it, "game files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles));
-            if (itemHasDlc(it)) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDlc));
+            if (itemHasLinkType(it, "data files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles),skin::ui_atlas::icon_data,skin::Atlas::Ui);
+            if (itemHasLinkType(it, "game files")) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles),skin::icons_atlas::icon_gamepad,skin::Atlas::Icons);
+            if (itemHasDlc(it)) drawFolderChip(::psvitaalive::L(::psvitaalive::TextId::MetaDlc),skin::ui_atlas::icon_dlc,skin::Atlas::Ui);
         }
     }
 
@@ -8865,8 +9022,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     (void)idx;
 }
 void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
-    vita2d_draw_rectangle(x, y, w, h, PANEL);
-    vita2d_draw_rectangle(x, y, 2, h, ACCENT_SOFT);
+    skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
     const unsigned dimPanel = contentFade_ < 0.99f ? RGBA8(0,0,0, static_cast<unsigned>((1.f-contentFade_)*90)) : 0;
 
     // Clip cards to the panel so smooth scroll never spills outside the frame
@@ -8897,12 +9053,12 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         vita2d_disable_clipping();
         if (rows > vis) {
             int tx = x + w - 8, ty = y + 12, th = h - 24;
-            vita2d_draw_rectangle(tx, ty, 4, th, BORDER);
+            skin::surface(skin::ui_atlas::ui_scroll_track,tx,ty,4,th,BORDER);
             int thumb = std::max(24, th * vis / std::max(1, rows));
             int mr = std::max(1, rows - vis);
             float scrollT = std::min(1.f, visualCatalogScroll_ / static_cast<float>(mr));
             int yy = ty + static_cast<int>((th - thumb) * scrollT);
-            vita2d_draw_rectangle(tx, yy, 4, thumb, ACCENT);
+            skin::surface(skin::ui_atlas::ui_scroll_thumb,tx,yy,4,thumb,ACCENT);
         }
         drawScrollFades(x, y, w, h);
     } else {
@@ -8924,12 +9080,12 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         const int total = (int)catalogView().size();
         if (total > vis) {
             int tx = x + w - 8, ty = y + 12, th = h - 24;
-            vita2d_draw_rectangle(tx, ty, 4, th, BORDER);
+            skin::surface(skin::ui_atlas::ui_scroll_track,tx,ty,4,th,BORDER);
             int thumb = std::max(24, th * vis / std::max(1, total));
             int mr = std::max(1, total - vis);
             float scrollT = std::min(1.f, visualCatalogScroll_ / static_cast<float>(mr));
             int yy = ty + static_cast<int>((th - thumb) * scrollT);
-            vita2d_draw_rectangle(tx, yy, 4, thumb, ACCENT);
+            skin::surface(skin::ui_atlas::ui_scroll_thumb,tx,yy,4,thumb,ACCENT);
         }
         drawScrollFades(x, y, w, h);
         if (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Catalog && chromeFocusVisible(FocusZone::Catalog))
@@ -9084,11 +9240,8 @@ void FullCatalogScreen::drawWebQrOverlay() {
     const unsigned qrAccent = webQrDiscord_ ? RGBA8(0x58, 0x65, 0xF2, 255) : ACCENT;
     vita2d_disable_clipping();
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0,0,0,222));
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, WEB_QR_MODAL_H, PANEL);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, WEB_QR_MODAL_W, 3, qrAccent);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, qrAccent);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X + WEB_QR_MODAL_W - 3, WEB_QR_MODAL_Y, 3, WEB_QR_MODAL_H, qrAccent);
-    vita2d_draw_rectangle(WEB_QR_MODAL_X, WEB_QR_MODAL_Y + WEB_QR_MODAL_H - 3, WEB_QR_MODAL_W, 3, qrAccent);
+    skin::surface(skin::ui_atlas::ui_dialog,WEB_QR_MODAL_X,WEB_QR_MODAL_Y,WEB_QR_MODAL_W,WEB_QR_MODAL_H,PANEL);
+    skin::focus(WEB_QR_MODAL_X,WEB_QR_MODAL_Y,WEB_QR_MODAL_W,WEB_QR_MODAL_H,qrAccent);
     const char* title = ::psvitaalive::L(webQrDiscord_ ? "DISCORD_QR_TITLE" : "WEB_QR_TITLE");
     const int titleW = ::psvitaalive::ui::uiTextWidth(&font_, 0.90f, title);
     ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-titleW)/2, 40, WHITE, 0.90f, title);
@@ -9113,9 +9266,8 @@ void FullCatalogScreen::drawWebQrOverlay() {
     }
     // Shared high-contrast URL card: readable on both Discord and every app QR,
     // including when the selected theme uses a light surface color.
-    vita2d_draw_rectangle(WEB_QR_LEFT_X, 373, WEB_QR_LEFT_W, 114, qrAccent);
-    vita2d_draw_rectangle(WEB_QR_LEFT_X + 2, 375, WEB_QR_LEFT_W - 4, 110,
-                          RGBA8(0x12, 0x14, 0x1B, 255));
+    skin::surface(skin::ui_atlas::ui_panel_inset,WEB_QR_LEFT_X,373,WEB_QR_LEFT_W,114,RGBA8(0x12,0x14,0x1B,255));
+    skin::focus(WEB_QR_LEFT_X,373,WEB_QR_LEFT_W,114,qrAccent);
     const char* urlLabel = ::psvitaalive::L(
         webQrDiscord_ ? "DISCORD_QR_URL_LABEL" : "WEB_QR_URL_LABEL");
     const bool urlCanScroll = (int)webQrUrlLines_.size() > WEB_QR_URL_VISIBLE_LINES;
@@ -9164,15 +9316,14 @@ void FullCatalogScreen::drawWebQrOverlay() {
         const int trackH = WEB_QR_HELP_VIEW_H;
         const int knobH = std::max(28, trackH*trackH/(trackH+webQrHelpMaxScroll_));
         const int knobY = WEB_QR_HELP_TOP + webQrHelpScroll_*(trackH-knobH)/webQrHelpMaxScroll_;
-        vita2d_draw_rectangle(trackX,WEB_QR_HELP_TOP,4,trackH,SURFACE2);
-        vita2d_draw_rectangle(trackX,knobY,4,knobH,qrAccent);
+        skin::surface(skin::ui_atlas::ui_scroll_track,trackX,WEB_QR_HELP_TOP,4,trackH,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,trackX,knobY,4,knobH,qrAccent);
         ::psvitaalive::ui::uiDrawText(&font_, WEB_QR_HELP_X, 486, DIM, 0.60f,
                                      ::psvitaalive::L("WEB_QR_SCROLL_HELP"));
     }
-    vita2d_draw_rectangle(WEB_QR_BTN_X, WEB_QR_BTN_Y, WEB_QR_BTN_W, WEB_QR_BTN_H, qrAccent);
+    skin::surface(skin::ui_atlas::ui_button_primary,WEB_QR_BTN_X,WEB_QR_BTN_Y,WEB_QR_BTN_W,WEB_QR_BTN_H,qrAccent);
     const char* close = ::psvitaalive::L("WEB_QR_CLOSE");
-    const int closeW = ::psvitaalive::ui::uiTextWidth(&font_, 0.73f, close);
-    ::psvitaalive::ui::uiDrawText(&font_, (SCREEN_W-closeW)/2, WEB_QR_BTN_Y + 25, webQrDiscord_ ? WHITE : BG, 0.73f, close);
+    skin::hint(&font_,WEB_QR_BTN_X+8,WEB_QR_BTN_Y+25,WEB_QR_BTN_W-16,webQrDiscord_?WHITE:BG,.73f,close,true);
 }
 
 void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int w, int& heightOut) {
@@ -9210,9 +9361,14 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const unsigned borderCol = withAlpha(ACCENT, borderA > 255 ? 255 : borderA);
         const unsigned fill = fAll ? ACCENT : SURFACE2;
         const int bwPulse = fAll ? 2 : (2 + (int)(1.5f * pulse));
-        vita2d_draw_rectangle(x, by, w, INSTALL_ALL_BLOCK_H, borderCol);
-        vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, INSTALL_ALL_BLOCK_H - bwPulse * 2, fill);
-        vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
+        if (skin::ready()) {
+            skin::surface(fAll?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,x,by,w,INSTALL_ALL_BLOCK_H,fill);
+            skin::focus(x,by,w,INSTALL_ALL_BLOCK_H,fAll?BG:borderCol);
+        } else {
+            vita2d_draw_rectangle(x, by, w, INSTALL_ALL_BLOCK_H, borderCol);
+            vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, INSTALL_ALL_BLOCK_H - bwPulse * 2, fill);
+            vita2d_draw_rectangle(x + bwPulse, by + bwPulse, w - bwPulse * 2, 1, fAll ? ACCENT : BORDER);
+        }
         const unsigned tc = fAll ? BG : WHITE;
         const unsigned sub = fAll ? BG : TEXT;
         ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 24, tc, 0.84f, actionTitle);
@@ -9233,8 +9389,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
             const int btnY = baseY + z * LINK_ROW_H;
             const bool focused = state_.linkNavigation &&
                 chromeFocusVisible(FocusZone::Catalog) && state_.linkFocus == (showAll ? 1 : 0) + z;
-            vita2d_draw_rectangle(x, btnY, w, LINK_ROW_H, focused ? ACCENT : SURFACE2);
-            vita2d_draw_rectangle(x, btnY, w, 1, focused ? ACCENT : BORDER);
+            skin::surface(focused?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,x,btnY,w,LINK_ROW_H,focused?ACCENT:SURFACE2);
             const std::string name = ellipsize(savedZipOptions[z].fileName, 46);
             ::psvitaalive::ui::uiDrawText(&font_, x + 10, btnY + 17,
                 focused ? BG : WHITE, 0.80f, name.c_str());
@@ -9255,8 +9410,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         ::psvitaalive::L("WEB_QR_SECTION"));
     const int webButtonY = webHeaderY + LINK_SECTION_H + 4;
     const bool webFocused = chromeFocusVisible(FocusZone::Catalog) && state_.linkNavigation && state_.linkFocus == ((showAll ? 1 : 0) + savedCount);
-    vita2d_draw_rectangle(x, webButtonY, w, LINK_ROW_H, webFocused ? ACCENT : SURFACE2);
-    vita2d_draw_rectangle(x, webButtonY, w, 1, webFocused ? ACCENT : BORDER);
+    skin::surface(webFocused?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,x,webButtonY,w,LINK_ROW_H,webFocused?ACCENT:SURFACE2);
     ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 17,
         webFocused ? BG : WHITE, 0.80f, ::psvitaalive::L("WEB_QR_BUTTON"));
     ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 35,
@@ -9276,8 +9430,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         const bool pluginDone = isPluginTypeLink(l) && row.detailIndex >= 0 &&
             static_cast<size_t>(row.detailIndex) < detailPluginInstalled_.size() &&
             detailPluginInstalled_[row.detailIndex];
-        vita2d_draw_rectangle(x, ry, w, LINK_ROW_H, f ? ACCENT : SURFACE2);
-        vita2d_draw_rectangle(x, ry, w, 1, f ? ACCENT : BORDER);
+        skin::surface(f?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,x,ry,w,LINK_ROW_H,f?ACCENT:SURFACE2);
         const unsigned mc = f ? BG : (can ? WHITE : TEXT);
         std::string title = l.name.empty() ? l.type : l.name;
         const std::string sizeLabel = formatLinkSizeLabel(l, it);
@@ -9302,7 +9455,8 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         else if (can)
             meta += std::string("  •  ") + (f ? ::psvitaalive::L(::psvitaalive::TextId::MetaXInstall)
                                               : ::psvitaalive::L(::psvitaalive::TextId::MetaX));
-        ::psvitaalive::ui::uiDrawText(&font_, x + 10, ry + 35, f ? BG : DIM, 0.70f, ellipsize(meta, badgeW ? 26 : 40).c_str());
+        skin::hint(&font_,x+10,ry+35,std::max(1,w-20-badgeW),f?BG:DIM,.70f,
+            ellipsize(meta,badgeW?26:40).c_str());
         if (pluginDone) {
             const int bx = x + w - badgeW - 8;
             ::psvitaalive::ui::uiDrawText(&font_, bx, ry + 18, f ? BG : ACCENT, 0.66f,
@@ -9433,10 +9587,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
         const int cardH = DETAIL_SECTION_H + 6 + rows * DETAIL_META_H + 10;
 
         if (cardTop + cardH >= top && cardTop <= bottom) {
-            vita2d_draw_rectangle(cx, cardTop, cw, cardH, SURFACE2);
-            vita2d_draw_rectangle(cx, cardTop, 3, cardH, ACCENT);
-            vita2d_draw_rectangle(cx, cardTop, cw, 1, BORDER);
-            vita2d_draw_rectangle(cx, cardTop + cardH - 1, cw, 1, BORDER);
+skin::surface(skin::ui_atlas::ui_panel,cx,cardTop,cw,cardH,SURFACE2);
         }
         drawSectionHeader(cx + 8, cardTop + 2, ::psvitaalive::L(::psvitaalive::TextId::DetailInformation));
         int my = cardTop + DETAIL_SECTION_H + 4;
@@ -9462,10 +9613,10 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
         const int tx = x + w - 8;
         const int ty = y + DETAIL_HEADER_H + 8;
         const int th = h - DETAIL_HEADER_H - 18;
-        vita2d_draw_rectangle(tx, ty, 3, th, BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_track,tx,ty,3,th,BORDER);
         const int thumb = std::max(20, th * vis / std::max(1, total));
         const int yy = ty + (int)((th - thumb) * (scroll / std::max(1.f, (float)mx)));
-        vita2d_draw_rectangle(tx, yy, 3, thumb, ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,tx,yy,3,thumb,ACCENT);
     }
 }
 
@@ -9473,14 +9624,12 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x, y, x + w, y + h);
-    vita2d_draw_rectangle(x, y, w, h, PANEL);
-    vita2d_draw_rectangle(x, y, 2, h, ACCENT_SOFT);
-    vita2d_draw_rectangle(x, y, w, 1, ACCENT_SOFT);
+skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
     int i = selectedIndex();
     if (i < 0) return;
     const CatalogItem& it = catalogView()[i];
     const bool active = (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Detail);
-    vita2d_draw_rectangle(x, y, w, DETAIL_HEADER_H, SURFACE);
+    skin::surface(skin::ui_atlas::ui_panel,x,y,w,DETAIL_HEADER_H,SURFACE);
     drawImage(!it.icon.empty() ? it.icon : it.cover, "app", x + 12, y + 14, 72, 72);
     // Leave room for active-panel label chip on the left when focused
     const int titleX = active ? x + 100 : x + 96;
@@ -9514,17 +9663,9 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
         const int bx = x + w - 156, by = y + 12, bw = 142, bh = 32;
         if (!it.linkDetails.empty() || primaryActionFor(it)!=PrimaryAction::None) {
             const bool linkOn=state_.linkNavigation;
-            const float pulse = linkOn ? focusPulse() : 0.f;
-            vita2d_draw_rectangle(bx, by, bw, bh, linkOn ? ACCENT : SURFACE2);
-            if (linkOn) {
-                const unsigned glow = withAlpha(ACCENT, static_cast<unsigned>(40 + pulse * 80));
-                vita2d_draw_rectangle(bx - 2, by - 2, bw + 4, bh + 4, glow);
-                vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
-            }
-            vita2d_draw_rectangle(bx, by, bw, 1, ACCENT);
-            vita2d_draw_rectangle(bx, by, 1, bh, ACCENT);
-            vita2d_draw_rectangle(bx, by + bh - 1, bw, 1, ACCENT);
-            vita2d_draw_rectangle(bx + bw - 1, by, 1, bh, ACCENT);
+            skin::surface(linkOn?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,
+                          bx,by,bw,bh,linkOn?ACCENT:SURFACE2);
+            if (linkOn) skin::focus(bx,by,bw,bh,BG);
             {
                 const char* linkLab = linkOn
                     ? ::psvitaalive::L(::psvitaalive::TextId::ExitLinkMode)
@@ -9545,8 +9686,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
              localUninstall.state==LocalInstallState::InstalledUnknown);
         if(!state_.linkNavigation && canUninstall){
             const int ubY=by+bh+6;
-            vita2d_draw_rectangle(bx,ubY,bw,32,SURFACE2);
-            vita2d_draw_rectangle(bx,ubY,bw,2,ACCENT);
+skin::surface(skin::ui_atlas::ui_button_secondary,bx,ubY,bw,32,SURFACE2);
             drawMarqueeText(&font_,bx+8,ubY+22,bw-16,ACCENT,.65f,
                 ::psvitaalive::L("ID_UNINSTALL_BUTTON"),true,
                 bx+4,ubY,bx+bw-4,ubY+32);
@@ -9558,11 +9698,8 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
             const bool linkHeader = !it.linkDetails.empty() || primaryActionFor(it)!=PrimaryAction::None;
             const int rby = linkHeader ? (by + bh + 6) : by;
             const int rbx = bx, rbw = bw, rbh = 32;
-            vita2d_draw_rectangle(rbx, rby, rbw, rbh, REQ_BG);
-            vita2d_draw_rectangle(rbx, rby, rbw, 2, REQ);
-            vita2d_draw_rectangle(rbx, rby, 2, rbh, REQ);
-            vita2d_draw_rectangle(rbx, rby + rbh - 2, rbw, 2, REQ);
-            vita2d_draw_rectangle(rbx + rbw - 2, rby, 2, rbh, REQ);
+            skin::surface(skin::ui_atlas::ui_button_secondary,rbx,rby,rbw,rbh,REQ_BG);
+            skin::focus(rbx,rby,rbw,rbh,REQ);
             drawMarqueeText(&font_, rbx + 8, rby + 22, rbw - 16, REQ, 0.70f,
                             ::psvitaalive::L(::psvitaalive::TextId::RequestData), true,
                             rbx + 4, rby, rbx + rbw - 4, rby + rbh);
@@ -9578,8 +9715,7 @@ void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
         const int nx = x + 12, ny = y + 89, nw = w - 24, nh = 18;
         const unsigned warningBg = RGBA8(0x3A, 0x2A, 0x10, 255);
         const unsigned warningFg = RGBA8(0xFF, 0xC1, 0x55, 255);
-        vita2d_draw_rectangle(nx, ny, nw, nh, warningBg);
-        vita2d_draw_rectangle(nx, ny, 3, nh, warningFg);
+skin::surface(skin::ui_atlas::ui_badge,nx,ny,nw,nh,warningBg);
         drawMarqueeText(&font_, nx + 10, ny + 13, nw - 20,
                         warningFg, 0.58f,
                         ::psvitaalive::L("GAME_FILES_MISSING_NOTICE"), true,
@@ -10396,11 +10532,16 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
     const int w = 820, h = 460;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 185));
-    vita2d_draw_rectangle(x, y, w, h, SURFACE2);
-    vita2d_draw_rectangle(x, y, w, 3, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 1, w, 1, BORDER);
-    vita2d_draw_rectangle(x, y, 1, h, BORDER);
-    vita2d_draw_rectangle(x + w - 1, y, 1, h, BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE2);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE2);
+        vita2d_draw_rectangle(x, y, w, 3, ACCENT);
+        vita2d_draw_rectangle(x, y + h - 1, w, 1, BORDER);
+        vita2d_draw_rectangle(x, y, 1, h, BORDER);
+        vita2d_draw_rectangle(x + w - 1, y, 1, h, BORDER);
+    }
 
     ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 42, ACCENT, 1.16f,
         ::psvitaalive::L(installed ? "PLUGIN_REINSTALL_TITLE" : "PLUGIN_CONFIRM_TITLE"));
@@ -10474,8 +10615,8 @@ void FullCatalogScreen::drawPluginChoiceOverlay() {
     const int buttonXs[] = {bxInstall, bxSkip};
     for (int i = 0; i < 2; ++i) {
         const bool selected = focus == i;
-        vita2d_draw_rectangle(buttonXs[i], by, bw, bh, selected ? ACCENT : SURFACE);
-        vita2d_draw_rectangle(buttonXs[i], by, bw, 1, selected ? ACCENT : BORDER);
+        skin::surface(skin::ui_atlas::ui_button_secondary,buttonXs[i], by, bw, bh, selected ? ACCENT : SURFACE);
+        
         const float sc = 0.85f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, buttons[i]);
         ::psvitaalive::ui::uiDrawText(&font_, buttonXs[i] + (bw - tw) / 2, by + 37,
@@ -10493,8 +10634,13 @@ void FullCatalogScreen::drawInstallAllSummary() {
     const int x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
     constexpr int buttonW=136,buttonH=32;
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,205));
-    vita2d_draw_rectangle(x,y,w,h,SURFACE2);
-    vita2d_draw_rectangle(x,y,w,3,ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE2);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x,y,w,h,SURFACE2);
+        vita2d_draw_rectangle(x,y,w,3,ACCENT);
+    }
     ::psvitaalive::ui::uiDrawText(&font_,x+24,y+43,ACCENT,1.18f,
         ::psvitaalive::L("ALL_REPORT_TITLE"));
 
@@ -10534,8 +10680,8 @@ void FullCatalogScreen::drawInstallAllSummary() {
         const InstallAllResult& entry=installAllResults_[index];
         const bool focused=index==installAllSummarySelected_;
         const int rx=x+22,ry=rowTop+n*rowH,rw=w-44;
-        vita2d_draw_rectangle(rx,ry,rw,rowH-5,SURFACE);
-        if(focused) vita2d_draw_rectangle(rx,ry,4,rowH-5,ACCENT);
+        skin::surface(skin::ui_atlas::ui_card,rx,ry,rw,rowH-5,SURFACE);
+        if(focused) skin::focus(rx,ry,rw,rowH-5,ACCENT);
         const char* state=::psvitaalive::L("ALL_REPORT_PENDING");
         switch(entry.state) {
             case InstallAllResultState::Completed: state=::psvitaalive::L("ALL_REPORT_COMPLETED");break;
@@ -10580,16 +10726,19 @@ void FullCatalogScreen::drawInstallAllSummary() {
         if(showReport) {
             const unsigned fill=reported?SURFACE2:
                 sending?BORDER:RGBA8(0xAD,0x36,0x41,255);
-            vita2d_draw_rectangle(bx,by,buttonW,buttonH,fill);
+            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,buttonW,buttonH,fill);
             const char* lab=::psvitaalive::L(reported?"ALL_REPORT_SENT":
                 sending?"ALL_REPORT_SENDING":"ALL_REPORT_ACTION_REPORT");
             float scale=.79f;
             while(scale>.59f &&
                   ::psvitaalive::ui::uiTextWidth(&font_,scale,lab)>buttonW-10)
                 scale-=.02f;
-            const int tw=::psvitaalive::ui::uiTextWidth(&font_,scale,lab);
-            ::psvitaalive::ui::uiDrawText(&font_,bx+(buttonW-tw)/2,
-                by+22,reported?ACCENT:WHITE,scale,lab);
+            if (focused && reportable && !sending && !reported)
+                skin::action(&font_,bx,by,buttonW,buttonH,WHITE,.79f,skin::controls_atlas::ctrl_select,lab,lab);
+            else {
+                const int tw=::psvitaalive::ui::uiTextWidth(&font_,scale,lab);
+                ::psvitaalive::ui::uiDrawText(&font_,bx+(buttonW-tw)/2,by+22,reported?ACCENT:WHITE,scale,lab);
+            }
         }
     }
     // Keep ZIP-recovery actions from the existing flow; reporting does not
@@ -10602,24 +10751,24 @@ void FullCatalogScreen::drawInstallAllSummary() {
         ::psvitaalive::ui::uiDrawText(&font_,x+28,y+343,DIM,.72f,
             ::psvitaalive::L(chosenKept?"ALL_REPORT_ZIP_CHOOSE":"ALL_REPORT_ZIP_SELECT"));
         const int bx0=x+25,bx1=x+475,by=y+352,bw=400,bh=40;
-        vita2d_draw_rectangle(bx0,by,bw,bh,chosenKept?ACCENT:SURFACE);
-        vita2d_draw_rectangle(bx1,by,bw,bh,
+        skin::surface(skin::ui_atlas::ui_button_secondary,bx0,by,bw,bh,chosenKept?ACCENT:SURFACE);
+        skin::surface(skin::ui_atlas::ui_button_secondary,bx1,by,bw,bh,
             chosenKept?RGBA8(0xAA,0x37,0x42,255):SURFACE);
         const char* keepLab=::psvitaalive::L("ALL_REPORT_KEEP_ZIP");
         const char* deleteLab=::psvitaalive::L("ALL_REPORT_DELETE_ZIP");
-        const int keepW=::psvitaalive::ui::uiTextWidth(&font_,.80f,keepLab);
-        const int deleteW=::psvitaalive::ui::uiTextWidth(&font_,.80f,deleteLab);
-        ::psvitaalive::ui::uiDrawText(&font_,bx0+(bw-keepW)/2,by+27,
-            chosenKept?BG:DIM,.80f,keepLab);
-        ::psvitaalive::ui::uiDrawText(&font_,bx1+(bw-deleteW)/2,by+27,
-            chosenKept?WHITE:DIM,.80f,deleteLab);
+        if (chosenKept) {
+            skin::action(&font_,bx0,by,bw,bh,BG,.80f,skin::controls_atlas::ctrl_triangle_classic,keepLab,keepLab);
+            skin::action(&font_,bx1,by,bw,bh,WHITE,.80f,skin::controls_atlas::ctrl_square_classic,deleteLab,deleteLab);
+        } else {
+            skin::hint(&font_,bx0+8,by+27,bw-16,DIM,.80f,keepLab,true);
+            skin::hint(&font_,bx1+8,by+27,bw-16,DIM,.80f,deleteLab,true);
+        }
     }
     if(installAllPluginInstalled_) {
         // With limited space below three result rows and optional ZIP actions,
         // reuse the existing two-line summary area for reboot AND L recovery.
         // The Restart button and its gamepad/touch hitboxes stay fixed.
-        vita2d_draw_rectangle(x+22,y+397,w-44,45,SURFACE);
-        vita2d_draw_rectangle(x+22,y+397,4,45,ACCENT);
+        skin::surface(skin::ui_atlas::ui_panel_inset,x+22,y+397,w-44,45,SURFACE);
         auto drawSummaryLine = [&](int baseline, unsigned color, float scale,
                                    const char* value) {
             const int maxWidth = w - 70;
@@ -10631,25 +10780,20 @@ void FullCatalogScreen::drawInstallAllSummary() {
         drawSummaryLine(y+415,WHITE,.74f,::psvitaalive::L("ALL_REPORT_REBOOT_1"));
         drawSummaryLine(y+438,ACCENT,.74f,::psvitaalive::L("ALL_REPORT_REBOOT_2"));
     } else {
-        ::psvitaalive::ui::uiDrawText(&font_,x+27,y+417,TEXT,.78f,
-            ::psvitaalive::L("ALL_REPORT_SELECT_REPORT_HINT"));
+        skin::hint(&font_,x+27,y+417,w-54,TEXT,.78f,::psvitaalive::L("ALL_REPORT_SELECT_REPORT_HINT"),false,26);
     }
     const int bw=370,bh=42,bx=x+(w-bw)/2,by=y+448;
-    vita2d_draw_rectangle(bx,by,bw,bh,ACCENT);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,bw,bh,ACCENT);
     const char* action=::psvitaalive::L(
         installAllPluginInstalled_?"ALL_REPORT_RESTART":"ALL_REPORT_CONTINUE");
-    const int aw=::psvitaalive::ui::uiTextWidth(&font_,.90f,action);
-    ::psvitaalive::ui::uiDrawText(&font_,bx+(bw-aw)/2,by+29,BG,.90f,action);
+    skin::action(&font_,bx,by,bw,bh,BG,.90f,skin::controls_atlas::ctrl_cross_classic,action,action);
 
     if (installAllSummaryDeleteConfirm_) {
         const int dw = 700, dh = 245, dx = (SCREEN_W - dw) / 2;
         const int dy = y + 122;
         vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 160));
-        vita2d_draw_rectangle(dx, dy, dw, dh, SURFACE2);
-        vita2d_draw_rectangle(dx, dy, dw, 3, ACCENT);
-        vita2d_draw_rectangle(dx, dy + dh - 1, dw, 1, BORDER);
-        vita2d_draw_rectangle(dx, dy, 1, dh, BORDER);
-        vita2d_draw_rectangle(dx + dw - 1, dy, 1, dh, BORDER);
+        skin::surface(skin::ui_atlas::ui_dialog,dx,dy,dw,dh,SURFACE2);
+        skin::focus(dx,dy,dw,dh,ACCENT);
         ::psvitaalive::ui::uiDrawText(&font_, dx + 25, dy + 42, ACCENT, 1.04f,
             ::psvitaalive::L("ALL_REPORT_DELETE_CONFIRM_TITLE"));
         ::psvitaalive::ui::uiDrawText(&font_, dx + 25, dy + 90, TEXT, 0.76f,
@@ -10658,12 +10802,11 @@ void FullCatalogScreen::drawInstallAllSummary() {
         const int xs[] = {dx + 36, dx + dw - 36 - btnW};
         for (int i = 0; i < 2; ++i) {
             const bool focused = installAllSummaryDeleteFocus_ == i;
-            vita2d_draw_rectangle(xs[i], btnY, btnW, btnH, focused ? ACCENT : SURFACE);
+            skin::surface(skin::ui_atlas::ui_button_secondary,xs[i], btnY, btnW, btnH, focused ? ACCENT : SURFACE);
             const char* lab = ::psvitaalive::L(
                 i == 0 ? "ALL_REPORT_DELETE_CONFIRM_YES" : "ALL_REPORT_DELETE_CONFIRM_NO");
-            const int ww = ::psvitaalive::ui::uiTextWidth(&font_, 0.78f, lab);
-            ::psvitaalive::ui::uiDrawText(&font_, xs[i] + (btnW - ww) / 2,
-                btnY + 31, focused ? BG : WHITE, 0.78f, lab);
+            if(focused) skin::action(&font_,xs[i],btnY,btnW,btnH,BG,.78f,skin::controls_atlas::ctrl_cross_classic,lab,lab);
+            else skin::hint(&font_,xs[i]+8,btnY+31,btnW-16,WHITE,.78f,lab,true);
         }
     }
 
@@ -10685,11 +10828,16 @@ void FullCatalogScreen::drawInstallAllOverlay() {
 
     const int ow = 820, oh = 460;
     const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-    vita2d_draw_rectangle(ox, oy, ow, oh, SURFACE2);
-    vita2d_draw_rectangle(ox, oy, ow, 3, ACCENT);
-    vita2d_draw_rectangle(ox, oy + oh - 1, ow, 1, BORDER);
-    vita2d_draw_rectangle(ox, oy, 1, oh, BORDER);
-    vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,ox,oy,ow,oh,SURFACE2);
+        skin::focus(ox,oy,ow,oh,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(ox, oy, ow, oh, SURFACE2);
+        vita2d_draw_rectangle(ox, oy, ow, 3, ACCENT);
+        vita2d_draw_rectangle(ox, oy + oh - 1, ow, 1, BORDER);
+        vita2d_draw_rectangle(ox, oy, 1, oh, BORDER);
+        vita2d_draw_rectangle(ox + ow - 1, oy, 1, oh, BORDER);
+    }
 
     if (installAllPhase_ == InstallAllPhase::SpaceWarning) {
         const char* title = ::psvitaalive::L("ALL_SPACE_TITLE");
@@ -10711,7 +10859,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
             ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + 295, ACCENT, 0.90f, shortBy.c_str());
         }
         const int bw = 310, bh = 54, bx = ox + (ow - bw)/2, by = oy + oh - 80;
-        vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+        skin::surface(skin::ui_atlas::ui_button_secondary,bx, by, bw, bh, ACCENT);
         const char* label = ::psvitaalive::L("ALL_SPACE_CLOSE");
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.89f, label);
         ::psvitaalive::ui::uiDrawText(&font_, bx+(bw-tw)/2, by+36, BG, 0.89f, label);
@@ -10745,21 +10893,21 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         const int bxCancel = ox + ow - 28 - bw;
         const bool fOk = installAllFocus_ == 0;
         const bool fCancel = installAllFocus_ == 1;
-        vita2d_draw_rectangle(bxOk, by, bw, bh, fOk ? ACCENT : SURFACE2);
+        skin::surface(skin::ui_atlas::ui_button_secondary,bxOk, by, bw, bh, fOk ? ACCENT : SURFACE2);
         {
             const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnContinue);
             const float sc = 0.90f;
             const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
             ::psvitaalive::ui::uiDrawText(&font_, bxOk + (bw - tw) / 2, by + 34, fOk ? BG : WHITE, sc, lab);
         }
-        vita2d_draw_rectangle(bxCancel, by, bw, bh, fCancel ? ACCENT : SURFACE2);
+        skin::surface(skin::ui_atlas::ui_button_secondary,bxCancel, by, bw, bh, fCancel ? ACCENT : SURFACE2);
         {
             const char* lab = ::psvitaalive::L(::psvitaalive::TextId::BtnCancel);
             const float sc = 0.90f;
             const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
             ::psvitaalive::ui::uiDrawText(&font_, bxCancel + (bw - tw) / 2, by + 30, fCancel ? BG : WHITE, sc, lab);
         }
-        ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + oh - 92, DIM, 0.74f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
+        skin::hint(&font_,ox+28,oy+oh-92,ow-56,DIM,.74f,::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
         return;
     }
 
@@ -10783,13 +10931,8 @@ void FullCatalogScreen::drawInstallAllOverlay() {
         const bool f = (idx == installAllFocus_);
         const int rx = ox + 20, rw = ow - 40;
         // Match detail download rows: dark SURFACE2 body (not full green fill)
-        vita2d_draw_rectangle(rx, ry, rw, rowH, SURFACE2);
-        vita2d_draw_rectangle(rx, ry, rw, 1, f ? ACCENT : BORDER);
-        if (f) {
-            // Focus indicator: left neon strip + soft top/bottom edge
-            vita2d_draw_rectangle(rx, ry, 3, rowH, ACCENT);
-            vita2d_draw_rectangle(rx, ry + rowH - 1, rw, 1, ACCENT);
-        }
+        skin::surface(skin::ui_atlas::ui_card,rx,ry,rw,rowH,SURFACE2);
+        if (f) skin::focus(rx,ry,rw,rowH,ACCENT);
         std::string name = l.name.empty() ? l.type : l.name;
         const std::string sizeLabel = l.size.empty() ? "" : l.size;
         const int badgeW = l.recommended ? 96 : 0;
@@ -10808,7 +10951,7 @@ void FullCatalogScreen::drawInstallAllOverlay() {
                                  ::psvitaalive::L(::psvitaalive::TextId::BadgeRecommended));
         }
     }
-    ::psvitaalive::ui::uiDrawText(&font_, ox + 28, oy + oh - 28, DIM, 0.74f, ::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
+    skin::hint(&font_,ox+28,oy+oh-28,ow-56,DIM,.74f,::psvitaalive::L(::psvitaalive::TextId::InstallAllNavHint));
 }
 
 void FullCatalogScreen::drawLoadingOverlay(){
@@ -10840,8 +10983,9 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
     const int barY = SCREEN_H - 40;
     const unsigned panelA = (unsigned)(catalogSplashAlpha_ * 230.f);
     const unsigned ta = (unsigned)(catalogSplashAlpha_ * 255.f);
-    vita2d_draw_rectangle(0, stripY, SCREEN_W, stripH, RGBA8(0x08, 0x08, 0x0A, panelA > 255 ? 255 : panelA));
-    vita2d_draw_rectangle(0, stripY, SCREEN_W, 3, withAlpha(ACCENT, ta > 255 ? 255 : ta));
+    skin::surface(skin::ui_atlas::ui_dialog,18,stripY,SCREEN_W-36,stripH-8,
+        RGBA8(0x08,0x08,0x0A,std::min(255u,panelA)));
+    skin::focus(18,stripY,SCREEN_W-36,stripH-8,withAlpha(ACCENT,std::min(255u,ta)));
 
     std::string phase = catalogLoadingLabel_.empty() ? ::psvitaalive::L(::psvitaalive::TextId::StartupPhaseLabel) : catalogLoadingLabel_;
     ::psvitaalive::ui::uiDrawText(&font_, barX, stripY + 28, ACCENT, 0.90f, ellipsize(phase, 40).c_str());
@@ -10863,9 +11007,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
         ::psvitaalive::ui::uiDrawText(&font_, barX, stripY + 74, TEXT, 0.52f, sizeLine);
     }
 
-    vita2d_draw_rectangle(barX, barY, barW, barH, SURFACE);
-    vita2d_draw_rectangle(barX, barY, barW, 1, ACCENT_SOFT);
-    vita2d_draw_rectangle(barX, barY + barH - 1, barW, 1, ACCENT_SOFT);
+skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,withAlpha(SURFACE,std::min(255u,ta)));
     float pct = 0.f;
     if (catalogLoadingTotal_ > 0) {
         pct = (float)catalogLoadingCurrent_ / (float)catalogLoadingTotal_;
@@ -10876,7 +11018,7 @@ if (catalogSplashAlpha_ > 0.01f && !installProgressActive_) {
         pct = 0.15f + 0.35f * (t < 0.5f ? (t * 2.f) : (2.f - t * 2.f));
     }
     const int fill = (int)(barW * pct);
-    if (fill > 0) vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
+    if (fill > 0) skin::surface(skin::ui_atlas::ui_progress_fill,barX,barY,fill,barH,withAlpha(ACCENT,std::min(255u,ta)));
     char pctBuf[32];
     if (catalogLoadingTotal_ > 0)
         sceClibSnprintf(pctBuf, sizeof(pctBuf), "%d%%", (int)(pct * 100.f + 0.5f));
@@ -10965,13 +11107,33 @@ if (installProgressActive_ && installOutcome_ == 0 && gProtectionActive) {
 const unsigned RED=RGBA8(0xE0,0x32,0x32,255), GREEN=RGBA8(0x3B,0xD9,0x60,255), BLACK=RGBA8(0,0,0,255);
 const int w=900,h=508,x=(SCREEN_W-w)/2,y=(SCREEN_H-h)/2;
 vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,120));
-vita2d_draw_rectangle(x,y,w,h,PANEL);
 const unsigned edge=(installOutcome_==2)?RED:((installOutcome_==1)?GREEN:ACCENT);
-vita2d_draw_rectangle(x,y,w,3,edge);
-vita2d_draw_rectangle(x,y+3,3,h-6,edge);
-vita2d_draw_rectangle(x+w-3,y+3,3,h-6,BORDER);
-vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
-::psvitaalive::ui::uiDrawText(&font_,x+28,y+34,edge,0.92f,"PSVitaAlive");
+if (skin::ready()) {
+    skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,PANEL);
+    skin::focus(x,y,w,h,withAlpha(edge,180));
+} else {
+    vita2d_draw_rectangle(x,y,w,h,PANEL);
+    vita2d_draw_rectangle(x,y,w,3,edge);
+    vita2d_draw_rectangle(x,y+3,3,h-6,edge);
+    vita2d_draw_rectangle(x+w-3,y+3,3,h-6,BORDER);
+    vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
+}
+const bool showItem = installProgressActive_ && !installDisplayName_.empty();
+const int headerTextX = showItem ? x+94 : x+28;
+if (showItem) {
+    const int ix=x+28, iy=y+12, size=54;
+    skin::surface(skin::ui_atlas::ui_panel_inset,ix,iy,size,size,SURFACE2);
+    if (installDisplayTexture_) {
+        const float tw=vita2d_texture_get_width(installDisplayTexture_);
+        const float th=vita2d_texture_get_height(installDisplayTexture_);
+        if (tw>0 && th>0) {
+            const float sc=std::min(size/tw,size/th);
+            vita2d_draw_texture_scale(installDisplayTexture_,ix+(size-tw*sc)*.5f,
+                iy+(size-th*sc)*.5f,sc,sc);
+        }
+    } else skin::icon(skin::icons_atlas::icon_package,ix+7,iy+7,size-14,DIM);
+    drawMarqueeText(&font_,headerTextX,y+34,w-122,edge,.98f,installDisplayName_,false);
+} else ::psvitaalive::ui::uiDrawText(&font_,x+28,y+34,edge,0.92f,"PSVitaAlive");
 
 if(installOutcome_==1){
   using TID = ::psvitaalive::TextId;
@@ -10983,7 +11145,7 @@ if(installOutcome_==1){
       !installResultPath_.empty() &&
       (installResultPath_.find("ux0:app/") != 0);
   if (zipExtract) {
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+72,GREEN,1.28f,::psvitaalive::L(TID::ZipExtractComplete));
+    ::psvitaalive::ui::uiDrawText(&font_,headerTextX,y+72,GREEN,1.28f,::psvitaalive::L(TID::ZipExtractComplete));
     std::string file=installProgressFile_.empty()?"(archive)":ellipsize(installProgressFile_,48);
     {
       char fl[160];
@@ -10999,7 +11161,7 @@ if(installOutcome_==1){
     ::psvitaalive::ui::uiDrawText(&font_,x+28,y+192,DIM,0.84f,::psvitaalive::L(TID::NoLiveAreaFilesOnly));
     // Avoid showing raw English progress message under localized status.
   } else {
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+72,GREEN,1.28f,::psvitaalive::L(TID::InstallComplete));
+    ::psvitaalive::ui::uiDrawText(&font_,headerTextX,y+72,GREEN,1.28f,::psvitaalive::L(TID::InstallComplete));
     std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,48);
     {
       char fl[160];
@@ -11029,12 +11191,11 @@ if(installOutcome_==1){
   }
 
   const int by2=y+370,bw2=320,bh2=50;
-  vita2d_draw_rectangle(x+28,by2,bw2,bh2,GREEN);
+  skin::surface(skin::ui_atlas::ui_button_primary,x+28,by2,bw2,bh2,GREEN);
   {
     const char* clab = ::psvitaalive::L(TID::OContinue);
     const float sc = 0.90f;
-    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
-    ::psvitaalive::ui::uiDrawText(&font_, x+28+(bw2-tw)/2, by2+34, BLACK, sc, clab);
+    skin::hint(&font_,x+40,by2+34,bw2-24,BLACK,sc,clab,true);
   }
   // Auto-close countdown bar only (no text)
   {
@@ -11042,14 +11203,14 @@ if(installOutcome_==1){
     const int barW = w - 56;
     const int barY = y + h - 22;
     const int barH = 6;
-    vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+    skin::surface(skin::ui_atlas::ui_progress_track,barX, barY, barW, barH, BORDER);
     const uint64_t totalMs = 8000;
     uint64_t rem = installResultAutoCloseMs_;
     if (rem > totalMs) rem = totalMs;
     const int fill = (rem > 0 && totalMs > 0)
         ? (int)((barW * rem) / totalMs)
         : 0;
-    if (fill > 0) vita2d_draw_rectangle(barX, barY, fill, barH, GREEN);
+    if (fill > 0) skin::surface(skin::ui_atlas::ui_progress_fill,barX, barY, fill, barH, GREEN);
   }
   return;
 }
@@ -11057,7 +11218,7 @@ if(installOutcome_==1){
 if(installOutcome_==3){
   using TID = ::psvitaalive::TextId;
   const unsigned amber = RGBA8(0xE0,0xA0,0x30,255);
-  ::psvitaalive::ui::uiDrawText(&font_,x+28,y+72,amber,1.28f,::psvitaalive::L(TID::DownloadCancelled));
+  ::psvitaalive::ui::uiDrawText(&font_,headerTextX,y+72,amber,1.28f,::psvitaalive::L(TID::DownloadCancelled));
   std::string file=installProgressFile_.empty()?"(file)":ellipsize(installProgressFile_,48);
   {
     char fl[160];
@@ -11072,15 +11233,14 @@ if(installOutcome_==3){
   const int by2=y+370,bh2=50;
   const int bwClose=280;
   const int bxClose=x+(w-bwClose)/2;
-  vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,SURFACE2);
-  vita2d_draw_rectangle(bxClose,by2,bwClose,1,BORDER);
+  skin::surface(skin::ui_atlas::ui_button_secondary,bxClose,by2,bwClose,bh2,SURFACE2);
+  
   {
     const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
     const float sc = 0.64f;
-    const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
-    ::psvitaalive::ui::uiDrawText(&font_, bxClose + (bwClose - tw) / 2, by2 + 27, WHITE, sc, clab);
+    skin::hint(&font_,bxClose+12,by2+30,bwClose-24,WHITE,sc,clab,true);
   }
-  ::psvitaalive::ui::uiDrawText(&font_,x+28,y+h-18,DIM,0.70f,::psvitaalive::L(::psvitaalive::TextId::CircleCloseHint));
+  skin::hint(&font_,x+28,y+h-18,w-56,DIM,.70f,::psvitaalive::L(::psvitaalive::TextId::CircleCloseHint));
   return;
 }
 
@@ -11088,7 +11248,7 @@ if(installOutcome_==2){
   using TID = ::psvitaalive::TextId;
   if (installZipRecoveryAvailable_) {
     const unsigned amber = RGBA8(0xE0,0xA0,0x30,255);
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+72,amber,1.18f,::psvitaalive::L("ZIP_RECOVERY_TITLE"));
+    ::psvitaalive::ui::uiDrawText(&font_,headerTextX,y+72,amber,1.18f,::psvitaalive::L("ZIP_RECOVERY_TITLE"));
     ::psvitaalive::ui::uiDrawText(&font_,x+28,y+106,TEXT,0.72f,::psvitaalive::L("ZIP_RECOVERY_DOWNLOADED_OK"));
 
     std::string file=installProgressFile_.empty()?"archive.zip":ellipsize(installProgressFile_,52);
@@ -11125,10 +11285,10 @@ if(installOutcome_==2){
 
     const int by2=y+360,bh2=50,bw=250,gap=15,totalW=bw*3+gap*2;
     const int bx0=x+(w-totalW)/2,bx1=bx0+bw+gap,bx2=bx1+bw+gap;
-    vita2d_draw_rectangle(bx0,by2,bw,bh2,ACCENT);
-    vita2d_draw_rectangle(bx1,by2,bw,bh2,RED);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bx0,by2,bw,bh2,ACCENT);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bx1,by2,bw,bh2,RED);
     const unsigned reportCol=(reportUiState_==2)?GREEN:RED;
-    vita2d_draw_rectangle(bx2,by2,bw,bh2,reportCol);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bx2,by2,bw,bh2,reportCol);
     auto centered=[&](int bx,const char* text,unsigned color){
       float sc=0.58f;
       while(sc>0.46f && ::psvitaalive::ui::uiTextWidth(&font_,sc,text)>bw-14) sc-=0.02f;
@@ -11148,7 +11308,7 @@ if(installOutcome_==2){
     if (installAllPhase_ == InstallAllPhase::Running &&
         installAllWaitingRecovery_ && !installAllRecoveryResolved_) {
         const int barX = x + 28, barY = y + h - 10, barW = w - 56, barH = 5;
-        vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+        skin::surface(skin::ui_atlas::ui_progress_track,barX, barY, barW, barH, BORDER);
         uint64_t rem = 0;
         if (!installAllRecoveryAutoAttempted_ && installAllRecoveryStartUs_ != 0) {
             const uint64_t nowUs = sceKernelGetProcessTimeWide();
@@ -11158,7 +11318,7 @@ if(installOutcome_==2){
                 ? 0 : INSTALL_ALL_ZIP_KEEP_TIMEOUT_US - elapsed;
         }
         const int fill = static_cast<int>((barW * rem) / INSTALL_ALL_ZIP_KEEP_TIMEOUT_US);
-        if (fill > 0) vita2d_draw_rectangle(barX, barY, fill, barH, ACCENT);
+        if (fill > 0) skin::surface(skin::ui_atlas::ui_progress_fill,barX, barY, fill, barH, ACCENT);
         if (installAllRecoveryAutoFailed_) {
             ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 46,
                 RGBA8(0xE0,0xA0,0x30,255), 0.67f, ::psvitaalive::L("ZIP_RECOVERY_AUTO_KEEP_FAILED"));
@@ -11176,7 +11336,7 @@ if(installOutcome_==2){
     // No raw libcurl codes, generic "check disk/format" advice or Report button
     // for a known external connection failure. Detailed transport reason stays
     // in session.log for maintainers and diagnostics.
-    ::psvitaalive::ui::uiDrawText(&font_, x+28, y+72, RED, 1.26f,
+    ::psvitaalive::ui::uiDrawText(&font_,headerTextX,y+72, RED, 1.26f,
                                  ::psvitaalive::L("ARCHIVE_DOWNLOAD_FRIENDLY_TITLE"));
     const std::string file = installProgressFile_.empty()
         ? std::string("-") : ellipsize(installProgressFile_, 48);
@@ -11205,15 +11365,14 @@ if(installOutcome_==2){
 
     const int bwClose = 280, bhClose = 50;
     const int bxClose = x + (w - bwClose) / 2, byClose = y + 370;
-    vita2d_draw_rectangle(bxClose, byClose, bwClose, bhClose, SURFACE2);
-    vita2d_draw_rectangle(bxClose, byClose, bwClose, 1, BORDER);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bxClose, byClose, bwClose, bhClose, SURFACE2);
+    
     const char* clab = ::psvitaalive::L(TID::BtnOClose);
     const float sc = 0.86f;
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
     ::psvitaalive::ui::uiDrawText(&font_, bxClose + (bwClose - tw) / 2,
                                  byClose + 34, WHITE, sc, clab);
-    ::psvitaalive::ui::uiDrawText(&font_, x+28, y+h-18, DIM, 0.70f,
-                                 ::psvitaalive::L(TID::CircleCloseHint));
+    skin::hint(&font_,x+28,y+h-18,w-56,DIM,.70f,::psvitaalive::L(TID::CircleCloseHint));
     return;
   }
 
@@ -11226,7 +11385,7 @@ if(installOutcome_==2){
       ? "INSTALL_ERR_TITLE_DOWNLOAD"
       : ((kind == FK::ArchiveCorrupt || kind == FK::ArchiveUnsafe)
          ? "INSTALL_ERR_TITLE_ARCHIVE" : "INSTALL_ERR_TITLE_GENERAL");
-  ::psvitaalive::ui::uiDrawText(&font_, x+28, y+72, RED, 1.18f,
+  ::psvitaalive::ui::uiDrawText(&font_,headerTextX,y+72, RED, 1.18f,
                                ::psvitaalive::L(titleKey));
   const std::string file = installProgressFile_.empty()
       ? std::string("-") : ellipsize(installProgressFile_, 48);
@@ -11266,30 +11425,30 @@ if(installOutcome_==2){
     // Only Close — space issues are expected user-side, not bug reports
     const int bwClose=280;
     const int bxClose=x+(w-bwClose)/2;
-    vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,SURFACE2);
-    vita2d_draw_rectangle(bxClose,by2,bwClose,1,BORDER);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bxClose,by2,bwClose,bh2,SURFACE2);
+    
     {
       const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
       const float sc = 0.86f;
       const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
       ::psvitaalive::ui::uiDrawText(&font_, bxClose + (bwClose - tw) / 2, by2 + 34, WHITE, sc, clab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+h-18,DIM,0.70f,::psvitaalive::L(::psvitaalive::TextId::CircleCloseHint));
+    skin::hint(&font_,x+28,y+h-18,w-56,DIM,.70f,::psvitaalive::L(::psvitaalive::TextId::CircleCloseHint));
   } else {
     const int bwReport=240, bwClose=240;
     const int bxReport=x+28, bxClose=x+w-28-bwClose;
     // Idle/sending/fail = red; success only = green (matches footer Report chip)
     const unsigned reportCol = (reportUiState_==2) ? GREEN : RED;
     const unsigned reportText = (reportUiState_==2) ? RGBA8(0,0,0,255) : WHITE;
-    vita2d_draw_rectangle(bxReport,by2,bwReport,bh2,reportCol);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bxReport,by2,bwReport,bh2,reportCol);
     if (reportUiState_==1) {
       const int barX = bxReport + 16, barW = bwReport - 32, barH = 10;
       const int barY = by2 + (bh2 - barH) / 2;
-      vita2d_draw_rectangle(barX, barY, barW, barH, BORDER);
+      skin::surface(skin::ui_atlas::ui_progress_track,barX, barY, barW, barH, BORDER);
       const float tt = (float)(sceKernelGetProcessTimeWide() / 1000ULL % 1000) / 1000.f;
       const float phase = tt < 0.5f ? (tt * 2.f) : (2.f - tt * 2.f);
       const int fillW = (int)(barW * (0.25f + 0.55f * phase));
-      if (fillW > 0) vita2d_draw_rectangle(barX, barY, fillW, barH, RGBA8(0,0,0,255));
+      if (fillW > 0) skin::surface(skin::ui_atlas::ui_progress_fill,barX, barY, fillW, barH, RGBA8(0,0,0,255));
     } else {
       const char* lab = ::psvitaalive::L(::psvitaalive::TextId::ChipReport);
       if (reportUiState_==2) lab = ::psvitaalive::L(::psvitaalive::TextId::ChipSent);
@@ -11298,14 +11457,14 @@ if(installOutcome_==2){
       const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
       ::psvitaalive::ui::uiDrawText(&font_, bxReport + (bwReport - tw) / 2, by2 + 34, reportText, sc, lab);
     }
-    vita2d_draw_rectangle(bxClose,by2,bwClose,bh2,RED);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bxClose,by2,bwClose,bh2,RED);
     {
       const char* clab = ::psvitaalive::L(::psvitaalive::TextId::BtnOClose);
       const float sc = 0.86f;
       const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, clab);
       ::psvitaalive::ui::uiDrawText(&font_, bxClose + (bwClose - tw) / 2, by2 + 34, WHITE, sc, clab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_,x+28,y+h-18,DIM,0.70f,::psvitaalive::L(::psvitaalive::TextId::SquareReportHint));
+    skin::hint(&font_,x+28,y+h-18,w-56,DIM,.70f,::psvitaalive::L(::psvitaalive::TextId::SquareReportHint));
   }
   return;
 }
@@ -11315,8 +11474,8 @@ if(catalogLoading_){
   ::psvitaalive::ui::uiDrawText(&font_,x+28,y+108,TEXT,.60f,catalogLoadingMessage_.empty()?::psvitaalive::L(::psvitaalive::TextId::PreparingFallback):catalogLoadingMessage_.c_str());
   uint64_t pct=catalogLoadingTotal_?std::min<uint64_t>(100,(catalogLoadingCurrent_*100)/catalogLoadingTotal_):0;
   int bx=x+28,by=y+140,bw=w-56,bh=12;
-  vita2d_draw_rectangle(bx,by,bw,bh,BORDER);
-  vita2d_draw_rectangle(bx,by,bw*(int)pct/100,bh,ACCENT);
+  skin::surface(skin::ui_atlas::ui_progress_track,bx,by,bw,bh,BORDER);
+  skin::surface(skin::ui_atlas::ui_progress_fill,bx,by,bw*(int)pct/100,bh,ACCENT);
   char st[160];
   sceClibSnprintf(st,sizeof(st),"%llu%%  %llu / %llu",(unsigned long long)pct,(unsigned long long)catalogLoadingCurrent_,(unsigned long long)catalogLoadingTotal_);
   ::psvitaalive::ui::uiDrawText(&font_,x+28,y+168,TEXT,.58f,st);
@@ -11349,7 +11508,7 @@ if(catalogLoading_){
     title = ::psvitaalive::L(TID::StageInstalling);
   else if (!installProgressStage_.empty()) title = installProgressStage_.c_str();
   // Large type for Vita readability (similar hierarchy to essential-plugins modal).
-  ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + 68, WHITE, 1.28f, title);
+  drawMarqueeText(&font_,headerTextX,y+68,w-(headerTextX-x)-28,WHITE,1.28f,title,false);
 }
 std::string file = installProgressFile_.empty()
     ? ::psvitaalive::L(::psvitaalive::TextId::StagePreparing)
@@ -11359,7 +11518,7 @@ const uint64_t total = installProgressTotal_,
                current = std::min<uint64_t>(installProgressCurrent_, total ? total : installProgressCurrent_);
 const uint64_t pct = total ? std::min<uint64_t>(100, (current * 100) / total) : 0;
 int bx = x + 28, by = y + 138, bw = w - 56, bh = 22;
-vita2d_draw_rectangle(bx, by, bw, bh, BORDER);
+skin::surface(skin::ui_atlas::ui_progress_track,bx,by,bw,bh,BORDER);
 const bool msgRetry =
     installProgressStage_ == "Retrying" ||
     installProgressMessage_.find("retrying") != std::string::npos ||
@@ -11401,9 +11560,9 @@ if (indeterminate) {
   const float uu = (t < 0.5f) ? (t * 2.f) : (2.f - t * 2.f);
   const int pulse = std::max(36, (int)(bw * 0.28f));
   const int off = (int)((bw - pulse) * uu);
-  if (pulse > 0) vita2d_draw_rectangle(bx + off, by, pulse, bh, ACCENT);
+  if (pulse > 0) skin::surface(skin::ui_atlas::ui_progress_fill,bx+off,by,pulse,bh,ACCENT);
 } else {
-  vita2d_draw_rectangle(bx, by, bw * (int)pct / 100, bh, ACCENT);
+  skin::surface(skin::ui_atlas::ui_progress_fill,bx,by,bw*(int)pct/100,bh,ACCENT);
 }
 char stats[220];
 if (indeterminate) {
@@ -11498,16 +11657,12 @@ if ((stageInstall || stageExtract) &&
   const int lbX = x + 20, lbY = y + 308, lbW = w - 40, lbH = 78;
   const bool isPaused = installProgressStage_ == "Paused";
   if (isPaused) {
-    vita2d_draw_rectangle(lbX, lbY, lbW, lbH, SURFACE2);
-    vita2d_draw_rectangle(lbX, lbY, lbW, 3, BORDER);
+    skin::surface(skin::ui_atlas::ui_panel_inset,lbX,lbY,lbW,lbH,SURFACE2);
     drawMarqueeText(&font_, lbX + 16, lbY + 38, lbW - 32, TEXT, 0.88f,
         ::psvitaalive::L(automaticRecovery ? "NET_PAUSED_AUTO_HINT" : "DOWNLOAD_PAUSED_NOTE"), false);
   } else {
-  vita2d_draw_rectangle(lbX, lbY, lbW, lbH, RGBA8(0x40, 0x10, 0x10, 255));
-  vita2d_draw_rectangle(lbX, lbY, lbW, 3, RED);
-  vita2d_draw_rectangle(lbX, lbY + lbH - 3, lbW, 3, RED);
-  vita2d_draw_rectangle(lbX, lbY, 5, lbH, RED);
-  vita2d_draw_rectangle(lbX + lbW - 5, lbY, 5, lbH, RED);
+  skin::surface(skin::ui_atlas::ui_panel_inset,lbX,lbY,lbW,lbH,RGBA8(0x40,0x10,0x10,255));
+  skin::focus(lbX,lbY,lbW,lbH,RED);
   ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 28, RED, 0.92f,
       ::psvitaalive::L(::psvitaalive::TextId::LockedBanner1));
   ::psvitaalive::ui::uiDrawText(&font_, lbX + 16, lbY + 56, WHITE, 0.84f,
@@ -11525,40 +11680,22 @@ const int cancelX = showPause
     ? pauseX + DOWNLOAD_TOUCH_PAUSE_W + DOWNLOAD_TOUCH_GAP : pauseX;
 const int cancelY = y + DOWNLOAD_TOUCH_Y;
 if (showPause) {
-  // Distinct bright button: touch action stays available while physical
-  // navigation/exit remains safely locked during an active download.
-  vita2d_draw_rectangle(pauseX, cancelY, pauseW, cancelH, pausing ? SURFACE2 : ACCENT);
-  vita2d_draw_rectangle(pauseX, cancelY, pauseW, 3, pausing ? BORDER : WHITE);
-  vita2d_draw_rectangle(pauseX, cancelY + cancelH - 3, pauseW, 3, pausing ? BORDER : WHITE);
-  const unsigned buttonTextColor = pausing ? DIM : BG;
-  const bool paused = installProgressStage_ == "Paused";
-  // Simple drawn icon, no image assets or dynamic allocations.
-  if (paused) {
-    ::psvitaalive::ui::uiDrawText(&font_, pauseX + 20, cancelY + 31,
-                                  buttonTextColor, 1.05f, ">");
-  } else {
-    vita2d_draw_rectangle(pauseX + 20, cancelY + 13, 6, 22, buttonTextColor);
-    vita2d_draw_rectangle(pauseX + 30, cancelY + 13, 6, 22, buttonTextColor);
+  // SQUARE is the actual controller shortcut for pause/resume. Keep one
+  // centered row and the same font size as the adjacent cancel button.
+  skin::surface(pausing?skin::ui_atlas::ui_button_disabled:skin::ui_atlas::ui_button_primary,pauseX,cancelY,pauseW,cancelH,pausing?SURFACE2:ACCENT);
+  const bool paused=installProgressStage_=="Paused";
+  const char* plab=::psvitaalive::L(paused?"DOWNLOAD_RESUME_BUTTON":"DOWNLOAD_PAUSE_BUTTON");
+  const char* label=plab;
+  if (const auto* token=skin::tokenAt(label,label)) {
+      label+=std::strlen(token->word);
+      while(*label==' ' || *label==':') ++label;
   }
-  const char* plab = pausing ? "..." : ::psvitaalive::L(
-      paused ? "DOWNLOAD_RESUME_BUTTON" : "DOWNLOAD_PAUSE_BUTTON");
-  float psc = 0.83f;
-  while (psc > 0.60f &&
-         ::psvitaalive::ui::uiTextWidth(&font_, psc, plab) > pauseW - 66)
-      psc -= 0.04f;
-  const int ptw = ::psvitaalive::ui::uiTextWidth(&font_, psc, plab);
-  const int textX = pauseX + 46 + (pauseW - 60 - ptw) / 2;
-  ::psvitaalive::ui::uiDrawText(&font_, textX, cancelY + 23, buttonTextColor, psc, plab);
-  // Bilingual tactile cue for this disposable testing-only control.
-  const char* touchHint = pausing ? "..." : "TOCAR / TAP";
-  const int htw = ::psvitaalive::ui::uiTextWidth(&font_, 0.56f, touchHint);
-  ::psvitaalive::ui::uiDrawText(&font_,
-      pauseX + 46 + (pauseW - 60 - htw) / 2, cancelY + 42,
-      buttonTextColor, 0.56f, touchHint);
+  if(pausing) skin::hint(&font_,pauseX+8,cancelY+34,pauseW-16,DIM,.88f,"...",true);
+  else skin::action(&font_,pauseX,cancelY,pauseW,cancelH,BG,.88f,skin::controls_atlas::ctrl_square_classic,label,plab);
 }
-vita2d_draw_rectangle(cancelX, cancelY, cancelW, cancelH, SURFACE2);
-vita2d_draw_rectangle(cancelX, cancelY, cancelW, 2, BORDER);
-vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
+skin::surface(skin::ui_atlas::ui_button_secondary,cancelX,cancelY,cancelW,cancelH,SURFACE2);
+if (!skin::ready()) vita2d_draw_rectangle(cancelX,cancelY,cancelW,2,BORDER);
+if (!skin::ready()) vita2d_draw_rectangle(cancelX,cancelY + cancelH - 2,cancelW,2,BORDER);
 {
   const char* clab = showPause
       ? ::psvitaalive::L("DOWNLOAD_CANCEL_BUTTON")
@@ -11567,10 +11704,9 @@ vita2d_draw_rectangle(cancelX, cancelY + cancelH - 2, cancelW, 2, BORDER);
   while (csc > 0.58f &&
          ::psvitaalive::ui::uiTextWidth(&font_, csc, clab) > cancelW - 16)
       csc -= 0.05f;
-  const int ctw = ::psvitaalive::ui::uiTextWidth(&font_, csc, clab);
-  ::psvitaalive::ui::uiDrawText(&font_, cancelX + (cancelW - ctw) / 2, cancelY + 34, WHITE, csc, clab);
+  skin::hint(&font_,cancelX+8,cancelY+34,cancelW-16,WHITE,csc,clab,true,30);
 }
-::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 18, DIM, 0.70f,
+skin::hint(&font_,x+28,y+h-18,w-56,DIM,.70f,
     ::psvitaalive::L(showPause ? "DOWNLOAD_PAUSE_FOOTER" : "PROGRESS_FOOTER_HINT"));
 }
 
@@ -11590,22 +11726,13 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
     const int chipW = 100;
     const int hintsRight = panelX - chipW - 8 - chipW - 8 - 8;
     const int hintsMaxW = std::max(48, hintsRight - 12);
-    if (leftHints) {
-        auto hlines = wrapTextToWidth(font, 0.56f, leftHints, hintsMaxW);
-        if (hlines.size() > 2) hlines.resize(2);
-        if (hlines.size() == 1) {
-            ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - 16, TEXT, 0.56f, hlines[0].c_str());
-        } else if (hlines.size() >= 2) {
-            ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - FOOTER_H + 18, TEXT, 0.52f, hlines[0].c_str());
-            ::psvitaalive::ui::uiDrawText(font, 12, SCREEN_H - FOOTER_H + 36, TEXT, 0.52f, hlines[1].c_str());
-        }
-    }
+    if (leftHints) skin::footer(font,12,SCREEN_H-FOOTER_H,hintsMaxW,FOOTER_H,TEXT,leftHints);
     // UX0 is one large touch target, not a tiny chip. Keep the free-space
     // summary prominent on line 1 and dedicate nearly all line 2 to the
     // action label; a bright filled button is easier to recognize on Vita.
     // Keep only the large themed call-to-action. An extra accent outline
     // around the entire UX0 card felt visually crowded on real PS Vita.
-    vita2d_draw_rectangle(panelX, panelY, panelW, panelH, SURFACE);
+    skin::surface(skin::ui_atlas::ui_card,panelX,panelY,panelW,panelH,SURFACE);
 
     ::psvitaalive::ui::uiDrawText(font, panelX + 11, panelY + 19,
         ACCENT, 0.79f, "UX0");
@@ -11631,7 +11758,7 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
     // Use the whole UX0 card as touch target; no separate narrow hitbox.
     const int ctaX = panelX + 9, ctaY = panelY + 23;
     const int ctaW = panelW - 18, ctaH = 23;
-    vita2d_draw_rectangle(ctaX, ctaY, ctaW, ctaH, ACCENT);
+    skin::surface(skin::ui_atlas::ui_button_primary,ctaX,ctaY,ctaW,ctaH,ACCENT);
     const char* ctaLabel = ::psvitaalive::L("STORAGE_OPEN_HINT");
     float ctaScale = 0.86f;
     const int textMaxW = ctaW - 43;
@@ -11642,8 +11769,8 @@ void drawFooterBar(const ::psvitaalive::ui::UiFont* font, const char* leftHints)
     ::psvitaalive::ui::uiDrawText(font,
         ctaX + 11 + (textMaxW - textW) / 2, ctaY + 17,
         BG, ctaScale, ctaLabel);
-    ::psvitaalive::ui::uiDrawText(font,
-        ctaX + ctaW - 25, ctaY + 17, BG, 0.90f, ">");
+    if (!skin::icon(skin::icons_atlas::icon_forward,ctaX+ctaW-28,ctaY+2,20,BG))
+        ::psvitaalive::ui::uiDrawText(font,ctaX+ctaW-25,ctaY+17,BG,.90f,">");
 
     // Preserve the original UX0 usage bar, but make it a compact bottom
     // accent to avoid reducing the label's readable height.
@@ -11867,11 +11994,16 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
     // Large type for real Vita (960x544) — avoid the tiny scales that look fine on desktop.
     const int w = 820, h = 460;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-    vita2d_draw_rectangle(x, y, w, h, SURFACE);
-    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
-    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE);
+        vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+        vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    }
 
     const int textMaxW = w - 56; // left/right padding 28 each
     const int contentBottom = y + h - 100; // leave room for buttons
@@ -11924,10 +12056,8 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
         const unsigned borderCol = (essentialPluginsFocus_ == 0)
             ? withAlpha(ACCENT, borderA)
             : BORDER;
-        const int bwPulse = (essentialPluginsFocus_ == 0) ? (2 + (int)(1.5f * pulse)) : 2;
-        vita2d_draw_rectangle(x0, btnY, btnW, btnH, borderCol);
-        vita2d_draw_rectangle(x0 + bwPulse, btnY + bwPulse, btnW - bwPulse * 2, btnH - bwPulse * 2,
-                              essentialPluginsFocus_ == 0 ? ACCENT : SURFACE2);
+        skin::surface(skin::ui_atlas::ui_button_secondary,x0,btnY,btnW,btnH,essentialPluginsFocus_==0?ACCENT:SURFACE2);
+        skin::focus(x0,btnY,btnW,btnH,borderCol);
         const char* lab = ::psvitaalive::L(::psvitaalive::TextId::EssentialInstallPlugins);
         const float sc = 0.98f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
@@ -11936,15 +12066,15 @@ void FullCatalogScreen::drawEssentialPluginsOverlay() {
     }
     // Remind later
     {
-        vita2d_draw_rectangle(x1, btnY, btnW, btnH, essentialPluginsFocus_ == 1 ? ACCENT : SURFACE2);
-        vita2d_draw_rectangle(x1, btnY, btnW, 1, essentialPluginsFocus_ == 1 ? ACCENT : BORDER);
+        skin::surface(skin::ui_atlas::ui_button_secondary,x1, btnY, btnW, btnH, essentialPluginsFocus_ == 1 ? ACCENT : SURFACE2);
+        
         const char* lab = ::psvitaalive::L(::psvitaalive::TextId::EssentialRemindLater);
         const float sc = 0.98f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
         ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 38,
                              essentialPluginsFocus_ == 1 ? BG : WHITE, sc, lab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_, x + 28, y + h - 16, DIM, 0.72f, ::psvitaalive::L(::psvitaalive::TextId::EssentialNavHint));
+    skin::hint(&font_,x+28,y+h-16,w-56,DIM,.72f,::psvitaalive::L(::psvitaalive::TextId::EssentialNavHint));
 }
 
 void FullCatalogScreen::drawPluginRebootOverlay() {
@@ -11954,11 +12084,16 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 200));
     const int w = 820, h = 408;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-    vita2d_draw_rectangle(x, y, w, h, SURFACE);
-    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
-    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE);
+        vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+        vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    }
 
     // Fit each translated line within the console's 960px display;
     // the dialog is infrequent, so no per-frame global caches are needed.
@@ -11978,8 +12113,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootLine2), w - 56);
 
     // Recovery instructions must remain obvious before the user presses Restart.
-    vita2d_draw_rectangle(x + 24, y + 148, w - 48, 128, SURFACE2);
-    vita2d_draw_rectangle(x + 24, y + 148, 4, 128, ACCENT);
+    skin::surface(skin::ui_atlas::ui_panel_inset,x+24,y+148,w-48,128,SURFACE2);
     drawFitted(x + 42, y + 179, ACCENT, 0.85f,
         ::psvitaalive::L("PLUGIN_REBOOT_SAFETY_TITLE"), w - 84);
     drawFitted(x + 42, y + 213, WHITE, 0.76f,
@@ -11989,7 +12123,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
 
     const int bw = w - 56, bh = 54;
     const int bx = x + 28, by = y + h - 84;
-    vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bx, by, bw, bh, ACCENT);
     const char* lab = ::psvitaalive::L(::psvitaalive::TextId::PluginRebootButton);
     const float sc = 0.88f;
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
@@ -11998,7 +12132,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter), w - 56);
 }
 
-void FullCatalogScreen::drawFullCatalog(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : (state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel)));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;vita2d_start_drawing();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
+void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : (state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel)));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.
@@ -12211,11 +12345,16 @@ void FullCatalogScreen::drawArchiveServiceOverlay() {
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 210));
     const int w = 820, h = 390;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-    vita2d_draw_rectangle(x, y, w, h, SURFACE);
-    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
-    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE);
+        vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+        vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    }
     ::psvitaalive::ui::uiDrawText(&font_, x + 30, y + 48, WHITE, 1.13f,
                                  L("ARCHIVE_WARNING_TITLE"));
     int ty = y + 96;
@@ -12236,7 +12375,7 @@ void FullCatalogScreen::drawArchiveServiceOverlay() {
     }
     const int bw = 290, bh = 52;
     const int bx = x + (w - bw) / 2, by = y + h - 78;
-    vita2d_draw_rectangle(bx, by, bw, bh, ACCENT);
+    skin::surface(skin::ui_atlas::ui_button_secondary,bx, by, bw, bh, ACCENT);
     const char* label = L("ARCHIVE_WARNING_OK");
     const int tw = ::psvitaalive::ui::uiTextWidth(&font_, 0.90f, label);
     ::psvitaalive::ui::uiDrawText(&font_, bx + (bw - tw) / 2, by + 36,
@@ -12250,11 +12389,16 @@ void FullCatalogScreen::drawPspSetupOverlay() {
     // Near full-screen so larger type still fits without overlap.
     const int w = 936, h = 532;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
-    vita2d_draw_rectangle(x, y, w, h, SURFACE);
-    vita2d_draw_rectangle(x, y, w, 4, ACCENT);
-    vita2d_draw_rectangle(x, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
-    vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,w,h,SURFACE);
+        skin::focus(x,y,w,h,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x, y, w, h, SURFACE);
+        vita2d_draw_rectangle(x, y, w, 4, ACCENT);
+        vita2d_draw_rectangle(x, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x + w - 4, y, 4, h, ACCENT);
+        vita2d_draw_rectangle(x, y + h - 4, w, 4, ACCENT);
+    }
 
     const int pad = 20;
     const int textMaxW = w - pad * 2;
@@ -12278,8 +12422,8 @@ void FullCatalogScreen::drawPspSetupOverlay() {
     auto drawChoice = [&](int fx, int fy, int fw, int fh, bool selected, bool focused,
                           const char* title, const char* desc, int maxDescLines) {
         const unsigned border = focused ? ACCENT : (selected ? withAlpha(ACCENT, 180) : BORDER);
-        vita2d_draw_rectangle(fx, fy, fw, fh, border);
-        vita2d_draw_rectangle(fx + 2, fy + 2, fw - 4, fh - 4, selected ? SURFACE2 : SURFACE);
+        skin::surface(skin::ui_atlas::ui_card,fx,fy,fw,fh,selected?SURFACE2:SURFACE);
+        skin::focus(fx,fy,fw,fh,border);
         const float titleSc = 1.00f;
         const float descSc = 0.82f;
         ::psvitaalive::ui::uiDrawText(&font_, fx + 12, fy + 24, selected ? ACCENT : WHITE, titleSc, title);
@@ -12322,9 +12466,8 @@ void FullCatalogScreen::drawPspSetupOverlay() {
         if (ty + storageH <= contentMaxY) {
             auto drawStorage = [&](int sx, bool selected, bool focused, const char* mount, const char* description) {
                 const unsigned border = focused ? ACCENT : (selected ? withAlpha(ACCENT, 180) : BORDER);
-                vita2d_draw_rectangle(sx, ty, boxW, storageH, border);
-                vita2d_draw_rectangle(sx + 2, ty + 2, boxW - 4, storageH - 4, selected ? SURFACE2 : SURFACE);
-                if (selected) vita2d_draw_rectangle(sx + 3, ty + 3, 4, storageH - 6, ACCENT);
+                skin::surface(skin::ui_atlas::ui_card,sx,ty,boxW,storageH,selected?SURFACE2:SURFACE);
+                skin::focus(sx,ty,boxW,storageH,border);
                 ::psvitaalive::ui::uiDrawText(&font_, sx + 14, ty + 24, selected ? ACCENT : WHITE, 1.00f, mount);
                 ::psvitaalive::ui::uiDrawText(&font_, sx + 14, ty + 44, DIM, 0.72f, description);
             };
@@ -12365,23 +12508,21 @@ void FullCatalogScreen::drawPspSetupOverlay() {
     const int x0 = x + pad, x1 = x0 + btnW + btnGap;
     const bool confOn = (pspSetupFocus_ == 6);
     const bool canOn = (pspSetupFocus_ == 7);
-    vita2d_draw_rectangle(x0, btnY, btnW, btnH, confOn ? ACCENT : BORDER);
-    vita2d_draw_rectangle(x0 + 2, btnY + 2, btnW - 4, btnH - 4, confOn ? ACCENT : SURFACE2);
+    skin::surface(skin::ui_atlas::ui_button_secondary,x0,btnY,btnW,btnH,confOn?ACCENT:SURFACE2);
     {
         const char* lab = ::psvitaalive::L(TID::PspSetupConfirm);
         const float sc = 1.00f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
         ::psvitaalive::ui::uiDrawText(&font_, x0 + (btnW - tw) / 2, btnY + 36, confOn ? BG : WHITE, sc, lab);
     }
-    vita2d_draw_rectangle(x1, btnY, btnW, btnH, canOn ? ACCENT : BORDER);
-    vita2d_draw_rectangle(x1 + 2, btnY + 2, btnW - 4, btnH - 4, canOn ? ACCENT : SURFACE2);
+    skin::surface(skin::ui_atlas::ui_button_secondary,x1,btnY,btnW,btnH,canOn?ACCENT:SURFACE2);
     {
         const char* lab = ::psvitaalive::L(TID::PspSetupCancel);
         const float sc = 1.00f;
         const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, lab);
         ::psvitaalive::ui::uiDrawText(&font_, x1 + (btnW - tw) / 2, btnY + 36, canOn ? BG : WHITE, sc, lab);
     }
-    ::psvitaalive::ui::uiDrawText(&font_, x + pad, y + h - 12, DIM, 0.72f, ::psvitaalive::L(TID::PspSetupNavHint));
+    skin::hint(&font_,x+pad,y+h-12,w-2*pad,DIM,.72f,::psvitaalive::L(TID::PspSetupNavHint));
 }
 
 

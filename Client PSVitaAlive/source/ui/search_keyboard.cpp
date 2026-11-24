@@ -1,5 +1,6 @@
 #include "ui/controller_input.hpp"
 #include "ui/search_keyboard.hpp"
+#include "ui/skin_hints.hpp"
 #include "localization/localization.hpp"
 
 #include <psp2/ctrl.h>
@@ -357,18 +358,27 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
     // Same catalog frame, no black clear or second swap. Gentle modal dim.
     vita2d_draw_rectangle(0, 0, kScreenW, kScreenH,
                           RGBA8(0,0,0,(unsigned)(145.f * visibility)));
-    vita2d_draw_rectangle(kPanelX, panelY, kPanelW, kPanelH, colors.border);
-    vita2d_draw_rectangle(kPanelX + 2, panelY + 2, kPanelW - 4,
-                          kPanelH - 4, colors.surface);
-    vita2d_draw_rectangle(kPanelX + 2, panelY + 2, kPanelW - 4, 5, colors.accent);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,kPanelX,panelY,kPanelW,kPanelH,colors.surface);
+        skin::focus(kPanelX,panelY,kPanelW,kPanelH,colors.border);
+    } else {
+        vita2d_draw_rectangle(kPanelX,panelY,kPanelW,kPanelH,colors.border);
+        vita2d_draw_rectangle(kPanelX+2,panelY+2,kPanelW-4,kPanelH-4,colors.surface);
+        vita2d_draw_rectangle(kPanelX+2,panelY+2,kPanelW-4,5,colors.accent);
+    }
 
     uiDrawText(font, kPanelX + 24, panelY + 32, colors.text, 1.0f, title_.c_str());
 
     const int inputX = kPanelX + 22;
     const int inputW = kPanelW - 44;
     const int inputY = panelY + 48;
-    vita2d_draw_rectangle(inputX, inputY, inputW, 59, colors.border);
-    vita2d_draw_rectangle(inputX + 2, inputY + 2, inputW - 4, 55, colors.surface2);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_input,inputX,inputY,inputW,59,colors.surface2);
+        skin::focus(inputX,inputY,inputW,59,colors.border);
+    } else {
+        vita2d_draw_rectangle(inputX,inputY,inputW,59,colors.border);
+        vita2d_draw_rectangle(inputX+2,inputY+2,inputW-4,55,colors.surface2);
+    }
     // Cap the measured preview even when composing a long feedback paragraph.
     const size_t tailStart=input_.size()>120?input_.size()-120:0;
     std::string visible=input_.substr(tailStart);
@@ -394,7 +404,7 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
     while(hintScale>.40f &&
           uiTextWidth(font,hintScale,navHint)>inputW-countW-20)
         hintScale-=.02f;
-    uiDrawText(font, inputX, progressY, colors.dim, hintScale, navHint);
+    skin::hint(font,inputX,progressY,inputW-countW-20,colors.dim,hintScale,navHint);
     uiDrawText(font, inputX+inputW-countW,progressY,
                utf8Chars(input_)>=maxCharacters_?colors.accent:colors.text,
                .74f,counter);
@@ -408,8 +418,14 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
         const unsigned border = focused ? colors.accent : colors.border;
         const unsigned fill = focused ? colors.accent :
             affirmative ? colors.surface2 : (special ? colors.surface2 : colors.surface);
-        vita2d_draw_rectangle(k.x, y, k.width, k.height, border);
-        vita2d_draw_rectangle(k.x + 2, y + 2, k.width - 4, k.height - 4, fill);
+        if (skin::ready()) {
+            skin::surface(focused?skin::ui_atlas::ui_keyboard_active:skin::ui_atlas::ui_keyboard_key,
+                          k.x,y,k.width,k.height,fill);
+            if (focused) skin::focus(k.x,y,k.width,k.height,border);
+        } else {
+            vita2d_draw_rectangle(k.x,y,k.width,k.height,border);
+            vita2d_draw_rectangle(k.x+2,y+2,k.width-4,k.height-4,fill);
+        }
         const unsigned color = focused ? colors.bg :
             affirmative ? colors.accent : colors.text;
         // Draw the case that will actually be inserted by the next keystroke.
@@ -425,7 +441,20 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
         float scale = special ? .75f : .89f;
         while(scale > .40f && uiTextWidth(font,scale,caption.c_str()) > k.width-8)
             scale -= .04f;
-        centered(font, k.x, y + 37, k.width, color, scale, caption.c_str());
+        // Use the action glyphs only; character and ABC/123 labels remain live text.
+        const skin::Sprite* glyph = nullptr;
+        auto atlas=skin::Atlas::Ui;
+        switch (k.action) {
+            case Action::Shift: glyph=&skin::ui_atlas::icon_key_shift; break;
+            case Action::Backspace: glyph=&skin::ui_atlas::icon_key_backspace; break;
+            case Action::Confirm: glyph=&skin::ui_atlas::icon_key_enter; break;
+            case Action::Space: glyph=&skin::ui_atlas::icon_key_space; break;
+            case Action::More: glyph=&skin::ui_atlas::icon_key_more; break;
+            case Action::Cancel: glyph=&skin::icons_atlas::icon_close; atlas=skin::Atlas::Icons; break;
+            default: break;
+        }
+        if (!glyph || !skin::icon(*glyph,k.x+(k.width-32)/2,y+(k.height-32)/2,32,color,atlas))
+            centered(font,k.x,y+37,k.width,color,scale,caption.c_str());
         if (k.action == Action::Shift && shift_)
             vita2d_draw_rectangle(k.x + 9, y + k.height - 7, k.width - 18, 3,
                                   focused ? colors.bg : colors.accent);
@@ -434,8 +463,7 @@ void SearchKeyboard::drawOverlay(const UiFont* font, const KeyboardPalette& colo
     float bottomScale = .65f;
     while(bottomScale > .40f && uiTextWidth(font,bottomScale,bottomHint) > kPanelW-32)
         bottomScale -= .03f;
-    centered(font, kPanelX, panelY + 463, kPanelW, colors.dim, bottomScale,
-             bottomHint);
+    skin::hint(font,kPanelX+16,panelY+463,kPanelW-32,colors.dim,bottomScale,bottomHint,true);
 }
 
 } // namespace psvitaalive::ui
