@@ -594,6 +594,7 @@ int main(){
     psvitaalive::ArchiveServiceProbe archiveProbe;
     bool archiveProbeStarted = false;
     bool archiveProbeHandled = false;
+    bool emptyCatalogRecoveryRequested[static_cast<int>(psvitaalive::ui::CatalogType::Count)] = {};
 while(true){
         if (!screen.updateAndDraw()) break;
 
@@ -652,7 +653,7 @@ while(true){
         }
 
         std::vector<psvitaalive::ui::CatalogItem> ready;psvitaalive::ui::CatalogType readyCatalog;
-        if(catalogs.takeReady(ready,readyCatalog)){
+        if(catalogs.takeReady(ready,readyCatalog) && !ready.empty()){
             psvitaalive::diagnostics::log(std::string("[System] catalog ready: ")+psvitaalive::ui::catalogName(readyCatalog));
             PSVA_TRACE_EVENT("main_received_ready",
                 std::string("catalog=")+psvitaalive::ui::catalogName(readyCatalog)+
@@ -699,6 +700,27 @@ while(true){
             }
         }
 
+        // A Ready status must correspond to a real, unfiltered catalog.
+        // Never treat a search with zero matches as a damaged cache.
+        const auto recoveryStatus = catalogs.status();
+        const auto recoveryCatalog = screen.activeCatalog();
+        const int recoveryIndex = static_cast<int>(recoveryCatalog);
+        if (recoveryStatus.state == psvitaalive::CatalogManager::State::Ready &&
+            recoveryStatus.catalog == recoveryCatalog &&
+            !screen.hasUnfilteredCatalogItems() && !catalogs.isBusy() &&
+            recoveryIndex >= 0 && recoveryIndex < catalogCount &&
+            !emptyCatalogRecoveryRequested[recoveryIndex]) {
+            emptyCatalogRecoveryRequested[recoveryIndex] = true;
+            psvitaalive::diagnostics::log(std::string("[CatalogRecovery] Ready without items; force download: ") +
+                psvitaalive::ui::catalogName(recoveryCatalog));
+            screen.setCatalogLoading(true, psvitaalive::ui::catalogName(recoveryCatalog),
+                0, 0, ::psvitaalive::L(::psvitaalive::TextId::LoadingCatalog));
+            if (!catalogs.request(recoveryCatalog, true)) {
+                startupCatalogs = false;
+                screen.setCatalogError(::psvitaalive::L(::psvitaalive::TextId::UnableToLoadCatalog));
+            }
+        }
+
         if(!startupCatalogs){
             const auto csBusy=catalogs.status();
             if(catalogs.isBusy()||csBusy.state==psvitaalive::CatalogManager::State::Loading){
@@ -712,6 +734,9 @@ while(true){
                     csBusy.message.empty()?fallback:csBusy.message);
             } else {
                 screen.setCatalogLoading(false, "", 0, 0, "");
+                if (csBusy.state == psvitaalive::CatalogManager::State::Failed &&
+                    csBusy.catalog == screen.activeCatalog() && !screen.hasUnfilteredCatalogItems())
+                    screen.setCatalogError(::psvitaalive::L(::psvitaalive::TextId::UnableToLoadCatalog));
             }
         }
 
