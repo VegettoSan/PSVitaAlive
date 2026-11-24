@@ -86,7 +86,8 @@ InstallDispatchResult InstallDispatcher::installFile(
     const std::string& zipDestination,
     const std::string& rifPath,
     bool forceZipExtract,
-    bool segmentedZip
+    bool segmentedZip,
+    bool resumeVerifiedExisting
 ) {
     lastError_.clear();
     clearResultMeta();
@@ -362,16 +363,19 @@ InstallDispatchResult InstallDispatcher::installFile(
                 if (!onProgress) return;
                 InstallDispatchProgress p;
                 p.stage = InstallDispatchProgress::Extracting;
-                p.current = zp.bytesWritten;
+                p.current = zp.bytesWritten + zp.bytesReused;
                 p.total = zp.bytesTotal;
                 // PR #75: progress by completed entries even when thousands
                 // of tiny files barely move the byte-based progress bar.
                 p.message = "ZIP files: " + std::to_string(zp.entriesDone) +
                     "/" + std::to_string(zp.entriesTotal);
+                if (zp.entriesReused)
+                    p.message += " (reused " + std::to_string(zp.entriesReused) + ")";
                 onProgress(p);
             },
             shouldCancel,
-            segmentedZip
+            segmentedZip,
+            resumeVerifiedExisting
         );
         lastInstallPath_ = zipDestination;
         lastLiveAreaOk_ = false; // ZIP extract is not a LiveArea promote
