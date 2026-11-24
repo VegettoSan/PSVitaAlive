@@ -712,11 +712,16 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             action,hasExternal);
         vita2d_disable_clipping();
         vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,190));
-        vita2d_draw_rectangle(dx,dy,DW,DH,PANEL);
-        vita2d_draw_rectangle(dx,dy,DW,3,ACCENT);
-        vita2d_draw_rectangle(dx,dy+3,3,DH-6,ACCENT);
-        vita2d_draw_rectangle(dx+DW-3,dy+3,3,DH-6,BORDER);
-        vita2d_draw_rectangle(dx,dy+DH-3,DW,3,BORDER);
+        if (skin::ready()) {
+            skin::surface(skin::ui_atlas::ui_dialog,dx,dy,DW,DH,PANEL);
+            skin::focus(dx,dy,DW,DH,withAlpha(ACCENT,125));
+        } else {
+            vita2d_draw_rectangle(dx,dy,DW,DH,PANEL);
+            vita2d_draw_rectangle(dx,dy,DW,3,ACCENT);
+            vita2d_draw_rectangle(dx,dy+3,3,DH-6,ACCENT);
+            vita2d_draw_rectangle(dx+DW-3,dy+3,3,DH-6,BORDER);
+            vita2d_draw_rectangle(dx,dy+DH-3,DW,3,BORDER);
+        }
         drawMarqueeText(&font_,dx+24,dy+38,DW-48,ACCENT,1.07f,
             ::psvitaalive::L("ID_CONFIRM_TITLE"),false);
         if(app)drawMarqueeText(&font_,dx+24,dy+75,DW-48,WHITE,.98f,
@@ -724,7 +729,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         vita2d_draw_rectangle(dx+22,dy+91,DW-44,1,BORDER);
 
         const int cardY=dy+101, cardH=deleteExternal?131:108;
-        vita2d_draw_rectangle(dx+22,cardY,DW-44,cardH,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_panel_inset,dx+22,cardY,DW-44,cardH,SURFACE2);
         vita2d_draw_rectangle(dx+22,cardY,3,cardH,ACCENT);
         drawMarqueeText(&font_,dx+42,cardY+27,DW-84,ACCENT,.98f,
             ::psvitaalive::L(actionKey),false);
@@ -754,7 +759,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             // A metadata match is NOT proof that other apps are installed.
             // Every matching catalog entry remains visible via Up/Down.
             const int listY=dy+240, listH=127;
-            vita2d_draw_rectangle(dx+22,listY,DW-44,listH,SURFACE);
+            skin::surface(skin::ui_atlas::ui_panel_inset,dx+22,listY,DW-44,listH,SURFACE);
             vita2d_draw_rectangle(dx+22,listY,4,listH,ACCENT);
             drawMarqueeText(&font_,dx+40,listY+25,DW-140,ACCENT,.91f,
                 ::psvitaalive::L("ID_SHARED_CATALOG_TITLE"),false);
@@ -793,9 +798,9 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                     warningColors[i],.88f,
                     ::psvitaalive::L(warningKeys[i]),false);
         }
-        vita2d_draw_rectangle(firstButtonX,buttonsY,BW,BH,SURFACE2);
+        skin::surface(skin::ui_atlas::ui_button_secondary,firstButtonX,buttonsY,BW,BH,SURFACE2);
         vita2d_draw_rectangle(firstButtonX,buttonsY,BW,2,BORDER);
-        vita2d_draw_rectangle(firstButtonX+BW+GAP,buttonsY,BW,BH,ACCENT);
+        skin::surface(skin::ui_atlas::ui_button_primary,firstButtonX+BW+GAP,buttonsY,BW,BH,ACCENT);
         const char* cancelText=::psvitaalive::L("ID_CONFIRM_CANCEL_BUTTON");
         const char* deleteText=::psvitaalive::L("ID_CONFIRM_DELETE_BUTTON");
         drawMarqueeText(&font_,firstButtonX+12,buttonsY+31,BW-24,
@@ -807,11 +812,16 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
     constexpr int W = 864, H = 500, VISIBLE = 3, ROW = 90;
     const int x = (SCREEN_W-W)/2, y=(SCREEN_H-H)/2;
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,190));
-    vita2d_draw_rectangle(x,y,W,H,PANEL);
-    vita2d_draw_rectangle(x,y,W,3,ACCENT);
-    vita2d_draw_rectangle(x,y+3,3,H-6,ACCENT);
-    vita2d_draw_rectangle(x+W-3,y+3,3,H-6,BORDER);
-    vita2d_draw_rectangle(x,y+H-3,W,3,BORDER);
+    if (skin::ready()) {
+        skin::surface(skin::ui_atlas::ui_dialog,x,y,W,H,PANEL);
+        skin::focus(x,y,W,H,withAlpha(ACCENT,125));
+    } else {
+        vita2d_draw_rectangle(x,y,W,H,PANEL);
+        vita2d_draw_rectangle(x,y,W,3,ACCENT);
+        vita2d_draw_rectangle(x,y+3,3,H-6,ACCENT);
+        vita2d_draw_rectangle(x+W-3,y+3,3,H-6,BORDER);
+        vita2d_draw_rectangle(x,y+H-3,W,3,BORDER);
+    }
     ::psvitaalive::ui::uiDrawText(&font_,x+25,y+40,WHITE,1.14f,
         ::psvitaalive::L("ID_TITLE"));
     if (installedDataWorker_ >= 0 && installedDataAction_ >= 0) {
@@ -987,8 +997,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const auto& app=installedDataSnapshot_.apps[installedDataVisibleRows_[i]];
             const int ry=y+140+n*ROW;
             const bool focused=i==installedDataListFocus_;
-            vita2d_draw_rectangle(x+23,ry,W-69,ROW-5,focused?SURFACE2:SURFACE);
-            if (focused) vita2d_draw_rectangle(x+23,ry,4,ROW-5,ACCENT);
+            skin::surface(skin::ui_atlas::ui_card,x+23,ry,W-69,ROW-5,focused?SURFACE2:SURFACE);
+            if (focused) skin::focus(x+23,ry,W-69,ROW-5,ACCENT);
             drawImage(app.icon,"app",x+39,ry+11,64,64);
             drawMarqueeText(&font_,x+118,ry+32,W-332,
                 focused?WHITE:TEXT,1.02f,app.name,false);
@@ -1031,8 +1041,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const int maxScroll = rows-VISIBLE;
             const int scroll = std::max(0,std::min(installedDataScroll_,maxScroll));
             const int thumbY = trackY+(scroll*(trackH-thumbH))/maxScroll;
-            vita2d_draw_rectangle(trackX,trackY,4,trackH,BORDER);
-            vita2d_draw_rectangle(trackX,thumbY,4,thumbH,ACCENT);
+            skin::surface(skin::ui_atlas::ui_scroll_track,trackX,trackY,4,trackH,BORDER);
+            skin::surface(skin::ui_atlas::ui_scroll_thumb,trackX,thumbY,4,thumbH,ACCENT);
         }
         if (installedDataWorker_ >= 0 && installedDataAction_ == -3) {
             char scanInfo[160];
@@ -1137,7 +1147,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             if (slot < 0) continue;
             const int bx=firstX+slot*(buttonW+12), by=y+382;
             const bool on=installedDataActionFocus_==i;
-            vita2d_draw_rectangle(bx,by,buttonW,61,on?ACCENT:SURFACE2);
+            skin::surface(on?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,bx,by,buttonW,61,on?ACCENT:SURFACE2);
             if(on) vita2d_draw_rectangle(bx,by,buttonW,3,WHITE);
             const int titleW=::psvitaalive::ui::uiTextWidth(&font_,.88f,labels[i]);
             drawMarqueeText(&font_,bx+std::max(8,(buttonW-titleW)/2),
