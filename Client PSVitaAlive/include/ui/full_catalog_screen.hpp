@@ -3,6 +3,7 @@
 #include "ui/ui_types.hpp"
 #include "ui/image_cache.hpp"
 #include "ui/search_keyboard.hpp"
+#include "ui/loading_input_policy.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
@@ -71,6 +72,7 @@ public:
     /** Nonblocking: request a one-off refresh after a user download/install completes. */
     void requestUx0SpaceRefresh();
     bool updateAndDraw();
+    void finishInitialCatalogInput() { startupCatalogInputPending_ = false; }
 
     void setInstallCallbacks(InstallRequestFn requestInstall, InstallStatusFn statusText);
     void setInstallCancelCallback(InstallCancelFn callback);
@@ -232,6 +234,8 @@ private:
     int filterScrollRow_ = 0;
 
     bool catalogLoading_ = false;
+    bool startupCatalogInputPending_ = true;
+    LoadingInputGate loadingInputGate_;
     std::unordered_map<std::string, LocalInstallInfo> installStatusCache_;
     // Install results awaiting one badge refresh after the result overlay closes.
     std::vector<std::string> pendingInstallStatusRefreshIds_;
