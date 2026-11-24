@@ -367,9 +367,11 @@ int main(){
         },
         [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
                              const std::string& archivePath) {
+            screen.setInstallDisplayItem(item);
             const bool started = installer.requestSavedZipExtraction(
                 item.id, item.titleId, archivePath);
             if (started) screen.requestUx0SpaceRefresh();
+            else screen.clearInstallDisplayItem();
             return started;
         });
     screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){
@@ -402,8 +404,11 @@ int main(){
                 }
             }
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
+            screen.setInstallDisplayItem(item);
             screen.prepareForHeavyWork();
-            return installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
+            const bool started = installer.requestInstall(item.downloadUrl,item.downloadFileName,zipDestination,zrif,ltype,cid,item.name,exp);
+            if (!started) screen.clearInstallDisplayItem();
+            return started;
         }},[&installer](){return installStatusText(installer.status());});
     screen.setLinkActionCallback([&installer, &screen](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
         const std::string type=link.type;
@@ -457,8 +462,11 @@ int main(){
                 parseCatalogSizeBytes(link.size), parseCatalogSizeBytes(item.size),
                 link.url, item.downloadUrl);
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
+            screen.setInstallDisplayItem(item);
             screen.prepareForHeavyWork();
-            return installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line,screen.installAllSpaceApproved());
+            const bool started = installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line,screen.installAllSpaceApproved());
+            if (!started) screen.clearInstallDisplayItem();
+            return started;
         }
     });
 
