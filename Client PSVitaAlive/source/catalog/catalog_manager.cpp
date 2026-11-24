@@ -33,7 +33,7 @@ bool promoteCatalogCache(const std::string& temp, const std::string& path) {
     SceIoStat st{};
     const bool exists = sceIoGetstat(path.c_str(), &st) >= 0;
     // Never rename a directory masquerading as a catalog file.
-    if (exists && SCE_S_ISDIR(st.st_mode)) return false;
+    if (exists && (st.st_mode & SCE_S_IFDIR) != 0) return false;
     if (sceIoRename(temp.c_str(), path.c_str()) >= 0) return true;
     if (!exists) return false;
     const std::string backup = path + ".previous";
@@ -251,7 +251,7 @@ bool CatalogManager::tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::C
     const std::string backup = path + ".previous";
     if (sceIoGetstat(path.c_str(), &original) < 0 &&
         sceIoGetstat(backup.c_str(), &previous) >= 0 &&
-        !SCE_S_ISDIR(previous.st_mode) &&
+        (previous.st_mode & SCE_S_IFDIR) == 0 &&
         sceIoRename(backup.c_str(), path.c_str()) >= 0) {
         sceIoRemove(metadataPath(catalog).c_str());
         diagnostics::log("[CatalogManager] restored previous catalog after interrupted cache replacement");
