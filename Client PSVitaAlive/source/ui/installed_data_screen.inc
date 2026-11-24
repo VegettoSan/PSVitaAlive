@@ -28,6 +28,11 @@ void FullCatalogScreen::rebuildInstalledDataCandidates() {
                 // Managed by Vita package uninstall, not recursive file removal.
                 continue;
             }
+            // Dependencies on ur0:data are not owned by this ux0 inspector.
+            // Preserve them without blocking independent, valid Game Files.
+            if (::psvitaalive::storage::installedDataPreservesUr0Dependency(
+                    extract, data && !game, !link.installedPaths.empty()))
+                continue;
             if (extract.compare(0, 9, "ux0:data/") != 0) {
                 app.unresolved = true;
                 continue;
