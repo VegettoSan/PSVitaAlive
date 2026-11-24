@@ -4,6 +4,7 @@
 #include "ui/image_cache.hpp"
 #include "ui/search_keyboard.hpp"
 #include "ui/loading_input_policy.hpp"
+#include "ui/navigation_focus.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
@@ -419,6 +420,12 @@ private:
     uint64_t toastExpiresMs_ = 0;
     uint64_t toastShownMs_ = 0;
 
+    NavigationFocus navigationFocus_;
+    bool chromeConfirmAwaitRelease_ = false;
+    bool chromeNavigationAvailable() const;
+    bool chromeFocusVisible(FocusZone zone) const;
+    bool handleChromeNavigation(uint32_t pressed, uint32_t nav, uint32_t direct);
+    void drawChromeFocus(FocusZone zone, int index, int x, int y, int w, int h) const;
     void handleInput();
     void handleTouch();
     void draw();
