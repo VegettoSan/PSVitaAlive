@@ -95,7 +95,7 @@ inline void startSkinFrame() {
     skinFrameStartedUs = sceKernelGetProcessTimeWide();
     skinFrameSyncUs = 0;
     skinFrameClipLeaks = 0;
-    // Only enabled by a local marker file at startup, for an A/B test.
+    // Enabled automatically in this temporary A/B diagnostic build.
     // Normal mode keeps the existing asynchronous frame pipeline.
     if (skin::gpuSyncTest) {
         skin::beforeFrame();
@@ -3430,11 +3430,9 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
 }
 bool FullCatalogScreen::init(){
     vita2d_init();
-    SceIoStat gpuTestMarker{};
-    skin::gpuSyncTest = sceIoGetstat("ux0:data/psvitaalive/logs/gpu_sync_test.flag",&gpuTestMarker)>=0;
-    diagnostics::log(skin::gpuSyncTest ?
-        "[GPU] sync test ON: wait before vertex pool reuse" :
-        "[GPU] sync test OFF: normal asynchronous rendering");
+    // Temporary diagnostic build: no marker file or user setup required.
+    skin::gpuSyncTest = true;
+    diagnostics::log("[GPU] sync test ON: forced for diagnostic build");
     vita2d_set_clear_color(BG);
     ::psvitaalive::ui::setUiFontScalePercent(settingsEdit_.uiFontScalePct);
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
