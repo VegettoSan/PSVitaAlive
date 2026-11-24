@@ -50,6 +50,21 @@ inline bool safeExternalDataPath(const std::string& path) {
     return validInstalledRelativePath(path.substr(9));
 }
 
+// A Data Files dependency on ur0:data is outside this inspector's
+// deletion scope. It must never become an ux0 root or veto independent
+// Game Files. Conflicting installed_paths and malformed paths still fail
+// closed through the normal routing checks.
+inline bool installedDataPreservesUr0Dependency(const std::string& extract,
+                                                bool isData,
+                                                bool hasInstalledPaths) {
+    if (!isData || hasInstalledPaths) return false;
+    if (extract == "ur0:data" || extract == "ur0:data/") return true;
+    if (extract.compare(0, 9, "ur0:data/") != 0) return false;
+    std::string relative = extract.substr(9);
+    if (!relative.empty() && relative.back() == '/') relative.pop_back();
+    return validInstalledRelativePath(relative);
+}
+
 // The installer may extract directly into the declared data root, or into
 // one of its subfolders. Different prefixes such as game and game2 are distinct.
 inline bool installedDataExtractWithinRoot(const std::string& extract,
