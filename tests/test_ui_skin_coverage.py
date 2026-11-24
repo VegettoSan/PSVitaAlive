@@ -67,9 +67,18 @@ assert "skin::beginFrame()" in source and "skin::beginFrame()" in main
 assert "vita2d_pool_memalign(bytes, 16u)" in renderer
 assert "std::isfinite" in renderer
 frame = body("inline void startSkinFrame()", "constexpr uint32_t NAV_DIRECTION_MASK")
-assert "clip_leaks=%u" in frame and "low_pool_frames=%u" in frame
-assert "pool_reset_waits=%u" in frame and "pool_reset_idle=%u" in frame
-assert "pool_min_scene=%s" in frame and "5000000ULL" in frame
+
+# Safety is independent of instrumentation: keep scissor and arena guards.
+assert frame.count("if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();") == 2
+assert frame.index("skin::beginFrame()") < frame.index("vita2d_end_drawing()")
+assert frame.index("vita2d_end_drawing()") < frame.index("vita2d_swap_buffers()")
+assert "10000000ULL" in frame and frame.count("diagnostics::log(") == 1
+for obsolete in ("clip_leaks", "low_pool_frames", "pool_reset_waits", "pool_reset_idle", "[GPU]", "[Perf] skin"):
+    assert obsolete not in source, obsolete
+for obsolete in ("resetFrameCounters", "poolFallbacks", "invalidGeometry", "poolResetWaits", "poolResetIdle", "++calls", "vertices +="):
+    assert obsolete not in renderer, obsolete
+assert "if (!v) { return false; }" in renderer
+assert "vita2d_pool_free_space() < bytes + 64" in renderer
 assert "if (i < 0) { vita2d_disable_clipping(); return; }" in source
 assert "if(w<=36)" in source
 flush = body("void FullCatalogScreen::flushDeferredTextureFrees()", "void FullCatalogScreen::")
@@ -106,7 +115,7 @@ prepare = body("void FullCatalogScreen::prepareVisibleTextures()", "void FullCat
 assert "textures_.size()>before" not in prepare
 assert prepare.count("++loads;") == 4
 assert "||isTransitioning()" in prepare
-assert "submit_peak_us=%llu swap_peak_us=%llu" in source
+assert "elapsed_us=%llu avg_frame_us=%llu max_frame_us=%llu slow_scene=%s" in frame
 print("Image worker disk probe, decode budget and present diagnostics checks OK")
 
 # Only the topmost storage modal is drawn, without a catalog or a hidden
@@ -116,7 +125,8 @@ assert 'skinFrameScene=installedDataVisible_?"installed_data":"storage";' in mod
 assert "if (installedDataVisible_) drawInstalledDataOverlay();" in modal
 assert "else drawStorageOverlay();" in modal
 assert modal.index("else drawStorageOverlay();") < modal.index("return;",modal.index("else drawStorageOverlay();")) < modal.index("drawFullCatalog();")
-assert "storage_draw_peak_us=%llu installed_draw_peak_us=%llu" in modal
+assert "storage_frame_peak_us=%llu installed_frame_peak_us=%llu" in frame
+assert "storage_frames=%u installed_frames=%u" in frame
 finish = body("void FullCatalogScreen::finishUiFrame(){", "void FullCatalogScreen::draw(){")
 assert "drawStorageOverlay()" not in finish and "drawInstalledDataOverlay()" not in finish
 catalog = body("void FullCatalogScreen::drawCatalogPanel(", "void FullCatalogScreen::wrapText(")

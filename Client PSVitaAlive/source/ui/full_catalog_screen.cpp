@@ -86,84 +86,46 @@ constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
 // The catalog and its embedded keyboard render with vita2d only.
 uint64_t skinFrameStartedUs = 0;
-uint64_t skinFrameSyncUs = 0;
-unsigned skinFramePoolStart = 0, skinFrameClipLeaks = 0;
-unsigned skinFrameFlags = 0, skinFramePendingFrees = 0;
 const char* skinFrameScene = "unknown";
 inline void startSkinFrame() {
-    skin::resetFrameCounters();
     skinFrameStartedUs = sceKernelGetProcessTimeWide();
-    skinFrameSyncUs = 0;
-    skinFrameClipLeaks = 0;
-    // Append to the shared vertex arena. Wait only at a safe recycle point.
-    if (skin::beginFrame()) {
-        skinFrameSyncUs = sceKernelGetProcessTimeWide() - skinFrameStartedUs;
-    }
-    skinFramePoolStart = vita2d_pool_free_space();
-    if (vita2d_get_clipping_enabled()) {
-        ++skinFrameClipLeaks;
-        vita2d_disable_clipping();
-    }
+    // Preserve the verified GPU arena lifetime and scissor safety.
+    skin::beginFrame();
+    if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
 }
 inline void finishFrame() {
-    // libvita2d preserves its clip across scenes. Never allow an unfinished
-    // overlay or an early return to clip the next frame's clear/drawing.
-    if (vita2d_get_clipping_enabled()) {
-        ++skinFrameClipLeaks;
-        vita2d_disable_clipping();
-    }
-    const unsigned pool = vita2d_pool_free_space();
-    const uint64_t submitStart = sceKernelGetProcessTimeWide();
+    if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
     vita2d_end_drawing();
-    const uint64_t swapStart = sceKernelGetProcessTimeWide();
     vita2d_swap_buffers();
     if (!skinFrameStartedUs) return;
     const uint64_t now = sceKernelGetProcessTimeWide();
     const uint64_t us = now - skinFrameStartedUs;
-    skinFrameStartedUs = 0;
-    static uint64_t since = now, sum = 0, worst = 0, syncWorst = 0;
-    static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
-    static uint64_t submitPeak=0,swapPeak=0;
-    submitPeak=std::max(submitPeak,swapStart-submitStart);
-    swapPeak=std::max(swapPeak,now-swapStart);
-    static unsigned peakPoolUsed = 0, lowPoolFrames = 0, clipLeaks = 0, invalid = 0, maxPendingFrees = 0;
-    static unsigned lastResetWaits = 0, lastResetIdle = 0;
-    static unsigned minFlags = 0, worstFlags = 0;
-    static const char* minScene = "unknown";
+    static uint64_t since = skinFrameStartedUs, sum = 0, worst = 0;
+    static unsigned frames = 0, storageFrames = 0, installedFrames = 0;
     static const char* worstScene = "unknown";
+    static uint64_t storagePeak = 0, installedPeak = 0;
+    skinFrameStartedUs = 0;
     sum += us; ++frames;
-    if (us >= worst) { worst=us; worstScene=skinFrameScene; worstFlags=skinFrameFlags; }
-    syncWorst=std::max(syncWorst,skinFrameSyncUs);
-    draws += skin::calls; verts += skin::vertices; fallbacks += skin::poolFallbacks;
-    if(pool<minPool) { minPool=pool; minScene=skinFrameScene; minFlags=skinFrameFlags; }
-    if(skinFramePoolStart>=pool) peakPoolUsed=std::max(peakPoolUsed,skinFramePoolStart-pool);
-    if(pool<64u*1024u) ++lowPoolFrames;
-    clipLeaks+=skinFrameClipLeaks; invalid+=skin::invalidGeometry;
-    maxPendingFrees=std::max(maxPendingFrees,skinFramePendingFrees);
-    if (now - since >= 5000000ULL) {
-        char msg[448];
-        sceClibSnprintf(msg, sizeof(msg),
-            "[Perf] skin frames=%u avg_frame_us=%llu max_frame_us=%llu draws/frame=%u verts/frame=%u pool_min=%u fallbacks=%u",
-            frames, (unsigned long long)(sum/frames), (unsigned long long)worst,
-            draws/frames, verts/frames, minPool, fallbacks);
-        diagnostics::log(msg);
+    if (us >= worst) { worst = us; worstScene = skinFrameScene; }
+    if (std::strcmp(skinFrameScene,"storage")==0) {
+        ++storageFrames; storagePeak=std::max(storagePeak,us);
+    } else if (std::strcmp(skinFrameScene,"installed_data")==0) {
+        ++installedFrames; installedPeak=std::max(installedPeak,us);
+    }
+    // Single compact report per 10s, including both storage managers.
+    // No per-sprite counters or GPU debug logging.
+    if (now - since >= 10000000ULL) {
+        char msg[320];
         sceClibSnprintf(msg,sizeof(msg),
-            "[GPU] mode=batched sync_wait_max_us=%llu pool_used_peak=%u low_pool_frames=%u clip_leaks=%u invalid_geometry=%u deferred_peak=%u pool_min_scene=%s pool_min_flags=%u slow_scene=%s slow_flags=%u pool_reset_waits=%u pool_reset_idle=%u",
-            (unsigned long long)syncWorst,peakPoolUsed,lowPoolFrames,
-            clipLeaks,invalid,maxPendingFrees,minScene,minFlags,worstScene,worstFlags,
-            skin::poolResetWaits-lastResetWaits,skin::poolResetIdle-lastResetIdle);
-        lastResetWaits=skin::poolResetWaits; lastResetIdle=skin::poolResetIdle;
+            "[Perf] present frames=%u elapsed_us=%llu avg_frame_us=%llu max_frame_us=%llu slow_scene=%s storage_frames=%u installed_frames=%u storage_frame_peak_us=%llu installed_frame_peak_us=%llu",
+            frames,(unsigned long long)(now-since),(unsigned long long)(sum/frames),
+            (unsigned long long)worst,worstScene,storageFrames,installedFrames,
+            (unsigned long long)storagePeak,(unsigned long long)installedPeak);
         diagnostics::log(msg);
-        sceClibSnprintf(msg,sizeof(msg),"[Perf] present frames=%u elapsed_us=%llu submit_peak_us=%llu swap_peak_us=%llu",
-            frames,(unsigned long long)(now-since),(unsigned long long)submitPeak,(unsigned long long)swapPeak);
-        diagnostics::log(msg);
-        submitPeak=swapPeak=0;
-        since=now; sum=worst=syncWorst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
-        peakPoolUsed=lowPoolFrames=clipLeaks=invalid=maxPendingFrees=0;
-        minFlags=worstFlags=0; minScene=worstScene="unknown";
+        since=now; sum=worst=0; frames=storageFrames=installedFrames=0;
+        storagePeak=installedPeak=0; worstScene="unknown";
     }
 }
-
 
 constexpr uint32_t NAV_DIRECTION_MASK =
     SCE_CTRL_UP | SCE_CTRL_DOWN | SCE_CTRL_LEFT | SCE_CTRL_RIGHT;
@@ -3439,7 +3401,6 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
 }
 bool FullCatalogScreen::init(){
     vita2d_init_advanced(skin::framePoolBytes);
-    diagnostics::log("[GPU] batched vertex pool: 2097152 bytes, reserve 1048576; no per-frame full sync");
     vita2d_set_clear_color(BG);
     ::psvitaalive::ui::setUiFontScalePercent(settingsEdit_.uiFontScalePct);
     detailWrapCache_.clear();
@@ -12235,10 +12196,6 @@ void FullCatalogScreen::draw(){
         case UiMode::SETTINGS: skinFrameScene="settings"; break;
         default: skinFrameScene="unknown"; break;
     }
-    skinFrameFlags=(catalogLoading_?1u:0u)|(installProgressActive_?2u:0u)|
-        (keyboard_.active()?4u:0u)|(storageVisible_?8u:0u)|(installedDataVisible_?16u:0u)|
-        (verticalNavHeld_?32u:0u)|(catalogSplashAlpha_>0.01f?64u:0u);
-    skinFramePendingFrees=static_cast<unsigned>(deferredFreeTextures_.size());
     // Storage dialogs own all input. Draw just the topmost dialog over a
     // theme-colored backdrop, not a live catalog or another hidden dialog.
     // Do not change update/poll/input logic or GPU pool lifetime.
@@ -12247,30 +12204,10 @@ void FullCatalogScreen::draw(){
         startSkinFrame();
         vita2d_set_clear_color(BG);
         vita2d_clear_screen();
-        const uint64_t overlayStart=sceKernelGetProcessTimeWide();
         if (installedDataVisible_) drawInstalledDataOverlay();
         else drawStorageOverlay();
-        const uint64_t overlayUs=sceKernelGetProcessTimeWide()-overlayStart;
         drawToast();
         finishFrame();
-        // Aggregate modal draw cost without per-frame logging.
-        static uint64_t windowStart=0,storagePeak=0,installedPeak=0;
-        static unsigned storageFrames=0,installedFrames=0;
-        const uint64_t now=sceKernelGetProcessTimeWide();
-        if(!windowStart)windowStart=overlayStart;
-        if(installedDataVisible_){
-            ++installedFrames;installedPeak=std::max(installedPeak,overlayUs);
-        }else{
-            ++storageFrames;storagePeak=std::max(storagePeak,overlayUs);
-        }
-        if(now-windowStart>=5000000ULL){
-            char pm[224];
-            sceClibSnprintf(pm,sizeof(pm),
-                "[Perf] storage modal storage_frames=%u installed_frames=%u storage_draw_peak_us=%llu installed_draw_peak_us=%llu",
-                storageFrames,installedFrames,(unsigned long long)storagePeak,(unsigned long long)installedPeak);
-            diagnostics::log(pm);
-            windowStart=now;storageFrames=installedFrames=0;storagePeak=installedPeak=0;
-        }
         return;
     }
     switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
