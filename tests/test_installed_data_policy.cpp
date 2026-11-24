@@ -17,6 +17,34 @@ int main() {
          "sce_sys", "tai/config.txt", "game/./a"}) {
         assert(!validInstalledRelativePath(p));
     }
+    // Arcaea and Geometry Dash Vita have FMOD Data Files on ur0:data,
+    // but independent, safely deletable Game Files on ux0:data.
+    assert(installedDataPreservesUr0Dependency("ur0:data/", true, false));
+    assert(installedDataPreservesUr0Dependency("ur0:data", true, false));
+    assert(installedDataPreservesUr0Dependency("ur0:data/fmod/", true, false));
+    assert(!installedDataPreservesUr0Dependency("ur0:data/", false, false));
+    assert(!installedDataPreservesUr0Dependency("ur0:data/", true, true));
+    assert(!installedDataPreservesUr0Dependency("ur0:data/../tai/", true, false));
+    assert(!installedDataPreservesUr0Dependency("ur0:data//", true, false));
+    assert(!installedDataPreservesUr0Dependency("ur0:data2/", true, false));
+    assert(!installedDataPreservesUr0Dependency("ur0:tai/", true, false));
+    assert(!installedDataPreservesUr0Dependency("ux0:data/", true, false));
+    assert(!safeExternalDataPath("ur0:data/"));
+    assert(!safeExternalDataPath("ur0:data/fmod"));
+    for (const auto& root : {"ux0:data/arcaea", "ux0:data/gdash"}) {
+        InstalledDataApp app;
+        app.titleId = "ARCA69420";
+        InstalledDataPath row;
+        row.path = root;
+        row.exists = true;
+        app.paths.push_back(row);
+        assert(installedDataCanOfferExternalDelete(app));
+        app.paths[0].exists = false;
+        assert(!installedDataCanOfferExternalDelete(app));
+        app.paths[0].exists = true;
+        app.unresolved = true;
+        assert(!installedDataCanOfferExternalDelete(app));
+    }
     assert(safeExternalDataPath("ux0:data/kotor"));
     assert(!safeExternalDataPath("ux0:app/KOTR00001"));
     assert(!safeExternalDataPath("ux0:data/"));
