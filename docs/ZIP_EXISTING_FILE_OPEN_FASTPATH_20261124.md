@@ -3,7 +3,7 @@
 **Fecha:** 24/11/2026.  
 **Origen:** [PR #85](https://github.com/VegettoSan/PSVitaAlive/pull/85), Build experimental #645.  
 **Implementación aislada:** `fix/pr85-existing-open-fastpath-20261124`.  
-**Objetivo de integración:** `main` tras checks VitaSDK/host. **No cierra** [issue #111](https://github.com/VegettoSan/PSVitaAlive/issues/111).
+**Estado:** integrado en `main` mediante [PR #113](https://github.com/VegettoSan/PSVitaAlive/pull/113), squash [`fb21bc0e3038d65137c7dd7b1ba6055176031485`](https://github.com/VegettoSan/PSVitaAlive/commit/fb21bc0e3038d65137c7dd7b1ba6055176031485). **No cierra** [issue #111](https://github.com/VegettoSan/PSVitaAlive/issues/111). CI [Build VitaSDK #710](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45456254352) y [catálogo #3442](https://github.com/VegettoSan/PSVitaAlive/actions/runs/45456254030): correctas. Se recomiendan pruebas físicas de regresión antes de publicar una nueva release.
 
 ## Qué solicitó el usuario
 
