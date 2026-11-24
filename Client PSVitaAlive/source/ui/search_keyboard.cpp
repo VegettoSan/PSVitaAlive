@@ -311,6 +311,7 @@ void SearchKeyboard::update() {
     }
     if (pressed & SCE_CTRL_LTRIGGER) { shift_ = !shift_; }
     if (pressed & SCE_CTRL_CIRCLE) { finish(false, now); return; }
+    if (pressed & SCE_CTRL_START) { finish(true, now); return; }
     if (pressed & SCE_CTRL_CROSS) activate(focused_, now);
     if (closing_) return;
     if (pressed & SCE_CTRL_SQUARE) {
