@@ -8669,8 +8669,7 @@ void FullCatalogScreen::drawCatalogCard(const CatalogItem&it,int idx,int x,int y
     int oy = 0;
     int ww = w;
     int hh = h;
-    const bool touchSelected = !navigationFocus_.visible && idx == state_.focusIndex;
-    const unsigned bg = (focus || touchSelected) ? SURFACE2 : SURFACE;
+    const unsigned bg = focus ? SURFACE2 : SURFACE;
     vita2d_draw_rectangle(x + ox, y + oy, ww, hh, bg);
     // Brand accent rail on every card (stronger when focused)
     vita2d_draw_rectangle(x + ox, y + oy, focus ? 3 : 2, hh, focus ? ACCENT : ACCENT_SOFT);
@@ -8795,6 +8794,8 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
 
+    // The selected app is independent of the controller-only chrome focus.
+    // Keep its original border during touch scrolling and zone navigation.
     if (!split) {
         const int vis = visibleRowsFull();
         const int rows = totalRows();
@@ -8807,7 +8808,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 if (i < 0 || i >= (int)catalogView().size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex && chromeFocusVisible(FocusZone::Catalog),
+                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex,
                                 x + 1, y + 1, x + w - 1, y + h - 1);
                 // Re-assert panel clip: focused card marquee disables global scissor.
                 vita2d_enable_clipping();
@@ -8834,7 +8835,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)catalogView().size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex && chromeFocusVisible(FocusZone::Catalog) && state_.activePanel == UiPanel::Catalog,
+            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex,
                             x + 1, y + 1, x + w - 1, y + h - 1);
             // Re-assert panel clip: focused card marquee disables global scissor.
             vita2d_enable_clipping();
