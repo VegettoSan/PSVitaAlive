@@ -5,6 +5,7 @@
 #include "ui/search_keyboard.hpp"
 #include "ui/loading_input_policy.hpp"
 #include "ui/navigation_focus.hpp"
+#include "ui/storage_layout.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
@@ -81,6 +82,11 @@ public:
         installPause_ = std::move(pause); installResume_ = std::move(resume);
     }
     void setStorageBusyCallback(std::function<bool()> callback) { storageInstallerBusy_ = std::move(callback); }
+    using StorageAppDisplayFn = std::function<bool(const std::string&, const std::string&,
+                                                   std::string&, std::string&)>;
+    void setStorageAppDisplayCallback(StorageAppDisplayFn callback) {
+        storageAppDisplay_ = std::move(callback);
+    }
     void setInstallAcknowledgeCallback(InstallAcknowledgeFn callback);
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
     void setDeleteSavedZipCallback(DeleteSavedZipFn callback) { deleteSavedZip_ = callback; }
@@ -561,6 +567,7 @@ private:
 
     // Footer UX0 storage management: worker-owned scan/delete, never on render thread.
     std::function<bool()> storageInstallerBusy_;
+    StorageAppDisplayFn storageAppDisplay_;
     bool storageVisible_ = false;
     bool storageConfirm_ = false;
     int storagePendingAction_ = -1; // double-confirm the exact cleanup action
@@ -568,6 +575,7 @@ private:
         // 0: temporaries, 1: saved ZIP, 2: catalog, 3: images, 4: file
         int kind = 0;
         int itemIndex = -1;
+        bool savedZip = false;
     };
     std::vector<StorageDisplayRow> storageRows_;
     int storageFocus_ = 0; // index into storageRows_ (always includes four categories)
