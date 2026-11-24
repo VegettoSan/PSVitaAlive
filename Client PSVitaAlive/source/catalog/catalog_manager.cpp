@@ -354,11 +354,14 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     if(result==HttpResult::Ok){
         const uint64_t cmpStart=catalog_trace::nowUs();
         const bool same=filesIdentical(path,temp);
+        diagnostics::log(std::string("[CatalogPerf] compare catalog=") + label(catalog) +
+            " ms=" + std::to_string((catalog_trace::nowUs()-cmpStart)/1000ULL));
         PSVA_TRACE_DURATION("catalog_content_compare",cmpStart,
             std::string("catalog=")+label(catalog)+" identical="+std::to_string(same?1:0));
         if(same){
             sceIoRemove(temp.c_str());
-            writeTextFile(meta,"etag="+remoteEtag+"\nlast_modified="+remoteModified+"\n");
+            // Use metadata from the downloaded bytes, never the earlier HEAD.
+            writeTextFile(meta,"etag="+http.lastEtag()+"\nlast_modified="+http.lastModified()+"\n");
             http.shutdown();
             sceKernelLockMutex(mutex_,1,nullptr);
             status_.softRefresh=false;
@@ -374,12 +377,19 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         status_.current=0;status_.total=0;
         sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
+        const uint64_t parseStart = catalog_trace::nowUs();
         if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
+            const uint64_t saveStart = catalog_trace::nowUs();
             const bool saved = promoteCatalogCache(temp, path);
+            diagnostics::log(std::string("[CatalogPerf] apply catalog=") + label(catalog) +
+                " parse_ms=" + std::to_string((saveStart-parseStart)/1000ULL) +
+                " save_ms=" + std::to_string((catalog_trace::nowUs()-saveStart)/1000ULL) +
+                " items=" + std::to_string(fresh.size()));
             if (saved) {
-                std::string etag, modified;
-                http.fetchRemoteValidators(url, etag, modified);
-                writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
+                // Successful GET/range transfer already carries its resource validators.
+                // If missing, store empty metadata and recheck on a later launch;
+                // never wait for a second HEAD or label bytes with a newer revision.
+                writeTextFile(meta, "etag=" + http.lastEtag() + "\nlast_modified=" + http.lastModified() + "\n");
                 outItems = std::move(fresh);
                 diagnostics::log(std::string("[CatalogManager] soft refresh: updated ") + label(catalog));
                 http.shutdown();
@@ -473,12 +483,19 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
         status_.current=0;status_.total=0;
         sceKernelUnlockMutex(mutex_,1);
         std::vector<ui::CatalogItem> fresh;
+        const uint64_t parseStart = catalog_trace::nowUs();
         if (CatalogParser::parseFile(temp, fresh) && !fresh.empty()) {
+            const uint64_t saveStart = catalog_trace::nowUs();
             const bool saved = promoteCatalogCache(temp, path);
+            diagnostics::log(std::string("[CatalogPerf] apply catalog=") + label(catalog) +
+                " parse_ms=" + std::to_string((saveStart-parseStart)/1000ULL) +
+                " save_ms=" + std::to_string((catalog_trace::nowUs()-saveStart)/1000ULL) +
+                " items=" + std::to_string(fresh.size()));
             if (saved) {
-                std::string etag, modified;
-                http.fetchRemoteValidators(url, etag, modified);
-                writeTextFile(meta, "etag=" + etag + "\nlast_modified=" + modified + "\n");
+                // Successful GET/range transfer already carries its resource validators.
+                // If missing, store empty metadata and recheck on a later launch;
+                // never wait for a second HEAD or label bytes with a newer revision.
+                writeTextFile(meta, "etag=" + http.lastEtag() + "\nlast_modified=" + http.lastModified() + "\n");
                 outItems = std::move(fresh);
                 sceKernelLockMutex(mutex_, 1, nullptr);
                 status_.refreshPhase = RefreshPhase::Updated;
