@@ -28,6 +28,15 @@ int main() {
     assert(!savedZipMatchesApp("other","ARCA69420","arcaea","ARCA69420"));
 
     using L = StorageLayout;
+    static_assert(L::loadingSegmentOffset(400,0)==0);
+    static_assert(L::loadingSegmentOffset(400,900)==300);
+    static_assert(L::loadingSegmentOffset(400,1800)==0);
+    for(int width : {1,3,4,100,400,712}) {
+        for(unsigned ms=0;ms<3600;++ms) {
+            const int offset=L::loadingSegmentOffset(width,ms);
+            assert(offset>=0 && offset+L::loadingSegmentWidth(width)<=width);
+        }
+    }
     static_assert(L::rowHeight(4,true) > L::rowHeight(4,false));
     static_assert(L::rowHeight(4,true)-L::gap >= 86);
     static_assert(L::listOffset+L::viewportHeight < L::buttonOffset);

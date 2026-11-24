@@ -133,3 +133,15 @@ catalog = body("void FullCatalogScreen::drawCatalogPanel(", "void FullCatalogScr
 assert catalog.count("catalogCardFocus && i == state_.focusIndex") == 2
 assert "navigationFocus_.catalogCardFocused(" in catalog
 print("Exclusive navigation focus and topmost storage rendering checks OK")
+
+# Storage scan loading UI uses existing assets and real worker phase labels,
+# with bounded indeterminate animation, not a simulated percentage.
+storage_loading = body("void FullCatalogScreen::drawStorageOverlay()", "const auto& snap=storageSnapshot_;")
+assert "ui_progress_track" in storage_loading and "ui_progress_fill" in storage_loading
+assert "Layout::loadingSegmentOffset" in storage_loading
+assert "storageWorkPhase_.load" in storage_loading
+assert "STORAGE_WAIT" in storage_loading
+worker_storage = body("int FullCatalogScreen::storageWorkerEntry(", "void FullCatalogScreen::rebuildStorageRows()")
+for phase in ("ScanStorage", "ResolveZips", "ScanInstalled"):
+    assert "storageWorkPhase_.store(StorageWorkPhase::"+phase in worker_storage
+print("Storage loading activity indicator and worker phases checks OK")

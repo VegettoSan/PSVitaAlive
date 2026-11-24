@@ -587,6 +587,8 @@ private:
     int storageFocus_ = 0; // index into storageRows_ (always includes four categories)
     int storageScrollY_ = 0; // pixel scroll, shared by touch and controller
     int storageAction_ = -1; // -1 scan, -2 all, -3 temp, -4 saved ZIP, >=0 file index
+    enum class StorageWorkPhase : unsigned { Cleaning, ScanStorage, ResolveZips, ScanInstalled };
+    std::atomic<StorageWorkPhase> storageWorkPhase_{StorageWorkPhase::ScanStorage};
     std::atomic<bool> storageWorkerDone_{false};
     std::atomic<bool> storageWorkerOk_{false};
     SceUID storageWorker_ = -1;
