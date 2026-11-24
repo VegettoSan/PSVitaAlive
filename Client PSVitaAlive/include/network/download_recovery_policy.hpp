@@ -15,6 +15,8 @@ struct DownloadRecoveryPolicy {
     unsigned attempts = 0;
     uint64_t highWaterBytes = 0;
     uint64_t deadlineUs = 0;
+    uint64_t offlineSinceUs = 0;
+    bool offline = false;
     static constexpr unsigned maxAttempts = 4;
     static constexpr uint64_t progressResetBytes = 1024ULL * 1024ULL;
     static constexpr uint64_t delaysUs[maxAttempts] = {
@@ -32,8 +34,18 @@ struct DownloadRecoveryPolicy {
             deadlineUs = 0;
         }
         if (!linkUsable) {
+            if (!offline) {
+                offline = true;
+                offlineSinceUs = now;
+            }
             deadlineUs = 0;
             return false;
+        }
+        // A confirmed new loss/recovery of link gets a fresh budget even
+        // after prior server retries were exhausted. Short flaps do not.
+        if (offline) {
+            if (now - offlineSinceUs >= 3000000ULL) attempts = 0;
+            offline = false;
         }
         if (exhausted()) return false;
         if (deadlineUs == 0) {

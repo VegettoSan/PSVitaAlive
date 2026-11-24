@@ -28,6 +28,15 @@ int main() {
     assert(!p.poll(1001*s, true, 2*1024*1024));
     assert(!p.exhausted());
     assert(p.poll(1006*s, true, 2*1024*1024));
+    DownloadRecoveryPolicy reconnect;
+    reconnect.attempts = reconnect.maxAttempts;
+    assert(!reconnect.poll(10*s, false, 0));
+    assert(!reconnect.poll(11*s, true, 0)); // short flap does not reset budget
+    assert(reconnect.exhausted());
+    assert(!reconnect.poll(12*s, false, 0));
+    assert(!reconnect.poll(20*s, true, 0)); // confirmed loss + recovery
+    assert(!reconnect.exhausted());
+    assert(reconnect.poll(25*s, true, 0));
     assert(recoverableDownloadStatus(true, false, 0));
     assert(recoverableDownloadStatus(true, false, 206));
     assert(recoverableDownloadStatus(false, true, 429));

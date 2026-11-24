@@ -56,6 +56,9 @@ struct DownloadJob {
     // Separate from cancel: a paused serial .part is kept for safe Range resume.
     std::shared_ptr<std::atomic<bool>> pauseRequested =
         std::make_shared<std::atomic<bool>>(false);
+    // Manual intent takes priority even if a network pause is already settling.
+    std::shared_ptr<std::atomic<bool>> manualPauseRequested =
+        std::make_shared<std::atomic<bool>>(false);
 
     int lastHttpStatus = 0;
     std::string lastError;

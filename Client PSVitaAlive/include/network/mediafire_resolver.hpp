@@ -21,7 +21,8 @@ bool resolveMediaFireDirectUrl(
     const std::string& pageUrl,
     std::string& directOut,
     std::string& errorOut,
-    uint64_t* sizeBytesOut = nullptr
+    uint64_t* sizeBytesOut = nullptr,
+    HttpResult* fetchResultOut = nullptr // distinguishes transport errors from deleted/unparseable pages
 );
 
 } // namespace psvitaalive

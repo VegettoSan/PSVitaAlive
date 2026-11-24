@@ -381,8 +381,22 @@ void InstallController::pollDownloadRecovery() {
     if (now < nextRecoveryPollUs_) return;
     nextRecoveryPollUs_ = now + 500000ULL;
     auto* job = downloads_.findJob(activeJobId_);
-    if (!job || !job->pausedForConnectivity || job->state != DownloadState::Paused ||
-        job->cancelRequested->load(std::memory_order_acquire)) return;
+    if (!job || job->state != DownloadState::Paused) return;
+    if (installCancelRequested_.load(std::memory_order_acquire) ||
+        job->cancelRequested->load(std::memory_order_acquire)) {
+        cancel();
+        return;
+    }
+    if (job->manualPauseRequested->load(std::memory_order_acquire)) {
+        job->pausedForConnectivity = false;
+        // A user press racing the worker's final publication must not leave
+        // the overlay in "Pausing" or accidentally rearm recovery.
+        if (std::strcmp(stage_, "Paused") != 0) setStage("Paused");
+        const char* note = ::psvitaalive::L("DOWNLOAD_PAUSED_NOTE");
+        if (std::strcmp(message_, note) != 0) setMessage(note);
+        return;
+    }
+    if (!job->pausedForConnectivity) return;
     const auto link = queryLinkConnectivity();
     const bool usable = !downloadPreflightStatusKey(link);
     const bool retry = job->recovery.poll(now, usable, job->downloadedSize);
@@ -392,9 +406,8 @@ void InstallController::pollDownloadRecovery() {
         if (resumeDownloadImpl(true)) return;
         return; // resume may have cleaned the job on a worker creation failure
     }
-    const char* key = job->recovery.exhausted()
-        ? (usable ? "NET_PAUSED_SOURCE_UNREACHABLE" : "NET_PAUSED_DISCONNECTED")
-        : (usable ? "NET_PAUSED_AUTO_SOURCE" : "NET_PAUSED_AUTO_LINK");
+    const char* key = !usable ? "NET_PAUSED_AUTO_LINK" :
+        (job->recovery.exhausted() ? "NET_PAUSED_SOURCE_UNREACHABLE" : "NET_PAUSED_AUTO_SOURCE");
     const char* message = ::psvitaalive::L(key);
     if (std::strcmp(message_, message) != 0) setMessage(message);
 }
@@ -407,7 +420,8 @@ bool InstallController::resumeDownloadImpl(bool automatic) {
         return false;
     }
     if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Paused ||
-        activeJobId_.empty() || !workerDone_.load(std::memory_order_acquire))
+        activeJobId_.empty() || !workerDone_.load(std::memory_order_acquire) ||
+        installCancelRequested_.load(std::memory_order_acquire))
         return false;
     if (workerThread_ >= 0) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
@@ -451,6 +465,13 @@ bool InstallController::resumeDownloadImpl(bool automatic) {
 
 void InstallController::cancel() {
     const auto currentState = static_cast<InstallStatus::State>(state_.load());
+    if (currentState == InstallStatus::State::Paused &&
+        !workerDone_.load(std::memory_order_acquire)) {
+        // The pause event can arrive before the worker has fully exited.
+        // Defer cleanup until pollDownloadRecovery observes that handoff.
+        installCancelRequested_.store(true, std::memory_order_release);
+        return;
+    }
     if (currentState == InstallStatus::State::Paused &&
         workerDone_.load(std::memory_order_acquire) && !activeJobId_.empty()) {
         if (workerThread_ >= 0) {

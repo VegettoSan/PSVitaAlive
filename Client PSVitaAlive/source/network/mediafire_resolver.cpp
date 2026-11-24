@@ -319,8 +319,10 @@ bool resolveMediaFireDirectUrl(
     const std::string& pageUrl,
     std::string& directOut,
     std::string& errorOut,
-    uint64_t* sizeBytesOut
+    uint64_t* sizeBytesOut,
+    HttpResult* fetchResultOut
 ) {
+    if (fetchResultOut) *fetchResultOut = HttpResult::Ok;
     directOut.clear();
     errorOut.clear();
     if (sizeBytesOut) *sizeBytesOut = 0;
@@ -356,6 +358,7 @@ bool resolveMediaFireDirectUrl(
     }
 
     if (hr != HttpResult::Ok) {
+        if (fetchResultOut) *fetchResultOut = hr;
         errorOut = std::string("mediafire page fetch failed: ") +
             (lastFetchError.empty() ? http.lastError() : lastFetchError);
         diagnostics::log(std::string("[MediaFire] ") + errorOut);

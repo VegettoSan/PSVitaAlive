@@ -202,12 +202,11 @@ bool DownloadManager::pause(const std::string& jobId) {
     DownloadJob* job = findJob(jobId);
     // InstallController owns the active-worker/state check. Do not read
     // worker-written DownloadJob::state from the UI thread (data race).
-    if (!job || job->cancelRequested->load(std::memory_order_acquire) ||
-        job->pauseRequested->load(std::memory_order_acquire))
+    if (!job || job->cancelRequested->load(std::memory_order_acquire))
         return false;
-    bool expected = false;
-    if (!job->pauseRequested->compare_exchange_strong(expected, true, std::memory_order_acq_rel))
+    if (job->manualPauseRequested->exchange(true, std::memory_order_acq_rel))
         return false;
+    job->pauseRequested->store(true, std::memory_order_release);
     diagnostics::log("[DownloadManager] pause requested job=" + jobId);
     return true;
 }
@@ -218,6 +217,7 @@ bool DownloadManager::resume(const std::string& jobId) {
         job->cancelRequested->load(std::memory_order_acquire))
         return false;
     // The caller must join the previous worker before resetting these flags.
+    job->manualPauseRequested->store(false, std::memory_order_release);
     job->pauseRequested->store(false, std::memory_order_release);
     job->state = DownloadState::Queued;
     job->lastError.clear();
@@ -361,7 +361,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
     DownloadLinkGrace linkGrace;
     auto requestNetworkPause = [&]() {
         bool expected = false;
-        if (job.cancelRequested->load(std::memory_order_acquire)) return false;
+        if (job.cancelRequested->load(std::memory_order_acquire) ||
+            job.manualPauseRequested->load(std::memory_order_acquire)) return false;
         if (!job.pauseRequested->compare_exchange_strong(expected, true, std::memory_order_acq_rel))
             return false; // a manual request won; never relabel it
         automaticNetworkPause = true;
@@ -402,6 +403,40 @@ bool DownloadManager::runJob(DownloadJob& job) {
         onProgress_(ev);
     };
 
+    auto finishPaused = [&]() -> bool {
+        job.pausedForConnectivity = automaticNetworkPause &&
+            !job.manualPauseRequested->load(std::memory_order_acquire);
+        activeJobId_.clear();
+        // HttpClient has returned and flushed its serial buffer. Preserve the
+        // actual file length (not an unflushed progress counter) for Range resume.
+        // Parallel saved bytes are counted across *all* verified-prefix files.
+        // For serial downloads, the single payload.part remains authoritative.
+        const uint64_t partBytes = parallelSavedBytes(job.temporaryPath);
+        const int64_t bytes = st.fileSize(job.temporaryPath);
+        job.downloadedSize = partBytes > 0 ? partBytes :
+            (bytes > 0 ? static_cast<uint64_t>(bytes) : 0);
+        job.bytesPerSecond = 0;
+        job.state = DownloadState::Paused;
+        job.lastError.clear();
+        saveMetadata(job);
+        if (onProgress_) {
+            DownloadProgressEvent ev;
+            ev.jobId = job.id;
+            ev.fileName = job.fileName;
+            ev.downloaded = job.downloadedSize;
+            ev.total = job.expectedSize;
+            ev.state = DownloadState::Paused;
+            ev.message = job.pausedForConnectivity
+                ? ::psvitaalive::L(downloadPreflightStatusKey(queryLinkConnectivity())
+                    ? "NET_PAUSED_AUTO_LINK" : "NET_PAUSED_AUTO_SOURCE")
+                : ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
+            onProgress_(ev);
+        }
+        diagnostics::log("[DownloadManager] paused job=" + job.id +
+                         " reason=" + (job.pausedForConnectivity ? "network" : "manual") +
+                         " saved_bytes=" + std::to_string(job.downloadedSize));
+        return false;
+    };
     std::string effectiveUrl = job.url;
     const bool mediafire = isMediaFireUrl(job.url);
     if (mediafire) {
@@ -409,7 +444,21 @@ bool DownloadManager::runJob(DownloadJob& job) {
         std::string direct;
         std::string mfErr;
         uint64_t mfSize = 0;
-        if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) || direct.empty()) {
+        HttpResult fetchResult = HttpResult::Ok;
+        if (!resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize, &fetchResult) || direct.empty()) {
+            job.lastHttpStatus = http_.lastStatusCode();
+            if (recoverableDownloadStatus(fetchResult == HttpResult::NetworkError,
+                                          fetchResult == HttpResult::HttpError, job.lastHttpStatus))
+                requestNetworkPause();
+            if (job.pauseRequested->load(std::memory_order_acquire) &&
+                !job.cancelRequested->load(std::memory_order_acquire)) return finishPaused();
+            if (job.cancelRequested->load(std::memory_order_acquire)) {
+                job.state = DownloadState::Cancelled;
+                job.lastError = "cancelled by user";
+                activeJobId_.clear();
+                saveMetadata(job);
+                return false;
+            }
             job.state = DownloadState::Failed;
             // Preserve provider details in diagnostics, not end-user messages.
             job.lastError = "download link resolution failed";
@@ -476,7 +525,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
                 std::string direct;
                 std::string mfErr;
                 uint64_t mfSize = 0;
-                if (resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize) && !direct.empty()) {
+                HttpResult fetchResult = HttpResult::Ok;
+                if (resolveMediaFireDirectUrl(http_, job.url, direct, mfErr, &mfSize, &fetchResult) && !direct.empty()) {
                     effectiveUrl = direct;
                     if (mfSize > 0) job.expectedSize = mfSize;
                     job.validatorUrl.clear();
@@ -491,7 +541,10 @@ bool DownloadManager::runJob(DownloadJob& job) {
                     diagnostics::log(mfMsg);
                 } else {
                     diagnostics::log(std::string("[DownloadManager] MediaFire re-resolve failed: ") + mfErr);
-                    if (outer + 1 < outerAttempts) continue;
+                    hr = fetchResult == HttpResult::Ok ? HttpResult::InvalidArgument : fetchResult;
+                    if (outer + 1 < outerAttempts && recoverableDownloadStatus(
+                        hr == HttpResult::NetworkError, hr == HttpResult::HttpError,
+                        http_.lastStatusCode())) continue;
                     break;
                 }
             } else if (job.downloadedSize == 0) {
@@ -616,36 +669,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
     }
     if (job.pauseRequested->load(std::memory_order_acquire) &&
         !job.cancelRequested->load(std::memory_order_acquire)) {
-        job.pausedForConnectivity = automaticNetworkPause;
-        // HttpClient has returned and flushed its serial buffer. Preserve the
-        // actual file length (not an unflushed progress counter) for Range resume.
-        // Parallel saved bytes are counted across *all* verified-prefix files.
-        // For serial downloads, the single payload.part remains authoritative.
-        const uint64_t partBytes = parallelSavedBytes(job.temporaryPath);
-        const int64_t bytes = st.fileSize(job.temporaryPath);
-        job.downloadedSize = partBytes > 0 ? partBytes :
-            (bytes > 0 ? static_cast<uint64_t>(bytes) : 0);
-        job.bytesPerSecond = 0;
-        job.state = DownloadState::Paused;
-        job.lastError.clear();
-        saveMetadata(job);
-        if (onProgress_) {
-            DownloadProgressEvent ev;
-            ev.jobId = job.id;
-            ev.fileName = job.fileName;
-            ev.downloaded = job.downloadedSize;
-            ev.total = job.expectedSize;
-            ev.state = DownloadState::Paused;
-            ev.message = automaticNetworkPause
-                ? ::psvitaalive::L(linkUnavailable(queryLinkConnectivity())
-                    ? "NET_PAUSED_DISCONNECTED" : "NET_PAUSED_SOURCE_UNREACHABLE")
-                : ::psvitaalive::L("DOWNLOAD_PAUSED_TITLE");
-            onProgress_(ev);
-        }
-        diagnostics::log("[DownloadManager] paused job=" + job.id +
-                         " reason=" + (automaticNetworkPause ? "network" : "manual") +
-                         " saved_bytes=" + std::to_string(job.downloadedSize));
-        return false;
+        return finishPaused();
     }
     if (hr == HttpResult::Cancelled || cancelFn()) {
         st.removeFile(job.temporaryPath);
