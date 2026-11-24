@@ -1,8 +1,10 @@
 # PSVitaAlive — Reserva de espacio ANTES de descargar (Install All e individual)
 
 **Fecha de implementación:** 22 de noviembre de 2026  
-**Rama:** `feature/zip-store-pipelined-extraction-20261117` (PR #85, integra PR #75)  
-**Estado:** pendiente de validación física tras CI/VitaSDK.
+**Origen de implementación:** `feature/zip-store-pipelined-extraction-20261117` (PR #85, investigación inicial).  
+**Integración estable:** [PR #110](https://github.com/VegettoSan/PSVitaAlive/pull/110), fusionado en `main` el 24/11/2026 mediante `1d99d034abb26b21f982e02a144c6bdd207fc085`.  
+**Validación:** pruebas host y compilación VitaSDK #646, validación del catálogo #3328 aprobadas; **pendiente** matriz física específica de poco espacio, distintos enlaces y cancelación.  
+**Historial:** [documentación completa de la integración](PR85_STABLE_INTEGRATION_20261124.md). El extractor ZIP experimental de PR #85 **NO** fue fusionado.
 
 ## Causa del problema
 
