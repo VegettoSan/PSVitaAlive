@@ -84,7 +84,7 @@ icons={
 'verified':path('M12 2L21 6V12C21 17 16 20 12 22 8 20 3 17 3 12V6ZM7 12L10.5 15.5 17 9'),
 'installed':circle(12,12,9,'none','white',1.8)+path('M7.5 12L10.5 15 17 8.5'),
 'wifi':path('M2 8Q12 0 22 8M5 12Q12 6 19 12M8 16Q12 13 16 16')+circle(12,20,1.5),
-'battery':rect(2,6,18,12,2,'none','white',1.8)+rect(21,9,2,6,1)+rect(5,9,10,6,1),
+'battery':rect(2,6,18,12,2,'none','white',1.8)+rect(21,9,2,6,1),
 'charging':rect(2,6,18,12,2,'none','white',1.8)+rect(21,9,2,6,1)+path('M12 7L8 13H12L10 17 16 11H12Z','white','none'),
 'storage':rect(3,4,18,16,3,'none','white',1.8)+path('M3 14H21')+circle(7,17,1)+circle(11,17,1),
 'report':path('M3 4H21V16H10L4 21V16H3ZM12 7V10')+circle(12,13,1),
