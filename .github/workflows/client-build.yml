@@ -311,6 +311,9 @@ jobs:
             tests/test_feedback_forum.cpp -o /tmp/psvitaalive-feedback-forum-test
           /tmp/psvitaalive-feedback-forum-test
 
+      - name: Check second-pass UI skin coverage
+        run: python3 tests/test_ui_skin_coverage.py
+
       - name: Prepare and validate the approved UI skin
         run: |
           python3 -m venv /tmp/psvitaalive-skin
