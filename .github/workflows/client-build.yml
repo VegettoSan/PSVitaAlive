@@ -37,6 +37,12 @@ jobs:
       - name: Verify Vita and web catalog field mappings
         run: python3 scripts/catalog_schema_v2_consumers_test.py
 
+      - name: Test controller navigation zones and touch focus
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_navigation_focus.cpp -o /tmp/psvitaalive-navigation-focus-test
+          /tmp/psvitaalive-navigation-focus-test
+
       - name: Test catalog parser compatibility and bounded allocations
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
