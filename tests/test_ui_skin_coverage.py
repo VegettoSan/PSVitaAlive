@@ -65,7 +65,9 @@ assert frame.index("skin::beforeFrame();") < frame.index("vita2d_start_drawing()
 assert "if (skin::gpuSyncTest)" in frame
 assert "clip_leaks=%u" in frame and "low_pool_frames=%u" in frame
 assert "pool_min_scene=%s" in frame and "5000000ULL" in frame
-assert "gpu_sync_test.flag" in source
+assert "skin::gpuSyncTest = true;" in source
+assert "gpu_sync_test.flag" not in source
+assert "forced for diagnostic build" in source
 assert "if (i < 0) { vita2d_disable_clipping(); return; }" in source
 assert "if(w<=36)" in source
 assert "skin::beforeFrame();" in main
