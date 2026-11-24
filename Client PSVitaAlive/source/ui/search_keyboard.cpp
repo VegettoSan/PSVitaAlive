@@ -1,3 +1,4 @@
+#include "ui/controller_input.hpp"
 #include "ui/search_keyboard.hpp"
 #include "localization/localization.hpp"
 
@@ -77,7 +78,7 @@ bool SearchKeyboard::open(const std::string& initial, const std::string& title,
     closeAtUs_ = nextNavUs_ = nextEraseUs_ = 0;
     previousButtons_ = lastNav_ = 0;
     SceCtrlData pad{};
-    if (sceCtrlPeekBufferPositive(0, &pad, 1) > 0) previousButtons_ = pad.buttons;
+    if (::psvitaalive::ui::peekClientController(pad) > 0) previousButtons_ = pad.buttons;
     SceTouchData touch{};
     touchWasDown_ = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) > 0 &&
                     touch.reportNum > 0;
@@ -250,7 +251,7 @@ void SearchKeyboard::update() {
     }
 
     SceCtrlData pad{};
-    const int ctrl = sceCtrlPeekBufferPositive(0, &pad, 1);
+    const int ctrl = ::psvitaalive::ui::peekClientController(pad);
     const unsigned buttons = ctrl > 0 ? pad.buttons : 0;
     const unsigned pressed = buttons & ~previousButtons_;
     previousButtons_ = buttons;
@@ -310,7 +311,6 @@ void SearchKeyboard::update() {
     }
     if (pressed & SCE_CTRL_LTRIGGER) { shift_ = !shift_; }
     if (pressed & SCE_CTRL_CIRCLE) { finish(false, now); return; }
-    if (pressed & SCE_CTRL_START) { finish(true, now); return; }
     if (pressed & SCE_CTRL_CROSS) activate(focused_, now);
     if (closing_) return;
     if (pressed & SCE_CTRL_SQUARE) {
