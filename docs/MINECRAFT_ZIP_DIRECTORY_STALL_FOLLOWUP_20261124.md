@@ -2,7 +2,7 @@
 
 **Actualización:** 24 de noviembre de 2026  
 **Estado:** **ABIERTO / NO RESUELTO**. No fusionar el extractor experimental ni declarar arreglado Minecraft.  
-**Seguimiento técnico:** [PR #85, borrador](https://github.com/VegettoSan/PSVitaAlive/pull/85) · [Cambios estables ya integrados en PR #110](PR85_STABLE_INTEGRATION_20261124.md).
+**Seguimiento técnico:** [Issue #111 — acciones pendientes](https://github.com/VegettoSan/PSVitaAlive/issues/111) · [PR #85, borrador](https://github.com/VegettoSan/PSVitaAlive/pull/85) · [Cambios estables ya integrados en PR #110](PR85_STABLE_INTEGRATION_20261124.md).
 
 ## 1. Caso reproducible y síntoma
 
