@@ -2,7 +2,7 @@ name: Build PS Vita Client
 
 on:
   push:
-    branches: [main, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
+    branches: [main, feature/ui-redesign, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
     paths:
       - "Client PSVitaAlive/**"
       - "tests/**"
@@ -311,6 +311,12 @@ jobs:
             tests/test_feedback_forum.cpp -o /tmp/psvitaalive-feedback-forum-test
           /tmp/psvitaalive-feedback-forum-test
 
+      - name: Prepare and validate the approved UI skin
+        run: |
+          python3 -m venv /tmp/psvitaalive-skin
+          /tmp/psvitaalive-skin/bin/pip install Pillow==12.3.0 CairoSVG==2.8.2
+          /tmp/psvitaalive-skin/bin/python "Client PSVitaAlive/tools/prepare_skin.py"
+
       - name: Build with official VitaSDK image
         shell: bash
         run: |
@@ -353,7 +359,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: PSVitaAlive-image-throughput-${{ github.sha }}
+          name: PSVitaAlive-ui-redesign-${{ github.sha }}
           path: Client PSVitaAlive/build-ci/PSVitaAlive.vpk
           if-no-files-found: error
           retention-days: 14
