@@ -1,13 +1,20 @@
 {
   "schema_version": 1,
-  "inflight": {
+  "inflight": {},
+  "superseded": {
     "nfs-carbon": {
-      "version": "0.1.6",
-      "source_url": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.6/NFSCVita.vpk",
-      "archive_identifier": "NFSCVita",
-      "filename": "nfs-carbon v0.1.6.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-23T23:35:11+00:00"
+      "nfs-carbon v0.1.6.vpk": {
+        "version": "0.1.6",
+        "source_url": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.6/NFSCVita.vpk",
+        "archive_identifier": "NFSCVita",
+        "filename": "nfs-carbon v0.1.6.vpk",
+        "status": "TRANSFER_PREPARED",
+        "created_at": "2026-11-23T23:35:11+00:00",
+        "recovery_status": "VISIBLE",
+        "checks": 0,
+        "superseded_at": "2026-11-25T04:45:00+00:00",
+        "superseded_by": "0.1.8"
+      }
     }
   }
 }
