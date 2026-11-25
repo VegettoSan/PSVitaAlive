@@ -335,7 +335,8 @@ int main(){
     }
 
     psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
-    screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
+    screen.setCatalogActionBlockCallback([&catalogs](){ return catalogs.actionBlockedByCatalog(); });
+    screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){if(installer.busy() || installer.queueProtectionActive() || screen.catalogWorkExcluded()) return false;psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
     screen.setSearchCallback([&screen](const std::string& current){
         screen.openSearchKeyboard(current);
     });
@@ -363,6 +364,7 @@ int main(){
         },
         [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
                              const std::string& archivePath) {
+            if (!screen.guardCatalogAction()) return false;
             screen.setInstallDisplayItem(item);
             const bool started = installer.requestSavedZipExtraction(
                 item.id, item.titleId, archivePath);
@@ -371,6 +373,7 @@ int main(){
             return started;
         });
     screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){
+    if (!screen.guardCatalogAction()) return false;
     if (const char* blocked = psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
         screen.showToast(psvitaalive::L(blocked), 5600);
         return false; // Before opening any ZIP destination or error modal.
@@ -407,6 +410,7 @@ int main(){
             return started;
         }},[&installer](){return installStatusText(installer.status());});
     screen.setLinkActionCallback([&installer, &screen](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
+        if (!screen.guardCatalogAction()) return false;
         const std::string type=link.type;
         const bool isPlugin=(type=="Plugin"||type=="plugin"||type=="Plugins"||type=="plugins");
         const bool actionable=isPlugin||(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||type=="Data Files"||type=="Game Files"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos||link.url.find(".suprx")!=std::string::npos||link.url.find(".skprx")!=std::string::npos);
@@ -715,7 +719,8 @@ while(true){
         const int recoveryIndex = static_cast<int>(recoveryCatalog);
         if (recoveryStatus.state == psvitaalive::CatalogManager::State::Ready &&
             recoveryStatus.catalog == recoveryCatalog &&
-            !screen.hasUnfilteredCatalogItems() && !catalogs.isBusy() &&
+            !screen.hasUnfilteredCatalogItems() && !catalogs.actionBlockedByCatalog() &&
+            !installer.busy() && !installer.queueProtectionActive() && !screen.catalogWorkExcluded() &&
             recoveryIndex >= 0 && recoveryIndex < catalogCount &&
             !emptyCatalogRecoveryRequested[recoveryIndex]) {
             emptyCatalogRecoveryRequested[recoveryIndex] = true;
@@ -766,11 +771,11 @@ while(true){
                 sync.catalog == screen.activeCatalog();
             if (visibleCatalog && sync.refreshPhase != lastToastPhase) {
                 if (sync.refreshPhase == Phase::Downloading)
-                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_DOWNLOADING"), 2400);
+                    screen.showCatalogSyncToast(::psvitaalive::L("CATALOG_SYNC_DOWNLOADING"));
                 else if (sync.refreshPhase == Phase::Applying)
-                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_APPLYING"), 2400);
+                    screen.showCatalogSyncToast(::psvitaalive::L("CATALOG_SYNC_APPLYING"));
                 else if (sync.refreshPhase == Phase::Updated)
-                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_UPDATED"), 2400);
+                    screen.showCatalogSyncToast(::psvitaalive::L("CATALOG_SYNC_UPDATED"));
                 lastToastPhase = sync.refreshPhase;
             }
             if (sync.refreshPhase == Phase::Updated && completedAtMs == 0)
@@ -855,7 +860,7 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
             }
         }
         // After theme + news: recommend kubridge / fd_fix / libshacccg if missing
-        if(startupEssentialPending && !active
+        if(startupEssentialPending && !active && !catalogs.actionBlockedByCatalog()
            && !screen.isNewsVisible() && !screen.isThemeSetupVisible()
            && !screen.isEssentialPluginsVisible() && !screen.isEssentialPluginsInstalling()
            && !screen.isPluginRebootModal()){

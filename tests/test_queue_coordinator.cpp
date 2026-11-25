@@ -12,6 +12,7 @@ struct FakeCatalog {
         gate=v; return true;
     }
     bool installSessionQuiescent() const { return gate && drained; }
+    bool actionBlockedByCatalog() const { return !drained; }
 };
 struct FakeStatus {
     bool zipRecoveryAvailable=false, terminal=false, needsReboot=false;
@@ -91,7 +92,11 @@ int main() {
         assert(q.submit(makeJob("A"),true).admission==Admission::NoSpace);
         assert(!b.locked && !c.gate && !q.reportReady());
         b.free=20*GiB; c.drained=false;
+        assert(q.submit(makeJob("A"),true).code==SubmitCode::CatalogBusy);
+        assert(!b.locked && !c.gate && !q.protectedSession());
+        c.drained=true;
         assert(q.submit(makeJob("A"),true).code==SubmitCode::Accepted);
+        c.drained=false; // Defensive dispatch barrier even after admission.
         assert(b.locked && c.gate);
         const int probes=b.probes;
         assert(q.tick(true,0).state==TickState::WaitingBarrier && b.probes==probes);

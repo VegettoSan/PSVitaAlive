@@ -92,6 +92,12 @@ public:
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
     void setDeleteSavedZipCallback(DeleteSavedZipFn callback) { deleteSavedZip_ = callback; }
     void setCatalogChangeCallback(CatalogChangeFn callback);
+    void setCatalogActionBlockCallback(std::function<bool()> callback) {
+        catalogActionBlocked_ = std::move(callback);
+    }
+    bool guardCatalogAction();
+    bool catalogWorkExcluded() const;
+    void showCatalogSyncToast(const std::string& message);
     void setSearchCallback(SearchRequestFn callback);
     /** Native vita2d QWERTY search and ZIP path entry (no Sony IME). */
     void completeSearch(const std::string& query);
@@ -201,6 +207,7 @@ private:
     InstallZipRecoveryFn installZipRecovery_;
     DeleteSavedZipFn deleteSavedZip_;
     CatalogChangeFn catalogChange_;
+    std::function<bool()> catalogActionBlocked_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
     SavedZipListFn savedZipList_;
@@ -431,6 +438,7 @@ private:
     std::string toastMessage_;
     uint64_t toastExpiresMs_ = 0;
     uint64_t toastShownMs_ = 0;
+    uint64_t catalogPriorityToastUntilMs_ = 0;
 
     NavigationFocus navigationFocus_;
     bool chromeConfirmAwaitRelease_ = false;

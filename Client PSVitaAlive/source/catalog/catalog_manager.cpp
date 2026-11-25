@@ -122,6 +122,13 @@ bool CatalogManager::installSessionQuiescent() const {
     return ready;
 }
 
+bool CatalogManager::actionBlockedByCatalog() const {
+    if (mutex_ < 0 || sceKernelLockMutex(mutex_, 1, nullptr) < 0) return true;
+    const bool blocked = requestPending_ || workerOperationActive_ || readyPending_;
+    sceKernelUnlockMutex(mutex_, 1);
+    return blocked;
+}
+
 bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
     if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);

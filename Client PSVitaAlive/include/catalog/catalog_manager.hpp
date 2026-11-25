@@ -45,6 +45,8 @@ public:
     // accepted request to drain, including cache-first/soft-refresh tails.
     bool setInstallSessionGate(bool blocked);
     bool installSessionQuiescent() const;
+    // Stronger than isBusy(): includes soft refresh, cache-first handoff and pending publication.
+    bool actionBlockedByCatalog() const;
     Status status() const;
     bool takeReady(std::vector<ui::CatalogItem>& outItems, ui::CatalogType& catalog);
     // Read only display fields from already-loaded catalogs. No new parsing/downloads.

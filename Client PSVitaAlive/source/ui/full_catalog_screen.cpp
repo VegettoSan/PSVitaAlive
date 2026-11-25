@@ -4642,6 +4642,7 @@ void FullCatalogScreen::activateFocusedLink(){
     const auto& savedZips = savedZipsFor(item);
     const int savedCount = static_cast<int>(savedZips.size());
     if (state_.linkFocus >= off && state_.linkFocus < off + savedCount) {
+        if (!guardCatalogAction()) return;
         if (installProgressActive_ || !savedZipRetry_) {
             showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1800);
             return;
@@ -4666,6 +4667,7 @@ void FullCatalogScreen::activateFocusedLink(){
     const int linkDetailIndex = idxs[li];
     const CatalogLink&l=item.linkDetails[linkDetailIndex];
     if(!linkAction_||!actionableLink(l)){diagnostics::log(std::string("[UI] non-download link selected: ")+l.url);return;}
+    if (!guardCatalogAction()) return;
     if ((state_.catalog == CatalogType::PspGames || state_.catalog == CatalogType::Ps1Games)
         && !settingsEdit_.pspSetupDone) {
         openPspSetupWizard(false, i, linkDetailIndex);
@@ -4700,6 +4702,7 @@ void FullCatalogScreen::resolveSavedZipAction(int action) {
         return;
     }
     if (action != 0 || savedZipActionDeleteConfirm_ || installProgressActive_) return;
+    if (!guardCatalogAction()) return;
     const CatalogItem* item = nullptr;
     for (const auto& candidate : catalogView()) {
         if (candidate.id == savedZipActionAppId_ &&
@@ -4783,6 +4786,7 @@ void FullCatalogScreen::openPspSetupWizard(bool forInstallAll, int itemIndex, in
 }
 
 void FullCatalogScreen::applyPspLiveAreaPluginGateOrRun(bool forInstallAll, int itemIndex, int linkDetailIndex) {
+    if (!guardCatalogAction()) return;
     if (itemIndex < 0 || itemIndex >= (int)catalogView().size()) return;
     const CatalogItem& item = catalogView()[itemIndex];
 
@@ -4848,6 +4852,7 @@ void FullCatalogScreen::closePspSetupWizard(bool confirm) {
         pspSetupPendingLinkIndex_ = -1;
         return;
     }
+    if (!guardCatalogAction()) return;
     // LiveArea without NoPspEmuDrm: keep modal open, do not save, explain options.
     if (pspSetupTarget_ == ::psvitaalive::PspTarget::LiveArea) {
         pluginsStatus_ = ::psvitaalive::PluginDetector::scan();
@@ -6609,6 +6614,7 @@ int FullCatalogScreen::selfUpdateWorkerEntry(SceSize args, void* argp) {
 }
 
 void FullCatalogScreen::triggerSelfUpdateAction() {
+    if (!guardCatalogAction()) return;
     if (selfUpdateBusy_.load() || installProgressActive_) {
         showToast(::psvitaalive::L(::psvitaalive::TextId::LockedStillRunning), 2800);
         return;
@@ -7182,10 +7188,10 @@ void FullCatalogScreen::drawSettings() {
         const int maxW = SCREEN_W - 40;
         skin::footer(&font_,12,SCREEN_H-FOOTER_H,maxW,FOOTER_H,TEXT,sf);
     }
-    drawToast();
     if (themeSetupVisible_) drawThemeSetupOverlay();
     if (essentialPluginsModal_) drawEssentialPluginsOverlay();
     if (pluginRebootModal_) drawPluginRebootOverlay();
+    drawToast();
     finishUiFrame();
 
     // Expose row geometry for touch via static (same frame layout)
@@ -8327,6 +8333,24 @@ float FullCatalogScreen::easeInOut(float t) const {
     if (t >= 1.f) return 1.f;
     // Smoothstep-ish cubic
     return t * t * (3.f - 2.f * t);
+}
+
+bool FullCatalogScreen::guardCatalogAction() {
+    if (!catalogActionBlocked_ || !catalogActionBlocked_()) return true;
+    showToast(::psvitaalive::L("CATALOG_ACTION_WAIT"), 5600);
+    catalogPriorityToastUntilMs_ = toastExpiresMs_;
+    return false;
+}
+
+void FullCatalogScreen::showCatalogSyncToast(const std::string& message) {
+    if (sceKernelGetProcessTimeWide()/1000ULL < catalogPriorityToastUntilMs_) return;
+    showToast(message, 2400);
+}
+
+bool FullCatalogScreen::catalogWorkExcluded() const {
+    return installProgressActive_ || essentialInstallRunning_ ||
+        installAllPhase_ != InstallAllPhase::Hidden || pluginChoiceModal_ ||
+        pspSetupModal_ || savedZipActionVisible_ || selfUpdateBusy_.load();
 }
 
 void FullCatalogScreen::showToast(const std::string& message, uint64_t durationMs) {
@@ -9846,6 +9870,7 @@ int FullCatalogScreen::preferredVpkDownloadIndex(const CatalogItem& item) const{
     return fallback;
 }
 void FullCatalogScreen::activatePrimaryAction(const CatalogItem& item){
+    if (!guardCatalogAction()) return;
     if(installProgressActive_||catalogLoading_||selfUpdateBusy_.load()){
         showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation),1800);
         return;
@@ -9917,6 +9942,7 @@ void FullCatalogScreen::collectInstallAllOptions(const CatalogItem& item, const 
 }
 
 void FullCatalogScreen::openInstallAllWizard() {
+    if (!guardCatalogAction()) return;
     if (installProgressActive_ || catalogLoading_ || pluginChoiceModal_) {
         showToast(::psvitaalive::L(::psvitaalive::TextId::ToastWaitOperation), 1600);
         return;
@@ -10017,6 +10043,7 @@ void FullCatalogScreen::closeInstallAllWizard(bool cancel) {
 }
 
 void FullCatalogScreen::installAllAdvancePick() {
+    if (!guardCatalogAction()) return;
     if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
         closeInstallAllWizard(true);
         return;
@@ -10103,6 +10130,7 @@ void FullCatalogScreen::installAllAdvancePick() {
 
 void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
     if (installAllPhase_ != InstallAllPhase::PickPlugin) return;
+    if (install && !guardCatalogAction()) return;
     if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size() ||
         installAllPluginPickIndex_ >= installAllPluginCandidates_.size()) {
         closeInstallAllWizard(true);
@@ -10139,6 +10167,7 @@ void FullCatalogScreen::installAllAdvancePluginPick(bool install) {
 
 void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
     if (!pluginChoiceModal_) return;
+    if (install && !guardCatalogAction()) return;
     const int itemIndex = pluginChoiceItemIndex_;
     const int linkIndex = pluginChoiceLinkIndex_;
     pluginChoiceModal_ = false;
@@ -10166,6 +10195,7 @@ void FullCatalogScreen::resolveIndividualPluginChoice(bool install) {
 // keep the project's existing performance-oriented compiler flags.
 __attribute__((optimize("Os")))
 void FullCatalogScreen::installAllStartQueue() {
+    if (!guardCatalogAction()) { closeInstallAllWizard(true); return; }
     if (installAllItemIndex_ < 0 || installAllItemIndex_ >= (int)catalogView().size()) {
         closeInstallAllWizard(true);
         return;
@@ -11963,6 +11993,7 @@ void FullCatalogScreen::tryShowEssentialPluginsPrompt() {
 
 void FullCatalogScreen::closeEssentialPluginsPrompt(bool install) {
     if (!essentialPluginsModal_) return;
+    if (install && !guardCatalogAction()) return;
     essentialPluginsModal_ = false;
     if (!install) {
         diagnostics::log("[UI] essential plugins: remind later");
@@ -12209,7 +12240,7 @@ void FullCatalogScreen::drawPluginRebootOverlay() {
         ::psvitaalive::L(::psvitaalive::TextId::PluginRebootFooter), w - 56);
 }
 
-void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : (state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel)));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawToast();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
+void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);drawCatalogPanel(0,HEADER_H+TABS_H,SCREEN_W,SCREEN_H-HEADER_H-TABS_H-FOOTER_H,false);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : ::psvitaalive::L(::psvitaalive::TextId::FooterCatalog));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();if(filterModalOpen_)drawFilterOverlay();if(!catalogError_.empty())::psvitaalive::ui::uiDrawText(&font_,18,HEADER_H+TABS_H+26,ACCENT,.66f,catalogError_.c_str());drawToast();drawWebQrOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();finishUiFrame();}void FullCatalogScreen::drawSplitDetail(){startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H,lw=SCREEN_W/2;drawCatalogPanel(0,top,lw,hh,true);drawDetailPanel(lw,top,SCREEN_W-lw,hh);vita2d_draw_rectangle(lw-1,top,2,hh,BORDER);drawFooterBar(&font_, navigationFocus_.visible && navigationFocus_.zone != FocusZone::Catalog && chromeNavigationAvailable() ? ::psvitaalive::L("NAV_CHROME_HINT") : (state_.activePanel==UiPanel::Catalog ? ::psvitaalive::L(::psvitaalive::TextId::FooterDetailList) : ::psvitaalive::L(::psvitaalive::TextId::FooterDetailPanel)));drawReportChip();drawDiscordChip();drawChromeFocus(FocusZone::Footer,2,SCREEN_W-UX0_FOOTER_PANEL_W-6,SCREEN_H-FOOTER_H+2,UX0_FOOTER_PANEL_W,FOOTER_H-4);if(catalogLoading_||installProgressActive_||catalogSplashAlpha_>0.01f)drawLoadingOverlay();if(newsVisible_)drawNewsOverlay();if(themeSetupVisible_)drawThemeSetupOverlay();if(reportConfirmVisible_)drawReportConfirmOverlay();if(dataRequestConfirmVisible_)drawDataRequestConfirmOverlay();if(installAllPhase_!=InstallAllPhase::Hidden&&installAllPhase_!=InstallAllPhase::Running)drawInstallAllOverlay();if(essentialPluginsModal_)drawEssentialPluginsOverlay();if(pspSetupModal_)drawPspSetupOverlay();if(pluginRebootModal_)drawPluginRebootOverlay();if(pluginChoiceModal_||installAllPhase_==InstallAllPhase::PickPlugin)drawPluginChoiceOverlay();drawWebQrOverlay();if(savedZipActionVisible_)drawSavedZipActionOverlay();if(archiveWarningVisible_)drawArchiveServiceOverlay();drawToast();finishUiFrame();}void FullCatalogScreen::drawOpeningDetail(){float p=transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,rw,hh);finishUiFrame();}void FullCatalogScreen::drawClosingDetail(){float p=1.0f-transitionProgress();int lw=SCREEN_W-(int)(SCREEN_W/2*p),rw=SCREEN_W-lw;startSkinFrame();vita2d_set_clear_color(BG);vita2d_clear_screen();drawHeader(SCREEN_W);drawTabs(SCREEN_W);int top=HEADER_H+TABS_H,hh=SCREEN_H-HEADER_H-TABS_H-FOOTER_H;drawCatalogPanel(0,top,lw,hh,true);if(rw>0)drawDetailPanel(lw,top,SCREEN_W-lw,hh);finishUiFrame();}void FullCatalogScreen::finishUiFrame(){
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.

@@ -7,7 +7,7 @@ namespace psvitaalive { namespace queue {
 // Main-thread coordinator. Backend and Catalog expose the native adapter
 // methods; the same code can be exercised on a host with deterministic fakes.
 // No worker/thread is introduced here. The UI never owns the queue cursor.
-enum class SubmitCode { Accepted, Rejected, ExternalBusy, ProtectionUnavailable, ReportPending };
+enum class SubmitCode { Accepted, Rejected, ExternalBusy, CatalogBusy, ProtectionUnavailable, ReportPending };
 struct SubmitResult {
     SubmitCode code=SubmitCode::Rejected;
     Admission admission=Admission::Invalid;
@@ -38,6 +38,7 @@ public:
     SubmitResult submit(Job job,bool externalReady) {
         if(reportReady_ || (hadJobs_ && !engaged_)) return {SubmitCode::ReportPending,Admission::Invalid};
         if(!externalReady) return {SubmitCode::ExternalBusy,Admission::Invalid};
+        if(catalog_.actionBlockedByCatalog()) return {SubmitCode::CatalogBusy,Admission::Invalid};
         const bool first=!engaged_;
         if(first) {
             if(gateHeld_ || !backend_.canStartQueuedStep())
