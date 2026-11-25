@@ -12736,7 +12736,7 @@ void FullCatalogScreen::drawQueueScreen() {
             const char* key=step.state==State::Completed?"QUEUE_DONE":step.state==State::Failed?"QUEUE_FAILED":
                 step.state==State::Cancelled?"QUEUE_CANCELLED":step.state==State::Skipped?(selected->handoffDeferred?"QUEUE_SYSTEM_DEFERRED":"QUEUE_SKIPPED"):
                 step.state==State::HandedOff?"QUEUE_HANDOFF":step.state==State::Running?"QUEUE_PREPARING":"QUEUE_WAITING";
-            const unsigned resultColor=step.state==State::Failed?RED:step.state==State::Completed?GREEN:step.state==State::Skipped||step.state==State::Cancelled?DIM:ACCENT;
+            const unsigned resultColor=step.state==State::Failed?RGBA8(0xE0,0x32,0x32,255):step.state==State::Completed?RGBA8(0x3B,0xD9,0x60,255):step.state==State::Skipped||step.state==State::Cancelled?DIM:ACCENT;
             label(635,y+23,275,resultColor,.73f,::psvitaalive::L(key));
             label(36,y+45,875,DIM,.66f,step.result.empty()?step.fileName:step.result);
         }
