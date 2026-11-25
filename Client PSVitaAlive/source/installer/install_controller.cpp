@@ -1272,26 +1272,49 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
     bool remainingKnown = !session.ownerId();
     bool useLiveCredit=false;
     queue::LiveStaging::Sample live{};
+    queue::Space revisedActive;
+    bool revised=false;
+    uint64_t payloadBound=0;
     if (owner && owner->nextStep < owner->steps.size()) {
         remainingKnown = true;
         if (token.job) {
             const auto& step = owner->steps[owner->nextStep];
-            if (!ownsQueuedStep() || !(queuedToken_ == token) ||
-                !step.expectedBytes || queueObservedPayload_.load(std::memory_order_acquire) > step.expectedBytes)
+            payloadBound=step.expectedBytes;
+            if (!ownsQueuedStep() || !(queuedToken_ == token) || !payloadBound)
                 remainingKnown = false;
+            const auto observed=queueObservedPayload_.load(std::memory_order_acquire);
+            if(remainingKnown && observed>payloadBound) {
+                // Catalog lengths are hints, not exact HTTP lengths. Re-plan
+                // the current component using the observed payload, without
+                // changing immutable queued requests or claiming disk credit.
+                queue::Job draft;
+                draft.appId=owner->appId; draft.titleId=owner->titleId;
+                draft.steps.push_back(step);
+                draft.steps.front().state=queue::State::Waiting;
+                draft.steps.front().expectedBytes=observed;
+                if(step.savedZipPath.empty() && step.component!=queue::Component::SystemPackage &&
+                   owner->routing.matches(settings_) && prepareQueuedJob(draft)==QueuePlan::Ready &&
+                   draft.steps.front().component==step.component && !draft.exclusiveTail &&
+                   draft.steps.front().destination==step.destination &&
+                   queue::validSpace(draft.steps.front().space)) {
+                    revisedActive=draft.steps.front().space;
+                    revised=true;
+                    payloadBound=observed;
+                } else remainingKnown=false;
+            }
             if (remainingKnown && workerDone_.load(std::memory_order_acquire) &&
                 static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Paused &&
                 !activeJobId_.empty()) {
                 const auto* job = downloads_.findJob(activeJobId_);
                 if (job && job->state == DownloadState::Paused &&
-                    job->expectedSize <= step.expectedBytes) {
+                    job->expectedSize <= payloadBound) {
                     StorageManager storage;
                     const uint64_t parts = parallelSavedBytes(job->temporaryPath);
                     const int64_t serial = storage.fileSize(job->temporaryPath);
                     const uint64_t observed = parts ? parts :
                         (serial > 0 ? static_cast<uint64_t>(serial) : 0);
                     stable[0] = std::min(std::min(observed, job->downloadedSize),
-                                         step.expectedBytes);
+                                         payloadBound);
                 } else remainingKnown = false;
             }
             if(remainingKnown && !workerDone_.load(std::memory_order_acquire) &&
@@ -1310,13 +1333,14 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
     // Probe free bytes AFTER sampling the prefix. Growth between these two
     // readings is conservatively charged twice; a reset discards the credit.
     if(remainingKnown && owner) {
-        if(useLiveCredit && queueLiveStaging_.stillValid(live) &&
-           static_cast<InstallStatus::State>(state_.load())==InstallStatus::State::Downloading &&
-           queueObservedPayload_.load(std::memory_order_acquire)<=owner->steps[owner->nextStep].expectedBytes)
-            stable[0]=std::min(live.bytes,owner->steps[owner->nextStep].expectedBytes);
-        else if(useLiveCredit && queueObservedPayload_.load(std::memory_order_acquire)>owner->steps[owner->nextStep].expectedBytes)
+        // The observed bound must still cover the transfer after the probe,
+        // even if the worker has since entered extraction.
+        if(token.job && queueObservedPayload_.load(std::memory_order_acquire)>payloadBound)
             remainingKnown=false;
-        if(remainingKnown)out.activeRemaining=queue::remainingGroupSpace(*owner,stable);
+        if(remainingKnown && useLiveCredit && queueLiveStaging_.stillValid(live) &&
+           static_cast<InstallStatus::State>(state_.load())==InstallStatus::State::Downloading)
+            stable[0]=std::min(live.bytes,payloadBound);
+        if(remainingKnown)out.activeRemaining=queue::remainingGroupSpace(*owner,stable,revised?&revisedActive:nullptr);
     }
     out.valid = out.measured[0];
     // Snapshot is captured on admission/dispatch, not on every frame. Log
@@ -1327,6 +1351,7 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
     if(owner && owner->nextStep<owner->steps.size())measurement+=" active="+std::to_string(owner->id)+
         " expected="+std::to_string(owner->steps[owner->nextStep].expectedBytes)+
         " observed="+std::to_string(queueObservedPayload_.load(std::memory_order_acquire))+
+        " revised="+std::to_string(revised)+
         " remainingKnown="+std::to_string(remainingKnown)+
         " remainingValid="+std::to_string(queue::validSpace(out.activeRemaining));
     diagnostics::log(measurement);

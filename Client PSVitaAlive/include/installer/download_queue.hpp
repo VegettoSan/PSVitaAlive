@@ -212,12 +212,25 @@ inline bool shouldWriteDataRevision(const Job& j) {
     return hasFiles;
 }
 // Compute the entire remaining group, not merely the current transfer.
-inline Space remainingGroupSpace(const Job& j, const Bytes& stableStaging={}) {
+inline Space remainingGroupSpace(const Job& j, const Bytes& stableStaging={}, const Space* revisedActive=nullptr) {
     if(j.nextStep>=j.steps.size()) return {};
     std::vector<Space> rest;
     rest.reserve(j.steps.size()-j.nextStep);
-    for(size_t i=j.nextStep;i<j.steps.size();++i)
-        rest.push_back(i==j.nextStep?creditStaging(j.steps[i].space,stableStaging):j.steps[i].space);
+    for(size_t i=j.nextStep;i<j.steps.size();++i) {
+        Space space=j.steps[i].space;
+        if(i==j.nextStep) {
+            // A server size correction must never reduce the original reserve.
+            if(revisedActive) {
+                if(!validSpace(space) || !validSpace(*revisedActive))return {};
+                for(size_t m=0;m<space.peak.size();++m) {
+                    if(revisedActive->peak[m]>space.peak[m])space.peak[m]=revisedActive->peak[m];
+                    if(revisedActive->retained[m]>space.retained[m])space.retained[m]=revisedActive->retained[m];
+                }
+            }
+            space=creditStaging(space,stableStaging);
+        }
+        rest.push_back(space);
+    }
     return sequenceSpace(rest);
 }
 struct Token {

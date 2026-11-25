@@ -27,9 +27,10 @@ namespace {
 // multi-megabyte entries. Still bounded to 256 KiB of extra heap RAM.
 constexpr size_t EXTRACT_CHUNK = 256 * 1024;
 constexpr uint64_t ZIP_PROGRESS_INTERVAL_US = 250000ULL;
-// Let Vita's render thread run between large ux0 write bursts. 1ms per MiB
-// adds little overhead while reducing sustained worker/IO scheduling pressure.
+// Yield between large write bursts OR after a frame-sized time slice.
+// Slow storage can take hundreds of milliseconds to reach a full MiB.
 constexpr uint64_t ZIP_COOPERATIVE_YIELD_BYTES = 1024ULL * 1024ULL;
+constexpr uint64_t ZIP_COOPERATIVE_YIELD_INTERVAL_US = 16000ULL;
 constexpr uint64_t ZIP_VERBOSE_ENTRY_MIN_SIZE = 4ULL * 1024ULL * 1024ULL;
 constexpr zip_int64_t ZIP_ENTRY_LOG_STEP = 64;
 // Tested Vita I/O return codes used to avoid redundant metadata lookups.
@@ -1101,6 +1102,7 @@ ZipResult ZipExtractor::extract(
     ZipExistingOpenPolicy openPolicy;
     bool exclusiveCreationSupported = true;
     uint64_t bytesSinceYield = 0;
+    uint64_t lastYieldUs = sceKernelGetProcessTimeWide();
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
         if (shouldCancel && shouldCancel()) {
@@ -1338,11 +1340,13 @@ ZipResult ZipExtractor::extract(
             prog.bytesWritten += static_cast<uint64_t>(n);
             reportProgress();
             bytesSinceYield += static_cast<uint64_t>(n);
-            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES) {
+            const uint64_t nowYieldUs = sceKernelGetProcessTimeWide();
+            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES ||
+                nowYieldUs - lastYieldUs >= ZIP_COOPERATIVE_YIELD_INTERVAL_US) {
                 bytesSinceYield = 0;
-                // This worker is not the UI thread. Yield without allocating
-                // extra buffers or relaxing any ZIP validation/cancel checks.
+                // No extra buffer, no change to validation/cancellation.
                 sceKernelDelayThread(1000);
+                lastYieldUs = sceKernelGetProcessTimeWide();
             }
         }
 

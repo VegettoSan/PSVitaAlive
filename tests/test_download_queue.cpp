@@ -23,6 +23,26 @@ static Snapshot snap(const Session& s,uint64_t free, Space remaining={}) {
     return x;
 }
 int main() {
+    // Hardware regression: Archive.org ZIP is 290 bytes larger than the
+    // catalog hint. Recalculate rather than reject the next job.
+    {
+        constexpr uint64_t hint=268435456ULL, actual=268435746ULL;
+        Session s;
+        assert(s.admit(job("Kingdom Hearts data",hint),snap(s,34*GiB))==Admission::Accepted);
+        assert(s.claim(snap(s,34*GiB),true).status==Dispatch::Started);
+        const auto* active=s.find(s.ownerId());
+        assert(active);
+        const Space corrected=ux0Space(actual,actual,InstallSpaceMode::ZipArchive);
+        const auto remaining=remainingGroupSpace(*active,Bytes{64*kSpaceMiB,0,0},&corrected);
+        assert(validSpace(remaining));
+        assert(remaining.retained[0]==actual-64*kSpaceMiB);
+        assert(s.admit(job("VitaForge",6*kSpaceMiB),snap(s,33*GiB,remaining))==Admission::Accepted);
+        active=s.find(s.ownerId());
+        const Space smaller=ux0Space(hint-1,hint-1,InstallSpaceMode::ZipArchive);
+        assert(remainingGroupSpace(*active,{},&smaller).retained[0]==hint);
+        const Space invalid{};
+        assert(!validSpace(remainingGroupSpace(*active,{},&invalid)));
+    }
     // Order affects the peak: 2 GiB then 4 fails; reverse order fits.
     {
         Session s;
