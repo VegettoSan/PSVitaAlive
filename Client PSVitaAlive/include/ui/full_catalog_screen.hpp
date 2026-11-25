@@ -9,6 +9,7 @@
 #include "installer/app_settings.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/queue_history.hpp"
+#include "installer/queue_recovery.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
 #include "storage/installed_data_manager.hpp"
@@ -111,10 +112,12 @@ public:
     void setLinkActionCallback(LinkActionFn callback);
     // Experimental queue integration. Session and status are main-thread-owned.
     using QueueGroupFn = std::function<int(const CatalogItem&,const std::vector<CatalogLink>&)>;
-    enum class QueueAction { Cancel, Pause, Resume, KeepZip, DeleteZip, RetrySpace, CloseReport };
+    enum class QueueAction { Cancel, Pause, Resume, KeepZip, DeleteZip, RetrySpace, CloseReport, RestoreRecovery, DiscardRecovery };
     using QueueActionFn = std::function<bool(QueueAction,uint64_t)>;
     void setQueueCallbacks(const ::psvitaalive::queue::Session* session, QueueGroupFn group, QueueActionFn action);
     void setQueueHistory(const ::psvitaalive::queue::History* history) { queueHistory_=history; }
+    void setQueueRecovery(const ::psvitaalive::queue::Recovery* recovery) { queueRecovery_=recovery; }
+    bool queueRecoveryItem(const ::psvitaalive::queue::RecoveryEntry& record,CatalogItem& out) const;
     void setQueueFrame(bool protectedSession,bool report,const ::psvitaalive::InstallStatus& status,
                        bool waitingSpace,bool invariantBlocked);
     void queueAccepted(uint64_t id,bool first);
@@ -227,7 +230,11 @@ private:
     LinkActionFn linkAction_;
     const ::psvitaalive::queue::Session* queueSession_=nullptr;
     const ::psvitaalive::queue::History* queueHistory_=nullptr;
+    const ::psvitaalive::queue::Recovery* queueRecovery_=nullptr;
+    bool queueRecoveryVisible_=false;
     bool queueHistoryMode() const { return queueHistory_ && !queueProtected_ && !queueReport_; }
+    bool queueRecoveryMode() const { return queueHistoryMode() && queueRecovery_ && queueRecoveryVisible_ && !queueRecovery_->entries().empty(); }
+    void toggleQueueRecovery();
     QueueGroupFn queueGroup_;
     QueueActionFn queueAction_;
     ::psvitaalive::InstallStatus queueStatus_;

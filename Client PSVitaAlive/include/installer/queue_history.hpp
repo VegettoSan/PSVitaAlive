@@ -140,31 +140,31 @@ private:
 // Alternating complete snapshots: never truncate the currently valid slot.
 // Read back and verify a write before changing the active slot. A failed or
 // interrupted write leaves the preceding valid slot available at startup.
-template<class Storage>
+template<class Storage,class Data=History>
 class HistoryStore {
 public:
     HistoryStore(Storage& storage,std::string base):storage_(storage),base_(std::move(base)) {}
-    bool load(History& history) {
-        History a,b; uint64_t x=0,y=0;
+    bool load(Data& history) {
+        Data a,b; uint64_t x=0,y=0;
         const bool va=read(0,a,x), vb=read(1,b,y);
         if(va && (!vb || x>=y)){history=std::move(a);serial_=x;slot_=0;return true;}
         if(vb){history=std::move(b);serial_=y;slot_=1;return true;}
         return !storage_.exists(path(0)) && !storage_.exists(path(1));
     }
-    bool save(const History& history) {
+    bool save(const Data& history) {
         if(serial_==UINT64_MAX)return false;
         const int next=slot_==0?1:0;
         const auto data=history.encode(serial_+1);
-        if(data.size()>History::maxBytes || !storage_.writeTextFile(path(next),data))return false;
-        History verify; uint64_t v=0;
+        if(data.size()>Data::maxBytes || !storage_.writeTextFile(path(next),data))return false;
+        Data verify; uint64_t v=0;
         if(!read(next,verify,v) || v!=serial_+1 || verify.encode(v)!=data)return false;
         serial_=v;slot_=next;return true;
     }
 private:
     std::string path(int i) const { return base_+(i==0?".a":".b"); }
-    bool read(int i,History& history,uint64_t& serial) {
+    bool read(int i,Data& history,uint64_t& serial) {
         const auto p=path(i); const int64_t bytes=storage_.fileSize(p);
-        if(bytes<=0 || static_cast<uint64_t>(bytes)>History::maxBytes)return false;
+        if(bytes<=0 || static_cast<uint64_t>(bytes)>Data::maxBytes)return false;
         std::vector<uint8_t> data;
         if(!storage_.readFile(p,data) || data.size()!=static_cast<size_t>(bytes))return false;
         return history.decode(std::string(data.begin(),data.end()),serial);

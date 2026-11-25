@@ -24,6 +24,7 @@ namespace skin = psvitaalive::skin;
 #include "installer/install_controller.hpp"
 #include "installer/queue_coordinator.hpp"
 #include "installer/queue_history.hpp"
+#include "installer/queue_recovery.hpp"
 #include <ctime>
 #include "update/installed_release_tracker.hpp"
 #include "installer/install_archive_policy.hpp"
@@ -343,10 +344,24 @@ int main(){
     q::HistoryStore<psvitaalive::StorageManager> historyStore(storage,"ux0:data/psvitaalive/queue_history");
     if(!historyStore.load(queueHistory)) psvitaalive::diagnostics::log("[Queue] history unavailable; starting empty");
     bool historyDirty=false;
+    q::Recovery recovery;
+    q::HistoryStore<psvitaalive::StorageManager,q::Recovery> recoveryStore(storage,"ux0:data/psvitaalive/queue_checkpoint");
+    if(!recoveryStore.load(recovery)) psvitaalive::diagnostics::log("[Queue] checkpoint unavailable; no automatic replay");
+    bool recoveryDirty=false;
     psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
     screen.setQueueHistory(&queueHistory);
+    screen.setQueueRecovery(&recovery);
     using QueueAction=psvitaalive::ui::FullCatalogScreen::QueueAction;
     q::Coordinator<psvitaalive::InstallController,psvitaalive::CatalogManager> queue(installer,catalogs);
+    auto syncRecovery=[&](const q::Session& session) {
+        recoveryDirty=recovery.observe(session)||recoveryDirty;
+        if(!recoveryDirty)return true;
+        if(!recoveryStore.save(recovery)) {
+            psvitaalive::diagnostics::log("[Queue] checkpoint write failed; previous valid slot retained");return false;
+        }
+        recoveryDirty=false;return true;
+    };
+    queue.setBeforeStart(syncRecovery);
     // Return 1 accepted, 0 rejected, -1 legacy-only route while idle.
     auto submitQueue=[&](q::Job job)->int {
         if(!screen.guardCatalogAction()) return 0;
@@ -359,6 +374,8 @@ int main(){
                plan!=psvitaalive::InstallController::QueuePlan::Invalid) return -1;
             screen.showToast(psvitaalive::L("QUEUE_UNSUPPORTED"),5600); return 0;
         }
+        recoveryDirty=recovery.observe(queue.session())||recoveryDirty;
+        if(!recovery.canAdmit()) {screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500);return 0;}
         const bool first=!queue.protectedSession();
         const auto result=queue.submit(std::move(job),screen.queueExternalReady());
         if(result.code!=q::SubmitCode::Accepted) {
@@ -368,16 +385,22 @@ int main(){
                 result.admission==q::Admission::UnknownSpace?"QUEUE_UNKNOWN_SPACE":"QUEUE_BUSY";
             screen.showToast(psvitaalive::L(key),5600); return 0;
         }
+        const auto admittedId=queue.session().jobs().back().id;
+        if(!syncRecovery(queue.session())) {
+            queue.cancel(admittedId); syncRecovery(queue.session());
+            screen.showToast(psvitaalive::L("QUEUE_CHECKPOINT_FAILED"),5600);return 0;
+        }
         images.setNetworkPaused(true);
         if(first) images.cancelQueuedRequests();
         screen.setQueueFrame(true,false,{},false,false);
         screen.queueAccepted(queue.session().jobs().back().id,first);
         return 1;
     };
-    auto newJob=[](const psvitaalive::ui::CatalogItem& item,bool all) {
+    auto newJob=[&screen](const psvitaalive::ui::CatalogItem& item,bool all) {
         q::Job job; job.appId=item.id; job.titleId=item.titleId; job.name=item.name;
         job.version=item.version; job.versionDate=item.versionDate;
         job.dataRevision=item.dataRevision; job.installAll=all;
+        job.catalogType=static_cast<uint8_t>(screen.activeCatalog());
         // Keep ordinary Install All failure continuation, not cancellation.
         job.continueIndependentOnFailure=all; return job;
     };
@@ -544,6 +567,54 @@ int main(){
         if(!started) screen.clearInstallDisplayItem();
         return started;
     });
+    // Recovery reselects only an untouched, known internal Homebrew request.
+    // Never deserialize a URL, zRIF, custom path, plugin line or backend token.
+    auto restoreRecovery=[&](uint64_t id)->bool {
+        const auto reject=[&]() {screen.showToast(psvitaalive::L("QUEUE_RECOVERY_MANUAL"),5600);return false;};
+        if(!id || id>recovery.entries().size() || queue.protectedSession() || queue.reportReady() ||
+           !screen.guardCatalogAction() || !screen.queueExternalReady())return reject();
+        const auto record=recovery.entries()[static_cast<size_t>(id-1)];
+        if(!record.restorable || record.interrupted ||
+           record.routing!=q::recoveryRouting(q::Routing::capture(installer.settings())))return reject();
+        psvitaalive::ui::CatalogItem item;
+        if(!screen.queueRecoveryItem(record,item))return reject();
+        if(const char* blocked=psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
+            screen.showToast(psvitaalive::L(blocked),5600);return false;
+        }
+        auto job=newJob(item,record.installAll);
+        for(const auto& saved:record.steps) {
+            q::Step chosen; unsigned matches=0;
+            for(const auto& link:item.linkDetails) {
+                if(!link.zrif.empty() || !link.section.empty() || !link.line.empty() ||
+                   q::recoverySource(link.url,link.type,link.contentId)!=saved.source)continue;
+                q::Step step;step.url=link.url;step.fileName=fileNameFromUrl(link.url,item.id);
+                step.linkType=link.type;step.contentId=link.contentId;
+                if(isZipName(step.fileName) || psvitaalive::isDataOrGameFilesLinkType(link.type)) {
+                    if(link.extractPath.empty())continue; // user-picked destinations require manual review
+                    step.destination=link.extractPath;
+                }
+                step.expectedBytes=psvitaalive::chooseSelectedLinkSizeBytes(
+                    parseCatalogSizeBytes(link.size),parseCatalogSizeBytes(item.size),link.url,item.downloadUrl);
+                if(q::recoveryRequest(step)!=saved.request && link.url==item.downloadUrl)
+                    step.fileName=item.downloadFileName;
+                if(q::recoveryRequest(step)!=saved.request)continue;
+                chosen=std::move(step);++matches;
+            }
+            if(matches!=1)return reject();
+            job.steps.push_back(std::move(chosen));
+        }
+        if(installer.prepareQueuedJob(job)!=psvitaalive::InstallController::QueuePlan::Ready ||
+           !q::recoveryRestorable(job) || job.steps.size()!=record.steps.size())return reject();
+        for(size_t i=0;i<job.steps.size();++i)
+            if(q::recoveryRequest(job.steps[i])!=record.steps[i].request)return reject();
+        q::RecoveryEntry removed;
+        const size_t index=static_cast<size_t>(id-1);
+        if(!recovery.take(index,removed))return reject();
+        recoveryDirty=true;
+        if(submitQueue(std::move(job))==1)return true;
+        recovery.insert(index,std::move(removed));recoveryDirty=true;syncRecovery(queue.session());
+        return false;
+    };
     screen.setQueueCallbacks(&queue.session(),
         [&](const psvitaalive::ui::CatalogItem& item,const std::vector<psvitaalive::ui::CatalogLink>& links){
             auto job=newJob(item,true);
@@ -560,13 +631,26 @@ int main(){
         [&](QueueAction action,uint64_t id) {
             const auto token=queue.session().activeToken();
             switch(action) {
-            case QueueAction::Cancel: return queue.cancel(id);
+            case QueueAction::Cancel: {
+                if(!queue.cancel(id))return false;
+                if(!syncRecovery(queue.session()))screen.showToast(psvitaalive::L("QUEUE_CHECKPOINT_FAILED"),5600);
+                return true;
+            }
             case QueueAction::Pause: return id==token.job && queue.pause(token);
             case QueueAction::Resume: return id==token.job && queue.resume(token);
             case QueueAction::KeepZip: return id==token.job && queue.resolveZip(token,true);
             case QueueAction::DeleteZip: return id==token.job && queue.resolveZip(token,false);
             case QueueAction::RetrySpace: queue.retryCapacity(); return true;
             case QueueAction::CloseReport: return queue.acknowledgeReport();
+            case QueueAction::RestoreRecovery: return restoreRecovery(id);
+            case QueueAction::DiscardRecovery: {
+                if(!id || queue.protectedSession() || queue.reportReady())return false;
+                q::RecoveryEntry removed;const size_t index=static_cast<size_t>(id-1);
+                if(!recovery.take(index,removed))return false;
+                recoveryDirty=true;
+                if(syncRecovery(queue.session()))return true;
+                recovery.insert(index,std::move(removed));recoveryDirty=true;return false;
+            }
             }
             return false;
         });
@@ -922,6 +1006,11 @@ while(true){
                 }
                 screen.requestUx0SpaceRefresh();
             }
+            const bool recoveryChanged=recovery.observe(queue.session());
+            recoveryDirty=recoveryDirty||recoveryChanged;
+            if(recoveryDirty && !queue.session().activeToken().job &&
+               (recoveryChanged || event.state==q::TickState::Settled || event.state==q::TickState::StartFailed ||
+                event.state==q::TickState::Finished))syncRecovery(queue.session());
             // Capture display-only terminal records on lifecycle changes, never per-frame I/O.
             bool historyChanged=false;
             if(queueHistory.observedGeneration()!=queue.session().generation()) {

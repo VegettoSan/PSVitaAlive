@@ -155,6 +155,7 @@ struct Step {
 struct Job {
     std::string appKey; // canonical catalog identity, not a visible row index
     std::string appId, titleId, name, version, versionDate;
+    uint8_t catalogType=0; // display/recovery identity, not a catalog row index
     int dataRevision=0, releaseRevision=0;
     Routing routing;
     bool installAll=false;

@@ -198,5 +198,15 @@ int main() {
         assert(q.session().jobs()[0].steps[2].state==State::Skipped);
         assert(q.tick(true,4).state==TickState::Finished);
     }
+    {
+        FakeBackend b; FakeCatalog c; TestQueue q(b,c);
+        int checkpoints=0;
+        q.setBeforeStart([&](const Session& s){++checkpoints;assert(s.activeToken().job && !b.owner.job);return false;});
+        auto j=makeJob("checkpoint",2);j.continueIndependentOnFailure=true;
+        assert(q.submit(j,true).code==SubmitCode::Accepted);
+        assert(q.tick(true,0).state==TickState::StartFailed && checkpoints==1 && b.starts==0);
+        assert(q.session().jobs()[0].aborted && q.session().jobs()[0].steps[1].state==State::Skipped);
+        assert(q.tick(true,1).state==TickState::Finished);
+    }
     std::cout<<"Queue coordinator tests passed\n";
 }

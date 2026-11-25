@@ -1,6 +1,7 @@
 #pragma once
 #include "installer/download_queue.hpp"
 #include <utility>
+#include <functional>
 
 namespace psvitaalive { namespace queue {
 
@@ -39,6 +40,9 @@ public:
             !session_.activeToken().job && !backend_.ownsQueuedStep() && backend_.canStartQueuedStep();
     }
     const Observation& observation() const { return observed_; }
+    // Optional durable checkpoint barrier: invoked after claim and before
+    // the native worker can mutate disk. A failed save aborts this group.
+    void setBeforeStart(std::function<bool(const Session&)> callback) { beforeStart_=std::move(callback); }
 
     // externalReady excludes storage mutations, self-update and startup
     // plugin operations. Catalog activity is drained asynchronously in tick.
@@ -132,6 +136,12 @@ public:
             return {TickState::WaitingSpace,0,0,blocked_};
         }
         if(start.status!=Dispatch::Started) return {TickState::WaitingBarrier,0,0,start.status};
+        if(beforeStart_ && !beforeStart_(session_)) {
+            session_.cancel(start.token.job);
+            if(!session_.settle(start.token,Outcome::Failed,true,false,"Queue checkpoint write failed"))
+                return {TickState::InvariantBlocked,start.token.job,start.token.step};
+            return {TickState::StartFailed,start.token.job,start.token.step};
+        }
         if(!backend_.startQueuedStep(session_,start.token)) {
             // The native contract returns false only before taking ownership.
             if(backend_.ownsQueuedStep()) return {TickState::InvariantBlocked,start.token.job,start.token.step};
@@ -186,6 +196,7 @@ private:
     Catalog& catalog_;
     Session session_;
     Observation observed_{};
+    std::function<bool(const Session&)> beforeStart_;
     bool engaged_=false,gateHeld_=false,hadJobs_=false,reportReady_=false;
     Dispatch blocked_=Dispatch::Nothing;
     Token recoveryToken_{};

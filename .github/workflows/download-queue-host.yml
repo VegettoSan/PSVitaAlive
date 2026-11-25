@@ -9,6 +9,8 @@ on:
       - 'tests/test_queue_coordinator.cpp'
       - 'Client PSVitaAlive/include/installer/queue_history.hpp'
       - 'tests/test_queue_history.cpp'
+      - 'Client PSVitaAlive/include/installer/queue_recovery.hpp'
+      - 'tests/test_queue_recovery.cpp'
       - 'tests/test_download_queue.cpp'
       - '.github/workflows/download-queue-host.yml'
   workflow_dispatch:
@@ -41,3 +43,9 @@ jobs:
           /tmp/psva-history-test
           c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_history.cpp -o /tmp/psva-history-sanitize
           /tmp/psva-history-sanitize
+      - name: Test pending checkpoint and recovery identity
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -I"Client PSVitaAlive/include" tests/test_queue_recovery.cpp -o /tmp/psva-recovery-test
+          /tmp/psva-recovery-test
+          c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_recovery.cpp -o /tmp/psva-recovery-sanitize
+          /tmp/psva-recovery-sanitize

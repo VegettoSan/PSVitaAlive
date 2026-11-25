@@ -12307,6 +12307,18 @@ void FullCatalogScreen::setQueueCallbacks(const ::psvitaalive::queue::Session* s
                                           QueueGroupFn group,QueueActionFn action) {
     queueSession_=session; queueGroup_=std::move(group); queueAction_=std::move(action);
 }
+bool FullCatalogScreen::queueRecoveryItem(const ::psvitaalive::queue::RecoveryEntry& r,CatalogItem& out) const {
+    if(static_cast<uint8_t>(state_.catalog)!=r.catalogType) return false;
+    const CatalogItem* match=nullptr;
+    for(const auto& item:allItems_) {
+        if(item.id!=r.appId || item.titleId!=r.titleId || item.version!=r.version ||
+           item.versionDate!=r.versionDate || item.dataRevision!=r.dataRevision) continue;
+        if(match)return false;
+        match=&item;
+    }
+    if(!match)return false;
+    out=*match; return true;
+}
 bool FullCatalogScreen::queueExternalReady() const {
     return !installProgressActive_ && !selfUpdateBusy_.load() && !essentialInstallRunning_ &&
            !pluginRebootModal_ && !storageVisible_ && !installedDataVisible_ &&
@@ -12368,7 +12380,8 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
        !filterModalOpen_ && !pspSetupModal_ && !pluginChoiceModal_ &&
        installAllPhase_==InstallAllPhase::Hidden && !isTransitioning()) openQueue();
     if(!protectedSession && !report && queueVisible_ && queueSession_ && queueSession_->jobs().empty() &&
-       (!queueHistory_ || queueHistory_->entries().empty())) {
+       (!queueHistory_ || queueHistory_->entries().empty()) &&
+       (!queueRecovery_ || queueRecovery_->entries().empty())) {
         // Idle manager may remain open until user explicitly goes back.
         queueDetail_=false; queueSelectedId_=0;
     }
@@ -12398,7 +12411,8 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     queueTransitionUs_=sceKernelGetProcessTimeWide();
     const auto& jobs=queueSession_->jobs();
     if(queueHistoryMode()) {
-        queueSelectedId_=queueHistory_->entries().empty()?0:1;
+        queueRecoveryVisible_=queueRecovery_ && !queueRecovery_->entries().empty();
+        queueSelectedId_=queueRecoveryMode()?1:(queueHistory_->entries().empty()?0:1);
         queueDetail_=false;
     } else if(!queueSession_->find(id) && !jobs.empty())
         queueSelectedId_=queueSession_->activeToken().job?queueSession_->activeToken().job:jobs.front().id;
@@ -12419,7 +12433,7 @@ void FullCatalogScreen::closeQueue() {
 void FullCatalogScreen::queueMove(int delta) {
     if(!queueSession_)return;
     if(queueHistoryMode()) {
-        const int count=static_cast<int>(queueHistory_->entries().size());
+        const int count=static_cast<int>(queueRecoveryMode()?queueRecovery_->entries().size():queueHistory_->entries().size());
         if(!count) { queueSelectedId_=0; queueScroll_=0; return; }
         const int i=std::max(0,std::min(count-1,static_cast<int>(queueSelectedId_?queueSelectedId_-1:0)+delta));
         queueSelectedId_=static_cast<uint64_t>(i+1);
@@ -12436,9 +12450,19 @@ void FullCatalogScreen::queueMove(int delta) {
     if(i<queueScroll_)queueScroll_=i;
     if(i>=queueScroll_+5)queueScroll_=i-4;
 }
+void FullCatalogScreen::toggleQueueRecovery() {
+    if(!queueHistoryMode() || !queueRecovery_ || queueRecovery_->entries().empty())return;
+    queueRecoveryVisible_=!queueRecoveryVisible_; queueDetail_=queueConfirmCancel_=false;
+    queueScroll_=queueStepScroll_=0; queueSelectedId_=1; queueMove(0);
+}
 void FullCatalogScreen::queueCommand(QueueAction a) {
     if(!queueAction_)return;
-    if(!queueAction_(a,queueSelectedId_)) showToast(::psvitaalive::L("QUEUE_BUSY"),3500);
+    if(!queueAction_(a,queueSelectedId_)) {
+        if(a!=QueueAction::RestoreRecovery)showToast(::psvitaalive::L("QUEUE_BUSY"),3500);
+    } else if(queueHistoryMode()) {
+        if(!queueRecoveryMode())queueRecoveryVisible_=false;
+        queueMove(0);
+    }
 }
 void FullCatalogScreen::drawQueueChip() {
     if(!font_)return;
@@ -12496,6 +12520,33 @@ void FullCatalogScreen::drawQueueScreen() {
         case Component::PspMedia:return "PSP / PS1";default:return "ZIP";}
     };
     skin::surface(skin::ui_atlas::ui_panel,12,10,936,56,SURFACE);
+    if(queueRecoveryMode()) {
+        const auto& entries=queueRecovery_->entries();
+        label(26,45,900,ACCENT,1.12f,::psvitaalive::L("QUEUE_RECOVERY_TITLE"));
+        const auto* selected=queueSelectedId_>0 && queueSelectedId_<=entries.size()?
+            &entries[static_cast<size_t>(queueSelectedId_-1)]:nullptr;
+        for(int i=queueScroll_;i<static_cast<int>(entries.size()) && i<queueScroll_+5;++i) {
+            const auto& e=entries[static_cast<size_t>(i)]; const int y=79+(i-queueScroll_)*70;
+            const bool focus=static_cast<uint64_t>(i+1)==queueSelectedId_;
+            skin::surface(skin::ui_atlas::ui_card,20,y,920,64,focus?SURFACE2:SURFACE);
+            if(focus)skin::focus(20,y,920,64,ACCENT);
+            label(36,y+25,610,WHITE,.91f,e.name);
+            label(36,y+48,600,DIM,.71f,e.titleId+"  |  "+e.version+"  |  "+std::to_string(e.steps.size()));
+            label(650,y+32,270,ACCENT,.78f,::psvitaalive::L(e.interrupted?"QUEUE_RECOVERY_INTERRUPTED":"QUEUE_WAITING"));
+        }
+        if(selected) label(24,447,910,ACCENT,.73f,::psvitaalive::L(selected->restorable?"QUEUE_RECOVERY_RECHECK":"QUEUE_RECOVERY_MANUAL"));
+        btn(20,478,212,"QUEUE_BACK");
+        if(selected && selected->restorable)btn(244,478,212,"QUEUE_RECOVERY_RESTORE");
+        if(selected)btn(468,478,212,"QUEUE_RECOVERY_DISCARD");
+        btn(692,478,248,"QUEUE_HISTORY");
+        if(queueConfirmCancel_) {
+            vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
+            skin::surface(skin::ui_atlas::ui_dialog,120,160,720,210,PANEL);
+            label(142,215,676,WHITE,.90f,::psvitaalive::L(queueConfirmAction_==QueueAction::RestoreRecovery?"QUEUE_RECOVERY_CONFIRM_RESTORE":"QUEUE_RECOVERY_CONFIRM_DISCARD"));
+            btn(150,300,310,"QUEUE_BACK",true); btn(500,300,310,"QUEUE_CONFIRM");
+        }
+        drawToast();finishFrame();return;
+    }
     if(queueHistoryMode()) {
         const auto& entries=queueHistory_->entries();
         const auto stateKey=[](State state)->const char* {
@@ -12553,6 +12604,7 @@ void FullCatalogScreen::drawQueueScreen() {
         }
         btn(20,478,212,"QUEUE_BACK");
         if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW");
+        if(queueRecovery_ && !queueRecovery_->entries().empty())btn(692,478,248,"QUEUE_RECOVERY_TITLE");
         drawToast(); finishFrame(); return;
     }
     const auto& jobs=queueSession_->jobs();
@@ -12645,6 +12697,18 @@ void FullCatalogScreen::handleQueueInput() {
     if(pressed&SCE_CTRL_CIRCLE){if(queueDetail_)queueDetail_=false;else closeQueue();return;}
     if(pressed&SCE_CTRL_UP){if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_-1);else queueMove(-1);}
     if(pressed&SCE_CTRL_DOWN){if(queueDetail_)++queueStepScroll_;else queueMove(1);}
+    if(queueHistoryMode() && (pressed&SCE_CTRL_RTRIGGER)) {toggleQueueRecovery();return;}
+    if(queueRecoveryMode()) {
+        const auto& entries=queueRecovery_->entries();
+        if(queueSelectedId_ && queueSelectedId_<=entries.size()) {
+            if((pressed&SCE_CTRL_CROSS) && entries[static_cast<size_t>(queueSelectedId_-1)].restorable) {
+                queueConfirmAction_=QueueAction::RestoreRecovery;queueConfirmId_=queueSelectedId_;queueConfirmCancel_=true;
+            } else if(pressed&SCE_CTRL_TRIANGLE) {
+                queueConfirmAction_=QueueAction::DiscardRecovery;queueConfirmId_=queueSelectedId_;queueConfirmCancel_=true;
+            }
+        }
+        return;
+    }
     if(pressed&SCE_CTRL_CROSS && !queueDetail_ && queueSelectedId_){queueDetail_=true;queueStepScroll_=0;}
     if(queueHistoryMode())return;
     if(pressed&SCE_CTRL_TRIANGLE && queueProtected_ && queueSelectedId_) {
@@ -12678,6 +12742,19 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
         return;
     }
     if(y>=478 && y<522) {
+        if(queueHistoryMode() && x>=692 && x<940 && queueRecovery_ && !queueRecovery_->entries().empty()) {toggleQueueRecovery();return;}
+        if(queueRecoveryMode()) {
+            if(x>=20 && x<232){closeQueue();return;}
+            const auto& entries=queueRecovery_->entries();
+            if(queueSelectedId_ && queueSelectedId_<=entries.size()) {
+                if(x>=244 && x<456 && entries[static_cast<size_t>(queueSelectedId_-1)].restorable) {
+                    queueConfirmAction_=QueueAction::RestoreRecovery;queueConfirmId_=queueSelectedId_;queueConfirmCancel_=true;
+                } else if(x>=468 && x<680) {
+                    queueConfirmAction_=QueueAction::DiscardRecovery;queueConfirmId_=queueSelectedId_;queueConfirmCancel_=true;
+                }
+            }
+            return;
+        }
         if(x>=20 && x<232){if(queueDetail_)queueDetail_=false;else closeQueue();}
         else if(x>=244 && x<456){if(!queueDetail_ && queueSelectedId_){queueDetail_=true;queueStepScroll_=0;}
             else if(active)queueCommand(recovery?QueueAction::KeepZip:queueStatus_.state==::psvitaalive::InstallStatus::State::Paused?QueueAction::Resume:QueueAction::Pause);}
@@ -12690,10 +12767,10 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
     }
     if(!queueDetail_ && y>=79 && y<429) {
         const int i=queueScroll_+(y-79)/70;
-        const auto count=queueHistoryMode()?queueHistory_->entries().size():queueSession_->jobs().size();
+        const auto count=queueRecoveryMode()?queueRecovery_->entries().size():queueHistoryMode()?queueHistory_->entries().size():queueSession_->jobs().size();
         if(i>=0 && static_cast<size_t>(i)<count) {
             const auto id=queueHistoryMode()?static_cast<uint64_t>(i+1):queueSession_->jobs()[i].id;
-            if(id==queueSelectedId_) {queueDetail_=true;queueStepScroll_=0;}
+            if(id==queueSelectedId_ && !queueRecoveryMode()) {queueDetail_=true;queueStepScroll_=0;}
             else queueSelectedId_=id;
         }
     }
