@@ -36,7 +36,7 @@ public:
     // externalReady excludes storage mutations, self-update and startup
     // plugin operations. Catalog activity is drained asynchronously in tick.
     SubmitResult submit(Job job,bool externalReady) {
-        if(reportReady_) return {SubmitCode::ReportPending,Admission::Invalid};
+        if(reportReady_ || (hadJobs_ && !engaged_)) return {SubmitCode::ReportPending,Admission::Invalid};
         if(!externalReady) return {SubmitCode::ExternalBusy,Admission::Invalid};
         const bool first=!engaged_;
         if(first) {
@@ -67,6 +67,10 @@ public:
     TickEvent tick(bool externalReady,uint64_t nowUs) {
         if(!engaged_) {
             if(gateHeld_ && !releaseEmpty()) return {TickState::InvariantBlocked};
+            if(hadJobs_) {
+                hadJobs_=false; reportReady_=true;
+                return {TickState::Finished};
+            }
             return {};
         }
         if(!session_.protectedSession()) {
