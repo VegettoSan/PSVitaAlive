@@ -251,6 +251,40 @@ bool isPluginLinkType(const std::string& linkType) {
     return lt == "plugin" || lt == "plugins";
 }
 
+namespace {
+struct InstallRoute {
+    bool vitaPkgByMetadata=false;
+    bool pkgInstall=false;
+    bool pspPs1Adrenaline=false;
+    bool wantBgdl=false;
+    bool zipExtraction=false;
+    bool plugin=false;
+    InstallSpaceMode budgetMode=InstallSpaceMode::DirectPackage;
+};
+InstallRoute classifyInstallRoute(const std::string& url, const std::string& fileName,
+                                  const std::string& destination, const std::string& zrif,
+                                  const std::string& linkType, const std::string& contentId,
+                                  PspTarget target) {
+    InstallRoute r;
+    r.vitaPkgByMetadata=looksLikeVitaPkgMetadata(contentId,zrif);
+    r.pkgInstall=r.vitaPkgByMetadata || BgdlClient::looksLikePkgUrl(url,fileName);
+    r.pspPs1Adrenaline=r.pkgInstall && !r.vitaPkgByMetadata &&
+        looksLikePspPs1Pkg(linkType,contentId,fileName) && target==PspTarget::Adrenaline;
+    r.wantBgdl=r.pkgInstall && !r.pspPs1Adrenaline;
+    r.plugin=isPluginLinkType(linkType);
+    r.zipExtraction=!r.plugin && !destination.empty() &&
+        (isDataOrGameFilesLinkType(linkType) || FormatDetector::extensionOf(fileName)=="zip");
+    r.budgetMode=selectInstallSpaceMode(r.wantBgdl,r.zipExtraction,r.plugin);
+    return r;
+}
+bool queueDestinationMount(const std::string& path,queue::Mount& mount) {
+    if(path.compare(0,4,"ux0:")==0) { mount=queue::Mount::Ux0; return true; }
+    if(path.compare(0,5,"uma0:")==0) { mount=queue::Mount::Uma0; return true; }
+    if(path.compare(0,4,"ur0:")==0) { mount=queue::Mount::Ur0; return true; }
+    return false;
+}
+} // namespace
+
 std::string basenameFromPathOrUrl(const std::string& s) {
     if (s.empty()) return "plugin.bin";
     size_t q = s.find('?');
@@ -994,15 +1028,12 @@ bool InstallController::requestInstall(
 
     // Do not rely only on a .pkg suffix. Sony/NPS Vita CDN URLs often end in an
     // opaque token, while their content_id still unambiguously identifies PCS*.
-    const bool vitaPkgByMetadata = looksLikeVitaPkgMetadata(contentId, zrif);
-    const bool pkgInstall = vitaPkgByMetadata || BgdlClient::looksLikePkgUrl(url, fileName);
-    const bool pspPs1Pkg = pkgInstall && !vitaPkgByMetadata &&
-        looksLikePspPs1Pkg(linkType, contentId, fileName);
-    // Vita PKGs must never be downloaded by PSVitaAlive itself. The only direct-PKG
-    // exception is PSP/PS1 when the user explicitly targets Adrenaline/pspemu.
-    const bool pspPs1Adrenaline =
-        pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline;
-    const bool wantBgdl = pkgInstall && !pspPs1Adrenaline;
+    const auto route=classifyInstallRoute(url,fileName,zipDestination,zrif,linkType,contentId,
+                                          settings_.pspTarget);
+    const bool vitaPkgByMetadata=route.vitaPkgByMetadata;
+    const bool pkgInstall=route.pkgInstall;
+    const bool pspPs1Adrenaline=route.pspPs1Adrenaline;
+    const bool wantBgdl=route.wantBgdl;
 
     // Always reserve the downloaded payload AND its expected installed size
     // before enqueuing. For STORE ZIPs this includes both copies on ux0.
@@ -1010,10 +1041,8 @@ bool InstallController::requestInstall(
     // safeguard for unexpected expansion/corruption, not a second estimate.
     // For unknown catalog sizes, enforce a minimum and check HTTP headers
     // before writing body bytes.
-    const bool isZipExtraction = !isPluginLinkType(linkType) && !zipDestination.empty() &&
-        (isDataOrGameFilesLinkType(linkType) || FormatDetector::extensionOf(fileName) == "zip");
-    const InstallSpaceMode budgetMode = selectInstallSpaceMode(
-        wantBgdl, isZipExtraction, isPluginLinkType(linkType));
+    const bool isZipExtraction=route.zipExtraction;
+    const InstallSpaceMode budgetMode=route.budgetMode;
     const uint64_t requiredSpace = initialInstallSpaceBytes(expectedBytes, budgetMode);
     if (wantBgdl) diagnostics::log("[Installer] PKG space preflight on ux0 before system BGDL");
 
@@ -1270,6 +1299,81 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
     }
     out.valid = out.measured[0];
     return out;
+}
+
+InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job) const {
+    using namespace queue;
+    if(job.steps.empty() || job.steps.size()>Session::maxSteps ||
+       (job.titleId.empty() && job.appId.empty())) return QueuePlan::Invalid;
+    Job draft=job;
+    draft.routing=Routing::capture(settings_);
+    draft.appKey=draft.titleId.empty()?"id:"+draft.appId:"title:"+draft.titleId;
+    if(!draft.titleId.empty())
+        for(char& c:draft.appKey) c=static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+    InstallAllSpaceBudget batch;
+    std::vector<Space> spaces;
+    spaces.reserve(draft.steps.size());
+    for(auto& step:draft.steps) {
+        if(step.url.empty() || step.fileName.empty() || step.state!=State::Waiting)
+            return QueuePlan::Invalid;
+        const auto route=classifyInstallRoute(step.url,step.fileName,step.destination,step.zrif,
+            step.linkType,step.contentId,draft.routing.target);
+        const auto ext=FormatDetector::extensionOf(step.fileName);
+        if(!step.expectedBytes) return QueuePlan::UnknownSize;
+        // External BGDL reservations and compressed PSP conversion require
+        // separate policies. Never misclassify these as an internal VPK.
+        if(route.wantBgdl || route.pspPs1Adrenaline) return QueuePlan::UnsupportedRoute;
+        if(isDataOrGameFilesLinkType(step.linkType) &&
+           (!route.zipExtraction || ext=="vpk")) return QueuePlan::Invalid;
+        Mount target=Mount::Ux0;
+        const uint64_t payload=step.expectedBytes;
+        uint64_t targetPeak=0;
+        InstallAllSpaceLinkKind kind=InstallAllSpaceLinkKind::App;
+        if(route.plugin) {
+            if(step.destination.empty()) step.destination="ur0:tai/";
+            if(!queueDestinationMount(step.destination,target)) return QueuePlan::UnsupportedRoute;
+            step.component=Component::Plugin; kind=InstallAllSpaceLinkKind::Plugin;
+            targetPeak=saturatingSpaceAdd(payload,4*kSpaceMiB);
+        } else if(route.zipExtraction) {
+            if(!queueDestinationMount(step.destination,target)) return QueuePlan::UnsupportedRoute;
+            if(isDataOrGameFilesLinkType(step.linkType)) {
+                const size_t i=step.linkType.find_first_not_of(" \t\r\n_-");
+                step.component=i!=std::string::npos &&
+                    std::tolower(static_cast<unsigned char>(step.linkType[i]))=='g'
+                    ?Component::GameFiles:Component::DataFiles;
+                kind=InstallAllSpaceLinkKind::Extra;
+            } else step.component=Component::Other;
+            targetPeak=saturatingSpaceAdd(saturatingSpaceAdd(payload,payload/4),kSpaceZipReserve);
+        } else {
+            if(!step.destination.empty()) return QueuePlan::UnsupportedRoute;
+            if(ext=="vpk") {
+                step.component=Component::App;
+            } else if(ext=="iso" || ext=="pbp") {
+                if(draft.routing.target!=PspTarget::Adrenaline) return QueuePlan::UnsupportedRoute;
+                target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
+                step.component=Component::App;
+            } else return QueuePlan::UnsupportedRoute;
+            targetPeak=saturatingSpaceAdd(payload,payload/10);
+        }
+        // Catalog size is only an estimate of retained bytes; actual HTTP
+        // and extractor checks remain authoritative for compressed payloads.
+        step.space=mountedSpace(payload,route.budgetMode,target,targetPeak,payload);
+        if(route.plugin && target!=Mount::Ur0) {
+            // taiHEN configuration may live on ur0 even with a ux0 plugin.
+            step.space.peak[static_cast<size_t>(Mount::Ur0)]=4*kSpaceMiB;
+        }
+        if(!validSpace(step.space)) return QueuePlan::Invalid;
+        spaces.push_back(step.space);
+        addInstallAllSpaceEntry(batch,kind,payload);
+    }
+    draft.admissionSpace=sequenceSpace(spaces);
+    if(draft.installAll) {
+        const uint64_t legacy=installAllQueueRequiredSpaceBytes(batch);
+        draft.admissionSpace.peak[0]=std::max(draft.admissionSpace.peak[0],legacy);
+    }
+    if(!validSpace(draft.admissionSpace)) return QueuePlan::Invalid;
+    job=std::move(draft);
+    return QueuePlan::Ready;
 }
 
 bool InstallController::canStartQueuedStep() const {
