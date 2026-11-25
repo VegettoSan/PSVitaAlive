@@ -13,7 +13,8 @@ static Job job(const std::string& key) {
 }
 static Snapshot snap(const Session& s) {
     Snapshot x;x.generation=s.generation();x.valid=true;x.free[0]=1ULL<<40;x.measured[0]=true;
-    if(const auto* j=s.find(s.ownerId()))x.activeRemaining=remainingGroupSpace(*j);return x;
+    if(const auto* j=s.find(s.ownerId())) x.activeRemaining=remainingGroupSpace(*j);
+    return x;
 }
 struct Disk {
     std::map<std::string,std::string> data;
