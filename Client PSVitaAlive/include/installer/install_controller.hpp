@@ -121,6 +121,11 @@ public:
     bool queueProtectionActive() const { return queueProtection_.load(); }
     // Main-thread event-driven probe, never a per-frame filesystem poll.
     queue::Snapshot captureQueueSnapshot(const queue::Session& session);
+    enum class QueuePlan { Ready, Invalid, UnknownSize, UnsupportedRoute };
+    // Selected links and final destinations are already resolved by the UI.
+    // No network, prompts or installer state mutation. Unknown/BGDL paths
+    // require a separate policy and must not silently pass this planner.
+    QueuePlan prepareQueuedJob(queue::Job& job) const;
     bool canStartQueuedStep() const;
     bool startQueuedStep(const queue::Session& session, queue::Token token);
     QueuedInstallObservation pollQueuedStep() const;
