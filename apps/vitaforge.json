@@ -2,8 +2,8 @@
   "id": "vitaforge",
   "tid": "VITAFORGE",
   "n": "VitaForge",
-  "d": "Homebrew store client.",
-  "ld": "Client for browsing and installing PSVITA homebrew, written in Rust with SDL2. Reads its catalogue from VitaHomebrewDB-db.\n\nNote: this download is hosted on an external server, not GitHub, and may stop working if that server goes down or changes without the catalog knowing.",
+  "d": "Homebrew catalog browser, installer and plugin manager for PS Vita.",
+  "ld": "VitaForge is a native PS Vita application written in Rust with egui, SDL2 and vitaGL. It lets users discover and install homebrew, manage installed applications and updates, and manage taiHEN plugins. It includes search and filters, cached artwork, requirement alerts, installation progress, themes, multilingual navigation, and self-updates. The project is open source under GPL-3.0.",
   "aids": [
     "josephinoo"
   ],
@@ -11,16 +11,20 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.1.1",
-  "vd": "2026-08-11",
-  "req": "Not specified",
-  "sz": 5178911,
+  "v": "0.1.14",
+  "vd": "2026-11-24",
+  "req": "Homebrew-enabled PS Vita. No libshacccg.suprx required (precompiled shaders).",
+  "sz": 6274545,
   "st": "Legacy",
-  "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png",
-  "ss": [
-    "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1979-vitaforge.png"
-  ],
+  "ic": "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png",
+  "ss": [],
   "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.14/vitaforge.vpk",
+      "rec": true
+    },
     {
       "t": "Official Website",
       "n": "Release Page",
@@ -28,8 +32,18 @@
     },
     {
       "t": "Repository",
-      "n": "Repositorio",
+      "n": "GitHub Repository",
       "u": "https://github.com/josephinoo/vitaForge"
+    },
+    {
+      "t": "Official Website",
+      "n": "Official Website",
+      "u": "https://vitaforge.josephinoo.dev"
+    },
+    {
+      "t": "Issues",
+      "n": "Report an Issue",
+      "u": "https://github.com/josephinoo/vitaForge/issues"
     }
   ],
   "sn": "VitaHomebrewDB",
