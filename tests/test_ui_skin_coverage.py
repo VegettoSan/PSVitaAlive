@@ -160,15 +160,32 @@ for marker in ("ui_panel_inset","icon_storage","ui_progress_track","ui_progress_
 assert "phase>=2 && total>0" in scan_loading
 print("Split panel focus and installed-data loading style checks OK")
 
-# Theme picker uses shared touch/render geometry; each tile exposes its accent,
-# and Circle commits the focused theme before the settings callback.
+# Theme picker uses shared touch/render geometry; each tile exposes its accent.
+# Focus is high contrast and independent of the applied theme; closing persists
+# the last explicitly applied theme, never the merely highlighted card.
 picker = body("void FullCatalogScreen::drawThemeSetupOverlay()", "void FullCatalogScreen::runNewsCheck(")
 assert "ThemePickerLayout" in picker and "skin::ui_atlas::ui_badge,bx+10" in picker
 assert "colorThemeAccentRgb(th" in picker and "ctrl_cross_classic" in picker
 assert source.count("using P=ThemePickerLayout;") == 2
 assert "if(pressed&SCE_CTRL_CIRCLE){closeThemeSetup(true);return;}" in source
 close_theme = body("void FullCatalogScreen::closeThemeSetup(", "void FullCatalogScreen::drawThemeSetupOverlay()")
-assert close_theme.index("settingsEdit_.colorTheme=static_cast") < close_theme.index("settingsSave_(settingsEdit_)")
+assert "themeSetupFocus_" not in close_theme
+assert "settingsEdit_.colorTheme =" not in close_theme
+assert "settingsEdit_.colorTheme=" not in close_theme
+assert close_theme.index("applyColorTheme(settingsEdit_.colorTheme, false)") < close_theme.index("settingsSave_(settingsEdit_)")
+apply_theme = body("void FullCatalogScreen::applyThemeSetupFocus()", "void FullCatalogScreen::closeThemeSetup(")
+assert "settingsEdit_.colorTheme = t;" in apply_theme
+assert "themeSetupAppliedFocus_ = themeSetupFocus_;" in apply_theme
+assert "applyColorTheme(t);" in apply_theme
+assert source.count("themeSetupAppliedFocus_ = themeSetupFocus_;") == 2  # open + explicit apply
+assert "if(themeSetupFocus_==themeCount||themeSetupAppliedFocus_==themeSetupFocus_)closeThemeSetup(true);" in source
+assert "else{applyThemeSetupFocus();}" in source
+assert re.search(r"if \(themeSetupAppliedFocus_ == themeSetupFocus_\) \{\s*closeThemeSetup\(true\);\s*\} else \{\s*applyThemeSetupFocus\(\);", source)
+assert "if (hit(px, py, saveX, saveY, saveW, saveH)) {\n                    closeThemeSetup(true);" in source
+assert "focused?focusFill:tile" in picker
+assert "focused?focusInk:RGBA8(248,248,248,255)" in picker
+assert "saveFocus?focusFill:SURFACE2" in picker
+assert "const bool selected = (settingsEdit_.colorTheme == th);" in picker
 settings = body("void FullCatalogScreen::drawSettings()", "bool FullCatalogScreen::chromeNavigationAvailable()")
 assert "icon_settings" in settings and "ui_toggle_on" in settings
 assert "drawMarqueeText(&font_,tx,y+21" in settings and "drawMarqueeText(&font_,tx,y+42" in settings
