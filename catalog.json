@@ -12,10 +12,10 @@
     "sids": [
       "other"
     ],
-    "v": "0.1.14",
-    "vd": "2026-11-24",
+    "v": "0.1.15",
+    "vd": "2026-11-25",
     "req": "Homebrew-enabled PS Vita. No libshacccg.suprx required (precompiled shaders).",
-    "sz": 6274545,
+    "sz": 6353031,
     "st": "Legacy",
     "ic": "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png",
     "ss": [
@@ -25,7 +25,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.14/vitaforge.vpk",
+        "u": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.15/vitaforge.vpk",
         "rec": true
       },
       {
@@ -54,6 +54,155 @@
     "su": "https://github.com/josephinoo/vitaForge",
     "rp": "https://github.com/josephinoo/vitaForge/releases",
     "ua": "2026-08-13T15:34:48.323857+00:00"
+  },
+  {
+    "id": "kingdom-hearts-358-2-days",
+    "tid": "KHDD00358",
+    "n": "Kingdom Hearts 358/2 Days",
+    "d": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
+    "ld": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
+    "aids": [
+      "ggdrn"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "rpg",
+      "source-port",
+      "game-engine"
+    ],
+    "v": "1.2.1",
+    "vd": "2026-11-25",
+    "req": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
+    "sz": 3979385,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/ggdrn/KH-DAYS-VITA/releases/download/1.2.1/khdays-vita-1.2.1.vpk",
+        "sz": 3979385,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
+        "sz": 268435456,
+        "xp": "ux0:data/",
+        "ips": [
+          "khdays"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/ggdrn/KH-DAYS-VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/kh-days-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/kh-days-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "manhunt",
+    "tid": "MHRE00001",
+    "n": "Manhunt",
+    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
+    "aids": [
+      "xesf"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "engine-port"
+    ],
+    "v": "0.10.3",
+    "vd": "2026-11-25",
+    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
+    "sz": 1850755,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.3/manhunt-v0.10.3-vita.vpk",
+        "sz": 1850755,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "manhunt"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/xesf/manhunt-releases"
+      }
+    ],
+    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
+    "ss": [
+      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
+    "id": "silent-hill-2",
+    "tid": "SHIL00002",
+    "n": "Silent Hill 2",
+    "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+    "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
+    "aids": [
+      "angelogalav"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "v": "0.3.0",
+    "vd": "2026-11-25",
+    "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
+    "sz": 1333450,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.3.0/sh2vita.vpk",
+        "sz": 1333450,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2684354560,
+        "xp": "ux0:data/",
+        "ips": [
+          "sh2-vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/AngeloGalav/sh2-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/sh2-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/sh2-vita/icon0.png"
+    ]
   },
   {
     "id": "gh-vita",
@@ -104,55 +253,6 @@
     "ic": "https://archive.org/download/guitar-hero-ps2-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/guitar-hero-ps2-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "manhunt",
-    "tid": "MHRE00001",
-    "n": "Manhunt",
-    "d": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "ld": "Builds of an unofficial, from-scratch reimplementation of the engine of Manhunt (2003) for macOS and the PS Vita.",
-    "aids": [
-      "xesf"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "engine-port"
-    ],
-    "v": "0.10.2",
-    "vd": "2026-11-24",
-    "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1835963,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.10.2.vpk",
-        "sz": 1835963,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "manhunt"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/xesf/manhunt-releases"
-      }
-    ],
-    "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
-    "ss": [
-      "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
     ]
   },
   {
@@ -274,56 +374,6 @@
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot2.jpg",
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot3.jpg",
       "https://archive.org/download/nitronic-rush-for-the-ps-vita/shot4.jpg"
-    ]
-  },
-  {
-    "id": "silent-hill-2",
-    "tid": "SHIL00002",
-    "n": "Silent Hill 2",
-    "d": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
-    "ld": "A native PS Vita port of the PC Director's Cut, with menus that follow the original.",
-    "aids": [
-      "angelogalav"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "strategy",
-      "source-port",
-      "other"
-    ],
-    "v": "0.2.1",
-    "vd": "2026-11-24",
-    "req": "- libshacccg.suprx\n- the PC release of Silent Hill 2: Director's Cut, with the Enhanced Edition installed: it is required, and the executable has to be the Director's Cut, whose tables the converters read",
-    "sz": 1313767,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/sh2-vita/silent-hill-2%20v0.2.1.vpk",
-        "sz": 1313767,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/sh2-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2684354560,
-        "xp": "ux0:data/",
-        "ips": [
-          "sh2-vita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/AngeloGalav/sh2-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/sh2-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/sh2-vita/icon0.png"
     ]
   },
   {
@@ -2995,56 +3045,6 @@
       "https://archive.org/download/vampire-survivors-ps-vita-port/shot1.png",
       "https://archive.org/download/vampire-survivors-ps-vita-port/shot2.png",
       "https://archive.org/download/vampire-survivors-ps-vita-port/shot3.png"
-    ]
-  },
-  {
-    "id": "kingdom-hearts-358-2-days",
-    "tid": "KHDD00358",
-    "n": "Kingdom Hearts 358/2 Days",
-    "d": "Port of Decompilation of Kingdom Hearts: 358/2 Days to PS VITA",
-    "ld": "A native PS Vita port of Kingdom Hearts 358/2 Days (Nintendo DS), built from the khdays-decomp decompilation.\n\nThe game code is recompiled for the Vita, not emulated. The DS hardware it expects (2D and 3D engines, sound, card, touch screen) is reimplemented on top of VitaSDK and vitaGL.\n\n- PsVitaAlive -",
-    "aids": [
-      "ggdrn"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "rpg",
-      "source-port",
-      "game-engine"
-    ],
-    "v": "1.1",
-    "vd": "2026-11-13",
-    "req": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
-    "sz": 3978210,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/kh-days-vita/kingdom-hearts-358-2-days%20v1.1.vpk",
-        "sz": 3978210,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/kh-days-vita/Game%20Files.zip",
-        "sz": 268435456,
-        "xp": "ux0:data/",
-        "ips": [
-          "khdays"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/ggdrn/KH-DAYS-VITA"
-      }
-    ],
-    "ic": "https://archive.org/download/kh-days-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/kh-days-vita/shot0.png"
     ]
   },
   {
