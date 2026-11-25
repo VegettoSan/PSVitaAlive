@@ -29,7 +29,7 @@ inline uint64_t recoveryRouting(const Routing& r) {
            (static_cast<uint64_t>(r.format)<<16)|(static_cast<uint64_t>(r.storage)<<24);
 }
 inline bool recoveryRestorable(const Job& j) {
-    if(j.catalogType!=0 || j.state!=State::Waiting || j.nextStep || j.aborted ||
+    if(j.catalogType>3 || j.state!=State::Waiting || j.nextStep || j.aborted ||
        j.provisionalSpace || j.exclusiveTail || j.appId.empty() || j.titleId.empty() ||
        j.appId.size()>128 || j.titleId.size()>32 || j.version.size()>64 || j.versionDate.size()>32 ||
        j.steps.empty() || j.steps.size()>Session::maxSteps)return false;
@@ -37,7 +37,7 @@ inline bool recoveryRestorable(const Job& j) {
         if(s.state!=State::Waiting || !s.expectedBytes || s.url.empty() || !s.zrif.empty() ||
            !s.savedZipPath.empty() || !s.pluginLine.empty() || !s.pluginSection.empty() ||
            (s.component!=Component::App && s.component!=Component::GameFiles &&
-            s.component!=Component::DataFiles && s.component!=Component::Other))return false;
+            s.component!=Component::DataFiles && s.component!=Component::Other && s.component!=Component::PspMedia))return false;
     }
     return true;
 }
@@ -47,7 +47,7 @@ struct RecoveryEntry {
     uint8_t catalogType=0;
     uint32_t dataRevision=0;
     uint64_t routing=0;
-    bool interrupted=false,restorable=false,installAll=false;
+    bool interrupted=false,restorable=false,installAll=false,systemDeferred=false;
     std::vector<RecoveryStep> steps;
 };
 class Recovery {
@@ -68,35 +68,58 @@ public:
         if(generation_==session.generation())return false;
         const auto before=encode(1);
         generation_=session.generation();live_.clear();
-        for(const auto& j:session.jobs()) {
-            if(j.state!=State::Waiting && j.state!=State::Running)continue;
+        deferredIds_.erase(std::remove_if(deferredIds_.begin(),deferredIds_.end(),
+            [&](uint64_t id){return !session.find(id);}),deferredIds_.end());
+        for(const auto& original:session.jobs()) {
+            const bool deferred=original.handoffDeferred && original.state==State::Partial &&
+                std::find(deferredIds_.begin(),deferredIds_.end(),original.id)==deferredIds_.end();
+            if(!deferred && original.state!=State::Waiting && original.state!=State::Running)continue;
+            Job tail;
+            if(deferred) {
+                tail=original;tail.steps.clear();tail.nextStep=0;tail.state=State::Waiting;
+                tail.aborted=false;tail.exclusiveTail=false;tail.provisionalSpace=false;
+                for(size_t i=0;i<original.steps.size();++i) {
+                    const auto& s=original.steps[i];
+                    if(i>=original.nextStep && s.state==State::Skipped) {
+                        tail.steps.push_back(s);tail.steps.back().state=State::Waiting;
+                        if(!s.expectedBytes)tail.provisionalSpace=true;
+                        if(s.component==Component::SystemPackage || s.component==Component::SavedZip ||
+                           s.component==Component::Other || s.component==Component::PspMedia)tail.exclusiveTail=true;
+                    } else if((s.component==Component::GameFiles || s.component==Component::DataFiles) && s.state!=State::Completed)
+                        tail.installAll=false;
+                }
+                if(tail.steps.empty())continue;
+            }
+            const auto& j=deferred?tail:original;
             RecoveryEntry e;
             e.appId=display(j.appId,128);e.titleId=display(j.titleId,32);e.name=display(j.name,240);
             if(e.name.empty())e.name=e.titleId.empty()?"-":e.titleId;
             e.version=display(j.version,64);e.versionDate=display(j.versionDate,32);
             e.catalogType=j.catalogType;e.dataRevision=j.dataRevision<0?0:static_cast<uint32_t>(j.dataRevision);
             e.routing=recoveryRouting(j.routing);e.installAll=j.installAll;
-            e.interrupted=j.state==State::Running;
+            e.interrupted=j.state==State::Running;e.systemDeferred=deferred;
             e.restorable=recoveryRestorable(j) && e.appId==j.appId && e.titleId==j.titleId &&
                 e.version==j.version && e.versionDate==j.versionDate;
             for(const auto& s:j.steps)e.steps.push_back({recoverySource(s.url,s.linkType,s.contentId),recoveryRequest(s)});
-            live_.push_back(std::move(e));
+            if(deferred) { previous_.push_back(std::move(e));deferredIds_.push_back(original.id); }
+            else live_.push_back(std::move(e));
         }
         return before!=encode(1);
     }
     std::string encode(uint64_t serial) const {
-        std::string out="PSQR1";put(out,serial,8);put(out,previous_.size()+live_.size(),2);
+        std::string out="PSQR2";put(out,serial,8);put(out,previous_.size()+live_.size(),2);
         for(const auto* records:{&previous_,&live_})for(const auto& e:*records) {
             str(out,e.appId);str(out,e.titleId);str(out,e.name);str(out,e.version);str(out,e.versionDate);
             put(out,e.catalogType,1);put(out,e.dataRevision,4);put(out,e.routing,8);
-            put(out,(e.interrupted?1:0)|(e.restorable?2:0)|(e.installAll?4:0),1);
+            put(out,(e.interrupted?1:0)|(e.restorable?2:0)|(e.installAll?4:0)|(e.systemDeferred?8:0),1);
             put(out,e.steps.size(),1);
             for(const auto& s:e.steps){put(out,s.source,8);put(out,s.request,8);}
         }
         put(out,checksum(out,out.size()),4);return out;
     }
     bool decode(const std::string& data,uint64_t& serial) {
-        if(data.size()<19 || data.size()>maxBytes || data.compare(0,5,"PSQR1")!=0)return false;
+        if(data.size()<19 || data.size()>maxBytes || (data.compare(0,5,"PSQR1")!=0 && data.compare(0,5,"PSQR2")!=0))return false;
+        const bool v2=data.compare(0,5,"PSQR2")==0;
         const size_t end=data.size()-4;size_t pos=end;uint64_t crc=0;
         if(!get(data,pos,data.size(),4,crc) || crc!=checksum(data,end))return false;
         pos=5;uint64_t seq=0,count=0;
@@ -108,11 +131,12 @@ public:
                !readStr(data,pos,end,240,e.name)||e.name.empty()||
                !readStr(data,pos,end,64,e.version)||!readStr(data,pos,end,32,e.versionDate)||
                !get(data,pos,end,1,catalog)||catalog>3||!get(data,pos,end,4,revision)||
-               !get(data,pos,end,8,e.routing)||!get(data,pos,end,1,flags)||flags>7||
+               !get(data,pos,end,8,e.routing)||!get(data,pos,end,1,flags)||flags>(v2?15u:7u)||
                !get(data,pos,end,1,steps)||!steps||steps>Session::maxSteps)return false;
             e.catalogType=static_cast<uint8_t>(catalog);e.dataRevision=static_cast<uint32_t>(revision);
-            e.interrupted=(flags&1)!=0;e.restorable=(flags&2)!=0;e.installAll=(flags&4)!=0;
-            if(e.restorable && (e.interrupted||e.catalogType!=0||e.appId.empty()||e.titleId.empty()))return false;
+            e.interrupted=(flags&1)!=0;e.restorable=(flags&2)!=0;e.installAll=(flags&4)!=0;e.systemDeferred=(flags&8)!=0;
+            if(e.systemDeferred && e.interrupted)return false;
+            if(e.restorable && (e.interrupted||e.appId.empty()||e.titleId.empty()))return false;
             for(size_t k=0;k<steps;++k) {
                 RecoveryStep s;if(!get(data,pos,end,8,s.source)||!get(data,pos,end,8,s.request))return false;
                 e.steps.push_back(s);
@@ -120,7 +144,7 @@ public:
             loaded.push_back(std::move(e));
         }
         if(pos!=end)return false;
-        previous_=std::move(loaded);live_.clear();generation_=0;serial=seq;return true;
+        previous_=std::move(loaded);live_.clear();deferredIds_.clear();generation_=0;serial=seq;return true;
     }
 private:
     static std::string display(const std::string& s,size_t max) {
@@ -145,6 +169,7 @@ private:
         uint32_t h=2166136261u;for(size_t i=0;i<n;++i){h^=static_cast<unsigned char>(d[i]);h*=16777619u;}return h;
     }
     std::vector<RecoveryEntry> previous_,live_;
+    std::vector<uint64_t> deferredIds_;
     uint64_t generation_=0;
 };
 }} // namespace psvitaalive::queue

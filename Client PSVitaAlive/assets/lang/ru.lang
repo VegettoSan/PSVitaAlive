@@ -907,3 +907,7 @@ QUEUE_RECOVERY_DISCARD=Удалить запись
 QUEUE_RECOVERY_CONFIRM_RESTORE=Восстановить ожидающую задачу?
 QUEUE_RECOVERY_CONFIRM_DISCARD=Удалить запись восстановления?
 QUEUE_CHECKPOINT_FAILED=Не удалось сохранить очередь загрузок
+QUEUE_SYSTEM_DEFERRED=Ожидание системной установки
+QUEUE_SYSTEM_RECHECK=Завершите системную установку перед восстановлением файлов
+QUEUE_SYSTEM_CONFIRM=Системная установка завершена?
+QUEUE_SYSTEM_NOT_INSTALLED=Установленное приложение не найдено; завершите установку в LiveArea

@@ -124,6 +124,7 @@ int main() {
         assert(s.settle(a.token,Outcome::HandedOff,true,false,"system accepted"));
         assert(s.jobs()[0].state==State::Partial);
         assert(s.jobs()[0].steps[1].state==State::Skipped);
+        assert(s.jobs()[0].handoffDeferred);
         assert(!s.protectedSession());
     }
     {
@@ -220,6 +221,19 @@ int main() {
         live.publish(3*kSpaceMiB);const auto old=live.sample();
         live.publish(kSpaceMiB);assert(!live.stillValid(old));
         assert(live.sample().bytes==kSpaceMiB);
+    }
+    {
+        Session s;auto group=job("system then data",GiB,2);
+        group.steps[0].component=Component::SystemPackage;
+        group.steps[0].space=systemHandoffSpace(GiB);
+        group.admissionSpace=sequenceSpace({group.steps[0].space,group.steps[1].space});
+        group.continueIndependentOnFailure=true;
+        assert(s.admit(group,snap(s,20*GiB))==Admission::Invalid);
+        group.exclusiveTail=true;
+        assert(s.admit(group,snap(s,20*GiB))==Admission::Accepted);
+        const auto a=s.claim(snap(s,20*GiB),true);
+        assert(s.settle(a.token,Outcome::Failed,true,false,"handoff failed"));
+        assert(s.jobs()[0].steps[1].state==State::Skipped && !s.jobs()[0].handoffDeferred);
     }
     std::cout<<"Queue core tests passed\n";
 }

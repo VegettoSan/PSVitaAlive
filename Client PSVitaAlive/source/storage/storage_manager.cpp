@@ -244,7 +244,8 @@ bool StorageManager::queryMountSpace(const char* mount, uint64_t& freeBytesOut, 
     freeBytesOut = 0;
     totalBytesOut = 0;
     if (!mount || (std::strcmp(mount, "ux0:") != 0 &&
-        std::strcmp(mount, "uma0:") != 0 && std::strcmp(mount, "ur0:") != 0)) return false;
+        std::strcmp(mount, "uma0:") != 0 && std::strcmp(mount, "ur0:") != 0 &&
+        std::strcmp(mount, "imc0:") != 0 && std::strcmp(mount, "xmc0:") != 0)) return false;
     struct {
         uint64_t max_size;
         uint64_t free_size;

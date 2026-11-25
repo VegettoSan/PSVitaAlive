@@ -907,3 +907,7 @@ QUEUE_RECOVERY_DISCARD=Verwerfen
 QUEUE_RECOVERY_CONFIRM_RESTORE=Ausstehende Aufgabe wiederherstellen?
 QUEUE_RECOVERY_CONFIRM_DISCARD=Wiederherstellungseintrag verwerfen?
 QUEUE_CHECKPOINT_FAILED=Warteschlange konnte nicht gespeichert werden
+QUEUE_SYSTEM_DEFERRED=Systeminstallation ausstehend
+QUEUE_SYSTEM_RECHECK=Systeminstallation vor Wiederherstellung der Dateien abschließen
+QUEUE_SYSTEM_CONFIRM=Systeminstallation abgeschlossen?
+QUEUE_SYSTEM_NOT_INSTALLED=Installierte App nicht gefunden; Installation in LiveArea abschließen

@@ -907,3 +907,7 @@ QUEUE_RECOVERY_DISCARD=Scarta
 QUEUE_RECOVERY_CONFIRM_RESTORE=Ripristinare questa attività in attesa?
 QUEUE_RECOVERY_CONFIRM_DISCARD=Scartare questa voce di recupero?
 QUEUE_CHECKPOINT_FAILED=Impossibile salvare la coda dei download
+QUEUE_SYSTEM_DEFERRED=Installazione di sistema in attesa
+QUEUE_SYSTEM_RECHECK=Completa l’installazione di sistema prima di ripristinare i file
+QUEUE_SYSTEM_CONFIRM=L’installazione di sistema è terminata?
+QUEUE_SYSTEM_NOT_INSTALLED=App installata non trovata; completa l’installazione in LiveArea

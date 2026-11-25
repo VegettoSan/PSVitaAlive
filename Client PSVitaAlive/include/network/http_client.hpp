@@ -64,7 +64,8 @@ public:
         bool checkSizeAtHeaders = false, // notify progress before payload writes
         HttpCancelFn shouldPause = nullptr, // used only to preserve range checkpoints
         HttpStatusFn onStatus = nullptr, // intermediate connection / recovery phase
-        bool preservePartial = false
+        bool preservePartial = false,
+        bool reportStaging = false // queue-specific physical-write telemetry
     );
 
     /**

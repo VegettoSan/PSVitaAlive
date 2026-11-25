@@ -340,8 +340,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
             ev.jobId = job.id;
             ev.fileName = job.fileName;
             ev.downloaded = job.downloadedSize;
-            // UI %: use expected hint even when CDN omits Content-Length
-            ev.total = job.expectedSize ? job.expectedSize : job.downloadedSize;
+            // Missing length stays unknown; never show 100% on every chunk.
+            ev.total = job.expectedSize;
             ev.bytesPerSecond = job.bytesPerSecond;
             ev.state = p.finalizing ? DownloadState::Verifying : DownloadState::Downloading;
             if (p.finalizing) {
@@ -611,7 +611,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
                        !job.cancelRequested->load(std::memory_order_acquire);
             },
             statusFn,
-            true
+            true,
+            static_cast<bool>(onStaging_)
         );
         if(onStaging_)onStaging_(0,true); // before promotion, deletion or retry
         if (hr == HttpResult::Ok) {

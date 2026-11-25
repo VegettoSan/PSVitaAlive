@@ -13,7 +13,7 @@
 #include <vector>
 
 namespace psvitaalive { namespace queue {
-enum class Mount : size_t { Ux0, Uma0, Ur0, Count };
+enum class Mount : size_t { Ux0, Uma0, Ur0, Imc0, Xmc0, Count };
 using Bytes = std::array<uint64_t, static_cast<size_t>(Mount::Count)>;
 using MeasuredMounts = std::array<bool, static_cast<size_t>(Mount::Count)>;
 // Single writer (HTTP worker; main may reset only before a worker starts).
@@ -189,6 +189,7 @@ struct Job {
     // Explicit opt-in only for groups whose selected steps are independent.
     bool continueIndependentOnFailure=false;
     bool aborted=false;
+    bool handoffDeferred=false; // system accepted; remaining components require explicit review
     std::vector<Step> steps;
     Space admissionSpace; // may be more conservative than sequential estimate
     uint64_t id=0;
@@ -261,9 +262,13 @@ public:
         if (snapshot.generation!=generation_) return Admission::Stale;
         if (job.appKey.empty() || job.steps.empty() || job.steps.size()>maxSteps)
             return Admission::Invalid;
-        for(const auto& s:job.steps)
+        unsigned systemSteps=0;
+        for(const auto& s:job.steps) {
             if(s.url.empty()==s.savedZipPath.empty() || s.fileName.empty() || s.state!=State::Waiting)
                 return Admission::Invalid;
+            if(s.component==Component::SystemPackage)++systemSteps;
+        }
+        if(systemSteps>1 || (systemSteps && !job.exclusiveTail))return Admission::Invalid;
         for(const auto& j:jobs_)
             if(j.appKey==job.appKey && (j.state==State::Waiting || j.state==State::Running))
                 return Admission::Duplicate;
@@ -290,7 +295,7 @@ public:
             if(!consume(free,j.admissionSpace)) return Admission::NoSpace;
         }
         if(!consume(free,job.admissionSpace)) return Admission::NoSpace;
-        job.id=nextId_++; job.state=State::Waiting; job.nextStep=0; job.aborted=false;
+        job.id=nextId_++; job.state=State::Waiting; job.nextStep=0; job.aborted=false; job.handoffDeferred=false;
         jobs_.push_back(std::move(job)); ++generation_;
         return Admission::Accepted;
     }
@@ -348,10 +353,11 @@ public:
         // A system handoff cannot satisfy an internal dependency. Do not start
         // remaining components until a future reconciliation confirms it.
         const bool stop=cancelled || outcome==Outcome::Cancelled ||
-            (outcome==Outcome::Failed && !j->continueIndependentOnFailure) ||
+            (outcome==Outcome::Failed && (!j->continueIndependentOnFailure || s.component==Component::SystemPackage)) ||
             (outcome==Outcome::HandedOff && j->nextStep<j->steps.size());
         if(stop) {
             j->aborted=true;
+            j->handoffDeferred=!cancelled && outcome==Outcome::HandedOff && j->nextStep<j->steps.size();
             skipRemaining(*j);
             finish(*j,outcome==Outcome::Failed?State::Failed:State::Cancelled);
         } else if(j->nextStep==j->steps.size()) {

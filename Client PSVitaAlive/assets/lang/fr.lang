@@ -907,3 +907,7 @@ QUEUE_RECOVERY_DISCARD=Ignorer
 QUEUE_RECOVERY_CONFIRM_RESTORE=Restaurer cette tâche en attente ?
 QUEUE_RECOVERY_CONFIRM_DISCARD=Ignorer cette entrée de récupération ?
 QUEUE_CHECKPOINT_FAILED=Impossible d’enregistrer la file de téléchargements
+QUEUE_SYSTEM_DEFERRED=Installation système en attente
+QUEUE_SYSTEM_RECHECK=Terminez l’installation système avant de restaurer les fichiers
+QUEUE_SYSTEM_CONFIRM=L’installation système est-elle terminée ?
+QUEUE_SYSTEM_NOT_INSTALLED=Application non trouvée ; terminez l’installation dans LiveArea

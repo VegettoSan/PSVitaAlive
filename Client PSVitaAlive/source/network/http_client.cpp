@@ -1663,7 +1663,8 @@ HttpResult HttpClient::downloadToFile(
     bool checkSizeAtHeaders,
     HttpCancelFn shouldPause,
     HttpStatusFn onStatus,
-    bool preservePartial
+    bool preservePartial,
+    bool reportStaging
 ) {
     lastStatus_ = 0;
     lastSegmentedZip_ = false;
@@ -1715,7 +1716,10 @@ HttpResult HttpClient::downloadToFile(
     ctx.resumeOffset = resumeOffset;
     ctx.preservePartial = preservePartial;
     ctx.savedValidator = ifRangeValidator;
-    ctx.onProgress = std::move(onProgress);
+    if(reportStaging)ctx.onProgress=std::move(onProgress);
+    else if(onProgress)ctx.onProgress=[fn=std::move(onProgress)](const HttpProgress& event) {
+        if(!event.stagingReset)fn(event);
+    };
     resetHttpStaging(ctx.onProgress);
     ctx.shouldCancel = std::move(shouldCancel);
     ctx.sizeHeaderPreflight = checkSizeAtHeaders;

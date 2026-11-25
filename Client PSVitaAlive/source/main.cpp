@@ -363,14 +363,14 @@ int main(){
     };
     queue.setBeforeStart(syncRecovery);
     // Return 1 accepted, 0 rejected, -1 legacy-only route while idle.
-    auto submitQueue=[&](q::Job job)->int {
+    auto submitQueue=[&](q::Job job,bool allowLegacy=true)->int {
         if(!screen.guardCatalogAction()) return 0;
         if(!screen.queueExternalReady()) {
             screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500); return 0;
         }
         const auto plan=installer.prepareQueuedJob(job);
         if(plan!=psvitaalive::InstallController::QueuePlan::Ready) {
-            if(!queue.protectedSession() && !queue.reportReady() &&
+            if(allowLegacy && !queue.protectedSession() && !queue.reportReady() &&
                plan!=psvitaalive::InstallController::QueuePlan::Invalid) return -1;
             screen.showToast(psvitaalive::L("QUEUE_UNSUPPORTED"),5600); return 0;
         }
@@ -578,6 +578,17 @@ int main(){
            record.routing!=q::recoveryRouting(q::Routing::capture(installer.settings())))return reject();
         psvitaalive::ui::CatalogItem item;
         if(!screen.queueRecoveryItem(record,item))return reject();
+        if(record.systemDeferred) {
+            // The explicit confirmation says to check the OS finished. A
+            // local app marker is an additional guard, not a proof of version.
+            std::string tid=item.titleId;
+            if(tid.size()!=9)return reject();
+            for(char& c:tid) { if(c>='a' && c<='z')c=static_cast<char>(c-'a'+'A');
+                if(!((c>='A'&&c<='Z')||(c>='0'&&c<='9')))return reject(); }
+            if(!storage.exists("ux0:app/"+tid+"/sce_sys/param.sfo")) {
+                screen.showToast(psvitaalive::L("QUEUE_SYSTEM_NOT_INSTALLED"),5600);return false;
+            }
+        }
         if(const char* blocked=psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
             screen.showToast(psvitaalive::L(blocked),5600);return false;
         }
@@ -611,22 +622,20 @@ int main(){
         const size_t index=static_cast<size_t>(id-1);
         if(!recovery.take(index,removed))return reject();
         recoveryDirty=true;
-        if(submitQueue(std::move(job))==1)return true;
+        if(submitQueue(std::move(job),false)==1)return true;
         recovery.insert(index,std::move(removed));recoveryDirty=true;syncRecovery(queue.session());
         return false;
     };
     screen.setQueueCallbacks(&queue.session(),
         [&](const psvitaalive::ui::CatalogItem& item,const std::vector<psvitaalive::ui::CatalogLink>& links){
             auto job=newJob(item,true);
-            // Do not prompt twice on legacy fallback for a missing extract path.
+            // Resolve every selected destination once, before admission.
             for(const auto& link:links) {
-                if(!queue.protectedSession() && !queue.reportReady() &&
-                   psvitaalive::isDataOrGameFilesLinkType(link.type) && link.extractPath.empty()) return -1;
                 q::Step step;
                 if(!makeStep(item,link,step)) return 0;
                 job.steps.push_back(std::move(step));
             }
-            return submitQueue(std::move(job));
+            return submitQueue(std::move(job),false);
         },
         [&](QueueAction action,uint64_t id) {
             const auto token=queue.session().activeToken();

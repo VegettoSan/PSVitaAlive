@@ -12532,9 +12532,9 @@ void FullCatalogScreen::drawQueueScreen() {
             if(focus)skin::focus(20,y,920,64,ACCENT);
             label(36,y+25,610,WHITE,.91f,e.name);
             label(36,y+48,600,DIM,.71f,e.titleId+"  |  "+e.version+"  |  "+std::to_string(e.steps.size()));
-            label(650,y+32,270,ACCENT,.78f,::psvitaalive::L(e.interrupted?"QUEUE_RECOVERY_INTERRUPTED":"QUEUE_WAITING"));
+            label(650,y+32,270,ACCENT,.78f,::psvitaalive::L(e.systemDeferred?"QUEUE_SYSTEM_DEFERRED":e.interrupted?"QUEUE_RECOVERY_INTERRUPTED":"QUEUE_WAITING"));
         }
-        if(selected) label(24,447,910,ACCENT,.73f,::psvitaalive::L(selected->restorable?"QUEUE_RECOVERY_RECHECK":"QUEUE_RECOVERY_MANUAL"));
+        if(selected) label(24,447,910,ACCENT,.73f,::psvitaalive::L(selected->systemDeferred?(selected->restorable?"QUEUE_SYSTEM_RECHECK":"QUEUE_RECOVERY_MANUAL"):(selected->restorable?"QUEUE_RECOVERY_RECHECK":"QUEUE_RECOVERY_MANUAL")));
         btn(20,478,212,"QUEUE_BACK");
         if(selected && selected->restorable)btn(244,478,212,"QUEUE_RECOVERY_RESTORE");
         if(selected)btn(468,478,212,"QUEUE_RECOVERY_DISCARD");
@@ -12542,7 +12542,7 @@ void FullCatalogScreen::drawQueueScreen() {
         if(queueConfirmCancel_) {
             vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
             skin::surface(skin::ui_atlas::ui_dialog,120,160,720,210,PANEL);
-            label(142,215,676,WHITE,.90f,::psvitaalive::L(queueConfirmAction_==QueueAction::RestoreRecovery?"QUEUE_RECOVERY_CONFIRM_RESTORE":"QUEUE_RECOVERY_CONFIRM_DISCARD"));
+            label(142,215,676,WHITE,.90f,::psvitaalive::L(queueConfirmAction_==QueueAction::RestoreRecovery?(selected && selected->systemDeferred?"QUEUE_SYSTEM_CONFIRM":"QUEUE_RECOVERY_CONFIRM_RESTORE"):"QUEUE_RECOVERY_CONFIRM_DISCARD"));
             btn(150,300,310,"QUEUE_BACK",true); btn(500,300,310,"QUEUE_CONFIRM");
         }
         drawToast();finishFrame();return;
@@ -12642,7 +12642,7 @@ void FullCatalogScreen::drawQueueScreen() {
             std::string s=std::to_string(i+1)+"/"+std::to_string(selected->steps.size())+"  "+component(step.component);
             label(36,y+23,500,WHITE,.77f,s);
             const char* key=step.state==State::Completed?"QUEUE_DONE":step.state==State::Failed?"QUEUE_FAILED":
-                step.state==State::Cancelled?"QUEUE_CANCELLED":step.state==State::Skipped?"QUEUE_SKIPPED":
+                step.state==State::Cancelled?"QUEUE_CANCELLED":step.state==State::Skipped?(selected->handoffDeferred?"QUEUE_SYSTEM_DEFERRED":"QUEUE_SKIPPED"):
                 step.state==State::HandedOff?"QUEUE_HANDOFF":step.state==State::Running?"QUEUE_PREPARING":"QUEUE_WAITING";
             label(635,y+23,275,ACCENT,.73f,::psvitaalive::L(key));
             label(36,y+45,875,DIM,.66f,step.result.empty()?step.fileName:step.result);
@@ -12660,6 +12660,7 @@ void FullCatalogScreen::drawQueueScreen() {
             label(650,y+32,270,ACCENT,.78f,queueJobLabel(j));
         }
     }
+    if(queueReport_ && selected && selected->handoffDeferred)label(24,447,910,ACCENT,.73f,::psvitaalive::L("QUEUE_SYSTEM_RECHECK"));
     if(queueWaitingSpace_)label(24,447,910,ACCENT,.73f,::psvitaalive::L("QUEUE_NO_SPACE"));
     if(queueInvariantBlocked_)label(24,447,910,ACCENT,.73f,::psvitaalive::L("QUEUE_BUSY"));
     const bool recovery=active && queueStatus_.zipRecoveryAvailable;

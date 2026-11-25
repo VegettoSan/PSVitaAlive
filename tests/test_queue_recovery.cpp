@@ -51,5 +51,22 @@ int main() {
     assert(after.entries().size()==1);
     assert(!after.decode(encoded.substr(0,encoded.size()-1),serial));
     assert(!after.decode(std::string(Recovery::maxBytes+1,'x'),serial));
+    {
+        Session group;Recovery checkpoints;auto mixed=job("mixed");mixed.catalogType=1;
+        mixed.installAll=true;mixed.exclusiveTail=true;
+        mixed.steps[0].component=Component::SystemPackage;mixed.steps[0].space=systemHandoffSpace(1024);
+        auto data=job("data").steps[0];data.component=Component::DataFiles;data.destination="ux0:data/test/";
+        mixed.steps.push_back(data);mixed.admissionSpace=sequenceSpace({mixed.steps[0].space,data.space});
+        assert(group.admit(mixed,snap(group))==Admission::Accepted && checkpoints.observe(group));
+        const auto t=group.claim(snap(group),true).token;assert(t.job && checkpoints.observe(group));
+        assert(group.settle(t,Outcome::HandedOff,true,false,"system") && checkpoints.observe(group));
+        assert(checkpoints.entries().size()==1 && checkpoints.entries()[0].systemDeferred);
+        assert(checkpoints.entries()[0].restorable && checkpoints.entries()[0].steps.size()==1);
+        Recovery reboot;uint64_t seq=0;assert(reboot.decode(checkpoints.encode(1),seq));
+        assert(reboot.entries()[0].systemDeferred && !reboot.entries()[0].interrupted);
+        assert(!checkpoints.observe(group));
+        assert(group.clearFinished());checkpoints.observe(group);
+        assert(checkpoints.entries().size()==1);
+    }
     std::cout<<"Queue recovery tests passed\n";
 }

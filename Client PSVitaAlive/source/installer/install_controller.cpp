@@ -281,6 +281,8 @@ bool queueDestinationMount(const std::string& path,queue::Mount& mount) {
     if(path.compare(0,4,"ux0:")==0) { mount=queue::Mount::Ux0; return true; }
     if(path.compare(0,5,"uma0:")==0) { mount=queue::Mount::Uma0; return true; }
     if(path.compare(0,4,"ur0:")==0) { mount=queue::Mount::Ur0; return true; }
+    if(path.compare(0,5,"imc0:")==0) { mount=queue::Mount::Imc0; return true; }
+    if(path.compare(0,5,"xmc0:")==0) { mount=queue::Mount::Xmc0; return true; }
     return false;
 }
 } // namespace
@@ -1299,7 +1301,8 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
             }
         }
     }
-    const char* mounts[] = {"ux0:", "uma0:", "ur0:"};
+    const char* mounts[] = {"ux0:", "uma0:", "ur0:", "imc0:", "xmc0:"};
+    static_assert(sizeof(mounts)/sizeof(mounts[0])==static_cast<size_t>(queue::Mount::Count),"mount table");
     for (size_t i = 0; i < out.free.size(); ++i) {
         uint64_t total = 0;
         out.measured[i] = StorageManager::queryMountSpace(mounts[i], out.free[i], total);
@@ -1331,6 +1334,7 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
     InstallAllSpaceBudget batch;
     std::vector<Space> spaces;
     spaces.reserve(draft.steps.size());
+    unsigned systemSteps=0;
     for(auto& step:draft.steps) {
         if(step.state!=State::Waiting) return QueuePlan::Invalid;
         if(!step.savedZipPath.empty()) {
@@ -1361,11 +1365,10 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
             step.linkType,step.contentId,draft.routing.target);
         const auto ext=FormatDetector::extensionOf(step.fileName);
         if(!step.expectedBytes) draft.provisionalSpace=true;
-        // BGDL is a system handoff, not an internal installation. Require a
-        // terminal standalone job so dependent files never start on an
-        // unverified installation. Mixed legacy batches stay exclusive.
+        // Mixed groups may cross one OS handoff. The core defers the remaining
+        // components instead of equating BGDL submission with installation.
         if(route.wantBgdl) {
-            if(draft.steps.size()!=1 || !step.destination.empty() || route.plugin ||
+            if(++systemSteps>1 || !step.destination.empty() || route.plugin ||
                isDataOrGameFilesLinkType(step.linkType)) return QueuePlan::UnsupportedRoute;
             step.component=Component::SystemPackage;
             step.space=systemHandoffSpace(step.expectedBytes);
@@ -1401,13 +1404,18 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
                 target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
                 step.component=Component::PspMedia;
                 draft.exclusiveTail=true;
-            } else if(ext=="vpk") {
+            } else if(ext=="vpk" || ext=="zip") {
+                // Legacy dispatcher can recognize a ZIP-backed VPK without a destination.
                 step.component=Component::App;
+                if(ext=="zip")draft.exclusiveTail=true;
             } else if(ext=="iso" || ext=="pbp" || ext=="cso") {
-                if(draft.routing.target!=PspTarget::Adrenaline) return QueuePlan::UnsupportedRoute;
-                target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
+                target=draft.routing.target==PspTarget::Adrenaline && draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
                 step.component=Component::PspMedia;
-            } else return QueuePlan::UnsupportedRoute;
+            } else {
+                // Redirect/opaque names are detected by the existing dispatcher.
+                // Reserve both plausible destinations; never promise their cleanup.
+                step.component=Component::Other; draft.exclusiveTail=true;
+            }
             targetPeak=route.pspPs1Adrenaline && target!=Mount::Ux0
                 ?initialInstallSpaceBytes(payload,InstallSpaceMode::DirectPackage)
                 :saturatingSpaceAdd(payload,payload/10);
@@ -1416,6 +1424,14 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
         // and extractor checks remain authoritative for compressed payloads.
         step.space=payload?mountedSpace(payload,route.budgetMode,target,targetPeak,payload):
             provisionalMountedSpace(route.budgetMode,target);
+        if(!route.plugin && !route.zipExtraction && step.component==Component::Other) {
+            step.space.retained[0]=step.space.peak[0];
+            if(draft.routing.target==PspTarget::Adrenaline && draft.routing.storage==PspStorage::Uma0) {
+                const auto i=static_cast<size_t>(Mount::Uma0);
+                step.space.peak[i]=initialInstallSpaceBytes(payload,InstallSpaceMode::DirectPackage);
+                step.space.retained[i]=step.space.peak[i];
+            }
+        }
         if(route.plugin && target!=Mount::Ur0) {
             // taiHEN configuration may live on ur0 even with a ux0 plugin.
             step.space.peak[static_cast<size_t>(Mount::Ur0)]=4*kSpaceMiB;
