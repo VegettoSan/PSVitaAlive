@@ -33,3 +33,12 @@ Experimental branch only; no main/release/catalog changes.
 9. Try legacy-only formats while idle and while queue is active; verify the former retains existing behavior and the latter is safely rejected.
 
 No release or production catalog mutation.
+
+
+## Validated first VPK and subsequent route extension
+
+The first integrated VitaSDK build **passed**, run 45715309039, commit `b9c716f37724ac9baa465ae2dae0cbd0320d8eea`. Artifact ID 15069028355 contains PSVitaAlive.vpk. Verified archive CRCs and internal VPK, APP_VER 02.19, TITLE_ID PSVAS1178. VPK size 10,294,713 bytes; SHA-256 `69b963abb260ea0a989bacd819f5abff520cee50215fdd8d3bbbe09b8b19fa7a`. This is the first hardware-test candidate, not a release.
+
+Subsequent commit `cd62cdb470c02560f173b18d5ea4e2f337d0e4cd` expands the branch to include standalone BGDL handoff, PSP/PS1 PKG conversion and CSO, and saved ZIP offline extraction. These changes are **not in the b9c716f VPK**. Saved ZIP metadata, mount, and physical part lengths are revalidated at dispatch, and its input bytes are already allocated. System handoff and uncertain output routes are tail barriers; no later reservations depend on their predicted cleanup. BGDL mixed groups retain their legacy exclusive flow. Pending external BGDL activity after handoff is still managed by the OS, not by the local queue. Native build and tests for this extension: https://github.com/VegettoSan/PSVitaAlive/actions/runs/45715976503 and https://github.com/VegettoSan/PSVitaAlive/actions/runs/45715976701 (not yet confirmed at the time of record).
+
+Remaining: persistent queue/history, exact live storage accounting, safe storage maintenance during blocked jobs, full mixed-route parity, final progress-dialog visual parity, and hardware validation. The first VPK is appropriate for testing the internal queue, not all these remaining capabilities. Do not merge or release based only on the build.
