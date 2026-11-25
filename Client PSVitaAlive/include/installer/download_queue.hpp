@@ -218,7 +218,10 @@ public:
         reboot_=reboot_||needsReboot;
         ++j->nextStep; active_={};
         const bool cancelled=cancel_; cancel_=false;
-        if((outcome!=Outcome::Completed && outcome!=Outcome::HandedOff) || cancelled) {
+        // A system handoff cannot satisfy an internal dependency. Do not start
+        // remaining components until a future reconciliation confirms it.
+        if((outcome!=Outcome::Completed && outcome!=Outcome::HandedOff) || cancelled ||
+           (outcome==Outcome::HandedOff && j->nextStep<j->steps.size())) {
             skipRemaining(*j);
             finish(*j,outcome==Outcome::Failed?State::Failed:State::Cancelled);
         } else if(j->nextStep==j->steps.size()) {
