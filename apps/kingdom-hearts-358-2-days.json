@@ -14,17 +14,17 @@
     "source-port",
     "game-engine"
   ],
-  "v": "1.1",
-  "vd": "2026-11-13",
+  "v": "1.2.1",
+  "vd": "2026-11-25",
   "req": "- libshacccg.suprx in ur0:data/, extracted from your own console (see the vitaGL README).\n- Optional: kubridge in ur0:tai/ (*KERNEL in config.txt), for crash reports in the log. The port runs without it.\n- Your own dump of the European cartridge. No game data is included here.",
-  "sz": 3978210,
+  "sz": 3979385,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/kh-days-vita/kingdom-hearts-358-2-days%20v1.1.vpk",
-      "sz": 3978210,
+      "u": "https://github.com/ggdrn/KH-DAYS-VITA/releases/download/1.2.1/khdays-vita-1.2.1.vpk",
+      "sz": 3979385,
       "rec": true
     },
     {

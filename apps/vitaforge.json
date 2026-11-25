@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "0.1.14",
-  "vd": "2026-11-24",
+  "v": "0.1.15",
+  "vd": "2026-11-25",
   "req": "Homebrew-enabled PS Vita. No libshacccg.suprx required (precompiled shaders).",
-  "sz": 6274545,
+  "sz": 6353031,
   "st": "Legacy",
   "ic": "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png",
   "ss": [
@@ -24,7 +24,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.14/vitaforge.vpk",
+      "u": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.15/vitaforge.vpk",
       "rec": true
     },
     {
