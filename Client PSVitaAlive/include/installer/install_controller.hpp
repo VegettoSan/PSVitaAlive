@@ -54,6 +54,11 @@ struct InstallStatus {
  * Failed / Cancelled stay until the user acknowledges (no auto-dismiss).
  * Cancelled is shown as "Download cancelled" without an error Report button.
  */
+struct QueuedInstallObservation {
+    queue::Token token;
+    InstallStatus status;
+};
+
 struct SavedZipArchive {
     std::string fileName; // visible basename in app details
     std::string archivePath; // exact validated path, not caller-supplied
@@ -111,9 +116,12 @@ public:
     // Experimental queue adapter. Main-thread only. status() is polled once
     // per rendered frame by the caller (BGDL relies on its one-poll deferral).
     bool canStartQueuedStep() const;
-    bool startQueuedStep(const queue::Job& job, queue::Token token);
-    bool settleQueuedStep(queue::Session& session, queue::Token token,
-                          const InstallStatus& observed);
+    bool startQueuedStep(const queue::Session& session, queue::Token token);
+    QueuedInstallObservation pollQueuedStep() const;
+    bool settleQueuedStep(queue::Session& session, const QueuedInstallObservation& observed);
+    bool cancelQueuedStep(queue::Token token);
+    bool pauseQueuedStep(queue::Token token);
+    bool resumeQueuedStep(queue::Token token);
     bool resolveQueuedZip(queue::Token token, bool keep, std::string* savedPath=nullptr);
     bool ownsQueuedStep() const { return queuedToken_.job != 0; }
 
@@ -226,6 +234,8 @@ private:
     std::atomic<uint64_t> speed_{0};
     std::atomic<bool> workerDone_{true};
     uint64_t nextRecoveryPollUs_ = 0; // main-thread only
+    void cancelImpl();
+    bool pauseDownloadImpl();
     bool resumeDownloadImpl(bool automatic);
     std::atomic<bool> liveAreaOk_{false};
     std::atomic<uint64_t> resultShownAtMs_{0};
