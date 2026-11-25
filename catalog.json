@@ -155,6 +155,66 @@
     ]
   },
   {
+    "id": "nfs-underground-2",
+    "tid": "NFSU2VITA",
+    "n": "NFS Underground 2",
+    "d": "Need for Speed Underground 2 port for the PS VITA",
+    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
+    "aids": [
+      "danos-x5"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.9.0",
+    "vd": "2026-11-25",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
+    "sz": 11972573,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.9.0/NFSU2VITA.vpk",
+        "sz": 11972573,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
+        "sz": 2899102925,
+        "xp": "ux0:data/",
+        "ips": [
+          "NeedForSpeedUnderground2"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5837,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSUG2_VITA/shot0.png"
+    ]
+  },
+  {
     "id": "silent-hill-2",
     "tid": "SHIL00002",
     "n": "Silent Hill 2",
@@ -202,6 +262,56 @@
     "ic": "https://archive.org/download/sh2-vita/icon0.png",
     "ss": [
       "https://archive.org/download/sh2-vita/icon0.png"
+    ]
+  },
+  {
+    "id": "valdis-story-psvita",
+    "tid": "VALDIS001",
+    "n": "Valdis Story PSVITA",
+    "d": "Native port of Valdis Story: Abyssal City to PlayStation Vita",
+    "ld": "ULTRA AI VIBECODED! Native port of Valdis Story: Abyssal City to PlayStation Vita: a custom GameMaker Studio 1.x runner written from scratch in C++17 (VM, events, rooms, rendering, particles, audio). It is not an emulator and does not use YoYo Loader.",
+    "aids": [
+      "botarguirix"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.9.3",
+    "vd": "2026-11-25",
+    "req": "- libshacccg.suprx\n- Launch the game. The first boot converts the data (a few minutes, with a progress bar).\n-",
+    "sz": 2173535,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Botarguirix/ValdisStoryVita/releases/download/v0.9.3/vsvita.vpk",
+        "sz": 2173535,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/valdis-story-psvita/Game%20Files%20for%20PSVA.zip",
+        "sz": 796183757,
+        "xp": "ux0:data/",
+        "ips": [
+          "valdis"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Botarguirix/ValdisStoryVita"
+      }
+    ],
+    "ic": "https://archive.org/download/valdis-story-psvita/icon0.png",
+    "ss": [
+      "https://archive.org/download/valdis-story-psvita/shot0.png"
     ]
   },
   {
@@ -961,66 +1071,6 @@
     ]
   },
   {
-    "id": "nfs-underground-2",
-    "tid": "NFSU2VITA",
-    "n": "NFS Underground 2",
-    "d": "Need for Speed Underground 2 port for the PS VITA",
-    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
-    "aids": [
-      "danos-x5"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.8.5",
-    "vd": "2026-11-22",
-    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
-    "sz": 10405723,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/NFSUG2_VITA/nfs-underground-2%20v0.8.5.vpk",
-        "sz": 10405723,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
-        "sz": 2899102925,
-        "xp": "ux0:data/",
-        "ips": [
-          "NeedForSpeedUnderground2"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5837,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSUG2_VITA/shot0.png"
-    ]
-  },
-  {
     "id": "spongebob-battle-for-bikini-bottom",
     "tid": "BBVT00002",
     "n": "Spongebob: Battle for Bikini Bottom",
@@ -1224,56 +1274,6 @@
     "ic": "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/street-fighter-3rd-strike-native-vita-port/shot0.png"
-    ]
-  },
-  {
-    "id": "valdis-story-psvita",
-    "tid": "VALDIS001",
-    "n": "Valdis Story PSVITA",
-    "d": "Native port of Valdis Story: Abyssal City to PlayStation Vita",
-    "ld": "ULTRA AI VIBECODED! Native port of Valdis Story: Abyssal City to PlayStation Vita: a custom GameMaker Studio 1.x runner written from scratch in C++17 (VM, events, rooms, rendering, particles, audio). It is not an emulator and does not use YoYo Loader.",
-    "aids": [
-      "botarguirix"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.7.0",
-    "vd": "2026-11-21",
-    "req": "- libshacccg.suprx\n- Launch the game. The first boot converts the data (a few minutes, with a progress bar).\n-",
-    "sz": 1572864,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/valdis-story-psvita/vsvita%20v0.7.0.vpk",
-        "sz": 1572864,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/valdis-story-psvita/Game%20Files%20for%20PSVA.zip",
-        "sz": 796183757,
-        "xp": "ux0:data/",
-        "ips": [
-          "valdis"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/Botarguirix/ValdisStoryVita"
-      }
-    ],
-    "ic": "https://archive.org/download/valdis-story-psvita/icon0.png",
-    "ss": [
-      "https://archive.org/download/valdis-story-psvita/shot0.png"
     ]
   },
   {
