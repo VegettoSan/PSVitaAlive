@@ -1,6 +1,17 @@
 {
   "schema_version": 1,
-  "inflight": {},
+  "inflight": {
+    "nfs-carbon": {
+      "version": "0.1.8",
+      "source_url": "https://github.com/Swisha33/NFSCVita/releases/download/v0.1.8/NFSCVita.vpk",
+      "archive_identifier": "NFSCVita",
+      "filename": "nfs-carbon v0.1.8.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-25T04:45:02+00:00",
+      "size_bytes": 15297426,
+      "title_id": "NFSCVITA0"
+    }
+  },
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
