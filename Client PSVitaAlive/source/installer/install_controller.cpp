@@ -349,6 +349,8 @@ void InstallController::shutdown() {
 }
 
 void InstallController::setSettings(const AppSettingsData& s) {
+    // Queue routing and worker reads must remain immutable until settlement.
+    if (ownsQueuedStep()) return;
     settings_ = s;
     AppSettings::save(settings_);
     diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod) +
@@ -516,6 +518,7 @@ void InstallController::cancel() {
 }
 
 void InstallController::acknowledgeResult() {
+    if (ownsQueuedStep() && !queuedAcknowledging_) return;
     // A terminal state may be published while a worker is still persisting its
     // receipt or cleaning its DownloadManager job. Never clear shared fields
     // before that worker has finished.
@@ -647,6 +650,7 @@ bool InstallController::persistPendingZipRecovery() {
 }
 
 bool InstallController::resolveZipRecovery(bool keep, std::string* savedPath) {
+    if (ownsQueuedStep() && !queuedResolving_) return false;
     if (savedPath) savedPath->clear();
     if (!zipRecoveryAvailable_.load() ||
         static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Failed)
@@ -783,7 +787,7 @@ bool InstallController::deleteSavedZip(const std::string& appId,
                                        const std::string& titleId,
                                        const std::string& archivePath) {
     // Trust only archives returned by the existing app/title-bound metadata scan.
-    if (archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
+    if (ownsQueuedStep() || archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
     const auto archives = savedZips(appId, titleId);
     const auto it = std::find_if(archives.begin(), archives.end(),
         [&](const SavedZipArchive& z) { return z.archivePath == archivePath; });
@@ -815,7 +819,7 @@ bool InstallController::hasSavedZip(const std::string& appId, const std::string&
 bool InstallController::requestSavedZipExtraction(
     const std::string& appId, const std::string& titleId,
     const std::string& archivePath) {
-    if (busy() || zipRecoveryAvailable_.load()) return false;
+    if (ownsQueuedStep() || busy() || zipRecoveryAvailable_.load()) return false;
     // Never trust a UI-provided path: resolve the selected archive afresh from
     // its app-specific metadata. This also handles deletion between UI frames.
     const auto matches = savedZips(appId, titleId);
@@ -886,6 +890,7 @@ bool InstallController::busy() const {
 void InstallController::setPendingCatalogMeta(const std::string& appId, const std::string& version,
                                                    const std::string& versionDate, int revision,
                                                    const std::string& titleId) {
+    if (ownsQueuedStep() && !queuedDispatching_) return;
     // Metadata is also consumed by the worker when writing the install receipt.
     // Never replace it during an earlier installation's cleanup tail.
     if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
@@ -910,7 +915,7 @@ bool InstallController::requestInstall(
     const std::string& pluginLine,
     bool installAllSpaceApproved
 ) {
-    if (url.empty() || fileName.empty() || busy()) return false;
+    if ((ownsQueuedStep() && !queuedDispatching_) || url.empty() || fileName.empty() || busy()) return false;
     // Game Files / Data Files are extraction-only. Do not enqueue a download
     // that could later be mistaken for an installable VPK.
     if (isDataOrGameFilesLinkType(linkType) && zipDestination.empty()) {
@@ -1176,6 +1181,86 @@ bool InstallController::requestInstall(
     return true;
 }
 
+bool InstallController::canStartQueuedStep() const {
+    // Do not read activeBgdlJob_ through its conversion operator: it consumes
+    // the preparation-frame deferral. An Idle controller cannot have BGDL armed.
+    return !ownsQueuedStep() && !busy() && !zipRecoveryAvailable_.load() &&
+        static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle;
+}
+
+bool InstallController::startQueuedStep(const queue::Job& job, queue::Token token) {
+    if (!canStartQueuedStep() || !token.job || !token.serial || token.job != job.id ||
+        job.state != queue::State::Running || token.step != job.nextStep ||
+        token.step >= job.steps.size() || job.steps[token.step].state != queue::State::Running ||
+        !job.routing.matches(settings_)) return false;
+    const auto& step = job.steps[token.step];
+    queuedToken_ = token;
+    queuedDispatching_ = true;
+    queuedSavedZipPath_.clear();
+    // Reset fields even if requestInstall fails synchronously before launching a
+    // worker. In particular a previous plugin/BGDL must not leak its outcome.
+    needsReboot_.store(false);
+    archiveSourceUnavailable_.store(false);
+    liveAreaOk_.store(false);
+    current_.store(0); total_.store(step.expectedBytes); speed_.store(0);
+    resultShownAtMs_.store(0);
+    setFileName(step.fileName.c_str());
+    setTitleId(""); setInstallPath(""); setStage("Preparing");
+    setPendingCatalogMeta(job.appId, job.version, job.versionDate,
+                          job.releaseRevision, job.titleId);
+    const bool started = requestInstall(step.url, step.fileName, step.destination,
+        step.zrif, step.linkType, step.contentId, job.name, step.expectedBytes,
+        step.pluginSection, step.pluginLine, false); // never reuse stale space approval
+    queuedDispatching_ = false;
+    if (!started && static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle) {
+        setStage("Preparing");
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
+    }
+    // True means ownership accepted, not success or even worker launch.
+    return true;
+}
+
+bool InstallController::resolveQueuedZip(queue::Token token, bool keep, std::string* savedPath) {
+    if (!ownsQueuedStep() || !(queuedToken_ == token) || busy()) return false;
+    queuedResolving_ = true;
+    std::string path;
+    const bool ok = resolveZipRecovery(keep, &path);
+    queuedResolving_ = false;
+    if (ok) queuedSavedZipPath_ = path;
+    if (savedPath) *savedPath = ok ? path : std::string();
+    return ok;
+}
+
+bool InstallController::settleQueuedStep(queue::Session& session, queue::Token token,
+                                         const InstallStatus& observed) {
+    using S = InstallStatus::State;
+    if (!ownsQueuedStep() || !(queuedToken_ == token) || !(session.activeToken() == token) ||
+        busy() || zipRecoveryAvailable_.load() || observed.zipRecoveryAvailable ||
+        observed.state != static_cast<S>(state_.load())) return false;
+    if (observed.state != S::Completed && observed.state != S::Failed &&
+        observed.state != S::Cancelled) return false;
+    queue::Outcome outcome = observed.state == S::Completed
+        ? (observed.stage == "BGDL" ? queue::Outcome::HandedOff : queue::Outcome::Completed)
+        : observed.state == S::Failed ? queue::Outcome::Failed : queue::Outcome::Cancelled;
+    queue::ResultDetails details;
+    details.stage = observed.stage;
+    details.fileName = observed.fileName;
+    details.installPath = observed.installPath;
+    details.titleId = observed.titleId;
+    details.savedZipPath = queuedSavedZipPath_;
+    details.liveAreaOk = observed.liveAreaOk;
+    details.needsReboot = observed.needsReboot;
+    details.archiveSourceUnavailable = observed.archiveSourceUnavailable;
+    if (!session.settle(token, outcome, true, observed.needsReboot, observed.message, std::move(details)))
+        return false;
+    queuedAcknowledging_ = true;
+    acknowledgeResult();
+    queuedAcknowledging_ = false;
+    queuedToken_ = {};
+    queuedSavedZipPath_.clear();
+    return true;
+}
+
 InstallStatus InstallController::status() const {
     if (activeBgdlJob_) {
         // The UI has already submitted the preparation frame. Execute BGDL now,
@@ -1279,7 +1364,7 @@ InstallStatus InstallController::status() const {
         result.zipRecoveryExtractPath = zipRecoveryExtractPath_;
     }
     result.resultAutoCloseRemainingMs = 0;
-    if (result.state == InstallStatus::State::Completed) {
+    if (result.state == InstallStatus::State::Completed && !ownsQueuedStep()) {
         const uint64_t shown = resultShownAtMs_.load();
         if (shown != 0) {
             const uint64_t now = sceKernelGetSystemTimeWide() / 1000ULL;
@@ -1292,6 +1377,7 @@ InstallStatus InstallController::status() const {
 }
 
 void InstallController::maybeAutoAcknowledgeResult() {
+    if (ownsQueuedStep()) return;
     const auto s = static_cast<InstallStatus::State>(state_.load());
     if (s != InstallStatus::State::Completed) return;
     if (needsReboot_.load()) return; // wait for reboot modal
