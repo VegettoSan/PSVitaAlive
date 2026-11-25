@@ -3755,6 +3755,8 @@
     }
   },
   "catalog_initialized": true,
-  "releases": [],
+  "releases": [
+    "02.19"
+  ],
   "schema": 1
 }
