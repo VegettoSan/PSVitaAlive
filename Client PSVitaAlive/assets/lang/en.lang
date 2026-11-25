@@ -939,3 +939,5 @@ QUEUE_UNKNOWN_SPACE=Unable to confirm available storage for this queue.
 QUEUE_UNSUPPORTED=This installation needs the individual installer. Finish the queue first.
 QUEUE_VIEW=View downloads
 QUEUE_WAITING=Queued
+QUEUE_HISTORY=Download history
+QUEUE_HISTORY_EMPTY=No download history yet

@@ -8,6 +8,7 @@
 #include "ui/storage_layout.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/install_controller.hpp"
+#include "installer/queue_history.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
 #include "storage/installed_data_manager.hpp"
@@ -113,6 +114,7 @@ public:
     enum class QueueAction { Cancel, Pause, Resume, KeepZip, DeleteZip, RetrySpace, CloseReport };
     using QueueActionFn = std::function<bool(QueueAction,uint64_t)>;
     void setQueueCallbacks(const ::psvitaalive::queue::Session* session, QueueGroupFn group, QueueActionFn action);
+    void setQueueHistory(const ::psvitaalive::queue::History* history) { queueHistory_=history; }
     void setQueueFrame(bool protectedSession,bool report,const ::psvitaalive::InstallStatus& status,
                        bool waitingSpace,bool invariantBlocked);
     void queueAccepted(uint64_t id,bool first);
@@ -224,6 +226,8 @@ private:
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
     const ::psvitaalive::queue::Session* queueSession_=nullptr;
+    const ::psvitaalive::queue::History* queueHistory_=nullptr;
+    bool queueHistoryMode() const { return queueHistory_ && !queueProtected_ && !queueReport_; }
     QueueGroupFn queueGroup_;
     QueueActionFn queueAction_;
     ::psvitaalive::InstallStatus queueStatus_;

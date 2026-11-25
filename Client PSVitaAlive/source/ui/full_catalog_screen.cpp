@@ -1,6 +1,7 @@
 #include "ui/controller_input.hpp"
 #include "ui/skin_hints.hpp"
 #include "ui/full_catalog_screen.hpp"
+#include <ctime>
 #include "ui/catalog_grid_navigation.hpp"
 #include "ui/feedback_scroll_math.hpp"
 #include "ui/game_files_notice_policy.hpp"
@@ -12366,7 +12367,8 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
        !reportConfirmVisible_ && !dataRequestConfirmVisible_ && !webQrVisible_ &&
        !filterModalOpen_ && !pspSetupModal_ && !pluginChoiceModal_ &&
        installAllPhase_==InstallAllPhase::Hidden && !isTransitioning()) openQueue();
-    if(!protectedSession && !report && queueVisible_ && queueSession_ && queueSession_->jobs().empty()) {
+    if(!protectedSession && !report && queueVisible_ && queueSession_ && queueSession_->jobs().empty() &&
+       (!queueHistory_ || queueHistory_->entries().empty())) {
         // Idle manager may remain open until user explicitly goes back.
         queueDetail_=false; queueSelectedId_=0;
     }
@@ -12395,7 +12397,10 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     queueAwaitRelease_=true; queueTouchDown_=false; touchDown_=false;
     queueTransitionUs_=sceKernelGetProcessTimeWide();
     const auto& jobs=queueSession_->jobs();
-    if(!queueSession_->find(id) && !jobs.empty())
+    if(queueHistoryMode()) {
+        queueSelectedId_=queueHistory_->entries().empty()?0:1;
+        queueDetail_=false;
+    } else if(!queueSession_->find(id) && !jobs.empty())
         queueSelectedId_=queueSession_->activeToken().job?queueSession_->activeToken().job:jobs.front().id;
     queueMove(0);
 }
@@ -12413,6 +12418,15 @@ void FullCatalogScreen::closeQueue() {
 }
 void FullCatalogScreen::queueMove(int delta) {
     if(!queueSession_)return;
+    if(queueHistoryMode()) {
+        const int count=static_cast<int>(queueHistory_->entries().size());
+        if(!count) { queueSelectedId_=0; queueScroll_=0; return; }
+        const int i=std::max(0,std::min(count-1,static_cast<int>(queueSelectedId_?queueSelectedId_-1:0)+delta));
+        queueSelectedId_=static_cast<uint64_t>(i+1);
+        if(i<queueScroll_)queueScroll_=i;
+        if(i>=queueScroll_+5)queueScroll_=i-4;
+        return;
+    }
     const auto& jobs=queueSession_->jobs();
     if(jobs.empty()){queueSelectedId_=0;queueScroll_=0;return;}
     int i=0;
@@ -12482,6 +12496,65 @@ void FullCatalogScreen::drawQueueScreen() {
         case Component::PspMedia:return "PSP / PS1";default:return "ZIP";}
     };
     skin::surface(skin::ui_atlas::ui_panel,12,10,936,56,SURFACE);
+    if(queueHistoryMode()) {
+        const auto& entries=queueHistory_->entries();
+        const auto stateKey=[](State state)->const char* {
+            switch(state) {
+            case State::Completed:return "QUEUE_DONE"; case State::HandedOff:return "QUEUE_HANDOFF";
+            case State::Partial:return "QUEUE_PARTIAL"; case State::Failed:return "QUEUE_FAILED";
+            case State::Cancelled:return "QUEUE_CANCELLED"; case State::Skipped:return "QUEUE_SKIPPED";
+            default:return "QUEUE_WAITING";
+            }
+        };
+        const auto metadata=[](const HistoryEntry& e) {
+            std::string line=e.titleId;
+            if(!e.version.empty()) { if(!line.empty())line+="  |  "; line+=e.version; }
+            const std::time_t t=static_cast<std::time_t>(e.epoch);
+            if(t>0 && static_cast<uint64_t>(t)==e.epoch) {
+                if(const auto* tm=std::localtime(&t)) {
+                    char date[32]{};
+                    if(std::strftime(date,sizeof(date),"%Y-%m-%d %H:%M",tm)) {
+                        if(!line.empty())line+="  |  ";
+                        line+=date;
+                    }
+                }
+            }
+            return line;
+        };
+        label(26,45,900,ACCENT,1.12f,::psvitaalive::L("QUEUE_HISTORY"));
+        const HistoryEntry* selected=queueSelectedId_>0 && queueSelectedId_<=entries.size()?
+            &entries[static_cast<size_t>(queueSelectedId_-1)]:nullptr;
+        if(queueDetail_ && selected) {
+            skin::surface(skin::ui_atlas::ui_card,20,79,920,159,SURFACE);
+            label(36,110,888,WHITE,1.04f,selected->name);
+            label(36,137,888,ACCENT,.83f,::psvitaalive::L(stateKey(selected->state)));
+            label(36,170,888,DIM,.78f,metadata(*selected));
+            label(36,208,888,TEXT,.73f,selected->installAll?"Install All":component(selected->steps.front().component));
+            queueStepScroll_=std::max(0,std::min(std::max(0,static_cast<int>(selected->steps.size())-3),queueStepScroll_));
+            for(int i=queueStepScroll_;i<static_cast<int>(selected->steps.size()) && i<queueStepScroll_+3;++i) {
+                const auto& step=selected->steps[static_cast<size_t>(i)];
+                const int y=247+(i-queueStepScroll_)*65;
+                skin::surface(skin::ui_atlas::ui_card,20,y,920,60,SURFACE2);
+                label(36,y+33,560,WHITE,.77f,std::to_string(i+1)+"/"+std::to_string(selected->steps.size())+"  "+component(step.component));
+                label(635,y+33,275,ACCENT,.73f,::psvitaalive::L(stateKey(step.state)));
+            }
+        } else {
+            if(entries.empty()) label(35,146,890,DIM,.92f,::psvitaalive::L("QUEUE_HISTORY_EMPTY"));
+            for(int i=queueScroll_;i<static_cast<int>(entries.size()) && i<queueScroll_+5;++i) {
+                const auto& e=entries[static_cast<size_t>(i)];
+                const int y=79+(i-queueScroll_)*70;
+                const bool focus=static_cast<uint64_t>(i+1)==queueSelectedId_;
+                skin::surface(skin::ui_atlas::ui_card,20,y,920,64,focus?SURFACE2:SURFACE);
+                if(focus)skin::focus(20,y,920,64,ACCENT);
+                label(36,y+25,610,WHITE,.91f,e.name);
+                label(36,y+48,600,DIM,.71f,metadata(e));
+                label(650,y+32,270,ACCENT,.78f,::psvitaalive::L(stateKey(e.state)));
+            }
+        }
+        btn(20,478,212,"QUEUE_BACK");
+        if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW");
+        drawToast(); finishFrame(); return;
+    }
     const auto& jobs=queueSession_->jobs();
     label(26,45,queueReport_?480:900,ACCENT,1.12f,::psvitaalive::L(queueReport_?"QUEUE_REPORT":"QUEUE_TITLE"));
     if(queueReport_) {
@@ -12573,6 +12646,7 @@ void FullCatalogScreen::handleQueueInput() {
     if(pressed&SCE_CTRL_UP){if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_-1);else queueMove(-1);}
     if(pressed&SCE_CTRL_DOWN){if(queueDetail_)++queueStepScroll_;else queueMove(1);}
     if(pressed&SCE_CTRL_CROSS && !queueDetail_ && queueSelectedId_){queueDetail_=true;queueStepScroll_=0;}
+    if(queueHistoryMode())return;
     if(pressed&SCE_CTRL_TRIANGLE && queueProtected_ && queueSelectedId_) {
         queueConfirmAction_=recovery?QueueAction::DeleteZip:QueueAction::Cancel;
         queueConfirmId_=queueSelectedId_; queueConfirmCancel_=true;
@@ -12616,8 +12690,9 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
     }
     if(!queueDetail_ && y>=79 && y<429) {
         const int i=queueScroll_+(y-79)/70;
-        if(i>=0 && i<(int)queueSession_->jobs().size()) {
-            const auto id=queueSession_->jobs()[i].id;
+        const auto count=queueHistoryMode()?queueHistory_->entries().size():queueSession_->jobs().size();
+        if(i>=0 && static_cast<size_t>(i)<count) {
+            const auto id=queueHistoryMode()?static_cast<uint64_t>(i+1):queueSession_->jobs()[i].id;
             if(id==queueSelectedId_) {queueDetail_=true;queueStepScroll_=0;}
             else queueSelectedId_=id;
         }

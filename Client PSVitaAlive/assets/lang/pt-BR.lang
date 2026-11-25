@@ -896,3 +896,5 @@ QUEUE_UNKNOWN_SPACE=Não foi possível confirmar o espaço disponível para esta
 QUEUE_UNSUPPORTED=Esta instalação exige o instalador individual. Conclua a fila primeiro.
 QUEUE_VIEW=Ver downloads
 QUEUE_WAITING=Na fila
+QUEUE_HISTORY=Histórico de downloads
+QUEUE_HISTORY_EMPTY=Ainda não há histórico de downloads

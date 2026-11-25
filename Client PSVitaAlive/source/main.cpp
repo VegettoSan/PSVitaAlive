@@ -23,6 +23,8 @@ namespace skin = psvitaalive::skin;
 #include "storage/installed_data_manager.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/queue_coordinator.hpp"
+#include "installer/queue_history.hpp"
+#include <ctime>
 #include "update/installed_release_tracker.hpp"
 #include "installer/install_archive_policy.hpp"
 #include "ui/ui_font.hpp"
@@ -336,8 +338,13 @@ int main(){
             psvitaalive::LocalizationManager::instance().currentLanguageName());
     }
 
-    psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
     namespace q = psvitaalive::queue;
+    q::History queueHistory;
+    q::HistoryStore<psvitaalive::StorageManager> historyStore(storage,"ux0:data/psvitaalive/queue_history");
+    if(!historyStore.load(queueHistory)) psvitaalive::diagnostics::log("[Queue] history unavailable; starting empty");
+    bool historyDirty=false;
+    psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
+    screen.setQueueHistory(&queueHistory);
     using QueueAction=psvitaalive::ui::FullCatalogScreen::QueueAction;
     q::Coordinator<psvitaalive::InstallController,psvitaalive::CatalogManager> queue(installer,catalogs);
     // Return 1 accepted, 0 rejected, -1 legacy-only route while idle.
@@ -914,6 +921,19 @@ while(true){
                     screen.queueJobSettled(*job);
                 }
                 screen.requestUx0SpaceRefresh();
+            }
+            // Capture display-only terminal records on lifecycle changes, never per-frame I/O.
+            bool historyChanged=false;
+            if(queueHistory.observedGeneration()!=queue.session().generation()) {
+                const auto now=std::time(nullptr);
+                historyChanged=queueHistory.observe(queue.session(),now>0?static_cast<uint64_t>(now):0);
+                historyDirty=historyDirty||historyChanged;
+            }
+            if(historyDirty && !queue.session().activeToken().job &&
+               (historyChanged || event.state==q::TickState::Settled ||
+                event.state==q::TickState::StartFailed || event.state==q::TickState::Finished)) {
+                if(historyStore.save(queueHistory)) historyDirty=false;
+                else psvitaalive::diagnostics::log("[Queue] history save failed; previous valid slot retained");
             }
             screen.setQueueFrame(queue.protectedSession(),queue.reportReady(),queue.observation().status,
                 event.state==q::TickState::WaitingSpace,event.state==q::TickState::InvariantBlocked);

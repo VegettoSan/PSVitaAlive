@@ -896,3 +896,5 @@ QUEUE_UNKNOWN_SPACE=Не удалось подтвердить свободно�
 QUEUE_UNSUPPORTED=Для этой установки нужен отдельный режим. Сначала завершите очередь.
 QUEUE_VIEW=Просмотр загрузок
 QUEUE_WAITING=В очереди
+QUEUE_HISTORY=История загрузок
+QUEUE_HISTORY_EMPTY=История загрузок пока пуста

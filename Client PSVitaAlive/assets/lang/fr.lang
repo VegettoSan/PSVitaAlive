@@ -896,3 +896,5 @@ QUEUE_UNKNOWN_SPACE=Impossible de confirmer l’espace disponible pour cette fil
 QUEUE_UNSUPPORTED=Cette installation nécessite le mode individuel. Terminez la file d’abord.
 QUEUE_VIEW=Voir les téléchargements
 QUEUE_WAITING=En attente
+QUEUE_HISTORY=Historique des téléchargements
+QUEUE_HISTORY_EMPTY=Aucun téléchargement dans l’historique

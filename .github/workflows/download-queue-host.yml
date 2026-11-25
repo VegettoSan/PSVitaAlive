@@ -7,6 +7,8 @@ on:
       - 'Client PSVitaAlive/include/installer/install_space_policy.hpp'
       - 'Client PSVitaAlive/include/installer/queue_coordinator.hpp'
       - 'tests/test_queue_coordinator.cpp'
+      - 'Client PSVitaAlive/include/installer/queue_history.hpp'
+      - 'tests/test_queue_history.cpp'
       - 'tests/test_download_queue.cpp'
       - '.github/workflows/download-queue-host.yml'
   workflow_dispatch:
@@ -33,3 +35,9 @@ jobs:
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_coordinator.cpp -o /tmp/psva-coordinator-sanitize
           /tmp/psva-coordinator-sanitize
+      - name: Test bounded history and crash fallback
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -I"Client PSVitaAlive/include" tests/test_queue_history.cpp -o /tmp/psva-history-test
+          /tmp/psva-history-test
+          c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_history.cpp -o /tmp/psva-history-sanitize
+          /tmp/psva-history-sanitize

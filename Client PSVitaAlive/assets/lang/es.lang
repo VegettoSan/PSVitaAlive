@@ -939,3 +939,5 @@ QUEUE_UNKNOWN_SPACE=No se pudo confirmar el espacio disponible para esta cola.
 QUEUE_UNSUPPORTED=Esta instalación requiere el instalador individual. Termina la cola primero.
 QUEUE_VIEW=Ver descargas
 QUEUE_WAITING=En cola
+QUEUE_HISTORY=Historial de descargas
+QUEUE_HISTORY_EMPTY=Todavía no hay historial de descargas
