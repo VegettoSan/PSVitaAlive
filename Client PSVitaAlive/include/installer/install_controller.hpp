@@ -119,6 +119,8 @@ public:
     bool beginQueueProtection();
     bool endQueueProtection(const queue::Session& session);
     bool queueProtectionActive() const { return queueProtection_.load(); }
+    // Main-thread event-driven probe, never a per-frame filesystem poll.
+    queue::Snapshot captureQueueSnapshot(const queue::Session& session);
     bool canStartQueuedStep() const;
     bool startQueuedStep(const queue::Session& session, queue::Token token);
     QueuedInstallObservation pollQueuedStep() const;
@@ -145,6 +147,8 @@ public:
 
 private:
     std::atomic<bool> queueProtection_{false};
+    // Download-only high-water size hint, independent of reused extraction counters.
+    std::atomic<uint64_t> queueObservedPayload_{0};
     queue::Token queuedToken_{};
     bool queuedDispatching_=false;
     bool queuedAcknowledging_=false;
