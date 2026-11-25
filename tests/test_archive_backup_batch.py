@@ -332,6 +332,115 @@ class BatchTests(unittest.TestCase):
             self.assertEqual(updated["links"][0]["url"], public_url(
                 "psvitaalive-fmvita", name))
 
+    def test_newer_version_retires_uncertain_checkpoint_and_preserves_new_vpk(self):
+        app = release_app()
+        item = dict(candidate(), kind="CATALOG_BACKFILL")
+        old = {"version": "0.6.1", "filename": "fmvita v0.6.1.vpk",
+               "source_url": item["source_url"].replace("0.6.2", "0.6.1"),
+               "archive_identifier": item["archive_identifier"],
+               "status": "TRANSFER_PREPARED"}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            path = root / "apps/fmvita.json"
+            path.write_text(json.dumps(app), encoding="utf-8")
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "fmvita,psvitaalive-fmvita,ok,old.vpk,,\n", encoding="utf-8")
+            state = {"schema_version": 1, "inflight": {"fmvita": old}}
+            md = {"files": []}
+            snapshots = []
+            def publish(*args, **kwargs):
+                snapshots.append(load_state(root))
+            def upload_new(item, *args):
+                self.assertEqual(item["version"], "0.6.2")
+                persisted = load_state(root)
+                self.assertEqual(persisted["inflight"]["fmvita"]["version"], "0.6.2")
+                self.assertEqual(persisted["superseded"]["fmvita"][old["filename"]]["version"], "0.6.1")
+            with patch("scripts.archive_backup_batch.load_policy", return_value=policy()), \
+                 patch("scripts.archive_backup_batch.owned_metadata", return_value=md), \
+                 patch("scripts.archive_backup_batch.download_source",
+                       return_value=("a"*32, "b"*64)), \
+                 patch("scripts.archive_backup_batch.verify_file_metadata"), \
+                 patch("scripts.archive_backup_batch.verify_public_download"), \
+                 patch("scripts.archive_backup_batch.attempt_upload", side_effect=upload_new) as upload:
+                status, _ = run_one(root, item, {}, state, ("a", "s", "owner"),
+                                    max_file=10*MIB, publish=publish)
+            self.assertEqual(status, "PUBLISHED_VERIFIED")
+            upload.assert_called_once()
+            self.assertEqual(len(snapshots), 3)
+            self.assertNotIn("fmvita", snapshots[0]["inflight"])
+            self.assertEqual(snapshots[0]["superseded"]["fmvita"][old["filename"]]["recovery_status"],
+                             "NOT_VISIBLE")
+            self.assertNotIn("fmvita", state["inflight"])
+            self.assertEqual(json.loads(path.read_text())["version"], "0.6.2")
+
+    def test_superseded_reconciliation_is_read_only_and_does_not_downgrade(self):
+        from scripts.archive_backup_batch import reconcile_historical
+        app = release_app()
+        old = {"version": "0.6.1", "filename": "fmvita v0.6.1.vpk",
+               "source_url": candidate()["source_url"].replace("0.6.2", "0.6.1"),
+               "archive_identifier": candidate()["archive_identifier"]}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            path = root / "apps/fmvita.json"
+            before = json.dumps(app)
+            path.write_text(before, encoding="utf-8")
+            (root / "scripts/archive_upload_log.csv").write_text(
+                "app_id,identifier,status,files,error,url\n"
+                "fmvita,psvitaalive-fmvita,ok,old.vpk,,\n", encoding="utf-8")
+            md = {"files": [{"name": old["filename"], "size": "1234", "md5": "a"*32}]}
+            with patch("scripts.archive_backup_batch.load_policy", return_value=policy()), \
+                 patch("scripts.archive_backup_batch.owned_metadata", return_value=md), \
+                 patch("scripts.archive_backup_batch.download_source",
+                       return_value=("a"*32, "b"*64)), \
+                 patch("scripts.archive_backup_batch.stream_download",
+                       return_value=(1234, "a"*32, "b"*64)), \
+                 patch("scripts.archive_backup_batch.attempt_upload") as upload:
+                status, _ = reconcile_historical(root, "fmvita", old["filename"], old,
+                                                 "owner", max_file=10*MIB)
+            self.assertEqual(status, "HISTORICAL_VERIFIED")
+            upload.assert_not_called()
+            self.assertEqual(path.read_text(), before)
+
+    def test_historical_rechecks_are_bounded_and_preserve_checkpoint(self):
+        from scripts.archive_backup_batch import recover_one_historical
+        old = {"version": "0.6.1", "recovery_status": "NOT_VISIBLE", "checks": 0}
+        state = {"schema_version": 1, "inflight": {},
+                 "superseded": {"fmvita": {"fmvita v0.6.1.vpk": old}}}
+        with tempfile.TemporaryDirectory() as tmp, \
+             patch("scripts.archive_backup_batch.reconcile_historical",
+                   side_effect=Deferred("VERIFYING", "not visible")) as check:
+            root = Path(tmp)
+            publish = lambda *args, **kwargs: None
+            for attempt in range(3):
+                if attempt:
+                    old["last_checked_at"] = "2020-01-01T00:00:00+00:00"
+                result = recover_one_historical(root, state, "owner",
+                                                max_file=10*MIB, publish=publish)
+                self.assertIsNotNone(result)
+                if attempt == 0:
+                    self.assertIsNone(recover_one_historical(root, state, "owner",
+                                                             max_file=10*MIB, publish=publish))
+            self.assertEqual(check.call_count, 3)
+            self.assertEqual(old["recovery_status"], "PENDING_MANUAL")
+            self.assertEqual(load_state(root)["superseded"]["fmvita"]["fmvita v0.6.1.vpk"]["checks"], 3)
+            self.assertIsNone(recover_one_historical(root, state, "owner",
+                                                     max_file=10*MIB, publish=publish))
+
+    def test_older_or_equal_checkpoint_cannot_replace_active_transfer(self):
+        from scripts.archive_backup_batch import retire_older_checkpoint
+        old = {"version": "0.6.3", "filename": "fmvita v0.6.3.vpk",
+               "archive_identifier": candidate()["archive_identifier"]}
+        state = {"schema_version": 1, "inflight": {"fmvita": old}}
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(Deferred):
+                retire_older_checkpoint(Path(tmp), candidate(), state, {"files": []})
+        self.assertEqual(state["inflight"]["fmvita"], old)
+
     def test_all_nonexcluded_apps_are_autoeligible_without_spdx(self):
         default_policy = {"*": {"enabled": True}}
         app = release_app()
