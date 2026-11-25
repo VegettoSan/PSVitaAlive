@@ -7,6 +7,7 @@
 #include "ui/navigation_focus.hpp"
 #include "ui/storage_layout.hpp"
 #include "installer/app_settings.hpp"
+#include "installer/install_controller.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
 #include "storage/installed_data_manager.hpp"
@@ -17,6 +18,7 @@
 #include "ui/ui_font.hpp"
 #include "ui/detail_wrap_cache.hpp"
 #include <psp2/io/stat.h>
+#include <psp2/touch.h>
 #include <psp2/kernel/threadmgr.h>
 
 #include <atomic>
@@ -106,6 +108,17 @@ public:
     bool promptTextBlocking(const std::string& initial, const std::string& title,
                             std::string& output);
     void setLinkActionCallback(LinkActionFn callback);
+    // Experimental queue integration. Session and status are main-thread-owned.
+    using QueueGroupFn = std::function<int(const CatalogItem&,const std::vector<CatalogLink>&)>;
+    enum class QueueAction { Cancel, Pause, Resume, KeepZip, DeleteZip, RetrySpace, CloseReport };
+    using QueueActionFn = std::function<bool(QueueAction,uint64_t)>;
+    void setQueueCallbacks(const ::psvitaalive::queue::Session* session, QueueGroupFn group, QueueActionFn action);
+    void setQueueFrame(bool protectedSession,bool report,const ::psvitaalive::InstallStatus& status,
+                       bool waitingSpace,bool invariantBlocked);
+    void queueAccepted(uint64_t id,bool first);
+    void queueJobSettled(const ::psvitaalive::queue::Job& job);
+    bool queueExternalReady() const;
+    bool queueActive() const { return queueProtected_; }
     /** True only after the Install All queue passed its ONE combined ux0 preflight. */
     bool installAllSpaceApproved() const;
     void setSavedZipCallbacks(SavedZipListFn list, SavedZipRetryFn retry) {
@@ -210,6 +223,26 @@ private:
     std::function<bool()> catalogActionBlocked_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
+    const ::psvitaalive::queue::Session* queueSession_=nullptr;
+    QueueGroupFn queueGroup_;
+    QueueActionFn queueAction_;
+    ::psvitaalive::InstallStatus queueStatus_;
+    bool queueProtected_=false,queueReport_=false,queueVisible_=false,queueDetail_=false;
+    bool queueWaitingSpace_=false,queueInvariantBlocked_=false,queueConfirmCancel_=false;
+    bool queueAwaitRelease_=false,queueTouchDown_=false;
+    uint32_t queuePreviousButtons_=0;
+    uint64_t queueSelectedId_=0,queueTransitionUs_=0;
+    int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;
+    const ::psvitaalive::queue::Job* queuedJobFor(const CatalogItem& item) const;
+    const char* queueJobLabel(const ::psvitaalive::queue::Job& job) const;
+    void openQueue(uint64_t id=0,bool detail=false);
+    void closeQueue();
+    void drawQueueChip();
+    void drawQueueScreen();
+    void handleQueueInput();
+    void handleQueueTouch(const SceTouchData& touch);
+    void queueCommand(QueueAction action);
+    void queueMove(int delta);
     SavedZipListFn savedZipList_;
     SavedZipRetryFn savedZipRetry_;
     std::string savedZipProbeKey_;
@@ -496,7 +529,7 @@ private:
     void kickNextEssentialPluginInstall();
     void essentialPluginsTryAdvanceFromProgress(int outcome);
 
-    enum class PrimaryAction { None, InstallAll, Update, UpdateAll, Open };
+    enum class PrimaryAction { None, InstallAll, Update, UpdateAll, Open, QueueStatus };
     /** Action is derived from the existing installed-release detector. */
     PrimaryAction primaryActionFor(const CatalogItem& item);
     int preferredVpkDownloadIndex(const CatalogItem& item) const;
