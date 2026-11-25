@@ -123,12 +123,60 @@ class DiscordNotificationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             base = Path(folder)
             event, state = base / "event.json", base / "state.json"
-            event.write_text(json.dumps({"release": {"tag_name": "v1.2", "html_url": "https://github.com/VegettoSan/PSVitaAlive/releases/tag/v1.2"}}))
+            event.write_text(json.dumps({"release": {"tag_name": "v1.2", "html_url": "https://github.com/VegettoSan/PSVitaAlive/releases/tag/v1.2", "assets": [{"name": "PSVitaAlive.vpk", "state": "uploaded"}]}}))
             with patch.object(dn, "webhook_url", return_value="https://example.test/release"), patch.object(dn, "send") as send:
                 dn.notify_release(event, state)
                 dn.notify_release(event, state)
                 self.assertEqual(send.call_count, 1)
                 self.assertFalse(json.loads(state.read_text())["catalog_initialized"])
+
+    def test_release_full_markdown_catalog_icon_and_failure_recovery(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            event, state, catalog = root / "event.json", root / "state.json", root / "catalog.json"
+            icon = "https://example.org/psvitaalive.png"
+            catalog.write_text(json.dumps([{"tid": "PSVAS1178", "ic": icon}]))
+            body = ("## Changes\n- **Fix** `APP_VER` @example\n" * 90)
+            release = {"tag_name": "02.19", "html_url": "https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.19",
+                       "body": body, "assets": [{"name": "PSVitaAlive.vpk", "state": "uploaded"}]}
+            event.write_text(json.dumps({"release": release}))
+            with patch.object(dn, "webhook_url", return_value="https://example.test/release"), patch.object(dn, "send") as send:
+                send.side_effect = RuntimeError("failed")
+                with self.assertRaises(RuntimeError):
+                    dn.notify_release(event, state, catalog)
+                self.assertFalse(state.exists())
+                send.side_effect = None
+                send.reset_mock()
+                dn.notify_release(event, state, catalog)
+                embed = send.call_args.args[1]["embeds"][0]
+                self.assertEqual(embed["description"], body)
+                self.assertEqual(embed["thumbnail"], {"url": icon})
+                dn.notify_release(event, state, catalog)
+                send.assert_called_once()
+            self.assertEqual(dn.state_from_file(state)["releases"], ["02.19"])
+
+    def test_release_long_notes_and_missing_icon(self):
+        release = {"tag_name": "02.19", "html_url": "https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.19",
+                   "body": "## Changes\n" + "x" * 9000}
+        with tempfile.TemporaryDirectory() as folder:
+            embeds = dn.release_embeds(release, Path(folder) / "missing.json")
+        self.assertEqual("".join(e["description"] for e in embeds), release["body"])
+        self.assertTrue(all(len(e["description"]) <= 4096 for e in embeds))
+        self.assertEqual(embeds[0]["thumbnail"]["url"], dn.CLIENT_ICON_FALLBACK)
+
+    def test_release_requires_uploaded_vpk_and_skips_unstable(self):
+        with tempfile.TemporaryDirectory() as folder:
+            event, state = Path(folder) / "event.json", Path(folder) / "state.json"
+            release = {"tag_name": "02.19", "html_url": "https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.19"}
+            with patch.object(dn, "send") as send:
+                for flag in ("draft", "prerelease"):
+                    event.write_text(json.dumps({"release": {**release, flag: True}}))
+                    dn.notify_release(event, state)
+                event.write_text(json.dumps({"release": release}))
+                with self.assertRaises(ValueError):
+                    dn.notify_release(event, state)
+                send.assert_not_called()
+                self.assertFalse(state.exists())
 
     def test_failed_send_does_not_advance_state(self):
         with tempfile.TemporaryDirectory() as folder:

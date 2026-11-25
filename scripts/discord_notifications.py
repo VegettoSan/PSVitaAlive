@@ -180,7 +180,44 @@ def notify_catalog(catalog_path, state_path):
     print(f"Catalog notifications completed: {len(added)} new, {len(updated)} updated.")
 
 
-def notify_release(event_path, state_path):
+CLIENT_TITLE_ID = "PSVAS1178"
+CLIENT_ICON_FALLBACK = "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/Client%20PSVitaAlive/assets/sce_sys/icon0.png"
+
+
+def release_icon(catalog_path):
+    """Use the catalog's icon if present, otherwise the client's actual LiveArea icon."""
+    try:
+        apps = to_v1(read_json(catalog_path, []))
+        for app in apps:
+            if app.get("title_id") == CLIENT_TITLE_ID:
+                icon = discord_icon_url(app.get("icon"))
+                if icon:
+                    return icon
+    except (ValueError, TypeError, OSError, AttributeError):
+        pass
+    return CLIENT_ICON_FALLBACK
+
+
+def release_embeds(release, catalog_path):
+    # Discord allows 4096 characters per description. Preserve Markdown and
+    # avoid truncating release notes; send separate embeds if necessary.
+    body = release.get("body") or "A new version of PSVitaAlive is available."
+    parts = []
+    while len(body) > 4096:
+        cut = body.rfind("\n", 0, 4096)
+        cut = cut + 1 if cut >= 2048 else 4096
+        parts.append(body[:cut])
+        body = body[cut:]
+    parts.append(body)
+    title = "PSVitaAlive Release: " + limited(release["tag_name"], 180)
+    icon = release_icon(catalog_path)
+    return [{"title": title if len(parts) == 1 else f"{title} ({i}/{len(parts)})",
+             "url": release["html_url"], "description": part, "color": 3931904,
+             "thumbnail": {"url": icon}}
+            for i, part in enumerate(parts, 1)]
+
+
+def notify_release(event_path, state_path, catalog_path="catalog.json"):
     event = read_json(event_path)
     release = event.get("release", {}) if isinstance(event, dict) else {}
     if not release or release.get("draft") or release.get("prerelease"):
@@ -190,13 +227,16 @@ def notify_release(event_path, state_path):
     url = release.get("html_url")
     if not isinstance(tag, str) or not tag or not isinstance(url, str) or not url.startswith("https://github.com/VegettoSan/PSVitaAlive/releases/"):
         raise ValueError("Invalid release event")
+    if not any(asset.get("name") == "PSVitaAlive.vpk" and asset.get("state") == "uploaded"
+               for asset in release.get("assets", [])):
+        raise ValueError("Official release does not have an uploaded PSVitaAlive.vpk")
     state = state_from_file(state_path)
     if tag in state["releases"]:
         print("Release already announced.")
         return
     endpoint = webhook_url("release")
-    description = limited(release.get("body") or "A new version of PSVitaAlive is available.", 700)
-    send(endpoint, {"embeds": [{"title": "PSVitaAlive Release: " + limited(tag, 180), "url": url, "description": description, "color": 3931904}]})
+    for embed in release_embeds(release, catalog_path):
+        send(endpoint, {"embeds": [embed]})
     state["releases"].append(tag)
     save_json(state_path, state)
     print(f"Announced official release: {tag}")
@@ -212,7 +252,7 @@ def main():
     if args.mode == "catalog":
         notify_catalog(args.catalog, args.state)
     else:
-        notify_release(args.event, args.state)
+        notify_release(args.event, args.state, args.catalog)
 
 
 if __name__ == "__main__":

@@ -125,6 +125,23 @@ jobs:
             --notes-file "docs/releases/$RELEASE_VERSION.md" \
             --latest
 
+      - name: Trigger Discord notification for published release
+        if: steps.meta.outputs.publish == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_VERSION" > "$RUNNER_TEMP/psva-published-release.json"
+          jq -e --arg tag "$RELEASE_VERSION" '
+            .tag_name == $tag and (.draft | not) and (.prerelease | not)
+            and ([.assets[] | select(.state == "uploaded") | .name] |
+                 index("PSVitaAlive.vpk") != null and index("PSVitaAlive.vpk.sha256") != null)
+          ' "$RUNNER_TEMP/psva-published-release.json" > /dev/null
+          jq -n --arg tag "$RELEASE_VERSION" '{event_type:"psvitaalive_release_ready",client_payload:{tag:$tag}}' |
+            gh api --method POST "repos/$GITHUB_REPOSITORY/dispatches" --input -
+
       - name: Publish release announcement after successful publication
         if: steps.meta.outputs.publish == 'true'
         shell: bash

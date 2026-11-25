@@ -7,7 +7,11 @@ on:
   # Explicit trigger from the catalog publisher. GITHUB_TOKEN can emit
   # repository_dispatch even when push/workflow_run chaining is suppressed.
   repository_dispatch:
-    types: [psvitaalive_catalog_ready]
+    types: [psvitaalive_catalog_ready, psvitaalive_release_ready]
+  # Reconcile the latest stable release when this workflow is changed.
+  push:
+    branches: [main]
+    paths: ['.github/workflows/discord-notifications.yml']
   release:
     types: [published]
   workflow_dispatch:
@@ -17,6 +21,11 @@ on:
         type: boolean
         required: false
         default: false
+      release_tag:
+        description: "Announce only this official release (e.g. 02.19 or latest); blank keeps catalog mode"
+        type: string
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -29,7 +38,7 @@ jobs:
   notify-catalog:
     # Privileged job: ignore PR-triggered runs and always checkout trusted main.
     if: >-
-      (github.event_name == 'workflow_dispatch' && inputs.test_webhooks != true) ||
+      (github.event_name == 'workflow_dispatch' && inputs.test_webhooks != true && inputs.release_tag == '') ||
       (github.event_name == 'repository_dispatch' &&
        github.event.action == 'psvitaalive_catalog_ready') ||
       (github.event_name == 'workflow_run' &&
@@ -72,7 +81,7 @@ jobs:
 
   test-webhooks:
     # Opt-in only: never runs on catalog changes or official releases.
-    if: github.event_name == 'workflow_dispatch' && inputs.test_webhooks == true
+    if: github.event_name == 'workflow_dispatch' && inputs.test_webhooks == true && inputs.release_tag == ''
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -94,7 +103,13 @@ jobs:
         run: python -m scripts.discord_webhook_test
 
   notify-release:
-    if: github.event_name == 'release'
+    if: >-
+      github.event_name == 'release' ||
+      github.event_name == 'push' ||
+      (github.event_name == 'repository_dispatch' &&
+       github.event.action == 'psvitaalive_release_ready') ||
+      (github.event_name == 'workflow_dispatch' &&
+       inputs.test_webhooks != true && inputs.release_tag != '')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -110,7 +125,25 @@ jobs:
       - name: Announce published official release
         env:
           DISCORD_RELEASE_WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK_URL }}
-        run: python scripts/discord_notifications.py --mode release --state .github/discord/state.json --event "$GITHUB_EVENT_PATH"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$GITHUB_EVENT_NAME" in
+            release) tag="$(jq -er '.release.tag_name' "$GITHUB_EVENT_PATH")" ;;
+            repository_dispatch) tag="$(jq -er '.client_payload.tag' "$GITHUB_EVENT_PATH")" ;;
+            workflow_dispatch) tag="$(jq -er '.inputs.release_tag' "$GITHUB_EVENT_PATH")" ;;
+            push) tag=latest ;;
+            *) exit 1 ;;
+          esac
+          if [[ "$tag" == latest ]]; then
+            endpoint="repos/$GITHUB_REPOSITORY/releases/latest"
+          else
+            encoded="$(jq -rn --arg tag "$tag" '$tag|@uri')"
+            endpoint="repos/$GITHUB_REPOSITORY/releases/tags/$encoded"
+          fi
+          gh api "$endpoint" | jq '{release: .}' > "$RUNNER_TEMP/psva-release-event.json"
+          python scripts/discord_notifications.py --mode release --state .github/discord/state.json --event "$RUNNER_TEMP/psva-release-event.json"
       - name: Persist notification state on main
         run: |
           git config user.name "github-actions[bot]"
