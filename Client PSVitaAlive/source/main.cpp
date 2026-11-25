@@ -401,9 +401,14 @@ int main(){
                 options.push_back({archive.fileName, archive.archivePath, archive.partCount});
             return options;
         },
-        [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
+        [&installer, &screen, &submitQueue, &newJob](const psvitaalive::ui::CatalogItem& item,
                              const std::string& archivePath) {
             if (!screen.guardCatalogAction()) return false;
+            auto job=newJob(item,false); q::Step step;
+            step.savedZipPath=archivePath;
+            job.steps.push_back(std::move(step));
+            const int queued=submitQueue(std::move(job));
+            if(queued>=0) return queued==1;
             if (screen.queueActive()) { screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500); return false; }
             screen.setInstallDisplayItem(item);
             const bool started = installer.requestSavedZipExtraction(
@@ -533,10 +538,8 @@ int main(){
             auto job=newJob(item,true);
             // Do not prompt twice on legacy fallback for a missing extract path.
             for(const auto& link:links) {
-                if(psvitaalive::isDataOrGameFilesLinkType(link.type) && link.extractPath.empty()) {
-                    if(!queue.protectedSession() && !queue.reportReady()) return -1;
-                    screen.showToast(psvitaalive::L("QUEUE_UNSUPPORTED"),5600); return 0;
-                }
+                if(!queue.protectedSession() && !queue.reportReady() &&
+                   psvitaalive::isDataOrGameFilesLinkType(link.type) && link.extractPath.empty()) return -1;
                 q::Step step;
                 if(!makeStep(item,link,step)) return 0;
                 job.steps.push_back(std::move(step));

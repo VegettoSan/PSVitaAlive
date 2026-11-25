@@ -4719,7 +4719,8 @@ void FullCatalogScreen::resolveSavedZipAction(int action) {
         showToast(::psvitaalive::L("ZIP_SAVED_UNAVAILABLE"), 2800);
         return;
     }
-    prepareForHeavyWork();
+    // Queue admission owns memory policy. The legacy callback performs
+    // heavy-work preparation itself only if it actually dispatches.
     if (!savedZipRetry_(*item, savedZipActionPath_)) {
         showToast(::psvitaalive::L("ZIP_SAVED_UNAVAILABLE"), 2800);
         return;
@@ -12290,7 +12291,7 @@ void FullCatalogScreen::setQueueCallbacks(const ::psvitaalive::queue::Session* s
 bool FullCatalogScreen::queueExternalReady() const {
     return !installProgressActive_ && !selfUpdateBusy_.load() && !essentialInstallRunning_ &&
            !pluginRebootModal_ && !storageVisible_ && !installedDataVisible_ &&
-           storageWorker_<0 && installedDataWorker_<0 && !savedZipActionVisible_;
+           storageWorker_<0 && installedDataWorker_<0;
 }
 const ::psvitaalive::queue::Job* FullCatalogScreen::queuedJobFor(const CatalogItem& item) const {
     using S=::psvitaalive::queue::State;
@@ -12457,7 +12458,10 @@ void FullCatalogScreen::drawQueueScreen() {
     };
     const auto component=[](Component comp)->const char* {
         switch(comp){case Component::App:return "VPK / App";case Component::GameFiles:return "Game Files";
-        case Component::DataFiles:return "Data Files";case Component::Plugin:return "Plugin";default:return "ZIP";}
+        case Component::DataFiles:return "Data Files";case Component::Plugin:return "Plugin";
+        case Component::SavedZip:return ::psvitaalive::L("ZIP_SAVED_SECTION");
+        case Component::SystemPackage:return "PKG / LiveArea";
+        case Component::PspMedia:return "PSP / PS1";default:return "ZIP";}
     };
     skin::surface(skin::ui_atlas::ui_panel,12,10,936,56,SURFACE);
     const auto& jobs=queueSession_->jobs();

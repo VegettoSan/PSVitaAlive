@@ -184,5 +184,27 @@ int main() {
         assert(cross.peak[0]==kSpaceUnknownPluginReserve && cross.peak[2]==kSpaceUnknownPluginReserve);
         assert(!validSpace(provisionalMountedSpace(InstallSpaceMode::SystemBgdl,Mount::Ux0)));
     }
+    {
+        Session s;
+        auto system=job("system",GiB);
+        system.exclusiveTail=true; system.steps[0].component=Component::SystemPackage;
+        system.steps[0].space=systemHandoffSpace(GiB);
+        system.admissionSpace=system.steps[0].space;
+        assert(system.admissionSpace.retained[0]==system.admissionSpace.peak[0]);
+        assert(s.admit(system,snap(s,10*GiB))==Admission::Accepted);
+        assert(s.admit(job("later",GiB),snap(s,10*GiB))==Admission::UnknownSpace);
+        auto start=s.claim(snap(s,10*GiB),true);
+        assert(s.settle(start.token,Outcome::HandedOff,true,false,"system"));
+        auto local=job("saved",GiB); local.exclusiveTail=true;
+        local.steps[0].url.clear(); local.steps[0].savedZipPath="ux0:data/psvitaalive/manual/test.zip";
+        local.steps[0].component=Component::SavedZip;
+        local.steps[0].space=savedArchiveSpace(GiB,Mount::Uma0);
+        local.admissionSpace=local.steps[0].space;
+        assert(local.admissionSpace.peak[0]==0);
+        auto x=snap(s,10*GiB); x.measured[1]=true; x.free[1]=5*GiB;
+        assert(s.admit(local,x)==Admission::Accepted);
+        auto invalid=local; invalid.appKey="invalid"; invalid.steps[0].url="https://example.invalid";
+        assert(s.admit(invalid,x)==Admission::Stale || !validSpace(savedArchiveSpace(0,Mount::Ux0)));
+    }
     std::cout<<"Queue core tests passed\n";
 }

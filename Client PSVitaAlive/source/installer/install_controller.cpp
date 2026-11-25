@@ -870,7 +870,7 @@ bool InstallController::hasSavedZip(const std::string& appId, const std::string&
 bool InstallController::requestSavedZipExtraction(
     const std::string& appId, const std::string& titleId,
     const std::string& archivePath) {
-    if (queueProtectionActive() || ownsQueuedStep() || busy() || zipRecoveryAvailable_.load()) return false;
+    if (((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || busy() || zipRecoveryAvailable_.load()) return false;
     // Never trust a UI-provided path: resolve the selected archive afresh from
     // its app-specific metadata. This also handles deletion between UI frames.
     const auto matches = savedZips(appId, titleId);
@@ -1314,15 +1314,48 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
     std::vector<Space> spaces;
     spaces.reserve(draft.steps.size());
     for(auto& step:draft.steps) {
-        if(step.url.empty() || step.fileName.empty() || step.state!=State::Waiting)
-            return QueuePlan::Invalid;
+        if(step.state!=State::Waiting) return QueuePlan::Invalid;
+        if(!step.savedZipPath.empty()) {
+            if(!step.url.empty() || draft.steps.size()!=1) return QueuePlan::Invalid;
+            const auto options=savedZips(draft.appId,draft.titleId);
+            const auto selected=std::find_if(options.begin(),options.end(),
+                [&](const SavedZipArchive& z){return z.archivePath==step.savedZipPath;});
+            if(selected==options.end()) return QueuePlan::Invalid;
+            Mount target;
+            if(!queueDestinationMount(selected->target,target)) return QueuePlan::UnsupportedRoute;
+            StorageManager storage;
+            uint64_t compressed=0;
+            for(unsigned part=0;part<selected->partCount;++part) {
+                const auto path=selected->partCount==1?selected->archivePath:savedZipPartPath(selected->archivePath,part);
+                const int64_t n=storage.fileSize(path);
+                if(n<=0) return QueuePlan::Invalid;
+                compressed=saturatingSpaceAdd(compressed,static_cast<uint64_t>(n));
+            }
+            step.fileName=selected->fileName; step.destination=selected->target;
+            step.expectedBytes=compressed; step.component=Component::SavedZip;
+            step.space=savedArchiveSpace(compressed,target);
+            if(!validSpace(step.space)) return QueuePlan::Invalid;
+            draft.exclusiveTail=true; spaces.push_back(step.space);
+            continue;
+        }
+        if(step.url.empty() || step.fileName.empty()) return QueuePlan::Invalid;
         const auto route=classifyInstallRoute(step.url,step.fileName,step.destination,step.zrif,
             step.linkType,step.contentId,draft.routing.target);
         const auto ext=FormatDetector::extensionOf(step.fileName);
         if(!step.expectedBytes) draft.provisionalSpace=true;
-        // External BGDL reservations and compressed PSP conversion require
-        // separate policies. Never misclassify these as an internal VPK.
-        if(route.wantBgdl || route.pspPs1Adrenaline) return QueuePlan::UnsupportedRoute;
+        // BGDL is a system handoff, not an internal installation. Require a
+        // terminal standalone job so dependent files never start on an
+        // unverified installation. Mixed legacy batches stay exclusive.
+        if(route.wantBgdl) {
+            if(draft.steps.size()!=1 || !step.destination.empty() || route.plugin ||
+               isDataOrGameFilesLinkType(step.linkType)) return QueuePlan::UnsupportedRoute;
+            step.component=Component::SystemPackage;
+            step.space=systemHandoffSpace(step.expectedBytes);
+            if(!validSpace(step.space))return QueuePlan::Invalid;
+            draft.exclusiveTail=true; spaces.push_back(step.space);
+            addInstallAllSpaceEntry(batch,InstallAllSpaceLinkKind::App,step.expectedBytes);
+            continue;
+        }
         if(isDataOrGameFilesLinkType(step.linkType) &&
            (!route.zipExtraction || ext=="vpk")) return QueuePlan::Invalid;
         Mount target=Mount::Ux0;
@@ -1346,14 +1379,20 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
             targetPeak=saturatingSpaceAdd(saturatingSpaceAdd(payload,payload/4),kSpaceZipReserve);
         } else {
             if(!step.destination.empty()) return QueuePlan::UnsupportedRoute;
-            if(ext=="vpk") {
+            if(route.pspPs1Adrenaline) {
+                target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
+                step.component=Component::PspMedia;
+                draft.exclusiveTail=true;
+            } else if(ext=="vpk") {
                 step.component=Component::App;
-            } else if(ext=="iso" || ext=="pbp") {
+            } else if(ext=="iso" || ext=="pbp" || ext=="cso") {
                 if(draft.routing.target!=PspTarget::Adrenaline) return QueuePlan::UnsupportedRoute;
                 target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
-                step.component=Component::App;
+                step.component=Component::PspMedia;
             } else return QueuePlan::UnsupportedRoute;
-            targetPeak=saturatingSpaceAdd(payload,payload/10);
+            targetPeak=route.pspPs1Adrenaline && target!=Mount::Ux0
+                ?initialInstallSpaceBytes(payload,InstallSpaceMode::DirectPackage)
+                :saturatingSpaceAdd(payload,payload/10);
         }
         // Catalog size is only an estimate of retained bytes; actual HTTP
         // and extractor checks remain authoritative for compressed payloads.
@@ -1408,9 +1447,11 @@ bool InstallController::startQueuedStep(const queue::Session& session, queue::To
     setTitleId(""); setInstallPath(""); setStage("Preparing");
     setPendingCatalogMeta(job.appId, job.version, job.versionDate,
                           job.releaseRevision, job.titleId);
-    const bool started = requestInstall(step.url, step.fileName, step.destination,
-        step.zrif, step.linkType, step.contentId, job.name, step.expectedBytes,
-        step.pluginSection, step.pluginLine, false); // never reuse stale space approval
+    const bool started = !step.savedZipPath.empty()
+        ?requestSavedZipExtraction(job.appId,job.titleId,step.savedZipPath)
+        :requestInstall(step.url, step.fileName, step.destination,
+            step.zrif, step.linkType, step.contentId, job.name, step.expectedBytes,
+            step.pluginSection, step.pluginLine, false); // never reuse stale space approval
     queuedDispatching_ = false;
     if (!started && static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle) {
         setStage("Preparing");

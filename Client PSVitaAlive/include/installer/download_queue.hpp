@@ -104,6 +104,20 @@ inline Space provisionalMountedSpace(InstallSpaceMode mode,Mount target) {
     s.peak[i]=floor; s.retained[i]=floor;
     return s;
 }
+inline Space systemHandoffSpace(uint64_t payload) {
+    Space s; s.known=true;
+    s.peak[0]=initialInstallSpaceBytes(payload,InstallSpaceMode::SystemBgdl);
+    s.retained[0]=s.peak[0]; // no promise of reclaimed space after system submission
+    return validSpace(s)?s:Space{};
+}
+inline Space savedArchiveSpace(uint64_t compressed,Mount target) {
+    if(!compressed || target>=Mount::Count) return {};
+    Space s; s.known=true;
+    const auto i=static_cast<size_t>(target);
+    s.peak[i]=saturatingSpaceAdd(saturatingSpaceAdd(compressed,compressed/4),kSpaceZipReserve);
+    s.retained[i]=s.peak[i]; // already allocated input; don't promise deletion
+    return validSpace(s)?s:Space{};
+}
 enum class State { Waiting, Running, Completed, HandedOff, Partial, Failed, Cancelled, Skipped };
 enum class Outcome { Completed, HandedOff, Failed, Cancelled };
 enum class Admission { Accepted, Duplicate, Invalid, Limit, Stale, UnknownSpace, NoSpace };
@@ -126,10 +140,11 @@ struct ResultDetails {
     std::string stage, fileName, installPath, titleId, savedZipPath;
     bool liveAreaOk=false, needsReboot=false, archiveSourceUnavailable=false;
 };
-enum class Component { App, GameFiles, DataFiles, Plugin, Other };
+enum class Component { App, GameFiles, DataFiles, Plugin, SavedZip, SystemPackage, PspMedia, Other };
 struct Step {
     Component component=Component::Other;
     std::string url, fileName, linkType, destination, contentId, zrif;
+    std::string savedZipPath; // mutually exclusive with remote URL
     std::string pluginSection, pluginLine;
     uint64_t expectedBytes=0;
     Space space;
@@ -144,6 +159,7 @@ struct Job {
     Routing routing;
     bool installAll=false;
     bool provisionalSpace=false;
+    bool exclusiveTail=false; // system handoff/unknown output: no dependent reservations
     // Explicit opt-in only for groups whose selected steps are independent.
     bool continueIndependentOnFailure=false;
     bool aborted=false;
@@ -220,13 +236,13 @@ public:
         if (job.appKey.empty() || job.steps.empty() || job.steps.size()>maxSteps)
             return Admission::Invalid;
         for(const auto& s:job.steps)
-            if(s.url.empty() || s.fileName.empty() || s.state!=State::Waiting)
+            if(s.url.empty()==s.savedZipPath.empty() || s.fileName.empty() || s.state!=State::Waiting)
                 return Admission::Invalid;
         for(const auto& j:jobs_)
             if(j.appKey==job.appKey && (j.state==State::Waiting || j.state==State::Running))
                 return Admission::Duplicate;
         if(jobs_.size()>=maxJobs) return Admission::Limit;
-        for(const auto& j:jobs_) if(j.provisionalSpace &&
+        for(const auto& j:jobs_) if((j.provisionalSpace || j.exclusiveTail) &&
             (j.state==State::Waiting || j.state==State::Running)) return Admission::UnknownSpace;
         if(!snapshot.valid || !validSpace(job.admissionSpace) ||
            !mountsMeasured(job.admissionSpace,snapshot.measured)) return Admission::UnknownSpace;
