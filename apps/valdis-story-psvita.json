@@ -14,17 +14,17 @@
     "strategy",
     "source-port"
   ],
-  "v": "0.7.0",
-  "vd": "2026-11-21",
+  "v": "0.9.3",
+  "vd": "2026-11-25",
   "req": "- libshacccg.suprx\n- Launch the game. The first boot converts the data (a few minutes, with a progress bar).\n-",
-  "sz": 1572864,
+  "sz": 2173535,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/valdis-story-psvita/vsvita%20v0.7.0.vpk",
-      "sz": 1572864,
+      "u": "https://github.com/Botarguirix/ValdisStoryVita/releases/download/v0.9.3/vsvita.vpk",
+      "sz": 2173535,
       "rec": true
     },
     {
