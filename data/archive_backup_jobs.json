@@ -1,6 +1,17 @@
 {
   "schema_version": 1,
-  "inflight": {},
+  "inflight": {
+    "silent-hill-2": {
+      "version": "0.3.0",
+      "source_url": "https://github.com/AngeloGalav/sh2-vita/releases/download/v0.3.0/sh2vita.vpk",
+      "archive_identifier": "sh2-vita",
+      "filename": "silent-hill-2 v0.3.0.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-25T15:02:58+00:00",
+      "size_bytes": 1333450,
+      "title_id": "SHIL00002"
+    }
+  },
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
