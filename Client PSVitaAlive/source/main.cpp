@@ -411,6 +411,7 @@ int main(){
             if(queued>=0) return queued==1;
             if (screen.queueActive()) { screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500); return false; }
             screen.setInstallDisplayItem(item);
+            screen.prepareForHeavyWork();
             const bool started = installer.requestSavedZipExtraction(
                 item.id, item.titleId, archivePath);
             if (started) screen.requestUx0SpaceRefresh();

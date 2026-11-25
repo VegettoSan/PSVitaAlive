@@ -1432,6 +1432,22 @@ bool InstallController::startQueuedStep(const queue::Session& session, queue::To
         token.step >= job.steps.size() || job.steps[token.step].state != queue::State::Running ||
         !job.routing.matches(settings_)) return false;
     const auto& step = job.steps[token.step];
+    if(!step.savedZipPath.empty()) {
+        // A saved archive is selected by app-specific metadata, not a raw
+        // arbitrary path. Recheck the exact destination at dispatch too.
+        const auto saved=savedZips(job.appId,job.titleId);
+        const auto it=std::find_if(saved.begin(),saved.end(),[&](const SavedZipArchive& z){
+            return z.archivePath==step.savedZipPath && z.target==step.destination;
+        });
+        if(it==saved.end())return false;
+        StorageManager storage; uint64_t size=0;
+        for(unsigned part=0;part<it->partCount;++part) {
+            const auto path=it->partCount==1?it->archivePath:savedZipPartPath(it->archivePath,part);
+            const int64_t n=storage.fileSize(path); if(n<=0)return false;
+            size=saturatingSpaceAdd(size,static_cast<uint64_t>(n));
+        }
+        if(size!=step.expectedBytes)return false;
+    }
     queuedToken_ = token;
     queueObservedPayload_.store(0, std::memory_order_release);
     queuedDispatching_ = true;

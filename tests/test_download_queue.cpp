@@ -204,7 +204,9 @@ int main() {
         auto x=snap(s,10*GiB); x.measured[1]=true; x.free[1]=5*GiB;
         assert(s.admit(local,x)==Admission::Accepted);
         auto invalid=local; invalid.appKey="invalid"; invalid.steps[0].url="https://example.invalid";
-        assert(s.admit(invalid,x)==Admission::Stale || !validSpace(savedArchiveSpace(0,Mount::Ux0)));
+        x.generation=s.generation();
+        assert(s.admit(invalid,x)==Admission::Invalid);
+        assert(!validSpace(savedArchiveSpace(0,Mount::Ux0)));
     }
     std::cout<<"Queue core tests passed\n";
 }
