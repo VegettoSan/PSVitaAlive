@@ -902,3 +902,4 @@ NET_PAUSED_AUTO_LINK=Wi-Fi desconectado. Esperando la red.
 NET_PAUSED_AUTO_SOURCE=La fuente no responde. Reintento automático.
 NET_PAUSED_AUTO_HINT=Progreso guardado. Reanudación automática.
 NET_PAUSED_KEEP=Progreso guardado. No se puede reanudar con seguridad.
+CATALOG_ACTION_WAIT=Actualizando el catálogo. Espera un momento para instalar o abrir aplicaciones.

@@ -859,3 +859,4 @@ NET_PAUSED_AUTO_LINK=Wi-Fi disconnesso. In attesa della rete.
 NET_PAUSED_AUTO_SOURCE=Fonte non raggiungibile. Nuovo tentativo automatico.
 NET_PAUSED_AUTO_HINT=Progresso salvato. Ripresa automatica.
 NET_PAUSED_KEEP=Progresso salvato. Ripresa sicura non disponibile.
+CATALOG_ACTION_WAIT=Aggiornamento del catalogo. Attendi prima di installare o aprire app.
