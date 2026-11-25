@@ -28,7 +28,7 @@ public:
     void shutdown();
 
     std::string request(const std::string& url, const std::string& namespaceName);
-    /** Resolve local cache path without queueing a download. */
+    /** Resolve local cache path without queueing a download or disk access. */
     std::string pathFor(const std::string& url, const std::string& namespaceName) const;
     /** Prune queued off-screen jobs; active transfer uses a short grace period to avoid cancellation thrash. */
     void cancelQueuedExcept(const std::unordered_set<std::string>& keep);
@@ -70,6 +70,7 @@ private:
         std::string url;
         std::string path;
         int attempt = 0;
+        bool diskChecked = false;
     };
 
     SceUID mutex_ = -1;

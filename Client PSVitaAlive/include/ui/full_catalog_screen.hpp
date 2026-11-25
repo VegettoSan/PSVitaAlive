@@ -15,6 +15,7 @@
 
 #include <vita2d.h>
 #include "ui/ui_font.hpp"
+#include "ui/detail_wrap_cache.hpp"
 #include <psp2/io/stat.h>
 #include <psp2/kernel/threadmgr.h>
 
@@ -222,6 +223,7 @@ private:
     int savedZipBlockHeight(const CatalogItem& item);
     ImageCache* imageCache_ = nullptr;
     ::psvitaalive::ui::UiFont font_;
+    mutable DetailWrapCache detailWrapCache_;
     /** Full-screen splash while catalogs download/load at startup (app0:ui/catalog_loading.png). */
     vita2d_texture* catalogLoadingTex_ = nullptr;
     /** Monochrome splash for non-brand theme tinting. */
@@ -455,14 +457,14 @@ private:
     void drawInstallBadge(int x, int y, const LocalInstallInfo& info, bool compact,
                           int clipLeft, int clipTop, int clipRight, int clipBottom);
     void drawScrollFades(int x, int y, int width, int height) const;
-    void drawActivePanelFrame(int x, int y, int width, int height, const char* label) const;
+    void drawActivePanelFrame(int x, int y, int width, int height) const;
     float focusPulse() const;
     float easeInOut(float t) const;
     void updateAnimations();
     void drawToast() const;
     void drawDetailContent(const CatalogItem& item, int x, int y, int width, int height);
     int detailScreenshotContentOffset(const CatalogItem& item, int panelWidth);
-    std::vector<std::string> wrapDetailLines(const std::string& text, int contentWidth, bool bullets) const;
+    const std::vector<std::string>& wrapDetailLines(const std::string& text, int contentWidth, bool bullets) const;
     void drawDetailLinks(const CatalogItem& item, int x, int y, int width, int& heightOut);
     void openWebQrModal();
     void openDiscordQrModal();
@@ -510,7 +512,7 @@ private:
     void drawThemeSetupOverlay();
     void closeThemeSetup(bool save);
     void applyThemeSetupFocus();
-    void prepareImageTexture(const std::string& url, const std::string& namespaceName);
+    bool prepareImageTexture(const std::string& url, const std::string& namespaceName);
     void prepareVisibleTextures();
     void drawImage(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
     void drawImageLoadingPlaceholder(const std::string& url, const std::string& namespaceName, int x, int y, int width, int height);
@@ -585,6 +587,8 @@ private:
     int storageFocus_ = 0; // index into storageRows_ (always includes four categories)
     int storageScrollY_ = 0; // pixel scroll, shared by touch and controller
     int storageAction_ = -1; // -1 scan, -2 all, -3 temp, -4 saved ZIP, >=0 file index
+    enum class StorageWorkPhase : unsigned { Cleaning, ScanStorage, ResolveZips, ScanInstalled };
+    std::atomic<StorageWorkPhase> storageWorkPhase_{StorageWorkPhase::ScanStorage};
     std::atomic<bool> storageWorkerDone_{false};
     std::atomic<bool> storageWorkerOk_{false};
     SceUID storageWorker_ = -1;

@@ -881,40 +881,55 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         const uint32_t total = prog.appsTotal.load(std::memory_order_acquire);
         const uint32_t done = prog.appsCompleted.load(std::memory_order_acquire);
         const uint32_t phase = prog.phase.load(std::memory_order_acquire);
-        const uint32_t pct = phase < 2 ? 0 :
-            ::psvitaalive::storage::installedDataProgressPercent(done, total);
+        const bool knownTotal=phase>=2 && total>0;
+        const uint32_t pct = knownTotal ?
+            ::psvitaalive::storage::installedDataProgressPercent(done,total) : 0;
         const bool cancelled = prog.cancelRequested.load(std::memory_order_acquire);
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+128,ACCENT,1.12f,
+        // Same visual language as storage loading: inset card, icon, themed
+        // progress assets and bounded activity. Keep actual scan counters.
+        constexpr int cardW=W-96,cardH=318;
+        const int cardX=x+(W-cardW)/2,cardY=y+87;
+        skin::surface(skin::ui_atlas::ui_panel_inset,cardX,cardY,cardW,cardH,SURFACE);
+        skin::icon(skin::icons_atlas::icon_storage,cardX+24,cardY+22,40,ACCENT);
+        drawMarqueeText(&font_,cardX+80,cardY+48,cardW-104,ACCENT,1.05f,
             ::psvitaalive::L(cancelled ? "ID_CANCELLING" :
-                installedDataAction_ == -2 ? "ID_MEASURING" :
-                installedDataAction_ < 0 ? "ID_DISCOVERING" : "ID_WORKING"));
-        char textLine[160];
-        sceClibSnprintf(textLine,sizeof(textLine),"%s %u / %u   (%u%%)",
-            ::psvitaalive::L("ID_APPS_PROGRESS"),done,total,pct);
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+180,WHITE,1.02f,textLine);
-        // Percentage reflects *completed applications*, not guessed bytes.
-        // The animated stripe proves that a huge individual folder is still
-        // being traversed even while that percentage does not move.
-        const int barX=x+28,barY=y+205,barW=W-56,barH=26;
-        skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,SURFACE2);
-        const int fill=static_cast<int>((static_cast<uint64_t>(barW)*pct)/100);
-        if(fill>0) skin::surface(skin::ui_atlas::ui_progress_fill,barX,barY,fill,barH,ACCENT);
-        const int scanX=barX+static_cast<int>(
-            (sceKernelGetProcessTimeWide()/18000ULL) % (barW-44));
-        skin::surface(skin::ui_atlas::ui_progress_fill,scanX,barY+barH-6,44,4,ACCENT);
+                installedDataAction_ == -2 ? "ID_MEASURING" : "ID_DISCOVERING"),false);
+        char textLine[256];
+        if(knownTotal) {
+            sceClibSnprintf(textLine,sizeof(textLine),"%s %u / %u   (%u%%)",
+                ::psvitaalive::L("ID_APPS_PROGRESS"),done,total,pct);
+        } else {
+            sceClibSnprintf(textLine,sizeof(textLine),"%s",::psvitaalive::L("ID_DISCOVERING"));
+        }
+        drawMarqueeText(&font_,cardX+28,cardY+86,cardW-56,WHITE,.98f,textLine,false);
+        const int barX=cardX+28,barY=cardY+108,barW=cardW-56,barH=22;
+        skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,BORDER);
+        const uint64_t ms=sceKernelGetProcessTimeWide()/1000ULL;
+        if(knownTotal) {
+            const int fill=static_cast<int>(static_cast<uint64_t>(barW)*pct/100u);
+            if(fill>0) skin::surface(skin::ui_atlas::ui_progress_fill,barX,barY,fill,barH,ACCENT);
+            // Separate activity stripe: do not obscure the real percentage.
+            const int stripeY=barY+barH+8;
+            skin::surface(skin::ui_atlas::ui_progress_track,barX,stripeY,barW,5,SURFACE2);
+            skin::surface(skin::ui_atlas::ui_progress_fill,
+                barX+StorageLayout::loadingSegmentOffset(barW,ms),stripeY,
+                StorageLayout::loadingSegmentWidth(barW),5,ACCENT);
+        } else {
+            skin::surface(skin::ui_atlas::ui_progress_fill,
+                barX+StorageLayout::loadingSegmentOffset(barW,ms),barY,
+                StorageLayout::loadingSegmentWidth(barW),barH,ACCENT);
+        }
         sceClibSnprintf(textLine,sizeof(textLine),"%s %u",
-            ::psvitaalive::L("ID_FOLDERS_FOUND"),
-            prog.rootsFound.load(std::memory_order_relaxed));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+286,TEXT,.98f,textLine);
-        sceClibSnprintf(textLine,sizeof(textLine),"%s %u  /  %s %u",
-            ::psvitaalive::L("ID_FOLDERS_READ"),
-            prog.dirsVisited.load(std::memory_order_relaxed),
-            ::psvitaalive::L("ID_FILES_READ"),
-            prog.filesVisited.load(std::memory_order_relaxed));
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+328,TEXT,.96f,textLine);
-        ::psvitaalive::ui::uiDrawText(&font_,x+28,y+390,DIM,.92f,
-            ::psvitaalive::L(phase==1 ? "ID_DISCOVERING" :
-                "ID_SCAN_LIMIT_HINT"));
+            ::psvitaalive::L("ID_FOLDERS_FOUND"),prog.rootsFound.load(std::memory_order_relaxed));
+        drawMarqueeText(&font_,cardX+28,cardY+179,cardW-56,TEXT,.98f,textLine,false);
+        sceClibSnprintf(textLine,sizeof(textLine),"%s %u",
+            ::psvitaalive::L("ID_FOLDERS_READ"),prog.dirsVisited.load(std::memory_order_relaxed));
+        drawMarqueeText(&font_,cardX+28,cardY+211,cardW-56,TEXT,.96f,textLine,false);
+        sceClibSnprintf(textLine,sizeof(textLine),"%s %u",
+            ::psvitaalive::L("ID_FILES_READ"),prog.filesVisited.load(std::memory_order_relaxed));
+        drawMarqueeText(&font_,cardX+28,cardY+243,cardW-56,TEXT,.96f,textLine,false);
+        drawMarqueeText(&font_,cardX+28,cardY+289,cardW-56,DIM,.92f,
+            ::psvitaalive::L(phase==1 ? "ID_DISCOVERING" : "ID_SCAN_LIMIT_HINT"),false);
         if(installedDataAction_ < 0)
             skin::hint(&font_,x+28,y+H-28,W-56,DIM,.92f,::psvitaalive::L("ID_CANCEL_SCAN"),false,28);
         return;

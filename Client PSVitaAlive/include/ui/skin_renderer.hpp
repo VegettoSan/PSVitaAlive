@@ -1,6 +1,7 @@
 #pragma once
 #include "ui/skin_atlas_coords.hpp"
 #include <algorithm>
+#include <cmath>
 #include <vita2d.h>
 
 namespace psvitaalive::skin {
@@ -9,11 +10,34 @@ namespace psvitaalive::skin {
 // before vita2d_fini. No catalog cache entries or network activity.
 enum class Atlas { Ui, Icons, Controls };
 inline vita2d_texture* textures[3] = {};
-inline unsigned calls = 0;
-inline unsigned vertices = 0;
-inline unsigned poolFallbacks = 0;
+// libvita2d's ordinary start resets the shared CPU/GPU vertex arena every
+// frame. Keep allocations alive across scenes instead. Reserve at least the
+// original 1 MiB at each frame start; recycle only after a proven GPU idle.
+// One extra MiB in USER_RW (not an extra atlas or framebuffer).
+inline constexpr unsigned framePoolBytes = 2u * 1024u * 1024u;
+inline constexpr unsigned frameReserveBytes = 1024u * 1024u;
+
+// Called exclusively outside a scene, immediately after an existing GPU wait.
+inline void recycleAfterIdle() {
+    if (vita2d_pool_free_space() < framePoolBytes) {
+        vita2d_pool_reset();
+    }
+}
+
+// No per-frame full-GPU synchronization. The advanced entry point does not
+// reset the arena. GPU-visible allocations from different frames never
+// overlap until all outstanding work has been completed.
+inline bool beginFrame() {
+    bool waited = false;
+    if (vita2d_pool_free_space() < frameReserveBytes) {
+        vita2d_wait_rendering_done();
+        vita2d_pool_reset();
+        waited = true;
+    }
+    vita2d_start_drawing_advanced(nullptr, 0);
+    return waited;
+}
 inline bool ready() { return textures[0] && textures[1] && textures[2]; }
-inline void resetFrameCounters() { calls = vertices = poolFallbacks = 0; }
 inline void release() {
     if (textures[0] || textures[1] || textures[2]) vita2d_wait_rendering_done();
     for (auto& t : textures) {
@@ -53,18 +77,20 @@ inline Axis axis(float position, float length, int start, int size,
 }
 
 // Each nine-slice uses ONE GXM draw, not nine. Vertices live in vita2d's
-// per-frame GPU-visible pool, never on the stack or heap. Reuse the caller's
+// GPU-visible pool, never on the stack or heap. Reuse the caller's
 // scissor; don't modify clip state, blend mode, or frame/swap ownership.
 inline bool draw(Atlas atlas, const Sprite& s, float x, float y,
                  float w, float h, unsigned tint = 0xffffffffu) {
+    if (!std::isfinite(x) || !std::isfinite(y) || !std::isfinite(w) || !std::isfinite(h)) {
+        return true;
+    }
     if (w <= 0.f || h <= 0.f) return true;
     auto* t = textures[static_cast<int>(atlas)];
     if (!t) return false;
     if (!(s.left || s.top || s.right || s.bottom)) {
-        if (vita2d_pool_free_space() < 128) { ++poolFallbacks; return false; }
+        if (vita2d_pool_free_space() < 128) { return false; }
         vita2d_draw_texture_tint_part_scale(t, x, y, s.x, s.y, s.w, s.h,
             w / s.w, h / s.h, tint);
-        ++calls; vertices += 4;
         return true;
     }
     const auto ax = axis(x, w, s.x, s.w, s.left, s.right);
@@ -74,10 +100,11 @@ inline bool draw(Atlas atlas, const Sprite& s, float x, float y,
         for (int i = 0; i < 3; ++i)
             if (ax.dst[i+1] > ax.dst[i] && ay.dst[j+1] > ay.dst[j]) count += 6;
     const unsigned bytes = count * sizeof(vita2d_texture_vertex);
-    if (!count || vita2d_pool_free_space() < bytes + 64) { ++poolFallbacks; return false; }
+    if (!count || vita2d_pool_free_space() < bytes + 64) { return false; }
+    // libvita2d uses bitmask alignment: pass a power of two, not the 20-byte vertex stride.
     auto* v = static_cast<vita2d_texture_vertex*>(
-        vita2d_pool_memalign(bytes, sizeof(vita2d_texture_vertex)));
-    if (!v) { ++poolFallbacks; return false; }
+        vita2d_pool_memalign(bytes, 16u));
+    if (!v) { return false; }
     const float invW = 1.f / vita2d_texture_get_width(t);
     const float invH = 1.f / vita2d_texture_get_height(t);
     unsigned n = 0;
@@ -92,7 +119,6 @@ inline bool draw(Atlas atlas, const Sprite& s, float x, float y,
         }
     }
     vita2d_draw_array_textured(t, SCE_GXM_PRIMITIVE_TRIANGLES, v, n, tint);
-    ++calls; vertices += n;
     return true;
 }
 

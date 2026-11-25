@@ -177,7 +177,8 @@ ZipDestChoice promptZipDestinationChoice() {
             touchWasDown = touchDown;
         }
 
-        vita2d_start_drawing();
+        skin::beginFrame();
+        if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
         vita2d_set_clear_color(RGBA8(0x12, 0x12, 0x12, 255));
         vita2d_clear_screen();
         vita2d_draw_rectangle(0, 0, SW, SH, RGBA8(0, 0, 0, 120));

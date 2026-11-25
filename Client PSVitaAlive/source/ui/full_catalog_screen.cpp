@@ -85,34 +85,15 @@ constexpr int DOWNLOAD_TOUCH_Y = 410;
 constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
 // The catalog and its embedded keyboard render with vita2d only.
-uint64_t skinFrameStartedUs = 0;
 inline void startSkinFrame() {
-    skin::resetFrameCounters();
-    skinFrameStartedUs = sceKernelGetProcessTimeWide();
-    vita2d_start_drawing();
+    // Preserve the verified GPU arena lifetime and scissor safety.
+    skin::beginFrame();
+    if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
 }
 inline void finishFrame() {
-    const unsigned pool = vita2d_pool_free_space();
+    if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
     vita2d_end_drawing();
     vita2d_swap_buffers();
-    if (!skin::ready() || !skinFrameStartedUs) return;
-    const uint64_t now = sceKernelGetProcessTimeWide();
-    const uint64_t us = now - skinFrameStartedUs;
-    skinFrameStartedUs = 0;
-    static uint64_t since = now, sum = 0, worst = 0;
-    static unsigned frames = 0, draws = 0, verts = 0, fallbacks = 0, minPool = ~0u;
-    sum += us; worst = std::max(worst, us); ++frames;
-    draws += skin::calls; verts += skin::vertices; fallbacks += skin::poolFallbacks;
-    minPool = std::min(minPool, pool);
-    if (now - since >= 5000000ULL) {
-        char msg[220];
-        sceClibSnprintf(msg, sizeof(msg),
-            "[Perf] skin frames=%u avg_frame_us=%llu max_frame_us=%llu draws/frame=%u verts/frame=%u pool_min=%u fallbacks=%u",
-            frames, (unsigned long long)(sum/frames), (unsigned long long)worst,
-            draws/frames, verts/frames, minPool, fallbacks);
-        diagnostics::log(msg);
-        since=now; sum=worst=0; frames=draws=verts=fallbacks=0; minPool=~0u;
-    }
 }
 
 constexpr uint32_t NAV_DIRECTION_MASK =
@@ -1787,6 +1768,13 @@ void FullCatalogScreen::closeNewsModal(bool markSeen) {
 
 
 /** Keep theme picker focus row inside the visible window (like clampCatalogScroll). */
+// One geometry for both rendering and touch; coordinates are in Vita pixels.
+struct ThemePickerLayout {
+    static constexpr int w=920,h=508,cols=3,btnW=250,btnH=52,gapX=14,gapY=12;
+    static constexpr int gridW=cols*btnW+(cols-1)*gapX,rowH=btnH+gapY;
+    static constexpr int top=118,bottom=h-108,visibleRows=(bottom-top)/rowH;
+    static constexpr int saveW=260,saveH=44,saveY=h-96;
+};
 static void clampThemePickerScroll(int focus, int& scrollRow, int themeCount, int cols, int visibleRows) {
     if (themeCount <= 0) { scrollRow = 0; return; }
     const int rows = (themeCount + cols - 1) / cols;
@@ -1809,8 +1797,10 @@ void FullCatalogScreen::openThemePicker() {
     visualThemeSetupScroll_ = 0.f;
     themeSetupAppliedFocus_ = themeSetupFocus_; // current theme already active
     // Keep focused row roughly in view
-    const int cols = 3;
+    const int cols = ThemePickerLayout::cols;
     themeSetupScrollRow_ = std::max(0, themeSetupFocus_ / cols - 1);
+    clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,n,cols,ThemePickerLayout::visibleRows);
+    visualThemeSetupScroll_ = static_cast<float>(themeSetupScrollRow_);
     applyColorTheme(settingsEdit_.colorTheme, false);
     diagnostics::log("[UI] theme picker opened");
 }
@@ -1831,6 +1821,7 @@ void FullCatalogScreen::applyThemeSetupFocus() {
     if (themeSetupFocus_ < 0 || themeSetupFocus_ >= n) return;
     const auto t = static_cast<::psvitaalive::ColorTheme>(themeSetupFocus_);
     settingsEdit_.colorTheme = t;
+    themeSetupAppliedFocus_ = themeSetupFocus_;
     applyColorTheme(t);
     showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::ThemeAppliedPrefix)) + ": " +
               colorThemeDisplayName(t), 1400);
@@ -1839,6 +1830,8 @@ void FullCatalogScreen::applyThemeSetupFocus() {
 void FullCatalogScreen::closeThemeSetup(bool save) {
     if (!themeSetupVisible_) return;
     if (save) {
+        // Persist only the active palette (initial theme or explicitly applied
+        // preview). Moving the navigation focus must never change the theme.
         settingsEdit_.themeSetupDone = true;
         applyColorTheme(settingsEdit_.colorTheme, false);
         if (settingsSave_) settingsSave_(settingsEdit_);
@@ -1854,16 +1847,10 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
 
     using TID = ::psvitaalive::TextId;
     const int themeCount = static_cast<int>(::psvitaalive::ColorTheme::Count);
-    const int cols = 3;
+    using P=ThemePickerLayout;
+    constexpr int cols=P::cols,btnW=P::btnW,btnH=P::btnH,gapX=P::gapX,gapY=P::gapY,gridW=P::gridW;
     const int rows = (themeCount + cols - 1) / cols;
-    const int btnW = 250;
-    const int btnH = 52;
-    const int gapX = 14;
-    const int gapY = 12;
-    const int gridW = cols * btnW + (cols - 1) * gapX;
-
-    // Near full-screen panel for readability on 960x544.
-    const int w = 920, h = 508;
+    constexpr int w=P::w,h=P::h;
     const int x = (SCREEN_W - w) / 2, y = (SCREEN_H - h) / 2;
 
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, RGBA8(0, 0, 0, 170));
@@ -1878,15 +1865,15 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
         vita2d_draw_rectangle(x, y + h - 3, w, 3, BORDER);
     }
 
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 36, ACCENT, 1.12f,
-                         ::psvitaalive::L(TID::ThemeSetupTitle));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 68, TEXT, 0.84f,
-                         ::psvitaalive::L(TID::ThemeSetupBody1));
-    ::psvitaalive::ui::uiDrawText(&font_, x + 24, y + 96, DIM, 0.80f,
-                         ::psvitaalive::L(TID::ThemeSetupBody2));
+    skin::icon(skin::ui_atlas::icon_customization,x+24,y+12,36,ACCENT,skin::Atlas::Ui);
+    drawMarqueeText(&font_,x+70,y+36,w-94,WHITE,1.12f,
+        ::psvitaalive::L(TID::ThemeSetupTitle),false);
+    drawMarqueeText(&font_,x+24,y+68,w-48,TEXT,.90f,
+        ::psvitaalive::L(TID::ThemeSetupBody1),false);
+    skin::hint(&font_,x+24,y+96,w-48,TEXT,.84f,::psvitaalive::L(TID::ThemeSetupBody2));
 
-    const int gridTop = y + 118;
-    const int gridBottom = y + h - 88;
+    const int gridTop = y + P::top;
+    const int gridBottom = y + P::bottom;
     const int gridH = gridBottom - gridTop;
     const int rowH = btnH + gapY;
     const int visibleRows = std::max(1, gridH / rowH);
@@ -1906,6 +1893,25 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const float vs = visualThemeSetupScroll_;
     const int startRow = (int)std::floor(vs);
     const int gridX = x + (w - gridW) / 2;
+    // Follow the active palette (including its existing cross-fade), never
+    // the candidate under the cursor. Keep the interior dark and use a
+    // four-pixel rounded frame from the existing filled button sprite.
+    constexpr int focusBorder = 4;
+    const unsigned focusAccent = ACCENT;
+    const unsigned focusEdge = lerpColorU(focusAccent, RGBA8(255,255,255,255), .22f);
+    const auto drawPickerButton = [&](int bx, int by, int bw, int bh,
+                                      unsigned tile, unsigned idleBorder, bool focused) {
+        if (focused) {
+            skin::surface(skin::ui_atlas::ui_button_primary,bx,by,bw,bh,focusAccent);
+            skin::surface(skin::ui_atlas::ui_button_primary,
+                bx+focusBorder,by+focusBorder,bw-2*focusBorder,bh-2*focusBorder,
+                lerpColorU(tile,focusAccent,.10f));
+            skin::focus(bx+focusBorder,by+focusBorder,bw-2*focusBorder,bh-2*focusBorder,focusEdge);
+        } else {
+            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,bw,bh,tile);
+            skin::focus(bx,by,bw,bh,idleBorder);
+        }
+    };
 
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 12, gridTop, x + w - 12, gridBottom);
@@ -1913,6 +1919,7 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     for (int r = startRow - 1; r <= startRow + visibleRows + 1; ++r) {
         if (r < 0 || r >= rows) continue;
         const int ry = gridTop + (int)(((float)r - vs) * (float)rowH);
+        if(ry+btnH<=gridTop || ry>=gridBottom) continue;
         for (int c = 0; c < cols; ++c) {
             const int idx = r * cols + c;
             if (idx < 0 || idx >= themeCount) continue;
@@ -1920,48 +1927,45 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
             unsigned ar, ag, ab;
             colorThemeAccentRgb(th, ar, ag, ab);
             const unsigned accent = RGBA8(ar, ag, ab, 255);
-            const unsigned soft = RGBA8(ar, ag, ab, 55);
+            // Each palette is visible without focus; opaque dark tint keeps
+            // white names legible even for white, gold and very dark themes.
+            const unsigned tile=RGBA8(18+ar/5,18+ag/5,22+ab/5,255);
             const int bx = gridX + c * (btnW + gapX);
             const int by = ry;
             const bool focused = (themeSetupFocus_ == idx);
             const bool selected = (settingsEdit_.colorTheme == th);
 
-            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,btnW,btnH,SURFACE);
-            if (selected) skin::surface(skin::ui_atlas::ui_badge,bx+10,by+8,btnW-20,btnH-16,soft);
-            skin::focus(bx,by,btnW,btnH,focused?accent:BORDER);
+            drawPickerButton(bx,by,btnW,btnH,tile,withAlpha(accent,100),focused);
+            skin::surface(skin::ui_atlas::ui_badge,bx+10,by+9,34,btnH-18,accent);
+            if(selected) {
+                const unsigned mark=(ar*299+ag*587+ab*114)>140000 ? RGBA8(12,12,12,255):RGBA8(255,255,255,255);
+                if(!skin::icon(skin::icons_atlas::icon_check,bx+15,by+14,24,mark))
+                    ::psvitaalive::ui::uiDrawText(&font_,bx+18,by+34,mark,.9f,"X");
+            }
             const char* name = colorThemeDisplayName(th);
-            const float sc = 0.88f;
-            const int tw = ::psvitaalive::ui::uiTextWidth(&font_, sc, name);
-            ::psvitaalive::ui::uiDrawText(&font_, bx + (btnW - tw) / 2 + 4, by + 34,
-                                 focused ? WHITE : TEXT, sc, name);
+            drawMarqueeText(&font_,bx+55,by+34,btnW-69,RGBA8(248,248,248,255),
+                .94f,name,focused,x+12,gridTop,x+w-12,gridBottom);
         }
     }
     vita2d_disable_clipping();
 
     if (maxScroll > 0) {
         const int tx = x + w - 14, ty = gridTop, th = gridH;
-        vita2d_draw_rectangle(tx, ty, 4, th, BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_track,tx,ty,4,th,BORDER);
         const int thumb = std::max(20, th * visibleRows / std::max(1, rows));
         const float scrollT = std::min(1.f, visualThemeSetupScroll_ / (float)std::max(1, maxScroll));
         const int yy = ty + (int)((th - thumb) * scrollT);
-        vita2d_draw_rectangle(tx, yy, 4, thumb, ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,tx,yy,4,thumb,ACCENT);
     }
 
-    const int saveW = 260, saveH = 48;
+    constexpr int saveW=P::saveW,saveH=P::saveH;
     const int saveX = x + (w - saveW) / 2;
-    const int saveY = y + h - 72;
+    const int saveY = y + P::saveY;
     const bool saveFocus = (themeSetupFocus_ == themeCount);
-    skin::surface(saveFocus?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,saveX,saveY,saveW,saveH,saveFocus?ACCENT:SURFACE2);
-    if (saveFocus) skin::focus(saveX,saveY,saveW,saveH,BG);
-    {
-        const char* saveLab = ::psvitaalive::L(TID::BtnSave);
-        const float ssc = 0.94f;
-        const int stw = ::psvitaalive::ui::uiTextWidth(&font_, ssc, saveLab);
-        ::psvitaalive::ui::uiDrawText(&font_, saveX + (saveW - stw) / 2, saveY + 32,
-                             saveFocus ? RGBA8(0,0,0,255) : WHITE, ssc, saveLab);
-    }
-
-    skin::hint(&font_,x+24,y+h-18,w-48,DIM,.72f,::psvitaalive::L(TID::ThemeSetupNavHint));
+    drawPickerButton(saveX,saveY,saveW,saveH,SURFACE2,BORDER,saveFocus);
+    skin::action(&font_,saveX,saveY,saveW,saveH,WHITE,.96f,
+        skin::controls_atlas::ctrl_cross_classic,::psvitaalive::L(TID::BtnSave),::psvitaalive::L(TID::BtnSave));
+    skin::hint(&font_,x+24,y+h-17,w-48,TEXT,.82f,::psvitaalive::L(TID::ThemeSetupNavHint),true,22);
 }
 
 void FullCatalogScreen::runNewsCheck(bool forceShow) {
@@ -3388,9 +3392,10 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     updateMediaTextureSuspension();
 }
 bool FullCatalogScreen::init(){
-    vita2d_init();
+    vita2d_init_advanced(skin::framePoolBytes);
     vita2d_set_clear_color(BG);
     ::psvitaalive::ui::setUiFontScalePercent(settingsEdit_.uiFontScalePct);
+    detailWrapCache_.clear();
     font_ = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
     if(!font_) font_=::psvitaalive::ui::loadDefaultUiFont();
     if(!font_)return false;
@@ -3441,24 +3446,15 @@ void FullCatalogScreen::flushDeferredTextureFrees(){
     if(deferredFreeTextures_.empty())return;
     // Previous frame has been presented; safe to return memory to vita2d.
     // Cap per frame so spam L/R cannot free dozens of textures in one shot (Vita3K crash).
-    const uint64_t perfStartUs=sceKernelGetProcessTimeWide();
     vita2d_wait_rendering_done();
+    // The GPU is already idle here, so recycling is free of additional waits.
+    skin::recycleAfterIdle();
     size_t n=0;
     while(!deferredFreeTextures_.empty() && n<MAX_DEFERRED_FREES_PER_FRAME){
         vita2d_texture* t=deferredFreeTextures_.front();
         deferredFreeTextures_.erase(deferredFreeTextures_.begin());
         if(t)vita2d_free_texture(t);
         ++n;
-    }
-    const uint64_t perfEndUs=sceKernelGetProcessTimeWide();
-    const uint64_t perfUs=perfEndUs>=perfStartUs?perfEndUs-perfStartUs:0;
-    static uint64_t lastPerfLogUs=0;
-    if(perfUs>=50000ULL&&(lastPerfLogUs==0||perfEndUs-lastPerfLogUs>=10000000ULL)){
-        char m[160];
-        sceClibSnprintf(m,sizeof(m),"[Perf] deferred texture free slow us=%llu freed=%u remaining=%u",
-            (unsigned long long)perfUs,(unsigned)n,(unsigned)deferredFreeTextures_.size());
-        diagnostics::log(m);
-        lastPerfLogUs=perfEndUs;
     }
 }
 void FullCatalogScreen::clearInstallDisplayItem() {
@@ -3680,6 +3676,8 @@ void FullCatalogScreen::startStorageOperation(int action) {
         return;
     }
     storageAction_ = action;
+    storageWorkPhase_.store(action == -1 ? StorageWorkPhase::ScanStorage :
+        StorageWorkPhase::Cleaning, std::memory_order_relaxed);
     storageWorkerDone_.store(false, std::memory_order_release);
     storageWorkerOk_.store(false, std::memory_order_release);
     storageWorker_ = sceKernelCreateThread("PSVAStorageScan",
@@ -3718,10 +3716,12 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
                 self->storageSnapshot_.items[index]);
         } else ok = false;
     }
+    self->storageWorkPhase_.store(StorageWorkPhase::ScanStorage, std::memory_order_relaxed);
     self->storageSnapshot_ = ::psvitaalive::storage::StorageMaintenance::scan();
     // Resolve only display fields from the already-loaded catalog cache.
     // The exact ownedPaths/path used by cleanup are never changed.
     if (self->storageAppDisplay_) {
+        self->storageWorkPhase_.store(StorageWorkPhase::ResolveZips, std::memory_order_relaxed);
         for (auto& item : self->storageSnapshot_.items) {
             if (!item.savedZip) continue;
             if (item.appId.empty() && item.titleId.empty()) continue;
@@ -3730,6 +3730,7 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
     }
     // Root Getstat checks only: reuse the same persistent measurements
     // already generated by the sequential per-Homebrew inspector.
+    self->storageWorkPhase_.store(StorageWorkPhase::ScanInstalled, std::memory_order_relaxed);
     const auto installed = ::psvitaalive::storage::InstalledDataManager::scan(
         self->installedDataCandidates_, "", nullptr, 8000000ULL, false);
     applyInstalledStorageSummary(self->storageSnapshot_, installed);
@@ -3859,9 +3860,27 @@ void FullCatalogScreen::drawStorageOverlay() {
     drawMarqueeText(&font_,x+26,y+39,w-52,WHITE,1.13f,
         ::psvitaalive::L("STORAGE_TITLE"),false);
     if (storageWorker_ >= 0) {
-        drawMarqueeText(&font_,x+28,y+134,w-56,ACCENT,1.05f,
+        // The recursive scan has no known total. Show activity, never an
+        // invented percentage. Phase text comes from actual worker stages.
+        const auto phase=storageWorkPhase_.load(std::memory_order_relaxed);
+        const char* phaseKey=phase==StorageWorkPhase::ScanInstalled?"ID_SECTION":
+            phase==StorageWorkPhase::ResolveZips?"STORAGE_ZIPS":
+            phase==StorageWorkPhase::ScanStorage?"STORAGE_TOTAL":nullptr;
+        constexpr int cardW=w-96,cardH=228;
+        const int cardX=x+(w-cardW)/2,cardY=y+112;
+        skin::surface(skin::ui_atlas::ui_panel_inset,cardX,cardY,cardW,cardH,SURFACE);
+        skin::icon(skin::icons_atlas::icon_storage,cardX+24,cardY+24,40,ACCENT);
+        drawMarqueeText(&font_,cardX+80,cardY+49,cardW-104,ACCENT,1.05f,
             ::psvitaalive::L("STORAGE_WORKING"),false);
-        drawMarqueeText(&font_,x+28,y+180,w-56,TEXT,.94f,
+        if(phaseKey)
+            drawMarqueeText(&font_,cardX+28,cardY+91,cardW-56,TEXT,.98f,
+                ::psvitaalive::L(phaseKey),false);
+        const int barX=cardX+28,barY=cardY+117,barW=cardW-56,barH=22;
+        const int segment=Layout::loadingSegmentWidth(barW);
+        const int offset=Layout::loadingSegmentOffset(barW,sceKernelGetProcessTimeWide()/1000ULL);
+        skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,BORDER);
+        skin::surface(skin::ui_atlas::ui_progress_fill,barX+offset,barY,segment,barH,ACCENT);
+        drawMarqueeText(&font_,cardX+28,cardY+181,cardW-56,DIM,.94f,
             ::psvitaalive::L("STORAGE_WAIT"),false);
         return;
     }
@@ -4041,6 +4060,7 @@ void FullCatalogScreen::shutdown(){
         vita2d_free_texture(headerLogoMonoTex_);
         headerLogoMonoTex_ = nullptr;
     }
+    detailWrapCache_.clear();
     font_.reset();
     if(ready_){vita2d_fini();ready_=false;}
     diagnostics::log("[UI] shutdown");
@@ -4463,9 +4483,10 @@ FullCatalogScreen::savedZipsFor(const CatalogItem& item) {
         now < savedZipProbeAtUs_ || now - savedZipProbeAtUs_ >= 5000000ULL) {
         savedZipProbeKey_ = key;
         savedZipProbeResult_.clear();
-        if (savedZipList_ && (!item.id.empty() || !item.titleId.empty()))
+        if (savedZipList_ && (!item.id.empty() || !item.titleId.empty())) {
             savedZipProbeResult_ = savedZipList_(item);
-        savedZipProbeAtUs_ = now;
+        }
+        savedZipProbeAtUs_ = sceKernelGetProcessTimeWide();
     }
     return savedZipProbeResult_;
 }
@@ -4482,35 +4503,37 @@ int FullCatalogScreen::savedZipBlockHeight(const CatalogItem& item) {
     const int count = savedZipCountFor(item);
     return count ? LINK_SECTION_H + 4 + LINK_ROW_H * count + 8 : 0;
 }
-std::vector<std::string> FullCatalogScreen::wrapDetailLines(
+const std::vector<std::string>& FullCatalogScreen::wrapDetailLines(
     const std::string& text, int contentWidth, bool bullets) const {
-    std::vector<std::string> lines;
-    if (text.empty()) return lines;
-    // Preserve source paragraph/newline boundaries and split bullet items.
-    // The old character-count wrapper ignored real PGF glyph widths and cut
-    // requirements/URLs off at the right edge of the detail viewport.
-    std::string normalized;
-    normalized.reserve(text.size() + 8);
-    for (size_t p = 0; p < text.size(); ++p) {
-        if (bullets && text[p] == '-' &&
-            (p == 0 || text[p - 1] == ' ') &&
-            p + 1 < text.size() && text[p + 1] == ' ' &&
-            !normalized.empty() && normalized.back() != '\n')
-            normalized.push_back('\n');
-        normalized.push_back(text[p]);
-    }
-    const int maxWidth = std::max(32, contentWidth - 6);
-    size_t begin = 0;
-    while (begin <= normalized.size()) {
-        const size_t end = normalized.find('\n', begin);
-        const std::string paragraph = normalized.substr(begin,
-            end == std::string::npos ? std::string::npos : end - begin);
-        const auto wrapped = wrapTextToWidth(&font_, 0.68f, paragraph, maxWidth);
-        lines.insert(lines.end(), wrapped.begin(), wrapped.end());
-        if (end == std::string::npos) break;
-        begin = end + 1;
-    }
-    return lines;
+    return detailWrapCache_.get(text, contentWidth, bullets,
+        ::psvitaalive::ui::getUiFontScalePercent(), [&] {
+        std::vector<std::string> lines;
+        // Preserve source paragraph/newline boundaries and split bullet items.
+        // The old character-count wrapper ignored real PGF glyph widths and cut
+        // requirements/URLs off at the right edge of the detail viewport.
+        std::string normalized;
+        normalized.reserve(text.size() + 8);
+        for (size_t p = 0; p < text.size(); ++p) {
+            if (bullets && text[p] == '-' &&
+                (p == 0 || text[p - 1] == ' ') &&
+                p + 1 < text.size() && text[p + 1] == ' ' &&
+                !normalized.empty() && normalized.back() != '\n')
+                normalized.push_back('\n');
+            normalized.push_back(text[p]);
+        }
+        const int maxWidth = std::max(32, contentWidth - 6);
+        size_t begin = 0;
+        while (begin <= normalized.size()) {
+            const size_t end = normalized.find('\n', begin);
+            const std::string paragraph = normalized.substr(begin,
+                end == std::string::npos ? std::string::npos : end - begin);
+            const auto wrapped = wrapTextToWidth(&font_, 0.68f, paragraph, maxWidth);
+            lines.insert(lines.end(), wrapped.begin(), wrapped.end());
+            if (end == std::string::npos) break;
+            begin = end + 1;
+        }
+        return lines;
+    });
 }
 
 int FullCatalogScreen::detailContentHeight(const CatalogItem& i, int w) {
@@ -5574,22 +5597,21 @@ void FullCatalogScreen::handleTouch() {
     // --- First-run theme setup: scroll grid + tap theme / Save ---
     if (themeSetupVisible_) {
         const int themeCount = static_cast<int>(::psvitaalive::ColorTheme::Count);
-        const int cols = 3;
+        using P=ThemePickerLayout;
+        constexpr int cols=P::cols,btnW=P::btnW,btnH=P::btnH,gapX=P::gapX,gapY=P::gapY,gridW=P::gridW;
         const int rows = (themeCount + cols - 1) / cols;
-        const int btnW = 220, btnH = 44, gapX = 12, gapY = 10;
-        const int gridW = cols * btnW + (cols - 1) * gapX;
-        const int ow = 760, oh = 460;
+        constexpr int ow=P::w,oh=P::h;
         const int ox = (SCREEN_W - ow) / 2, oy = (SCREEN_H - oh) / 2;
-        const int gridTop = oy + 118;
-        const int gridBottom = oy + oh - 88;
+        const int gridTop = oy + P::top;
+        const int gridBottom = oy + P::bottom;
         const int gridH = gridBottom - gridTop;
         const int rowH = btnH + gapY;
         const int visibleRows = std::max(1, gridH / rowH);
         const int maxScroll = std::max(0, rows - visibleRows);
         const int gridX = ox + (ow - gridW) / 2;
-        const int saveW = 260, saveH = 48;
+        constexpr int saveW=P::saveW,saveH=P::saveH;
         const int saveX = ox + (ow - saveW) / 2;
-        const int saveY = oy + oh - 72;
+        const int saveY = oy + P::saveY;
 
         if (td.reportNum > 0) {
             const int px = mapX(td.report[0].x);
@@ -5643,9 +5665,9 @@ void FullCatalogScreen::handleTouch() {
             touchDown_ = false;
             touchAccumY_ = 0.f;
             if (!wasMoved) {
-                if (hit(px, py, saveX - 8, saveY - 8, saveW + 16, saveH + 16)) {
+                if (hit(px, py, saveX, saveY, saveW, saveH)) {
                     closeThemeSetup(true);
-                } else {
+                } else if(py>=gridTop && py<gridBottom) {
                     for (int r = 0; r < rows; ++r) {
                         for (int c = 0; c < cols; ++c) {
                             const int idx = r * cols + c;
@@ -5658,10 +5680,9 @@ void FullCatalogScreen::handleTouch() {
                                     closeThemeSetup(true);
                                 } else {
                                     applyThemeSetupFocus();
-                                    themeSetupAppliedFocus_ = themeSetupFocus_;
                                     showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast), 1800);
                                 }
-                                break;
+                                return; // one touch, one card
                             }
                         }
                     }
@@ -6009,7 +6030,8 @@ void FullCatalogScreen::handleTouch() {
     // --- Settings: must run before generic drag/scroll handling ---
     if (state_.mode == UiMode::SETTINGS) {
         const int margin = 20;
-        const int contentTop = HEADER_H + 56;
+        const int contentTop = HEADER_H + 56 + static_cast<int>((1.f-settingsEnter_)*28.f);
+        const int listClipBottom=SCREEN_H-FOOTER_H-14;
         const int colW = SCREEN_W - margin * 2;
         const int listX = margin;
         const int listW = (colW * 58) / 100;
@@ -6034,7 +6056,7 @@ void FullCatalogScreen::handleTouch() {
         }
         const int rowH = 52;
         const int measured = (settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline ? 11 : 9) * (52 + 8) + 3 * 22;
-        const int listViewH = SCREEN_H - contentTop - FOOTER_H - 8;
+        const int listViewH = listClipBottom-contentTop;
         const float maxScroll = static_cast<float>(std::max(0, measured - listViewH));
 
         if (td.reportNum > 0) {
@@ -6052,8 +6074,13 @@ void FullCatalogScreen::handleTouch() {
                 touchLastY_ = yy;
                 if (std::abs(x - touchStartX_) > 20 || std::abs(yy - touchStartY_) > 20)
                     touchMoved_ = true;
+                if(touchMoved_ && touchStartX_>=sideX && touchStartY_>=contentTop && touchStartY_<listClipBottom){
+                    settingsInfoScrollY_=std::max(0.f,std::min(settingsInfoMaxScroll_,settingsInfoScrollY_-dy));
+                    return;
+                }
                 // Same as main catalog: drag steps move focus like D-Pad up/down
-                if (touchMoved_) {
+                if (touchMoved_ && touchStartX_>=listX && touchStartX_<listX+listW &&
+                    touchStartY_>=contentTop && touchStartY_<listClipBottom) {
                     constexpr float kScrollPx = 48.f;
                     constexpr int kRows = 11;
                     touchAccumY_ += static_cast<float>(dy);
@@ -6067,21 +6094,22 @@ void FullCatalogScreen::handleTouch() {
                         do { settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows; }
                         while (settingsEdit_.pspTarget != ::psvitaalive::PspTarget::Adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
                     }
+                    settingsInfoScrollY_=0.f;
                     (void)maxScroll; // auto-scroll in drawSettings follows focus
                 }
             }
         } else if (touchDown_) {
             const int x = touchStartX_, yy = touchStartY_;
             touchDown_ = false;
-            // Allow slight finger jitter — still treat as tap if not a long drag
+            if(touchMoved_){touchMoved_=false;touchAccumY_=0.f;return;}
             for (int i = 0; i < 11; ++i) {
-                if (hit(x, yy, listX, rowY[i], listW, rowH)) {
+                if (yy>=contentTop && yy<listClipBottom && hit(x, yy, listX, rowY[i], listW, rowH)) {
                     if (settingsFocus_ == i) cycleSettingsOption(i, +1);
-                    else settingsFocus_ = i;
+                    else {settingsFocus_ = i;settingsInfoScrollY_=0.f;}
                     return;
                 }
             }
-            if (yy < HEADER_H + 48) {
+            if (yy>=HEADER_H && yy<contentTop && x>=SCREEN_W-430) {
                 closeSettings(true);
                 return;
             }
@@ -6120,10 +6148,11 @@ void FullCatalogScreen::handleTouch() {
                 if (state_.mode == UiMode::FULL_CATALOG) {
                     moveCatalogFocus(1);
                 } else if (state_.mode == UiMode::SPLIT_DETAIL) {
-                    if (state_.activePanel == UiPanel::Detail || touchStartX_ >= SCREEN_W / 2) {
+                    if (touchStartX_ >= SCREEN_W / 2) {
                         state_.activePanel = UiPanel::Detail;
                         moveDetailScroll(1);
                     } else {
+                        state_.activePanel = UiPanel::Catalog;
                         moveCatalogFocus(1);
                     }
                 }
@@ -6133,10 +6162,11 @@ void FullCatalogScreen::handleTouch() {
                 if (state_.mode == UiMode::FULL_CATALOG) {
                     moveCatalogFocus(-1);
                 } else if (state_.mode == UiMode::SPLIT_DETAIL) {
-                    if (state_.activePanel == UiPanel::Detail || touchStartX_ >= SCREEN_W / 2) {
+                    if (touchStartX_ >= SCREEN_W / 2) {
                         state_.activePanel = UiPanel::Detail;
                         moveDetailScroll(-1);
                     } else {
+                        state_.activePanel = UiPanel::Catalog;
                         moveCatalogFocus(-1);
                     }
                 }
@@ -6284,20 +6314,35 @@ void FullCatalogScreen::handleTouch() {
 
     // --- Left list ---
     if (x < mid) {
-        state_.activePanel = UiPanel::Catalog;
         const float rowH = static_cast<float>(SPLIT_CARD_H + CARD_GAP);
         const int localY = y - (panelTop + GRID_PAD);
-        if (localY >= 0) {
-            const int idx = static_cast<int>(localY / rowH + visualCatalogScroll_);
-            if (idx >= 0 && idx < (int)catalogView().size()) {
+        const float row = localY / rowH + visualCatalogScroll_;
+        const int idx = static_cast<int>(std::floor(row));
+        // Use the same visible card geometry as drawCatalogPanel; gaps
+        // and scrollbar taps do not activate the detail panel.
+        const float rowY = static_cast<float>(panelTop + GRID_PAD) +
+            (static_cast<float>(idx)-visualCatalogScroll_)*rowH;
+        if (x >= GRID_PAD && x < mid-GRID_PAD-4 &&
+            y >= static_cast<int>(rowY) && y < static_cast<int>(rowY)+SPLIT_CARD_H &&
+            idx >= 0 && idx < (int)catalogView().size()) {
+            if(idx != state_.focusIndex) {
+                releaseScreenshotTextures();
                 state_.focusIndex = idx;
                 state_.detailScroll = 0;
                 visualDetailScroll_ = 0.f;
+                detailScrollBeforeLinkMode_=0;
+                state_.linkNavigation=false;
+                state_.linkFocus=-1;
                 clampCatalogFocus();
                 clampCatalogScroll();
+                refreshDetailPluginStatus();
+            } else if(state_.linkNavigation) {
+                exitLinkNavigation();
             }
+            state_.activePanel = UiPanel::Detail;
+        } else {
+            state_.activePanel = UiPanel::Catalog;
         }
-        // Tap near left edge bottom could close — not needed
         return;
     }
 
@@ -6432,7 +6477,10 @@ void FullCatalogScreen::setAppSettings(const ::psvitaalive::AppSettingsData& set
     vita2d_wait_rendering_done();
     {
         auto nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
-        if (nf) font_ = std::move(nf);
+        if (nf) {
+            detailWrapCache_.clear();
+            font_ = std::move(nf);
+        }
     }
 }
 
@@ -6699,6 +6747,7 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
         vita2d_wait_rendering_done();
         auto nf = ::psvitaalive::ui::loadUiFont(settingsEdit_.uiFontStyle, settingsEdit_.uiFontFile);
         if (nf) {
+            detailWrapCache_.clear();
             font_ = std::move(nf);
             diagnostics::log(std::string("[UI] font file=") +
                              (settingsEdit_.uiFontFile.empty() ? "(default)" : settingsEdit_.uiFontFile));
@@ -6725,6 +6774,8 @@ void FullCatalogScreen::cycleSettingsOption(int row, int delta) {
 void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
     constexpr int kRows = 11;
     const bool adrenaline = settingsEdit_.pspTarget == ::psvitaalive::PspTarget::Adrenaline;
+    if(pressed&SCE_CTRL_LTRIGGER){settingsInfoScrollY_=std::max(0.f,settingsInfoScrollY_-100.f);return;}
+    if(pressed&SCE_CTRL_RTRIGGER){settingsInfoScrollY_=std::min(settingsInfoMaxScroll_,settingsInfoScrollY_+100.f);return;}
     if (nav & SCE_CTRL_UP) {
         do { settingsFocus_ = (settingsFocus_ + kRows - 1) % kRows; }
         while (!adrenaline && (settingsFocus_ == 2 || settingsFocus_ == 3));
@@ -6754,17 +6805,12 @@ void FullCatalogScreen::handleSettingsInput(uint32_t pressed, uint32_t nav) {
 void FullCatalogScreen::drawSettings() {
     const float enter = settingsEnter_;
     const int slide = static_cast<int>((1.f - enter) * 28.f);
-    const unsigned dimA = static_cast<unsigned>(enter * 255.f);
-
     startSkinFrame();
     vita2d_set_clear_color(BG);vita2d_clear_screen();
     vita2d_draw_rectangle(0, 0, SCREEN_W, SCREEN_H, BG);
     drawHeader(SCREEN_W);
 
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 44, SURFACE2);
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 3, ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, ::psvitaalive::L(::psvitaalive::TextId::Settings));
-    ::psvitaalive::ui::uiDrawText(&font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, ::psvitaalive::L(::psvitaalive::TextId::SettingsSaveBack));
+
 
     const int margin = 20;
     const int contentTop = HEADER_H + 56 + slide;
@@ -6909,42 +6955,52 @@ void FullCatalogScreen::drawSettings() {
     for (int i = 0; i < 11; ++i) {
         if (!showAdrenalineRows && (i == 2 || i == 3)) continue;
         if (opts[i].sectionStart && opts[i].section[0]) {
-            ::psvitaalive::ui::uiDrawText(&font_, listX + 6, y + 16, DIM, 0.56f, opts[i].section);
+            if(y+sectionH>contentTop && y<listClipBottom)
+                drawMarqueeText(&font_,listX+8,y+17,listW-16,ACCENT,.78f,opts[i].section,false);
             y += sectionH;
         }
         rowY[i] = y;
         const bool focus = (settingsFocus_ == i);
-        {
+        if(y+rowH>contentTop && y<listClipBottom) {
             skin::surface(skin::ui_atlas::ui_card,listX,y,listW,rowH,focus?SURFACE:SURFACE2);
             if (focus) skin::focus(listX,y,listW,rowH,ACCENT);
-            /* Keep label/value inside the row card; ellipsize long values. */
-            const int chipW = 110;
-            const int chipX = listX + listW - chipW - 10;
-            const int chipY = y + 12;
-            const int labelMaxW = chipX - (listX + 14) - 8;
-            (void)labelMaxW;
-            ::psvitaalive::ui::uiDrawText(&font_, listX + 14, y + 22, focus ? WHITE : TEXT, 0.76f, opts[i].label);
-            skin::surface(skin::ui_atlas::ui_badge,chipX,chipY,chipW,24,focus?ACCENT:SURFACE);
-            ::psvitaalive::ui::uiDrawText(&font_, chipX + 8, chipY + 17, focus ? BG : ACCENT, 0.54f,
-                                 ellipsize(opts[i].value, 14).c_str());
-            ::psvitaalive::ui::uiDrawText(&font_, listX + 14, y + 42, DIM, 0.48f,
-                                 ellipsize(std::string(opts[i].hint), 42).c_str());
-            if (focus) ::psvitaalive::ui::uiDrawText(&font_, chipX - 32, chipY + 17, ACCENT, 0.52f, "<>");
+            const skin::Sprite* symbol=&skin::icons_atlas::icon_settings;
+            skin::Atlas atlas=skin::Atlas::Icons;
+            if(i==0)symbol=&skin::icons_atlas::icon_download;
+            else if(i==1||i==2)symbol=&skin::icons_atlas::icon_gamepad;
+            else if(i==3)symbol=&skin::icons_atlas::icon_storage;
+            else if(i==7){symbol=&skin::ui_atlas::icon_customization;atlas=skin::Atlas::Ui;}
+            else if(i==8)symbol=&skin::icons_atlas::icon_user;
+            else if(i==9){symbol=&skin::ui_atlas::icon_plugin;atlas=skin::Atlas::Ui;}
+            else if(i==10)symbol=&skin::icons_atlas::icon_update;
+            skin::icon(*symbol,listX+13,y+11,30,focus?ACCENT:TEXT,atlas);
+            const int tx=listX+56, textW=listW-76;
+            drawMarqueeText(&font_,tx,y+21,textW,WHITE,.88f,opts[i].label,focus,
+                listX,contentTop,listX+listW,listClipBottom);
+            // Two separate lines prevent translated values covering the label.
+            if(i==9) {
+                skin::surface(settingsEdit_.warnMissingPlugins?skin::ui_atlas::ui_toggle_on:skin::ui_atlas::ui_toggle_off,
+                    listX+listW-58,y+23,44,25,settingsEdit_.warnMissingPlugins?ACCENT:TEXT);
+            }
+            drawMarqueeText(&font_,tx,y+42,textW-(i==9?58:0),ACCENT,.84f,opts[i].value,focus,
+                listX,contentTop,listX+listW,listClipBottom);
         }
         y += rowH + rowGap;
     }
     vita2d_disable_clipping();
 
     /* Repaint Settings title strip so nothing from the list can sit on top of it. */
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 44, SURFACE2);
-    vita2d_draw_rectangle(0, HEADER_H + slide, SCREEN_W, 3, ACCENT);
-    ::psvitaalive::ui::uiDrawText(&font_, 20, HEADER_H + 30 + slide, ACCENT, 1.00f, ::psvitaalive::L(::psvitaalive::TextId::Settings));
-    ::psvitaalive::ui::uiDrawText(&font_, SCREEN_W - 300, HEADER_H + 28 + slide, DIM, 0.56f, ::psvitaalive::L(::psvitaalive::TextId::SettingsSaveBack));
+    skin::surface(skin::ui_atlas::ui_panel_inset,20,HEADER_H+slide+4,SCREEN_W-40,44,SURFACE2);
+    skin::icon(skin::icons_atlas::icon_settings,34,HEADER_H+slide+11,30,ACCENT);
+    drawMarqueeText(&font_,74,HEADER_H+slide+34,400,WHITE,1.10f,::psvitaalive::L(TID::Settings),false);
+    skin::hint(&font_,SCREEN_W-430,HEADER_H+slide+33,390,TEXT,.80f,::psvitaalive::L(TID::SettingsSaveBack),true,22);
 
     {
         const int panelH = listClipBottom - contentTop;
         skin::surface(skin::ui_atlas::ui_panel,sideX,contentTop,sideW,panelH,SURFACE2);
-        ::psvitaalive::ui::uiDrawText(&font_, sideX + 14, contentTop + 24, ACCENT, 0.90f, ::psvitaalive::L(TID::Info));
+        skin::surface(skin::ui_atlas::ui_panel_inset,sideX+8,contentTop+7,sideW-16,34,SURFACE);
+        skin::icon(skin::icons_atlas::icon_info,sideX+16,contentTop+12,24,ACCENT);
+        drawMarqueeText(&font_,sideX+48,contentTop+30,sideW-62,WHITE,.92f,::psvitaalive::L(TID::Info),false);
 
         const char* title = opts[settingsFocus_].label;
         const char* body1 = "";
@@ -7010,14 +7066,14 @@ void FullCatalogScreen::drawSettings() {
         }
         // INFO body: wrap long lines + vertical scroll (touch / fits large fonts)
         {
-            const int infoPadX = 12;
-            const int infoTextW = std::max(40, sideW - infoPadX * 2);
-            const float titleSc = 0.84f;
-            const float bodySc = 0.68f;
-            const float plugSc = 0.66f;
-            const int titleLH = 24;
-            const int bodyLH = 20;
-            const int plugLH = 20;
+            const int infoPadX = 16;
+            const int infoTextW = std::max(40, sideW - infoPadX * 2-8);
+            const float titleSc = .98f;
+            const float bodySc = .85f;
+            const float plugSc = .80f;
+            const int titleLH = 29;
+            const int bodyLH = 25;
+            const int plugLH = 24;
 
             struct InfoLine {
                 std::string text;
@@ -7035,18 +7091,19 @@ void FullCatalogScreen::drawSettings() {
                 }
             };
             pushWrapped(title, WHITE, titleSc, titleLH);
-            lines.push_back({"", TEXT, bodySc, 6}); // small gap
+            pushWrapped(opts[settingsFocus_].value.c_str(),ACCENT,.90f,26);
+            lines.push_back({"", TEXT, bodySc, 8}); // small gap
             pushWrapped(body1, TEXT, bodySc, bodyLH);
             pushWrapped(body2, TEXT, bodySc, bodyLH);
             pushWrapped(body3, TEXT, bodySc, bodyLH);
             lines.push_back({"", TEXT, bodySc, 10});
-            pushWrapped(::psvitaalive::L(TID::System), DIM, 0.74f, 22);
+            pushWrapped(::psvitaalive::L(TID::System), ACCENT, .88f, 27);
 
             auto pushPlug = [&](const char* label, bool ok) {
                 char plug[96];
                 sceClibSnprintf(plug, sizeof(plug), "%s: %s", label,
                                 ok ? ::psvitaalive::L(TID::StatusOk) : ::psvitaalive::L(TID::StatusMissing));
-                pushWrapped(plug, ok ? TEXT : ACCENT, plugSc, plugLH);
+                pushWrapped(plug, ok ? WHITE : ACCENT, plugSc, plugLH);
             };
             pushPlug("NoNpDrm", pluginsStatus_.nonpdrm);
             pushPlug("NoPspEmuDrm", pluginsStatus_.nopspemudrmKern);
@@ -7056,7 +7113,7 @@ void FullCatalogScreen::drawSettings() {
             pushPlug("fd_fix", settingsFdFixOk_);
             pushPlug("libshacccg", settingsLibshacccgOk_);
             if (!pluginsStatus_.configPathUsed.empty()) {
-                pushWrapped(pluginsStatus_.configPathUsed.c_str(), DIM, 0.60f, 18);
+                pushWrapped(pluginsStatus_.configPathUsed.c_str(), TEXT, .80f, 24);
             }
             if (settingsFocus_ == 10) {
                 char ver[96];
@@ -7079,7 +7136,7 @@ void FullCatalogScreen::drawSettings() {
 
             int contentH = 0;
             for (const auto& ln : lines) contentH += ln.lineH;
-            const int viewTop = contentTop + 36;
+            const int viewTop = contentTop + 49;
             const int viewBot = listClipBottom - 4;
             const int viewH = std::max(1, viewBot - viewTop);
             settingsInfoMaxScroll_ = static_cast<float>(std::max(0, contentH - viewH));
@@ -7090,7 +7147,7 @@ void FullCatalogScreen::drawSettings() {
             vita2d_set_clip_rectangle(sideX + 2, viewTop, sideX + sideW - 2, viewBot);
             int iy = viewTop - static_cast<int>(settingsInfoScrollY_);
             for (const auto& ln : lines) {
-                if (!ln.text.empty()) {
+                if (!ln.text.empty() && iy+ln.lineH>viewTop && iy<viewBot) {
                     ::psvitaalive::ui::uiDrawText(&font_, sideX + infoPadX, iy + ln.lineH - 4,
                                                   ln.color, ln.scale, ln.text.c_str());
                 }
@@ -7101,10 +7158,10 @@ void FullCatalogScreen::drawSettings() {
             if (settingsInfoMaxScroll_ > 1.f) {
                 const float ratio = settingsInfoScrollY_ / settingsInfoMaxScroll_;
                 const int trackH = viewH - 8;
-                const int thumbH = std::max(20, trackH / 5);
+                const int thumbH = std::max(20, trackH * viewH / std::max(1,contentH));
                 const int thumbY = viewTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
-                vita2d_draw_rectangle(sideX + sideW - 5, viewTop + 4, 3, trackH, BORDER);
-                vita2d_draw_rectangle(sideX + sideW - 5, thumbY, 3, thumbH, ACCENT);
+                skin::surface(skin::ui_atlas::ui_scroll_track,sideX+sideW-8,viewTop+4,4,trackH,BORDER);
+                skin::surface(skin::ui_atlas::ui_scroll_thumb,sideX+sideW-8,thumbY,4,thumbH,ACCENT);
             }
         }
     }
@@ -7112,10 +7169,10 @@ void FullCatalogScreen::drawSettings() {
     if (maxScroll > 1.f) {
         const float ratio = settingsScrollY_ / maxScroll;
         const int trackH = listViewH - 8;
-        const int thumbH = std::max(24, trackH / 4);
+        const int thumbH = std::max(24, trackH * listViewH / std::max(1,measured));
         const int thumbY = contentTop + 4 + static_cast<int>(ratio * (trackH - thumbH));
-        vita2d_draw_rectangle(listX + listW + 2, contentTop + 4, 3, trackH, BORDER);
-        vita2d_draw_rectangle(listX + listW + 2, thumbY, 3, thumbH, ACCENT);
+        skin::surface(skin::ui_atlas::ui_scroll_track,listX+listW+3,contentTop+4,4,trackH,BORDER);
+        skin::surface(skin::ui_atlas::ui_scroll_thumb,listX+listW+3,thumbY,4,thumbH,ACCENT);
     }
 
     vita2d_draw_rectangle(0, SCREEN_H - FOOTER_H, SCREEN_W, FOOTER_H, SURFACE2);
@@ -7501,7 +7558,30 @@ if(webQrVisible_){
     else if((nav&SCE_CTRL_LEFT)&&webQrUrlScrollLine_>0)--webQrUrlScrollLine_;
     else if((nav&SCE_CTRL_RIGHT)&&webQrUrlScrollLine_+WEB_QR_URL_VISIBLE_LINES<(int)webQrUrlLines_.size())++webQrUrlScrollLine_;
     return;
-}if(gProtectionActive&&(pressed!=0||direct!=0)){protectionDismiss();return;}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int visibleRows=5;auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,visibleRows);};if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0){--themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount){++themeSetupFocus_;afterMove();}}return;}if(nav&SCE_CTRL_UP){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-1);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  else if(themeSetupScrollRow_>0)--themeSetupScrollRow_;  afterMove();return;}if(nav&SCE_CTRL_DOWN){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  afterMove();return;}if(pressed&SCE_CTRL_CROSS){if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}return;}return;}if (filterModalOpen_) {
+}if(gProtectionActive&&(pressed!=0||direct!=0)){protectionDismiss();return;}if(themeSetupVisible_){
+    const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);
+    constexpr int cols=ThemePickerLayout::cols;
+    auto afterMove=[&](){clampThemePickerScroll(themeSetupFocus_,themeSetupScrollRow_,themeCount,cols,ThemePickerLayout::visibleRows);};
+    if(pressed&SCE_CTRL_CIRCLE){closeThemeSetup(true);return;}
+    if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount&&themeSetupFocus_%cols>0)--themeSetupFocus_;afterMove();return;}
+    if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount&&themeSetupFocus_%cols<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;afterMove();return;}
+    if(nav&SCE_CTRL_UP){if(themeSetupFocus_==themeCount)themeSetupFocus_=std::max(0,themeCount-1);else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;afterMove();return;}
+    if(nav&SCE_CTRL_DOWN){
+        if(themeSetupFocus_<themeCount){
+            const int next=themeSetupFocus_+cols;
+            if(next<themeCount)themeSetupFocus_=next;
+            else if(themeSetupFocus_/cols<(themeCount-1)/cols)themeSetupFocus_=themeCount-1;
+            else themeSetupFocus_=themeCount;
+        }
+        afterMove();return;
+    }
+    if(pressed&SCE_CTRL_CROSS){
+        if(themeSetupFocus_==themeCount||themeSetupAppliedFocus_==themeSetupFocus_)closeThemeSetup(true);
+        else{applyThemeSetupFocus();}
+        return;
+    }
+    return;
+}if (filterModalOpen_) {
         if (pressed & (SCE_CTRL_CIRCLE | SCE_CTRL_SQUARE)) { closeFilterMenu(); return; }
         if (nav & SCE_CTRL_UP) { moveFilterFocus(-1); return; }
         if (nav & SCE_CTRL_DOWN) { moveFilterFocus(1); return; }
@@ -7659,7 +7739,7 @@ if((pressed&SCE_CTRL_LTRIGGER)||(pressed&SCE_CTRL_RTRIGGER)){
     if(feedbackFocus_!=previousFeedbackFocus)ensureFeedbackFocusVisible();
     if(pressed&SCE_CTRL_CROSS)activateFeedbackFocus();
     return;
-}if(themeSetupVisible_){const int themeCount=static_cast<int>(::psvitaalive::ColorTheme::Count);const int cols=3;const int totalFocus=themeCount+1;if(nav&SCE_CTRL_LEFT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c>0)--themeSetupFocus_;}return;}if(nav&SCE_CTRL_RIGHT){if(themeSetupFocus_<themeCount){int c=themeSetupFocus_%cols;if(c<cols-1&&themeSetupFocus_+1<themeCount)++themeSetupFocus_;}return;}if(nav&SCE_CTRL_UP||(pressed&SCE_CTRL_UP)){  if(themeSetupFocus_==themeCount){themeSetupFocus_=std::max(0,themeCount-cols);}  else if(themeSetupFocus_>=cols)themeSetupFocus_-=cols;  return;}if(nav&SCE_CTRL_DOWN||(pressed&SCE_CTRL_DOWN)){  if(themeSetupFocus_<themeCount){int n=themeSetupFocus_+cols;if(n<themeCount)themeSetupFocus_=n;else themeSetupFocus_=themeCount;}  return;}if(pressed&SCE_CTRL_CROSS){  if(themeSetupFocus_==themeCount){closeThemeSetup(true);}else if(themeSetupAppliedFocus_==themeSetupFocus_){closeThemeSetup(true);}else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast),1800);}  return;}return;}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
+}if(installProgressActive_&&installOutcome_==2&&installZipRecoveryAvailable_){
     if(pressed&SCE_CTRL_TRIANGLE){
         if (installAllPhase_ == InstallAllPhase::Running && installAllWaitingRecovery_) {
             installAllResolveRecovery(true);
@@ -7722,7 +7802,7 @@ if((pressed&SCE_CTRL_TRIANGLE)&&state_.mode==UiMode::SPLIT_DETAIL&&
         }
     }
 }
-if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_RIGHT)state_.activePanel=UiPanel::Detail;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
+if(pressed&SCE_CTRL_SQUARE){if(canShowFilterButton()){openFilterMenu();return;}if(state_.mode==UiMode::SPLIT_DETAIL&&state_.activePanel==UiPanel::Detail&&!state_.linkNavigation){const int si=selectedIndex();if(si>=0&&itemEligibleForDataRequest(catalogView()[si])){openDataRequestConfirm();return;}}return;}if(state_.mode==UiMode::FULL_CATALOG){if(pressed&SCE_CTRL_CIRCLE){if(!searchQuery_.empty()||filterMode_!=ContentFilter::All){filterMode_=ContentFilter::All;filterCategory_ = "";applySearch("");showToast(::psvitaalive::L(::psvitaalive::TextId::ToastFiltersCleared),1200);}return;}if(pressed&SCE_CTRL_TRIANGLE){if(searchRequest_)searchRequest_(searchQuery_);return;}if(nav&SCE_CTRL_LEFT&&state_.focusIndex%3>0)--state_.focusIndex;if(nav&SCE_CTRL_RIGHT&&state_.focusIndex%3<2&&state_.focusIndex+1<(int)catalogView().size())++state_.focusIndex;if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);clampCatalogScroll();if(pressed&SCE_CTRL_CROSS)startOpeningDetail();return;}if(state_.mode!=UiMode::SPLIT_DETAIL)return;if(pressed&SCE_CTRL_CIRCLE){if(state_.linkNavigation){exitLinkNavigation();return;}startClosingDetail();return;}if(state_.activePanel==UiPanel::Catalog){if(nav&SCE_CTRL_UP)moveCatalogFocus(-1);if(nav&SCE_CTRL_DOWN)moveCatalogFocus(1);if(((nav&SCE_CTRL_RIGHT)||(pressed&SCE_CTRL_CROSS))&&selectedIndex()>=0)state_.activePanel=UiPanel::Detail;return;}if(nav&SCE_CTRL_LEFT)state_.activePanel=UiPanel::Catalog;if(!state_.linkNavigation&&(pressed&SCE_CTRL_CROSS)){enterLinkNavigation();return;}if(state_.linkNavigation){if(nav&SCE_CTRL_UP)moveLinkFocus(0,-1);if(nav&SCE_CTRL_DOWN)moveLinkFocus(0,1);if(pressed&SCE_CTRL_CROSS)activateFocusedLink();return;}if(nav&SCE_CTRL_UP)moveDetailScroll(-1);if(nav&SCE_CTRL_DOWN)moveDetailScroll(1);}
 unsigned FullCatalogScreen::colorForStatus(const std::string&s)const{if(s=="Verified")return ACCENT;if(s=="Legacy")return TEXT;if(s=="Archive")return DIM;return TEXT;}void FullCatalogScreen::drawHeader(int w){
     // Near-black bar + dual neon edge (LiveArea brand)
     vita2d_draw_rectangle(0, 0, w, HEADER_H, SURFACE2);
@@ -7907,35 +7987,25 @@ void FullCatalogScreen::drawTabs(int w){
         }
     }
 }
-void FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
+bool FullCatalogScreen::prepareImageTexture(const std::string&url,const std::string&ns){
     static std::set<std::string> failedTextureLoads;
-    if(!imageCache_||url.empty())return;
-    std::string path=imageCache_->request(url,ns);
-    if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return;
-    if(failedTextureLoads.find(path)!=failedTextureLoads.end())return;
+    if(!imageCache_||url.empty())return false;
+    const std::string path=imageCache_->pathFor(url,ns);
     auto it=textures_.find(path);
-    if(it!=textures_.end()){touchTexture(path);return;}
-    evictTextureIfNeeded(ns);
-    // Avoid decoding a file the worker may still be writing.
-    SceIoStat stCheck={};
-    if(sceIoGetstat(path.c_str(),&stCheck)<0||stCheck.st_size<=0)return;
+    if(it!=textures_.end()&&it->second){touchTexture(path);return false;}
+    imageCache_->request(url,ns);
+    if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return false;
+    if(failedTextureLoads.find(path)!=failedTextureLoads.end())return false;
+    // Only completed, validated cache files are published as ready.
+    // Count a decode attempt even if it fails or replaces an LRU texture.
     vita2d_texture*t=nullptr;
     const char*e=extOf(path);
-    const uint64_t perfStartUs=sceKernelGetProcessTimeWide();
     if(std::strcmp(e,".jpg")==0||std::strcmp(e,".jpeg")==0)t=vita2d_load_JPEG_file(path.c_str());
     else t=vita2d_load_PNG_file(path.c_str());
-    const uint64_t perfEndUs=sceKernelGetProcessTimeWide();
-    const uint64_t perfUs=perfEndUs>=perfStartUs?perfEndUs-perfStartUs:0;
-    static uint64_t lastTexturePerfLogUs=0;
-    if(perfUs>=50000ULL&&(lastTexturePerfLogUs==0||perfEndUs-lastTexturePerfLogUs>=5000000ULL)){
-        char pm[240];
-        sceClibSnprintf(pm,sizeof(pm),"[Perf] texture decode slow us=%llu ns=%s path=%s",
-            (unsigned long long)perfUs,ns.c_str(),path.c_str());
-        diagnostics::log(pm);
-        lastTexturePerfLogUs=perfEndUs;
-    }
-    if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return;}
+    if(!t){failedTextureLoads.insert(path);SceIoStat st={};long long sz=-1;if(sceIoGetstat(path.c_str(),&st)>=0)sz=(long long)st.st_size;char m[700];sceClibSnprintf(m,sizeof(m),"[UI] texture load failed ns=%s path=%s size=%lld",ns.c_str(),path.c_str(),sz);diagnostics::log(m);return true;}
+    evictTextureIfNeeded(ns);
     textures_[path]=t;textureOrder_.push_back(path);
+    return true;
 }
 int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, int panelWidth) {
     // Exactly mirror drawDetailLinks + emitTextSection. Old visibility code
@@ -7977,13 +8047,13 @@ void FullCatalogScreen::prepareVisibleTextures(){
     // At most one new GPU texture decode per frame (avoids hitch + free/load storms).
     constexpr int kLoadsPerFrame = 1;
     // UI-first scheduling: do not enqueue missing network images while animated scroll is still moving.
-    // Already-ready cache entries may still be decoded one per frame, preserving fast cached browsing.
+    // Do not decode even cached entries while navigation or a panel transition is active.
     const float targetCatalogScroll=static_cast<float>(state_.catalogScrollRow);
     const bool catalogScrollMoving=std::fabs(targetCatalogScroll-visualCatalogScroll_)>0.08f;
     const float targetDetailScroll=static_cast<float>(state_.detailScroll);
     const bool detailScrollMoving=std::fabs(targetDetailScroll-visualDetailScroll_)>4.0f;
     const uint64_t imageNowUs=sceKernelGetProcessTimeWide();
-    const bool navigationBusy=verticalNavHeld_||imageWorkResumeAfterUs_>imageNowUs||catalogScrollMoving||detailScrollMoving;
+    const bool navigationBusy=verticalNavHeld_||imageWorkResumeAfterUs_>imageNowUs||catalogScrollMoving||detailScrollMoving||isTransitioning();
     auto syncImageNetwork=[&](const std::unordered_set<std::string>& keepSet){
         if(navigationBusy){
             // Cancel once on entry. Repeating this every frame would create log/mutex churn.
@@ -8028,7 +8098,8 @@ void FullCatalogScreen::prepareVisibleTextures(){
                 const std::string path=imageCache_->pathFor(url,"app");
                 if(path.empty())continue;
                 const bool alreadyResident=textures_.find(path)!=textures_.end();
-                prepareImageTexture(url,"app");
+                const bool attempted=prepareImageTexture(url,"app");
+                if(attempted)++loads;
                 // Check the exact image key, not texture-map size: the LRU
                 // can evict one icon while adding another in the same frame.
                 if(!alreadyResident&&textures_.find(path)!=textures_.end()){
@@ -8041,7 +8112,6 @@ void FullCatalogScreen::prepareVisibleTextures(){
                         else ++it;
                     }
                     installedDataIntroducedIconTextures_.insert(path);
-                    ++loads;
                 }
             }
         }
@@ -8075,9 +8145,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
                 if(loads>=kLoadsPerFrame) break;
                 const auto path=pathOnly(*url,"app");
                 if(path.empty()) continue;
-                const bool resident=textures_.find(path)!=textures_.end();
-                prepareImageTexture(*url,"app");
-                if(!resident&&textures_.find(path)!=textures_.end()) ++loads;
+                if(prepareImageTexture(*url,"app"))++loads;
             }
         }
         return;
@@ -8102,9 +8170,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             // Navigation gets absolute priority: no network request and no new GPU decode
             // while UP/DOWN is held, during animated motion, or during the post-release grace.
             if(navigationBusy)continue;
-            const size_t before=textures_.size();
-            prepareImageTexture(url, "app");
-            if(textures_.size()>before)++loads;
+            if(prepareImageTexture(url, "app"))++loads;
         }
         return;
     }
@@ -8152,9 +8218,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
         auto prepareOne=[&](const std::string& url, const char* ns){
             if(loads>=kLoadsPerFrame||url.empty())return;
             if(navigationBusy)return;
-            const size_t before=textures_.size();
-            prepareImageTexture(url, ns);
-            if(textures_.size()>before)++loads;
+            if(prepareImageTexture(url, ns))++loads;
         };
         for(int i=first;i<last;++i){
             const CatalogItem& it=catalogView()[i];
@@ -8479,16 +8543,9 @@ void FullCatalogScreen::drawScrollFades(int x, int y, int width, int height) con
     }
 }
 
-void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height, const char* label) const {
-    const unsigned solid=ACCENT;
-    skin::focus(x,y,width,height,solid);
-    // Label chip
-    if (label && font_) {
-        const int lw = 78, lh = 22;
-        const int lx = x + 10, ly = y + 8;
-skin::surface(skin::ui_atlas::ui_badge,lx,ly,lw,lh,solid);
-        ::psvitaalive::ui::uiDrawText(&font_, lx + 10, ly + 16, BG, 0.58f, label);
-    }
+void FullCatalogScreen::drawActivePanelFrame(int x, int y, int width, int height) const {
+    // Keep the active panel's outline without covering icons or content.
+    skin::focus(x,y,width,height,ACCENT);
 }
 
 
@@ -9029,8 +9086,10 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 1, y + 1, x + w - 1, y + h - 1);
 
-    // The selected app is independent of the controller-only chrome focus.
-    // Keep its original border during touch scrolling and zone navigation.
+    // Preserve the app index across zone changes, but highlight only the
+    // active navigation target. Touch resets the zone to Catalog.
+    const bool catalogCardFocus = navigationFocus_.catalogCardFocused(
+        !split || state_.activePanel == UiPanel::Catalog);
     if (!split) {
         const int vis = visibleRowsFull();
         const int rows = totalRows();
@@ -9043,7 +9102,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
                 if (i < 0 || i >= (int)catalogView().size()) continue;
                 const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(baseRow + r) - visualCatalogScroll_) * rowH;
                 if (fy + FULL_CARD_H < y || fy > y + h) continue;
-                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, i == state_.focusIndex,
+                drawCatalogCard(catalogView()[i], i, x + GRID_PAD + c * (cw + CARD_GAP), static_cast<int>(fy), cw, FULL_CARD_H, catalogCardFocus && i == state_.focusIndex,
                                 x + 1, y + 1, x + w - 1, y + h - 1);
                 // Re-assert panel clip: focused card marquee disables global scissor.
                 vita2d_enable_clipping();
@@ -9070,7 +9129,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
             if (i < 0 || i >= (int)catalogView().size()) continue;
             const float fy = static_cast<float>(y + GRID_PAD) + (static_cast<float>(i) - visualCatalogScroll_) * rowH;
             if (fy + SPLIT_CARD_H < y || fy > y + h) continue;
-            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, i == state_.focusIndex,
+            drawCatalogCard(catalogView()[i], i, x + GRID_PAD, static_cast<int>(fy), w - GRID_PAD * 2 - 4, SPLIT_CARD_H, catalogCardFocus && i == state_.focusIndex,
                             x + 1, y + 1, x + w - 1, y + h - 1);
             // Re-assert panel clip: focused card marquee disables global scissor.
             vita2d_enable_clipping();
@@ -9089,7 +9148,7 @@ void FullCatalogScreen::drawCatalogPanel(int x,int y,int w,int h,bool split){
         }
         drawScrollFades(x, y, w, h);
         if (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Catalog && chromeFocusVisible(FocusZone::Catalog))
-            drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, "LIST");
+            drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4);
     }
     if (dimPanel)
         vita2d_draw_rectangle(x, y, w, h, dimPanel);
@@ -9335,8 +9394,13 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
     const int savedCount = static_cast<int>(savedZipOptions.size());
     const int focusOff=(showAll?1:0)+1+savedCount;
     int yOff = 0;
+    const int viewportTop=HEADER_H+TABS_H+DETAIL_HEADER_H+10;
+    const int viewportBottom=SCREEN_H-FOOTER_H-10;
+    auto visible=[&](int top,int height){return top+height>=viewportTop && top<=viewportBottom;};
 
     if (showAll) {
+        yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+        if(visible(y,yOff)) {
         const char* actionTitle=action==PrimaryAction::UpdateAll
             ?::psvitaalive::L("DR_UPDATE_ALL_TITLE")
             :action==PrimaryAction::Update
@@ -9374,19 +9438,22 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 24, tc, 0.84f, actionTitle);
         ::psvitaalive::ui::uiDrawText(&font_, x + 12, by + 48, sub, 0.66f,
             actionSubtitle);
-        yOff = LINK_SECTION_H + 4 + INSTALL_ALL_BLOCK_H + 8;
+        }
     }
 
     // App-specific recovery archives, one focusable button per ZIP.
     // This entire section disappears when no validated archives are found.
     if (savedCount > 0) {
         const int savedHeaderY = y + yOff;
-        vita2d_draw_rectangle(x, savedHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
-        ::psvitaalive::ui::uiDrawText(&font_, x + 4, savedHeaderY + 18, ACCENT, 0.76f,
-                                      ::psvitaalive::L("ZIP_SAVED_SECTION"));
+        if(visible(savedHeaderY,LINK_SECTION_H)) {
+            vita2d_draw_rectangle(x, savedHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
+            ::psvitaalive::ui::uiDrawText(&font_, x + 4, savedHeaderY + 18, ACCENT, 0.76f,
+                                          ::psvitaalive::L("ZIP_SAVED_SECTION"));
+        }
         const int baseY = savedHeaderY + LINK_SECTION_H + 4;
         for (int z = 0; z < savedCount; ++z) {
             const int btnY = baseY + z * LINK_ROW_H;
+            if(!visible(btnY,LINK_ROW_H)) continue;
             const bool focused = state_.linkNavigation &&
                 chromeFocusVisible(FocusZone::Catalog) && state_.linkFocus == (showAll ? 1 : 0) + z;
             skin::surface(focused?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,x,btnY,w,LINK_ROW_H,focused?ACCENT:SURFACE2);
@@ -9405,6 +9472,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 
     // Permanent section between primary OPEN/UPDATE/INSTALL ALL and Downloads.
     const int webHeaderY = y + yOff;
+    if(visible(webHeaderY,WEB_QR_BLOCK_H)) {
     vita2d_draw_rectangle(x, webHeaderY + LINK_SECTION_H - 1, w, 1, BORDER);
     ::psvitaalive::ui::uiDrawText(&font_, x + 4, webHeaderY + 18, ACCENT, 0.76f,
         ::psvitaalive::L("WEB_QR_SECTION"));
@@ -9415,10 +9483,12 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
         webFocused ? BG : WHITE, 0.80f, ::psvitaalive::L("WEB_QR_BUTTON"));
     ::psvitaalive::ui::uiDrawText(&font_, x + 10, webButtonY + 35,
         webFocused ? BG : DIM, 0.66f, ::psvitaalive::L("WEB_QR_SUBTITLE"));
+    }
     yOff += WEB_QR_BLOCK_H;
 
     for (const auto& row : rows) {
         const int ry = y + yOff + row.y;
+        if(!visible(ry,row.isSection?LINK_SECTION_H:LINK_ROW_H)) continue;
         if (row.isSection) {
             vita2d_draw_rectangle(x, ry + LINK_SECTION_H - 1, w, 1, BORDER);
             ::psvitaalive::ui::uiDrawText(&font_, x + 4, ry + 18, ACCENT, 0.76f, linkSectionTitle(row.section));
@@ -9472,6 +9542,7 @@ void FullCatalogScreen::drawDetailLinks(const CatalogItem& it, int x, int y, int
 
 
 void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, int w, int h) {
+    if(w<=36 || h<=DETAIL_HEADER_H+20) { vita2d_disable_clipping(); return; }
     if (detailCrossfade_ < 0.99f) {
         vita2d_draw_rectangle(x, y, w, h, RGBA8(0, 0, 0, static_cast<unsigned>((1.f - detailCrossfade_) * 140)));
     }
@@ -9527,7 +9598,7 @@ void FullCatalogScreen::drawDetailContent(const CatalogItem& it, int x, int y, i
 
     auto emitTextSection = [&](const char* title, const std::string& body, bool bullets) {
         if (body.empty()) return;
-        const std::vector<std::string> lines = wrapDetailLines(body, cw, bullets);
+        const auto& lines = wrapDetailLines(body, cw, bullets);
         if (lines.empty()) return;
         drawSectionHeader(cx, cursor, title);
         cursor += DETAIL_SECTION_H;
@@ -9622,17 +9693,23 @@ skin::surface(skin::ui_atlas::ui_panel,cx,cardTop,cw,cardH,SURFACE2);
 
 
 void FullCatalogScreen::drawDetailPanel(int x,int y,int w,int h){
+    if(w<=0 || h<=0) return;
+    // During the first/last pixels of the sliding panel, the content's
+    // inner width would be negative. Draw only the visible background.
+    if(w<=36) {
+        skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
+        return;
+    }
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x, y, x + w, y + h);
 skin::surface(skin::ui_atlas::ui_panel,x,y,w,h,PANEL);
     int i = selectedIndex();
-    if (i < 0) return;
+    if (i < 0) { vita2d_disable_clipping(); return; }
     const CatalogItem& it = catalogView()[i];
     const bool active = (state_.mode == UiMode::SPLIT_DETAIL && state_.activePanel == UiPanel::Detail);
     skin::surface(skin::ui_atlas::ui_panel,x,y,w,DETAIL_HEADER_H,SURFACE);
     drawImage(!it.icon.empty() ? it.icon : it.cover, "app", x + 12, y + 14, 72, 72);
-    // Leave room for active-panel label chip on the left when focused
-    const int titleX = active ? x + 100 : x + 96;
+    const int titleX = x + 96;
     {
         // Leave room for Select-links / Request-data buttons on the right.
         const int titleMaxW = std::max(60, (x + w - 160) - titleX);
@@ -9727,7 +9804,7 @@ skin::surface(skin::ui_atlas::ui_badge,nx,ny,nw,nh,warningBg);
     // Fade over scrollable body (below header)
     drawScrollFades(x, y + DETAIL_HEADER_H, w, std::max(1, h - DETAIL_HEADER_H));
     if (active && chromeFocusVisible(FocusZone::Catalog))
-        drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4, ::psvitaalive::L(::psvitaalive::TextId::PanelDetail));
+        drawActivePanelFrame(x + 2, y + 2, w - 4, h - 4);
 }
 
 
@@ -12138,11 +12215,23 @@ void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_colo
     // updating input, animations or new image textures underneath.
     if(keyboard_.active())
         keyboard_.drawOverlay(&font_, {BG,SURFACE,SURFACE2,BORDER,TEXT,DIM,ACCENT});
-    if(storageVisible_) drawStorageOverlay();
-    if(installedDataVisible_) drawInstalledDataOverlay();
     finishFrame();
 }
-void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
+void FullCatalogScreen::draw(){
+    // Storage dialogs own all input. Draw just the topmost dialog over a
+    // theme-colored backdrop, not a live catalog or another hidden dialog.
+    // Do not change update/poll/input logic or GPU pool lifetime.
+    if (installedDataVisible_ || storageVisible_) {
+        startSkinFrame();
+        vita2d_set_clear_color(BG);
+        vita2d_clear_screen();
+        if (installedDataVisible_) drawInstalledDataOverlay();
+        else drawStorageOverlay();
+        drawToast();
+        finishFrame();
+        return;
+    }
+    switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     // Input belongs to the visible screen, not to the catalog behind a
     // loading splash. First-run theme/news/plugins and other interactive
@@ -12186,7 +12275,6 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
             return !state_.requestExit;
         }
     }
-    const uint64_t frameStartUs=sceKernelGetProcessTimeWide();
     {
         static bool once = false;
         if (!once) {
@@ -12281,33 +12369,6 @@ void FullCatalogScreen::draw(){switch(state_.mode){case UiMode::FULL_CATALOG:dra
     // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
     if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
     draw();
-    const uint64_t frameEndUs=sceKernelGetProcessTimeWide();
-    const uint64_t frameUs=frameEndUs>=frameStartUs?frameEndUs-frameStartUs:0;
-    // Aggregate frame hitches in RAM instead of doing string/log I/O per slow frame.
-    // One concise diagnostic every 10s keeps performance reports actionable.
-    static uint64_t perfWindowStartUs=0;
-    static uint64_t perfWorstUs=0;
-    static unsigned perfOver25ms=0;
-    static unsigned perfOver100ms=0;
-    if(perfWindowStartUs==0)perfWindowStartUs=frameEndUs;
-    if(frameUs>=25000ULL){
-        ++perfOver25ms;
-        if(frameUs>=100000ULL)++perfOver100ms;
-        if(frameUs>perfWorstUs)perfWorstUs=frameUs;
-    }
-    if(frameEndUs-perfWindowStartUs>=10000000ULL){
-        if(perfOver25ms){
-            char pm[180];
-            sceClibSnprintf(pm,sizeof(pm),
-                "[Perf] 10s summary slow_25ms=%u severe_100ms=%u worst_us=%llu mode=%d textures=%u deferred=%u",
-                perfOver25ms,perfOver100ms,(unsigned long long)perfWorstUs,
-                (int)state_.mode,(unsigned)textures_.size(),(unsigned)deferredFreeTextures_.size());
-            diagnostics::log(pm);
-        }
-        perfWindowStartUs=frameEndUs;
-        perfOver25ms=perfOver100ms=0;
-        perfWorstUs=0;
-    }
     return !state_.requestExit;
 }
 

@@ -15,6 +15,11 @@ public:
 
     void touch() { visible = false; catalog(); }
     void controller() { visible = true; }
+    // Touch returns to the content zone but hides controller chrome. Keep
+    // the logical app index separate from whether its card is highlighted.
+    bool catalogCardFocused(bool catalogPanelActive) const {
+        return zone == FocusZone::Catalog && catalogPanelActive;
+    }
     void catalog() { zone = FocusZone::Catalog; index = 0; }
 
     // Header indices are stable: search, clear search (conditional), filters.
