@@ -230,6 +230,11 @@ private:
     bool queueProtected_=false,queueReport_=false,queueVisible_=false,queueDetail_=false;
     bool queueWaitingSpace_=false,queueInvariantBlocked_=false,queueConfirmCancel_=false;
     bool queueAwaitRelease_=false,queueTouchDown_=false;
+    QueueAction queueConfirmAction_=QueueAction::Cancel;
+    uint64_t queueConfirmId_=0;
+    int queueTouchLastY_=0;
+    bool queueTouchMoved_=false;
+    uint64_t queueExitFadeUs_=0;
     uint32_t queuePreviousButtons_=0;
     uint64_t queueSelectedId_=0,queueTransitionUs_=0;
     int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;
