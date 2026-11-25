@@ -3,6 +3,8 @@
 // The integration must supply measured, generation-matched storage snapshots,
 // immutable requests, and terminal results only after the worker is settled.
 #include "installer/install_space_policy.hpp"
+#include "installer/app_settings.hpp"
+#include <cstddef>
 #include <array>
 #include <cstdint>
 #include <string>
@@ -55,23 +57,42 @@ inline Space sequenceSpace(const std::vector<Space>& steps) {
     }
     return validSpace(total) ? total : Space{};
 }
-enum class State { Waiting, Running, Completed, Partial, Failed, Cancelled, Skipped };
-enum class Outcome { Completed, Failed, Cancelled };
+enum class State { Waiting, Running, Completed, HandedOff, Partial, Failed, Cancelled, Skipped };
+enum class Outcome { Completed, HandedOff, Failed, Cancelled };
 enum class Admission { Accepted, Duplicate, Invalid, Limit, Stale, UnknownSpace, NoSpace };
 enum class Dispatch { Started, Nothing, Busy, Barrier, Stale, UnknownSpace, NoSpace };
 
+struct Routing {
+    InstallMethod method=InstallMethod::Auto;
+    PspTarget target=PspTarget::Adrenaline;
+    PspMediaFormat format=PspMediaFormat::Folder;
+    PspStorage storage=PspStorage::Ux0;
+    static Routing capture(const AppSettingsData& s) {
+        return {s.installMethod,s.pspTarget,s.pspMediaFormat,s.pspStorage};
+    }
+    bool matches(const AppSettingsData& s) const {
+        return method==s.installMethod && target==s.pspTarget &&
+               format==s.pspMediaFormat && storage==s.pspStorage;
+    }
+};
+struct ResultDetails {
+    std::string stage, fileName, installPath, titleId, savedZipPath;
+    bool liveAreaOk=false, needsReboot=false, archiveSourceUnavailable=false;
+};
 struct Step {
-    std::string url, fileName, linkType, destination, contentId;
+    std::string url, fileName, linkType, destination, contentId, zrif;
     std::string pluginSection, pluginLine;
     uint64_t expectedBytes=0;
     Space space;
     State state=State::Waiting;
     std::string result;
+    ResultDetails details;
 };
 struct Job {
     std::string appKey; // canonical catalog identity, not a visible row index
     std::string appId, titleId, name, version, versionDate;
-    int dataRevision=0;
+    int dataRevision=0, releaseRevision=0;
+    Routing routing;
     bool installAll=false;
     std::vector<Step> steps;
     Space admissionSpace; // may be more conservative than sequential estimate
@@ -185,17 +206,19 @@ public:
     // Policy for this first core: stop the group on failure/cancellation,
     // continue unrelated jobs. Adapter must resolve recoverable ZIP ownership
     // before setting settled=true. Reboot is latched even on partial results.
-    bool settle(Token token,Outcome outcome,bool settled,bool needsReboot,std::string result) {
+    bool settle(Token token,Outcome outcome,bool settled,bool needsReboot,std::string result, ResultDetails details={}) {
         if(!settled || !active_.job || !(token==active_)) return false;
         Job* j=mutableJob(token.job);
         if(!j || j->nextStep!=token.step) return false;
         Step& s=j->steps[token.step]; s.result=std::move(result);
+        s.details=std::move(details);
         s.state=outcome==Outcome::Completed?State::Completed:
+                outcome==Outcome::HandedOff?State::HandedOff:
                 outcome==Outcome::Failed?State::Failed:State::Cancelled;
         reboot_=reboot_||needsReboot;
         ++j->nextStep; active_={};
         const bool cancelled=cancel_; cancel_=false;
-        if(outcome!=Outcome::Completed || cancelled) {
+        if((outcome!=Outcome::Completed && outcome!=Outcome::HandedOff) || cancelled) {
             skipRemaining(*j);
             finish(*j,outcome==Outcome::Failed?State::Failed:State::Cancelled);
         } else if(j->nextStep==j->steps.size()) {
@@ -218,12 +241,14 @@ private:
         for(auto& s:j.steps) if(s.state==State::Waiting) s.state=State::Skipped;
     }
     void finish(Job& j,State terminal) {
-        bool some=false,all=true;
+        bool some=false,all=true,handoff=false;
         for(const auto& s:j.steps) {
-            some=some||s.state==State::Completed;
-            all=all&&s.state==State::Completed;
+            const bool success=s.state==State::Completed || s.state==State::HandedOff;
+            some=some||success;
+            all=all&&success;
+            handoff=handoff||s.state==State::HandedOff;
         }
-        j.state=all?State::Completed:some?State::Partial:terminal;
+        j.state=all?(handoff?State::HandedOff:State::Completed):some?State::Partial:terminal;
         if(owner_==j.id) owner_=0;
     }
     std::vector<Job> jobs_;
