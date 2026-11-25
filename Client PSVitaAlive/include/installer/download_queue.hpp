@@ -14,6 +14,7 @@
 namespace psvitaalive { namespace queue {
 enum class Mount : size_t { Ux0, Uma0, Ur0, Count };
 using Bytes = std::array<uint64_t, static_cast<size_t>(Mount::Count)>;
+using MeasuredMounts = std::array<bool, static_cast<size_t>(Mount::Count)>;
 struct Space {
     Bytes peak{};      // additional bytes needed at maximum occupancy
     Bytes retained{};  // conservative additional bytes remaining after cleanup
@@ -56,6 +57,40 @@ inline Space sequenceSpace(const std::vector<Space>& steps) {
         }
     }
     return validSpace(total) ? total : Space{};
+}
+// Credit only already allocated, owned and stable staging bytes, never UI
+// progress. Net retained growth cannot go negative: do not promise cleanup
+// space before the next physical probe.
+inline Space creditStaging(Space space, const Bytes& allocated) {
+    if (!validSpace(space)) return {};
+    for (size_t i=0;i<allocated.size();++i) {
+        if (allocated[i]>space.peak[i]) return {};
+        space.peak[i]-=allocated[i];
+        space.retained[i]=allocated[i]>=space.retained[i]?0:space.retained[i]-allocated[i];
+    }
+    return space;
+}
+inline bool mountsMeasured(const Space& s, const MeasuredMounts& measured) {
+    for (size_t i=0;i<s.peak.size();++i)
+        if ((s.peak[i] || s.retained[i]) && !measured[i]) return false;
+    return true;
+}
+// For non-BGDL known-size requests. Caller supplies explicit destination
+// peak and retained estimate, including staging/conversion there. Preserve
+// existing ux0 preflight even for cross-mount paths until Vita-tested.
+inline Space mountedSpace(uint64_t payload, InstallSpaceMode mode, Mount target,
+                          uint64_t targetPeak, uint64_t retained) {
+    if (!payload || mode==InstallSpaceMode::SystemBgdl || !targetPeak ||
+        retained>targetPeak || target>=Mount::Count) return {};
+    Space s; s.known=true;
+    s.peak[0]=initialInstallSpaceBytes(payload,mode);
+    const size_t i=static_cast<size_t>(target);
+    if(i==0) {
+        const uint64_t coexist=saturatingSpaceAdd(payload,targetPeak);
+        if(coexist>s.peak[0]) s.peak[0]=coexist;
+    } else s.peak[i]=targetPeak;
+    s.retained[i]=retained;
+    return validSpace(s)?s:Space{};
 }
 enum class State { Waiting, Running, Completed, HandedOff, Partial, Failed, Cancelled, Skipped };
 enum class Outcome { Completed, HandedOff, Failed, Cancelled };
@@ -100,6 +135,15 @@ struct Job {
     State state=State::Waiting;
     size_t nextStep=0;
 };
+// Compute the entire remaining group, not merely the current transfer.
+inline Space remainingGroupSpace(const Job& j, const Bytes& stableStaging={}) {
+    if(j.nextStep>=j.steps.size()) return {};
+    std::vector<Space> rest;
+    rest.reserve(j.steps.size()-j.nextStep);
+    for(size_t i=j.nextStep;i<j.steps.size();++i)
+        rest.push_back(i==j.nextStep?creditStaging(j.steps[i].space,stableStaging):j.steps[i].space);
+    return sequenceSpace(rest);
+}
 struct Token {
     uint64_t job=0, serial=0;
     size_t step=0;
@@ -110,6 +154,7 @@ struct Token {
 struct Snapshot {
     uint64_t generation=0;
     Bytes free{};
+    MeasuredMounts measured{};
     bool valid=false;
     // While a group is active (including between steps), the adapter must
     // account for its entire remaining peak/growth relative to current free.
@@ -137,6 +182,7 @@ public:
     bool restartRequired() const { return reboot_; }
     bool cancelRequested() const { return cancel_; }
     Token activeToken() const { return active_; }
+    uint64_t ownerId() const { return owner_; }
     Admission admit(Job job,const Snapshot& snapshot) {
         if (snapshot.generation!=generation_) return Admission::Stale;
         if (job.appKey.empty() || job.steps.empty() || job.steps.size()>maxSteps)
@@ -148,7 +194,8 @@ public:
             if(j.appKey==job.appKey && (j.state==State::Waiting || j.state==State::Running))
                 return Admission::Duplicate;
         if(jobs_.size()>=maxJobs) return Admission::Limit;
-        if(!snapshot.valid || !validSpace(job.admissionSpace)) return Admission::UnknownSpace;
+        if(!snapshot.valid || !validSpace(job.admissionSpace) ||
+           !mountsMeasured(job.admissionSpace,snapshot.measured)) return Admission::UnknownSpace;
         std::vector<Space> steps;
         for(const auto& s:job.steps) steps.push_back(s.space);
         const Space required=sequenceSpace(steps);
@@ -158,11 +205,14 @@ public:
                job.admissionSpace.retained[i]<required.retained[i]) return Admission::Invalid;
         Bytes free=snapshot.free;
         if(owner_!=0) {
-            if(!validSpace(snapshot.activeRemaining)) return Admission::UnknownSpace;
+            if(!validSpace(snapshot.activeRemaining) ||
+               !mountsMeasured(snapshot.activeRemaining,snapshot.measured)) return Admission::UnknownSpace;
             if(!consume(free,snapshot.activeRemaining)) return Admission::NoSpace;
         }
-        for(const auto& j:jobs_) if(j.state==State::Waiting)
+        for(const auto& j:jobs_) if(j.state==State::Waiting) {
+            if(!mountsMeasured(j.admissionSpace,snapshot.measured)) return Admission::UnknownSpace;
             if(!consume(free,j.admissionSpace)) return Admission::NoSpace;
+        }
         if(!consume(free,job.admissionSpace)) return Admission::NoSpace;
         job.id=nextId_++; job.state=State::Waiting; job.nextStep=0;
         jobs_.push_back(std::move(job)); ++generation_;
@@ -182,9 +232,9 @@ public:
             j=&candidate; break;
         }
         if(!j || j->nextStep>=j->steps.size()) return {Dispatch::Nothing,{}};
-        const Space& space=owner_?j->steps[j->nextStep].space:j->admissionSpace;
+        const Space space=owner_?remainingGroupSpace(*j):j->admissionSpace;
         Bytes free=snapshot.free;
-        if(!validSpace(space)) return {Dispatch::UnknownSpace,{}};
+        if(!validSpace(space) || !mountsMeasured(space,snapshot.measured)) return {Dispatch::UnknownSpace,{}};
         if(!consume(free,space)) return {Dispatch::NoSpace,{}};
         owner_=j->id; j->state=State::Running;
         j->steps[j->nextStep].state=State::Running;
