@@ -1,4 +1,5 @@
 #include "installer/download_queue.hpp"
+#include "ui/queue_progress_policy.hpp"
 #include <cassert>
 #include <iostream>
 
@@ -234,6 +235,21 @@ int main() {
         const auto a=s.claim(snap(s,20*GiB),true);
         assert(s.settle(a.token,Outcome::Failed,true,false,"handoff failed"));
         assert(s.jobs()[0].steps[1].state==State::Skipped && !s.jobs()[0].handoffDeferred);
+    }
+    {
+        using psvitaalive::ui::makeQueueProgress;
+        auto p=makeQueueProgress(20,100,5,true,false,false);
+        assert(p.known && !p.indeterminate && p.percent==20 && p.etaSeconds==16);
+        p=makeQueueProgress(20,0,5,true,false,false);
+        assert(!p.known && p.indeterminate && !p.etaSeconds);
+        p=makeQueueProgress(20,100,5,true,true,false);
+        assert(p.known && !p.indeterminate && !p.etaSeconds);
+        p=makeQueueProgress(100,100,0,true,false,true);
+        assert(!p.known && p.indeterminate);
+        p=makeQueueProgress(UINT64_MAX,UINT64_MAX,1,false,false,false);
+        assert(p.known && p.percent==100 && !p.etaSeconds);
+        p=makeQueueProgress(101,100,1,true,false,false);
+        assert(p.percent==100 && !p.etaSeconds);
     }
     std::cout<<"Queue core tests passed\n";
 }

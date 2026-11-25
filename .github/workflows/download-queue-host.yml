@@ -4,6 +4,7 @@ on:
     branches: [feature/download-queue-manager]
     paths:
       - 'Client PSVitaAlive/include/installer/download_queue.hpp'
+      - 'Client PSVitaAlive/include/ui/queue_progress_policy.hpp'
       - 'Client PSVitaAlive/include/installer/install_space_policy.hpp'
       - 'Client PSVitaAlive/include/installer/queue_coordinator.hpp'
       - 'tests/test_queue_coordinator.cpp'

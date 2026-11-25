@@ -240,7 +240,8 @@ private:
     ::psvitaalive::InstallStatus queueStatus_;
     bool queueProtected_=false,queueReport_=false,queueVisible_=false,queueDetail_=false;
     bool queueWaitingSpace_=false,queueInvariantBlocked_=false,queueConfirmCancel_=false;
-    bool queueAwaitRelease_=false,queueTouchDown_=false;
+    bool queueAwaitRelease_=false,queueTouchDown_=false,queueTouchAwaitRelease_=false;
+    bool queueStorageReturn_=false;
     QueueAction queueConfirmAction_=QueueAction::Cancel;
     uint64_t queueConfirmId_=0;
     int queueTouchLastY_=0;
@@ -259,6 +260,9 @@ private:
     void handleQueueTouch(const SceTouchData& touch);
     void queueCommand(QueueAction action);
     void queueMove(int delta);
+    bool queuePauseAvailable() const;
+    bool queueCancelAvailable() const;
+    void openQueueStorage();
     SavedZipListFn savedZipList_;
     SavedZipRetryFn savedZipRetry_;
     std::string savedZipProbeKey_;
