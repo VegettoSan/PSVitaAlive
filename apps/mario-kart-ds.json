@@ -13,17 +13,17 @@
     "simulation",
     "source-port"
   ],
-  "v": "1.2",
-  "vd": "2026-11-23",
+  "v": "1.3",
+  "vd": "2026-11-25",
   "req": "- ur0:tai/CapUnlocker.skprx\n- libshacccg.suprx in ur0:data/.\n- Your own dump of Mario Kart DS (Europe, AMCP).\nInstalling",
-  "sz": 2288161,
+  "sz": 2290308,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/mario-kart-ds-vita/mario-kart-ds%20v1.2.vpk",
-      "sz": 2288161,
+      "u": "https://github.com/PupueStudios/mkds-vita/releases/download/v1.3/mkds.vpk",
+      "sz": 2290308,
       "rec": true
     },
     {
