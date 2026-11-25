@@ -10,6 +10,16 @@
       "created_at": "2026-11-25T15:02:58+00:00",
       "size_bytes": 1333450,
       "title_id": "SHIL00002"
+    },
+    "manhunt": {
+      "version": "0.10.3",
+      "source_url": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.3/manhunt-v0.10.3-vita.vpk",
+      "archive_identifier": "manhunt-1-2-ps-vita-port",
+      "filename": "manhunt v0.10.3.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-25T15:04:17+00:00",
+      "size_bytes": 1850755,
+      "title_id": "MHRE00001"
     }
   },
   "superseded": {
