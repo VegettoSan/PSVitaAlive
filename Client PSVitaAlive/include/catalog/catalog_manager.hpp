@@ -41,6 +41,10 @@ public:
     bool request(ui::CatalogType catalog, bool forceNetwork = false);
     /** True while a load is in flight (UI must ignore further tab switches). */
     bool isBusy() const;
+    // Queue gate: reject new catalog requests while allowing an already
+    // accepted request to drain, including cache-first/soft-refresh tails.
+    bool setInstallSessionGate(bool blocked);
+    bool installSessionQuiescent() const;
     Status status() const;
     bool takeReady(std::vector<ui::CatalogItem>& outItems, ui::CatalogType& catalog);
     // Read only display fields from already-loaded catalogs. No new parsing/downloads.
@@ -54,6 +58,8 @@ private:
 
     ui::CatalogType requestedCatalog_ = ui::CatalogType::Homebrew;
     bool requestPending_ = false;
+    bool installSessionGate_ = false; // mutex-owned
+    bool workerOperationActive_ = false; // includes local vector destruction
     bool forceNetworkPending_ = false;
     /** Bumped on every request; worker only publishes matching generation. */
     unsigned requestGeneration_ = 0;
