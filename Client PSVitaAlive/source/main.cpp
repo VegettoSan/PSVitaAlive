@@ -719,7 +719,8 @@ while(true){
         const int recoveryIndex = static_cast<int>(recoveryCatalog);
         if (recoveryStatus.state == psvitaalive::CatalogManager::State::Ready &&
             recoveryStatus.catalog == recoveryCatalog &&
-            !screen.hasUnfilteredCatalogItems() && !catalogs.actionBlockedByCatalog() &&
+            !screen.hasUnfilteredCatalogItems() && !catalogs.isBusy() &&
+            !catalogs.actionBlockedByCatalog() &&
             !installer.busy() && !installer.queueProtectionActive() && !screen.catalogWorkExcluded() &&
             recoveryIndex >= 0 && recoveryIndex < catalogCount &&
             !emptyCatalogRecoveryRequested[recoveryIndex]) {

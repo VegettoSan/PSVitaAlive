@@ -4885,6 +4885,8 @@ void FullCatalogScreen::closePspSetupWizard(bool confirm) {
 }
 
 void FullCatalogScreen::changeCatalog(int d){
+    // Reject before releasing textures or discarding the current catalog.
+    if(catalogWorkExcluded()) return;
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
 
