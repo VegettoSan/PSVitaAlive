@@ -114,7 +114,9 @@ struct ResultDetails {
     std::string stage, fileName, installPath, titleId, savedZipPath;
     bool liveAreaOk=false, needsReboot=false, archiveSourceUnavailable=false;
 };
+enum class Component { App, GameFiles, DataFiles, Plugin, Other };
 struct Step {
+    Component component=Component::Other;
     std::string url, fileName, linkType, destination, contentId, zrif;
     std::string pluginSection, pluginLine;
     uint64_t expectedBytes=0;
@@ -129,12 +131,29 @@ struct Job {
     int dataRevision=0, releaseRevision=0;
     Routing routing;
     bool installAll=false;
+    // Explicit opt-in only for groups whose selected steps are independent.
+    bool continueIndependentOnFailure=false;
+    bool aborted=false;
     std::vector<Step> steps;
     Space admissionSpace; // may be more conservative than sequential estimate
     uint64_t id=0;
     State state=State::Waiting;
     size_t nextStep=0;
 };
+// Preserve the old Install All receipt rule: only all selected Game/Data
+// components successful, and no deliberate abort. App receipt is independent.
+inline bool shouldWriteDataRevision(const Job& j) {
+    if (!j.installAll || j.aborted || j.dataRevision<=0 ||
+        j.titleId.empty() || j.appId.empty() ||
+        j.state==State::Waiting || j.state==State::Running) return false;
+    bool hasFiles=false;
+    for(const auto& s:j.steps) {
+        if(s.component!=Component::GameFiles && s.component!=Component::DataFiles) continue;
+        hasFiles=true;
+        if(s.state!=State::Completed) return false;
+    }
+    return hasFiles;
+}
 // Compute the entire remaining group, not merely the current transfer.
 inline Space remainingGroupSpace(const Job& j, const Bytes& stableStaging={}) {
     if(j.nextStep>=j.steps.size()) return {};
@@ -214,7 +233,7 @@ public:
             if(!consume(free,j.admissionSpace)) return Admission::NoSpace;
         }
         if(!consume(free,job.admissionSpace)) return Admission::NoSpace;
-        job.id=nextId_++; job.state=State::Waiting; job.nextStep=0;
+        job.id=nextId_++; job.state=State::Waiting; job.nextStep=0; job.aborted=false;
         jobs_.push_back(std::move(job)); ++generation_;
         return Admission::Accepted;
     }
@@ -246,15 +265,16 @@ public:
     bool cancel(uint64_t id) {
         Job* j=mutableJob(id); if(!j) return false;
         if(j->state==State::Waiting || (owner_==id && !active_.job)) {
-            skipRemaining(*j); finish(*j,State::Cancelled); ++generation_; return true;
+            j->aborted=true; skipRemaining(*j); finish(*j,State::Cancelled); ++generation_; return true;
         }
         if(j->state==State::Running && active_.job==id && !cancel_) {
             cancel_=true; ++generation_; return true;
         }
         return false;
     }
-    // Policy for this first core: stop the group on failure/cancellation,
-    // continue unrelated jobs. Adapter must resolve recoverable ZIP ownership
+    // Independent grouped failures may continue if explicitly opted in.
+    // Cancellation and unresolved system handoff abort the remainder.
+    // Adapter must resolve recoverable ZIP ownership
     // before setting settled=true. Reboot is latched even on partial results.
     bool settle(Token token,Outcome outcome,bool settled,bool needsReboot,std::string result, ResultDetails details={}) {
         if(!settled || !active_.job || !(token==active_)) return false;
@@ -270,8 +290,11 @@ public:
         const bool cancelled=cancel_; cancel_=false;
         // A system handoff cannot satisfy an internal dependency. Do not start
         // remaining components until a future reconciliation confirms it.
-        if((outcome!=Outcome::Completed && outcome!=Outcome::HandedOff) || cancelled ||
-           (outcome==Outcome::HandedOff && j->nextStep<j->steps.size())) {
+        const bool stop=cancelled || outcome==Outcome::Cancelled ||
+            (outcome==Outcome::Failed && !j->continueIndependentOnFailure) ||
+            (outcome==Outcome::HandedOff && j->nextStep<j->steps.size());
+        if(stop) {
+            j->aborted=true;
             skipRemaining(*j);
             finish(*j,outcome==Outcome::Failed?State::Failed:State::Cancelled);
         } else if(j->nextStep==j->steps.size()) {
@@ -294,14 +317,16 @@ private:
         for(auto& s:j.steps) if(s.state==State::Waiting) s.state=State::Skipped;
     }
     void finish(Job& j,State terminal) {
-        bool some=false,all=true,handoff=false;
+        bool some=false,all=true,handoff=false,failed=false;
         for(const auto& s:j.steps) {
             const bool success=s.state==State::Completed || s.state==State::HandedOff;
             some=some||success;
             all=all&&success;
             handoff=handoff||s.state==State::HandedOff;
+            failed=failed||s.state==State::Failed;
         }
-        j.state=all?(handoff?State::HandedOff:State::Completed):some?State::Partial:terminal;
+        j.state=all?(handoff?State::HandedOff:State::Completed):some?State::Partial:
+            (terminal==State::Cancelled?terminal:failed?State::Failed:terminal);
         if(owner_==j.id) owner_=0;
     }
     std::vector<Job> jobs_;
