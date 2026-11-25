@@ -161,8 +161,8 @@ assert "phase>=2 && total>0" in scan_loading
 print("Split panel focus and installed-data loading style checks OK")
 
 # Theme picker uses shared touch/render geometry; each tile exposes its accent.
-# Focus is high contrast and independent of the applied theme; closing persists
-# the last explicitly applied theme, never the merely highlighted card.
+# Focus uses the active theme accent with a thick frame and dark interior.
+# Closing persists the last explicitly applied theme, never the highlighted card.
 picker = body("void FullCatalogScreen::drawThemeSetupOverlay()", "void FullCatalogScreen::runNewsCheck(")
 assert "ThemePickerLayout" in picker and "skin::ui_atlas::ui_badge,bx+10" in picker
 assert "colorThemeAccentRgb(th" in picker and "ctrl_cross_classic" in picker
@@ -182,9 +182,15 @@ assert "if(themeSetupFocus_==themeCount||themeSetupAppliedFocus_==themeSetupFocu
 assert "else{applyThemeSetupFocus();}" in source
 assert re.search(r"if \(themeSetupAppliedFocus_ == themeSetupFocus_\) \{\s*closeThemeSetup\(true\);\s*\} else \{\s*applyThemeSetupFocus\(\);", source)
 assert "if (hit(px, py, saveX, saveY, saveW, saveH)) {\n                    closeThemeSetup(true);" in source
-assert "focused?focusFill:tile" in picker
-assert "focused?focusInk:RGBA8(248,248,248,255)" in picker
-assert "saveFocus?focusFill:SURFACE2" in picker
+assert "constexpr int focusBorder = 4;" in picker
+assert "const unsigned focusAccent = ACCENT;" in picker
+assert "ui_button_primary,bx,by,bw,bh,focusAccent" in picker
+assert "bx+focusBorder,by+focusBorder,bw-2*focusBorder,bh-2*focusBorder" in picker
+assert "lerpColorU(tile,focusAccent,.10f)" in picker
+assert "drawPickerButton(bx,by,btnW,btnH,tile,withAlpha(accent,100),focused)" in picker
+assert "drawPickerButton(saveX,saveY,saveW,saveH,SURFACE2,BORDER,saveFocus)" in picker
+assert "drawMarqueeText(&font_,bx+55,by+34,btnW-69,RGBA8(248,248,248,255)" in picker
+assert "focusFill" not in picker and "focusInk" not in picker
 assert "const bool selected = (settingsEdit_.colorTheme == th);" in picker
 settings = body("void FullCatalogScreen::drawSettings()", "bool FullCatalogScreen::chromeNavigationAvailable()")
 assert "icon_settings" in settings and "ui_toggle_on" in settings
