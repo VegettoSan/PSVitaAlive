@@ -105,10 +105,31 @@ bool CatalogManager::isBusy() const {
     return busy;
 }
 
+bool CatalogManager::setInstallSessionGate(bool blocked) {
+    if (mutex_ < 0 || sceKernelLockMutex(mutex_, 1, nullptr) < 0) return false;
+    installSessionGate_ = blocked;
+    sceKernelUnlockMutex(mutex_, 1);
+    return true;
+}
+
+bool CatalogManager::installSessionQuiescent() const {
+    if (mutex_ < 0 || sceKernelLockMutex(mutex_, 1, nullptr) < 0) return false;
+    // Ready can be published before the worker finishes its soft refresh or
+    // frees its parse vectors. A pending publication must be consumed too.
+    const bool ready = installSessionGate_ && !requestPending_ &&
+        !workerOperationActive_ && !readyPending_;
+    sceKernelUnlockMutex(mutex_, 1);
+    return ready;
+}
+
 bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
     if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);
 
+    if (installSessionGate_) {
+        sceKernelUnlockMutex(mutex_, 1);
+        return false;
+    }
     if (forceNetwork && readyPending_ && readyCatalog_ == catalog && !readyItems_.empty()) {
         // A valid publication is waiting for the main thread.
         sceKernelUnlockMutex(mutex_, 1);
@@ -603,6 +624,7 @@ int CatalogManager::workerMain() {
             forceNetwork = forceNetworkPending_;
             forceNetworkPending_ = false;
             haveRequest = true;
+            workerOperationActive_ = true;
             status_.state = State::Loading;
             status_.catalog = catalog;
             status_.label = label(catalog);
@@ -619,6 +641,18 @@ int CatalogManager::workerMain() {
             sceKernelDelayThread(50 * 1000);
             continue;
         }
+
+        // Every exit path (including stale/soft-refresh continue) releases the
+        // gate only after local parse vectors and HTTP objects are destroyed.
+        struct OperationScope {
+            SceUID mutex;
+            bool& active;
+            ~OperationScope() {
+                sceKernelLockMutex(mutex, 1, nullptr);
+                active = false;
+                sceKernelUnlockMutex(mutex, 1);
+            }
+        } operation{mutex_, workerOperationActive_};
 
         PSVA_TRACE_EVENT("worker_request",std::string("catalog=")+label(catalog)+
             " gen="+std::to_string(gen));
