@@ -5,6 +5,7 @@
 #include "installer/install_dispatcher.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "installer/download_queue.hpp"
 
 #include <psp2/types.h>
 
@@ -107,6 +108,15 @@ public:
                                    const std::string& archivePath);
     InstallStatus status() const;
 
+    // Experimental queue adapter. Main-thread only. status() is polled once
+    // per rendered frame by the caller (BGDL relies on its one-poll deferral).
+    bool canStartQueuedStep() const;
+    bool startQueuedStep(const queue::Job& job, queue::Token token);
+    bool settleQueuedStep(queue::Session& session, queue::Token token,
+                          const InstallStatus& observed);
+    bool resolveQueuedZip(queue::Token token, bool keep, std::string* savedPath=nullptr);
+    bool ownsQueuedStep() const { return queuedToken_.job != 0; }
+
     bool busy() const;
 
     /** Loaded from config.json (install_method, psp_target, plugin warnings). */
@@ -122,6 +132,11 @@ public:
                                const std::string& titleId = std::string());
 
 private:
+    queue::Token queuedToken_{};
+    bool queuedDispatching_=false;
+    bool queuedAcknowledging_=false;
+    bool queuedResolving_=false;
+    std::string queuedSavedZipPath_;
     HttpClient http_;
     DownloadManager downloads_;
     InstallDispatcher dispatcher_;
