@@ -13,16 +13,16 @@
     "racing",
     "source-port"
   ],
-  "v": "1.01",
-  "vd": "2026-11-18",
+  "v": "1.02",
+  "vd": "2026-11-24",
   "req": "- libshacccg.suprx\n- Game Files (below)",
-  "sz": 12250864,
+  "sz": 12251364,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.01/supertuxkart.vpk",
+      "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.02/supertuxkart.vpk",
       "rec": true
     },
     {
@@ -52,5 +52,5 @@
   "sn": "GitHub",
   "su": "https://github.com/edgarlugo/stk-code",
   "rp": "https://github.com/edgarlugo/stk-code/releases",
-  "cl": "- Fixes a crash when going from the story mode overworld to a track with a model of the same name, or back (for example Mines)"
+  "cl": "- New default controls: cross accelerates and triangle looks back\n- The d-pad steers too, next to the left stick, and moves through the menus\n- Old default buttons are updated when the game starts; buttons changed in Options > Controls stay as they are"
 }
