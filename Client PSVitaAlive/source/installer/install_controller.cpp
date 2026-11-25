@@ -332,13 +332,16 @@ bool InstallController::init() {
     return true;
 }
 void InstallController::shutdown() {
-    unlockShellDuringJob();
-    stopKeepAwakeThread();
+    // A protected queue must not release the shell while its worker writes.
+    if (!queueProtectionActive()) unlockShellDuringJob();
     if (workerThread_ >= 0) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
+    queueProtection_.store(false);
+    unlockShellDuringJob();
+    stopKeepAwakeThread();
     http_.shutdown();
     activeJobId_.clear();
     activeZipDestination_.clear();
@@ -350,7 +353,7 @@ void InstallController::shutdown() {
 
 void InstallController::setSettings(const AppSettingsData& s) {
     // Queue routing and worker reads must remain immutable until settlement.
-    if (ownsQueuedStep()) return;
+    if (ownsQueuedStep() || queueProtectionActive()) return;
     settings_ = s;
     AppSettings::save(settings_);
     diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod) +
@@ -795,7 +798,7 @@ bool InstallController::deleteSavedZip(const std::string& appId,
                                        const std::string& titleId,
                                        const std::string& archivePath) {
     // Trust only archives returned by the existing app/title-bound metadata scan.
-    if (ownsQueuedStep() || archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
+    if (queueProtectionActive() || ownsQueuedStep() || archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
     const auto archives = savedZips(appId, titleId);
     const auto it = std::find_if(archives.begin(), archives.end(),
         [&](const SavedZipArchive& z) { return z.archivePath == archivePath; });
@@ -827,7 +830,7 @@ bool InstallController::hasSavedZip(const std::string& appId, const std::string&
 bool InstallController::requestSavedZipExtraction(
     const std::string& appId, const std::string& titleId,
     const std::string& archivePath) {
-    if (ownsQueuedStep() || busy() || zipRecoveryAvailable_.load()) return false;
+    if (queueProtectionActive() || ownsQueuedStep() || busy() || zipRecoveryAvailable_.load()) return false;
     // Never trust a UI-provided path: resolve the selected archive afresh from
     // its app-specific metadata. This also handles deletion between UI frames.
     const auto matches = savedZips(appId, titleId);
@@ -898,7 +901,7 @@ bool InstallController::busy() const {
 void InstallController::setPendingCatalogMeta(const std::string& appId, const std::string& version,
                                                    const std::string& versionDate, int revision,
                                                    const std::string& titleId) {
-    if (ownsQueuedStep() && !queuedDispatching_) return;
+    if ((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) return;
     // Metadata is also consumed by the worker when writing the install receipt.
     // Never replace it during an earlier installation's cleanup tail.
     if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
@@ -923,7 +926,7 @@ bool InstallController::requestInstall(
     const std::string& pluginLine,
     bool installAllSpaceApproved
 ) {
-    if ((ownsQueuedStep() && !queuedDispatching_) || url.empty() || fileName.empty() || busy()) return false;
+    if (((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || url.empty() || fileName.empty() || busy()) return false;
     // Game Files / Data Files are extraction-only. Do not enqueue a download
     // that could later be mistaken for an installable VPK.
     if (isDataOrGameFilesLinkType(linkType) && zipDestination.empty()) {
@@ -1189,6 +1192,34 @@ bool InstallController::requestInstall(
     return true;
 }
 
+bool InstallController::beginQueueProtection() {
+    if (queueProtectionActive()) return true;
+    if (!canStartQueuedStep() || !http_.isInitialized() || !shellUtilReady_ ||
+        keepAwakeThread_ < 0 || keepAwakeStop_.load()) return false;
+    // No worker is active, so the main thread exclusively owns shell changes.
+    // Roll back if either lock cannot be acquired.
+    if (shellLocked_) return false;
+    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN) < 0) return false;
+    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU) < 0) {
+        sceShellUtilUnlock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
+        return false;
+    }
+    shellLocked_ = true;
+    queueProtection_.store(true, std::memory_order_release);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);
+    diagnostics::log("[Installer] queue session shell protection acquired");
+    return true;
+}
+
+bool InstallController::endQueueProtection(const queue::Session& session) {
+    if (session.protectedSession() || ownsQueuedStep() || busy()) return false;
+    if (queueProtection_.exchange(false, std::memory_order_acq_rel))
+        unlockShellDuringJob();
+    return true;
+}
+
 bool InstallController::canStartQueuedStep() const {
     // Do not read activeBgdlJob_ through its conversion operator: it consumes
     // the preparation-frame deferral. An Idle controller cannot have BGDL armed.
@@ -1200,7 +1231,7 @@ bool InstallController::startQueuedStep(const queue::Session& session, queue::To
     const auto* claimed = session.find(token.job);
     if (!claimed || !(session.activeToken() == token)) return false;
     const auto& job = *claimed;
-    if (!canStartQueuedStep() || !token.job || !token.serial || token.job != job.id ||
+    if (!queueProtectionActive() || !canStartQueuedStep() || !token.job || !token.serial || token.job != job.id ||
         job.state != queue::State::Running || token.step != job.nextStep ||
         token.step >= job.steps.size() || job.steps[token.step].state != queue::State::Running ||
         !job.routing.matches(settings_)) return false;
@@ -1465,8 +1496,11 @@ void InstallController::setState(InstallStatus::State state, const char* message
     state_.store(static_cast<int>(state));
     const bool jobActive = (state == InstallStatus::State::Downloading ||
                             state == InstallStatus::State::Installing);
-    if (jobActive) lockShellDuringJob();
-    else unlockShellDuringJob();
+    // The session owns both locks across steps, pauses and cleanup tails.
+    if (!queueProtectionActive()) {
+        if (jobActive) lockShellDuringJob();
+        else unlockShellDuringJob();
+    }
 }
 
 void InstallController::startKeepAwakeThread() {
@@ -1533,7 +1567,7 @@ int InstallController::keepAwakeEntry(SceSize args, void* argp) {
     if (!self) return -1;
     // While a job runs: no auto-suspend AND keep the screen fully on (no dim / no OLED off).
     while (!self->keepAwakeStop_.load()) {
-        if (self->busy()) {
+        if (self->queueProtectionActive() || self->busy()) {
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);
