@@ -10,6 +10,16 @@
       "created_at": "2026-11-25T15:02:58+00:00",
       "size_bytes": 1333450,
       "title_id": "SHIL00002"
+    },
+    "kingdom-hearts-358-2-days": {
+      "version": "1.2.1",
+      "source_url": "https://github.com/ggdrn/KH-DAYS-VITA/releases/download/1.2.1/khdays-vita-1.2.1.vpk",
+      "archive_identifier": "kh-days-vita",
+      "filename": "kingdom-hearts-358-2-days v1.2.1.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-25T15:05:42+00:00",
+      "size_bytes": 3979385,
+      "title_id": "KHDD00358"
     }
   },
   "superseded": {
