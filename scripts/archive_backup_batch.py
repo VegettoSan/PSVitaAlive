@@ -32,7 +32,7 @@ from scripts.archive_owner_preflight import fetch_item_metadata
 from scripts.archive_upload_one_pilot import has_remote_name, safe_redirect
 from scripts.catalog_schema_v2 import to_v1, to_v2
 from scripts.sync_release_updates import (
-    app_repositories, normalized_repo, select_current_download,
+    app_repositories, newer_version, normalized_repo, select_current_download,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +42,8 @@ MIB = 1024 * 1024
 HARD_MAX_FILE = 200 * MIB
 HARD_MAX_BATCH = 800 * MIB
 HARD_MAX_FILES = 12
+HISTORICAL_RETRY_SECONDS = 6 * 3600
+HISTORICAL_MAX_CHECKS = 3
 VALID_ID = re.compile(r"^[a-z0-9][a-z0-9-]{0,90}$")
 VALID_VERSION = re.compile(r"^(?:v\.?)?[0-9]+(?:\.[0-9]+){0,3}(?:[-._]?(?:dev|test|alpha|beta|pre|preview|rc)[-._]?[0-9]*)?$", re.I)
 REPO_PATH = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
@@ -81,7 +83,11 @@ def load_state(root: Path) -> dict:
     if not path.exists():
         return {"schema_version": 1, "inflight": {}}
     obj = json.loads(path.read_text("utf-8"))
-    if obj.get("schema_version") != 1 or not isinstance(obj.get("inflight"), dict):
+    if (obj.get("schema_version") != 1 or not isinstance(obj.get("inflight"), dict)
+            or not isinstance(obj.get("superseded", {}), dict)
+            or any(not isinstance(entries, dict) or any(not isinstance(record, dict)
+                       for record in entries.values())
+                   for entries in obj.get("superseded", {}).values())):
         raise ValueError("Corrupt backup checkpoint. Stop without uploads.")
     return obj
 
@@ -367,6 +373,128 @@ def save_canonical(path: Path, app: dict, compact: bool) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, **formatting) + "\n", encoding="utf-8")
 
 
+def retire_older_checkpoint(root: Path, item: dict, state: dict, metadata: dict,
+                            *, publish=git_publish) -> None:
+    """Move only a strictly older, distinct filename out of the active slot.
+
+    Persist the uncertain transfer BEFORE the newer PUT. The old filename
+    remains protected forever; it is not deleted or uploaded a second time.
+    """
+    app_id = item["app_id"]
+    old = state["inflight"][app_id]
+    old_name = old.get("filename")
+    if (not newer_version(old.get("version"), item["version"])
+            or old.get("archive_identifier") != item["archive_identifier"]
+            or old_name != expected_filename({"app_id": app_id, "version": old.get("version")})
+            or old_name.casefold() == expected_filename(item).casefold()):
+        raise Deferred("PENDING_MANUAL", "Conflicting checkpoint identity; not safe to supersede")
+    history = state.setdefault("superseded", {}).setdefault(app_id, {})
+    if old_name in history:
+        raise Deferred("PENDING_MANUAL", "Historical checkpoint already exists")
+    try:
+        visible = existing_file(metadata, old_name) is not None
+        recovery_status = "VISIBLE" if visible else "NOT_VISIBLE"
+    except Deferred:
+        recovery_status = "PENDING_MANUAL"
+    history[old_name] = dict(old, recovery_status=recovery_status, checks=0,
+                             superseded_at=now_utc(), superseded_by=item["version"])
+    del state["inflight"][app_id]
+    write_state(root, state)
+    publish(root, [str(STATE)],
+            f"chore: preserve superseded Archive.org checkpoint for {app_id}",
+            validate=False)
+
+
+def reconcile_historical(root: Path, app_id: str, name: str, record: dict,
+                         owner: str, *, max_file: int) -> tuple[str, str]:
+    """Read-only verification of an old transfer, never change catalog or PUT."""
+    if not VALID_ID.fullmatch(app_id):
+        raise Deferred("PENDING_MANUAL", "Invalid historical application identity")
+    original = to_v1(json.loads((root / "apps" / (app_id + ".json")).read_text("utf-8")))
+    if (original.get("id") != app_id
+            or original.get("status") not in {"Verified", "Legacy", "Archive"}
+            or (record.get("title_id") is not None
+                and record["title_id"] != original.get("title_id"))):
+        raise Deferred("PENDING_MANUAL", "Historical application identity changed")
+    item = {"app_id": app_id, "version": record.get("version"),
+            "source_url": record.get("source_url"),
+            "archive_identifier": record.get("archive_identifier")}
+    archive = item["archive_identifier"]
+    if name != record.get("filename") or name != expected_filename(item):
+        raise Deferred("PENDING_MANUAL", "Historical filename mismatch")
+    target, evidence = resolve_item(original, upload_map(root / "scripts/archive_upload_log.csv"))
+    if (target != archive or evidence not in {"historical-upload-log", "catalog-media-candidate"}
+            or not source_matches_approved(item, load_policy(root), original)):
+        raise Deferred("PENDING_MANUAL", "Historical destination or source no longer approved")
+    remote = existing_file(owned_metadata(archive, owner), name)
+    if remote is None:
+        raise Deferred("VERIFYING", "Historical file not visible; no repeat PUT")
+    try:
+        size = int(remote.get("size"))
+    except (ValueError, TypeError):
+        raise Deferred("VERIFYING", "Historical file size not available") from None
+    if size <= 0 or size > HARD_MAX_FILE:
+        raise Deferred("PENDING_MANUAL", "Historical file outside safe size limits")
+    if size > max_file:
+        return "DEFERRED", "Historical verification exceeds remaining batch budget"
+    if record.get("size_bytes") is not None and record["size_bytes"] != size:
+        raise Deferred("PENDING_MANUAL", "Historical file size conflicts with checkpoint")
+    item["size_bytes"] = size
+    with tempfile.TemporaryDirectory(prefix="psva_historical_") as td:
+        md5, sha256 = download_source(item, Path(td) / "origin.vpk", max_file=max_file)
+        if str(remote.get("md5") or "").lower() != md5.lower():
+            raise Deferred("PENDING_MANUAL", "Historical Archive.org MD5 differs from source")
+        received, _md5, public_sha = stream_download(
+            public_url(archive, name), Path(td) / "public.vpk", size, archive=True)
+        if received != size or public_sha != sha256:
+            raise Deferred("PENDING_MANUAL", "Historical public VPK differs from source")
+    return "HISTORICAL_VERIFIED", "Historical VPK verified; current catalog unchanged"
+
+
+def recover_one_historical(root: Path, state: dict, owner: str, *, max_file: int,
+                           publish=git_publish) -> dict | None:
+    """At most one read-only historical check per batch, after newer versions."""
+    pending = []
+    now = datetime.now(timezone.utc)
+    for app_id, entries in state.get("superseded", {}).items():
+        for name, record in entries.items():
+            if record.get("recovery_status") in {"HISTORICAL_VERIFIED", "PENDING_MANUAL"}:
+                continue
+            try:
+                last = datetime.fromisoformat(record.get("last_checked_at", ""))
+                if (now - last).total_seconds() < HISTORICAL_RETRY_SECONDS:
+                    continue
+            except (ValueError, TypeError):
+                pass
+            pending.append((record.get("last_checked_at", ""), app_id, name, record))
+    if not pending:
+        return None
+    _, app_id, name, record = min(pending, key=lambda row: row[:3])
+    try:
+        status, detail = reconcile_historical(root, app_id, name, record, owner,
+                                              max_file=max_file)
+    except Deferred as err:
+        status, detail = err.status, err.reason
+    except Exception:
+        status, detail = "PENDING_MANUAL", "Unexpected historical verification error"
+    if status == "DEFERRED":
+        return {"app_id": app_id, "version": record.get("version"),
+                "status": status, "detail": detail}
+    record["checks"] = record.get("checks", 0) + 1
+    record["last_checked_at"] = now_utc()
+    if status != "HISTORICAL_VERIFIED" and record["checks"] >= HISTORICAL_MAX_CHECKS:
+        status = "PENDING_MANUAL"
+        detail = "Historical retry limit reached: " + detail
+    record["recovery_status"] = status
+    record["recovery_detail"] = detail
+    write_state(root, state)
+    publish(root, [str(STATE)],
+            f"chore: reconcile historical Archive.org checkpoint for {app_id}",
+            validate=False)
+    return {"app_id": app_id, "version": record.get("version"),
+            "status": status, "detail": detail}
+
+
 def run_one(root: Path, item: dict, proposals: dict, state: dict,
             credentials: tuple[str, str, str], *, max_file: int,
             publish=git_publish) -> tuple[str, str]:
@@ -388,12 +516,17 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
     md = owned_metadata(archive, owner)
     remote = existing_file(md, name)
     checkpoint = state["inflight"].get(item_id)
+    if checkpoint and (checkpoint.get("version") != item["version"]
+                       or checkpoint.get("filename") != name
+                       or checkpoint.get("source_url") != item["source_url"]
+                       or checkpoint.get("archive_identifier") != archive):
+        retire_older_checkpoint(root, item, state, md, publish=publish)
+        checkpoint = None
+    historical_names = state.get("superseded", {}).get(item_id, {})
+    if remote is None and any(old_name.casefold() == name.casefold()
+                              for old_name in historical_names):
+        raise Deferred("VERIFYING", "Historical filename is still protected; no repeat PUT")
     if checkpoint:
-        if (checkpoint.get("version") != item["version"]
-                or checkpoint.get("filename") != name
-                or checkpoint.get("source_url") != item["source_url"]
-                or checkpoint.get("archive_identifier") != archive):
-            raise Deferred("PENDING_MANUAL", "Older unresolved upload checkpoint needs review")
         if remote is None:
             # Previous IA-S3 PUT may have been accepted. The file has not
             # appeared in the owned item yet, so NEVER send another PUT.
@@ -415,6 +548,7 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
                 "version": item["version"], "source_url": item["source_url"],
                 "archive_identifier": archive, "filename": name,
                 "status": "TRANSFER_PREPARED", "created_at": now_utc(),
+                "size_bytes": item["size_bytes"], "title_id": item["title_id"],
             }
             write_state(root, state)
             publish(root, [str(STATE)], f"chore: checkpoint Archive.org transfer for {item_id}", validate=False)
@@ -465,6 +599,8 @@ def main() -> int:
     proposal_map = {}
     deadline = time.monotonic() + args.max_minutes * 60
     results = []
+    historical = None
+    stopped = False
     attempts, total = 0, 0
     uploads_ready = (os.environ.get("GITHUB_REPOSITORY") == "VegettoSan/PSVitaAlive"
                      and os.environ.get("GITHUB_REF") == "refs/heads/main")
@@ -508,14 +644,24 @@ def main() -> int:
             # Only systemic outages or uncertain PUTs stop the whole batch.
             # VERIFYING (public 404 during Archive.org processing) is per-file:
             # keep its checkpoint and continue to the next approved candidate.
+            stopped = True
             break
         time.sleep(8)
+    # Latest versions take priority. Historical reads never consume the budget
+    # reserved for current VPKs, and do not run after a systemic error.
+    if (args.execute and not stopped and attempts < args.max_files
+            and total < args.max_batch_mib * MIB and time.monotonic() + 180 < deadline):
+        historical = recover_one_historical(
+            root, state, creds[2], max_file=min(args.max_file_mib * MIB,
+                                               args.max_batch_mib * MIB - total))
     report = {
         "mode": "EXECUTE" if args.execute else "DRY_RUN",
         "limits": {"files": args.max_files, "file_mib": args.max_file_mib,
                    "batch_mib": args.max_batch_mib, "minutes": args.max_minutes},
         "results": results, "review_count": len(reviews),
         "reviews": reviews, "generated_at": now_utc(),
+        "historical_recovery": historical,
+        "historical_checkpoints": state.get("superseded", {}),
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", "utf-8")
@@ -526,7 +672,11 @@ def main() -> int:
                 for row in results]
     from collections import Counter
     tally = Counter(x["status"] for x in reviews)
-    summary += ["", f"Current-catalog backup review notices: **{len(reviews)}**",
+    if historical:
+        summary += ["", f"Historical check: **{historical['app_id']} "
+                    f"{historical['version']} — {historical['status']}**"]
+    summary += ["", f"Historical checkpoints retained: **{sum(len(entries) for entries in state.get('superseded', {}).values())}**",
+                f"Current-catalog backup review notices: **{len(reviews)}**",
                 f"By reason class: **{', '.join(f'{name}={amount}' for name, amount in sorted(tally.items())) or 'none'}**",
                 "These review notices are not uninstalled apps or missing upstream updates.",
                 "See run.json for each app_id and exact reason.",
