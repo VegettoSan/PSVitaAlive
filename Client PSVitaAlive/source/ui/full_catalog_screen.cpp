@@ -1893,9 +1893,25 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const float vs = visualThemeSetupScroll_;
     const int startRow = (int)std::floor(vs);
     const int gridX = x + (w - gridW) / 2;
-    // Fixed high contrast, independent of the current or candidate palette.
-    const unsigned focusFill = RGBA8(246,246,246,255);
-    const unsigned focusInk = RGBA8(16,16,16,255);
+    // Follow the active palette (including its existing cross-fade), never
+    // the candidate under the cursor. Keep the interior dark and use a
+    // four-pixel rounded frame from the existing filled button sprite.
+    constexpr int focusBorder = 4;
+    const unsigned focusAccent = ACCENT;
+    const unsigned focusEdge = lerpColorU(focusAccent, RGBA8(255,255,255,255), .22f);
+    const auto drawPickerButton = [&](int bx, int by, int bw, int bh,
+                                      unsigned tile, unsigned idleBorder, bool focused) {
+        if (focused) {
+            skin::surface(skin::ui_atlas::ui_button_primary,bx,by,bw,bh,focusAccent);
+            skin::surface(skin::ui_atlas::ui_button_primary,
+                bx+focusBorder,by+focusBorder,bw-2*focusBorder,bh-2*focusBorder,
+                lerpColorU(tile,focusAccent,.10f));
+            skin::focus(bx+focusBorder,by+focusBorder,bw-2*focusBorder,bh-2*focusBorder,focusEdge);
+        } else {
+            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,bw,bh,tile);
+            skin::focus(bx,by,bw,bh,idleBorder);
+        }
+    };
 
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 12, gridTop, x + w - 12, gridBottom);
@@ -1919,17 +1935,15 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
             const bool focused = (themeSetupFocus_ == idx);
             const bool selected = (settingsEdit_.colorTheme == th);
 
-            skin::surface(focused?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,
-                bx,by,btnW,btnH,focused?focusFill:tile);
+            drawPickerButton(bx,by,btnW,btnH,tile,withAlpha(accent,100),focused);
             skin::surface(skin::ui_atlas::ui_badge,bx+10,by+9,34,btnH-18,accent);
-            skin::focus(bx,by,btnW,btnH,focused?focusInk:accent);
             if(selected) {
                 const unsigned mark=(ar*299+ag*587+ab*114)>140000 ? RGBA8(12,12,12,255):RGBA8(255,255,255,255);
                 if(!skin::icon(skin::icons_atlas::icon_check,bx+15,by+14,24,mark))
                     ::psvitaalive::ui::uiDrawText(&font_,bx+18,by+34,mark,.9f,"X");
             }
             const char* name = colorThemeDisplayName(th);
-            drawMarqueeText(&font_,bx+55,by+34,btnW-69,focused?focusInk:RGBA8(248,248,248,255),
+            drawMarqueeText(&font_,bx+55,by+34,btnW-69,RGBA8(248,248,248,255),
                 .94f,name,focused,x+12,gridTop,x+w-12,gridBottom);
         }
     }
@@ -1948,9 +1962,8 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const int saveX = x + (w - saveW) / 2;
     const int saveY = y + P::saveY;
     const bool saveFocus = (themeSetupFocus_ == themeCount);
-    skin::surface(saveFocus?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,saveX,saveY,saveW,saveH,saveFocus?focusFill:SURFACE2);
-    if (saveFocus) skin::focus(saveX,saveY,saveW,saveH,focusInk);
-    skin::action(&font_,saveX,saveY,saveW,saveH,saveFocus?focusInk:WHITE,.96f,
+    drawPickerButton(saveX,saveY,saveW,saveH,SURFACE2,BORDER,saveFocus);
+    skin::action(&font_,saveX,saveY,saveW,saveH,WHITE,.96f,
         skin::controls_atlas::ctrl_cross_classic,::psvitaalive::L(TID::BtnSave),::psvitaalive::L(TID::BtnSave));
     skin::hint(&font_,x+24,y+h-17,w-48,TEXT,.82f,::psvitaalive::L(TID::ThemeSetupNavHint),true,22);
 }
