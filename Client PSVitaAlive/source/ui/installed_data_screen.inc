@@ -96,7 +96,7 @@ void FullCatalogScreen::rebuildInstalledDataVisibleRows() {
 }
 void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
                                                const std::string& titleId) {
-    if (installedDataVisible_ || installedDataWorker_ >= 0 ||
+    if (queueProtected_ || queueReport_ || installedDataVisible_ || installedDataWorker_ >= 0 ||
         storageWorker_ >= 0 || installProgressActive_ || catalogLoading_ ||
         (storageInstallerBusy_ && storageInstallerBusy_())) {
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2800);
@@ -238,7 +238,7 @@ void FullCatalogScreen::startInstalledDataOperation(int action) {
         sceKernelDeleteThread(installedDataWorker_);
         installedDataWorker_ = -1;
     }
-    if (storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_())) {
+    if (queueProtected_ || queueReport_ || storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_())) {
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2600);
         return;
     }

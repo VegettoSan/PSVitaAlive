@@ -382,7 +382,10 @@ int main(){
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallPauseCallbacks([&installer](){ return installer.pauseDownload(); },
                                     [&installer](){ return installer.resumeDownload(); });
-    screen.setStorageBusyCallback([&installer, &queue](){ return installer.busy() || queue.protectedSession() || queue.reportReady(); });
+    screen.setStorageBusyCallback([&installer, &queue](){
+        return installer.busy() || queue.reportReady() ||
+            (queue.protectedSession() && !queue.maintenanceAllowed());
+    });
     screen.setStorageAppDisplayCallback([&catalogs](const std::string& appId,
         const std::string& titleId, std::string& name, std::string& icon) {
         return catalogs.savedZipAppDisplay(appId, titleId, name, icon);

@@ -3650,7 +3650,9 @@ static void applyInstalledStorageSummary(
 }
 
 void FullCatalogScreen::openStorageMenu() {
-    if(queueProtected_ || queueReport_) { showToast(::psvitaalive::L("QUEUE_BUSY"),4500); return; }
+    if(queueReport_ || (queueProtected_ && (!storageInstallerBusy_ || storageInstallerBusy_()))) {
+        showToast(::psvitaalive::L("QUEUE_BUSY"),4500); return;
+    }
     if (installedDataVisible_ || storageVisible_ || installAllPhase_ != InstallAllPhase::Hidden ||
         (installProgressActive_ && installOutcome_ == 0) || catalogLoading_ ||
         newsVisible_ || reportConfirmVisible_ || dataRequestConfirmVisible_ ||
@@ -3673,6 +3675,16 @@ void FullCatalogScreen::startStorageOperation(int action) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
         storageWorker_ = -1;
+    }
+    // Queue maintenance is limited to abandoned temporary files. Never
+    // delete saved ZIP inputs, installed data, or run a combined cleanup.
+    if(queueProtected_) {
+        const bool temporary = action == -3 || (action >= 0 &&
+            static_cast<size_t>(action) < storageSnapshot_.items.size() &&
+            !storageSnapshot_.items[static_cast<size_t>(action)].savedZip);
+        if(!storageInstallerBusy_ || storageInstallerBusy_() || (action != -1 && !temporary)) {
+            showToast(::psvitaalive::L("STORAGE_PROTECTED"),2800); return;
+        }
     }
     if (action != -1 && storageInstallerBusy_ && storageInstallerBusy_()) {
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2300);
@@ -3803,6 +3815,10 @@ void FullCatalogScreen::executeStorageSelection() {
     if (storageFocus_ < 0 || storageFocus_ >= static_cast<int>(storageRows_.size()))
         return;
     const StorageDisplayRow row = storageRows_[storageFocus_];
+    if(queueProtected_ && (row.kind==5 || row.kind==1 || (row.kind==4 && row.savedZip))) {
+        storageConfirm_=false; storagePendingAction_=-1;
+        showToast(::psvitaalive::L("STORAGE_PROTECTED"),2800); return;
+    }
     if(row.kind==5){storageConfirm_=false;storagePendingAction_=-1;openInstalledDataMenu(true,"");return;}
     int action=-1;
     if (row.kind==0 && storageSnapshot_.temporaryBytes>0) action=-3;
@@ -3827,6 +3843,7 @@ void FullCatalogScreen::executeStorageSelection() {
     startStorageOperation(action);
 }
 void FullCatalogScreen::executeStorageAll() {
+    if(queueProtected_) { showToast(::psvitaalive::L("STORAGE_PROTECTED"),2800); return; }
     if (storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_()))
         return;
     if(storageSnapshot_.temporaryBytes+storageSnapshot_.savedZipBytes==0)
@@ -3983,12 +4000,13 @@ void FullCatalogScreen::drawStorageOverlay() {
                 std::string(::psvitaalive::L("ID_SIZE_PENDING")) :
                 formatBytesShort(bytes)+(row.kind==5&&estimated?"*":"");
             sizeLabel(rowSize,cy+29);
-            const char* action=row.kind==5?::psvitaalive::L("ID_SECTION_HINT"):
+            const char* action=queueProtected_&&(row.kind==5||row.kind==1)?::psvitaalive::L("STORAGE_PROTECTED"):
+                row.kind==5?::psvitaalive::L("ID_SECTION_HINT"):
                 row.kind>=2?::psvitaalive::L("STORAGE_PROTECTED"):
                 bytes==0?::psvitaalive::L("STORAGE_EMPTY"):
                 ::psvitaalive::L("STORAGE_CLEAR_SECTION");
             drawMarqueeText(&font_,bx+20+iconPad,cy+56,bw-42-iconPad,
-                (row.kind==5||(row.kind<2&&bytes>0))?ACCENT:DIM,.88f,action,false);
+                ((row.kind==5||(row.kind<2&&bytes>0)) && !(queueProtected_&&(row.kind==5||row.kind==1)))?ACCENT:DIM,.88f,action,false);
         }
         cy+=rh;
     }
@@ -4006,7 +4024,7 @@ void FullCatalogScreen::drawStorageOverlay() {
     // The footer is a dedicated region: instructions on their own lines,
     // buttons below. Confirmation stays prominent without overlapping rows.
     vita2d_draw_rectangle(x+21,listBottom+9,w-42,1,BORDER);
-    const bool hasCleanable=snap.temporaryBytes+snap.savedZipBytes>0;
+    const bool hasCleanable=!queueProtected_ && snap.temporaryBytes+snap.savedZipBytes>0;
     const char* help=storageConfirm_?
         ::psvitaalive::L(storagePendingAction_==-2 ?
             "STORAGE_CONFIRM_ALL" : "STORAGE_CONFIRM"):
@@ -5296,7 +5314,7 @@ void FullCatalogScreen::handleTouch() {
             const bool moved=touchMoved_;
             touchDown_=false;touchMoved_=false;
             if(moved || storageWorker_>=0) return;
-            if(storageSnapshot_.temporaryBytes+storageSnapshot_.savedZipBytes>0 &&
+            if(!queueProtected_ && storageSnapshot_.temporaryBytes+storageSnapshot_.savedZipBytes>0 &&
                hit(px,py,ox+w-21-Layout::cleanWidth,oy+Layout::buttonOffset,
                    Layout::cleanWidth,Layout::buttonHeight)) {
                 executeStorageAll();

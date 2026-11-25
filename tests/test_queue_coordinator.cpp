@@ -107,9 +107,16 @@ int main() {
         int stopped=b.probes;
         for(int i=0;i<20;++i) assert(q.tick(true,3+i).state==TickState::WaitingSpace);
         assert(b.probes==stopped && !b.owner.job);
+        // Maintenance can enter only at a latched capacity barrier, with
+        // no native owner. A visible storage screen keeps externalReady false.
+        assert(q.maintenanceAllowed());
+        assert(q.tick(false,24).state==TickState::WaitingBarrier);
+        assert(q.maintenanceAllowed() && b.probes==stopped && b.locked && c.gate);
         b.free=20*GiB; q.retryCapacity();
+        assert(!q.maintenanceAllowed());
         assert(q.tick(true,30).state==TickState::Running && b.polls==0);
         const auto token=b.owner;
+        assert(!q.maintenanceAllowed());
         assert(q.submit(makeJob("B"),true).code==SubmitCode::Accepted);
         assert(q.cancel(q.session().jobs()[1].id) && b.cancels==0);
         assert(!q.pause({token.job,token.serial+1,token.step}));
@@ -120,6 +127,7 @@ int main() {
         assert(q.tick(true,32).state==TickState::Settled && b.locked);
         assert(q.tick(true,33).state==TickState::Finished);
         assert(!b.locked && !c.gate && q.reportReady() && q.session().restartRequired());
+        assert(!q.maintenanceAllowed());
         assert(q.submit(makeJob("C"),true).code==SubmitCode::ReportPending);
         assert(q.acknowledgeReport() && !q.reportReady());
     }

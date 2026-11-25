@@ -31,6 +31,13 @@ public:
     const Session& session() const { return session_; }
     bool protectedSession() const { return engaged_ || gateHeld_; }
     bool reportReady() const { return reportReady_; }
+    // Only explicit capacity-blocked sessions without native ownership may
+    // enter restricted maintenance. Keep the catalog and shell gates held.
+    bool maintenanceAllowed() const {
+        return engaged_ && gateHeld_ && !reportReady_ && session_.protectedSession() &&
+            (blocked_==Dispatch::NoSpace || blocked_==Dispatch::UnknownSpace) &&
+            !session_.activeToken().job && !backend_.ownsQueuedStep() && backend_.canStartQueuedStep();
+    }
     const Observation& observation() const { return observed_; }
 
     // externalReady excludes storage mutations, self-update and startup
