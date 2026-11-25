@@ -1821,6 +1821,7 @@ void FullCatalogScreen::applyThemeSetupFocus() {
     if (themeSetupFocus_ < 0 || themeSetupFocus_ >= n) return;
     const auto t = static_cast<::psvitaalive::ColorTheme>(themeSetupFocus_);
     settingsEdit_.colorTheme = t;
+    themeSetupAppliedFocus_ = themeSetupFocus_;
     applyColorTheme(t);
     showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::ThemeAppliedPrefix)) + ": " +
               colorThemeDisplayName(t), 1400);
@@ -1829,10 +1830,8 @@ void FullCatalogScreen::applyThemeSetupFocus() {
 void FullCatalogScreen::closeThemeSetup(bool save) {
     if (!themeSetupVisible_) return;
     if (save) {
-        // Circle or Save commits the highlighted theme even if it has
-        // not yet been previewed. The Save row preserves the last preview.
-        if(themeSetupFocus_>=0 && themeSetupFocus_<static_cast<int>(::psvitaalive::ColorTheme::Count))
-            settingsEdit_.colorTheme=static_cast<::psvitaalive::ColorTheme>(themeSetupFocus_);
+        // Persist only the active palette (initial theme or explicitly applied
+        // preview). Moving the navigation focus must never change the theme.
         settingsEdit_.themeSetupDone = true;
         applyColorTheme(settingsEdit_.colorTheme, false);
         if (settingsSave_) settingsSave_(settingsEdit_);
@@ -1894,6 +1893,9 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const float vs = visualThemeSetupScroll_;
     const int startRow = (int)std::floor(vs);
     const int gridX = x + (w - gridW) / 2;
+    // Fixed high contrast, independent of the current or candidate palette.
+    const unsigned focusFill = RGBA8(246,246,246,255);
+    const unsigned focusInk = RGBA8(16,16,16,255);
 
     vita2d_enable_clipping();
     vita2d_set_clip_rectangle(x + 12, gridTop, x + w - 12, gridBottom);
@@ -1917,16 +1919,17 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
             const bool focused = (themeSetupFocus_ == idx);
             const bool selected = (settingsEdit_.colorTheme == th);
 
-            skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,btnW,btnH,tile);
+            skin::surface(focused?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,
+                bx,by,btnW,btnH,focused?focusFill:tile);
             skin::surface(skin::ui_atlas::ui_badge,bx+10,by+9,34,btnH-18,accent);
-            skin::focus(bx,by,btnW,btnH,focused?RGBA8(255,255,255,255):accent);
+            skin::focus(bx,by,btnW,btnH,focused?focusInk:accent);
             if(selected) {
                 const unsigned mark=(ar*299+ag*587+ab*114)>140000 ? RGBA8(12,12,12,255):RGBA8(255,255,255,255);
                 if(!skin::icon(skin::icons_atlas::icon_check,bx+15,by+14,24,mark))
                     ::psvitaalive::ui::uiDrawText(&font_,bx+18,by+34,mark,.9f,"X");
             }
             const char* name = colorThemeDisplayName(th);
-            drawMarqueeText(&font_,bx+55,by+34,btnW-69,RGBA8(248,248,248,255),
+            drawMarqueeText(&font_,bx+55,by+34,btnW-69,focused?focusInk:RGBA8(248,248,248,255),
                 .94f,name,focused,x+12,gridTop,x+w-12,gridBottom);
         }
     }
@@ -1945,9 +1948,9 @@ void FullCatalogScreen::drawThemeSetupOverlay() {
     const int saveX = x + (w - saveW) / 2;
     const int saveY = y + P::saveY;
     const bool saveFocus = (themeSetupFocus_ == themeCount);
-    skin::surface(saveFocus?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,saveX,saveY,saveW,saveH,saveFocus?ACCENT:SURFACE2);
-    if (saveFocus) skin::focus(saveX,saveY,saveW,saveH,BG);
-    skin::action(&font_,saveX,saveY,saveW,saveH,saveFocus?BG:WHITE,.96f,
+    skin::surface(saveFocus?skin::ui_atlas::ui_button_primary:skin::ui_atlas::ui_button_secondary,saveX,saveY,saveW,saveH,saveFocus?focusFill:SURFACE2);
+    if (saveFocus) skin::focus(saveX,saveY,saveW,saveH,focusInk);
+    skin::action(&font_,saveX,saveY,saveW,saveH,saveFocus?focusInk:WHITE,.96f,
         skin::controls_atlas::ctrl_cross_classic,::psvitaalive::L(TID::BtnSave),::psvitaalive::L(TID::BtnSave));
     skin::hint(&font_,x+24,y+h-17,w-48,TEXT,.82f,::psvitaalive::L(TID::ThemeSetupNavHint),true,22);
 }
@@ -5664,7 +5667,6 @@ void FullCatalogScreen::handleTouch() {
                                     closeThemeSetup(true);
                                 } else {
                                     applyThemeSetupFocus();
-                                    themeSetupAppliedFocus_ = themeSetupFocus_;
                                     showToast(::psvitaalive::L(::psvitaalive::TextId::ThemePreviewToast), 1800);
                                 }
                                 return; // one touch, one card
@@ -7562,7 +7564,7 @@ if(webQrVisible_){
     }
     if(pressed&SCE_CTRL_CROSS){
         if(themeSetupFocus_==themeCount||themeSetupAppliedFocus_==themeSetupFocus_)closeThemeSetup(true);
-        else{applyThemeSetupFocus();themeSetupAppliedFocus_=themeSetupFocus_;}
+        else{applyThemeSetupFocus();}
         return;
     }
     return;
