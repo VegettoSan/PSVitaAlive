@@ -10,10 +10,12 @@
         "filename": "nfs-carbon v0.1.6.vpk",
         "status": "TRANSFER_PREPARED",
         "created_at": "2026-11-23T23:35:11+00:00",
-        "recovery_status": "VISIBLE",
-        "checks": 0,
+        "recovery_status": "HISTORICAL_VERIFIED",
+        "checks": 1,
         "superseded_at": "2026-11-25T04:45:00+00:00",
-        "superseded_by": "0.1.8"
+        "superseded_by": "0.1.8",
+        "last_checked_at": "2026-11-25T04:46:29+00:00",
+        "recovery_detail": "Historical VPK verified; current catalog unchanged"
       }
     }
   }
