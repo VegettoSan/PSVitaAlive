@@ -1319,7 +1319,7 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
         const auto route=classifyInstallRoute(step.url,step.fileName,step.destination,step.zrif,
             step.linkType,step.contentId,draft.routing.target);
         const auto ext=FormatDetector::extensionOf(step.fileName);
-        if(!step.expectedBytes) return QueuePlan::UnknownSize;
+        if(!step.expectedBytes) draft.provisionalSpace=true;
         // External BGDL reservations and compressed PSP conversion require
         // separate policies. Never misclassify these as an internal VPK.
         if(route.wantBgdl || route.pspPs1Adrenaline) return QueuePlan::UnsupportedRoute;
@@ -1357,7 +1357,8 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
         }
         // Catalog size is only an estimate of retained bytes; actual HTTP
         // and extractor checks remain authoritative for compressed payloads.
-        step.space=mountedSpace(payload,route.budgetMode,target,targetPeak,payload);
+        step.space=payload?mountedSpace(payload,route.budgetMode,target,targetPeak,payload):
+            provisionalMountedSpace(route.budgetMode,target);
         if(route.plugin && target!=Mount::Ur0) {
             // taiHEN configuration may live on ur0 even with a ux0 plugin.
             step.space.peak[static_cast<size_t>(Mount::Ur0)]=4*kSpaceMiB;

@@ -92,6 +92,18 @@ inline Space mountedSpace(uint64_t payload, InstallSpaceMode mode, Mount target,
     s.retained[i]=retained;
     return validSpace(s)?s:Space{};
 }
+// Unknown catalog length can enter only at the tail; the existing native
+// HTTP/extraction checks decide real capacity before writes. No later jobs
+// may rely on this provisional budget until the group is terminal.
+inline Space provisionalMountedSpace(InstallSpaceMode mode,Mount target) {
+    if(mode==InstallSpaceMode::SystemBgdl || target>=Mount::Count) return {};
+    Space s; s.known=true;
+    const auto floor=initialInstallSpaceBytes(0,mode);
+    s.peak[0]=floor;
+    const auto i=static_cast<size_t>(target);
+    s.peak[i]=floor; s.retained[i]=floor;
+    return s;
+}
 enum class State { Waiting, Running, Completed, HandedOff, Partial, Failed, Cancelled, Skipped };
 enum class Outcome { Completed, HandedOff, Failed, Cancelled };
 enum class Admission { Accepted, Duplicate, Invalid, Limit, Stale, UnknownSpace, NoSpace };
@@ -131,6 +143,7 @@ struct Job {
     int dataRevision=0, releaseRevision=0;
     Routing routing;
     bool installAll=false;
+    bool provisionalSpace=false;
     // Explicit opt-in only for groups whose selected steps are independent.
     bool continueIndependentOnFailure=false;
     bool aborted=false;
@@ -213,6 +226,8 @@ public:
             if(j.appKey==job.appKey && (j.state==State::Waiting || j.state==State::Running))
                 return Admission::Duplicate;
         if(jobs_.size()>=maxJobs) return Admission::Limit;
+        for(const auto& j:jobs_) if(j.provisionalSpace &&
+            (j.state==State::Waiting || j.state==State::Running)) return Admission::UnknownSpace;
         if(!snapshot.valid || !validSpace(job.admissionSpace) ||
            !mountsMeasured(job.admissionSpace,snapshot.measured)) return Admission::UnknownSpace;
         std::vector<Space> steps;

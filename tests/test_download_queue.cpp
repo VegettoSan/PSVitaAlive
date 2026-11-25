@@ -167,5 +167,22 @@ int main() {
         assert(s.claim(snap(s,3*GiB),true).status==Dispatch::NoSpace);
         assert(s.claim(snap(s,5*GiB),true).status==Dispatch::Started);
     }
+    {
+        Session s;
+        auto unknown=job("unknown tail",GiB);
+        unknown.provisionalSpace=true;
+        unknown.steps[0].expectedBytes=0;
+        unknown.steps[0].space=provisionalMountedSpace(InstallSpaceMode::ZipArchive,Mount::Ux0);
+        unknown.admissionSpace=unknown.steps[0].space;
+        assert(unknown.admissionSpace.peak[0]==kSpaceUnknownZipReserve);
+        assert(s.admit(job("known",GiB),snap(s,10*GiB))==Admission::Accepted);
+        assert(s.admit(unknown,snap(s,10*GiB))==Admission::Accepted);
+        assert(s.admit(job("later",GiB),snap(s,10*GiB))==Admission::UnknownSpace);
+        assert(s.cancel(s.jobs()[1].id));
+        assert(s.admit(job("later",GiB),snap(s,10*GiB))==Admission::Accepted);
+        auto cross=provisionalMountedSpace(InstallSpaceMode::Plugin,Mount::Ur0);
+        assert(cross.peak[0]==kSpaceUnknownPluginReserve && cross.peak[2]==kSpaceUnknownPluginReserve);
+        assert(!validSpace(provisionalMountedSpace(InstallSpaceMode::SystemBgdl,Mount::Ux0)));
+    }
     std::cout<<"Queue core tests passed\n";
 }
