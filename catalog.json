@@ -271,6 +271,62 @@
     ]
   },
   {
+    "id": "supertuxkart-vita",
+    "tid": "STKV00001",
+    "n": "SuperTuxKart Vita",
+    "d": "Port of SuperTuxKart 1.5 for PSVita.",
+    "ld": "SuperTuxKart is a free kart racing game. This port runs SuperTuxKart 1.5 with all the offline modes: races, time trials, follow the leader, battles (3 strikes and free-for-all), soccer and egg hunts, with up to 6 karts and about 60 FPS on most tracks. Based on the port by Rinnegatamante, rendered with vitaGL.\n\nThe game data is installed with the Game Files (extracted to ux0:data/supertuxkart/stk-data/).",
+    "aids": [
+      "edgarlugo",
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "source-port"
+    ],
+    "v": "1.02",
+    "vd": "2026-11-24",
+    "req": "- libshacccg.suprx\n- Game Files (below)",
+    "sz": 12251364,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.02/supertuxkart.vpk",
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/supertuxkart-data.zip",
+        "sz": 135873387,
+        "xp": "ux0:data/",
+        "ips": [
+          "supertuxkart"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Source",
+        "u": "https://github.com/edgarlugo/stk-code/tree/vita-port"
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/edgarlugo/stk-code/vita-port/sce_sys/icon0.png",
+    "ss": [
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-2.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-3.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-4.png",
+      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-5.png"
+    ],
+    "sn": "GitHub",
+    "su": "https://github.com/edgarlugo/stk-code",
+    "rp": "https://github.com/edgarlugo/stk-code/releases",
+    "cl": "- New default controls: cross accelerates and triangle looks back\n- The d-pad steers too, next to the left stick, and moves through the menus\n- Old default buttons are updated when the game starts; buttons changed in Options > Controls stay as they are"
+  },
+  {
     "id": "the-sims",
     "tid": "TSVITA001",
     "n": "The Sims",
@@ -1929,62 +1985,6 @@
       "https://archive.org/download/ridge-racer-slipstream-vita/shot2.jpg",
       "https://archive.org/download/ridge-racer-slipstream-vita/shot3.jpg"
     ]
-  },
-  {
-    "id": "supertuxkart-vita",
-    "tid": "STKV00001",
-    "n": "SuperTuxKart Vita",
-    "d": "Port of SuperTuxKart 1.5 for PSVita.",
-    "ld": "SuperTuxKart is a free kart racing game. This port runs SuperTuxKart 1.5 with all the offline modes: races, time trials, follow the leader, battles (3 strikes and free-for-all), soccer and egg hunts, with up to 6 karts and about 60 FPS on most tracks. Based on the port by Rinnegatamante, rendered with vitaGL.\n\nThe game data is installed with the Game Files (extracted to ux0:data/supertuxkart/stk-data/).",
-    "aids": [
-      "edgarlugo",
-      "rinnegatamante"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "source-port"
-    ],
-    "v": "1.01",
-    "vd": "2026-11-18",
-    "req": "- libshacccg.suprx\n- Game Files (below)",
-    "sz": 12250864,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.01/supertuxkart.vpk",
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/supertuxkart-data.zip",
-        "sz": 135873387,
-        "xp": "ux0:data/",
-        "ips": [
-          "supertuxkart"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Source",
-        "u": "https://github.com/edgarlugo/stk-code/tree/vita-port"
-      }
-    ],
-    "ic": "https://raw.githubusercontent.com/edgarlugo/stk-code/vita-port/sce_sys/icon0.png",
-    "ss": [
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-2.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-3.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-4.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-5.png"
-    ],
-    "sn": "GitHub",
-    "su": "https://github.com/edgarlugo/stk-code",
-    "rp": "https://github.com/edgarlugo/stk-code/releases",
-    "cl": "- Fixes a crash when going from the story mode overworld to a track with a model of the same name, or back (for example Mines)"
   },
   {
     "id": "psv-cleaner",
