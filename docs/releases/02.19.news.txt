@@ -1,0 +1,32 @@
+id: 2026-11-24-0219-final
+title: PSVitaAlive 02.19 - UI Redesign & Stability
+enabled: true
+
+---
+
+# PSVitaAlive 02.19 is available!
+
+A refreshed store, improved navigation and more reliable downloads and installations.
+
+## New Interface
+- Redesigned panels, buttons, dialogs, progress bars and controller hints.
+- Better physical-button and touch navigation.
+- Improved settings, theme previews and theme saving.
+
+## Downloads & Installation
+- Automatic recovery from temporary connection problems.
+- Valid partial downloads are preserved during the current session.
+- Improved free-space checks, Install All and ZIP extraction.
+
+## Performance & Stability
+- More efficient rendering, image loading and text layout.
+- Improved catalog loading, cache recovery and Homebrew update detection.
+- Redesigned storage manager and clearer shared Game Files warnings.
+- Fixed report panel scrolling and updated all eight UI languages.
+
+## Get Version 02.19
+Open PSVitaAlive with automatic updates enabled, or install the official PSVitaAlive.vpk over your existing app.
+
+https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.19
+
+Thank you for testing and supporting PSVitaAlive!

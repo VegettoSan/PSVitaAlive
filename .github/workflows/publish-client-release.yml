@@ -69,7 +69,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p release-asset
-          gh run download "$RUN_ID" -R "$GITHUB_REPOSITORY" -n "PSVitaAlive-image-throughput-$SOURCE_SHA" -D release-asset
+          gh run download "$RUN_ID" -R "$GITHUB_REPOSITORY" -n "PSVitaAlive-ui-redesign-$SOURCE_SHA" -D release-asset
           test -s release-asset/PSVitaAlive.vpk
 
       - name: Validate VPK Title ID, version, integrity and SHA-256
@@ -124,3 +124,37 @@ jobs:
             --title "PsVita Alive Store $RELEASE_VERSION" \
             --notes-file "docs/releases/$RELEASE_VERSION.md" \
             --latest
+
+      - name: Publish release announcement after successful publication
+        if: steps.meta.outputs.publish == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.meta.outputs.version }}
+        run: |
+          set -euo pipefail
+          announcement="docs/releases/$RELEASE_VERSION.news.txt"
+          if [[ ! -s "$announcement" ]]; then
+            echo "No release announcement provided."
+            exit 0
+          fi
+          latest="$(gh api "repos/$GITHUB_REPOSITORY/releases/latest" --jq '.tag_name')"
+          test "$latest" = "$RELEASE_VERSION"
+          gh release view "$RELEASE_VERSION" -R "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' > /tmp/psva-assets
+          grep -Fxq PSVitaAlive.vpk /tmp/psva-assets
+          grep -Fxq PSVitaAlive.vpk.sha256 /tmp/psva-assets
+          gh api "repos/$GITHUB_REPOSITORY/contents/news.txt?ref=main" > /tmp/psva-news.json
+          python3 -c 'import json,base64; print(base64.b64decode(json.load(open("/tmp/psva-news.json"))["content"]).decode(),end="")' > /tmp/psva-news-current.txt
+          if cmp -s "$announcement" /tmp/psva-news-current.txt; then
+            echo "Announcement already published."
+            exit 0
+          fi
+          # Do not overwrite a newer or unrelated announcement.
+          grep -Fxq 'id: 2026-10-28-0217-final' /tmp/psva-news-current.txt || {
+            echo "::warning::Current news changed; publish the prepared announcement only after review."
+            exit 0
+          }
+          sha="$(python3 -c 'import json; print(json.load(open("/tmp/psva-news.json"))["sha"])')"
+          gh api --method PUT "repos/$GITHUB_REPOSITORY/contents/news.txt" \
+            -f message="news: announce PSVitaAlive $RELEASE_VERSION after release" \
+            -f branch=main -f sha="$sha" -f content="$(base64 -w0 "$announcement")" --jq '.commit.sha'
