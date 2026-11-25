@@ -237,15 +237,21 @@ bool StorageManager::appendFile(const std::string& path, const void* data, size_
 }
 
 bool StorageManager::queryUx0Space(uint64_t& freeBytesOut, uint64_t& totalBytesOut) {
+    return queryMountSpace("ux0:", freeBytesOut, totalBytesOut);
+}
+
+bool StorageManager::queryMountSpace(const char* mount, uint64_t& freeBytesOut, uint64_t& totalBytesOut) {
     freeBytesOut = 0;
     totalBytesOut = 0;
+    if (!mount || (std::strcmp(mount, "ux0:") != 0 &&
+        std::strcmp(mount, "uma0:") != 0 && std::strcmp(mount, "ur0:") != 0)) return false;
     struct {
         uint64_t max_size;
         uint64_t free_size;
         uint32_t cluster_size;
         void* unk;
     } info{};
-    const int ret = sceIoDevctl("ux0:", 0x3001, nullptr, 0, &info, sizeof(info));
+    const int ret = sceIoDevctl(mount, 0x3001, nullptr, 0, &info, sizeof(info));
     if (ret < 0) return false;
     freeBytesOut = info.free_size;
     totalBytesOut = info.max_size > 0 ? info.max_size : info.free_size;
