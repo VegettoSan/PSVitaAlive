@@ -278,6 +278,8 @@ bool DownloadManager::runJob(DownloadJob& job) {
     constexpr uint64_t kSpaceCheckStep = 32ULL * 1024ULL * 1024ULL;
     constexpr uint64_t kFreeSpaceReserve = 16ULL * 1024ULL * 1024ULL;
     auto progress = [&](const HttpProgress& p) {
+        if(p.stagingReset) { if(onStaging_)onStaging_(0,true); return; }
+        if(p.stagingKnown && onStaging_)onStaging_(p.stagingWritten,false);
         job.downloadedSize = p.absoluteDownloaded;
         job.bytesPerSecond = p.bytesPerSecond;
         job.state = p.finalizing ? DownloadState::Verifying : DownloadState::Downloading;
@@ -611,6 +613,7 @@ bool DownloadManager::runJob(DownloadJob& job) {
             statusFn,
             true
         );
+        if(onStaging_)onStaging_(0,true); // before promotion, deletion or retry
         if (hr == HttpResult::Ok) {
             job.segmentedZip = http_.lastSegmentedZip();
         }

@@ -208,5 +208,18 @@ int main() {
         assert(s.admit(invalid,x)==Admission::Invalid);
         assert(!validSpace(savedArchiveSpace(0,Mount::Ux0)));
     }
+    {
+        LiveStaging live;
+        live.publish(2*kSpaceMiB+123);
+        const auto initial=live.sample();
+        assert(initial.bytes==2*kSpaceMiB && live.stillValid(initial));
+        live.publish(4*kSpaceMiB);
+        assert(live.stillValid(initial)); // later growth cannot invalidate a lower bound
+        live.reset();
+        assert(!live.stillValid(initial) && live.sample().bytes==0);
+        live.publish(3*kSpaceMiB);const auto old=live.sample();
+        live.publish(kSpaceMiB);assert(!live.stillValid(old));
+        assert(live.sample().bytes==kSpaceMiB);
+    }
     std::cout<<"Queue core tests passed\n";
 }

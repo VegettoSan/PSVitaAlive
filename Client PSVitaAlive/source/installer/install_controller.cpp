@@ -320,6 +320,10 @@ bool InstallController::init() {
         diagnostics::log(std::string("[Installer] HTTP init failed: ") + http_.lastError());
         return false;
     }
+    downloads_.setStagingCallback([this](uint64_t bytes,bool reset) {
+        if(!queueProtectionActive())return;
+        if(reset)queueLiveStaging_.reset(); else queueLiveStaging_.publish(bytes);
+    });
     downloads_.setProgressCallback([this](const DownloadProgressEvent& event) {
         if (queueProtectionActive()) {
             const uint64_t hint = std::max(event.total, event.downloaded);
@@ -1258,12 +1262,14 @@ bool InstallController::endQueueProtection(const queue::Session& session) {
 queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& session) {
     queue::Snapshot out;
     out.generation = session.generation();
-    // Only give credit for a stopped download with a flushed, owned checkpoint.
-    // Do NOT use current_/total_: those counters also describe extraction.
+    // Read only physically written prefixes published by the HTTP worker.
+    // A reset epoch invalidates credit across truncate/retry/merge/cleanup.
     queue::Bytes stable{};
     const auto token = session.activeToken();
     const auto* owner = session.find(session.ownerId());
     bool remainingKnown = !session.ownerId();
+    bool useLiveCredit=false;
+    queue::LiveStaging::Sample live{};
     if (owner && owner->nextStep < owner->steps.size()) {
         remainingKnown = true;
         if (token.job) {
@@ -1286,16 +1292,28 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
                                          step.expectedBytes);
                 } else remainingKnown = false;
             }
-            // With an active writer, no stable allocation sample exists yet.
-            // Reserve its full remaining estimate rather than crediting buffered
-            // or potentially truncated bytes. This may reject a borderline job.
+            if(remainingKnown && !workerDone_.load(std::memory_order_acquire) &&
+                static_cast<InstallStatus::State>(state_.load())==InstallStatus::State::Downloading &&
+                step.savedZipPath.empty() && step.component!=queue::Component::SystemPackage) {
+                live=queueLiveStaging_.sample(); useLiveCredit=true;
+            }
         }
-        if (remainingKnown) out.activeRemaining = queue::remainingGroupSpace(*owner, stable);
     }
     const char* mounts[] = {"ux0:", "uma0:", "ur0:"};
     for (size_t i = 0; i < out.free.size(); ++i) {
         uint64_t total = 0;
         out.measured[i] = StorageManager::queryMountSpace(mounts[i], out.free[i], total);
+    }
+    // Probe free bytes AFTER sampling the prefix. Growth between these two
+    // readings is conservatively charged twice; a reset discards the credit.
+    if(remainingKnown && owner) {
+        if(useLiveCredit && queueLiveStaging_.stillValid(live) &&
+           static_cast<InstallStatus::State>(state_.load())==InstallStatus::State::Downloading &&
+           queueObservedPayload_.load(std::memory_order_acquire)<=owner->steps[owner->nextStep].expectedBytes)
+            stable[0]=std::min(live.bytes,owner->steps[owner->nextStep].expectedBytes);
+        else if(useLiveCredit && queueObservedPayload_.load(std::memory_order_acquire)>owner->steps[owner->nextStep].expectedBytes)
+            remainingKnown=false;
+        if(remainingKnown)out.activeRemaining=queue::remainingGroupSpace(*owner,stable);
     }
     out.valid = out.measured[0];
     return out;
@@ -1449,6 +1467,7 @@ bool InstallController::startQueuedStep(const queue::Session& session, queue::To
         if(size!=step.expectedBytes)return false;
     }
     queuedToken_ = token;
+    queueLiveStaging_.reset();
     queueObservedPayload_.store(0, std::memory_order_release);
     queuedDispatching_ = true;
     queuedSavedZipPath_.clear();

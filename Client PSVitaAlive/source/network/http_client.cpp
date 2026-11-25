@@ -1229,6 +1229,7 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
         httpDiagnostic(first);
         if (ctx->resumeOffset > 0 && responseCode == 200) {
             // Server ignored Range — never append a full body onto a partial.
+            resetHttpStaging(ctx->onProgress);
             sceIoClose(ctx->fd);
             ctx->fd = sceIoOpen(ctx->path.c_str(), SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
             if (ctx->fd < 0) {
@@ -1303,6 +1304,9 @@ static size_t writeCallback(void* ptr, size_t size, size_t nmemb, void* userdata
         progress.absoluteDownloaded = ctx->resumeOffset + ctx->downloaded;
         progress.total = ctx->total;
         progress.bytesPerSecond = ctx->bytesPerSecond;
+        progress.stagingKnown = true;
+        progress.stagingWritten = progress.absoluteDownloaded >= ctx->pendingCount ?
+            progress.absoluteDownloaded - ctx->pendingCount : 0;
         if (progress.total > 0 &&
             ctx->resumeOffset > 0 &&
             !ctx->restartedFromZero &&
@@ -1712,6 +1716,7 @@ HttpResult HttpClient::downloadToFile(
     ctx.preservePartial = preservePartial;
     ctx.savedValidator = ifRangeValidator;
     ctx.onProgress = std::move(onProgress);
+    resetHttpStaging(ctx.onProgress);
     ctx.shouldCancel = std::move(shouldCancel);
     ctx.sizeHeaderPreflight = checkSizeAtHeaders;
     ctx.path = destinationPath;
@@ -2056,6 +2061,7 @@ HttpResult HttpClient::downloadToFile(
                 isArchive ? std::string() : rangeProbe.lastModified,
                 keepZipParts, shouldPause, url,
                 rangeProbe.etag, rangeProbe.lastModified) : ParallelArchiveOutcome::RetrySerial;
+            resetHttpStaging(ctx.onProgress);
             if (parallel == ParallelArchiveOutcome::Complete ||
                 parallel == ParallelArchiveOutcome::Segmented ||
                 parallel == ParallelArchiveOutcome::Cancelled ||
@@ -2277,6 +2283,8 @@ HttpResult HttpClient::downloadToFile(
         ctx.retryAfterSeconds = 0;
         curlError[0] = '\0';
         result = curl_easy_perform(curl);
+        // All retry/truncate/close paths below start with no live credit.
+        resetHttpStaging(ctx.onProgress);
         // A failed transfer may be resumed. Flush its buffered tail before
         // calculating the next absolute offset or re-opening the descriptor.
         if (!flushSerialWrite(ctx)) break;

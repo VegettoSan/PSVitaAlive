@@ -154,6 +154,7 @@ private:
     std::atomic<bool> queueProtection_{false};
     // Download-only high-water size hint, independent of reused extraction counters.
     std::atomic<uint64_t> queueObservedPayload_{0};
+    queue::LiveStaging queueLiveStaging_;
     queue::Token queuedToken_{};
     bool queuedDispatching_=false;
     bool queuedAcknowledging_=false;

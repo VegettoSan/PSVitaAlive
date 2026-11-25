@@ -5,6 +5,7 @@
 #include "installer/install_space_policy.hpp"
 #include "installer/app_settings.hpp"
 #include <cstddef>
+#include <atomic>
 #include <array>
 #include <cstdint>
 #include <string>
@@ -15,6 +16,30 @@ namespace psvitaalive { namespace queue {
 enum class Mount : size_t { Ux0, Uma0, Ur0, Count };
 using Bytes = std::array<uint64_t, static_cast<size_t>(Mount::Count)>;
 using MeasuredMounts = std::array<bool, static_cast<size_t>(Mount::Count)>;
+// Single writer (HTTP worker; main may reset only before a worker starts).
+// Published bytes are a conservative lower bound of physically written,
+// contiguous prefixes. Reset must precede any operation that can shrink them.
+class LiveStaging {
+public:
+    struct Sample { uint32_t epoch=0; uint64_t bytes=0; };
+    void reset() {
+        epoch_.fetch_add(1); bytes_.store(0); epoch_.fetch_add(1);
+    }
+    void publish(uint64_t bytes) {
+        // Round down to MiB; don't charge buffered writes or tiny fluctuations.
+        const uint64_t rounded=(bytes/kSpaceMiB)*kSpaceMiB;
+        if(rounded>=bytes_.load())bytes_.store(rounded);
+        else { reset(); bytes_.store(rounded); }
+    }
+    Sample sample() const {
+        const auto e=epoch_.load(); const auto b=bytes_.load();
+        return (e&1u) || e!=epoch_.load()?Sample{1,0}:Sample{e,b};
+    }
+    bool stillValid(Sample s) const { return !(s.epoch&1u) && s.epoch==epoch_.load(); }
+private:
+    std::atomic<uint32_t> epoch_{0};
+    std::atomic<uint64_t> bytes_{0};
+};
 struct Space {
     Bytes peak{};      // additional bytes needed at maximum occupancy
     Bytes retained{};  // conservative additional bytes remaining after cleanup

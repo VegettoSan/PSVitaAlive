@@ -26,9 +26,16 @@ struct HttpProgress {
     // Parallel transfer finished; joining needed for non-ZIP payloads only.
     bool finalizing = false;
     bool parallelCheckpointReused = false; // verified same remote version
+    // Only successful physical writes / validated disk prefixes. Never network bytes.
+    uint64_t stagingWritten = 0;
+    bool stagingKnown = false;
+    bool stagingReset = false; // invalidate before any truncation, merge or cleanup
 };
 
 using HttpProgressFn = std::function<void(const HttpProgress&)>;
+inline void resetHttpStaging(const HttpProgressFn& fn) {
+    if(fn) { HttpProgress event; event.stagingReset=true; fn(event); }
+}
 using HttpCancelFn = std::function<bool()>;
 using HttpStatusFn = std::function<void(const char*)>; // localized key emitted during slow probes
 
