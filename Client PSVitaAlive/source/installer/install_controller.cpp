@@ -287,6 +287,12 @@ bool InstallController::init() {
         return false;
     }
     downloads_.setProgressCallback([this](const DownloadProgressEvent& event) {
+        if (queueProtectionActive()) {
+            const uint64_t hint = std::max(event.total, event.downloaded);
+            uint64_t old = queueObservedPayload_.load(std::memory_order_relaxed);
+            while (hint > old && !queueObservedPayload_.compare_exchange_weak(
+                old, hint, std::memory_order_release, std::memory_order_relaxed)) {}
+        }
         current_.store(event.downloaded);
         total_.store(event.total);
         speed_.store(event.bytesPerSecond);
@@ -1220,6 +1226,52 @@ bool InstallController::endQueueProtection(const queue::Session& session) {
     return true;
 }
 
+queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& session) {
+    queue::Snapshot out;
+    out.generation = session.generation();
+    // Only give credit for a stopped download with a flushed, owned checkpoint.
+    // Do NOT use current_/total_: those counters also describe extraction.
+    queue::Bytes stable{};
+    const auto token = session.activeToken();
+    const auto* owner = session.find(session.ownerId());
+    bool remainingKnown = !session.ownerId();
+    if (owner && owner->nextStep < owner->steps.size()) {
+        remainingKnown = true;
+        if (token.job) {
+            const auto& step = owner->steps[owner->nextStep];
+            if (!ownsQueuedStep() || !(queuedToken_ == token) ||
+                !step.expectedBytes || queueObservedPayload_.load(std::memory_order_acquire) > step.expectedBytes)
+                remainingKnown = false;
+            if (remainingKnown && workerDone_.load(std::memory_order_acquire) &&
+                static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Paused &&
+                !activeJobId_.empty()) {
+                const auto* job = downloads_.findJob(activeJobId_);
+                if (job && job->state == DownloadState::Paused &&
+                    job->expectedSize <= step.expectedBytes) {
+                    StorageManager storage;
+                    const uint64_t parts = parallelSavedBytes(job->temporaryPath);
+                    const int64_t serial = storage.fileSize(job->temporaryPath);
+                    const uint64_t observed = parts ? parts :
+                        (serial > 0 ? static_cast<uint64_t>(serial) : 0);
+                    stable[0] = std::min(std::min(observed, job->downloadedSize),
+                                         step.expectedBytes);
+                } else remainingKnown = false;
+            }
+            // With an active writer, no stable allocation sample exists yet.
+            // Reserve its full remaining estimate rather than crediting buffered
+            // or potentially truncated bytes. This may reject a borderline job.
+        }
+        if (remainingKnown) out.activeRemaining = queue::remainingGroupSpace(*owner, stable);
+    }
+    const char* mounts[] = {"ux0:", "uma0:", "ur0:"};
+    for (size_t i = 0; i < out.free.size(); ++i) {
+        uint64_t total = 0;
+        out.measured[i] = StorageManager::queryMountSpace(mounts[i], out.free[i], total);
+    }
+    out.valid = out.measured[0];
+    return out;
+}
+
 bool InstallController::canStartQueuedStep() const {
     // Do not read activeBgdlJob_ through its conversion operator: it consumes
     // the preparation-frame deferral. An Idle controller cannot have BGDL armed.
@@ -1237,6 +1289,7 @@ bool InstallController::startQueuedStep(const queue::Session& session, queue::To
         !job.routing.matches(settings_)) return false;
     const auto& step = job.steps[token.step];
     queuedToken_ = token;
+    queueObservedPayload_.store(0, std::memory_order_release);
     queuedDispatching_ = true;
     queuedSavedZipPath_.clear();
     // Reset fields even if requestInstall fails synchronously before launching a
