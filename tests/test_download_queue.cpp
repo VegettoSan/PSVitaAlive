@@ -17,7 +17,8 @@ static Job job(const char* key,uint64_t size,unsigned steps=1) {
     return j;
 }
 static Snapshot snap(const Session& s,uint64_t free, Space remaining={}) {
-    Snapshot x; x.generation=s.generation(); x.free[0]=free; x.valid=true; x.activeRemaining=remaining;
+    Snapshot x; x.generation=s.generation(); x.free[0]=free; x.measured[0]=true;
+    x.valid=true; x.activeRemaining=remaining;
     return x;
 }
 int main() {
@@ -43,8 +44,9 @@ int main() {
         assert(s.admit(job("B",GiB),snap(s,9*GiB))==Admission::UnknownSpace);
         // 1 GiB already written: free is measured after the write. The
         // adapter gives only future additional peak and permanent growth.
-        Space remaining=ux0Space(2*GiB,2*GiB,InstallSpaceMode::ZipArchive);
-        remaining.peak[0]-=GiB; // downloaded temporary already charged
+        Space remaining=creditStaging(ux0Space(2*GiB,2*GiB,InstallSpaceMode::ZipArchive),
+                                     Bytes{GiB,0,0});
+        assert(remaining.retained[0]==GiB); // net growth, not full installed size
         assert(s.admit(job("B",GiB),snap(s,9*GiB,remaining))==Admission::Accepted);
         auto pending=s.jobs()[1].id;
         assert(s.cancel(pending));
@@ -123,6 +125,47 @@ int main() {
         assert(s.jobs()[0].state==State::Partial);
         assert(s.jobs()[0].steps[1].state==State::Skipped);
         assert(!s.protectedSession());
+    }
+    {
+        const auto zip=ux0Space(2*GiB,2*GiB,InstallSpaceMode::ZipArchive);
+        const auto remaining=creditStaging(zip,Bytes{GiB,0,0});
+        assert(remaining.peak[0]==zip.peak[0]-GiB && remaining.retained[0]==GiB);
+        assert(!validSpace(creditStaging(zip,Bytes{UINT64_MAX,0,0})));
+        const auto small=creditStaging(zip,Bytes{3*GiB,0,0});
+        assert(validSpace(small) && small.retained[0]==0); // no promised free-space credit
+        const auto cross=mountedSpace(2*GiB,InstallSpaceMode::ZipArchive,
+                                      Mount::Uma0,3*GiB,2*GiB);
+        assert(validSpace(cross));
+        assert(cross.peak[0]==zip.peak[0] && cross.peak[1]==3*GiB);
+        assert(cross.retained[0]==0 && cross.retained[1]==2*GiB);
+        assert(!validSpace(mountedSpace(GiB,InstallSpaceMode::SystemBgdl,Mount::Ux0,GiB,GiB)));
+        Session s; auto j=job("cross",2*GiB);
+        j.steps[0].space=cross; j.admissionSpace=cross;
+        auto x=snap(s,10*GiB);
+        assert(s.admit(j,x)==Admission::UnknownSpace);
+        x.measured[1]=true; x.free[1]=GiB;
+        assert(s.admit(j,x)==Admission::NoSpace);
+        x.free[1]=4*GiB;
+        assert(s.admit(j,x)==Admission::Accepted);
+        auto after=snap(s,10*GiB); // mount disappeared before dispatch
+        assert(s.claim(after,true).status==Dispatch::UnknownSpace);
+        assert(!s.activeToken().job);
+        after.measured[1]=true; after.free[1]=4*GiB;
+        assert(s.claim(after,true).status==Dispatch::Started);
+    }
+    {
+        Session s;
+        auto j=job("group recheck",GiB,3);
+        assert(s.admit(j,snap(s,10*GiB))==Admission::Accepted);
+        auto a=s.claim(snap(s,10*GiB),true);
+        assert(s.settle(a.token,Outcome::Completed,true,false,"done"));
+        const auto* group=s.find(a.token.job);
+        assert(group && group->nextStep==1);
+        const auto remainder=remainingGroupSpace(*group);
+        assert(remainder.retained[0]==2*GiB);
+        assert(remainder.peak[0]>group->steps[1].space.peak[0]);
+        assert(s.claim(snap(s,3*GiB),true).status==Dispatch::NoSpace);
+        assert(s.claim(snap(s,5*GiB),true).status==Dispatch::Started);
     }
     std::cout<<"Queue core tests passed\n";
 }
