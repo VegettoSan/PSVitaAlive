@@ -17,7 +17,9 @@
   "sz": 6274545,
   "st": "Legacy",
   "ic": "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png",
-  "ss": [],
+  "ss": [
+    "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png"
+  ],
   "l": [
     {
       "t": "Download",
