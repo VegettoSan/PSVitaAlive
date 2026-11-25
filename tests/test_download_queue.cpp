@@ -90,5 +90,39 @@ int main() {
         free[1]=3*GiB;
         assert(consume(free,multi) && free[1]==2*GiB && free[0]==3*GiB);
     }
+    {
+        AppSettingsData settings;
+        auto routing=Routing::capture(settings);
+        assert(routing.matches(settings));
+        settings.colorTheme=ColorTheme::Cyan;
+        assert(routing.matches(settings));
+        settings.pspStorage=PspStorage::Uma0;
+        assert(!routing.matches(settings));
+        settings.pspStorage=PspStorage::Ux0;
+        settings.pspTarget=PspTarget::LiveArea;
+        assert(!routing.matches(settings));
+    }
+    {
+        Session s; auto j=job("system",GiB);
+        j.steps[0].zrif="test-license";
+        assert(s.admit(j,snap(s,10*GiB))==Admission::Accepted);
+        j.steps[0].zrif="changed";
+        auto a=s.claim(snap(s,10*GiB),true);
+        assert(s.find(a.token.job)->steps[0].zrif=="test-license");
+        ResultDetails d; d.stage="BGDL"; d.fileName="archive.zip";
+        assert(s.settle(a.token,Outcome::HandedOff,true,false,"queued by system",d));
+        assert(s.jobs()[0].state==State::HandedOff);
+        assert(s.jobs()[0].steps[0].details.stage=="BGDL");
+        assert(!s.protectedSession());
+    }
+    {
+        Session s;
+        assert(s.admit(job("system group",GiB,2),snap(s,10*GiB))==Admission::Accepted);
+        auto a=s.claim(snap(s,10*GiB),true);
+        assert(s.settle(a.token,Outcome::HandedOff,true,false,"system accepted"));
+        assert(s.jobs()[0].state==State::Partial);
+        assert(s.jobs()[0].steps[1].state==State::Skipped);
+        assert(!s.protectedSession());
+    }
     std::cout<<"Queue core tests passed\n";
 }
