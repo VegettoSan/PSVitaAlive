@@ -115,6 +115,10 @@ public:
 
     // Experimental queue adapter. Main-thread only. status() is polled once
     // per rendered frame by the caller (BGDL relies on its one-poll deferral).
+    // Acquire/release only from the main thread, with all other work drained.
+    bool beginQueueProtection();
+    bool endQueueProtection(const queue::Session& session);
+    bool queueProtectionActive() const { return queueProtection_.load(); }
     bool canStartQueuedStep() const;
     bool startQueuedStep(const queue::Session& session, queue::Token token);
     QueuedInstallObservation pollQueuedStep() const;
@@ -140,6 +144,7 @@ public:
                                const std::string& titleId = std::string());
 
 private:
+    std::atomic<bool> queueProtection_{false};
     queue::Token queuedToken_{};
     bool queuedDispatching_=false;
     bool queuedAcknowledging_=false;
