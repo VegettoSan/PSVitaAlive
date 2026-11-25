@@ -359,8 +359,12 @@ void InstallController::setSettings(const AppSettingsData& s) {
 }
 
 bool InstallController::pauseDownload() {
+    return !ownsQueuedStep() && pauseDownloadImpl();
+}
+
+bool InstallController::pauseDownloadImpl() {
     if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Downloading ||
-        activeBgdlJob_ || activeJobId_.empty() ||
+        activeBgdlJob_.active || activeJobId_.empty() ||
         workerThread_ < 0 || workerDone_.load(std::memory_order_acquire))
         return false;
     // Cooperative HTTP abort; validated serial and range checkpoints are retained.
@@ -372,7 +376,7 @@ bool InstallController::pauseDownload() {
 }
 
 bool InstallController::resumeDownload() {
-    return resumeDownloadImpl(false);
+    return !ownsQueuedStep() && resumeDownloadImpl(false);
 }
 
 void InstallController::pollDownloadRecovery() {
@@ -386,7 +390,7 @@ void InstallController::pollDownloadRecovery() {
     if (!job || job->state != DownloadState::Paused) return;
     if (installCancelRequested_.load(std::memory_order_acquire) ||
         job->cancelRequested->load(std::memory_order_acquire)) {
-        cancel();
+        cancelImpl();
         return;
     }
     if (job->manualPauseRequested->load(std::memory_order_acquire)) {
@@ -469,6 +473,10 @@ bool InstallController::resumeDownloadImpl(bool automatic) {
 }
 
 void InstallController::cancel() {
+    if (!ownsQueuedStep()) cancelImpl();
+}
+
+void InstallController::cancelImpl() {
     const auto currentState = static_cast<InstallStatus::State>(state_.load());
     if (currentState == InstallStatus::State::Paused &&
         !workerDone_.load(std::memory_order_acquire)) {
@@ -1188,7 +1196,10 @@ bool InstallController::canStartQueuedStep() const {
         static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle;
 }
 
-bool InstallController::startQueuedStep(const queue::Job& job, queue::Token token) {
+bool InstallController::startQueuedStep(const queue::Session& session, queue::Token token) {
+    const auto* claimed = session.find(token.job);
+    if (!claimed || !(session.activeToken() == token)) return false;
+    const auto& job = *claimed;
     if (!canStartQueuedStep() || !token.job || !token.serial || token.job != job.id ||
         job.state != queue::State::Running || token.step != job.nextStep ||
         token.step >= job.steps.size() || job.steps[token.step].state != queue::State::Running ||
@@ -1220,6 +1231,39 @@ bool InstallController::startQueuedStep(const queue::Job& job, queue::Token toke
     return true;
 }
 
+bool InstallController::pauseQueuedStep(queue::Token token) {
+    return ownsQueuedStep() && queuedToken_ == token && pauseDownloadImpl();
+}
+
+bool InstallController::resumeQueuedStep(queue::Token token) {
+    return ownsQueuedStep() && queuedToken_ == token && resumeDownloadImpl(false);
+}
+
+bool InstallController::cancelQueuedStep(queue::Token token) {
+    if (!ownsQueuedStep() || !(queuedToken_ == token)) return false;
+    using S = InstallStatus::State;
+    const auto s = static_cast<S>(state_.load());
+    if (s == S::Downloading && activeBgdlJob_.active) {
+        // The handoff has not yet run on the main thread. After submission we
+        // cannot cancel the system task through the internal installer.
+        activeBgdlJob_ = false;
+        setStage("Cancelled");
+        setState(S::Cancelled, ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadCancelled));
+        return true;
+    }
+    if ((s == S::Downloading || s == S::Paused) && !activeJobId_.empty()) {
+        cancelImpl();
+        return true;
+    }
+    if (s == S::Installing && workerThread_ >= 0 &&
+        !workerDone_.load(std::memory_order_acquire) &&
+        (savedZipMode_ || !isPluginLinkType(activeLinkType_))) {
+        cancelImpl();
+        return true;
+    }
+    return false; // critical copy, cleanup, or already terminal
+}
+
 bool InstallController::resolveQueuedZip(queue::Token token, bool keep, std::string* savedPath) {
     if (!ownsQueuedStep() || !(queuedToken_ == token) || busy()) return false;
     queuedResolving_ = true;
@@ -1231,9 +1275,15 @@ bool InstallController::resolveQueuedZip(queue::Token token, bool keep, std::str
     return ok;
 }
 
-bool InstallController::settleQueuedStep(queue::Session& session, queue::Token token,
-                                         const InstallStatus& observed) {
+QueuedInstallObservation InstallController::pollQueuedStep() const {
+    if (!ownsQueuedStep()) return {};
+    return {queuedToken_, status()};
+}
+
+bool InstallController::settleQueuedStep(queue::Session& session, const QueuedInstallObservation& observation) {
     using S = InstallStatus::State;
+    const auto token = observation.token;
+    const auto& observed = observation.status;
     if (!ownsQueuedStep() || !(queuedToken_ == token) || !(session.activeToken() == token) ||
         busy() || zipRecoveryAvailable_.load() || observed.zipRecoveryAvailable ||
         observed.state != static_cast<S>(state_.load())) return false;
