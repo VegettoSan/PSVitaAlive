@@ -195,6 +195,7 @@ struct Job {
     uint64_t id=0;
     State state=State::Waiting;
     size_t nextStep=0;
+    std::string iconUrl; // live UI only; not serialized in history/recovery
 };
 // Preserve the old Install All receipt rule: only all selected Game/Data
 // components successful, and no deliberate abort. App receipt is independent.

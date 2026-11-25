@@ -249,6 +249,7 @@ private:
     uint64_t queueExitFadeUs_=0;
     uint32_t queuePreviousButtons_=0;
     uint64_t queueSelectedId_=0,queueTransitionUs_=0;
+    uint64_t queueImageDecodeAfterUs_=0;
     int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;
     const ::psvitaalive::queue::Job* queuedJobFor(const CatalogItem& item) const;
     const char* queueJobLabel(const ::psvitaalive::queue::Job& job) const;

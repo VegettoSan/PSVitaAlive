@@ -377,8 +377,20 @@ int main(){
         recoveryDirty=recovery.observe(queue.session())||recoveryDirty;
         if(!recovery.canAdmit()) {screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500);return 0;}
         const bool first=!queue.protectedSession();
+        psvitaalive::diagnostics::log("[Queue] admission request steps="+std::to_string(job.steps.size())+
+            " provisional="+std::to_string(job.provisionalSpace)+" exclusiveTail="+std::to_string(job.exclusiveTail));
         const auto result=queue.submit(std::move(job),screen.queueExternalReady());
         if(result.code!=q::SubmitCode::Accepted) {
+            psvitaalive::diagnostics::log("[Queue] admission rejected code="+std::to_string(static_cast<int>(result.code))+
+                " admission="+std::to_string(static_cast<int>(result.admission)));
+            if(result.admission==q::Admission::UnknownSpace) {
+                for(const auto& pending:queue.session().jobs()) {
+                    if(pending.state!=q::State::Waiting && pending.state!=q::State::Running)continue;
+                    psvitaalive::diagnostics::log("[Queue] existing job="+std::to_string(pending.id)+
+                        " provisional="+std::to_string(pending.provisionalSpace)+
+                        " exclusiveTail="+std::to_string(pending.exclusiveTail));
+                }
+            }
             const char* key=result.code==q::SubmitCode::CatalogBusy?"CATALOG_ACTION_WAIT":
                 result.admission==q::Admission::Duplicate?"QUEUE_DUPLICATE":
                 result.admission==q::Admission::NoSpace?"QUEUE_NO_SPACE":
@@ -399,6 +411,7 @@ int main(){
     auto newJob=[&screen](const psvitaalive::ui::CatalogItem& item,bool all) {
         q::Job job; job.appId=item.id; job.titleId=item.titleId; job.name=item.name;
         job.version=item.version; job.versionDate=item.versionDate;
+        job.iconUrl=item.icon.empty()?item.cover:item.icon;
         job.dataRevision=item.dataRevision; job.installAll=all;
         job.catalogType=static_cast<uint8_t>(screen.activeCatalog());
         // Keep ordinary Install All failure continuation, not cancellation.

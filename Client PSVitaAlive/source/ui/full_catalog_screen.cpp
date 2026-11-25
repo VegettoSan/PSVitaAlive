@@ -8032,9 +8032,17 @@ bool FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     const std::string path=imageCache_->pathFor(url,ns);
     auto it=textures_.find(path);
     if(it!=textures_.end()&&it->second){touchTexture(path);return false;}
-    if(!queueProtected_) imageCache_->request(url,ns);
+    if(!queueProtected_ && !queueVisible_) imageCache_->request(url,ns);
     if(imageCache_->isFailed(path)||!imageCache_->isReady(path))return false;
     if(failedTextureLoads.find(path)!=failedTextureLoads.end())return false;
+    // Avoid competing with extraction for CPU, memory and storage. Keep resident
+    // icons visible, allow only a paced cached icon decode, and defer screenshots.
+    if(queueProtected_ && queueStatus_.state==::psvitaalive::InstallStatus::State::Installing) {
+        if(ns=="shot")return false;
+        const auto now=sceKernelGetProcessTimeWide();
+        if(now<queueImageDecodeAfterUs_)return false;
+        queueImageDecodeAfterUs_=now+350000ULL;
+    }
     // Only completed, validated cache files are published as ready.
     // Count a decode attempt even if it fails or replaces an LRU texture.
     vita2d_texture*t=nullptr;
@@ -8069,8 +8077,23 @@ int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, in
 }
 
 void FullCatalogScreen::prepareVisibleTextures(){
-    if(queueVisible_ || (queueProtected_ && gProtectionActive))return;
+    if(queueProtected_ && gProtectionActive)return;
     if(!imageCache_||catalogLoading_||installProgressActive_||mediaTexturesSuspended_)return;
+    if(queueVisible_) {
+        // Share the existing bounded app LRU. Only visible, already-cached
+        // icons are decoded; never request images while the manager is open.
+        if(!queueSession_ || queueHistoryMode() || queueConfirmCancel_ || queueTouchDown_ ||
+           !deferredFreeTextures_.empty())return;
+        if(queueDetail_) {
+            if(const auto* job=queueSession_->find(queueSelectedId_))prepareImageTexture(job->iconUrl,"app");
+        } else {
+            const auto& jobs=queueSession_->jobs();
+            const int first=std::max(0,queueScroll_);
+            for(int n=first;n<(int)jobs.size() && n<first+5;++n)
+                if(prepareImageTexture(jobs[n].iconUrl,"app"))break;
+        }
+        return;
+    }
     // Do not thrash GPU while frees are still draining or right after a catalog switch.
     if(catalogSwitchCooldownFrames_>0||!deferredFreeTextures_.empty())return;
 
@@ -12391,11 +12414,10 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
         queueDetail_=false; queueSelectedId_=0;
     }
 }
-void FullCatalogScreen::queueAccepted(uint64_t id,bool first) {
-    if(first) openQueue(id,true);
-    else showToast(::psvitaalive::L("QUEUE_ADDED"),3800);
-    if(const auto* j=queueSession_->find(id)) if(j->provisionalSpace)
-        showToast(::psvitaalive::L("QUEUE_UNKNOWN_SPACE"),5600);
+void FullCatalogScreen::queueAccepted(uint64_t /*id*/,bool /*first*/) {
+    // Keep the current catalog/detail view. The user opens the manager when desired.
+    // Provisional work is marked (?) in the queue; acceptance is not rejection.
+    showToast(::psvitaalive::L("QUEUE_ADDED"),3800);
 }
 void FullCatalogScreen::queueJobSettled(const ::psvitaalive::queue::Job& job) {
     invalidateInstallStatus(job.titleId);
@@ -12685,7 +12707,8 @@ void FullCatalogScreen::drawQueueScreen() {
     if(queueDetail_ && selected) {
         skin::surface(skin::ui_atlas::ui_card,20,79,920,159,SURFACE);
         if(active)skin::focus(20,79,920,159,withAlpha(ACCENT,125));
-        label(36,107,690,WHITE,1.04f,selected->name);
+        drawImage(selected->iconUrl,"app",36,91,60,60);
+        label(108,107,620,WHITE,1.04f,selected->name);
         label(752,107,172,DIM,.74f,std::to_string(std::min(selected->nextStep+1,selected->steps.size()))+" / "+std::to_string(selected->steps.size()));
         const char* phase=queueJobLabel(*selected);
         if(active && !queueStatus_.zipRecoveryAvailable && !queueSession_->cancelRequested()) {
@@ -12695,9 +12718,9 @@ void FullCatalogScreen::drawQueueScreen() {
             else if(queueStatus_.stage.find("Extract")!=std::string::npos || queueStatus_.stage.find("Unzip")!=std::string::npos)
                 phase=::psvitaalive::L(::psvitaalive::TextId::StageExtracting);
         }
-        label(36,135,888,ACCENT,.87f,phase);
+        label(108,135,816,ACCENT,.87f,phase);
         if(active) {
-            label(36,158,888,TEXT,.74f,queueStatus_.fileName);
+            label(108,158,816,TEXT,.74f,queueStatus_.fileName);
             const bool transfer=queueStatus_.state==I::Downloading || queueStatus_.state==I::Paused;
             const bool paused=queueStatus_.state==I::Paused;
             const bool unknownPhase=queueStatus_.stage=="Verifying" || queueStatus_.stage=="BGDL" ||
@@ -12747,9 +12770,10 @@ void FullCatalogScreen::drawQueueScreen() {
             const bool focus=j.id==queueSelectedId_;
             skin::surface(skin::ui_atlas::ui_card,20,y,920,64,focus?SURFACE2:SURFACE);
             if(focus)skin::focus(20,y,920,64,ACCENT);
-            label(36,y+25,610,WHITE,.91f,j.name);
+            drawImage(j.iconUrl,"app",36,y+6,52,52);
+            label(100,y+25,546,WHITE,.91f,j.name);
             const std::string type=std::string(j.installAll?"Install All":component(j.steps.front().component))+(j.provisionalSpace?"  (?)":"");
-            label(36,y+48,600,DIM,.71f,type+"  |  "+std::to_string(j.nextStep)+"/"+std::to_string(j.steps.size()));
+            label(100,y+48,536,DIM,.71f,type+"  |  "+std::to_string(j.nextStep)+"/"+std::to_string(j.steps.size()));
             label(650,y+32,270,ACCENT,.78f,queueJobLabel(j));
         }
     }

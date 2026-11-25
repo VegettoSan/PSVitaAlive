@@ -1319,6 +1319,17 @@ queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& se
         if(remainingKnown)out.activeRemaining=queue::remainingGroupSpace(*owner,stable);
     }
     out.valid = out.measured[0];
+    // Snapshot is captured on admission/dispatch, not on every frame. Log
+    // physical measurements and uncertainty without exposing URLs or keys.
+    std::string measurement="[Queue] snapshot";
+    for(size_t n=0;n<out.free.size();++n)measurement+=" "+std::string(mounts[n])+"="+
+        (out.measured[n]?std::to_string(out.free[n]):std::string("unmeasured"));
+    if(owner && owner->nextStep<owner->steps.size())measurement+=" active="+std::to_string(owner->id)+
+        " expected="+std::to_string(owner->steps[owner->nextStep].expectedBytes)+
+        " observed="+std::to_string(queueObservedPayload_.load(std::memory_order_acquire))+
+        " remainingKnown="+std::to_string(remainingKnown)+
+        " remainingValid="+std::to_string(queue::validSpace(out.activeRemaining));
+    diagnostics::log(measurement);
     return out;
 }
 
