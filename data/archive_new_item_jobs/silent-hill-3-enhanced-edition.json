@@ -47,7 +47,8 @@
     "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot3.png": "shot_04.png"
   },
   "attempted": [
-    "silent-hill-3-enhanced-edition v1.2.vpk"
+    "silent-hill-3-enhanced-edition v1.2.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:45:39+00:00",
