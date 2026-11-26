@@ -4079,6 +4079,7 @@ void FullCatalogScreen::shutdown(){
         sceKernelDeleteThread(installedDataWorker_);
         installedDataWorker_=-1;
     }
+    releaseInstalledDataProtection();
     if (storageWorker_ >= 0) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
@@ -13393,7 +13394,7 @@ void FullCatalogScreen::draw(){
         }
         if(keyboard_.active()){
             draw();
-            return !state_.requestExit;
+            return queueProtected_ || installedDataProtected_ || !state_.requestExit;
         }
     }
     {
@@ -13479,7 +13480,7 @@ void FullCatalogScreen::draw(){
     if(keyboard_.active()){
         keyboard_.update();
         draw();
-        return !state_.requestExit;
+        return queueProtected_ || installedDataProtected_ || !state_.requestExit;
     }
     updateTransition();
     pollSelfUpdateProgress();
@@ -13494,7 +13495,8 @@ void FullCatalogScreen::draw(){
         queuePassiveRead_=false;
     }
     draw();
-    return queueProtected_ || !state_.requestExit;
+    if (installedDataProtected_) state_.requestExit = false;
+    return queueProtected_ || installedDataProtected_ || !state_.requestExit;
 }
 
 
