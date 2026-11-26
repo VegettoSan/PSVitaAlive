@@ -1449,7 +1449,8 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
             if(route.pspPs1Adrenaline) {
                 target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
                 step.component=Component::PspMedia;
-                draft.exclusiveTail=true;
+                // A known direct PSP/PS1 PKG has measurable staging and output
+                // mounts; do not classify it as an exclusive unknown tail.
             } else if(ext=="vpk" || ext=="zip") {
                 // Legacy dispatcher can recognize a ZIP-backed VPK without a destination.
                 step.component=Component::App;
@@ -1462,13 +1463,12 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
                 // Reserve both plausible destinations; never promise their cleanup.
                 step.component=Component::Other; draft.exclusiveTail=true;
             }
-            targetPeak=route.pspPs1Adrenaline && target!=Mount::Ux0
-                ?initialInstallSpaceBytes(payload,InstallSpaceMode::DirectPackage)
-                :saturatingSpaceAdd(payload,payload/10);
+            targetPeak=saturatingSpaceAdd(payload,payload/10);
         }
         // Catalog size is only an estimate of retained bytes; actual HTTP
         // and extractor checks remain authoritative for compressed payloads.
-        step.space=payload?mountedSpace(payload,route.budgetMode,target,targetPeak,payload):
+        step.space=payload?(route.pspPs1Adrenaline?pspPackageSpace(payload,target):
+            mountedSpace(payload,route.budgetMode,target,targetPeak,payload)):
             provisionalMountedSpace(route.budgetMode,target);
         if(!route.plugin && !route.zipExtraction && step.component==Component::Other) {
             step.space.retained[0]=step.space.peak[0];
