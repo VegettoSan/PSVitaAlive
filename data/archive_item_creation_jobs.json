@@ -1,0 +1,29 @@
+{
+  "identifier": "psvitaalive-vitaforge",
+  "source_url": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.15/vitaforge.vpk",
+  "files": {
+    "vitaforge v0.1.15.vpk": {
+      "size": 6353031,
+      "md5": "2af7fc9379ac52aefb428a8135532bb7",
+      "sha256": "fa5a0990bd6858c0cf6d40714f74d520ebc20967ce4820efcfbb23df62c80504"
+    },
+    "icon0.png": {
+      "size": 2255,
+      "md5": "7f1472d1252fb6b8b7a585bb328d45f3",
+      "sha256": "c96090391fe69d3310a4443a8fee60cbfa46adc77dd0812da81a4e8ba659d86b"
+    },
+    "SOURCES.txt": {
+      "size": 428,
+      "md5": "c99d87400b025e117aff7c48b819f848",
+      "sha256": "8ca614901175e65c2d9059ef10ffca037805e4ff0ad7ff1334e5cfde3a77faa8"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png": "icon0.png"
+  },
+  "attempted": [
+    "vitaforge v0.1.15.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T22:45:09+00:00"
+}
