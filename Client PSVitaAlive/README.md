@@ -13,7 +13,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 | Build system | CMake + VitaSDK |
 | Rendering | vita2d (no Dear ImGui) |
 
-**Latest stable release:** [02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17) · `VITA_VERSION=02.17` · `PSVAS1178`. [Automated release rules](../docs/self-update-versioning.md).
+**Latest stable release:** [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases/latest) · Source `VITA_VERSION=02.20` · `PSVAS1178`. [Automated release rules](../docs/self-update-versioning.md) · [02.20 notes](../docs/releases/02.20.md).
 
 ## Features (high level)
 
