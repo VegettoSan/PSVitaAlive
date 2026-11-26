@@ -1,0 +1,30 @@
+{
+  "app_id": "vitatwitch",
+  "identifier": "psvitaalive-vitatwitch",
+  "source_url": "https://github.com/Dexlei/VitaTwitch/releases/download/v1.32/VitaTwitch.vpk",
+  "files": {
+    "vitatwitch v1.32.vpk": {
+      "size": 2221609,
+      "md5": "8139797daa4528d91e05310982d26d11",
+      "sha256": "bffce9ac4a96c30cb4b2e9125edc279ae467e80b1c4257bc5f3e54b037d91c1e"
+    },
+    "icon0.png": {
+      "size": 1354,
+      "md5": "016c756d6490010ae10ec0d591f6c41b",
+      "sha256": "e74cf5bc284fa19bd8fa8d20fcd83c492b8043556afa71777e1e7275c235b2d6"
+    },
+    "SOURCES.txt": {
+      "size": 383,
+      "md5": "a4815f56bef860b4cd9a44ee2e961f4b",
+      "sha256": "448539bcf5dc2a72822eed7d3b44e4356c9377d218ebe01f19da67cd72781a32"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png": "icon0.png"
+  },
+  "attempted": [
+    "vitatwitch v1.32.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:17:48+00:00"
+}
