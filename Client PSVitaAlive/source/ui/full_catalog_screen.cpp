@@ -7353,7 +7353,7 @@ bool FullCatalogScreen::handleChromeNavigation(uint32_t pressed, uint32_t nav,
         chromeConfirmAwaitRelease_ = true;
         return true;
     }
-    // Fresh Up/Down only between zones; left/right can repeat within a row.
+    // Fresh Up/Down between zones; left/right use the same single-press rule.
     if (nav & SCE_CTRL_LEFT)
         navigationFocus_.move(FocusDirection::Left, clear, filters, activeTab, tabs);
     else if (nav & SCE_CTRL_RIGHT)
@@ -7366,6 +7366,11 @@ bool FullCatalogScreen::handleChromeNavigation(uint32_t pressed, uint32_t nav,
 }
 
 void FullCatalogScreen::handleInput(){
+    static bool analogSamplingEnabled = false;
+    if (!analogSamplingEnabled) {
+        sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+        analogSamplingEnabled = true;
+    }
     SceCtrlData controllerPad{};
     uint32_t framePressed = 0;
     if (::psvitaalive::ui::readClientControllerActions(controllerPad, framePressed) <= 0) return;
@@ -7418,7 +7423,7 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
-    // Modal has its own button edge handling, including held-X release guard.
+    // Modal uses the shared edges; retain its explicit release guard.
     if (savedZipActionVisible_) {
         const SceCtrlData& pad=controllerPad;
         const uint32_t pressed=framePressed;
@@ -7443,11 +7448,6 @@ void FullCatalogScreen::handleInput(){
         if (pressed & SCE_CTRL_CROSS)
             resolveSavedZipAction(savedZipActionFocus_);
         return;
-    }
-    static bool analogSamplingEnabled = false;
-    if (!analogSamplingEnabled) {
-        sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-        analogSamplingEnabled = true;
     }
     if (archiveWarningVisible_) {
         const uint32_t pressed=framePressed;
@@ -7532,7 +7532,7 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
-    // Modal X/O presses have their own edge detector. Consume a held confirm/
+    // Modal X/O presses use shared edges. Consume a held confirm/
     // cancel button until release to avoid immediately re-opening the link.
     if (pluginChoiceAwaitRelease_) {
         if (controllerPad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
