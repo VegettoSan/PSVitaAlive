@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - .github/workflows/archive-backup-batch.yml
       - scripts/archive_item_creation.py
       - scripts/archive_backup_batch.py
       - scripts/archive_backup_batch_preview.py
@@ -49,7 +50,7 @@ jobs:
          github.actor == 'VegettoSan')
       )
     runs-on: ubuntu-latest
-    timeout-minutes: 96
+    timeout-minutes: 110
     steps:
       - name: Checkout canonical sources
         uses: actions/checkout@v4
@@ -96,13 +97,14 @@ jobs:
           IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
           IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
         run: python -m scripts.archive_item_creation --execute
-      - name: Initial preservation batch (reviewed phases)
-        timeout-minutes: 24
+      - name: Initial preservation batch (pilots then automatic queue)
+        timeout-minutes: 38
         env:
           IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
           IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
           IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
-        run: python -m scripts.archive_new_items_batch --execute
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m scripts.archive_new_items_batch --execute --automatic
       - name: Preserve changed media in existing owned items
         timeout-minutes: 8
         env:

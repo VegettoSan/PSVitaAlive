@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Bounded phased pilot for reviewed GitHub releases.
+"""Bounded automatic initial preservation for canonical GitHub releases.
 
 The original VitaForge checkpoint stays untouched. All transfers reuse the
 tested per-file checkpoint and batched verification functions. Other apps
-remain inventory-only until explicitly reviewed and enabled.
+are selected automatically only after the multi-image pilot is published.
 """
 from __future__ import annotations
 
@@ -12,21 +12,25 @@ import csv
 import html
 import json
 import os
+import re
+import struct
+import time
 import tempfile
 import zipfile
 from collections import Counter
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 from scripts import archive_item_creation as initial
 from scripts.archive_backup_batch import (
     ROOT, Deferred, HARD_MAX_FILE, download_source, expected_filename,
+    official_asset_metadata,
     git_publish, load_policy, policy_entry, now_utc, public_url, save_canonical,
 )
 from scripts.archive_backup_batch_preview import catalog_current_asset, upload_map
 from scripts.archive_media_backup import fetch_image, safe_media_url
 from scripts.catalog_schema_v2 import to_v1
-from scripts.sync_release_updates import select_current_download
+from scripts.sync_release_updates import select_current_download, normalized_repo
 
 LOG = initial.LOG
 STATE_DIR = Path("data/archive_new_item_jobs")
@@ -57,16 +61,21 @@ APPROVED = {
     },
 }
 PRIOR_PHASE = ("tntv", "vitatwitch")
+MAX_NEW = 2
+MAX_PENDING = 4
+MAX_VPK_BYTES = 200 * 1024 * 1024
+AUTO_SECONDS = 12 * 60
+MAX_PREFLIGHT = 8
 
 
 def source_url(spec):
-    return f"https://github.com/{spec['repo']}/releases/download/{spec['tag']}/{spec['asset']}"
+    return spec.get("url") or f"https://github.com/{spec['repo']}/releases/download/{spec['tag']}/{spec['asset']}"
 
 
 def check_candidate(app, app_id, spec, counts):
     if (app.get("id") != app_id or app.get("title_id") != spec["title_id"]
             or app.get("name") != spec["name"] or app.get("status") not in {"Verified", "Legacy"}
-            or counts[spec["title_id"]] != 1):
+            or counts[spec["title_id"].upper()] != 1):
         raise Deferred("PENDING_MANUAL", "App identity/status or Title ID conflict")
     asset, reason = catalog_current_asset(app)
     if asset is None:
@@ -93,12 +102,141 @@ def source_artwork(url, spec):
             and u.path.lower().endswith((".png", ".jpg", ".jpeg", ".webp")))
 
 
+def automatic_identity(app, app_id, counts):
+    """Local eligibility; never consult a guessed latest release."""
+    if (not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}", app_id)
+            or app.get("id") != app_id or app.get("status") not in {"Verified", "Legacy", "Archive"}):
+        raise Deferred("SOURCE_REVIEW", "Unsupported app identity or status")
+    tid = app.get("title_id")
+    if not isinstance(tid, str) or not tid or counts[tid.upper()] != 1:
+        raise Deferred("PENDING_MANUAL", "Missing or duplicate Title ID")
+    asset, reason = catalog_current_asset(app)
+    if asset is None:
+        raise Deferred("SOURCE_REVIEW", reason)
+    expected_filename({"app_id": app_id, "version": asset["version"]})
+    parts = [unquote(p) for p in urlparse(asset["url"]).path.split("/") if p]
+    repo = normalized_repo(asset["url"])
+    if len(parts) != 6 or not repo or "/".join(parts[:2]).lower() != repo:
+        raise Deferred("SOURCE_REVIEW", "Unsupported GitHub asset identity")
+    name = app.get("name")
+    if not isinstance(name, str) or not name.strip():
+        raise Deferred("SOURCE_REVIEW", "Missing application name")
+    title = re.sub(r"[^A-Za-z0-9 ._()-]", " ", name).strip()[:100].strip()
+    if not title:
+        raise Deferred("SOURCE_REVIEW", "Title requires safe account-search normalization")
+    return {"automatic": True, "title_id": tid, "name": name, "search_title": title,
+            "version": asset["version"], "repo": "/".join(parts[:2]), "tag": parts[4],
+            "asset": parts[5], "url": asset["url"]}
+
+
+def author_credit(root, app):
+    authors = app.get("author_ids")
+    if not isinstance(authors, list) or not authors:
+        raise Deferred("SOURCE_REVIEW", "Missing canonical author profiles")
+    names = []
+    for aid in authors:
+        if not isinstance(aid, str) or not re.fullmatch(r"[a-zA-Z0-9_.-]+", aid) or aid in {".", ".."}:
+            raise Deferred("SOURCE_REVIEW", "Invalid author ID")
+        path = root / "authors" / (aid + ".json")
+        if not path.is_file():
+            raise Deferred("SOURCE_REVIEW", "Missing canonical author profile")
+        author = to_v1(json.loads(path.read_text("utf-8")))
+        name = author.get("name")
+        if not isinstance(name, str) or not name.strip():
+            raise Deferred("SOURCE_REVIEW", "Missing author name")
+        names.append(name)
+    return ", ".join(dict.fromkeys(names))
+
+
+def artwork_download_url(url, spec):
+    """Convert only canonical GitHub blob raw links; keep original provenance."""
+    if not spec.get("automatic"):
+        return url if source_artwork(url, spec) else None
+    if not safe_media_url(url):
+        return None
+    u = urlparse(url)
+    repos = (spec["repo"].lower(), "vegettosan/psvitaalive")
+    if not any(u.path.lower().startswith("/" + repo + "/") for repo in repos):
+        return None
+    if u.hostname == "github.com" and u.query == "raw=true":
+        parts = u.path.split("/")
+        if len(parts) >= 6 and parts[3] == "blob":
+            return "https://raw.githubusercontent.com/" + "/".join(parts[1:3] + parts[4:])
+        return None
+    if source_artwork(url, spec):
+        return url
+    if u.hostname == "raw.githubusercontent.com" and not u.query and not u.fragment:
+        return url
+    return None
+
+
+def validate_vpk_title(path, expected):
+    """Read the bounded SFO without extracting or executing any archive entry."""
+    try:
+        with zipfile.ZipFile(path) as z:
+            if z.namelist().count("sce_sys/param.sfo") != 1 or z.namelist().count("eboot.bin") != 1:
+                raise ValueError()
+            entry = z.getinfo("sce_sys/param.sfo")
+            if not 20 <= entry.file_size <= 65536:
+                raise ValueError()
+            with z.open(entry) as src:
+                data = src.read(65537)
+        if len(data) != entry.file_size or data[:4] != b"\x00PSF":
+            raise ValueError()
+        _, _, keys, values, count = struct.unpack_from("<4sIIII", data)
+        if not 0 < count <= 512 or not 20 + count * 16 <= keys <= values <= len(data):
+            raise ValueError()
+        ids = []
+        for i in range(count):
+            keyoff, fmt, length, maximum, offset = struct.unpack_from("<HHIII", data, 20 + i*16)
+            start = keys + keyoff
+            if not keys <= start < values:
+                raise ValueError()
+            end = data.find(b"\x00", start, values)
+            if end < 0:
+                raise ValueError()
+            if data[start:end] != b"TITLE_ID":
+                continue
+            if fmt != 0x0204 or not 1 <= length <= maximum or values + offset + length > len(data):
+                raise ValueError()
+            ids.append(data[values+offset:values+offset+length].rstrip(b"\x00").decode("ascii"))
+        if len(ids) != 1 or ids[0].upper() != expected.upper():
+            raise ValueError()
+    except (ValueError, UnicodeError, struct.error, OSError, RuntimeError, zipfile.BadZipFile, NotImplementedError):
+        raise Deferred("PENDING_MANUAL", "VPK Title ID/structure does not match canonical record") from None
+
+
+def auto_spec(root, app, app_id, counts, job=None):
+    identity = automatic_identity(app, app_id, counts)
+    if job:
+        saved = job.get("source_spec")
+        if (not isinstance(saved, dict) or any(saved.get(k) != v for k, v in identity.items())
+                or type(saved.get("size")) is not int or not 0 < saved["size"] <= HARD_MAX_FILE
+                or not isinstance(saved.get("sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", saved["sha256"])
+                or not isinstance(saved.get("creator"), str) or not saved["creator"].strip()):
+            raise Deferred("PENDING_MANUAL", "Automatic checkpoint source identity changed")
+        return dict(saved)
+    size, sha = official_asset_metadata({"source_url": identity["url"]})
+    if not 0 < size <= HARD_MAX_FILE:
+        raise Deferred("TOO_LARGE_PENDING", "Official VPK exceeds limit")
+    spec = dict(identity, size=size, sha256=sha, creator=author_credit(root, app))
+    for url in [app.get("icon"), *(app.get("screenshots") or [])]:
+        if url and artwork_download_url(url, spec) is None:
+            raise Deferred("SOURCE_REVIEW", "Artwork requires a provider-specific adapter")
+    return spec
+
+
 def stage(app, item, folder, spec):
     name = expected_filename(item)
     target = folder / name
     md5, sha = download_source(item, target, max_file=HARD_MAX_FILE)
-    if sha != spec["sha256"]:
+    if spec["sha256"] is not None and sha != spec["sha256"]:
         raise Deferred("PENDING_MANUAL", "Official GitHub VPK SHA-256 mismatch")
+    if spec.get("automatic"):
+        validate_vpk_title(target, spec["title_id"])
+        # Older GitHub releases may have no official hash; pin the measured
+        # SHA-256 before any PUT, after real size and VPK identity checks.
+        spec["sha256"] = sha
     try:
         with zipfile.ZipFile(target) as z:
             if "sce_sys/param.sfo" not in z.namelist() or "eboot.bin" not in z.namelist():
@@ -114,10 +252,11 @@ def stage(app, item, folder, spec):
     for prefix, url in entries:
         if not url or url in media:
             continue
-        if not source_artwork(url, spec):
+        download_url = artwork_download_url(url, spec)
+        if download_url is None:
             raise Deferred("SOURCE_REVIEW", "Artwork not in reviewed upstream repository")
         local = folder / "artwork.tmp"
-        info, ext = fetch_image(url, local)
+        info, ext = fetch_image(download_url, local)
         if info["sha256"] in by_hash:
             media[url] = by_hash[info["sha256"]]
             local.unlink()
@@ -149,8 +288,8 @@ def metadata(app, spec):
 
 
 def job_path(app_id):
-    if app_id not in APPROVED:
-        raise Deferred("PENDING_MANUAL", "App outside reviewed batch")
+    if app_id == initial.PILOT or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}", app_id):
+        raise Deferred("PENDING_MANUAL", "Invalid or reserved app checkpoint identity")
     return STATE_DIR / (app_id + ".json")
 
 
@@ -211,7 +350,13 @@ def run_one(root, app_id, spec, creds, counts):
         raise Deferred("EXCLUDED", "Existing exclusion policy")
     if initial.archive_hints(app, upload_map(root / LOG)):
         raise Deferred("PENDING_MANUAL", "Existing archive reference; no new item")
-    asset = check_candidate(app, app_id, spec, counts)
+    if spec.get("automatic"):
+        identity = automatic_identity(app, app_id, counts)
+        if any(spec.get(k) != v for k, v in identity.items()):
+            raise Deferred("PENDING_MANUAL", "Canonical source changed during selection")
+        asset, _ = catalog_current_asset(app)
+    else:
+        asset = check_candidate(app, app_id, spec, counts)
     def choose():
         return initial.select_destination(app_id, creds[2],
             search=lambda owner: initial.search_pilot(owner, app_id, spec["search_title"]))
@@ -242,6 +387,8 @@ def run_one(root, app_id, spec, creds, counts):
             job = {"app_id": app_id, "identifier": identifier, "source_url": asset["url"],
                    "files": files, "media": media, "attempted": [], "status": "CREATING",
                    "created_at": now_utc()}
+            if spec.get("automatic"):
+                job["source_spec"] = dict(spec)
         initial.transfer_batch(root, app, identifier, files, folder, job, creds,
             checkpoint=lambda r, j: checkpoint(r, app_id, j),
             metadata_factory=lambda a: metadata(a, spec))
@@ -250,10 +397,90 @@ def run_one(root, app_id, spec, creds, counts):
     return "PUBLISHED_VERIFIED"
 
 
+def automatic_queue(root, creds, counts, *, execute):
+    rows = []
+    if any(read_job(root, app_id).get("status") != "PUBLISHED_VERIFIED" for app_id in APPROVED):
+        return [{"status": "PHASE_PENDING", "detail": "Waiting for all reviewed pilots"}]
+    known = upload_map(root / LOG)
+    policy = load_policy(root)
+    pending, fresh = [], []
+    for path in sorted((root / "apps").glob("*.json")):
+        app_id = path.stem
+        if app_id in APPROVED or app_id == initial.PILOT:
+            continue
+        app = to_v1(json.loads(path.read_text("utf-8")))
+        if app.get("status") not in {"Verified", "Legacy", "Archive"}:
+            continue
+        try:
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}", app_id):
+                continue
+            job = read_job(root, app_id)
+            if job.get("status") == "PUBLISHED_VERIFIED":
+                continue
+            if not job and initial.archive_hints(app, known):
+                continue
+            if policy_entry(policy, app_id).get("enabled") is not True:
+                raise Deferred("EXCLUDED", "Existing exclusion policy")
+            automatic_identity(app, app_id, counts)
+            (pending if job else fresh).append((app_id, app, job))
+        except Deferred as e:
+            rows.append({"app_id": app_id, "status": e.status, "detail": e.reason})
+    # Report vanished checkpoint sources rather than losing them silently.
+    for p in (root / STATE_DIR).glob("*.json"):
+        if not (root / "apps" / p.name).is_file():
+            rows.append({"app_id": p.stem, "status": "PENDING_MANUAL", "detail": "Canonical app removed; checkpoint retained"})
+    if not execute:
+        return rows + [{"app_id": a, "status": "RESUME_PREVIEW" if j else "DISCOVERY_REQUIRED"}
+                       for a, _, j in pending + fresh]
+    # Rotate new preflight candidates each UTC hour so unavailable sources do
+    # not permanently monopolize the bounded scan. Existing jobs always first.
+    if fresh:
+        offset = int(time.time() // 3600) % len(fresh)
+        fresh = fresh[offset:] + fresh[:offset]
+    deadline = time.monotonic() + AUTO_SECONDS
+    started, checked, used = 0, 0, 0
+    # Include all noncompleted checkpoints, including those blocked by policy.
+    active = sum(1 for p in (root / STATE_DIR).glob("*.json")
+                 if json.loads(p.read_text("utf-8")).get("status") != "PUBLISHED_VERIFIED")
+    for app_id, app, job in pending + fresh:
+        if (time.monotonic() + 120 >= deadline or checked >= MAX_PREFLIGHT
+                or (not job and (started >= MAX_NEW or active >= MAX_PENDING))):
+            rows.append({"app_id": app_id, "status": "DEFERRED", "detail": "Bounded queue; retry on later run"})
+            continue
+        checked += 1
+        try:
+            spec = auto_spec(root, app, app_id, counts, job)
+            if used + spec["size"] > MAX_VPK_BYTES:
+                rows.append({"app_id": app_id, "status": "DEFERRED", "detail": "Real VPK byte budget"})
+                continue
+            used += spec["size"]
+            status = run_one(root, app_id, spec, creds, counts)
+            detail = ""
+        except Deferred as e:
+            status, detail = e.status, e.reason
+        except Exception:
+            rows.append({"app_id": app_id, "status": "PENDING_MANUAL", "detail": "Unexpected error; automatic queue stopped"})
+            break
+        after = read_job(root, app_id)
+        if not job and after:
+            started += 1
+            if after.get("status") != "PUBLISHED_VERIFIED":
+                active += 1
+        if job and status == "PUBLISHED_VERIFIED":
+            active = max(0, active - 1)
+        row = {"app_id": app_id, "status": status, "detail": detail}
+        rows.append(row)
+        print("Automatic initial preservation: " + json.dumps(row), flush=True)
+        if status in {"CATALOG_PUSH_BLOCKED", "UPLOAD_RESULT_UNCERTAIN", "WAITING_ARCHIVE"}:
+            break
+    return rows
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", type=Path, default=ROOT)
     p.add_argument("--execute", action="store_true")
+    p.add_argument("--automatic", action="store_true", help="Enable bounded selection after all pilot checkpoints publish")
     p.add_argument("--report", type=Path, default=Path("archive-batch-report/new-items-batch.json"))
     args = p.parse_args()
     root = args.root.resolve()
@@ -288,6 +515,8 @@ def main():
         print("Initial preservation: " + json.dumps(row), flush=True)
         if status in {"CATALOG_PUSH_BLOCKED", "UPLOAD_RESULT_UNCERTAIN", "WAITING_ARCHIVE"}:
             break
+    if args.automatic and not any(r["status"] in {"CATALOG_PUSH_BLOCKED", "UPLOAD_RESULT_UNCERTAIN", "WAITING_ARCHIVE"} for r in rows):
+        rows.extend(automatic_queue(root, creds, counts, execute=args.execute))
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps({"rows": rows, "mode": "EXECUTE" if args.execute else "DRY_RUN"}, indent=2) + "\n", "utf-8")
     return 1 if any(r["status"] == "CATALOG_PUSH_BLOCKED" for r in rows) else 0
