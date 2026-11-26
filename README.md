@@ -19,7 +19,7 @@
 
 PS Vita Alive Store helps users discover, download and install content on PlayStation Vita. Infrastructure stays free and server-less: **GitHub**, **GitHub Actions** and **GitHub Pages**.
 
-**Latest stable client: [PSVitaAlive 02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17)** · [Download VPK](https://github.com/VegettoSan/PSVitaAlive/releases/download/02.17/PSVitaAlive.vpk) · Title ID `PSVAS1178`. The in-app updater checks GitHub Releases. [02.17 technical notes](docs/RELEASE_02_17_TECHNICAL_20261028.md).
+**Latest stable client: [GitHub Releases](https://github.com/VegettoSan/PSVitaAlive/releases/latest)** · [Download VPK](https://github.com/VegettoSan/PSVitaAlive/releases/latest/download/PSVitaAlive.vpk) · Title ID `PSVAS1178`. The in-app updater checks GitHub Releases. [02.20 release notes](docs/releases/02.20.md).
 
 ---
 

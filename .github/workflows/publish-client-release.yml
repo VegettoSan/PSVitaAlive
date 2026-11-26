@@ -167,7 +167,7 @@ jobs:
             exit 0
           fi
           # Do not overwrite a newer or unrelated announcement.
-          grep -Fxq 'id: 2026-10-28-0217-final' /tmp/psva-news-current.txt || {
+          grep -Fxq 'id: 2026-11-24-0219-final' /tmp/psva-news-current.txt || {
             echo "::warning::Current news changed; publish the prepared announcement only after review."
             exit 0
           }

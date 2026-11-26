@@ -28,3 +28,7 @@ It downloads the *exact* successful VitaSDK CI `PSVitaAlive.vpk`, validates its 
 The publisher's `NN.NN` format restriction is stricter than the **runtime updater's** existing backward-compatible `tag_name` parser (which accepts certain other dotted numeric formats). The runtime version comparison remains based exclusively on the tag, never the release body.
 
 **Verified publication:** [02.17](https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.17) · [workflow policy](../.github/workflows/README.md). The release artifact passed CI metadata/integrity checks; hardware validation of this exact versioned binary remains a separate step.
+
+## 02.20 release preparation (2026-11-26)
+
+The version bump and matching notes are staged on `release/02.20`. Do not merge until the maintainer approves the physical-device navigation test. On a successful push build of main, the existing publisher will release the exact versioned artifact and then publish the prepared news/Discord notification. The announcement replaces only the expected 02.19 news (or does nothing if already published); unrelated news must be reviewed manually. The release branch and PR builds never authorize publication. Check the actual latest release, uploaded VPK and checksum before announcing availability. No catalog schema or generated JSON changes are required.

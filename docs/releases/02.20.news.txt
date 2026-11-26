@@ -1,0 +1,29 @@
+id: 2026-11-26-0220-final
+title: PSVitaAlive 02.20 - Download Manager
+enabled: true
+
+---
+
+# PSVitaAlive 02.20 is available!
+
+Manage multiple downloads and keep browsing while PSVitaAlive installs your applications.
+
+## Download Manager
+- Queue multiple apps and Install All groups.
+- See icons, current progress, pending jobs and persistent history.
+- Pause, resume or cancel supported operations.
+- Explicit recovery of eligible pending jobs after restarting.
+
+## Interface & Performance
+- Animated queue feedback and reordering.
+- D-pad and left-stick navigation in the download manager.
+- START cycles cards, footer and header.
+- Improved OLED protector with battery and queue information.
+- Background icon decoding and fewer storage probes for smoother browsing during extraction.
+
+## Get Version 02.20
+Open PSVitaAlive with automatic updates enabled, or install the official PSVitaAlive.vpk over your existing app.
+
+https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.20
+
+Thank you for testing and supporting PSVitaAlive!
