@@ -41,7 +41,8 @@
     "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/menu.jpg": "shot_03.jpg"
   },
   "attempted": [
-    "burnout-legends-vita v0.0.3.vpk"
+    "burnout-legends-vita v0.0.3.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:38:55+00:00",
