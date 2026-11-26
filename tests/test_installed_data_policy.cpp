@@ -295,6 +295,9 @@ int main() {
     assert(live.appsTotal.load() == 0);
     // Root counters remain for diagnostics; the deletion UI uses entries.
     InstalledDataOperationProgress operation;
+    assert(operation.currentRootIndex.load() == UINT32_MAX);
+    operation.currentRootIndex.store(2);
+    assert(operation.currentRootIndex.load() == 2);
     operation.phase.store(2);
     operation.entriesTotal.store(2000);
     operation.rootsTotal.store(4);
@@ -314,6 +317,7 @@ int main() {
     assert(operation.entriesTotal.load() == 0);
     assert(operation.rootsTotal.load() == 0);
     assert(operation.rootsCompleted.load() == 0);
+    assert(operation.currentRootIndex.load() == UINT32_MAX);
     assert(operation.filesRemoved.load() == 0);
     assert(operation.foldersRemoved.load() == 0);
     assert(operation.promoterPolls.load() == 0);
