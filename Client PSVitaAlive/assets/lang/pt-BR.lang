@@ -912,3 +912,22 @@ QUEUE_SYSTEM_DEFERRED=Aguardando instalação do sistema
 QUEUE_SYSTEM_RECHECK=Conclua a instalação do sistema antes de restaurar os arquivos
 QUEUE_SYSTEM_CONFIRM=Confirma que a instalação do sistema terminou?
 QUEUE_SYSTEM_NOT_INSTALLED=App instalado não encontrado; conclua a instalação na LiveArea
+
+# Contextual game storage
+ID_GAMES_TITLE=Jogos instalados
+ID_GAMES_SECTION=Jogos instalados
+ID_GAMES_TOTAL=Espaço dos jogos:
+ID_GAMES_LIST_HINT=Selecione um jogo para ver o caminho e o tamanho.
+ID_MEDIA_UNKNOWN_PLATFORM=Plataforma desconhecida
+ID_MEDIA_IDENTIFIED=Identificado
+ID_MEDIA_UNIDENTIFIED=Não identificado
+ID_MEDIA_EXTERNAL=Jogo externo
+ID_GAME_DELETE=Excluir jogo
+ID_MEDIA_DELETE_CONFIRM=O arquivo ou pasta selecionado será excluído permanentemente.
+ID_VITA_DELETE_CONFIRM=O sistema desinstalará o jogo. Faça backup dos saves.
+ID_MEDIA_PREPARE=Preparando exclusão
+ID_MEDIA_DELETING=Excluindo jogo
+ID_GAME_REMOVED=Jogo excluído
+ID_GAME_FAILED=Falha ao excluir o jogo
+ID_VITA_DELETE_NOTE=Desinstalação do sistema
+ID_MEDIA_DELETE_NOTE=Apenas o caminho selecionado
