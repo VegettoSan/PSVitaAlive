@@ -34,6 +34,20 @@ bool exists(const std::string& path, SceIoStat* out=nullptr) {
     if (out) *out = st;
     return true;
 }
+// ENOENT alone does not prove absence when a memory card is disconnected.
+// Use the same Vita error code as zip_extractor.cpp; no recursive traversal.
+bool cacheConfirmedMissing(const std::string& path) {
+    SceIoStat st{};
+    const int rc=sceIoGetstat(path.c_str(),&st);
+    if(static_cast<uint32_t>(rc)!=0x80010002u)return false;
+    const auto colon=path.find(':');
+    if(colon==std::string::npos)return false;
+    const auto mount=path.substr(0,colon+1);
+    const SceUID d=sceIoDopen(mount.c_str());
+    if(d<0)return false;
+    sceIoDclose(d);
+    return true;
+}
 // Each child name is validated independently of the protected root policy.
 // Root directory timestamp is a *hint*. A nested write may not update it.
 // Therefore any cached bytes are explicitly marked historical in the UI.
@@ -418,17 +432,24 @@ InstalledDataSnapshot InstalledDataManager::scan(
                 next.push_back({app.titleId, packageRoot, app.packageRootStamp,
                     app.packageSizeKnown ? app.packageBytes : 0,
                     app.packageSizeKnown});
-            } else if (!selected) {
+            } else {
                 const auto* saved = InstalledDirectoryCache::find(
                     index, app.titleId, packageRoot);
-                if (saved) next.push_back(*saved);
+                if (saved && (!selected || !cacheConfirmedMissing(packageRoot+"/sce_sys/param.sfo")))
+                    next.push_back(*saved);
             }
         }
         for (const auto& path : app.paths) {
             if (!safeExternalDataPath(path.path) ||
                 !validInstalledTitleId(app.titleId)) continue;
             if (selected) {
-                if (!path.exists || !path.complete) continue;
+                if (!path.exists || !path.complete) {
+                    const auto* saved=InstalledDirectoryCache::find(index,app.titleId,path.path);
+                    if(saved && ((!path.exists && !cacheConfirmedMissing(path.path)) ||
+                        (path.exists && path.rootStamp && saved->rootStamp==path.rootStamp)))
+                        next.push_back(*saved);
+                    continue;
+                }
                 next.push_back({app.titleId, path.path, path.rootStamp,
                     path.sizeKnown ? path.bytes : 0, path.sizeKnown});
             } else {
@@ -438,7 +459,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
             }
         }
     }
-    if (!ctx.stopped) InstalledDirectoryCache::save(next);
+    if (!ctx.shouldStop()) InstalledDirectoryCache::save(next);
     if (ctx.stopped) result.complete = false;
     if (progress) {
         progress->truncated.store(!result.complete, std::memory_order_relaxed);
@@ -567,7 +588,9 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
     if(mode==1) {
         // Only exact catalog matches are authorized as Vita games. Do not
         // classify unrelated Homebrew/system applications by folder alone.
-        std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache,DirectoryCacheScope::Vita);
+        std::vector<CachedDirectory> cache,next;
+        InstalledDirectoryCache::load(cache,DirectoryCacheScope::Vita);
+        std::unordered_set<std::string> verifiedParents,uncertainPaths;
         const SceUID d=sceIoDopen("ux0:app");
         if(d<0)out.complete=false;
         else {
@@ -577,6 +600,8 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 const auto* match=lookup(id);
                 if(!validInstalledTitleId(id)||id==CLIENT_TID)continue;
                 const auto path="ux0:app/"+id;
+                // Seeing a child is not proof that all its metadata is readable.
+                uncertainPaths.insert(path);
                 SceIoStat st{},sfoStat{};
                 if(!exists(path,&st)||!directory(st)||!exists(path+"/sce_sys/param.sfo",&sfoStat)||!regular(sfoStat))continue;
                 const auto local=localSfo(path+"/sce_sys/param.sfo",sfoStat);
@@ -589,36 +614,65 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 row.titleId=id;row.packagePresent=true;row.packageRootStamp=rootFingerprint(st);
                 row.mediaPayloadStamp=mediaFingerprint(sfoStat);
                 const auto* saved=InstalledDirectoryCache::find(cache,id,path);
-                if(saved&&saved->sizeKnown&&row.packageRootStamp&&saved->rootStamp==row.packageRootStamp) {
-                    row.packageBytes=saved->bytes;row.packageSizeKnown=true;row.packageSizeCached=true;
+                if(row.packageRootStamp) {
+                    uncertainPaths.erase(path);
+                    if(saved&&saved->rootStamp==row.packageRootStamp) {
+                        next.push_back(*saved);
+                        if(saved->sizeKnown) {
+                            row.packageBytes=saved->bytes;row.packageSizeKnown=true;row.packageSizeCached=true;
+                        }
+                    }
                 }
                 out.apps.push_back(std::move(row));
                 if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
             }
-            if(rc<0||ctx.stopped)out.complete=false;
+            if(rc<0||ctx.shouldStop())out.complete=false;
+            else verifiedParents.insert("ux0:app");
             sceIoDclose(d);
+        }
+        if(!ctx.shouldStop()&&!verifiedParents.empty()) {
+            reconcileCacheObservations(cache,next,verifiedParents,uncertainPaths);
+            InstalledDirectoryCache::save(next,DirectoryCacheScope::Vita);
         }
     } else if(mode==2||mode==3) {
         std::vector<CachedMedia> cache,next;
         InstalledDirectoryCache::loadMedia(cache);
         std::unordered_map<std::string,size_t> cached;
-        for(size_t i=0;i<cache.size();++i)cached.emplace(cache[i].path,i);
+        std::unordered_set<std::string> verifiedParents,uncertainPaths,cachedParents;
+        for(size_t i=0;i<cache.size();++i) {
+            cached.emplace(cache[i].path,i);
+            cachedParents.insert(cache[i].path.substr(0,cache[i].path.find_last_of('/')));
+        }
+        size_t discovered=0;
         next.reserve(cache.size());
         for(const char* mount:{"ux0:","uma0:"})for(const char* section:{"ISO/","PSP/GAME/"}) {
             if(ctx.shouldStop())break;
             const std::string base=std::string(mount)+"pspemu/"+section;
             const SceUID d=sceIoDopen(base.c_str());
-            if(d<0){if(exists(base))out.complete=false;continue;}
+            const auto parent=base.substr(0,base.size()-1);
+            if(d<0) {
+                // Optional absent roots with no old records need no extra I/O.
+                // Only prune an old root if the mount is accessible and ENOENT
+                // is confirmed; otherwise keep its index rows off-screen.
+                if(cachedParents.count(parent)) {
+                    if(cacheConfirmedMissing(parent))verifiedParents.insert(parent);
+                    else out.complete=false;
+                } else if(exists(base))out.complete=false;
+                continue;
+            }
             SceIoDirent e{};int rc=0;
             while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
                 const std::string name=e.d_name;
                 if(!validInstalledChildName(name))continue;
                 const std::string path=base+name;
+                if(cached.count(path))uncertainPaths.insert(path);
                 SceIoStat st{};
                 if(!exists(path,&st)||(!regular(st)&&!directory(st))||!safeGameMediaPath(path,directory(st)))continue;
                 SceIoStat payload=st;
                 const std::string file=directory(st)?gamePbp(path,payload):path;
                 if(file.empty())continue; // not a verified game-shaped folder
+                // Bound all physical candidates, before filtering by platform.
+                if(++discovered>4096){ctx.stopped=true;break;}
                 const auto stamp=mediaFingerprint(st),payloadStamp=mediaFingerprint(payload);
                 const auto hit=cached.find(path);
                 const CachedMedia* old=hit==cached.end()?nullptr:&cache[hit->second];
@@ -638,6 +692,7 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                     record.title=m.title;record.id=m.id;record.contentId=m.contentId;record.validPbp=m.validPbp;
                     if(record.directory && reused && old->sizeKnown){record.sizeKnown=true;record.bytes=old->bytes;}
                     next.push_back(std::move(record));
+                    uncertainPaths.erase(path);
                 }
                 if((mode==2 && m.platform==media::Platform::PS1)||(mode==3&&m.platform==media::Platform::PSP))continue;
                 // ISO/CSO are normally PSP; an unreadable image stays unknown.
@@ -671,11 +726,16 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
                 if(out.apps.size()>=4096){ctx.stopped=true;break;}
             }
-            if(rc<0||ctx.stopped)out.complete=false;
+            if(rc<0||ctx.shouldStop())out.complete=false;
+            else verifiedParents.insert(parent);
             sceIoDclose(d);
         }
-        // Partial scan must not discard records from unvisited roots.
-        if(out.complete && !ctx.stopped)InstalledDirectoryCache::saveMedia(next);
+        // Preserve unvisited or inaccessible roots, and unreadable children.
+        // A cancelled/budget-limited scan never replaces the disk index.
+        if(!ctx.shouldStop()&&!verifiedParents.empty()) {
+            reconcileCacheObservations(cache,next,verifiedParents,uncertainPaths);
+            InstalledDirectoryCache::saveMedia(next);
+        }
     }
     out.totalExternalBytes=knownExternalBytes(out);
     out.totalPackageBytes=knownPackageBytes(out);
