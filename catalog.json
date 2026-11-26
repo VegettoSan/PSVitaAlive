@@ -1,5 +1,57 @@
 [
   {
+    "id": "opennow-vita",
+    "tid": "OPENNOWV0",
+    "n": "OpenNow Vita",
+    "d": "Nvidia GeForce Now client for PSVita.",
+    "ld": "A native homebrew GeForce NOW client for the PlayStation Vita.",
+    "aids": [
+      "josephinoo"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "0.3.5",
+    "vd": "2026-11-26",
+    "req": "Not specified",
+    "sz": 9459807,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-opennow-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-opennow-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-opennow-vita/shot_02.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/download/v0.3.5/opennow-vita.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1977",
+    "su": "https://github.com/OpenCloudGaming/OpenNOW-vita",
+    "rp": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
+    "ua": "2026-08-13T15:34:48.324387+00:00"
+  },
+  {
     "id": "vitaforge",
     "tid": "VITAFORGE",
     "n": "VitaForge",
@@ -6487,58 +6539,6 @@
     "ss": [
       "https://archive.org/download/subway-surfers-ps-vita/shot0.png"
     ]
-  },
-  {
-    "id": "opennow-vita",
-    "tid": "OPENNOWV0",
-    "n": "OpenNow Vita",
-    "d": "Nvidia GeForce Now client for PSVita.",
-    "ld": "A native homebrew GeForce NOW client for the PlayStation Vita.",
-    "aids": [
-      "josephinoo"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "0.3.3",
-    "vd": "2026-10-27",
-    "req": "Not specified",
-    "sz": 9439097,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-opennow-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-opennow-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-opennow-vita/shot_02.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-opennow-vita/opennow-vita%20v0.3.3.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1977",
-    "su": "https://github.com/OpenCloudGaming/OpenNOW-vita",
-    "rp": "https://github.com/OpenCloudGaming/OpenNOW-vita/releases/tag/v0.3.1",
-    "ua": "2026-08-13T15:34:48.324387+00:00"
   },
   {
     "id": "biohazard4-vita",
