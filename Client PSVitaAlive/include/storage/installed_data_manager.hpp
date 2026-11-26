@@ -43,7 +43,7 @@ struct InstalledDataApp {
     bool mediaIdentified = false;
     uint8_t mediaPlatform = 0; // 0 unknown, 1 PSP, 2 PS1
     std::string mediaId, mediaFormat, alternateIds;
-    uint64_t mediaStamp = 0, mediaFileBytes = 0;
+    uint64_t mediaStamp = 0, mediaFileBytes = 0, mediaPayloadStamp = 0;
 };
 
 struct GameCatalogIdentity {
