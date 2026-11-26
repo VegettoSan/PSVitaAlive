@@ -1,5 +1,6 @@
 #include "storage/installed_data_manager.hpp"
 #include "storage/installed_data_policy.hpp"
+#include "storage/game_media_metadata.hpp"
 #include "storage/installed_directory_cache.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/appmgr.h>
@@ -56,6 +57,7 @@ struct ScanContext {
     uint64_t startUs = 0;
     uint64_t budgetUs = 0;
     bool stopped = false;
+    bool gameMedia = false;
     bool shouldStop() {
         if (stopped) return true;
         if (progress && progress->cancelRequested.load(std::memory_order_relaxed))
@@ -80,11 +82,14 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     // eraseTree() remains strictly limited to safe ux0:data/ locations.
     // Validate only the root; validating every descendant hurts large ZIPs.
     const bool safeRoot = depth != 0 || safeExternalDataPath(p) ||
+        (ctx.gameMedia && safeGameMediaPath(p,(st.st_mode & SCE_S_IFMT)==SCE_S_IFDIR)) ||
         (p.compare(0, 8, "ux0:app/") == 0 &&
          validInstalledTitleId(p.substr(8)));
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
         !safeRoot ||
         ctx.shouldStop()) return false;
+    if(ctx.gameMedia && (st.st_mode & SCE_S_IFMT)!=SCE_S_IFDIR &&
+       (st.st_mode & SCE_S_IFMT)!=SCE_S_IFREG)return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         ctx.fileSeen();
         if (st.st_size > 0) bytes = sum(bytes, static_cast<uint64_t>(st.st_size));
@@ -107,6 +112,7 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
         // This fast path eliminates path allocations and syscalls for files.
         if (entry.d_stat.st_mode != 0 &&
             !(entry.d_stat.st_mode & SCE_S_IFDIR)) {
+            if(ctx.gameMedia && (entry.d_stat.st_mode & SCE_S_IFMT)!=SCE_S_IFREG){complete=false;break;}
             ++entries;
             ctx.fileSeen();
             if (entry.d_stat.st_size > 0)
@@ -129,11 +135,13 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     return complete;
 }
 bool eraseTree(const std::string& path, unsigned depth,
-               uint32_t& count, InstalledDataOperationProgress* progress) {
-    if ((depth == 0 && !safeExternalDataPath(path)) ||
+               uint32_t& count, InstalledDataOperationProgress* progress,bool gameMedia=false) {
+    if ((depth == 0 && !safeExternalDataPath(path) && !gameMedia) ||
         depth > MAX_DEPTH || ++count > MAX_ENTRIES) return false;
     SceIoStat st{};
-    if (!exists(path, &st)) return true;
+    if (!exists(path, &st)) return !gameMedia;
+    if(gameMedia && ((st.st_mode & SCE_S_IFMT)!=SCE_S_IFDIR && (st.st_mode & SCE_S_IFMT)!=SCE_S_IFREG))return false;
+    if(gameMedia && depth==0 && !safeGameMediaPath(path,(st.st_mode & SCE_S_IFMT)==SCE_S_IFDIR))return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         const bool ok = sceIoRemove(path.c_str()) >= 0;
         if (ok && progress)
@@ -153,7 +161,7 @@ bool eraseTree(const std::string& path, unsigned depth,
                 std::strcmp(e.d_name, "..") == 0) continue;
             if (!validInstalledChildName(e.d_name)) { ok = false; break; }
             found = true;
-            if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress)) {
+            if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress,gameMedia)) {
                 ok = false; break;
             }
         }
@@ -445,7 +453,7 @@ uint64_t InstalledDataManager::knownExternalBytes(
     for (const auto& app : snapshot.apps)
         for (const auto& path : app.paths)
             if (path.exists && path.sizeKnown &&
-                safeExternalDataPath(path.path))
+                (safeExternalDataPath(path.path) || (app.mediaRow && safeGameMediaPath(path.path,app.mediaDirectory))))
                 paths.push_back(&path);
     // Count parents before children, and count a shared root only once.
     std::sort(paths.begin(), paths.end(),
@@ -481,6 +489,190 @@ uint64_t InstalledDataManager::knownPackageBytes(
         total = sum(total, app.packageBytes);
     }
     return total;
+}
+
+namespace {
+bool regular(const SceIoStat& s) {return (s.st_mode & SCE_S_IFMT)==SCE_S_IFREG;}
+bool directory(const SceIoStat& s) {return (s.st_mode & SCE_S_IFMT)==SCE_S_IFDIR;}
+uint64_t mediaFingerprint(const SceIoStat& s) {
+    const uint64_t stamp=rootFingerprint(s);
+    return stamp?stamp ^ (static_cast<uint64_t>(s.st_size)*1099511628211ULL):0;
+}
+media::Metadata probeMedia(const std::string& path,const SceIoStat& st) {
+    if(!regular(st)||st.st_size<=0)return {};
+    const SceUID fd=sceIoOpen(path.c_str(),SCE_O_RDONLY,0);
+    if(fd<0)return {};
+    media::Read read=[&](uint64_t offset,void* data,size_t n) {
+        return sceIoLseek(fd,static_cast<SceOff>(offset),SCE_SEEK_SET)==static_cast<SceOff>(offset) &&
+            sceIoRead(fd,data,static_cast<SceSize>(n))==static_cast<int>(n);
+    };
+    const auto result=media::probe(read,static_cast<uint64_t>(st.st_size));
+    sceIoClose(fd);return result;
+}
+std::string gamePbp(const std::string& path,SceIoStat& st) {
+    const std::string upper=path+"/EBOOT.PBP",lower=path+"/eboot.pbp";
+    if(exists(upper,&st)&&regular(st))return upper;
+    if(exists(lower,&st)&&regular(st))return lower;
+    return {};
+}
+std::string filenameId(std::string name) {
+    const auto dot=name.find_last_of('.');if(dot!=std::string::npos)name.resize(dot);
+    auto id=media::idOf(name);
+    if(id.empty()&&name.size()>=11&&name.back()==']'&&name[name.size()-11]=='[')
+        id=media::idOf(name.substr(name.size()-10,9));
+    return id;
+}
+}
+InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<InstalledDataApp>& catalog,
+        unsigned mode,InstalledDataScanProgress* progress,uint64_t budgetUs) {
+    InstalledDataSnapshot out;
+    ScanContext ctx;ctx.progress=progress;ctx.startUs=sceKernelGetProcessTimeWide();ctx.budgetUs=budgetUs;
+    if(progress)progress->phase.store(1,std::memory_order_release);
+    // Build one lookup map; ambiguous aliases cannot identify any row.
+    std::unordered_map<std::string,const InstalledDataApp*> byId;
+    auto add=[&](const std::string& raw,const InstalledDataApp& app) {
+        const auto id=media::idOf(raw);if(id.empty())return;
+        auto inserted=byId.emplace(id,&app);
+        if(!inserted.second && inserted.first->second!=&app)inserted.first->second=nullptr;
+    };
+    for(const auto& app:catalog) {
+        add(app.titleId,app);
+        size_t at=0;
+        while(at<app.alternateIds.size()){
+            const auto end=app.alternateIds.find('|',at);
+            add(app.alternateIds.substr(at,end==std::string::npos?end:end-at),app);
+            if(end==std::string::npos)break;
+            at=end+1;
+        }
+    }
+    auto lookup=[&](const std::string& id)->const InstalledDataApp* {
+        const auto it=byId.find(id);return it==byId.end()?nullptr:it->second;
+    };
+    if(mode==1) {
+        // Only exact catalog matches are authorized as Vita games. Do not
+        // classify unrelated Homebrew/system applications by folder alone.
+        std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache);
+        const SceUID d=sceIoDopen("ux0:app");
+        if(d<0)out.complete=false;
+        else {
+            SceIoDirent e{};int rc=0;
+            while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
+                const std::string id=e.d_name;
+                const auto* match=lookup(id);
+                if(!match||!validInstalledTitleId(id)||id==CLIENT_TID)continue;
+                const auto path="ux0:app/"+id;
+                SceIoStat st{},sfoStat{};
+                if(!exists(path,&st)||!directory(st)||!exists(path+"/sce_sys/param.sfo",&sfoStat)||!regular(sfoStat))continue;
+                InstalledDataApp row=*match;row.titleId=id;row.packagePresent=true;row.packageRootStamp=rootFingerprint(st);
+                const auto* saved=InstalledDirectoryCache::find(cache,id,path);
+                if(saved&&saved->sizeKnown&&row.packageRootStamp&&saved->rootStamp==row.packageRootStamp) {
+                    row.packageBytes=saved->bytes;row.packageSizeKnown=true;row.packageSizeCached=true;
+                }
+                out.apps.push_back(std::move(row));
+                if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
+            }
+            if(rc<0)sceKernelDelayThread(1000);
+            if(rc<0||ctx.stopped)out.complete=false;
+            sceIoDclose(d);
+        }
+    } else if(mode==2||mode==3) {
+        for(const char* mount:{"ux0:","uma0:"})for(const char* section:{"ISO/","PSP/GAME/"}) {
+            if(ctx.shouldStop())break;
+            const std::string base=std::string(mount)+"pspemu/"+section;
+            const SceUID d=sceIoDopen(base.c_str());if(d<0)continue;
+            SceIoDirent e{};int rc=0;
+            while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
+                const std::string name=e.d_name;
+                if(!validInstalledChildName(name))continue;
+                const std::string path=base+name;
+                SceIoStat st{};
+                if(!exists(path,&st)||(!regular(st)&&!directory(st))||!safeGameMediaPath(path,directory(st)))continue;
+                SceIoStat payload=st;
+                const std::string file=directory(st)?gamePbp(path,payload):path;
+                if(file.empty())continue; // not a verified game-shaped folder
+                const auto m=probeMedia(file,payload);
+                if((mode==2 && m.platform==media::Platform::PS1)||(mode==3&&m.platform==media::Platform::PSP))continue;
+                // ISO/CSO are normally PSP; an unreadable image stays unknown.
+                const auto* primary=lookup(m.contentId.empty()?m.id:m.contentId);
+                const auto* secondary=lookup(m.id);
+                const auto* match=primary?primary:secondary;
+                if(primary&&secondary&&primary!=secondary)match=nullptr;
+                // Filename is only a hint when no reliable internal identity exists.
+                const auto hint=filenameId(name);
+                if(!match && m.id.empty()&&m.contentId.empty()&&m.platform!=media::Platform::Unknown)match=lookup(hint);
+                InstalledDataApp row;
+                row.titleId=path;row.mediaRow=true;row.mediaDirectory=directory(st);
+                row.mediaPlatform=static_cast<uint8_t>(m.platform);
+                row.mediaId=!m.contentId.empty()?m.contentId:m.id;
+                row.mediaIdentified=match!=nullptr;
+                row.name=match?match->name:(!m.title.empty()?m.title:name);
+                if(match){row.appId=match->appId;row.icon=match->icon;}
+                row.mediaStamp=mediaFingerprint(st);row.mediaFileBytes=static_cast<uint64_t>(st.st_size);
+                row.mediaFormat=row.mediaDirectory?"PBP / Folder":(std::string(section)=="ISO/"?(name.size()>=4&&
+                    (name[name.size()-3]=='c'||name[name.size()-3]=='C')?"CSO":"ISO"):"PBP");
+                InstalledDataPath entry;entry.path=path;entry.exists=true;entry.rootStamp=row.mediaStamp;
+                entry.sizeKnown=!row.mediaDirectory;entry.bytes=entry.sizeKnown?row.mediaFileBytes:0;
+                row.bytes=entry.bytes;row.paths.push_back(std::move(entry));
+                // Allow removing a single unrecognized ISO/PBP file, but never a
+                // directory without a structurally identified PSP/PS1 payload.
+                row.blocked=!row.mediaStamp || (row.mediaDirectory && m.platform==media::Platform::Unknown);
+                out.apps.push_back(std::move(row));
+                if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
+                if(out.apps.size()>=4096){ctx.stopped=true;break;}
+            }
+            if(rc<0||ctx.stopped)out.complete=false;
+            sceIoDclose(d);
+        }
+    }
+    out.totalExternalBytes=knownExternalBytes(out);
+    out.totalPackageBytes=knownPackageBytes(out);
+    for(const auto& app:out.apps)if(!installedDataListSizeKnown(app))out.totalSizeKnown=false;
+    if(ctx.stopped){out.complete=false;out.totalSizeKnown=false;}
+    if(progress) {
+        progress->appsTotal.store(static_cast<uint32_t>(out.apps.size()),std::memory_order_relaxed);
+        progress->appsCompleted.store(static_cast<uint32_t>(out.apps.size()),std::memory_order_relaxed);
+        progress->truncated.store(!out.complete,std::memory_order_relaxed);
+        progress->phase.store(3,std::memory_order_release);
+    }
+    return out;
+}
+InstalledDataApp InstalledDataManager::measureGame(InstalledDataApp app,InstalledDataScanProgress* progress,uint64_t budgetUs) {
+    ScanContext ctx;ctx.progress=progress;ctx.startUs=sceKernelGetProcessTimeWide();ctx.budgetUs=budgetUs;ctx.gameMedia=app.mediaRow;
+    if(progress){progress->appsTotal.store(1);progress->phase.store(2);}
+    if(app.mediaRow && app.paths.size()==1) {
+        auto& path=app.paths[0];SceIoStat st{};uint32_t count=0;uint64_t bytes=0;
+        path.exists=exists(path.path,&st);
+        path.sizeKnown=path.exists&&mediaFingerprint(st)==app.mediaStamp&&scanTree(path.path,st,0,count,bytes,ctx);
+        path.bytes=path.sizeKnown?bytes:0;path.sizeCached=false;app.bytes=path.bytes;
+        if(!path.sizeKnown)path.complete=false;
+    } else if(app.packagePresent && validInstalledTitleId(app.titleId)) {
+        const std::string path="ux0:app/"+app.titleId;SceIoStat st{};uint32_t count=0;uint64_t bytes=0;
+        app.packageSizeKnown=exists(path,&st)&&directory(st)&&scanTree(path,st,0,count,bytes,ctx);
+        app.packageBytes=app.packageSizeKnown?bytes:0;app.packageSizeCached=false;
+    }
+    if(progress){progress->appsCompleted.store(1);progress->phase.store(3);}
+    return app;
+}
+bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,InstalledDataOperationProgress* progress) {
+    if(progress)progress->phase.store(5,std::memory_order_release);
+    if(!installedDataCanOfferExternalDelete(app)||!app.mediaRow)return false;
+    const auto& path=app.paths[0].path;
+    auto revalidate=[&](SceIoStat& st) {
+        if(!exists(path,&st)||mediaFingerprint(st)!=app.mediaStamp||
+           directory(st)!=app.mediaDirectory||(!directory(st)&&!regular(st)))return false;
+        if(app.mediaDirectory){SceIoStat payload{};const auto file=gamePbp(path,payload);
+            if(file.empty()||probeMedia(file,payload).platform==media::Platform::Unknown)return false;}
+        return true;
+    };
+    SceIoStat st{};if(!revalidate(st))return false;
+    ScanContext ctx;ctx.gameMedia=true;uint32_t count=0;uint64_t bytes=0;
+    if(progress)progress->currentRootIndex.store(0);
+    if(!scanTree(path,st,0,count,bytes,ctx)||!count||!revalidate(st))return false;
+    if(progress){progress->entriesTotal.store(count);progress->rootsTotal.store(1);progress->phase.store(2,std::memory_order_release);}
+    uint32_t removed=0;
+    const bool ok=eraseTree(path,0,removed,progress,true)&&!exists(path);
+    if(progress){if(ok)progress->rootsCompleted.store(1);progress->currentRootIndex.store(UINT32_MAX);progress->phase.store(3);}
+    return ok;
 }
 
 void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
