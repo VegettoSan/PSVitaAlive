@@ -22,7 +22,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.02/supertuxkart.vpk",
+      "u": "https://archive.org/download/psvitaalive-supertuxkart-vita/supertuxkart-vita%20v1.02.vpk",
       "rec": true
     },
     {
@@ -41,13 +41,13 @@
       "u": "https://github.com/edgarlugo/stk-code/tree/vita-port"
     }
   ],
-  "ic": "https://raw.githubusercontent.com/edgarlugo/stk-code/vita-port/sce_sys/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-supertuxkart-vita/icon0.png",
   "ss": [
-    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png",
-    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-2.png",
-    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-3.png",
-    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-4.png",
-    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-5.png"
+    "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_02.png",
+    "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_03.png",
+    "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_04.png",
+    "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_05.png"
   ],
   "sn": "GitHub",
   "su": "https://github.com/edgarlugo/stk-code",

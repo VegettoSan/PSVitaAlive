@@ -62,6 +62,7 @@
     "shot_05.png",
     "SOURCES.txt"
   ],
-  "status": "CREATING",
-  "created_at": "2026-11-26T23:24:35+00:00"
+  "status": "PUBLISHED_VERIFIED",
+  "created_at": "2026-11-26T23:24:35+00:00",
+  "completed_at": "2026-11-26T23:38:28+00:00"
 }
