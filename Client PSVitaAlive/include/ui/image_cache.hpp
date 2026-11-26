@@ -40,6 +40,12 @@ public:
     // visible on screen. Used at startup to warm the complete catalog cache.
     void preload(const std::vector<std::string>& urls, const std::string& namespaceName);
 
+    // Queue-mode handoff: bounded CPU pixels, never a GPU object.
+    struct DecodedIcon {
+        unsigned width=0,height=0;
+        std::vector<unsigned char> rgba;
+    };
+    bool takeDecodedIcon(const std::string& localPath, DecodedIcon& out);
     bool isReady(const std::string& localPath) const;
     bool isFailed(const std::string& localPath) const;
     bool isPending(const std::string& localPath) const;
@@ -88,6 +94,12 @@ private:
     bool allowCachedIcons_ = false; // protected by mutex_
     bool workerBusy_ = false; // protected by mutex_; covers entire active job
     std::vector<Job> queue_;
+    // One published result and one worker-local image (each <= 64 KiB).
+    // All request/result metadata is protected by mutex_.
+    std::vector<std::string> decodeWanted_;
+    std::string decodedPath_;
+    DecodedIcon decodedIcon_;
+    bool serviceDecodedIcon();
     std::vector<std::string> pending_;
     std::vector<std::string> ready_;
     std::vector<std::string> failed_;

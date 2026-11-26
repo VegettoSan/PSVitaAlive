@@ -4170,7 +4170,7 @@ bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) {
 }
 
 void FullCatalogScreen::advanceInstallFilterScan() {
-    if (queueStorageContended() || !isInstallStateFilter() || catalogLoading_ || installProgressActive_ ||
+    if (queueProtected_ || !isInstallStateFilter() || catalogLoading_ || installProgressActive_ ||
         state_.mode == UiMode::SETTINGS || installFilterScanNext_ >= allItems_.size())
         return;
     const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
@@ -4528,7 +4528,7 @@ const std::vector<FullCatalogScreen::SavedZipOption>&
 FullCatalogScreen::savedZipsFor(const CatalogItem& item) {
     if(queuedJobFor(item)) { static const std::vector<SavedZipOption> empty; return empty; }
     const std::string key = item.id + "|" + item.titleId;
-    if(queueStorageContended()) {
+    if(queueStorageContended() || (queueProtected_ && queuePassiveRead_)) {
         static const std::vector<SavedZipOption> empty;
         return key==savedZipProbeKey_?savedZipProbeResult_:empty;
     }
@@ -8071,7 +8071,32 @@ bool FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
         if(ns=="shot")return false;
         const auto now=sceKernelGetProcessTimeWide();
         if(now<queueImageDecodeAfterUs_)return false;
-        queueImageDecodeAfterUs_=now+350000ULL;
+    }
+    // In a protected queue session, never read or decode a PNG on the UI
+    // thread. The existing cache worker publishes one bounded RGBA image.
+    if(queueProtected_ && ns=="app") {
+        ImageCache::DecodedIcon pixels;
+        if(!imageCache_->takeDecodedIcon(path,pixels))return false;
+        queueImageDecodeAfterUs_=sceKernelGetProcessTimeWide()+350000ULL;
+        if(!pixels.width || !pixels.height ||
+           pixels.rgba.size()!=static_cast<size_t>(pixels.width)*pixels.height*4) {
+            failedTextureLoads.insert(path);return true;
+        }
+        static uint64_t lastUploadLog=0;
+        QueueUiSpan perf("icon_upload",lastUploadLog);
+        auto* texture=vita2d_create_empty_texture(pixels.width,pixels.height);
+        if(!texture){failedTextureLoads.insert(path);return true;}
+        auto* dst=static_cast<unsigned char*>(vita2d_texture_get_datap(texture));
+        const size_t stride=vita2d_texture_get_stride(texture);
+        const size_t rowBytes=static_cast<size_t>(pixels.width)*4;
+        if(!dst || stride<rowBytes) {
+            vita2d_free_texture(texture);failedTextureLoads.insert(path);return true;
+        }
+        for(unsigned y=0;y<pixels.height;++y)
+            std::memcpy(dst+y*stride,pixels.rgba.data()+y*rowBytes,rowBytes);
+        evictTextureIfNeeded(ns);
+        textures_[path]=texture;textureOrder_.push_back(path);
+        return true;
     }
     // Only completed, validated cache files are published as ready.
     // Count a decode attempt even if it fails or replaces an LRU texture.
@@ -8877,7 +8902,7 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
     if (catalogLoading_ || nowMs < installStatusWarmupUntilMs_) {
         return unknown;
     }
-    if(queuePassiveRead_ && queueStorageContended()) {
+    if(queuePassiveRead_ && queueProtected_) {
         if(state_.catalog==CatalogType::Homebrew) {
             const auto cached=installProbeCache().find(key);
             return cached!=installProbeCache().end() && cached->second.valid?cached->second.info:unknown;
@@ -9133,7 +9158,7 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
 bool FullCatalogScreen::detailNeedsGameFilesNotice(const CatalogItem& item, bool installed) {
     if (state_.catalog != CatalogType::Homebrew || item.id.empty() ||
         catalogLoading_ || installProgressActive_) return false;
-    if(queuePassiveRead_ && queueStorageContended())
+    if(queuePassiveRead_ && queueProtected_)
         return detailGameFilesCheckMs_!=0 && detailGameFilesProbeId_==item.id && detailGameFilesAppInstalled_==installed && detailGameFilesMissing_;
     const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
     // Selected detail only, with bounded Getstat probes every four seconds.
