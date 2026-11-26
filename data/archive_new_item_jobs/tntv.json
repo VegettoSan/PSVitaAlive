@@ -24,7 +24,8 @@
   },
   "attempted": [
     "tntv v1.05.vpk",
-    "icon0.png"
+    "icon0.png",
+    "SOURCES.txt"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:15:54+00:00"
