@@ -689,6 +689,10 @@ private:
     std::atomic<bool> storageWorkerOk_{false};
     SceUID storageWorker_ = -1;
     ::psvitaalive::storage::UsageSnapshot storageSnapshot_;
+    unsigned storageGameMode_=0,installedDataGameMode_=0;
+    ::psvitaalive::storage::InstalledDataSnapshot storageGamesSnapshot_;
+    std::vector<::psvitaalive::storage::GameCatalogIdentity> gameStorageCandidates_;
+    void closeStorageMenu();
     void openStorageMenu();
     void startStorageOperation(int action);
     void pollStorageOperation();
