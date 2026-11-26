@@ -14,6 +14,7 @@ enum class Platform { Unknown, PSP, PS1 };
 struct Metadata {
     Platform platform=Platform::Unknown;
     std::string title,id,contentId;
+    bool validPbp=false;
 };
 using Read=std::function<bool(uint64_t,void*,size_t)>;
 inline uint16_t le16(const unsigned char* p) {return uint16_t(p[0]) | uint16_t(p[1])<<8;}
@@ -78,6 +79,7 @@ inline Metadata pbp(Reader& r) {
         std::vector<unsigned char> buf(static_cast<size_t>(len));
         if(r.get(offsets[0],buf.data(),buf.size())) {
             auto meta=sfo(buf);out.title=meta.title;out.id=meta.id;
+            out.validPbp=!meta.title.empty() || !meta.id.empty() || !meta.category.empty();
         }
     }
     std::array<unsigned char,8> sig{};
@@ -85,6 +87,7 @@ inline Metadata pbp(Reader& r) {
         if(!std::memcmp(sig.data(),"PSISOIMG",8)||!std::memcmp(sig.data(),"PSTITLEI",8))out.platform=Platform::PS1;
         else if(!std::memcmp(sig.data(),"NPUMDIMG",8))out.platform=Platform::PSP;
     }
+    if(out.platform!=Platform::Unknown)out.validPbp=true;
     if(out.platform==Platform::PS1) {
         const size_t n=static_cast<size_t>(std::min<uint64_t>(2048,offsets[7]-offsets[6]));
         std::vector<unsigned char> buf(n);
