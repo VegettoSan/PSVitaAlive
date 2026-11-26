@@ -895,6 +895,7 @@ QUEUE_TITLE=Менеджер загрузок
 QUEUE_UNKNOWN_SPACE=Не удалось подтвердить свободное место для очереди.
 QUEUE_UNSUPPORTED=Для этой установки нужен отдельный режим. Сначала завершите очередь.
 QUEUE_VIEW=Просмотр загрузок
+QUEUE_VIEW_DETAILS=Подробнее
 QUEUE_WAITING=В очереди
 QUEUE_HISTORY=История загрузок
 QUEUE_HISTORY_EMPTY=История загрузок пока пуста
