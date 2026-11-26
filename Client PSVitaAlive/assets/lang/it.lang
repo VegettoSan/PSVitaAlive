@@ -895,6 +895,7 @@ QUEUE_TITLE=Gestore download
 QUEUE_UNKNOWN_SPACE=Impossibile confermare lo spazio disponibile per la coda.
 QUEUE_UNSUPPORTED=Questa installazione richiede la modalità singola. Completa prima la coda.
 QUEUE_VIEW=Vedi download
+QUEUE_VIEW_DETAILS=Vedi dettagli
 QUEUE_WAITING=In coda
 QUEUE_HISTORY=Cronologia download
 QUEUE_HISTORY_EMPTY=Nessun download nella cronologia
