@@ -95,6 +95,8 @@ struct InstalledDataOperationProgress {
     std::atomic<uint64_t> entriesTotal{0}; // files + folders to remove
     std::atomic<uint32_t> rootsTotal{0};
     std::atomic<uint32_t> rootsCompleted{0};
+    // Index into the target's immutable pre-operation paths; no worker-owned string crosses threads.
+    std::atomic<uint32_t> currentRootIndex{UINT32_MAX};
     std::atomic<uint32_t> filesRemoved{0};
     std::atomic<uint32_t> foldersRemoved{0};
     std::atomic<uint32_t> promoterPolls{0};
@@ -103,6 +105,7 @@ struct InstalledDataOperationProgress {
         entriesTotal.store(0, std::memory_order_relaxed);
         rootsTotal.store(0, std::memory_order_relaxed);
         rootsCompleted.store(0, std::memory_order_relaxed);
+        currentRootIndex.store(UINT32_MAX, std::memory_order_relaxed);
         filesRemoved.store(0, std::memory_order_relaxed);
         foldersRemoved.store(0, std::memory_order_relaxed);
         promoterPolls.store(0, std::memory_order_relaxed);
