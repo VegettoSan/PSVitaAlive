@@ -1,5 +1,7 @@
 # PSVitaAlive — Decision record: replace the native Sony IME with an embedded keyboard
 
+> **2026-11-26 update:** the [controller input policy](CONTROLLER_INPUT_POLICY_20261126.md) supersedes physical hold-to-delete: Square or X on DEL acts once per press; touch DEL and directional navigation retain their original repeat behavior. Earlier behavior described below is historical.
+
 **Date:** 20 October 2026 (local development/testing); commits may be dated 21 October in UTC  
 **Status:** **Implemented in `main`; tested and accepted on a physical PS Vita for catalog search**  
 **Scope:** PSVitaAlive native client input UI only — Homebrew/commercial catalog JSON schemas, website, update pipeline, download/install worker and VitaSDK renderer are unchanged.  
