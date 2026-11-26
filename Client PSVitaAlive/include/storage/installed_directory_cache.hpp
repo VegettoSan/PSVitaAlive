@@ -16,14 +16,28 @@ struct CachedDirectory {
     bool sizeKnown = false;
 };
 
+enum class DirectoryCacheScope { Homebrew, Vita };
+struct CachedMedia {
+    std::string path;
+    uint64_t rootStamp=0,payloadStamp=0,bytes=0;
+    bool directory=false,sizeKnown=false,validPbp=false;
+    uint8_t platform=0;
+    std::string title,id,contentId;
+};
 class InstalledDirectoryCache {
 public:
-    static const char* filePath();
-    static bool load(std::vector<CachedDirectory>& entries);
-    static bool save(const std::vector<CachedDirectory>& entries);
+    static const char* filePath(DirectoryCacheScope scope=DirectoryCacheScope::Homebrew);
+    static bool loadMedia(std::vector<CachedMedia>& entries);
+    static bool saveMedia(const std::vector<CachedMedia>& entries);
+    static bool encodeMedia(const std::vector<CachedMedia>& entries,std::string& out);
+    static bool decodeMedia(const std::string& raw,std::vector<CachedMedia>& out);
+    static void invalidateMediaPath(const std::string& path);
+    static void invalidateMediaId(const std::string& id);
+    static bool load(std::vector<CachedDirectory>& entries,DirectoryCacheScope scope=DirectoryCacheScope::Homebrew);
+    static bool save(const std::vector<CachedDirectory>& entries,DirectoryCacheScope scope=DirectoryCacheScope::Homebrew);
     static void invalidateTitle(const std::string& titleId);
     // Only ux0:app/<titleId>; preserve external Game Files measurements.
-    static void invalidatePackageTitle(const std::string& titleId);
+    static void invalidatePackageTitle(const std::string& titleId,DirectoryCacheScope scope=DirectoryCacheScope::Homebrew);
     // Pure, host-testable serialization, with fail-closed validation.
     static bool encode(const std::vector<CachedDirectory>& entries,
                        std::string& out);
