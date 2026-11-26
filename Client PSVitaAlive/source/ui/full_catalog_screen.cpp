@@ -12780,18 +12780,9 @@ bool FullCatalogScreen::canReportQueueStep(const ::psvitaalive::queue::Job& job,
         step.details.archiveSourceUnavailable,step.result,step.details.stage) &&
         !isNonReportableInstallError(step.result);
 }
-int FullCatalogScreen::firstQueueReportStep(const ::psvitaalive::queue::Job& job) const {
-    for(size_t i=0;i<job.steps.size();++i)if(canReportQueueStep(job,i))return static_cast<int>(i);
-    return -1;
-}
-void FullCatalogScreen::openQueueJobDetail(bool preferFailure) {
+void FullCatalogScreen::openQueueJobDetail() {
+    // Start with the full component list, including successful steps.
     queueDetail_=true;queueStepScroll_=0;queueStepFocus_=0;
-    if(preferFailure && queueSession_) {
-        if(const auto* job=queueSession_->find(queueSelectedId_)) {
-            const int index=firstQueueReportStep(*job);
-            if(index>=0){queueStepFocus_=index;queueStepScroll_=std::max(0,index-kQueueStepRows+1);}
-        }
-    }
 }
 void FullCatalogScreen::moveQueueStepFocus(int delta) {
     const auto* job=queueSession_?queueSession_->find(queueSelectedId_):nullptr;
@@ -12802,7 +12793,7 @@ void FullCatalogScreen::moveQueueStepFocus(int delta) {
 }
 void FullCatalogScreen::sendQueueStepReport(uint64_t id,size_t index) {
     const auto* job=queueSession_?queueSession_->find(id):nullptr;
-    if(queueHistoryMode() || !job || !canReportQueueStep(*job,index))return;
+    if(!queueDetail_ || queueHistoryMode() || !job || !canReportQueueStep(*job,index))return;
     if(reportBusy_.load() || reportThread_>=0 || reportUiState_==1 || queueReportSendingJob_) {
         showToast(::psvitaalive::L("ALL_REPORT_SENDING"),1800);return;
     }
@@ -13118,7 +13109,7 @@ void FullCatalogScreen::drawQueueScreen() {
         }
         scrollBar(queueDetail_&&selected?static_cast<int>(selected->steps.size()):static_cast<int>(entries.size()),queueDetail_?kQueueStepRows:kQueueRows,queueDetail_?queueStepScroll_:queueScroll_,queueDetail_?kQueueStepTop:kQueueRowTop,queueDetail_?kQueueStepRows*kQueueStepPitch:kQueueRows*kQueueRowPitch);
         btn(20,478,212,"QUEUE_BACK",false,&ctrl_circle_classic);
-        if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW",true,&ctrl_cross_classic);
+        if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW_DETAILS",true,&ctrl_cross_classic);
         if(queueRecovery_ && !queueRecovery_->entries().empty())btn(692,478,248,"QUEUE_RECOVERY_TITLE",false,&ctrl_r);
         drawToast(); finishFrame(); return;
     }
@@ -13139,7 +13130,9 @@ void FullCatalogScreen::drawQueueScreen() {
         if(active)skin::focus(20,79,920,198,withAlpha(ACCENT,125));
         drawImage(selected->iconUrl,"app",36,91,92,92);
         label(144,118,620,WHITE,1.30f,selected->name);
-        label(780,118,144,DIM,1.02f,std::to_string(std::min(selected->nextStep+1,selected->steps.size()))+" / "+std::to_string(selected->steps.size()));
+        const auto successful=std::count_if(selected->steps.begin(),selected->steps.end(),[](const auto& step){return step.state==State::Completed;});
+        const auto count=active?std::min(selected->nextStep+1,selected->steps.size()):static_cast<size_t>(successful);
+        label(780,118,144,DIM,1.02f,std::to_string(count)+" / "+std::to_string(selected->steps.size()));
         const char* phase=queueJobLabel(*selected);
         if(active && !queueStatus_.zipRecoveryAvailable && !queueSession_->cancelRequested()) {
             if(queueStatus_.stage=="Verifying")phase=::psvitaalive::L("DOWNLOAD_VERIFYING_TITLE");
@@ -13148,7 +13141,9 @@ void FullCatalogScreen::drawQueueScreen() {
             else if(queueStatus_.stage.find("Extract")!=std::string::npos || queueStatus_.stage.find("Unzip")!=std::string::npos)
                 phase=::psvitaalive::L(::psvitaalive::TextId::StageExtracting);
         }
-        label(144,151,780,ACCENT,1.10f,phase);
+        const unsigned phaseColor=selected->state==State::Failed?RGBA8(0xE0,0x32,0x32,255):
+            selected->state==State::Partial?RGBA8(0xF5,0x96,0x59,255):ACCENT;
+        label(144,151,780,phaseColor,1.10f,phase);
         if(active) {
             label(144,180,780,TEXT,.99f,queueStatus_.fileName);
             const bool transfer=queueStatus_.state==I::Downloading || queueStatus_.state==I::Paused;
@@ -13231,9 +13226,11 @@ void FullCatalogScreen::drawQueueScreen() {
             label(134,y+32,520,WHITE,1.22f,j.name);
             const bool running=queueSession_->activeToken().job==j.id;
             const std::string type=std::string(j.installAll?"Install All":component(j.steps.front().component))+(j.provisionalSpace?"  (?)":"");
-            const auto stepNumber=running?std::min(j.nextStep+1,j.steps.size()):j.nextStep;
+            const auto successful=std::count_if(j.steps.begin(),j.steps.end(),[](const auto& step){return step.state==State::Completed;});
+            const auto stepNumber=running?std::min(j.nextStep+1,j.steps.size()):static_cast<size_t>(successful);
             label(134,y+61,610,DIM,.98f,type+"  |  "+std::to_string(stepNumber)+"/"+std::to_string(j.steps.size()));
             const unsigned stateColor=j.state==State::Failed?RGBA8(0xE0,0x32,0x32,255):
+                j.state==State::Partial?RGBA8(0xF5,0x96,0x59,255):
                 j.state==State::Cancelled || j.state==State::Skipped?DIM:ACCENT;
             label(665,y+32,255,stateColor,1.00f,queueJobLabel(j));
             if(running || j.state==State::Completed) {
@@ -13264,12 +13261,10 @@ void FullCatalogScreen::drawQueueScreen() {
     if(queueInvariantBlocked_)label(24,447,910,ACCENT,.73f,::psvitaalive::L("QUEUE_BUSY"));
     const bool recovery=active && queueStatus_.zipRecoveryAvailable;
     btn(20,478,212,queueReport_ && !queueDetail_?"QUEUE_CLOSE_REPORT":"QUEUE_BACK",false,&ctrl_circle_classic);
-    if(!queueDetail_ && selected) btn(244,478,212,"QUEUE_VIEW",true,&ctrl_cross_classic);
+    if(!queueDetail_ && selected) btn(244,478,212,"QUEUE_VIEW_DETAILS",true,&ctrl_cross_classic);
     else if(recovery)btn(244,478,212,"QUEUE_KEEP",true,&ctrl_square_classic);
     else if(queuePauseAvailable())btn(244,478,212,queueStatus_.state==I::Paused?"QUEUE_RESUME":"QUEUE_PAUSE",true,&ctrl_square_classic);
     if(queueCancelAvailable())btn(468,478,212,recovery?"QUEUE_DELETE":"QUEUE_CANCEL",false,&ctrl_triangle_classic);
-    else if(!queueDetail_ && selected && firstQueueReportStep(*selected)>=0)
-        btn(468,478,212,"ALL_REPORT_ACTION_REPORT",false,&ctrl_select);
     if(queueWaitingSpace_)btn(692,478,248,"QUEUE_RETRY",true,&ctrl_r);
     if(queueConfirmCancel_) {
         vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,180));
@@ -13334,10 +13329,9 @@ void FullCatalogScreen::handleQueueInput() {
     }
     if(pressed&SCE_CTRL_CROSS && !queueDetail_ && queueSelectedId_){openQueueJobDetail();return;}
     if(queueHistoryMode())return;
-    if(pressed&SCE_CTRL_SELECT) {
+    if(queueDetail_ && (pressed&SCE_CTRL_SELECT)) {
         const auto* job=queueSession_->find(queueSelectedId_);
-        if(job && queueDetail_)sendQueueStepReport(job->id,static_cast<size_t>(queueStepFocus_));
-        else if(job && firstQueueReportStep(*job)>=0)openQueueJobDetail(true);
+        if(job)sendQueueStepReport(job->id,static_cast<size_t>(queueStepFocus_));
         return;
     }
     if(pressed&SCE_CTRL_LTRIGGER && queueWaitingSpace_){openQueueStorage();return;}
@@ -13399,10 +13393,6 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
         else if(x>=468 && x<680 && queueCancelAvailable()) {
             queueConfirmAction_=recovery?QueueAction::DeleteZip:QueueAction::Cancel;
             queueConfirmId_=queueSelectedId_;queueConfirmCancel_=true;
-        }
-        else if(x>=468 && x<680 && !queueDetail_ && !queueHistoryMode()) {
-            const auto* job=queueSession_->find(queueSelectedId_);
-            if(job && firstQueueReportStep(*job)>=0)openQueueJobDetail(true);
         }
         else if(x>=692 && queueWaitingSpace_)queueCommand(QueueAction::RetrySpace);
         return;
