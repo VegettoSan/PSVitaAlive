@@ -766,7 +766,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.02/supertuxkart.vpk",
+        "u": "https://archive.org/download/psvitaalive-supertuxkart-vita/supertuxkart-vita%20v1.02.vpk",
         "rec": true
       },
       {
@@ -785,13 +785,13 @@
         "u": "https://github.com/edgarlugo/stk-code/tree/vita-port"
       }
     ],
-    "ic": "https://raw.githubusercontent.com/edgarlugo/stk-code/vita-port/sce_sys/icon0.png",
+    "ic": "https://archive.org/download/psvitaalive-supertuxkart-vita/icon0.png",
     "ss": [
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-2.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-3.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-4.png",
-      "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-5.png"
+      "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_04.png",
+      "https://archive.org/download/psvitaalive-supertuxkart-vita/shot_05.png"
     ],
     "sn": "GitHub",
     "su": "https://github.com/edgarlugo/stk-code",
@@ -2127,18 +2127,18 @@
     "req": "A homebrew-enabled PS Vita and user-supplied supported Switch game data. The documented conversion workflow uses the BASE game, update 1.02 and Chengkong MOD RomFS, plus your own keys, firmware fonts and the separately required conversion tools. Follow the linked English guide for exact requirements.\nInstall the VPK and copy matching generated assets to ux0:data/WitchontheHolyNight/assets/. Version 1.20 requires regenerated assets. The documented current asset delivery is about 4.69 GiB; allow additional free space for installation and saves, and substantially more PC space for conversion.\nRuntime shader fallback uses an existing ur0:data/libshacccg.suprx (not included). A minimum supported firmware version is not specified by this submission. Installing the VPK alone is insufficient to play.",
     "sz": 4939696,
     "st": "Verified",
-    "ic": "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/knife/vita/sce_sys/icon0.png",
+    "ic": "https://archive.org/download/psvitaalive-mofa-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/01-title.jpg",
-      "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/02-voices.jpg",
-      "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/03-archive.jpg",
-      "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/04-story.jpg"
+      "https://archive.org/download/psvitaalive-mofa-vita/shot_01.jpg",
+      "https://archive.org/download/psvitaalive-mofa-vita/shot_02.jpg",
+      "https://archive.org/download/psvitaalive-mofa-vita/shot_03.jpg",
+      "https://archive.org/download/psvitaalive-mofa-vita/shot_04.jpg"
     ],
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/ATSPwang618/mofa-vita/releases/download/1.20/mofa-vita-1.20.vpk",
+        "u": "https://archive.org/download/psvitaalive-mofa-vita/mofa-vita%20v1.20.vpk",
         "sz": 4939696,
         "rec": true
       },
