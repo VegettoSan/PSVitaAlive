@@ -1992,6 +1992,9 @@
     "NFSHP0000": {
       "version": "v.1.0"
     },
+    "NFSHP2002": {
+      "version": "0.1.2"
+    },
     "NFSMWVITA": {
       "version": "1.6.2"
     },
