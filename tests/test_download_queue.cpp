@@ -55,6 +55,45 @@ int main() {
         const Space invalid{};
         assert(!validSpace(remainingGroupSpace(*active,{},&invalid)));
     }
+    // PSP and PS1 direct packages with known sizes can share a queue. Reserve
+    // the conversion output on its actual mount and recheck before dispatch.
+    {
+        auto media=[](const char* name,Mount target) {
+            auto j=job(name,GiB);j.routing.target=PspTarget::Adrenaline;
+            j.routing.storage=target==Mount::Uma0?PspStorage::Uma0:PspStorage::Ux0;
+            j.steps[0].component=Component::PspMedia;j.steps[0].fileName="game.pkg";
+            j.steps[0].space=pspPackageSpace(GiB,target);j.admissionSpace=j.steps[0].space;
+            return j;
+        };
+        Session s;
+        auto psp=media("PSP",Mount::Ux0),ps1=media("PS1",Mount::Ux0);
+        const uint64_t output=initialInstallSpaceBytes(GiB,InstallSpaceMode::DirectPackage);
+        assert(psp.admissionSpace.peak[0]==GiB+output);
+        assert(psp.admissionSpace.retained[0]==output);
+        assert(s.admit(psp,snap(s,12*GiB))==Admission::Accepted);
+        auto active=s.claim(snap(s,12*GiB),true);
+        assert(active.status==Dispatch::Started);
+        auto remaining=remainingGroupSpace(*s.find(s.ownerId()),Bytes{GiB/2,0,0});
+        assert(s.admit(ps1,snap(s,11*GiB,remaining))==Admission::Accepted);
+        remaining=remainingGroupSpace(*s.find(s.ownerId()));
+        assert(s.admit(media("PSP 2",Mount::Ux0),snap(s,4*GiB,remaining))==Admission::NoSpace);
+        assert(s.settle(active.token,Outcome::Completed,true,false,"done"));
+        assert(s.claim(snap(s,GiB),true).status==Dispatch::NoSpace);
+        assert(s.claim(snap(s,8*GiB),true).status==Dispatch::Started);
+        Session cross;auto pspUma=media("PSP uma0",Mount::Uma0);
+        assert(pspUma.admissionSpace.retained[0]==0 && pspUma.admissionSpace.retained[1]==output);
+        auto x=snap(cross,10*GiB);
+        assert(cross.admit(pspUma,x)==Admission::UnknownSpace);
+        x.measured[1]=true;x.free[1]=8*GiB;
+        assert(cross.admit(pspUma,x)==Admission::Accepted);
+        x.generation=cross.generation();
+        assert(cross.admit(media("PS1 uma0",Mount::Uma0),x)==Admission::Accepted);
+        x.generation=cross.generation();x.free[1]=4*GiB;
+        assert(cross.admit(media("PSP extra",Mount::Uma0),x)==Admission::NoSpace);
+        assert(!validSpace(pspPackageSpace(0,Mount::Ux0)));
+        assert(!validSpace(pspPackageSpace(GiB,Mount::Ur0)));
+        assert(!validSpace(pspPackageSpace(UINT64_MAX,Mount::Ux0)));
+    }
     // Order affects the peak: 2 GiB then 4 fails; reverse order fits.
     {
         Session s;
