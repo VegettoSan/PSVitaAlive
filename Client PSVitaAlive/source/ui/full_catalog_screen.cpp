@@ -3862,6 +3862,8 @@ void FullCatalogScreen::pollStorageOperation() {
     sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
     sceKernelDeleteThread(storageWorker_);
     storageWorker_ = -1;
+    gameStorageCandidates_.clear();
+    gameStorageCandidates_.shrink_to_fit();
     if (storageAction_ != -1) {
         showToast(::psvitaalive::L(storageWorkerOk_.load(std::memory_order_acquire)
             ? "STORAGE_REMOVED" : "STORAGE_REMOVE_FAILED"), 2600);
