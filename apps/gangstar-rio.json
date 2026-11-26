@@ -1,0 +1,51 @@
+{
+  "id": "gangstar-rio",
+  "tid": "G4HM00001",
+  "n": "Gangstar Rio",
+  "d": "Gangstar Rio: City of Saints for PlayStation Vita, using the Android ARMv7 version of the game.",
+  "ld": "Gangstar Rio: City of Saints for PlayStation Vita, using the Android ARMv7 version of the game.",
+  "aids": [
+    "brenu"
+  ],
+  "cid": "ports",
+  "sids": [
+    "action",
+    "shooter",
+    "simulation",
+    "strategy",
+    "source-port"
+  ],
+  "v": "1.0.1",
+  "vd": "2026-11-24",
+  "req": "- no data",
+  "sz": 2306867,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psva-gangstar-rio-ps-vita/grio-vita-v1.0.1.vpk",
+      "sz": 2306867,
+      "rec": true
+    },
+    {
+      "t": "Game Files",
+      "n": "Game Files",
+      "u": "https://archive.org/download/psva-gangstar-rio-ps-vita/Game%20Files%20for%20PSVA.zip",
+      "sz": 2147483648,
+      "xp": "ux0:data/",
+      "ips": [
+        "gangstarrio"
+      ]
+    },
+    {
+      "t": "Repository",
+      "n": "Github",
+      "u": "https://github.com/brenu/gangstar-rio-vita"
+    }
+  ],
+  "ic": "https://archive.org/download/psva-gangstar-rio-ps-vita/icon0.png",
+  "ss": [
+    "https://archive.org/download/psva-gangstar-rio-ps-vita/shot0.png"
+  ]
+}
