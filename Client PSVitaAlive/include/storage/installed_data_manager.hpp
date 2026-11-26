@@ -143,6 +143,7 @@ public:
     static InstalledDataApp measureGame(InstalledDataApp app,
         InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=25000000ULL);
     static bool removeGameMedia(const InstalledDataApp& app,InstalledDataOperationProgress* progress);
+    static bool uninstallGamePackage(const InstalledDataApp& app,InstalledDataOperationProgress* progress);
     static void invalidateCachedTitle(const std::string& titleId);
     static void invalidateCachedPackageTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.
