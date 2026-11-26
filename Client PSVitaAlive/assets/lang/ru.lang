@@ -912,3 +912,22 @@ QUEUE_SYSTEM_DEFERRED=Ожидание системной установки
 QUEUE_SYSTEM_RECHECK=Завершите системную установку перед восстановлением файлов
 QUEUE_SYSTEM_CONFIRM=Системная установка завершена?
 QUEUE_SYSTEM_NOT_INSTALLED=Установленное приложение не найдено; завершите установку в LiveArea
+
+# Contextual game storage
+ID_GAMES_TITLE=Установленные игры
+ID_GAMES_SECTION=Установленные игры
+ID_GAMES_TOTAL=Место игр:
+ID_GAMES_LIST_HINT=Выберите игру, чтобы узнать путь и размер.
+ID_MEDIA_UNKNOWN_PLATFORM=Неизвестная платформа
+ID_MEDIA_IDENTIFIED=Опознано
+ID_MEDIA_UNIDENTIFIED=Не опознано
+ID_MEDIA_EXTERNAL=Внешняя игра
+ID_GAME_DELETE=Удалить игру
+ID_MEDIA_DELETE_CONFIRM=Выбранный файл или папка игры будут удалены навсегда.
+ID_VITA_DELETE_CONFIRM=Система удалит игру. Сохраните резервную копию сохранений.
+ID_MEDIA_PREPARE=Подготовка удаления
+ID_MEDIA_DELETING=Удаление игры
+ID_GAME_REMOVED=Игра удалена
+ID_GAME_FAILED=Не удалось удалить игру
+ID_VITA_DELETE_NOTE=Удаление системой
+ID_MEDIA_DELETE_NOTE=Только выбранный путь
