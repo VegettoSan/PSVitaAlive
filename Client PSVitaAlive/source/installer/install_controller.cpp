@@ -1233,19 +1233,29 @@ bool InstallController::requestInstall(
     return true;
 }
 
+bool InstallController::beginInstalledDataProtection() {
+    if (installedDataProtectionActive() || queueProtectionActive() || !canStartQueuedStep() ||
+        keepAwakeThread_ < 0 || keepAwakeStop_.load() || !tryLockShell()) return false;
+    installedDataProtection_.store(true, std::memory_order_release);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);
+    diagnostics::log("[Installer] installed data shell protection acquired");
+    return true;
+}
+
+void InstallController::endInstalledDataProtection() {
+    if (installedDataProtection_.exchange(false, std::memory_order_acq_rel))
+        unlockShellDuringJob();
+}
+
 bool InstallController::beginQueueProtection() {
     if (queueProtectionActive()) return true;
     if (!canStartQueuedStep() || !http_.isInitialized() || !shellUtilReady_ ||
         keepAwakeThread_ < 0 || keepAwakeStop_.load()) return false;
     // No worker is active, so the main thread exclusively owns shell changes.
     // Roll back if either lock cannot be acquired.
-    if (shellLocked_) return false;
-    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN) < 0) return false;
-    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU) < 0) {
-        sceShellUtilUnlock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
-        return false;
-    }
-    shellLocked_ = true;
+    if (installedDataProtectionActive() || !tryLockShell()) return false;
     queueProtection_.store(true, std::memory_order_release);
     sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
     sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
@@ -1489,7 +1499,7 @@ InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job
 bool InstallController::canStartQueuedStep() const {
     // Do not read activeBgdlJob_ through its conversion operator: it consumes
     // the preparation-frame deferral. An Idle controller cannot have BGDL armed.
-    return !ownsQueuedStep() && !busy() && !zipRecoveryAvailable_.load() &&
+    return !installedDataProtectionActive() && !ownsQueuedStep() && !busy() && !zipRecoveryAvailable_.load() &&
         static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle;
 }
 
@@ -1783,7 +1793,7 @@ void InstallController::setState(InstallStatus::State state, const char* message
     const bool jobActive = (state == InstallStatus::State::Downloading ||
                             state == InstallStatus::State::Installing);
     // The session owns both locks across steps, pauses and cleanup tails.
-    if (!queueProtectionActive()) {
+    if (!queueProtectionActive() && !installedDataProtectionActive()) {
         if (jobActive) lockShellDuringJob();
         else unlockShellDuringJob();
     }
@@ -1826,12 +1836,23 @@ void InstallController::stopKeepAwakeThread() {
     keepAwakeThread_ = -1;
 }
 
+bool InstallController::tryLockShell() {
+    if (shellLocked_ || !shellUtilReady_) return false;
+    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN) < 0) return false;
+    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU) < 0) {
+        sceShellUtilUnlock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
+        return false;
+    }
+    shellLocked_ = true;
+    return true;
+}
+
 void InstallController::lockShellDuringJob() {
     if (shellLocked_) return;
-    if (!shellUtilReady_) return;
-    sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
-    sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU);
-    shellLocked_ = true;
+    if (!tryLockShell()) {
+        diagnostics::log("[Installer] shell protection acquisition failed");
+        return;
+    }
     diagnostics::log("[Installer] shell locked: PS blocked, soft power-off menu blocked, screen forced on");
 }
 
@@ -1853,7 +1874,7 @@ int InstallController::keepAwakeEntry(SceSize args, void* argp) {
     if (!self) return -1;
     // While a job runs: no auto-suspend AND keep the screen fully on (no dim / no OLED off).
     while (!self->keepAwakeStop_.load()) {
-        if (self->queueProtectionActive() || self->busy()) {
+        if (self->queueProtectionActive() || self->installedDataProtectionActive() || self->busy()) {
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);
