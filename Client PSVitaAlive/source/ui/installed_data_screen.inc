@@ -398,7 +398,7 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
                 for(auto& p:app.paths){p.exists=!ok;p.sizeKnown=false;p.bytes=0;}
                 app.bytes=0;app.blocked=!ok;
             } else if(action==0 && self->installedDataGameMode_==1 && !app.mediaRow && app.packagePresent) {
-                ok=InstalledDataManager::uninstallPackage(app.titleId,&self->installedDataOpProgress_);
+                ok=InstalledDataManager::uninstallGamePackage(app,&self->installedDataOpProgress_);
                 self->installedDataVpkOk_.store(ok,std::memory_order_release);
                 if(ok) {
                     ::psvitaalive::update::InstalledReleaseTracker::removeReceipt(app.titleId);
@@ -847,10 +847,11 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
     const bool gameMode=installedDataGameMode_!=0;
     const bool mediaMode=installedDataGameMode_>=2;
     const auto gameState=[](const ::psvitaalive::storage::InstalledDataApp& app) {
-        if(!app.mediaRow)return std::string("PS Vita | ux0:");
+        if(!app.mediaRow)return std::string("PS Vita | ux0: | ")+::psvitaalive::L(app.mediaIdentified?"ID_MEDIA_IDENTIFIED":"ID_MEDIA_EXTERNAL");
         const std::string platform=app.mediaPlatform==1?"PSP":app.mediaPlatform==2?"PS1": ::psvitaalive::L("ID_MEDIA_UNKNOWN_PLATFORM");
         return platform+" | "+app.mediaFormat+" | "+app.titleId.substr(0,app.titleId.find(':')+1)+" | "+
-            ::psvitaalive::L(app.mediaIdentified?"ID_MEDIA_IDENTIFIED":"ID_MEDIA_UNIDENTIFIED");
+            ::psvitaalive::L(app.mediaIdentified?"ID_MEDIA_IDENTIFIED":
+                (app.mediaPlatform && !app.mediaId.empty())?"ID_MEDIA_EXTERNAL":"ID_MEDIA_UNIDENTIFIED");
     };
     if (installedDataConfirm_) {
         // Large, legible confirmation that names ALL catalog users of shared
@@ -982,8 +983,11 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         vita2d_draw_rectangle(x+W-3,y+3,3,H-6,BORDER);
         vita2d_draw_rectangle(x,y+H-3,W,3,BORDER);
     }
-    ::psvitaalive::ui::uiDrawText(&font_,x+25,y+40,WHITE,1.14f,
-        ::psvitaalive::L(gameMode?"ID_GAMES_TITLE":"ID_TITLE"));
+    if(gameMode) {
+        const std::string title=std::string(::psvitaalive::L("ID_GAMES_TITLE"))+" - "+
+            (installedDataGameMode_==1?"PS Vita":installedDataGameMode_==2?"PSP":"PS1");
+        drawMarqueeText(&font_,x+25,y+40,W-50,WHITE,1.14f,title,false);
+    } else ::psvitaalive::ui::uiDrawText(&font_,x+25,y+40,WHITE,1.14f,::psvitaalive::L("ID_TITLE"));
     if (installedDataWorker_ >= 0 && installedDataAction_ >= 0) {
         const auto& prog = installedDataOpProgress_;
         const uint32_t phase = prog.phase.load(std::memory_order_acquire);
@@ -1148,9 +1152,11 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         return;
     }
     bool containsCachedSize = false;
-    for (const auto& app : installedDataSnapshot_.apps)
+    for (const auto& app : installedDataSnapshot_.apps) {
+        if(gameMode && app.packagePresent && app.packageSizeCached)containsCachedSize=true;
         for (const auto& p : app.paths)
             containsCachedSize = containsCachedSize || (p.exists && p.sizeCached);
+    }
     const uint64_t visibleTotal=gameMode?installedDataSnapshot_.totalPackageBytes+installedDataSnapshot_.totalExternalBytes:
         installedDataSnapshot_.totalExternalBytes;
     const std::string total = std::string(::psvitaalive::L(gameMode?"ID_GAMES_TOTAL":"ID_TOTAL")) + "  " +
@@ -1240,8 +1246,11 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         for (const auto& candidate : installedDataSnapshot_.apps)
             if (candidate.titleId == installedDataTargetId_) { app=&candidate; break; }
         if (app) {
-            drawMarqueeText(&font_,x+28,y+124,W-60,WHITE,1.06f,
-                app->name,false);
+            if(gameMode) {
+                if(!app->icon.empty())drawImage(app->icon,"app",x+28,y+107,65,65);
+                else skin::icon(skin::icons_atlas::icon_storage,x+40,y+118,40,DIM);
+                drawMarqueeText(&font_,x+108,y+124,W-140,WHITE,1.06f,app->name,false);
+            } else drawMarqueeText(&font_,x+28,y+124,W-60,WHITE,1.06f,app->name,false);
             bool appPartial = false;
             for (const auto& path : app->paths)
                 if (path.exists && !path.sizeKnown) appPartial = true;
@@ -1253,7 +1262,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 !app->packagePresent ? ::psvitaalive::L("ID_ONLY_FILES_LABEL") :
                 ::psvitaalive::L("ID_APP_AND_FILES_LABEL");
             const std::string details = app->mediaRow ? contentType : app->titleId + "  |  " + contentType;
-            drawMarqueeText(&font_,x+28,y+151,W-60,DIM,.90f,details,false);
+            drawMarqueeText(&font_,gameMode?x+108:x+28,y+151,gameMode?W-140:W-60,DIM,.90f,details,false);
             const std::string packageSize = !app->packagePresent ? "-" :
                 !app->packageSizeKnown ? ::psvitaalive::L("ID_SIZE_PENDING") :
                 formatBytesShort(app->packageBytes) +
