@@ -1,0 +1,50 @@
+{
+  "app_id": "insaniquarium",
+  "identifier": "psvitaalive-insaniquarium",
+  "source_url": "https://github.com/KartingSackboy06/insaniquarium-vita/releases/download/v1.00a/InsaniquariumVita.vpk",
+  "files": {
+    "insaniquarium v1.00.vpk": {
+      "size": 7444310,
+      "md5": "ab58ea15d5065f12f3980cdd5b49fb93",
+      "sha256": "30012ed3a89db1b4b1b67070528ab89212309903cf08e3d049766d9e7ace9a17"
+    },
+    "icon0.png": {
+      "size": 10864,
+      "md5": "f421838ee26a829552cfe20a9b3c18ee",
+      "sha256": "75b9f0bd4fb1beff0ca7428a89a9347aa98d58cbb05d3cd4942786e519d8e648"
+    },
+    "shot_01.png": {
+      "size": 221263,
+      "md5": "8ec980e6c89dac7238c1540a92dbac9f",
+      "sha256": "efdd28d4e872aabe1410e53b769a5325c1d12bd4ec322f8d6c794819e791b10f"
+    },
+    "SOURCES.txt": {
+      "size": 606,
+      "md5": "57923c5e7e0c19d78bdb47eb612b010a",
+      "sha256": "722ee808da94662ff6146e5a584b7bc5ef3d2ef04aa7d61154233865ec33ec36"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/icon0.png": "icon0.png",
+    "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/pic0.png": "shot_01.png"
+  },
+  "attempted": [
+    "insaniquarium v1.00.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:41:17+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "INSNQ4R13",
+    "name": "Insaniquarium!",
+    "search_title": "Insaniquarium",
+    "version": "1.00",
+    "repo": "KartingSackboy06/insaniquarium-vita",
+    "tag": "v1.00a",
+    "asset": "InsaniquariumVita.vpk",
+    "url": "https://github.com/KartingSackboy06/insaniquarium-vita/releases/download/v1.00a/InsaniquariumVita.vpk",
+    "size": 7444310,
+    "sha256": "30012ed3a89db1b4b1b67070528ab89212309903cf08e3d049766d9e7ace9a17",
+    "creator": "KartingSackboy06"
+  }
+}
