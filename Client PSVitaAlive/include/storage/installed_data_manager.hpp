@@ -37,6 +37,13 @@ struct InstalledDataApp {
     bool blocked = false; // invalid/unidentified path, not catalog-only overlap
     uint64_t bytes = 0; // deduplicated within this app
     std::vector<InstalledDataPath> paths;
+    // Game storage rows use a physical path as the UI key; never as a package ID.
+    bool mediaRow = false;
+    bool mediaDirectory = false;
+    bool mediaIdentified = false;
+    uint8_t mediaPlatform = 0; // 0 unknown, 1 PSP, 2 PS1
+    std::string mediaId, mediaFormat, alternateIds;
+    uint64_t mediaStamp = 0, mediaFileBytes = 0;
 };
 
 struct InstalledDataSnapshot {
@@ -126,6 +133,12 @@ public:
     // Persistent discovery index: the canonical catalog always owns routes.
     // Saved bytes are display-only; neither directory cache nor size can
     // authorize deletion. Explicit invalidation after known data changes.
+    // mode: 1 Vita packages, 2 PSP, 3 PS1. Read-only discovery, optional per-row measurement.
+    static InstalledDataSnapshot scanGames(const std::vector<InstalledDataApp>& catalog,
+        unsigned mode, InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=8000000ULL);
+    static InstalledDataApp measureGame(InstalledDataApp app,
+        InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=25000000ULL);
+    static bool removeGameMedia(const InstalledDataApp& app,InstalledDataOperationProgress* progress);
     static void invalidateCachedTitle(const std::string& titleId);
     static void invalidateCachedPackageTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.
