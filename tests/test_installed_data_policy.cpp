@@ -6,6 +6,22 @@
 #include <string>
 using namespace psvitaalive::storage;
 int main() {
+    {
+        InstalledDataApp a,b,c;
+        a.packagePresent=true;a.packageSizeKnown=true;a.packageBytes=400;a.bytes=100;
+        b.bytes=800;
+        c.packagePresent=true;c.packageSizeKnown=false;c.packageBytes=9999;
+        assert(installedDataListBytes(a)==500);
+        assert(installedDataLargerFirst(b,a));
+        assert(installedDataLargerFirst(a,c));
+        assert(!installedDataLargerFirst(c,b));
+        a.paths.push_back({});a.paths.back().exists=true;
+        assert(!installedDataListSizeKnown(a));
+        assert(installedDataLargerFirst(b,a));
+        assert(!installedDataLargerFirst(c,a));
+        b.packagePresent=true;b.packageSizeKnown=true;b.packageBytes=UINT64_MAX;
+        assert(installedDataListBytes(b)==UINT64_MAX);
+    }
     assert(validInstalledTitleId("ABCD12345"));
     assert(!validInstalledTitleId("abcD12345"));
     assert(!validInstalledTitleId("PSVA123456"));
