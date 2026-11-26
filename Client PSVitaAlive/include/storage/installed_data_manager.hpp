@@ -46,6 +46,10 @@ struct InstalledDataApp {
     uint64_t mediaStamp = 0, mediaFileBytes = 0;
 };
 
+struct GameCatalogIdentity {
+    std::string appId,titleId,alternateIds,name,icon;
+};
+
 struct InstalledDataSnapshot {
     std::vector<InstalledDataApp> apps;
     uint64_t totalExternalBytes = 0; // physical roots counted once across apps
@@ -134,7 +138,7 @@ public:
     // Saved bytes are display-only; neither directory cache nor size can
     // authorize deletion. Explicit invalidation after known data changes.
     // mode: 1 Vita packages, 2 PSP, 3 PS1. Read-only discovery, optional per-row measurement.
-    static InstalledDataSnapshot scanGames(const std::vector<InstalledDataApp>& catalog,
+    static InstalledDataSnapshot scanGames(const std::vector<GameCatalogIdentity>& catalog,
         unsigned mode, InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=8000000ULL);
     static InstalledDataApp measureGame(InstalledDataApp app,
         InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=25000000ULL);
