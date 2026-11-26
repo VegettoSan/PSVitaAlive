@@ -4080,6 +4080,7 @@ void FullCatalogScreen::shutdown(){
         installedDataWorker_=-1;
     }
     releaseInstalledDataProtection();
+    clearInstalledDataOperationDisplay();
     if (storageWorker_ >= 0) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
@@ -8281,7 +8282,13 @@ void FullCatalogScreen::prepareVisibleTextures(){
         // Reuse the normal ImageCache/GPU budget for the three visible rows.
         // Do not queue hundreds of icons or decode textures while deleting.
         std::vector<std::string> icons;
-        if(!installedDataDetail_&&!installedDataConfirm_&&!installedDataResultVisible_){
+        if ((installedDataWorker_>=0 && installedDataAction_>=0) || installedDataResultVisible_) {
+            // Never read the worker-owned snapshot while it may be replaced.
+            // Retain only the identity captured on the UI thread before deletion.
+            if (!installedDataOperationIcon_.empty()) markKeep(installedDataOperationIcon_,"app");
+        } else if (installedDataWorker_>=0 && installedDataAction_!=-3) {
+            return; // non-destructive scan also owns its snapshot until publication
+        } else if(!installedDataDetail_&&!installedDataConfirm_&&!installedDataResultVisible_){
             const int first=std::max(0,installedDataScroll_);
             const int last=std::min((int)installedDataVisibleRows_.size(),first+3);
             for(int i=first;i<last;++i){
@@ -8295,6 +8302,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             for(const auto& app:installedDataSnapshot_.apps)
                 if(app.titleId==installedDataTargetId_&&!app.icon.empty()){
                     markKeep(app.icon,"app");
+                    icons.push_back(app.icon);
                     break;
                 }
         }
