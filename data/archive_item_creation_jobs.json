@@ -23,7 +23,8 @@
   },
   "attempted": [
     "vitaforge v0.1.15.vpk",
-    "icon0.png"
+    "icon0.png",
+    "SOURCES.txt"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T22:45:09+00:00"
