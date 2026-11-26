@@ -87,12 +87,6 @@ constexpr int DOWNLOAD_TOUCH_BUTTON_H = 50;
 constexpr int DOWNLOAD_TOUCH_Y = 410;
 constexpr int FILTER_MODAL_LIST_TOP = FILTER_MODAL_Y + 72;
 
-// The catalog and its embedded keyboard render with vita2d only.
-inline void startSkinFrame() {
-    // Preserve the verified GPU arena lifetime and scissor safety.
-    skin::beginFrame();
-    if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
-}
 // Only active queue frames, and only genuinely slow calls. Each call site
 // owns a separate rate limit; logging never happens for normal frames.
 extern bool gQueueSessionProtection;
@@ -110,6 +104,12 @@ struct QueueUiSpan {
         diagnostics::log(std::string("[QueueUiPerf] operation=")+label+" ms="+std::to_string((now-begin)/1000ULL));
     }
 };
+// The catalog and its embedded keyboard render with vita2d only.
+inline void startSkinFrame() {
+    // Preserve the verified GPU arena lifetime and scissor safety.
+    skin::beginFrame();
+    if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
+}
 inline void finishFrame() {
     static uint64_t lastLog=0;
     QueueUiSpan perf("gpu_present",lastLog);
