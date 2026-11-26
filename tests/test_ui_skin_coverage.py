@@ -109,7 +109,17 @@ assert "if(cancelledAfterNormalize){if(valid){markReady(job.path);}else{sceIoRem
 assert image.count("PNG_IMAGE_FLAG_FAST") == 2
 load = body("bool FullCatalogScreen::prepareImageTexture(", "int FullCatalogScreen::detailScreenshotContentOffset(")
 assert load.index("textures_.find(path)") < load.index("imageCache_->request(url,ns)")
-assert load.index("vita2d_load_PNG_file") < load.index("evictTextureIfNeeded(ns)")
+# Both texture paths must allocate successfully before evicting a resident icon.
+queue_upload = load.split('if(queueProtected_ && ns=="app") {',1)[1].split("// Only completed, validated cache files",1)[0]
+disk_load = load.split("// Only completed, validated cache files",1)[1]
+assert queue_upload.index("takeDecodedIcon") < queue_upload.index("vita2d_create_empty_texture") < queue_upload.index("evictTextureIfNeeded(ns)")
+assert queue_upload.index("if(!texture)") < queue_upload.index("evictTextureIfNeeded(ns)")
+assert "vita2d_load_PNG_file" not in queue_upload and "sceIoGetstat" not in queue_upload
+assert disk_load.index("vita2d_load_PNG_file") < disk_load.index("evictTextureIfNeeded(ns)")
+decode = image.split("bool ImageCache::serviceDecodedIcon()",1)[1].split("bool ImageCache::isReady",1)[0]
+assert decode.index("sceKernelUnlockMutex") < decode.index("png_image_begin_read_from_file")
+assert "png_image_finish_read" in decode and "serviceDecodedIcon()" in worker
+assert "image.width<=APP_IMAGE_MAX_DIM" in decode and "image.height<=APP_IMAGE_MAX_DIM" in decode
 assert "return true;" in load
 prepare = body("void FullCatalogScreen::prepareVisibleTextures()", "void FullCatalogScreen::drawImageLoadingPlaceholder(")
 assert "textures_.size()>before" not in prepare

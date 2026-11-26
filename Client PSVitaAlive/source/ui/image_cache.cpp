@@ -1,3 +1,4 @@
+#include "installer/queue_history.hpp"
 #include "ui/image_cache.hpp"
 #include "diagnostic_logger.hpp"
 #include "network/http_client.hpp"
@@ -276,7 +277,7 @@ bool ImageCache::init(const StartupMaintenanceProgressFn&startupProgress){
     ensureDirectory("ux0:data/psvitaalive/logs");
     mutex_=sceKernelCreateMutex("PSVitaAliveImageCache",0,0,nullptr);if(mutex_<0)return false;stopping_=false;cancelRequested_=false;workerBusy_=false;workerThread_=sceKernelCreateThread("PSVitaAliveImageWorker",&ImageCache::workerEntry,WORKER_PRIORITY,WORKER_STACK,0,0,nullptr);if(workerThread_<0){sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}ImageCache*self=this;int r=sceKernelStartThread(workerThread_,sizeof(self),&self);if(r<0){sceKernelDeleteThread(workerThread_);workerThread_=-1;sceKernelDeleteMutex(mutex_);mutex_=-1;return false;}diagnostics::log("[ImageCache] worker initialized cache=v3 replacement=per-image catalogs=H,PV,PSP,PS1");return true;
 }
-void ImageCache::shutdown(){stopping_=true;cancelRequested_=true;if(workerThread_>=0){sceKernelWaitThreadEnd(workerThread_,nullptr,nullptr);sceKernelDeleteThread(workerThread_);workerThread_=-1;}if(mutex_>=0){sceKernelDeleteMutex(mutex_);mutex_=-1;}queue_.clear();pending_.clear();ready_.clear();failed_.clear();retryAfter_.clear();workerBusy_=false;currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;diagnostics::log("[ImageCache] shutdown");}
+void ImageCache::shutdown(){stopping_=true;cancelRequested_=true;if(workerThread_>=0){sceKernelWaitThreadEnd(workerThread_,nullptr,nullptr);sceKernelDeleteThread(workerThread_);workerThread_=-1;}if(mutex_>=0){sceKernelDeleteMutex(mutex_);mutex_=-1;}queue_.clear();decodeWanted_.clear();decodedPath_.clear();decodedIcon_={};pending_.clear();ready_.clear();failed_.clear();retryAfter_.clear();workerBusy_=false;currentFile_.clear();currentPath_.clear();currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;diagnostics::log("[ImageCache] shutdown");}
 bool ImageCache::contains(const std::vector<std::string>&v,const std::string&s)const{return std::find(v.begin(),v.end(),s)!=v.end();}
 std::string ImageCache::makePath(const std::string&url,const std::string&ns)const{
     const TaggedImageUrl tagged=splitCacheTag(url);
@@ -342,6 +343,11 @@ void ImageCache::cancelQueuedExcept(const std::unordered_set<std::string>& keep)
         }
     }
     queue_.swap(keptJobs);
+    decodeWanted_.erase(std::remove_if(decodeWanted_.begin(),decodeWanted_.end(),
+        [&](const std::string& p){return keep.count(p)==0;}),decodeWanted_.end());
+    if(!decodedPath_.empty() && keep.count(decodedPath_)==0) {
+        decodedPath_.clear(); decodedIcon_={};
+    }
 
     // Scroll animations briefly report an empty/old viewport. Previously that
     // immediately cancelled the active transfer, sometimes multiple times in
@@ -371,6 +377,7 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
 
     size_t supersededQueued=0;bool cancelledSupersededActive=false;
     sceKernelLockMutex(mutex_,1,nullptr);
+    if(queueIconsOnly_ && ns!="app"){sceKernelUnlockMutex(mutex_,1);return path;}
     if(!identityStem.empty()){
         for(size_t i=0;i<queue_.size();){
             if(queue_[i].path!=path&&pathMatchesIdentity(queue_[i].path,identityStem)){
@@ -385,7 +392,7 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
 
     if(contains(ready_,path)){sceKernelUnlockMutex(mutex_,1);return path;}
     if(contains(pending_,path)){sceKernelUnlockMutex(mutex_,1);return path;}
-    if(networkPaused_){sceKernelUnlockMutex(mutex_,1);return path;}
+    if(networkPaused_ && !(queueIconsOnly_ && allowCachedIcons_ && ns=="app")){sceKernelUnlockMutex(mutex_,1);return path;}
     if(contains(failed_,path)){
         auto it=retryAfter_.find(path);
         if(it!=retryAfter_.end()&&now<it->second){sceKernelUnlockMutex(mutex_,1);return path;}
@@ -406,7 +413,62 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
     sceKernelUnlockMutex(mutex_,1);
     return path;
 }
+std::string ImageCache::historyIconPath(const std::string& key) const {
+    return ::psvitaalive::queue::validHistoryIconKey(key)?std::string(IMAGE_ROOT)+"/"+key:std::string{};
+}
+std::string ImageCache::requestHistoryIcon(const std::string& key) {
+    const auto path=historyIconPath(key);
+    if(path.empty()||mutex_<0)return {};
+    const uint64_t now=sceKernelGetSystemTimeWide();
+    sceKernelLockMutex(mutex_,1,nullptr);
+    const auto retry=retryAfter_.find(path);
+    if(!contains(ready_,path)&&!contains(pending_,path)&&!networkPaused_ &&
+       (retry==retryAfter_.end() || now>=retry->second) && queue_.size()<MAX_INTERACTIVE_QUEUE) {
+        pending_.push_back(path);
+        queue_.insert(queue_.begin(),{"",path,0,false});
+    }
+    sceKernelUnlockMutex(mutex_,1);
+    return path;
+}
 void ImageCache::preload(const std::vector<std::string>&urls,const std::string&ns){if(mutex_<0||urls.empty())return;sceKernelLockMutex(mutex_,1,nullptr);bulkPreload_=true;sceKernelUnlockMutex(mutex_,1);size_t queued=0;for(const auto&url:urls){if(url.empty())continue;std::string before=request(url,ns);if(!before.empty())++queued;}sceKernelLockMutex(mutex_,1,nullptr);bulkPreload_=false;sceKernelUnlockMutex(mutex_,1);if(queued){char m[160];sceClibSnprintf(m,sizeof(m),"[ImageCache] preload requested ns=%s count=%u",ns.c_str(),(unsigned)queued);diagnostics::log(m);}}
+bool ImageCache::takeDecodedIcon(const std::string& path,DecodedIcon& out) {
+    if(mutex_<0 || ::psvitaalive::queue::historyIconKeyFromPath(path).empty())return false;
+    sceKernelLockMutex(mutex_,1,nullptr);
+    if(decodedPath_==path) {
+        out=std::move(decodedIcon_);decodedIcon_={};decodedPath_.clear();
+        sceKernelUnlockMutex(mutex_,1);return true;
+    }
+    if(contains(ready_,path) && !contains(decodeWanted_,path) && decodeWanted_.size()<MAX_INTERACTIVE_QUEUE)
+        decodeWanted_.push_back(path);
+    sceKernelUnlockMutex(mutex_,1);return false;
+}
+bool ImageCache::serviceDecodedIcon() {
+    std::string path;
+    sceKernelLockMutex(mutex_,1,nullptr);
+    if(decodedPath_.empty() && !decodeWanted_.empty() && (!networkPaused_ || allowCachedIcons_))
+        path=decodeWanted_.front();
+    sceKernelUnlockMutex(mutex_,1);
+    if(path.empty())return false;
+    // All filesystem I/O and libpng work happen outside the UI and its mutex.
+    DecodedIcon result;
+    png_image image{};image.version=PNG_IMAGE_VERSION;
+    if(png_image_begin_read_from_file(&image,path.c_str())) {
+        if(image.width>0 && image.height>0 && image.width<=APP_IMAGE_MAX_DIM && image.height<=APP_IMAGE_MAX_DIM) {
+            image.format=PNG_FORMAT_RGBA;
+            result.rgba.resize(PNG_IMAGE_SIZE(image));
+            if(png_image_finish_read(&image,nullptr,result.rgba.data(),0,nullptr)) {
+                result.width=image.width;result.height=image.height;
+            }else result={};
+        }
+    }
+    png_image_free(&image);
+    sceKernelLockMutex(mutex_,1,nullptr);
+    const bool wanted=contains(decodeWanted_,path);
+    decodeWanted_.erase(std::remove(decodeWanted_.begin(),decodeWanted_.end(),path),decodeWanted_.end());
+    if(wanted && !stopping_) {decodedPath_=path;decodedIcon_=std::move(result);}
+    sceKernelUnlockMutex(mutex_,1);
+    return true;
+}
 bool ImageCache::isReady(const std::string&p)const{if(p.empty()||mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(ready_,p);sceKernelUnlockMutex(mutex_,1);return r;}
 bool ImageCache::isFailed(const std::string&p)const{if(mutex_<0||p.empty())return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(failed_,p);sceKernelUnlockMutex(mutex_,1);return r;}
 bool ImageCache::isPending(const std::string& localPath) const {
@@ -435,25 +497,58 @@ ImageCache::ProgressSnapshot ImageCache::progress()const{
     return s;
 }
 void ImageCache::resetProgress(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);completedBytes_=0;completedTotalBytes_=0;currentDownloaded_=0;currentTotal_=0;currentSpeed_=0;currentFile_.clear();currentPath_.clear();sceKernelUnlockMutex(mutex_,1);}
-void ImageCache::cancelAll(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);const bool active=workerBusy_;const size_t queued=queue_.size();for(const Job&j:queue_)pending_.erase(std::remove(pending_.begin(),pending_.end(),j.path),pending_.end());queue_.clear();cancelRequested_=active;sceKernelUnlockMutex(mutex_,1);(void)queued; /* Routine image cancellation during navigation is intentionally silent. */}
+void ImageCache::cancelAll(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);const bool active=workerBusy_;const size_t queued=queue_.size();for(const Job&j:queue_)pending_.erase(std::remove(pending_.begin(),pending_.end(),j.path),pending_.end());queue_.clear();decodeWanted_.clear();decodedPath_.clear();decodedIcon_={};cancelRequested_=active;sceKernelUnlockMutex(mutex_,1);(void)queued; /* Routine image cancellation during navigation is intentionally silent. */}
 void ImageCache::cancelQueuedRequests(){if(mutex_<0)return;sceKernelLockMutex(mutex_,1,nullptr);std::vector<std::string>cancelled;cancelled.reserve(queue_.size());for(const Job&j:queue_)cancelled.push_back(j.path);const size_t count=queue_.size();queue_.clear();for(const auto&p:cancelled)pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());sceKernelUnlockMutex(mutex_,1);(void)count;}
 void ImageCache::markReady(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,p))ready_.push_back(p);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());failed_.erase(std::remove(failed_.begin(),failed_.end(),p),failed_.end());retryAfter_.erase(p);sceKernelUnlockMutex(mutex_,1);}
 void ImageCache::markFailed(const std::string&p,uint64_t cooldownUs){sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());if(!contains(failed_,p))failed_.push_back(p);retryAfter_[p]=sceKernelGetSystemTimeWide()+(cooldownUs?cooldownUs:RETRY_COOLDOWN_US);sceKernelUnlockMutex(mutex_,1);}
 int ImageCache::workerEntry(SceSize a,void*arg){(void)a;ImageCache*self=nullptr;if(arg)std::memcpy(&self,arg,sizeof(self));return self?self->workerMain():-1;}
-void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);const bool changed=(networkPaused_!=paused);networkPaused_=paused;if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);if(changed){if(paused)diagnostics::log("[ImageCache] network paused (install/download active)");else diagnostics::log("[ImageCache] network resumed");}}int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){bool paused=false;if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;sceKernelUnlockMutex(mutex_,1);}if(paused){sceKernelDelayThread(100*1000);continue;}
+void ImageCache::setNetworkPaused(bool paused){
+    if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);
+    const bool changed=(networkPaused_!=paused);
+    networkPaused_=paused; queueIconsOnly_=false; allowCachedIcons_=false;
+    if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);
+    if(changed)diagnostics::log(paused?"[ImageCache] network paused (install/download active)":"[ImageCache] network resumed");
+}
+void ImageCache::setQueueImagePolicy(bool pauseNetwork,bool allowCachedIcons) {
+    if(mutex_<0)return;
+    sceKernelLockMutex(mutex_,1,nullptr);
+    const bool entering=!queueIconsOnly_;
+    const bool changed=entering || networkPaused_!=pauseNetwork || allowCachedIcons_!=allowCachedIcons;
+    if(entering) {
+        for(auto it=queue_.begin();it!=queue_.end();) {
+            if(it->path.find("/app_")==std::string::npos) {
+                pending_.erase(std::remove(pending_.begin(),pending_.end(),it->path),pending_.end());
+                it=queue_.erase(it);
+            } else ++it;
+        }
+    }
+    if(workerBusy_ && ((pauseNetwork && !networkPaused_) ||
+       (entering && currentPath_.find("/app_")==std::string::npos)))cancelRequested_=true;
+    queueIconsOnly_=true; allowCachedIcons_=allowCachedIcons; networkPaused_=pauseNetwork;
+    sceKernelUnlockMutex(mutex_,1);
+    if(changed)diagnostics::log(pauseNetwork?"[ImageCache] queue icons: local cache only":"[ImageCache] queue icons: network enabled");
+}
+int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){
+    if(serviceDecodedIcon())continue;
+    bool paused=false,cacheOnly=false;
+    if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;cacheOnly=queueIconsOnly_&&allowCachedIcons_;sceKernelUnlockMutex(mutex_,1);}
+    if(paused&&!cacheOnly){sceKernelDelayThread(100*1000);continue;}
     // Offline: process unexamined cache files before waiting for connectivity.
     // A cache miss is parked, not retried against disk on every worker tick.
     sceKernelLockMutex(mutex_,1,nullptr);
     const bool queued=!queue_.empty();
     sceKernelUnlockMutex(mutex_,1);
     if(!queued){sceKernelDelayThread(50*1000);continue;}
-    const bool connected=imageNetworkConnected();
+    const bool connected=!paused && imageNetworkConnected();
     Job job;
     bool have=false;
     sceKernelLockMutex(mutex_,1,nullptr);
-    if(!networkPaused_&&!queue_.empty()){
-        auto next=connected?queue_.begin():std::find_if(queue_.begin(),queue_.end(),
-            [](const Job& candidate){return !candidate.diskChecked;});
+    if((!networkPaused_ || (queueIconsOnly_ && allowCachedIcons_)) && !queue_.empty()){
+        auto next=std::find_if(queue_.begin(),queue_.end(),[&](const Job& candidate){
+            if(queueIconsOnly_ && candidate.path.find("/app_")==std::string::npos)return false;
+            if(!networkPaused_ && connected)return true;
+            return !candidate.diskChecked;
+        });
         if(next!=queue_.end()){
             job=*next;queue_.erase(next);have=true;workerBusy_=true;
             const size_t slash=job.url.find_last_of('/');
@@ -470,24 +565,33 @@ void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(m
         const bool exists=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;
         const unsigned maxDim=job.path.find("/app_")!=std::string::npos?APP_IMAGE_MAX_DIM:SCREENSHOT_IMAGE_MAX_DIM;
         const bool hit=exists&&cachedNormalizedPngLooksValid(job.path,maxDim);
-        if(exists&&!hit)sceIoRemove(job.path.c_str());
+        if(exists&&!hit&&!job.url.empty())sceIoRemove(job.path.c_str());
         job.diskChecked=true;
         if(hit){
             markReady(job.path);
             sceKernelLockMutex(mutex_,1,nullptr);
             const bool supersededOrCancelled=cancelRequested_||stopping_;
             sceKernelUnlockMutex(mutex_,1);
-            if(!supersededOrCancelled)pruneSupersededVersions(job.path);
+            if(!supersededOrCancelled && !paused && !job.url.empty())pruneSupersededVersions(job.path);
             sceKernelLockMutex(mutex_,1,nullptr);
             currentFile_.clear();currentPath_.clear();workerBusy_=false;cancelRequested_=false;
             sceKernelUnlockMutex(mutex_,1);
             continue;
         }
     }
+    if(job.url.empty()) {
+        // History cache miss: never synthesize a URL, delete files, or retry HTTP.
+        markFailed(job.path,60000000ULL);
+        sceKernelLockMutex(mutex_,1,nullptr);
+        currentFile_.clear();currentPath_.clear();workerBusy_=false;cancelRequested_=false;
+        sceKernelUnlockMutex(mutex_,1);
+        continue;
+    }
     // Recheck pause/cancellation after disk I/O, before opening a connection.
     sceKernelLockMutex(mutex_,1,nullptr);
-    if(cancelRequested_||stopping_||networkPaused_||!connected){
-        if(cancelRequested_||stopping_){
+    if(cancelRequested_||stopping_||networkPaused_||!connected||
+       (queueIconsOnly_ && job.path.find("/app_")==std::string::npos)){
+        if(cancelRequested_||stopping_||(queueIconsOnly_ && job.path.find("/app_")==std::string::npos)){
             pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());
         }else if(bulkPreload_||queue_.size()<MAX_INTERACTIVE_QUEUE){
             queue_.push_back(job);

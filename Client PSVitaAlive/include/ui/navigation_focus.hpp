@@ -31,7 +31,7 @@ public:
             index = 0;
         if (zone == FocusZone::Tabs && (index < 0 || index >= tabs))
             index = 0;
-        if (zone == FocusZone::Footer && (index < 0 || index > 2))
+        if (zone == FocusZone::Footer && (index < 0 || index > 3))
             index = 0;
     }
     void header() { zone = FocusZone::Header; index = 0; }
@@ -65,7 +65,7 @@ public:
         case FocusZone::Footer:
             if (d == FocusDirection::Up) catalog();
             else if (d == FocusDirection::Left && index > 0) --index;
-            else if (d == FocusDirection::Right && index < 2) ++index;
+            else if (d == FocusDirection::Right && index < 3) ++index;
             break;
         case FocusZone::Catalog: break;
         }

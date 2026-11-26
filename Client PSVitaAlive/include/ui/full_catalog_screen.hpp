@@ -7,6 +7,9 @@
 #include "ui/navigation_focus.hpp"
 #include "ui/storage_layout.hpp"
 #include "installer/app_settings.hpp"
+#include "installer/install_controller.hpp"
+#include "installer/queue_history.hpp"
+#include "installer/queue_recovery.hpp"
 #include "installer/plugin_detector.hpp"
 #include "storage/storage_maintenance.hpp"
 #include "storage/installed_data_manager.hpp"
@@ -17,6 +20,7 @@
 #include "ui/ui_font.hpp"
 #include "ui/detail_wrap_cache.hpp"
 #include <psp2/io/stat.h>
+#include <psp2/touch.h>
 #include <psp2/kernel/threadmgr.h>
 
 #include <atomic>
@@ -92,6 +96,12 @@ public:
     void setInstallZipRecoveryCallback(InstallZipRecoveryFn callback) { installZipRecovery_ = callback; }
     void setDeleteSavedZipCallback(DeleteSavedZipFn callback) { deleteSavedZip_ = callback; }
     void setCatalogChangeCallback(CatalogChangeFn callback);
+    void setCatalogActionBlockCallback(std::function<bool()> callback) {
+        catalogActionBlocked_ = std::move(callback);
+    }
+    bool guardCatalogAction();
+    bool catalogWorkExcluded() const;
+    void showCatalogSyncToast(const std::string& message);
     void setSearchCallback(SearchRequestFn callback);
     /** Native vita2d QWERTY search and ZIP path entry (no Sony IME). */
     void completeSearch(const std::string& query);
@@ -100,6 +110,20 @@ public:
     bool promptTextBlocking(const std::string& initial, const std::string& title,
                             std::string& output);
     void setLinkActionCallback(LinkActionFn callback);
+    // Experimental queue integration. Session and status are main-thread-owned.
+    using QueueGroupFn = std::function<int(const CatalogItem&,const std::vector<CatalogLink>&)>;
+    enum class QueueAction { Cancel, Pause, Resume, KeepZip, DeleteZip, RetrySpace, CloseReport, RestoreRecovery, DiscardRecovery };
+    using QueueActionFn = std::function<bool(QueueAction,uint64_t)>;
+    void setQueueCallbacks(const ::psvitaalive::queue::Session* session, QueueGroupFn group, QueueActionFn action);
+    void setQueueHistory(const ::psvitaalive::queue::History* history) { queueHistory_=history; }
+    void setQueueRecovery(const ::psvitaalive::queue::Recovery* recovery) { queueRecovery_=recovery; }
+    bool queueRecoveryItem(const ::psvitaalive::queue::RecoveryEntry& record,CatalogItem& out) const;
+    void setQueueFrame(bool protectedSession,bool report,const ::psvitaalive::InstallStatus& status,
+                       bool waitingSpace,bool invariantBlocked);
+    void queueAccepted(uint64_t id,bool first);
+    void queueJobSettled(const ::psvitaalive::queue::Job& job);
+    bool queueExternalReady() const;
+    bool queueActive() const { return queueProtected_; }
     /** True only after the Install All queue passed its ONE combined ux0 preflight. */
     bool installAllSpaceApproved() const;
     void setSavedZipCallbacks(SavedZipListFn list, SavedZipRetryFn retry) {
@@ -201,8 +225,65 @@ private:
     InstallZipRecoveryFn installZipRecovery_;
     DeleteSavedZipFn deleteSavedZip_;
     CatalogChangeFn catalogChange_;
+    std::function<bool()> catalogActionBlocked_;
     SearchRequestFn searchRequest_;
     LinkActionFn linkAction_;
+    const ::psvitaalive::queue::Session* queueSession_=nullptr;
+    const ::psvitaalive::queue::History* queueHistory_=nullptr;
+    const ::psvitaalive::queue::Recovery* queueRecovery_=nullptr;
+    bool queueRecoveryVisible_=false;
+    bool queueHistoryMode() const { return queueHistory_ && !queueProtected_ && !queueReport_; }
+    bool queueRecoveryMode() const { return queueHistoryMode() && queueRecovery_ && queueRecoveryVisible_ && !queueRecovery_->entries().empty(); }
+    void toggleQueueRecovery();
+    QueueGroupFn queueGroup_;
+    QueueActionFn queueAction_;
+    ::psvitaalive::InstallStatus queueStatus_;
+    bool queueProtected_=false,queueReport_=false,queueVisible_=false,queueDetail_=false;
+    bool queueWaitingSpace_=false,queueInvariantBlocked_=false,queueConfirmCancel_=false;
+    bool queueAwaitRelease_=false,queueTouchDown_=false,queueTouchAwaitRelease_=false;
+    bool queueStorageReturn_=false;
+    QueueAction queueConfirmAction_=QueueAction::Cancel;
+    uint64_t queueConfirmId_=0;
+    int queueTouchLastY_=0;
+    bool queueTouchMoved_=false;
+    uint64_t queueExitFadeUs_=0;
+    uint32_t queuePreviousButtons_=0;
+    uint64_t queueSelectedId_=0,queueTransitionUs_=0;
+    uint64_t queueImageDecodeAfterUs_=0;
+    bool queuePassiveRead_=false;
+    std::vector<std::string> historyIconUrls_;
+    std::unordered_set<std::string> historyFailedIconPaths_;
+    void refreshQueueHistoryIcons();
+    void drawHistoryIcon(size_t index,int x,int y,int size);
+    bool prepareHistoryIcon(size_t index);
+    bool queueStorageContended() const;
+    std::vector<uint64_t> queueDisplayIds_,queuePreviousDisplayIds_;
+    uint64_t queueDisplayGeneration_=0,queueReorderUs_=0;
+    int queuePreviousScroll_=0;
+    void syncQueueDisplay(bool allowAnimation=true);
+    bool queueReorderActive() const;
+    int queueDisplayRowY(int index) const;
+    // Visual-only feedback. Store a cache key, never a borrowed GPU pointer.
+    uint64_t queueArrivalUs_=0;
+    bool queueArrivalFromDetail_=false;
+    std::string queueArrivalIconPath_;
+    void drawQueueArrival();
+    static constexpr int kQueueRows=3, kQueueRowTop=79, kQueueRowPitch=118, kQueueRowHeight=108;
+    static constexpr int kQueueStepRows=2, kQueueStepTop=287, kQueueStepPitch=80, kQueueStepHeight=74;
+    int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;
+    const ::psvitaalive::queue::Job* queuedJobFor(const CatalogItem& item) const;
+    const char* queueJobLabel(const ::psvitaalive::queue::Job& job) const;
+    void openQueue(uint64_t id=0,bool detail=false);
+    void closeQueue();
+    void drawQueueChip();
+    void drawQueueScreen();
+    void handleQueueInput();
+    void handleQueueTouch(const SceTouchData& touch);
+    void queueCommand(QueueAction action);
+    void queueMove(int delta);
+    bool queuePauseAvailable() const;
+    bool queueCancelAvailable() const;
+    void openQueueStorage();
     SavedZipListFn savedZipList_;
     SavedZipRetryFn savedZipRetry_;
     std::string savedZipProbeKey_;
@@ -431,6 +512,7 @@ private:
     std::string toastMessage_;
     uint64_t toastExpiresMs_ = 0;
     uint64_t toastShownMs_ = 0;
+    uint64_t catalogPriorityToastUntilMs_ = 0;
 
     NavigationFocus navigationFocus_;
     bool chromeConfirmAwaitRelease_ = false;
@@ -488,7 +570,7 @@ private:
     void kickNextEssentialPluginInstall();
     void essentialPluginsTryAdvanceFromProgress(int outcome);
 
-    enum class PrimaryAction { None, InstallAll, Update, UpdateAll, Open };
+    enum class PrimaryAction { None, InstallAll, Update, UpdateAll, Open, QueueStatus };
     /** Action is derived from the existing installed-release detector. */
     PrimaryAction primaryActionFor(const CatalogItem& item);
     int preferredVpkDownloadIndex(const CatalogItem& item) const;

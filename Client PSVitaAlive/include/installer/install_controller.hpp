@@ -5,6 +5,7 @@
 #include "installer/install_dispatcher.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/plugin_detector.hpp"
+#include "installer/download_queue.hpp"
 
 #include <psp2/types.h>
 
@@ -53,6 +54,11 @@ struct InstallStatus {
  * Failed / Cancelled stay until the user acknowledges (no auto-dismiss).
  * Cancelled is shown as "Download cancelled" without an error Report button.
  */
+struct QueuedInstallObservation {
+    queue::Token token;
+    InstallStatus status;
+};
+
 struct SavedZipArchive {
     std::string fileName; // visible basename in app details
     std::string archivePath; // exact validated path, not caller-supplied
@@ -107,6 +113,29 @@ public:
                                    const std::string& archivePath);
     InstallStatus status() const;
 
+    // Experimental queue adapter. Main-thread only. status() is polled once
+    // per rendered frame by the caller (BGDL relies on its one-poll deferral).
+    // Acquire/release only from the main thread, with all other work drained.
+    bool beginQueueProtection();
+    bool endQueueProtection(const queue::Session& session);
+    bool queueProtectionActive() const { return queueProtection_.load(); }
+    // Main-thread event-driven probe, never a per-frame filesystem poll.
+    queue::Snapshot captureQueueSnapshot(const queue::Session& session);
+    enum class QueuePlan { Ready, Invalid, UnknownSize, UnsupportedRoute };
+    // Selected links and final destinations are already resolved by the UI.
+    // No network, prompts or installer state mutation. Unknown/BGDL paths
+    // require a separate policy and must not silently pass this planner.
+    QueuePlan prepareQueuedJob(queue::Job& job) const;
+    bool canStartQueuedStep() const;
+    bool startQueuedStep(const queue::Session& session, queue::Token token);
+    QueuedInstallObservation pollQueuedStep() const;
+    bool settleQueuedStep(queue::Session& session, const QueuedInstallObservation& observed);
+    bool cancelQueuedStep(queue::Token token);
+    bool pauseQueuedStep(queue::Token token);
+    bool resumeQueuedStep(queue::Token token);
+    bool resolveQueuedZip(queue::Token token, bool keep, std::string* savedPath=nullptr);
+    bool ownsQueuedStep() const { return queuedToken_.job != 0; }
+
     bool busy() const;
 
     /** Loaded from config.json (install_method, psp_target, plugin warnings). */
@@ -122,6 +151,15 @@ public:
                                const std::string& titleId = std::string());
 
 private:
+    std::atomic<bool> queueProtection_{false};
+    // Download-only high-water size hint, independent of reused extraction counters.
+    std::atomic<uint64_t> queueObservedPayload_{0};
+    queue::LiveStaging queueLiveStaging_;
+    queue::Token queuedToken_{};
+    bool queuedDispatching_=false;
+    bool queuedAcknowledging_=false;
+    bool queuedResolving_=false;
+    std::string queuedSavedZipPath_;
     HttpClient http_;
     DownloadManager downloads_;
     InstallDispatcher dispatcher_;
@@ -211,6 +249,8 @@ private:
     std::atomic<uint64_t> speed_{0};
     std::atomic<bool> workerDone_{true};
     uint64_t nextRecoveryPollUs_ = 0; // main-thread only
+    void cancelImpl();
+    bool pauseDownloadImpl();
     bool resumeDownloadImpl(bool automatic);
     std::atomic<bool> liveAreaOk_{false};
     std::atomic<uint64_t> resultShownAtMs_{0};

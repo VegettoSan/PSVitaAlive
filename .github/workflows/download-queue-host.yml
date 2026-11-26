@@ -1,0 +1,60 @@
+name: Download queue host tests
+on:
+  push:
+    branches: [main, feature/download-queue-manager]
+    paths:
+      - 'Client PSVitaAlive/include/installer/download_queue.hpp'
+      - 'Client PSVitaAlive/include/ui/queue_progress_policy.hpp'
+      - 'Client PSVitaAlive/include/installer/install_space_policy.hpp'
+      - 'Client PSVitaAlive/include/installer/queue_coordinator.hpp'
+      - 'tests/test_queue_coordinator.cpp'
+      - 'Client PSVitaAlive/include/installer/queue_history.hpp'
+      - 'tests/test_queue_history.cpp'
+      - 'Client PSVitaAlive/include/installer/queue_recovery.hpp'
+      - 'tests/test_queue_recovery.cpp'
+      - 'tests/test_download_queue.cpp'
+      - '.github/workflows/download-queue-host.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Client PSVitaAlive/include/installer/**'
+      - 'Client PSVitaAlive/include/ui/queue_progress_policy.hpp'
+      - 'tests/test_download_queue.cpp'
+      - 'tests/test_queue_*.cpp'
+      - '.github/workflows/download-queue-host.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and test session queue
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -I"Client PSVitaAlive/include" tests/test_download_queue.cpp -o /tmp/psva-queue-test
+          /tmp/psva-queue-test
+      - name: Run address and undefined behavior sanitizers
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_download_queue.cpp -o /tmp/psva-queue-sanitize
+          /tmp/psva-queue-sanitize
+      - name: Compile and exercise frame coordinator
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -I"Client PSVitaAlive/include" tests/test_queue_coordinator.cpp -o /tmp/psva-coordinator-test
+          /tmp/psva-coordinator-test
+      - name: Sanitize coordinator
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_coordinator.cpp -o /tmp/psva-coordinator-sanitize
+          /tmp/psva-coordinator-sanitize
+      - name: Test bounded history and crash fallback
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -I"Client PSVitaAlive/include" tests/test_queue_history.cpp -o /tmp/psva-history-test
+          /tmp/psva-history-test
+          c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_history.cpp -o /tmp/psva-history-sanitize
+          /tmp/psva-history-sanitize
+      - name: Test pending checkpoint and recovery identity
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -pedantic -I"Client PSVitaAlive/include" tests/test_queue_recovery.cpp -o /tmp/psva-recovery-test
+          /tmp/psva-recovery-test
+          c++ -std=c++17 -Wall -Wextra -Werror -g -fsanitize=address,undefined -fno-omit-frame-pointer -I"Client PSVitaAlive/include" tests/test_queue_recovery.cpp -o /tmp/psva-recovery-sanitize
+          /tmp/psva-recovery-sanitize

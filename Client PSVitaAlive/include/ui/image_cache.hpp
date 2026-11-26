@@ -28,6 +28,9 @@ public:
     void shutdown();
 
     std::string request(const std::string& url, const std::string& namespaceName);
+    // History may only probe a validated local app key; never download from it.
+    std::string requestHistoryIcon(const std::string& key);
+    std::string historyIconPath(const std::string& key) const;
     /** Resolve local cache path without queueing a download or disk access. */
     std::string pathFor(const std::string& url, const std::string& namespaceName) const;
     /** Prune queued off-screen jobs; active transfer uses a short grace period to avoid cancellation thrash. */
@@ -37,6 +40,12 @@ public:
     // visible on screen. Used at startup to warm the complete catalog cache.
     void preload(const std::vector<std::string>& urls, const std::string& namespaceName);
 
+    // Queue-mode handoff: bounded CPU pixels, never a GPU object.
+    struct DecodedIcon {
+        unsigned width=0,height=0;
+        std::vector<unsigned char> rgba;
+    };
+    bool takeDecodedIcon(const std::string& localPath, DecodedIcon& out);
     bool isReady(const std::string& localPath) const;
     bool isFailed(const std::string& localPath) const;
     bool isPending(const std::string& localPath) const;
@@ -63,6 +72,9 @@ public:
 
     /** Pause background image downloads so install/VPK bandwidth is not shared. */
     void setNetworkPaused(bool paused);
+    // Queue mode permits only app icons; cache validation can continue while
+    // remote transfers are paused during extraction/promotion.
+    void setQueueImagePolicy(bool pauseNetwork, bool allowCachedIcons);
     bool networkPaused() const { return networkPaused_; }
 
 private:
@@ -78,8 +90,16 @@ private:
     volatile bool stopping_ = false;
     volatile bool cancelRequested_ = false;
     volatile bool networkPaused_ = false;
+    bool queueIconsOnly_ = false; // protected by mutex_
+    bool allowCachedIcons_ = false; // protected by mutex_
     bool workerBusy_ = false; // protected by mutex_; covers entire active job
     std::vector<Job> queue_;
+    // One published result and one worker-local image (each <= 64 KiB).
+    // All request/result metadata is protected by mutex_.
+    std::vector<std::string> decodeWanted_;
+    std::string decodedPath_;
+    DecodedIcon decodedIcon_;
+    bool serviceDecodedIcon();
     std::vector<std::string> pending_;
     std::vector<std::string> ready_;
     std::vector<std::string> failed_;

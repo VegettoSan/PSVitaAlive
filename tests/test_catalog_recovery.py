@@ -42,6 +42,8 @@ assert "if (!stopping_ && !isStale())" in worker
 assert "hasUnfilteredCatalogItems() const { return !allItems_.empty(); }" in header
 assert "catalogs.takeReady(ready,readyCatalog) && !ready.empty()" in main
 assert "!screen.hasUnfilteredCatalogItems() && !catalogs.isBusy()" in main
+assert "!catalogs.actionBlockedByCatalog() &&" in main
+assert "!installer.busy() && !installer.queueProtectionActive() && !screen.catalogWorkExcluded()" in main
 assert "!emptyCatalogRecoveryRequested[recoveryIndex]" in main
 assert "emptyCatalogRecoveryRequested[recoveryIndex] = true;" in main
 assert "catalogs.request(recoveryCatalog, true)" in main
@@ -62,4 +64,26 @@ assert "if (!isArchive)" in parallel
 assert "lastEtag_ = rangeProbe.etag;" in parallel
 assert "lastModified_ = rangeProbe.lastModified;" in parallel
 
-print("Catalog recovery source integration checks passed")
+
+# Priority uses the worker lifecycle, not the decorative progress bar.
+guard = manager.split("bool CatalogManager::actionBlockedByCatalog()", 1)[1].split("bool CatalogManager::request(", 1)[0]
+assert "requestPending_ || workerOperationActive_ || readyPending_" in guard
+assert "sceKernelLockMutex" in guard and "sceKernelUnlockMutex" in guard
+assert "setCatalogActionBlockCallback" in main
+ui = (root / "source/ui/full_catalog_screen.cpp").read_text(encoding="utf-8")
+for name in ("activatePrimaryAction", "applyPspLiveAreaPluginGateOrRun", "openInstallAllWizard",
+             "triggerSelfUpdateAction", "installAllStartQueue"):
+    body = ui.split("void FullCatalogScreen::" + name + "(", 1)[1].split("{", 1)[1]
+    assert "guardCatalogAction()" in body[:220], name
+launch = ui.split("void FullCatalogScreen::activatePrimaryAction(", 1)[1].split("bool FullCatalogScreen::itemSupportsInstallAll", 1)[0]
+assert launch.index("guardCatalogAction()") < launch.index("sceAppMgrLaunchAppByUri")
+switch = ui.split("void FullCatalogScreen::changeCatalog(", 1)[1].split("void FullCatalogScreen::", 1)[0]
+assert switch.index("catalogWorkExcluded()") < switch.index("allItems_.swap(empty)")
+assert 'L("CATALOG_ACTION_WAIT"), 5600' in ui
+assert "catalogPriorityToastUntilMs_" in ui
+for lang in ("en", "es", "fr", "de", "it", "pt-BR", "pt-PT", "ru"):
+    content = (root / "assets/lang" / (lang + ".lang")).read_text(encoding="utf-8")
+    matches = [line for line in content.splitlines() if line.startswith("CATALOG_ACTION_WAIT=")]
+    assert len(matches) == 1 and matches[0].split("=", 1)[1].strip(), lang
+
+print("Catalog recovery and priority source integration checks passed")

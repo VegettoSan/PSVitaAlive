@@ -1,5 +1,7 @@
 # `source/ui/` — Native UI
 
+> **Download queue (source integration, 2026-11-26):** [Gestor de descargas: arquitectura, pruebas y mantenimiento](../../../docs/DOWNLOAD_QUEUE_INTEGRATION_20261126.md). The in-client manager permits catalog browsing while the protected session executes grouped FIFO tasks; the active task and pending tasks precede terminal history. Legacy single-job overlay descriptions below do not override the queue's session-wide protection, token checks or explicit recovery. This source integration does not publish a new release.
+
 Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00`); users can switch **color themes**, **UI fonts**, and **language** in Settings.
 
 ## Main surface

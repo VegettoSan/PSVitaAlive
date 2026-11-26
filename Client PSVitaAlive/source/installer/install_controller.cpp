@@ -251,6 +251,42 @@ bool isPluginLinkType(const std::string& linkType) {
     return lt == "plugin" || lt == "plugins";
 }
 
+namespace {
+struct InstallRoute {
+    bool vitaPkgByMetadata=false;
+    bool pkgInstall=false;
+    bool pspPs1Adrenaline=false;
+    bool wantBgdl=false;
+    bool zipExtraction=false;
+    bool plugin=false;
+    InstallSpaceMode budgetMode=InstallSpaceMode::DirectPackage;
+};
+InstallRoute classifyInstallRoute(const std::string& url, const std::string& fileName,
+                                  const std::string& destination, const std::string& zrif,
+                                  const std::string& linkType, const std::string& contentId,
+                                  PspTarget target) {
+    InstallRoute r;
+    r.vitaPkgByMetadata=looksLikeVitaPkgMetadata(contentId,zrif);
+    r.pkgInstall=r.vitaPkgByMetadata || BgdlClient::looksLikePkgUrl(url,fileName);
+    r.pspPs1Adrenaline=r.pkgInstall && !r.vitaPkgByMetadata &&
+        looksLikePspPs1Pkg(linkType,contentId,fileName) && target==PspTarget::Adrenaline;
+    r.wantBgdl=r.pkgInstall && !r.pspPs1Adrenaline;
+    r.plugin=isPluginLinkType(linkType);
+    r.zipExtraction=!r.plugin && !destination.empty() &&
+        (isDataOrGameFilesLinkType(linkType) || FormatDetector::extensionOf(fileName)=="zip");
+    r.budgetMode=selectInstallSpaceMode(r.wantBgdl,r.zipExtraction,r.plugin);
+    return r;
+}
+bool queueDestinationMount(const std::string& path,queue::Mount& mount) {
+    if(path.compare(0,4,"ux0:")==0) { mount=queue::Mount::Ux0; return true; }
+    if(path.compare(0,5,"uma0:")==0) { mount=queue::Mount::Uma0; return true; }
+    if(path.compare(0,4,"ur0:")==0) { mount=queue::Mount::Ur0; return true; }
+    if(path.compare(0,5,"imc0:")==0) { mount=queue::Mount::Imc0; return true; }
+    if(path.compare(0,5,"xmc0:")==0) { mount=queue::Mount::Xmc0; return true; }
+    return false;
+}
+} // namespace
+
 std::string basenameFromPathOrUrl(const std::string& s) {
     if (s.empty()) return "plugin.bin";
     size_t q = s.find('?');
@@ -286,7 +322,17 @@ bool InstallController::init() {
         diagnostics::log(std::string("[Installer] HTTP init failed: ") + http_.lastError());
         return false;
     }
+    downloads_.setStagingCallback([this](uint64_t bytes,bool reset) {
+        if(!queueProtectionActive())return;
+        if(reset)queueLiveStaging_.reset(); else queueLiveStaging_.publish(bytes);
+    });
     downloads_.setProgressCallback([this](const DownloadProgressEvent& event) {
+        if (queueProtectionActive()) {
+            const uint64_t hint = std::max(event.total, event.downloaded);
+            uint64_t old = queueObservedPayload_.load(std::memory_order_relaxed);
+            while (hint > old && !queueObservedPayload_.compare_exchange_weak(
+                old, hint, std::memory_order_release, std::memory_order_relaxed)) {}
+        }
         current_.store(event.downloaded);
         total_.store(event.total);
         speed_.store(event.bytesPerSecond);
@@ -332,13 +378,16 @@ bool InstallController::init() {
     return true;
 }
 void InstallController::shutdown() {
-    unlockShellDuringJob();
-    stopKeepAwakeThread();
+    // A protected queue must not release the shell while its worker writes.
+    if (!queueProtectionActive()) unlockShellDuringJob();
     if (workerThread_ >= 0) {
         sceKernelWaitThreadEnd(workerThread_, nullptr, nullptr);
         sceKernelDeleteThread(workerThread_);
         workerThread_ = -1;
     }
+    queueProtection_.store(false);
+    unlockShellDuringJob();
+    stopKeepAwakeThread();
     http_.shutdown();
     activeJobId_.clear();
     activeZipDestination_.clear();
@@ -349,6 +398,8 @@ void InstallController::shutdown() {
 }
 
 void InstallController::setSettings(const AppSettingsData& s) {
+    // Queue routing and worker reads must remain immutable until settlement.
+    if (ownsQueuedStep() || queueProtectionActive()) return;
     settings_ = s;
     AppSettings::save(settings_);
     diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod) +
@@ -357,8 +408,12 @@ void InstallController::setSettings(const AppSettingsData& s) {
 }
 
 bool InstallController::pauseDownload() {
+    return !ownsQueuedStep() && pauseDownloadImpl();
+}
+
+bool InstallController::pauseDownloadImpl() {
     if (static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Downloading ||
-        activeBgdlJob_ || activeJobId_.empty() ||
+        activeBgdlJob_.active || activeJobId_.empty() ||
         workerThread_ < 0 || workerDone_.load(std::memory_order_acquire))
         return false;
     // Cooperative HTTP abort; validated serial and range checkpoints are retained.
@@ -370,7 +425,7 @@ bool InstallController::pauseDownload() {
 }
 
 bool InstallController::resumeDownload() {
-    return resumeDownloadImpl(false);
+    return !ownsQueuedStep() && resumeDownloadImpl(false);
 }
 
 void InstallController::pollDownloadRecovery() {
@@ -384,7 +439,7 @@ void InstallController::pollDownloadRecovery() {
     if (!job || job->state != DownloadState::Paused) return;
     if (installCancelRequested_.load(std::memory_order_acquire) ||
         job->cancelRequested->load(std::memory_order_acquire)) {
-        cancel();
+        cancelImpl();
         return;
     }
     if (job->manualPauseRequested->load(std::memory_order_acquire)) {
@@ -467,6 +522,10 @@ bool InstallController::resumeDownloadImpl(bool automatic) {
 }
 
 void InstallController::cancel() {
+    if (!ownsQueuedStep()) cancelImpl();
+}
+
+void InstallController::cancelImpl() {
     const auto currentState = static_cast<InstallStatus::State>(state_.load());
     if (currentState == InstallStatus::State::Paused &&
         !workerDone_.load(std::memory_order_acquire)) {
@@ -516,6 +575,7 @@ void InstallController::cancel() {
 }
 
 void InstallController::acknowledgeResult() {
+    if (ownsQueuedStep() && !queuedAcknowledging_) return;
     // A terminal state may be published while a worker is still persisting its
     // receipt or cleaning its DownloadManager job. Never clear shared fields
     // before that worker has finished.
@@ -647,6 +707,7 @@ bool InstallController::persistPendingZipRecovery() {
 }
 
 bool InstallController::resolveZipRecovery(bool keep, std::string* savedPath) {
+    if (ownsQueuedStep() && !queuedResolving_) return false;
     if (savedPath) savedPath->clear();
     if (!zipRecoveryAvailable_.load() ||
         static_cast<InstallStatus::State>(state_.load()) != InstallStatus::State::Failed)
@@ -783,7 +844,7 @@ bool InstallController::deleteSavedZip(const std::string& appId,
                                        const std::string& titleId,
                                        const std::string& archivePath) {
     // Trust only archives returned by the existing app/title-bound metadata scan.
-    if (archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
+    if (queueProtectionActive() || ownsQueuedStep() || archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
     const auto archives = savedZips(appId, titleId);
     const auto it = std::find_if(archives.begin(), archives.end(),
         [&](const SavedZipArchive& z) { return z.archivePath == archivePath; });
@@ -815,7 +876,7 @@ bool InstallController::hasSavedZip(const std::string& appId, const std::string&
 bool InstallController::requestSavedZipExtraction(
     const std::string& appId, const std::string& titleId,
     const std::string& archivePath) {
-    if (busy() || zipRecoveryAvailable_.load()) return false;
+    if (((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || busy() || zipRecoveryAvailable_.load()) return false;
     // Never trust a UI-provided path: resolve the selected archive afresh from
     // its app-specific metadata. This also handles deletion between UI frames.
     const auto matches = savedZips(appId, titleId);
@@ -886,6 +947,7 @@ bool InstallController::busy() const {
 void InstallController::setPendingCatalogMeta(const std::string& appId, const std::string& version,
                                                    const std::string& versionDate, int revision,
                                                    const std::string& titleId) {
+    if ((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) return;
     // Metadata is also consumed by the worker when writing the install receipt.
     // Never replace it during an earlier installation's cleanup tail.
     if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
@@ -910,7 +972,7 @@ bool InstallController::requestInstall(
     const std::string& pluginLine,
     bool installAllSpaceApproved
 ) {
-    if (url.empty() || fileName.empty() || busy()) return false;
+    if (((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || url.empty() || fileName.empty() || busy()) return false;
     // Game Files / Data Files are extraction-only. Do not enqueue a download
     // that could later be mistaken for an installable VPK.
     if (isDataOrGameFilesLinkType(linkType) && zipDestination.empty()) {
@@ -972,15 +1034,12 @@ bool InstallController::requestInstall(
 
     // Do not rely only on a .pkg suffix. Sony/NPS Vita CDN URLs often end in an
     // opaque token, while their content_id still unambiguously identifies PCS*.
-    const bool vitaPkgByMetadata = looksLikeVitaPkgMetadata(contentId, zrif);
-    const bool pkgInstall = vitaPkgByMetadata || BgdlClient::looksLikePkgUrl(url, fileName);
-    const bool pspPs1Pkg = pkgInstall && !vitaPkgByMetadata &&
-        looksLikePspPs1Pkg(linkType, contentId, fileName);
-    // Vita PKGs must never be downloaded by PSVitaAlive itself. The only direct-PKG
-    // exception is PSP/PS1 when the user explicitly targets Adrenaline/pspemu.
-    const bool pspPs1Adrenaline =
-        pspPs1Pkg && settings_.pspTarget == PspTarget::Adrenaline;
-    const bool wantBgdl = pkgInstall && !pspPs1Adrenaline;
+    const auto route=classifyInstallRoute(url,fileName,zipDestination,zrif,linkType,contentId,
+                                          settings_.pspTarget);
+    const bool vitaPkgByMetadata=route.vitaPkgByMetadata;
+    const bool pkgInstall=route.pkgInstall;
+    const bool pspPs1Adrenaline=route.pspPs1Adrenaline;
+    const bool wantBgdl=route.wantBgdl;
 
     // Always reserve the downloaded payload AND its expected installed size
     // before enqueuing. For STORE ZIPs this includes both copies on ux0.
@@ -988,10 +1047,8 @@ bool InstallController::requestInstall(
     // safeguard for unexpected expansion/corruption, not a second estimate.
     // For unknown catalog sizes, enforce a minimum and check HTTP headers
     // before writing body bytes.
-    const bool isZipExtraction = !isPluginLinkType(linkType) && !zipDestination.empty() &&
-        (isDataOrGameFilesLinkType(linkType) || FormatDetector::extensionOf(fileName) == "zip");
-    const InstallSpaceMode budgetMode = selectInstallSpaceMode(
-        wantBgdl, isZipExtraction, isPluginLinkType(linkType));
+    const bool isZipExtraction=route.zipExtraction;
+    const InstallSpaceMode budgetMode=route.budgetMode;
     const uint64_t requiredSpace = initialInstallSpaceBytes(expectedBytes, budgetMode);
     if (wantBgdl) diagnostics::log("[Installer] PKG space preflight on ux0 before system BGDL");
 
@@ -1176,6 +1233,401 @@ bool InstallController::requestInstall(
     return true;
 }
 
+bool InstallController::beginQueueProtection() {
+    if (queueProtectionActive()) return true;
+    if (!canStartQueuedStep() || !http_.isInitialized() || !shellUtilReady_ ||
+        keepAwakeThread_ < 0 || keepAwakeStop_.load()) return false;
+    // No worker is active, so the main thread exclusively owns shell changes.
+    // Roll back if either lock cannot be acquired.
+    if (shellLocked_) return false;
+    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN) < 0) return false;
+    if (sceShellUtilLock(SCE_SHELL_UTIL_LOCK_TYPE_POWEROFF_MENU) < 0) {
+        sceShellUtilUnlock(SCE_SHELL_UTIL_LOCK_TYPE_PS_BTN);
+        return false;
+    }
+    shellLocked_ = true;
+    queueProtection_.store(true, std::memory_order_release);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
+    sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);
+    diagnostics::log("[Installer] queue session shell protection acquired");
+    return true;
+}
+
+bool InstallController::endQueueProtection(const queue::Session& session) {
+    if (session.protectedSession() || ownsQueuedStep() || busy()) return false;
+    if (queueProtection_.exchange(false, std::memory_order_acq_rel))
+        unlockShellDuringJob();
+    return true;
+}
+
+queue::Snapshot InstallController::captureQueueSnapshot(const queue::Session& session) {
+    queue::Snapshot out;
+    out.generation = session.generation();
+    // Read only physically written prefixes published by the HTTP worker.
+    // A reset epoch invalidates credit across truncate/retry/merge/cleanup.
+    queue::Bytes stable{};
+    const auto token = session.activeToken();
+    const auto* owner = session.find(session.ownerId());
+    bool remainingKnown = !session.ownerId();
+    bool useLiveCredit=false;
+    queue::LiveStaging::Sample live{};
+    queue::Space revisedActive;
+    bool revised=false;
+    uint64_t payloadBound=0;
+    if (owner && owner->nextStep < owner->steps.size()) {
+        remainingKnown = true;
+        if (token.job) {
+            const auto& step = owner->steps[owner->nextStep];
+            payloadBound=step.expectedBytes;
+            if (!ownsQueuedStep() || !(queuedToken_ == token) || !payloadBound)
+                remainingKnown = false;
+            const auto observed=queueObservedPayload_.load(std::memory_order_acquire);
+            if(remainingKnown && observed>payloadBound) {
+                // Catalog lengths are hints, not exact HTTP lengths. Re-plan
+                // the current component using the observed payload, without
+                // changing immutable queued requests or claiming disk credit.
+                queue::Job draft;
+                draft.appId=owner->appId; draft.titleId=owner->titleId;
+                draft.steps.push_back(step);
+                draft.steps.front().state=queue::State::Waiting;
+                draft.steps.front().expectedBytes=observed;
+                if(step.savedZipPath.empty() && step.component!=queue::Component::SystemPackage &&
+                   owner->routing.matches(settings_) && prepareQueuedJob(draft)==QueuePlan::Ready &&
+                   draft.steps.front().component==step.component && !draft.exclusiveTail &&
+                   draft.steps.front().destination==step.destination &&
+                   queue::validSpace(draft.steps.front().space)) {
+                    revisedActive=draft.steps.front().space;
+                    revised=true;
+                    payloadBound=observed;
+                } else remainingKnown=false;
+            }
+            if (remainingKnown && workerDone_.load(std::memory_order_acquire) &&
+                static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Paused &&
+                !activeJobId_.empty()) {
+                const auto* job = downloads_.findJob(activeJobId_);
+                if (job && job->state == DownloadState::Paused &&
+                    job->expectedSize <= payloadBound) {
+                    StorageManager storage;
+                    const uint64_t parts = parallelSavedBytes(job->temporaryPath);
+                    const int64_t serial = storage.fileSize(job->temporaryPath);
+                    const uint64_t observed = parts ? parts :
+                        (serial > 0 ? static_cast<uint64_t>(serial) : 0);
+                    stable[0] = std::min(std::min(observed, job->downloadedSize),
+                                         payloadBound);
+                } else remainingKnown = false;
+            }
+            if(remainingKnown && !workerDone_.load(std::memory_order_acquire) &&
+                static_cast<InstallStatus::State>(state_.load())==InstallStatus::State::Downloading &&
+                step.savedZipPath.empty() && step.component!=queue::Component::SystemPackage) {
+                live=queueLiveStaging_.sample(); useLiveCredit=true;
+            }
+        }
+    }
+    const char* mounts[] = {"ux0:", "uma0:", "ur0:", "imc0:", "xmc0:"};
+    static_assert(sizeof(mounts)/sizeof(mounts[0])==static_cast<size_t>(queue::Mount::Count),"mount table");
+    for (size_t i = 0; i < out.free.size(); ++i) {
+        uint64_t total = 0;
+        out.measured[i] = StorageManager::queryMountSpace(mounts[i], out.free[i], total);
+    }
+    // Probe free bytes AFTER sampling the prefix. Growth between these two
+    // readings is conservatively charged twice; a reset discards the credit.
+    if(remainingKnown && owner) {
+        // The observed bound must still cover the transfer after the probe,
+        // even if the worker has since entered extraction.
+        if(token.job && queueObservedPayload_.load(std::memory_order_acquire)>payloadBound)
+            remainingKnown=false;
+        if(remainingKnown && useLiveCredit && queueLiveStaging_.stillValid(live) &&
+           static_cast<InstallStatus::State>(state_.load())==InstallStatus::State::Downloading)
+            stable[0]=std::min(live.bytes,payloadBound);
+        if(remainingKnown)out.activeRemaining=queue::remainingGroupSpace(*owner,stable,revised?&revisedActive:nullptr);
+    }
+    out.valid = out.measured[0];
+    // Snapshot is captured on admission/dispatch, not on every frame. Log
+    // physical measurements and uncertainty without exposing URLs or keys.
+    std::string measurement="[Queue] snapshot";
+    for(size_t n=0;n<out.free.size();++n)measurement+=" "+std::string(mounts[n])+"="+
+        (out.measured[n]?std::to_string(out.free[n]):std::string("unmeasured"));
+    if(owner && owner->nextStep<owner->steps.size())measurement+=" active="+std::to_string(owner->id)+
+        " expected="+std::to_string(owner->steps[owner->nextStep].expectedBytes)+
+        " observed="+std::to_string(queueObservedPayload_.load(std::memory_order_acquire))+
+        " revised="+std::to_string(revised)+
+        " remainingKnown="+std::to_string(remainingKnown)+
+        " remainingValid="+std::to_string(queue::validSpace(out.activeRemaining));
+    diagnostics::log(measurement);
+    return out;
+}
+
+InstallController::QueuePlan InstallController::prepareQueuedJob(queue::Job& job) const {
+    using namespace queue;
+    if(job.steps.empty() || job.steps.size()>Session::maxSteps ||
+       (job.titleId.empty() && job.appId.empty())) return QueuePlan::Invalid;
+    Job draft=job;
+    draft.routing=Routing::capture(settings_);
+    draft.appKey=draft.titleId.empty()?"id:"+draft.appId:"title:"+draft.titleId;
+    if(!draft.titleId.empty())
+        for(char& c:draft.appKey) c=static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+    InstallAllSpaceBudget batch;
+    std::vector<Space> spaces;
+    spaces.reserve(draft.steps.size());
+    unsigned systemSteps=0;
+    for(auto& step:draft.steps) {
+        if(step.state!=State::Waiting) return QueuePlan::Invalid;
+        if(!step.savedZipPath.empty()) {
+            if(!step.url.empty() || draft.steps.size()!=1) return QueuePlan::Invalid;
+            const auto options=savedZips(draft.appId,draft.titleId);
+            const auto selected=std::find_if(options.begin(),options.end(),
+                [&](const SavedZipArchive& z){return z.archivePath==step.savedZipPath;});
+            if(selected==options.end()) return QueuePlan::Invalid;
+            Mount target;
+            if(!queueDestinationMount(selected->target,target)) return QueuePlan::UnsupportedRoute;
+            StorageManager storage;
+            uint64_t compressed=0;
+            for(unsigned part=0;part<selected->partCount;++part) {
+                const auto path=selected->partCount==1?selected->archivePath:savedZipPartPath(selected->archivePath,part);
+                const int64_t n=storage.fileSize(path);
+                if(n<=0) return QueuePlan::Invalid;
+                compressed=saturatingSpaceAdd(compressed,static_cast<uint64_t>(n));
+            }
+            step.fileName=selected->fileName; step.destination=selected->target;
+            step.expectedBytes=compressed; step.component=Component::SavedZip;
+            step.space=savedArchiveSpace(compressed,target);
+            if(!validSpace(step.space)) return QueuePlan::Invalid;
+            draft.exclusiveTail=true; spaces.push_back(step.space);
+            continue;
+        }
+        if(step.url.empty() || step.fileName.empty()) return QueuePlan::Invalid;
+        const auto route=classifyInstallRoute(step.url,step.fileName,step.destination,step.zrif,
+            step.linkType,step.contentId,draft.routing.target);
+        const auto ext=FormatDetector::extensionOf(step.fileName);
+        if(!step.expectedBytes) draft.provisionalSpace=true;
+        // Mixed groups may cross one OS handoff. The core defers the remaining
+        // components instead of equating BGDL submission with installation.
+        if(route.wantBgdl) {
+            if(++systemSteps>1 || !step.destination.empty() || route.plugin ||
+               isDataOrGameFilesLinkType(step.linkType)) return QueuePlan::UnsupportedRoute;
+            step.component=Component::SystemPackage;
+            step.space=systemHandoffSpace(step.expectedBytes);
+            if(!validSpace(step.space))return QueuePlan::Invalid;
+            draft.exclusiveTail=true; spaces.push_back(step.space);
+            addInstallAllSpaceEntry(batch,InstallAllSpaceLinkKind::App,step.expectedBytes);
+            continue;
+        }
+        if(isDataOrGameFilesLinkType(step.linkType) &&
+           (!route.zipExtraction || ext=="vpk")) return QueuePlan::Invalid;
+        Mount target=Mount::Ux0;
+        const uint64_t payload=step.expectedBytes;
+        uint64_t targetPeak=0;
+        InstallAllSpaceLinkKind kind=InstallAllSpaceLinkKind::App;
+        if(route.plugin) {
+            if(step.destination.empty()) step.destination="ur0:tai/";
+            if(!queueDestinationMount(step.destination,target)) return QueuePlan::UnsupportedRoute;
+            step.component=Component::Plugin; kind=InstallAllSpaceLinkKind::Plugin;
+            targetPeak=saturatingSpaceAdd(payload,4*kSpaceMiB);
+        } else if(route.zipExtraction) {
+            if(!queueDestinationMount(step.destination,target)) return QueuePlan::UnsupportedRoute;
+            if(isDataOrGameFilesLinkType(step.linkType)) {
+                const size_t i=step.linkType.find_first_not_of(" \t\r\n_-");
+                step.component=i!=std::string::npos &&
+                    std::tolower(static_cast<unsigned char>(step.linkType[i]))=='g'
+                    ?Component::GameFiles:Component::DataFiles;
+                kind=InstallAllSpaceLinkKind::Extra;
+            } else step.component=Component::Other;
+            targetPeak=saturatingSpaceAdd(saturatingSpaceAdd(payload,payload/4),kSpaceZipReserve);
+        } else {
+            if(!step.destination.empty()) return QueuePlan::UnsupportedRoute;
+            if(route.pspPs1Adrenaline) {
+                target=draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
+                step.component=Component::PspMedia;
+                draft.exclusiveTail=true;
+            } else if(ext=="vpk" || ext=="zip") {
+                // Legacy dispatcher can recognize a ZIP-backed VPK without a destination.
+                step.component=Component::App;
+                if(ext=="zip")draft.exclusiveTail=true;
+            } else if(ext=="iso" || ext=="pbp" || ext=="cso") {
+                target=draft.routing.target==PspTarget::Adrenaline && draft.routing.storage==PspStorage::Uma0?Mount::Uma0:Mount::Ux0;
+                step.component=Component::PspMedia;
+            } else {
+                // Redirect/opaque names are detected by the existing dispatcher.
+                // Reserve both plausible destinations; never promise their cleanup.
+                step.component=Component::Other; draft.exclusiveTail=true;
+            }
+            targetPeak=route.pspPs1Adrenaline && target!=Mount::Ux0
+                ?initialInstallSpaceBytes(payload,InstallSpaceMode::DirectPackage)
+                :saturatingSpaceAdd(payload,payload/10);
+        }
+        // Catalog size is only an estimate of retained bytes; actual HTTP
+        // and extractor checks remain authoritative for compressed payloads.
+        step.space=payload?mountedSpace(payload,route.budgetMode,target,targetPeak,payload):
+            provisionalMountedSpace(route.budgetMode,target);
+        if(!route.plugin && !route.zipExtraction && step.component==Component::Other) {
+            step.space.retained[0]=step.space.peak[0];
+            if(draft.routing.target==PspTarget::Adrenaline && draft.routing.storage==PspStorage::Uma0) {
+                const auto i=static_cast<size_t>(Mount::Uma0);
+                step.space.peak[i]=initialInstallSpaceBytes(payload,InstallSpaceMode::DirectPackage);
+                step.space.retained[i]=step.space.peak[i];
+            }
+        }
+        if(route.plugin && target!=Mount::Ur0) {
+            // taiHEN configuration may live on ur0 even with a ux0 plugin.
+            step.space.peak[static_cast<size_t>(Mount::Ur0)]=4*kSpaceMiB;
+        }
+        if(!validSpace(step.space)) return QueuePlan::Invalid;
+        spaces.push_back(step.space);
+        addInstallAllSpaceEntry(batch,kind,payload);
+    }
+    draft.admissionSpace=sequenceSpace(spaces);
+    if(draft.installAll) {
+        const uint64_t legacy=installAllQueueRequiredSpaceBytes(batch);
+        draft.admissionSpace.peak[0]=std::max(draft.admissionSpace.peak[0],legacy);
+    }
+    if(!validSpace(draft.admissionSpace)) return QueuePlan::Invalid;
+    job=std::move(draft);
+    return QueuePlan::Ready;
+}
+
+bool InstallController::canStartQueuedStep() const {
+    // Do not read activeBgdlJob_ through its conversion operator: it consumes
+    // the preparation-frame deferral. An Idle controller cannot have BGDL armed.
+    return !ownsQueuedStep() && !busy() && !zipRecoveryAvailable_.load() &&
+        static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle;
+}
+
+bool InstallController::startQueuedStep(const queue::Session& session, queue::Token token) {
+    const auto* claimed = session.find(token.job);
+    if (!claimed || !(session.activeToken() == token)) return false;
+    const auto& job = *claimed;
+    if (!queueProtectionActive() || !canStartQueuedStep() || !token.job || !token.serial || token.job != job.id ||
+        job.state != queue::State::Running || token.step != job.nextStep ||
+        token.step >= job.steps.size() || job.steps[token.step].state != queue::State::Running ||
+        !job.routing.matches(settings_)) return false;
+    const auto& step = job.steps[token.step];
+    if(!step.savedZipPath.empty()) {
+        // A saved archive is selected by app-specific metadata, not a raw
+        // arbitrary path. Recheck the exact destination at dispatch too.
+        const auto saved=savedZips(job.appId,job.titleId);
+        const auto it=std::find_if(saved.begin(),saved.end(),[&](const SavedZipArchive& z){
+            return z.archivePath==step.savedZipPath && z.target==step.destination;
+        });
+        if(it==saved.end())return false;
+        StorageManager storage; uint64_t size=0;
+        for(unsigned part=0;part<it->partCount;++part) {
+            const auto path=it->partCount==1?it->archivePath:savedZipPartPath(it->archivePath,part);
+            const int64_t n=storage.fileSize(path); if(n<=0)return false;
+            size=saturatingSpaceAdd(size,static_cast<uint64_t>(n));
+        }
+        if(size!=step.expectedBytes)return false;
+    }
+    queuedToken_ = token;
+    queueLiveStaging_.reset();
+    queueObservedPayload_.store(0, std::memory_order_release);
+    queuedDispatching_ = true;
+    queuedSavedZipPath_.clear();
+    // Reset fields even if requestInstall fails synchronously before launching a
+    // worker. In particular a previous plugin/BGDL must not leak its outcome.
+    needsReboot_.store(false);
+    archiveSourceUnavailable_.store(false);
+    liveAreaOk_.store(false);
+    current_.store(0); total_.store(step.expectedBytes); speed_.store(0);
+    resultShownAtMs_.store(0);
+    setFileName(step.fileName.c_str());
+    setTitleId(""); setInstallPath(""); setStage("Preparing");
+    setPendingCatalogMeta(job.appId, job.version, job.versionDate,
+                          job.releaseRevision, job.titleId);
+    const bool started = !step.savedZipPath.empty()
+        ?requestSavedZipExtraction(job.appId,job.titleId,step.savedZipPath)
+        :requestInstall(step.url, step.fileName, step.destination,
+            step.zrif, step.linkType, step.contentId, job.name, step.expectedBytes,
+            step.pluginSection, step.pluginLine, false); // never reuse stale space approval
+    queuedDispatching_ = false;
+    if (!started && static_cast<InstallStatus::State>(state_.load()) == InstallStatus::State::Idle) {
+        setStage("Preparing");
+        setState(InstallStatus::State::Failed, ::psvitaalive::L(::psvitaalive::TextId::InstMsgCouldNotCreateJob));
+    }
+    // True means ownership accepted, not success or even worker launch.
+    return true;
+}
+
+bool InstallController::pauseQueuedStep(queue::Token token) {
+    return ownsQueuedStep() && queuedToken_ == token && pauseDownloadImpl();
+}
+
+bool InstallController::resumeQueuedStep(queue::Token token) {
+    return ownsQueuedStep() && queuedToken_ == token && resumeDownloadImpl(false);
+}
+
+bool InstallController::cancelQueuedStep(queue::Token token) {
+    if (!ownsQueuedStep() || !(queuedToken_ == token)) return false;
+    using S = InstallStatus::State;
+    const auto s = static_cast<S>(state_.load());
+    if (s == S::Downloading && activeBgdlJob_.active) {
+        // The handoff has not yet run on the main thread. After submission we
+        // cannot cancel the system task through the internal installer.
+        activeBgdlJob_ = false;
+        setStage("Cancelled");
+        setState(S::Cancelled, ::psvitaalive::L(::psvitaalive::TextId::InstMsgDownloadCancelled));
+        return true;
+    }
+    if ((s == S::Downloading || s == S::Paused) && !activeJobId_.empty()) {
+        cancelImpl();
+        return true;
+    }
+    if (s == S::Installing && workerThread_ >= 0 &&
+        !workerDone_.load(std::memory_order_acquire) &&
+        (savedZipMode_ || !isPluginLinkType(activeLinkType_))) {
+        cancelImpl();
+        return true;
+    }
+    return false; // critical copy, cleanup, or already terminal
+}
+
+bool InstallController::resolveQueuedZip(queue::Token token, bool keep, std::string* savedPath) {
+    if (!ownsQueuedStep() || !(queuedToken_ == token) || busy()) return false;
+    queuedResolving_ = true;
+    std::string path;
+    const bool ok = resolveZipRecovery(keep, &path);
+    queuedResolving_ = false;
+    if (ok) queuedSavedZipPath_ = path;
+    if (savedPath) *savedPath = ok ? path : std::string();
+    return ok;
+}
+
+QueuedInstallObservation InstallController::pollQueuedStep() const {
+    if (!ownsQueuedStep()) return {};
+    return {queuedToken_, status()};
+}
+
+bool InstallController::settleQueuedStep(queue::Session& session, const QueuedInstallObservation& observation) {
+    using S = InstallStatus::State;
+    const auto token = observation.token;
+    const auto& observed = observation.status;
+    if (!ownsQueuedStep() || !(queuedToken_ == token) || !(session.activeToken() == token) ||
+        busy() || zipRecoveryAvailable_.load() || observed.zipRecoveryAvailable ||
+        observed.state != static_cast<S>(state_.load())) return false;
+    if (observed.state != S::Completed && observed.state != S::Failed &&
+        observed.state != S::Cancelled) return false;
+    queue::Outcome outcome = observed.state == S::Completed
+        ? (observed.stage == "BGDL" ? queue::Outcome::HandedOff : queue::Outcome::Completed)
+        : observed.state == S::Failed ? queue::Outcome::Failed : queue::Outcome::Cancelled;
+    queue::ResultDetails details;
+    details.stage = observed.stage;
+    details.fileName = observed.fileName;
+    details.installPath = observed.installPath;
+    details.titleId = observed.titleId;
+    details.savedZipPath = queuedSavedZipPath_;
+    details.liveAreaOk = observed.liveAreaOk;
+    details.needsReboot = observed.needsReboot;
+    details.archiveSourceUnavailable = observed.archiveSourceUnavailable;
+    if (!session.settle(token, outcome, true, observed.needsReboot, observed.message, std::move(details)))
+        return false;
+    queuedAcknowledging_ = true;
+    acknowledgeResult();
+    queuedAcknowledging_ = false;
+    queuedToken_ = {};
+    queuedSavedZipPath_.clear();
+    return true;
+}
+
 InstallStatus InstallController::status() const {
     if (activeBgdlJob_) {
         // The UI has already submitted the preparation frame. Execute BGDL now,
@@ -1279,7 +1731,7 @@ InstallStatus InstallController::status() const {
         result.zipRecoveryExtractPath = zipRecoveryExtractPath_;
     }
     result.resultAutoCloseRemainingMs = 0;
-    if (result.state == InstallStatus::State::Completed) {
+    if (result.state == InstallStatus::State::Completed && !ownsQueuedStep()) {
         const uint64_t shown = resultShownAtMs_.load();
         if (shown != 0) {
             const uint64_t now = sceKernelGetSystemTimeWide() / 1000ULL;
@@ -1292,6 +1744,7 @@ InstallStatus InstallController::status() const {
 }
 
 void InstallController::maybeAutoAcknowledgeResult() {
+    if (ownsQueuedStep()) return;
     const auto s = static_cast<InstallStatus::State>(state_.load());
     if (s != InstallStatus::State::Completed) return;
     if (needsReboot_.load()) return; // wait for reboot modal
@@ -1329,8 +1782,11 @@ void InstallController::setState(InstallStatus::State state, const char* message
     state_.store(static_cast<int>(state));
     const bool jobActive = (state == InstallStatus::State::Downloading ||
                             state == InstallStatus::State::Installing);
-    if (jobActive) lockShellDuringJob();
-    else unlockShellDuringJob();
+    // The session owns both locks across steps, pauses and cleanup tails.
+    if (!queueProtectionActive()) {
+        if (jobActive) lockShellDuringJob();
+        else unlockShellDuringJob();
+    }
 }
 
 void InstallController::startKeepAwakeThread() {
@@ -1397,7 +1853,7 @@ int InstallController::keepAwakeEntry(SceSize args, void* argp) {
     if (!self) return -1;
     // While a job runs: no auto-suspend AND keep the screen fully on (no dim / no OLED off).
     while (!self->keepAwakeStop_.load()) {
-        if (self->busy()) {
+        if (self->queueProtectionActive() || self->busy()) {
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_AUTO_SUSPEND);
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_OFF);
             sceKernelPowerTick(SCE_KERNEL_POWER_TICK_DISABLE_OLED_DIMMING);

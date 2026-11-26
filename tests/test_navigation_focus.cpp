@@ -23,7 +23,8 @@ int main() {
     f.cycle(); assert(f.zone == Z::Footer && f.index == 0);
     f.move(D::Right, false, false, 0, 4); assert(f.index == 1);
     f.move(D::Right, false, false, 0, 4); assert(f.index == 2);
-    f.move(D::Right, false, false, 0, 4); assert(f.index == 2);
+    f.move(D::Right, false, false, 0, 4); assert(f.index == 3);
+    f.move(D::Right, false, false, 0, 4); assert(f.index == 3);
     f.move(D::Up, false, false, 0, 4); assert(f.zone == Z::Catalog);
     f.tab(3); f.move(D::Down, false, false, 0, 4); assert(f.zone == Z::Catalog);
     f.footer(2); f.cycle(); assert(f.zone == Z::Catalog);

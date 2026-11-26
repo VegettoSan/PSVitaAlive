@@ -94,6 +94,7 @@ public:
     explicit DownloadManager(HttpClient& http);
 
     void setProgressCallback(DownloadProgressFn fn);
+    void setStagingCallback(std::function<void(uint64_t,bool)> fn) { onStaging_=std::move(fn); }
 
     std::string enqueue(const std::string& url, const std::string& finalFileName, uint64_t expectedSizeHint = 0, bool preferSegmentedZip = false, InstallSpaceMode spaceMode = InstallSpaceMode::DirectPackage);
     bool processQueue();
@@ -116,6 +117,7 @@ private:
     HttpClient& http_;
     std::vector<DownloadJob> jobs_;
     DownloadProgressFn onProgress_;
+    std::function<void(uint64_t,bool)> onStaging_;
     std::string activeJobId_;
 
     bool ensureJobDirs(DownloadJob& job);

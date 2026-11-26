@@ -58,6 +58,7 @@ set(SOURCES
   source/installer/app_settings.cpp
   source/installer/install_dispatcher.cpp
   source/installer/install_controller.cpp
+  source/installer/queue_coordinator.cpp
   source/installer/psm_runtime_installer.cpp
   source/catalog/catalog_parser.cpp
   source/catalog/catalog_manager.cpp
@@ -93,6 +94,7 @@ set_source_files_properties(
   source/network/download_manager.cpp
   source/archive/zip_extractor.cpp
   source/installer/install_controller.cpp
+  source/installer/queue_coordinator.cpp
   source/diagnostic_logger.cpp
   PROPERTIES COMPILE_OPTIONS "-Os"
 )

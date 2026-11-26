@@ -22,6 +22,11 @@ namespace skin = psvitaalive::skin;
 #include "storage/storage_maintenance.hpp"
 #include "storage/installed_data_manager.hpp"
 #include "installer/install_controller.hpp"
+#include "installer/queue_coordinator.hpp"
+#include "installer/queue_history.hpp"
+#include "installer/queue_recovery.hpp"
+#include <ctime>
+#include "update/installed_release_tracker.hpp"
 #include "installer/install_archive_policy.hpp"
 #include "ui/ui_font.hpp"
 #include "ui/full_catalog_screen.hpp"
@@ -334,15 +339,99 @@ int main(){
             psvitaalive::LocalizationManager::instance().currentLanguageName());
     }
 
+    namespace q = psvitaalive::queue;
+    q::History queueHistory;
+    q::HistoryStore<psvitaalive::StorageManager> historyStore(storage,"ux0:data/psvitaalive/queue_history");
+    if(!historyStore.load(queueHistory)) psvitaalive::diagnostics::log("[Queue] history unavailable; starting empty");
+    bool historyDirty=false;
+    q::Recovery recovery;
+    q::HistoryStore<psvitaalive::StorageManager,q::Recovery> recoveryStore(storage,"ux0:data/psvitaalive/queue_checkpoint");
+    if(!recoveryStore.load(recovery)) psvitaalive::diagnostics::log("[Queue] checkpoint unavailable; no automatic replay");
+    bool recoveryDirty=false;
     psvitaalive::ui::FullCatalogScreen screen;screen.setImageCache(&images);
-    screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
+    screen.setQueueHistory(&queueHistory);
+    screen.setQueueRecovery(&recovery);
+    using QueueAction=psvitaalive::ui::FullCatalogScreen::QueueAction;
+    q::Coordinator<psvitaalive::InstallController,psvitaalive::CatalogManager> queue(installer,catalogs);
+    auto syncRecovery=[&](const q::Session& session) {
+        recoveryDirty=recovery.observe(session)||recoveryDirty;
+        if(!recoveryDirty)return true;
+        if(!recoveryStore.save(recovery)) {
+            psvitaalive::diagnostics::log("[Queue] checkpoint write failed; previous valid slot retained");return false;
+        }
+        recoveryDirty=false;return true;
+    };
+    queue.setBeforeStart(syncRecovery);
+    // Return 1 accepted, 0 rejected, -1 legacy-only route while idle.
+    auto submitQueue=[&](q::Job job,bool allowLegacy=true)->int {
+        if(!screen.guardCatalogAction()) return 0;
+        if(!screen.queueExternalReady()) {
+            screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500); return 0;
+        }
+        const auto plan=installer.prepareQueuedJob(job);
+        if(plan!=psvitaalive::InstallController::QueuePlan::Ready) {
+            if(allowLegacy && !queue.protectedSession() && !queue.reportReady() &&
+               plan!=psvitaalive::InstallController::QueuePlan::Invalid) return -1;
+            screen.showToast(psvitaalive::L("QUEUE_UNSUPPORTED"),5600); return 0;
+        }
+        recoveryDirty=recovery.observe(queue.session())||recoveryDirty;
+        if(!recovery.canAdmit()) {screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500);return 0;}
+        const bool first=!queue.protectedSession();
+        psvitaalive::diagnostics::log("[Queue] admission request steps="+std::to_string(job.steps.size())+
+            " provisional="+std::to_string(job.provisionalSpace)+" exclusiveTail="+std::to_string(job.exclusiveTail));
+        const auto result=queue.submit(std::move(job),screen.queueExternalReady());
+        if(result.code!=q::SubmitCode::Accepted) {
+            psvitaalive::diagnostics::log("[Queue] admission rejected code="+std::to_string(static_cast<int>(result.code))+
+                " admission="+std::to_string(static_cast<int>(result.admission)));
+            if(result.admission==q::Admission::UnknownSpace) {
+                for(const auto& pending:queue.session().jobs()) {
+                    if(pending.state!=q::State::Waiting && pending.state!=q::State::Running)continue;
+                    psvitaalive::diagnostics::log("[Queue] existing job="+std::to_string(pending.id)+
+                        " provisional="+std::to_string(pending.provisionalSpace)+
+                        " exclusiveTail="+std::to_string(pending.exclusiveTail));
+                }
+            }
+            const char* key=result.code==q::SubmitCode::CatalogBusy?"CATALOG_ACTION_WAIT":
+                result.admission==q::Admission::Duplicate?"QUEUE_DUPLICATE":
+                result.admission==q::Admission::NoSpace?"QUEUE_NO_SPACE":
+                result.admission==q::Admission::UnknownSpace?"QUEUE_UNKNOWN_SPACE":"QUEUE_BUSY";
+            screen.showToast(psvitaalive::L(key),5600); return 0;
+        }
+        const auto admittedId=queue.session().jobs().back().id;
+        if(!syncRecovery(queue.session())) {
+            queue.cancel(admittedId); syncRecovery(queue.session());
+            screen.showToast(psvitaalive::L("QUEUE_CHECKPOINT_FAILED"),5600);return 0;
+        }
+        if(first) {
+            images.setQueueImagePolicy(true,true);
+            images.cancelQueuedRequests();
+            screen.setQueueFrame(true,false,{},false,false);
+        }
+        screen.queueAccepted(queue.session().jobs().back().id,first);
+        return 1;
+    };
+    auto newJob=[&screen,&images](const psvitaalive::ui::CatalogItem& item,bool all) {
+        q::Job job; job.appId=item.id; job.titleId=item.titleId; job.name=item.name;
+        job.version=item.version; job.versionDate=item.versionDate;
+        job.iconUrl=item.icon.empty()?item.cover:item.icon;
+        job.iconCacheKey=q::historyIconKeyFromPath(images.pathFor(job.iconUrl,"app"));
+        job.dataRevision=item.dataRevision; job.installAll=all;
+        job.catalogType=static_cast<uint8_t>(screen.activeCatalog());
+        // Keep ordinary Install All failure continuation, not cancellation.
+        job.continueIndependentOnFailure=all; return job;
+    };
+    screen.setCatalogActionBlockCallback([&catalogs](){ return catalogs.actionBlockedByCatalog(); });
+    screen.setCatalogChangeCallback([&](psvitaalive::ui::CatalogType next){if(installer.busy() || installer.queueProtectionActive() || screen.catalogWorkExcluded()) return false;psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));images.cancelQueuedRequests();return catalogs.request(next);});
     screen.setSearchCallback([&screen](const std::string& current){
         screen.openSearchKeyboard(current);
     });
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallPauseCallbacks([&installer](){ return installer.pauseDownload(); },
                                     [&installer](){ return installer.resumeDownload(); });
-    screen.setStorageBusyCallback([&installer](){ return installer.busy(); });
+    screen.setStorageBusyCallback([&installer, &queue](){
+        return installer.busy() || queue.reportReady() ||
+            (queue.protectedSession() && !queue.maintenanceAllowed());
+    });
     screen.setStorageAppDisplayCallback([&catalogs](const std::string& appId,
         const std::string& titleId, std::string& name, std::string& icon) {
         return catalogs.savedZipAppDisplay(appId, titleId, name, icon);
@@ -361,16 +450,25 @@ int main(){
                 options.push_back({archive.fileName, archive.archivePath, archive.partCount});
             return options;
         },
-        [&installer, &screen](const psvitaalive::ui::CatalogItem& item,
+        [&installer, &screen, &submitQueue, &newJob](const psvitaalive::ui::CatalogItem& item,
                              const std::string& archivePath) {
+            if (!screen.guardCatalogAction()) return false;
+            auto job=newJob(item,false); q::Step step;
+            step.savedZipPath=archivePath;
+            job.steps.push_back(std::move(step));
+            const int queued=submitQueue(std::move(job));
+            if(queued>=0) return queued==1;
+            if (screen.queueActive()) { screen.showToast(psvitaalive::L("QUEUE_BUSY"),4500); return false; }
             screen.setInstallDisplayItem(item);
+            screen.prepareForHeavyWork();
             const bool started = installer.requestSavedZipExtraction(
                 item.id, item.titleId, archivePath);
             if (started) screen.requestUx0SpaceRefresh();
             else screen.clearInstallDisplayItem();
             return started;
         });
-    screen.setInstallCallbacks([&installer, &screen](const psvitaalive::ui::CatalogItem&item){
+    screen.setInstallCallbacks([&installer, &screen, &submitQueue, &newJob](const psvitaalive::ui::CatalogItem&item){
+    if (!screen.guardCatalogAction()) return false;
     if (const char* blocked = psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
         screen.showToast(psvitaalive::L(blocked), 5600);
         return false; // Before opening any ZIP destination or error modal.
@@ -399,6 +497,12 @@ int main(){
                     break;
                 }
             }
+            auto job=newJob(item,false); q::Step step;
+            step.url=item.downloadUrl; step.fileName=item.downloadFileName;
+            step.destination=zipDestination; step.zrif=zrif; step.linkType=ltype;
+            step.contentId=cid; step.expectedBytes=exp; job.steps.push_back(std::move(step));
+            const int queued=submitQueue(std::move(job));
+            if(queued>=0) return queued==1;
             installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
             screen.setInstallDisplayItem(item);
             screen.prepareForHeavyWork();
@@ -406,7 +510,8 @@ int main(){
             if (!started) screen.clearInstallDisplayItem();
             return started;
         }},[&installer](){return installStatusText(installer.status());});
-    screen.setLinkActionCallback([&installer, &screen](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link){
+    auto makeStep=[&screen](const psvitaalive::ui::CatalogItem&item,const psvitaalive::ui::CatalogLink&link,q::Step& step)->bool {
+        if (!screen.guardCatalogAction()) return false;
         const std::string type=link.type;
         const bool isPlugin=(type=="Plugin"||type=="plugin"||type=="Plugins"||type=="plugins");
         const bool actionable=isPlugin||(type=="Download"||type=="download"||type=="Downloads"||type=="Mirror"||type=="mirror"||type=="DLC"||type=="dlc"||type=="Data Files"||type=="Game Files"||link.url.find(".vpk")!=std::string::npos||link.url.find(".pkg")!=std::string::npos||link.url.find(".zip")!=std::string::npos||link.url.find(".pbp")!=std::string::npos||link.url.find(".iso")!=std::string::npos||link.url.find(".cso")!=std::string::npos||link.url.find(".suprx")!=std::string::npos||link.url.find(".skprx")!=std::string::npos);
@@ -453,18 +558,127 @@ int main(){
                 }
             }
         }
-        {
-            const uint64_t exp = psvitaalive::chooseSelectedLinkSizeBytes(
-                parseCatalogSizeBytes(link.size), parseCatalogSizeBytes(item.size),
-                link.url, item.downloadUrl);
-            installer.setPendingCatalogMeta(item.id, item.version, item.versionDate, 0, item.titleId);
-            screen.setInstallDisplayItem(item);
-            screen.prepareForHeavyWork();
-            const bool started = installer.requestInstall(requestItem.downloadUrl,requestItem.downloadFileName,zipDestination,link.zrif,link.type,link.contentId,item.name,exp,link.section,link.line,screen.installAllSpaceApproved());
-            if (!started) screen.clearInstallDisplayItem();
-            return started;
+        step.url=requestItem.downloadUrl; step.fileName=requestItem.downloadFileName;
+        step.destination=zipDestination; step.zrif=link.zrif; step.linkType=link.type;
+        step.contentId=link.contentId; step.pluginSection=link.section; step.pluginLine=link.line;
+        step.expectedBytes=psvitaalive::chooseSelectedLinkSizeBytes(
+            parseCatalogSizeBytes(link.size),parseCatalogSizeBytes(item.size),link.url,item.downloadUrl);
+        return screen.guardCatalogAction();
+    };
+    screen.setLinkActionCallback([&](const psvitaalive::ui::CatalogItem& item,const psvitaalive::ui::CatalogLink& link){
+        q::Step step;
+        if(!makeStep(item,link,step)) return false;
+        // Legacy batch/essential flows are exclusive and already own their cursor.
+        if(!screen.installAllSpaceApproved() && !screen.isEssentialPluginsInstalling()) {
+            auto job=newJob(item,false); job.steps.push_back(step);
+            const int queued=submitQueue(std::move(job));
+            if(queued>=0) return queued==1;
         }
+        if(queue.protectedSession() || queue.reportReady()) return false;
+        installer.setPendingCatalogMeta(item.id,item.version,item.versionDate,0,item.titleId);
+        screen.setInstallDisplayItem(item); screen.prepareForHeavyWork();
+        const bool started=installer.requestInstall(step.url,step.fileName,step.destination,
+            step.zrif,step.linkType,step.contentId,item.name,step.expectedBytes,
+            step.pluginSection,step.pluginLine,screen.installAllSpaceApproved());
+        if(!started) screen.clearInstallDisplayItem();
+        return started;
     });
+    // Recovery reselects only an untouched, known internal Homebrew request.
+    // Never deserialize a URL, zRIF, custom path, plugin line or backend token.
+    auto restoreRecovery=[&](uint64_t id)->bool {
+        const auto reject=[&]() {screen.showToast(psvitaalive::L("QUEUE_RECOVERY_MANUAL"),5600);return false;};
+        if(!id || id>recovery.entries().size() || queue.protectedSession() || queue.reportReady() ||
+           !screen.guardCatalogAction() || !screen.queueExternalReady())return reject();
+        const auto record=recovery.entries()[static_cast<size_t>(id-1)];
+        if(!record.restorable || record.interrupted ||
+           record.routing!=q::recoveryRouting(q::Routing::capture(installer.settings())))return reject();
+        psvitaalive::ui::CatalogItem item;
+        if(!screen.queueRecoveryItem(record,item))return reject();
+        if(record.systemDeferred) {
+            // The explicit confirmation says to check the OS finished. A
+            // local app marker is an additional guard, not a proof of version.
+            std::string tid=item.titleId;
+            if(tid.size()!=9)return reject();
+            for(char& c:tid) { if(c>='a' && c<='z')c=static_cast<char>(c-'a'+'A');
+                if(!((c>='A'&&c<='Z')||(c>='0'&&c<='9')))return reject(); }
+            if(!storage.exists("ux0:app/"+tid+"/sce_sys/param.sfo")) {
+                screen.showToast(psvitaalive::L("QUEUE_SYSTEM_NOT_INSTALLED"),5600);return false;
+            }
+        }
+        if(const char* blocked=psvitaalive::downloadPreflightStatusKey(psvitaalive::queryLinkConnectivity())) {
+            screen.showToast(psvitaalive::L(blocked),5600);return false;
+        }
+        auto job=newJob(item,record.installAll);
+        for(const auto& saved:record.steps) {
+            q::Step chosen; unsigned matches=0;
+            for(const auto& link:item.linkDetails) {
+                if(!link.zrif.empty() || !link.section.empty() || !link.line.empty() ||
+                   q::recoverySource(link.url,link.type,link.contentId)!=saved.source)continue;
+                q::Step step;step.url=link.url;step.fileName=fileNameFromUrl(link.url,item.id);
+                step.linkType=link.type;step.contentId=link.contentId;
+                if(isZipName(step.fileName) || psvitaalive::isDataOrGameFilesLinkType(link.type)) {
+                    if(link.extractPath.empty())continue; // user-picked destinations require manual review
+                    step.destination=link.extractPath;
+                }
+                step.expectedBytes=psvitaalive::chooseSelectedLinkSizeBytes(
+                    parseCatalogSizeBytes(link.size),parseCatalogSizeBytes(item.size),link.url,item.downloadUrl);
+                if(q::recoveryRequest(step)!=saved.request && link.url==item.downloadUrl)
+                    step.fileName=item.downloadFileName;
+                if(q::recoveryRequest(step)!=saved.request)continue;
+                chosen=std::move(step);++matches;
+            }
+            if(matches!=1)return reject();
+            job.steps.push_back(std::move(chosen));
+        }
+        if(installer.prepareQueuedJob(job)!=psvitaalive::InstallController::QueuePlan::Ready ||
+           !q::recoveryRestorable(job) || job.steps.size()!=record.steps.size())return reject();
+        for(size_t i=0;i<job.steps.size();++i)
+            if(q::recoveryRequest(job.steps[i])!=record.steps[i].request)return reject();
+        q::RecoveryEntry removed;
+        const size_t index=static_cast<size_t>(id-1);
+        if(!recovery.take(index,removed))return reject();
+        recoveryDirty=true;
+        if(submitQueue(std::move(job),false)==1)return true;
+        recovery.insert(index,std::move(removed));recoveryDirty=true;syncRecovery(queue.session());
+        return false;
+    };
+    screen.setQueueCallbacks(&queue.session(),
+        [&](const psvitaalive::ui::CatalogItem& item,const std::vector<psvitaalive::ui::CatalogLink>& links){
+            auto job=newJob(item,true);
+            // Resolve every selected destination once, before admission.
+            for(const auto& link:links) {
+                q::Step step;
+                if(!makeStep(item,link,step)) return 0;
+                job.steps.push_back(std::move(step));
+            }
+            return submitQueue(std::move(job),false);
+        },
+        [&](QueueAction action,uint64_t id) {
+            const auto token=queue.session().activeToken();
+            switch(action) {
+            case QueueAction::Cancel: {
+                if(!queue.cancel(id))return false;
+                if(!syncRecovery(queue.session()))screen.showToast(psvitaalive::L("QUEUE_CHECKPOINT_FAILED"),5600);
+                return true;
+            }
+            case QueueAction::Pause: return id==token.job && queue.pause(token);
+            case QueueAction::Resume: return id==token.job && queue.resume(token);
+            case QueueAction::KeepZip: return id==token.job && queue.resolveZip(token,true);
+            case QueueAction::DeleteZip: return id==token.job && queue.resolveZip(token,false);
+            case QueueAction::RetrySpace: queue.retryCapacity(); return true;
+            case QueueAction::CloseReport: return queue.acknowledgeReport();
+            case QueueAction::RestoreRecovery: return restoreRecovery(id);
+            case QueueAction::DiscardRecovery: {
+                if(!id || queue.protectedSession() || queue.reportReady())return false;
+                q::RecoveryEntry removed;const size_t index=static_cast<size_t>(id-1);
+                if(!recovery.take(index,removed))return false;
+                recoveryDirty=true;
+                if(syncRecovery(queue.session()))return true;
+                recovery.insert(index,std::move(removed));recoveryDirty=true;return false;
+            }
+            }
+            return false;
+        });
 
     if(!screen.init()){psvitaalive::diagnostics::log("[System] UI initialization failed");installer.shutdown();catalogs.shutdown();images.shutdown();psvitaalive::diagnostics::shutdown();sceKernelExitProcess(1);return 1;}
 
@@ -603,8 +817,44 @@ int main(){
     bool archiveProbeStarted = false;
     bool archiveProbeHandled = false;
     bool emptyCatalogRecoveryRequested[static_cast<int>(psvitaalive::ui::CatalogType::Count)] = {};
+    // Queue-only frame telemetry: bounded counters, at most one summary
+    // every 10 seconds (or on a phase change), and only if slow frames occurred.
+    // Keep UI draw time distinct from the rest of the main-loop interval.
+    struct QueueFrameStats {
+        uint64_t start=0, previous=0, frames=0, slow=0, verySlow=0, maxLoop=0, maxUi=0, maxOther=0, lastUi=0;
+        std::string phase;
+    } frameStats;
+    auto flushFrameStats=[&]() {
+        if(frameStats.slow)psvitaalive::diagnostics::log("[QueuePerf] phase="+frameStats.phase+
+            " frames="+std::to_string(frameStats.frames)+" over50ms="+std::to_string(frameStats.slow)+
+            " over100ms="+std::to_string(frameStats.verySlow)+" max_loop_ms="+std::to_string(frameStats.maxLoop/1000)+
+            " max_ui_ms="+std::to_string(frameStats.maxUi/1000)+" max_other_ms="+std::to_string(frameStats.maxOther/1000));
+        frameStats.frames=frameStats.slow=frameStats.verySlow=frameStats.maxLoop=frameStats.maxUi=frameStats.maxOther=0;
+    };
 while(true){
+        const bool measureQueue=queue.protectedSession();
+        const uint64_t frameBegin=measureQueue || frameStats.previous?sceKernelGetProcessTimeWide():0;
+        if(frameStats.previous && frameBegin>=frameStats.previous) {
+            const uint64_t interval=frameBegin-frameStats.previous;
+            ++frameStats.frames;
+            if(interval>=50000ULL)++frameStats.slow;
+            if(interval>=100000ULL)++frameStats.verySlow;
+            frameStats.maxLoop=std::max(frameStats.maxLoop,interval);
+            frameStats.maxUi=std::max(frameStats.maxUi,frameStats.lastUi);
+            frameStats.maxOther=std::max<uint64_t>(frameStats.maxOther,interval>frameStats.lastUi?interval-frameStats.lastUi:0ULL);
+        }
+        if(measureQueue) {
+            const auto& stage=queue.observation().status.stage;
+            if(!frameStats.start || frameStats.phase!=stage || frameBegin-frameStats.start>=10000000ULL) {
+                flushFrameStats();
+                frameStats.phase=stage;frameStats.start=frameBegin;
+            }
+            frameStats.previous=frameBegin;
+        } else if(frameStats.previous) {
+            flushFrameStats();frameStats.previous=frameStats.start=0;
+        }
         if (!screen.updateAndDraw()) break;
+        if(measureQueue)frameStats.lastUi=sceKernelGetProcessTimeWide()-frameBegin;
 
         // After a few frames, surface plugin warnings safely.        // After a few frames, surface plugin warnings safely.
         if (pluginWarnPending) {
@@ -716,6 +966,8 @@ while(true){
         if (recoveryStatus.state == psvitaalive::CatalogManager::State::Ready &&
             recoveryStatus.catalog == recoveryCatalog &&
             !screen.hasUnfilteredCatalogItems() && !catalogs.isBusy() &&
+            !catalogs.actionBlockedByCatalog() &&
+            !installer.busy() && !installer.queueProtectionActive() && !screen.catalogWorkExcluded() &&
             recoveryIndex >= 0 && recoveryIndex < catalogCount &&
             !emptyCatalogRecoveryRequested[recoveryIndex]) {
             emptyCatalogRecoveryRequested[recoveryIndex] = true;
@@ -766,11 +1018,11 @@ while(true){
                 sync.catalog == screen.activeCatalog();
             if (visibleCatalog && sync.refreshPhase != lastToastPhase) {
                 if (sync.refreshPhase == Phase::Downloading)
-                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_DOWNLOADING"), 2400);
+                    screen.showCatalogSyncToast(::psvitaalive::L("CATALOG_SYNC_DOWNLOADING"));
                 else if (sync.refreshPhase == Phase::Applying)
-                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_APPLYING"), 2400);
+                    screen.showCatalogSyncToast(::psvitaalive::L("CATALOG_SYNC_APPLYING"));
                 else if (sync.refreshPhase == Phase::Updated)
-                    screen.showToast(::psvitaalive::L("CATALOG_SYNC_UPDATED"), 2400);
+                    screen.showCatalogSyncToast(::psvitaalive::L("CATALOG_SYNC_UPDATED"));
                 lastToastPhase = sync.refreshPhase;
             }
             if (sync.refreshPhase == Phase::Updated && completedAtMs == 0)
@@ -794,6 +1046,58 @@ while(true){
             }
         }
 
+        if(queue.protectedSession() || queue.reportReady()) {
+            const auto event=queue.tick(screen.queueExternalReady(),sceKernelGetProcessTimeWide());
+            if(event.state==q::TickState::Settled || event.state==q::TickState::StartFailed) {
+                if(const auto* job=queue.session().find(event.job)) {
+                    if(event.step<job->steps.size()) {
+                        const auto& step=job->steps[event.step];
+                        if(step.state==q::State::Completed) {
+                            if(step.component==q::Component::App)
+                                psvitaalive::storage::InstalledDataManager::invalidateCachedPackageTitle(job->titleId);
+                            if(step.component==q::Component::GameFiles || step.component==q::Component::DataFiles)
+                                psvitaalive::storage::InstalledDataManager::invalidateCachedTitle(job->titleId);
+                        }
+                    }
+                    if(q::shouldWriteDataRevision(*job) &&
+                       !psvitaalive::update::InstalledReleaseTracker::writeDataRevision(
+                           job->titleId,job->appId,job->dataRevision))
+                        psvitaalive::diagnostics::log("[Queue] data revision receipt write failed");
+                    screen.queueJobSettled(*job);
+                }
+                screen.requestUx0SpaceRefresh();
+            }
+            const bool recoveryChanged=recovery.observe(queue.session());
+            recoveryDirty=recoveryDirty||recoveryChanged;
+            if(recoveryDirty && !queue.session().activeToken().job &&
+               (recoveryChanged || event.state==q::TickState::Settled || event.state==q::TickState::StartFailed ||
+                event.state==q::TickState::Finished))syncRecovery(queue.session());
+            // Capture display-only terminal records on lifecycle changes, never per-frame I/O.
+            bool historyChanged=false;
+            if(queueHistory.observedGeneration()!=queue.session().generation()) {
+                const auto now=std::time(nullptr);
+                historyChanged=queueHistory.observe(queue.session(),now>0?static_cast<uint64_t>(now):0);
+                historyDirty=historyDirty||historyChanged;
+            }
+            if(historyDirty && !queue.session().activeToken().job &&
+               (historyChanged || event.state==q::TickState::Settled ||
+                event.state==q::TickState::StartFailed || event.state==q::TickState::Finished)) {
+                if(historyStore.save(queueHistory)) historyDirty=false;
+                else psvitaalive::diagnostics::log("[Queue] history save failed; previous valid slot retained");
+            }
+            screen.setQueueFrame(queue.protectedSession(),queue.reportReady(),queue.observation().status,
+                event.state==q::TickState::WaitingSpace,event.state==q::TickState::InvariantBlocked);
+            const auto& imageStatus=queue.observation().status;
+            const bool imageTransfer=imageStatus.state==psvitaalive::InstallStatus::State::Downloading &&
+                imageStatus.stage=="Downloading" && !imageStatus.zipRecoveryAvailable;
+            const bool imageKeyboard=screen.keyboardVisible();
+            // One existing low-priority worker, only app icons. No remote
+            // image work during extraction, verification or promotion.
+            images.setQueueImagePolicy(imageKeyboard || (queue.protectedSession() && !imageTransfer),!imageKeyboard);
+            continue;
+        }
+        // Clear the report/view after an explicit acknowledgement in input.
+        screen.setQueueFrame(false,false,{},false,false);
         installer.pollDownloadRecovery();
 const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvitaalive::InstallStatus::State;
         // One refresh on Downloading -> Installing (download finished), and
@@ -855,7 +1159,7 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
             }
         }
         // After theme + news: recommend kubridge / fd_fix / libshacccg if missing
-        if(startupEssentialPending && !active
+        if(startupEssentialPending && !active && !catalogs.actionBlockedByCatalog()
            && !screen.isNewsVisible() && !screen.isThemeSetupVisible()
            && !screen.isEssentialPluginsVisible() && !screen.isEssentialPluginsInstalling()
            && !screen.isPluginRebootModal()){

@@ -68,6 +68,8 @@ public:
      * Returns false if the probe fails.
      */
     static bool queryUx0Space(uint64_t& freeBytesOut, uint64_t& totalBytesOut);
+    /** Whitelisted mount probe for queue estimates; false on missing/unreadable mount. */
+    static bool queryMountSpace(const char* mount, uint64_t& freeBytesOut, uint64_t& totalBytesOut);
 
     /** True if ux0 free space is at least requiredBytes (false if probe fails). */
     bool hasFreeSpace(uint64_t requiredBytes) const;

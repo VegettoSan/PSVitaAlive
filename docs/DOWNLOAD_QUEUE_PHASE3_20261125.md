@@ -1,0 +1,24 @@
+# Download queue — phase 3 protection and storage prerequisites (2026-11-25)
+
+Experimental branch, based on plan V3 sections 11, 14, 25 and 26. Not yet exposed through the catalog. Main, release, and generated catalog files are untouched.
+
+## Implemented
+
+- CatalogManager::setInstallSessionGate blocks all new catalog requests before any cache copy, download, or parse. Existing accepted requests drain normally. installSessionQuiescent requires the gate, no pending request, no worker operation (including the cache-first soft-refresh tail and local parse-vector destruction), and no pending publication. Main must keep consuming ready publications while waiting; otherwise the cache-first worker cannot reach its quiescent point.
+- InstallController::beginQueueProtection acquires PS and power-menu shell locks on the main thread before queue execution, rolls back on lock acquisition failure, and requires initialized HTTP, an idle controller and a live keep-awake thread. Per-step state transitions no longer release these session-owned locks. The keep-awake loop uses the global session flag. endQueueProtection refuses to unlock while any job/worker is still owned. Shutdown waits for a protected worker before releasing locks. Existing nonqueued installs retain their normal behavior.
+- Protected session rejects legacy install, metadata replacement, saved ZIP deletion/retry, and settings changes; the UI must still display the localized reason and use the actual saved settings instead of showing a rejected setting as saved.
+- StorageManager::queryMountSpace reuses the existing sceIoDevctl capacity probe, restricted to ux0:, uma0:, ur0:. Each mount has a measured/unknown bit; an absent optional mount does not block an unrelated ux0-only job. Missing required mount returns UnknownSpace, not a misleading free-space estimate.
+- Queue model now supports explicit destination peak/retained estimates, staging credit for already allocated stable owned bytes, and rechecks the entire remaining Install All group before claiming another step. It never promises future cleanup space in advance. Existing runtime HTTP, extraction and per-step checks remain intact.
+- InstallController::captureQueueSnapshot is an event-driven native probe (not per frame). For a paused worker with a settled handoff, it validates actual serial/range checkpoint lengths against the recorded owned download and subtracts stable bytes from both additional peak and estimated net retained growth. It never credits buffered UI progress or extraction counters. A download-only atomic high-water hint detects catalog sizes exceeded by observed download data.
+- Unknown size or larger-than-planned active payload remains unapproved in this conservative prototype. Active writes without stable checkpoint evidence use the full conservative active remainder, possibly rejecting a borderline job that would actually fit. This is a remaining accuracy/usability issue for Q42, not proof that live partial accounting is solved. No unsafe optimistic credit was added. Cross-mount destination estimates still require actual route/format classification and physical validation; BGDL reservations are not approved by the convenience estimator.
+
+## Validation
+
+- Previous full native phase-2 build completed successfully: https://github.com/VegettoSan/PSVitaAlive/actions/runs/45711514598
+- New host tests (including sanitizer stage) passed: https://github.com/VegettoSan/PSVitaAlive/actions/runs/45712345162, source commit 32f640fd4e3e8647123fe7e592a8b0ca56d7e773.
+- Covered stable staging credits and saturation, required mount absent/insufficient/disappearing before dispatch, cross-mount peak and retained budgets, and entire group recheck. The intermediate host run after introducing measured bits failed because the earlier test fixture had not yet marked its mount measured; the final updated fixture and extended tests passed.
+- Latest native build: https://github.com/VegettoSan/PSVitaAlive/actions/runs/45712345158 — native compilation in progress when this record was prepared. Do not infer Vita hardware safety or performance from host tests.
+
+## Next integration gate
+
+Connect a main-thread coordinator to the actual admission and dispatch routes. Ensure catalog publication drain before dispatch, session release on rejected first admission, no per-frame storage polling, token-scoped controls, result ownership, one automatic ZIP keep attempt for Install All, and explicit blocked/no-space/cancel paths. Protect against storage/self-update/essential plugin work, block the catalog change and settings through all input paths, and migrate Install All selections/receipts. Only then expose the global UI/9-icon mode/OLED protection and final report. Physical validation must include actual shell-lock return codes, cross-mount space probes, low space, concurrent catalog refresh, recovery, cancellation and RAM/FPS. No VPK exercising the queue is available yet.

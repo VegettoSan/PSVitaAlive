@@ -1,5 +1,7 @@
 # PS Vita Alive Store
 
+> **Download queue (source integration, 2026-11-26):** [Gestor de descargas: arquitectura, pruebas y mantenimiento](docs/DOWNLOAD_QUEUE_INTEGRATION_20261126.md). The in-client manager permits catalog browsing while the protected session executes grouped FIFO tasks; the active task and pending tasks precede terminal history. Legacy single-job overlay descriptions below do not override the queue's session-wide protection, token checks or explicit recovery. This source integration does not publish a new release.
+
 > **Catalog Schema V2 migration (feature branch):** Individual app, author
 > and category records use compact JSON keys in
 > [feature/catalog-schema-v2](https://github.com/VegettoSan/PSVitaAlive/tree/feature/catalog-schema-v2).

@@ -47,6 +47,7 @@ struct Session {
     const HttpCancelFn* cancel = nullptr;
     uint64_t size = 0;
     uint64_t received = 0;
+    uint64_t written = 0; // validated prefixes plus successful writes, excludes buffers
     uint64_t startUs = 0;
     uint64_t lastReportUs = 0;
     bool stopped = false;
@@ -152,6 +153,8 @@ static void sendProgress(Session& s, bool finished = false, bool finalizing = fa
         : s.speed.observe(now, newBytes);
     p.finalizing = finalizing;
     p.parallelCheckpointReused = s.reusedCheckpoint;
+    p.stagingKnown = !finished && !finalizing;
+    p.stagingWritten = s.written;
     (*s.progress)(p);
 }
 
@@ -163,6 +166,7 @@ static bool flushPartBuffer(Part& p) {
         if (wrote <= 0) { p.ioError = true; return false; }
         offset += static_cast<size_t>(wrote);
     }
+    p.session->written += p.buffered;
     p.bytesSinceYield += p.buffered;
     p.buffered = 0;
     if (p.bytesSinceYield >= kIoYieldStep) {
@@ -450,6 +454,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
     const std::string& probeModified,
     unsigned retryIndex
 ) {
+    resetHttpStaging(onProgress);
     if (authoritativeSize < kMinimumBytes || url.empty()) return ParallelArchiveOutcome::Skipped;
     const bool archiveOnly = url.find("archive.org/") != std::string::npos;
     const size_t partCount = authoritativeSize < kFourWayBytes ? 2 : kParts;
@@ -509,6 +514,7 @@ ParallelArchiveOutcome downloadArchiveRanges(
         session.reusedCheckpoint = true;
         session.requiredValidator = validator;
         session.received = savedPrefixes(destination, authoritativeSize, partCount, prefixesValid);
+        session.written = session.received;
         diagnostics::log("[HTTP] parallel verified checkpoint; reuse_bytes=" +
                          std::to_string(session.received));
         sendProgress(session);
@@ -689,6 +695,8 @@ ParallelArchiveOutcome downloadArchiveRanges(
         }
     }
 
+    // No credit while ranges are verified, discarded, retried or joined.
+    resetHttpStaging(onProgress);
     // Measure the real transfer phase separately from metadata selection,
     // post-download joining and extraction. No additional network requests.
     const uint64_t transferUs = monotonicUs() - session.startUs;
