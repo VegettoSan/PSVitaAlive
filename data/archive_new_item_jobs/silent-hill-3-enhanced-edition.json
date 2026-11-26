@@ -1,0 +1,68 @@
+{
+  "app_id": "silent-hill-3-enhanced-edition",
+  "identifier": "psvitaalive-silent-hill-3-enhanced-edition",
+  "source_url": "https://github.com/matfsouza/sh3vita/releases/download/v1.2/sh3vita.vpk",
+  "files": {
+    "silent-hill-3-enhanced-edition v1.2.vpk": {
+      "size": 25500176,
+      "md5": "9998fc0342d1a93cbb06d7374b609c38",
+      "sha256": "bb466f593d74f6b3f713c063c0f40a932e1fbc992561a43d68380f8ff78bc7c1"
+    },
+    "icon0.png": {
+      "size": 13696,
+      "md5": "5cbb60dc1c36644eb7c9d76b32a27ae2",
+      "sha256": "969f74669627464568164a9e8f874d9c529b1f9e3b566578dc039baa3f13ba33"
+    },
+    "shot_01.png": {
+      "size": 620938,
+      "md5": "e9a32fde43c245e977a06e775afd00fd",
+      "sha256": "f7ccf9985890636a36e67f1aed139b2a4cf68510b10dc02628060f70ce6d0873"
+    },
+    "shot_02.png": {
+      "size": 670462,
+      "md5": "07833313294810800167bf75db0ac52f",
+      "sha256": "dfd7328f943ce28fca6d1437415be3028f61322f04e99ccd6a6c298422022c38"
+    },
+    "shot_03.png": {
+      "size": 759986,
+      "md5": "1229e272e84ea8a7e92f250662267284",
+      "sha256": "11cfea0610239149e3665ffeacf6bc97686cba6d348e4e0ae48791a2d241ca74"
+    },
+    "shot_04.png": {
+      "size": 960631,
+      "md5": "8d0986fad1b6cf7837171dc8ad8a6bd8",
+      "sha256": "daea516fbd075e229a6674d17dc030c07bf9f2b7cbdfd79a92e41a53cbf28883"
+    },
+    "SOURCES.txt": {
+      "size": 802,
+      "md5": "2a673e952964f4c897e4f99f3b42464d",
+      "sha256": "9a68da343c9073c1321700d56a9915c6b94c3535d830b42f9aa4a4c69b6026cd"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/icon0.png": "icon0.png",
+    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot0.png": "shot_01.png",
+    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot1.png": "shot_02.png",
+    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot2.png": "shot_03.png",
+    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot3.png": "shot_04.png"
+  },
+  "attempted": [
+    "silent-hill-3-enhanced-edition v1.2.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:45:39+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "SH3EE0001",
+    "name": "Silent Hill 3 Enhanced Edition",
+    "search_title": "Silent Hill 3 Enhanced Edition",
+    "version": "1.2",
+    "repo": "matfsouza/sh3vita",
+    "tag": "v1.2",
+    "asset": "sh3vita.vpk",
+    "url": "https://github.com/matfsouza/sh3vita/releases/download/v1.2/sh3vita.vpk",
+    "size": 25500176,
+    "sha256": "bb466f593d74f6b3f713c063c0f40a932e1fbc992561a43d68380f8ff78bc7c1",
+    "creator": "matfsouza"
+  }
+}
