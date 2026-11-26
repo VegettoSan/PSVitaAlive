@@ -252,6 +252,7 @@ private:
     uint64_t queueImageDecodeAfterUs_=0;
     bool queuePassiveRead_=false;
     std::vector<std::string> historyIconUrls_;
+    std::unordered_set<std::string> historyFailedIconPaths_;
     void refreshQueueHistoryIcons();
     void drawHistoryIcon(size_t index,int x,int y,int size);
     bool prepareHistoryIcon(size_t index);

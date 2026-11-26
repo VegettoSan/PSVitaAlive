@@ -93,7 +93,26 @@ inline void startSkinFrame() {
     skin::beginFrame();
     if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
 }
+// Only active queue frames, and only genuinely slow calls. Each call site
+// owns a separate rate limit; logging never happens for normal frames.
+extern bool gQueueSessionProtection;
+struct QueueUiSpan {
+    const char* label;
+    uint64_t& lastLog;
+    uint64_t begin;
+    QueueUiSpan(const char* name,uint64_t& last):label(name),lastLog(last),
+        begin(gQueueSessionProtection?sceKernelGetProcessTimeWide():0){}
+    ~QueueUiSpan(){
+        if(!begin)return;
+        const uint64_t now=sceKernelGetProcessTimeWide();
+        if(now-begin<100000ULL || (lastLog && now-lastLog<5000000ULL))return;
+        lastLog=now;
+        diagnostics::log(std::string("[QueueUiPerf] operation=")+label+" ms="+std::to_string((now-begin)/1000ULL));
+    }
+};
 inline void finishFrame() {
+    static uint64_t lastLog=0;
+    QueueUiSpan perf("gpu_present",lastLog);
     if (vita2d_get_clipping_enabled()) vita2d_disable_clipping();
     vita2d_end_drawing();
     vita2d_swap_buffers();
@@ -664,6 +683,8 @@ void protectionServiceMascot() {
         gProtectionMascotStopPending = false;
     }
     if (gProtectionMascotStartPending) {
+        static uint64_t lastLog=0;
+        QueueUiSpan perf("mascot_start",lastLog);
         if (gProtectionActive) gProtectionMascotManager.start(gProtectionMascotSelection, now);
         gProtectionMascotStartPending = false;
     }
@@ -3451,6 +3472,8 @@ bool FullCatalogScreen::init(){
 }
 void FullCatalogScreen::flushDeferredTextureFrees(){
     if(deferredFreeTextures_.empty())return;
+    static uint64_t lastLog=0;
+    QueueUiSpan perf("gpu_free",lastLog);
     // Previous frame has been presented; safe to return memory to vita2d.
     // Cap per frame so spam L/R cannot free dozens of textures in one shot (Vita3K crash).
     vita2d_wait_rendering_done();
@@ -8052,6 +8075,8 @@ bool FullCatalogScreen::prepareImageTexture(const std::string&url,const std::str
     }
     // Only completed, validated cache files are published as ready.
     // Count a decode attempt even if it fails or replaces an LRU texture.
+    static uint64_t lastLog=0;
+    QueueUiSpan perf("icon_decode",lastLog);
     vita2d_texture*t=nullptr;
     const char*e=extOf(path);
     if(std::strcmp(e,".jpg")==0||std::strcmp(e,".jpeg")==0)t=vita2d_load_JPEG_file(path.c_str());
@@ -8088,6 +8113,7 @@ bool FullCatalogScreen::queueStorageContended() const {
 }
 void FullCatalogScreen::refreshQueueHistoryIcons() {
     historyIconUrls_.clear();
+    historyFailedIconPaths_.clear();
     if(!queueHistory_)return;
     const auto& entries=queueHistory_->entries();
     historyIconUrls_.resize(entries.size());
@@ -8109,7 +8135,7 @@ bool FullCatalogScreen::prepareHistoryIcon(size_t index) {
         return prepareImageTexture(historyIconUrls_[index],"app");
     const auto& key=queueHistory_->entries()[index].iconCacheKey;
     const auto path=imageCache_->historyIconPath(key);
-    if(path.empty())return false;
+    if(path.empty() || historyFailedIconPaths_.count(path))return false;
     const auto it=textures_.find(path);
     if(it!=textures_.end() && it->second){touchTexture(path);return false;}
     imageCache_->requestHistoryIcon(key);
@@ -8119,7 +8145,7 @@ bool FullCatalogScreen::prepareHistoryIcon(size_t index) {
     if(texture) {
         evictTextureIfNeeded("app");
         textures_[path]=texture;textureOrder_.push_back(path);
-    }
+    } else historyFailedIconPaths_.insert(path);
     return true;
 }
 void FullCatalogScreen::drawHistoryIcon(size_t index,int x,int y,int size) {
@@ -8899,6 +8925,8 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
         if (cached != cache.end() && cached->second.valid) return cached->second.info;
         return unknown;
     }
+    static uint64_t lastLog=0;
+    QueueUiSpan perf("install_probe",lastLog);
 
     LocalInstallInfo info;
     info.state = LocalInstallState::NotInstalled;
@@ -9106,7 +9134,7 @@ bool FullCatalogScreen::detailNeedsGameFilesNotice(const CatalogItem& item, bool
     if (state_.catalog != CatalogType::Homebrew || item.id.empty() ||
         catalogLoading_ || installProgressActive_) return false;
     if(queuePassiveRead_ && queueStorageContended())
-        return detailGameFilesProbeId_==item.id && detailGameFilesAppInstalled_==installed && detailGameFilesMissing_;
+        return detailGameFilesCheckMs_!=0 && detailGameFilesProbeId_==item.id && detailGameFilesAppInstalled_==installed && detailGameFilesMissing_;
     const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
     // Selected detail only, with bounded Getstat probes every four seconds.
     if (detailGameFilesProbeId_ != item.id || detailGameFilesCheckMs_ == 0 ||
