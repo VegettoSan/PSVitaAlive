@@ -231,16 +231,31 @@ void FullCatalogScreen::closeInstalledDataMenu() {
     installedDataShareLabels_.clear();
     installedDataShareScroll_ = 0;
 }
+void FullCatalogScreen::releaseInstalledDataProtection() {
+    if (!installedDataProtected_) return;
+    installedDataProtected_ = false;
+    if (installedDataReleaseProtection_) installedDataReleaseProtection_();
+}
 void FullCatalogScreen::startInstalledDataOperation(int action) {
     if (installedDataWorker_ >= 0) {
         if (!installedDataWorkerDone_.load(std::memory_order_acquire)) return;
         sceKernelWaitThreadEnd(installedDataWorker_, nullptr, nullptr);
         sceKernelDeleteThread(installedDataWorker_);
         installedDataWorker_ = -1;
+        releaseInstalledDataProtection();
     }
     if (queueProtected_ || queueReport_ || storageWorker_ >= 0 || (storageInstallerBusy_ && storageInstallerBusy_())) {
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2600);
         return;
+    }
+    if (action >= 0) {
+        if (!installedDataAcquireProtection_ || !installedDataReleaseProtection_ ||
+            !installedDataAcquireProtection_()) {
+            showToast(::psvitaalive::L("STORAGE_BUSY"), 3400);
+            diagnostics::log("[UI] destructive operation refused: shell protection unavailable");
+            return;
+        }
+        installedDataProtected_ = true;
     }
     installedDataAction_ = action;
     installedDataWorkerDone_.store(false, std::memory_order_release);
@@ -255,6 +270,7 @@ void FullCatalogScreen::startInstalledDataOperation(int action) {
         0x10000110, 96 * 1024, 0, 0, nullptr);
     if (installedDataWorker_ < 0) {
         installedDataWorkerDone_.store(true, std::memory_order_release);
+        releaseInstalledDataProtection();
         return;
     }
     FullCatalogScreen* self = this;
@@ -262,6 +278,7 @@ void FullCatalogScreen::startInstalledDataOperation(int action) {
         sceKernelDeleteThread(installedDataWorker_);
         installedDataWorker_ = -1;
         installedDataWorkerDone_.store(true, std::memory_order_release);
+        releaseInstalledDataProtection();
     }
 }
 int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
@@ -448,6 +465,7 @@ void FullCatalogScreen::pollInstalledDataOperation() {
     sceKernelWaitThreadEnd(installedDataWorker_, nullptr, nullptr);
     sceKernelDeleteThread(installedDataWorker_);
     installedDataWorker_ = -1;
+    if (finishedAction >= 0) releaseInstalledDataProtection();
 
     if (finishedAction == -3) {
         const std::string measured = installedDataScanFocusId_;
@@ -827,7 +845,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         const uint32_t phase = prog.phase.load(std::memory_order_acquire);
         const bool removingFiles = phase == 2;
         const bool preparingFiles = phase == 5;
-        const bool verifying = phase == 3;
+        const bool verifying = phase == 3 || phase == 4;
         const char* stageText = preparingFiles ? "ID_OP_PREPARE_STAGE" :
             removingFiles ? "ID_OP_DATA_STAGE" :
             verifying ? "ID_OP_VERIFY_STAGE" : "ID_OP_APP_STAGE";
@@ -841,7 +859,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             actionName.c_str());
         ::psvitaalive::ui::uiDrawText(&font_,x+30,y+196,TEXT,.90f,
             ::psvitaalive::L(preparingFiles ? "ID_OP_PREPARE_EXPLAIN" :
-                removingFiles ? "ID_OP_FILES_EXPLAIN" : "ID_OP_APP_EXPLAIN"));
+                removingFiles ? "ID_OP_FILES_EXPLAIN" :
+                verifying ? "ID_OP_VERIFY_STAGE" : "ID_OP_APP_EXPLAIN"));
         const int barX=x+30,barY=y+236,barW=W-60;
         skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,23,SURFACE2);
         char counter[32];
@@ -860,8 +879,12 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             const int textWidth = ::psvitaalive::ui::uiTextWidth(&font_,1.25f,counter);
             ::psvitaalive::ui::uiDrawText(&font_,x+(W-textWidth)/2,y+316,
                 ACCENT,1.25f,counter);
-            ::psvitaalive::ui::uiDrawText(&font_,x+30,y+354,TEXT,.95f,
-                ::psvitaalive::L("ID_OP_FILES_EXPLAIN"));
+            const std::string files = std::string(::psvitaalive::L("ID_OP_FILES_REMOVED")) + " " +
+                std::to_string(prog.filesRemoved.load(std::memory_order_relaxed));
+            const std::string folders = std::string(::psvitaalive::L("ID_OP_DIRS_REMOVED")) + " " +
+                std::to_string(prog.foldersRemoved.load(std::memory_order_relaxed));
+            drawMarqueeText(&font_,x+30,y+354,(W-80)/2,TEXT,.95f,files,false);
+            drawMarqueeText(&font_,x+W/2+10,y+354,(W-80)/2,TEXT,.95f,folders,false);
         } else {
             // PromoterUtility has no file-level percentage. During the safe
             // pre-count the total is not yet known, so both remain indeterminate.
@@ -872,8 +895,10 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 (sceKernelGetProcessTimeWide()/19000ULL)%(barW-40));
             skin::surface(skin::ui_atlas::ui_progress_fill,marker,barY,40,23,ACCENT);
         }
-        ::psvitaalive::ui::uiDrawText(&font_,x+30,y+420,DIM,.92f,
-            ::psvitaalive::L("ID_OP_DO_NOT_CLOSE"));
+        drawMarqueeText(&font_,x+30,y+420,W-60,DIM,.92f,
+            ::psvitaalive::L("ID_OP_DO_NOT_CLOSE"),false);
+        drawMarqueeText(&font_,x+30,y+451,W-60,ACCENT,.86f,
+            ::psvitaalive::L("LOCKED_BANNER_1"),false);
         return;
     }
     if (installedDataWorker_ >= 0 && installedDataAction_ != -3) {
