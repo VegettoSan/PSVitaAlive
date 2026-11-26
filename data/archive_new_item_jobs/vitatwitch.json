@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png": "icon0.png"
   },
   "attempted": [
-    "vitatwitch v1.32.vpk"
+    "vitatwitch v1.32.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:17:48+00:00"
