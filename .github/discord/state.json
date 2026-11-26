@@ -3765,7 +3765,8 @@
   },
   "catalog_initialized": true,
   "releases": [
-    "02.19"
+    "02.19",
+    "02.20"
   ],
   "schema": 1
 }
