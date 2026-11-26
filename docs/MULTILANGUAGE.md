@@ -278,6 +278,8 @@ Diagnostic logs do not need to be translated.
 
 ## Embedded keyboard: localized interface, English key layout
 
+The [controller input policy](CONTROLLER_INPUT_POLICY_20261126.md) preserves directional repeat and touch hold-to-delete; physical Square or X on DEL deletes once per press.
+
 As of the [native IME replacement decision (20 October 2026)](KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md), PSVitaAlive draws its own `SearchKeyboard` using the current theme/font. The **keyboard itself is English QWERTY on every language**, with a `123` page and extra `MORE` symbols. No Japanese/Chinese/Cyrillic composition or predictive input method is implemented. Changing the UI language **does not** switch the character layout.
 
 The titles and surrounding buttons do use the normal `LocalizationManager::get` lookup, from the currently selected `app0:lang/*.lang` table:
