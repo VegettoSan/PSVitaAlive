@@ -1,4 +1,5 @@
 #include "ui/controller_input.hpp"
+#include "ui/controller_button_edges.hpp"
 #include "ui/skin_hints.hpp"
 #include "ui/full_catalog_screen.hpp"
 #include "ui/queue_progress_policy.hpp"
@@ -7373,20 +7374,25 @@ bool FullCatalogScreen::handleChromeNavigation(uint32_t pressed, uint32_t nav,
 }
 
 void FullCatalogScreen::handleInput(){
+    // Sample physical button edges before any modal can consume the frame.
+    // Storage, installed-data and catalog must share this history: a held
+    // Cross/Circle must not be seen as a new press in the next screen.
+    SceCtrlData controllerPad{};
+    const int controllerResult = ::psvitaalive::ui::peekClientController(controllerPad);
+    static ::psvitaalive::ui::ControllerButtonEdges controllerEdges;
+    const uint32_t framePressed = controllerEdges.sample(controllerPad.buttons, controllerResult > 0);
+    if (controllerResult <= 0) return;
     if(queueVisible_) { handleQueueInput(); return; }
     if (chromeConfirmAwaitRelease_) {
-        SceCtrlData pad{};
-        const int ret = ::psvitaalive::ui::peekClientController(pad);
-        if (ret <= 0 || (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE | SCE_CTRL_START)))
+        if (controllerPad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE | SCE_CTRL_START))
             return;
         chromeConfirmAwaitRelease_ = false;
     }
     if (installedDataVisible_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevIdButtons=0,prevIdAnalog=0;
+        const SceCtrlData& pad=controllerPad;
+        static uint32_t prevIdAnalog=0;
         static uint64_t idRepeatAt=0;
-        const uint32_t pressed=pad.buttons & ~prevIdButtons;
+        const uint32_t pressed=framePressed;
         const uint32_t analog=leftStickNavMask(pad);
         const uint32_t direct=(pressed & NAV_DIRECTION_MASK)|
                               (analog & ~prevIdAnalog);
@@ -7398,17 +7404,15 @@ void FullCatalogScreen::handleInput(){
         else if(idRepeatAt&&now>=idRepeatAt){
             repeat=held;idRepeatAt=now+130000ULL;
         }
-        prevIdButtons=pad.buttons;
         prevIdAnalog=analog;
         handleInstalledDataInput(pressed,direct|repeat);
         return;
     }
     if (storageVisible_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevStorageButtons=0,prevStorageAnalog=0;
+        const SceCtrlData& pad=controllerPad;
+        static uint32_t prevStorageAnalog=0;
         static uint64_t storageRepeatAt=0;
-        const uint32_t pressed=pad.buttons & ~prevStorageButtons;
+        const uint32_t pressed=framePressed;
         const uint32_t analog=leftStickNavMask(pad);
         const uint32_t direct=(pressed & NAV_DIRECTION_MASK) |
                               (analog & ~prevStorageAnalog);
@@ -7423,7 +7427,6 @@ void FullCatalogScreen::handleInput(){
             repeat=held;
             storageRepeatAt=now+130000ULL;
         }
-        prevStorageButtons=pad.buttons;
         prevStorageAnalog=analog;
         if(pressed & SCE_CTRL_CIRCLE) {
             if(storageConfirm_) {
@@ -7612,7 +7615,7 @@ void FullCatalogScreen::handleInput(){
         if (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
         pluginChoiceAwaitRelease_ = false;
     }
-if(isTransitioning())return;SceCtrlData p{};::psvitaalive::ui::peekClientController(p);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;
+if(isTransitioning())return;const SceCtrlData& p=controllerPad;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=framePressed,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prevAnalog=analogNav;uint32_t nav=direct|repeat;
 if (pressed || nav) navigationFocus_.controller();
 if (!themeSetupVisible_ && !newsVisible_ &&
     (p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
