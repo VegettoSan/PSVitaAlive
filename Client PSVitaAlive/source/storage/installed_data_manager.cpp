@@ -514,6 +514,17 @@ media::Metadata probeMedia(const std::string& path,const SceIoStat& st) {
     const auto result=media::probe(read,static_cast<uint64_t>(st.st_size));
     sceIoClose(fd);return result;
 }
+media::Sfo localSfo(const std::string& path,const SceIoStat& st) {
+    if(!regular(st)||st.st_size<20||st.st_size>65536)return {};
+    const SceUID fd=sceIoOpen(path.c_str(),SCE_O_RDONLY,0);if(fd<0)return {};
+    std::vector<unsigned char> buf(static_cast<size_t>(st.st_size));
+    const bool ok=sceIoRead(fd,buf.data(),static_cast<SceSize>(buf.size()))==static_cast<int>(buf.size());
+    sceIoClose(fd);return ok?media::sfo(buf):media::Sfo{};
+}
+bool vitaGameIdentity(const std::string& id,const media::Sfo& meta) {
+    return validInstalledTitleId(id) && id.compare(0,3,"PCS")==0 && meta.id==id &&
+        meta.category=="gd" && !meta.title.empty();
+}
 std::string gamePbp(const std::string& path,SceIoStat& st) {
     const std::string upper=path+"/EBOOT.PBP",lower=path+"/eboot.pbp";
     if(exists(upper,&st)&&regular(st))return upper;
@@ -564,12 +575,19 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
             while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
                 const std::string id=e.d_name;
                 const auto* match=lookup(id);
-                if(!match||!validInstalledTitleId(id)||id==CLIENT_TID)continue;
+                if(!validInstalledTitleId(id)||id==CLIENT_TID)continue;
                 const auto path="ux0:app/"+id;
                 SceIoStat st{},sfoStat{};
                 if(!exists(path,&st)||!directory(st)||!exists(path+"/sce_sys/param.sfo",&sfoStat)||!regular(sfoStat))continue;
-                InstalledDataApp row;row.appId=match->appId;row.name=match->name;row.icon=match->icon;
+                const auto local=localSfo(path+"/sce_sys/param.sfo",sfoStat);
+                // A catalog match must still agree with the local SFO; an
+                // external Vita game needs positive commercial-game metadata.
+                if(local.id!=id || local.category!="gd" || (!match&&!vitaGameIdentity(id,local)))continue;
+                InstalledDataApp row;row.mediaIdentified=match!=nullptr;
+                row.name=match?match->name:(!local.title.empty()?local.title:id);
+                if(match){row.appId=match->appId;row.icon=match->icon;}
                 row.titleId=id;row.packagePresent=true;row.packageRootStamp=rootFingerprint(st);
+                row.mediaPayloadStamp=mediaFingerprint(sfoStat);
                 const auto* saved=InstalledDirectoryCache::find(cache,id,path);
                 if(saved&&saved->sizeKnown&&row.packageRootStamp&&saved->rootStamp==row.packageRootStamp) {
                     row.packageBytes=saved->bytes;row.packageSizeKnown=true;row.packageSizeCached=true;
@@ -622,7 +640,7 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 row.bytes=entry.bytes;row.paths.push_back(std::move(entry));
                 // Allow removing a single unrecognized ISO/PBP file, but never a
                 // directory without a structurally identified PSP/PS1 payload.
-                row.blocked=!row.mediaStamp || (row.mediaDirectory && (!row.mediaPayloadStamp || m.platform==media::Platform::Unknown));
+                row.blocked=!row.mediaStamp || (row.mediaDirectory && (!row.mediaPayloadStamp || !m.validPbp));
                 out.apps.push_back(std::move(row));
                 if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
                 if(out.apps.size()>=4096){ctx.stopped=true;break;}
@@ -656,6 +674,16 @@ InstalledDataApp InstalledDataManager::measureGame(InstalledDataApp app,Installe
         const std::string path="ux0:app/"+app.titleId;SceIoStat st{};uint32_t count=0;uint64_t bytes=0;
         app.packageSizeKnown=exists(path,&st)&&directory(st)&&scanTree(path,st,0,count,bytes,ctx);
         app.packageBytes=app.packageSizeKnown?bytes:0;app.packageSizeCached=false;
+        if(app.packageSizeKnown) {
+            // Merge a single measurement; never discard the Homebrew cache.
+            app.packageRootStamp=rootFingerprint(st);
+            if(app.packageRootStamp) {
+                std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache);
+                cache.erase(std::remove_if(cache.begin(),cache.end(),[&](const CachedDirectory& e){return e.titleId==app.titleId&&e.path==path;}),cache.end());
+                cache.push_back({app.titleId,path,app.packageRootStamp,bytes,true});
+                InstalledDirectoryCache::save(cache);
+            }
+        }
     }
     if(progress){progress->appsCompleted.store(1);progress->phase.store(3);}
     return app;
@@ -669,7 +697,7 @@ bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,Installed
            directory(st)!=app.mediaDirectory||(!directory(st)&&!regular(st)))return false;
         if(app.mediaDirectory){SceIoStat payload{};const auto file=gamePbp(path,payload);
             if(file.empty()||mediaFingerprint(payload)!=app.mediaPayloadStamp||
-               probeMedia(file,payload).platform==media::Platform::Unknown)return false;}
+               !probeMedia(file,payload).validPbp)return false;}
         return true;
     };
     SceIoStat st{};if(!revalidate(st))return false;
@@ -693,6 +721,15 @@ bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,Installed
     const bool ok=erased && absent;
     if(progress){if(ok)progress->rootsCompleted.store(1);progress->currentRootIndex.store(UINT32_MAX);progress->phase.store(3);}
     return ok;
+}
+
+bool InstalledDataManager::uninstallGamePackage(const InstalledDataApp& app,InstalledDataOperationProgress* progress) {
+    if(!app.packagePresent||app.mediaRow||!validInstalledTitleId(app.titleId)||app.titleId==CLIENT_TID)return false;
+    const std::string path="ux0:app/"+app.titleId+"/sce_sys/param.sfo";
+    SceIoStat st{};if(!exists(path,&st)||!regular(st)||!app.mediaPayloadStamp||mediaFingerprint(st)!=app.mediaPayloadStamp)return false;
+    const auto local=localSfo(path,st);
+    if(local.id!=app.titleId||local.category!="gd")return false;
+    return uninstallPackage(app.titleId,progress);
 }
 
 void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
