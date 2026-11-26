@@ -116,6 +116,10 @@ public:
     // Experimental queue adapter. Main-thread only. status() is polled once
     // per rendered frame by the caller (BGDL relies on its one-poll deferral).
     // Acquire/release only from the main thread, with all other work drained.
+    // Exclusive shell protection for destructive storage operations (UI thread).
+    bool beginInstalledDataProtection();
+    void endInstalledDataProtection();
+    bool installedDataProtectionActive() const { return installedDataProtection_.load(); }
     bool beginQueueProtection();
     bool endQueueProtection(const queue::Session& session);
     bool queueProtectionActive() const { return queueProtection_.load(); }
@@ -152,6 +156,7 @@ public:
 
 private:
     std::atomic<bool> queueProtection_{false};
+    std::atomic<bool> installedDataProtection_{false};
     // Download-only high-water size hint, independent of reused extraction counters.
     std::atomic<uint64_t> queueObservedPayload_{0};
     queue::LiveStaging queueLiveStaging_;
@@ -270,6 +275,7 @@ private:
 
     /** Block PS button (+ soft power-off menu) while a job is running so the user
      *  cannot exit to LiveArea mid-download/extract. Always unlocked on finish. */
+    bool tryLockShell();
     void lockShellDuringJob();
     void unlockShellDuringJob();
 
