@@ -118,15 +118,15 @@
     "req": "Homebrew-enabled PS Vita. No libshacccg.suprx required (precompiled shaders).",
     "sz": 6353031,
     "st": "Legacy",
-    "ic": "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png",
+    "ic": "https://archive.org/download/psvitaalive-vitaforge/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png"
+      "https://archive.org/download/psvitaalive-vitaforge/icon0.png"
     ],
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/josephinoo/vitaForge/releases/download/v0.1.15/vitaforge.vpk",
+        "u": "https://archive.org/download/psvitaalive-vitaforge/vitaforge%20v0.1.15.vpk",
         "rec": true
       },
       {
