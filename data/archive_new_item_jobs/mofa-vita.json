@@ -48,7 +48,8 @@
   },
   "attempted": [
     "mofa-vita v1.20.vpk",
-    "icon0.png"
+    "icon0.png",
+    "shot_01.jpg"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:22:34+00:00"
