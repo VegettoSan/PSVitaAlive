@@ -22,6 +22,8 @@ Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00
 
 ## Controller-only navigation (Vita / PlayStation TV)
 
+**Action input policy (2026-11-26):** X, Circle, Square, Triangle, L/R, START and SELECT execute only on a new physical press across all screens. D-pad and left stick retain their existing repeat and focus policies. See [shared controller input policy](../../../docs/CONTROLLER_INPUT_POLICY_20261126.md).
+
 - The initial focus is the application grid. D-pad or left stick navigates the grid as before; a fresh Up at the first row enters the active tab, and Down at the final row enters the footer.
 - START cycles catalog → footer → header → catalog after startup, based on the current focus (tabs count as header); in the header, Down reaches the tabs and Up from the tabs reaches the header. In the split detail view, START preserves the existing detail navigation.
 - X activates the selected search, clear-search, filter, catalog tab, Discord, report or UX0 storage button; Circle returns to catalog focus from the surrounding controls. Existing L/R, Triangle, Square and SELECT shortcuts remain available.
@@ -40,7 +42,7 @@ Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00
 - Palette: `BG`, `SURFACE`, `SURFACE2`, `BORDER`, `TEXT`, `DIM` and `ACCENT` follow the selected theme. Keyboard titles, hints and action captions load `KEYBOARD_*` keys through the usual localization manager; the keymap remains English QWERTY.
 - Geometry: right-hand **SHIFT, DEL, CANCEL, OK** column, equal **22 px** left/right inner margins, **7 px** separator. Existing character row order is preserved. Compile-time geometry assertions prevent overlap.
 - Navigation: D-pad **or left joystick** (dead-zone thresholds matching the catalog), X selection, touch positions mapped from native 1920×1088 logical units. Triangle switches ABC/123, `MORE` exposes extra symbols, L or SHIFT toggles **persistent case**. START or OK confirms after startup; Circle/CANCEL discards.
-- Backspace: a tap removes one character; hold Square or the visible DEL button and it repeats after ~420 ms, roughly every 105 ms until release. Case labels follow the next character to be entered.
+- Backspace: Square or X on DEL removes one character per physical press; only holding DEL on the touchscreen repeats after ~420 ms, roughly every 105 ms until release. Case labels follow the next character to be entered.
 - Entry/exit uses a ~230 ms smoothstep slide. Layout and buttons are not language-specific; UI labels support all eight packaged languages. No candidate/predictive/complex IME is provided.
 
 **Do not reintroduce** `sceImeDialog*` or `vita2d_common_dialog_update` into the search flow. The binary still links `SceCommonDialog_stub` for **vita2d static linkage only**; Sony promoter/PAF modules required by installation/update remain independent. For crash history, rationale and validation: [native IME replacement decision](../../../docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
