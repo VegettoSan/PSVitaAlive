@@ -567,7 +567,7 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
     if(mode==1) {
         // Only exact catalog matches are authorized as Vita games. Do not
         // classify unrelated Homebrew/system applications by folder alone.
-        std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache);
+        std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache,DirectoryCacheScope::Vita);
         const SceUID d=sceIoDopen("ux0:app");
         if(d<0)out.complete=false;
         else {
@@ -599,6 +599,11 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
             sceIoDclose(d);
         }
     } else if(mode==2||mode==3) {
+        std::vector<CachedMedia> cache,next;
+        InstalledDirectoryCache::loadMedia(cache);
+        std::unordered_map<std::string,size_t> cached;
+        for(size_t i=0;i<cache.size();++i)cached.emplace(cache[i].path,i);
+        next.reserve(cache.size());
         for(const char* mount:{"ux0:","uma0:"})for(const char* section:{"ISO/","PSP/GAME/"}) {
             if(ctx.shouldStop())break;
             const std::string base=std::string(mount)+"pspemu/"+section;
@@ -614,7 +619,26 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 SceIoStat payload=st;
                 const std::string file=directory(st)?gamePbp(path,payload):path;
                 if(file.empty())continue; // not a verified game-shaped folder
-                const auto m=probeMedia(file,payload);
+                const auto stamp=mediaFingerprint(st),payloadStamp=mediaFingerprint(payload);
+                const auto hit=cached.find(path);
+                const CachedMedia* old=hit==cached.end()?nullptr:&cache[hit->second];
+                media::Metadata m;
+                const bool reused=old && stamp && payloadStamp && old->rootStamp==stamp &&
+                    old->payloadStamp==payloadStamp && old->directory==directory(st);
+                if(reused) {
+                    m.platform=static_cast<media::Platform>(old->platform);
+                    m.title=old->title;m.id=old->id;m.contentId=old->contentId;m.validPbp=old->validPbp;
+                } else m=probeMedia(file,payload);
+                // Cache both platforms before filtering; do not probe the
+                // same payload again on switching between PSP and PS1.
+                if(stamp && payloadStamp && next.size()<4096) {
+                    CachedMedia record;
+                    record.path=path;record.rootStamp=stamp;record.payloadStamp=payloadStamp;
+                    record.directory=directory(st);record.platform=static_cast<uint8_t>(m.platform);
+                    record.title=m.title;record.id=m.id;record.contentId=m.contentId;record.validPbp=m.validPbp;
+                    if(record.directory && reused && old->sizeKnown){record.sizeKnown=true;record.bytes=old->bytes;}
+                    next.push_back(std::move(record));
+                }
                 if((mode==2 && m.platform==media::Platform::PS1)||(mode==3&&m.platform==media::Platform::PSP))continue;
                 // ISO/CSO are normally PSP; an unreadable image stays unknown.
                 const auto* primary=m.platform==media::Platform::Unknown?nullptr:lookup(m.contentId.empty()?m.id:m.contentId);
@@ -636,7 +660,9 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 row.mediaFormat=row.mediaDirectory?"PBP / Folder":(std::string(section)=="ISO/"?(name.size()>=4&&
                     (name[name.size()-3]=='c'||name[name.size()-3]=='C')?"CSO":"ISO"):"PBP");
                 InstalledDataPath entry;entry.path=path;entry.exists=true;entry.rootStamp=row.mediaStamp;
-                entry.sizeKnown=!row.mediaDirectory;entry.bytes=entry.sizeKnown?row.mediaFileBytes:0;
+                entry.sizeKnown=!row.mediaDirectory || (reused && old->sizeKnown);
+                entry.sizeCached=row.mediaDirectory && entry.sizeKnown;
+                entry.bytes=!row.mediaDirectory?row.mediaFileBytes:entry.sizeKnown?old->bytes:0;
                 row.bytes=entry.bytes;row.paths.push_back(std::move(entry));
                 // Allow removing a single unrecognized ISO/PBP file, but never a
                 // directory without a structurally identified PSP/PS1 payload.
@@ -648,6 +674,8 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
             if(rc<0||ctx.stopped)out.complete=false;
             sceIoDclose(d);
         }
+        // Partial scan must not discard records from unvisited roots.
+        if(out.complete && !ctx.stopped)InstalledDirectoryCache::saveMedia(next);
     }
     out.totalExternalBytes=knownExternalBytes(out);
     out.totalPackageBytes=knownPackageBytes(out);
@@ -670,6 +698,15 @@ InstalledDataApp InstalledDataManager::measureGame(InstalledDataApp app,Installe
         path.sizeKnown=path.exists&&mediaFingerprint(st)==app.mediaStamp&&scanTree(path.path,st,0,count,bytes,ctx);
         path.bytes=path.sizeKnown?bytes:0;path.sizeCached=false;app.bytes=path.bytes;
         if(!path.sizeKnown)path.complete=false;
+        if(app.mediaDirectory) {
+            std::vector<CachedMedia> cache;
+            if(InstalledDirectoryCache::loadMedia(cache)) {
+                for(auto& row:cache)if(row.path==path.path && row.rootStamp==app.mediaStamp && row.payloadStamp==app.mediaPayloadStamp) {
+                    row.sizeKnown=path.sizeKnown;row.bytes=path.bytes;break;
+                }
+                InstalledDirectoryCache::saveMedia(cache);
+            }
+        }
     } else if(app.packagePresent && validInstalledTitleId(app.titleId)) {
         const std::string path="ux0:app/"+app.titleId;SceIoStat st{};uint32_t count=0;uint64_t bytes=0;
         app.packageSizeKnown=exists(path,&st)&&directory(st)&&scanTree(path,st,0,count,bytes,ctx);
@@ -678,10 +715,10 @@ InstalledDataApp InstalledDataManager::measureGame(InstalledDataApp app,Installe
             // Merge a single measurement; never discard the Homebrew cache.
             app.packageRootStamp=rootFingerprint(st);
             if(app.packageRootStamp) {
-                std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache);
+                std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache,DirectoryCacheScope::Vita);
                 cache.erase(std::remove_if(cache.begin(),cache.end(),[&](const CachedDirectory& e){return e.titleId==app.titleId&&e.path==path;}),cache.end());
                 cache.push_back({app.titleId,path,app.packageRootStamp,bytes,true});
-                InstalledDirectoryCache::save(cache);
+                InstalledDirectoryCache::save(cache,DirectoryCacheScope::Vita);
             }
         }
     }
@@ -706,6 +743,7 @@ bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,Installed
     if(!scanTree(path,st,0,count,bytes,ctx)||!count||!revalidate(st))return false;
     if(progress){progress->entriesTotal.store(count);progress->rootsTotal.store(1);progress->phase.store(2,std::memory_order_release);}
     uint32_t removed=0;
+    InstalledDirectoryCache::invalidateMediaPath(path);
     const bool erased=eraseTree(path,0,removed,progress,true);
     // Verify via the still-accessible parent; a missing mount is not success.
     const auto slash=path.find_last_of('/');
@@ -729,6 +767,7 @@ bool InstalledDataManager::uninstallGamePackage(const InstalledDataApp& app,Inst
     SceIoStat st{};if(!exists(path,&st)||!regular(st)||!app.mediaPayloadStamp||mediaFingerprint(st)!=app.mediaPayloadStamp)return false;
     const auto local=localSfo(path,st);
     if(local.id!=app.titleId||local.category!="gd")return false;
+    InstalledDirectoryCache::invalidatePackageTitle(app.titleId,DirectoryCacheScope::Vita);
     return uninstallPackage(app.titleId,progress);
 }
 
@@ -738,6 +777,7 @@ void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
 void InstalledDataManager::invalidateCachedPackageTitle(
     const std::string& titleId) {
     InstalledDirectoryCache::invalidatePackageTitle(titleId);
+    InstalledDirectoryCache::invalidatePackageTitle(titleId,DirectoryCacheScope::Vita);
 }
 
 bool InstalledDataManager::prepareExternalRemoval(
