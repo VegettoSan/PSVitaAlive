@@ -86,6 +86,7 @@ void FullCatalogScreen::rebuildInstalledDataVisibleRows() {
         for (const auto& p : app.paths) present = present || p.exists;
         if (present) installedDataVisibleRows_.push_back(static_cast<int>(i));
     }
+    sortInstalledDataVisibleRows(false);
     installedDataListFocus_ = 0;
     for (size_t i = 0; i < installedDataVisibleRows_.size(); ++i)
         if (installedDataSnapshot_.apps[installedDataVisibleRows_[i]].titleId ==
@@ -93,6 +94,26 @@ void FullCatalogScreen::rebuildInstalledDataVisibleRows() {
     installedDataScroll_ = std::min(
         std::max(0, static_cast<int>(installedDataVisibleRows_.size()) - 3),
         std::max(0, installedDataListFocus_ - 1));
+}
+void FullCatalogScreen::sortInstalledDataVisibleRows(bool preserveFocus) {
+    const int count=static_cast<int>(installedDataVisibleRows_.size());
+    const int focused=preserveFocus && installedDataListFocus_>=0 && installedDataListFocus_<count
+        ?installedDataVisibleRows_[installedDataListFocus_]:-1;
+    // Sort indices only: immutable app/path ownership stays untouched.
+    std::stable_sort(installedDataVisibleRows_.begin(),installedDataVisibleRows_.end(),
+        [&](int a,int b) {
+            return ::psvitaalive::storage::installedDataLargerFirst(
+                installedDataSnapshot_.apps[a],installedDataSnapshot_.apps[b]);
+        });
+    if(focused>=0) {
+        const auto it=std::find(installedDataVisibleRows_.begin(),installedDataVisibleRows_.end(),focused);
+        if(it!=installedDataVisibleRows_.end())
+            installedDataListFocus_=static_cast<int>(it-installedDataVisibleRows_.begin());
+        installedDataScroll_=std::max(0,std::min(installedDataScroll_,std::max(0,count-3)));
+        if(installedDataListFocus_<installedDataScroll_)installedDataScroll_=installedDataListFocus_;
+        if(installedDataListFocus_>=installedDataScroll_+3)installedDataScroll_=installedDataListFocus_-2;
+    }
+    installedDataSortPending_=false;
 }
 void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
                                                const std::string& titleId) {
@@ -119,6 +140,7 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     installedDataAutoEnabled_ = fromStorage;
     installedDataAutoClosePending_ = false;
     installedDataAutoAttempted_.clear();
+    installedDataSortPending_=false;
     installedDataActionFocus_ = 0;
     installedDataListFocus_ = 0;
     installedDataScroll_ = installedDataPathScroll_ = 0;
@@ -517,6 +539,10 @@ void FullCatalogScreen::finishInstalledDataResult() {
     startNextInstalledDataAutoMeasure();
 }
 void FullCatalogScreen::pollInstalledDataOperation() {
+    if(installedDataSortPending_ && installedDataVisible_ && !installedDataDetail_ &&
+       !installedDataConfirm_ && !installedDataResultVisible_ && !touchDown_ &&
+       (installedDataWorker_<0 || installedDataAction_==-3))
+        sortInstalledDataVisibleRows(true);
     if (installedDataWorker_ < 0 ||
         !installedDataWorkerDone_.load(std::memory_order_acquire)) return;
     const int finishedAction = installedDataAction_;
@@ -553,6 +579,9 @@ void FullCatalogScreen::pollInstalledDataOperation() {
                     if (path.exists && !path.sizeKnown)
                         installedDataSnapshot_.totalSizeKnown = false;
         }
+        installedDataSortPending_=true;
+        if(!installedDataDetail_ && !installedDataConfirm_ && !installedDataResultVisible_ && !touchDown_)
+            sortInstalledDataVisibleRows(true);
         installedDataAutoResult_ = {};
         installedDataScanFocusId_.clear();
         if (installedDataAutoClosePending_) {
@@ -1116,8 +1145,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 (hasExternal && partial);
             const std::string spaceLabel = unknown ?
                 std::string(::psvitaalive::L("ID_SIZE_PENDING")) :
-                formatBytesShort(app.bytes + (app.packagePresent ?
-                    app.packageBytes : 0)) + (cachedSize ? "*" : "");
+                formatBytesShort(::psvitaalive::storage::installedDataListBytes(app)) + (cachedSize ? "*" : "");
             drawMarqueeText(&font_,x+W-179,ry+37,146,
                 focused?ACCENT:WHITE,.93f,spaceLabel,false);
         }
