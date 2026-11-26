@@ -506,6 +506,7 @@ constexpr uint64_t kProtectionDelayMs = 60ULL * 1000ULL;
 constexpr uint64_t kProtectionMoveMs = 2ULL * 60ULL * 1000ULL;
 constexpr int kProtectionBlockW = 430;
 constexpr int kProtectionBlockH = 150;
+constexpr int kQueueProtectionBlockW = 560, kQueueProtectionBlockH = 250;
 constexpr int kProtectionMargin = 16;
 constexpr int kProtectionMinMoveX = 140;
 constexpr int kProtectionMinMoveY = 80;
@@ -545,8 +546,8 @@ uint32_t protectionRandom() {
 void protectionChoosePosition(bool forceDifferent) {
     const int minX = kProtectionMargin;
     const int minY = kProtectionMargin;
-    const int maxX = SCREEN_W - kProtectionBlockW - kProtectionMargin;
-    const int maxY = SCREEN_H - kProtectionBlockH - kProtectionMargin;
+    const int maxX = SCREEN_W - (gQueueSessionProtection?kQueueProtectionBlockW:kProtectionBlockW) - kProtectionMargin;
+    const int maxY = SCREEN_H - (gQueueSessionProtection?kQueueProtectionBlockH:kProtectionBlockH) - kProtectionMargin;
     const int spanX = std::max(1, maxX - minX + 1);
     const int spanY = std::max(1, maxY - minY + 1);
     const int oldX = gProtectionX;
@@ -8089,9 +8090,10 @@ void FullCatalogScreen::prepareVisibleTextures(){
         if(queueDetail_) {
             if(const auto* job=queueSession_->find(queueSelectedId_))icons.push_back(&job->iconUrl);
         } else {
-            const auto& jobs=queueSession_->jobs();
+            syncQueueDisplay();
             const int first=std::max(0,queueScroll_);
-            for(int n=first;n<(int)jobs.size() && n<first+kQueueRows;++n)icons.push_back(&jobs[n].iconUrl);
+            for(int n=first;n<(int)queueDisplayIds_.size() && n<first+kQueueRows;++n)
+                if(const auto* job=queueSession_->find(queueDisplayIds_[n]))icons.push_back(&job->iconUrl);
         }
         for(const auto* url:icons)if(!url->empty())keep.insert(imageCache_->pathFor(*url,"app"));
         imageCache_->cancelQueuedExcept(keep);
@@ -12397,8 +12399,9 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
     const bool changed=queueProtected_!=protectedSession;
     const bool newReport=report && !queueReport_;
     queueProtected_=protectedSession; queueReport_=report;
-    if(newReport) { queueDetail_=false; queueConfirmCancel_=false; queueMove(0); }
     queueStatus_=status; queueWaitingSpace_=waitingSpace; queueInvariantBlocked_=invariantBlocked;
+    syncQueueDisplay(!newReport);
+    if(newReport) { queueDetail_=false; queueConfirmCancel_=false; queueMove(0); }
     if(queueStorageReturn_ && !storageVisible_ && storageWorker_<0 && !installedDataVisible_) {
         queueStorageReturn_=false;
         if(protectedSession || report)openQueue(queueSelectedId_,false);
@@ -12481,6 +12484,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     if(!queueSession_ || installProgressActive_ || selfUpdateBusy_.load() ||
        essentialInstallRunning_ || storageVisible_ || installedDataVisible_ || pluginRebootModal_) return;
     queueArrivalUs_=0; queueArrivalIconPath_.clear();
+    syncQueueDisplay(false);queueReorderUs_=0;
     queueVisible_=true; queueDetail_=detail; queueSelectedId_=id;
     queueScroll_=0; queueStepScroll_=0; queueConfirmCancel_=false;
     queueAwaitRelease_=true; queueTouchAwaitRelease_=true; queueTouchDown_=false; touchDown_=false;
@@ -12491,7 +12495,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
         queueSelectedId_=queueRecoveryMode()?1:(queueHistory_->entries().empty()?0:1);
         queueDetail_=false;
     } else if(!queueSession_->find(id) && !jobs.empty())
-        queueSelectedId_=queueSession_->activeToken().job?queueSession_->activeToken().job:jobs.front().id;
+        queueSelectedId_=queueDisplayIds_.empty()?jobs.front().id:queueDisplayIds_.front();
     queueMove(0);
 }
 void FullCatalogScreen::closeQueue() {
@@ -12502,9 +12506,56 @@ void FullCatalogScreen::closeQueue() {
         if(reboot) pluginRebootModal_=true;
     }
     queueVisible_=queueDetail_=queueConfirmCancel_=false;
+    queueReorderUs_=0;
     queueTouchDown_=touchDown_=false;
     chromeConfirmAwaitRelease_=true;
     queueExitFadeUs_=sceKernelGetProcessTimeWide();
+}
+bool FullCatalogScreen::queueReorderActive() const {
+    return queueReorderUs_ && sceKernelGetProcessTimeWide()-queueReorderUs_<320000ULL;
+}
+void FullCatalogScreen::syncQueueDisplay(bool allowAnimation) {
+    if(!queueSession_)return;
+    const auto generation=queueSession_->generation();
+    if(generation==queueDisplayGeneration_)return;
+    queueDisplayGeneration_=generation;
+    auto next=queueDisplayOrder(queueSession_->jobs());
+    if(next==queueDisplayIds_)return;
+    const bool sameSize=next.size()==queueDisplayIds_.size();
+    const bool followHead=queueScroll_==0 && !queueDisplayIds_.empty() &&
+        queueSelectedId_==queueDisplayIds_.front() && !queueDetail_ && !queueConfirmCancel_;
+    const bool animate=allowAnimation && sameSize && !next.empty() &&
+        queueVisible_ && !queueHistoryMode() && !queueDetail_ && !queueConfirmCancel_ && !gProtectionActive;
+    queuePreviousDisplayIds_=std::move(queueDisplayIds_);
+    queuePreviousScroll_=queueScroll_;
+    queueDisplayIds_=std::move(next);
+    if(!queueHistoryMode()) {
+        if(followHead && !queueDisplayIds_.empty())queueSelectedId_=queueDisplayIds_.front();
+        if(!queueDetail_) {
+            const auto selected=std::find(queueDisplayIds_.begin(),queueDisplayIds_.end(),queueSelectedId_);
+            if(selected==queueDisplayIds_.end())queueSelectedId_=queueDisplayIds_.empty()?0:queueDisplayIds_.front();
+            const int index=selected==queueDisplayIds_.end()?0:static_cast<int>(selected-queueDisplayIds_.begin());
+            queueScroll_=std::max(0,std::min(queueScroll_,std::max(0,(int)queueDisplayIds_.size()-kQueueRows)));
+            if(index<queueScroll_)queueScroll_=index;
+            if(index>=queueScroll_+kQueueRows)queueScroll_=index-kQueueRows+1;
+        }
+    }
+    queueReorderUs_=animate?sceKernelGetProcessTimeWide():0;
+    if(animate && queueTouchDown_) {
+        // Never turn a tap that began on the old card into a tap on a new one.
+        queueTouchDown_=false;queueTouchAwaitRelease_=true;
+    }
+}
+int FullCatalogScreen::queueDisplayRowY(int index) const {
+    const int target=index-queueScroll_;
+    if(!queueReorderActive())return kQueueRowTop+target*kQueueRowPitch;
+    const auto old=std::find(queuePreviousDisplayIds_.begin(),queuePreviousDisplayIds_.end(),queueDisplayIds_[index]);
+    if(old==queuePreviousDisplayIds_.end())return kQueueRowTop+target*kQueueRowPitch;
+    const int from=std::max(-1,std::min(kQueueRows,static_cast<int>(old-queuePreviousDisplayIds_.begin())-queuePreviousScroll_));
+    const int to=std::max(-1,std::min(kQueueRows,target));
+    const float p=std::min(1.f,static_cast<float>(sceKernelGetProcessTimeWide()-queueReorderUs_)/320000.f);
+    const float ease=p*p*(3.f-2.f*p);
+    return kQueueRowTop+static_cast<int>((from+(to-from)*ease)*kQueueRowPitch);
 }
 void FullCatalogScreen::queueMove(int delta) {
     if(!queueSession_)return;
@@ -12517,12 +12568,13 @@ void FullCatalogScreen::queueMove(int delta) {
         if(i>=queueScroll_+kQueueRows)queueScroll_=i-kQueueRows+1;
         return;
     }
-    const auto& jobs=queueSession_->jobs();
-    if(jobs.empty()){queueSelectedId_=0;queueScroll_=0;return;}
+    syncQueueDisplay();
+    if(delta)queueReorderUs_=0;
+    if(queueDisplayIds_.empty()){queueSelectedId_=0;queueScroll_=0;return;}
     int i=0;
-    for(size_t n=0;n<jobs.size();++n) if(jobs[n].id==queueSelectedId_) {i=(int)n;break;}
-    i=std::max(0,std::min((int)jobs.size()-1,i+delta));
-    queueSelectedId_=jobs[i].id;
+    for(size_t n=0;n<queueDisplayIds_.size();++n) if(queueDisplayIds_[n]==queueSelectedId_) {i=(int)n;break;}
+    i=std::max(0,std::min((int)queueDisplayIds_.size()-1,i+delta));
+    queueSelectedId_=queueDisplayIds_[i];
     if(i<queueScroll_)queueScroll_=i;
     if(i>=queueScroll_+kQueueRows)queueScroll_=i-kQueueRows+1;
 }
@@ -12666,13 +12718,54 @@ void FullCatalogScreen::drawQueueScreen() {
     if(queueProtected_ && gProtectionActive) {
         vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,255));
         gProtectionMascotManager.render();
-        skin::hint(&font_,gProtectionX,gProtectionY+28,kProtectionBlockW,ACCENT,.85f,"PSVitaAlive",true);
-        const auto* active=queueSession_->find(queueSession_->activeToken().job);
-        skin::hint(&font_,gProtectionX,gProtectionY+62,kProtectionBlockW,TEXT,.82f,
-            active?queueJobLabel(*active): ::psvitaalive::L("QUEUE_WAITING"),true);
-        std::string progress=queueStatus_.total?std::to_string((int)(100.0*std::min(queueStatus_.current,queueStatus_.total)/queueStatus_.total))+"%":"--";
-        skin::hint(&font_,gProtectionX,gProtectionY+91,kProtectionBlockW,ACCENT,.82f,progress.c_str(),true);
-        skin::hint(&font_,gProtectionX,gProtectionY+132,kProtectionBlockW,DIM,.62f,::psvitaalive::L("PROTECTION_PRESS_ANY_BUTTON"),true);
+        const auto token=queueSession_->activeToken();
+        const auto* active=queueSession_->find(queueSession_->ownerId());
+        unsigned waiting=0,completed=0;
+        for(const auto& job:queueSession_->jobs()) {
+            waiting+=job.state==State::Waiting;
+            completed+=job.state==State::Completed;
+        }
+        const auto line=[&](int y,unsigned color,float scale,const std::string& text) {
+            if(text.empty())return;
+            skin::hint(&font_,gProtectionX,gProtectionY+y,kQueueProtectionBlockW,color,scale,text.c_str(),true);
+        };
+        line(24,ACCENT,.92f,"PSVitaAlive");
+        line(55,WHITE,1.04f,active?active->name: ::psvitaalive::L("QUEUE_TITLE"));
+        const char* phase=queueWaitingSpace_?::psvitaalive::L("QUEUE_NO_SPACE"):
+            queueInvariantBlocked_?::psvitaalive::L("QUEUE_BUSY"):
+            active?queueJobLabel(*active): ::psvitaalive::L("QUEUE_WAITING");
+        std::string phaseLine=phase;
+        if(active && active->nextStep<active->steps.size()) {
+            const auto comp=active->steps[active->nextStep].component;
+            const char* component=comp==Component::App?::psvitaalive::L(::psvitaalive::TextId::LabelAppVpk):
+                comp==Component::GameFiles?::psvitaalive::L(::psvitaalive::TextId::MetaGameFiles):
+                comp==Component::DataFiles?::psvitaalive::L(::psvitaalive::TextId::MetaDataFiles):
+                comp==Component::Plugin?::psvitaalive::L(::psvitaalive::TextId::MetaPlugin):
+                comp==Component::SystemPackage?"PKG / LiveArea":comp==Component::PspMedia?"PSP / PS1":"ZIP";
+            phaseLine+="  |  "+std::string(component)+" "+std::to_string(active->nextStep+1)+"/"+std::to_string(active->steps.size());
+        }
+        line(86,ACCENT,.91f,phaseLine);
+        const bool transfer=queueStatus_.state==I::Downloading || queueStatus_.state==I::Paused;
+        const bool paused=queueStatus_.state==I::Paused;
+        const bool unknown=!token.job || queueWaitingSpace_ || queueInvariantBlocked_ ||
+            queueStatus_.stage=="Verifying" || queueStatus_.stage=="Preparing" ||
+            queueStatus_.stage=="Retrying" || queueStatus_.stage=="BGDL" ||
+            queueStatus_.stage=="Pausing" || queueStatus_.zipRecoveryAvailable || queueSession_->cancelRequested() ||
+            queueStatus_.state==I::Idle;
+        const auto model=makeQueueProgress(queueStatus_.current,queueStatus_.total,queueStatus_.bytesPerSecond,
+            transfer,paused,unknown);
+        std::string progress=model.known?std::to_string(model.percent)+"%":"--%";
+        if(transfer && !unknown) {
+            progress+="  |  "+formatBytesShort(queueStatus_.current)+" / "+(queueStatus_.total?formatBytesShort(queueStatus_.total):"--");
+            if(!paused && queueStatus_.bytesPerSecond)progress+="  |  "+formatBytesShort(queueStatus_.bytesPerSecond)+"/s";
+        }
+        line(117,WHITE,.88f,progress);
+        if(transfer && !unknown && !paused)line(145,DIM,.80f,std::string(::psvitaalive::L(::psvitaalive::TextId::LabelEta))+": "+formatEta(model.etaSeconds));
+        else if(!transfer && token.job && !unknown)line(145,DIM,.80f,queueStatus_.message);
+        line(174,ACCENT,.88f,std::string(::psvitaalive::L("QUEUE_WAITING"))+": "+std::to_string(waiting)+
+            "  |  "+::psvitaalive::L("QUEUE_DONE")+": "+std::to_string(completed));
+        drawBatteryIndicator(&font_,gProtectionX+kQueueProtectionBlockW/2,gProtectionY+188,.82f,true);
+        line(236,DIM,.68f,::psvitaalive::L("PROTECTION_PRESS_ANY_BUTTON"));
         finishFrame(); return;
     }
     // Raw catalog text must never pass through the controller-token renderer.
@@ -12872,8 +12965,18 @@ void FullCatalogScreen::drawQueueScreen() {
         }
     } else {
         if(jobs.empty()) label(35,146,890,DIM,.92f,::psvitaalive::L("QUEUE_EMPTY"));
-        for(int i=queueScroll_;i<(int)jobs.size() && i<queueScroll_+kQueueRows;++i) {
-            const auto& j=jobs[i]; const int y=kQueueRowTop+(i-queueScroll_)*kQueueRowPitch;
+        syncQueueDisplay();
+        const bool moving=queueReorderActive();
+        const int start=moving?0:queueScroll_;
+        const int end=moving?static_cast<int>(queueDisplayIds_.size()):std::min(static_cast<int>(queueDisplayIds_.size()),queueScroll_+kQueueRows);
+        vita2d_enable_clipping();
+        vita2d_set_clip_rectangle(12,kQueueRowTop,944,kQueueRowTop+kQueueRows*kQueueRowPitch);
+        for(int i=start;i<end;++i) {
+            const int y=queueDisplayRowY(i);
+            if(y+kQueueRowHeight<=kQueueRowTop || y>=kQueueRowTop+kQueueRows*kQueueRowPitch)continue;
+            const auto* entry=queueSession_->find(queueDisplayIds_[i]);
+            if(!entry)continue;
+            const auto& j=*entry;
             const bool focus=j.id==queueSelectedId_;
             skin::surface(skin::ui_atlas::ui_card,20,y,920,kQueueRowHeight,focus?SURFACE2:SURFACE);
             if(focus)skin::focus(20,y,920,kQueueRowHeight,ACCENT);
@@ -12906,6 +13009,7 @@ void FullCatalogScreen::drawQueueScreen() {
                 }
             }
         }
+        vita2d_disable_clipping();
     }
     scrollBar(queueDetail_&&selected?static_cast<int>(selected->steps.size()):static_cast<int>(jobs.size()),queueDetail_?kQueueStepRows:kQueueRows,queueDetail_?queueStepScroll_:queueScroll_,queueDetail_?kQueueStepTop:kQueueRowTop,queueDetail_?kQueueStepRows*kQueueStepPitch:kQueueRows*kQueueRowPitch);
     if(queueReport_ && selected && selected->handoffDeferred)label(24,447,910,ACCENT,.73f,::psvitaalive::L("QUEUE_SYSTEM_RECHECK"));
@@ -12932,6 +13036,7 @@ void FullCatalogScreen::drawQueueScreen() {
 }
 void FullCatalogScreen::handleQueueInput() {
     if(!queueSession_)return;
+    syncQueueDisplay();
     SceCtrlData pad{}; ::psvitaalive::ui::peekClientController(pad);
     const uint32_t pressed=pad.buttons&~queuePreviousButtons_;
     queuePreviousButtons_=pad.buttons;
@@ -12944,6 +13049,7 @@ void FullCatalogScreen::handleQueueInput() {
         return;
     }
     if(pressed&SCE_CTRL_CIRCLE){if(queueDetail_)queueDetail_=false;else closeQueue();return;}
+    if(!queueDetail_ && queueReorderActive())return;
     if(pressed&SCE_CTRL_UP){if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_-1);else queueMove(-1);}
     if(pressed&SCE_CTRL_DOWN){if(queueDetail_)++queueStepScroll_;else queueMove(1);}
     if(queueHistoryMode() && (pressed&SCE_CTRL_RTRIGGER)) {toggleQueueRecovery();return;}
@@ -12970,7 +13076,9 @@ void FullCatalogScreen::handleQueueInput() {
     if(pressed&SCE_CTRL_RTRIGGER && queueWaitingSpace_)queueCommand(QueueAction::RetrySpace);
 }
 void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
+    syncQueueDisplay();
     if(queueTouchAwaitRelease_) {if(!td.reportNum)queueTouchAwaitRelease_=false;return;}
+    if(!queueDetail_ && queueReorderActive()) {queueTouchDown_=false;queueTouchAwaitRelease_=td.reportNum>0;return;}
     if(td.reportNum>0) {
         const int y=td.report[0].y*SCREEN_H/1088;
         if(!queueTouchDown_) {queueTouchDown_=true;queueTouchMoved_=false;queueTouchX_=td.report[0].x*SCREEN_W/1920;queueTouchY_=queueTouchLastY_=y;}
@@ -13023,9 +13131,9 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
     if(!queueDetail_ && x>=20 && x<940 && y>=kQueueRowTop && y<kQueueRowTop+kQueueRows*kQueueRowPitch) {
         if((y-kQueueRowTop)%kQueueRowPitch>=kQueueRowHeight)return;
         const int i=queueScroll_+(y-kQueueRowTop)/kQueueRowPitch;
-        const auto count=queueRecoveryMode()?queueRecovery_->entries().size():queueHistoryMode()?queueHistory_->entries().size():queueSession_->jobs().size();
+        const auto count=queueRecoveryMode()?queueRecovery_->entries().size():queueHistoryMode()?queueHistory_->entries().size():queueDisplayIds_.size();
         if(i>=0 && static_cast<size_t>(i)<count) {
-            const auto id=queueHistoryMode()?static_cast<uint64_t>(i+1):queueSession_->jobs()[i].id;
+            const auto id=queueHistoryMode()?static_cast<uint64_t>(i+1):queueDisplayIds_[i];
             if(id==queueSelectedId_ && !queueRecoveryMode()) {queueDetail_=true;queueStepScroll_=0;}
             else queueSelectedId_=id;
         }

@@ -23,6 +23,18 @@ static Snapshot snap(const Session& s,uint64_t free, Space remaining={}) {
     return x;
 }
 int main() {
+    {
+        // Presentation order must not mutate FIFO or terminal results.
+        std::vector<Job> jobs(6);
+        for(size_t i=0;i<jobs.size();++i)jobs[i].id=i+1;
+        jobs[0].state=State::Completed; jobs[1].state=State::Running;
+        jobs[2].state=State::Cancelled; jobs[3].state=State::Waiting;
+        jobs[4].state=State::Waiting; jobs[5].state=State::Failed;
+        assert((psvitaalive::ui::queueDisplayOrder(jobs)==std::vector<uint64_t>{2,4,5,1,3,6}));
+        jobs[1].state=State::Completed; jobs[3].state=State::Running;
+        assert((psvitaalive::ui::queueDisplayOrder(jobs)==std::vector<uint64_t>{4,5,1,2,3,6}));
+        for(size_t i=0;i<jobs.size();++i)assert(jobs[i].id==i+1);
+    }
     // Hardware regression: Archive.org ZIP is 290 bytes larger than the
     // catalog hint. Recalculate rather than reject the next job.
     {

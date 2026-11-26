@@ -250,6 +250,12 @@ private:
     uint32_t queuePreviousButtons_=0;
     uint64_t queueSelectedId_=0,queueTransitionUs_=0;
     uint64_t queueImageDecodeAfterUs_=0;
+    std::vector<uint64_t> queueDisplayIds_,queuePreviousDisplayIds_;
+    uint64_t queueDisplayGeneration_=0,queueReorderUs_=0;
+    int queuePreviousScroll_=0;
+    void syncQueueDisplay(bool allowAnimation=true);
+    bool queueReorderActive() const;
+    int queueDisplayRowY(int index) const;
     // Visual-only feedback. Store a cache key, never a borrowed GPU pointer.
     uint64_t queueArrivalUs_=0;
     bool queueArrivalFromDetail_=false;

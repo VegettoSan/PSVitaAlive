@@ -1,8 +1,20 @@
 #pragma once
 #include <algorithm>
 #include <cstdint>
+#include <vector>
+#include "installer/download_queue.hpp"
 
 namespace psvitaalive { namespace ui {
+// UI projection only: never reorder the session's FIFO or persistent state.
+inline std::vector<uint64_t> queueDisplayOrder(const std::vector<queue::Job>& jobs) {
+    std::vector<uint64_t> ids;
+    ids.reserve(jobs.size());
+    for(const auto& job:jobs)if(job.state==queue::State::Running)ids.push_back(job.id);
+    for(const auto& job:jobs)if(job.state==queue::State::Waiting)ids.push_back(job.id);
+    for(const auto& job:jobs)
+        if(job.state!=queue::State::Running && job.state!=queue::State::Waiting)ids.push_back(job.id);
+    return ids;
+}
 struct QueueProgressPresentation {
     bool known=false,indeterminate=false;
     unsigned percent=0;
