@@ -1,6 +1,7 @@
 #include "storage/installed_data_manager.hpp"
 #include "storage/installed_data_policy.hpp"
 #include "storage/installed_directory_cache.hpp"
+#include "ui/installed_game_index.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/appmgr.h>
 #include <psp2/io/dirent.h>
@@ -75,11 +76,12 @@ struct ScanContext {
     }
 };
 bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
-              uint32_t& entries, uint64_t& bytes, ScanContext& ctx) {
+              uint32_t& entries, uint64_t& bytes, ScanContext& ctx,
+              bool verifiedGameMedia = false) {
     // Read-only traversal permits one exact ux0:app/<TITLE_ID> package root.
-    // eraseTree() remains strictly limited to safe ux0:data/ locations.
+    // Commercial roots are permitted only after live identity validation.
     // Validate only the root; validating every descendant hurts large ZIPs.
-    const bool safeRoot = depth != 0 || safeExternalDataPath(p) ||
+    const bool safeRoot = depth != 0 || verifiedGameMedia || safeExternalDataPath(p) ||
         (p.compare(0, 8, "ux0:app/") == 0 &&
          validInstalledTitleId(p.substr(8)));
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
@@ -129,8 +131,9 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     return complete;
 }
 bool eraseTree(const std::string& path, unsigned depth,
-               uint32_t& count, InstalledDataOperationProgress* progress) {
-    if ((depth == 0 && !safeExternalDataPath(path)) ||
+               uint32_t& count, InstalledDataOperationProgress* progress,
+               bool verifiedGameMedia = false) {
+    if ((depth == 0 && !verifiedGameMedia && !safeExternalDataPath(path)) ||
         depth > MAX_DEPTH || ++count > MAX_ENTRIES) return false;
     SceIoStat st{};
     if (!exists(path, &st)) return true;
@@ -202,9 +205,12 @@ bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
     }
     bool anyPresent = false;
     for (const auto& p : target->paths) {
-        if (!safeExternalDataPath(p.path)) return false;
+        if (!installedDataAllowsPath(*target, p.path)) return false;
         if (!p.exists) continue;
-        if (!exists(p.path)) return false; // snapshot may have become stale
+        if (target->commercial ?
+            !ui::InstalledGameIndex::storagePathMatches(target->mediaKind, titleId, p.path) :
+            (!safeExternalDataPath(p.path) || !exists(p.path)))
+            return false; // stale snapshot or changed identity
         anyPresent = true;
     }
     return anyPresent;
@@ -216,7 +222,8 @@ InstalledDataSnapshot InstalledDataManager::scan(
     const std::string& onlyTitleId,
     InstalledDataScanProgress* progress,
     uint64_t timeBudgetUs,
-    bool measureSizes) {
+    bool measureSizes,
+    bool commercialScan) {
     InstalledDataSnapshot result;
     result.apps = std::move(apps);
     ScanContext ctx;
@@ -265,15 +272,26 @@ InstalledDataSnapshot InstalledDataManager::scan(
         for (const auto& path : app.roots) {
             InstalledDataPath row;
             row.path = path;
-            if (!safeExternalDataPath(path) || !titleOk) {
+            if (!installedDataAllowsPath(app, path) || !titleOk) {
                 app.blocked = true;
                 app.unresolved = true;
                 row.complete = false;
             } else if (selected && !ctx.shouldStop()) {
                 SceIoStat st{};
                 row.exists = exists(path, &st);
+                if (row.exists && app.commercial &&
+                    !ui::InstalledGameIndex::storagePathMatches(app.mediaKind, app.titleId, path)) {
+                    row.exists = false;
+                    row.complete = false;
+                    app.blocked = true;
+                    result.complete = false;
+                }
                 if (row.exists) {
                     row.rootStamp = rootFingerprint(st);
+                    if (app.commercial && !(st.st_mode & SCE_S_IFDIR)) {
+                        row.bytes = st.st_size > 0 ? static_cast<uint64_t>(st.st_size) : 0;
+                        row.sizeKnown = true;
+                    }
                     // The disk index never supersedes canonical JSON paths or
                     // a fresh Getstat. Cached measurements do not grant
                     // permission to delete.
@@ -331,7 +349,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
             continue;
         }
         for (auto& path : app.paths) {
-            if (!safeExternalDataPath(path.path) || !path.exists) continue;
+            if (!installedDataAllowsPath(app, path.path) || !path.exists) continue;
             if (measureSizes) {
                 const auto previous = measured.find(path.path);
                 if (previous != measured.end()) {
@@ -345,7 +363,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
                         uint32_t entries = 0;
                         path.bytes = 0; // never preserve a partial cached value
                         path.complete = scanTree(
-                            path.path, st, 0, entries, path.bytes, ctx);
+                            path.path, st, 0, entries, path.bytes, ctx, app.commercial);
                     }
                     measured.emplace(path.path,
                                      std::make_pair(path.bytes, path.complete));
@@ -430,7 +448,8 @@ InstalledDataSnapshot InstalledDataManager::scan(
             }
         }
     }
-    if (!ctx.stopped) InstalledDirectoryCache::save(next);
+    // Game-only scans must not replace the persistent Homebrew index.
+    if (!ctx.stopped && !commercialScan) InstalledDirectoryCache::save(next);
     if (ctx.stopped) result.complete = false;
     if (progress) {
         progress->truncated.store(!result.complete, std::memory_order_relaxed);
@@ -445,7 +464,7 @@ uint64_t InstalledDataManager::knownExternalBytes(
     for (const auto& app : snapshot.apps)
         for (const auto& path : app.paths)
             if (path.exists && path.sizeKnown &&
-                safeExternalDataPath(path.path))
+                installedDataAllowsPath(app, path.path))
                 paths.push_back(&path);
     // Count parents before children, and count a shared root only once.
     std::sort(paths.begin(), paths.end(),
@@ -508,7 +527,7 @@ bool InstalledDataManager::prepareExternalRemoval(
         uint32_t entries = 0;
         uint64_t bytesIgnored = 0;
         ScanContext ctx; // no time budget for the complete pre-delete count
-        if (!scanTree(path.path, st, 0, entries, bytesIgnored, ctx))
+        if (!scanTree(path.path, st, 0, entries, bytesIgnored, ctx, target->commercial))
             return false; // do not start a deletion using an incomplete count
         total = sum(total, entries);
     }
@@ -536,13 +555,13 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
     bool removed = true;
     // After any destructive attempt the old size must never be displayed
     // again, even when a partial filesystem deletion fails.
-    invalidateCachedTitle(titleId);
+    if (!target->commercial) invalidateCachedTitle(titleId);
     // Another Homebrew may have cached the same physical directory. If it
     // changes here, invalidate every overlapping historical measurement.
     for (const auto& other : snapshot.apps) {
         if (other.titleId == titleId) continue;
         for (const auto& q : other.paths) {
-            if (!safeExternalDataPath(q.path)) continue;
+            if (!installedDataAllowsPath(other, q.path)) continue;
             bool overlap = false;
             for (const auto& p : target->paths)
                 if (p.exists && installedPathsOverlap(p.path, q.path)) {
@@ -550,7 +569,7 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                     break;
                 }
             if (overlap) {
-                invalidateCachedTitle(other.titleId);
+                if (!target->commercial) invalidateCachedTitle(other.titleId);
                 break;
             }
         }
@@ -558,7 +577,9 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
     for (const auto& path : target->paths) {
         if (!path.exists) continue;
         uint32_t count = 0;
-        if (!eraseTree(path.path, 0, count, progress)) {
+        if ((target->commercial && !ui::InstalledGameIndex::storagePathMatches(
+                 target->mediaKind, titleId, path.path)) ||
+            !eraseTree(path.path, 0, count, progress, target->commercial)) {
             diagnostics::log("[InstalledData] unable to remove " + path.path);
             removed = false;
         } else if (progress) {

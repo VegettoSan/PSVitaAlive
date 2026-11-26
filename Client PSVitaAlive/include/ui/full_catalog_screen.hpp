@@ -657,6 +657,7 @@ private:
     std::function<bool()> storageInstallerBusy_;
     StorageAppDisplayFn storageAppDisplay_;
     bool storageVisible_ = false;
+    CatalogType storageCatalog_ = CatalogType::Homebrew; // frozen for modal lifetime
     bool storageConfirm_ = false;
     int storagePendingAction_ = -1; // double-confirm the exact cleanup action
     struct StorageDisplayRow {

@@ -50,6 +50,12 @@ jobs:
             tests/test_storage_layout.cpp -o /tmp/psvitaalive-storage-layout-test
           /tmp/psvitaalive-storage-layout-test
 
+      - name: Test catalog-specific storage and cleanup boundaries
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_storage_catalog_policy.cpp -o /tmp/psva-storage-catalog
+          /tmp/psva-storage-catalog
+          python3 tests/test_storage_catalog_integration.py
+
       - name: Test controller navigation zones and touch focus
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \

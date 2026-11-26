@@ -911,3 +911,21 @@ QUEUE_SYSTEM_DEFERRED=Systeminstallation ausstehend
 QUEUE_SYSTEM_RECHECK=Systeminstallation vor Wiederherstellung der Dateien abschließen
 QUEUE_SYSTEM_CONFIRM=Systeminstallation abgeschlossen?
 QUEUE_SYSTEM_NOT_INSTALLED=Installierte App nicht gefunden; Installation in LiveArea abschließen
+
+# Active-catalog storage manager
+ID_SECTION_VITA=Installierte PS Vita-Spiele
+ID_SECTION_PSP=Installierte PSP-Spiele
+ID_SECTION_PS1=Installierte PS1-Spiele
+STORAGE_VISIBLE_TOTAL=Angezeigte Summe
+STORAGE_CONFIRM_TEMP_ONLY=Nur temporäre Dateien. X/△: bestätigen, O: abbrechen
+ID_GAME_TOTAL=Installierte Spiele:
+ID_GAME_LIST_HINT=Spiel auswählen, um Dateien anzuzeigen.
+ID_GAME_NONE=Keine installierten Spiele gefunden.
+ID_GAME_DELETE_PACKAGE=Spiel deinstallieren
+ID_GAME_DELETE_MEDIA=Spieldateien löschen
+ID_GAME_MEDIA_IMPACT=Die erkannten Adrenaline-Dateien werden gelöscht.
+ID_GAME_MEDIA_PROGRESS=Erkannte Adrenaline-Dateien werden gelöscht
+ID_GAME_DISCOVERING=Installierte Spiele werden gesucht...
+ID_GAME_PACKAGE_IMPACT=Das Spiel wird aus LiveArea deinstalliert.
+ID_GAME_PACKAGE_KEEP=Das LiveArea-Spiel wird entfernt; Adrenaline-Dateien bleiben erhalten.
+ID_GAME_BOTH_IMPACT=LiveArea-Spiel und erkannte Adrenaline-Dateien werden entfernt.

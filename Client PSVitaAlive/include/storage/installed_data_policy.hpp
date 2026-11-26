@@ -110,6 +110,56 @@ inline bool validInstalledChildName(const std::string& name) {
     return true;
 }
 
+// Separate commercial-media policy: no change to the Homebrew data allowlist.
+inline std::string normalizeGameMediaId(std::string id) {
+    for (char& c : id)
+        if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
+    return validInstalledTitleId(id) ? id : std::string();
+}
+inline bool validGameMediaName(const std::string& name) {
+    return validInstalledChildName(name) && name.back() != '.' && name.back() != ' ';
+}
+inline std::string gameMediaIsoId(std::string name) {
+    if (!validGameMediaName(name)) return {};
+    for (char& c : name)
+        if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
+    const size_t dot = name.find_last_of('.');
+    if (dot == std::string::npos ||
+        (name.substr(dot) != ".ISO" && name.substr(dot) != ".CSO")) return {};
+    const std::string stem = name.substr(0, dot);
+    std::string id = normalizeGameMediaId(stem);
+    if (id.empty() && stem.size() >= 11 && stem.back() == ']' &&
+        stem[stem.size() - 11] == '[')
+        id = normalizeGameMediaId(stem.substr(stem.size() - 10, 9));
+    return id;
+}
+inline std::string gameMediaChild(const std::string& path, const char* section) {
+    static const char* mounts[] = {"ux0", "uma0", "imc0", "xmc0"};
+    for (const char* mount : mounts) {
+        const std::string prefix = std::string(mount) + ":pspemu/" + section;
+        if (path.compare(0, prefix.size(), prefix) != 0) continue;
+        const std::string name = path.substr(prefix.size());
+        return validGameMediaName(name) ? name : std::string();
+    }
+    return {};
+}
+inline bool safeGameMediaPath(GameMediaKind kind, const std::string& titleId,
+                              const std::string& path) {
+    if (!validInstalledTitleId(titleId) || titleId == "PSVAS1178" ||
+        kind == GameMediaKind::None) return false;
+    const std::string folder = gameMediaChild(path, "PSP/GAME/");
+    if (!folder.empty())
+        return kind == GameMediaKind::Ps1 || normalizeGameMediaId(folder) == titleId;
+    if (kind != GameMediaKind::Psp) return false;
+    const std::string iso = gameMediaChild(path, "ISO/");
+    return !iso.empty() && gameMediaIsoId(iso) == titleId;
+}
+inline bool installedDataAllowsPath(const InstalledDataApp& app,
+                                    const std::string& path) {
+    return app.commercial ? safeGameMediaPath(app.mediaKind, app.titleId, path)
+                          : safeExternalDataPath(path);
+}
+
 // A catalog collision by itself is NOT proof that two installed apps share
 // data. This predicate is only part of the destructive-operation preflight.
 inline bool installedDataActiveCollision(const std::string& target,
@@ -128,7 +178,7 @@ inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
     bool anyPresent = false;
     for (const auto& p : app.paths) {
         if (!p.exists) continue;
-        if (!safeExternalDataPath(p.path)) return false;
+        if (!installedDataAllowsPath(app, p.path)) return false;
         anyPresent = true;
     }
     return anyPresent;
@@ -139,12 +189,12 @@ inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
 inline bool installedDataHasActiveShare(const InstalledDataSnapshot& snapshot,
                                        const InstalledDataApp& target) {
     for (const auto& p : target.paths) {
-        if (!p.exists || !safeExternalDataPath(p.path)) continue;
+        if (!p.exists || !installedDataAllowsPath(target, p.path)) continue;
         for (const auto& other : snapshot.apps) {
             if (other.titleId == target.titleId || !other.packagePresent ||
                 !validInstalledTitleId(other.titleId)) continue;
             for (const auto& q : other.paths)
-                if (safeExternalDataPath(q.path) &&
+                if (installedDataAllowsPath(other, q.path) &&
                     installedPathsOverlap(p.path, q.path)) return true;
         }
     }
@@ -167,9 +217,9 @@ inline std::vector<InstalledDataShareInfo> installedDataCatalogShares(
             !validInstalledTitleId(other.titleId)) continue;
         bool overlap = false;
         for (const auto& p : target.paths) {
-            if (!p.exists || !safeExternalDataPath(p.path)) continue;
+            if (!p.exists || !installedDataAllowsPath(target, p.path)) continue;
             for (const auto& q : other.paths) {
-                if (safeExternalDataPath(q.path) &&
+                if (installedDataAllowsPath(other, q.path) &&
                     installedPathsOverlap(p.path, q.path)) {
                     overlap = true;
                     break;
@@ -192,9 +242,9 @@ inline bool installedDataHasCatalogShare(const InstalledDataSnapshot& snapshot,
         if (other.titleId == target.titleId ||
             !validInstalledTitleId(other.titleId)) continue;
         for (const auto& p : target.paths) {
-            if (!p.exists || !safeExternalDataPath(p.path)) continue;
+            if (!p.exists || !installedDataAllowsPath(target, p.path)) continue;
             for (const auto& q : other.paths)
-                if (safeExternalDataPath(q.path) &&
+                if (installedDataAllowsPath(other, q.path) &&
                     installedPathsOverlap(p.path, q.path)) return true;
         }
     }
