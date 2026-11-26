@@ -371,6 +371,7 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
 
     size_t supersededQueued=0;bool cancelledSupersededActive=false;
     sceKernelLockMutex(mutex_,1,nullptr);
+    if(queueIconsOnly_ && ns!="app"){sceKernelUnlockMutex(mutex_,1);return path;}
     if(!identityStem.empty()){
         for(size_t i=0;i<queue_.size();){
             if(queue_[i].path!=path&&pathMatchesIdentity(queue_[i].path,identityStem)){
@@ -385,7 +386,7 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
 
     if(contains(ready_,path)){sceKernelUnlockMutex(mutex_,1);return path;}
     if(contains(pending_,path)){sceKernelUnlockMutex(mutex_,1);return path;}
-    if(networkPaused_){sceKernelUnlockMutex(mutex_,1);return path;}
+    if(networkPaused_ && !(queueIconsOnly_ && allowCachedIcons_ && ns=="app")){sceKernelUnlockMutex(mutex_,1);return path;}
     if(contains(failed_,path)){
         auto it=retryAfter_.find(path);
         if(it!=retryAfter_.end()&&now<it->second){sceKernelUnlockMutex(mutex_,1);return path;}
@@ -440,20 +441,51 @@ void ImageCache::cancelQueuedRequests(){if(mutex_<0)return;sceKernelLockMutex(mu
 void ImageCache::markReady(const std::string&p){sceKernelLockMutex(mutex_,1,nullptr);if(!contains(ready_,p))ready_.push_back(p);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());failed_.erase(std::remove(failed_.begin(),failed_.end(),p),failed_.end());retryAfter_.erase(p);sceKernelUnlockMutex(mutex_,1);}
 void ImageCache::markFailed(const std::string&p,uint64_t cooldownUs){sceKernelLockMutex(mutex_,1,nullptr);pending_.erase(std::remove(pending_.begin(),pending_.end(),p),pending_.end());if(!contains(failed_,p))failed_.push_back(p);retryAfter_[p]=sceKernelGetSystemTimeWide()+(cooldownUs?cooldownUs:RETRY_COOLDOWN_US);sceKernelUnlockMutex(mutex_,1);}
 int ImageCache::workerEntry(SceSize a,void*arg){(void)a;ImageCache*self=nullptr;if(arg)std::memcpy(&self,arg,sizeof(self));return self?self->workerMain():-1;}
-void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);const bool changed=(networkPaused_!=paused);networkPaused_=paused;if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);if(changed){if(paused)diagnostics::log("[ImageCache] network paused (install/download active)");else diagnostics::log("[ImageCache] network resumed");}}int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){bool paused=false;if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;sceKernelUnlockMutex(mutex_,1);}if(paused){sceKernelDelayThread(100*1000);continue;}
+void ImageCache::setNetworkPaused(bool paused){
+    if(mutex_>=0)sceKernelLockMutex(mutex_,1,nullptr);
+    const bool changed=(networkPaused_!=paused);
+    networkPaused_=paused; queueIconsOnly_=false; allowCachedIcons_=false;
+    if(mutex_>=0)sceKernelUnlockMutex(mutex_,1);
+    if(changed)diagnostics::log(paused?"[ImageCache] network paused (install/download active)":"[ImageCache] network resumed");
+}
+void ImageCache::setQueueImagePolicy(bool pauseNetwork,bool allowCachedIcons) {
+    if(mutex_<0)return;
+    sceKernelLockMutex(mutex_,1,nullptr);
+    const bool entering=!queueIconsOnly_;
+    const bool changed=entering || networkPaused_!=pauseNetwork || allowCachedIcons_!=allowCachedIcons;
+    if(entering) {
+        for(auto it=queue_.begin();it!=queue_.end();) {
+            if(it->path.find("/app_")==std::string::npos) {
+                pending_.erase(std::remove(pending_.begin(),pending_.end(),it->path),pending_.end());
+                it=queue_.erase(it);
+            } else ++it;
+        }
+    }
+    if(workerBusy_ && ((pauseNetwork && !networkPaused_) ||
+       (entering && currentPath_.find("/app_")==std::string::npos)))cancelRequested_=true;
+    queueIconsOnly_=true; allowCachedIcons_=allowCachedIcons; networkPaused_=pauseNetwork;
+    sceKernelUnlockMutex(mutex_,1);
+    if(changed)diagnostics::log(pauseNetwork?"[ImageCache] queue icons: local cache only":"[ImageCache] queue icons: network enabled");
+}
+int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){diagnostics::log("[ImageCache] HTTP initialization failed");return-1;}while(!stopping_){
+    bool paused=false,cacheOnly=false;
+    if(mutex_>=0){sceKernelLockMutex(mutex_,1,nullptr);paused=networkPaused_;cacheOnly=queueIconsOnly_&&allowCachedIcons_;sceKernelUnlockMutex(mutex_,1);}
+    if(paused&&!cacheOnly){sceKernelDelayThread(100*1000);continue;}
     // Offline: process unexamined cache files before waiting for connectivity.
     // A cache miss is parked, not retried against disk on every worker tick.
     sceKernelLockMutex(mutex_,1,nullptr);
     const bool queued=!queue_.empty();
     sceKernelUnlockMutex(mutex_,1);
     if(!queued){sceKernelDelayThread(50*1000);continue;}
-    const bool connected=imageNetworkConnected();
+    const bool connected=!paused && imageNetworkConnected();
     Job job;
     bool have=false;
     sceKernelLockMutex(mutex_,1,nullptr);
-    if(!networkPaused_&&!queue_.empty()){
-        auto next=connected?queue_.begin():std::find_if(queue_.begin(),queue_.end(),
-            [](const Job& candidate){return !candidate.diskChecked;});
+    if((!networkPaused_ || (queueIconsOnly_ && allowCachedIcons_)) && !queue_.empty()){
+        auto next=std::find_if(queue_.begin(),queue_.end(),[&](const Job& candidate){
+            if(queueIconsOnly_ && candidate.path.find("/app_")==std::string::npos)return false;
+            return (!networkPaused_ && connected) || !candidate.diskChecked;
+        });
         if(next!=queue_.end()){
             job=*next;queue_.erase(next);have=true;workerBusy_=true;
             const size_t slash=job.url.find_last_of('/');
@@ -477,7 +509,7 @@ void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(m
             sceKernelLockMutex(mutex_,1,nullptr);
             const bool supersededOrCancelled=cancelRequested_||stopping_;
             sceKernelUnlockMutex(mutex_,1);
-            if(!supersededOrCancelled)pruneSupersededVersions(job.path);
+            if(!supersededOrCancelled && !paused)pruneSupersededVersions(job.path);
             sceKernelLockMutex(mutex_,1,nullptr);
             currentFile_.clear();currentPath_.clear();workerBusy_=false;cancelRequested_=false;
             sceKernelUnlockMutex(mutex_,1);
@@ -486,8 +518,9 @@ void ImageCache::setNetworkPaused(bool paused){if(mutex_>=0)sceKernelLockMutex(m
     }
     // Recheck pause/cancellation after disk I/O, before opening a connection.
     sceKernelLockMutex(mutex_,1,nullptr);
-    if(cancelRequested_||stopping_||networkPaused_||!connected){
-        if(cancelRequested_||stopping_){
+    if(cancelRequested_||stopping_||networkPaused_||!connected||
+       (queueIconsOnly_ && job.path.find("/app_")==std::string::npos)){
+        if(cancelRequested_||stopping_||(queueIconsOnly_ && job.path.find("/app_")==std::string::npos)){
             pending_.erase(std::remove(pending_.begin(),pending_.end(),job.path),pending_.end());
         }else if(bulkPreload_||queue_.size()<MAX_INTERACTIVE_QUEUE){
             queue_.push_back(job);

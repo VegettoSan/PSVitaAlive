@@ -402,9 +402,11 @@ int main(){
             queue.cancel(admittedId); syncRecovery(queue.session());
             screen.showToast(psvitaalive::L("QUEUE_CHECKPOINT_FAILED"),5600);return 0;
         }
-        images.setNetworkPaused(true);
-        if(first) images.cancelQueuedRequests();
-        screen.setQueueFrame(true,false,{},false,false);
+        if(first) {
+            images.setQueueImagePolicy(true,true);
+            images.cancelQueuedRequests();
+            screen.setQueueFrame(true,false,{},false,false);
+        }
         screen.queueAccepted(queue.session().jobs().back().id,first);
         return 1;
     };
@@ -1048,7 +1050,13 @@ while(true){
             }
             screen.setQueueFrame(queue.protectedSession(),queue.reportReady(),queue.observation().status,
                 event.state==q::TickState::WaitingSpace,event.state==q::TickState::InvariantBlocked);
-            images.setNetworkPaused(queue.protectedSession() || screen.keyboardVisible());
+            const auto& imageStatus=queue.observation().status;
+            const bool imageTransfer=imageStatus.state==psvitaalive::InstallStatus::State::Downloading &&
+                imageStatus.stage=="Downloading" && !imageStatus.zipRecoveryAvailable;
+            const bool imageKeyboard=screen.keyboardVisible();
+            // One existing low-priority worker, only app icons. No remote
+            // image work during extraction, verification or promotion.
+            images.setQueueImagePolicy(imageKeyboard || (queue.protectedSession() && !imageTransfer),!imageKeyboard);
             continue;
         }
         // Clear the report/view after an explicit acknowledgement in input.

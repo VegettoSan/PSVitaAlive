@@ -63,6 +63,9 @@ public:
 
     /** Pause background image downloads so install/VPK bandwidth is not shared. */
     void setNetworkPaused(bool paused);
+    // Queue mode permits only app icons; cache validation can continue while
+    // remote transfers are paused during extraction/promotion.
+    void setQueueImagePolicy(bool pauseNetwork, bool allowCachedIcons);
     bool networkPaused() const { return networkPaused_; }
 
 private:
@@ -78,6 +81,8 @@ private:
     volatile bool stopping_ = false;
     volatile bool cancelRequested_ = false;
     volatile bool networkPaused_ = false;
+    bool queueIconsOnly_ = false; // protected by mutex_
+    bool allowCachedIcons_ = false; // protected by mutex_
     bool workerBusy_ = false; // protected by mutex_; covers entire active job
     std::vector<Job> queue_;
     std::vector<std::string> pending_;
