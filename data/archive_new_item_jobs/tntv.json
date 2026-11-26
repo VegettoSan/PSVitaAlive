@@ -1,0 +1,30 @@
+{
+  "app_id": "tntv",
+  "identifier": "psvitaalive-tntv",
+  "source_url": "https://github.com/T64NCollection/TNTV/releases/download/v1.05/TNTV_v1.05.vpk",
+  "files": {
+    "tntv v1.05.vpk": {
+      "size": 746058,
+      "md5": "6205ea1d606b423f9594280b1bb0cde0",
+      "sha256": "cb299a5fe87660da4f4879a41b717333f61216ec6236d727f14c9f817719ca0f"
+    },
+    "icon0.png": {
+      "size": 10873,
+      "md5": "951c1fb508b409548b756344a5f9db8b",
+      "sha256": "49e7b7c0690a434493ecaa7142fdaa354f50ea96f060f14229700f346fe9c713"
+    },
+    "SOURCES.txt": {
+      "size": 411,
+      "md5": "5552350e77f9ef5a22add7ef9d9f4552",
+      "sha256": "498088cd42175bd51d13e2efb2e906f274d13a8b4c1d8c028d4367ffd8b3a1a5"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.05/sce_sys/icon0.png": "icon0.png"
+  },
+  "attempted": [
+    "tntv v1.05.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:15:54+00:00"
+}
