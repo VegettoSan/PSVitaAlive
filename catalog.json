@@ -311,6 +311,55 @@
     ]
   },
   {
+    "id": "nfs-hot-pursuit-2",
+    "tid": "NFSHP2002",
+    "n": "NFS Hot Pursuit 2",
+    "d": "A native port of Need for Speed: Hot Pursuit 2 (PS2) for the PlayStation Vita.",
+    "ld": "A native PlayStation Vita port of Need for Speed: Hot Pursuit 2, built on a C++ reimplementation of the PS2 game's engine and running the PS2 disc's own data on the console. That covers the front end, cars, tracks, cops, HUD, movies, speech, sound effects and music.\n\nThe goal is to play like the PS2 original. Gameplay, physics, AI and handling keep the retail behaviour; every Vita optimisation is checked against the reference code for identical results. There is no emulation and no recompiler: the game runs as native ARM code.",
+    "aids": [
+      "elmnt22"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "source-port"
+    ],
+    "v": "0.1.2",
+    "vd": "2026-11-25",
+    "req": "- Need for Speed: Hot Pursuit 2 for PS2, PAL version 1.00 (SLES-50731). Other regions and versions are not supported.\n- libshacccg.suprx extracted to ur0:data/libshacccg.suprx. The renderer compiles some shaders on the console and needs it.\n- About 3.2 GB free on the memory card for the game data.",
+    "sz": 4299162,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psva-need-for-speed-hot-pursuit-2-ps-vita/NFSHP2%20v0.1.2.vpk",
+        "sz": 4299162,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psva-need-for-speed-hot-pursuit-2-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 3113851290,
+        "xp": "ux0:data/",
+        "ips": [
+          "NFSHP2"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/elmnt22/vita-nfshp2"
+      }
+    ],
+    "ic": "https://archive.org/download/psva-need-for-speed-hot-pursuit-2-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psva-need-for-speed-hot-pursuit-2-ps-vita/shot0.png"
+    ]
+  },
+  {
     "id": "nfs-underground-2",
     "tid": "NFSU2VITA",
     "n": "NFS Underground 2",
