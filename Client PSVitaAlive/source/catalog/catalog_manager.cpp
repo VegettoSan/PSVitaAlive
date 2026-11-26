@@ -130,7 +130,9 @@ bool CatalogManager::actionBlockedByCatalog() const {
     return blocked;
 }
 
-bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
+bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork,
+                             ui::CatalogType outgoingCatalog,
+                             std::vector<ui::CatalogItem>* outgoingItems) {
     if (mutex_ < 0) return false;
     sceKernelLockMutex(mutex_, 1, nullptr);
 
@@ -147,6 +149,19 @@ bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
         sceKernelUnlockMutex(mutex_, 1);
         return true;
     }
+
+    // Normal navigation retains only the selected and immediately previous
+    // catalogs. During an actual transfer/apply, never restore inactive data.
+    const bool updating = workerOperationActive_ &&
+        (status_.refreshPhase == RefreshPhase::Downloading ||
+         status_.refreshPhase == RefreshPhase::Applying);
+    const auto previous = outgoingItems ? outgoingCatalog : requestedCatalog_;
+    const size_t released = catalog_memory::retainForSelection(
+        cachedItems_, cachedValid_, static_cast<size_t>(catalog),
+        static_cast<size_t>(previous), outgoingItems, updating);
+    if (released)
+        diagnostics::log("[CatalogManager] navigation RAM eviction: entries=" +
+                         std::to_string(released));
 
     // Mid-load retarget: keep Loading, only change what the worker should finish next.
     if (status_.state == State::Loading) {
@@ -168,6 +183,7 @@ bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork) {
     const int idx = static_cast<int>(catalog);
     if (!forceNetwork && idx >= 0 && idx < static_cast<int>(ui::CatalogType::Count) &&
         cachedValid_[idx] && !cachedItems_[idx].empty()) {
+        ++requestGeneration_; // invalidate any older background validator
         readyItems_ = cachedItems_[idx];
         readyCatalog_ = catalog;
         readyPending_ = true;
@@ -348,7 +364,8 @@ void CatalogManager::releaseRefreshCopyLocked(ui::CatalogType catalog) {
 }
 
 bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
-                                           std::vector<ui::CatalogItem>& outItems) {
+                                           std::vector<ui::CatalogItem>& outItems,
+                                           unsigned generation) {
     outItems.clear();
     const std::string path = cachePath(catalog);
     const std::string meta = metadataPath(catalog);
@@ -367,7 +384,18 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
                     storedEtag, storedModified);
     std::string remoteEtag, remoteModified;
 
+    // Called with mutex held. A switch can supersede a soft refresh even
+    // when the destination is already cached and needs no worker request.
+    const auto currentLocked = [&]() {
+        return !requestPending_ && requestedCatalog_ == catalog &&
+               requestGeneration_ == generation;
+    };
     sceKernelLockMutex(mutex_, 1, nullptr);
+    if (!currentLocked()) {
+        sceKernelUnlockMutex(mutex_, 1);
+        http.shutdown();
+        return false;
+    }
     status_.softRefresh = true;
     status_.state = State::Ready;
     status_.message = ::psvitaalive::L(::psvitaalive::TextId::CheckingForAppUpdates);
@@ -386,8 +414,10 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
         diagnostics::log(std::string("[CatalogManager] soft refresh: unchanged ") + label(catalog));
         http.shutdown();
         sceKernelLockMutex(mutex_, 1, nullptr);
-        status_.softRefresh = false;
-        status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+        if (currentLocked()) {
+            status_.softRefresh = false;
+            status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+        }
         sceKernelUnlockMutex(mutex_, 1);
         return false;
     }
@@ -396,8 +426,10 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
                          label(catalog) + " err=" + http.lastError());
         http.shutdown();
         sceKernelLockMutex(mutex_, 1, nullptr);
-        status_.softRefresh = false;
-        status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+        if (currentLocked()) {
+            status_.softRefresh = false;
+            status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+        }
         sceKernelUnlockMutex(mutex_, 1);
         return false;
     }
@@ -405,6 +437,11 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     PSVA_TRACE_EVENT("soft_download_start",label(catalog));
     diagnostics::log(std::string("[CatalogManager] soft refresh: downloading ") + label(catalog));
     sceKernelLockMutex(mutex_, 1, nullptr);
+    if (!currentLocked()) {
+        sceKernelUnlockMutex(mutex_, 1);
+        http.shutdown();
+        return false;
+    }
     releaseInactiveCachesLocked();
     status_.softRefresh = true;
     status_.state = State::Ready;
@@ -417,13 +454,15 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
 
     const HttpResult result = http.downloadToFile(
         url, temp, 0,
-        [this](const HttpProgress& progress) {
+        [this, &currentLocked](const HttpProgress& progress) {
             sceKernelLockMutex(mutex_, 1, nullptr);
-            status_.current = progress.downloaded;
-            status_.total = progress.total;
-            status_.message = "Updating catalog from network — please wait...";
-            status_.softRefresh = true;
-            status_.state = State::Ready;
+            if (currentLocked()) {
+                status_.current = progress.downloaded;
+                status_.total = progress.total;
+                status_.message = "Updating catalog from network — please wait...";
+                status_.softRefresh = true;
+                status_.state = State::Ready;
+            }
             sceKernelUnlockMutex(mutex_, 1);
         });
 
@@ -440,14 +479,22 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
             writeTextFile(meta,"etag="+http.lastEtag()+"\nlast_modified="+http.lastModified()+"\n");
             http.shutdown();
             sceKernelLockMutex(mutex_,1,nullptr);
-            status_.softRefresh=false;
-            status_.refreshPhase=RefreshPhase::None;
-            status_.message=::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+            if (currentLocked()) {
+                status_.softRefresh=false;
+                status_.refreshPhase=RefreshPhase::None;
+                status_.message=::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+            }
             sceKernelUnlockMutex(mutex_,1);
             diagnostics::log(std::string("[CatalogManager] byte-identical remote, skip JSON/hot-swap: ")+label(catalog));
             return false;
         }
         sceKernelLockMutex(mutex_,1,nullptr);
+        if (!currentLocked()) {
+            sceKernelUnlockMutex(mutex_,1);
+            sceIoRemove(temp.c_str());
+            http.shutdown();
+            return false;
+        }
         releaseRefreshCopyLocked(catalog);
         status_.message="Processing updated catalog...";
         status_.refreshPhase=RefreshPhase::Applying;
@@ -485,9 +532,11 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
                      label(catalog) + " err=" + http.lastError());
     http.shutdown();
     sceKernelLockMutex(mutex_, 1, nullptr);
-    status_.softRefresh = false;
-    status_.refreshPhase = RefreshPhase::None;
-    status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+    if (currentLocked()) {
+        status_.softRefresh = false;
+        status_.refreshPhase = RefreshPhase::None;
+        status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+    }
     sceKernelUnlockMutex(mutex_, 1);
     return false;
 }
@@ -666,9 +715,8 @@ int CatalogManager::workerMain() {
             forceNetworkPending_ = false;
             haveRequest = true;
             workerOperationActive_ = true;
-            // A cache miss will parse disk or network. Free inactive decoded
-            // catalogs before allocating parser buffers, not after the peak.
-            releaseInactiveCachesLocked();
+            // request() already bounded normal browsing to current + previous.
+            // Actual network transfers evict inactive catalogs before allocation.
             status_.state = State::Loading;
             status_.catalog = catalog;
             status_.label = label(catalog);
@@ -704,7 +752,7 @@ int CatalogManager::workerMain() {
             sceKernelLockMutex(mutex_, 1, nullptr);
             const bool stale =
                 requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_;
-            if (stale) {
+            if (stale && requestPending_) {
                 status_.state = State::Loading;
                 status_.catalog = requestedCatalog_;
                 status_.label = label(requestedCatalog_);
@@ -741,7 +789,7 @@ int CatalogManager::workerMain() {
             if(stopping_||isStale())continue;
             PSVA_TRACE_EVENT("cache_consumed_network_next",label(catalog));
             std::vector<ui::CatalogItem> fresh;
-            if (trySoftNetworkRefresh(catalog, fresh) && !fresh.empty()) {
+            if (trySoftNetworkRefresh(catalog, fresh, gen) && !fresh.empty()) {
                 if (isStale()) continue;
                 sceKernelLockMutex(mutex_, 1, nullptr);
                 if (!(requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_)) {
@@ -752,9 +800,11 @@ int CatalogManager::workerMain() {
                 sceKernelUnlockMutex(mutex_, 1);
             } else {
                 sceKernelLockMutex(mutex_, 1, nullptr);
-                status_.softRefresh = false;
-                if (status_.state == State::Ready)
-                    status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+                if (!requestPending_ && catalog == requestedCatalog_ && gen == requestGeneration_) {
+                    status_.softRefresh = false;
+                    if (status_.state == State::Ready)
+                        status_.message = ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg);
+                }
                 sceKernelUnlockMutex(mutex_, 1);
             }
             continue;

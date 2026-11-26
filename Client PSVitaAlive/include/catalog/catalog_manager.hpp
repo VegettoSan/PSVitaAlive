@@ -38,7 +38,9 @@ public:
 
     bool init();
     void shutdown();
-    bool request(ui::CatalogType catalog, bool forceNetwork = false);
+    bool request(ui::CatalogType catalog, bool forceNetwork = false,
+                 ui::CatalogType outgoingCatalog = ui::CatalogType::Count,
+                 std::vector<ui::CatalogItem>* outgoingItems = nullptr);
     /** True while a load is in flight (UI must ignore further tab switches). */
     bool isBusy() const;
     // Queue gate: reject new catalog requests while allowing an already
@@ -82,7 +84,8 @@ private:
     bool loadCatalog(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems,
                      bool forceNetwork = false);
     bool tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
-    bool trySoftNetworkRefresh(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
+    bool trySoftNetworkRefresh(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems,
+                               unsigned generation);
     // Caller holds mutex_. Only evict decoded RAM copies, never disk cache.
     void releaseInactiveCachesLocked();
     void releaseRefreshCopyLocked(ui::CatalogType catalog);

@@ -20,4 +20,37 @@ int main() {
     cache[2].reserve(20); // even empty vectors release capacity
     releaseExcept(cache, valid, 0);
     assert(cache[2].capacity()==0);
+
+    // Normal browsing: keep only current and previous, even on a disk miss.
+    std::vector<std::string> outgoing{"Homebrew"};
+    retainForSelection(cache, valid, 1, 0, &outgoing, false);
+    assert(valid[0] && cache[0][0]=="Homebrew" && outgoing.capacity()==0);
+    cache[1] = {"Vita"}; valid[1] = true;
+    outgoing = {"Vita"};
+    retainForSelection(cache, valid, 2, 1, &outgoing, false);
+    assert(!valid[0] && valid[1] && cache[0].capacity()==0);
+    cache[2] = {"PSP"}; valid[2] = true;
+    outgoing = {"PSP"};
+    retainForSelection(cache, valid, 1, 2, &outgoing, false);
+    assert(valid[1] && valid[2] && !valid[0] && !valid[3]);
+
+    // Actual update: inactive catalogs go away; UI remains independent.
+    assert(releaseExcept(cache, valid, 1)==1);
+    assert(valid[1] && !valid[2]);
+    auto active = cache[1];
+    releaseEntry(cache, valid, 1);
+    assert(active[0]=="Vita");
+    // No automatic refill. The updated catalog is retained only when leaving.
+    active = {"Vita updated"};
+    retainForSelection(cache, valid, 3, 1, &active, false);
+    assert(valid[1] && cache[1][0]=="Vita updated" && !valid[3]);
+    // Switching while a transfer is active must not reintroduce old payload.
+    outgoing = {"PS1"};
+    retainForSelection(cache, valid, 2, 3, &outgoing, true);
+    assert(!valid[1] && !valid[3] && outgoing.capacity()==0);
+    // Same-tab recovery must not accidentally retain a third catalog.
+    cache[0] = {"old"}; valid[0] = true;
+    cache[2] = {"PSP"}; valid[2] = true;
+    retainForSelection(cache, valid, 2, 2, static_cast<std::vector<std::string>*>(nullptr), false);
+    assert(!valid[0] && valid[2]);
 }

@@ -61,7 +61,7 @@ public:
     using InstallZipRecoveryFn = std::function<bool(bool keep, std::string& savedPath)>;
     using DeleteSavedZipFn = std::function<bool(const std::string& appId,
         const std::string& titleId, const std::string& archivePath)>;
-    using CatalogChangeFn = std::function<bool(CatalogType)>;
+    using CatalogChangeFn = std::function<bool(CatalogType, CatalogType, std::vector<CatalogItem>&)>;
     using SearchRequestFn = std::function<void(const std::string&)>;
     using LinkActionFn = std::function<bool(const CatalogItem&, const CatalogLink&)>;
     struct SavedZipOption {

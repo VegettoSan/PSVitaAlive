@@ -5025,6 +5025,7 @@ void FullCatalogScreen::changeCatalog(int d){
     catalogLoadingMessage_=::psvitaalive::L(::psvitaalive::TextId::CheckingCatalogCache);
     catalogError_.clear();
     showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::LoadingCatalog)) + " " + catalogName(n) + "...", 2200);
+    const CatalogType previous = state_.catalog;
     state_.catalog=n;
     navigationFocus_.catalog();
     std::vector<CatalogItem>().swap(items_);
@@ -5033,11 +5034,10 @@ void FullCatalogScreen::changeCatalog(int d){
     if (n != CatalogType::Homebrew && !storageVisible_ && !installedDataVisible_ &&
         storageWorker_ < 0 && installedDataWorker_ < 0)
         std::vector<::psvitaalive::storage::InstalledDataApp>().swap(installedDataCandidates_);
-    // Drop previous catalog payload early to free RAM before the next load.
-    {
-        std::vector<CatalogItem> empty;
-        allItems_.swap(empty);
-    }
+    // Transfer the previous visible catalog to the loader on a normal switch.
+    // It decides under its mutex whether to retain or release this payload.
+    std::vector<CatalogItem> outgoing;
+    outgoing.swap(allItems_);
     state_.focusIndex=0;
     state_.catalogScrollRow=0;
     releaseTextures();
@@ -5047,7 +5047,7 @@ void FullCatalogScreen::changeCatalog(int d){
     installStatusWarmupUntilMs_=nowMs+1500ULL;
 
     if(catalogChange_){
-        if(!catalogChange_(n)){
+        if(!catalogChange_(n, previous, outgoing)){
             catalogLoading_=false;
             catalogError_="Could not start catalog load";
             diagnostics::log("[UI] catalogChange callback returned false");
