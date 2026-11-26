@@ -90,11 +90,19 @@ def lookup(identifier):
     return data
 
 
-def search_pilot():
-    # Retrieve actual identifiers; ownership is evaluated separately.
+def identifier_options(app_id):
+    base = "psvitaalive-" + app_id
+    return (base, base + "-psvita", base + "-homebrew", base + "-archive")
+
+
+def search_pilot(owner):
+    # Scope search to configured account; check exact identifier occupancy separately.
+    owner = owner.strip()
+    if not re.fullmatch(r"[A-Za-z0-9._%+!-]+@[A-Za-z0-9.-]+", owner):
+        raise Deferred("PENDING_MANUAL", "Configured uploader is not a supported email")
     try:
         r = requests.get("https://archive.org/advancedsearch.php", params={
-            "q": 'identifier:psvitaalive-vitaforge OR identifier:vitaforge OR title:VitaForge OR identifier:*vitaforge*',
+            "q": f'uploader:"{owner}" AND (title:"VitaForge" OR identifier:*vitaforge*)',
             "fl[]": "identifier", "rows": 100, "output": "json",
         }, timeout=(15, 30), allow_redirects=False)
         r.raise_for_status()
@@ -102,47 +110,63 @@ def search_pilot():
             raise ValueError()
         result = r.json()["response"]
         docs, count = result["docs"], result["numFound"]
-        if not isinstance(docs, list) or type(count) is not int or count < 0 or len(docs) != min(count, 100):
+        if not isinstance(docs, list) or type(count) is not int or count < 0:
             raise ValueError()
-        if count > 20:
-            raise Deferred("PENDING_MANUAL", "Too many search matches for safe ownership review")
+        print(f"Archive discovery: account-scoped search returned {count} results", flush=True)
+        if count > 100:
+            raise Deferred("PENDING_MANUAL", "Too many account-scoped search results; review required")
+        if len(docs) != count:
+            raise ValueError()
         ids = [doc["identifier"] for doc in docs]
         if any(not isinstance(i, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,99}", i) for i in ids):
             raise ValueError()
-        return sorted(set(ids))
+        if len(set(ids)) != count:
+            raise ValueError()
+        return sorted(ids)
     except Deferred:
         raise
     except Exception:
-        raise Deferred("WAITING_ARCHIVE", "Search unavailable; do not create") from None
+        raise Deferred("WAITING_ARCHIVE", "Account search unavailable; do not create") from None
 
 
-def require_free_destination(identifier, owner, *, fetch=lookup, search=search_pilot):
-    """An item from another uploader is not an existing PSVitaAlive backup.
+def select_destination(app_id, owner, *, fetch=lookup, search=search_pilot):
+    """First free stable identifier; never duplicate a known owned item.
 
-    Exact identifier collisions always block, irrespective of account.
-    Missing/ambiguous ownership never permits creation. Only public
-    identifiers and categorical ownership labels are logged, not emails.
+    Check all four options for ownership before selecting a free one.
+    Alternatives are allowed only before any upload checkpoint exists.
     """
-    exact = fetch(identifier)
-    if exact is not None:
-        matched = item_owned_by_account(exact, owner)[0]
-        print(f"Archive discovery: {identifier} exact identifier occupied; own={matched}", flush=True)
-        raise Deferred("PENDING_MANUAL", f"Exact identifier occupied: {identifier}; own={matched}")
-    matches = search()
-    print(f"Archive discovery: {len(matches)} search identifiers: {', '.join(matches) or 'none'}", flush=True)
-    for candidate in matches:
+    options = identifier_options(app_id)
+    free = []
+    checked = {}
+    for candidate in options:
         md = fetch(candidate)
+        checked[candidate] = md
+        if md is None:
+            print(f"Archive discovery: {candidate} available", flush=True)
+            free.append(candidate)
+            continue
+        if item_owned_by_account(md, owner)[0]:
+            raise Deferred("PENDING_MANUAL", f"Existing own candidate: {candidate}")
+        uploader = md.get("metadata", {}).get("uploader")
+        if not isinstance(uploader, str) or not uploader.strip():
+            raise Deferred("PENDING_MANUAL", f"Unknown owner: {candidate}")
+        print(f"Archive discovery: {candidate} occupied by another account", flush=True)
+    matches = search(owner)
+    print(f"Archive discovery: {len(matches)} account search identifiers: {', '.join(matches) or 'none'}", flush=True)
+    for candidate in matches:
+        md = checked[candidate] if candidate in checked else fetch(candidate)
         if md is None:
             raise Deferred("WAITING_ARCHIVE", f"Search metadata not visible: {candidate}")
         uploader = md.get("metadata", {}).get("uploader")
         if not isinstance(uploader, str) or not uploader.strip():
             raise Deferred("PENDING_MANUAL", f"Unknown owner: {candidate}")
-        if candidate.casefold() == identifier.casefold():
-            raise Deferred("PENDING_MANUAL", f"Exact identifier collision: {candidate}")
         if item_owned_by_account(md, owner)[0]:
-            print(f"Archive discovery: {candidate} belongs to configured account", flush=True)
             raise Deferred("PENDING_MANUAL", f"Existing own candidate: {candidate}")
-        print(f"Archive discovery: {candidate} belongs to another account; not a destination", flush=True)
+        print(f"Archive discovery: {candidate} belongs to another account", flush=True)
+    if not free:
+        raise Deferred("PENDING_MANUAL", "All four identifier options are occupied")
+    print(f"Archive discovery: selected {free[0]}", flush=True)
+    return free[0]
 
 
 def load_job(root):
@@ -318,18 +342,18 @@ def run_pilot(root, creds):
         raise Deferred("SOURCE_REVIEW", reason)
     if asset["version"] != "0.1.15":
         raise Deferred("PENDING_MANUAL", "Pilot is pinned to reviewed release 0.1.15")
-    identifier = "psvitaalive-" + PILOT
+    identifier = job.get("identifier") if job else select_destination(PILOT, creds[2])
+    if identifier not in identifier_options(PILOT):
+        raise Deferred("PENDING_MANUAL", "Invalid creation checkpoint identifier")
     item = {"app_id": PILOT, "version": asset["version"], "source_url": asset["url"],
             "size_bytes": asset["size"], "archive_identifier": identifier}
-    md = lookup(identifier)
     if job:
-        if job.get("identifier") != identifier or job.get("source_url") != asset["url"]:
+        md = lookup(identifier)
+        if job.get("source_url") != asset["url"]:
             raise Deferred("PENDING_MANUAL", "Creation checkpoint does not match current source")
         if md is None:
             raise Deferred("VERIFYING", "Creation checkpoint exists; item not visible yet")
         require_owner(md, creds[2])
-    else:
-        require_free_destination(identifier, creds[2])
     with tempfile.TemporaryDirectory(prefix="psva_create_") as td:
         folder = Path(td)
         files, media = stage(app, item, folder)
@@ -338,7 +362,8 @@ def run_pilot(root, creds):
                 raise Deferred("PENDING_MANUAL", "Source payload changed since checkpoint")
         else:
             # Check once more immediately before persisting intent/creating.
-            require_free_destination(identifier, creds[2])
+            identifier = select_destination(PILOT, creds[2])
+            item["archive_identifier"] = identifier
             job = {"identifier": identifier, "source_url": asset["url"],
                    "files": files, "media": media, "attempted": [],
                    "status": "CREATING", "created_at": now_utc()}

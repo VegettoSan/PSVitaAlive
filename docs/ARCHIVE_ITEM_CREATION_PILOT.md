@@ -11,3 +11,7 @@ Report: archive-backup-batch-report/new-items.json. DISCOVERY_REQUIRED means no 
 ## Ownership-aware discovery
 
 Search now returns public item identifiers, not just a count. The exact proposed identifier must be free. Each search hit is checked via item metadata against the configured uploader; an alternate owned item, unknown owner, missing metadata or exact identifier collision stops creation. Unrelated or third-party hits are reported but never written to, and do not prevent a new owned preservation item with a free identifier. Workflow logs and job summary include safe categorical diagnostics, never uploader email or keys.
+
+## Identifier fallback and account-scoped discovery
+
+The global search previously returned too many results. Search is now scoped to the configured uploader and actual metadata ownership is still checked. Exact identifiers are independently checked before creation. Four deterministic options are available: `psvitaalive-vitaforge`, `psvitaalive-vitaforge-psvita`, `psvitaalive-vitaforge-homebrew`, `psvitaalive-vitaforge-archive`. All four are inspected for existing owned items before the first free option is selected. Unknown ownership, unavailable metadata or all occupied options stop safely. Once a PUT checkpoint exists, its chosen identifier is fixed; no fallback is allowed after an uncertain transfer. The actual identifier is written to the historical CSV on completion. Public title and Title ID do not change.

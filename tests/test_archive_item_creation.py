@@ -37,30 +37,51 @@ class CreationTests(unittest.TestCase):
 
 
     def test_third_party_match_does_not_block_free_identifier(self):
-        own = "expected"
         data = {"metadata": {"uploader": "other"}, "files": []}
-        a.require_free_destination("psvitaalive-vitaforge", own,
-            fetch=lambda i: None if i == "psvitaalive-vitaforge" else data,
-            search=lambda: ["unrelated-vitaforge"])
+        options = a.identifier_options("vitaforge")
+        selected = a.select_destination("vitaforge", "expected",
+            fetch=lambda i: data if i == "unrelated-vitaforge" else None,
+            search=lambda owner: ["unrelated-vitaforge"])
+        self.assertEqual(selected, options[0])
 
     def test_owned_alternate_identifier_blocks_creation(self):
         data = {"metadata": {"uploader": "expected"}, "files": []}
         with self.assertRaisesRegex(Deferred, "Existing own candidate: old-vitaforge"):
-            a.require_free_destination("psvitaalive-vitaforge", "expected",
-                fetch=lambda i: None if i == "psvitaalive-vitaforge" else data,
-                search=lambda: ["old-vitaforge"])
+            a.select_destination("vitaforge", "expected",
+                fetch=lambda i: data if i == "old-vitaforge" else None,
+                search=lambda owner: ["old-vitaforge"])
 
-    def test_exact_third_party_identifier_blocks_creation(self):
+    def test_three_occupied_options_select_fourth(self):
         data = {"metadata": {"uploader": "other"}, "files": []}
-        with self.assertRaisesRegex(Deferred, "Exact identifier occupied"):
-            a.require_free_destination("psvitaalive-vitaforge", "expected",
-                fetch=lambda i: data, search=lambda: [])
+        options = a.identifier_options("vitaforge")
+        self.assertEqual(a.select_destination("vitaforge", "expected",
+            fetch=lambda i: data if i in options[:3] else None,
+            search=lambda owner: []), options[3])
+
+    def test_all_four_occupied_stop(self):
+        data = {"metadata": {"uploader": "other"}, "files": []}
+        with self.assertRaisesRegex(Deferred, "All four"):
+            a.select_destination("vitaforge", "expected",
+                fetch=lambda i: data, search=lambda owner: [])
+
+    def test_owned_later_option_blocks_even_if_first_free(self):
+        data = {"metadata": {"uploader": "expected"}, "files": []}
+        last = a.identifier_options("vitaforge")[-1]
+        with self.assertRaisesRegex(Deferred, "Existing own candidate"):
+            a.select_destination("vitaforge", "expected",
+                fetch=lambda i: data if i == last else None, search=lambda owner: [])
 
     def test_unknown_owner_blocks_creation(self):
         with self.assertRaisesRegex(Deferred, "Unknown owner"):
-            a.require_free_destination("psvitaalive-vitaforge", "expected",
-                fetch=lambda i: None if i == "psvitaalive-vitaforge" else {"metadata": {}, "files": []},
-                search=lambda: ["other-vitaforge"])
+            a.select_destination("vitaforge", "expected",
+                fetch=lambda i: {"metadata": {}, "files": []} if i == "other-vitaforge" else None,
+                search=lambda owner: ["other-vitaforge"])
+
+    def test_metadata_outage_does_not_choose_other_identifier(self):
+        with self.assertRaisesRegex(Deferred, "unavailable"):
+            a.select_destination("vitaforge", "expected",
+                fetch=lambda i: (_ for _ in ()).throw(Deferred("WAITING_ARCHIVE", "unavailable")),
+                search=lambda owner: [])
 
 
 if __name__ == "__main__":
