@@ -128,6 +128,7 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     installedDataIntroducedIconTextures_.clear();
     installedDataVisible_ = true;
     installedDataFromStorage_ = fromStorage;
+    installedDataGameMode_=fromStorage?storageGameMode_:0;
     installedDataPreferredId_ = titleId;
     installedDataScanFocusId_.clear();
     installedDataTargetId_ = titleId;
@@ -163,7 +164,12 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
         }
     }
     touchDown_ = touchMoved_ = false;
-    startInstalledDataOperation(-1);
+    if(installedDataGameMode_) {
+        // The storage worker already discovered this catalog. Move the snapshot.
+        installedDataSnapshot_=std::move(storageGamesSnapshot_);
+        rebuildInstalledDataVisibleRows();
+        startNextInstalledDataAutoMeasure();
+    } else startInstalledDataOperation(-1);
 }
 void FullCatalogScreen::releaseInstalledDataExclusiveTextures() {
     // The catalog remains drawn behind this modal and is restored after exit.
@@ -235,8 +241,11 @@ void FullCatalogScreen::closeInstalledDataMenu() {
     }
     // Returning from the inspector updates the parent summary entirely in
     // RAM; no second recursive filesystem walk is needed.
-    if (installedDataFromStorage_ && storageVisible_)
+    if (installedDataFromStorage_ && storageVisible_) {
         applyInstalledStorageSummary(storageSnapshot_, installedDataSnapshot_);
+        if(installedDataGameMode_)storageGamesSnapshot_=std::move(installedDataSnapshot_);
+    }
+    installedDataGameMode_=0;
     releaseInstalledDataExclusiveTextures();
     clearInstalledDataOperationDisplay();
     installedDataVisible_ = false;
@@ -316,6 +325,7 @@ void FullCatalogScreen::startInstalledDataOperation(int action) {
             if (app.titleId != installedDataTargetId_) continue;
             installedDataOperationName_ = app.name;
             installedDataOperationIcon_ = app.icon;
+            if(app.mediaRow)installedDataOperationTitleId_=app.mediaId.empty()?app.mediaFormat:app.mediaId;
             for (const auto& path : app.paths) installedDataOperationPaths_.push_back(path.path);
             // Reuse the already decoded catalog icon when available. Otherwise,
             // capture the installed package's real icon BEFORE Promoter removes it.
@@ -370,6 +380,46 @@ int FullCatalogScreen::installedDataWorkerEntry(SceSize, void* argp) {
     const std::string titleId = action == -3 ?
         self->installedDataScanFocusId_ : self->installedDataTargetId_;
     bool ok = true;
+    if(self->installedDataGameMode_) {
+        // All game actions retain the same protected worker lifecycle.
+        // The path key identifies one physical instance, never a Vita title.
+        ok=false;
+        for(auto& app:self->installedDataSnapshot_.apps) {
+            if(app.titleId!=titleId)continue;
+            if(action==-2 || action==-3) {
+                auto measured=InstalledDataManager::measureGame(app,&self->installedDataScanProgress_,
+                    action==-3?25000000ULL:35000000ULL);
+                if(action==-3)self->installedDataAutoResult_=std::move(measured);
+                else app=std::move(measured);
+                ok=true;
+            } else if(action==1 && app.mediaRow && self->installedDataGameMode_>=2) {
+                ok=InstalledDataManager::removeGameMedia(app,&self->installedDataOpProgress_);
+                self->installedDataFilesOk_.store(ok,std::memory_order_release);
+                for(auto& p:app.paths){p.exists=!ok;p.sizeKnown=false;p.bytes=0;}
+                app.bytes=0;app.blocked=!ok;
+            } else if(action==0 && self->installedDataGameMode_==1 && !app.mediaRow && app.packagePresent) {
+                ok=InstalledDataManager::uninstallPackage(app.titleId,&self->installedDataOpProgress_);
+                self->installedDataVpkOk_.store(ok,std::memory_order_release);
+                if(ok) {
+                    ::psvitaalive::update::InstalledReleaseTracker::removeReceipt(app.titleId);
+                    app.packagePresent=false;app.packageBytes=0;app.packageSizeKnown=false;
+                } else {app.packageSizeKnown=false;app.packageBytes=0;}
+            }
+            break;
+        }
+        if(action!=-3) {
+            auto& snap=self->installedDataSnapshot_;
+            snap.totalExternalBytes=InstalledDataManager::knownExternalBytes(snap);
+            snap.totalPackageBytes=InstalledDataManager::knownPackageBytes(snap);
+            snap.totalSizeKnown=snap.complete;
+            for(const auto& app:snap.apps)
+                if(!::psvitaalive::storage::installedDataListSizeKnown(app))snap.totalSizeKnown=false;
+        }
+        if(action>=0)self->installedDataOpProgress_.phase.store(4,std::memory_order_release);
+        self->installedDataWorkerOk_.store(ok,std::memory_order_release);
+        self->installedDataWorkerDone_.store(true,std::memory_order_release);
+        return 0;
+    }
     if (action >= 0) {
         if (action == 1 || action == 2) {
             // Same complete pre-count used by VitaShell, but with PSVitaAlive's
@@ -573,11 +623,10 @@ void FullCatalogScreen::pollInstalledDataOperation() {
             installedDataSnapshot_.totalPackageBytes =
                 ::psvitaalive::storage::InstalledDataManager::knownPackageBytes(
                     installedDataSnapshot_);
-            installedDataSnapshot_.totalSizeKnown = true;
+            installedDataSnapshot_.totalSizeKnown = installedDataSnapshot_.complete;
             for (const auto& app : installedDataSnapshot_.apps)
-                for (const auto& path : app.paths)
-                    if (path.exists && !path.sizeKnown)
-                        installedDataSnapshot_.totalSizeKnown = false;
+                if (!::psvitaalive::storage::installedDataListSizeKnown(app))
+                    installedDataSnapshot_.totalSizeKnown = false;
         }
         installedDataSortPending_=true;
         if(!installedDataDetail_ && !installedDataConfirm_ && !installedDataResultVisible_ && !touchDown_)
@@ -598,7 +647,7 @@ void FullCatalogScreen::pollInstalledDataOperation() {
     if (finishedAction >= 0) {
         installedDataResultAction_ = finishedAction;
         installedDataResultVisible_ = true; // persists until X or Circle
-        invalidateInstallStatus(installedDataTargetId_);
+        invalidateInstallStatus(installedDataGameMode_?std::string():installedDataTargetId_);
         if (isInstallStateFilter()) rebuildFilteredItems();
         requestUx0SpaceRefresh();
     } else if (finishedAction == -2) {
@@ -691,7 +740,7 @@ void FullCatalogScreen::activateInstalledDataSelection() {
     if (!installedDataConfirm_) {
         installedDataShareLabels_.clear();
         installedDataShareScroll_ = 0;
-        if (installedDataActionFocus_ != 0) {
+        if (installedDataActionFocus_ != 0 && !installedDataGameMode_) {
             const auto shared = ::psvitaalive::storage::installedDataCatalogShares(
                 installedDataSnapshot_, *app);
             installedDataShareLabels_.reserve(shared.size());
