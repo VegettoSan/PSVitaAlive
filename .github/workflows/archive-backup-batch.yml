@@ -1,6 +1,11 @@
 name: Archive.org owned VPK backups (BATCH)
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/archive_item_creation.py
+      - tests/test_archive_item_creation.py
   # Follow Orbit's normal release-monitor dispatch, but do not write at
   # the same moment as the catalog synchronization: shared lock serializes.
   workflow_run:
@@ -27,6 +32,7 @@ jobs:
       github.ref == 'refs/heads/main' &&
       (
         github.event_name == 'schedule' ||
+        github.event_name == 'push' ||
         (github.event_name == 'workflow_run' &&
          github.event.workflow_run.conclusion == 'success' &&
          github.event.workflow_run.event == 'repository_dispatch' &&
@@ -36,12 +42,13 @@ jobs:
          github.actor == 'VegettoSan')
       )
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout canonical sources
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -50,6 +57,7 @@ jobs:
         run: python -m pip install 'internetarchive==5.13.0' 'requests==2.32.5'
       - name: Run offline safety tests before any transfer
         run: |
+          python -m unittest discover -s tests -p 'test_archive_item_creation.py' -v
           python -m unittest discover -s tests -p 'test_archive_backup_batch.py' -v
           python -m unittest discover -s tests -p 'test_archive_owner_preflight.py' -v
           python -m unittest discover -s tests -p 'test_archive_upload_one_pilot.py' -v
@@ -58,6 +66,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Process approved owned-item VPK batch
+        if: github.event_name != 'push'
         env:
           IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
           IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
@@ -71,6 +80,13 @@ jobs:
             --max-files 12 --max-file-mib 200 \
             --max-batch-mib 800 --max-minutes 38 \
             --report archive-batch-report/run.json
+      - name: Pilot new Archive.org item (VitaForge only)
+        timeout-minutes: 15
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+          IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
+        run: python -m scripts.archive_item_creation --execute
       - name: Store diagnostic report
         if: always()
         uses: actions/upload-artifact@v4
