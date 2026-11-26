@@ -13,6 +13,7 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
+| [`docs/CONTROLLER_INPUT_POLICY_20261126.md`](CONTROLLER_INPUT_POLICY_20261126.md) | **Entrada del mando:** acciones únicas globales, navegación continua preservada, implementación y pruebas |
 | [`docs/DOWNLOAD_QUEUE_INTEGRATION_20261126.md`](DOWNLOAD_QUEUE_INTEGRATION_20261126.md) | **Gestor de descargas:** estado integrado, arquitectura FIFO, almacenamiento, historial/recuperación, rendimiento, pruebas físicas y deuda técnica |
 | [`docs/GAME_FILES_ROUTES_20261105.md`](GAME_FILES_ROUTES_20261105.md) | **Inventario de rutas Game Files (2026-11-05):** 158 aplicaciones, rutas `ux0:data/`/`ux0:app/`, `extract_path`, `installed_paths`, variantes y carpetas compartidas; generado desde `apps/*.json` |
 | [`docs/INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md`](INSTALLED_GAME_DATA_MANAGEMENT_PLAN_20261105.md) | **Plan técnico:** metadatos `installed_paths` de Game Files incorporados a `apps/`; Data Files opcional/heredado; implementación documentada en el informe técnico relacionado |

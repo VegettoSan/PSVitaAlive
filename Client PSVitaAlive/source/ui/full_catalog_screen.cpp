@@ -122,14 +122,7 @@ constexpr uint32_t NAV_DIRECTION_MASK =
     SCE_CTRL_UP | SCE_CTRL_DOWN | SCE_CTRL_LEFT | SCE_CTRL_RIGHT;
 
 uint32_t leftStickNavMask(const SceCtrlData& pad) {
-    constexpr uint8_t LOW = 64;
-    constexpr uint8_t HIGH = 192;
-    uint32_t nav = 0;
-    if (pad.lx <= LOW) nav |= SCE_CTRL_LEFT;
-    else if (pad.lx >= HIGH) nav |= SCE_CTRL_RIGHT;
-    if (pad.ly <= LOW) nav |= SCE_CTRL_UP;
-    else if (pad.ly >= HIGH) nav |= SCE_CTRL_DOWN;
-    return nav;
+    return ::psvitaalive::ui::clientStickDirections(pad);
 }
 
 
@@ -7373,20 +7366,25 @@ bool FullCatalogScreen::handleChromeNavigation(uint32_t pressed, uint32_t nav,
 }
 
 void FullCatalogScreen::handleInput(){
-    if(queueVisible_) { handleQueueInput(); return; }
+    static bool analogSamplingEnabled = false;
+    if (!analogSamplingEnabled) {
+        sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
+        analogSamplingEnabled = true;
+    }
+    SceCtrlData controllerPad{};
+    uint32_t framePressed = 0;
+    if (::psvitaalive::ui::readClientControllerActions(controllerPad, framePressed) <= 0) return;
+    if(queueVisible_) { handleQueueInput(framePressed, controllerPad.buttons | leftStickNavMask(controllerPad)); return; }
     if (chromeConfirmAwaitRelease_) {
-        SceCtrlData pad{};
-        const int ret = ::psvitaalive::ui::peekClientController(pad);
-        if (ret <= 0 || (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE | SCE_CTRL_START)))
+        if (controllerPad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE | SCE_CTRL_START))
             return;
         chromeConfirmAwaitRelease_ = false;
     }
     if (installedDataVisible_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevIdButtons=0,prevIdAnalog=0;
+        const SceCtrlData& pad=controllerPad;
+        static uint32_t prevIdAnalog=0;
         static uint64_t idRepeatAt=0;
-        const uint32_t pressed=pad.buttons & ~prevIdButtons;
+        const uint32_t pressed=framePressed;
         const uint32_t analog=leftStickNavMask(pad);
         const uint32_t direct=(pressed & NAV_DIRECTION_MASK)|
                               (analog & ~prevIdAnalog);
@@ -7398,17 +7396,15 @@ void FullCatalogScreen::handleInput(){
         else if(idRepeatAt&&now>=idRepeatAt){
             repeat=held;idRepeatAt=now+130000ULL;
         }
-        prevIdButtons=pad.buttons;
         prevIdAnalog=analog;
         handleInstalledDataInput(pressed,direct|repeat);
         return;
     }
     if (storageVisible_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevStorageButtons=0,prevStorageAnalog=0;
+        const SceCtrlData& pad=controllerPad;
+        static uint32_t prevStorageAnalog=0;
         static uint64_t storageRepeatAt=0;
-        const uint32_t pressed=pad.buttons & ~prevStorageButtons;
+        const uint32_t pressed=framePressed;
         const uint32_t analog=leftStickNavMask(pad);
         const uint32_t direct=(pressed & NAV_DIRECTION_MASK) |
                               (analog & ~prevStorageAnalog);
@@ -7423,7 +7419,6 @@ void FullCatalogScreen::handleInput(){
             repeat=held;
             storageRepeatAt=now+130000ULL;
         }
-        prevStorageButtons=pad.buttons;
         prevStorageAnalog=analog;
         if(pressed & SCE_CTRL_CIRCLE) {
             if(storageConfirm_) {
@@ -7459,13 +7454,10 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
-    // Modal has its own button edge handling, including held-X release guard.
+    // Modal uses the shared edges; retain its explicit release guard.
     if (savedZipActionVisible_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevSavedButtons=0;
-        const uint32_t pressed=pad.buttons & ~prevSavedButtons;
-        prevSavedButtons=pad.buttons;
+        const SceCtrlData& pad=controllerPad;
+        const uint32_t pressed=framePressed;
         if (savedZipActionAwaitRelease_) {
             if (!(pad.buttons & (SCE_CTRL_CROSS|SCE_CTRL_CIRCLE)))
                 savedZipActionAwaitRelease_=false;
@@ -7488,17 +7480,8 @@ void FullCatalogScreen::handleInput(){
             resolveSavedZipAction(savedZipActionFocus_);
         return;
     }
-    static bool analogSamplingEnabled = false;
-    if (!analogSamplingEnabled) {
-        sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-        analogSamplingEnabled = true;
-    }
     if (archiveWarningVisible_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t previousArchiveButtons = 0;
-        const uint32_t pressed = pad.buttons & ~previousArchiveButtons;
-        previousArchiveButtons = pad.buttons;
+        const uint32_t pressed=framePressed;
         if (pressed & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) {
             archiveWarningVisible_ = false;
             archiveWarningDownload_ = false;
@@ -7509,11 +7492,7 @@ void FullCatalogScreen::handleInput(){
     if (pluginRebootModal_) {
         // Soft restart only — do not allow LiveArea exit or underlying UI.
         // Touch is handled exclusively in handleTouch() so it cannot leak through.
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevButtonsReboot = 0;
-        const uint32_t pressed = pad.buttons & ~prevButtonsReboot;
-        prevButtonsReboot = pad.buttons;
+        const uint32_t pressed=framePressed;
         if (pressed & SCE_CTRL_CROSS) {
             diagnostics::log("[UI] Plugin reboot modal: soft reset requested");
             scePowerRequestColdReset();
@@ -7521,14 +7500,11 @@ void FullCatalogScreen::handleInput(){
         return;
     }
     if (pluginChoiceModal_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevPluginButtons = 0, prevPluginAnalog = 0;
-        const uint32_t pressed = pad.buttons & ~prevPluginButtons;
-        const uint32_t analog = leftStickNavMask(pad);
-        const uint32_t direction = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevPluginAnalog);
-        prevPluginButtons = pad.buttons;
-        prevPluginAnalog = analog;
+        const uint32_t pressed=framePressed;
+        static uint32_t prevPluginAnalog=0;
+        const uint32_t analog=leftStickNavMask(controllerPad);
+        const uint32_t direction=(pressed & NAV_DIRECTION_MASK) | (analog & ~prevPluginAnalog);
+        prevPluginAnalog=analog;
         if (direction & SCE_CTRL_UP) pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
         if (direction & SCE_CTRL_DOWN) pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
         if (direction & SCE_CTRL_LEFT) pluginChoiceFocus_ = 0;
@@ -7538,15 +7514,11 @@ void FullCatalogScreen::handleInput(){
         return;
     }
     if (essentialPluginsModal_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevButtonsEss = 0;
-        static uint32_t prevAnalogEss = 0;
-        const uint32_t pressed = pad.buttons & ~prevButtonsEss;
-        const uint32_t analog = leftStickNavMask(pad);
-        const uint32_t navPressed = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogEss);
-        prevButtonsEss = pad.buttons;
-        prevAnalogEss = analog;
+        const uint32_t pressed=framePressed;
+        static uint32_t prevAnalogEss=0;
+        const uint32_t analog=leftStickNavMask(controllerPad);
+        const uint32_t navPressed=(pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogEss);
+        prevAnalogEss=analog;
         if (navPressed & SCE_CTRL_LEFT) essentialPluginsFocus_ = 0;
         if (navPressed & SCE_CTRL_RIGHT) essentialPluginsFocus_ = 1;
         if (pressed & SCE_CTRL_CROSS) closeEssentialPluginsPrompt(essentialPluginsFocus_ == 0);
@@ -7554,15 +7526,11 @@ void FullCatalogScreen::handleInput(){
         return;
     }
     if (pspSetupModal_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        static uint32_t prevButtonsPsp = 0;
-        static uint32_t prevAnalogPsp = 0;
-        const uint32_t pressed = pad.buttons & ~prevButtonsPsp;
-        const uint32_t analog = leftStickNavMask(pad);
-        const uint32_t navPressed = (pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogPsp);
-        prevButtonsPsp = pad.buttons;
-        prevAnalogPsp = analog;
+        const uint32_t pressed=framePressed;
+        static uint32_t prevAnalogPsp=0;
+        const uint32_t analog=leftStickNavMask(controllerPad);
+        const uint32_t navPressed=(pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogPsp);
+        prevAnalogPsp=analog;
         const bool adrenaline = pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline;
         if (pressed & SCE_CTRL_CIRCLE) { closePspSetupWizard(false); return; }
         if (navPressed & SCE_CTRL_LEFT) {
@@ -7604,15 +7572,13 @@ void FullCatalogScreen::handleInput(){
         }
         return;
     }
-    // Modal X/O presses have their own edge detector. Consume a held confirm/
+    // Modal X/O presses use shared edges. Consume a held confirm/
     // cancel button until release to avoid immediately re-opening the link.
     if (pluginChoiceAwaitRelease_) {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        if (pad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
+        if (controllerPad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
         pluginChoiceAwaitRelease_ = false;
     }
-if(isTransitioning())return;SceCtrlData p{};::psvitaalive::ui::peekClientController(p);static uint32_t prev=0;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=p.buttons&~prev,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prev=p.buttons;prevAnalog=analogNav;uint32_t nav=direct|repeat;
+if(isTransitioning())return;const SceCtrlData& p=controllerPad;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=framePressed,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prevAnalog=analogNav;uint32_t nav=direct|repeat;
 if (pressed || nav) navigationFocus_.controller();
 if (!themeSetupVisible_ && !newsVisible_ &&
     (p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
@@ -13193,15 +13159,12 @@ void FullCatalogScreen::drawQueueScreen() {
     }
     drawToast(); finishFrame();
 }
-void FullCatalogScreen::handleQueueInput() {
+void FullCatalogScreen::handleQueueInput(uint32_t pressed, uint32_t heldButtons) {
     if(!queueSession_)return;
     syncQueueDisplay();
-    SceCtrlData pad{}; ::psvitaalive::ui::peekClientController(pad);
-    const uint32_t pressed=pad.buttons&~queuePreviousButtons_;
-    queuePreviousButtons_=pad.buttons;
     // Combine the physical D-pad with the same left-stick dead zone used
     // by the catalog. Buttons remain edge-triggered and never auto-repeat.
-    const uint32_t held=(pad.buttons|leftStickNavMask(pad)) & (SCE_CTRL_UP|SCE_CTRL_DOWN);
+    const uint32_t held=heldButtons & (SCE_CTRL_UP|SCE_CTRL_DOWN);
     const uint64_t now=sceKernelGetProcessTimeWide();
     const bool reorderBlocked=!queueDetail_ && queueReorderActive();
     const int move=queueVerticalNavigation_.sample(
@@ -13210,7 +13173,7 @@ void FullCatalogScreen::handleQueueInput() {
     verticalNavHeld_=held!=0;
     if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;
     if(queueAwaitRelease_) {
-        if(!held && !(pad.buttons&(SCE_CTRL_CROSS|SCE_CTRL_CIRCLE|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_START)))
+        if(!held && !(heldButtons&(SCE_CTRL_CROSS|SCE_CTRL_CIRCLE|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_START)))
             queueAwaitRelease_=false;
         return;
     }
@@ -13339,17 +13302,19 @@ void FullCatalogScreen::draw(){
     switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
     if(queueProtected_) {
-        SceCtrlData pad{}; ::psvitaalive::ui::peekClientController(pad);
+        SceCtrlData pad{}; const int controllerRead=::psvitaalive::ui::peekClientController(pad);
         SceTouchData td{}; sceTouchPeek(SCE_TOUCH_PORT_FRONT,&td,1);
         const bool interacting=pad.buttons!=0 || leftStickNavMask(pad)!=0 || td.reportNum>0;
         if(gProtectionActive) {
+            ::psvitaalive::ui::sampleClientControllerActions(pad, controllerRead > 0);
             if(interacting) { protectionDismiss(); queueAwaitRelease_=true; chromeConfirmAwaitRelease_=true; gProtectionTouchConsumeUntilRelease=true; touchDown_=false; queueTouchDown_=false; }
             protectionServiceMascot(); draw(); return true;
         }
         if(interacting) gProtectionPhaseStartMs=protectionNowMs();
         protectionTick(); protectionServiceMascot();
-        if(gProtectionActive) { draw(); return true; }
+        if(gProtectionActive) { ::psvitaalive::ui::sampleClientControllerActions(pad, controllerRead > 0); draw(); return true; }
         if(gProtectionTouchConsumeUntilRelease) {
+            ::psvitaalive::ui::sampleClientControllerActions(pad, controllerRead > 0);
             if(!interacting) gProtectionTouchConsumeUntilRelease=false;
             draw(); return true;
         }
@@ -13417,6 +13382,7 @@ void FullCatalogScreen::draw(){
     if (filterModalOpen_ && !canShowFilterButton()) closeFilterMenu();
     refreshLoadingInputGate();
     if (loadingInputGate_.blocked()) {
+        ::psvitaalive::ui::discardClientControllerActions();
         // Discard gestures and do not dispatch any shortcuts or loading toasts.
         touchDown_ = touchMoved_ = false;
         touchAccumY_ = 0.f;
@@ -13435,7 +13401,7 @@ void FullCatalogScreen::draw(){
             if (!chromeBefore && chromeNavigationAvailable() &&
                 navigationFocus_.zone != FocusZone::Catalog)
                 chromeConfirmAwaitRelease_ = true;
-        } else verticalNavHeld_ = false;
+        } else { verticalNavHeld_ = false; ::psvitaalive::ui::discardClientControllerActions(); }
 
         // L/R may have started another catalog load in this same frame.
         // Do not let a simultaneous touch leak through the new splash.

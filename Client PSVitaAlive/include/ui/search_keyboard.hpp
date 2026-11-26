@@ -69,7 +69,6 @@ private:
     bool touchWasDown_ = false;
     InputSource lastInputSource_ = InputSource::None;
     bool eraseHeld_ = false;
-    unsigned previousButtons_ = 0;
     unsigned lastNav_ = 0;
     int focused_ = 0;
     int touchBackspace_ = -1;

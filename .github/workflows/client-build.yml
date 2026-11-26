@@ -2,7 +2,7 @@ name: Build PS Vita Client
 
 on:
   push:
-    branches: [main, feature/download-queue-manager, feature/ui-redesign, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
+    branches: [main, fix/storage-controller-edge-20261126, feature/download-queue-manager, feature/ui-redesign, diagnostics/catalog-startup-trace-20261012, fix/catalog-startup-nonblocking-20261012, fix/image-download-throughput-20261012, fix/async-image-buckets-20261012, fix/async-ux0-space-20261012, fix/event-driven-ux0-space-20261012]
     paths:
       - "Client PSVitaAlive/**"
       - "tests/**"
@@ -77,6 +77,12 @@ jobs:
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
             tests/test_controller_start_policy.cpp -o /tmp/psvitaalive-start-policy
           /tmp/psvitaalive-start-policy
+
+      - name: Test shared controller button edges across storage screens
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
+            tests/test_controller_button_edges.cpp -o /tmp/psvitaalive-controller-edges
+          /tmp/psvitaalive-controller-edges
 
       - name: Test incomplete catalog grid navigation
         run: |

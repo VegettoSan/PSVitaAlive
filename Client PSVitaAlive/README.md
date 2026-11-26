@@ -19,7 +19,7 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 
 - Catalogs: **Homebrew**, **Vita Games**, **PSP**, **PS1** (all four can stay cached in RAM after first load)
 - Search, Settings (install method, **PSP/PS1 target**, **PSP media** Folder/ISO, **color theme**, **UI font**, **language** System/manual), touch + buttons
-- **Embedded keyboard** (no Sony IME for input): English QWERTY, 123/MORE symbols, sticky SHIFT, right-side SHIFT/DEL/CANCEL/OK, analog stick/D-pad/touch, hold-to-delete, themed modal, localized UI strings. Shared by catalog search and custom ZIP paths; [decision record](../docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
+- **Embedded keyboard** (no Sony IME for input): English QWERTY, 123/MORE symbols, sticky SHIFT, right-side SHIFT/DEL/CANCEL/OK, analog stick/D-pad/touch, touch-only hold-to-delete, themed modal, localized UI strings. Shared by catalog search and custom ZIP paths; [decision record](../docs/KEYBOARD_NATIVE_IME_REPLACEMENT_20261020.md).
 - **Battery indicator**: icon and percentage centred between filters/search and the clock, including when filters disappear. The OLED protector also shows battery level during long jobs. The VitaSDK sensor is polled every 15 s, with low-battery and charging states and `--%` fallback. Confirmed on real PS Vita hardware; see [OLED protection and battery guide](docs/OLED_PROTECTION_MODE.md).
 - **Full Catalog filter panel (□)**: localized, fixed-option menu; Homebrew **8 categories + Game Files or Data Files**, PS Vita **15 genres + DLC**, PSP **14 genres + DLC**, PS1 **12 genres**; combines with text search, resets on catalog change, and is unavailable in details/dialogs. Options use `static constexpr` tables to avoid dynamic menu allocations; the existing filtered `items_` vector remains unchanged. See [filter panel guide](docs/FILTER_PANEL_20261020.md) ([merged PR #40](https://github.com/VegettoSan/PSVitaAlive/pull/40)).
 - **Multilanguage UI** (`app0:lang/*.lang`): currently packaged **EN / ES / FR / DE / IT / PT-PT / PT-BR / RU**; missing keys fall back to English; catalog content stays original language
@@ -62,12 +62,16 @@ Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 
 **Validation boundary:** the maintainer tested the functional changes on a real PS Vita in the earlier test VPK. The official 02.17 VPK was rebuilt and metadata/CRC checked by GitHub Actions; that does not replace testing this exact final artifact on a console. [Technical record](../docs/RELEASE_02_17_TECHNICAL_20261028.md).
 
+## Controller input
+
+Action buttons execute once per physical press across screens; D-pad/left-stick navigation retains its existing repeat and focus behavior. See [controller input policy](../docs/CONTROLLER_INPUT_POLICY_20261126.md).
+
 ## Built-in keyboard — current text-entry path
 
 The previous native Sony IME is **not used for PSVitaAlive text input**. Repeated real-hardware crashes at `ScePaf + 0x13D8` persisted through targeted experiments. The cause was not proven to be a Sony defect; adopting a custom UI removed the unstable IME lifecycle from search and ZIP path entry.
 
 - **Scope:** both the search bar (nonblocking `openSearchKeyboard`) and custom ZIP extraction destination (`promptTextBlocking`) use `SearchKeyboard`. Quick-path ZIP choices are unchanged.
-- **Controls:** D-pad / **left analog stick** navigate; X or touch selects; L or SHIFT toggles persistent upper/lower case; Triangle toggles ABC/123; MORE switches symbols; Square/DEL tap deletes one character and holding repeats after ~420 ms at ~105 ms intervals; START or OK confirms after startup; Circle/CANCEL discards.
+- **Controls:** D-pad / **left analog stick** navigate; X or touch selects; L or SHIFT toggles persistent upper/lower case; Triangle toggles ABC/123; MORE switches symbols; Square or X on DEL deletes one character per press; holding DEL on the touchscreen repeats after ~420 ms at ~105 ms intervals; START or OK confirms after startup; Circle/CANCEL discards.
 - **Layout:** fixed English QWERTY + two symbols/number pages; four stacked actions at the right, **22 px symmetric side margins** and a **7 px** gap between rows and right rail. The letters visibly reflect SHIFT state.
 - **Presentation:** ~230 ms smooth slide in/out, dimmed **catalog still visible behind the modal**, themed colors/font; keyboard overlays the existing `vita2d` frame with one buffer swap. No new keyboard image texture or renderer.
 - **Localization:** the eight installed `app0:lang/*.lang` files provide `KEYBOARD_*` labels and instructions; character positions are not translated. Missing strings retain the normal English fallback.

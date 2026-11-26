@@ -103,12 +103,7 @@ ZipDestChoice promptZipDestinationChoice() {
     if (!font) return ZipDestChoice::Cancel;
 
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
-    uint32_t prev = 0;
-    {
-        SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        prev = pad.buttons;
-    }
+    ::psvitaalive::ui::discardClientControllerActions();
 
     int focus = 0;
     ZipDestChoice result = ZipDestChoice::Cancel;
@@ -128,9 +123,8 @@ ZipDestChoice promptZipDestinationChoice() {
 
     while (!decided) {
         SceCtrlData pad{};
-        ::psvitaalive::ui::peekClientController(pad);
-        const uint32_t pressed = pad.buttons & ~prev;
-        prev = pad.buttons;
+        uint32_t pressed = 0;
+        ::psvitaalive::ui::readClientControllerActions(pad, pressed);
 
         if (pressed & SCE_CTRL_UP) {
             focus = (focus > 0) ? (focus - 1) : (kCount - 1);
