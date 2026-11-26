@@ -28,11 +28,11 @@ inline uint32_t clientStickDirections(const SceCtrlData& pad) {
     return nav;
 }
 
-// The UI thread has one action history, including the keyboard and modal
-// dialogs. Raw polling remains available for non-action observation only.
+// One physical button history across keyboard and dialogs. Directional
+// navigation keeps its existing independent repeat policies.
 inline ControllerButtonEdges clientButtonEdges;
 inline uint32_t sampleClientControllerActions(const SceCtrlData& pad, bool valid) {
-    return clientButtonEdges.sample(pad.buttons | clientStickDirections(pad), valid);
+    return clientButtonEdges.sample(pad.buttons, valid);
 }
 inline int readClientControllerActions(SceCtrlData& pad, uint32_t& pressed) {
     const int result = peekClientController(pad);
