@@ -21,6 +21,16 @@ int main() {
     releaseExcept(cache, valid, 0);
     assert(cache[2].capacity()==0);
 
+    // Tab navigation is free while only checking validators, but locked
+    // throughout the actual refresh and final publication handoff.
+    assert(!catalogSwitchBlocked(false, false, true, false));
+    assert(catalogSwitchBlocked(true, false, true, false));
+    assert(catalogSwitchBlocked(true, false, false, false));
+    assert(catalogSwitchBlocked(false, true, true, false));
+    assert(catalogSwitchBlocked(false, true, false, true));
+    assert(!catalogSwitchBlocked(false, true, false, false));
+    assert(!catalogSwitchBlocked(false, false, false, false));
+
     // Normal browsing: keep only current and previous, even on a disk miss.
     std::vector<std::string> outgoing{"Homebrew"};
     retainForSelection(cache, valid, 1, 0, &outgoing, false);

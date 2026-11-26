@@ -140,6 +140,17 @@ bool CatalogManager::request(ui::CatalogType catalog, bool forceNetwork,
         sceKernelUnlockMutex(mutex_, 1);
         return false;
     }
+    // A tab request and the start of a real refresh share this mutex.
+    // Reject before touching either the outgoing UI vector or cached data.
+    if (outgoingItems && catalog != outgoingCatalog &&
+        catalog_memory::catalogSwitchBlocked(
+            status_.refreshPhase == RefreshPhase::Downloading ||
+            status_.refreshPhase == RefreshPhase::Applying,
+            status_.refreshPhase == RefreshPhase::Updated,
+            workerOperationActive_, readyPending_)) {
+        sceKernelUnlockMutex(mutex_, 1);
+        return false;
+    }
     if (forceNetwork && readyPending_ && readyCatalog_ == catalog && !readyItems_.empty()) {
         // A valid publication is waiting for the main thread.
         sceKernelUnlockMutex(mutex_, 1);

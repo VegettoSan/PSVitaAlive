@@ -22,6 +22,12 @@ std::size_t releaseExcept(std::vector<T> (&items)[N], bool (&valid)[N], std::siz
     return released;
 }
 
+// Keep the tab locked through transfer, parsing and final UI handoff.
+inline bool catalogSwitchBlocked(bool transferringOrApplying, bool updated,
+                                 bool workerActive, bool readyPending) {
+    return transferringOrApplying || (updated && (workerActive || readyPending));
+}
+
 template<class T, std::size_t N>
 std::size_t retainForSelection(std::vector<T> (&items)[N], bool (&valid)[N],
                                std::size_t next, std::size_t previous,

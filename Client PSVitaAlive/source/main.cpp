@@ -420,8 +420,9 @@ int main(){
         psvitaalive::ui::CatalogType previous, std::vector<psvitaalive::ui::CatalogItem>& outgoing){
         if(installer.busy() || installer.queueProtectionActive() || screen.catalogWorkExcluded()) return false;
         psvitaalive::diagnostics::log(std::string("[UI] catalog requested: ")+psvitaalive::ui::catalogName(next));
+        if(!catalogs.request(next, false, previous, &outgoing)) return false;
         images.cancelQueuedRequests();
-        return catalogs.request(next, false, previous, &outgoing);
+        return true;
     });
     screen.setSearchCallback([&screen](const std::string& current){
         screen.openSearchKeyboard(current);
