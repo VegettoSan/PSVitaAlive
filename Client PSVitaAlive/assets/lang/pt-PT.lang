@@ -895,6 +895,7 @@ QUEUE_TITLE=Gestor de transferências
 QUEUE_UNKNOWN_SPACE=Não foi possível confirmar o espaço disponível para esta fila.
 QUEUE_UNSUPPORTED=Esta instalação requer o instalador individual. Conclui primeiro a fila.
 QUEUE_VIEW=Ver transferências
+QUEUE_VIEW_DETAILS=Ver detalhes
 QUEUE_WAITING=Na fila
 QUEUE_HISTORY=Histórico de transferências
 QUEUE_HISTORY_EMPTY=Ainda não há histórico de transferências
