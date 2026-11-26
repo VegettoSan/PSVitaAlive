@@ -1,0 +1,54 @@
+{
+  "app_id": "mofa-vita",
+  "identifier": "psvitaalive-mofa-vita",
+  "source_url": "https://github.com/ATSPwang618/mofa-vita/releases/download/1.20/mofa-vita-1.20.vpk",
+  "files": {
+    "mofa-vita v1.20.vpk": {
+      "size": 4938904,
+      "md5": "57032226c369a6d6e1428be707456fa7",
+      "sha256": "06a0701c21f5ddccc3570359f10c4a77f86278789fed8c545e441dc9fc43d402"
+    },
+    "icon0.png": {
+      "size": 11539,
+      "md5": "986118107dd1009eeb83d3f3b5137cd1",
+      "sha256": "43122887407ca74c3137f68a8f0c0e1c4d6957dda0257be93bae152ca2991b07"
+    },
+    "shot_01.jpg": {
+      "size": 110776,
+      "md5": "6065b85245fd00ca5dad394c04f044ec",
+      "sha256": "8a65abd82f35f1c42f04a5b8547d1992d48ec50de5e0520172014f6a3fe02516"
+    },
+    "shot_02.jpg": {
+      "size": 118331,
+      "md5": "610c82f6d6323e913486152caaeb3a8f",
+      "sha256": "ef46e152f98b8ae72b6259c7690e0f8f7e2394e47753a6a3f20f929f56130e52"
+    },
+    "shot_03.jpg": {
+      "size": 114713,
+      "md5": "1da7d316ab468404c581ba452d2d9732",
+      "sha256": "1f2ee130ae72a8cb53739f049f62aa4cd08a3e5671ebf925fcb71372ba919319"
+    },
+    "shot_04.jpg": {
+      "size": 71035,
+      "md5": "3acee7d8d5e3efb0baa3d72a70366ffc",
+      "sha256": "96e3922563768b5b6ff6a619405e2de2a4884d13ab79b87835d45f25b6ae6151"
+    },
+    "SOURCES.txt": {
+      "size": 1058,
+      "md5": "107be5056f465cfa0dec8cd5daaf3a10",
+      "sha256": "d6d37d8cf2e0c59b5ecfb1c4c025bf7a5e073b6e2884b6fc0355f558db4772be"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/knife/vita/sce_sys/icon0.png": "icon0.png",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/01-title.jpg": "shot_01.jpg",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/02-voices.jpg": "shot_02.jpg",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/03-archive.jpg": "shot_03.jpg",
+    "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/04-story.jpg": "shot_04.jpg"
+  },
+  "attempted": [
+    "mofa-vita v1.20.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:22:34+00:00"
+}
