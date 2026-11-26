@@ -297,7 +297,13 @@ void FullCatalogScreen::startInstalledDataOperation(int action) {
             for (const auto& path : app.paths) installedDataOperationPaths_.push_back(path.path);
             // Reuse the already decoded catalog icon when available. Otherwise,
             // capture the installed package's real icon BEFORE Promoter removes it.
-            if (!app.icon.empty() && imageCache_) prepareImageTexture(app.icon,"app");
+            if (!app.icon.empty() && imageCache_) {
+                const std::string key=imageCache_->pathFor(app.icon,"app");
+                const bool wasResident=textures_.count(key)!=0;
+                prepareImageTexture(app.icon,"app");
+                if (!wasResident && textures_.count(key))
+                    installedDataIntroducedIconTextures_.insert(key);
+            }
             if (app.packagePresent && (!imageCache_ || app.icon.empty() ||
                 !textures_.count(imageCache_->pathFor(app.icon,"app")))) {
                 const std::string local="ux0:app/"+app.titleId+"/sce_sys/icon0.png";
