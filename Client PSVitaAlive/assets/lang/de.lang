@@ -895,6 +895,7 @@ QUEUE_TITLE=Download-Manager
 QUEUE_UNKNOWN_SPACE=Verfügbarer Speicher für die Warteschlange konnte nicht bestätigt werden.
 QUEUE_UNSUPPORTED=Diese Installation erfordert den Einzelmodus. Beende zuerst die Warteschlange.
 QUEUE_VIEW=Downloads anzeigen
+QUEUE_VIEW_DETAILS=Details ansehen
 QUEUE_WAITING=Wartend
 QUEUE_HISTORY=Download-Verlauf
 QUEUE_HISTORY_EMPTY=Noch kein Download-Verlauf
