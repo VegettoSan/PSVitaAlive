@@ -7,6 +7,35 @@
 using namespace psvitaalive::storage;
 
 int main() {
+    {
+        CachedMedia media;
+        media.path="ux0:pspemu/PSP/GAME/renamed";
+        media.rootStamp=12;media.payloadStamp=34;media.directory=true;
+        media.sizeKnown=true;media.bytes=UINT64_C(5000000000);
+        media.validPbp=true;media.platform=2;media.id="SLUS12345";media.contentId="NPUJ12345";
+        media.title="External game";
+        auto other=media;other.path="uma0:pspemu/PSP/GAME/renamed";
+        std::string raw;std::vector<CachedMedia> decodedMedia;
+        assert(InstalledDirectoryCache::encodeMedia({media,other},raw));
+        assert(InstalledDirectoryCache::decodeMedia(raw,decodedMedia));
+        assert(decodedMedia.size()==2 && decodedMedia[0].bytes==media.bytes);
+        assert(decodedMedia[0].contentId==media.contentId && decodedMedia[0].payloadStamp==34);
+        assert(!InstalledDirectoryCache::decodeMedia(raw.substr(0,raw.size()-1),decodedMedia));
+        assert(decodedMedia.empty());
+        assert(!InstalledDirectoryCache::encodeMedia({media,media},raw));
+        other.path="ux0:pspemu/PSP/SAVEDATA/game";
+        assert(!InstalledDirectoryCache::encodeMedia({other},raw));
+        other=media;other.title="bad\tfield";
+        assert(!InstalledDirectoryCache::encodeMedia({other},raw));
+        other=media;other.sizeKnown=false;
+        assert(!InstalledDirectoryCache::encodeMedia({other},raw));
+        other=media;other.platform=3;
+        assert(!InstalledDirectoryCache::encodeMedia({other},raw));
+        assert(!InstalledDirectoryCache::decodeMedia("PSVA_DIR_INDEX_V1\n",decodedMedia));
+        assert(InstalledDirectoryCache::encodeMedia({media},raw));
+        std::vector<CachedDirectory> dirs;
+        assert(!InstalledDirectoryCache::decode(raw,dirs));
+    }
     const CachedDirectory kotor{"KOTR00001","ux0:data/kotor",12345,26000000,true};
     const CachedDirectory another{"ABCD12345","ux0:data/example",0,0,false};
     std::vector<CachedDirectory> rows{kotor,another};
