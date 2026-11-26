@@ -22,7 +22,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/KartingSackboy06/insaniquarium-vita/releases/download/v1.00a/InsaniquariumVita.vpk",
+      "u": "https://archive.org/download/psvitaalive-insaniquarium/insaniquarium%20v1.00.vpk",
       "sz": 7444890,
       "rec": true
     },
@@ -32,9 +32,9 @@
       "u": "https://github.com/KartingSackboy06/insaniquarium-vita"
     }
   ],
-  "ic": "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-insaniquarium/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/KartingSackboy06/insaniquarium-vita/refs/heads/main/sce_sys/pic0.png"
+    "https://archive.org/download/psvitaalive-insaniquarium/shot_01.png"
   ],
   "su": "https://github.com/KartingSackboy06/insaniquarium-vita"
 }
