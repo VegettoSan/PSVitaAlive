@@ -282,8 +282,7 @@ private:
     std::vector<std::pair<uint64_t,size_t>> queueReportedSteps_;
     bool queueStepReported(uint64_t job,size_t step) const;
     bool canReportQueueStep(const ::psvitaalive::queue::Job& job,size_t step) const;
-    int firstQueueReportStep(const ::psvitaalive::queue::Job& job) const;
-    void openQueueJobDetail(bool preferFailure=false);
+    void openQueueJobDetail();
     void moveQueueStepFocus(int delta);
     void sendQueueStepReport(uint64_t job,size_t step);
     const ::psvitaalive::queue::Job* queuedJobFor(const CatalogItem& item) const;
