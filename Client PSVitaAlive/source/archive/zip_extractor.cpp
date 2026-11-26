@@ -695,10 +695,25 @@ ZipResult ZipExtractor::extract(
                 zipPath + ".range" + std::to_string(n)));
     }
 
+    // Bound CPU bursts in every extraction phase, including metadata-only
+    // work and zero-length entries. Never wait inside a filesystem operation.
+    uint64_t lastYieldUs = sceKernelGetProcessTimeWide();
+    uint64_t bytesSinceYield = 0;
+    const auto cooperate = [&](uint64_t bytes=0) {
+        bytesSinceYield += bytes;
+        const uint64_t now = sceKernelGetProcessTimeWide();
+        if(bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES ||
+           now-lastYieldUs >= ZIP_COOPERATIVE_YIELD_INTERVAL_US) {
+            bytesSinceYield=0;
+            sceKernelDelayThread(1000);
+            lastYieldUs=sceKernelGetProcessTimeWide();
+        }
+    };
     // Pre-scan: sum uncompressed sizes, log large/unusual entries, then verify free space.
     uint64_t uncompressedTotal = 0;
     const uint64_t archiveDiskSize = diskFileSize64(zipPath);
     for (zip_int64_t i = 0; i < numEntries; ++i) {
+        cooperate();
         zip_stat_t zs;
         zip_stat_init(&zs);
         if (zip_stat_index(za, i, 0, &zs) == 0 && zs.name) {
@@ -768,6 +783,7 @@ ZipResult ZipExtractor::extract(
         if (haveSpace && freeB < fullRequired) {
             std::unordered_set<std::string> creditedPaths;
             for (zip_int64_t i = 0; i < numEntries; ++i) {
+        cooperate();
                 if (shouldCancel && shouldCancel()) {
                     setError("cancelled");
                     zip_close(za);
@@ -879,6 +895,7 @@ ZipResult ZipExtractor::extract(
     };
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
+        cooperate();
         if (shouldCancel && shouldCancel()) {
             setError("cancelled");
             zip_close(za);
@@ -986,6 +1003,7 @@ ZipResult ZipExtractor::extract(
     // Preflight every actual output directory. The staged members are prepared
     // in the temporary tree, never in their deep final paths during extraction.
     for (const std::string& dir : requiredDirs) {
+        cooperate();
         if (findBranch(dir)) continue;
         if (!st.isDirectory(dir) && !st.createDirectories(dir)) {
             setError("cannot prepare ZIP directory: " + dir +
@@ -995,6 +1013,7 @@ ZipResult ZipExtractor::extract(
         }
     }
     for (StagedBranch& branch : staged) {
+        cooperate();
         const auto slash = branch.destination.find_last_of('/');
         const std::string parent = branch.destination.substr(0, slash);
         if (!st.isDirectory(parent) || !st.createDirectories(branch.staging)) {
@@ -1041,6 +1060,7 @@ ZipResult ZipExtractor::extract(
     // child; that respects the installer-only contract, but we explicitly log
     // that runtime accessibility is UNVERIFIED.
     for (zip_int64_t i = 0; i < numEntries; ++i) {
+        cooperate();
         zip_stat_t zs;
         zip_stat_init(&zs);
         if (zip_stat_index(za, i, 0, &zs) != 0) {
@@ -1101,10 +1121,9 @@ ZipResult ZipExtractor::extract(
     uint64_t fastExistingOpens = 0, checkedExistingOpens = 0;
     ZipExistingOpenPolicy openPolicy;
     bool exclusiveCreationSupported = true;
-    uint64_t bytesSinceYield = 0;
-    uint64_t lastYieldUs = sceKernelGetProcessTimeWide();
 
     for (zip_int64_t i = 0; i < numEntries; ++i) {
+        cooperate();
         if (shouldCancel && shouldCancel()) {
             setError("cancelled");
             outcome = ZipResult::Cancelled;
@@ -1339,15 +1358,7 @@ ZipResult ZipExtractor::extract(
             writtenTotal += static_cast<uint64_t>(n);
             prog.bytesWritten += static_cast<uint64_t>(n);
             reportProgress();
-            bytesSinceYield += static_cast<uint64_t>(n);
-            const uint64_t nowYieldUs = sceKernelGetProcessTimeWide();
-            if (bytesSinceYield >= ZIP_COOPERATIVE_YIELD_BYTES ||
-                nowYieldUs - lastYieldUs >= ZIP_COOPERATIVE_YIELD_INTERVAL_US) {
-                bytesSinceYield = 0;
-                // No extra buffer, no change to validation/cancellation.
-                sceKernelDelayThread(1000);
-                lastYieldUs = sceKernelGetProcessTimeWide();
-            }
+            cooperate(static_cast<uint64_t>(n));
         }
 
         const int zipCloseResult = zip_fclose(zf);

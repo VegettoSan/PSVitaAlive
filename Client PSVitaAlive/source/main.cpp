@@ -816,8 +816,44 @@ int main(){
     bool archiveProbeStarted = false;
     bool archiveProbeHandled = false;
     bool emptyCatalogRecoveryRequested[static_cast<int>(psvitaalive::ui::CatalogType::Count)] = {};
+    // Queue-only frame telemetry: bounded counters, at most one summary
+    // every 10 seconds (or on a phase change), and only if slow frames occurred.
+    // Keep UI draw time distinct from the rest of the main-loop interval.
+    struct QueueFrameStats {
+        uint64_t start=0, previous=0, frames=0, slow=0, verySlow=0, maxLoop=0, maxUi=0, maxOther=0, lastUi=0;
+        std::string phase;
+    } frameStats;
+    auto flushFrameStats=[&]() {
+        if(frameStats.slow)psvitaalive::diagnostics::log("[QueuePerf] phase="+frameStats.phase+
+            " frames="+std::to_string(frameStats.frames)+" over50ms="+std::to_string(frameStats.slow)+
+            " over100ms="+std::to_string(frameStats.verySlow)+" max_loop_ms="+std::to_string(frameStats.maxLoop/1000)+
+            " max_ui_ms="+std::to_string(frameStats.maxUi/1000)+" max_other_ms="+std::to_string(frameStats.maxOther/1000));
+        frameStats.frames=frameStats.slow=frameStats.verySlow=frameStats.maxLoop=frameStats.maxUi=frameStats.maxOther=0;
+    };
 while(true){
+        const bool measureQueue=queue.protectedSession();
+        const uint64_t frameBegin=measureQueue || frameStats.previous?sceKernelGetProcessTimeWide():0;
+        if(frameStats.previous && frameBegin>=frameStats.previous) {
+            const uint64_t interval=frameBegin-frameStats.previous;
+            ++frameStats.frames;
+            if(interval>=50000ULL)++frameStats.slow;
+            if(interval>=100000ULL)++frameStats.verySlow;
+            frameStats.maxLoop=std::max(frameStats.maxLoop,interval);
+            frameStats.maxUi=std::max(frameStats.maxUi,frameStats.lastUi);
+            frameStats.maxOther=std::max<uint64_t>(frameStats.maxOther,interval>frameStats.lastUi?interval-frameStats.lastUi:0ULL);
+        }
+        if(measureQueue) {
+            const auto& stage=queue.observation().status.stage;
+            if(!frameStats.start || frameStats.phase!=stage || frameBegin-frameStats.start>=10000000ULL) {
+                flushFrameStats();
+                frameStats.phase=stage;frameStats.start=frameBegin;
+            }
+            frameStats.previous=frameBegin;
+        } else if(frameStats.previous) {
+            flushFrameStats();frameStats.previous=frameStats.start=0;
+        }
         if (!screen.updateAndDraw()) break;
+        if(measureQueue)frameStats.lastUi=sceKernelGetProcessTimeWide()-frameBegin;
 
         // After a few frames, surface plugin warnings safely.        // After a few frames, surface plugin warnings safely.
         if (pluginWarnPending) {
