@@ -1,0 +1,62 @@
+{
+  "app_id": "burnout-legends-vita",
+  "identifier": "psvitaalive-burnout-legends-vita",
+  "source_url": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.3/burnout-gl-0.0.3.vpk",
+  "files": {
+    "burnout-legends-vita v0.0.3.vpk": {
+      "size": 38469483,
+      "md5": "fa788e386ecd767529066e0db606e689",
+      "sha256": "5ee79c6abe984d1e18ce738bdc83b52a482507ede123a05c45028dddbb4f29a6"
+    },
+    "icon0.png": {
+      "size": 11564,
+      "md5": "1126067b1db7e228e00664ce26ad2630",
+      "sha256": "df65506fcb2f7d90aa8d7ed5cfe16df2d26450efe833588751fe50141ab3deb5"
+    },
+    "shot_01.jpg": {
+      "size": 154060,
+      "md5": "31d2006319c11c45e196c3967c614165",
+      "sha256": "52186147a06a244330f326970c3f876088cae3a176eee194c7c82c274cc7b786"
+    },
+    "shot_02.jpg": {
+      "size": 134241,
+      "md5": "fcb036de74bd0615a103e8f04542a058",
+      "sha256": "6e173010f41157e7db23deb29cab5a875634f934ff8f7743fb2fcba7f6967ffa"
+    },
+    "shot_03.jpg": {
+      "size": 106067,
+      "md5": "4ea67dfa38ae1905509e663981ce2969",
+      "sha256": "5219db26b4ecdba64ca38da7cea431f859c7fadd377183f4521c20bad7f9cb55"
+    },
+    "SOURCES.txt": {
+      "size": 770,
+      "md5": "bba8d90b31e76b8368d4e26ee1002ce0",
+      "sha256": "d2a6fd97c4cea2db0a7d83a8fe7a3c678e958898ffa9c18a5afa854b4e1abf56"
+    }
+  },
+  "media": {
+    "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.2/icon0.png": "icon0.png",
+    "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/race.jpg": "shot_01.jpg",
+    "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/takedown.jpg": "shot_02.jpg",
+    "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/menu.jpg": "shot_03.jpg"
+  },
+  "attempted": [
+    "burnout-legends-vita v0.0.3.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:38:55+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "BRNG00001",
+    "name": "Burnout Legends 2.0",
+    "search_title": "Burnout Legends 2.0",
+    "version": "0.0.3",
+    "repo": "LAB0ULANGE/BurnoutLegends-Vita",
+    "tag": "v0.0.3",
+    "asset": "burnout-gl-0.0.3.vpk",
+    "url": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.3/burnout-gl-0.0.3.vpk",
+    "size": 38469483,
+    "sha256": "5ee79c6abe984d1e18ce738bdc83b52a482507ede123a05c45028dddbb4f29a6",
+    "creator": "LAB0ULANGE"
+  }
+}
