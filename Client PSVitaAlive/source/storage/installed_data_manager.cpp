@@ -501,8 +501,10 @@ bool InstalledDataManager::prepareExternalRemoval(
     if (!validateExternalRemoval(snapshot, titleId, target,
                                  confirmedCatalogShare)) return false;
     uint64_t total = 0;
-    for (const auto& path : target->paths) {
+    for (size_t i = 0; i < target->paths.size(); ++i) {
+        const auto& path = target->paths[i];
         if (!path.exists) continue;
+        if (progress) progress->currentRootIndex.store(static_cast<uint32_t>(i), std::memory_order_release);
         SceIoStat st{};
         if (!exists(path.path, &st)) return false;
         uint32_t entries = 0;
@@ -513,8 +515,10 @@ bool InstalledDataManager::prepareExternalRemoval(
         total = sum(total, entries);
     }
     if (!total) return false;
-    if (progress)
+    if (progress) {
+        progress->currentRootIndex.store(UINT32_MAX, std::memory_order_release);
         progress->entriesTotal.store(total, std::memory_order_release);
+    }
     return true;
 }
 
@@ -555,8 +559,10 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
             }
         }
     }
-    for (const auto& path : target->paths) {
+    for (size_t i = 0; i < target->paths.size(); ++i) {
+        const auto& path = target->paths[i];
         if (!path.exists) continue;
+        if (progress) progress->currentRootIndex.store(static_cast<uint32_t>(i), std::memory_order_release);
         uint32_t count = 0;
         if (!eraseTree(path.path, 0, count, progress)) {
             diagnostics::log("[InstalledData] unable to remove " + path.path);
@@ -565,6 +571,7 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
             progress->rootsCompleted.fetch_add(1, std::memory_order_release);
         }
     }
+    if (progress) progress->currentRootIndex.store(UINT32_MAX, std::memory_order_release);
     return removed;
 }
 
