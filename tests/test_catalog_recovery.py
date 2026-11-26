@@ -78,7 +78,16 @@ for name in ("activatePrimaryAction", "applyPspLiveAreaPluginGateOrRun", "openIn
 launch = ui.split("void FullCatalogScreen::activatePrimaryAction(", 1)[1].split("bool FullCatalogScreen::itemSupportsInstallAll", 1)[0]
 assert launch.index("guardCatalogAction()") < launch.index("sceAppMgrLaunchAppByUri")
 switch = ui.split("void FullCatalogScreen::changeCatalog(", 1)[1].split("void FullCatalogScreen::", 1)[0]
-assert switch.index("catalogWorkExcluded()") < switch.index("allItems_.swap(empty)")
+# A rejected request must leave the active payload and tab unchanged.
+accept = switch.index("!catalogChange_(n, previous, allItems_)")
+assert switch.index("catalogWorkExcluded()") < accept
+assert accept < switch.index("state_.catalog=n;")
+assert accept < switch.index("std::vector<CatalogItem>().swap(allItems_)")
+assert accept < switch.index("releaseTextures()")
+assert "catalog_memory::catalogSwitchBlocked(" in request
+assert request.index("catalog_memory::catalogSwitchBlocked(") < request.index("catalog_memory::retainForSelection(")
+assert request.index("catalog_memory::catalogSwitchBlocked(") < request.index("++requestGeneration_")
+assert soft.index("releaseInactiveCachesLocked();") < soft.index("http.downloadToFile(")
 assert 'L("CATALOG_ACTION_WAIT"), 5600' in ui
 assert "catalogPriorityToastUntilMs_" in ui
 for lang in ("en", "es", "fr", "de", "it", "pt-BR", "pt-PT", "ru"):
