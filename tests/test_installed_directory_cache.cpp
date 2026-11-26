@@ -36,6 +36,41 @@ int main() {
         std::vector<CachedDirectory> dirs;
         assert(!InstalledDirectoryCache::decode(raw,dirs));
     }
+    // A parent must be successfully checked before an absent row is pruned.
+    // Cache reconciliation never conflates the same ID on two mounts.
+    {
+        CachedMedia ux;ux.path="ux0:pspemu/ISO/game.iso";ux.rootStamp=1;ux.payloadStamp=1;
+        ux.platform=1;ux.id="ULUS12345";
+        auto uma=ux;uma.path="uma0:pspemu/ISO/game.iso";
+        auto uncertain=ux;uncertain.path="ux0:pspemu/ISO/unreadable.iso";
+        auto ps1=ux;ps1.path="ux0:pspemu/PSP/GAME/ps1";ps1.directory=true;ps1.platform=2;
+        std::vector<CachedMedia> previous{ux,uma,uncertain,ps1};
+        std::vector<CachedMedia> observed;
+        reconcileCacheObservations(previous,observed,{"ux0:pspemu/ISO"},{uncertain.path});
+        assert(observed.size()==3);
+        assert(observed[0].path==uma.path && observed[1].path==uncertain.path && observed[2].path==ps1.path);
+        // No successful listing: preserve previous cache, not a live row.
+        observed.clear();reconcileCacheObservations(previous,observed,{},{});
+        assert(observed.size()==4);
+        // A newer observation supersedes the old path, no duplicates.
+        auto refreshed=uma;refreshed.rootStamp=2;observed={refreshed};
+        reconcileCacheObservations(previous,observed,{"ux0:pspemu/ISO","ux0:pspemu/PSP/GAME"},{});
+        assert(observed.size()==1 && observed[0].rootStamp==2);
+        // Both mounts were checked and every game is gone.
+        observed.clear();
+        reconcileCacheObservations(previous,observed,{"ux0:pspemu/ISO","uma0:pspemu/ISO","ux0:pspemu/PSP/GAME"},{});
+        assert(observed.empty());
+    }
+    {
+        CachedDirectory removed{"PCSA12345","ux0:app/PCSA12345",1,123,true};
+        CachedDirectory kept{"PCSB12345","ux0:app/PCSB12345",2,456,true};
+        CachedDirectory unreadable{"PCSE12345","ux0:app/PCSE12345",3,789,true};
+        std::vector<CachedDirectory> previous{removed,kept,unreadable}, observed{kept};
+        reconcileCacheObservations(previous,observed,{"ux0:app"},{unreadable.path});
+        assert(observed.size()==2 && observed[0].titleId==kept.titleId && observed[1].titleId==unreadable.titleId);
+        observed.clear();reconcileCacheObservations(previous,observed,{},{});
+        assert(observed.size()==3);
+    }
     const CachedDirectory kotor{"KOTR00001","ux0:data/kotor",12345,26000000,true};
     const CachedDirectory another{"ABCD12345","ux0:data/example",0,0,false};
     std::vector<CachedDirectory> rows{kotor,another};
