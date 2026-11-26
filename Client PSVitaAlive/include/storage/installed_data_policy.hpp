@@ -142,7 +142,8 @@ inline bool safeGameMediaPath(const std::string& path,bool directory) {
 inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
     if(app.mediaRow) return !app.blocked && !app.packagePresent && app.paths.size()==1 &&
         app.paths[0].exists && app.titleId==app.paths[0].path &&
-        safeGameMediaPath(app.paths[0].path,app.mediaDirectory) && app.mediaStamp!=0;
+        safeGameMediaPath(app.paths[0].path,app.mediaDirectory) && app.mediaStamp!=0 &&
+        (!app.mediaDirectory || app.mediaPayloadStamp!=0);
     if (app.blocked || app.unresolved ||
         !validInstalledTitleId(app.titleId) || app.titleId == "PSVAS1178" ||
         app.appId == "psvitaalive" || app.appId == "ps-vita-alive") return false;
