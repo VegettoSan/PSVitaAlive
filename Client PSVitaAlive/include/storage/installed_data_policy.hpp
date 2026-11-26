@@ -201,6 +201,25 @@ inline bool installedDataHasCatalogShare(const InstalledDataSnapshot& snapshot,
     return false;
 }
 
+// Sort by the same combined measured bytes displayed in the list.
+// Incomplete rows go last, not zero bytes. Historical complete sizes
+// remain usable for ordering and are still labeled as historical.
+inline bool installedDataListSizeKnown(const InstalledDataApp& app) {
+    if (app.packagePresent && !app.packageSizeKnown) return false;
+    for (const auto& path : app.paths)
+        if (path.exists && !path.sizeKnown) return false;
+    return true;
+}
+inline uint64_t installedDataListBytes(const InstalledDataApp& app) {
+    const uint64_t package = app.packagePresent ? app.packageBytes : 0;
+    return UINT64_MAX - package < app.bytes ? UINT64_MAX : package + app.bytes;
+}
+inline bool installedDataLargerFirst(const InstalledDataApp& a,const InstalledDataApp& b) {
+    const bool ak=installedDataListSizeKnown(a),bk=installedDataListSizeKnown(b);
+    if(ak!=bk)return ak;
+    return ak && installedDataListBytes(a)>installedDataListBytes(b);
+}
+
 // UI wording must reflect the observed installed roots, not just the
 // existence of a Game Files link in the catalog. Pure and host-testable.
 inline const char* installedDataActionNoteKey(int action, bool hasExternal) {
