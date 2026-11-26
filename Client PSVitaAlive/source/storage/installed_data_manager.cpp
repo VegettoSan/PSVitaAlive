@@ -523,14 +523,14 @@ std::string filenameId(std::string name) {
     return id;
 }
 }
-InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<InstalledDataApp>& catalog,
+InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCatalogIdentity>& catalog,
         unsigned mode,InstalledDataScanProgress* progress,uint64_t budgetUs) {
     InstalledDataSnapshot out;
     ScanContext ctx;ctx.progress=progress;ctx.startUs=sceKernelGetProcessTimeWide();ctx.budgetUs=budgetUs;
     if(progress)progress->phase.store(1,std::memory_order_release);
     // Build one lookup map; ambiguous aliases cannot identify any row.
-    std::unordered_map<std::string,const InstalledDataApp*> byId;
-    auto add=[&](const std::string& raw,const InstalledDataApp& app) {
+    std::unordered_map<std::string,const GameCatalogIdentity*> byId;
+    auto add=[&](const std::string& raw,const GameCatalogIdentity& app) {
         const auto id=media::idOf(raw);if(id.empty())return;
         auto inserted=byId.emplace(id,&app);
         if(!inserted.second && inserted.first->second!=&app)inserted.first->second=nullptr;
@@ -545,7 +545,7 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<Installe
             at=end+1;
         }
     }
-    auto lookup=[&](const std::string& id)->const InstalledDataApp* {
+    auto lookup=[&](const std::string& id)->const GameCatalogIdentity* {
         const auto it=byId.find(id);return it==byId.end()?nullptr:it->second;
     };
     if(mode==1) {
@@ -563,7 +563,8 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<Installe
                 const auto path="ux0:app/"+id;
                 SceIoStat st{},sfoStat{};
                 if(!exists(path,&st)||!directory(st)||!exists(path+"/sce_sys/param.sfo",&sfoStat)||!regular(sfoStat))continue;
-                InstalledDataApp row=*match;row.titleId=id;row.packagePresent=true;row.packageRootStamp=rootFingerprint(st);
+                InstalledDataApp row;row.appId=match->appId;row.name=match->name;row.icon=match->icon;
+                row.titleId=id;row.packagePresent=true;row.packageRootStamp=rootFingerprint(st);
                 const auto* saved=InstalledDirectoryCache::find(cache,id,path);
                 if(saved&&saved->sizeKnown&&row.packageRootStamp&&saved->rootStamp==row.packageRootStamp) {
                     row.packageBytes=saved->bytes;row.packageSizeKnown=true;row.packageSizeCached=true;
