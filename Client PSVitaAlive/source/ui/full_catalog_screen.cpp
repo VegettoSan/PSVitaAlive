@@ -1221,7 +1221,7 @@ constexpr int FULL_CARD_H=136,SPLIT_CARD_H=118,DETAIL_HEADER_H=108,LINE_H=24,DET
 constexpr size_t MAX_APP_TEXTURES=18,MAX_SCREENSHOT_TEXTURES=6;
 constexpr int CATALOG_SWITCH_COOLDOWN_FRAMES=50; // ~0.83s at 60fps
 constexpr uint64_t CATALOG_SWITCH_MIN_MS=900; // hard debounce against L/R spam
-constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;
+constexpr size_t MAX_DEFERRED_FREES_PER_FRAME=8;constexpr uint64_t DIRECTION_REPEAT_DELAY_US=320000,DIRECTION_REPEAT_INTERVAL_US=420000;
 constexpr uint64_t IMAGE_NAV_RELEASE_GRACE_US=150000; // keep image work paused briefly after vertical navigation
 const char* extOf(const std::string&p){const size_t d=p.find_last_of('.');return d==std::string::npos?"":p.c_str()+d;}std::string formatBytes(uint64_t b){char o[64];double v=(double)b;if(b>=1024ULL*1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f GB",v/(1024.0*1024.0*1024.0));else if(b>=1024ULL*1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f MB",v/(1024.0*1024.0));else if(b>=1024ULL)sceClibSnprintf(o,sizeof(o),"%.2f KB",v/1024.0);else sceClibSnprintf(o,sizeof(o),"%llu B",(unsigned long long)b);return o;}std::string lowerAscii(std::string s){for(char&c:s)c=(char)std::tolower((unsigned char)c);return s;}std::string ellipsize(const std::string&s,size_t n){if(s.size()<=n)return s;if(n<=3)return s.substr(0,n);return s.substr(0,n-3)+"...";}
 
@@ -7353,7 +7353,7 @@ bool FullCatalogScreen::handleChromeNavigation(uint32_t pressed, uint32_t nav,
         chromeConfirmAwaitRelease_ = true;
         return true;
     }
-    // Fresh Up/Down between zones; left/right use the same single-press rule.
+    // Fresh Up/Down only between zones; left/right can repeat within a row.
     if (nav & SCE_CTRL_LEFT)
         navigationFocus_.move(FocusDirection::Left, clear, filters, activeTab, tabs);
     else if (nav & SCE_CTRL_RIGHT)
@@ -7381,14 +7381,45 @@ void FullCatalogScreen::handleInput(){
         chromeConfirmAwaitRelease_ = false;
     }
     if (installedDataVisible_) {
-        handleInstalledDataInput(framePressed,framePressed & NAV_DIRECTION_MASK);
+        const SceCtrlData& pad=controllerPad;
+        static uint32_t prevIdAnalog=0;
+        static uint64_t idRepeatAt=0;
+        const uint32_t pressed=framePressed;
+        const uint32_t analog=leftStickNavMask(pad);
+        const uint32_t direct=(pressed & NAV_DIRECTION_MASK)|
+                              (analog & ~prevIdAnalog);
+        const uint32_t held=(pad.buttons & NAV_DIRECTION_MASK)|analog;
+        const uint64_t now=sceKernelGetProcessTimeWide();
+        uint32_t repeat=0;
+        if(!held) idRepeatAt=0;
+        else if(direct) idRepeatAt=now+330000ULL;
+        else if(idRepeatAt&&now>=idRepeatAt){
+            repeat=held;idRepeatAt=now+130000ULL;
+        }
+        prevIdAnalog=analog;
+        handleInstalledDataInput(pressed,direct|repeat);
         return;
     }
     if (storageVisible_) {
+        const SceCtrlData& pad=controllerPad;
+        static uint32_t prevStorageAnalog=0;
+        static uint64_t storageRepeatAt=0;
         const uint32_t pressed=framePressed;
-        const uint32_t held=(controllerPad.buttons | leftStickNavMask(controllerPad)) & NAV_DIRECTION_MASK;
-        verticalNavHeld_=held!=0;
-        if(verticalNavHeld_) imageWorkResumeAfterUs_=sceKernelGetProcessTimeWide()+IMAGE_NAV_RELEASE_GRACE_US;
+        const uint32_t analog=leftStickNavMask(pad);
+        const uint32_t direct=(pressed & NAV_DIRECTION_MASK) |
+                              (analog & ~prevStorageAnalog);
+        const uint32_t held=(pad.buttons & NAV_DIRECTION_MASK)|analog;
+        const uint64_t now=sceKernelGetProcessTimeWide();
+        verticalNavHeld_=(held&(SCE_CTRL_UP|SCE_CTRL_DOWN|SCE_CTRL_LEFT|SCE_CTRL_RIGHT))!=0;
+        if(verticalNavHeld_) imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;
+        uint32_t repeat=0;
+        if(!held) storageRepeatAt=0;
+        else if(direct) storageRepeatAt=now+330000ULL;
+        else if(storageRepeatAt && now>=storageRepeatAt) {
+            repeat=held;
+            storageRepeatAt=now+130000ULL;
+        }
+        prevStorageAnalog=analog;
         if(pressed & SCE_CTRL_CIRCLE) {
             if(storageConfirm_) {
                 storageConfirm_=false;
@@ -7401,7 +7432,7 @@ void FullCatalogScreen::handleInput(){
             executeStorageAll();
             return;
         }
-        const uint32_t nav=pressed & NAV_DIRECTION_MASK;
+        const uint32_t nav=direct|repeat;
         if(nav & (SCE_CTRL_UP|SCE_CTRL_LEFT)) {
             const int step=(nav&SCE_CTRL_LEFT)?4:1;
             storageFocus_=std::max(0,storageFocus_-step);
@@ -7470,7 +7501,10 @@ void FullCatalogScreen::handleInput(){
     }
     if (pluginChoiceModal_) {
         const uint32_t pressed=framePressed;
-        const uint32_t direction=pressed & NAV_DIRECTION_MASK;
+        static uint32_t prevPluginAnalog=0;
+        const uint32_t analog=leftStickNavMask(controllerPad);
+        const uint32_t direction=(pressed & NAV_DIRECTION_MASK) | (analog & ~prevPluginAnalog);
+        prevPluginAnalog=analog;
         if (direction & SCE_CTRL_UP) pluginChoiceScrollLine_ = std::max(0, pluginChoiceScrollLine_ - 1);
         if (direction & SCE_CTRL_DOWN) pluginChoiceScrollLine_ = std::min(pluginChoiceMaxScrollLine_, pluginChoiceScrollLine_ + 1);
         if (direction & SCE_CTRL_LEFT) pluginChoiceFocus_ = 0;
@@ -7481,7 +7515,10 @@ void FullCatalogScreen::handleInput(){
     }
     if (essentialPluginsModal_) {
         const uint32_t pressed=framePressed;
-        const uint32_t navPressed=pressed & NAV_DIRECTION_MASK;
+        static uint32_t prevAnalogEss=0;
+        const uint32_t analog=leftStickNavMask(controllerPad);
+        const uint32_t navPressed=(pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogEss);
+        prevAnalogEss=analog;
         if (navPressed & SCE_CTRL_LEFT) essentialPluginsFocus_ = 0;
         if (navPressed & SCE_CTRL_RIGHT) essentialPluginsFocus_ = 1;
         if (pressed & SCE_CTRL_CROSS) closeEssentialPluginsPrompt(essentialPluginsFocus_ == 0);
@@ -7490,7 +7527,10 @@ void FullCatalogScreen::handleInput(){
     }
     if (pspSetupModal_) {
         const uint32_t pressed=framePressed;
-        const uint32_t navPressed=pressed & NAV_DIRECTION_MASK;
+        static uint32_t prevAnalogPsp=0;
+        const uint32_t analog=leftStickNavMask(controllerPad);
+        const uint32_t navPressed=(pressed & NAV_DIRECTION_MASK) | (analog & ~prevAnalogPsp);
+        prevAnalogPsp=analog;
         const bool adrenaline = pspSetupTarget_ == ::psvitaalive::PspTarget::Adrenaline;
         if (pressed & SCE_CTRL_CIRCLE) { closePspSetupWizard(false); return; }
         if (navPressed & SCE_CTRL_LEFT) {
@@ -7538,12 +7578,7 @@ void FullCatalogScreen::handleInput(){
         if (controllerPad.buttons & (SCE_CTRL_CROSS | SCE_CTRL_CIRCLE)) return;
         pluginChoiceAwaitRelease_ = false;
     }
-if(isTransitioning())return;
-const SceCtrlData& p=controllerPad;
-uint32_t pressed=framePressed,direct=pressed&NAV_DIRECTION_MASK,nav=direct;
-const uint32_t heldNav=(p.buttons|leftStickNavMask(p))&NAV_DIRECTION_MASK;
-verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;
-if(verticalNavHeld_)imageWorkResumeAfterUs_=sceKernelGetProcessTimeWide()+IMAGE_NAV_RELEASE_GRACE_US;
+if(isTransitioning())return;const SceCtrlData& p=controllerPad;static uint32_t prevAnalog=0;static uint64_t repeatAt=0;const uint32_t analogNav=leftStickNavMask(p);const uint32_t heldNav=(p.buttons&NAV_DIRECTION_MASK)|analogNav;uint32_t pressed=framePressed,direct=(pressed&NAV_DIRECTION_MASK)|(analogNav&~prevAnalog);uint64_t now=sceKernelGetProcessTimeWide(),repeat=0;verticalNavHeld_=(heldNav&(SCE_CTRL_UP|SCE_CTRL_DOWN))!=0;if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;if(heldNav==0)repeatAt=0;else if(direct)repeatAt=now+DIRECTION_REPEAT_DELAY_US;else if(repeatAt&&now>=repeatAt){repeat=heldNav;repeatAt=now+DIRECTION_REPEAT_INTERVAL_US;}prevAnalog=analogNav;uint32_t nav=direct|repeat;
 if (pressed || nav) navigationFocus_.controller();
 if (!themeSetupVisible_ && !newsVisible_ &&
     (p.buttons & (SCE_CTRL_SELECT | SCE_CTRL_SQUARE)) ==
@@ -12571,6 +12606,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     queueVisible_=true; queueDetail_=detail; queueSelectedId_=id;
     queueScroll_=0; queueStepScroll_=0; queueConfirmCancel_=false;
     queueAwaitRelease_=true; queueTouchAwaitRelease_=true; queueTouchDown_=false; touchDown_=false;
+    queueVerticalNavigation_.reset();
     queueTransitionUs_=sceKernelGetProcessTimeWide();
     const auto& jobs=queueSession_->jobs();
     if(queueHistoryMode()) {
@@ -12590,6 +12626,7 @@ void FullCatalogScreen::closeQueue() {
         if(reboot) pluginRebootModal_=true;
     }
     queueVisible_=queueDetail_=queueConfirmCancel_=false;
+    queueVerticalNavigation_.reset();
     verticalNavHeld_=false;
     queueReorderUs_=0;
     queueTouchDown_=touchDown_=false;
@@ -13125,12 +13162,16 @@ void FullCatalogScreen::drawQueueScreen() {
 void FullCatalogScreen::handleQueueInput(uint32_t pressed, uint32_t heldButtons) {
     if(!queueSession_)return;
     syncQueueDisplay();
+    // Combine the physical D-pad with the same left-stick dead zone used
+    // by the catalog. Buttons remain edge-triggered and never auto-repeat.
     const uint32_t held=heldButtons & (SCE_CTRL_UP|SCE_CTRL_DOWN);
-    const uint32_t nav=pressed & (SCE_CTRL_UP|SCE_CTRL_DOWN);
-    const int move=nav==SCE_CTRL_UP?-1:(nav==SCE_CTRL_DOWN?1:0);
+    const uint64_t now=sceKernelGetProcessTimeWide();
     const bool reorderBlocked=!queueDetail_ && queueReorderActive();
+    const int move=queueVerticalNavigation_.sample(
+        (held&SCE_CTRL_UP)!=0,(held&SCE_CTRL_DOWN)!=0,now,
+        queueAwaitRelease_ || queueConfirmCancel_ || reorderBlocked);
     verticalNavHeld_=held!=0;
-    if(verticalNavHeld_)imageWorkResumeAfterUs_=sceKernelGetProcessTimeWide()+IMAGE_NAV_RELEASE_GRACE_US;
+    if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;
     if(queueAwaitRelease_) {
         if(!held && !(heldButtons&(SCE_CTRL_CROSS|SCE_CTRL_CIRCLE|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_START)))
             queueAwaitRelease_=false;
