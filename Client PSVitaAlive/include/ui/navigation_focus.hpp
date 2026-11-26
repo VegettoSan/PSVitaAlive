@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace psvitaalive::ui {
 
 enum class FocusZone { Catalog, Header, Tabs, Footer };
@@ -39,8 +41,10 @@ public:
     void footer(int selected = 0) { zone = FocusZone::Footer; index = selected; }
 
     void cycle() {
-        if (zone == FocusZone::Catalog) header();
-        else if (zone == FocusZone::Header || zone == FocusZone::Tabs) footer();
+        // START always advances from the actual focus zone. Tabs belong to
+        // the upper/header section for this three-section cycle.
+        if (zone == FocusZone::Catalog) footer();
+        else if (zone == FocusZone::Footer) header();
         else catalog();
     }
 
@@ -70,6 +74,40 @@ public:
         case FocusZone::Catalog: break;
         }
     }
+};
+
+// Shared vertical navigation for the download manager (D-pad and left
+// stick are merged before sampling). Opposite inputs are neutral. A held
+// direction repeats at a bounded rate; never replay missed repeats.
+class QueueVerticalNavigation {
+public:
+    int sample(bool up, bool down, uint64_t now, bool blocked=false) {
+        const int direction = up == down ? 0 : (up ? -1 : 1);
+        if (blocked) {
+            previous_ = direction;
+            repeatAt_ = 0;
+            return 0;
+        }
+        if (!direction) {
+            previous_ = 0;
+            repeatAt_ = 0;
+            return 0;
+        }
+        if (direction != previous_) {
+            previous_ = direction;
+            repeatAt_ = now + 330000ULL;
+            return direction;
+        }
+        if (repeatAt_ && now >= repeatAt_) {
+            repeatAt_ = now + 130000ULL;
+            return direction;
+        }
+        return 0;
+    }
+    void reset() { previous_ = 0; repeatAt_ = 0; }
+private:
+    int previous_ = 0;
+    uint64_t repeatAt_ = 0;
 };
 
 } // namespace psvitaalive::ui

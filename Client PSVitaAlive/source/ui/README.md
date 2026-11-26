@@ -23,8 +23,9 @@ Rendered with **vita2d** (960×544). Default accent is the store green (`#3BFF00
 ## Controller-only navigation (Vita / PlayStation TV)
 
 - The initial focus is the application grid. D-pad or left stick navigates the grid as before; a fresh Up at the first row enters the active tab, and Down at the final row enters the footer.
-- START cycles catalog → header → footer → catalog after startup; in the header, Down reaches the tabs and Up from the tabs reaches the header. In the split detail view, START preserves the existing detail navigation.
+- START cycles catalog → footer → header → catalog after startup, based on the current focus (tabs count as header); in the header, Down reaches the tabs and Up from the tabs reaches the header. In the split detail view, START preserves the existing detail navigation.
 - X activates the selected search, clear-search, filter, catalog tab, Discord, report or UX0 storage button; Circle returns to catalog focus from the surrounding controls. Existing L/R, Triangle, Square and SELECT shortcuts remain available.
+- The download manager (queue, history, recovery and step details) accepts D-pad or left-stick Up/Down, with a 330 ms initial repeat delay and 130 ms interval. Modal confirmations remain button-only, and navigation waits for neutral after opening or dismissing the OLED protector.
 - Only the focused surrounding control receives a thin theme-colored frame. Touch hides this new surrounding-control indicator and resets its zone to the catalog. The original selected-app border remains visible with both touch and controller navigation, including while scrolling; physical navigation restores the surrounding-control indicator when needed.
 - The shared navigation policy is in `include/ui/navigation_focus.hpp`. Loading and modal input ownership remain in FullCatalogScreen. START never exits the process and retains its keyboard-confirm behavior.
 

@@ -14,6 +14,10 @@ Este documento consolida el estado vigente; las notas de fases anteriores son re
 - El protector OLED tras 60 s de inactividad presenta aplicación, fase/componente, progreso disponible, pendientes/completados, batería y mascota; se puede salir del protector sin cancelar la instalación.
 - Un bloqueo por capacidad permite abrir mantenimiento restringido y reintentar explícitamente. No equivale a permiso de borrar datos instalados.
 
+## Navegación de controles (ajuste posterior a la integración)
+
+START recorre tarjetas → footer → header → tarjetas según la zona real de foco; las pestañas cuentan como header. La selección de la aplicación se conserva. El gestor de descargas, historial, recuperación y detalle de pasos aceptan D-pad y joystick izquierdo vertical, con repetición de 330/130 ms. Se combinan las direcciones para no duplicar pasos, se neutralizan direcciones opuestas y se mantienen las barreras de confirmación y animación. Las acciones X/◯/△/□ y L/R no se repiten automáticamente.
+
 ## Arquitectura e invariantes
 
 ```text

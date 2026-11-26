@@ -12640,6 +12640,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     queueVisible_=true; queueDetail_=detail; queueSelectedId_=id;
     queueScroll_=0; queueStepScroll_=0; queueConfirmCancel_=false;
     queueAwaitRelease_=true; queueTouchAwaitRelease_=true; queueTouchDown_=false; touchDown_=false;
+    queueVerticalNavigation_.reset();
     queueTransitionUs_=sceKernelGetProcessTimeWide();
     const auto& jobs=queueSession_->jobs();
     if(queueHistoryMode()) {
@@ -12659,6 +12660,8 @@ void FullCatalogScreen::closeQueue() {
         if(reboot) pluginRebootModal_=true;
     }
     queueVisible_=queueDetail_=queueConfirmCancel_=false;
+    queueVerticalNavigation_.reset();
+    verticalNavHeld_=false;
     queueReorderUs_=0;
     queueTouchDown_=touchDown_=false;
     chromeConfirmAwaitRelease_=true;
@@ -13196,7 +13199,21 @@ void FullCatalogScreen::handleQueueInput() {
     SceCtrlData pad{}; ::psvitaalive::ui::peekClientController(pad);
     const uint32_t pressed=pad.buttons&~queuePreviousButtons_;
     queuePreviousButtons_=pad.buttons;
-    if(queueAwaitRelease_) { if(!(pad.buttons&(SCE_CTRL_CROSS|SCE_CTRL_CIRCLE|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_START)))queueAwaitRelease_=false; return; }
+    // Combine the physical D-pad with the same left-stick dead zone used
+    // by the catalog. Buttons remain edge-triggered and never auto-repeat.
+    const uint32_t held=(pad.buttons|leftStickNavMask(pad)) & (SCE_CTRL_UP|SCE_CTRL_DOWN);
+    const uint64_t now=sceKernelGetProcessTimeWide();
+    const bool reorderBlocked=!queueDetail_ && queueReorderActive();
+    const int move=queueVerticalNavigation_.sample(
+        (held&SCE_CTRL_UP)!=0,(held&SCE_CTRL_DOWN)!=0,now,
+        queueAwaitRelease_ || queueConfirmCancel_ || reorderBlocked);
+    verticalNavHeld_=held!=0;
+    if(verticalNavHeld_)imageWorkResumeAfterUs_=now+IMAGE_NAV_RELEASE_GRACE_US;
+    if(queueAwaitRelease_) {
+        if(!held && !(pad.buttons&(SCE_CTRL_CROSS|SCE_CTRL_CIRCLE|SCE_CTRL_TRIANGLE|SCE_CTRL_SQUARE|SCE_CTRL_START)))
+            queueAwaitRelease_=false;
+        return;
+    }
     const bool active=queueSession_->activeToken().job==queueSelectedId_ && queueSelectedId_;
     const bool recovery=active && queueStatus_.zipRecoveryAvailable;
     if(queueConfirmCancel_) {
@@ -13205,9 +13222,13 @@ void FullCatalogScreen::handleQueueInput() {
         return;
     }
     if(pressed&SCE_CTRL_CIRCLE){if(queueDetail_)queueDetail_=false;else closeQueue();return;}
-    if(!queueDetail_ && queueReorderActive())return;
-    if(pressed&SCE_CTRL_UP){if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_-1);else queueMove(-1);}
-    if(pressed&SCE_CTRL_DOWN){if(queueDetail_)++queueStepScroll_;else queueMove(1);}
+    if(reorderBlocked)return;
+    // Never move selection and activate a destructive control in one frame.
+    if(move) {
+        if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_+move);
+        else queueMove(move);
+        return;
+    }
     if(queueHistoryMode() && (pressed&SCE_CTRL_RTRIGGER)) {toggleQueueRecovery();return;}
     if(queueRecoveryMode()) {
         const auto& entries=queueRecovery_->entries();

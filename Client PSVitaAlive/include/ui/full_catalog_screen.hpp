@@ -248,6 +248,7 @@ private:
     bool queueTouchMoved_=false;
     uint64_t queueExitFadeUs_=0;
     uint32_t queuePreviousButtons_=0;
+    QueueVerticalNavigation queueVerticalNavigation_;
     uint64_t queueSelectedId_=0,queueTransitionUs_=0;
     uint64_t queueImageDecodeAfterUs_=0;
     bool queuePassiveRead_=false;
