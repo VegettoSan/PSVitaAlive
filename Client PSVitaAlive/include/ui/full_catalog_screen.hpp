@@ -276,6 +276,16 @@ private:
     static constexpr int kQueueRows=3, kQueueRowTop=79, kQueueRowPitch=118, kQueueRowHeight=108;
     static constexpr int kQueueStepRows=2, kQueueStepTop=287, kQueueStepPitch=80, kQueueStepHeight=74;
     int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;
+    int queueStepFocus_=0;
+    uint64_t queueReportSendingJob_=0;
+    size_t queueReportSendingStep_=0;
+    std::vector<std::pair<uint64_t,size_t>> queueReportedSteps_;
+    bool queueStepReported(uint64_t job,size_t step) const;
+    bool canReportQueueStep(const ::psvitaalive::queue::Job& job,size_t step) const;
+    int firstQueueReportStep(const ::psvitaalive::queue::Job& job) const;
+    void openQueueJobDetail(bool preferFailure=false);
+    void moveQueueStepFocus(int delta);
+    void sendQueueStepReport(uint64_t job,size_t step);
     const ::psvitaalive::queue::Job* queuedJobFor(const CatalogItem& item) const;
     const char* queueJobLabel(const ::psvitaalive::queue::Job& job) const;
     void openQueue(uint64_t id=0,bool detail=false);
@@ -808,7 +818,7 @@ private:
         std::string appName, titleId, version, fileName;
     };
     void trySendErrorReport(const std::string& title, const std::string& context,
-                            const ReportTargetOverrides* target = nullptr);
+                            const ReportTargetOverrides* target = nullptr, bool asyncOnly = false);
     void pollReportWorker();
     void drawReportChip();
     void drawReportConfirmOverlay();
