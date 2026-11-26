@@ -118,6 +118,11 @@ jobs:
             tests/test_installed_data_policy.cpp -o /tmp/psvitaalive-installed-data-policy
           /tmp/psvitaalive-installed-data-policy
 
+      - name: Test bounded game media metadata
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_game_media_metadata.cpp -lz -o /tmp/psva-media-test
+          /tmp/psva-media-test
+
       - name: Test storage manager readability and shared deletion UI
         run: |
           python3 tests/test_installed_storage_readability.py
