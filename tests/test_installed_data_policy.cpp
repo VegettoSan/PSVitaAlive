@@ -47,6 +47,23 @@ int main() {
     assert(!installedDataPreservesUr0Dependency("ux0:data/", true, false));
     assert(!safeExternalDataPath("ur0:data/"));
     assert(!safeExternalDataPath("ur0:data/fmod"));
+    assert(safeGameMediaPath("ux0:pspemu/ISO/Game.ISO",false));
+    assert(safeGameMediaPath("uma0:pspemu/ISO/Test.cso",false));
+    assert(safeGameMediaPath("uma0:pspemu/PSP/GAME/renamed",true));
+    assert(safeGameMediaPath("ux0:pspemu/PSP/GAME/EBOOT.PBP",false));
+    assert(!safeGameMediaPath("ux0:pspemu/PSP/GAME/PBOOT.PBP",false));
+    assert(!safeGameMediaPath("ux0:pspemu/ISO/",true));
+    assert(!safeGameMediaPath("ux0:pspemu/ISO/game.iso",true));
+    assert(!safeGameMediaPath("ux0:pspemu/PSP/SAVEDATA/ULUS12345",true));
+    assert(!safeGameMediaPath("ur0:pspemu/ISO/game.iso",false));
+    assert(!safeGameMediaPath("ux0:pspemu/PSP/GAME/../SAVEDATA",true));
+    assert(!safeGameMediaPath("uma0:pspemu/PSP/GAME/foo/bar",true));
+    assert(!safeExternalDataPath("ux0:pspemu/ISO/Game.ISO"));
+    InstalledDataApp mediaApp;mediaApp.mediaRow=true;mediaApp.titleId="ux0:pspemu/ISO/Game.ISO";
+    mediaApp.mediaStamp=1;mediaApp.paths.push_back({});mediaApp.paths[0].path=mediaApp.titleId;mediaApp.paths[0].exists=true;
+    assert(installedDataCanOfferExternalDelete(mediaApp));
+    mediaApp.paths[0].path="ux0:pspemu/ISO/Other.ISO";
+    assert(!installedDataCanOfferExternalDelete(mediaApp));
     for (const auto& root : {"ux0:data/arcaea", "ux0:data/gdash"}) {
         InstalledDataApp app;
         app.titleId = "ARCA69420";
