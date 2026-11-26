@@ -121,7 +121,28 @@ inline bool installedDataActiveCollision(const std::string& target,
 // A known root is deletable even without a VPK, unless another installed VPK
 // is actively claiming that same root. Metadata ambiguity and unsafe paths
 // remain blocked independently of directory size measurement.
+// Separate allowlist for game media. Never widen safeExternalDataPath().
+inline bool safeGameMediaPath(const std::string& path,bool directory) {
+    for(const char* mount:{"ux0:","uma0:"}) {
+        const std::string base=std::string(mount)+"pspemu/";
+        for(const char* section:{"ISO/","PSP/GAME/"}) {
+            const std::string prefix=base+section;
+            if(path.compare(0,prefix.size(),prefix)!=0)continue;
+            const std::string name=path.substr(prefix.size());
+            if(!validInstalledChildName(name))return false;
+            std::string lower=name;for(char& c:lower)c=static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            const auto dot=lower.find_last_of('.');
+            const std::string ext=dot==std::string::npos?"":lower.substr(dot);
+            if(std::string(section)=="ISO/")return !directory && (ext==".iso"||ext==".cso");
+            return directory || (ext==".pbp" && lower!="pboot.pbp");
+        }
+    }
+    return false;
+}
 inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
+    if(app.mediaRow) return !app.blocked && !app.packagePresent && app.paths.size()==1 &&
+        app.paths[0].exists && app.titleId==app.paths[0].path &&
+        safeGameMediaPath(app.paths[0].path,app.mediaDirectory) && app.mediaStamp!=0;
     if (app.blocked || app.unresolved ||
         !validInstalledTitleId(app.titleId) || app.titleId == "PSVAS1178" ||
         app.appId == "psvitaalive" || app.appId == "ps-vita-alive") return false;
