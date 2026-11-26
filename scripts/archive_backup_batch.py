@@ -21,7 +21,7 @@ import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote, urljoin, urlparse
+from urllib.parse import quote, unquote, urljoin, urlparse
 
 import requests
 
@@ -260,10 +260,57 @@ def stream_download(url: str, filename: Path, maximum: int, *, archive: bool = F
             sess.close()
 
 
+def official_asset_metadata(item, *, get=None):
+    """Resolve the exact canonical release URL to authoritative GitHub bytes.
+
+    Catalog size is only an estimate. API errors never authorize a blind PUT.
+    """
+    get = get or requests.get
+    url = item["source_url"]
+    repo = normalized_repo(url)
+    u = urlparse(url)
+    parts = [unquote(p) for p in u.path.split("/") if p]
+    if (not repo or not REPO_PATH.fullmatch(repo) or u.scheme != "https"
+            or u.netloc.lower() != "github.com" or len(parts) != 6
+            or parts[2:4] != ["releases", "download"] or not parts[-1].lower().endswith(".vpk")):
+        raise Deferred("SOURCE_REVIEW", "No trusted release metadata endpoint")
+    headers = {"Accept": "application/vnd.github+json", "User-Agent": "PSVitaAlive-Archive-Batch"}
+    token = os.environ.get("GH_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+    try:
+        response = get(f"https://api.github.com/repos/{repo}/releases/tags/{quote(parts[4], safe='')}",
+                       headers=headers, timeout=(10, 20), allow_redirects=False)
+        if response.status_code != 200:
+            raise Deferred("WAITING_SOURCE", f"Release metadata HTTP {response.status_code}")
+        release = response.json()
+        if release.get("tag_name") != parts[4] or release.get("draft") is not False:
+            raise Deferred("SOURCE_REVIEW", "Release identity is not confirmed")
+        matches = [a for a in release.get("assets", []) if isinstance(a, dict)
+                   and a.get("name") == parts[5] and a.get("state") == "uploaded"
+                   and normalized_repo(a.get("browser_download_url")) == repo
+                   and urlparse(a["browser_download_url"]).netloc.lower() == "github.com"
+                   and urlparse(a["browser_download_url"]).scheme == "https"
+                   and [unquote(p) for p in urlparse(a["browser_download_url"]).path.split("/") if p][2:] == parts[2:]]
+        if len(matches) != 1 or type(matches[0].get("size")) is not int or matches[0]["size"] <= 0:
+            raise Deferred("SOURCE_REVIEW", "No unique official VPK size")
+        asset = matches[0]
+        digest = asset.get("digest")
+        if digest is not None and not (isinstance(digest, str) and re.fullmatch(r"sha256:[0-9a-fA-F]{64}", digest)):
+            raise Deferred("SOURCE_REVIEW", "Unsupported official asset digest")
+        return asset["size"], digest[7:].lower() if digest else None
+    except Deferred:
+        raise
+    except Exception:
+        raise Deferred("WAITING_SOURCE", "Official release metadata unavailable") from None
+
+
 def download_source(item: dict, local: Path, *, max_file: int) -> tuple[str, str]:
     size, md5, sha256 = stream_download(item["source_url"], local, max_file)
     if size != item["size_bytes"]:
-        raise Deferred("PENDING_MANUAL", "Original release differs from monitor asset size")
+        raise Deferred("PENDING_MANUAL", "Original release differs from verified source asset size")
+    if item.get("source_sha256") and sha256 != item["source_sha256"]:
+        raise Deferred("PENDING_MANUAL", "Original release differs from official SHA-256")
     with local.open("rb") as f:
         if f.read(4) != b"PK\x03\x04":
             raise Deferred("PENDING_MANUAL", "Source download is not a valid VPK header")
@@ -527,6 +574,8 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
                               for old_name in historical_names):
         raise Deferred("VERIFYING", "Historical filename is still protected; no repeat PUT")
     if checkpoint:
+        if checkpoint.get("size_bytes") is not None and checkpoint["size_bytes"] != item["size_bytes"]:
+            raise Deferred("PENDING_MANUAL", "Official asset size differs from historical transfer checkpoint")
         if remote is None:
             # Previous IA-S3 PUT may have been accepted. The file has not
             # appeared in the owned item yet, so NEVER send another PUT.
@@ -539,6 +588,8 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
     with tempfile.TemporaryDirectory(prefix="psva_batch_") as td:
         local = Path(td) / "origin.vpk"
         md5, sha256 = download_source(item, local, max_file=max_file)
+        if checkpoint and checkpoint.get("sha256") and checkpoint["sha256"] != sha256:
+            raise Deferred("PENDING_MANUAL", "Official asset differs from historical transfer digest")
         if remote is None:
             owned_metadata(archive, owner)  # Ensure Archive.org still responds.
             final_md = owned_metadata(archive, owner)
@@ -548,7 +599,7 @@ def run_one(root: Path, item: dict, proposals: dict, state: dict,
                 "version": item["version"], "source_url": item["source_url"],
                 "archive_identifier": archive, "filename": name,
                 "status": "TRANSFER_PREPARED", "created_at": now_utc(),
-                "size_bytes": item["size_bytes"], "title_id": item["title_id"],
+                "size_bytes": item["size_bytes"], "title_id": item["title_id"], "sha256": sha256, "md5": md5,
             }
             write_state(root, state)
             publish(root, [str(STATE)], f"chore: checkpoint Archive.org transfer for {item_id}", validate=False)
@@ -614,7 +665,23 @@ def main() -> int:
         app_id = item["app_id"]
         if policy_entry(policy, app_id).get("enabled") is not True:
             continue
+        # An estimate is useful for preview/order, never a transfer gate.
         size = item["size_bytes"]
+        if args.execute:
+            if attempts >= args.max_files or total >= args.max_batch_mib * MIB:
+                results.append({"app_id": app_id, "status": "DEFERRED", "bytes": size, "estimated": True})
+                continue
+            if time.monotonic() + 180 >= deadline:
+                results.append({"app_id": app_id, "status": "TIME_BUDGET_PENDING", "bytes": size, "estimated": True})
+                continue
+            try:
+                size, digest = official_asset_metadata(item)
+                item = dict(item, size_bytes=size, source_sha256=digest)
+            except Deferred as err:
+                results.append({"app_id": app_id, "status": err.status, "bytes": size,
+                                "estimated": True, "detail": err.reason})
+                print(f"{app_id}: {err.status} — {err.reason}", flush=True)
+                continue
         if size > args.max_file_mib * MIB:
             results.append({"app_id": app_id, "status": "TOO_LARGE_PENDING", "bytes": size})
             continue
@@ -631,7 +698,7 @@ def main() -> int:
             continue
         try:
             status, detail = run_one(root, item, proposal_map, state, creds,
-                                     max_file=args.max_file_mib * MIB)
+                                     max_file=min(args.max_file_mib * MIB, size))
         except Deferred as err:
             status, detail = err.status, err.reason
         except Exception:

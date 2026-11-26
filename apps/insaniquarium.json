@@ -16,14 +16,14 @@
   "v": "1.00",
   "vd": "2026-10-06",
   "req": "kubridge.suprx\nlibshacccg.suprx",
-  "sz": 7444310,
+  "sz": 7444890,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
       "u": "https://github.com/KartingSackboy06/insaniquarium-vita/releases/download/v1.00a/InsaniquariumVita.vpk",
-      "sz": 7444310,
+      "sz": 7444890,
       "rec": true
     },
     {

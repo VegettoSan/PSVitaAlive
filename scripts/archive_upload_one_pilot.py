@@ -49,7 +49,6 @@ def validate_catalog(root: Path) -> None:
     if (app.get("id") != APP or app.get("title_id") != TITLE_ID
             or app.get("version") != VERSION or app.get("status") not in ("Legacy", "Verified")
             or app.get("source_url") != REPOSITORY
-            or app.get("size") != EXPECTED_BYTES
             or link is None or link.get("url") != SOURCE):
         raise PilotStop("PENDING_MANUAL", "App or source no longer matches approved pilot")
     with (root / "scripts/archive_upload_log.csv").open(newline="", encoding="utf-8") as stream:

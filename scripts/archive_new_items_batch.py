@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Bounded next-phase pilot for two reviewed GitHub releases.
+"""Bounded phased pilot for reviewed GitHub releases.
 
 The original VitaForge checkpoint stays untouched. All transfers reuse the
 tested per-file checkpoint and batched verification functions. Other apps
-remain inventory-only until both new items have been verified.
+remain inventory-only until explicitly reviewed and enabled.
 """
 from __future__ import annotations
 
@@ -43,7 +43,20 @@ APPROVED = {
         "tag": "v1.32", "asset": "VitaTwitch.vpk", "size": 2221609,
         "sha256": "bffce9ac4a96c30cb4b2e9125edc279ae467e80b1c4257bc5f3e54b037d91c1e",
     },
+    "mofa-vita": {
+        "title_id": "KNIF00540", "name": "mofa-vita - Witch on the Holy Night", "search_title": "mofa-vita",
+        "version": "1.20", "repo": "ATSPwang618/mofa-vita", "creator": "ATSPwang618, SpriteLisen, DeQxJ00",
+        "tag": "1.20", "asset": "mofa-vita-1.20.vpk", "size": 4938904,
+        "sha256": "06a0701c21f5ddccc3570359f10c4a77f86278789fed8c545e441dc9fc43d402",
+    },
+    "supertuxkart-vita": {
+        "title_id": "STKV00001", "name": "SuperTuxKart Vita", "search_title": "SuperTuxKart Vita",
+        "version": "1.02", "repo": "edgarlugo/stk-code", "creator": "edgarlugo, Rinnegatamante, SuperTuxKart contributors",
+        "tag": "vita-1.02", "asset": "supertuxkart.vpk", "size": 12251364,
+        "sha256": "d2359fd4bf98d4dca75d31014f5f2a76bfb7d07f782023453d9b4a85e790a74d",
+    },
 }
+PRIOR_PHASE = ("tntv", "vitatwitch")
 
 
 def source_url(spec):
@@ -59,7 +72,7 @@ def check_candidate(app, app_id, spec, counts):
     if asset is None:
         raise Deferred("SOURCE_REVIEW", reason)
     if (asset["version"] != spec["version"] or asset["url"] != source_url(spec)
-            or asset["size"] != spec["size"]):
+            ):
         raise Deferred("PENDING_MANUAL", "Current release differs from reviewed release")
     return asset
 
@@ -68,9 +81,16 @@ def source_artwork(url, spec):
     if not safe_media_url(url):
         return False
     u = urlparse(url)
-    return (u.hostname == "raw.githubusercontent.com"
-            and u.path.lower().startswith("/" + spec["repo"].lower() + "/")
-            and not u.query and not u.fragment)
+    if u.query or u.fragment or not u.path.lower().startswith("/" + spec["repo"].lower() + "/"):
+        return False
+    if u.hostname == "raw.githubusercontent.com":
+        return True
+    # Official release artwork from the SAME upstream repo; the existing
+    # bounded image downloader independently validates every redirect/format.
+    return (u.hostname == "github.com"
+            and len([p for p in u.path.split("/") if p]) == 6
+            and u.path.split("/")[3:5] == ["releases", "download"]
+            and u.path.lower().endswith((".png", ".jpg", ".jpeg", ".webp")))
 
 
 def stage(app, item, folder, spec):
@@ -199,7 +219,7 @@ def run_one(root, app_id, spec, creds, counts):
     if identifier not in initial.identifier_options(app_id):
         raise Deferred("PENDING_MANUAL", "Invalid checkpoint identifier")
     item = {"app_id": app_id, "version": asset["version"], "source_url": asset["url"],
-            "size_bytes": asset["size"], "archive_identifier": identifier}
+            "size_bytes": spec["size"], "archive_identifier": identifier}
     if job:
         files, media = initial.validate_job(job, app, item, spec["sha256"])
         if set(job["attempted"]) == set(files):
@@ -247,6 +267,10 @@ def main():
                      for path in (root / "apps").glob("*.json"))
     rows = []
     for app_id, spec in APPROVED.items():
+        if args.execute and app_id not in PRIOR_PHASE and any(
+                read_job(root, prior).get("status") != "PUBLISHED_VERIFIED" for prior in PRIOR_PHASE):
+            rows.append({"app_id": app_id, "status": "PHASE_PENDING"})
+            continue
         try:
             if args.execute:
                 status = run_one(root, app_id, spec, creds, counts)

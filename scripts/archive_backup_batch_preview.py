@@ -162,8 +162,8 @@ def catalog_current_asset(app: dict) -> tuple[dict | None, str]:
     if not isinstance(version, str) or not version.strip():
         return None, "catalog version is missing"
     size = app.get("size")
-    if type(size) is not int or size <= 0:
-        return None, "catalog VPK size missing; source metadata check required"
+    # Optional estimate for sorting/preview only; execution resolves real bytes.
+    size = size if type(size) is int and size > 0 else 0
     return {"url": url, "version": version, "size": size}, "catalog Download/VPK"
 
 

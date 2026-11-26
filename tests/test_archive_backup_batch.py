@@ -473,5 +473,39 @@ class BatchTests(unittest.TestCase):
 
 
 
+    def test_official_size_not_catalog_estimate(self):
+        from scripts.archive_backup_batch import official_asset_metadata
+        item = dict(candidate(), size_bytes=123)
+        asset = {"name": "FileManager_v0.6.2.vpk", "state": "uploaded",
+                 "size": 2071824, "digest": "sha256:" + "a"*64,
+                 "browser_download_url": item["source_url"]}
+        response = SimpleNamespace(status_code=200,
+            json=lambda: {"tag_name": "v0.6.2", "draft": False, "assets": [asset]})
+        self.assertEqual(official_asset_metadata(item, get=lambda *a, **k: response),
+                         (2071824, "a"*64))
+        self.assertEqual(item["size_bytes"], 123)
+
+    def test_missing_official_metadata_blocks(self):
+        from scripts.archive_backup_batch import official_asset_metadata
+        with self.assertRaises(Deferred):
+            official_asset_metadata(candidate(), get=lambda *a, **k: SimpleNamespace(status_code=404))
+
+    def test_source_digest_and_exact_real_size_still_required(self):
+        from scripts.archive_backup_batch import download_source
+        data = b"PK\x03\x04actual bytes"
+        with tempfile.TemporaryDirectory() as td:
+            target = Path(td) / "app.vpk"
+            def download(url, path, limit):
+                path.write_bytes(data)
+                return len(data), hashlib.md5(data).hexdigest(), hashlib.sha256(data).hexdigest()
+            with patch("scripts.archive_backup_batch.stream_download", side_effect=download):
+                item = dict(candidate(), size_bytes=len(data), source_sha256=hashlib.sha256(data).hexdigest())
+                download_source(item, target, max_file=100)
+                with self.assertRaises(Deferred):
+                    download_source(dict(item, source_sha256="b"*64), target, max_file=100)
+                with self.assertRaises(Deferred):
+                    download_source(dict(item, size_bytes=1), target, max_file=100)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -17,13 +17,22 @@ class NewItemsBatchTests(unittest.TestCase):
             self.assertEqual(b.check_candidate(self.app(app_id), app_id, spec,
                 Counter({spec["title_id"]: 1}))["size"], spec["size"])
 
-    def test_changed_version_and_size_block(self):
+    def test_changed_version_blocks_but_estimate_does_not(self):
         s = b.APPROVED["tntv"]
-        for k, value in (("version", "1.06"), ("size", 1)):
+        app = self.app("tntv")
+        app["version"] = "1.06"
+        with self.assertRaises(Deferred):
+            b.check_candidate(app, "tntv", s, Counter({s["title_id"]: 1}))
+        for estimate in (1, s["size"] + 1048576, None):
             app = self.app("tntv")
-            app[k] = value
-            with self.assertRaises(Deferred):
-                b.check_candidate(app, "tntv", s, Counter({s["title_id"]: 1}))
+            app["size"] = estimate
+            b.check_candidate(app, "tntv", s, Counter({s["title_id"]: 1}))
+
+    def test_release_artwork_same_repo_only(self):
+        s = b.APPROVED["supertuxkart-vita"]
+        self.assertTrue(b.source_artwork("https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png", s))
+        self.assertFalse(b.source_artwork("https://github.com/other/stk-code/releases/download/vita-1.0/screenshot-1.png", s))
+        self.assertFalse(b.source_artwork("https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/game.zip", s))
 
     def test_duplicate_title_id_blocks(self):
         s = b.APPROVED["tntv"]
