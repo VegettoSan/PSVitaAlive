@@ -1,0 +1,60 @@
+{
+  "app_id": "supertuxkart-vita",
+  "identifier": "psvitaalive-supertuxkart-vita",
+  "source_url": "https://github.com/edgarlugo/stk-code/releases/download/vita-1.02/supertuxkart.vpk",
+  "files": {
+    "supertuxkart-vita v1.02.vpk": {
+      "size": 12251364,
+      "md5": "cf7d44a53d452e5e2b4d743da0b7345d",
+      "sha256": "d2359fd4bf98d4dca75d31014f5f2a76bfb7d07f782023453d9b4a85e790a74d"
+    },
+    "icon0.png": {
+      "size": 4825,
+      "md5": "2d5395a454c3b0abd45e0acb1136341a",
+      "sha256": "fa64aee8ccaf8534e15972bab496f0a9ce424209573755dc249fbb9a7fde4add"
+    },
+    "shot_01.png": {
+      "size": 763392,
+      "md5": "20369a6d8aa187efd884f3282a69e156",
+      "sha256": "bd6719cc8fce5de4cd265b035ef30a560941045183a2c51dff628053b87d54c3"
+    },
+    "shot_02.png": {
+      "size": 585891,
+      "md5": "13a5f2e3c4ea4b05a0f500fe6866ff38",
+      "sha256": "7b631ea0941278236c01914d8d19fe45d168855f8bc1ec7ef0252fcfce4bb4ae"
+    },
+    "shot_03.png": {
+      "size": 740857,
+      "md5": "17de9aa7f51dd588fc157481f822ea6f",
+      "sha256": "f969de77e4bf0254dbe36e706203f13296a638fc8f238a441b621e711fc0d93b"
+    },
+    "shot_04.png": {
+      "size": 490573,
+      "md5": "fe91b382a956a7ae05ce30039e1ae391",
+      "sha256": "ef87381cda79a49efba2e63ea33dfac74d4bb6d5567a6923a877e0cc5338707c"
+    },
+    "shot_05.png": {
+      "size": 815279,
+      "md5": "ca7b09f613acea491217bf3ee8d1a34b",
+      "sha256": "922be182739ae4ef2288439f571853c14cd4a85a9a892d5761a6bf00771afa56"
+    },
+    "SOURCES.txt": {
+      "size": 934,
+      "md5": "4698f37873bb14906d76b9129a361d8b",
+      "sha256": "c76ee4cb0788d80355754005899efd7d0e22e2ffa6211577cecb0f7449c0007f"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/edgarlugo/stk-code/vita-port/sce_sys/icon0.png": "icon0.png",
+    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-1.png": "shot_01.png",
+    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-2.png": "shot_02.png",
+    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-3.png": "shot_03.png",
+    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-4.png": "shot_04.png",
+    "https://github.com/edgarlugo/stk-code/releases/download/vita-1.0/screenshot-5.png": "shot_05.png"
+  },
+  "attempted": [
+    "supertuxkart-vita v1.02.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-26T23:24:35+00:00"
+}
