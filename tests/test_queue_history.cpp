@@ -6,6 +6,7 @@ using namespace psvitaalive;
 using namespace psvitaalive::queue;
 static Job job(const std::string& key) {
     Job j;j.appKey=key;j.name=key;j.titleId="TEST00001";j.version="1.2";
+    j.iconUrl="https://example.invalid/SECRET_ICON";j.iconCacheKey="AB/app_H_AB0123456789ABCD_12345678.png";
     Step s;s.url="https://example.invalid/SECRET";s.fileName="SECRET.vpk";s.zrif="SECRET_LICENSE";
     s.pluginLine="SECRET_PLUGIN";s.destination="SECRET_PATH";s.component=Component::App;
     s.space=ux0Space(1024,1024,InstallSpaceMode::ZipArchive);j.steps.push_back(s);j.admissionSpace=s.space;
@@ -38,6 +39,21 @@ int main() {
     assert(encoded.find("SECRET")==std::string::npos);
     History loaded;uint64_t serial=0;
     assert(loaded.decode(encoded,serial) && serial==1 && loaded.entries()[0].name=="A");
+    assert(loaded.entries()[0].iconCacheKey=="AB/app_H_AB0123456789ABCD_12345678.png");
+    assert(!validHistoryIconKey("../app_U_12345678.png"));
+    assert(!validHistoryIconKey("ux0:app_U_12345678.png"));
+    assert(validHistoryIconKey("app_U_12345678.img"));
+    // Convert this single fixture to the exact v1 layout and re-check checksum.
+    std::string legacy=encoded;
+    legacy[4]='1';
+    const size_t keyOffset=14+8+1+1+2+1+2+9+2+3;
+    legacy.erase(keyOffset,2+loaded.entries()[0].iconCacheKey.size());
+    legacy.resize(legacy.size()-4);
+    uint32_t crc=2166136261u;
+    for(unsigned char c:legacy){crc^=c;crc*=16777619u;}
+    for(unsigned i=0;i<4;++i)legacy.push_back(static_cast<char>((crc>>(8*i))&255));
+    History old;uint64_t oldSerial=0;
+    assert(old.decode(legacy,oldSerial) && oldSerial==1 && old.entries()[0].iconCacheKey.empty());
     auto broken=encoded;broken[6]^=1;
     assert(!loaded.decode(broken,serial) && loaded.entries().size()==1);
     assert(!loaded.decode(encoded.substr(0,encoded.size()-1),serial));

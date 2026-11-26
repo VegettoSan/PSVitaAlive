@@ -1,3 +1,4 @@
+#include "installer/queue_history.hpp"
 #include "ui/image_cache.hpp"
 #include "diagnostic_logger.hpp"
 #include "network/http_client.hpp"
@@ -407,6 +408,23 @@ std::string ImageCache::request(const std::string&url,const std::string&ns){
     sceKernelUnlockMutex(mutex_,1);
     return path;
 }
+std::string ImageCache::historyIconPath(const std::string& key) const {
+    return ::psvitaalive::queue::validHistoryIconKey(key)?std::string(IMAGE_ROOT)+"/"+key:std::string{};
+}
+std::string ImageCache::requestHistoryIcon(const std::string& key) {
+    const auto path=historyIconPath(key);
+    if(path.empty()||mutex_<0)return {};
+    const uint64_t now=sceKernelGetSystemTimeWide();
+    sceKernelLockMutex(mutex_,1,nullptr);
+    const auto retry=retryAfter_.find(path);
+    if(!contains(ready_,path)&&!contains(pending_,path)&&!networkPaused_ &&
+       (retry==retryAfter_.end() || now>=retry->second) && queue_.size()<MAX_INTERACTIVE_QUEUE) {
+        pending_.push_back(path);
+        queue_.insert(queue_.begin(),{"",path,0,false});
+    }
+    sceKernelUnlockMutex(mutex_,1);
+    return path;
+}
 void ImageCache::preload(const std::vector<std::string>&urls,const std::string&ns){if(mutex_<0||urls.empty())return;sceKernelLockMutex(mutex_,1,nullptr);bulkPreload_=true;sceKernelUnlockMutex(mutex_,1);size_t queued=0;for(const auto&url:urls){if(url.empty())continue;std::string before=request(url,ns);if(!before.empty())++queued;}sceKernelLockMutex(mutex_,1,nullptr);bulkPreload_=false;sceKernelUnlockMutex(mutex_,1);if(queued){char m[160];sceClibSnprintf(m,sizeof(m),"[ImageCache] preload requested ns=%s count=%u",ns.c_str(),(unsigned)queued);diagnostics::log(m);}}
 bool ImageCache::isReady(const std::string&p)const{if(p.empty()||mutex_<0)return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(ready_,p);sceKernelUnlockMutex(mutex_,1);return r;}
 bool ImageCache::isFailed(const std::string&p)const{if(mutex_<0||p.empty())return false;sceKernelLockMutex(mutex_,1,nullptr);bool r=contains(failed_,p);sceKernelUnlockMutex(mutex_,1);return r;}
@@ -503,19 +521,27 @@ int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){dia
         const bool exists=sceIoGetstat(job.path.c_str(),&st)>=0&&st.st_size>0;
         const unsigned maxDim=job.path.find("/app_")!=std::string::npos?APP_IMAGE_MAX_DIM:SCREENSHOT_IMAGE_MAX_DIM;
         const bool hit=exists&&cachedNormalizedPngLooksValid(job.path,maxDim);
-        if(exists&&!hit)sceIoRemove(job.path.c_str());
+        if(exists&&!hit&&!job.url.empty())sceIoRemove(job.path.c_str());
         job.diskChecked=true;
         if(hit){
             markReady(job.path);
             sceKernelLockMutex(mutex_,1,nullptr);
             const bool supersededOrCancelled=cancelRequested_||stopping_;
             sceKernelUnlockMutex(mutex_,1);
-            if(!supersededOrCancelled && !paused)pruneSupersededVersions(job.path);
+            if(!supersededOrCancelled && !paused && !job.url.empty())pruneSupersededVersions(job.path);
             sceKernelLockMutex(mutex_,1,nullptr);
             currentFile_.clear();currentPath_.clear();workerBusy_=false;cancelRequested_=false;
             sceKernelUnlockMutex(mutex_,1);
             continue;
         }
+    }
+    if(job.url.empty()) {
+        // History cache miss: never synthesize a URL, delete files, or retry HTTP.
+        markFailed(job.path,60000000ULL);
+        sceKernelLockMutex(mutex_,1,nullptr);
+        currentFile_.clear();currentPath_.clear();workerBusy_=false;cancelRequested_=false;
+        sceKernelUnlockMutex(mutex_,1);
+        continue;
     }
     // Recheck pause/cancellation after disk I/O, before opening a connection.
     sceKernelLockMutex(mutex_,1,nullptr);

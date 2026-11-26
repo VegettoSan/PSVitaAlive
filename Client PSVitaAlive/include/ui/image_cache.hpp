@@ -28,6 +28,9 @@ public:
     void shutdown();
 
     std::string request(const std::string& url, const std::string& namespaceName);
+    // History may only probe a validated local app key; never download from it.
+    std::string requestHistoryIcon(const std::string& key);
+    std::string historyIconPath(const std::string& key) const;
     /** Resolve local cache path without queueing a download or disk access. */
     std::string pathFor(const std::string& url, const std::string& namespaceName) const;
     /** Prune queued off-screen jobs; active transfer uses a short grace period to avoid cancellation thrash. */

@@ -8,9 +8,39 @@
 #include <vector>
 
 namespace psvitaalive { namespace queue {
+// Only normalized v3 app image keys are persisted: no arbitrary file paths,
+// URLs, query tokens, or executable metadata. The root is fixed by ImageCache.
+inline bool validHistoryIconKey(const std::string& key) {
+    auto hex=[](const std::string& s,size_t n){
+        if(s.size()!=n)return false;
+        for(char c:s)if(!((c>='0'&&c<='9')||(c>='A'&&c<='F')||(c>='a'&&c<='f')))return false;
+        return true;
+    };
+    const size_t dot=key.rfind('.');
+    if(dot==std::string::npos || (key.substr(dot)!=".png" && key.substr(dot)!=".img"))return false;
+    const auto stem=key.substr(0,dot);
+    if(stem.rfind("app_U_",0)==0)return hex(stem.substr(6),8);
+    if(stem.size()<3 || stem[2]!='/' || !hex(stem.substr(0,2),2))return false;
+    const auto name=stem.substr(3);
+    if(name.rfind("app_",0)!=0)return false;
+    const size_t prefixEnd=name.find('_',4);
+    if(prefixEnd==std::string::npos)return false;
+    const auto prefix=name.substr(4,prefixEnd-4);
+    if(prefix!="H" && prefix!="PV" && prefix!="PSP" && prefix!="PS1")return false;
+    const auto tail=name.substr(prefixEnd+1);
+    return tail.size()==25 && tail[16]=='_' && hex(tail.substr(0,16),16) &&
+        hex(tail.substr(17),8) && stem.substr(0,2)==tail.substr(0,2);
+}
+inline std::string historyIconKeyFromPath(const std::string& path) {
+    const std::string root="ux0:data/psvitaalive/cache/images/v3/";
+    if(path.rfind(root,0)!=0)return {};
+    const auto key=path.substr(root.size());
+    return validHistoryIconKey(key)?key:std::string{};
+}
 struct HistoryStep { Component component=Component::Other; State state=State::Skipped; };
 struct HistoryEntry {
     std::string name, titleId, version;
+    std::string iconCacheKey;
     uint64_t epoch=0;
     State state=State::Failed;
     bool installAll=false;
@@ -44,6 +74,7 @@ public:
             e.name=display(job.name,240);
             e.titleId=display(job.titleId,32);
             e.version=display(job.version,64);
+            if(validHistoryIconKey(job.iconCacheKey))e.iconCacheKey=job.iconCacheKey;
             if(e.name.empty()) e.name=e.titleId.empty()?"-":e.titleId;
             e.epoch=epoch; e.state=job.state; e.installAll=job.installAll;
             bool valid=true;
@@ -61,11 +92,12 @@ public:
     // Explicit little-endian format, independent of native struct padding.
     // The checksum detects torn writes/corruption, not malicious modification.
     std::string encode(uint64_t serial) const {
-        std::string out="PSQH1";
+        std::string out="PSQH2";
         put(out,serial,8); put(out,entries_.size(),1);
         for(const auto& e:entries_) {
             put(out,e.epoch,8); put(out,static_cast<unsigned>(e.state),1);
             put(out,e.installAll?1:0,1); str(out,e.name); str(out,e.titleId); str(out,e.version);
+            str(out,e.iconCacheKey);
             put(out,e.steps.size(),1);
             for(const auto& step:e.steps) {
                 put(out,static_cast<unsigned>(step.component),1);
@@ -76,7 +108,9 @@ public:
         return out;
     }
     bool decode(const std::string& data,uint64_t& serial) {
-        if(data.size()<18 || data.size()>maxBytes || data.compare(0,5,"PSQH1")!=0) return false;
+        if(data.size()<18 || data.size()>maxBytes)return false;
+        const bool legacy=data.compare(0,5,"PSQH1")==0;
+        if(!legacy && data.compare(0,5,"PSQH2")!=0)return false;
         const size_t end=data.size()-4; size_t pos=end; uint64_t crc=0;
         if(!get(data,pos,data.size(),4,crc) || crc!=checksum(data,end))return false;
         pos=5; uint64_t seq=0,count=0;
@@ -88,8 +122,10 @@ public:
                state>static_cast<unsigned>(State::Skipped) || !historyJobTerminal(static_cast<State>(state)) ||
                !get(data,pos,end,1,all) || all>1 ||
                !readStr(data,pos,end,240,e.name) || e.name.empty() ||
-               !readStr(data,pos,end,32,e.titleId) || !readStr(data,pos,end,64,e.version) ||
-               !get(data,pos,end,1,steps) || !steps || steps>Session::maxSteps)return false;
+               !readStr(data,pos,end,32,e.titleId) || !readStr(data,pos,end,64,e.version))return false;
+            if(!legacy && (!readStr(data,pos,end,64,e.iconCacheKey) ||
+               (!e.iconCacheKey.empty() && !validHistoryIconKey(e.iconCacheKey))))return false;
+            if(!get(data,pos,end,1,steps) || !steps || steps>Session::maxSteps)return false;
             e.state=static_cast<State>(state); e.installAll=all!=0;
             for(size_t i=0;i<steps;++i) {
                 uint64_t component=0,stepState=0;

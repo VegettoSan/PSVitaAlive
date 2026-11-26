@@ -410,10 +410,11 @@ int main(){
         screen.queueAccepted(queue.session().jobs().back().id,first);
         return 1;
     };
-    auto newJob=[&screen](const psvitaalive::ui::CatalogItem& item,bool all) {
+    auto newJob=[&screen,&images](const psvitaalive::ui::CatalogItem& item,bool all) {
         q::Job job; job.appId=item.id; job.titleId=item.titleId; job.name=item.name;
         job.version=item.version; job.versionDate=item.versionDate;
         job.iconUrl=item.icon.empty()?item.cover:item.icon;
+        job.iconCacheKey=q::historyIconKeyFromPath(images.pathFor(job.iconUrl,"app"));
         job.dataRevision=item.dataRevision; job.installAll=all;
         job.catalogType=static_cast<uint8_t>(screen.activeCatalog());
         // Keep ordinary Install All failure continuation, not cancellation.

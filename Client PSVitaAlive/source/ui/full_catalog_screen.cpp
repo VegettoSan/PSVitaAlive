@@ -3151,6 +3151,7 @@ void FullCatalogScreen::setCatalogItems(std::vector<CatalogItem>items){
     installStatusCache_.clear();
     detailGameFilesCheckMs_ = 0;
     allItems_=std::move(items);
+    if(queueVisible_ && queueHistoryMode())refreshQueueHistoryIcons();
     if(state_.catalog==CatalogType::Homebrew && !installedDataVisible_) rebuildInstalledDataCandidates();
     sortItemsByDate(allItems_);
     const uint64_t sorted=psvitaalive::catalog_trace::nowUs();
@@ -3194,6 +3195,7 @@ void FullCatalogScreen::refreshCatalogItems(std::vector<CatalogItem> items) {
     // Existing GPU textures stay cached: identical URLs remain visible.
     // prepareVisibleTextures() evicts textures that become off-screen.
     allItems_=std::move(items);
+    if(queueVisible_ && queueHistoryMode())refreshQueueHistoryIcons();
     if(state_.catalog==CatalogType::Homebrew && !installedDataVisible_) rebuildInstalledDataCandidates();
     sortItemsByDate(allItems_);
     rebuildFilteredItems(); // unlike applySearch(), does not reset focus/scroll
@@ -4145,7 +4147,7 @@ bool FullCatalogScreen::itemMatchesCurrentFilter(const CatalogItem& item) {
 }
 
 void FullCatalogScreen::advanceInstallFilterScan() {
-    if (!isInstallStateFilter() || catalogLoading_ || installProgressActive_ ||
+    if (queueStorageContended() || !isInstallStateFilter() || catalogLoading_ || installProgressActive_ ||
         state_.mode == UiMode::SETTINGS || installFilterScanNext_ >= allItems_.size())
         return;
     const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
@@ -4503,6 +4505,10 @@ const std::vector<FullCatalogScreen::SavedZipOption>&
 FullCatalogScreen::savedZipsFor(const CatalogItem& item) {
     if(queuedJobFor(item)) { static const std::vector<SavedZipOption> empty; return empty; }
     const std::string key = item.id + "|" + item.titleId;
+    if(queueStorageContended()) {
+        static const std::vector<SavedZipOption> empty;
+        return key==savedZipProbeKey_?savedZipProbeResult_:empty;
+    }
     const uint64_t now = sceKernelGetProcessTimeWide();
     if (key != savedZipProbeKey_ || savedZipProbeAtUs_ == 0 ||
         now < savedZipProbeAtUs_ || now - savedZipProbeAtUs_ >= 5000000ULL) {
@@ -8077,14 +8083,96 @@ int FullCatalogScreen::detailScreenshotContentOffset(const CatalogItem& item, in
     return offset + DETAIL_SECTION_H;
 }
 
+bool FullCatalogScreen::queueStorageContended() const {
+    return queueProtected_ && queueStatus_.state==::psvitaalive::InstallStatus::State::Installing;
+}
+void FullCatalogScreen::refreshQueueHistoryIcons() {
+    historyIconUrls_.clear();
+    if(!queueHistory_)return;
+    const auto& entries=queueHistory_->entries();
+    historyIconUrls_.resize(entries.size());
+    for(size_t i=0;i<entries.size();++i) {
+        const auto& entry=entries[i];
+        if(entry.titleId.empty())continue;
+        const CatalogItem* match=nullptr;
+        for(const auto& item:allItems_) {
+            if(item.titleId!=entry.titleId)continue;
+            if(match){match=nullptr;break;}
+            match=&item;
+        }
+        if(match)historyIconUrls_[i]=match->icon.empty()?match->cover:match->icon;
+    }
+}
+bool FullCatalogScreen::prepareHistoryIcon(size_t index) {
+    if(!imageCache_ || !queueHistory_ || index>=queueHistory_->entries().size())return false;
+    if(index<historyIconUrls_.size() && !historyIconUrls_[index].empty())
+        return prepareImageTexture(historyIconUrls_[index],"app");
+    const auto& key=queueHistory_->entries()[index].iconCacheKey;
+    const auto path=imageCache_->historyIconPath(key);
+    if(path.empty())return false;
+    const auto it=textures_.find(path);
+    if(it!=textures_.end() && it->second){touchTexture(path);return false;}
+    imageCache_->requestHistoryIcon(key);
+    if(!imageCache_->isReady(path))return false;
+    // v3 entries contain normalized PNGs, including the .img suffix.
+    auto* texture=vita2d_load_PNG_file(path.c_str());
+    if(texture) {
+        evictTextureIfNeeded("app");
+        textures_[path]=texture;textureOrder_.push_back(path);
+    }
+    return true;
+}
+void FullCatalogScreen::drawHistoryIcon(size_t index,int x,int y,int size) {
+    if(index<historyIconUrls_.size() && !historyIconUrls_[index].empty()) {
+        drawImage(historyIconUrls_[index],"app",x,y,size,size);
+        return;
+    }
+    const auto path=imageCache_ && queueHistory_ && index<queueHistory_->entries().size()?
+        imageCache_->historyIconPath(queueHistory_->entries()[index].iconCacheKey):std::string{};
+    const auto it=textures_.find(path);
+    vita2d_draw_rectangle(x,y,size,size,SURFACE2);
+    if(it!=textures_.end() && it->second) {
+        const float w=static_cast<float>(vita2d_texture_get_width(it->second));
+        const float h=static_cast<float>(vita2d_texture_get_height(it->second));
+        if(w>0.f && h>0.f) {
+            const float scale=std::min(size/w,size/h);
+            touchTexture(path);
+            vita2d_draw_texture_scale(it->second,x+(size-w*scale)*.5f,y+(size-h*scale)*.5f,scale,scale);
+            return;
+        }
+    }
+    // No trustworthy icon available: display the standard download motif.
+    const int cx=x+size/2,cy=y+size/2,unit=std::max(2,size/10);
+    vita2d_draw_rectangle(cx-unit/2,cy-2*unit,unit,3*unit,DIM);
+    vita2d_draw_rectangle(cx-2*unit,cy,4*unit,unit,DIM);
+    vita2d_draw_rectangle(cx-unit,cy+unit,2*unit,unit,DIM);
+    vita2d_draw_rectangle(cx-2*unit,cy+2*unit,4*unit,unit/2+1,DIM);
+}
 void FullCatalogScreen::prepareVisibleTextures(){
     if(queueProtected_ && gProtectionActive)return;
     if(!imageCache_||catalogLoading_||installProgressActive_||mediaTexturesSuspended_)return;
     if(queueVisible_) {
         // Share the bounded app LRU and single image worker. Only visible
         // queue icons are requested; the worker gates network by install phase.
-        if(!queueSession_ || queueHistoryMode() || queueConfirmCancel_ || queueTouchDown_ ||
+        if(!queueSession_ || queueConfirmCancel_ || queueTouchDown_ ||
            !deferredFreeTextures_.empty())return;
+        if(queueHistoryMode()) {
+            if(queueRecoveryMode() || !queueHistory_)return;
+            const auto count=queueHistory_->entries().size();
+            const size_t first=queueDetail_?(queueSelectedId_?static_cast<size_t>(queueSelectedId_-1):count):
+                static_cast<size_t>(std::max(0,queueScroll_));
+            const size_t end=std::min(count,first+(queueDetail_?1:kQueueRows));
+            std::unordered_set<std::string> keepHistory;
+            for(size_t i=first;i<end;++i) {
+                const auto path=i<historyIconUrls_.size() && !historyIconUrls_[i].empty()?
+                    imageCache_->pathFor(historyIconUrls_[i],"app"):
+                    imageCache_->historyIconPath(queueHistory_->entries()[i].iconCacheKey);
+                if(!path.empty())keepHistory.insert(path);
+            }
+            imageCache_->cancelQueuedExcept(keepHistory);
+            for(size_t i=first;i<end;++i)if(prepareHistoryIcon(i))break;
+            return;
+        }
         std::unordered_set<std::string> keep;
         std::vector<const std::string*> icons;
         if(queueDetail_) {
@@ -8763,6 +8851,14 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
     if (catalogLoading_ || nowMs < installStatusWarmupUntilMs_) {
         return unknown;
     }
+    if(queuePassiveRead_ && queueStorageContended()) {
+        if(state_.catalog==CatalogType::Homebrew) {
+            const auto cached=installProbeCache().find(key);
+            return cached!=installProbeCache().end() && cached->second.valid?cached->second.info:unknown;
+        }
+        const auto cached=installStatusCache_.find(item.titleId);
+        return cached==installStatusCache_.end()?unknown:cached->second;
+    }
     InstalledGameIndex& index = installedGameIndex();
     if (state_.catalog != CatalogType::Homebrew) {
         // Games: presence-only detection. Never evaluate installed SFO versions.
@@ -8772,6 +8868,7 @@ LocalInstallInfo FullCatalogScreen::queryLocalInstall(const CatalogItem& item) {
         if (state_.catalog == CatalogType::PspGames ||
             state_.catalog == CatalogType::Ps1Games)
             game.installedMount = mount;
+        installStatusCache_[item.titleId]=game;
         return game;
     }
     // Fast negative for Homebrew status filters: only actually installed
@@ -9008,6 +9105,8 @@ void FullCatalogScreen::drawInstallBadge(int x, int y, const LocalInstallInfo& i
 bool FullCatalogScreen::detailNeedsGameFilesNotice(const CatalogItem& item, bool installed) {
     if (state_.catalog != CatalogType::Homebrew || item.id.empty() ||
         catalogLoading_ || installProgressActive_) return false;
+    if(queuePassiveRead_ && queueStorageContended())
+        return detailGameFilesProbeId_==item.id && detailGameFilesAppInstalled_==installed && detailGameFilesMissing_;
     const uint64_t nowMs = sceKernelGetProcessTimeWide() / 1000ULL;
     // Selected detail only, with bounded Getstat probes every four seconds.
     if (detailGameFilesProbeId_ != item.id || detailGameFilesCheckMs_ == 0 ||
@@ -12491,6 +12590,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     queueTransitionUs_=sceKernelGetProcessTimeWide();
     const auto& jobs=queueSession_->jobs();
     if(queueHistoryMode()) {
+        refreshQueueHistoryIcons();
         queueRecoveryVisible_=queueRecovery_ && !queueRecovery_->entries().empty();
         queueSelectedId_=queueRecoveryMode()?1:(queueHistory_->entries().empty()?0:1);
         queueDetail_=false;
@@ -12861,9 +12961,10 @@ void FullCatalogScreen::drawQueueScreen() {
             &entries[static_cast<size_t>(queueSelectedId_-1)]:nullptr;
         if(queueDetail_ && selected) {
             skin::surface(skin::ui_atlas::ui_card,20,79,920,198,SURFACE);
-            label(36,119,888,WHITE,1.30f,selected->name);
-            label(36,153,888,ACCENT,1.08f,::psvitaalive::L(stateKey(selected->state)));
-            label(36,195,888,DIM,1.00f,metadata(*selected));
+            drawHistoryIcon(static_cast<size_t>(queueSelectedId_-1),36,91,92);
+            label(144,119,780,WHITE,1.30f,selected->name);
+            label(144,153,780,ACCENT,1.08f,::psvitaalive::L(stateKey(selected->state)));
+            label(144,185,780,DIM,1.00f,metadata(*selected));
             label(36,242,888,TEXT,1.00f,selected->installAll?"Install All":component(selected->steps.front().component));
             queueStepScroll_=std::max(0,std::min(std::max(0,static_cast<int>(selected->steps.size())-kQueueStepRows),queueStepScroll_));
             for(int i=queueStepScroll_;i<static_cast<int>(selected->steps.size()) && i<queueStepScroll_+kQueueStepRows;++i) {
@@ -12881,9 +12982,11 @@ void FullCatalogScreen::drawQueueScreen() {
                 const bool focus=static_cast<uint64_t>(i+1)==queueSelectedId_;
                 skin::surface(skin::ui_atlas::ui_card,20,y,920,kQueueRowHeight,focus?SURFACE2:SURFACE);
                 if(focus)skin::focus(20,y,920,kQueueRowHeight,ACCENT);
-                label(36,y+35,610,WHITE,1.20f,e.name);
-                label(36,y+74,600,DIM,.96f,metadata(e));
-                label(650,y+55,270,ACCENT,1.02f,::psvitaalive::L(stateKey(e.state)));
+                drawHistoryIcon(static_cast<size_t>(i),36,y+12,84);
+                label(134,y+32,520,WHITE,1.22f,e.name);
+                label(134,y+72,780,DIM,.96f,metadata(e));
+                const unsigned stateColor=e.state==State::Failed?RGBA8(0xE0,0x32,0x32,255):e.state==State::Cancelled?DIM:ACCENT;
+                label(665,y+32,255,stateColor,1.00f,::psvitaalive::L(stateKey(e.state)));
             }
         }
         scrollBar(queueDetail_&&selected?static_cast<int>(selected->steps.size()):static_cast<int>(entries.size()),queueDetail_?kQueueStepRows:kQueueRows,queueDetail_?queueStepScroll_:queueScroll_,queueDetail_?kQueueStepTop:kQueueRowTop,queueDetail_?kQueueStepRows*kQueueStepPitch:kQueueRows*kQueueRowPitch);
@@ -13141,6 +13244,10 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
 }
 
 void FullCatalogScreen::draw(){
+    // Passive drawing may use stale/unknown badges, but never performs
+    // periodic filesystem probes while the installer is writing to ux0.
+    struct RestorePassive {bool& flag;bool old;~RestorePassive(){flag=old;}} passive{queuePassiveRead_,queuePassiveRead_};
+    queuePassiveRead_=true;
     if(queueVisible_ || (queueProtected_ && gProtectionActive)) { drawQueueScreen(); return; }
     // Storage dialogs own all input. Draw just the topmost dialog over a
     // theme-colored backdrop, not a live catalog or another hidden dialog.
@@ -13307,7 +13414,11 @@ void FullCatalogScreen::draw(){
     updateAnimations();
     advanceInstallFilterScan();
     // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
-    if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0)prepareVisibleTextures();
+    if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0) {
+        queuePassiveRead_=true;
+        prepareVisibleTextures();
+        queuePassiveRead_=false;
+    }
     draw();
     return queueProtected_ || !state_.requestExit;
 }

@@ -250,6 +250,12 @@ private:
     uint32_t queuePreviousButtons_=0;
     uint64_t queueSelectedId_=0,queueTransitionUs_=0;
     uint64_t queueImageDecodeAfterUs_=0;
+    bool queuePassiveRead_=false;
+    std::vector<std::string> historyIconUrls_;
+    void refreshQueueHistoryIcons();
+    void drawHistoryIcon(size_t index,int x,int y,int size);
+    bool prepareHistoryIcon(size_t index);
+    bool queueStorageContended() const;
     std::vector<uint64_t> queueDisplayIds_,queuePreviousDisplayIds_;
     uint64_t queueDisplayGeneration_=0,queueReorderUs_=0;
     int queuePreviousScroll_=0;
