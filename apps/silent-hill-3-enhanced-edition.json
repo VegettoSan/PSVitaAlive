@@ -23,7 +23,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/matfsouza/sh3vita/releases/download/v1.2/sh3vita.vpk",
+      "u": "https://archive.org/download/psvitaalive-silent-hill-3-enhanced-edition/silent-hill-3-enhanced-edition%20v1.2.vpk",
       "sz": 25480397,
       "rec": true
     },
@@ -44,12 +44,12 @@
     }
   ],
   "dr": 1,
-  "ic": "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-silent-hill-3-enhanced-edition/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot0.png",
-    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot1.png",
-    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot2.png",
-    "https://raw.githubusercontent.com/matfsouza/sh3vita/main/docs/images/store/shot3.png"
+    "https://archive.org/download/psvitaalive-silent-hill-3-enhanced-edition/shot_01.png",
+    "https://archive.org/download/psvitaalive-silent-hill-3-enhanced-edition/shot_02.png",
+    "https://archive.org/download/psvitaalive-silent-hill-3-enhanced-edition/shot_03.png",
+    "https://archive.org/download/psvitaalive-silent-hill-3-enhanced-edition/shot_04.png"
   ],
   "sn": "GitHub",
   "su": "https://github.com/matfsouza/sh3vita",
