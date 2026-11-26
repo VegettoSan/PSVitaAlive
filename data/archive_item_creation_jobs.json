@@ -22,7 +22,8 @@
     "https://raw.githubusercontent.com/josephinoo/vitaForge/v0.1.14/static/sce_sys/icon0.png": "icon0.png"
   },
   "attempted": [
-    "vitaforge v0.1.15.vpk"
+    "vitaforge v0.1.15.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T22:45:09+00:00"
