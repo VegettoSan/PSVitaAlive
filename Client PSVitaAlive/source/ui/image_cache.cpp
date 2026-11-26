@@ -484,7 +484,8 @@ int ImageCache::workerMain(){HttpClient http;if(http.init()!=HttpResult::Ok){dia
     if((!networkPaused_ || (queueIconsOnly_ && allowCachedIcons_)) && !queue_.empty()){
         auto next=std::find_if(queue_.begin(),queue_.end(),[&](const Job& candidate){
             if(queueIconsOnly_ && candidate.path.find("/app_")==std::string::npos)return false;
-            return (!networkPaused_ && connected) || !candidate.diskChecked;
+            if(!networkPaused_ && connected)return true;
+            return !candidate.diskChecked;
         });
         if(next!=queue_.end()){
             job=*next;queue_.erase(next);have=true;workerBusy_=true;
