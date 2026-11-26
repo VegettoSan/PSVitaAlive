@@ -836,7 +836,7 @@ ID_OP_PREPARE_STAGE=Preparazione rimozione Game Files
 ID_OP_PREPARE_EXPLAIN=Conteggio di file e cartelle prima della rimozione
 ID_OP_VERIFY_STAGE=Verifica risultato
 ID_OP_APP_STAGE=Disinstallazione app
-ID_OP_FILES_EXPLAIN=Rimozione file da ux0:data/
+ID_OP_FILES_EXPLAIN=Rimozione file da:
 ID_OP_APP_EXPLAIN=Attesa gestione pacchetti PS Vita
 ID_OP_ROOT_PROGRESS=Cartelle completate:
 ID_OP_FILES_REMOVED=File eliminati:
@@ -895,6 +895,7 @@ QUEUE_TITLE=Gestore download
 QUEUE_UNKNOWN_SPACE=Impossibile confermare lo spazio disponibile per la coda.
 QUEUE_UNSUPPORTED=Questa installazione richiede la modalità singola. Completa prima la coda.
 QUEUE_VIEW=Vedi download
+QUEUE_VIEW_DETAILS=Vedi dettagli
 QUEUE_WAITING=In coda
 QUEUE_HISTORY=Cronologia download
 QUEUE_HISTORY_EMPTY=Nessun download nella cronologia
@@ -912,20 +913,28 @@ QUEUE_SYSTEM_RECHECK=Completa l’installazione di sistema prima di ripristinare
 QUEUE_SYSTEM_CONFIRM=L’installazione di sistema è terminata?
 QUEUE_SYSTEM_NOT_INSTALLED=App installata non trovata; completa l’installazione in LiveArea
 
-# Active-catalog storage manager
+# Contextual game storage
+ID_GAMES_TITLE=Giochi installati
+ID_GAMES_SECTION=Giochi installati
+ID_GAMES_TOTAL=Spazio giochi:
+ID_GAMES_LIST_HINT=Seleziona un gioco per vedere percorso e dimensione.
+ID_MEDIA_UNKNOWN_PLATFORM=Piattaforma sconosciuta
+ID_MEDIA_IDENTIFIED=Identificato
+ID_MEDIA_UNIDENTIFIED=Non identificato
+ID_MEDIA_EXTERNAL=Gioco esterno
+ID_GAME_DELETE=Elimina gioco
+ID_MEDIA_DELETE_CONFIRM=Il file o la cartella selezionati saranno eliminati definitivamente.
+ID_VITA_DELETE_CONFIRM=Il sistema disinstallerà il gioco. Salva prima i progressi.
+ID_MEDIA_PREPARE=Preparazione eliminazione
+ID_MEDIA_DELETING=Eliminazione gioco
+ID_GAME_REMOVED=Gioco eliminato
+ID_GAME_FAILED=Impossibile eliminare il gioco
+ID_VITA_DELETE_NOTE=Disinstallazione di sistema
+ID_MEDIA_DELETE_NOTE=Solo il percorso selezionato
+
+# Catalog-specific storage labels and ZIP cleanup
 ID_SECTION_VITA=Giochi PS Vita installati
 ID_SECTION_PSP=Giochi PSP installati
 ID_SECTION_PS1=Giochi PS1 installati
 STORAGE_VISIBLE_TOTAL=Totale visualizzato
 STORAGE_CONFIRM_TEMP_ONLY=Solo file temporanei. X/△: conferma, O: annulla
-ID_GAME_TOTAL=Giochi installati:
-ID_GAME_LIST_HINT=Seleziona un gioco per vedere i file.
-ID_GAME_NONE=Nessun gioco installato trovato.
-ID_GAME_DELETE_PACKAGE=Disinstalla gioco
-ID_GAME_DELETE_MEDIA=Elimina file del gioco
-ID_GAME_MEDIA_IMPACT=I file Adrenaline rilevati verranno eliminati.
-ID_GAME_MEDIA_PROGRESS=Eliminazione dei file Adrenaline identificati
-ID_GAME_DISCOVERING=Ricerca dei giochi installati...
-ID_GAME_PACKAGE_IMPACT=Il gioco verrà disinstallato da LiveArea.
-ID_GAME_PACKAGE_KEEP=Il gioco LiveArea verrà eliminato; i file Adrenaline resteranno.
-ID_GAME_BOTH_IMPACT=Il gioco LiveArea e i file Adrenaline rilevati verranno eliminati.

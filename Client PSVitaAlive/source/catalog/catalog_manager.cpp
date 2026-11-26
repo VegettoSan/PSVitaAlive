@@ -1,4 +1,5 @@
 #include "catalog/catalog_manager.hpp"
+#include "catalog/catalog_memory_policy.hpp"
 #include "storage/saved_zip_metadata.hpp"
 
 #include "catalog/catalog_parser.hpp"
@@ -324,6 +325,28 @@ bool CatalogManager::tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::C
     return true;
 }
 
+void CatalogManager::releaseInactiveCachesLocked() {
+    const auto keep = static_cast<size_t>(requestedCatalog_);
+    const size_t released = catalog_memory::releaseExcept(cachedItems_, cachedValid_, keep);
+    if (released)
+        diagnostics::log("[CatalogManager] RAM eviction: inactive entries=" +
+                         std::to_string(released));
+}
+
+void CatalogManager::releaseRefreshCopyLocked(ui::CatalogType catalog) {
+    releaseInactiveCachesLocked();
+    // Cache-first publication has already been consumed by the screen.
+    // The old validated disk file stays intact until fresh parsing succeeds.
+    // If the user switched tabs, never evict the new requested catalog.
+    if (catalog == requestedCatalog_ && !readyPending_) {
+        const auto idx = static_cast<size_t>(catalog);
+        const size_t released = catalog_memory::releaseEntry(cachedItems_, cachedValid_, idx);
+        if (released)
+            diagnostics::log("[CatalogManager] RAM eviction: redundant refresh entries=" +
+                             std::to_string(released));
+    }
+}
+
 bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
                                            std::vector<ui::CatalogItem>& outItems) {
     outItems.clear();
@@ -382,6 +405,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
     PSVA_TRACE_EVENT("soft_download_start",label(catalog));
     diagnostics::log(std::string("[CatalogManager] soft refresh: downloading ") + label(catalog));
     sceKernelLockMutex(mutex_, 1, nullptr);
+    releaseInactiveCachesLocked();
     status_.softRefresh = true;
     status_.state = State::Ready;
     status_.message = "Updating catalog from network — please wait...";
@@ -424,6 +448,7 @@ bool CatalogManager::trySoftNetworkRefresh(ui::CatalogType catalog,
             return false;
         }
         sceKernelLockMutex(mutex_,1,nullptr);
+        releaseRefreshCopyLocked(catalog);
         status_.message="Processing updated catalog...";
         status_.refreshPhase=RefreshPhase::Applying;
         status_.current=0;status_.total=0;
@@ -513,6 +538,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
     // Never resume a previous incomplete catalog download.
     sceIoRemove(temp.c_str());
     sceKernelLockMutex(mutex_, 1, nullptr);
+    releaseInactiveCachesLocked();
     status_.refreshPhase = RefreshPhase::Downloading;
     ++status_.refreshSerial;
     status_.current = status_.total = 0;
@@ -530,6 +556,7 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
 
     if (result == HttpResult::Ok) {
         sceKernelLockMutex(mutex_,1,nullptr);
+        releaseInactiveCachesLocked();
         status_.message="Processing downloaded catalog...";
         status_.refreshPhase=RefreshPhase::Applying;
         status_.current=0;status_.total=0;
@@ -583,20 +610,27 @@ bool CatalogManager::loadCatalog(ui::CatalogType catalog, std::vector<ui::Catalo
 }
 
 void CatalogManager::publishReady(ui::CatalogType catalog, std::vector<ui::CatalogItem>& items,
-                                  const char* message, bool softRefresh) {
+                                  const char* message, bool softRefresh, bool keepRamCopy) {
     const int cidx = static_cast<int>(catalog);
+    const size_t itemCount = items.size();
     if (cidx >= 0 && cidx < static_cast<int>(ui::CatalogType::Count)) {
-        cachedItems_[cidx] = items;
-        cachedValid_[cidx] = true;
+        if (keepRamCopy) {
+            cachedItems_[cidx] = items;
+            cachedValid_[cidx] = true;
+        } else {
+            // A fresh network result is moved directly to the UI. Avoid a
+            // third decoded copy while the UI still owns the previous version.
+            catalog_memory::releaseEntry(cachedItems_, cachedValid_, static_cast<size_t>(cidx));
+        }
     }
     // Unexpected overwrite is relevant to catalog error reports even when CATTRACE is off.
     if(readyPending_)diagnostics::log(std::string("[CatalogManager] WARNING unconsumed ready overwrite old=")
         +label(readyCatalog_)+" new="+label(catalog));
-    readyItems_=items;
+    readyItems_=std::move(items);
     readyCatalog_=catalog;
     readyPending_=true;
     PSVA_TRACE_EVENT("publish_ready",std::string("catalog=")+label(catalog)+
-        " items="+std::to_string(items.size())+
+        " items="+std::to_string(itemCount)+
         " soft="+std::to_string(softRefresh?1:0));
     status_.state = State::Ready;
     status_.catalog = catalog;
@@ -632,6 +666,9 @@ int CatalogManager::workerMain() {
             forceNetworkPending_ = false;
             haveRequest = true;
             workerOperationActive_ = true;
+            // A cache miss will parse disk or network. Free inactive decoded
+            // catalogs before allocating parser buffers, not after the peak.
+            releaseInactiveCachesLocked();
             status_.state = State::Loading;
             status_.catalog = catalog;
             status_.label = label(catalog);
@@ -708,7 +745,7 @@ int CatalogManager::workerMain() {
                 if (isStale()) continue;
                 sceKernelLockMutex(mutex_, 1, nullptr);
                 if (!(requestPending_ || catalog != requestedCatalog_ || gen != requestGeneration_)) {
-                    publishReady(catalog, fresh, "Catalog updated", false);
+                    publishReady(catalog, fresh, "Catalog updated", false, false);
                     diagnostics::log(std::string("[CatalogManager] hot-swap after soft refresh: ") +
                                      label(catalog));
                 }
@@ -751,7 +788,8 @@ int CatalogManager::workerMain() {
         }
 
         if (ok) {
-            publishReady(catalog, loaded, ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg), false);
+            const bool downloaded = status_.refreshPhase == RefreshPhase::Updated;
+            publishReady(catalog, loaded, ::psvitaalive::L(::psvitaalive::TextId::CatalogReadyMsg), false, !downloaded);
         } else {
             status_.state = State::Failed;
             status_.catalog = catalog;

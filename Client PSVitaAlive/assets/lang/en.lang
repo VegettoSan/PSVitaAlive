@@ -879,7 +879,7 @@ ID_OP_PREPARE_STAGE=Preparing Game Files removal
 ID_OP_PREPARE_EXPLAIN=Counting files and folders before deletion
 ID_OP_VERIFY_STAGE=Verifying result
 ID_OP_APP_STAGE=Uninstalling application
-ID_OP_FILES_EXPLAIN=Removing files from ux0:data/
+ID_OP_FILES_EXPLAIN=Removing files from:
 ID_OP_APP_EXPLAIN=Waiting for the PS Vita package manager
 ID_OP_ROOT_PROGRESS=Roots completed:
 ID_OP_FILES_REMOVED=Files removed:
@@ -938,6 +938,7 @@ QUEUE_TITLE=Download manager
 QUEUE_UNKNOWN_SPACE=Unable to confirm available storage for this queue.
 QUEUE_UNSUPPORTED=This installation needs the individual installer. Finish the queue first.
 QUEUE_VIEW=View downloads
+QUEUE_VIEW_DETAILS=View details
 QUEUE_WAITING=Queued
 QUEUE_HISTORY=Download history
 QUEUE_HISTORY_EMPTY=No download history yet
@@ -955,20 +956,28 @@ QUEUE_SYSTEM_RECHECK=Finish the system installation before restoring remaining f
 QUEUE_SYSTEM_CONFIRM=Confirm the system installation has finished?
 QUEUE_SYSTEM_NOT_INSTALLED=Installed app not found; finish installation in LiveArea
 
-# Active-catalog storage manager
+# Contextual game storage
+ID_GAMES_TITLE=Installed games
+ID_GAMES_SECTION=Installed games
+ID_GAMES_TOTAL=Game storage:
+ID_GAMES_LIST_HINT=Select a game to view its location and size.
+ID_MEDIA_UNKNOWN_PLATFORM=Unknown platform
+ID_MEDIA_IDENTIFIED=Identified
+ID_MEDIA_UNIDENTIFIED=Unidentified
+ID_MEDIA_EXTERNAL=External game
+ID_GAME_DELETE=Delete game
+ID_MEDIA_DELETE_CONFIRM=The selected file or game folder will be permanently removed.
+ID_VITA_DELETE_CONFIRM=The system will uninstall this game. Back up saves first.
+ID_MEDIA_PREPARE=Preparing game removal
+ID_MEDIA_DELETING=Deleting game
+ID_GAME_REMOVED=Game removed successfully
+ID_GAME_FAILED=Game removal failed
+ID_VITA_DELETE_NOTE=System uninstall
+ID_MEDIA_DELETE_NOTE=Only the selected path
+
+# Catalog-specific storage labels and ZIP cleanup
 ID_SECTION_VITA=Installed PS Vita games
 ID_SECTION_PSP=Installed PSP games
 ID_SECTION_PS1=Installed PS1 games
 STORAGE_VISIBLE_TOTAL=Displayed total
 STORAGE_CONFIRM_TEMP_ONLY=Temporary files only. X/△: confirm, O: cancel
-ID_GAME_TOTAL=Installed games:
-ID_GAME_LIST_HINT=Select a game to inspect its files.
-ID_GAME_NONE=No installed games found.
-ID_GAME_DELETE_PACKAGE=Uninstall game
-ID_GAME_DELETE_MEDIA=Delete game files
-ID_GAME_MEDIA_IMPACT=The detected Adrenaline files will be deleted.
-ID_GAME_MEDIA_PROGRESS=Deleting identified Adrenaline files
-ID_GAME_DISCOVERING=Locating installed games...
-ID_GAME_PACKAGE_IMPACT=The game will be uninstalled from LiveArea.
-ID_GAME_PACKAGE_KEEP=The LiveArea game will be removed; Adrenaline files will remain.
-ID_GAME_BOTH_IMPACT=Both LiveArea and detected Adrenaline files will be removed.

@@ -6,8 +6,6 @@
 
 namespace psvitaalive { namespace storage {
 
-enum class GameMediaKind : unsigned char { None, Psp, Ps1 };
-
 struct InstalledDataPath {
     std::string path; // validated absolute ux0:data/ path
     uint64_t bytes = 0;
@@ -39,9 +37,17 @@ struct InstalledDataApp {
     bool blocked = false; // invalid/unidentified path, not catalog-only overlap
     uint64_t bytes = 0; // deduplicated within this app
     std::vector<InstalledDataPath> paths;
-    // Commercial roots are only discovered from the local installed-media index.
-    bool commercial = false;
-    GameMediaKind mediaKind = GameMediaKind::None;
+    // Game storage rows use a physical path as the UI key; never as a package ID.
+    bool mediaRow = false;
+    bool mediaDirectory = false;
+    bool mediaIdentified = false;
+    uint8_t mediaPlatform = 0; // 0 unknown, 1 PSP, 2 PS1
+    std::string mediaId, mediaFormat, alternateIds;
+    uint64_t mediaStamp = 0, mediaFileBytes = 0, mediaPayloadStamp = 0;
+};
+
+struct GameCatalogIdentity {
+    std::string appId,titleId,alternateIds,name,icon;
 };
 
 struct InstalledDataSnapshot {
@@ -100,6 +106,8 @@ struct InstalledDataOperationProgress {
     std::atomic<uint64_t> entriesTotal{0}; // files + folders to remove
     std::atomic<uint32_t> rootsTotal{0};
     std::atomic<uint32_t> rootsCompleted{0};
+    // Index into the target's immutable pre-operation paths; no worker-owned string crosses threads.
+    std::atomic<uint32_t> currentRootIndex{UINT32_MAX};
     std::atomic<uint32_t> filesRemoved{0};
     std::atomic<uint32_t> foldersRemoved{0};
     std::atomic<uint32_t> promoterPolls{0};
@@ -108,6 +116,7 @@ struct InstalledDataOperationProgress {
         entriesTotal.store(0, std::memory_order_relaxed);
         rootsTotal.store(0, std::memory_order_relaxed);
         rootsCompleted.store(0, std::memory_order_relaxed);
+        currentRootIndex.store(UINT32_MAX, std::memory_order_relaxed);
         filesRemoved.store(0, std::memory_order_relaxed);
         foldersRemoved.store(0, std::memory_order_relaxed);
         promoterPolls.store(0, std::memory_order_relaxed);
@@ -124,11 +133,17 @@ public:
         const std::string& onlyTitleId = {},
         InstalledDataScanProgress* progress = nullptr,
         uint64_t timeBudgetUs = 30000000ULL,
-        bool measureSizes = true,
-        bool commercialScan = false);
+        bool measureSizes = true);
     // Persistent discovery index: the canonical catalog always owns routes.
     // Saved bytes are display-only; neither directory cache nor size can
     // authorize deletion. Explicit invalidation after known data changes.
+    // mode: 1 Vita packages, 2 PSP, 3 PS1. Read-only discovery, optional per-row measurement.
+    static InstalledDataSnapshot scanGames(const std::vector<GameCatalogIdentity>& catalog,
+        unsigned mode, InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=8000000ULL);
+    static InstalledDataApp measureGame(InstalledDataApp app,
+        InstalledDataScanProgress* progress=nullptr, uint64_t budgetUs=25000000ULL);
+    static bool removeGameMedia(const InstalledDataApp& app,InstalledDataOperationProgress* progress);
+    static bool uninstallGamePackage(const InstalledDataApp& app,InstalledDataOperationProgress* progress);
     static void invalidateCachedTitle(const std::string& titleId);
     static void invalidateCachedPackageTitle(const std::string& titleId);
     // Recalculate de-duplicated external bytes after a single app refresh.

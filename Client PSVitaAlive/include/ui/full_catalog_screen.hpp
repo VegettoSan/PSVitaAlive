@@ -87,6 +87,10 @@ public:
         installPause_ = std::move(pause); installResume_ = std::move(resume);
     }
     void setStorageBusyCallback(std::function<bool()> callback) { storageInstallerBusy_ = std::move(callback); }
+    void setInstalledDataProtectionCallbacks(std::function<bool()> acquire, std::function<void()> release) {
+        installedDataAcquireProtection_ = std::move(acquire);
+        installedDataReleaseProtection_ = std::move(release);
+    }
     using StorageAppDisplayFn = std::function<bool(const std::string&, const std::string&,
                                                    std::string&, std::string&)>;
     void setStorageAppDisplayCallback(StorageAppDisplayFn callback) {
@@ -271,6 +275,15 @@ private:
     static constexpr int kQueueRows=3, kQueueRowTop=79, kQueueRowPitch=118, kQueueRowHeight=108;
     static constexpr int kQueueStepRows=2, kQueueStepTop=287, kQueueStepPitch=80, kQueueStepHeight=74;
     int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;
+    int queueStepFocus_=0;
+    uint64_t queueReportSendingJob_=0;
+    size_t queueReportSendingStep_=0;
+    std::vector<std::pair<uint64_t,size_t>> queueReportedSteps_;
+    bool queueStepReported(uint64_t job,size_t step) const;
+    bool canReportQueueStep(const ::psvitaalive::queue::Job& job,size_t step) const;
+    void openQueueJobDetail();
+    void moveQueueStepFocus(int delta);
+    void sendQueueStepReport(uint64_t job,size_t step);
     const ::psvitaalive::queue::Job* queuedJobFor(const CatalogItem& item) const;
     const char* queueJobLabel(const ::psvitaalive::queue::Job& job) const;
     void openQueue(uint64_t id=0,bool detail=false);
@@ -657,7 +670,6 @@ private:
     std::function<bool()> storageInstallerBusy_;
     StorageAppDisplayFn storageAppDisplay_;
     bool storageVisible_ = false;
-    CatalogType storageCatalog_ = CatalogType::Homebrew; // frozen for modal lifetime
     bool storageConfirm_ = false;
     int storagePendingAction_ = -1; // double-confirm the exact cleanup action
     struct StorageDisplayRow {
@@ -676,6 +688,10 @@ private:
     std::atomic<bool> storageWorkerOk_{false};
     SceUID storageWorker_ = -1;
     ::psvitaalive::storage::UsageSnapshot storageSnapshot_;
+    unsigned storageGameMode_=0,installedDataGameMode_=0;
+    ::psvitaalive::storage::InstalledDataSnapshot storageGamesSnapshot_;
+    std::vector<::psvitaalive::storage::GameCatalogIdentity> gameStorageCandidates_;
+    void closeStorageMenu();
     void openStorageMenu();
     void startStorageOperation(int action);
     void pollStorageOperation();
@@ -711,6 +727,12 @@ private:
     std::atomic<bool> installedDataFilesOk_{false};
     std::atomic<bool> installedDataPreflightFailed_{false};
     ::psvitaalive::storage::InstalledDataOperationProgress installedDataOpProgress_;
+    // UI-owned identity captured before deletion starts; worker may replace snapshot.
+    std::string installedDataOperationName_, installedDataOperationIcon_, installedDataOperationTitleId_;
+    std::vector<std::string> installedDataOperationPaths_;
+    vita2d_texture* installedDataOperationLocalIcon_ = nullptr;
+    void clearInstalledDataOperationDisplay();
+    void drawInstalledDataOperationIdentity(int x,int y,int width);
     std::string installedDataTargetId_;
     std::string installedDataPreferredId_;
     std::string installedDataScanFocusId_; // rescan one incomplete row
@@ -723,10 +745,16 @@ private:
     int installedDataPathScroll_ = 0;
     void rebuildInstalledDataCandidates();
     void rebuildInstalledDataVisibleRows();
+    void sortInstalledDataVisibleRows(bool preserveFocus);
+    bool installedDataSortPending_=false;
     std::atomic<bool> installedDataWorkerDone_{false};
     std::atomic<bool> installedDataWorkerOk_{false};
     ::psvitaalive::storage::InstalledDataScanProgress installedDataScanProgress_;
     SceUID installedDataWorker_ = -1;
+    std::function<bool()> installedDataAcquireProtection_;
+    std::function<void()> installedDataReleaseProtection_;
+    bool installedDataProtected_ = false;
+    void releaseInstalledDataProtection();
     void openInstalledDataMenu(bool fromStorage, const std::string& preferredTitleId);
     void closeInstalledDataMenu();
     void releaseInstalledDataExclusiveTextures();
@@ -794,7 +822,7 @@ private:
         std::string appName, titleId, version, fileName;
     };
     void trySendErrorReport(const std::string& title, const std::string& context,
-                            const ReportTargetOverrides* target = nullptr);
+                            const ReportTargetOverrides* target = nullptr, bool asyncOnly = false);
     void pollReportWorker();
     void drawReportChip();
     void drawReportConfirmOverlay();

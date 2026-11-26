@@ -83,8 +83,11 @@ private:
                      bool forceNetwork = false);
     bool tryLoadDiskCache(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
     bool trySoftNetworkRefresh(ui::CatalogType catalog, std::vector<ui::CatalogItem>& outItems);
+    // Caller holds mutex_. Only evict decoded RAM copies, never disk cache.
+    void releaseInactiveCachesLocked();
+    void releaseRefreshCopyLocked(ui::CatalogType catalog);
     void publishReady(ui::CatalogType catalog, std::vector<ui::CatalogItem>& items,
-                      const char* message, bool softRefresh);
+                      const char* message, bool softRefresh, bool keepRamCopy = true);
     const char* fileName(ui::CatalogType catalog) const;
     const char* label(ui::CatalogType catalog) const;
     std::string cachePath(ui::CatalogType catalog) const;

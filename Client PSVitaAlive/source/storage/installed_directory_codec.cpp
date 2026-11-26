@@ -5,6 +5,7 @@
 #include <cstring>
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 namespace psvitaalive { namespace storage {
 namespace {
@@ -101,5 +102,63 @@ const CachedDirectory* InstalledDirectoryCache::find(
     return nullptr;
 }
 
+
+namespace {
+constexpr const char* MEDIA_MAGIC="PSVA_MEDIA_INDEX_V1\n";
+constexpr size_t MEDIA_MAX_ROWS=4096,MEDIA_MAX_BYTES=512*1024;
+bool cleanField(const std::string& value,size_t max) {
+    if(value.size()>max)return false;
+    for(unsigned char c:value)if(c<32||c==127)return false;
+    return true;
+}
+bool validMedia(const CachedMedia& row) {
+    return safeGameMediaPath(row.path,row.directory) && row.rootStamp && row.payloadStamp &&
+        row.platform<=2 && (row.sizeKnown||!row.bytes) &&
+        cleanField(row.title,256) && (row.id.empty()||validInstalledTitleId(row.id)) &&
+        (row.contentId.empty()||validInstalledTitleId(row.contentId));
+}
+}
+bool InstalledDirectoryCache::encodeMedia(const std::vector<CachedMedia>& entries,std::string& out) {
+    out.assign(MEDIA_MAGIC);
+    if(entries.size()>MEDIA_MAX_ROWS)return false;
+    std::unordered_set<std::string> seen;
+    for(const auto& row:entries) {
+        if(!validMedia(row)||!seen.insert(row.path).second)return false;
+        out+=row.path+"\t"+std::to_string(row.rootStamp)+"\t"+std::to_string(row.payloadStamp)+"\t"+
+            std::to_string(row.bytes)+"\t"+(row.directory?"1":"0")+"\t"+(row.sizeKnown?"1":"0")+"\t"+
+            (row.validPbp?"1":"0")+"\t"+std::to_string(row.platform)+"\t"+row.title+"\t"+row.id+"\t"+row.contentId+"\n";
+        if(out.size()>MEDIA_MAX_BYTES)return false;
+    }
+    return true;
+}
+bool InstalledDirectoryCache::decodeMedia(const std::string& raw,std::vector<CachedMedia>& out) {
+    out.clear();
+    if(raw.size()>MEDIA_MAX_BYTES||raw.compare(0,std::strlen(MEDIA_MAGIC),MEDIA_MAGIC)!=0)return false;
+    std::vector<CachedMedia> rows;
+    std::unordered_set<std::string> seen;
+    size_t pos=std::strlen(MEDIA_MAGIC);
+    while(pos<raw.size()) {
+        const auto end=raw.find('\n',pos);
+        if(end==std::string::npos||rows.size()>=MEDIA_MAX_ROWS)return false;
+        const std::string line=raw.substr(pos,end-pos);pos=end+1;
+        std::string fields[11];size_t start=0;
+        for(unsigned i=0;i<10;++i) {
+            const auto tab=line.find('\t',start);if(tab==std::string::npos)return false;
+            fields[i]=line.substr(start,tab-start);start=tab+1;
+        }
+        if(line.find('\t',start)!=std::string::npos)return false;
+        fields[10]=line.substr(start);
+        CachedMedia row;row.path=fields[0];
+        uint64_t platform=0;
+        if(!decimal(fields[1],row.rootStamp)||!decimal(fields[2],row.payloadStamp)||
+           !decimal(fields[3],row.bytes)||!decimal(fields[7],platform)||platform>2)return false;
+        for(unsigned i=4;i<7;++i)if(fields[i]!="0"&&fields[i]!="1")return false;
+        row.directory=fields[4]=="1";row.sizeKnown=fields[5]=="1";row.validPbp=fields[6]=="1";
+        row.platform=static_cast<uint8_t>(platform);row.title=fields[8];row.id=fields[9];row.contentId=fields[10];
+        if(!validMedia(row)||!seen.insert(row.path).second)return false;
+        rows.push_back(std::move(row));
+    }
+    out=std::move(rows);return true;
+}
 
 }} // namespace psvitaalive::storage

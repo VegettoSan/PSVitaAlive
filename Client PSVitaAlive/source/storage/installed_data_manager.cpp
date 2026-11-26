@@ -1,7 +1,7 @@
 #include "storage/installed_data_manager.hpp"
 #include "storage/installed_data_policy.hpp"
+#include "storage/game_media_metadata.hpp"
 #include "storage/installed_directory_cache.hpp"
-#include "ui/installed_game_index.hpp"
 #include "diagnostic_logger.hpp"
 #include <psp2/appmgr.h>
 #include <psp2/io/dirent.h>
@@ -34,6 +34,20 @@ bool exists(const std::string& path, SceIoStat* out=nullptr) {
     if (out) *out = st;
     return true;
 }
+// ENOENT alone does not prove absence when a memory card is disconnected.
+// Use the same Vita error code as zip_extractor.cpp; no recursive traversal.
+bool cacheConfirmedMissing(const std::string& path) {
+    SceIoStat st{};
+    const int rc=sceIoGetstat(path.c_str(),&st);
+    if(static_cast<uint32_t>(rc)!=0x80010002u)return false;
+    const auto colon=path.find(':');
+    if(colon==std::string::npos)return false;
+    const auto mount=path.substr(0,colon+1);
+    const SceUID d=sceIoDopen(mount.c_str());
+    if(d<0)return false;
+    sceIoDclose(d);
+    return true;
+}
 // Each child name is validated independently of the protected root policy.
 // Root directory timestamp is a *hint*. A nested write may not update it.
 // Therefore any cached bytes are explicitly marked historical in the UI.
@@ -57,6 +71,7 @@ struct ScanContext {
     uint64_t startUs = 0;
     uint64_t budgetUs = 0;
     bool stopped = false;
+    bool gameMedia = false;
     bool shouldStop() {
         if (stopped) return true;
         if (progress && progress->cancelRequested.load(std::memory_order_relaxed))
@@ -76,17 +91,19 @@ struct ScanContext {
     }
 };
 bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
-              uint32_t& entries, uint64_t& bytes, ScanContext& ctx,
-              bool verifiedGameMedia = false) {
+              uint32_t& entries, uint64_t& bytes, ScanContext& ctx) {
     // Read-only traversal permits one exact ux0:app/<TITLE_ID> package root.
-    // Commercial roots are permitted only after live identity validation.
+    // eraseTree() remains strictly limited to safe ux0:data/ locations.
     // Validate only the root; validating every descendant hurts large ZIPs.
-    const bool safeRoot = depth != 0 || verifiedGameMedia || safeExternalDataPath(p) ||
+    const bool safeRoot = depth != 0 || safeExternalDataPath(p) ||
+        (ctx.gameMedia && safeGameMediaPath(p,(st.st_mode & SCE_S_IFMT)==SCE_S_IFDIR)) ||
         (p.compare(0, 8, "ux0:app/") == 0 &&
          validInstalledTitleId(p.substr(8)));
     if (depth > MAX_DEPTH || ++entries > MAX_ENTRIES ||
         !safeRoot ||
         ctx.shouldStop()) return false;
+    if(ctx.gameMedia && (st.st_mode & SCE_S_IFMT)!=SCE_S_IFDIR &&
+       (st.st_mode & SCE_S_IFMT)!=SCE_S_IFREG)return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         ctx.fileSeen();
         if (st.st_size > 0) bytes = sum(bytes, static_cast<uint64_t>(st.st_size));
@@ -109,6 +126,7 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
         // This fast path eliminates path allocations and syscalls for files.
         if (entry.d_stat.st_mode != 0 &&
             !(entry.d_stat.st_mode & SCE_S_IFDIR)) {
+            if(ctx.gameMedia && (entry.d_stat.st_mode & SCE_S_IFMT)!=SCE_S_IFREG){complete=false;break;}
             ++entries;
             ctx.fileSeen();
             if (entry.d_stat.st_size > 0)
@@ -131,12 +149,13 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     return complete;
 }
 bool eraseTree(const std::string& path, unsigned depth,
-               uint32_t& count, InstalledDataOperationProgress* progress,
-               bool verifiedGameMedia = false) {
-    if ((depth == 0 && !verifiedGameMedia && !safeExternalDataPath(path)) ||
+               uint32_t& count, InstalledDataOperationProgress* progress,bool gameMedia=false) {
+    if ((depth == 0 && !safeExternalDataPath(path) && !gameMedia) ||
         depth > MAX_DEPTH || ++count > MAX_ENTRIES) return false;
     SceIoStat st{};
-    if (!exists(path, &st)) return true;
+    if (!exists(path, &st)) return !gameMedia;
+    if(gameMedia && ((st.st_mode & SCE_S_IFMT)!=SCE_S_IFDIR && (st.st_mode & SCE_S_IFMT)!=SCE_S_IFREG))return false;
+    if(gameMedia && depth==0 && !safeGameMediaPath(path,(st.st_mode & SCE_S_IFMT)==SCE_S_IFDIR))return false;
     if (!(st.st_mode & SCE_S_IFDIR)) {
         const bool ok = sceIoRemove(path.c_str()) >= 0;
         if (ok && progress)
@@ -156,7 +175,7 @@ bool eraseTree(const std::string& path, unsigned depth,
                 std::strcmp(e.d_name, "..") == 0) continue;
             if (!validInstalledChildName(e.d_name)) { ok = false; break; }
             found = true;
-            if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress)) {
+            if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress,gameMedia)) {
                 ok = false; break;
             }
         }
@@ -205,12 +224,9 @@ bool validateExternalRemoval(const InstalledDataSnapshot& snapshot,
     }
     bool anyPresent = false;
     for (const auto& p : target->paths) {
-        if (!installedDataAllowsPath(*target, p.path)) return false;
+        if (!safeExternalDataPath(p.path)) return false;
         if (!p.exists) continue;
-        if (target->commercial ?
-            !ui::InstalledGameIndex::storagePathMatches(target->mediaKind, titleId, p.path) :
-            (!safeExternalDataPath(p.path) || !exists(p.path)))
-            return false; // stale snapshot or changed identity
+        if (!exists(p.path)) return false; // snapshot may have become stale
         anyPresent = true;
     }
     return anyPresent;
@@ -222,8 +238,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
     const std::string& onlyTitleId,
     InstalledDataScanProgress* progress,
     uint64_t timeBudgetUs,
-    bool measureSizes,
-    bool commercialScan) {
+    bool measureSizes) {
     InstalledDataSnapshot result;
     result.apps = std::move(apps);
     ScanContext ctx;
@@ -272,26 +287,15 @@ InstalledDataSnapshot InstalledDataManager::scan(
         for (const auto& path : app.roots) {
             InstalledDataPath row;
             row.path = path;
-            if (!installedDataAllowsPath(app, path) || !titleOk) {
+            if (!safeExternalDataPath(path) || !titleOk) {
                 app.blocked = true;
                 app.unresolved = true;
                 row.complete = false;
             } else if (selected && !ctx.shouldStop()) {
                 SceIoStat st{};
                 row.exists = exists(path, &st);
-                if (row.exists && app.commercial &&
-                    !ui::InstalledGameIndex::storagePathMatches(app.mediaKind, app.titleId, path)) {
-                    row.exists = false;
-                    row.complete = false;
-                    app.blocked = true;
-                    result.complete = false;
-                }
                 if (row.exists) {
                     row.rootStamp = rootFingerprint(st);
-                    if (app.commercial && !(st.st_mode & SCE_S_IFDIR)) {
-                        row.bytes = st.st_size > 0 ? static_cast<uint64_t>(st.st_size) : 0;
-                        row.sizeKnown = true;
-                    }
                     // The disk index never supersedes canonical JSON paths or
                     // a fresh Getstat. Cached measurements do not grant
                     // permission to delete.
@@ -349,7 +353,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
             continue;
         }
         for (auto& path : app.paths) {
-            if (!installedDataAllowsPath(app, path.path) || !path.exists) continue;
+            if (!safeExternalDataPath(path.path) || !path.exists) continue;
             if (measureSizes) {
                 const auto previous = measured.find(path.path);
                 if (previous != measured.end()) {
@@ -363,7 +367,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
                         uint32_t entries = 0;
                         path.bytes = 0; // never preserve a partial cached value
                         path.complete = scanTree(
-                            path.path, st, 0, entries, path.bytes, ctx, app.commercial);
+                            path.path, st, 0, entries, path.bytes, ctx);
                     }
                     measured.emplace(path.path,
                                      std::make_pair(path.bytes, path.complete));
@@ -428,17 +432,24 @@ InstalledDataSnapshot InstalledDataManager::scan(
                 next.push_back({app.titleId, packageRoot, app.packageRootStamp,
                     app.packageSizeKnown ? app.packageBytes : 0,
                     app.packageSizeKnown});
-            } else if (!selected) {
+            } else {
                 const auto* saved = InstalledDirectoryCache::find(
                     index, app.titleId, packageRoot);
-                if (saved) next.push_back(*saved);
+                if (saved && (!selected || !cacheConfirmedMissing(packageRoot+"/sce_sys/param.sfo")))
+                    next.push_back(*saved);
             }
         }
         for (const auto& path : app.paths) {
             if (!safeExternalDataPath(path.path) ||
                 !validInstalledTitleId(app.titleId)) continue;
             if (selected) {
-                if (!path.exists || !path.complete) continue;
+                if (!path.exists || !path.complete) {
+                    const auto* saved=InstalledDirectoryCache::find(index,app.titleId,path.path);
+                    if(saved && ((!path.exists && !cacheConfirmedMissing(path.path)) ||
+                        (path.exists && path.rootStamp && saved->rootStamp==path.rootStamp)))
+                        next.push_back(*saved);
+                    continue;
+                }
                 next.push_back({app.titleId, path.path, path.rootStamp,
                     path.sizeKnown ? path.bytes : 0, path.sizeKnown});
             } else {
@@ -448,8 +459,7 @@ InstalledDataSnapshot InstalledDataManager::scan(
             }
         }
     }
-    // Game-only scans must not replace the persistent Homebrew index.
-    if (!ctx.stopped && !commercialScan) InstalledDirectoryCache::save(next);
+    if (!ctx.shouldStop()) InstalledDirectoryCache::save(next);
     if (ctx.stopped) result.complete = false;
     if (progress) {
         progress->truncated.store(!result.complete, std::memory_order_relaxed);
@@ -461,11 +471,16 @@ InstalledDataSnapshot InstalledDataManager::scan(
 uint64_t InstalledDataManager::knownExternalBytes(
     const InstalledDataSnapshot& snapshot) {
     std::vector<const InstalledDataPath*> paths;
+    std::unordered_set<std::string> gamePaths;
+    uint64_t mediaTotal=0;
     for (const auto& app : snapshot.apps)
-        for (const auto& path : app.paths)
-            if (path.exists && path.sizeKnown &&
-                installedDataAllowsPath(app, path.path))
-                paths.push_back(&path);
+        for (const auto& path : app.paths) {
+            if(!path.exists || !path.sizeKnown)continue;
+            if(app.mediaRow) {
+                if(safeGameMediaPath(path.path,app.mediaDirectory) && gamePaths.insert(path.path).second)
+                    mediaTotal=sum(mediaTotal,path.bytes);
+            } else if(safeExternalDataPath(path.path))paths.push_back(&path);
+        }
     // Count parents before children, and count a shared root only once.
     std::sort(paths.begin(), paths.end(),
               [](const InstalledDataPath* a, const InstalledDataPath* b) {
@@ -473,7 +488,7 @@ uint64_t InstalledDataManager::knownExternalBytes(
                       ? a->path < b->path : a->path.size() < b->path.size();
               });
     std::vector<std::string> counted;
-    uint64_t total = 0;
+    uint64_t total = mediaTotal;
     for (const auto* path : paths) {
         bool covered = false;
         for (const auto& root : counted)
@@ -502,12 +517,327 @@ uint64_t InstalledDataManager::knownPackageBytes(
     return total;
 }
 
+namespace {
+bool regular(const SceIoStat& s) {return (s.st_mode & SCE_S_IFMT)==SCE_S_IFREG;}
+bool directory(const SceIoStat& s) {return (s.st_mode & SCE_S_IFMT)==SCE_S_IFDIR;}
+uint64_t mediaFingerprint(const SceIoStat& s) {
+    const uint64_t stamp=rootFingerprint(s);
+    return stamp?stamp ^ (static_cast<uint64_t>(s.st_size)*1099511628211ULL):0;
+}
+media::Metadata probeMedia(const std::string& path,const SceIoStat& st) {
+    if(!regular(st)||st.st_size<=0)return {};
+    const SceUID fd=sceIoOpen(path.c_str(),SCE_O_RDONLY,0);
+    if(fd<0)return {};
+    media::Read read=[&](uint64_t offset,void* data,size_t n) {
+        return sceIoLseek(fd,static_cast<SceOff>(offset),SCE_SEEK_SET)==static_cast<SceOff>(offset) &&
+            sceIoRead(fd,data,static_cast<SceSize>(n))==static_cast<int>(n);
+    };
+    const auto result=media::probe(read,static_cast<uint64_t>(st.st_size));
+    sceIoClose(fd);return result;
+}
+media::Sfo localSfo(const std::string& path,const SceIoStat& st) {
+    if(!regular(st)||st.st_size<20||st.st_size>65536)return {};
+    const SceUID fd=sceIoOpen(path.c_str(),SCE_O_RDONLY,0);if(fd<0)return {};
+    std::vector<unsigned char> buf(static_cast<size_t>(st.st_size));
+    const bool ok=sceIoRead(fd,buf.data(),static_cast<SceSize>(buf.size()))==static_cast<int>(buf.size());
+    sceIoClose(fd);return ok?media::sfo(buf):media::Sfo{};
+}
+bool vitaGameIdentity(const std::string& id,const media::Sfo& meta) {
+    return validInstalledTitleId(id) && id.compare(0,3,"PCS")==0 && meta.id==id &&
+        meta.category=="gd" && !meta.title.empty();
+}
+std::string gamePbp(const std::string& path,SceIoStat& st) {
+    const std::string upper=path+"/EBOOT.PBP",lower=path+"/eboot.pbp";
+    if(exists(upper,&st)&&regular(st))return upper;
+    if(exists(lower,&st)&&regular(st))return lower;
+    return {};
+}
+std::string filenameId(std::string name) {
+    const auto dot=name.find_last_of('.');if(dot!=std::string::npos)name.resize(dot);
+    auto id=media::idOf(name);
+    if(id.empty()&&name.size()>=11&&name.back()==']'&&name[name.size()-11]=='[')
+        id=media::idOf(name.substr(name.size()-10,9));
+    return id;
+}
+}
+InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCatalogIdentity>& catalog,
+        unsigned mode,InstalledDataScanProgress* progress,uint64_t budgetUs) {
+    InstalledDataSnapshot out;
+    ScanContext ctx;ctx.progress=progress;ctx.startUs=sceKernelGetProcessTimeWide();ctx.budgetUs=budgetUs;
+    if(progress)progress->phase.store(1,std::memory_order_release);
+    // Build one lookup map; ambiguous aliases cannot identify any row.
+    std::unordered_map<std::string,const GameCatalogIdentity*> byId;
+    auto add=[&](const std::string& raw,const GameCatalogIdentity& app) {
+        const auto id=media::idOf(raw);if(id.empty())return;
+        auto inserted=byId.emplace(id,&app);
+        if(!inserted.second && inserted.first->second!=&app)inserted.first->second=nullptr;
+    };
+    for(const auto& app:catalog) {
+        add(app.titleId,app);
+        size_t at=0;
+        while(at<app.alternateIds.size()){
+            const auto end=app.alternateIds.find('|',at);
+            add(app.alternateIds.substr(at,end==std::string::npos?end:end-at),app);
+            if(end==std::string::npos)break;
+            at=end+1;
+        }
+    }
+    auto lookup=[&](const std::string& id)->const GameCatalogIdentity* {
+        const auto it=byId.find(id);return it==byId.end()?nullptr:it->second;
+    };
+    if(mode==1) {
+        // Only exact catalog matches are authorized as Vita games. Do not
+        // classify unrelated Homebrew/system applications by folder alone.
+        std::vector<CachedDirectory> cache,next;
+        InstalledDirectoryCache::load(cache,DirectoryCacheScope::Vita);
+        std::unordered_set<std::string> verifiedParents,uncertainPaths;
+        const SceUID d=sceIoDopen("ux0:app");
+        if(d<0)out.complete=false;
+        else {
+            SceIoDirent e{};int rc=0;
+            while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
+                const std::string id=e.d_name;
+                const auto* match=lookup(id);
+                if(!validInstalledTitleId(id)||id==CLIENT_TID)continue;
+                const auto path="ux0:app/"+id;
+                // Seeing a child is not proof that all its metadata is readable.
+                uncertainPaths.insert(path);
+                SceIoStat st{},sfoStat{};
+                if(!exists(path,&st)||!directory(st)||!exists(path+"/sce_sys/param.sfo",&sfoStat)||!regular(sfoStat))continue;
+                const auto local=localSfo(path+"/sce_sys/param.sfo",sfoStat);
+                // A catalog match must still agree with the local SFO; an
+                // external Vita game needs positive commercial-game metadata.
+                if(local.id!=id || local.category!="gd" || (!match&&!vitaGameIdentity(id,local)))continue;
+                InstalledDataApp row;row.mediaIdentified=match!=nullptr;
+                row.name=match?match->name:(!local.title.empty()?local.title:id);
+                if(match){row.appId=match->appId;row.icon=match->icon;}
+                row.titleId=id;row.packagePresent=true;row.packageRootStamp=rootFingerprint(st);
+                row.mediaPayloadStamp=mediaFingerprint(sfoStat);
+                const auto* saved=InstalledDirectoryCache::find(cache,id,path);
+                if(row.packageRootStamp) {
+                    uncertainPaths.erase(path);
+                    if(saved&&saved->rootStamp==row.packageRootStamp) {
+                        next.push_back(*saved);
+                        if(saved->sizeKnown) {
+                            row.packageBytes=saved->bytes;row.packageSizeKnown=true;row.packageSizeCached=true;
+                        }
+                    }
+                }
+                out.apps.push_back(std::move(row));
+                if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
+            }
+            if(rc<0||ctx.shouldStop())out.complete=false;
+            else verifiedParents.insert("ux0:app");
+            sceIoDclose(d);
+        }
+        if(!ctx.shouldStop()&&!verifiedParents.empty()) {
+            reconcileCacheObservations(cache,next,verifiedParents,uncertainPaths);
+            InstalledDirectoryCache::save(next,DirectoryCacheScope::Vita);
+        }
+    } else if(mode==2||mode==3) {
+        std::vector<CachedMedia> cache,next;
+        InstalledDirectoryCache::loadMedia(cache);
+        std::unordered_map<std::string,size_t> cached;
+        std::unordered_set<std::string> verifiedParents,uncertainPaths,cachedParents;
+        for(size_t i=0;i<cache.size();++i) {
+            cached.emplace(cache[i].path,i);
+            cachedParents.insert(cache[i].path.substr(0,cache[i].path.find_last_of('/')));
+        }
+        size_t discovered=0;
+        next.reserve(cache.size());
+        for(const char* mount:{"ux0:","uma0:"})for(const char* section:{"ISO/","PSP/GAME/"}) {
+            if(ctx.shouldStop())break;
+            const std::string base=std::string(mount)+"pspemu/"+section;
+            const SceUID d=sceIoDopen(base.c_str());
+            const auto parent=base.substr(0,base.size()-1);
+            if(d<0) {
+                // Optional absent roots with no old records need no extra I/O.
+                // Only prune an old root if the mount is accessible and ENOENT
+                // is confirmed; otherwise keep its index rows off-screen.
+                if(cachedParents.count(parent)) {
+                    if(cacheConfirmedMissing(parent))verifiedParents.insert(parent);
+                    else out.complete=false;
+                } else if(exists(base))out.complete=false;
+                continue;
+            }
+            SceIoDirent e{};int rc=0;
+            while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
+                const std::string name=e.d_name;
+                if(!validInstalledChildName(name))continue;
+                const std::string path=base+name;
+                if(cached.count(path))uncertainPaths.insert(path);
+                SceIoStat st{};
+                if(!exists(path,&st)||(!regular(st)&&!directory(st))||!safeGameMediaPath(path,directory(st)))continue;
+                SceIoStat payload=st;
+                const std::string file=directory(st)?gamePbp(path,payload):path;
+                if(file.empty())continue; // not a verified game-shaped folder
+                // Bound all physical candidates, before filtering by platform.
+                if(++discovered>4096){ctx.stopped=true;break;}
+                const auto stamp=mediaFingerprint(st),payloadStamp=mediaFingerprint(payload);
+                const auto hit=cached.find(path);
+                const CachedMedia* old=hit==cached.end()?nullptr:&cache[hit->second];
+                media::Metadata m;
+                const bool reused=old && stamp && payloadStamp && old->rootStamp==stamp &&
+                    old->payloadStamp==payloadStamp && old->directory==directory(st);
+                if(reused) {
+                    m.platform=static_cast<media::Platform>(old->platform);
+                    m.title=old->title;m.id=old->id;m.contentId=old->contentId;m.validPbp=old->validPbp;
+                } else m=probeMedia(file,payload);
+                // Cache both platforms before filtering; do not probe the
+                // same payload again on switching between PSP and PS1.
+                if(stamp && payloadStamp && next.size()<4096) {
+                    CachedMedia record;
+                    record.path=path;record.rootStamp=stamp;record.payloadStamp=payloadStamp;
+                    record.directory=directory(st);record.platform=static_cast<uint8_t>(m.platform);
+                    record.title=m.title;record.id=m.id;record.contentId=m.contentId;record.validPbp=m.validPbp;
+                    if(record.directory && reused && old->sizeKnown){record.sizeKnown=true;record.bytes=old->bytes;}
+                    next.push_back(std::move(record));
+                    uncertainPaths.erase(path);
+                }
+                if((mode==2 && m.platform==media::Platform::PS1)||(mode==3&&m.platform==media::Platform::PSP))continue;
+                // ISO/CSO are normally PSP; an unreadable image stays unknown.
+                const auto* primary=m.platform==media::Platform::Unknown?nullptr:lookup(m.contentId.empty()?m.id:m.contentId);
+                const auto* secondary=m.platform==media::Platform::Unknown?nullptr:lookup(m.id);
+                const auto* match=primary?primary:secondary;
+                if(primary&&secondary&&primary!=secondary)match=nullptr;
+                // Filename is only a hint when no reliable internal identity exists.
+                const auto hint=filenameId(name);
+                if(!match && m.id.empty()&&m.contentId.empty()&&m.platform!=media::Platform::Unknown)match=lookup(hint);
+                InstalledDataApp row;
+                row.titleId=path;row.mediaRow=true;row.mediaDirectory=directory(st);
+                row.mediaPlatform=static_cast<uint8_t>(m.platform);
+                row.mediaId=!m.contentId.empty()?m.contentId:m.id;
+                row.mediaIdentified=match!=nullptr;
+                row.name=match?match->name:(!m.title.empty()?m.title:name);
+                if(match){row.appId=match->appId;row.icon=match->icon;}
+                row.mediaStamp=mediaFingerprint(st);row.mediaFileBytes=st.st_size>0?static_cast<uint64_t>(st.st_size):0;
+                row.mediaPayloadStamp=mediaFingerprint(payload);
+                row.mediaFormat=row.mediaDirectory?"PBP / Folder":(std::string(section)=="ISO/"?(name.size()>=4&&
+                    (name[name.size()-3]=='c'||name[name.size()-3]=='C')?"CSO":"ISO"):"PBP");
+                InstalledDataPath entry;entry.path=path;entry.exists=true;entry.rootStamp=row.mediaStamp;
+                entry.sizeKnown=!row.mediaDirectory || (reused && old->sizeKnown);
+                entry.sizeCached=row.mediaDirectory && entry.sizeKnown;
+                entry.bytes=!row.mediaDirectory?row.mediaFileBytes:entry.sizeKnown?old->bytes:0;
+                row.bytes=entry.bytes;row.paths.push_back(std::move(entry));
+                // Allow removing a single unrecognized ISO/PBP file, but never a
+                // directory without a structurally identified PSP/PS1 payload.
+                row.blocked=!row.mediaStamp || (row.mediaDirectory && (!row.mediaPayloadStamp || !m.validPbp));
+                out.apps.push_back(std::move(row));
+                if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
+                if(out.apps.size()>=4096){ctx.stopped=true;break;}
+            }
+            if(rc<0||ctx.shouldStop())out.complete=false;
+            else verifiedParents.insert(parent);
+            sceIoDclose(d);
+        }
+        // Preserve unvisited or inaccessible roots, and unreadable children.
+        // A cancelled/budget-limited scan never replaces the disk index.
+        if(!ctx.shouldStop()&&!verifiedParents.empty()) {
+            reconcileCacheObservations(cache,next,verifiedParents,uncertainPaths);
+            InstalledDirectoryCache::saveMedia(next);
+        }
+    }
+    out.totalExternalBytes=knownExternalBytes(out);
+    out.totalPackageBytes=knownPackageBytes(out);
+    for(const auto& app:out.apps)if(!installedDataListSizeKnown(app))out.totalSizeKnown=false;
+    if(ctx.stopped){out.complete=false;out.totalSizeKnown=false;}
+    if(progress) {
+        progress->appsTotal.store(static_cast<uint32_t>(out.apps.size()),std::memory_order_relaxed);
+        progress->appsCompleted.store(static_cast<uint32_t>(out.apps.size()),std::memory_order_relaxed);
+        progress->truncated.store(!out.complete,std::memory_order_relaxed);
+        progress->phase.store(3,std::memory_order_release);
+    }
+    return out;
+}
+InstalledDataApp InstalledDataManager::measureGame(InstalledDataApp app,InstalledDataScanProgress* progress,uint64_t budgetUs) {
+    ScanContext ctx;ctx.progress=progress;ctx.startUs=sceKernelGetProcessTimeWide();ctx.budgetUs=budgetUs;ctx.gameMedia=app.mediaRow;
+    if(progress){progress->appsTotal.store(1);progress->phase.store(2);}
+    if(app.mediaRow && app.paths.size()==1) {
+        auto& path=app.paths[0];SceIoStat st{};uint32_t count=0;uint64_t bytes=0;
+        path.exists=exists(path.path,&st);
+        path.sizeKnown=path.exists&&mediaFingerprint(st)==app.mediaStamp&&scanTree(path.path,st,0,count,bytes,ctx);
+        path.bytes=path.sizeKnown?bytes:0;path.sizeCached=false;app.bytes=path.bytes;
+        if(!path.sizeKnown)path.complete=false;
+        if(app.mediaDirectory) {
+            std::vector<CachedMedia> cache;
+            if(InstalledDirectoryCache::loadMedia(cache)) {
+                for(auto& row:cache)if(row.path==path.path && row.rootStamp==app.mediaStamp && row.payloadStamp==app.mediaPayloadStamp) {
+                    row.sizeKnown=path.sizeKnown;row.bytes=path.bytes;break;
+                }
+                InstalledDirectoryCache::saveMedia(cache);
+            }
+        }
+    } else if(app.packagePresent && validInstalledTitleId(app.titleId)) {
+        const std::string path="ux0:app/"+app.titleId;SceIoStat st{};uint32_t count=0;uint64_t bytes=0;
+        app.packageSizeKnown=exists(path,&st)&&directory(st)&&scanTree(path,st,0,count,bytes,ctx);
+        app.packageBytes=app.packageSizeKnown?bytes:0;app.packageSizeCached=false;
+        if(app.packageSizeKnown) {
+            // Merge a single measurement; never discard the Homebrew cache.
+            app.packageRootStamp=rootFingerprint(st);
+            if(app.packageRootStamp) {
+                std::vector<CachedDirectory> cache;InstalledDirectoryCache::load(cache,DirectoryCacheScope::Vita);
+                cache.erase(std::remove_if(cache.begin(),cache.end(),[&](const CachedDirectory& e){return e.titleId==app.titleId&&e.path==path;}),cache.end());
+                cache.push_back({app.titleId,path,app.packageRootStamp,bytes,true});
+                InstalledDirectoryCache::save(cache,DirectoryCacheScope::Vita);
+            }
+        }
+    }
+    if(progress){progress->appsCompleted.store(1);progress->phase.store(3);}
+    return app;
+}
+bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,InstalledDataOperationProgress* progress) {
+    if(progress)progress->phase.store(5,std::memory_order_release);
+    if(!installedDataCanOfferExternalDelete(app)||!app.mediaRow)return false;
+    const auto& path=app.paths[0].path;
+    auto revalidate=[&](SceIoStat& st) {
+        if(!exists(path,&st)||mediaFingerprint(st)!=app.mediaStamp||
+           directory(st)!=app.mediaDirectory||(!directory(st)&&!regular(st)))return false;
+        if(app.mediaDirectory){SceIoStat payload{};const auto file=gamePbp(path,payload);
+            if(file.empty()||mediaFingerprint(payload)!=app.mediaPayloadStamp||
+               !probeMedia(file,payload).validPbp)return false;}
+        return true;
+    };
+    SceIoStat st{};if(!revalidate(st))return false;
+    ScanContext ctx;ctx.gameMedia=true;uint32_t count=0;uint64_t bytes=0;
+    if(progress)progress->currentRootIndex.store(0);
+    if(!scanTree(path,st,0,count,bytes,ctx)||!count||!revalidate(st))return false;
+    if(progress){progress->entriesTotal.store(count);progress->rootsTotal.store(1);progress->phase.store(2,std::memory_order_release);}
+    uint32_t removed=0;
+    InstalledDirectoryCache::invalidateMediaPath(path);
+    const bool erased=eraseTree(path,0,removed,progress,true);
+    // Verify via the still-accessible parent; a missing mount is not success.
+    const auto slash=path.find_last_of('/');
+    const SceUID parent=sceIoDopen(path.substr(0,slash).c_str());
+    bool absent=parent>=0;
+    if(parent>=0) {
+        SceIoDirent e{};int rc=0;
+        const auto name=path.substr(slash+1);
+        while((rc=sceIoDread(parent,&e))>0)if(name==e.d_name){absent=false;break;}
+        if(rc<0)absent=false;
+        sceIoDclose(parent);
+    }
+    const bool ok=erased && absent;
+    if(progress){if(ok)progress->rootsCompleted.store(1);progress->currentRootIndex.store(UINT32_MAX);progress->phase.store(3);}
+    return ok;
+}
+
+bool InstalledDataManager::uninstallGamePackage(const InstalledDataApp& app,InstalledDataOperationProgress* progress) {
+    if(!app.packagePresent||app.mediaRow||!validInstalledTitleId(app.titleId)||app.titleId==CLIENT_TID)return false;
+    const std::string path="ux0:app/"+app.titleId+"/sce_sys/param.sfo";
+    SceIoStat st{};if(!exists(path,&st)||!regular(st)||!app.mediaPayloadStamp||mediaFingerprint(st)!=app.mediaPayloadStamp)return false;
+    const auto local=localSfo(path,st);
+    if(local.id!=app.titleId||local.category!="gd")return false;
+    InstalledDirectoryCache::invalidatePackageTitle(app.titleId,DirectoryCacheScope::Vita);
+    return uninstallPackage(app.titleId,progress);
+}
+
 void InstalledDataManager::invalidateCachedTitle(const std::string& titleId) {
     InstalledDirectoryCache::invalidateTitle(titleId);
 }
 void InstalledDataManager::invalidateCachedPackageTitle(
     const std::string& titleId) {
     InstalledDirectoryCache::invalidatePackageTitle(titleId);
+    InstalledDirectoryCache::invalidatePackageTitle(titleId,DirectoryCacheScope::Vita);
 }
 
 bool InstalledDataManager::prepareExternalRemoval(
@@ -520,20 +850,24 @@ bool InstalledDataManager::prepareExternalRemoval(
     if (!validateExternalRemoval(snapshot, titleId, target,
                                  confirmedCatalogShare)) return false;
     uint64_t total = 0;
-    for (const auto& path : target->paths) {
+    for (size_t i = 0; i < target->paths.size(); ++i) {
+        const auto& path = target->paths[i];
         if (!path.exists) continue;
+        if (progress) progress->currentRootIndex.store(static_cast<uint32_t>(i), std::memory_order_release);
         SceIoStat st{};
         if (!exists(path.path, &st)) return false;
         uint32_t entries = 0;
         uint64_t bytesIgnored = 0;
         ScanContext ctx; // no time budget for the complete pre-delete count
-        if (!scanTree(path.path, st, 0, entries, bytesIgnored, ctx, target->commercial))
+        if (!scanTree(path.path, st, 0, entries, bytesIgnored, ctx))
             return false; // do not start a deletion using an incomplete count
         total = sum(total, entries);
     }
     if (!total) return false;
-    if (progress)
+    if (progress) {
+        progress->currentRootIndex.store(UINT32_MAX, std::memory_order_release);
         progress->entriesTotal.store(total, std::memory_order_release);
+    }
     return true;
 }
 
@@ -555,13 +889,13 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
     bool removed = true;
     // After any destructive attempt the old size must never be displayed
     // again, even when a partial filesystem deletion fails.
-    if (!target->commercial) invalidateCachedTitle(titleId);
+    invalidateCachedTitle(titleId);
     // Another Homebrew may have cached the same physical directory. If it
     // changes here, invalidate every overlapping historical measurement.
     for (const auto& other : snapshot.apps) {
         if (other.titleId == titleId) continue;
         for (const auto& q : other.paths) {
-            if (!installedDataAllowsPath(other, q.path)) continue;
+            if (!safeExternalDataPath(q.path)) continue;
             bool overlap = false;
             for (const auto& p : target->paths)
                 if (p.exists && installedPathsOverlap(p.path, q.path)) {
@@ -569,23 +903,24 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
                     break;
                 }
             if (overlap) {
-                if (!target->commercial) invalidateCachedTitle(other.titleId);
+                invalidateCachedTitle(other.titleId);
                 break;
             }
         }
     }
-    for (const auto& path : target->paths) {
+    for (size_t i = 0; i < target->paths.size(); ++i) {
+        const auto& path = target->paths[i];
         if (!path.exists) continue;
+        if (progress) progress->currentRootIndex.store(static_cast<uint32_t>(i), std::memory_order_release);
         uint32_t count = 0;
-        if ((target->commercial && !ui::InstalledGameIndex::storagePathMatches(
-                 target->mediaKind, titleId, path.path)) ||
-            !eraseTree(path.path, 0, count, progress, target->commercial)) {
+        if (!eraseTree(path.path, 0, count, progress)) {
             diagnostics::log("[InstalledData] unable to remove " + path.path);
             removed = false;
         } else if (progress) {
             progress->rootsCompleted.fetch_add(1, std::memory_order_release);
         }
     }
+    if (progress) progress->currentRootIndex.store(UINT32_MAX, std::memory_order_release);
     return removed;
 }
 

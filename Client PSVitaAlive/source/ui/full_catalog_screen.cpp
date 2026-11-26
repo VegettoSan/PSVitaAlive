@@ -3012,6 +3012,11 @@ void FullCatalogScreen::pollReportWorker() {
         }
         installAllReportSendingIndex_ = -1;
     }
+    if(queueReportSendingJob_) {
+        if(ok && queueSession_ && queueSession_->find(queueReportSendingJob_))
+            queueReportedSteps_.emplace_back(queueReportSendingJob_,queueReportSendingStep_);
+        queueReportSendingJob_=0;
+    }
     showToast(ok ? (reportResultMsg_[0] ? reportResultMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ToastReportSent))
                  : (reportResultMsg_[0] ? reportResultMsg_ : ::psvitaalive::L(::psvitaalive::TextId::ToastReportFailed)),
               2200);
@@ -3020,7 +3025,7 @@ void FullCatalogScreen::pollReportWorker() {
 }
 
 void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::string& context,
-                                           const ReportTargetOverrides* target) {
+                                           const ReportTargetOverrides* target, bool asyncOnly) {
     if (reportUiState_ == 1 || reportBusy_.load()) return;
     if (reportThread_ >= 0) return;
 
@@ -3090,6 +3095,10 @@ void FullCatalogScreen::trySendErrorReport(const std::string& title, const std::
     if (reportThread_ < 0) {
         reportBusy_.store(false);
         reportUiState_ = 0;
+        if(asyncOnly) {
+            showToast(::psvitaalive::L(::psvitaalive::TextId::ToastReportFailedStart),1800);
+            return;
+        }
         // Fallback: synchronous send
         ::psvitaalive::ErrorReportRequest req;
         req.title = reportTitle_;
@@ -3683,14 +3692,9 @@ void FullCatalogScreen::openStorageMenu() {
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2200);
         return;
     }
-    if (!catalogError_.empty()) {
-        showToast(::psvitaalive::L("CATALOG_UNAVAILABLE_MSG"), 2600);
-        return;
-    }
-    storageCatalog_ = state_.catalog;
-    rebuildInstalledDataCandidates();
-    storageSnapshot_ = {};
-    storageRows_.clear();
+    storageGameMode_=static_cast<unsigned>(state_.catalog);
+    if (!storageGameMode_) rebuildInstalledDataCandidates();
+    storageGamesSnapshot_={};
     storageVisible_ = true;
     storageConfirm_ = false;
     storagePendingAction_ = -1;
@@ -3699,6 +3703,14 @@ void FullCatalogScreen::openStorageMenu() {
     touchDown_ = false;
     startStorageOperation(-1);
 }
+void FullCatalogScreen::closeStorageMenu() {
+    if(storageWorker_>=0)return;
+    storageVisible_=false;
+    storageGamesSnapshot_={};
+    gameStorageCandidates_.clear();
+    gameStorageCandidates_.shrink_to_fit();
+    storageGameMode_=0;
+}
 void FullCatalogScreen::startStorageOperation(int action) {
     if (storageWorker_ >= 0) {
         if (!storageWorkerDone_.load(std::memory_order_acquire)) return;
@@ -3706,12 +3718,11 @@ void FullCatalogScreen::startStorageOperation(int action) {
         sceKernelDeleteThread(storageWorker_);
         storageWorker_ = -1;
     }
-    if (!storageShowsSavedZips(storageCatalog_) && action == -4) return;
-    if (action >= 0 &&
-        (static_cast<size_t>(action) >= storageSnapshot_.items.size() ||
-         !storageCleanupItemAllowed(storageCatalog_,
-             storageSnapshot_.items[static_cast<size_t>(action)].savedZip))) return;
-    action = storageCatalogCleanupAction(storageCatalog_, action);
+    const auto scope = static_cast<CatalogType>(storageGameMode_);
+    if (!storageShowsSavedZips(scope) && action == -4) return;
+    if (action >= 0 && (static_cast<size_t>(action) >= storageSnapshot_.items.size() ||
+        !storageCleanupItemAllowed(scope, storageSnapshot_.items[static_cast<size_t>(action)].savedZip))) return;
+    action = storageCatalogCleanupAction(scope, action);
     // Queue maintenance is limited to abandoned temporary files. Never
     // delete saved ZIP inputs, installed data, or run a combined cleanup.
     if(queueProtected_) {
@@ -3725,6 +3736,14 @@ void FullCatalogScreen::startStorageOperation(int action) {
     if (action != -1 && storageInstallerBusy_ && storageInstallerBusy_()) {
         showToast(::psvitaalive::L("STORAGE_BUSY"), 2300);
         return;
+    }
+    // Copy only compact identity fields on explicit storage open/refresh.
+    gameStorageCandidates_.clear();
+    if(storageGameMode_) {
+        gameStorageCandidates_.reserve(allItems_.size());
+        for(const auto& item:allItems_)
+            gameStorageCandidates_.push_back({item.id,item.titleId,item.alternateTitleIds,item.name,
+                item.icon.empty()?item.cover:item.icon});
     }
     storageAction_ = action;
     storageWorkPhase_.store(action == -1 ? StorageWorkPhase::ScanStorage :
@@ -3755,7 +3774,7 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
         self->storageAction_ == -4) {
         const auto existing = self->storageSnapshot_.items;
         for (const auto& item : existing) {
-            if (!storageCleanupItemAllowed(self->storageCatalog_, item.savedZip)) continue;
+            if (!storageCleanupItemAllowed(static_cast<CatalogType>(self->storageGameMode_), item.savedZip)) continue;
             if (self->storageAction_ == -3 && item.savedZip) continue;
             if (self->storageAction_ == -4 && !item.savedZip) continue;
             if (!::psvitaalive::storage::StorageMaintenance::removeSelected(item))
@@ -3764,13 +3783,13 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
     } else if (self->storageAction_ >= 0) {
         const size_t index = static_cast<size_t>(self->storageAction_);
         if (index < self->storageSnapshot_.items.size() &&
-            storageCleanupItemAllowed(self->storageCatalog_, self->storageSnapshot_.items[index].savedZip)) {
+            storageCleanupItemAllowed(static_cast<CatalogType>(self->storageGameMode_), self->storageSnapshot_.items[index].savedZip)) {
             ok = ::psvitaalive::storage::StorageMaintenance::removeSelected(
                 self->storageSnapshot_.items[index]);
         } else ok = false;
     }
     self->storageWorkPhase_.store(StorageWorkPhase::ScanStorage, std::memory_order_relaxed);
-    const bool homebrew = storageShowsSavedZips(self->storageCatalog_);
+    const bool homebrew = storageShowsSavedZips(static_cast<CatalogType>(self->storageGameMode_));
     self->storageSnapshot_ = ::psvitaalive::storage::StorageMaintenance::scan(true, homebrew);
     // Resolve only display fields from the already-loaded catalog cache.
     // The exact ownedPaths/path used by cleanup are never changed.
@@ -3785,27 +3804,15 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
     // Root Getstat checks only: reuse the same persistent measurements
     // already generated by the sequential per-Homebrew inspector.
     self->storageWorkPhase_.store(StorageWorkPhase::ScanInstalled, std::memory_order_relaxed);
-    if (!homebrew && self->storageAction_ == -1) {
-        // Reuse the installed-game index, without sharing render-thread state.
-        InstalledGameIndex index;
-        const bool adrenaline = self->storageCatalog_ == CatalogType::PspGames ||
-                                self->storageCatalog_ == CatalogType::Ps1Games;
-        index.refresh(adrenaline, adrenaline);
-        std::vector<::psvitaalive::storage::InstalledDataApp> present;
-        for (auto& app : self->installedDataCandidates_) {
-            const bool liveArea = index.liveAreaIds.count(app.titleId) != 0 ||
-                (!index.appScanOk && InstalledGameIndex::exists(
-                    "ux0:app/" + app.titleId + "/sce_sys/param.sfo"));
-            if (const auto* paths = index.storagePathsFor(app.mediaKind, app.titleId))
-                app.roots = *paths;
-            if (liveArea || !app.roots.empty())
-                present.push_back(std::move(app));
-        }
-        self->installedDataCandidates_.swap(present);
+    if(self->storageGameMode_) {
+        self->storageGamesSnapshot_=::psvitaalive::storage::InstalledDataManager::scanGames(
+            self->gameStorageCandidates_,self->storageGameMode_);
+        applyInstalledStorageSummary(self->storageSnapshot_,self->storageGamesSnapshot_);
+    } else {
+        const auto installed = ::psvitaalive::storage::InstalledDataManager::scan(
+            self->installedDataCandidates_, "", nullptr, 8000000ULL, false);
+        applyInstalledStorageSummary(self->storageSnapshot_, installed);
     }
-    const auto installed = ::psvitaalive::storage::InstalledDataManager::scan(
-        self->installedDataCandidates_, "", nullptr, 8000000ULL, false, !homebrew);
-    applyInstalledStorageSummary(self->storageSnapshot_, installed);
     self->storageWorkerOk_.store(ok, std::memory_order_release);
     self->storageWorkerDone_.store(true, std::memory_order_release);
     return 0;
@@ -3820,7 +3827,7 @@ void FullCatalogScreen::rebuildStorageRows() {
     for(size_t i=0;i<storageSnapshot_.items.size();++i)
         if(!storageSnapshot_.items[i].savedZip)
             storageRows_.push_back({4,static_cast<int>(i)});
-    if (storageShowsSavedZips(storageCatalog_)) {
+    if (storageShowsSavedZips(static_cast<CatalogType>(storageGameMode_))) {
         storageRows_.push_back({1,-1}); // saved ZIP
         for(size_t i=0;i<storageSnapshot_.items.size();++i)
             if(storageSnapshot_.items[i].savedZip)
@@ -3860,6 +3867,8 @@ void FullCatalogScreen::pollStorageOperation() {
     sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
     sceKernelDeleteThread(storageWorker_);
     storageWorker_ = -1;
+    gameStorageCandidates_.clear();
+    gameStorageCandidates_.shrink_to_fit();
     if (storageAction_ != -1) {
         showToast(::psvitaalive::L(storageWorkerOk_.load(std::memory_order_acquire)
             ? "STORAGE_REMOVED" : "STORAGE_REMOVE_FAILED"), 2600);
@@ -3942,7 +3951,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         // The recursive scan has no known total. Show activity, never an
         // invented percentage. Phase text comes from actual worker stages.
         const auto phase=storageWorkPhase_.load(std::memory_order_relaxed);
-        const char* phaseKey=phase==StorageWorkPhase::ScanInstalled?storageInstalledSectionKey(storageCatalog_):
+        const char* phaseKey=phase==StorageWorkPhase::ScanInstalled?(storageInstalledSectionKey(static_cast<CatalogType>(storageGameMode_))):
             phase==StorageWorkPhase::ResolveZips?"STORAGE_ZIPS":
             phase==StorageWorkPhase::ScanStorage?"STORAGE_TOTAL":nullptr;
         constexpr int cardW=w-96,cardH=228;
@@ -3971,7 +3980,7 @@ void FullCatalogScreen::drawStorageOverlay() {
     // occupy independent columns so long translations do not collide.
     skin::surface(skin::ui_atlas::ui_panel_inset,x+21,y+53,w-42,58,SURFACE);
     drawMarqueeText(&font_,x+37,y+75,250,ACCENT,.86f,
-        ::psvitaalive::L(storageShowsSavedZips(storageCatalog_) ? "STORAGE_TOTAL" : "STORAGE_VISIBLE_TOTAL"),false);
+        ::psvitaalive::L(storageGameMode_ ? "STORAGE_VISIBLE_TOTAL" : "STORAGE_TOTAL"),false);
     drawMarqueeText(&font_,x+37,y+100,250,WHITE,1.06f,summaryTotal,false);
     vita2d_draw_rectangle(x+308,y+63,1,38,BORDER);
     const char* summaryHint=::psvitaalive::L(snap.installedPartial ?
@@ -4039,7 +4048,7 @@ void FullCatalogScreen::drawStorageOverlay() {
                 row.kind==1?::psvitaalive::L("STORAGE_ZIPS"):
                 row.kind==2?::psvitaalive::L("STORAGE_CATALOG_PROTECTED"):
                 row.kind==3?::psvitaalive::L("STORAGE_IMAGES_PROTECTED"):
-                            ::psvitaalive::L(storageInstalledSectionKey(storageCatalog_));
+                            ::psvitaalive::L(storageInstalledSectionKey(static_cast<CatalogType>(storageGameMode_)));
             const uint64_t bytes=row.kind==0?snap.temporaryBytes:
                 row.kind==1?snap.savedZipBytes:
                 row.kind==2?snap.catalogBytes:
@@ -4086,7 +4095,7 @@ void FullCatalogScreen::drawStorageOverlay() {
     const bool hasCleanable=!queueProtected_ && snap.temporaryBytes+snap.savedZipBytes>0;
     const char* help=storageConfirm_?
         ::psvitaalive::L(storagePendingAction_==-2 ?
-            (storageShowsSavedZips(storageCatalog_) ? "STORAGE_CONFIRM_ALL" : "STORAGE_CONFIRM_TEMP_ONLY") : "STORAGE_CONFIRM"):
+            (storageGameMode_ ? "STORAGE_CONFIRM_TEMP_ONLY" : "STORAGE_CONFIRM_ALL") : "STORAGE_CONFIRM"):
         ::psvitaalive::L("STORAGE_CONTROLS");
     const auto helpLines=wrapTextToWidth(&font_,.87f,help,w-56);
     for(int i=0;i<(int)helpLines.size()&&i<2;++i)
@@ -4110,6 +4119,8 @@ void FullCatalogScreen::shutdown(){
         sceKernelDeleteThread(installedDataWorker_);
         installedDataWorker_=-1;
     }
+    releaseInstalledDataProtection();
+    clearInstalledDataOperationDisplay();
     if (storageWorker_ >= 0) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
@@ -4973,7 +4984,7 @@ void FullCatalogScreen::closePspSetupWizard(bool confirm) {
 void FullCatalogScreen::changeCatalog(int d){
     // Reject before releasing textures or discarding the current catalog.
     if(queueProtected_) { showToast(::psvitaalive::L("QUEUE_CATALOG_LOCK"),5600); return; }
-    if(catalogWorkExcluded()) return;
+    if(catalogWorkExcluded() || storageVisible_ || installedDataVisible_ || storageWorker_ >= 0 || installedDataWorker_ >= 0) return;
     if(catalogLoading_||installProgressActive_||isTransitioning())return;
     if(catalogSwitchCooldownFrames_>0)return;
 
@@ -5016,7 +5027,12 @@ void FullCatalogScreen::changeCatalog(int d){
     showToast(std::string(::psvitaalive::L(::psvitaalive::TextId::LoadingCatalog)) + " " + catalogName(n) + "...", 2200);
     state_.catalog=n;
     navigationFocus_.catalog();
-    items_.clear();
+    std::vector<CatalogItem>().swap(items_);
+    // The Homebrew inspector is rebuilt on demand; don't keep its metadata
+    // while browsing another catalog. Never touch worker-owned candidates.
+    if (n != CatalogType::Homebrew && !storageVisible_ && !installedDataVisible_ &&
+        storageWorker_ < 0 && installedDataWorker_ < 0)
+        std::vector<::psvitaalive::storage::InstalledDataApp>().swap(installedDataCandidates_);
     // Drop previous catalog payload early to free RAM before the next load.
     {
         std::vector<CatalogItem> empty;
@@ -5408,7 +5424,7 @@ void FullCatalogScreen::handleTouch() {
                 if(storageConfirm_) {
                     storageConfirm_=false;
                     storagePendingAction_=-1;
-                } else storageVisible_=false;
+                } else closeStorageMenu();
             }
         }
         return;
@@ -7462,7 +7478,7 @@ void FullCatalogScreen::handleInput(){
             if(storageConfirm_) {
                 storageConfirm_=false;
                 storagePendingAction_=-1;
-            } else if(storageWorker_<0) storageVisible_=false;
+            } else if(storageWorker_<0) closeStorageMenu();
             return;
         }
         if(storageWorker_>=0) return;
@@ -8284,7 +8300,13 @@ void FullCatalogScreen::prepareVisibleTextures(){
         // Reuse the normal ImageCache/GPU budget for the three visible rows.
         // Do not queue hundreds of icons or decode textures while deleting.
         std::vector<std::string> icons;
-        if(!installedDataDetail_&&!installedDataConfirm_&&!installedDataResultVisible_){
+        if ((installedDataWorker_>=0 && installedDataAction_>=0) || installedDataResultVisible_) {
+            // Never read the worker-owned snapshot while it may be replaced.
+            // Retain only the identity captured on the UI thread before deletion.
+            if (!installedDataOperationIcon_.empty()) markKeep(installedDataOperationIcon_,"app");
+        } else if (installedDataWorker_>=0 && installedDataAction_!=-3) {
+            return; // non-destructive scan also owns its snapshot until publication
+        } else if(!installedDataDetail_&&!installedDataConfirm_&&!installedDataResultVisible_){
             const int first=std::max(0,installedDataScroll_);
             const int last=std::min((int)installedDataVisibleRows_.size(),first+3);
             for(int i=first;i<last;++i){
@@ -8298,6 +8320,7 @@ void FullCatalogScreen::prepareVisibleTextures(){
             for(const auto& app:installedDataSnapshot_.apps)
                 if(app.titleId==installedDataTargetId_&&!app.icon.empty()){
                     markKeep(app.icon,"app");
+                    icons.push_back(app.icon);
                     break;
                 }
         }
@@ -12566,6 +12589,8 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
         gQueueSessionProtection=protectedSession;
         protectionUpdateForJob(protectedSession,0,"Downloading");
         if(protectedSession) {
+            queueReportedSteps_.clear();
+            queueReportSendingJob_=0;
             // Preserve only the just-admitted icon through the first-session
             // texture reset, if it is already resident. Ownership stays in the
             // normal LRU; no duplicate decode or extra GPU allocation.
@@ -12642,7 +12667,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     queueArrivalUs_=0; queueArrivalIconPath_.clear();
     syncQueueDisplay(false);queueReorderUs_=0;
     queueVisible_=true; queueDetail_=detail; queueSelectedId_=id;
-    queueScroll_=0; queueStepScroll_=0; queueConfirmCancel_=false;
+    queueScroll_=0; queueStepScroll_=0; queueStepFocus_=0; queueConfirmCancel_=false;
     queueAwaitRelease_=true; queueTouchAwaitRelease_=true; queueTouchDown_=false; touchDown_=false;
     queueVerticalNavigation_.reset();
     queueTransitionUs_=sceKernelGetProcessTimeWide();
@@ -12658,6 +12683,7 @@ void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
 }
 void FullCatalogScreen::closeQueue() {
     if(queueReport_) {
+        if(queueReportSendingJob_) {showToast(::psvitaalive::L("ALL_REPORT_SENDING"),1800);return;}
         const bool reboot=queueSession_ && queueSession_->restartRequired();
         if(!queueAction_ || !queueAction_(QueueAction::CloseReport,0)) return;
         queueReport_=false;
@@ -12751,6 +12777,47 @@ void FullCatalogScreen::queueCommand(QueueAction a) {
         if(!queueRecoveryMode())queueRecoveryVisible_=false;
         queueMove(0);
     }
+}
+bool FullCatalogScreen::queueStepReported(uint64_t job,size_t step) const {
+    return std::find(queueReportedSteps_.begin(),queueReportedSteps_.end(),
+        std::make_pair(job,step))!=queueReportedSteps_.end();
+}
+bool FullCatalogScreen::canReportQueueStep(const ::psvitaalive::queue::Job& job,size_t index) const {
+    if(index>=job.steps.size() || queueStepReported(job.id,index))return false;
+    const auto& step=job.steps[index];
+    return queueFailureReportEligible(step.state==::psvitaalive::queue::State::Failed,
+        step.details.archiveSourceUnavailable,step.result,step.details.stage) &&
+        !isNonReportableInstallError(step.result);
+}
+void FullCatalogScreen::openQueueJobDetail() {
+    // Start with the full component list, including successful steps.
+    queueDetail_=true;queueStepScroll_=0;queueStepFocus_=0;
+}
+void FullCatalogScreen::moveQueueStepFocus(int delta) {
+    const auto* job=queueSession_?queueSession_->find(queueSelectedId_):nullptr;
+    if(!job || job->steps.empty())return;
+    queueStepFocus_=std::max(0,std::min(static_cast<int>(job->steps.size())-1,queueStepFocus_+delta));
+    if(queueStepFocus_<queueStepScroll_)queueStepScroll_=queueStepFocus_;
+    if(queueStepFocus_>=queueStepScroll_+kQueueStepRows)queueStepScroll_=queueStepFocus_-kQueueStepRows+1;
+}
+void FullCatalogScreen::sendQueueStepReport(uint64_t id,size_t index) {
+    const auto* job=queueSession_?queueSession_->find(id):nullptr;
+    if(!queueDetail_ || queueHistoryMode() || !job || !canReportQueueStep(*job,index))return;
+    if(reportBusy_.load() || reportThread_>=0 || reportUiState_==1 || queueReportSendingJob_) {
+        showToast(::psvitaalive::L("ALL_REPORT_SENDING"),1800);return;
+    }
+    const auto& step=job->steps[index];
+    ReportTargetOverrides target;
+    target.appName=job->name;target.titleId=job->titleId;target.version=job->version;
+    target.fileName=step.details.fileName.empty()?step.fileName:step.details.fileName;
+    // Preserve the failed step's metadata; never append URLs, zRIFs or saved paths.
+    const std::string context="Queue step "+std::to_string(index+1)+"/"+
+        std::to_string(job->steps.size())+" | stage="+step.details.stage+" | error="+step.result;
+    const bool download=step.details.stage=="Downloading" || step.details.stage=="Download" ||
+        step.details.stage=="Retrying" || isDownloadFacingFailure(classifyInstallFailure(step.result,step.details.stage));
+    reportUiState_=0;
+    trySendErrorReport(download?"Queue download failed":"Queue installation failed",context,&target,true);
+    if(reportUiState_==1) {queueReportSendingJob_=id;queueReportSendingStep_=index;}
 }
 bool FullCatalogScreen::queuePauseAvailable() const {
     using I=::psvitaalive::InstallStatus::State;
@@ -13051,7 +13118,7 @@ void FullCatalogScreen::drawQueueScreen() {
         }
         scrollBar(queueDetail_&&selected?static_cast<int>(selected->steps.size()):static_cast<int>(entries.size()),queueDetail_?kQueueStepRows:kQueueRows,queueDetail_?queueStepScroll_:queueScroll_,queueDetail_?kQueueStepTop:kQueueRowTop,queueDetail_?kQueueStepRows*kQueueStepPitch:kQueueRows*kQueueRowPitch);
         btn(20,478,212,"QUEUE_BACK",false,&ctrl_circle_classic);
-        if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW",true,&ctrl_cross_classic);
+        if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW_DETAILS",true,&ctrl_cross_classic);
         if(queueRecovery_ && !queueRecovery_->entries().empty())btn(692,478,248,"QUEUE_RECOVERY_TITLE",false,&ctrl_r);
         drawToast(); finishFrame(); return;
     }
@@ -13072,7 +13139,9 @@ void FullCatalogScreen::drawQueueScreen() {
         if(active)skin::focus(20,79,920,198,withAlpha(ACCENT,125));
         drawImage(selected->iconUrl,"app",36,91,92,92);
         label(144,118,620,WHITE,1.30f,selected->name);
-        label(780,118,144,DIM,1.02f,std::to_string(std::min(selected->nextStep+1,selected->steps.size()))+" / "+std::to_string(selected->steps.size()));
+        const auto successful=std::count_if(selected->steps.begin(),selected->steps.end(),[](const auto& step){return step.state==State::Completed;});
+        const auto count=active?std::min(selected->nextStep+1,selected->steps.size()):static_cast<size_t>(successful);
+        label(780,118,144,DIM,1.02f,std::to_string(count)+" / "+std::to_string(selected->steps.size()));
         const char* phase=queueJobLabel(*selected);
         if(active && !queueStatus_.zipRecoveryAvailable && !queueSession_->cancelRequested()) {
             if(queueStatus_.stage=="Verifying")phase=::psvitaalive::L("DOWNLOAD_VERIFYING_TITLE");
@@ -13081,7 +13150,9 @@ void FullCatalogScreen::drawQueueScreen() {
             else if(queueStatus_.stage.find("Extract")!=std::string::npos || queueStatus_.stage.find("Unzip")!=std::string::npos)
                 phase=::psvitaalive::L(::psvitaalive::TextId::StageExtracting);
         }
-        label(144,151,780,ACCENT,1.10f,phase);
+        const unsigned phaseColor=selected->state==State::Failed?RGBA8(0xE0,0x32,0x32,255):
+            selected->state==State::Partial?RGBA8(0xF5,0x96,0x59,255):ACCENT;
+        label(144,151,780,phaseColor,1.10f,phase);
         if(active) {
             label(144,180,780,TEXT,.99f,queueStatus_.fileName);
             const bool transfer=queueStatus_.state==I::Downloading || queueStatus_.state==I::Paused;
@@ -13117,6 +13188,8 @@ void FullCatalogScreen::drawQueueScreen() {
         for(int i=queueStepScroll_;i<(int)selected->steps.size() && i<queueStepScroll_+kQueueStepRows;++i){
             const auto& step=selected->steps[i]; const int y=kQueueStepTop+(i-queueStepScroll_)*kQueueStepPitch;
             skin::surface(skin::ui_atlas::ui_card,20,y,920,kQueueStepHeight,SURFACE2);
+            const bool stepFocused=i==queueStepFocus_;
+            if(stepFocused)skin::focus(20,y,920,kQueueStepHeight,ACCENT);
             std::string s=std::to_string(i+1)+"/"+std::to_string(selected->steps.size())+"  "+component(step.component);
             label(36,y+29,550,WHITE,1.02f,s);
             const char* key=step.state==State::Completed?"QUEUE_DONE":step.state==State::Failed?"QUEUE_FAILED":
@@ -13124,7 +13197,22 @@ void FullCatalogScreen::drawQueueScreen() {
                 step.state==State::HandedOff?"QUEUE_HANDOFF":step.state==State::Running?"QUEUE_PREPARING":"QUEUE_WAITING";
             const unsigned resultColor=step.state==State::Failed?RGBA8(0xE0,0x32,0x32,255):step.state==State::Completed?RGBA8(0x3B,0xD9,0x60,255):step.state==State::Skipped||step.state==State::Cancelled?DIM:ACCENT;
             label(635,y+29,275,resultColor,.98f,step.state==State::Running?queueJobLabel(*selected) : ::psvitaalive::L(key));
-            label(36,y+58,875,DIM,.92f,step.result.empty()?step.fileName:step.result);
+            const bool sent=queueStepReported(selected->id,static_cast<size_t>(i));
+            const bool sending=queueReportSendingJob_==selected->id && queueReportSendingStep_==static_cast<size_t>(i);
+            const bool reportable=canReportQueueStep(*selected,static_cast<size_t>(i));
+            const bool showReport=sent || sending || reportable;
+            drawMarqueeText(&font_,36,y+58,showReport?610:875,DIM,.92f,
+                step.result.empty()?step.fileName:step.result,stepFocused,36,y+32,showReport?646:911,y+73);
+            if(showReport) {
+                constexpr int bx=660,bw=264,bh=34;
+                const int by=y+36;
+                const char* lab=::psvitaalive::L(sent?"ALL_REPORT_SENT":sending?"ALL_REPORT_SENDING":"ALL_REPORT_ACTION_REPORT");
+                skin::surface(skin::ui_atlas::ui_button_secondary,bx,by,bw,bh,
+                    sent?SURFACE2:sending?BORDER:RGBA8(0xAD,0x36,0x41,255));
+                if(stepFocused && reportable && !sending)
+                    skin::action(&font_,bx,by,bw,bh,WHITE,.82f,ctrl_select,lab,lab);
+                else label(bx+9,by+24,bw-18,sent?ACCENT:WHITE,.84f,lab);
+            }
         }
     } else {
         if(jobs.empty()) label(35,146,890,DIM,.92f,::psvitaalive::L("QUEUE_EMPTY"));
@@ -13147,9 +13235,11 @@ void FullCatalogScreen::drawQueueScreen() {
             label(134,y+32,520,WHITE,1.22f,j.name);
             const bool running=queueSession_->activeToken().job==j.id;
             const std::string type=std::string(j.installAll?"Install All":component(j.steps.front().component))+(j.provisionalSpace?"  (?)":"");
-            const auto stepNumber=running?std::min(j.nextStep+1,j.steps.size()):j.nextStep;
+            const auto successful=std::count_if(j.steps.begin(),j.steps.end(),[](const auto& step){return step.state==State::Completed;});
+            const auto stepNumber=running?std::min(j.nextStep+1,j.steps.size()):static_cast<size_t>(successful);
             label(134,y+61,610,DIM,.98f,type+"  |  "+std::to_string(stepNumber)+"/"+std::to_string(j.steps.size()));
             const unsigned stateColor=j.state==State::Failed?RGBA8(0xE0,0x32,0x32,255):
+                j.state==State::Partial?RGBA8(0xF5,0x96,0x59,255):
                 j.state==State::Cancelled || j.state==State::Skipped?DIM:ACCENT;
             label(665,y+32,255,stateColor,1.00f,queueJobLabel(j));
             if(running || j.state==State::Completed) {
@@ -13180,7 +13270,7 @@ void FullCatalogScreen::drawQueueScreen() {
     if(queueInvariantBlocked_)label(24,447,910,ACCENT,.73f,::psvitaalive::L("QUEUE_BUSY"));
     const bool recovery=active && queueStatus_.zipRecoveryAvailable;
     btn(20,478,212,queueReport_ && !queueDetail_?"QUEUE_CLOSE_REPORT":"QUEUE_BACK",false,&ctrl_circle_classic);
-    if(!queueDetail_ && selected) btn(244,478,212,"QUEUE_VIEW",true,&ctrl_cross_classic);
+    if(!queueDetail_ && selected) btn(244,478,212,"QUEUE_VIEW_DETAILS",true,&ctrl_cross_classic);
     else if(recovery)btn(244,478,212,"QUEUE_KEEP",true,&ctrl_square_classic);
     else if(queuePauseAvailable())btn(244,478,212,queueStatus_.state==I::Paused?"QUEUE_RESUME":"QUEUE_PAUSE",true,&ctrl_square_classic);
     if(queueCancelAvailable())btn(468,478,212,recovery?"QUEUE_DELETE":"QUEUE_CANCEL",false,&ctrl_triangle_classic);
@@ -13226,7 +13316,8 @@ void FullCatalogScreen::handleQueueInput(uint32_t pressed, uint32_t heldButtons)
     if(reorderBlocked)return;
     // Never move selection and activate a destructive control in one frame.
     if(move) {
-        if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_+move);
+        if(queueDetail_ && !queueHistoryMode())moveQueueStepFocus(move);
+        else if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_+move);
         else queueMove(move);
         return;
     }
@@ -13242,8 +13333,13 @@ void FullCatalogScreen::handleQueueInput(uint32_t pressed, uint32_t heldButtons)
         }
         return;
     }
-    if(pressed&SCE_CTRL_CROSS && !queueDetail_ && queueSelectedId_){queueDetail_=true;queueStepScroll_=0;}
+    if(pressed&SCE_CTRL_CROSS && !queueDetail_ && queueSelectedId_){openQueueJobDetail();return;}
     if(queueHistoryMode())return;
+    if(queueDetail_ && (pressed&SCE_CTRL_SELECT)) {
+        const auto* job=queueSession_->find(queueSelectedId_);
+        if(job)sendQueueStepReport(job->id,static_cast<size_t>(queueStepFocus_));
+        return;
+    }
     if(pressed&SCE_CTRL_LTRIGGER && queueWaitingSpace_){openQueueStorage();return;}
     if(pressed&SCE_CTRL_TRIANGLE && queueCancelAvailable()) {
         queueConfirmAction_=recovery?QueueAction::DeleteZip:QueueAction::Cancel;
@@ -13262,7 +13358,8 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
         if(!queueTouchDown_) {queueTouchDown_=true;queueTouchMoved_=false;queueTouchX_=td.report[0].x*SCREEN_W/1920;queueTouchY_=queueTouchLastY_=y;}
         else if(!queueConfirmCancel_ && queueTouchY_>=kQueueRowTop && queueTouchY_<(queueDetail_?kQueueStepTop+kQueueStepRows*kQueueStepPitch:kQueueRowTop+kQueueRows*kQueueRowPitch) && std::abs(y-queueTouchLastY_)>=45) {
             const int delta=y<queueTouchLastY_?1:-1;
-            if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_+delta);else queueMove(delta);
+            if(queueDetail_ && !queueHistoryMode())moveQueueStepFocus(delta);
+            else if(queueDetail_)queueStepScroll_=std::max(0,queueStepScroll_+delta);else queueMove(delta);
             queueTouchMoved_=true;queueTouchLastY_=y;
         }
         return;
@@ -13297,7 +13394,7 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
             return;
         }
         if(x>=20 && x<232){if(queueDetail_)queueDetail_=false;else closeQueue();}
-        else if(x>=244 && x<456){if(!queueDetail_ && queueSelectedId_){queueDetail_=true;queueStepScroll_=0;}
+        else if(x>=244 && x<456){if(!queueDetail_ && queueSelectedId_){openQueueJobDetail();}
             else if(recovery || queuePauseAvailable())queueCommand(recovery?QueueAction::KeepZip:queueStatus_.state==::psvitaalive::InstallStatus::State::Paused?QueueAction::Resume:QueueAction::Pause);}
         else if(x>=468 && x<680 && queueCancelAvailable()) {
             queueConfirmAction_=recovery?QueueAction::DeleteZip:QueueAction::Cancel;
@@ -13306,13 +13403,24 @@ void FullCatalogScreen::handleQueueTouch(const SceTouchData& td) {
         else if(x>=692 && queueWaitingSpace_)queueCommand(QueueAction::RetrySpace);
         return;
     }
+    if(queueDetail_ && !queueHistoryMode() && x>=20 && x<940 && y>=kQueueStepTop && y<kQueueStepTop+kQueueStepRows*kQueueStepPitch) {
+        const int row=(y-kQueueStepTop)/kQueueStepPitch;
+        const int within=(y-kQueueStepTop)%kQueueStepPitch;
+        const auto* job=queueSession_->find(queueSelectedId_);
+        const int index=queueStepScroll_+row;
+        if(job && within<kQueueStepHeight && index>=0 && static_cast<size_t>(index)<job->steps.size()) {
+            queueStepFocus_=index;
+            if(x>=660 && x<924 && within>=36 && within<70)sendQueueStepReport(job->id,static_cast<size_t>(index));
+        }
+        return;
+    }
     if(!queueDetail_ && x>=20 && x<940 && y>=kQueueRowTop && y<kQueueRowTop+kQueueRows*kQueueRowPitch) {
         if((y-kQueueRowTop)%kQueueRowPitch>=kQueueRowHeight)return;
         const int i=queueScroll_+(y-kQueueRowTop)/kQueueRowPitch;
         const auto count=queueRecoveryMode()?queueRecovery_->entries().size():queueHistoryMode()?queueHistory_->entries().size():queueDisplayIds_.size();
         if(i>=0 && static_cast<size_t>(i)<count) {
             const auto id=queueHistoryMode()?static_cast<uint64_t>(i+1):queueDisplayIds_[i];
-            if(id==queueSelectedId_ && !queueRecoveryMode()) {queueDetail_=true;queueStepScroll_=0;}
+            if(id==queueSelectedId_ && !queueRecoveryMode()) {openQueueJobDetail();}
             else queueSelectedId_=id;
         }
     }
@@ -13396,7 +13504,7 @@ void FullCatalogScreen::draw(){
         }
         if(keyboard_.active()){
             draw();
-            return !state_.requestExit;
+            return queueProtected_ || installedDataProtected_ || !state_.requestExit;
         }
     }
     {
@@ -13483,7 +13591,7 @@ void FullCatalogScreen::draw(){
     if(keyboard_.active()){
         keyboard_.update();
         draw();
-        return !state_.requestExit;
+        return queueProtected_ || installedDataProtected_ || !state_.requestExit;
     }
     updateTransition();
     pollSelfUpdateProgress();
@@ -13491,14 +13599,16 @@ void FullCatalogScreen::draw(){
     protectionServiceMascot();
     updateAnimations();
     advanceInstallFilterScan();
-    // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
-    if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0) {
+    // Settings is image-worker quiet except for its installed-data overlay,
+    // which has its own bounded icon residency and no decodes during deletion.
+    if((state_.mode!=UiMode::SETTINGS || installedDataVisible_)&&catalogSwitchCooldownFrames_==0) {
         queuePassiveRead_=true;
         prepareVisibleTextures();
         queuePassiveRead_=false;
     }
     draw();
-    return queueProtected_ || !state_.requestExit;
+    if (installedDataProtected_) state_.requestExit = false;
+    return queueProtected_ || installedDataProtected_ || !state_.requestExit;
 }
 
 

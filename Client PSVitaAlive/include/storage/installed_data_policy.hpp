@@ -110,56 +110,6 @@ inline bool validInstalledChildName(const std::string& name) {
     return true;
 }
 
-// Separate commercial-media policy: no change to the Homebrew data allowlist.
-inline std::string normalizeGameMediaId(std::string id) {
-    for (char& c : id)
-        if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
-    return validInstalledTitleId(id) ? id : std::string();
-}
-inline bool validGameMediaName(const std::string& name) {
-    return validInstalledChildName(name) && name.back() != '.' && name.back() != ' ';
-}
-inline std::string gameMediaIsoId(std::string name) {
-    if (!validGameMediaName(name)) return {};
-    for (char& c : name)
-        if (c >= 'a' && c <= 'z') c = static_cast<char>(c - 'a' + 'A');
-    const size_t dot = name.find_last_of('.');
-    if (dot == std::string::npos ||
-        (name.substr(dot) != ".ISO" && name.substr(dot) != ".CSO")) return {};
-    const std::string stem = name.substr(0, dot);
-    std::string id = normalizeGameMediaId(stem);
-    if (id.empty() && stem.size() >= 11 && stem.back() == ']' &&
-        stem[stem.size() - 11] == '[')
-        id = normalizeGameMediaId(stem.substr(stem.size() - 10, 9));
-    return id;
-}
-inline std::string gameMediaChild(const std::string& path, const char* section) {
-    static const char* mounts[] = {"ux0", "uma0", "imc0", "xmc0"};
-    for (const char* mount : mounts) {
-        const std::string prefix = std::string(mount) + ":pspemu/" + section;
-        if (path.compare(0, prefix.size(), prefix) != 0) continue;
-        const std::string name = path.substr(prefix.size());
-        return validGameMediaName(name) ? name : std::string();
-    }
-    return {};
-}
-inline bool safeGameMediaPath(GameMediaKind kind, const std::string& titleId,
-                              const std::string& path) {
-    if (!validInstalledTitleId(titleId) || titleId == "PSVAS1178" ||
-        kind == GameMediaKind::None) return false;
-    const std::string folder = gameMediaChild(path, "PSP/GAME/");
-    if (!folder.empty())
-        return kind == GameMediaKind::Ps1 || normalizeGameMediaId(folder) == titleId;
-    if (kind != GameMediaKind::Psp) return false;
-    const std::string iso = gameMediaChild(path, "ISO/");
-    return !iso.empty() && gameMediaIsoId(iso) == titleId;
-}
-inline bool installedDataAllowsPath(const InstalledDataApp& app,
-                                    const std::string& path) {
-    return app.commercial ? safeGameMediaPath(app.mediaKind, app.titleId, path)
-                          : safeExternalDataPath(path);
-}
-
 // A catalog collision by itself is NOT proof that two installed apps share
 // data. This predicate is only part of the destructive-operation preflight.
 inline bool installedDataActiveCollision(const std::string& target,
@@ -171,14 +121,36 @@ inline bool installedDataActiveCollision(const std::string& target,
 // A known root is deletable even without a VPK, unless another installed VPK
 // is actively claiming that same root. Metadata ambiguity and unsafe paths
 // remain blocked independently of directory size measurement.
+// Separate allowlist for game media. Never widen safeExternalDataPath().
+inline bool safeGameMediaPath(const std::string& path,bool directory) {
+    for(const char* mount:{"ux0:","uma0:"}) {
+        const std::string base=std::string(mount)+"pspemu/";
+        for(const char* section:{"ISO/","PSP/GAME/"}) {
+            const std::string prefix=base+section;
+            if(path.compare(0,prefix.size(),prefix)!=0)continue;
+            const std::string name=path.substr(prefix.size());
+            if(!validInstalledChildName(name))return false;
+            std::string lower=name;for(char& c:lower)c=static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+            const auto dot=lower.find_last_of('.');
+            const std::string ext=dot==std::string::npos?"":lower.substr(dot);
+            if(std::string(section)=="ISO/")return !directory && (ext==".iso"||ext==".cso");
+            return directory || (ext==".pbp" && lower!="pboot.pbp");
+        }
+    }
+    return false;
+}
 inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
+    if(app.mediaRow) return !app.blocked && !app.packagePresent && app.paths.size()==1 &&
+        app.paths[0].exists && app.titleId==app.paths[0].path &&
+        safeGameMediaPath(app.paths[0].path,app.mediaDirectory) && app.mediaStamp!=0 &&
+        (!app.mediaDirectory || app.mediaPayloadStamp!=0);
     if (app.blocked || app.unresolved ||
         !validInstalledTitleId(app.titleId) || app.titleId == "PSVAS1178" ||
         app.appId == "psvitaalive" || app.appId == "ps-vita-alive") return false;
     bool anyPresent = false;
     for (const auto& p : app.paths) {
         if (!p.exists) continue;
-        if (!installedDataAllowsPath(app, p.path)) return false;
+        if (!safeExternalDataPath(p.path)) return false;
         anyPresent = true;
     }
     return anyPresent;
@@ -189,12 +161,12 @@ inline bool installedDataCanOfferExternalDelete(const InstalledDataApp& app) {
 inline bool installedDataHasActiveShare(const InstalledDataSnapshot& snapshot,
                                        const InstalledDataApp& target) {
     for (const auto& p : target.paths) {
-        if (!p.exists || !installedDataAllowsPath(target, p.path)) continue;
+        if (!p.exists || !safeExternalDataPath(p.path)) continue;
         for (const auto& other : snapshot.apps) {
             if (other.titleId == target.titleId || !other.packagePresent ||
                 !validInstalledTitleId(other.titleId)) continue;
             for (const auto& q : other.paths)
-                if (installedDataAllowsPath(other, q.path) &&
+                if (safeExternalDataPath(q.path) &&
                     installedPathsOverlap(p.path, q.path)) return true;
         }
     }
@@ -217,9 +189,9 @@ inline std::vector<InstalledDataShareInfo> installedDataCatalogShares(
             !validInstalledTitleId(other.titleId)) continue;
         bool overlap = false;
         for (const auto& p : target.paths) {
-            if (!p.exists || !installedDataAllowsPath(target, p.path)) continue;
+            if (!p.exists || !safeExternalDataPath(p.path)) continue;
             for (const auto& q : other.paths) {
-                if (installedDataAllowsPath(other, q.path) &&
+                if (safeExternalDataPath(q.path) &&
                     installedPathsOverlap(p.path, q.path)) {
                     overlap = true;
                     break;
@@ -242,13 +214,32 @@ inline bool installedDataHasCatalogShare(const InstalledDataSnapshot& snapshot,
         if (other.titleId == target.titleId ||
             !validInstalledTitleId(other.titleId)) continue;
         for (const auto& p : target.paths) {
-            if (!p.exists || !installedDataAllowsPath(target, p.path)) continue;
+            if (!p.exists || !safeExternalDataPath(p.path)) continue;
             for (const auto& q : other.paths)
-                if (installedDataAllowsPath(other, q.path) &&
+                if (safeExternalDataPath(q.path) &&
                     installedPathsOverlap(p.path, q.path)) return true;
         }
     }
     return false;
+}
+
+// Sort by the same combined measured bytes displayed in the list.
+// Incomplete rows go last, not zero bytes. Historical complete sizes
+// remain usable for ordering and are still labeled as historical.
+inline bool installedDataListSizeKnown(const InstalledDataApp& app) {
+    if (app.packagePresent && !app.packageSizeKnown) return false;
+    for (const auto& path : app.paths)
+        if (path.exists && !path.sizeKnown) return false;
+    return true;
+}
+inline uint64_t installedDataListBytes(const InstalledDataApp& app) {
+    const uint64_t package = app.packagePresent ? app.packageBytes : 0;
+    return UINT64_MAX - package < app.bytes ? UINT64_MAX : package + app.bytes;
+}
+inline bool installedDataLargerFirst(const InstalledDataApp& a,const InstalledDataApp& b) {
+    const bool ak=installedDataListSizeKnown(a),bk=installedDataListSizeKnown(b);
+    if(ak!=bk)return ak;
+    return ak && installedDataListBytes(a)>installedDataListBytes(b);
 }
 
 // UI wording must reflect the observed installed roots, not just the

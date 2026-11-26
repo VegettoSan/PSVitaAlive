@@ -6,6 +6,22 @@
 #include <string>
 using namespace psvitaalive::storage;
 int main() {
+    {
+        InstalledDataApp a,b,c;
+        a.packagePresent=true;a.packageSizeKnown=true;a.packageBytes=400;a.bytes=100;
+        b.bytes=800;
+        c.packagePresent=true;c.packageSizeKnown=false;c.packageBytes=9999;
+        assert(installedDataListBytes(a)==500);
+        assert(installedDataLargerFirst(b,a));
+        assert(installedDataLargerFirst(a,c));
+        assert(!installedDataLargerFirst(c,b));
+        a.paths.push_back({});a.paths.back().exists=true;
+        assert(!installedDataListSizeKnown(a));
+        assert(installedDataLargerFirst(b,a));
+        assert(!installedDataLargerFirst(c,a));
+        b.packagePresent=true;b.packageSizeKnown=true;b.packageBytes=UINT64_MAX;
+        assert(installedDataListBytes(b)==UINT64_MAX);
+    }
     assert(validInstalledTitleId("ABCD12345"));
     assert(!validInstalledTitleId("abcD12345"));
     assert(!validInstalledTitleId("PSVA123456"));
@@ -31,6 +47,23 @@ int main() {
     assert(!installedDataPreservesUr0Dependency("ux0:data/", true, false));
     assert(!safeExternalDataPath("ur0:data/"));
     assert(!safeExternalDataPath("ur0:data/fmod"));
+    assert(safeGameMediaPath("ux0:pspemu/ISO/Game.ISO",false));
+    assert(safeGameMediaPath("uma0:pspemu/ISO/Test.cso",false));
+    assert(safeGameMediaPath("uma0:pspemu/PSP/GAME/renamed",true));
+    assert(safeGameMediaPath("ux0:pspemu/PSP/GAME/EBOOT.PBP",false));
+    assert(!safeGameMediaPath("ux0:pspemu/PSP/GAME/PBOOT.PBP",false));
+    assert(!safeGameMediaPath("ux0:pspemu/ISO/",true));
+    assert(!safeGameMediaPath("ux0:pspemu/ISO/game.iso",true));
+    assert(!safeGameMediaPath("ux0:pspemu/PSP/SAVEDATA/ULUS12345",true));
+    assert(!safeGameMediaPath("ur0:pspemu/ISO/game.iso",false));
+    assert(!safeGameMediaPath("ux0:pspemu/PSP/GAME/../SAVEDATA",true));
+    assert(!safeGameMediaPath("uma0:pspemu/PSP/GAME/foo/bar",true));
+    assert(!safeExternalDataPath("ux0:pspemu/ISO/Game.ISO"));
+    InstalledDataApp mediaApp;mediaApp.mediaRow=true;mediaApp.titleId="ux0:pspemu/ISO/Game.ISO";
+    mediaApp.mediaStamp=1;mediaApp.paths.push_back({});mediaApp.paths[0].path=mediaApp.titleId;mediaApp.paths[0].exists=true;
+    assert(installedDataCanOfferExternalDelete(mediaApp));
+    mediaApp.paths[0].path="ux0:pspemu/ISO/Other.ISO";
+    assert(!installedDataCanOfferExternalDelete(mediaApp));
     for (const auto& root : {"ux0:data/arcaea", "ux0:data/gdash"}) {
         InstalledDataApp app;
         app.titleId = "ARCA69420";
@@ -295,6 +328,9 @@ int main() {
     assert(live.appsTotal.load() == 0);
     // Root counters remain for diagnostics; the deletion UI uses entries.
     InstalledDataOperationProgress operation;
+    assert(operation.currentRootIndex.load() == UINT32_MAX);
+    operation.currentRootIndex.store(2);
+    assert(operation.currentRootIndex.load() == 2);
     operation.phase.store(2);
     operation.entriesTotal.store(2000);
     operation.rootsTotal.store(4);
@@ -314,6 +350,7 @@ int main() {
     assert(operation.entriesTotal.load() == 0);
     assert(operation.rootsTotal.load() == 0);
     assert(operation.rootsCompleted.load() == 0);
+    assert(operation.currentRootIndex.load() == UINT32_MAX);
     assert(operation.filesRemoved.load() == 0);
     assert(operation.foldersRemoved.load() == 0);
     assert(operation.promoterPolls.load() == 0);

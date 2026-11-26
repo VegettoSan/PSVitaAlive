@@ -836,7 +836,7 @@ ID_OP_PREPARE_STAGE=Подготовка удаления файлов игры
 ID_OP_PREPARE_EXPLAIN=Подсчёт файлов и папок перед удалением
 ID_OP_VERIFY_STAGE=Проверка результата
 ID_OP_APP_STAGE=Удаление приложения
-ID_OP_FILES_EXPLAIN=Удаление файлов ux0:data/
+ID_OP_FILES_EXPLAIN=Удаление файлов из:
 ID_OP_APP_EXPLAIN=Ожидание менеджера пакетов PS Vita
 ID_OP_ROOT_PROGRESS=Папок завершено:
 ID_OP_FILES_REMOVED=Файлов удалено:
@@ -895,6 +895,7 @@ QUEUE_TITLE=Менеджер загрузок
 QUEUE_UNKNOWN_SPACE=Не удалось подтвердить свободное место для очереди.
 QUEUE_UNSUPPORTED=Для этой установки нужен отдельный режим. Сначала завершите очередь.
 QUEUE_VIEW=Просмотр загрузок
+QUEUE_VIEW_DETAILS=Подробнее
 QUEUE_WAITING=В очереди
 QUEUE_HISTORY=История загрузок
 QUEUE_HISTORY_EMPTY=История загрузок пока пуста
@@ -912,20 +913,28 @@ QUEUE_SYSTEM_RECHECK=Завершите системную установку п
 QUEUE_SYSTEM_CONFIRM=Системная установка завершена?
 QUEUE_SYSTEM_NOT_INSTALLED=Установленное приложение не найдено; завершите установку в LiveArea
 
-# Active-catalog storage manager
+# Contextual game storage
+ID_GAMES_TITLE=Установленные игры
+ID_GAMES_SECTION=Установленные игры
+ID_GAMES_TOTAL=Место игр:
+ID_GAMES_LIST_HINT=Выберите игру, чтобы узнать путь и размер.
+ID_MEDIA_UNKNOWN_PLATFORM=Неизвестная платформа
+ID_MEDIA_IDENTIFIED=Опознано
+ID_MEDIA_UNIDENTIFIED=Не опознано
+ID_MEDIA_EXTERNAL=Внешняя игра
+ID_GAME_DELETE=Удалить игру
+ID_MEDIA_DELETE_CONFIRM=Выбранный файл или папка игры будут удалены навсегда.
+ID_VITA_DELETE_CONFIRM=Система удалит игру. Сохраните резервную копию сохранений.
+ID_MEDIA_PREPARE=Подготовка удаления
+ID_MEDIA_DELETING=Удаление игры
+ID_GAME_REMOVED=Игра удалена
+ID_GAME_FAILED=Не удалось удалить игру
+ID_VITA_DELETE_NOTE=Удаление системой
+ID_MEDIA_DELETE_NOTE=Только выбранный путь
+
+# Catalog-specific storage labels and ZIP cleanup
 ID_SECTION_VITA=Установленные игры PS Vita
 ID_SECTION_PSP=Установленные игры PSP
 ID_SECTION_PS1=Установленные игры PS1
 STORAGE_VISIBLE_TOTAL=Отображаемый объём
 STORAGE_CONFIRM_TEMP_ONLY=Только временные файлы. X/△: подтвердить, O: отменить
-ID_GAME_TOTAL=Установленные игры:
-ID_GAME_LIST_HINT=Выберите игру для просмотра её файлов.
-ID_GAME_NONE=Установленные игры не найдены.
-ID_GAME_DELETE_PACKAGE=Удалить игру
-ID_GAME_DELETE_MEDIA=Удалить файлы игры
-ID_GAME_MEDIA_IMPACT=Найденные файлы Adrenaline будут удалены.
-ID_GAME_MEDIA_PROGRESS=Удаление найденных файлов Adrenaline
-ID_GAME_DISCOVERING=Поиск установленных игр...
-ID_GAME_PACKAGE_IMPACT=Игра будет удалена из LiveArea.
-ID_GAME_PACKAGE_KEEP=Игра LiveArea будет удалена, файлы Adrenaline сохранятся.
-ID_GAME_BOTH_IMPACT=Игра LiveArea и найденные файлы Adrenaline будут удалены.

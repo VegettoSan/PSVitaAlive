@@ -2,8 +2,6 @@
 // Local-only installed media index. PKGj-compatible paths and PS1 PBP content IDs.
 // No catalog JSON is modified; scan on demand and invalidate on catalog change.
 #include "ui/ui_types.hpp"
-#include "storage/installed_data_policy.hpp"
-#include <vector>
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
@@ -22,8 +20,6 @@ struct InstalledGameIndex {
     std::unordered_set<std::string> liveAreaIds;
     // Preserve the first matching mount (ux0 preferred) without scanning on every UI frame.
     std::unordered_map<std::string, const char*> pspFolderIds, pspIsoIds, psxContentIds;
-    // Populated only for the local storage worker, never the ordinary badge index.
-    std::unordered_map<std::string, std::vector<std::string>> pspStoragePaths, ps1StoragePaths;
 
     static std::string normalize(std::string id) {
         if (id.size() != 9) return {};
@@ -89,82 +85,13 @@ struct InstalledGameIndex {
         return id;
     }
 
-    // Unknown/custom PBP payloads are not deletion targets.
-    static storage::GameMediaKind pbpStorageKind(const std::string& path) {
-        using storage::GameMediaKind;
-        const SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
-        if (fd < 0) return GameMediaKind::None;
-        GameMediaKind kind = GameMediaKind::None;
-        unsigned char header[40]{};
-        if (sceIoRead(fd, header, 40) == 40 &&
-            std::memcmp(header, "\0PBP", 4) == 0) {
-            const uint32_t psar = le32(header + 36);
-            char magic[8]{};
-            if (psar >= 40 && sceIoLseek(fd, psar, SCE_SEEK_SET) >= 0 &&
-                sceIoRead(fd, magic, 8) == 8) {
-                if (std::memcmp(magic, "NPUMDIMG", 8) == 0)
-                    kind = GameMediaKind::Psp;
-                else if (std::memcmp(magic, "PSISOIMG", 8) == 0 ||
-                         std::memcmp(magic, "PSTITLEI", 8) == 0)
-                    kind = GameMediaKind::Ps1;
-            }
-        }
-        sceIoClose(fd);
-        return kind;
-    }
-    static bool recognizedIsoFile(const std::string& path) {
-        const SceUID fd = sceIoOpen(path.c_str(), SCE_O_RDONLY, 0);
-        if (fd < 0) return false;
-        char magic[6]{};
-        bool ok = false;
-        if (sceIoRead(fd, magic, 4) == 4 &&
-            (std::memcmp(magic, "CISO", 4) == 0 ||
-             std::memcmp(magic, "ZISO", 4) == 0)) ok = true;
-        if (!ok && sceIoLseek(fd, 16 * 2048 + 1, SCE_SEEK_SET) >= 0 &&
-            sceIoRead(fd, magic, 5) == 5 &&
-            std::memcmp(magic, "CD001", 5) == 0) ok = true;
-        sceIoClose(fd);
-        return ok;
-    }
-    // Recheck the actual media type and identity, including PS1 embedded
-    // content ID when the directory is named for a different disc ID.
-    static bool storagePathMatches(storage::GameMediaKind kind,
-                                   const std::string& id,
-                                   const std::string& path) {
-        using storage::GameMediaKind;
-        if (!storage::safeGameMediaPath(kind, id, path)) return false;
-        SceIoStat st{};
-        if (sceIoGetstat(path.c_str(), &st) < 0) return false;
-        const std::string folder = storage::gameMediaChild(path, "PSP/GAME/");
-        if (folder.empty())
-            return kind == GameMediaKind::Psp && !(st.st_mode & SCE_S_IFDIR) &&
-                   st.st_size > 0 && recognizedIsoFile(path);
-        if (!(st.st_mode & SCE_S_IFDIR)) return false;
-        const std::string pbp = path + "/EBOOT.PBP";
-        if (pbpStorageKind(pbp) != kind) return false;
-        if (kind == GameMediaKind::Ps1) {
-            const std::string embedded = psxTitleIdFromPbp(pbp);
-            if (!embedded.empty()) return embedded == id;
-        }
-        return normalize(folder) == id;
-    }
-    const std::vector<std::string>* storagePathsFor(
-        storage::GameMediaKind kind, const std::string& id) const {
-        if (kind == storage::GameMediaKind::None) return nullptr;
-        const auto& paths = kind == storage::GameMediaKind::Psp ?
-            pspStoragePaths : ps1StoragePaths;
-        const auto it = paths.find(id);
-        return it == paths.end() ? nullptr : &it->second;
-    }
-
     void invalidate() {
         initialized = false; appScanOk = false;
         liveAreaIds.clear(); pspFolderIds.clear();
         pspIsoIds.clear(); psxContentIds.clear();
-        pspStoragePaths.clear(); ps1StoragePaths.clear();
     }
 
-    void refresh(bool collectStoragePaths = false, bool scanAdrenaline = true) {
+    void refresh() {
         if (initialized) return;
         initialized = true;
         SceUID fd = sceIoDopen("ux0:app");
@@ -178,7 +105,6 @@ struct InstalledGameIndex {
             }
             sceIoDclose(fd);
         }
-        if (!scanAdrenaline) return;
         static const char* roots[] = {"ux0", "uma0", "imc0", "xmc0"};
         for (const char* root : roots) {
             const std::string base = std::string(root) + ":pspemu/";
@@ -195,18 +121,6 @@ struct InstalledGameIndex {
                             if (!id.empty()) pspFolderIds.emplace(id, root);
                             const std::string psx = psxTitleIdFromPbp(pbp);
                             if (!psx.empty()) psxContentIds.emplace(psx, root);
-                            if (collectStoragePaths && storage::validGameMediaName(name)) {
-                                const auto kind = pbpStorageKind(pbp);
-                                const std::string folderPath = gameDir + "/" + name;
-                                if (kind == storage::GameMediaKind::Psp && !id.empty() &&
-                                    storagePathMatches(kind, id, folderPath))
-                                    pspStoragePaths[id].push_back(folderPath);
-                                else if (kind == storage::GameMediaKind::Ps1) {
-                                    const std::string resolved = psx.empty() ? id : psx;
-                                    if (!resolved.empty() && storagePathMatches(kind, resolved, folderPath))
-                                        ps1StoragePaths[resolved].push_back(folderPath);
-                                }
-                            }
                         }
                     }
                     e = SceIoDirent{};
@@ -231,14 +145,7 @@ struct InstalledGameIndex {
                             if (stem[open] == '[')
                                 id = normalize(stem.substr(open + 1, 9));
                         }
-                        if (!id.empty()) {
-                            pspIsoIds.emplace(id, root);
-                            if (collectStoragePaths) {
-                                const std::string path = base + "ISO/" + e.d_name;
-                                if (storagePathMatches(storage::GameMediaKind::Psp, id, path))
-                                    pspStoragePaths[id].push_back(path);
-                            }
-                        }
+                        if (!id.empty()) pspIsoIds.emplace(id, root);
                     }
                     e = SceIoDirent{};
                 }

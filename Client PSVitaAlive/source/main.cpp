@@ -21,6 +21,7 @@ namespace skin = psvitaalive::skin;
 #include "storage/storage_manager.hpp"
 #include "storage/storage_maintenance.hpp"
 #include "storage/installed_data_manager.hpp"
+#include "storage/installed_directory_cache.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/queue_coordinator.hpp"
 #include "installer/queue_history.hpp"
@@ -422,6 +423,8 @@ int main(){
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallPauseCallbacks([&installer](){ return installer.pauseDownload(); },
                                     [&installer](){ return installer.resumeDownload(); });
+    screen.setInstalledDataProtectionCallbacks([&installer](){ return installer.beginInstalledDataProtection(); },
+        [&installer](){ installer.endInstalledDataProtection(); });
     screen.setStorageBusyCallback([&installer, &queue](){
         return installer.busy() || queue.reportReady() ||
             (queue.protectedSession() && !queue.maintenanceAllowed());
@@ -1049,6 +1052,8 @@ while(true){
                         if(step.state==q::State::Completed) {
                             if(step.component==q::Component::App)
                                 psvitaalive::storage::InstalledDataManager::invalidateCachedPackageTitle(job->titleId);
+                            if(step.component==q::Component::PspMedia)
+                                psvitaalive::storage::InstalledDirectoryCache::invalidateMediaId(job->titleId);
                             if(step.component==q::Component::GameFiles || step.component==q::Component::DataFiles)
                                 psvitaalive::storage::InstalledDataManager::invalidateCachedTitle(job->titleId);
                         }
@@ -1120,6 +1125,9 @@ const psvitaalive::InstallStatus cur=installer.status();using InstallState=psvit
                 else if (cur.installPath.compare(0, 9, "ux0:data/") == 0)
                     psvitaalive::storage::InstalledDataManager::
                         invalidateCachedTitle(cur.titleId);
+                else if(cur.installPath.compare(0,12,"ux0:pspemu/")==0 || cur.installPath.compare(0,12,"uma0:pspemu/")==0 ||
+                    cur.installPath.find("pspemu/")!=std::string::npos)
+                    psvitaalive::storage::InstalledDirectoryCache::invalidateMediaId(cur.titleId);
             }
             previousStorageInstallState = cur.state;
         }

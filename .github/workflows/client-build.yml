@@ -50,12 +50,6 @@ jobs:
             tests/test_storage_layout.cpp -o /tmp/psvitaalive-storage-layout-test
           /tmp/psvitaalive-storage-layout-test
 
-      - name: Test catalog-specific storage and cleanup boundaries
-        run: |
-          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_storage_catalog_policy.cpp -o /tmp/psva-storage-catalog
-          /tmp/psva-storage-catalog
-          python3 tests/test_storage_catalog_integration.py
-
       - name: Test controller navigation zones and touch focus
         run: |
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
@@ -129,6 +123,22 @@ jobs:
           c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" \
             tests/test_installed_data_policy.cpp -o /tmp/psvitaalive-installed-data-policy
           /tmp/psvitaalive-installed-data-policy
+
+      - name: Test catalog RAM eviction policy
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_catalog_memory_policy.cpp -o /tmp/psva-catalog-memory
+          /tmp/psva-catalog-memory
+
+      - name: Test catalog-specific storage and cleanup boundaries
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_storage_catalog_policy.cpp -o /tmp/psva-storage-catalog
+          /tmp/psva-storage-catalog
+          python3 tests/test_storage_catalog_integration.py
+
+      - name: Test bounded game media metadata
+        run: |
+          c++ -std=c++17 -Wall -Wextra -Werror -I"Client PSVitaAlive/include" tests/test_game_media_metadata.cpp -lz -o /tmp/psva-media-test
+          /tmp/psva-media-test
 
       - name: Test storage manager readability and shared deletion UI
         run: |

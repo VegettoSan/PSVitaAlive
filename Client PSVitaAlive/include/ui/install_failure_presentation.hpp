@@ -103,6 +103,13 @@ inline bool shouldReportInstallFailure(InstallFailureKind kind) {
         default: return true;
     }
 }
+// Queue reports use the settled component, not the currently active job.
+inline bool queueFailureReportEligible(bool failed,bool sourceUnavailable,
+                                       const std::string& reason,const std::string& stage) {
+    if(!failed || sourceUnavailable || reason.empty() || stage=="Space")return false;
+    if(reason=="Queue checkpoint write failed" || reason=="Could not start queued step")return false;
+    return shouldReportInstallFailure(classifyInstallFailure(reason,stage));
+}
 inline const char* installFailureLocalizationSuffix(InstallFailureKind kind) {
     switch (kind) {
         case InstallFailureKind::Network: return "NETWORK";
