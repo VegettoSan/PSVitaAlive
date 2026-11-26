@@ -91,7 +91,7 @@ def lookup(identifier):
 
 
 def search_pilot():
-    # Narrow search, only a negative result allows the initial creation.
+    # Retrieve actual identifiers; ownership is evaluated separately.
     try:
         r = requests.get("https://archive.org/advancedsearch.php", params={
             "q": 'identifier:psvitaalive-vitaforge OR identifier:vitaforge OR title:VitaForge OR identifier:*vitaforge*',
@@ -104,9 +104,45 @@ def search_pilot():
         docs, count = result["docs"], result["numFound"]
         if not isinstance(docs, list) or type(count) is not int or count < 0 or len(docs) != min(count, 100):
             raise ValueError()
-        return count
+        if count > 20:
+            raise Deferred("PENDING_MANUAL", "Too many search matches for safe ownership review")
+        ids = [doc["identifier"] for doc in docs]
+        if any(not isinstance(i, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,99}", i) for i in ids):
+            raise ValueError()
+        return sorted(set(ids))
+    except Deferred:
+        raise
     except Exception:
         raise Deferred("WAITING_ARCHIVE", "Search unavailable; do not create") from None
+
+
+def require_free_destination(identifier, owner, *, fetch=lookup, search=search_pilot):
+    """An item from another uploader is not an existing PSVitaAlive backup.
+
+    Exact identifier collisions always block, irrespective of account.
+    Missing/ambiguous ownership never permits creation. Only public
+    identifiers and categorical ownership labels are logged, not emails.
+    """
+    exact = fetch(identifier)
+    if exact is not None:
+        matched = item_owned_by_account(exact, owner)[0]
+        print(f"Archive discovery: {identifier} exact identifier occupied; own={matched}", flush=True)
+        raise Deferred("PENDING_MANUAL", f"Exact identifier occupied: {identifier}; own={matched}")
+    matches = search()
+    print(f"Archive discovery: {len(matches)} search identifiers: {', '.join(matches) or 'none'}", flush=True)
+    for candidate in matches:
+        md = fetch(candidate)
+        if md is None:
+            raise Deferred("WAITING_ARCHIVE", f"Search metadata not visible: {candidate}")
+        uploader = md.get("metadata", {}).get("uploader")
+        if not isinstance(uploader, str) or not uploader.strip():
+            raise Deferred("PENDING_MANUAL", f"Unknown owner: {candidate}")
+        if candidate.casefold() == identifier.casefold():
+            raise Deferred("PENDING_MANUAL", f"Exact identifier collision: {candidate}")
+        if item_owned_by_account(md, owner)[0]:
+            print(f"Archive discovery: {candidate} belongs to configured account", flush=True)
+            raise Deferred("PENDING_MANUAL", f"Existing own candidate: {candidate}")
+        print(f"Archive discovery: {candidate} belongs to another account; not a destination", flush=True)
 
 
 def load_job(root):
@@ -293,8 +329,7 @@ def run_pilot(root, creds):
             raise Deferred("VERIFYING", "Creation checkpoint exists; item not visible yet")
         require_owner(md, creds[2])
     else:
-        if md is not None or search_pilot():
-            raise Deferred("PENDING_MANUAL", "Potential existing item; no creation")
+        require_free_destination(identifier, creds[2])
     with tempfile.TemporaryDirectory(prefix="psva_create_") as td:
         folder = Path(td)
         files, media = stage(app, item, folder)
@@ -303,8 +338,7 @@ def run_pilot(root, creds):
                 raise Deferred("PENDING_MANUAL", "Source payload changed since checkpoint")
         else:
             # Check once more immediately before persisting intent/creating.
-            if lookup(identifier) is not None or search_pilot():
-                raise Deferred("PENDING_MANUAL", "Potential item appeared during staging")
+            require_free_destination(identifier, creds[2])
             job = {"identifier": identifier, "source_url": asset["url"],
                    "files": files, "media": media, "attempted": [],
                    "status": "CREATING", "created_at": now_utc()}
@@ -371,9 +405,13 @@ def main():
     args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", "utf-8")
     summary = f"New Archive.org items: VitaForge — {report['status']}; inventory: {report['counts']}"
     print(summary, flush=True)
+    if report.get("detail"):
+        print("Pilot detail: " + report["detail"], flush=True)
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
             f.write("## " + summary + "\n")
+            if report.get("detail"):
+                f.write(report["detail"] + "\n")
     return 1 if report["status"] == "CATALOG_PUSH_BLOCKED" else 0
 
 
