@@ -87,6 +87,10 @@ public:
         installPause_ = std::move(pause); installResume_ = std::move(resume);
     }
     void setStorageBusyCallback(std::function<bool()> callback) { storageInstallerBusy_ = std::move(callback); }
+    void setInstalledDataProtectionCallbacks(std::function<bool()> acquire, std::function<void()> release) {
+        installedDataAcquireProtection_ = std::move(acquire);
+        installedDataReleaseProtection_ = std::move(release);
+    }
     using StorageAppDisplayFn = std::function<bool(const std::string&, const std::string&,
                                                    std::string&, std::string&)>;
     void setStorageAppDisplayCallback(StorageAppDisplayFn callback) {
@@ -727,6 +731,10 @@ private:
     std::atomic<bool> installedDataWorkerOk_{false};
     ::psvitaalive::storage::InstalledDataScanProgress installedDataScanProgress_;
     SceUID installedDataWorker_ = -1;
+    std::function<bool()> installedDataAcquireProtection_;
+    std::function<void()> installedDataReleaseProtection_;
+    bool installedDataProtected_ = false;
+    void releaseInstalledDataProtection();
     void openInstalledDataMenu(bool fromStorage, const std::string& preferredTitleId);
     void closeInstalledDataMenu();
     void releaseInstalledDataExclusiveTextures();
