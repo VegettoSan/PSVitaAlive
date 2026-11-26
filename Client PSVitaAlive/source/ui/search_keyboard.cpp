@@ -77,10 +77,8 @@ bool SearchKeyboard::open(const std::string& initial, const std::string& title,
     lastInputSource_ = InputSource::None;
     touchBackspace_ = -1;
     openedAtUs_ = timeUs();
-    closeAtUs_ = nextNavUs_ = nextEraseUs_ = 0;
-    previousButtons_ = lastNav_ = 0;
-    SceCtrlData pad{};
-    if (::psvitaalive::ui::peekClientController(pad) > 0) previousButtons_ = pad.buttons;
+    closeAtUs_ = nextEraseUs_ = 0;
+    ::psvitaalive::ui::discardClientControllerActions();
     SceTouchData touch{};
     touchWasDown_ = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) > 0 &&
                     touch.reportNum > 0;
@@ -245,6 +243,7 @@ void SearchKeyboard::update() {
     if (!active_) return;
     const uint64_t now = timeUs();
     if (closing_) {
+        ::psvitaalive::ui::discardClientControllerActions();
         if (now - closeAtUs_ >= kAnimationUs) {
             active_ = false;
             ready_ = true;
@@ -253,10 +252,8 @@ void SearchKeyboard::update() {
     }
 
     SceCtrlData pad{};
-    const int ctrl = ::psvitaalive::ui::peekClientController(pad);
-    const unsigned buttons = ctrl > 0 ? pad.buttons : 0;
-    const unsigned pressed = buttons & ~previousButtons_;
-    previousButtons_ = buttons;
+    uint32_t pressed = 0;
+    ::psvitaalive::ui::readClientControllerActions(pad, pressed);
 
     SceTouchData touch{};
     const bool down = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) > 0 &&
@@ -283,31 +280,13 @@ void SearchKeyboard::update() {
     touchWasDown_ = down;
     if (closing_) return;
 
-    // Treat the left analog stick as an alternative to the D-pad. Matching
-    // thresholds with the catalog avoids accidental drift, while sharing
-    // the same navigation repeat/cooldown prevents double movement.
-    unsigned analogNav = 0;
-    if (ctrl > 0) {
-        constexpr unsigned char low = 64, high = 192;
-        if (pad.lx <= low) analogNav |= SCE_CTRL_LEFT;
-        else if (pad.lx >= high) analogNav |= SCE_CTRL_RIGHT;
-        if (pad.ly <= low) analogNav |= SCE_CTRL_UP;
-        else if (pad.ly >= high) analogNav |= SCE_CTRL_DOWN;
-    }
-    const unsigned nav = (buttons & (SCE_CTRL_LEFT | SCE_CTRL_RIGHT |
-                                     SCE_CTRL_UP | SCE_CTRL_DOWN)) | analogNav;
-    if (nav != lastNav_) {
-        nextNavUs_ = now + 290000ULL;
-    }
-    if (pressed || nav) lastInputSource_ = InputSource::Controller;
-    if (nav && (nav != lastNav_ || now >= nextNavUs_)) {
-        if (nav & SCE_CTRL_LEFT) navigate(-1);
-        else if (nav & SCE_CTRL_RIGHT) navigate(1);
-        else if (nav & SCE_CTRL_UP) navigate(-2);
-        else navigate(2);
-        if (nav == lastNav_) nextNavUs_ = now + 115000ULL;
-    }
-    lastNav_ = nav;
+    const unsigned nav = pressed & (SCE_CTRL_LEFT | SCE_CTRL_RIGHT |
+                                     SCE_CTRL_UP | SCE_CTRL_DOWN);
+    if (pressed) lastInputSource_ = InputSource::Controller;
+    if (nav & SCE_CTRL_LEFT) navigate(-1);
+    else if (nav & SCE_CTRL_RIGHT) navigate(1);
+    else if (nav & SCE_CTRL_UP) navigate(-2);
+    else if (nav & SCE_CTRL_DOWN) navigate(2);
     if (pressed & SCE_CTRL_TRIANGLE) {
         numbers_ = !numbers_;
         more_ = false;
@@ -322,11 +301,9 @@ void SearchKeyboard::update() {
         eraseOne();
         nextEraseUs_ = now + 420000ULL;
     }
-    const bool holding = (buttons & SCE_CTRL_SQUARE) ||
-        ((buttons & SCE_CTRL_CROSS) && focused_ >= 0 &&
-         focused_ < (int)keys_.size() &&
-         keys_[focused_].action == Action::Backspace) ||
-        (down && touchBackspace_ >= 0 && touchKey == touchBackspace_);
+    // Touch backspace retains its existing gesture behavior; physical
+    // buttons only erase on a new press.
+    const bool holding = down && touchBackspace_ >= 0 && touchKey == touchBackspace_;
     if (holding && !eraseHeld_) {
         eraseHeld_ = true;
         if (nextEraseUs_ == 0 || nextEraseUs_ < now) nextEraseUs_ = now + 420000ULL;
