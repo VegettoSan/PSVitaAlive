@@ -14,10 +14,12 @@
 namespace psvitaalive { namespace storage {
 namespace {
 constexpr size_t MAX_ROWS = 1024;
-constexpr size_t MAX_BYTES = 128 * 1024;
+constexpr size_t MAX_BYTES = 512 * 1024;
 constexpr const char* MAGIC = "PSVA_DIR_INDEX_V1\n";
 constexpr const char* PATH =
     "ux0:data/psvitaalive/cache/installed_directory_index.tsv";
+constexpr const char* VITA_PATH="ux0:data/psvitaalive/cache/installed_vita_index.tsv";
+constexpr const char* MEDIA_PATH="ux0:data/psvitaalive/cache/installed_psp_ps1_index.tsv";
 
 bool readFile(const std::string& path, std::string& raw) {
     raw.clear();
@@ -52,56 +54,86 @@ bool writeFile(const std::string& path, const std::string& raw) {
     sceIoClose(file);
     return offset == raw.size();
 }
-} // namespace
-
-const char* InstalledDirectoryCache::filePath() { return PATH; }
-
-bool InstalledDirectoryCache::load(std::vector<CachedDirectory>& entries) {
+template<class Row,class Decode>
+bool loadIndex(const char* path,std::vector<Row>& entries,Decode decode) {
     std::string raw;
-    if (readFile(PATH, raw) && decode(raw, entries)) return true;
+    if (readFile(path, raw) && decode(raw, entries)) return true;
     // Incomplete power-loss writes are never trusted. A previous complete
     // version can be recovered without using it as a deletion authority.
-    if (readFile(std::string(PATH) + ".bak", raw) &&
+    if (readFile(std::string(path) + ".bak", raw) &&
         decode(raw, entries)) return true;
     entries.clear();
     return false;
 }
-bool InstalledDirectoryCache::save(
-    const std::vector<CachedDirectory>& entries) {
-    std::string encoded;
-    if (!encode(entries, encoded)) return false;
+bool saveIndex(const char* path,const std::string& encoded) {
     std::string existing;
-    if (readFile(PATH, existing) && existing == encoded) return true;
+    if (readFile(path, existing) && existing == encoded) return true;
     StorageManager storage;
     if (!storage.createDirectories(StorageManager::CACHE_DIR)) return false;
-    const std::string tmp = std::string(PATH) + ".tmp";
-    const std::string backup = std::string(PATH) + ".bak";
+    const std::string tmp = std::string(path) + ".tmp";
+    const std::string backup = std::string(path) + ".bak";
     if (!writeFile(tmp, encoded)) {
         sceIoRemove(tmp.c_str());
         return false;
     }
     // Two-phase replacement: recover .bak if interrupted during rename.
     sceIoRemove(backup.c_str());
-    const bool previous = sceIoRename(PATH, backup.c_str()) >= 0;
-    if (sceIoRename(tmp.c_str(), PATH) < 0) {
-        if (previous) sceIoRename(backup.c_str(), PATH);
+    const bool previous = sceIoRename(path, backup.c_str()) >= 0;
+    if (sceIoRename(tmp.c_str(), path) < 0) {
+        if (previous) sceIoRename(backup.c_str(), path);
         sceIoRemove(tmp.c_str());
         return false;
     }
     if (previous) sceIoRemove(backup.c_str());
     return true;
 }
-void InstalledDirectoryCache::invalidatePackageTitle(const std::string& titleId) {
+} // namespace
+const char* InstalledDirectoryCache::filePath(DirectoryCacheScope scope) {
+    return scope==DirectoryCacheScope::Vita?VITA_PATH:PATH;
+}
+bool InstalledDirectoryCache::load(std::vector<CachedDirectory>& entries,DirectoryCacheScope scope) {
+    if(!loadIndex(filePath(scope),entries,decode))return false;
+    if(scope==DirectoryCacheScope::Vita) {
+        for(const auto& row:entries)if(row.path!="ux0:app/"+row.titleId){entries.clear();return false;}
+    }
+    return true;
+}
+bool InstalledDirectoryCache::save(const std::vector<CachedDirectory>& entries,DirectoryCacheScope scope) {
+    if(scope==DirectoryCacheScope::Vita)
+        for(const auto& row:entries)if(row.path!="ux0:app/"+row.titleId)return false;
+    std::string encoded;
+    return encode(entries,encoded)&&saveIndex(filePath(scope),encoded);
+}
+bool InstalledDirectoryCache::loadMedia(std::vector<CachedMedia>& entries) {
+    return loadIndex(MEDIA_PATH,entries,decodeMedia);
+}
+bool InstalledDirectoryCache::saveMedia(const std::vector<CachedMedia>& entries) {
+    std::string encoded;return encodeMedia(entries,encoded)&&saveIndex(MEDIA_PATH,encoded);
+}
+void InstalledDirectoryCache::invalidateMediaPath(const std::string& path) {
+    std::vector<CachedMedia> entries;if(!loadMedia(entries))return;
+    const auto n=entries.size();
+    entries.erase(std::remove_if(entries.begin(),entries.end(),[&](const CachedMedia& e){return e.path==path;}),entries.end());
+    if(n!=entries.size())saveMedia(entries);
+}
+void InstalledDirectoryCache::invalidateMediaId(const std::string& id) {
+    if(!validInstalledTitleId(id))return;
+    std::vector<CachedMedia> entries;if(!loadMedia(entries))return;
+    const auto n=entries.size();
+    entries.erase(std::remove_if(entries.begin(),entries.end(),[&](const CachedMedia& e){return e.id==id||e.contentId==id;}),entries.end());
+    if(n!=entries.size())saveMedia(entries);
+}
+void InstalledDirectoryCache::invalidatePackageTitle(const std::string& titleId,DirectoryCacheScope scope) {
     if (!validInstalledTitleId(titleId)) return;
     std::vector<CachedDirectory> entries;
-    if (!load(entries)) return;
+    if (!load(entries,scope)) return;
     const size_t original = entries.size();
     const std::string root = "ux0:app/" + titleId;
     entries.erase(std::remove_if(entries.begin(), entries.end(),
         [&](const CachedDirectory& row) {
             return row.titleId == titleId && row.path == root;
         }), entries.end());
-    if (original != entries.size()) save(entries);
+    if (original != entries.size()) save(entries,scope);
 }
 
 void InstalledDirectoryCache::invalidateTitle(const std::string& titleId) {
