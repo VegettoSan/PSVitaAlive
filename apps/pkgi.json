@@ -23,6 +23,13 @@
   ],
   "l": [
     {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/mmozeiko/pkgi/releases/download/v0.05/pkgi-v0.05.vpk",
+      "sz": 159126,
+      "rec": true
+    },
+    {
       "t": "Official Website",
       "n": "Release Page",
       "u": "https://github.com/mmozeiko/pkgi/releases"

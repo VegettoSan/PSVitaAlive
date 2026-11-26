@@ -96,14 +96,16 @@ def identifier_options(app_id):
     return (base, base + "-psvita", base + "-homebrew", base + "-archive")
 
 
-def search_pilot(owner):
+def search_pilot(owner, app_id=PILOT, title="VitaForge"):
     # Scope search to configured account; check exact identifier occupancy separately.
     owner = owner.strip()
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,90}", app_id) or not re.fullmatch(r"[A-Za-z0-9 ._()-]{1,100}", title):
+        raise Deferred("PENDING_MANUAL", "Unsafe search identity")
     if not re.fullmatch(r"[A-Za-z0-9._%+!-]+@[A-Za-z0-9.-]+", owner):
         raise Deferred("PENDING_MANUAL", "Configured uploader is not a supported email")
     try:
         r = requests.get("https://archive.org/advancedsearch.php", params={
-            "q": f'uploader:"{owner}" AND (title:"VitaForge" OR identifier:*vitaforge*)',
+            "q": f'uploader:"{owner}" AND (title:"{title}" OR identifier:*{app_id}*)',
             "fl[]": "identifier", "rows": 100, "output": "json",
         }, timeout=(15, 30), allow_redirects=False)
         r.raise_for_status()
@@ -323,7 +325,7 @@ def publish_complete(root, app, raw, item, files, media, job):
                 "chore: publish verified VitaForge preservation item", validate=True)
 
 
-def validate_job(job, app, item):
+def validate_job(job, app, item, expected_sha=PILOT_SHA256):
     """Validate old and new checkpoints before using their saved digests."""
     files, media, attempted = job.get("files"), job.get("media"), job.get("attempted")
     if (not isinstance(files, dict) or not isinstance(media, dict)
@@ -348,7 +350,7 @@ def validate_job(job, app, item):
                 or not isinstance(info.get("sha256"), str)
                 or not re.fullmatch(r"[0-9a-f]{64}", info["sha256"])):
             raise Deferred("PENDING_MANUAL", "Invalid creation checkpoint digest")
-    if files[vpk]["size"] != item["size_bytes"] or files[vpk]["sha256"] != PILOT_SHA256:
+    if files[vpk]["size"] != item["size_bytes"] or files[vpk]["sha256"] != expected_sha:
         raise Deferred("PENDING_MANUAL", "Checkpoint VPK differs from approved release")
     return files, media
 
@@ -382,7 +384,7 @@ def wait_owned_item(identifier, owner, *, fetch=None, sleep=None):
 
 
 def transfer_batch(root, app, identifier, files, folder, job, creds,
-                   *, fetch=None, checkpoint=None, upload=None, sleep=None):
+                   *, fetch=None, checkpoint=None, upload=None, sleep=None, metadata_factory=creation_metadata):
     """Send never-attempted files; do not wait for public verification per PUT.
 
     Each PUT still has its own durable intent. An uncertain PUT is never
@@ -407,7 +409,7 @@ def transfer_batch(root, app, identifier, files, folder, job, creds,
                 raise Deferred("PENDING_MANUAL", f"Unplanned existing remote filename: {name}")
         job["attempted"].append(name)
         checkpoint(root, job)
-        upload(identifier, name, folder, creds, creation_metadata(app) if create else None)
+        upload(identifier, name, folder, creds, metadata_factory(app) if create else None)
         print(f"Creation transfer: {name} accepted", flush=True)
 
 

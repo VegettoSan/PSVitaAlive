@@ -27,6 +27,13 @@
   ],
   "l": [
     {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/VegettoSan/Halo2D_PsVita/releases/download/1.76/Halo2D.vpk",
+      "sz": 52679023,
+      "rec": true
+    },
+    {
       "t": "Official Website",
       "n": "Release Page",
       "u": "https://github.com/VegettoSan/Halo2D_PsVita/releases"

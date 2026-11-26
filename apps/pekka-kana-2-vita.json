@@ -26,6 +26,13 @@
   ],
   "l": [
     {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases/download/v.1.0/Pekka2.vpk",
+      "sz": 1761732,
+      "rec": true
+    },
+    {
       "t": "Official Website",
       "n": "Release Page",
       "u": "https://github.com/Rinnegatamante/Pekka-Kana-2-Vita/releases"

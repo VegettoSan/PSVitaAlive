@@ -26,6 +26,13 @@
   ],
   "l": [
     {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/JJH47E/snake/releases/download/0.9/Snake.vpk",
+      "sz": 645999,
+      "rec": true
+    },
+    {
       "t": "Official Website",
       "n": "Release Page",
       "u": "https://github.com/JJH47E/snake/releases"
