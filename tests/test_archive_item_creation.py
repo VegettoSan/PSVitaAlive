@@ -84,5 +84,98 @@ class CreationTests(unittest.TestCase):
                 search=lambda owner: [])
 
 
+    def test_transfer_all_without_public_verification(self):
+        files = {"app.vpk": {}, "icon.png": {}, "shot.png": {}}
+        job = {"attempted": []}
+        calls, snapshots = [], []
+        md = {"metadata": {"uploader": "expected"}, "files": []}
+        def fetch(identifier):
+            return md if calls else None
+        def upload(identifier, name, folder, creds, metadata):
+            self.assertEqual(snapshots[-1][-1], name)
+            calls.append((name, metadata is not None))
+        with patch.object(a, "verify_remote", side_effect=AssertionError("public verify during transfer")):
+            a.transfer_batch(None, {"name": "Test"}, "item", files, None, job,
+                             ("key", "secret", "expected"), fetch=fetch,
+                             checkpoint=lambda root, j: snapshots.append(list(j["attempted"])),
+                             upload=upload, sleep=lambda n: None)
+        self.assertEqual(calls, [("app.vpk", True), ("icon.png", False), ("shot.png", False)])
+        self.assertEqual(job["attempted"], list(files))
+
+    def test_resume_old_checkpoint_sends_only_new_file(self):
+        files = {"app.vpk": {}, "icon.png": {}, "SOURCES.txt": {}}
+        job = {"attempted": ["app.vpk", "icon.png"]}
+        md = {"metadata": {"uploader": "expected"}, "files": []}
+        calls = []
+        a.transfer_batch(None, {}, "item", files, None, job,
+                         ("key", "secret", "expected"), fetch=lambda _: md,
+                         checkpoint=lambda *_: None,
+                         upload=lambda ident, name, *args: calls.append(name),
+                         sleep=lambda _: None)
+        self.assertEqual(calls, ["SOURCES.txt"])
+
+    def test_uncertain_put_stops_and_retains_intent(self):
+        files, job, snapshots = {"a.vpk": {}, "b.png": {}}, {"attempted": []}, []
+        def fail(*args):
+            raise Deferred("UPLOAD_RESULT_UNCERTAIN", "uncertain")
+        with self.assertRaises(Deferred):
+            a.transfer_batch(None, {"name": "Test"}, "item", files, None, job,
+                             ("key", "secret", "expected"), fetch=lambda _: None,
+                             checkpoint=lambda root, j: snapshots.append(list(j["attempted"])),
+                             upload=fail)
+        self.assertEqual(snapshots, [["a.vpk"]])
+        self.assertEqual(job["attempted"], ["a.vpk"])
+
+    def test_wait_for_item_owner_not_file_visibility(self):
+        md = {"metadata": {"uploader": "expected"}, "files": []}
+        responses = iter([None, {"metadata": {}, "files": []}, md])
+        self.assertEqual(a.wait_owned_item("item", "expected", fetch=lambda _: next(responses),
+                                           sleep=lambda _: None), md)
+
+    def test_wrong_owner_never_sends_remaining_files(self):
+        job = {"attempted": ["a.vpk"]}
+        md = {"metadata": {"uploader": "other"}, "files": []}
+        with self.assertRaises(Deferred):
+            a.transfer_batch(None, {}, "item", {"a.vpk": {}, "b.png": {}}, None, job,
+                             ("key", "secret", "expected"), fetch=lambda _: md,
+                             checkpoint=lambda *_: self.fail("checkpoint"),
+                             upload=lambda *_: self.fail("upload"))
+
+    def test_verify_all_visible_files_even_if_first_missing(self):
+        info = {"md5": "hash", "size": 1}
+        files = {"a.vpk": info, "b.png": info, "c.png": info}
+        md = {"metadata": {"uploader": "expected"}, "files": [
+            {"name": "b.png", **info}, {"name": "c.png", **info}]}
+        calls = []
+        with self.assertRaisesRegex(Deferred, "a.vpk"):
+            a.verify_batch("item", files, None, {"attempted": list(files)}, "expected",
+                           fetch=lambda _: md, verify=lambda ident, name, *args: calls.append(name))
+        self.assertEqual(calls, ["b.png", "c.png"])
+
+    def test_public_delay_does_not_block_other_verifications(self):
+        info = {"md5": "hash", "size": 1}
+        files = {"a.vpk": info, "b.png": info}
+        md = {"metadata": {"uploader": "expected"}, "files": [
+            {"name": name, **info} for name in files]}
+        calls = []
+        def verify(ident, name, *args):
+            calls.append(name)
+            if name == "a.vpk":
+                raise Deferred("WAITING_ARCHIVE", "not public")
+        with self.assertRaisesRegex(Deferred, "a.vpk"):
+            a.verify_batch("item", files, None, {"attempted": list(files)}, "expected",
+                           fetch=lambda _: md, verify=verify)
+        self.assertEqual(calls, list(files))
+
+    def test_verification_conflict_is_not_ignored(self):
+        info = {"md5": "hash", "size": 1}
+        md = {"metadata": {"uploader": "expected"}, "files": [{"name": "a.vpk", **info}]}
+        def verify(*args):
+            raise Deferred("PENDING_MANUAL", "hash conflict")
+        with self.assertRaisesRegex(Deferred, "hash conflict"):
+            a.verify_batch("item", {"a.vpk": info}, None, {"attempted": ["a.vpk"]},
+                           "expected", fetch=lambda _: md, verify=verify)
+
+
 if __name__ == "__main__":
     unittest.main()

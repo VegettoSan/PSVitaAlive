@@ -10,6 +10,7 @@ import json
 import os
 import re
 import tempfile
+import time
 from collections import Counter
 from pathlib import Path
 from urllib.parse import urlparse, quote
@@ -322,6 +323,125 @@ def publish_complete(root, app, raw, item, files, media, job):
                 "chore: publish verified VitaForge preservation item", validate=True)
 
 
+def validate_job(job, app, item):
+    """Validate old and new checkpoints before using their saved digests."""
+    files, media, attempted = job.get("files"), job.get("media"), job.get("attempted")
+    if (not isinstance(files, dict) or not isinstance(media, dict)
+            or not isinstance(attempted, list)
+            or any(not isinstance(n, str) for n in attempted)
+            or len(set(attempted)) != len(attempted)
+            or not set(attempted) <= set(files)):
+        raise Deferred("PENDING_MANUAL", "Invalid creation checkpoint manifest")
+    vpk = expected_filename(item)
+    expected_urls = {u for u in [app.get("icon"), *(app.get("screenshots") or [])] if u}
+    if (job.get("source_url") != item["source_url"]
+            or set(media) != expected_urls
+            or any(not isinstance(n, str) or not re.fullmatch(r"(?:icon0|shot_[0-9]{2})\.(?:png|jpg|webp)", n)
+                   for n in media.values())
+            or set(files) != {vpk, "SOURCES.txt", *media.values()}):
+        raise Deferred("PENDING_MANUAL", "Creation checkpoint does not match current source")
+    for name, info in files.items():
+        if (not isinstance(info, dict) or type(info.get("size")) is not int
+                or not 0 < info["size"] <= (HARD_MAX_FILE if name == vpk else MAX_MEDIA)
+                or not isinstance(info.get("md5"), str)
+                or not re.fullmatch(r"[0-9a-f]{32}", info["md5"])
+                or not isinstance(info.get("sha256"), str)
+                or not re.fullmatch(r"[0-9a-f]{64}", info["sha256"])):
+            raise Deferred("PENDING_MANUAL", "Invalid creation checkpoint digest")
+    if files[vpk]["size"] != item["size_bytes"] or files[vpk]["sha256"] != PILOT_SHA256:
+        raise Deferred("PENDING_MANUAL", "Checkpoint VPK differs from approved release")
+    return files, media
+
+
+def creation_metadata(app):
+    description = html.escape(app.get("long_description") or app.get("description") or "")
+    description += '<br><br>Preserved by <a href="https://vegettosan.github.io/PSVitaAlive/">PSVitaAlive</a>.'
+    return {"title": app["name"], "creator": "josephinoo",
+            "description": description, "mediatype": "software",
+            "subject": ["PS Vita", "Homebrew", "PSVitaAlive", "VitaForge"],
+            "date": app.get("version_date"), "source": "https://github.com/josephinoo/vitaForge"}
+
+
+def wait_owned_item(identifier, owner, *, fetch=None, sleep=None):
+    """Only the first creation needs to wait for ownership, not file visibility."""
+    fetch = fetch or lookup
+    sleep = sleep or time.sleep
+    for delay in (0, 4, 8, 16, 24):
+        if delay:
+            sleep(delay)
+        md = fetch(identifier)
+        if md is None:
+            continue
+        # A temporarily incomplete uploader field is not proof of ownership.
+        uploader = md.get("metadata", {}).get("uploader")
+        if not isinstance(uploader, str) or not uploader.strip():
+            continue
+        require_owner(md, owner)
+        return md
+    raise Deferred("VERIFYING", "Item ownership not visible yet; remaining files stay pending")
+
+
+def transfer_batch(root, app, identifier, files, folder, job, creds,
+                   *, fetch=None, checkpoint=None, upload=None, sleep=None):
+    """Send never-attempted files; do not wait for public verification per PUT.
+
+    Each PUT still has its own durable intent. An uncertain PUT is never
+    retried automatically, and stops this transfer phase.
+    """
+    fetch = fetch or lookup
+    checkpoint = checkpoint or persist
+    upload = upload or put_file
+    owner = creds[2]
+    for name in files:
+        if name in job["attempted"]:
+            print(f"Creation transfer: {name} previously attempted; no repeat PUT", flush=True)
+            continue
+        create = not job["attempted"]
+        if create:
+            if fetch(identifier) is not None:
+                raise Deferred("PENDING_MANUAL", "Identifier became occupied")
+            md = None
+        else:
+            md = wait_owned_item(identifier, owner, fetch=fetch, sleep=sleep)
+            if existing_file(md, name) is not None:
+                raise Deferred("PENDING_MANUAL", f"Unplanned existing remote filename: {name}")
+        job["attempted"].append(name)
+        checkpoint(root, job)
+        upload(identifier, name, folder, creds, creation_metadata(app) if create else None)
+        print(f"Creation transfer: {name} accepted", flush=True)
+
+
+def verify_batch(identifier, files, folder, job, owner, *, fetch=None, verify=None):
+    """Read all files using a shared manifest; report all pending filenames."""
+    fetch = fetch or lookup
+    verify = verify or verify_remote
+    md = fetch(identifier)
+    if md is None:
+        raise Deferred("VERIFYING", "Item not visible yet; all attempted files protected")
+    require_owner(md, owner)
+    pending = []
+    for name, info in files.items():
+        remote = existing_file(md, name)
+        if name not in job["attempted"]:
+            if remote is not None:
+                raise Deferred("PENDING_MANUAL", f"Unplanned existing remote filename: {name}")
+            pending.append(name)
+            continue
+        if remote is None or not remote.get("md5") or remote.get("size") is None:
+            pending.append(name)
+            continue
+        try:
+            verify(identifier, name, info, md, folder)
+        except Deferred as exc:
+            if exc.status not in {"VERIFYING", "WAITING_ARCHIVE"}:
+                raise
+            pending.append(name)
+            continue
+        print(f"Creation verification: {name} verified", flush=True)
+    if pending:
+        raise Deferred("VERIFYING", "Awaiting public verification: " + ", ".join(pending))
+
+
 def run_pilot(root, creds):
     raw = json.loads((root / "apps" / (PILOT + ".json")).read_text("utf-8"))
     app = to_v1(raw)
@@ -348,59 +468,32 @@ def run_pilot(root, creds):
     item = {"app_id": PILOT, "version": asset["version"], "source_url": asset["url"],
             "size_bytes": asset["size"], "archive_identifier": identifier}
     if job:
-        md = lookup(identifier)
-        if job.get("source_url") != asset["url"]:
-            raise Deferred("PENDING_MANUAL", "Creation checkpoint does not match current source")
-        if md is None:
-            raise Deferred("VERIFYING", "Creation checkpoint exists; item not visible yet")
-        require_owner(md, creds[2])
+        files, media = validate_job(job, app, item)
+        # Already-attempted files are reconciled from saved digests. Do not
+        # depend on upstream availability once every PUT has been attempted.
+        if set(job["attempted"]) == set(files):
+            with tempfile.TemporaryDirectory(prefix="psva_create_verify_") as td:
+                verify_batch(identifier, files, Path(td), job, creds[2])
+            publish_complete(root, app, raw, item, files, media, job)
+            return "PUBLISHED_VERIFIED"
+        if job["attempted"]:
+            wait_owned_item(identifier, creds[2])
     with tempfile.TemporaryDirectory(prefix="psva_create_") as td:
         folder = Path(td)
-        files, media = stage(app, item, folder)
+        staged_files, staged_media = stage(app, item, folder)
         if job:
-            if job.get("files") != files or job.get("media") != media:
+            if files != staged_files or media != staged_media:
                 raise Deferred("PENDING_MANUAL", "Source payload changed since checkpoint")
         else:
-            # Check once more immediately before persisting intent/creating.
             identifier = select_destination(PILOT, creds[2])
             item["archive_identifier"] = identifier
+            files, media = staged_files, staged_media
             job = {"identifier": identifier, "source_url": asset["url"],
                    "files": files, "media": media, "attempted": [],
                    "status": "CREATING", "created_at": now_utc()}
-        for name, info in files.items():
-            md = lookup(identifier)
-            if md is not None:
-                require_owner(md, creds[2])
-                remote = existing_file(md, name)
-                if remote is not None:
-                    if name not in job["attempted"]:
-                        raise Deferred("PENDING_MANUAL", "Unplanned existing remote filename")
-                    verify_remote(identifier, name, info, md, folder)
-                    continue
-            if name in job["attempted"]:
-                raise Deferred("VERIFYING", "Previous PUT not visible; no automatic repeat")
-            create = not job["attempted"]
-            if create and md is not None:
-                raise Deferred("PENDING_MANUAL", "Identifier became occupied")
-            if not create and md is None:
-                raise Deferred("VERIFYING", "Owned item not visible")
-            job["attempted"].append(name)
-            persist(root, job)
-            metadata = None
-            if create:
-                description = html.escape(app.get("long_description") or app.get("description") or "")
-                description += '<br><br>Preserved by <a href="https://vegettosan.github.io/PSVitaAlive/">PSVitaAlive</a>.'
-                metadata = {"title": app["name"], "creator": "josephinoo",
-                            "description": description, "mediatype": "software",
-                            "subject": ["PS Vita", "Homebrew", "PSVitaAlive", "VitaForge"],
-                            "date": app.get("version_date"), "source": "https://github.com/josephinoo/vitaForge"}
-            put_file(identifier, name, folder, creds, metadata)
-            # IA may take time to expose files: next invocation reconciles only.
-            md = lookup(identifier)
-            if md is None:
-                raise Deferred("VERIFYING", "New item not visible yet")
-            require_owner(md, creds[2])
-            verify_remote(identifier, name, info, md, folder)
+        transfer_batch(root, app, identifier, files, folder, job, creds)
+        # Separate verification phase: no public checks between transfers.
+        verify_batch(identifier, files, folder, job, creds[2])
         publish_complete(root, app, raw, item, files, media, job)
     return "PUBLISHED_VERIFIED"
 
