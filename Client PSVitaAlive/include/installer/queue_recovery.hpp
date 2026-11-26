@@ -84,7 +84,7 @@ public:
                         tail.steps.push_back(s);tail.steps.back().state=State::Waiting;
                         if(!s.expectedBytes)tail.provisionalSpace=true;
                         if(s.component==Component::SystemPackage || s.component==Component::SavedZip ||
-                           s.component==Component::Other || s.component==Component::PspMedia)tail.exclusiveTail=true;
+                           s.component==Component::Other)tail.exclusiveTail=true;
                     } else if((s.component==Component::GameFiles || s.component==Component::DataFiles) && s.state!=State::Completed)
                         tail.installAll=false;
                 }
