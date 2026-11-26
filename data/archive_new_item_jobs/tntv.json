@@ -23,7 +23,8 @@
     "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.05/sce_sys/icon0.png": "icon0.png"
   },
   "attempted": [
-    "tntv v1.05.vpk"
+    "tntv v1.05.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:15:54+00:00"
