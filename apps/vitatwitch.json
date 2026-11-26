@@ -20,7 +20,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Dexlei/VitaTwitch/releases/download/v1.32/VitaTwitch.vpk",
+      "u": "https://archive.org/download/psvitaalive-vitatwitch/vitatwitch%20v1.32.vpk",
       "rec": true
     },
     {
@@ -29,12 +29,12 @@
       "u": "https://github.com/Dexlei/VitaTwitch"
     }
   ],
-  "ic": "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-vitatwitch/icon0.png",
   "sn": "GitHub",
   "su": "https://github.com/Dexlei/VitaTwitch",
   "rp": "https://github.com/Dexlei/VitaTwitch/releases",
   "cl": "- 1.32: fixed channels streaming in fMP4/CMAF format (stuck on loading)\n- 1.31: first public release",
   "ss": [
-    "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png"
+    "https://archive.org/download/psvitaalive-vitatwitch/icon0.png"
   ]
 }
