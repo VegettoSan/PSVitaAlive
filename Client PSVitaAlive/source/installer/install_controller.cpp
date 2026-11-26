@@ -399,7 +399,7 @@ void InstallController::shutdown() {
 
 void InstallController::setSettings(const AppSettingsData& s) {
     // Queue routing and worker reads must remain immutable until settlement.
-    if (ownsQueuedStep() || queueProtectionActive()) return;
+    if (installedDataProtectionActive() || ownsQueuedStep() || queueProtectionActive()) return;
     settings_ = s;
     AppSettings::save(settings_);
     diagnostics::log(std::string("[Installer] settings saved method=") + AppSettings::toString(settings_.installMethod) +
@@ -844,7 +844,7 @@ bool InstallController::deleteSavedZip(const std::string& appId,
                                        const std::string& titleId,
                                        const std::string& archivePath) {
     // Trust only archives returned by the existing app/title-bound metadata scan.
-    if (queueProtectionActive() || ownsQueuedStep() || archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
+    if (installedDataProtectionActive() || queueProtectionActive() || ownsQueuedStep() || archivePath.empty() || busy() || zipRecoveryAvailable_.load()) return false;
     const auto archives = savedZips(appId, titleId);
     const auto it = std::find_if(archives.begin(), archives.end(),
         [&](const SavedZipArchive& z) { return z.archivePath == archivePath; });
@@ -876,7 +876,7 @@ bool InstallController::hasSavedZip(const std::string& appId, const std::string&
 bool InstallController::requestSavedZipExtraction(
     const std::string& appId, const std::string& titleId,
     const std::string& archivePath) {
-    if (((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || busy() || zipRecoveryAvailable_.load()) return false;
+    if (installedDataProtectionActive() || ((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || busy() || zipRecoveryAvailable_.load()) return false;
     // Never trust a UI-provided path: resolve the selected archive afresh from
     // its app-specific metadata. This also handles deletion between UI frames.
     const auto matches = savedZips(appId, titleId);
@@ -947,7 +947,7 @@ bool InstallController::busy() const {
 void InstallController::setPendingCatalogMeta(const std::string& appId, const std::string& version,
                                                    const std::string& versionDate, int revision,
                                                    const std::string& titleId) {
-    if ((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) return;
+    if (installedDataProtectionActive() || ((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_)) return;
     // Metadata is also consumed by the worker when writing the install receipt.
     // Never replace it during an earlier installation's cleanup tail.
     if (workerThread_ >= 0 && !workerDone_.load(std::memory_order_acquire))
@@ -972,7 +972,7 @@ bool InstallController::requestInstall(
     const std::string& pluginLine,
     bool installAllSpaceApproved
 ) {
-    if (((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || url.empty() || fileName.empty() || busy()) return false;
+    if (installedDataProtectionActive() || ((queueProtectionActive() || ownsQueuedStep()) && !queuedDispatching_) || url.empty() || fileName.empty() || busy()) return false;
     // Game Files / Data Files are extraction-only. Do not enqueue a download
     // that could later be mistaken for an installable VPK.
     if (isDataOrGameFilesLinkType(linkType) && zipDestination.empty()) {
