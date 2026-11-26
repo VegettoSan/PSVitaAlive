@@ -47,7 +47,8 @@
     "https://raw.githubusercontent.com/ATSPwang618/mofa-vita/7ef1a9d5a79444d300beeb173f52a8f2ba899615/doc/screenshots/04-story.jpg": "shot_04.jpg"
   },
   "attempted": [
-    "mofa-vita v1.20.vpk"
+    "mofa-vita v1.20.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-26T23:22:34+00:00"
