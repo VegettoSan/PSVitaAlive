@@ -3,7 +3,7 @@
 
 The original VitaForge checkpoint stays untouched. All transfers reuse the
 tested per-file checkpoint and batched verification functions. Other apps
-are selected automatically only after the multi-image pilot is published.
+are selected independently, without waiting for any other app to publish.
 """
 from __future__ import annotations
 
@@ -60,12 +60,13 @@ APPROVED = {
         "sha256": "d2359fd4bf98d4dca75d31014f5f2a76bfb7d07f782023453d9b4a85e790a74d",
     },
 }
-PRIOR_PHASE = ("tntv", "vitatwitch")
-MAX_NEW = 2
-MAX_PENDING = 4
-MAX_VPK_BYTES = 200 * 1024 * 1024
-AUTO_SECONDS = 12 * 60
-MAX_PREFLIGHT = 8
+MAX_NEW = 6
+MAX_RESUME = 8  # per-run checks, not a cap on outstanding jobs
+MAX_VPK_BYTES = 400 * 1024 * 1024  # separate budget per lane
+AUTO_SECONDS = 24 * 60
+RESUME_SECONDS = 10 * 60
+MAX_PREFLIGHT = 20
+STOP_BATCH = {"CATALOG_PUSH_BLOCKED", "BATCH_ABORTED"}
 
 
 def source_url(spec):
@@ -339,6 +340,29 @@ def publish(root, path, raw, app, item, files, media, job):
                 f"chore: publish verified initial preservation for {app_id}", validate=True)
 
 
+def reserved_identifiers(root, app_id):
+    """Protect identifiers even before an uncertain PUT becomes publicly visible."""
+    reserved = set()
+    old = initial.load_job(root)
+    if old.get("identifier"):
+        reserved.add(old["identifier"].casefold())
+    for path in (root / STATE_DIR).glob("*.json"):
+        if path.stem == app_id:
+            continue
+        try:
+            job = read_job(root, path.stem)
+            identifier = job.get("identifier")
+            if not isinstance(identifier, str) or not identifier:
+                raise ValueError()
+            reserved.add(identifier.casefold())
+        except Exception:
+            raise Deferred("BATCH_ABORTED", "Cannot establish other checkpoint identifier reservations") from None
+    for other, ids in upload_map(root / LOG).items():
+        if other != app_id:
+            reserved.update(i.casefold() for i in ids)
+    return reserved
+
+
 def run_one(root, app_id, spec, creds, counts):
     path = root / "apps" / (app_id + ".json")
     raw = json.loads(path.read_text("utf-8"))
@@ -357,11 +381,15 @@ def run_one(root, app_id, spec, creds, counts):
         asset, _ = catalog_current_asset(app)
     else:
         asset = check_candidate(app, app_id, spec, counts)
+    reserved = reserved_identifiers(root, app_id)
     def choose():
-        return initial.select_destination(app_id, creds[2],
+        candidate = initial.select_destination(app_id, creds[2],
             search=lambda owner: initial.search_pilot(owner, app_id, spec["search_title"]))
+        if candidate.casefold() in reserved:
+            raise Deferred("PENDING_MANUAL", "Identifier reserved by another app checkpoint")
+        return candidate
     identifier = job.get("identifier") if job else choose()
-    if identifier not in initial.identifier_options(app_id):
+    if identifier not in initial.identifier_options(app_id) or identifier.casefold() in reserved:
         raise Deferred("PENDING_MANUAL", "Invalid checkpoint identifier")
     item = {"app_id": app_id, "version": asset["version"], "source_url": asset["url"],
             "size_bytes": spec["size"], "archive_identifier": identifier}
@@ -399,8 +427,6 @@ def run_one(root, app_id, spec, creds, counts):
 
 def automatic_queue(root, creds, counts, *, execute):
     rows = []
-    if any(read_job(root, app_id).get("status") != "PUBLISHED_VERIFIED" for app_id in APPROVED):
-        return [{"status": "PHASE_PENDING", "detail": "Waiting for all reviewed pilots"}]
     known = upload_map(root / LOG)
     policy = load_policy(root)
     pending, fresh = [], []
@@ -432,55 +458,55 @@ def automatic_queue(root, creds, counts, *, execute):
     if not execute:
         return rows + [{"app_id": a, "status": "RESUME_PREVIEW" if j else "DISCOVERY_REQUIRED"}
                        for a, _, j in pending + fresh]
-    # Rotate new preflight candidates each UTC hour so unavailable sources do
-    # not permanently monopolize the bounded scan. Existing jobs always first.
-    if fresh:
-        offset = int(time.time() // 3600) % len(fresh)
-        fresh = fresh[offset:] + fresh[:offset]
-    deadline = time.monotonic() + AUTO_SECONDS
-    started, checked, used = 0, 0, 0
-    # Include all noncompleted checkpoints, including those blocked by policy.
-    active = sum(1 for p in (root / STATE_DIR).glob("*.json")
-                 if json.loads(p.read_text("utf-8")).get("status") != "PUBLISHED_VERIFIED")
-    for app_id, app, job in pending + fresh:
-        if (time.monotonic() + 120 >= deadline or checked >= MAX_PREFLIGHT
-                or (not job and (started >= MAX_NEW or active >= MAX_PENDING))):
-            rows.append({"app_id": app_id, "status": "DEFERRED", "detail": "Bounded queue; retry on later run"})
-            continue
-        checked += 1
-        try:
-            spec = auto_spec(root, app, app_id, counts, job)
-            if used + spec["size"] > MAX_VPK_BYTES:
-                rows.append({"app_id": app_id, "status": "DEFERRED", "detail": "Real VPK byte budget"})
+    # Separate budgets prevent waiting jobs from exhausting new-item capacity.
+    # Rotate BOTH lanes so a permanently pending early job cannot starve later ones.
+    hour = int(time.time() // 3600)
+    for lane, seconds, max_checks in ((pending, RESUME_SECONDS, MAX_RESUME),
+                                      (fresh, AUTO_SECONDS, MAX_PREFLIGHT)):
+        if lane:
+            offset = hour % len(lane)
+            lane = lane[offset:] + lane[:offset]
+        deadline = time.monotonic() + seconds
+        started = checked = used = 0
+        for app_id, app, job in lane:
+            if (time.monotonic() + 120 >= deadline or checked >= max_checks
+                    or (not job and started >= MAX_NEW)):
+                rows.append({"app_id": app_id, "status": "DEFERRED",
+                             "detail": "Per-run lane budget; retry on later run"})
                 continue
-            used += spec["size"]
-            status = run_one(root, app_id, spec, creds, counts)
-            detail = ""
-        except Deferred as e:
-            status, detail = e.status, e.reason
-        except Exception:
-            rows.append({"app_id": app_id, "status": "PENDING_MANUAL", "detail": "Unexpected error; automatic queue stopped"})
-            break
-        after = read_job(root, app_id)
-        if not job and after:
-            started += 1
-            if after.get("status") != "PUBLISHED_VERIFIED":
-                active += 1
-        if job and status == "PUBLISHED_VERIFIED":
-            active = max(0, active - 1)
-        row = {"app_id": app_id, "status": status, "detail": detail}
-        rows.append(row)
-        print("Automatic initial preservation: " + json.dumps(row), flush=True)
-        if status in {"CATALOG_PUSH_BLOCKED", "UPLOAD_RESULT_UNCERTAIN", "WAITING_ARCHIVE"}:
-            break
+            checked += 1
+            try:
+                spec = auto_spec(root, app, app_id, counts, job)
+                if used + spec["size"] > MAX_VPK_BYTES:
+                    rows.append({"app_id": app_id, "status": "DEFERRED", "detail": "Real VPK byte budget for lane"})
+                    continue
+                used += spec["size"]
+                status = run_one(root, app_id, spec, creds, counts)
+                detail = ""
+                if not job and read_job(root, app_id):
+                    started += 1
+            except Deferred as e:
+                status, detail = e.status, e.reason
+                # An uncertain PUT has a durable checkpoint and counts against
+                # this run's creation quota, but does not stop unrelated apps.
+                if not job and status not in STOP_BATCH and read_job(root, app_id):
+                    started += 1
+            except Exception:
+                rows.append({"app_id": app_id, "status": "BATCH_ABORTED",
+                             "detail": "Unexpected error; Git/checkpoint state may be unsafe"})
+                return rows
+            row = {"app_id": app_id, "status": status, "detail": detail}
+            rows.append(row)
+            print("Automatic initial preservation: " + json.dumps(row), flush=True)
+            if status in STOP_BATCH:
+                return rows
     return rows
-
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", type=Path, default=ROOT)
     p.add_argument("--execute", action="store_true")
-    p.add_argument("--automatic", action="store_true", help="Enable bounded selection after all pilot checkpoints publish")
+    p.add_argument("--automatic", action="store_true", help="Enable independent bounded automatic selection")
     p.add_argument("--report", type=Path, default=Path("archive-batch-report/new-items-batch.json"))
     args = p.parse_args()
     root = args.root.resolve()
@@ -488,16 +514,10 @@ def main():
     if args.execute and (os.environ.get("GITHUB_REPOSITORY") != "VegettoSan/PSVitaAlive"
                          or os.environ.get("GITHUB_REF") != "refs/heads/main" or not all(creds)):
         p.error("Official main and configured secrets required")
-    if args.execute and initial.load_job(root).get("status") != "PUBLISHED_VERIFIED":
-        p.error("VitaForge pilot must be fully published first")
     counts = Counter(str(to_v1(json.loads(path.read_text("utf-8"))).get("title_id") or "").upper()
                      for path in (root / "apps").glob("*.json"))
     rows = []
     for app_id, spec in APPROVED.items():
-        if args.execute and app_id not in PRIOR_PHASE and any(
-                read_job(root, prior).get("status") != "PUBLISHED_VERIFIED" for prior in PRIOR_PHASE):
-            rows.append({"app_id": app_id, "status": "PHASE_PENDING"})
-            continue
         try:
             if args.execute:
                 status = run_one(root, app_id, spec, creds, counts)
@@ -507,19 +527,19 @@ def main():
         except Deferred as exc:
             status, detail = exc.status, exc.reason
         except Exception:
-            status, detail = "PENDING_MANUAL", "Unexpected batch error; stop safely"
+            status, detail = "BATCH_ABORTED", "Unexpected batch error; stop safely"
             rows.append({"app_id": app_id, "status": status, "detail": detail})
             break
         row = {"app_id": app_id, "status": status, "detail": detail}
         rows.append(row)
         print("Initial preservation: " + json.dumps(row), flush=True)
-        if status in {"CATALOG_PUSH_BLOCKED", "UPLOAD_RESULT_UNCERTAIN", "WAITING_ARCHIVE"}:
+        if status in STOP_BATCH:
             break
-    if args.automatic and not any(r["status"] in {"CATALOG_PUSH_BLOCKED", "UPLOAD_RESULT_UNCERTAIN", "WAITING_ARCHIVE"} for r in rows):
+    if args.automatic and not any(r["status"] in STOP_BATCH for r in rows):
         rows.extend(automatic_queue(root, creds, counts, execute=args.execute))
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps({"rows": rows, "mode": "EXECUTE" if args.execute else "DRY_RUN"}, indent=2) + "\n", "utf-8")
-    return 1 if any(r["status"] == "CATALOG_PUSH_BLOCKED" for r in rows) else 0
+    return 1 if any(r["status"] in STOP_BATCH for r in rows) else 0
 
 
 if __name__ == "__main__":
