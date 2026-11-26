@@ -1,5 +1,6 @@
 #include "installer/download_queue.hpp"
 #include "ui/queue_progress_policy.hpp"
+#include "ui/install_failure_presentation.hpp"
 #include <cassert>
 #include <iostream>
 
@@ -23,6 +24,18 @@ static Snapshot snap(const Session& s,uint64_t free, Space remaining={}) {
     return x;
 }
 int main() {
+    {
+        using psvitaalive::ui::queueFailureReportEligible;
+        assert(queueFailureReportEligible(true,false,"zip_fread failed","Extracting"));
+        assert(queueFailureReportEligible(true,false,"promote failed","Installing"));
+        assert(!queueFailureReportEligible(false,false,"zip_fread failed","Extracting"));
+        assert(!queueFailureReportEligible(true,true,"source not responding","Downloading"));
+        assert(!queueFailureReportEligible(true,false,"not enough free space","Space"));
+        assert(!queueFailureReportEligible(true,false,"HTTP status 404","Downloading"));
+        assert(!queueFailureReportEligible(true,false,"connection timed out","Downloading"));
+        assert(!queueFailureReportEligible(true,false,"Queue checkpoint write failed",""));
+        assert(!queueFailureReportEligible(true,false,"","Installing"));
+    }
     {
         // Presentation order must not mutate FIFO or terminal results.
         std::vector<Job> jobs(6);
