@@ -6,6 +6,8 @@
 
 namespace psvitaalive { namespace storage {
 
+enum class GameMediaKind : unsigned char { None, Psp, Ps1 };
+
 struct InstalledDataPath {
     std::string path; // validated absolute ux0:data/ path
     uint64_t bytes = 0;
@@ -37,6 +39,9 @@ struct InstalledDataApp {
     bool blocked = false; // invalid/unidentified path, not catalog-only overlap
     uint64_t bytes = 0; // deduplicated within this app
     std::vector<InstalledDataPath> paths;
+    // Commercial roots are only discovered from the local installed-media index.
+    bool commercial = false;
+    GameMediaKind mediaKind = GameMediaKind::None;
 };
 
 struct InstalledDataSnapshot {
@@ -119,7 +124,8 @@ public:
         const std::string& onlyTitleId = {},
         InstalledDataScanProgress* progress = nullptr,
         uint64_t timeBudgetUs = 30000000ULL,
-        bool measureSizes = true);
+        bool measureSizes = true,
+        bool commercialScan = false);
     // Persistent discovery index: the canonical catalog always owns routes.
     // Saved bytes are display-only; neither directory cache nor size can
     // authorize deletion. Explicit invalidation after known data changes.
