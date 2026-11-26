@@ -1687,7 +1687,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Dexlei/VitaTwitch/releases/download/v1.32/VitaTwitch.vpk",
+        "u": "https://archive.org/download/psvitaalive-vitatwitch/vitatwitch%20v1.32.vpk",
         "rec": true
       },
       {
@@ -1696,13 +1696,13 @@
         "u": "https://github.com/Dexlei/VitaTwitch"
       }
     ],
-    "ic": "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png",
+    "ic": "https://archive.org/download/psvitaalive-vitatwitch/icon0.png",
     "sn": "GitHub",
     "su": "https://github.com/Dexlei/VitaTwitch",
     "rp": "https://github.com/Dexlei/VitaTwitch/releases",
     "cl": "- 1.32: fixed channels streaming in fMP4/CMAF format (stuck on loading)\n- 1.31: first public release",
     "ss": [
-      "https://raw.githubusercontent.com/Dexlei/VitaTwitch/main/sce_sys/icon0.png"
+      "https://archive.org/download/psvitaalive-vitatwitch/icon0.png"
     ]
   },
   {
@@ -2931,7 +2931,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/T64NCollection/TNTV/releases/download/v1.05/TNTV_v1.05.vpk",
+        "u": "https://archive.org/download/psvitaalive-tntv/tntv%20v1.05.vpk",
         "rec": true
       },
       {
@@ -2945,9 +2945,9 @@
         "u": "https://github.com/T64NCollection/TNTV/blob/main/INSTALLATION.md"
       }
     ],
-    "ic": "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.05/sce_sys/icon0.png",
+    "ic": "https://archive.org/download/psvitaalive-tntv/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.05/sce_sys/icon0.png"
+      "https://archive.org/download/psvitaalive-tntv/icon0.png"
     ],
     "rp": "https://github.com/T64NCollection/TNTV/releases/tag/v1.05"
   },
