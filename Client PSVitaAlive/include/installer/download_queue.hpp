@@ -117,6 +117,15 @@ inline Space mountedSpace(uint64_t payload, InstallSpaceMode mode, Mount target,
     s.retained[i]=retained;
     return validSpace(s)?s:Space{};
 }
+// Direct PSP/PS1 PKG conversion: reserve staging on ux0 and the full
+// conservative direct-package estimate for output on the selected mount.
+// The destination estimate is retained until the next physical space probe;
+// no assumed compression ratio or reclaimed staging is promised to later jobs.
+inline Space pspPackageSpace(uint64_t payload, Mount target) {
+    if (!payload || (target != Mount::Ux0 && target != Mount::Uma0)) return {};
+    const uint64_t output = initialInstallSpaceBytes(payload, InstallSpaceMode::DirectPackage);
+    return mountedSpace(payload, InstallSpaceMode::DirectPackage, target, output, output);
+}
 // Unknown catalog length can enter only at the tail; the existing native
 // HTTP/extraction checks decide real capacity before writes. No later jobs
 // may rely on this provisional budget until the group is terminal.
