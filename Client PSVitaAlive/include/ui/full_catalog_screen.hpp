@@ -715,6 +715,12 @@ private:
     std::atomic<bool> installedDataFilesOk_{false};
     std::atomic<bool> installedDataPreflightFailed_{false};
     ::psvitaalive::storage::InstalledDataOperationProgress installedDataOpProgress_;
+    // UI-owned identity captured before deletion starts; worker may replace snapshot.
+    std::string installedDataOperationName_, installedDataOperationIcon_, installedDataOperationTitleId_;
+    std::vector<std::string> installedDataOperationPaths_;
+    vita2d_texture* installedDataOperationLocalIcon_ = nullptr;
+    void clearInstalledDataOperationDisplay();
+    void drawInstalledDataOperationIdentity(int x,int y,int width);
     std::string installedDataTargetId_;
     std::string installedDataPreferredId_;
     std::string installedDataScanFocusId_; // rescan one incomplete row
