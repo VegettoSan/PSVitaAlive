@@ -13496,8 +13496,9 @@ void FullCatalogScreen::draw(){
     protectionServiceMascot();
     updateAnimations();
     advanceInstallFilterScan();
-    // Settings is intentionally image-worker quiet; existing GPU textures remain resident.
-    if(state_.mode!=UiMode::SETTINGS&&catalogSwitchCooldownFrames_==0) {
+    // Settings is image-worker quiet except for its installed-data overlay,
+    // which has its own bounded icon residency and no decodes during deletion.
+    if((state_.mode!=UiMode::SETTINGS || installedDataVisible_)&&catalogSwitchCooldownFrames_==0) {
         queuePassiveRead_=true;
         prepareVisibleTextures();
         queuePassiveRead_=false;
