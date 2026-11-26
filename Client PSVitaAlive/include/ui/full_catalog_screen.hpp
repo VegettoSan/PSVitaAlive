@@ -250,6 +250,11 @@ private:
     uint32_t queuePreviousButtons_=0;
     uint64_t queueSelectedId_=0,queueTransitionUs_=0;
     uint64_t queueImageDecodeAfterUs_=0;
+    // Visual-only feedback. Store a cache key, never a borrowed GPU pointer.
+    uint64_t queueArrivalUs_=0;
+    bool queueArrivalFromDetail_=false;
+    std::string queueArrivalIconPath_;
+    void drawQueueArrival();
     static constexpr int kQueueRows=3, kQueueRowTop=79, kQueueRowPitch=118, kQueueRowHeight=108;
     static constexpr int kQueueStepRows=2, kQueueStepTop=287, kQueueStepPitch=80, kQueueStepHeight=74;
     int queueScroll_=0,queueStepScroll_=0,queueTouchX_=0,queueTouchY_=0;

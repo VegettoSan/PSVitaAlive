@@ -12321,6 +12321,7 @@ void FullCatalogScreen::drawFullCatalog(){startSkinFrame();vita2d_set_clear_colo
     // The catalog/background, existing modals and keyboard share one frame.
     // Keyboard input owns the controls, so the catalog is drawn without
     // updating input, animations or new image textures underneath.
+    drawQueueArrival();
     if(keyboard_.active())
         keyboard_.drawOverlay(&font_, {BG,SURFACE,SURFACE2,BORDER,TEXT,DIM,ACCENT});
     if(queueExitFadeUs_) {
@@ -12406,7 +12407,25 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
         gQueueSessionProtection=protectedSession;
         protectionUpdateForJob(protectedSession,0,"Downloading");
         if(protectedSession) {
+            // Preserve only the just-admitted icon through the first-session
+            // texture reset, if it is already resident. Ownership stays in the
+            // normal LRU; no duplicate decode or extra GPU allocation.
+            std::string keepPath;
+            vita2d_texture* keepIcon=nullptr;
+            if(imageCache_ && queueSession_ && !queueSession_->jobs().empty()) {
+                const auto& url=queueSession_->jobs().back().iconUrl;
+                if(!url.empty())keepPath=imageCache_->pathFor(url,"app");
+                const auto it=textures_.find(keepPath);
+                if(it!=textures_.end() && it->second) {
+                    keepIcon=it->second;
+                    textures_.erase(it);
+                }
+            }
             releaseTextures();
+            if(keepIcon) {
+                textures_[keepPath]=keepIcon;
+                touchTexture(keepPath);
+            }
             if(imageCache_) imageCache_->cancelAll();
             mediaTexturesSuspended_=false;
         }
@@ -12423,9 +12442,29 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
         queueDetail_=false; queueSelectedId_=0;
     }
 }
-void FullCatalogScreen::queueAccepted(uint64_t /*id*/,bool /*first*/) {
-    // Keep the current catalog/detail view. The user opens the manager when desired.
-    // Provisional work is marked (?) in the queue; acceptance is not rejection.
+void FullCatalogScreen::queueAccepted(uint64_t id,bool /*first*/) {
+    // Admission and persistent checkpoint already succeeded. Never animate
+    // duplicate/rejected requests, and never change navigation or worker state.
+    queueArrivalUs_=0;
+    queueArrivalIconPath_.clear();
+    queueArrivalFromDetail_=false;
+    const auto* job=queueSession_?queueSession_->find(id):nullptr;
+    if(job && !queueVisible_ && !queueReport_ &&
+       (state_.mode==UiMode::SPLIT_DETAIL || state_.mode==UiMode::FULL_CATALOG)) {
+        const int selected=selectedIndex();
+        if(state_.mode==UiMode::SPLIT_DETAIL && selected>=0 &&
+           selected<static_cast<int>(catalogView().size())) {
+            const auto& item=catalogView()[selected];
+            queueArrivalFromDetail_=(!job->titleId.empty() && item.titleId==job->titleId) ||
+                (!job->appId.empty() && item.id==job->appId);
+        }
+        if(imageCache_ && !job->iconUrl.empty()) {
+            queueArrivalIconPath_=imageCache_->pathFor(job->iconUrl,"app");
+            if(textures_.find(queueArrivalIconPath_)!=textures_.end())
+                touchTexture(queueArrivalIconPath_);
+        }
+        queueArrivalUs_=sceKernelGetProcessTimeWide();
+    }
     showToast(::psvitaalive::L("QUEUE_ADDED"),3800);
 }
 void FullCatalogScreen::queueJobSettled(const ::psvitaalive::queue::Job& job) {
@@ -12441,6 +12480,7 @@ void FullCatalogScreen::queueJobSettled(const ::psvitaalive::queue::Job& job) {
 void FullCatalogScreen::openQueue(uint64_t id,bool detail) {
     if(!queueSession_ || installProgressActive_ || selfUpdateBusy_.load() ||
        essentialInstallRunning_ || storageVisible_ || installedDataVisible_ || pluginRebootModal_) return;
+    queueArrivalUs_=0; queueArrivalIconPath_.clear();
     queueVisible_=true; queueDetail_=detail; queueSelectedId_=id;
     queueScroll_=0; queueStepScroll_=0; queueConfirmCancel_=false;
     queueAwaitRelease_=true; queueTouchAwaitRelease_=true; queueTouchDown_=false; touchDown_=false;
@@ -12534,6 +12574,64 @@ void FullCatalogScreen::openQueueStorage() {
     if(storageVisible_) {
         queueStorageReturn_=true;queueVisible_=false;queueTouchDown_=false;touchDown_=false;
     }
+}
+void FullCatalogScreen::drawQueueArrival() {
+    if(!queueArrivalUs_)return;
+    constexpr uint64_t flightUs=560000ULL, pulseUs=480000ULL;
+    const uint64_t now=sceKernelGetProcessTimeWide();
+    const uint64_t elapsed=now>=queueArrivalUs_?now-queueArrivalUs_:0;
+    const bool catalogViewVisible=state_.mode==UiMode::FULL_CATALOG || state_.mode==UiMode::SPLIT_DETAIL;
+    if(elapsed>=flightUs+pulseUs || !catalogViewVisible || queueVisible_ || queueReport_ ||
+       !queueProtected_ || gProtectionActive || keyboard_.active() || catalogLoading_ ||
+       installProgressActive_ || newsVisible_ || themeSetupVisible_ ||
+       reportConfirmVisible_ || dataRequestConfirmVisible_ || webQrVisible_ ||
+       filterModalOpen_ || archiveWarningVisible_ || savedZipActionVisible_ ||
+       pspSetupModal_ || pluginChoiceModal_ || essentialPluginsModal_ || pluginRebootModal_ ||
+       (installAllPhase_!=InstallAllPhase::Hidden && installAllPhase_!=InstallAllPhase::Running)) {
+        queueArrivalUs_=0;queueArrivalIconPath_.clear();return;
+    }
+    const int chipX=SCREEN_W-UX0_FOOTER_PANEL_W-6-QUEUE_CHIP_RESERVE;
+    const int chipY=SCREEN_H-FOOTER_H+4, chipH=FOOTER_H-8;
+    const float tx=chipX+QUEUE_CHIP_W*.5f, ty=chipY+chipH*.5f;
+    // Overlay is drawn after catalog panels, outside their clip rectangles.
+    vita2d_disable_clipping();
+    if(queueArrivalFromDetail_ && elapsed<flightUs) {
+        const float p=static_cast<float>(elapsed)/static_cast<float>(flightUs);
+        const float eased=p*p*(3.f-2.f*p);
+        const float sx=SCREEN_W*.5f+12.f+36.f, sy=HEADER_H+TABS_H+14.f+36.f;
+        const float cx=sx+(tx-sx)*eased+64.f*4.f*p*(1.f-p);
+        const float cy=sy+(ty-sy)*eased;
+        const int size=static_cast<int>(72.f+(20.f-72.f)*eased);
+        const int x=static_cast<int>(cx-size*.5f),y=static_cast<int>(cy-size*.5f);
+        skin::surface(skin::ui_atlas::ui_card,x-3,y-3,size+6,size+6,SURFACE2);
+        skin::focus(x-3,y-3,size+6,size+6,ACCENT);
+        const auto it=textures_.find(queueArrivalIconPath_);
+        if(it!=textures_.end() && it->second) {
+            const float w=static_cast<float>(vita2d_texture_get_width(it->second));
+            const float h=static_cast<float>(vita2d_texture_get_height(it->second));
+            if(w>0.f && h>0.f) {
+                const float sc=std::min(size/w,size/h);
+                vita2d_draw_texture_scale(it->second,cx-w*sc*.5f,cy-h*sc*.5f,sc,sc);
+                return;
+            }
+        }
+        // No cached icon yet: draw the same download motif as the footer.
+        const int unit=std::max(2,size/8), ax=static_cast<int>(cx), ay=static_cast<int>(cy);
+        vita2d_draw_rectangle(ax-unit/2,ay-2*unit,unit,3*unit,ACCENT);
+        vita2d_draw_rectangle(ax-unit*2,ay,unit*4,unit,ACCENT);
+        vita2d_draw_rectangle(ax-unit,ay+unit,unit*2,unit,ACCENT);
+        vita2d_draw_rectangle(ax-unit*2,ay+unit*2,unit*4,unit/2+1,ACCENT);
+        return;
+    }
+    // A non-detail admission has no trustworthy icon origin, so pulse the
+    // destination directly. After flight, pulse the same destination.
+    const uint64_t age=queueArrivalFromDetail_?elapsed-flightUs:elapsed;
+    if(age>=pulseUs) {queueArrivalUs_=0;queueArrivalIconPath_.clear();return;}
+    const float p=static_cast<float>(age)/static_cast<float>(pulseUs);
+    const int pad=2+static_cast<int>(4.f*p);
+    const unsigned glow=withAlpha(ACCENT,static_cast<unsigned>(230.f*(1.f-p)));
+    skin::focus(chipX-pad,chipY-pad,QUEUE_CHIP_W+2*pad,chipH+2*pad,glow);
+    skin::focus(chipX,chipY,QUEUE_CHIP_W,chipH,glow);
 }
 void FullCatalogScreen::drawQueueChip() {
     if(!font_)return;
