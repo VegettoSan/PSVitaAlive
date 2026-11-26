@@ -20,7 +20,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.3/burnout-gl-0.0.3.vpk",
+      "u": "https://archive.org/download/psvitaalive-burnout-legends-vita/burnout-legends-vita%20v0.0.3.vpk",
       "sz": 38469483,
       "rec": true
     },
@@ -40,11 +40,11 @@
       "u": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/issues"
     }
   ],
-  "ic": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases/download/v0.0.2/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-burnout-legends-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/race.jpg",
-    "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/takedown.jpg",
-    "https://raw.githubusercontent.com/LAB0ULANGE/BurnoutLegends-Vita/main/docs/images/menu.jpg"
+    "https://archive.org/download/psvitaalive-burnout-legends-vita/shot_01.jpg",
+    "https://archive.org/download/psvitaalive-burnout-legends-vita/shot_02.jpg",
+    "https://archive.org/download/psvitaalive-burnout-legends-vita/shot_03.jpg"
   ],
   "rp": "https://github.com/LAB0ULANGE/BurnoutLegends-Vita/releases"
 }
