@@ -108,6 +108,61 @@
     "ua": "2026-08-13T15:34:48.323857+00:00"
   },
   {
+    "id": "gits-sac-first-assault",
+    "tid": "GITS00001",
+    "n": "GITS: SAC First Assault",
+    "d": "Unofficial PS Vita version of Ghost in the Shell: Stand Alone Complex - First Assault Online (offline, bots, multiplayer).",
+    "ld": "An unofficial, fan-made PS Vita version of Ghost in the Shell: Stand Alone Complex - First Assault Online, the PC shooter whose servers closed in 2017. It is a new engine written for the Vita (VitaSDK + vitaGL) that plays the game's content offline, with bots, and with other Vitas over ad-hoc, Wi-Fi or the internet.",
+    "aids": [
+      "arielxflores"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "fps",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0",
+    "vd": "2026-11-25",
+    "req": "- libshacccg.suprx in ur0:data/\n- our own install of the PC game (its Game Files folder with Data\\map.dat, model.dat, ...).",
+    "sz": 2202010,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/GITSFA-Vita%20v1.0.vpk",
+        "sz": 2202010,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game",
+        "u": "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 855952589,
+        "xp": "ux0:data/",
+        "ips": [
+          "gitsfa"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/arielxflores/gitsfa-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/shot0.jpg",
+      "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/shot1.jpg",
+      "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/shot2.jpg",
+      "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/shot3.jpg",
+      "https://archive.org/download/psva-ghost-in-the-shell-first-assault-ps-vita/shot4.jpg"
+    ]
+  },
+  {
     "id": "kingdom-hearts-358-2-days",
     "tid": "KHDD00358",
     "n": "Kingdom Hearts 358/2 Days",
@@ -413,6 +468,57 @@
     "ic": "https://archive.org/download/valdis-story-psvita/icon0.png",
     "ss": [
       "https://archive.org/download/valdis-story-psvita/shot0.png"
+    ]
+  },
+  {
+    "id": "gangstar-rio",
+    "tid": "G4HM00001",
+    "n": "Gangstar Rio",
+    "d": "Gangstar Rio: City of Saints for PlayStation Vita, using the Android ARMv7 version of the game.",
+    "ld": "Gangstar Rio: City of Saints for PlayStation Vita, using the Android ARMv7 version of the game.",
+    "aids": [
+      "brenu"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "shooter",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.0.1",
+    "vd": "2026-11-24",
+    "req": "- no data",
+    "sz": 2306867,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psva-gangstar-rio-ps-vita/grio-vita-v1.0.1.vpk",
+        "sz": 2306867,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psva-gangstar-rio-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2147483648,
+        "xp": "ux0:data/",
+        "ips": [
+          "gangstarrio"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/brenu/gangstar-rio-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/psva-gangstar-rio-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psva-gangstar-rio-ps-vita/shot0.png"
     ]
   },
   {

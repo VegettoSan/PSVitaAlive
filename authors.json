@@ -1231,6 +1231,21 @@
     "ic": "https://github.com/Brendonm17.png"
   },
   {
+    "id": "brenu",
+    "n": "Breno Vitório",
+    "av": "https://avatars.githubusercontent.com/u/31571238?v=4",
+    "b": "me",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/brenu",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "brunni",
     "n": "Brunni",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
