@@ -1,5 +1,7 @@
 # Client PSVitaAlive — Native PS Vita client
 
+> **Download queue (source integration, 2026-11-26):** [Gestor de descargas: arquitectura, pruebas y mantenimiento](../docs/DOWNLOAD_QUEUE_INTEGRATION_20261126.md). The in-client manager permits catalog browsing while the protected session executes grouped FIFO tasks; the active task and pending tasks precede terminal history. Legacy single-job overlay descriptions below do not override the queue's session-wide protection, token checks or explicit recovery. This source integration does not publish a new release.
+
 Native catalog client for PlayStation Vita / PSTV (and Vita3K for testing).
 
 ## Identity

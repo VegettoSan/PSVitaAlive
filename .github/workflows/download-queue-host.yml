@@ -1,7 +1,7 @@
-name: Download queue host tests (experimental)
+name: Download queue host tests
 on:
   push:
-    branches: [feature/download-queue-manager]
+    branches: [main, feature/download-queue-manager]
     paths:
       - 'Client PSVitaAlive/include/installer/download_queue.hpp'
       - 'Client PSVitaAlive/include/ui/queue_progress_policy.hpp'
@@ -13,6 +13,14 @@ on:
       - 'Client PSVitaAlive/include/installer/queue_recovery.hpp'
       - 'tests/test_queue_recovery.cpp'
       - 'tests/test_download_queue.cpp'
+      - '.github/workflows/download-queue-host.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Client PSVitaAlive/include/installer/**'
+      - 'Client PSVitaAlive/include/ui/queue_progress_policy.hpp'
+      - 'tests/test_download_queue.cpp'
+      - 'tests/test_queue_*.cpp'
       - '.github/workflows/download-queue-host.yml'
   workflow_dispatch:
 permissions:
