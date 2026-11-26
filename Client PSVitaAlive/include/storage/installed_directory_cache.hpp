@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 namespace psvitaalive { namespace storage {
 
@@ -24,6 +25,24 @@ struct CachedMedia {
     uint8_t platform=0;
     std::string title,id,contentId;
 };
+// A completed parent listing establishes absence, not a failed stat/open.
+// Rows with uncertain observations (or an unvisited parent) survive on disk,
+// but are never injected into the live inventory. New observations win by path.
+template<class Row>
+void reconcileCacheObservations(const std::vector<Row>& previous,
+        std::vector<Row>& observed,
+        const std::unordered_set<std::string>& verifiedParents,
+        const std::unordered_set<std::string>& uncertainPaths) {
+    std::unordered_set<std::string> keys;
+    for(const auto& row:observed)keys.insert(row.path);
+    for(const auto& row:previous) {
+        const auto slash=row.path.find_last_of('/');
+        const auto parent=row.path.substr(0,slash);
+        if((!verifiedParents.count(parent)||uncertainPaths.count(row.path)) &&
+           keys.insert(row.path).second)observed.push_back(row);
+    }
+}
+
 class InstalledDirectoryCache {
 public:
     static const char* filePath(DirectoryCacheScope scope=DirectoryCacheScope::Homebrew);
