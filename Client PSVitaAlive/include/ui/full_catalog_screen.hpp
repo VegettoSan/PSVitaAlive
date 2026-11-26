@@ -742,6 +742,8 @@ private:
     int installedDataPathScroll_ = 0;
     void rebuildInstalledDataCandidates();
     void rebuildInstalledDataVisibleRows();
+    void sortInstalledDataVisibleRows(bool preserveFocus);
+    bool installedDataSortPending_=false;
     std::atomic<bool> installedDataWorkerDone_{false};
     std::atomic<bool> installedDataWorkerOk_{false};
     ::psvitaalive::storage::InstalledDataScanProgress installedDataScanProgress_;
