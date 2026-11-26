@@ -7,6 +7,7 @@
 #include "installer/psp_installer.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/install_archive_policy.hpp"
+#include "installer/install_space_policy.hpp"
 #include "psp_pkg_unpack.h"
 #include "storage/storage_manager.hpp"
 #include "diagnostic_logger.hpp"
@@ -192,6 +193,23 @@ InstallDispatchResult InstallDispatcher::installFile(
                 std::to_string(isPspPsx) + " path=" + path);
             if (isPspPsx == 1) {
                 if (!ensurePspStorage()) return InstallDispatchResult::IoError;
+                // Recheck the actual destination after the download. The PKG
+                // now occupies ux0 already; only reserve the conversion output.
+                const int64_t payloadBytes=st.fileSize(path);
+                uint64_t freeBytes=0,totalBytes=0;
+                const char* destinationMount=AppSettings::toString(directStorage);
+                if (payloadBytes<=0 || !StorageManager::queryMountSpace(destinationMount,freeBytes,totalBytes)) {
+                    diagnostics::log(std::string("[InstallDispatcher] cannot measure PSP/PS1 conversion space on ")+destinationMount);
+                    setError(::psvitaalive::L("ALL_SPACE_READ_FAILED"));
+                    return InstallDispatchResult::IoError;
+                }
+                const uint64_t required=initialInstallSpaceBytes(static_cast<uint64_t>(payloadBytes),InstallSpaceMode::DirectPackage);
+                if (required==UINT64_MAX || freeBytes<required) {
+                    diagnostics::log(std::string("[InstallDispatcher] not enough free space for PSP/PS1 conversion on ")+destinationMount+
+                        " need="+std::to_string(required)+" free="+std::to_string(freeBytes));
+                    setError(::psvitaalive::L(::psvitaalive::TextId::InstMsgNotEnoughSpace));
+                    return InstallDispatchResult::IoError;
+                }
                 if (onProgress) {
                     InstallDispatchProgress p;
                     p.stage = InstallDispatchProgress::Installing;
