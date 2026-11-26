@@ -20,7 +20,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/T64NCollection/TNTV/releases/download/v1.05/TNTV_v1.05.vpk",
+      "u": "https://archive.org/download/psvitaalive-tntv/tntv%20v1.05.vpk",
       "rec": true
     },
     {
@@ -34,9 +34,9 @@
       "u": "https://github.com/T64NCollection/TNTV/blob/main/INSTALLATION.md"
     }
   ],
-  "ic": "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.05/sce_sys/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-tntv/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/T64NCollection/TNTV/v1.05/sce_sys/icon0.png"
+    "https://archive.org/download/psvitaalive-tntv/icon0.png"
   ],
   "rp": "https://github.com/T64NCollection/TNTV/releases/tag/v1.05"
 }
