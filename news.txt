@@ -1,32 +1,29 @@
-id: 2026-11-24-0219-final
-title: PSVitaAlive 02.19 - UI Redesign & Stability
+id: 2026-11-26-0220-final
+title: PSVitaAlive 02.20 - Download Manager
 enabled: true
 
 ---
 
-# PSVitaAlive 02.19 is available!
+# PSVitaAlive 02.20 is available!
 
-A refreshed store, improved navigation and more reliable downloads and installations.
+Manage multiple downloads and keep browsing while PSVitaAlive installs your applications.
 
-## New Interface
-- Redesigned panels, buttons, dialogs, progress bars and controller hints.
-- Better physical-button and touch navigation.
-- Improved settings, theme previews and theme saving.
+## Download Manager
+- Queue multiple apps and Install All groups.
+- See icons, current progress, pending jobs and persistent history.
+- Pause, resume or cancel supported operations.
+- Explicit recovery of eligible pending jobs after restarting.
 
-## Downloads & Installation
-- Automatic recovery from temporary connection problems.
-- Valid partial downloads are preserved during the current session.
-- Improved free-space checks, Install All and ZIP extraction.
+## Interface & Performance
+- Animated queue feedback and reordering.
+- D-pad and left-stick navigation in the download manager.
+- START cycles cards, footer and header.
+- Improved OLED protector with battery and queue information.
+- Background icon decoding and fewer storage probes for smoother browsing during extraction.
 
-## Performance & Stability
-- More efficient rendering, image loading and text layout.
-- Improved catalog loading, cache recovery and Homebrew update detection.
-- Redesigned storage manager and clearer shared Game Files warnings.
-- Fixed report panel scrolling and updated all eight UI languages.
-
-## Get Version 02.19
+## Get Version 02.20
 Open PSVitaAlive with automatic updates enabled, or install the official PSVitaAlive.vpk over your existing app.
 
-https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.19
+https://github.com/VegettoSan/PSVitaAlive/releases/tag/02.20
 
 Thank you for testing and supporting PSVitaAlive!
