@@ -428,6 +428,8 @@ int main(){
     screen.setInstallCancelCallback([&installer](){ installer.cancel(); });
     screen.setInstallPauseCallbacks([&installer](){ return installer.pauseDownload(); },
                                     [&installer](){ return installer.resumeDownload(); });
+    screen.setInstalledDataProtectionCallbacks([&installer](){ return installer.beginInstalledDataProtection(); },
+        [&installer](){ installer.endInstalledDataProtection(); });
     screen.setStorageBusyCallback([&installer, &queue](){
         return installer.busy() || queue.reportReady() ||
             (queue.protectedSession() && !queue.maintenanceAllowed());
