@@ -450,11 +450,16 @@ InstalledDataSnapshot InstalledDataManager::scan(
 uint64_t InstalledDataManager::knownExternalBytes(
     const InstalledDataSnapshot& snapshot) {
     std::vector<const InstalledDataPath*> paths;
+    std::unordered_set<std::string> gamePaths;
+    uint64_t mediaTotal=0;
     for (const auto& app : snapshot.apps)
-        for (const auto& path : app.paths)
-            if (path.exists && path.sizeKnown &&
-                (safeExternalDataPath(path.path) || (app.mediaRow && safeGameMediaPath(path.path,app.mediaDirectory))))
-                paths.push_back(&path);
+        for (const auto& path : app.paths) {
+            if(!path.exists || !path.sizeKnown)continue;
+            if(app.mediaRow) {
+                if(safeGameMediaPath(path.path,app.mediaDirectory) && gamePaths.insert(path.path).second)
+                    mediaTotal=sum(mediaTotal,path.bytes);
+            } else if(safeExternalDataPath(path.path))paths.push_back(&path);
+        }
     // Count parents before children, and count a shared root only once.
     std::sort(paths.begin(), paths.end(),
               [](const InstalledDataPath* a, const InstalledDataPath* b) {
@@ -462,7 +467,7 @@ uint64_t InstalledDataManager::knownExternalBytes(
                       ? a->path < b->path : a->path.size() < b->path.size();
               });
     std::vector<std::string> counted;
-    uint64_t total = 0;
+    uint64_t total = mediaTotal;
     for (const auto* path : paths) {
         bool covered = false;
         for (const auto& root : counted)
@@ -572,7 +577,6 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 out.apps.push_back(std::move(row));
                 if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
             }
-            if(rc<0)sceKernelDelayThread(1000);
             if(rc<0||ctx.stopped)out.complete=false;
             sceIoDclose(d);
         }
@@ -580,7 +584,8 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
         for(const char* mount:{"ux0:","uma0:"})for(const char* section:{"ISO/","PSP/GAME/"}) {
             if(ctx.shouldStop())break;
             const std::string base=std::string(mount)+"pspemu/"+section;
-            const SceUID d=sceIoDopen(base.c_str());if(d<0)continue;
+            const SceUID d=sceIoDopen(base.c_str());
+            if(d<0){if(exists(base))out.complete=false;continue;}
             SceIoDirent e{};int rc=0;
             while(!ctx.shouldStop()&&(rc=sceIoDread(d,&e))>0) {
                 const std::string name=e.d_name;
@@ -594,8 +599,8 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 const auto m=probeMedia(file,payload);
                 if((mode==2 && m.platform==media::Platform::PS1)||(mode==3&&m.platform==media::Platform::PSP))continue;
                 // ISO/CSO are normally PSP; an unreadable image stays unknown.
-                const auto* primary=lookup(m.contentId.empty()?m.id:m.contentId);
-                const auto* secondary=lookup(m.id);
+                const auto* primary=m.platform==media::Platform::Unknown?nullptr:lookup(m.contentId.empty()?m.id:m.contentId);
+                const auto* secondary=m.platform==media::Platform::Unknown?nullptr:lookup(m.id);
                 const auto* match=primary?primary:secondary;
                 if(primary&&secondary&&primary!=secondary)match=nullptr;
                 // Filename is only a hint when no reliable internal identity exists.
@@ -608,7 +613,8 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 row.mediaIdentified=match!=nullptr;
                 row.name=match?match->name:(!m.title.empty()?m.title:name);
                 if(match){row.appId=match->appId;row.icon=match->icon;}
-                row.mediaStamp=mediaFingerprint(st);row.mediaFileBytes=static_cast<uint64_t>(st.st_size);
+                row.mediaStamp=mediaFingerprint(st);row.mediaFileBytes=st.st_size>0?static_cast<uint64_t>(st.st_size):0;
+                row.mediaPayloadStamp=mediaFingerprint(payload);
                 row.mediaFormat=row.mediaDirectory?"PBP / Folder":(std::string(section)=="ISO/"?(name.size()>=4&&
                     (name[name.size()-3]=='c'||name[name.size()-3]=='C')?"CSO":"ISO"):"PBP");
                 InstalledDataPath entry;entry.path=path;entry.exists=true;entry.rootStamp=row.mediaStamp;
@@ -616,7 +622,7 @@ InstalledDataSnapshot InstalledDataManager::scanGames(const std::vector<GameCata
                 row.bytes=entry.bytes;row.paths.push_back(std::move(entry));
                 // Allow removing a single unrecognized ISO/PBP file, but never a
                 // directory without a structurally identified PSP/PS1 payload.
-                row.blocked=!row.mediaStamp || (row.mediaDirectory && m.platform==media::Platform::Unknown);
+                row.blocked=!row.mediaStamp || (row.mediaDirectory && (!row.mediaPayloadStamp || m.platform==media::Platform::Unknown));
                 out.apps.push_back(std::move(row));
                 if(progress)progress->rootsFound.fetch_add(1,std::memory_order_relaxed);
                 if(out.apps.size()>=4096){ctx.stopped=true;break;}
@@ -662,7 +668,8 @@ bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,Installed
         if(!exists(path,&st)||mediaFingerprint(st)!=app.mediaStamp||
            directory(st)!=app.mediaDirectory||(!directory(st)&&!regular(st)))return false;
         if(app.mediaDirectory){SceIoStat payload{};const auto file=gamePbp(path,payload);
-            if(file.empty()||probeMedia(file,payload).platform==media::Platform::Unknown)return false;}
+            if(file.empty()||mediaFingerprint(payload)!=app.mediaPayloadStamp||
+               probeMedia(file,payload).platform==media::Platform::Unknown)return false;}
         return true;
     };
     SceIoStat st{};if(!revalidate(st))return false;
@@ -671,7 +678,19 @@ bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,Installed
     if(!scanTree(path,st,0,count,bytes,ctx)||!count||!revalidate(st))return false;
     if(progress){progress->entriesTotal.store(count);progress->rootsTotal.store(1);progress->phase.store(2,std::memory_order_release);}
     uint32_t removed=0;
-    const bool ok=eraseTree(path,0,removed,progress,true)&&!exists(path);
+    const bool erased=eraseTree(path,0,removed,progress,true);
+    // Verify via the still-accessible parent; a missing mount is not success.
+    const auto slash=path.find_last_of('/');
+    const SceUID parent=sceIoDopen(path.substr(0,slash).c_str());
+    bool absent=parent>=0;
+    if(parent>=0) {
+        SceIoDirent e{};int rc=0;
+        const auto name=path.substr(slash+1);
+        while((rc=sceIoDread(parent,&e))>0)if(name==e.d_name){absent=false;break;}
+        if(rc<0)absent=false;
+        sceIoDclose(parent);
+    }
+    const bool ok=erased && absent;
     if(progress){if(ok)progress->rootsCompleted.store(1);progress->currentRootIndex.store(UINT32_MAX);progress->phase.store(3);}
     return ok;
 }
