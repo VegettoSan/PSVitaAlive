@@ -74,9 +74,22 @@ assert "safeExternalDataPath(p.path)" in manager
 assert "scanTree(path.path" in manager
 assert "scePromoterUtilityDeletePkg" in manager
 
+# Deletion progress must use the captured identity and actual worker root,
+# not the mutable snapshot that gets replaced during verification.
+progress = inspector.split("if (installedDataWorker_ >= 0 && installedDataAction_ >= 0) {", 1)[1].split(
+    "if (installedDataWorker_ >= 0 && installedDataAction_ != -3)", 1)[0]
+assert "drawInstalledDataOperationIdentity(" in progress
+assert "installedDataSnapshot_" not in progress
+assert "currentRootIndex.load(" in progress
+assert "installedDataOperationPaths_[root]" in progress
+assert progress.index("activePath,true") < progress.index("ui_progress_track")
+assert "currentRootIndex.store(static_cast<uint32_t>(i)" in manager
+assert "installedDataOperationPaths_.push_back(path.path)" in installed
+
 # Eight existing translations must expose the new names/risks.
 for name in ("en", "es", "de", "fr", "it", "pt-BR", "pt-PT", "ru"):
     text = (root / "assets/lang" / (name + ".lang")).read_text(encoding="utf-8")
+    assert "ux0:" not in re.search(r"^ID_OP_FILES_EXPLAIN=(.+)$", text, re.MULTILINE).group(1), name
     for key in ("ID_SHARED_CATALOG_TITLE", "ID_SHARED_DELETE_WARNING",
                 "ID_SHARED_ACTIVE_HINT"):
         assert re.search(r"^" + key + r"=.+$", text, re.MULTILINE), (name, key)
