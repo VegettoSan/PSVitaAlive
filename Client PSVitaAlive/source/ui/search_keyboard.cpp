@@ -77,7 +77,8 @@ bool SearchKeyboard::open(const std::string& initial, const std::string& title,
     lastInputSource_ = InputSource::None;
     touchBackspace_ = -1;
     openedAtUs_ = timeUs();
-    closeAtUs_ = nextEraseUs_ = 0;
+    closeAtUs_ = nextNavUs_ = nextEraseUs_ = 0;
+    lastNav_ = 0;
     ::psvitaalive::ui::discardClientControllerActions();
     SceTouchData touch{};
     touchWasDown_ = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) > 0 &&
@@ -253,7 +254,8 @@ void SearchKeyboard::update() {
 
     SceCtrlData pad{};
     uint32_t pressed = 0;
-    ::psvitaalive::ui::readClientControllerActions(pad, pressed);
+    const int ctrl = ::psvitaalive::ui::readClientControllerActions(pad, pressed);
+    const unsigned buttons = ctrl > 0 ? pad.buttons : 0;
 
     SceTouchData touch{};
     const bool down = sceTouchPeek(SCE_TOUCH_PORT_FRONT, &touch, 1) > 0 &&
@@ -280,13 +282,31 @@ void SearchKeyboard::update() {
     touchWasDown_ = down;
     if (closing_) return;
 
-    const unsigned nav = pressed & (SCE_CTRL_LEFT | SCE_CTRL_RIGHT |
-                                     SCE_CTRL_UP | SCE_CTRL_DOWN);
-    if (pressed) lastInputSource_ = InputSource::Controller;
-    if (nav & SCE_CTRL_LEFT) navigate(-1);
-    else if (nav & SCE_CTRL_RIGHT) navigate(1);
-    else if (nav & SCE_CTRL_UP) navigate(-2);
-    else if (nav & SCE_CTRL_DOWN) navigate(2);
+    // Treat the left analog stick as an alternative to the D-pad. Matching
+    // thresholds with the catalog avoids accidental drift, while sharing
+    // the same navigation repeat/cooldown prevents double movement.
+    unsigned analogNav = 0;
+    if (ctrl > 0) {
+        constexpr unsigned char low = 64, high = 192;
+        if (pad.lx <= low) analogNav |= SCE_CTRL_LEFT;
+        else if (pad.lx >= high) analogNav |= SCE_CTRL_RIGHT;
+        if (pad.ly <= low) analogNav |= SCE_CTRL_UP;
+        else if (pad.ly >= high) analogNav |= SCE_CTRL_DOWN;
+    }
+    const unsigned nav = (buttons & (SCE_CTRL_LEFT | SCE_CTRL_RIGHT |
+                                     SCE_CTRL_UP | SCE_CTRL_DOWN)) | analogNav;
+    if (nav != lastNav_) {
+        nextNavUs_ = now + 290000ULL;
+    }
+    if (pressed || nav) lastInputSource_ = InputSource::Controller;
+    if (nav && (nav != lastNav_ || now >= nextNavUs_)) {
+        if (nav & SCE_CTRL_LEFT) navigate(-1);
+        else if (nav & SCE_CTRL_RIGHT) navigate(1);
+        else if (nav & SCE_CTRL_UP) navigate(-2);
+        else navigate(2);
+        if (nav == lastNav_) nextNavUs_ = now + 115000ULL;
+    }
+    lastNav_ = nav;
     if (pressed & SCE_CTRL_TRIANGLE) {
         numbers_ = !numbers_;
         more_ = false;
