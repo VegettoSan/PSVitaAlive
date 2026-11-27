@@ -1,3 +1,50 @@
 {
+  "feedback": {
+    "gh:1393049637": {
+      "evidence": "01a1564f538f0ba3dc6643d84d182d1a469a3013c1b7ced06f2ff37d67797e78",
+      "reason": "upstream_missing",
+      "retry_at": "2026-12-04T22:14:14.394741+00:00"
+    },
+    "gh:1394062054": {
+      "evidence": "9b4960c4ac1abfa40ebe5802f29bea3e47c8c6aee13b361116fea04c301465c9",
+      "reason": "upstream_missing",
+      "retry_at": "2026-12-04T22:14:14.394741+00:00"
+    },
+    "gh:1400262917": {
+      "evidence": "c7adf945f52b7f2d754655dd5e774d91a7331998a5cc7f49c9b37ef8664d3abd",
+      "reason": "release_changed",
+      "retry_at": "2026-11-28T10:14:14.394741+00:00"
+    },
+    "gh:1424321443": {
+      "evidence": "68306256c23c1625ac98d357e7ce09a6161d602da6ceb82601d5fef3a2902ea6",
+      "reason": "metadata_review",
+      "retry_at": "2026-11-30T22:14:14.394741+00:00"
+    },
+    "gh:1438930996": {
+      "evidence": "daae00969b718d6ef349bab6c0d660f6f93caabbe345cfaaf49f0c31587d2fb8",
+      "reason": "release_changed",
+      "retry_at": "2026-11-28T10:14:14.394741+00:00"
+    },
+    "gh:1449735770": {
+      "evidence": "9f3e00414f39275dc6fd828ca8394d383d42cf4d563810d7b5aae693a4ea63fb",
+      "reason": "release_changed",
+      "retry_at": "2026-11-28T10:14:14.394741+00:00"
+    },
+    "gh:1451442664": {
+      "evidence": "1daa40636274f6740c0cccd0b7799737e8bcfec6c806f4412d6dc6452d52ef19",
+      "reason": "upstream_missing",
+      "retry_at": "2026-12-04T22:14:14.394741+00:00"
+    },
+    "gh:1460036012": {
+      "evidence": "bf9e2f77638c6f6d8c5589701a79d46a2113f1f0bdec8dc47a01660573defb61",
+      "reason": "release_changed",
+      "retry_at": "2026-11-28T10:14:14.394741+00:00"
+    },
+    "gh:569336873": {
+      "evidence": "0923d6e3f6aaf769ffd4afb65e7c0e5bc7799c32a3705e84603a9e00bdf5083e",
+      "reason": "upstream_missing",
+      "retry_at": "2026-12-04T22:14:14.394741+00:00"
+    }
+  },
   "last_key": "gh:1400262917"
 }
