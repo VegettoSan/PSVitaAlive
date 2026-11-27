@@ -1,0 +1,56 @@
+{
+  "app_id": "riptide-gp-vita",
+  "identifier": "psvitaalive-riptide-gp-vita",
+  "source_url": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/download/v1.0.3/riptidegp.vpk",
+  "files": {
+    "riptide-gp-vita v1.0.3.vpk": {
+      "size": 1124549,
+      "md5": "7ba931f19fb0c718cb41ae6952160ec1",
+      "sha256": "1419ad3aace4a6abda3ea1b63a12db97f7b601295df4f35feaac0735b65105d4"
+    },
+    "icon0.png": {
+      "size": 8644,
+      "md5": "c7e80dfab86fa9f54beff29f43c0ab5e",
+      "sha256": "d8b05aa5b16b56c1d79fa74966d32c03013b0d4b862a942a58e5ae2f0b4a6de0"
+    },
+    "shot_01.png": {
+      "size": 152557,
+      "md5": "c45db19f57d307da323b4a7e0ab3a09b",
+      "sha256": "e70b4600c3123b202f551c79ebc657ba8b61cfd481d8f954118fe7b71755f913"
+    },
+    "shot_02.png": {
+      "size": 116680,
+      "md5": "b32a251023ad900b251b6fc6ea8dc40b",
+      "sha256": "96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579"
+    },
+    "SOURCES.txt": {
+      "size": 845,
+      "md5": "414dc83f63c043b700823be00b769763",
+      "sha256": "6bf2108573581a697642c2f5f1a7482db69849051301263539475f9b1722d83a"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/d8b05aa5b16b56c1d79fa74966d32c03013b0d4b862a942a58e5ae2f0b4a6de0.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/e70b4600c3123b202f551c79ebc657ba8b61cfd481d8f954118fe7b71755f913.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579.png": "shot_02.png"
+  },
+  "attempted": [
+    "riptide-gp-vita v1.0.3.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:56:20+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PSVRGP001",
+    "name": "Riptide GP",
+    "search_title": "Riptide GP",
+    "version": "1.0.3",
+    "repo": "MetalSyntax/Riptide-GP-vita",
+    "tag": "v1.0.3",
+    "asset": "riptidegp.vpk",
+    "url": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/download/v1.0.3/riptidegp.vpk",
+    "size": 1124549,
+    "sha256": "1419ad3aace4a6abda3ea1b63a12db97f7b601295df4f35feaac0735b65105d4",
+    "creator": "MetalSyntax"
+  }
+}
