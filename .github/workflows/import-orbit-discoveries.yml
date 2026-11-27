@@ -27,6 +27,8 @@ on:
   schedule:
     - cron: '07 */3 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [orbit_enrichment_ready]
 permissions:
   contents: write
 concurrency:
