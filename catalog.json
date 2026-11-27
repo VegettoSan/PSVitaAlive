@@ -897,10 +897,10 @@
     "v": "0.6.1-alpha",
     "vd": "2026-11-24",
     "sz": 31017402,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/6b55598c2a02a56d5ed8d6fa9b288af726b5efcd3f03310ee70bbde0bc45b44f.png",
+    "ic": "https://archive.org/download/psvitaalive-mkxp-z-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/776cc3f88e5138a61de25341ceb48ae06b6e4f4e744e0521db84a0e12d9caf44.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/cdf8dbf001b130e515c979ddc197d213fc2b14b80a6900889ac0de4262d12b87.png"
+      "https://archive.org/download/psvitaalive-mkxp-z-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-mkxp-z-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1400262917",
@@ -915,7 +915,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Asukate/mkxp-z-vita/releases/download/v0.6.1-alpha/HardRPG-0.6.1.vpk",
+        "u": "https://archive.org/download/psvitaalive-mkxp-z-vita/mkxp-z-vita%20v0.6.1-alpha.vpk",
         "rec": true
       }
     ]
@@ -1116,9 +1116,9 @@
     "v": "0.2.0",
     "vd": "2026-11-24",
     "sz": 1444248,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/8f259199658fcdf6ead409467dc47275284c03d2075f76341cac850c7bcc901e.png",
+    "ic": "https://archive.org/download/psvitaalive-syncthing-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/27839b183222bb4557be86658e4c9775ec52f07d817d7c93cc8b56ecdada5b7e.png"
+      "https://archive.org/download/psvitaalive-syncthing-vita/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1449735770",
@@ -1133,7 +1133,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/GeoffreyMetais/syncthing-vita/releases/download/v0.2.0/SYNCTHING.vpk",
+        "u": "https://archive.org/download/psvitaalive-syncthing-vita/syncthing-vita%20v0.2.0.vpk",
         "rec": true
       }
     ]
@@ -2394,6 +2394,47 @@
     ]
   },
   {
+    "id": "inotia2-vita",
+    "tid": "INOTIA2PV",
+    "n": "Inotia 2",
+    "d": "iOS to PS Vita port of Inotia 2 A Wanderer of Luone",
+    "ld": "Inotia 2: A Wanderer of Luone · PS Vita Port",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "rpg"
+    ],
+    "req": "- Copy the Inotia2.app/ folder to ux0:data/inotia2/Inotia2.app/.\n- Copy rebase.bin to ux0:data/inotia2/rebase.bin.\n- libshacccg.suprx in ur0:data/ (extract it with ShaRKBR33D).\n- Game files: a decrypted Inotia 2 1.1.41 iOS .ipa (FairPlay cryptid 0). Open it as a ZIP and extract Payload/Inotia2.app/.\n- Copy to the Vita (ux0:data/inotia2/):\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.2.0",
+    "vd": "2026-11-18",
+    "sz": 1585492,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ae91a8c4956797065016b8c9fd0798cc814a4a9d6c664a662804d0589a373345.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ef479aa8b1f06079583931f1c93de4da28c20a5279a61b6118d7ba388a42e497.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/16f5a17f9088e26833d9aae7bc8ef464f8c16b3eaeb61d7356cd736fb1ecf11c.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1421587563",
+    "su": "https://github.com/MetalSyntax/Inotia2-vita",
+    "rp": "https://github.com/MetalSyntax/Inotia2-vita/releases/tag/v1.2.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Inotia2-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Inotia2-vita/releases/download/v1.2.0/inotia2.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "mofa-vita",
     "tid": "KNIF00540",
     "n": "mofa-vita - Witch on the Holy Night",
@@ -3111,10 +3152,10 @@
     "v": "1.2.3",
     "vd": "2026-11-16",
     "sz": 602773,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/a422f81e9113b42afc98e85df1a748d11bf5b31ba53675f69ee3f96fa8d7eb29.png",
+    "ic": "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/c0812825d81b3cba47e02cf7116cb8d787bfae305cb6e833fd7e1e965f2de425.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/fb9b6b8ec88f8b48cd83a6e52fb2508accb228037a4ad0b45528768977609d65.png"
+      "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/shot_01.png",
+      "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1176231607",
@@ -3129,7 +3170,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project/releases/download/v1.2.3/VitaRecovery_v1.2.3.vpk",
+        "u": "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/ps-vita-recovery-menu-project%20v1.2.3.vpk",
         "rec": true
       }
     ]
@@ -3634,9 +3675,9 @@
     "v": "1.6.0",
     "vd": "2026-11-13",
     "sz": 26968793,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ae0a9cce07e80c7ebf5a54bfa54dbabaf565246ee3b3824feea53a951fb4e3dd.png",
+    "ic": "https://archive.org/download/psvitaalive-linuxonvita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ee4dc7433d48c5a3c0ce6fb8520284172b019e463d42ac36d8ef3da434bedd46.png"
+      "https://archive.org/download/psvitaalive-linuxonvita/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1380273847",
@@ -3651,7 +3692,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/devwithzachary/LinuxOnVita/releases/download/1.6.0/LinuxOnVita.vpk",
+        "u": "https://archive.org/download/psvitaalive-linuxonvita/linuxonvita%20v1.6.0.vpk",
         "rec": true
       }
     ]
@@ -3870,9 +3911,9 @@
     "v": "1.14",
     "vd": "2026-11-13",
     "sz": 6956127,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/b9140d9ef1b04e0781b4611ab4e26af4bc77c3afe02b79d67a2df0bb4d54a4a8.png",
+    "ic": "https://archive.org/download/psvitaalive-uae4all2-hd-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/476f04b8b0df03ca99427c58c167b19db9d1473c431eddaee7a8206855eb5a21.png"
+      "https://archive.org/download/psvitaalive-uae4all2-hd-vita/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1335918227",
@@ -3887,7 +3928,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/theheroGAC/UAE4ALL2-HD-VITA/releases/download/1.14/uae4all2hd.vpk",
+        "u": "https://archive.org/download/psvitaalive-uae4all2-hd-vita/uae4all2-hd-vita%20v1.14.vpk",
         "rec": true
       }
     ]
@@ -5528,6 +5569,47 @@
     "ic": "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/marvel-vs.-capcom-2-for-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "riptide-gp-vita",
+    "tid": "PSVRGP001",
+    "n": "Riptide GP",
+    "d": "Android to PS Vita port of Riptide GP",
+    "ld": "This is a so-loader port. It runs the original `libBlue.so`, `libfmodex.so` and `libfmodevent.so` with an emulated Java layer (FalsoJNI). The game's own assets are read in place from `assets/Base.apf`, and the OpenGL ES 2.0 calls are served by vitaGL. Nothing from the game is distributed here; you need your own copy of the APK.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing"
+    ],
+    "req": "- Updating from 1.0.2: install the new riptidegp.vpk over the old one. Data files and your\n- PS Vita / PS TV with HENkaku/Enso (3.60–3.74 with a kernel plugin loader).\n- kubridge.skprx in KERNEL of your taiHEN config.\n- libshacccg.suprx in ur0:data/ (use ShaRKBR33D).\n- Create ux0:data/riptidegp/ and copy into it:\n- Updating from 1.0.2: install the new riptidegp.vpk over the old one. Data files and your save stay as they are.\n- The game's 29 offline achievements unlock native PS Vita trophies (plus a Platinum). This needs the NoTrpDrm plugin\n- (or any other folder) to keep a manual backup of profile: to restore, copy it back to ux0:data/riptidegp/files/\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.0.3",
+    "vd": "2026-11-05",
+    "sz": 1124549,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/d8b05aa5b16b56c1d79fa74966d32c03013b0d4b862a942a58e5ae2f0b4a6de0.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/e70b4600c3123b202f551c79ebc657ba8b61cfd481d8f954118fe7b71755f913.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1399172442",
+    "su": "https://github.com/MetalSyntax/Riptide-GP-vita",
+    "rp": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/tag/v1.0.3",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Riptide-GP-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/download/v1.0.3/riptidegp.vpk",
+        "rec": true
+      }
     ]
   },
   {
@@ -8314,6 +8396,47 @@
     ]
   },
   {
+    "id": "snail-mail-vita",
+    "tid": "PSVSM0001",
+    "n": "Snail Mail",
+    "d": "Android to PS Vita port of Snail Mail",
+    "ld": "This repository contains a **wrapper/loader** for the Android release of Snail Mail, running native ARM dynamic libraries (`.so`) on the PlayStation Vita via TheFloW's Android SO Loader architecture, FalsoJNI, and vitaGL.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing"
+    ],
+    "req": "- Updating from previous versions (v01.00 / v01.01 / v01.02): install the new snailmail.vpk with VitaShell. Your existing data files and saves in ux0:data/snailmail/ are kept.\n- Copy lib/armeabi-v7a/libsnailmail.so (or lib/armeabi/libsnailmail.so) to ux0:data/snailmail/libsnailmail.so.\n- Copy assets/asm.mp3 to ux0:data/snailmail/assets/asm.mp3.\n- Copy all 118 .ogg audio files from assets/ to ux0:data/snailmail/assets/.\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.0.3",
+    "vd": "2026-10-22",
+    "sz": 1132906,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/8e400c3391cca23087a1d4046f0bd7fd5d763151270d43e5869a4255383ec809.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/63dafdaf6cc8c598fc12d9d45c569e2400b48c913d3a1daee8ba6fca548f8305.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/96979f681787f83aad298c545f3e3631eb5232b15f1b3139fa4eec4e0c9a579f.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1408995882",
+    "su": "https://github.com/MetalSyntax/Snail-Mail-vita",
+    "rp": "https://github.com/MetalSyntax/Snail-Mail-vita/releases/tag/v1.0.3",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Snail-Mail-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Snail-Mail-vita/releases/download/v1.0.3/snailmail.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "ssx-2012",
     "tid": "SSXV00001",
     "n": "SSX (2012)",
@@ -8416,6 +8539,47 @@
     "ic": "https://archive.org/download/ducktales-remastered-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/ducktales-remastered-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "skater-nation-vita",
+    "tid": "PSVSN0001",
+    "n": "Skater Nation",
+    "d": "iOS to PS Vita port of Skater Nation",
+    "ld": "An unofficial native port of *Skater Nation* (Gameloft, iOS 1.2.1) to the PlayStation Vita.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "req": "- Make sure your PS Vita has Henkaku / Enso installed with the following plugin active in ur0:tai/config.txt:\n- libshacccg.suprx in ur0:data/ (Extract using ShaRKBR33D (https://github.com/OsirizX/ShaRKBR33D))\n- Copy the contents of ux0_data/skaternation/ to ux0:data/skaternation/ on your PS Vita via FTP or USB.\n- Game files: a decrypted Skater Nation 1.2.1 .ipa (FairPlay cryptid 0). Open it as a ZIP and extract\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.0.0",
+    "vd": "2026-10-20",
+    "sz": 2323545,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/e57e20a91b4687a0e584aaad9f01135598a06c7a9e431331bb3d6e50092195c1.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/d8dd937f1191fd4b60f42c328750d09c9426781a68045b3ff0cf9926dfc93877.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1426476181",
+    "su": "https://github.com/MetalSyntax/Skater-Nation-vita",
+    "rp": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/tag/v1.0.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Skater-Nation-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/download/v1.0.0/skaternation.vpk",
+        "rec": true
+      }
     ]
   },
   {
@@ -10233,6 +10397,46 @@
     "ua": "2026-08-13T15:34"
   },
   {
+    "id": "bikerace-vita",
+    "tid": "BIKR00001",
+    "n": "Bike Race",
+    "d": "A from-scratch C port of Bike Race Pro (Android, 2014) to the PS Vita and PlayStation TV. Contains no game assets.",
+    "ld": "A from-scratch port of *Bike Race Pro 4.3* (Top Free Games, 2014) to the PlayStation Vita and PlayStation TV.",
+    "aids": [
+      "franciscoclou"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "req": "- that pull data out of a copy of the original game that you supply yourself.\n- original game to use this port; without a copy of it, the port does nothing.",
+    "st": "Archive",
+    "v": "1.1",
+    "vd": "2026-09-27",
+    "sz": 1161978,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/80438637f98cbabe43e91f02cefdd0bfd58695f21990341a9b6c4a02b218b298.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/8b00b3bde524a7a1de0c63559c7aef3916d811aedb24570062d6678146c2af68.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1367526488",
+    "su": "https://github.com/franciscoclou/bikerace-vita",
+    "rp": "https://github.com/franciscoclou/bikerace-vita/releases/tag/v1.1",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/franciscoclou/bikerace-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/franciscoclou/bikerace-vita/releases/download/v1.1/BikeRace.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "shadow-guardian",
     "tid": "PSVSGHD01",
     "n": "Shadow Guardian",
@@ -10872,9 +11076,9 @@
     "v": "0.1.0",
     "vd": "2026-09-16",
     "sz": 3333738,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/b61a2ff397beb7f6ecfb361925450d3e93d452297de618337c1b7f0e70d4d45e.png",
+    "ic": "https://archive.org/download/psvitaalive-advancedslop/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123.png"
+      "https://archive.org/download/psvitaalive-advancedslop/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1311337155",
@@ -10889,7 +11093,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Grarak/AdvancedSlop/releases/download/0.1.0/advancedslop.vpk",
+        "u": "https://archive.org/download/psvitaalive-advancedslop/advancedslop%20v0.1.0.vpk",
         "rec": true
       }
     ]

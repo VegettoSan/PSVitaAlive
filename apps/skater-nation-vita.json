@@ -1,0 +1,41 @@
+{
+  "id": "skater-nation-vita",
+  "tid": "PSVSN0001",
+  "n": "Skater Nation",
+  "d": "iOS to PS Vita port of Skater Nation",
+  "ld": "An unofficial native port of *Skater Nation* (Gameloft, iOS 1.2.1) to the PlayStation Vita.",
+  "aids": [
+    "metalsyntax"
+  ],
+  "cid": "ports",
+  "sids": [
+    "other"
+  ],
+  "req": "- Make sure your PS Vita has Henkaku / Enso installed with the following plugin active in ur0:tai/config.txt:\n- libshacccg.suprx in ur0:data/ (Extract using ShaRKBR33D (https://github.com/OsirizX/ShaRKBR33D))\n- Copy the contents of ux0_data/skaternation/ to ux0:data/skaternation/ on your PS Vita via FTP or USB.\n- Game files: a decrypted Skater Nation 1.2.1 .ipa (FairPlay cryptid 0). Open it as a ZIP and extract\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+  "st": "Archive",
+  "v": "1.0.0",
+  "vd": "2026-10-20",
+  "sz": 2323545,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/e57e20a91b4687a0e584aaad9f01135598a06c7a9e431331bb3d6e50092195c1.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/d8dd937f1191fd4b60f42c328750d09c9426781a68045b3ff0cf9926dfc93877.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1426476181",
+  "su": "https://github.com/MetalSyntax/Skater-Nation-vita",
+  "rp": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/tag/v1.0.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/MetalSyntax/Skater-Nation-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/download/v1.0.0/skaternation.vpk",
+      "rec": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "riptide-gp-vita",
+  "tid": "PSVRGP001",
+  "n": "Riptide GP",
+  "d": "Android to PS Vita port of Riptide GP",
+  "ld": "This is a so-loader port. It runs the original `libBlue.so`, `libfmodex.so` and `libfmodevent.so` with an emulated Java layer (FalsoJNI). The game's own assets are read in place from `assets/Base.apf`, and the OpenGL ES 2.0 calls are served by vitaGL. Nothing from the game is distributed here; you need your own copy of the APK.",
+  "aids": [
+    "metalsyntax"
+  ],
+  "cid": "ports",
+  "sids": [
+    "racing"
+  ],
+  "req": "- Updating from 1.0.2: install the new riptidegp.vpk over the old one. Data files and your\n- PS Vita / PS TV with HENkaku/Enso (3.60–3.74 with a kernel plugin loader).\n- kubridge.skprx in KERNEL of your taiHEN config.\n- libshacccg.suprx in ur0:data/ (use ShaRKBR33D).\n- Create ux0:data/riptidegp/ and copy into it:\n- Updating from 1.0.2: install the new riptidegp.vpk over the old one. Data files and your save stay as they are.\n- The game's 29 offline achievements unlock native PS Vita trophies (plus a Platinum). This needs the NoTrpDrm plugin\n- (or any other folder) to keep a manual backup of profile: to restore, copy it back to ux0:data/riptidegp/files/\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+  "st": "Archive",
+  "v": "1.0.3",
+  "vd": "2026-11-05",
+  "sz": 1124549,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/d8b05aa5b16b56c1d79fa74966d32c03013b0d4b862a942a58e5ae2f0b4a6de0.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/e70b4600c3123b202f551c79ebc657ba8b61cfd481d8f954118fe7b71755f913.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1399172442",
+  "su": "https://github.com/MetalSyntax/Riptide-GP-vita",
+  "rp": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/tag/v1.0.3",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/MetalSyntax/Riptide-GP-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/download/v1.0.3/riptidegp.vpk",
+      "rec": true
+    }
+  ]
+}

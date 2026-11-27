@@ -1,0 +1,40 @@
+{
+  "id": "bikerace-vita",
+  "tid": "BIKR00001",
+  "n": "Bike Race",
+  "d": "A from-scratch C port of Bike Race Pro (Android, 2014) to the PS Vita and PlayStation TV. Contains no game assets.",
+  "ld": "A from-scratch port of *Bike Race Pro 4.3* (Top Free Games, 2014) to the PlayStation Vita and PlayStation TV.",
+  "aids": [
+    "franciscoclou"
+  ],
+  "cid": "ports",
+  "sids": [
+    "other"
+  ],
+  "req": "- that pull data out of a copy of the original game that you supply yourself.\n- original game to use this port; without a copy of it, the port does nothing.",
+  "st": "Archive",
+  "v": "1.1",
+  "vd": "2026-09-27",
+  "sz": 1161978,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/80438637f98cbabe43e91f02cefdd0bfd58695f21990341a9b6c4a02b218b298.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/8b00b3bde524a7a1de0c63559c7aef3916d811aedb24570062d6678146c2af68.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1367526488",
+  "su": "https://github.com/franciscoclou/bikerace-vita",
+  "rp": "https://github.com/franciscoclou/bikerace-vita/releases/tag/v1.1",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/franciscoclou/bikerace-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/franciscoclou/bikerace-vita/releases/download/v1.1/BikeRace.vpk",
+      "rec": true
+    }
+  ]
+}
