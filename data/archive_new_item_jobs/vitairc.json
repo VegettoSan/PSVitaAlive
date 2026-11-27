@@ -1,0 +1,50 @@
+{
+  "app_id": "vitairc",
+  "identifier": "psvitaalive-vitairc",
+  "source_url": "https://github.com/ArchelKrozt/VitaIRC/releases/download/v1.5/VitaIRC.vpk",
+  "files": {
+    "vitairc v1.5.vpk": {
+      "size": 3554434,
+      "md5": "427f41f874871c8d308c4dce587f9297",
+      "sha256": "7711d21ff81eaf6f4311bfcd4bdb5f6206786214e945b556ee94be551ec66afa"
+    },
+    "icon0.png": {
+      "size": 2988,
+      "md5": "99c778dc1929ba67469885cd79afb7ee",
+      "sha256": "41c698e6f401fa05cf5390610eeaa3d53135c0948321179814930f9284e4b0ce"
+    },
+    "shot_01.png": {
+      "size": 7104,
+      "md5": "594465551f2ad56a109697d0daf5c509",
+      "sha256": "daff8cd1d336974b6de735b6df4f5cc09905787739cf60f02e7867823525f9c6"
+    },
+    "SOURCES.txt": {
+      "size": 620,
+      "md5": "b5bb39a7870fd2131627a5686f95bb86",
+      "sha256": "ab1b0f1ebfaaba847304dfbf725903f4e8fef1ee36e63e5db378183dff0d68bf"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/41c698e6f401fa05cf5390610eeaa3d53135c0948321179814930f9284e4b0ce.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/daff8cd1d336974b6de735b6df4f5cc09905787739cf60f02e7867823525f9c6.png": "shot_01.png"
+  },
+  "attempted": [
+    "vitairc v1.5.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T20:58:24+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "VIRC00001",
+    "name": "VitaIRC",
+    "search_title": "VitaIRC",
+    "version": "1.5",
+    "repo": "ArchelKrozt/VitaIRC",
+    "tag": "v1.5",
+    "asset": "VitaIRC.vpk",
+    "url": "https://github.com/ArchelKrozt/VitaIRC/releases/download/v1.5/VitaIRC.vpk",
+    "size": 3554434,
+    "sha256": "7711d21ff81eaf6f4311bfcd4bdb5f6206786214e945b556ee94be551ec66afa",
+    "creator": "LinuxSan"
+  }
+}
