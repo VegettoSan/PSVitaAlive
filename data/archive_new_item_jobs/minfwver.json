@@ -1,0 +1,51 @@
+{
+  "app_id": "minfwver",
+  "identifier": "psvitaalive-minfwver",
+  "source_url": "https://github.com/Electric1447/MinFWVer/releases/download/v2.1/minfwver.vpk",
+  "files": {
+    "minfwver v2.1.vpk": {
+      "size": 119681,
+      "md5": "d0094f081e81ea885c3dca5150382ae8",
+      "sha256": "ec0f16ccfc40f6157c0437862d7d81c6ce9589b73f359c32831eb6236d204b7d"
+    },
+    "icon0.png": {
+      "size": 1550,
+      "md5": "a55dcd303ab145ae005a4f5fb3462ed6",
+      "sha256": "cad2a5a0f1b55cde853afdd54fb30ac6bb5549f5ec905d86216768de5905df20"
+    },
+    "shot_01.png": {
+      "size": 102937,
+      "md5": "8ec307c853572a5732fa64dd58ed5e7a",
+      "sha256": "8d0f993a9fd2ae592523a44b038c122f7fdc01cadfacf1dfabb1df42701f61aa"
+    },
+    "SOURCES.txt": {
+      "size": 1739,
+      "md5": "ac4f6d0e7aa815ce755fd7792ca8bd70",
+      "sha256": "fa5f9ddd5a919f4ca1f746056fb23b7a31b23382f970c5ae3b452e183d876351"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/cad2a5a0f1b55cde853afdd54fb30ac6bb5549f5ec905d86216768de5905df20.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/8d0f993a9fd2ae592523a44b038c122f7fdc01cadfacf1dfabb1df42701f61aa.png": "shot_01.png"
+  },
+  "attempted": [
+    "minfwver v2.1.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T20:17:05+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "MINFW0000",
+    "name": "MinFWVer",
+    "search_title": "MinFWVer",
+    "version": "2.1",
+    "repo": "Electric1447/MinFWVer",
+    "tag": "v2.1",
+    "asset": "minfwver.vpk",
+    "url": "https://github.com/Electric1447/MinFWVer/releases/download/v2.1/minfwver.vpk",
+    "size": 119681,
+    "sha256": "ec0f16ccfc40f6157c0437862d7d81c6ce9589b73f359c32831eb6236d204b7d",
+    "creator": "Electric, TheFloW",
+    "license_notice": "The MIT License (MIT)\n\nCopyright (c) 2019 TheFloW\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+  }
+}
