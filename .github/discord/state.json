@@ -2253,6 +2253,9 @@
     "PKEV00001": {
       "version": "1.01"
     },
+    "PKGENABLE": {
+      "version": "1.00"
+    },
     "PKGI00000": {
       "version": "v.0.05"
     },
@@ -3468,6 +3471,9 @@
     "VPKSOURCE": {
       "version": "v.0.95"
     },
+    "VPNT00001": {
+      "version": "0.1.0"
+    },
     "VPRW00001": {
       "version": "#04d791c"
     },
@@ -3509,6 +3515,9 @@
     },
     "VTCD00001": {
       "version": "v.1.5fix1"
+    },
+    "VTFY00001": {
+      "version": "0.1.0"
     },
     "VTGO00001": {
       "version": "v.0.1.0"
