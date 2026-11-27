@@ -1,0 +1,50 @@
+{
+  "app_id": "umd-player",
+  "identifier": "psvitaalive-umd-player",
+  "source_url": "https://github.com/xesf/umd-player/releases/download/v0.9.15/umdplayer-v0.9.15.vpk",
+  "files": {
+    "umd-player v0.9.15.vpk": {
+      "size": 1001488,
+      "md5": "4bfd21da1e228ed75bd4542c7e6144d6",
+      "sha256": "38a86a34d639098c3d09822c1fb56a91a9543834215222243034804176f4b5dd"
+    },
+    "icon0.png": {
+      "size": 5394,
+      "md5": "71684d7eb54d893248401c45af8f8832",
+      "sha256": "e87a5f5847e953743c692803749d94944dbd7f346e30ff17c9466cb81a0a5122"
+    },
+    "shot_01.png": {
+      "size": 13691,
+      "md5": "771b8a581a954643d826e21c4c4f65f2",
+      "sha256": "709dcd3771957caa7ffe8f2be878d115c044d89c48a8ab39cabb80882729f252"
+    },
+    "SOURCES.txt": {
+      "size": 632,
+      "md5": "ece517d5d9e669e6083fd9c3cdb9993b",
+      "sha256": "d484313caa7a47c0f95739688686d392ceda5402d47141c5784f65452ccfdc39"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/umd-player/e87a5f5847e953743c692803749d94944dbd7f346e30ff17c9466cb81a0a5122.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/umd-player/709dcd3771957caa7ffe8f2be878d115c044d89c48a8ab39cabb80882729f252.png": "shot_01.png"
+  },
+  "attempted": [
+    "umd-player v0.9.15.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T20:56:57+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "UMDP00001",
+    "name": "UMD Player",
+    "search_title": "UMD Player",
+    "version": "0.9.15",
+    "repo": "xesf/umd-player",
+    "tag": "v0.9.15",
+    "asset": "umdplayer-v0.9.15.vpk",
+    "url": "https://github.com/xesf/umd-player/releases/download/v0.9.15/umdplayer-v0.9.15.vpk",
+    "size": 1001488,
+    "sha256": "38a86a34d639098c3d09822c1fb56a91a9543834215222243034804176f4b5dd",
+    "creator": "xesf"
+  }
+}
