@@ -16,10 +16,10 @@
   "v": "1.0.0",
   "vd": "2026-09-29",
   "sz": 1075480,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/d4a0e2216cc90b472e5b25ae74d59f3a04925c63e0d4c674c424977bc1fd770a.png",
+  "ic": "https://archive.org/download/psvitaalive-eternal-legacy-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/454e01fc6cde477620582692fecd97f11f8c1a3da930a3ef819172a16ac86c78.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/6591e97c3148d46cdbd2fc1f32f005f7c5dc2251c2e873d3657171a3c5eac93b.png"
+    "https://archive.org/download/psvitaalive-eternal-legacy-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-eternal-legacy-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1394311511",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Eternal-Legacy-vita/releases/download/v1.0.0/eternallegacy.vpk",
+      "u": "https://archive.org/download/psvitaalive-eternal-legacy-vita/eternal-legacy-vita%20v1.0.0.vpk",
       "rec": true
     }
   ]
