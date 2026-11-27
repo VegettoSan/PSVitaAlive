@@ -512,7 +512,8 @@ enum class ProtectionPhase {
     None = 0,
     Downloading,
     Extracting,
-    Installing
+    Installing,
+    Deleting
 };
 
 constexpr uint64_t kProtectionDelayMs = 60ULL * 1000ULL;
@@ -559,8 +560,9 @@ uint32_t protectionRandom() {
 void protectionChoosePosition(bool forceDifferent) {
     const int minX = kProtectionMargin;
     const int minY = kProtectionMargin;
-    const int maxX = SCREEN_W - (gQueueSessionProtection?kQueueProtectionBlockW:kProtectionBlockW) - kProtectionMargin;
-    const int maxY = SCREEN_H - (gQueueSessionProtection?kQueueProtectionBlockH:kProtectionBlockH) - kProtectionMargin;
+    const bool wide = gQueueSessionProtection || gProtectionPhase==ProtectionPhase::Deleting;
+    const int maxX = SCREEN_W - (wide?kQueueProtectionBlockW:kProtectionBlockW) - kProtectionMargin;
+    const int maxY = SCREEN_H - (wide?kQueueProtectionBlockH:kProtectionBlockH) - kProtectionMargin;
     const int spanX = std::max(1, maxX - minX + 1);
     const int spanY = std::max(1, maxY - minY + 1);
     const int oldX = gProtectionX;
@@ -581,6 +583,7 @@ void protectionChoosePosition(bool forceDifferent) {
 
 ProtectionPhase protectionPhaseForStage(bool active, int outcome, const std::string& stage) {
     if (!active || outcome != 0) return ProtectionPhase::None;
+    if(stage=="Deleting") return ProtectionPhase::Deleting;
 
     const bool extracting =
         stage.find("Extract") != std::string::npos ||
@@ -3395,7 +3398,10 @@ void FullCatalogScreen::setCatalogLoading(bool l,const std::string&lab,uint64_t 
     // Update the cached badges only on a completed plugin job, never per frame.
     if (pluginFinishedNow) refreshDetailPluginStatus();
     installLiveAreaOk_ = liveAreaOk;
-    protectionUpdateForJob(active, outcome, stage);
+    // Idle installer frames must not restart the independent deletion timer.
+    if (!installedDataProtected_ && !(storageWorker_>=0 && storageAction_!=-1) &&
+        gProtectionPhase!=ProtectionPhase::Deleting)
+        protectionUpdateForJob(active, outcome, stage);
     installResultPath_ = installPath;
     installResultTitleId_ = titleId;
     installZipRecoveryAvailable_ = zipRecoveryAvailable;
@@ -3718,6 +3724,7 @@ void FullCatalogScreen::startStorageOperation(int action) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
         storageWorker_ = -1;
+        if(storageAction_!=-1) releaseInstalledDataProtection();
     }
     const auto scope = static_cast<CatalogType>(storageGameMode_);
     if (!storageShowsSavedZips(scope) && action == -4) return;
@@ -3746,6 +3753,17 @@ void FullCatalogScreen::startStorageOperation(int action) {
             gameStorageCandidates_.push_back({item.id,item.titleId,item.alternateTitleIds,item.name,
                 item.icon.empty()?item.cover:item.icon});
     }
+    // The queue already owns shell protection when cleaning space for it.
+    // Otherwise acquire the same lock/keep-awake used by installed-data deletion.
+    if(action!=-1 && !queueProtected_) {
+        if(!installedDataAcquireProtection_ || !installedDataReleaseProtection_ ||
+           !installedDataAcquireProtection_()) {
+            showToast(::psvitaalive::L("STORAGE_BUSY"),2800); return;
+        }
+        installedDataProtected_=true;
+    }
+    storageOperationLabel_=action>=0?storageSnapshot_.items[static_cast<size_t>(action)].label:
+        ::psvitaalive::L(action==-3?"STORAGE_TEMP":action==-4?"STORAGE_ZIPS":"STORAGE_CLEAN_ALL");
     storageAction_ = action;
     storageWorkPhase_.store(action == -1 ? StorageWorkPhase::ScanStorage :
         StorageWorkPhase::Cleaning, std::memory_order_relaxed);
@@ -3754,6 +3772,7 @@ void FullCatalogScreen::startStorageOperation(int action) {
     storageWorker_ = sceKernelCreateThread("PSVAStorageScan",
         &FullCatalogScreen::storageWorkerEntry, 0x10000110, 96 * 1024, 0, 0, nullptr);
     if (storageWorker_ < 0) {
+        if(action!=-1) releaseInstalledDataProtection();
         storageWorkerDone_.store(true, std::memory_order_release);
         return;
     }
@@ -3761,6 +3780,7 @@ void FullCatalogScreen::startStorageOperation(int action) {
     if (sceKernelStartThread(storageWorker_, sizeof(self), &self) < 0) {
         sceKernelDeleteThread(storageWorker_);
         storageWorker_ = -1;
+        if(action!=-1) releaseInstalledDataProtection();
         storageWorkerDone_.store(true, std::memory_order_release);
     }
 }
@@ -3871,6 +3891,7 @@ void FullCatalogScreen::pollStorageOperation() {
     gameStorageCandidates_.clear();
     gameStorageCandidates_.shrink_to_fit();
     if (storageAction_ != -1) {
+        releaseInstalledDataProtection();
         showToast(::psvitaalive::L(storageWorkerOk_.load(std::memory_order_acquire)
             ? "STORAGE_REMOVED" : "STORAGE_REMOVE_FAILED"), 2600);
         requestUx0SpaceRefresh();
@@ -4120,13 +4141,13 @@ void FullCatalogScreen::shutdown(){
         sceKernelDeleteThread(installedDataWorker_);
         installedDataWorker_=-1;
     }
-    releaseInstalledDataProtection();
     clearInstalledDataOperationDisplay();
     if (storageWorker_ >= 0) {
         sceKernelWaitThreadEnd(storageWorker_, nullptr, nullptr);
         sceKernelDeleteThread(storageWorker_);
         storageWorker_ = -1;
     }
+    releaseInstalledDataProtection();
     closeWebQrModal();
     stopUx0SnapshotWorker();
     gProtectionMascotStartPending = false;
@@ -12589,7 +12610,8 @@ void FullCatalogScreen::setQueueFrame(bool protectedSession,bool report,
     }
     if(changed) {
         gQueueSessionProtection=protectedSession;
-        protectionUpdateForJob(protectedSession,0,"Downloading");
+        if(gProtectionPhase!=ProtectionPhase::Deleting)
+            protectionUpdateForJob(protectedSession,0,"Downloading");
         if(protectedSession) {
             queueReportedSteps_.clear();
             queueReportSendingJob_=0;
@@ -13438,6 +13460,48 @@ void FullCatalogScreen::draw(){
     // periodic filesystem probes while the installer is writing to ux0.
     struct RestorePassive {bool& flag;bool old;~RestorePassive(){flag=old;}} passive{queuePassiveRead_,queuePassiveRead_};
     queuePassiveRead_=true;
+    if(gProtectionActive && gProtectionPhase==ProtectionPhase::Deleting) {
+        startSkinFrame(); vita2d_set_clear_color(RGBA8(0,0,0,255)); vita2d_clear_screen();
+        gProtectionMascotManager.render();
+        const auto line=[&](int y,unsigned color,float scale,const std::string& value) {
+            if(!value.empty()) drawMarqueeText(&font_,gProtectionX+12,gProtectionY+y,
+                kQueueProtectionBlockW-24,color,scale,value,false);
+        };
+        line(25,ACCENT,.95f,"PSVitaAlive");
+        if(installedDataVisible_ && installedDataWorker_>=0 && installedDataAction_>=0) {
+            const auto& prog=installedDataOpProgress_;
+            const auto phase=prog.phase.load(std::memory_order_acquire);
+            const bool media=installedDataGameMode_>=2;
+            line(56,WHITE,1.04f,installedDataOperationName_.empty()?installedDataOperationTitleId_:installedDataOperationName_);
+            const char* key=phase==2?(media?"ID_MEDIA_DELETING":"ID_OP_DATA_STAGE"):
+                phase==5 || (phase==0 && installedDataAction_!=0)?(media?"ID_MEDIA_PREPARE":"ID_OP_PREPARE_STAGE"):
+                phase==3 || phase==4?"ID_OP_VERIFY_STAGE":"ID_OP_APP_STAGE";
+            line(86,ACCENT,.91f,::psvitaalive::L(key));
+            const auto root=prog.currentRootIndex.load(std::memory_order_acquire);
+            if(root<installedDataOperationPaths_.size())
+                line(115,WHITE,.82f,installedDataOperationPaths_[root]);
+            else if(phase==1) line(115,WHITE,.82f,"ux0:app/"+installedDataOperationTitleId_);
+            if(phase==2) {
+                const uint64_t total=prog.entriesTotal.load(std::memory_order_acquire);
+                const auto files=prog.filesRemoved.load(std::memory_order_relaxed);
+                const auto dirs=prog.foldersRemoved.load(std::memory_order_relaxed);
+                const uint64_t done=static_cast<uint64_t>(files)+dirs;
+                const auto pct=::psvitaalive::storage::installedDataDeletionPercent(done,total);
+                line(145,WHITE,.88f,(total?std::to_string(pct)+"%   ":"")+
+                    std::string(::psvitaalive::L("ID_OP_FILES_REMOVED"))+" "+std::to_string(files));
+                line(172,DIM,.82f,std::string(::psvitaalive::L("ID_OP_DIRS_REMOVED"))+" "+std::to_string(dirs));
+            } else line(145,DIM,.82f,::psvitaalive::L("ID_OP_INDETERMINATE"));
+        } else {
+            line(56,WHITE,1.04f,::psvitaalive::L("STORAGE_TITLE"));
+            line(86,ACCENT,.91f,::psvitaalive::L("STORAGE_WORKING"));
+            line(115,WHITE,.88f,storageOperationLabel_);
+            line(145,DIM,.82f,::psvitaalive::L("STORAGE_WAIT"));
+        }
+        drawBatteryIndicator(&font_,gProtectionX+kQueueProtectionBlockW/2,gProtectionY+188,.82f,true);
+        skin::hint(&font_,gProtectionX,gProtectionY+236,kQueueProtectionBlockW,DIM,.68f,
+            ::psvitaalive::L("PROTECTION_PRESS_ANY_BUTTON"),true);
+        finishFrame(); return;
+    }
     if(queueVisible_ || (queueProtected_ && gProtectionActive)) { drawQueueScreen(); return; }
     // Storage dialogs own all input. Draw just the topmost dialog over a
     // theme-colored backdrop, not a live catalog or another hidden dialog.
@@ -13461,7 +13525,16 @@ void FullCatalogScreen::draw(){
     }
     switch(state_.mode){case UiMode::FULL_CATALOG:drawFullCatalog();break;case UiMode::OPENING_DETAIL:drawOpeningDetail();break;case UiMode::SPLIT_DETAIL:drawSplitDetail();break;case UiMode::CLOSING_DETAIL:drawClosingDetail();break;case UiMode::SETTINGS:drawSettings();break;}}bool FullCatalogScreen::updateAndDraw(){
     if(!ready_)return false;
-    if(queueProtected_) {
+    // Poll destructive workers even while OLED protection owns the screen.
+    // Completion releases shell protection and restores the result UI immediately.
+    if(installedDataWorker_>=0 && installedDataAction_>=0) pollInstalledDataOperation();
+    if(storageWorker_>=0 && storageAction_!=-1) pollStorageOperation();
+    const bool deletionActive=(installedDataWorker_>=0 && installedDataAction_>=0) ||
+        (storageWorker_>=0 && storageAction_!=-1);
+    if(deletionActive) protectionUpdateForJob(true,0,"Deleting");
+    else if(gProtectionPhase==ProtectionPhase::Deleting)
+        protectionUpdateForJob(queueProtected_,0,"Downloading");
+    if(queueProtected_ || deletionActive || gProtectionTouchConsumeUntilRelease) {
         SceCtrlData pad{}; const int controllerRead=::psvitaalive::ui::peekClientController(pad);
         SceTouchData td{}; sceTouchPeek(SCE_TOUCH_PORT_FRONT,&td,1);
         const bool interacting=pad.buttons!=0 || leftStickNavMask(pad)!=0 || td.reportNum>0;
