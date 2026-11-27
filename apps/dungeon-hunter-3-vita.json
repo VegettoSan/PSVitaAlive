@@ -17,10 +17,10 @@
   "v": "1.0.0",
   "vd": "2026-10-06",
   "sz": 1121900,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/94de9eb287d517e3574e1145163539d3f6e0ae8b2b6a26a007f4a1afa1c8d5ab.png",
+  "ic": "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/093ead8fee7b51800c87f9e588d24b40639fb52155169129ec8da817afed0962.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/d3fdda19a0bb9ef23e81886e680b0cf901e457b65f9f71af46c5ab7174570a26.png"
+    "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1406607400",
@@ -35,7 +35,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/download/v1.0.0/dungeonhunter3.vpk",
+      "u": "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/dungeon-hunter-3-vita%20v1.0.0.vpk",
       "rec": true
     }
   ]
