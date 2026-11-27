@@ -1,19 +1,6 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "super-mario-galaxy": {
-      "version": "3.0",
-      "source_url": "https://github.com/CBOC-Vita-Lab/galaxy-vita/releases/download/v3.0/Galaxy-Vita.vpk",
-      "archive_identifier": "smg-vita",
-      "filename": "super-mario-galaxy v3.0.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-27T20:51:20+00:00",
-      "size_bytes": 13616965,
-      "title_id": "SMGV00001",
-      "sha256": "8abf68949444a1d897d8bb7deb8d2457a1f40547a8933573c03c8d197f2bd8f5",
-      "md5": "54def425194d510dec1897cbb4b657fd"
-    }
-  },
+  "inflight": {},
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
