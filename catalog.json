@@ -14,17 +14,17 @@
       "strategy",
       "engine-port"
     ],
-    "v": "0.10.5",
+    "v": "0.10.6",
     "vd": "2026-11-27",
     "req": "- The first start compiles nothing if the shipped shaders match; otherwise it needs libshacccg.suprx in ur0:data/ (the same file other homebrew ports use).",
-    "sz": 1862643,
+    "sz": 1884691,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://archive.org/download/manhunt-1-2-ps-vita-port/manhunt%20v0.10.5.vpk",
-        "sz": 1862643,
+        "u": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.6/manhunt-v0.10.6-vita.vpk",
+        "sz": 1884691,
         "rec": true
       },
       {
@@ -46,6 +46,57 @@
     "ic": "https://archive.org/download/manhunt-1-2-ps-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/manhunt-1-2-ps-vita-port/shot.png"
+    ]
+  },
+  {
+    "id": "mario-strikers-charged",
+    "tid": "MSCN00003",
+    "n": "Mario Strikers Charged",
+    "d": "Mario Strikers Charged for PS Vita.",
+    "ld": "A native PS Vita port of Mario Strikers Charged, with Vita controls, audio and graphics support.\n\n- PsVitaAlive -",
+    "aids": [
+      "cboc-vita-lab"
+    ],
+    "cid": "ports",
+    "sids": [
+      "arcade",
+      "strategy",
+      "source-port",
+      "other"
+    ],
+    "v": "2.0",
+    "vd": "2026-11-27",
+    "req": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
+    "sz": 11803115,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita/releases/download/v2.0/Strikers-Charged-Vita.vpk",
+        "sz": 11803115,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1932735283,
+        "xp": "ux0:data/",
+        "ips": [
+          "mscharged"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/mario-strikers-charged-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
+      "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
     ]
   },
   {
@@ -153,6 +204,65 @@
       "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
       "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
       "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
+    ]
+  },
+  {
+    "id": "super-mario-galaxy",
+    "tid": "SMGV00001",
+    "n": "Super Mario Galaxy",
+    "d": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
+    "ld": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
+    "aids": [
+      "cboc-vita-lab"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "v": "3.0",
+    "vd": "2026-11-27",
+    "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
+    "sz": 13616965,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita/releases/download/v3.0/Galaxy-Vita.vpk",
+        "sz": 13616965,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files USA",
+        "u": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2469606195,
+        "xp": "ux0:data/",
+        "ips": [
+          "smg"
+        ]
+      },
+      {
+        "t": "Mod",
+        "n": "HD Textures",
+        "u": "https://archive.org/download/smg-vita/hdtex.pack",
+        "sz": 4718592,
+        "xp": "ux0:data/smg/"
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/smg-vita/New%20icon0.png",
+    "ss": [
+      "https://archive.org/download/smg-vita/shot0.png",
+      "https://archive.org/download/smg-vita/shot.png",
+      "https://archive.org/download/smg-vita/shot1.png"
     ]
   },
   {
@@ -4415,65 +4525,6 @@
     ]
   },
   {
-    "id": "super-mario-galaxy",
-    "tid": "SMGV00001",
-    "n": "Super Mario Galaxy",
-    "d": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
-    "ld": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
-    "aids": [
-      "cboc-vita-lab"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
-    ],
-    "v": "2.2.1",
-    "vd": "2026-11-08",
-    "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-    "sz": 8912896,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/smg-vita/Galaxy-Vita%20v2.2.1.vpk",
-        "sz": 8912896,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files USA",
-        "u": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2469606195,
-        "xp": "ux0:data/",
-        "ips": [
-          "smg"
-        ]
-      },
-      {
-        "t": "Mod",
-        "n": "HD Textures",
-        "u": "https://archive.org/download/smg-vita/hdtex.pack",
-        "sz": 4718592,
-        "xp": "ux0:data/smg/"
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/smg-vita/New%20icon0.png",
-    "ss": [
-      "https://archive.org/download/smg-vita/shot0.png",
-      "https://archive.org/download/smg-vita/shot.png",
-      "https://archive.org/download/smg-vita/shot1.png"
-    ]
-  },
-  {
     "id": "autoplugin-2",
     "tid": "AUTOPLUG2",
     "n": "Autoplugin 2",
@@ -7435,57 +7486,6 @@
       "https://archive.org/download/mkwiita/shot2.png",
       "https://archive.org/download/mkwiita/shot3.png",
       "https://archive.org/download/mkwiita/shot4.png"
-    ]
-  },
-  {
-    "id": "mario-strikers-charged",
-    "tid": "MSCN00003",
-    "n": "Mario Strikers Charged",
-    "d": "Mario Strikers Charged for PS Vita.",
-    "ld": "A native PS Vita port of Mario Strikers Charged, with Vita controls, audio and graphics support.\n\n- PsVitaAlive -",
-    "aids": [
-      "cboc-vita-lab"
-    ],
-    "cid": "ports",
-    "sids": [
-      "arcade",
-      "strategy",
-      "source-port",
-      "other"
-    ],
-    "v": "1.1",
-    "vd": "2026-10-24",
-    "req": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
-    "sz": 3984589,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/mario-strikers-charged-ps-vita/Strikers-Charged-Vita%20v1.1.vpk",
-        "sz": 3984589,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/mario-strikers-charged-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 1932735283,
-        "xp": "ux0:data/",
-        "ips": [
-          "mscharged"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "GitHub",
-        "u": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/mario-strikers-charged-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
-      "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
     ]
   },
   {
