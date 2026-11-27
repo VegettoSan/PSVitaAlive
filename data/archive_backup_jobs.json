@@ -1,6 +1,19 @@
 {
   "schema_version": 1,
-  "inflight": {},
+  "inflight": {
+    "sonic-cd-vita": {
+      "version": "0.2",
+      "source_url": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/download/0.2/SonicCD.vpk",
+      "archive_identifier": "psvitaalive-sonic-cd-vita",
+      "filename": "sonic-cd-vita v0.2.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-27T00:13:44+00:00",
+      "size_bytes": 969613,
+      "title_id": "SOCD00001",
+      "sha256": "26dd9d828ca61d8b2ed6ec32c207e029763f899a9d8dde2487bfd0104fb5b400",
+      "md5": "12d9d8d0edd84a7fd1e4e2edf4211ac7"
+    }
+  },
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
