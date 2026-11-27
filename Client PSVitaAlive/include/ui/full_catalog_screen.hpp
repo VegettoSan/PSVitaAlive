@@ -671,6 +671,7 @@ private:
     StorageAppDisplayFn storageAppDisplay_;
     bool storageVisible_ = false;
     uint64_t storageTransitionUs_ = 0; // shared 200 ms entrance fade
+    std::string storageOperationLabel_; // immutable while the storage worker is active
     bool storageConfirm_ = false;
     int storagePendingAction_ = -1; // double-confirm the exact cleanup action
     struct StorageDisplayRow {
