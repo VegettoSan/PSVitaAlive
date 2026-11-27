@@ -24,7 +24,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Rinnegatamante/recvx_vita/releases/download/v.1.5/RECVX.vpk",
+        "u": "https://archive.org/download/resident-evil-code-veronica-x-vita/resident-evil-code-veronica-x%20v1.5.vpk",
         "sz": 28870168,
         "rec": true
       },
@@ -1148,7 +1148,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/germanalvarez15/pes6-vita/releases/download/0.0.6-beta/pes6vita.vpk",
+        "u": "https://archive.org/download/pes6-psp-port-ps-vita/pes6-vita%20v0.0.6-beta.vpk",
         "sz": 27264658,
         "rec": true
       },
@@ -3658,7 +3658,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.84/Deltarune-v0.84.Internal-Build-Test.vpk",
+        "u": "https://archive.org/download/psvitaalive-deltarune-vita/deltarune-vita%20v0.84.vpk",
         "rec": true
       },
       {
