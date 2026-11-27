@@ -34,7 +34,7 @@
     "shot_01.png",
     "SOURCES.txt"
   ],
-  "status": "CREATING",
+  "status": "PUBLISHED_VERIFIED",
   "created_at": "2026-11-27T21:21:57+00:00",
   "source_spec": {
     "automatic": true,
@@ -49,5 +49,6 @@
     "size": 12335016,
     "sha256": "d20cecea0dd4cef780c8eeba0a4e8b69f6fe58f7642e3acff67280545ae990ed",
     "creator": "dekiller82"
-  }
+  },
+  "completed_at": "2026-11-27T21:32:01+00:00"
 }

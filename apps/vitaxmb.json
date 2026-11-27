@@ -16,9 +16,9 @@
   "v": "1.10.2",
   "vd": "2026-11-08",
   "sz": 12335016,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/29f5c19f6deb79a3abdcd259f385e35052bf3a0f6a4b0543ec9abdf8ac0e7dab.png",
+  "ic": "https://archive.org/download/psvitaalive-vitaxmb/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/8008a0e59c561a781540e3b6670f4984c359a90775bae1bc4b3ce3d3bf3ddf7c.png"
+    "https://archive.org/download/psvitaalive-vitaxmb/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1404951197",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/dekiller82/VitaXMB/releases/download/v1.10.2/VitaXMB-v1.10.2.vpk",
+      "u": "https://archive.org/download/psvitaalive-vitaxmb/vitaxmb%20v1.10.2.vpk",
       "rec": true
     }
   ]
