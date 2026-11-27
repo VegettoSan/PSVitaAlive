@@ -4622,9 +4622,9 @@
     "v": "1.10.2",
     "vd": "2026-11-08",
     "sz": 12335016,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/29f5c19f6deb79a3abdcd259f385e35052bf3a0f6a4b0543ec9abdf8ac0e7dab.png",
+    "ic": "https://archive.org/download/psvitaalive-vitaxmb/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/8008a0e59c561a781540e3b6670f4984c359a90775bae1bc4b3ce3d3bf3ddf7c.png"
+      "https://archive.org/download/psvitaalive-vitaxmb/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1404951197",
@@ -4639,7 +4639,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/dekiller82/VitaXMB/releases/download/v1.10.2/VitaXMB-v1.10.2.vpk",
+        "u": "https://archive.org/download/psvitaalive-vitaxmb/vitaxmb%20v1.10.2.vpk",
         "rec": true
       }
     ]
@@ -5330,10 +5330,10 @@
     "v": "1.0.1",
     "vd": "2026-11-05",
     "sz": 3856563,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ddd027af31b3784fb0e4a7451ae17c41233e3e27217970ca0d30692933440cd0.png",
+    "ic": "https://archive.org/download/psvitaalive-vita-j2me-emulator/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/33a02619a5d34923e93784bcf5b3fa38bfaaa625c400156c6ed790458441709a.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ed84871b3105f9d053846fcf6ec4d400c52b5510d68f8c952d77632fa7f93913.png"
+      "https://archive.org/download/psvitaalive-vita-j2me-emulator/shot_01.png",
+      "https://archive.org/download/psvitaalive-vita-j2me-emulator/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1440254477",
@@ -5348,7 +5348,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/vita-j2me-emulator/releases/download/v1.0.1/VitaJ2ME-v1.0.1.vpk",
+        "u": "https://archive.org/download/psvitaalive-vita-j2me-emulator/vita-j2me-emulator%20v1.0.1.vpk",
         "rec": true
       }
     ]
@@ -8342,19 +8342,20 @@
     "aids": [
       "henrykun55"
     ],
-    "cid": "emulators",
+    "cid": "ports",
     "sids": [
-      "other"
+      "fps",
+      "shooter"
     ],
     "req": "- A PS Vita or PS TV with HENkaku/Ensō (any firmware supported by them) and\n- The PC game files from the original 2000 CD release. The port is built\n- Updating to a newer version only needs the new vpk; your game data and saves in\n- Installing an update needs Enable Unsafe Homebrew on in Settings > HENkaku",
     "st": "Archive",
     "v": "0.5.0",
     "vd": "2026-10-13",
     "sz": 6776165,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/0cd6d9605e0a033a3b25be85970c4561709253d29b1dec7b8a0bd8858b1e7e0b.png",
+    "ic": "https://archive.org/download/psvitaalive-igi-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/ea0d1ed9b1f48938df3df9f36f2f89068331e3bd0546589b5609986b6f55f4ab.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/6fc0eaa68a54330dc8595f2c0ae959ef618d9d906a46387517dfeeb9cc2b080c.png"
+      "https://archive.org/download/psvitaalive-igi-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-igi-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1402586244",
@@ -8369,7 +8370,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/HenryKun55/igi-vita/releases/download/v0.5.0/igi.vpk",
+        "u": "https://archive.org/download/psvitaalive-igi-vita/igi-vita%20v0.5.0.vpk",
         "rec": true
       }
     ]
@@ -9307,19 +9308,20 @@
     "aids": [
       "metalsyntax"
     ],
-    "cid": "plugins",
+    "cid": "ports",
     "sids": [
-      "other"
+      "rpg",
+      "action"
     ],
     "req": "- Install kubridge.skprx and ur0:data/libshacccg.suprx if you don't have them already.\n- Copy your own game data to ux0:data/dungeonhunter3/ (layout in the README).\n- [Getting the game data](#-installation) for what you need to supply yourself.\n- Copy the files above to ux0:data/dungeonhunter3/.\n- On the Vita: kubridge (https://github.com/bythos14/kubridge) and libshacccg.suprx (see [Prerequisites](#-prerequisites)).\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
     "st": "Archive",
     "v": "1.0.0",
     "vd": "2026-10-06",
     "sz": 1121900,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/94de9eb287d517e3574e1145163539d3f6e0ae8b2b6a26a007f4a1afa1c8d5ab.png",
+    "ic": "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/093ead8fee7b51800c87f9e588d24b40639fb52155169129ec8da817afed0962.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/d3fdda19a0bb9ef23e81886e680b0cf901e457b65f9f71af46c5ab7174570a26.png"
+      "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1406607400",
@@ -9334,7 +9336,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/download/v1.0.0/dungeonhunter3.vpk",
+        "u": "https://archive.org/download/psvitaalive-dungeon-hunter-3-vita/dungeon-hunter-3-vita%20v1.0.0.vpk",
         "rec": true
       }
     ]
@@ -9677,19 +9679,19 @@
     "aids": [
       "metalsyntax"
     ],
-    "cid": "plugins",
+    "cid": "ports",
     "sids": [
-      "other"
+      "rpg"
     ],
     "req": "- PS Vita / PS TV running HENkaku or Enso (Firmware 3.60 / 3.65).\n- kubridge.skprx and fd_fix.skprx installed in your taiHEN config.txt under KERNEL.\n- libshacccg.suprx installed in ur0:data/libshacccg.suprx (extractable via ShaRKBR33D).\n- Extract libEternalLegacy.so from lib/armeabi/libEternalLegacy.so in the APK and copy it to ux0:data/eternallegacy/.\n- Copy libEternalLegacy.so to ux0:data/eternallegacy/.\n- Missing data: if the game reports missing data, make sure ux0:data/eternallegacy/GloftELHP/ and\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
     "st": "Archive",
     "v": "1.0.0",
     "vd": "2026-09-29",
     "sz": 1075480,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/d4a0e2216cc90b472e5b25ae74d59f3a04925c63e0d4c674c424977bc1fd770a.png",
+    "ic": "https://archive.org/download/psvitaalive-eternal-legacy-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/454e01fc6cde477620582692fecd97f11f8c1a3da930a3ef819172a16ac86c78.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/6591e97c3148d46cdbd2fc1f32f005f7c5dc2251c2e873d3657171a3c5eac93b.png"
+      "https://archive.org/download/psvitaalive-eternal-legacy-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-eternal-legacy-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1394311511",
@@ -9704,7 +9706,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Eternal-Legacy-vita/releases/download/v1.0.0/eternallegacy.vpk",
+        "u": "https://archive.org/download/psvitaalive-eternal-legacy-vita/eternal-legacy-vita%20v1.0.0.vpk",
         "rec": true
       }
     ]
