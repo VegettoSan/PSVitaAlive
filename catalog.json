@@ -10441,17 +10441,17 @@
     "sids": [
       "other"
     ],
-    "v": "Alpha 0.1.0",
+    "v": "0.1.0",
     "vd": "2026-09-06",
     "req": "NoNpDrm",
-    "sz": 2537554,
+    "sz": 2534795,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
         "u": "https://github.com/Frxn5J/VagaChatVITA/releases/download/0.1.0/VagaChatVITA.vpk",
-        "sz": 2537554,
+        "sz": 2534795,
         "rec": true
       },
       {
@@ -46133,7 +46133,7 @@
     "sids": [
       "other"
     ],
-    "v": "v.0.2 Alpha",
+    "v": "0.2",
     "vd": "2021-01-05",
     "req": "- Game Data Files: Android OR PC",
     "sz": 969613,
@@ -46150,7 +46150,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-sonic-cd-vita/sonic-cd-vita.vpk",
+        "u": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/download/0.2/SonicCD.vpk",
         "rec": true
       },
       {
