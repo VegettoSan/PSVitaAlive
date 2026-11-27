@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "approved": [
+    {
+      "candidate_key": "gh:279624330",
+      "project": "Electric1447/MinFWVer",
+      "id": "minfwver",
+      "title_id": "MINFW0000",
+      "tag": "v2.1",
+      "status": "Legacy",
+      "author_ids": [
+        "electric",
+        "theflow"
+      ],
+      "category_id": "system",
+      "subcategory_ids": [
+        "firmware-tools",
+        "system-information"
+      ],
+      "name": "MinFWVer",
+      "description": "Checks the minimum factory firmware version of your PS Vita.",
+      "long_description": "Utility for checking the factory firmware version of a PS Vita. Published by Electric1447; the factory firmware code is credited to TheFloW in the original README.",
+      "requirements": "- Homebrew-enabled PS Vita with Unsafe Homebrew enabled.",
+      "license": "MIT",
+      "license_path": "LICENSE",
+      "license_text": "The MIT License (MIT)\n\nCopyright (c) 2019 TheFloW\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "approval_basis": "Historical 2021 release; original repository README credits TheFloW and the release tag includes the MIT copyright and permission notice."
+    }
+  ]
+}
