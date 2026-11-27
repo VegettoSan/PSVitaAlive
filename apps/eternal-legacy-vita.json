@@ -7,9 +7,9 @@
   "aids": [
     "metalsyntax"
   ],
-  "cid": "plugins",
+  "cid": "ports",
   "sids": [
-    "other"
+    "rpg"
   ],
   "req": "- PS Vita / PS TV running HENkaku or Enso (Firmware 3.60 / 3.65).\n- kubridge.skprx and fd_fix.skprx installed in your taiHEN config.txt under KERNEL.\n- libshacccg.suprx installed in ur0:data/libshacccg.suprx (extractable via ShaRKBR33D).\n- Extract libEternalLegacy.so from lib/armeabi/libEternalLegacy.so in the APK and copy it to ux0:data/eternallegacy/.\n- Copy libEternalLegacy.so to ux0:data/eternallegacy/.\n- Missing data: if the game reports missing data, make sure ux0:data/eternallegacy/GloftELHP/ and\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
   "st": "Archive",

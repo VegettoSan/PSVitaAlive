@@ -7,9 +7,10 @@
   "aids": [
     "henrykun55"
   ],
-  "cid": "emulators",
+  "cid": "ports",
   "sids": [
-    "other"
+    "fps",
+    "shooter"
   ],
   "req": "- A PS Vita or PS TV with HENkaku/Ensō (any firmware supported by them) and\n- The PC game files from the original 2000 CD release. The port is built\n- Updating to a newer version only needs the new vpk; your game data and saves in\n- Installing an update needs Enable Unsafe Homebrew on in Settings > HENkaku",
   "st": "Archive",
