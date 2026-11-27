@@ -137,12 +137,21 @@ def git_publish(root: Path, paths: list[str], message: str, *, validate: bool) -
         if changed.returncode:
             break
         remote_paths = set(changed.stdout.rstrip("\0").split("\0")) - {""}
-        if not remote_paths or not remote_paths <= safe_concurrent_paths:
+        if not remote_paths:
+            # A rejected push can be transient even when origin/main did not move.
+            # Retry without rebasing or changing the committed checkpoint.
+            print("Preservation: main unchanged after rejected push; retrying.", flush=True)
+            time.sleep(2 ** attempt)
+            continue
+        if not remote_paths <= safe_concurrent_paths:
+            print("Preservation: concurrent relevant paths: " + ", ".join(sorted(remote_paths)[:20]), flush=True)
             break
         clean = git("status", "--porcelain", "--untracked-files=no")
         if clean.returncode or clean.stdout.strip():
+            print("Preservation: tracked working tree not clean; safe rebase refused.", flush=True)
             break
         if git("rebase", "origin/main").returncode:
+            print("Preservation: independent state rebase failed; safe stop.", flush=True)
             git("rebase", "--abort")
             break
         if validate:

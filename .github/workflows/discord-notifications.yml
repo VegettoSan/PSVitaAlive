@@ -31,7 +31,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: psvitaalive-discord-notifications
+  group: vitahub-catalog-publisher
   cancel-in-progress: false
   queue: max
 
