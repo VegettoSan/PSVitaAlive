@@ -479,6 +479,46 @@
     ]
   },
   {
+    "id": "lotr-two-towers-vita",
+    "tid": "TTWR00001",
+    "n": "The Two Towers",
+    "d": "lotr-two-towers-vita",
+    "ld": "A PS Vita port of *The Lord of the Rings: The Two Towers* (Xbox, USA, 2002), built on The Two Towers Recompiled (static recompilation of the Xbox game) and xboxrecomp. The Xbox code runs natively on the Vita's ARM CPU; the Xbox GPU commands are translated to the Vita's GPU through vitaGL.",
+    "aids": [
+      "federicopellegrino994"
+    ],
+    "cid": "modding",
+    "sids": [
+      "textures"
+    ],
+    "req": "- ⚠️ No game files are included. You need your own copy of the Xbox game (USA version). Please don't ask for ISOs.\n- 3. Copy the game files to the Vita\n- When you're done, this file must exist: ux0:data/twotowers/game_files/default.xbe.\n- Download PSVshell (https://github.com/Electry/PSVshell) and install it as its readme explains (a plugin in ur0:tai/ plus a line in config.txt).\n- A native PC port of The Lord of the Rings: The Two Towers (Xbox, USA, 2002), made by static recompilation. It needs your own copy of the game, either the disc image (ISO) or an extracted folder. No game data is included.\n- No game data is included. You need your own copy of the game (Xbox, USA disc image).\n- A PS Vita / PS TV with HENkaku/Ensō (any recent setup with VitaShell).\n- About 4–5 GB free on ux0: for the game files.\n- so that you have, for example, ux0:data/twotowers/game_files/default.xbe and",
+    "st": "Archive",
+    "v": "0.3",
+    "vd": "2026-11-25",
+    "sz": 9851622,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/0a0140b7566e71cb0bd5e3209176b26dafb42223eb0712aad2b7a6ebe2e51360.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/1a748cc89e5abdbf5ecfd151e20be89e92b38c621fc5f53a20bc600bd2f25b55.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1460036012",
+    "su": "https://github.com/federicopellegrino994/lotr-two-towers-vita",
+    "rp": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/tag/v0.3",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/federicopellegrino994/lotr-two-towers-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/download/v0.3/TwoTowers.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "mario-kart-ds",
     "tid": "MKDS00001",
     "n": "Mario Kart DS",
@@ -1014,6 +1054,46 @@
     "su": "https://github.com/edgarlugo/stk-code",
     "rp": "https://github.com/edgarlugo/stk-code/releases",
     "cl": "- New default controls: cross accelerates and triangle looks back\n- The d-pad steers too, next to the left stick, and moves through the menus\n- Old default buttons are updated when the game starts; buttons changed in Options > Controls stay as they are"
+  },
+  {
+    "id": "syncthing-vita",
+    "tid": "SYNCTHING",
+    "n": "Syncthing",
+    "d": "Vita port of the syncthing utility",
+    "ld": "states, screenshots and music travel between your Vita, your computer, your Steam Deck or your phone, over your home Wi-Fi or across the Internet, with no cloud account and no USB cable.",
+    "aids": [
+      "geoffreymetais"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "req": "- You need a PS Vita (or PS TV) running homebrew (HENkaku / Ensō), with Enable Unsafe\n- Homebrew turned on in HENkaku Settings: the app needs full homebrew permissions to read",
+    "st": "Archive",
+    "v": "0.2.0",
+    "vd": "2026-11-24",
+    "sz": 1444248,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/8f259199658fcdf6ead409467dc47275284c03d2075f76341cac850c7bcc901e.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/27839b183222bb4557be86658e4c9775ec52f07d817d7c93cc8b56ecdada5b7e.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1449735770",
+    "su": "https://github.com/GeoffreyMetais/syncthing-vita",
+    "rp": "https://github.com/GeoffreyMetais/syncthing-vita/releases/tag/v0.2.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/GeoffreyMetais/syncthing-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/GeoffreyMetais/syncthing-vita/releases/download/v0.2.0/SYNCTHING.vpk",
+        "rec": true
+      }
+    ]
   },
   {
     "id": "the-sims",
@@ -2969,6 +3049,47 @@
     ]
   },
   {
+    "id": "ps-vita-recovery-menu-project",
+    "tid": "RECM00001",
+    "n": "PS Vita Recovery",
+    "d": "A diagnostic and recovery environment for the PlayStation Vita with plugin repair tools, storage diagnostics, and planned boot-time recovery via R trigger.",
+    "ld": "A diagnostic and recovery environment for the PlayStation Vita with plugin repair tools, storage diagnostics, and boot-time recovery via R trigger.",
+    "aids": [
+      "drinkingsubset"
+    ],
+    "cid": "plugins",
+    "sids": [
+      "storage"
+    ],
+    "req": "- No boot plugin changes: just install the VPK.\n- Install VitaRecovery_v1.2.3.vpk with VitaShell. No boot plugin changes, so you do not need to reinstall Boot Recovery. \"Enable Unsafe Homebrew\" must stay ticked in HENkaku Settings.\n- You have a basic understanding of PS Vita custom firmware and the risks involved in modifying system files.\n- Boot Recovery: installer for the boot plugins (Install / Update / Uninstall)\n- Safe Mode, Undo Safe Mode (puts back your exact config from before Safe Mode), View & Toggle, Re-enable All (turns on every plugin), Reset to Minimal (old config kept as config.txt.before_reset), Backup / Restore config.\n- Back Up Layout: copies ur0:shell/db/app.db to ux0:data/vita_recovery/layout/app.db and checks the copy before it replaces the old backup. The backup before it is kept too (\"Older\"). Nothing is rotated if the layout hasn't changed.\n- Restore Latest Backup / Restore Older Backup: builds the restored layout on a copy (the live database is never edited), shows what will happen, then restarts the Vita. Early in the next boot the boot plugin swaps it in and keeps the replaced database as ur0:shell/db/app.db.prelayout. Apps no longer installed are skipped; apps installed after the backup are added after the last bubble.\n- Requires Ensō and the current boot plugin. Uses the Vita's own SQLite module.\n- Checks this GitHub repository for the latest release and downloads the .vpk to ux0:downloads/ with a SHA-256 check. You install it yourself with VitaShell. Uses its own HTTPS client (mbedTLS with bundled root certificates) because the Vita's built-in SSL cannot connect to GitHub on older firmware.\n- Jailbreak required: HENkaku / h-encore / h-encore2 on firmware 3.60–3.74. Boot-time recovery (hold R), Rebuild Database and Home Screen Layout restore need Ensō.\n- Since v1.1.9 the app is \"unsafe\" homebrew: tick HENkaku Settings → Enable Unsafe Homebrew (VitaShell needs the same setting). It can then read every drive, but only writes to user storage; system drives (os0: vs0: sa0: pd0: tm0: ud0: vd0:) stay read-only.\n- sceAppMgrLaunchAppByUri needs SceShell to be running, so it cannot be called from the kernel plugin. The kernel plugin only checks the buttons early in boot and writes a flag file. The user plugin runs inside SceShell, reads the flag and launches the app.",
+    "st": "Archive",
+    "v": "1.2.3",
+    "vd": "2026-11-16",
+    "sz": 602773,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/a422f81e9113b42afc98e85df1a748d11bf5b31ba53675f69ee3f96fa8d7eb29.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/c0812825d81b3cba47e02cf7116cb8d787bfae305cb6e833fd7e1e965f2de425.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/fb9b6b8ec88f8b48cd83a6e52fb2508accb228037a4ad0b45528768977609d65.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1176231607",
+    "su": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project",
+    "rp": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project/releases/tag/v1.2.3",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project/releases/download/v1.2.3/VitaRecovery_v1.2.3.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "celeste",
     "tid": "CLST00001",
     "n": "Celeste",
@@ -3645,6 +3766,46 @@
       "https://archive.org/download/thug2-vita/Shot0.png"
     ],
     "rp": "https://github.com/iwannagooutside/thug2-vita/releases"
+  },
+  {
+    "id": "uae4all2-hd-vita",
+    "tid": "UAE4ALLHD",
+    "n": "UAE4All2 HD",
+    "d": "A cleaned PlayStation Vita build of UAE4ALL2 HD, an Amiga emulator based on the UAE4ALL2 project.",
+    "ld": "A cleaned PlayStation Vita build of UAE4ALL2 HD, an Amiga emulator based on the UAE4ALL2 project.",
+    "aids": [
+      "theherogac"
+    ],
+    "cid": "emulators",
+    "sids": [
+      "other"
+    ],
+    "req": "- Copy legally obtained Kickstart ROMs to:\n- Copy Amiga disk images to a folder on ux0: or uma0:.\n- For the CD32 preset, both ROMs are required:\n- Copy the .lha files to any accessible folder on your Vita (ux0: or uma0:).",
+    "st": "Archive",
+    "v": "1.14",
+    "vd": "2026-11-13",
+    "sz": 6956127,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/b9140d9ef1b04e0781b4611ab4e26af4bc77c3afe02b79d67a2df0bb4d54a4a8.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/476f04b8b0df03ca99427c58c167b19db9d1473c431eddaee7a8206855eb5a21.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1335918227",
+    "su": "https://github.com/theheroGAC/UAE4ALL2-HD-VITA",
+    "rp": "https://github.com/theheroGAC/UAE4ALL2-HD-VITA/releases/tag/1.14",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/theheroGAC/UAE4ALL2-HD-VITA"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/theheroGAC/UAE4ALL2-HD-VITA/releases/download/1.14/uae4all2hd.vpk",
+        "rec": true
+      }
+    ]
   },
   {
     "id": "zombiewood",
@@ -10606,6 +10767,46 @@
     "ic": "https://archive.org/download/golden-balloon-psvita/icon0.png",
     "ss": [
       "https://archive.org/download/golden-balloon-psvita/shot0.png"
+    ]
+  },
+  {
+    "id": "advancedslop",
+    "tid": "ADVSLOP00",
+    "n": "AdvancedSlop",
+    "d": "A GBA emulator",
+    "ld": "Savestates can also be created, loaded and managed from the pause menu, and a game can be resumed from a savestate on its page in the browser.",
+    "aids": [
+      "grarak"
+    ],
+    "cid": "emulators",
+    "sids": [
+      "game-boy-advance"
+    ],
+    "req": "- Install kubridge.skprx version >= 0.3.1 from https://github.com/bythos14/kubridge/releases\n- Make sure this plugin is in the KERNEL section, otherwise the app might crash upon opening\n- Create the folder ux0:data/advancedslop and put your roms there",
+    "st": "Archive",
+    "v": "0.1.0",
+    "vd": "2026-09-16",
+    "sz": 3333738,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/b61a2ff397beb7f6ecfb361925450d3e93d452297de618337c1b7f0e70d4d45e.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1311337155",
+    "su": "https://github.com/Grarak/AdvancedSlop",
+    "rp": "https://github.com/Grarak/AdvancedSlop/releases/tag/0.1.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/Grarak/AdvancedSlop"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Grarak/AdvancedSlop/releases/download/0.1.0/advancedslop.vpk",
+        "rec": true
+      }
     ]
   },
   {

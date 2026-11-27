@@ -3262,6 +3262,21 @@
     "ic": "https://avatars.githubusercontent.com/u/118918998?v=4"
   },
   {
+    "id": "federicopellegrino994",
+    "n": "federicopellegrino994",
+    "b": "Developer",
+    "av": "https://avatars.githubusercontent.com/u/224457329?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/federicopellegrino994",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "festi",
     "n": "festi",
     "av": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png",
@@ -3612,6 +3627,21 @@
         "t": "Official Website",
         "n": "Gemini",
         "u": "https://gemini.google.com/",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "geoffreymetais",
+    "n": "Geoffrey Métais",
+    "b": "Software Engineer, Android developer \r\n@Deezer\r\nex @videolabs & VideoLAN",
+    "av": "https://avatars.githubusercontent.com/u/5031161?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/GeoffreyMetais",
         "rec": true
       }
     ],
@@ -4871,6 +4901,21 @@
       }
     ],
     "ic": "https://github.com/Jormii.png"
+  },
+  {
+    "id": "drinkingsubset",
+    "n": "Jose",
+    "b": "Developer",
+    "av": "https://avatars.githubusercontent.com/u/80879977?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/DrinkingSubset",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
     "id": "josephinoo",

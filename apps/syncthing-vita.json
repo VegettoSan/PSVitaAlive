@@ -1,0 +1,40 @@
+{
+  "id": "syncthing-vita",
+  "tid": "SYNCTHING",
+  "n": "Syncthing",
+  "d": "Vita port of the syncthing utility",
+  "ld": "states, screenshots and music travel between your Vita, your computer, your Steam Deck or your phone, over your home Wi-Fi or across the Internet, with no cloud account and no USB cable.",
+  "aids": [
+    "geoffreymetais"
+  ],
+  "cid": "utilities",
+  "sids": [
+    "other"
+  ],
+  "req": "- You need a PS Vita (or PS TV) running homebrew (HENkaku / Ensō), with Enable Unsafe\n- Homebrew turned on in HENkaku Settings: the app needs full homebrew permissions to read",
+  "st": "Archive",
+  "v": "0.2.0",
+  "vd": "2026-11-24",
+  "sz": 1444248,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/8f259199658fcdf6ead409467dc47275284c03d2075f76341cac850c7bcc901e.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/27839b183222bb4557be86658e4c9775ec52f07d817d7c93cc8b56ecdada5b7e.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1449735770",
+  "su": "https://github.com/GeoffreyMetais/syncthing-vita",
+  "rp": "https://github.com/GeoffreyMetais/syncthing-vita/releases/tag/v0.2.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/GeoffreyMetais/syncthing-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/GeoffreyMetais/syncthing-vita/releases/download/v0.2.0/SYNCTHING.vpk",
+      "rec": true
+    }
+  ]
+}

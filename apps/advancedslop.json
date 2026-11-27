@@ -1,0 +1,40 @@
+{
+  "id": "advancedslop",
+  "tid": "ADVSLOP00",
+  "n": "AdvancedSlop",
+  "d": "A GBA emulator",
+  "ld": "Savestates can also be created, loaded and managed from the pause menu, and a game can be resumed from a savestate on its page in the browser.",
+  "aids": [
+    "grarak"
+  ],
+  "cid": "emulators",
+  "sids": [
+    "game-boy-advance"
+  ],
+  "req": "- Install kubridge.skprx version >= 0.3.1 from https://github.com/bythos14/kubridge/releases\n- Make sure this plugin is in the KERNEL section, otherwise the app might crash upon opening\n- Create the folder ux0:data/advancedslop and put your roms there",
+  "st": "Archive",
+  "v": "0.1.0",
+  "vd": "2026-09-16",
+  "sz": 3333738,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/b61a2ff397beb7f6ecfb361925450d3e93d452297de618337c1b7f0e70d4d45e.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1311337155",
+  "su": "https://github.com/Grarak/AdvancedSlop",
+  "rp": "https://github.com/Grarak/AdvancedSlop/releases/tag/0.1.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Grarak/AdvancedSlop"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Grarak/AdvancedSlop/releases/download/0.1.0/advancedslop.vpk",
+      "rec": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "lotr-two-towers-vita",
+  "tid": "TTWR00001",
+  "n": "The Two Towers",
+  "d": "lotr-two-towers-vita",
+  "ld": "A PS Vita port of *The Lord of the Rings: The Two Towers* (Xbox, USA, 2002), built on The Two Towers Recompiled (static recompilation of the Xbox game) and xboxrecomp. The Xbox code runs natively on the Vita's ARM CPU; the Xbox GPU commands are translated to the Vita's GPU through vitaGL.",
+  "aids": [
+    "federicopellegrino994"
+  ],
+  "cid": "modding",
+  "sids": [
+    "textures"
+  ],
+  "req": "- ⚠️ No game files are included. You need your own copy of the Xbox game (USA version). Please don't ask for ISOs.\n- 3. Copy the game files to the Vita\n- When you're done, this file must exist: ux0:data/twotowers/game_files/default.xbe.\n- Download PSVshell (https://github.com/Electry/PSVshell) and install it as its readme explains (a plugin in ur0:tai/ plus a line in config.txt).\n- A native PC port of The Lord of the Rings: The Two Towers (Xbox, USA, 2002), made by static recompilation. It needs your own copy of the game, either the disc image (ISO) or an extracted folder. No game data is included.\n- No game data is included. You need your own copy of the game (Xbox, USA disc image).\n- A PS Vita / PS TV with HENkaku/Ensō (any recent setup with VitaShell).\n- About 4–5 GB free on ux0: for the game files.\n- so that you have, for example, ux0:data/twotowers/game_files/default.xbe and",
+  "st": "Archive",
+  "v": "0.3",
+  "vd": "2026-11-25",
+  "sz": 9851622,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/0a0140b7566e71cb0bd5e3209176b26dafb42223eb0712aad2b7a6ebe2e51360.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/1a748cc89e5abdbf5ecfd151e20be89e92b38c621fc5f53a20bc600bd2f25b55.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1460036012",
+  "su": "https://github.com/federicopellegrino994/lotr-two-towers-vita",
+  "rp": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/tag/v0.3",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/federicopellegrino994/lotr-two-towers-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/download/v0.3/TwoTowers.vpk",
+      "rec": true
+    }
+  ]
+}

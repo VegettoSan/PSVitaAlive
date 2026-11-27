@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "app_id": "syncthing-vita",
+  "candidate_key": "gh:1449735770",
+  "repo": "GeoffreyMetais/syncthing-vita",
+  "tag": "v0.2.0",
+  "sha256": "5f2220c022a0944ff21dfec8cc4c2c53c9d48c30fb85dc1e03e099b894936930"
+}
