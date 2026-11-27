@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/957554cf5f8f5fd23fdd4ecf3d45215246830644b672e50e560a6f2fa12a59b0.png": "shot_01.png"
   },
   "attempted": [
-    "combo-peel-vita v1.1.vpk"
+    "combo-peel-vita v1.1.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:07:11+00:00",
