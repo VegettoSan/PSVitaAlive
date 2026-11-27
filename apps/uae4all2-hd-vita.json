@@ -16,9 +16,9 @@
   "v": "1.14",
   "vd": "2026-11-13",
   "sz": 6956127,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/b9140d9ef1b04e0781b4611ab4e26af4bc77c3afe02b79d67a2df0bb4d54a4a8.png",
+  "ic": "https://archive.org/download/psvitaalive-uae4all2-hd-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/476f04b8b0df03ca99427c58c167b19db9d1473c431eddaee7a8206855eb5a21.png"
+    "https://archive.org/download/psvitaalive-uae4all2-hd-vita/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1335918227",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/theheroGAC/UAE4ALL2-HD-VITA/releases/download/1.14/uae4all2hd.vpk",
+      "u": "https://archive.org/download/psvitaalive-uae4all2-hd-vita/uae4all2-hd-vita%20v1.14.vpk",
       "rec": true
     }
   ]
