@@ -9,7 +9,7 @@ import hashlib
 import json
 import re
 import unicodedata
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
 
@@ -89,6 +89,32 @@ def prepared_priority(row, state):
             and record.get("sha256") == (row[2].get("vpk") or {}).get("sha256"))
 
 
+def source_preflight_ready(row, state, now=None):
+    """Require v2 producer proof, not merely a historical verified VPK."""
+    index = state.get("publication_queue") or {}
+    if not isinstance(index, dict):
+        return False
+    # Backward-compatible rollout: once v2 arrives, old hints no longer qualify.
+    if index.get("schema_version") != 2:
+        return True
+    if not prepared_priority(row, state):
+        return False
+    result = row[2]
+    proof = result.get("publication_preflight") or {}
+    asset = proof.get("asset") or {}
+    vpk = result.get("vpk") or {}
+    try:
+        age = (now or datetime.now(timezone.utc)) - datetime.fromisoformat(proof["checked_at"])
+    except (TypeError, ValueError, KeyError):
+        return False
+    return (proof.get("state") == "verified" and timedelta(0) <= age <= timedelta(hours=24)
+            and asset.get("state") == "selected"
+            and asset.get("tag") == vpk.get("tag") and asset.get("url") == vpk.get("url")
+            and asset.get("size") == vpk.get("bytes_read")
+            and asset.get("asset_id") == vpk.get("asset_id")
+            and (not asset.get("digest") or asset["digest"] == "sha256:" + str(vpk.get("sha256", ""))))
+
+
 def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None):
     require(state.get("schema_version") == 1 and isinstance(state.get("records"), dict)
             and len(state["records"]) <= 5000, "Invalid Orbit checkpoint")
@@ -151,6 +177,8 @@ def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None)
             draft.get("description"), draft.get("long_description"), req.get("value")))
         if re.search(r"\b(?:bundles?|bundled with|includes?|included with|ships? with|contains?)\s+(?:the\s+)?(?:(?:original|commercial|proprietary|copyrighted)\s+)+(?:game(?:\s+(?:data|files|assets))?|roms?|bios)\b", text, re.I):
             skip("bundled third-party content review"); continue
+        if not source_preflight_ready((key, entry, result), state):
+            skip("awaiting current stable source preflight"); continue
         rows.append((key, entry, result))
     # Reject conflicts across independently discovered projects as well as canonical files.
     from collections import Counter

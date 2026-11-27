@@ -83,6 +83,22 @@ class AutomaticTests(unittest.TestCase):
         self.assertFalse(auto.prepared_priority(row, state))
         self.assertFalse(auto.prepared_priority(row, {}))
 
+    def test_v2_requires_current_source_proof(self):
+        from datetime import datetime, timedelta, timezone
+        now = datetime.now(timezone.utc)
+        row = self.rows()[0]
+        proof = {"state": "verified", "checked_at": now.isoformat(), "asset": {"state": "selected", "size": 100}}
+        row = (row[0], row[1], {**row[2], "publication_preflight": proof})
+        state = {"schema_version": 1, "records": {row[0]: {"fingerprint": auto.fingerprint(row[1]), "result": row[2]}},
+                 "publication_queue": {"schema_version": 2, "records": {row[0]: {
+                     "state": "READY_TO_PUBLISH", "fingerprint": auto.fingerprint(row[1]), "sha256": "a"*64}}}}
+        self.assertTrue(auto.source_preflight_ready(row, state, now))
+        self.assertEqual(len(auto.eligible_rows({row[0]: row[1]}, state, self.policy, [], self.retired)), 1)
+        self.assertFalse(auto.source_preflight_ready(row, state, now + timedelta(hours=25)))
+        state["publication_queue"]["records"][row[0]]["state"] = "PROMISING"
+        self.assertEqual(auto.eligible_rows({row[0]: row[1]}, state, self.policy, [], self.retired), [])
+        self.assertTrue(auto.source_preflight_ready(row, {}, now))
+
     def test_license_at_exact_tag(self):
         def api(repo,path):
             self.assertEqual(path,"license?ref=v1")
