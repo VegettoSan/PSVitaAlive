@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/1a748cc89e5abdbf5ecfd151e20be89e92b38c621fc5f53a20bc600bd2f25b55.png": "shot_01.png"
   },
   "attempted": [
-    "lotr-two-towers-vita v0.3.vpk"
+    "lotr-two-towers-vita v0.3.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:31:13+00:00",
