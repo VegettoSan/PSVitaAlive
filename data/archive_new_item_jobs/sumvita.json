@@ -1,0 +1,50 @@
+{
+  "app_id": "sumvita",
+  "identifier": "psvitaalive-sumvita",
+  "source_url": "https://github.com/stevenjc2009-byte/sumvita/releases/download/v1.2.0/Sumvita.vpk",
+  "files": {
+    "sumvita v1.2.0.vpk": {
+      "size": 2493332,
+      "md5": "27eb0ace2f5fdfd077df613803ce23a9",
+      "sha256": "5ef6c3f076202c409f7625de264c25c092bd82aaff9b5accb80d86f2443ff4c0"
+    },
+    "icon0.png": {
+      "size": 4374,
+      "md5": "e97004a05fcd1cda6ab9dddcd0335baf",
+      "sha256": "10934c87cb09de7d31a6730a0cdcc6a6361bb7a25df68b5be984669be4ae2903"
+    },
+    "shot_01.png": {
+      "size": 31822,
+      "md5": "51f45c1962465986bb24ae89e0c303fe",
+      "sha256": "05ba59052e798a66a5bdeca56bce51217ebb35e92cf70bfdaaba95dc42cc906d"
+    },
+    "SOURCES.txt": {
+      "size": 653,
+      "md5": "65c593792e97683eae555e30dddc1523",
+      "sha256": "d4d779117ce59317fbb76f17857fb7e23522282dd6535989a59fe54fc8fed7f3"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/10934c87cb09de7d31a6730a0cdcc6a6361bb7a25df68b5be984669be4ae2903.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/05ba59052e798a66a5bdeca56bce51217ebb35e92cf70bfdaaba95dc42cc906d.png": "shot_01.png"
+  },
+  "attempted": [
+    "sumvita v1.2.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:01:57+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "SUMV00001",
+    "name": "Sumvita",
+    "search_title": "Sumvita",
+    "version": "1.2.0",
+    "repo": "stevenjc2009-byte/sumvita",
+    "tag": "v1.2.0",
+    "asset": "Sumvita.vpk",
+    "url": "https://github.com/stevenjc2009-byte/sumvita/releases/download/v1.2.0/Sumvita.vpk",
+    "size": 2493332,
+    "sha256": "5ef6c3f076202c409f7625de264c25c092bd82aaff9b5accb80d86f2443ff4c0",
+    "creator": "stevenjc2009-byte"
+  }
+}
