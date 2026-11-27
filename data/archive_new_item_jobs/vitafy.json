@@ -1,0 +1,50 @@
+{
+  "app_id": "vitafy",
+  "identifier": "psvitaalive-vitafy",
+  "source_url": "https://github.com/Pietro00x/vitafy/releases/download/v0.1.0/vitafy.vpk",
+  "files": {
+    "vitafy v0.1.0.vpk": {
+      "size": 1703139,
+      "md5": "b93fb9a53a97f81e6448294f012f5fc3",
+      "sha256": "f33ba381e68b1431ddcfdb50af1194a8de788a532f01e1fcfafd70c51795e425"
+    },
+    "icon0.png": {
+      "size": 852,
+      "md5": "2700017d8685bcb99223ab5902ef10a0",
+      "sha256": "e6663cba9360b73ac2b8a6739bad9ca4a20e234ff6cf68a2505992e9301412a3"
+    },
+    "shot_01.png": {
+      "size": 3194,
+      "md5": "4d77d6779ed56c699810aa2d55ba4eab",
+      "sha256": "0a031e6179636c47235a7f1b5a6e5a54e0533b504e3eb455acdd3fabf11f8538"
+    },
+    "SOURCES.txt": {
+      "size": 613,
+      "md5": "ee35dd16cdb638d3a5ea4d3792854668",
+      "sha256": "0bfce9a597b4b9c6ab7193e9fa0ef41c9e7e2325c4dd4d4b8d9546392b4b9a4b"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitafy/e6663cba9360b73ac2b8a6739bad9ca4a20e234ff6cf68a2505992e9301412a3.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitafy/0a031e6179636c47235a7f1b5a6e5a54e0533b504e3eb455acdd3fabf11f8538.png": "shot_01.png"
+  },
+  "attempted": [
+    "vitafy v0.1.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:08:50+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "VTFY00001",
+    "name": "Vitafy",
+    "search_title": "Vitafy",
+    "version": "0.1.0",
+    "repo": "Pietro00x/vitafy",
+    "tag": "v0.1.0",
+    "asset": "vitafy.vpk",
+    "url": "https://github.com/Pietro00x/vitafy/releases/download/v0.1.0/vitafy.vpk",
+    "size": 1703139,
+    "sha256": "f33ba381e68b1431ddcfdb50af1194a8de788a532f01e1fcfafd70c51795e425",
+    "creator": "Pietro A"
+  }
+}
