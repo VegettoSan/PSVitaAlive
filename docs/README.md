@@ -13,6 +13,8 @@ Supplementary documentation for architecture, pipelines and client behaviour.
 
 | Location | Topic |
 |----------|--------|
+| [`docs/AUTOMATIC_CATALOG_PUBLICATION_20261127.md`](AUTOMATIC_CATALOG_PUBLICATION_20261127.md) | **Automatización del catálogo y preservación:** Orbit, validación VPK, cola, concurrencia, PeelGallery, evidencia de CI y pendientes |
+| [`docs/VERIFIED_PR_AUTOMATION_PROPOSAL_20261127.md`](VERIFIED_PR_AUTOMATION_PROPOSAL_20261127.md) | **Propuesta aplazada (no implementada):** revisión/enriquecimiento de PR Verified, caso Five Nights at Freddy's, seguridad y plan de pruebas |
 | [`docs/CONTROLLER_INPUT_POLICY_20261126.md`](CONTROLLER_INPUT_POLICY_20261126.md) | **Entrada del mando:** acciones únicas globales, navegación continua preservada, implementación y pruebas |
 | [`docs/DOWNLOAD_QUEUE_INTEGRATION_20261126.md`](DOWNLOAD_QUEUE_INTEGRATION_20261126.md) | **Gestor de descargas:** estado integrado, arquitectura FIFO, almacenamiento, historial/recuperación, rendimiento, pruebas físicas y deuda técnica |
 | [`docs/GAME_FILES_ROUTES_20261105.md`](GAME_FILES_ROUTES_20261105.md) | **Inventario de rutas Game Files (2026-11-05):** 158 aplicaciones, rutas `ux0:data/`/`ux0:app/`, `extract_path`, `installed_paths`, variantes y carpetas compartidas; generado desde `apps/*.json` |

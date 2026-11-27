@@ -1,5 +1,7 @@
 # PSVitaAlive — Plan de respaldo automático y preservación en Archive.org
 
+> **Actualización 27/11/2026:** este documento conserva el plan histórico original, no el estado vigente. La implementación real mediante GitHub Actions por lotes y su validación se detallan en [continuidad de preservación](PSVitaAlive_Continuidad_Preservacion.md) y [automatización del catálogo y preservación](AUTOMATIC_CATALOG_PUBLICATION_20261127.md). No se ha adoptado Cloudflare como infraestructura de este flujo.
+
 > **Estado: propuesta de arquitectura / NO IMPLEMENTADA.**
 > Fecha de documentación: 2026-11-23.
 > Alcance de este cambio: **solo documentación**. No se habilitan subidas, servicios Cloudflare, credenciales, modificaciones del sincronizador ni escrituras nuevas sobre el catálogo.
