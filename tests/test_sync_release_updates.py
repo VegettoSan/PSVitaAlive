@@ -80,6 +80,21 @@ class TestReleaseSynchronization(unittest.TestCase):
         self.assertEqual(result["version"], "0.1.0")
         self.assertEqual(source["version"], "Alpha 0.1.0")
 
+    def test_vagachat_same_release_tag_does_not_relabel_alpha(self):
+        source = app()
+        source["version"] = "Alpha 0.1.0"
+        source["version_date"] = "2026-11-09"
+        url = "https://github.com/example/vita-app/releases/download/0.1.0/vita.vpk"
+        source["links"][0]["url"] = url
+        item = release(tag="0.1.0", assets=[{"name": "vita.vpk", "download_url": url, "size": 400}])
+        self.assertIn("same immutable release", release_update(source, item, REPO)[1])
+        source["links"][0]["url"] = "https://archive.org/download/vita-app/Alpha.vpk"
+        self.assertIn("same-day archived", release_update(source, item, REPO)[1])
+        item["published"] = "2026-11-10T00:00:00Z"
+        updated, reason = release_update(source, item, REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(updated["version"], "0.1.0")
+
     def test_prereleases_need_opt_in_and_are_semantically_ordered(self):
         old = app()
         old["version"] = "1.1"

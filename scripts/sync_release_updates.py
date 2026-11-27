@@ -364,6 +364,15 @@ def release_update(app: dict, item: dict, repo: str, *, auto_prerelease: bool = 
     current_url = current_link.get("url")
     current_archive = archive_vpk_link(current_url)
     current_source = normalized_repo(current_url)
+    # A release titled "Alpha 0.1.0" may use tag "0.1.0" for the same binary.
+    if item.get("release_channel") != "rolling" and current_url == asset_url:
+        return None, "same immutable release asset; preserve catalog version"
+    old_numeric, new_numeric = numeric_version(app.get("version")), numeric_version(new_version)
+    if (current_archive and release_date(app.get("version_date")) == when
+            and old_numeric is not None and new_numeric is not None
+            and old_numeric[:4] == new_numeric[:4]
+            and old_numeric[4] < 5 and new_numeric[4] == 5):
+        return None, "same-day archived prerelease/stable identity uncertain; manual review"
     # Some catalog records list both GitHub and GitLab sources. The existing
     # VPK link may point to either *registered* source. Never trust a random
     # unrelated download domain.
