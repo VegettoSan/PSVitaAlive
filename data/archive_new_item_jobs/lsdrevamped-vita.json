@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/5b963471b520c1594cc2d07e7175f4c81320ee8ba61c2c7f49d647802f861878.png": "shot_01.png"
   },
   "attempted": [
-    "lsdrevamped-vita v1.0.vpk"
+    "lsdrevamped-vita v1.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T21:00:44+00:00",
