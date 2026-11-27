@@ -1,0 +1,50 @@
+{
+  "app_id": "vita-pkgenabler",
+  "identifier": "psvitaalive-vita-pkgenabler",
+  "source_url": "https://github.com/Freakler/vita-PKGEnabler/releases/download/1.00/PKGEnabler_v100.vpk",
+  "files": {
+    "vita-pkgenabler v1.00.vpk": {
+      "size": 73760,
+      "md5": "6b7c2ee2ad15fd41dead05d8a09fe9b7",
+      "sha256": "e4fe9be699c0eb487fb5c3b777dadcee163859ccb97537ed7f2bddc9c8b02b04"
+    },
+    "icon0.png": {
+      "size": 1577,
+      "md5": "6f281f0f50fbe9166bcc26141b9aae97",
+      "sha256": "83325580ead31a9cc7fa89a9b2791626c815231e5206832e887bed972e6d3ac6"
+    },
+    "shot_01.png": {
+      "size": 23045,
+      "md5": "c1559626da38e5f0af3214df53a13cd6",
+      "sha256": "306ed09ca20dd3e961bee5dc9548ad89a43887b2c1ed485d7a1a11033858896e"
+    },
+    "SOURCES.txt": {
+      "size": 663,
+      "md5": "6e135bd69e57d56d22bdbf62b2e5ea94",
+      "sha256": "68b56e0ce05e74c9f821735d9a528b7ccd2f79d175a08c5220c7f8b487c3207e"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/83325580ead31a9cc7fa89a9b2791626c815231e5206832e887bed972e6d3ac6.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/306ed09ca20dd3e961bee5dc9548ad89a43887b2c1ed485d7a1a11033858896e.png": "shot_01.png"
+  },
+  "attempted": [
+    "vita-pkgenabler v1.00.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:05:49+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PKGENABLE",
+    "name": "PKG Enabler",
+    "search_title": "PKG Enabler",
+    "version": "1.00",
+    "repo": "Freakler/vita-PKGEnabler",
+    "tag": "1.00",
+    "asset": "PKGEnabler_v100.vpk",
+    "url": "https://github.com/Freakler/vita-PKGEnabler/releases/download/1.00/PKGEnabler_v100.vpk",
+    "size": 73760,
+    "sha256": "e4fe9be699c0eb487fb5c3b777dadcee163859ccb97537ed7f2bddc9c8b02b04",
+    "creator": "Freakler"
+  }
+}
