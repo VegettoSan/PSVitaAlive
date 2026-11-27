@@ -57,6 +57,32 @@ class AutomaticTests(unittest.TestCase):
             entry={**self.entry,"app_draft":{**self.entry["app_draft"],"description":requirement}}
             self.assertEqual(len(self.rows(entry=entry)),1)
 
+    def test_local_description_filter(self):
+        entry = {**self.entry, "app_draft": {**self.entry["app_draft"], "description": ""}}
+        self.assertEqual(self.rows(entry=entry), [])
+
+    def test_feedback_cooldown_and_evidence_invalidation(self):
+        from datetime import datetime, timedelta, timezone
+        now = datetime(2026, 11, 27, tzinfo=timezone.utc)
+        row = self.rows()[0]
+        feedback = {}
+        auto.defer_candidate(feedback, row, ValueError("Upstream HTTP 404"), now)
+        self.assertEqual(feedback[row[0]]["reason"], "upstream_missing")
+        self.assertTrue(auto.is_deferred(feedback, row, now + timedelta(days=6)))
+        self.assertFalse(auto.is_deferred(feedback, row, now + timedelta(days=7)))
+        changed = (row[0], row[1], {**row[2], "vpk": {**row[2]["vpk"], "sha256": "b"*64}})
+        self.assertFalse(auto.is_deferred(feedback, changed, now))
+        self.assertFalse(auto.is_deferred({}, row, now))
+
+    def test_ready_hint_is_bound_to_current_evidence(self):
+        row = self.rows()[0]
+        state = {"publication_queue": {"records": {row[0]: {
+            "state": "READY_TO_PUBLISH", "fingerprint": auto.fingerprint(row[1]), "sha256": "a"*64}}}}
+        self.assertTrue(auto.prepared_priority(row, state))
+        state["publication_queue"]["records"][row[0]]["sha256"] = "b"*64
+        self.assertFalse(auto.prepared_priority(row, state))
+        self.assertFalse(auto.prepared_priority(row, {}))
+
     def test_license_at_exact_tag(self):
         def api(repo,path):
             self.assertEqual(path,"license?ref=v1")

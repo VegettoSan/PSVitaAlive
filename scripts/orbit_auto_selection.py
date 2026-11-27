@@ -9,7 +9,7 @@ import hashlib
 import json
 import re
 import unicodedata
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import quote
 
@@ -38,6 +38,55 @@ def fingerprint(entry):
 
 def canonical_records(root, kind):
     return [to_v1(json.loads(p.read_text("utf-8"))) for p in (root/kind).glob("*.json")]
+
+
+def evidence_key(row):
+    """Invalidate cooldowns on meaningful discovery or verified package changes."""
+    key, entry, result = row
+    vpk = result.get("vpk") or {}
+    fields = {"fingerprint": fingerprint(entry),
+              "package": {k: vpk.get(k) for k in ("tag", "url", "sha256", "title_id", "bytes_read")},
+              "category": result.get("category"), "author": result.get("author"),
+              "requirements": result.get("requirements")}
+    return hashlib.sha256(json.dumps(fields, sort_keys=True, ensure_ascii=False,
+                                    separators=(",", ":")).encode()).hexdigest()
+
+
+def retry_reason(exc):
+    """Persist stable reason codes only; do not store raw exceptions or URLs."""
+    message = str(exc)
+    if "Upstream HTTP 404" in message:
+        return "upstream_missing", timedelta(days=7)
+    if any(s in message for s in ("Latest stable release differs", "Orbit and latest release disagree", "Enrichment and current release differ", "VPK changed since enrichment", "Official release size changed")):
+        return "release_changed", timedelta(hours=12)
+    if any(s in message for s in ("No usable description", "Fork or organization", "Owner/profile mismatch", "Author ID/name collision", "Invalid category/subcategory", "Category retired")):
+        return "metadata_review", timedelta(days=3)
+    return "retry", timedelta(hours=1)
+
+
+def defer_candidate(feedback, row, exc, now):
+    reason, delay = retry_reason(exc)
+    feedback[row[0]] = {"evidence": evidence_key(row), "reason": reason,
+                        "retry_at": (now + delay).isoformat()}
+
+
+def is_deferred(feedback, row, now):
+    record = feedback.get(row[0], {})
+    if not isinstance(record, dict) or record.get("evidence") != evidence_key(row):
+        return False
+    try:
+        return datetime.fromisoformat(record["retry_at"]) > now
+    except (ValueError, TypeError, KeyError):
+        return False
+
+
+def prepared_priority(row, state):
+    """A producer hint is never authorization; every row passes local eligibility."""
+    index = state.get("publication_queue") or {}
+    record = (index.get("records") or {}).get(row[0], {}) if isinstance(index, dict) and isinstance(index.get("records"), dict) else {}
+    return (isinstance(record, dict) and record.get("state") == "READY_TO_PUBLISH"
+            and record.get("fingerprint") == fingerprint(row[1])
+            and record.get("sha256") == (row[2].get("vpk") or {}).get("sha256"))
 
 
 def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None):
@@ -85,6 +134,9 @@ def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None)
                 or not re.fullmatch(r"[a-f0-9]{64}",str(vpk.get("sha256","")))
                 or type(vpk.get("bytes_read")) is not int or not 0 < vpk["bytes_read"] <= 64*1024*1024):
             skip("package or identity incomplete"); continue
+        desc = draft.get("description")
+        if not isinstance(desc, str) or not desc.strip() or len(desc) > 2000:
+            skip("description review"); continue
         if not (vpk.get("artwork") or {}).get("icon"):
             skip("native icon not yet verified"); continue
         if cat.get("state") != "suggested" or cat.get("category_id") not in policy["allowed_categories"]:
