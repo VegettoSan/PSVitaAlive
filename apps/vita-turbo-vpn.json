@@ -16,9 +16,9 @@
   "v": "0.1.0",
   "vd": "2026-11-11",
   "sz": 1074517,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/b700a26452489375997d5bec42cd7df109387ce322bd2c0a85170e0db838a9db.png",
+  "ic": "https://archive.org/download/psvitaalive-vita-turbo-vpn/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/beefe4b4a69a7ca4fe716ffaa9d257443af21a70cad5fade498f9b71e66a659d.png"
+    "https://archive.org/download/psvitaalive-vita-turbo-vpn/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1438633591",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/juanjsebgarcia/vita-turbo-vpn/releases/download/v0.1.0/vita-turbo-vpn.vpk",
+      "u": "https://archive.org/download/psvitaalive-vita-turbo-vpn/vita-turbo-vpn%20v0.1.0.vpk",
       "rec": true
     }
   ]
