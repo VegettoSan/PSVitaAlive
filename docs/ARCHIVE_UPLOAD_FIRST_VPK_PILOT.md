@@ -1,6 +1,6 @@
 # Archive.org — Primera prueba real (un solo VPK)
 
-**Estado:** piloto integrado en `main` mediante [PR #100](https://github.com/VegettoSan/PSVitaAlive/pull/100), ejecutado correctamente el 23 de noviembre de 2026. La transferencia real del VPK y su descarga pública quedaron verificadas. **Los lotes siguen desactivados.**
+**Estado:** piloto integrado en `main` mediante [PR #100](https://github.com/VegettoSan/PSVitaAlive/pull/100), ejecutado correctamente el 23 de noviembre de 2026. La transferencia real del VPK y su descarga pública quedaron verificadas. Los lotes estaban desactivados en el momento de la prueba. Actualmente la preservación usa el [workflow por lotes](../.github/workflows/archive-backup-batch.yml) y el [sistema de publicación y preservación vigente](AUTOMATIC_CATALOG_PUBLICATION_20261127.md). Este documento conserva la evidencia histórica; los workflows de subida y verificación de un único VPK se retiran. El módulo `scripts/archive_upload_one_pilot.py` y sus pruebas siguen disponibles porque el sistema actual reutiliza su código.
 
 ## Objeto exacto
 

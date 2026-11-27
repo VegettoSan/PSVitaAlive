@@ -30,3 +30,7 @@ CI workflows under `.github/workflows/` run validation (and related jobs) on pus
 ## Rule
 
 Fix issues in **apps / sources / overrides / scripts**, not by hand-editing generated root catalogs.
+
+## One-off development patches
+
+Source-rewriting scripts from previous development sessions are not a supported build or maintenance step. The code they edited is maintained directly in the client source tree; historical patch scripts are recoverable from Git history. Keep reusable generators, validators, automation modules and their regression tests separate from temporary patches and local build artifacts.

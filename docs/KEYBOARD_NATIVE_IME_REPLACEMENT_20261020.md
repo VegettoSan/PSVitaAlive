@@ -106,7 +106,7 @@ Only keyboard **interface labels** are localized: search title, ZIP extraction t
 - Removed as active UI dependencies: `ImeController`, synchronous `ime_diagnostics` module, UI IME frame and IME-specific image-quiescence waiting.
 - The build still links **`SceCommonDialog_stub`** because the linked **static `vita2d` library** references `sceCommonDialogUpdate` internally. **A link-time dependency is not a runtime call by PSVitaAlive.**
 - The application can still load/use **internal `ScePaf` and promoter utilities for unrelated install/update operations**. Removing those would break independent functionality and was not part of this decision.
-- An archived `.restore/` code snapshot may contain the superseded IME path for history. Do not treat it as current runtime code or resurrect it into `main`.
+- The superseded IME snapshot is retained in Git history, not in the working tree. Do not treat it as current runtime code or resurrect it into `main`.
 
 ## Validation and regression checklist
 

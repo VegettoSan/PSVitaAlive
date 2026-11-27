@@ -22,3 +22,6 @@ Makefile
 
 # PC client virtualenv
 local_client/.venv/
+
+# Local recovery snapshots (never tracked)
+/.restore/
