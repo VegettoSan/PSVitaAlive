@@ -17,6 +17,7 @@ permissions:
 concurrency:
   group: vitahub-catalog-publisher
   cancel-in-progress: false
+  queue: max
 
 jobs:
   update-canonical-apps:
@@ -28,6 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5

@@ -33,6 +33,7 @@ permissions:
 concurrency:
   group: psvitaalive-discord-notifications
   cancel-in-progress: false
+  queue: max
 
 jobs:
   notify-catalog:

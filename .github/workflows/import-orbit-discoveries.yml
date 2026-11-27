@@ -26,6 +26,7 @@ jobs:
     concurrency:
       group: ${{ github.event_name == 'pull_request' && format('orbit-import-preview-{0}', github.event.pull_request.number) || 'vitahub-catalog-publisher' }}
       cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
