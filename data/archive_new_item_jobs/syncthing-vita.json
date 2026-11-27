@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/27839b183222bb4557be86658e4c9775ec52f07d817d7c93cc8b56ecdada5b7e.png": "shot_01.png"
   },
   "attempted": [
-    "syncthing-vita v0.2.0.vpk"
+    "syncthing-vita v0.2.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:40:45+00:00",
