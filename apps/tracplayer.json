@@ -1,0 +1,41 @@
+{
+  "id": "tracplayer",
+  "tid": "TRACPLAYR",
+  "n": "TRAC Player",
+  "d": "Due to the slow WiFi speeds of the Vita, please be patient when navigating the various pages and also when downloading the audio files.",
+  "ld": "Due to the slow WiFi speeds of the Vita, please be patient when navigating the various pages and also when downloading the audio files. Also, due to limitations with LPP, not all of the audio files are playable, so the app may crash as it tries to play the incompatible file..",
+  "aids": [
+    "anthj"
+  ],
+  "cid": "media",
+  "sids": [
+    "audio",
+    "music-player"
+  ],
+  "req": "- no data",
+  "st": "Legacy",
+  "v": "1",
+  "vd": "2025-08-30",
+  "sz": 17079871,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/tracplayer/60c98477fd8fb4f9d76e4993a3659fac5e8b62a6c96934b6a251deb5748c6897.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/tracplayer/d816e70a44c207a2dc0e47348fd9db8ef6dab8773c2ab5116f1776e733701815.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1045741507",
+  "su": "https://github.com/AntHJ/TRACPlayer",
+  "rp": "https://github.com/AntHJ/TRACPlayer/releases/tag/v1",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/AntHJ/TRACPlayer"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/AntHJ/TRACPlayer/releases/download/v1/TRAKPlayer.vpk",
+      "rec": true
+    }
+  ]
+}
