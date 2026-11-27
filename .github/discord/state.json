@@ -1737,6 +1737,9 @@
     "LPPV00001": {
       "version": "r6"
     },
+    "LSDR00001": {
+      "version": "1.0"
+    },
     "LSWCS0000": {
       "version": "v.0.1"
     },
@@ -3228,6 +3231,9 @@
     "UFOAI0002": {
       "version": "v.0.5"
     },
+    "UMDP00001": {
+      "version": "0.9.15"
+    },
     "UMKT00003": {
       "version": "1.0.0"
     },
@@ -3335,6 +3341,9 @@
     },
     "VIMM00001": {
       "version": "v.1.0.0"
+    },
+    "VIRC00001": {
+      "version": "1.5"
     },
     "VITABOOKS": {
       "version": "v.1.0"
