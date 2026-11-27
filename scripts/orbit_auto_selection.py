@@ -91,9 +91,14 @@ def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None)
             skip("category review"); continue
         if author.get("state") not in ("existing","draft") or req.get("state") == "review":
             skip("author or requirements review"); continue
-        if re.search(r"\b(?:commercial|proprietary|game data|game files|copyrighted|bios|roms|original game files)\b",
-                     " ".join(str(x or "") for x in (draft.get("description"),draft.get("long_description"),req.get("value"))),re.I):
-            skip("third-party data review"); continue
+        # Requirements for separately supplied data do not establish that
+        # the upstream VPK contains third-party content. Register original
+        # homebrew links without rejecting descriptive keywords alone.
+        # Defer explicit indications of bundled third-party game content.
+        text = " ".join(str(x or "") for x in (
+            draft.get("description"), draft.get("long_description"), req.get("value")))
+        if re.search(r"\b(?:bundles?|bundled with|includes?|included with|ships? with|contains?)\s+(?:the\s+)?(?:(?:original|commercial|proprietary|copyrighted)\s+)+(?:game(?:\s+(?:data|files|assets))?|roms?|bios)\b", text, re.I):
+            skip("bundled third-party content review"); continue
         rows.append((key, entry, result))
     # Reject conflicts across independently discovered projects as well as canonical files.
     from collections import Counter

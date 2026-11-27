@@ -47,10 +47,15 @@ class AutomaticTests(unittest.TestCase):
         from datetime import date
         self.assertEqual(len(self.rows(entry={**self.entry,"app_draft":{**self.entry["app_draft"],"version_date":date.today().isoformat()}})),1)
 
-    def test_future_fork_and_commercial_data_deferred(self):
+    def test_future_fork_and_bundled_content_deferred(self):
         for update in ({"lineage_is_fork":True},{"app_draft":{**self.entry["app_draft"],"version_date":"2099-01-01"}},
-                       {"app_draft":{**self.entry["app_draft"],"description":"Requires commercial game data"}}):
+                       {"app_draft":{**self.entry["app_draft"],"description":"Includes original commercial game files"}}):
             self.assertEqual(self.rows(entry={**self.entry,**update}),[])
+
+    def test_separate_runtime_data_is_not_a_publication_blocker(self):
+        for requirement in ("Requires original game files", "Bring your own BIOS and ROMs", "Requires commercial game data"):
+            entry={**self.entry,"app_draft":{**self.entry["app_draft"],"description":requirement}}
+            self.assertEqual(len(self.rows(entry=entry)),1)
 
     def test_license_at_exact_tag(self):
         def api(repo,path):
