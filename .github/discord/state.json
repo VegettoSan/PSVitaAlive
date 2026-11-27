@@ -381,6 +381,9 @@
     "BHBB00001": {
       "version": "1.46"
     },
+    "BIKR00001": {
+      "version": "1.1"
+    },
     "BIO4AF000": {
       "version": "1.5"
     },
@@ -1485,6 +1488,9 @@
     "INKV00000": {
       "version": "v.1.0.0"
     },
+    "INOTIA2PV": {
+      "version": "1.2.0"
+    },
     "INOTIA3PV": {
       "version": "1.0.3"
     },
@@ -2418,6 +2424,9 @@
     "PSVNOVA02": {
       "version": "1.1"
     },
+    "PSVRGP001": {
+      "version": "1.0.3"
+    },
     "PSVRT0001": {
       "version": "1.0.2"
     },
@@ -2426,6 +2435,12 @@
     },
     "PSVSGHD01": {
       "version": "1.4.0"
+    },
+    "PSVSM0001": {
+      "version": "1.0.3"
+    },
+    "PSVSN0001": {
+      "version": "1.0.0"
     },
     "PSVSOTROA": {
       "version": "1.0.2"
