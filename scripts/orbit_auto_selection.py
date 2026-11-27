@@ -97,7 +97,7 @@ def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None)
         # Defer explicit indications of bundled third-party game content.
         text = " ".join(str(x or "") for x in (
             draft.get("description"), draft.get("long_description"), req.get("value")))
-        if re.search(r"\b(?:bundles?|bundled with|includes?|included with|ships? with|contains?)\s+(?:the\s+)?(?:original|commercial|proprietary|copyrighted)\s+(?:game(?:\s+(?:data|files|assets))?|roms?|bios)\b", text, re.I):
+        if re.search(r"\b(?:bundles?|bundled with|includes?|included with|ships? with|contains?)\s+(?:the\s+)?(?:(?:original|commercial|proprietary|copyrighted)\s+)+(?:game(?:\s+(?:data|files|assets))?|roms?|bios)\b", text, re.I):
             skip("bundled third-party content review"); continue
         rows.append((key, entry, result))
     # Reject conflicts across independently discovered projects as well as canonical files.
