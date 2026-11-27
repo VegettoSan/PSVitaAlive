@@ -34,7 +34,7 @@
     "shot_01.png",
     "SOURCES.txt"
   ],
-  "status": "CREATING",
+  "status": "PUBLISHED_VERIFIED",
   "created_at": "2026-11-27T22:07:11+00:00",
   "source_spec": {
     "automatic": true,
@@ -49,5 +49,6 @@
     "size": 94035,
     "sha256": "50c7e0c9fa13f18eeb026f406ff2b56783d2dae64e927c58ad519b9625e046f6",
     "creator": "Retroaria"
-  }
+  },
+  "completed_at": "2026-11-27T22:11:26+00:00"
 }

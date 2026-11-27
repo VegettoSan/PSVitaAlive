@@ -16,9 +16,9 @@
   "v": "1.1",
   "vd": "2026-11-16",
   "sz": 94035,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/01a02a09651ed86590a56204938a5e6342c0d213f9d6b2956a4a7ed283f81e17.png",
+  "ic": "https://archive.org/download/psvitaalive-combo-peel-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/957554cf5f8f5fd23fdd4ecf3d45215246830644b672e50e560a6f2fa12a59b0.png"
+    "https://archive.org/download/psvitaalive-combo-peel-vita/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1459407204",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Retroaria/combo-peel-vita/releases/download/v1.1/ComboPeel.vpk",
+      "u": "https://archive.org/download/psvitaalive-combo-peel-vita/combo-peel-vita%20v1.1.vpk",
       "rec": true
     }
   ]
