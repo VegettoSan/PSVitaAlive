@@ -114,6 +114,9 @@
     "ADRINSTAL": {
       "version": "v.1.15"
     },
+    "ADVSLOP00": {
+      "version": "0.1.0"
+    },
     "AEROFOIL1": {
       "version": "v.1.0"
     },
@@ -2505,6 +2508,9 @@
     "RECK69420": {
       "version": "v.1.0"
     },
+    "RECM00001": {
+      "version": "1.2.3"
+    },
     "RECVX0001": {
       "version": "1.5"
     },
@@ -3111,6 +3117,9 @@
     "SYNC00055": {
       "version": "v.0.01"
     },
+    "SYNCTHING": {
+      "version": "0.2.0"
+    },
     "SYOBONCAT": {
       "version": "v.1.0"
     },
@@ -3234,6 +3243,9 @@
     "TSXV00001": {
       "version": "1.02"
     },
+    "TTWR00001": {
+      "version": "0.3"
+    },
     "TWEV00001": {
       "version": "0.9.3"
     },
@@ -3251,6 +3263,9 @@
     },
     "UAE4ALL00": {
       "version": "2.12"
+    },
+    "UAE4ALLHD": {
+      "version": "1.14"
     },
     "UFOAI0002": {
       "version": "v.0.5"
