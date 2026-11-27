@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/8b00b3bde524a7a1de0c63559c7aef3916d811aedb24570062d6678146c2af68.png": "shot_01.png"
   },
   "attempted": [
-    "bikerace-vita v1.1.vpk"
+    "bikerace-vita v1.1.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T23:00:34+00:00",
