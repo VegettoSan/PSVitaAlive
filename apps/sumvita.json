@@ -16,9 +16,9 @@
   "v": "1.2.0",
   "vd": "2026-11-13",
   "sz": 2493332,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/10934c87cb09de7d31a6730a0cdcc6a6361bb7a25df68b5be984669be4ae2903.png",
+  "ic": "https://archive.org/download/psvitaalive-sumvita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/05ba59052e798a66a5bdeca56bce51217ebb35e92cf70bfdaaba95dc42cc906d.png"
+    "https://archive.org/download/psvitaalive-sumvita/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1454516259",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/stevenjc2009-byte/sumvita/releases/download/v1.2.0/Sumvita.vpk",
+      "u": "https://archive.org/download/psvitaalive-sumvita/sumvita%20v1.2.0.vpk",
       "rec": true
     }
   ]
