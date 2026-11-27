@@ -55,9 +55,20 @@ assert "ID_SHARED_DELETE_WARNING" in installed
 assert "if(n<3" not in inspector  # source uses a bounded row loop below
 assert "for(int n=0;n<3 && scroll+n<total;++n)" in inspector
 
-# Touch hitboxes and buttons must use the enlarged dialog geometry.
-assert "constexpr int DW=824, DH=474, BW=244, BH=46, GAP=22;" in inspector
-assert "constexpr int dialogW=824,dialogH=474,buttonW=244,gap=22;" in catalog
+# Full-screen geometry is shared by the renderer and touch hitboxes.
+layout = (root / "include/ui/storage_layout.hpp").read_text(encoding="utf-8")
+assert "width=960, height=544" in layout
+assert "width = 960, height = 544" in layout
+assert "confirmWidth=960, confirmHeight=544" in layout
+assert "constexpr int DW=InstalledDataLayout::confirmWidth, DH=InstalledDataLayout::confirmHeight, BW=244, BH=46, GAP=22;" in inspector
+assert "constexpr int dialogW=InstalledDataLayout::confirmWidth,dialogH=InstalledDataLayout::confirmHeight,buttonW=244,gap=22;" in catalog
+assert "W=InstalledDataLayout::width, H=InstalledDataLayout::height" in inspector
+assert "w=InstalledDataLayout::width,h=InstalledDataLayout::height" in catalog
+assert "drawBatteryIndicator(&font_,880,23,.82f,true)" in catalog
+assert "drawQueueBattery()" in catalog
+assert "ProtectionPhase::Deleting" in catalog
+assert 'protectionUpdateForJob(true,0,"Deleting")' in catalog
+assert "if(installedDataWorker_>=0 && installedDataAction_>=0) pollInstalledDataOperation();" in catalog
 assert "const int buttonY=dialogY+dialogH-59;" in catalog
 assert "installedDataShareScroll_=std::min" in catalog
 assert "installedDataShareScroll_ = std::min" in installed
