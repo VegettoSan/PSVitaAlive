@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/05ba59052e798a66a5bdeca56bce51217ebb35e92cf70bfdaaba95dc42cc906d.png": "shot_01.png"
   },
   "attempted": [
-    "sumvita v1.2.0.vpk"
+    "sumvita v1.2.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:01:57+00:00",
