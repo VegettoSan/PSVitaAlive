@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/uae4all2-hd-vita/476f04b8b0df03ca99427c58c167b19db9d1473c431eddaee7a8206855eb5a21.png": "shot_01.png"
   },
   "attempted": [
-    "uae4all2-hd-vita v1.14.vpk"
+    "uae4all2-hd-vita v1.14.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:27:53+00:00",
