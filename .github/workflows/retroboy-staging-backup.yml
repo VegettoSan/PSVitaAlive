@@ -64,3 +64,5 @@ jobs:
           assert sum(link["type"] == "Mirror" and link["url"].startswith("https://archive.org/download/pwace-attorney-ps-vita/") for link in links) == 1
           print("PASS: original PR VPK preserved, verified versioned Archive.org mirror published to staging")
           PY
+
+# Reconciliation-only rerun: TRANSFER_PREPARED cannot send a second VPK PUT.
