@@ -6,6 +6,9 @@ on:
     paths:
       - .github/workflows/archive-backup-batch.yml
       - scripts/archive_item_creation.py
+      - scripts/audit_archive_versions.py
+      - scripts/sync_release_updates.py
+      - tests/test_sync_release_updates.py
       - scripts/archive_backup_batch.py
       - scripts/archive_backup_batch_preview.py
       - tests/test_archive_backup_batch.py
@@ -71,6 +74,9 @@ jobs:
           python -m unittest discover -s tests -p 'test_archive_backup_batch.py' -v
           python -m unittest discover -s tests -p 'test_archive_owner_preflight.py' -v
           python -m unittest discover -s tests -p 'test_archive_upload_one_pilot.py' -v
+          python -m unittest discover -s tests -p 'test_sync_release_updates.py' -v
+      - name: Audit canonical version labels (read only)
+        run: python -m scripts.audit_archive_versions
       - name: Configure bot commit identity
         run: |
           git config user.name "github-actions[bot]"

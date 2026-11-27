@@ -46,6 +46,40 @@ def release(**overrides):
 
 
 class TestReleaseSynchronization(unittest.TestCase):
+    def test_extended_version_labels_compare_only_with_proven_order(self):
+        from scripts.sync_release_updates import is_prerelease_version, effective_release_version
+        for old, new in [
+            ("Alpha 0.1.0", "0.1.0"), ("Alpha 0.1.0", "0.2.0"),
+            ("1.0 rc3", "1.0"), ("v.0.2.3.1 alpha", "0.2.3.1-beta"),
+            ("v1.0.0-stable", "1.0.1"), ("beta-1", "beta-2"),
+            ("Beta Build 40", "Beta Build 41"), ("r4", "r5"),
+            ("2026-08-06", "2026-08-07"),
+        ]:
+            self.assertTrue(newer_version(old, new), (old, new))
+            self.assertFalse(newer_version(new, old), (old, new))
+        for old, new in [
+            ("Beta 2", "2.0"), ("r4", "4.1"), ("Nightly", "1.2"),
+            ("Demo", "Final"), ("1.0-hotfix", "1.1"), ("beta-2", "alpha-3"),
+            ("24-07-2025", "2026-01-01"), ("Beta Build 40", "1.0"),
+        ]:
+            self.assertFalse(newer_version(old, new), (old, new))
+        self.assertTrue(is_prerelease_version("Alpha 0.1.0"))
+        self.assertTrue(is_prerelease_version("Beta Build 40"))
+        self.assertEqual(effective_release_version(release(tag="beta-2")), "beta-2")
+        self.assertFalse(newer_version("1.0", "v1.0-stable"))
+
+    def test_prefix_alpha_can_update_to_stable_same_core(self):
+        source = app()
+        source["version"] = "Alpha 0.1.0"
+        item = release(tag="0.1.0", assets=[{
+            "name": "vita.vpk", "download_url":
+                "https://github.com/example/vita-app/releases/download/0.1.0/vita.vpk",
+            "size": 400}])
+        result, reason = release_update(source, item, REPO)
+        self.assertEqual(reason, "ready")
+        self.assertEqual(result["version"], "0.1.0")
+        self.assertEqual(source["version"], "Alpha 0.1.0")
+
     def test_prereleases_need_opt_in_and_are_semantically_ordered(self):
         old = app()
         old["version"] = "1.1"

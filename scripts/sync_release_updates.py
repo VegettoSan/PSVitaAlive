@@ -40,6 +40,24 @@ PRERELEASE_STAGES = {
     "dev": 0, "test": 0, "alpha": 1, "a": 1, "beta": 2,
     "b": 2, "pre": 3, "preview": 3, "rc": 4,
 }
+# Labels with an explicit numeric core and stage, not arbitrary titles.
+PREFIX_VERSION = re.compile(
+    r"^(dev|test|alpha|beta|pre|preview|rc)[ ._-]+"
+    r"((?:v\.?\d+(?:\.\d+){0,3})|(?:\d+(?:\.\d+){1,3}))$",
+    re.I,
+)
+SPACED_VERSION = re.compile(
+    r"^v?\.?(\d+(?:\.\d+){0,3})[ ._-]+"
+    r"(dev|test|alpha|beta|pre|preview|rc)(?:[ ._-]?(\d+))?$", re.I,
+)
+EXPLICIT_STABLE = re.compile(
+    r"^v?\.?(\d+(?:\.\d+){0,3})[ ._-]+(?:stable|final)$", re.I,
+)
+# Standalone counters have NO semantic numeric core. Compare only within
+# the exact same label family (e.g. beta-1 -> beta-2, never beta-2 -> 2.0).
+COUNTER_VERSION = re.compile(
+    r"^(beta[ _.-]+build|alpha|beta|rc|dev|test|preview|pre|rev|r|build|b)[ ._-]*(\d+)$", re.I,
+)
 
 def normalized_repo(url: object) -> str | None:
     """Return owner/repo for GitHub, gitlab:group/subgroup/repo for GitLab."""
@@ -80,24 +98,59 @@ def numeric_version(value: object) -> tuple[int, ...] | None:
     """Numeric core, then dev/alpha/beta/pre/rc/stable and stage number."""
     if not isinstance(value, str):
         return None
-    match = RELEASE_VERSION.fullmatch(value.strip())
-    if not match:
+    value = value.strip()
+    if len(value) > 120:
         return None
-    numbers = tuple(int(n) for n in match.group(1).split("."))
+    match = RELEASE_VERSION.fullmatch(value) or SPACED_VERSION.fullmatch(value)
+    if match:
+        number, stage_name, stage_number = match.groups()
+    elif (prefix := PREFIX_VERSION.fullmatch(value)):
+        stage_name, number = prefix.groups()
+        number = number.lstrip("vV.")
+        stage_number = None
+    elif (stable := EXPLICIT_STABLE.fullmatch(value)):
+        number, stage_name, stage_number = stable.group(1), None, None
+    else:
+        return None
+    numbers = tuple(int(n) for n in number.split("."))
     core = numbers + (0,) * (4 - len(numbers))
-    stage = (PRERELEASE_STAGES[match.group(2).lower()]
-             if match.group(2) else 5)
-    return core + (stage, int(match.group(3) or 0))
+    stage = PRERELEASE_STAGES[stage_name.lower()] if stage_name else 5
+    return core + (stage, int(stage_number or 0))
+
+
+def version_order(value: object):
+    """Comparable family and key; unrelated families are never ordered."""
+    parsed = numeric_version(value)
+    if parsed is not None:
+        return "numeric", parsed
+    if not isinstance(value, str) or len(value) > 120:
+        return None
+    value = value.strip()
+    match = COUNTER_VERSION.fullmatch(value)
+    if match:
+        family = re.sub(r"[ ._-]+", " ", match.group(1).lower())
+        return "counter:" + family, (int(match.group(2)),)
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        try:
+            return "iso-date", (date.fromisoformat(value).toordinal(),)
+        except ValueError:
+            pass
+    return None
 
 
 def is_prerelease_version(value: object) -> bool:
-    parsed = numeric_version(value)
-    return parsed is not None and parsed[4] < 5
+    order = version_order(value)
+    if order is None:
+        return False
+    family, key = order
+    return (key[4] < 5 if family == "numeric" else
+            family in {"counter:" + x for x in
+                       ("alpha", "beta", "rc", "dev", "test", "preview", "pre", "beta build", "b")})
 
 
 def newer_version(current: object, proposed: object) -> bool:
-    old, new = numeric_version(current), numeric_version(proposed)
-    return old is not None and new is not None and new > old
+    old, new = version_order(current), version_order(proposed)
+    return old is not None and new is not None and old[0] == new[0] and new[1] > old[1]
 
 
 def release_date(value: object) -> str | None:
@@ -128,7 +181,7 @@ def effective_release_version(item: dict) -> str | None:
     """
     tag = item.get("tag")
     if item.get("release_channel") != "rolling":
-        return str(tag) if numeric_version(tag) is not None else None
+        return str(tag) if version_order(tag) is not None else None
     version = item.get("version")
     if (item.get("platform") != "github"
             or not isinstance(version, str)
@@ -319,7 +372,8 @@ def release_update(app: dict, item: dict, repo: str, *, auto_prerelease: bool = 
 
     proposal = json.loads(json.dumps(app))
     proposal["version"] = (str(new_version) if item.get("release_channel") == "rolling"
-                           else str(item["tag"]).lstrip("vV."))
+                           else str(item["tag"]).lstrip("vV.") if RELEASE_VERSION.fullmatch(str(item["tag"]).strip())
+                           else str(item["tag"]))
     proposal["version_date"] = when
     if size is not None:
         proposal["size"] = size

@@ -34,6 +34,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Run release synchronization regression tests
+        run: python -m unittest discover -s tests -p 'test_sync_release_updates.py' -v
+
       - name: Propose safe release metadata updates
         id: propose
         env:

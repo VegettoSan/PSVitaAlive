@@ -72,6 +72,26 @@ class BatchTests(unittest.TestCase):
         with self.assertRaises(Deferred):
             expected_filename(bad)
 
+    def test_preserves_nonstandard_version_labels_safely(self):
+        labels = ["Alpha 0.1.0", "Nightly", "Beta Build 40", "r4", "2026-08-06",
+                  "1.08switchgit-vita/switch-rsn8887", "#04d791c", "0.1f",
+                  "v.1.3.7.3-1", "日本語", "a"*300]
+        names = [expected_filename(dict(candidate(), version=v)) for v in labels]
+        for version, name in zip(labels, names):
+            self.assertEqual(name, expected_filename(dict(candidate(), version=version)))
+            self.assertTrue(name.endswith(".vpk"))
+            self.assertNotIn("/", name)
+            self.assertNotIn("\\", name)
+            self.assertLess(len(name), 230)
+        self.assertEqual(len(set(n.casefold() for n in names)), len(names))
+        self.assertNotEqual(expected_filename(dict(candidate(), version="Beta/1")).casefold(),
+                            expected_filename(dict(candidate(), version="Beta-1")).casefold())
+        self.assertNotEqual(expected_filename(dict(candidate(), version="Beta")).casefold(),
+                            expected_filename(dict(candidate(), version="beta")).casefold())
+        for bad in ("", "../foo", "x/../y", "a\nb", "x\x00y"):
+            with self.assertRaises(Deferred):
+                expected_filename(dict(candidate(), version=bad))
+
     def test_only_exact_enabled_approved_repo_is_eligible(self):
         self.assertTrue(source_matches_approved(candidate(), policy(), release_app()))
         disallowed = policy()

@@ -125,9 +125,21 @@ def git_publish(root: Path, paths: list[str], message: str, *, validate: bool) -
 def expected_filename(item: dict) -> str:
     app_id = item["app_id"]
     version = item["version"]
-    if not VALID_ID.fullmatch(app_id) or not isinstance(version, str) or not VALID_VERSION.fullmatch(version):
-        raise Deferred("PENDING_MANUAL", "Unsupported VPK filename/version")
-    label = version if version.casefold().startswith("v") else "v" + version
+    if (not isinstance(app_id, str) or not VALID_ID.fullmatch(app_id)
+            or not isinstance(version, str) or not version.strip()
+            or len(version) > 4096 or any(ord(c) < 32 or ord(c) == 127 for c in version)
+            or any(part in {".", ".."} for part in re.split(r"[/\\]", version))):
+        raise Deferred("PENDING_MANUAL", "Invalid VPK filename identity")
+    # Preserve the historical naming scheme byte-for-byte for versions
+    # previously supported. All other labels get a deterministic safe name
+    # and a digest of the ORIGINAL label, so sanitization cannot merge them.
+    if VALID_VERSION.fullmatch(version) and len(version) <= 120:
+        label = version if version.casefold().startswith("v") else "v" + version
+    else:
+        readable = re.sub(r"[^A-Za-z0-9 ._-]+", "-", version).strip(" ._-")
+        readable = re.sub(r"\s+", " ", readable)[:80].rstrip(" ._-") or "version"
+        fingerprint = hashlib.sha256(version.encode("utf-8")).hexdigest()[:24]
+        label = f"{readable}--{fingerprint}"
     return f"{app_id} {label}.vpk"
 
 
