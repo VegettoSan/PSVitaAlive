@@ -16,9 +16,9 @@
   "v": "1.6.0",
   "vd": "2026-11-13",
   "sz": 26968793,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ae0a9cce07e80c7ebf5a54bfa54dbabaf565246ee3b3824feea53a951fb4e3dd.png",
+  "ic": "https://archive.org/download/psvitaalive-linuxonvita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ee4dc7433d48c5a3c0ce6fb8520284172b019e463d42ac36d8ef3da434bedd46.png"
+    "https://archive.org/download/psvitaalive-linuxonvita/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1380273847",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/devwithzachary/LinuxOnVita/releases/download/1.6.0/LinuxOnVita.vpk",
+      "u": "https://archive.org/download/psvitaalive-linuxonvita/linuxonvita%20v1.6.0.vpk",
       "rec": true
     }
   ]
