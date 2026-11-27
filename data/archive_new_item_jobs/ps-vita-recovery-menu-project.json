@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/fb9b6b8ec88f8b48cd83a6e52fb2508accb228037a4ad0b45528768977609d65.png": "shot_02.png"
   },
   "attempted": [
-    "ps-vita-recovery-menu-project v1.2.3.vpk"
+    "ps-vita-recovery-menu-project v1.2.3.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:33:32+00:00",
