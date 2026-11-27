@@ -1,11 +1,15 @@
 #pragma once
 #include <cstdint>
 namespace psvitaalive::ui {
+struct InstalledDataLayout {
+    static constexpr int width=960, height=544, rowHeight=90, visibleRows=3;
+    static constexpr int confirmWidth=960, confirmHeight=544;
+};
 struct StorageLayout {
-    static constexpr int width = 864, height = 512;
-    static constexpr int listOffset = 126, viewportHeight = 288;
+    static constexpr int width = 960, height = 544;
+    static constexpr int listOffset = 126, viewportHeight = 320;
     static constexpr int gap = 10;
-    static constexpr int buttonOffset = 468, buttonHeight = 34;
+    static constexpr int buttonOffset = 500, buttonHeight = 34;
     static constexpr int closeWidth = 176, cleanWidth = 212;
     static constexpr int margin = 21;
     // A smooth back-and-forth activity marker, not a completion estimate.
