@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/16f5a17f9088e26833d9aae7bc8ef464f8c16b3eaeb61d7356cd736fb1ecf11c.png": "shot_02.png"
   },
   "attempted": [
-    "inotia2-vita v1.2.0.vpk"
+    "inotia2-vita v1.2.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T23:03:04+00:00",
