@@ -4120,9 +4120,9 @@
     "v": "0.1.0",
     "vd": "2026-11-11",
     "sz": 1074517,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/b700a26452489375997d5bec42cd7df109387ce322bd2c0a85170e0db838a9db.png",
+    "ic": "https://archive.org/download/psvitaalive-vita-turbo-vpn/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/beefe4b4a69a7ca4fe716ffaa9d257443af21a70cad5fade498f9b71e66a659d.png"
+      "https://archive.org/download/psvitaalive-vita-turbo-vpn/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1438633591",
@@ -4137,7 +4137,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/juanjsebgarcia/vita-turbo-vpn/releases/download/v0.1.0/vita-turbo-vpn.vpk",
+        "u": "https://archive.org/download/psvitaalive-vita-turbo-vpn/vita-turbo-vpn%20v0.1.0.vpk",
         "rec": true
       }
     ]
@@ -6544,9 +6544,9 @@
     "v": "0.1.0",
     "vd": "2026-10-30",
     "sz": 1703139,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitafy/e6663cba9360b73ac2b8a6739bad9ca4a20e234ff6cf68a2505992e9301412a3.png",
+    "ic": "https://archive.org/download/psvitaalive-vitafy/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitafy/0a031e6179636c47235a7f1b5a6e5a54e0533b504e3eb455acdd3fabf11f8538.png"
+      "https://archive.org/download/psvitaalive-vitafy/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1439605629",
@@ -6561,7 +6561,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Pietro00x/vitafy/releases/download/v0.1.0/vitafy.vpk",
+        "u": "https://archive.org/download/psvitaalive-vitafy/vitafy%20v0.1.0.vpk",
         "rec": true
       }
     ]
@@ -8118,9 +8118,9 @@
     "v": "1.0",
     "vd": "2026-10-18",
     "sz": 1193064,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/2d38616c4ba7369505a655a93b8648490a469daa5a4566cb3a8f0959c29b6159.png",
+    "ic": "https://archive.org/download/psvitaalive-lsdrevamped-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/5b963471b520c1594cc2d07e7175f4c81320ee8ba61c2c7f49d647802f861878.png"
+      "https://archive.org/download/psvitaalive-lsdrevamped-vita/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1424005296",
@@ -8135,7 +8135,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/arielxflores/LSDRevamped-Vita/releases/download/v1.0/LSDRevamped-Vita.vpk",
+        "u": "https://archive.org/download/psvitaalive-lsdrevamped-vita/lsdrevamped-vita%20v1.0.vpk",
         "rec": true
       }
     ]
@@ -48112,9 +48112,9 @@
     "v": "1.00",
     "vd": "2020-08-17",
     "sz": 73760,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/83325580ead31a9cc7fa89a9b2791626c815231e5206832e887bed972e6d3ac6.png",
+    "ic": "https://archive.org/download/psvitaalive-vita-pkgenabler/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/306ed09ca20dd3e961bee5dc9548ad89a43887b2c1ed485d7a1a11033858896e.png"
+      "https://archive.org/download/psvitaalive-vita-pkgenabler/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:288250922",
@@ -48129,7 +48129,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/Freakler/vita-PKGEnabler/releases/download/1.00/PKGEnabler_v100.vpk",
+        "u": "https://archive.org/download/psvitaalive-vita-pkgenabler/vita-pkgenabler%20v1.00.vpk",
         "rec": true
       }
     ]
