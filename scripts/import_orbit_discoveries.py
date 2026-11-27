@@ -317,7 +317,9 @@ def main():
             and config["min_release_age_days"] >= 365 and config["allowed_licenses"] == ["MIT"], "Unsafe automatic policy")
     state = json.loads(public_bytes(auto.QUEUE,32*1024*1024))
     registry = json.loads((ROOT/"registry/retired_ids.json").read_text("utf-8"))
-    rows = auto.eligible_rows(inventory,state,config,auto.canonical_records(ROOT,"apps"),registry)
+    diagnostics = {}
+    rows = auto.eligible_rows(inventory,state,config,auto.canonical_records(ROOT,"apps"),registry,diagnostics)
+    print("Automatic eligibility deferrals:", json.dumps(diagnostics,sort_keys=True), flush=True)
     cursor_path = ROOT/auto.CURSOR
     cursor = json.loads(cursor_path.read_text("utf-8")) if cursor_path.exists() else {"last_key":""}
     last = cursor.get("last_key","")
