@@ -15,7 +15,7 @@ import stat
 import tempfile
 import zipfile
 from collections import Counter
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote
 
@@ -324,8 +324,15 @@ def main():
     cursor_path = ROOT/auto.CURSOR
     cursor = json.loads(cursor_path.read_text("utf-8")) if cursor_path.exists() else {"last_key":""}
     last = cursor.get("last_key","")
-    rows.sort(key=lambda row: (row[0] <= last,row[0]))
-    print("Automatic preflight eligible:",len(rows), "of",len(inventory), flush=True)
+    now = datetime.now(timezone.utc)
+    prior = cursor.get("feedback", {})
+    require(isinstance(prior, dict) and len(prior) <= 5000, "Invalid publication feedback")
+    feedback = {k: v for k, v in prior.items() if k in inventory}
+    before = len(rows)
+    rows = [row for row in rows if not auto.is_deferred(feedback, row, now)]
+    rows.sort(key=lambda row: (not auto.prepared_priority(row,state), row[0] <= last,row[0]))
+    print("Automatic preflight eligible:",before, "of",len(inventory), flush=True)
+    print("Publication cooldown:",before-len(rows), "ready hints:",sum(auto.prepared_priority(row,state) for row in rows), "due:",len(rows),flush=True)
     created=0
     checked=0
     for row in rows[:config["max_checks"]]:
@@ -338,11 +345,13 @@ def main():
             spec,author=auto.automatic_spec(ROOT,row,config,registry,api_json,public_bytes)
             if stage_one(ROOT,spec,entry,author):
                 created+=1
+                feedback.pop(key, None)
         except (ValueError, KeyError, TypeError, OSError, requests.RequestException, Deferred, zipfile.BadZipFile) as exc:
+            auto.defer_candidate(feedback, row, exc, now)
             print(f"::warning::Automatic candidate {key} deferred: {type(exc).__name__}: {exc}", flush=True)
-    if checked:
+    if checked or feedback != prior:
         cursor_path.parent.mkdir(parents=True,exist_ok=True)
-        cursor_path.write_text(json.dumps({"last_key":last},indent=2)+"\n","utf-8")
+        cursor_path.write_text(json.dumps({"last_key":last,"feedback":feedback},indent=2,sort_keys=True)+"\n","utf-8")
     print(f"Automatic publication staged: {created}; checked: {checked}; preflight eligible: {len(rows)}", flush=True)
     return 0
 
