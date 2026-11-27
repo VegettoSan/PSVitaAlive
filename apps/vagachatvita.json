@@ -20,7 +20,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Frxn5J/VagaChatVITA/releases/download/0.1.0/VagaChatVITA.vpk",
+      "u": "https://archive.org/download/psvitaalive-vagachatvita/vagachatvita%20Alpha%200.1.0--a6bfec2bdf7307f0ac25ac45.vpk",
       "sz": 2537554,
       "rec": true
     },
@@ -30,11 +30,11 @@
       "u": "https://github.com/Frxn5J/VagaChatVITA"
     }
   ],
-  "ic": "https://raw.githubusercontent.com/Frxn5J/VagaChatVITA/refs/heads/main/assets/icon0.png",
+  "ic": "https://archive.org/download/psvitaalive-vagachatvita/icon0.png",
   "ss": [
-    "https://github.com/Frxn5J/VagaChatVITA/blob/main/assets/startup.png?raw=true",
-    "https://github.com/Frxn5J/VagaChatVITA/blob/main/Screenshot%202026-09-06%20003733.png?raw=true",
-    "https://github.com/Frxn5J/VagaChatVITA/blob/main/Screenshot%202026-09-06%20003720.png?raw=true"
+    "https://archive.org/download/psvitaalive-vagachatvita/shot_01.png",
+    "https://archive.org/download/psvitaalive-vagachatvita/shot_02.png",
+    "https://archive.org/download/psvitaalive-vagachatvita/shot_03.png"
   ],
   "su": "https://github.com/Frxn5J/VagaChatVITA"
 }
