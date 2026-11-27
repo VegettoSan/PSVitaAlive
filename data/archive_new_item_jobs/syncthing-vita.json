@@ -34,7 +34,7 @@
     "shot_01.png",
     "SOURCES.txt"
   ],
-  "status": "CREATING",
+  "status": "PUBLISHED_VERIFIED",
   "created_at": "2026-11-27T22:40:45+00:00",
   "source_spec": {
     "automatic": true,
@@ -49,5 +49,6 @@
     "size": 1444248,
     "sha256": "5f2220c022a0944ff21dfec8cc4c2c53c9d48c30fb85dc1e03e099b894936930",
     "creator": "Geoffrey Métais"
-  }
+  },
+  "completed_at": "2026-11-27T22:46:53+00:00"
 }
