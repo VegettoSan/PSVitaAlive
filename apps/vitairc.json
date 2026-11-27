@@ -7,9 +7,10 @@
   "aids": [
     "archelkrozt"
   ],
-  "cid": "media",
+  "cid": "networking",
   "sids": [
-    "image-viewer"
+    "messaging",
+    "client"
   ],
   "req": "- Install the new VPK on top of the old one. Only the app in ux0:app/VIRC00001/ is replaced;",
   "st": "Archive",
