@@ -16,10 +16,10 @@
   "v": "1.2.0",
   "vd": "2026-11-18",
   "sz": 1585492,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ae91a8c4956797065016b8c9fd0798cc814a4a9d6c664a662804d0589a373345.png",
+  "ic": "https://archive.org/download/psvitaalive-inotia2-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ef479aa8b1f06079583931f1c93de4da28c20a5279a61b6118d7ba388a42e497.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/16f5a17f9088e26833d9aae7bc8ef464f8c16b3eaeb61d7356cd736fb1ecf11c.png"
+    "https://archive.org/download/psvitaalive-inotia2-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-inotia2-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1421587563",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Inotia2-vita/releases/download/v1.2.0/inotia2.vpk",
+      "u": "https://archive.org/download/psvitaalive-inotia2-vita/inotia2-vita%20v1.2.0.vpk",
       "rec": true
     }
   ]
