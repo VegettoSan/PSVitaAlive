@@ -1,0 +1,56 @@
+{
+  "app_id": "igi-vita",
+  "identifier": "psvitaalive-igi-vita",
+  "source_url": "https://github.com/HenryKun55/igi-vita/releases/download/v0.5.0/igi.vpk",
+  "files": {
+    "igi-vita v0.5.0.vpk": {
+      "size": 6776165,
+      "md5": "1fe31a66fa6a280c438ddd5e42fa3860",
+      "sha256": "e4a47d6625cfeaee93df5820cf2fac78197e6b8bd73098e64bc8a0bce84ba972"
+    },
+    "icon0.png": {
+      "size": 11184,
+      "md5": "3bb43833026176b9df0f8c99915dc4c7",
+      "sha256": "0cd6d9605e0a033a3b25be85970c4561709253d29b1dec7b8a0bd8858b1e7e0b"
+    },
+    "shot_01.png": {
+      "size": 158798,
+      "md5": "bbe068737641e38905a21bf1f41d3502",
+      "sha256": "ea0d1ed9b1f48938df3df9f36f2f89068331e3bd0546589b5609986b6f55f4ab"
+    },
+    "shot_02.png": {
+      "size": 139800,
+      "md5": "46fea4fe558fdaf2705d3e542c39bdd7",
+      "sha256": "6fc0eaa68a54330dc8595f2c0ae959ef618d9d906a46387517dfeeb9cc2b080c"
+    },
+    "SOURCES.txt": {
+      "size": 794,
+      "md5": "c0ab499ca4bab293f9594073ef4b7e32",
+      "sha256": "6d38ad793aefac87446e8c3b033db2432deede027d0a15639f78a982f38dce77"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/0cd6d9605e0a033a3b25be85970c4561709253d29b1dec7b8a0bd8858b1e7e0b.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/ea0d1ed9b1f48938df3df9f36f2f89068331e3bd0546589b5609986b6f55f4ab.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/6fc0eaa68a54330dc8595f2c0ae959ef618d9d906a46387517dfeeb9cc2b080c.png": "shot_02.png"
+  },
+  "attempted": [
+    "igi-vita v0.5.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:28:28+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PIGI00001",
+    "name": "Project IGI",
+    "search_title": "Project IGI",
+    "version": "0.5.0",
+    "repo": "HenryKun55/igi-vita",
+    "tag": "v0.5.0",
+    "asset": "igi.vpk",
+    "url": "https://github.com/HenryKun55/igi-vita/releases/download/v0.5.0/igi.vpk",
+    "size": 6776165,
+    "sha256": "e4a47d6625cfeaee93df5820cf2fac78197e6b8bd73098e64bc8a0bce84ba972",
+    "creator": "HenryKun55"
+  }
+}
