@@ -7,9 +7,10 @@
   "aids": [
     "federicopellegrino994"
   ],
-  "cid": "modding",
+  "cid": "ports",
   "sids": [
-    "textures"
+    "action",
+    "adventure"
   ],
   "req": "- ⚠️ No game files are included. You need your own copy of the Xbox game (USA version). Please don't ask for ISOs.\n- 3. Copy the game files to the Vita\n- When you're done, this file must exist: ux0:data/twotowers/game_files/default.xbe.\n- Download PSVshell (https://github.com/Electry/PSVshell) and install it as its readme explains (a plugin in ur0:tai/ plus a line in config.txt).\n- A native PC port of The Lord of the Rings: The Two Towers (Xbox, USA, 2002), made by static recompilation. It needs your own copy of the game, either the disc image (ISO) or an extracted folder. No game data is included.\n- No game data is included. You need your own copy of the game (Xbox, USA disc image).\n- A PS Vita / PS TV with HENkaku/Ensō (any recent setup with VitaShell).\n- About 4–5 GB free on ux0: for the game files.\n- so that you have, for example, ux0:data/twotowers/game_files/default.xbe and",
   "st": "Archive",

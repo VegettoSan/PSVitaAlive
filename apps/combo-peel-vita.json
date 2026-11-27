@@ -9,7 +9,7 @@
   ],
   "cid": "plugins",
   "sids": [
-    "other"
+    "input"
   ],
   "req": "- Requer HENkaku/Ensō com \"Enable Unsafe Homebrew\" ativado. Para remover, instale o VPK de novo e aperte Triângulo (Desinstalar).\n- Requisitos: HENkaku/Ensō com \"Enable Unsafe Homebrew\" ativado nas HENkaku Settings.",
   "st": "Archive",

@@ -9,7 +9,7 @@
   ],
   "cid": "emulators",
   "sids": [
-    "other"
+    "commodore"
   ],
   "req": "- Copy legally obtained Kickstart ROMs to:\n- Copy Amiga disk images to a folder on ux0: or uma0:.\n- For the CD32 preset, both ROMs are required:\n- Copy the .lha files to any accessible folder on your Vita (ux0: or uma0:).",
   "st": "Archive",
