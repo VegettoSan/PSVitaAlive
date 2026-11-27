@@ -1,0 +1,50 @@
+{
+  "app_id": "lotr-two-towers-vita",
+  "identifier": "psvitaalive-lotr-two-towers-vita",
+  "source_url": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/download/v0.3/TwoTowers.vpk",
+  "files": {
+    "lotr-two-towers-vita v0.3.vpk": {
+      "size": 9851622,
+      "md5": "5d5ef38a77d131a8a5fba58487fbe752",
+      "sha256": "e3c6fd5bd523610c07f98267d53df8037612b6dea8258758ab48fad1abb1e228"
+    },
+    "icon0.png": {
+      "size": 14697,
+      "md5": "6212f8753cf410d60b7ecf2eb5c32873",
+      "sha256": "0a0140b7566e71cb0bd5e3209176b26dafb42223eb0712aad2b7a6ebe2e51360"
+    },
+    "shot_01.png": {
+      "size": 285093,
+      "md5": "4eefe4352566185bfd7601e5eb4aa6f3",
+      "sha256": "1a748cc89e5abdbf5ecfd151e20be89e92b38c621fc5f53a20bc600bd2f25b55"
+    },
+    "SOURCES.txt": {
+      "size": 737,
+      "md5": "a9abed17feacdb5db519ae773c24955c",
+      "sha256": "f7764ca2c9f993a21f73f257f045b7da28ae765a8aac155fe7654c3c633b8cc9"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/0a0140b7566e71cb0bd5e3209176b26dafb42223eb0712aad2b7a6ebe2e51360.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/1a748cc89e5abdbf5ecfd151e20be89e92b38c621fc5f53a20bc600bd2f25b55.png": "shot_01.png"
+  },
+  "attempted": [
+    "lotr-two-towers-vita v0.3.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:31:13+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "TTWR00001",
+    "name": "The Two Towers",
+    "search_title": "The Two Towers",
+    "version": "0.3",
+    "repo": "federicopellegrino994/lotr-two-towers-vita",
+    "tag": "v0.3",
+    "asset": "TwoTowers.vpk",
+    "url": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/download/v0.3/TwoTowers.vpk",
+    "size": 9851622,
+    "sha256": "e3c6fd5bd523610c07f98267d53df8037612b6dea8258758ab48fad1abb1e228",
+    "creator": "federicopellegrino994"
+  }
+}
