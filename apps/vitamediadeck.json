@@ -15,17 +15,17 @@
     "video-player",
     "streaming"
   ],
-  "v": "1.4.3",
-  "vd": "2026-10-29",
+  "v": "1.4.4",
+  "vd": "2026-10-30",
   "req": "- No Data",
-  "sz": 6294292,
+  "sz": 6323853,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/vita-media-deck/vitamediadeck%20v1.4.3.vpk",
-      "sz": 6294292,
+      "u": "https://github.com/spyro-98/VitaMediaDeck/releases/download/1.4.4/VitaMediaDeck-1.4.4-beta.vpk",
+      "sz": 6323853,
       "rec": true
     },
     {

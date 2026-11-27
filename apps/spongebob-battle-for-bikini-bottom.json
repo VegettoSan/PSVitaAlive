@@ -14,17 +14,17 @@
     "puzzle",
     "source-port"
   ],
-  "v": "1.1",
-  "vd": "2026-11-22",
+  "v": "1.2",
+  "vd": "2026-11-27",
   "req": "- libshacccg.suprx",
-  "sz": 4458266,
+  "sz": 4458754,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/battle-for-bikini-bottom-vita/spongebob-battle-for-bikini-bottom%20v1.1.vpk",
-      "sz": 4458266,
+      "u": "https://github.com/Rinnegatamante/bfbb-vita/releases/download/v.1.2/bfbb.vpk",
+      "sz": 4458754,
       "rec": true
     },
     {

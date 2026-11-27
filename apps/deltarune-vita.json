@@ -11,16 +11,16 @@
   "sids": [
     "other"
   ],
-  "v": "0.81",
-  "vd": "2026-11-08",
+  "v": "0.84",
+  "vd": "2026-11-11",
   "req": "- libshacccg.suprx\n- Game Data Files: Steam",
-  "sz": 2359296,
+  "sz": 10226927,
   "st": "Legacy",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-deltarune-vita/Deltarune-v0.69.vpk",
+      "u": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.84/Deltarune-v0.84.Internal-Build-Test.vpk",
       "rec": true
     },
     {
