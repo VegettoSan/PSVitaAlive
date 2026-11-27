@@ -521,6 +521,7 @@ constexpr uint64_t kProtectionMoveMs = 2ULL * 60ULL * 1000ULL;
 constexpr int kProtectionBlockW = 430;
 constexpr int kProtectionBlockH = 150;
 constexpr int kQueueProtectionBlockW = 560, kQueueProtectionBlockH = 250;
+constexpr int kDeleteProtectionBlockH = 282;
 constexpr int kProtectionMargin = 16;
 constexpr int kProtectionMinMoveX = 140;
 constexpr int kProtectionMinMoveY = 80;
@@ -562,7 +563,9 @@ void protectionChoosePosition(bool forceDifferent) {
     const int minY = kProtectionMargin;
     const bool wide = gQueueSessionProtection || gProtectionPhase==ProtectionPhase::Deleting;
     const int maxX = SCREEN_W - (wide?kQueueProtectionBlockW:kProtectionBlockW) - kProtectionMargin;
-    const int maxY = SCREEN_H - (wide?kQueueProtectionBlockH:kProtectionBlockH) - kProtectionMargin;
+    const int blockH=gProtectionPhase==ProtectionPhase::Deleting?kDeleteProtectionBlockH:
+        wide?kQueueProtectionBlockH:kProtectionBlockH;
+    const int maxY = SCREEN_H - blockH - kProtectionMargin;
     const int spanX = std::max(1, maxX - minX + 1);
     const int spanY = std::max(1, maxY - minY + 1);
     const int oldX = gProtectionX;
@@ -13516,21 +13519,22 @@ void FullCatalogScreen::draw(){
                 const auto pct=::psvitaalive::storage::installedDataDeletionPercent(done,total);
                 line(145,WHITE,.88f,(total?std::to_string(pct)+"%   ":"")+
                     std::string(::psvitaalive::L("ID_OP_FILES_REMOVED"))+" "+std::to_string(files));
-                line(172,DIM,.82f,deletionTimingText(true,done,total));
+                line(172,DIM,.82f,std::string(::psvitaalive::L("ID_OP_DIRS_REMOVED"))+" "+std::to_string(dirs));
+                line(199,WHITE,.82f,deletionTimingText(true,done,total));
             } else {
                 line(145,DIM,.82f,::psvitaalive::L("ID_OP_INDETERMINATE"));
-                line(172,DIM,.82f,deletionTimingText(false,0,0));
+                line(199,WHITE,.82f,deletionTimingText(false,0,0));
             }
         } else {
             line(56,WHITE,1.04f,::psvitaalive::L("STORAGE_TITLE"));
             line(86,ACCENT,.91f,::psvitaalive::L("STORAGE_WORKING"));
             line(115,WHITE,.88f,storageOperationLabel_);
             line(145,DIM,.82f,::psvitaalive::L("STORAGE_WAIT"));
-            line(172,DIM,.82f,deletionTimingText(storageWorkPhase_.load(std::memory_order_relaxed)==StorageWorkPhase::Cleaning,
+            line(199,WHITE,.82f,deletionTimingText(storageWorkPhase_.load(std::memory_order_relaxed)==StorageWorkPhase::Cleaning,
                 storageDeleteDone_.load(std::memory_order_relaxed),storageDeleteTotal_));
         }
-        drawBatteryIndicator(&font_,gProtectionX+kQueueProtectionBlockW/2,gProtectionY+188,.82f,true);
-        skin::hint(&font_,gProtectionX,gProtectionY+236,kQueueProtectionBlockW,DIM,.68f,
+        drawBatteryIndicator(&font_,gProtectionX+kQueueProtectionBlockW/2,gProtectionY+216,.82f,true);
+        skin::hint(&font_,gProtectionX,gProtectionY+266,kQueueProtectionBlockW,DIM,.68f,
             ::psvitaalive::L("PROTECTION_PRESS_ANY_BUTTON"),true);
         finishFrame(); return;
     }
