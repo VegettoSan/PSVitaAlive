@@ -87,8 +87,9 @@ class AutomaticTests(unittest.TestCase):
         from datetime import datetime, timedelta, timezone
         now = datetime.now(timezone.utc)
         row = self.rows()[0]
-        proof = {"state": "verified", "checked_at": now.isoformat(), "asset": {"state": "selected", "size": 100}}
-        row = (row[0], row[1], {**row[2], "publication_preflight": proof})
+        asset = {"state": "selected", "size": 100, "tag": "v1", "url": "https://github.com/dev/demo/releases/download/v1/demo.vpk", "asset_id": 123}
+        proof = {"state": "verified", "checked_at": now.isoformat(), "asset": asset}
+        row = (row[0], row[1], {**row[2], "vpk": {**row[2]["vpk"], "tag": "v1", "url": asset["url"], "asset_id": 123}, "publication_preflight": proof})
         state = {"schema_version": 1, "records": {row[0]: {"fingerprint": auto.fingerprint(row[1]), "result": row[2]}},
                  "publication_queue": {"schema_version": 2, "records": {row[0]: {
                      "state": "READY_TO_PUBLISH", "fingerprint": auto.fingerprint(row[1]), "sha256": "a"*64}}}}
