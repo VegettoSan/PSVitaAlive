@@ -1,0 +1,40 @@
+{
+  "id": "umd-player",
+  "tid": "UMDP00001",
+  "n": "UMD Player",
+  "d": "A PS Vita UMD Player",
+  "ld": "A UMD Video player for the PS Vita, Windows, Linux (Steam Deck and Steam Machine included) and macOS. It plays the movies, TV episodes and concerts that Sony sold on UMD for the PSP, from `.iso`, `.cso` or `.zso` disc images. On the Vita it runs natively: no Adrenaline, no PSP firmware. It can also play a disc through its own menus, as a PSP does.",
+  "aids": [
+    "xesf"
+  ],
+  "cid": "media",
+  "sids": [
+    "video-player"
+  ],
+  "req": "- Turn on \"Enable unsafe homebrew\" in the HENkaku settings (Adrenaline needs it too).\n- Copy UMD Video disc images (and DVD images, if you like) to ux0:umd/ or ux0:pspemu/ISO/VIDEO/.",
+  "st": "Archive",
+  "v": "0.9.15",
+  "vd": "2026-11-12",
+  "sz": 1001488,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/umd-player/e87a5f5847e953743c692803749d94944dbd7f346e30ff17c9466cb81a0a5122.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/umd-player/709dcd3771957caa7ffe8f2be878d115c044d89c48a8ab39cabb80882729f252.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1420539122",
+  "su": "https://github.com/xesf/umd-player",
+  "rp": "https://github.com/xesf/umd-player/releases/tag/v0.9.15",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/xesf/umd-player"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/xesf/umd-player/releases/download/v0.9.15/umdplayer-v0.9.15.vpk",
+      "rec": true
+    }
+  ]
+}

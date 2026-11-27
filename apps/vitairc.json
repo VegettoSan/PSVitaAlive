@@ -1,0 +1,40 @@
+{
+  "id": "vitairc",
+  "tid": "VIRC00001",
+  "n": "VitaIRC",
+  "d": "Native IRC client for the PS Vita: SSL, SASL, bouncer support, chat history, ChatGPT translation, Imgur uploads, a camera and an image viewer, in English and Spanish.",
+  "ld": "A native, lightweight IRC client for the PlayStation Vita with free translation , image uploads , emoji and reactions , an image viewer and bouncer support.",
+  "aids": [
+    "archelkrozt"
+  ],
+  "cid": "media",
+  "sids": [
+    "image-viewer"
+  ],
+  "req": "- Install the new VPK on top of the old one. Only the app in ux0:app/VIRC00001/ is replaced;",
+  "st": "Archive",
+  "v": "1.5",
+  "vd": "2026-10-11",
+  "sz": 3554434,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/41c698e6f401fa05cf5390610eeaa3d53135c0948321179814930f9284e4b0ce.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/daff8cd1d336974b6de735b6df4f5cc09905787739cf60f02e7867823525f9c6.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1403711314",
+  "su": "https://github.com/ArchelKrozt/VitaIRC",
+  "rp": "https://github.com/ArchelKrozt/VitaIRC/releases/tag/v1.5",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/ArchelKrozt/VitaIRC"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/ArchelKrozt/VitaIRC/releases/download/v1.5/VitaIRC.vpk",
+      "rec": true
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "lsdrevamped-vita",
+  "tid": "LSDR00001",
+  "n": "LSD Revamped",
+  "d": "PS Vita port of LSD Revamped (LSD: Dream Emulator)",
+  "ld": "A native PS Vita port of LSD Revamped, Figglewatts' remake of",
+  "aids": [
+    "arielxflores"
+  ],
+  "cid": "emulators",
+  "sids": [
+    "other"
+  ],
+  "req": "- libshacccg.suprx must be extracted to ur0:data/. No plugins are needed.\n- A PS Vita or PS TV running HENkaku/Ensō\n- libshacccg.suprx extracted to ur0:data/\n- About 350 MB free on ux0:\n- ux0:data/lsdr/dreams.pak.\n- No plugins are needed.\n- It downloads about 450 MB, needs about 1.5 GB of free space and takes 10 to 30 minutes on a typical PC. The\n- result is in lsdr-data/lsdr/ (around 330 MB): copy that folder to ux0:data/ over USB or FTP with VitaShell.",
+  "st": "Archive",
+  "v": "1.0",
+  "vd": "2026-10-18",
+  "sz": 1193064,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/2d38616c4ba7369505a655a93b8648490a469daa5a4566cb3a8f0959c29b6159.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/5b963471b520c1594cc2d07e7175f4c81320ee8ba61c2c7f49d647802f861878.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1424005296",
+  "su": "https://github.com/arielxflores/LSDRevamped-Vita",
+  "rp": "https://github.com/arielxflores/LSDRevamped-Vita/releases/tag/v1.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/arielxflores/LSDRevamped-Vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/arielxflores/LSDRevamped-Vita/releases/download/v1.0/LSDRevamped-Vita.vpk",
+      "rec": true
+    }
+  ]
+}

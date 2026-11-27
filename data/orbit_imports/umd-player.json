@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "app_id": "umd-player",
+  "candidate_key": "gh:1420539122",
+  "repo": "xesf/umd-player",
+  "tag": "v0.9.15",
+  "sha256": "38a86a34d639098c3d09822c1fb56a91a9543834215222243034804176f4b5dd"
+}
