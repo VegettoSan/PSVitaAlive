@@ -3696,6 +3696,7 @@ void FullCatalogScreen::openStorageMenu() {
     if (!storageGameMode_) rebuildInstalledDataCandidates();
     storageGamesSnapshot_={};
     storageVisible_ = true;
+    storageTransitionUs_=sceKernelGetProcessTimeWide();
     storageConfirm_ = false;
     storagePendingAction_ = -1;
     storageFocus_ = 0;
@@ -3945,7 +3946,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         vita2d_draw_rectangle(x+w-3,y+3,3,h-6,BORDER);
         vita2d_draw_rectangle(x,y+h-3,w,3,BORDER);
     }
-    drawMarqueeText(&font_,x+26,y+39,w-52,WHITE,1.13f,
+    drawMarqueeText(&font_,x+26,y+39,w-160,WHITE,1.13f,
         ::psvitaalive::L("STORAGE_TITLE"),false);
     if (storageWorker_ >= 0) {
         // The recursive scan has no known total. Show activity, never an
@@ -4099,7 +4100,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         ::psvitaalive::L("STORAGE_CONTROLS");
     const auto helpLines=wrapTextToWidth(&font_,.87f,help,w-56);
     for(int i=0;i<(int)helpLines.size()&&i<2;++i)
-        skin::hint(&font_,x+28,y+440+i*18,w-56,storageConfirm_?ACCENT:TEXT,.87f,helpLines[i].c_str());
+        skin::hint(&font_,x+28,y+472+i*18,w-56,storageConfirm_?ACCENT:TEXT,.87f,helpLines[i].c_str());
     const int by=y+Layout::buttonOffset,bh=Layout::buttonHeight;
     skin::surface(skin::ui_atlas::ui_button_secondary,x+21,by,Layout::closeWidth,bh,SURFACE2);
     if (!skin::ready()) vita2d_draw_rectangle(x+21,by,Layout::closeWidth,1,BORDER);
@@ -5220,7 +5221,8 @@ void FullCatalogScreen::handleTouch() {
     }
 
     if (installedDataVisible_) {
-        constexpr int w=864,h=500,ROW=90,VISIBLE=3;
+        constexpr int w=InstalledDataLayout::width,h=InstalledDataLayout::height,
+            ROW=InstalledDataLayout::rowHeight,VISIBLE=InstalledDataLayout::visibleRows;
         const int ox=(SCREEN_W-w)/2,oy=(SCREEN_H-h)/2;
         if(td.reportNum>0) {
             const int px=mapX(td.report[0].x),py=mapY(td.report[0].y);
@@ -5236,7 +5238,7 @@ void FullCatalogScreen::handleTouch() {
                 // warning without requiring a button press or changing focus.
                 if (touchMoved_ && installedDataConfirm_ &&
                     installedDataShareLabels_.size()>3) {
-                    constexpr int dialogW=824,dialogH=474;
+                    constexpr int dialogW=InstalledDataLayout::confirmWidth,dialogH=InstalledDataLayout::confirmHeight;
                     const int dx=(SCREEN_W-dialogW)/2,dy0=(SCREEN_H-dialogH)/2;
                     if(touchStartX_>=dx+22 && touchStartX_<=dx+dialogW-22 &&
                        touchStartY_>=dy0+274 && touchStartY_<dy0+367) {
@@ -5296,7 +5298,7 @@ void FullCatalogScreen::handleTouch() {
                 // The confirmation dialog is intentionally smaller than the
                 // installed-data browser. Keep touch targets in exact sync
                 // with drawInstalledDataOverlay() and controller actions.
-                constexpr int dialogW=824,dialogH=474,buttonW=244,gap=22;
+                constexpr int dialogW=InstalledDataLayout::confirmWidth,dialogH=InstalledDataLayout::confirmHeight,buttonW=244,gap=22;
                 const int dialogX=(SCREEN_W-dialogW)/2;
                 const int dialogY=(SCREEN_H-dialogH)/2;
                 const int firstX=dialogX+(dialogW-(buttonW*2+gap))/2;
@@ -13029,10 +13031,14 @@ void FullCatalogScreen::drawQueueScreen() {
         case Component::SystemPackage:return "PKG / LiveArea";
         case Component::PspMedia:return "PSP / PS1";default:return "ZIP";}
     };
+    const auto drawQueueBattery=[&]() {
+        vita2d_disable_clipping();
+        drawBatteryIndicator(&font_,queueWaitingSpace_ && !queueReport_ && !queueHistoryMode() && !queueRecoveryMode()?624:880,27,.82f,true);
+    };
     skin::surface(skin::ui_atlas::ui_panel,12,10,936,56,SURFACE);
     if(queueRecoveryMode()) {
         const auto& entries=queueRecovery_->entries();
-        label(26,45,900,ACCENT,1.28f,::psvitaalive::L("QUEUE_RECOVERY_TITLE"));
+        label(26,45,760,ACCENT,1.28f,::psvitaalive::L("QUEUE_RECOVERY_TITLE"));
         const auto* selected=queueSelectedId_>0 && queueSelectedId_<=entries.size()?
             &entries[static_cast<size_t>(queueSelectedId_-1)]:nullptr;
         for(int i=queueScroll_;i<static_cast<int>(entries.size()) && i<queueScroll_+kQueueRows;++i) {
@@ -13056,7 +13062,7 @@ void FullCatalogScreen::drawQueueScreen() {
             label(82,220,796,WHITE,1.12f,::psvitaalive::L(queueConfirmAction_==QueueAction::RestoreRecovery?(selected && selected->systemDeferred?"QUEUE_SYSTEM_CONFIRM":"QUEUE_RECOVERY_CONFIRM_RESTORE"):"QUEUE_RECOVERY_CONFIRM_DISCARD"));
             btn(150,300,310,"QUEUE_BACK",false,&ctrl_circle_classic); btn(500,300,310,"QUEUE_CONFIRM",true,&ctrl_cross_classic);
         }
-        drawToast();finishFrame();return;
+        drawQueueBattery(); drawToast();finishFrame();return;
     }
     if(queueHistoryMode()) {
         const auto& entries=queueHistory_->entries();
@@ -13083,7 +13089,7 @@ void FullCatalogScreen::drawQueueScreen() {
             }
             return line;
         };
-        label(26,45,900,ACCENT,1.28f,::psvitaalive::L("QUEUE_HISTORY"));
+        label(26,45,760,ACCENT,1.28f,::psvitaalive::L("QUEUE_HISTORY"));
         const HistoryEntry* selected=queueSelectedId_>0 && queueSelectedId_<=entries.size()?
             &entries[static_cast<size_t>(queueSelectedId_-1)]:nullptr;
         if(queueDetail_ && selected) {
@@ -13120,17 +13126,17 @@ void FullCatalogScreen::drawQueueScreen() {
         btn(20,478,212,"QUEUE_BACK",false,&ctrl_circle_classic);
         if(!queueDetail_ && selected)btn(244,478,212,"QUEUE_VIEW_DETAILS",true,&ctrl_cross_classic);
         if(queueRecovery_ && !queueRecovery_->entries().empty())btn(692,478,248,"QUEUE_RECOVERY_TITLE",false,&ctrl_r);
-        drawToast(); finishFrame(); return;
+        drawQueueBattery(); drawToast(); finishFrame(); return;
     }
     const auto& jobs=queueSession_->jobs();
-    label(26,45,queueReport_?480:queueWaitingSpace_?650:900,ACCENT,1.28f,::psvitaalive::L(queueReport_?"QUEUE_REPORT":"QUEUE_TITLE"));
+    label(26,45,queueReport_?480:queueWaitingSpace_?545:760,ACCENT,1.28f,::psvitaalive::L(queueReport_?"QUEUE_REPORT":"QUEUE_TITLE"));
     if(queueWaitingSpace_ && !queueReport_)btn(692,16,248,"STORAGE_TITLE",false,&ctrl_l);
     if(queueReport_) {
         int done=0,partial=0,failed=0,cancelled=0,handoff=0;
         for(const auto& j:jobs) { done+=j.state==State::Completed; partial+=j.state==State::Partial;
             failed+=j.state==State::Failed; cancelled+=j.state==State::Cancelled; handoff+=j.state==State::HandedOff; }
         const std::string counts="OK "+std::to_string(done)+"   ~ "+std::to_string(partial)+"   ! "+std::to_string(failed)+"   X "+std::to_string(cancelled)+"   > "+std::to_string(handoff);
-        label(515,45,410,TEXT,.73f,counts);
+        label(515,45,290,TEXT,.73f,counts);
     }
     const auto* selected=queueSession_->find(queueSelectedId_);
     const bool active=selected && queueSession_->activeToken().job==selected->id;
@@ -13281,6 +13287,7 @@ void FullCatalogScreen::drawQueueScreen() {
         label(82,220,796,WHITE,1.12f,::psvitaalive::L(queueConfirmAction_==QueueAction::DeleteZip?"QUEUE_CONFIRM_DELETE":"QUEUE_CONFIRM_CANCEL"));
         btn(150,300,310,"QUEUE_BACK",false,&ctrl_circle_classic); btn(500,300,310,"QUEUE_CONFIRM",true,&ctrl_cross_classic);
     }
+    drawQueueBattery();
     if(queueTransitionUs_) {
         const auto elapsed=sceKernelGetProcessTimeWide()-queueTransitionUs_;
         if(elapsed<200000ULL)vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,withAlpha(BG,(unsigned)(255*(200000ULL-elapsed)/200000ULL)));
@@ -13441,6 +13448,13 @@ void FullCatalogScreen::draw(){
         vita2d_clear_screen();
         if (installedDataVisible_) drawInstalledDataOverlay();
         else drawStorageOverlay();
+        vita2d_disable_clipping();
+        drawBatteryIndicator(&font_,880,23,.82f,true);
+        if(storageTransitionUs_) {
+            const auto elapsed=sceKernelGetProcessTimeWide()-storageTransitionUs_;
+            if(elapsed<200000ULL) vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,withAlpha(BG,static_cast<unsigned>(255*(200000ULL-elapsed)/200000ULL)));
+            else storageTransitionUs_=0;
+        }
         drawToast();
         finishFrame();
         return;
