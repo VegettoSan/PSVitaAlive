@@ -1,0 +1,56 @@
+{
+  "app_id": "mkxp-z-vita",
+  "identifier": "psvitaalive-mkxp-z-vita",
+  "source_url": "https://github.com/Asukate/mkxp-z-vita/releases/download/v0.6.1-alpha/HardRPG-0.6.1.vpk",
+  "files": {
+    "mkxp-z-vita v0.6.1-alpha.vpk": {
+      "size": 31017402,
+      "md5": "818d23bd85f5dd8f546d3bb9bc0f6949",
+      "sha256": "1d79e047e96d6d52de0955b4f263ea6ecddd99bfe77aba2dba180768ddadfd6d"
+    },
+    "icon0.png": {
+      "size": 5684,
+      "md5": "0cfab5c15f6051715cb29ddd56ea9661",
+      "sha256": "6b55598c2a02a56d5ed8d6fa9b288af726b5efcd3f03310ee70bbde0bc45b44f"
+    },
+    "shot_01.png": {
+      "size": 61939,
+      "md5": "70560f7793d015bf3a536d5a270b8b85",
+      "sha256": "776cc3f88e5138a61de25341ceb48ae06b6e4f4e744e0521db84a0e12d9caf44"
+    },
+    "shot_02.png": {
+      "size": 179703,
+      "md5": "434da5e8d7ad6a976dacc674fbc788ad",
+      "sha256": "cdf8dbf001b130e515c979ddc197d213fc2b14b80a6900889ac0de4262d12b87"
+    },
+    "SOURCES.txt": {
+      "size": 824,
+      "md5": "87ffd851ccac40d1a1670d91dfd495c7",
+      "sha256": "88279886067abddfd7d751c3bb376318dc912f751456cd68c290ca9fe89c69b9"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/6b55598c2a02a56d5ed8d6fa9b288af726b5efcd3f03310ee70bbde0bc45b44f.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/776cc3f88e5138a61de25341ceb48ae06b6e4f4e744e0521db84a0e12d9caf44.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/cdf8dbf001b130e515c979ddc197d213fc2b14b80a6900889ac0de4262d12b87.png": "shot_02.png"
+  },
+  "attempted": [
+    "mkxp-z-vita v0.6.1-alpha.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:44:18+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "HARDRPG01",
+    "name": "HardRPG",
+    "search_title": "HardRPG",
+    "version": "0.6.1-alpha",
+    "repo": "Asukate/mkxp-z-vita",
+    "tag": "v0.6.1-alpha",
+    "asset": "HardRPG-0.6.1.vpk",
+    "url": "https://github.com/Asukate/mkxp-z-vita/releases/download/v0.6.1-alpha/HardRPG-0.6.1.vpk",
+    "size": 31017402,
+    "sha256": "1d79e047e96d6d52de0955b4f263ea6ecddd99bfe77aba2dba180768ddadfd6d",
+    "creator": "Asukate"
+  }
+}
