@@ -16,9 +16,9 @@
   "v": "0.1.0",
   "vd": "2026-09-16",
   "sz": 3333738,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/b61a2ff397beb7f6ecfb361925450d3e93d452297de618337c1b7f0e70d4d45e.png",
+  "ic": "https://archive.org/download/psvitaalive-advancedslop/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123.png"
+    "https://archive.org/download/psvitaalive-advancedslop/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1311337155",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Grarak/AdvancedSlop/releases/download/0.1.0/advancedslop.vpk",
+      "u": "https://archive.org/download/psvitaalive-advancedslop/advancedslop%20v0.1.0.vpk",
       "rec": true
     }
   ]
