@@ -497,9 +497,9 @@
     "v": "0.3",
     "vd": "2026-11-25",
     "sz": 9851622,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/0a0140b7566e71cb0bd5e3209176b26dafb42223eb0712aad2b7a6ebe2e51360.png",
+    "ic": "https://archive.org/download/psvitaalive-lotr-two-towers-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lotr-two-towers-vita/1a748cc89e5abdbf5ecfd151e20be89e92b38c621fc5f53a20bc600bd2f25b55.png"
+      "https://archive.org/download/psvitaalive-lotr-two-towers-vita/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1460036012",
@@ -514,7 +514,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/federicopellegrino994/lotr-two-towers-vita/releases/download/v0.3/TwoTowers.vpk",
+        "u": "https://archive.org/download/psvitaalive-lotr-two-towers-vita/lotr-two-towers-vita%20v0.3.vpk",
         "rec": true
       }
     ]
