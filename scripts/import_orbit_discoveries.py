@@ -66,7 +66,7 @@ def public_bytes(url, limit, api=False):
 
 
 def api_json(repo, endpoint):
-    return json.loads(public_bytes("https://api.github.com/repos/" + repo + "/" + endpoint,
+    return json.loads(public_bytes("https://api.github.com/repos/" + (repo + "/" + endpoint).rstrip("/"),
                                    2 * 1024 * 1024, api=True))
 
 
@@ -180,8 +180,8 @@ def native_media(path, app_id):
 
 
 def plan_one(root, spec, entry):
-    validate_approval(spec, entry)
     app_id, tid = spec["id"], spec["title_id"]
+    require(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}", app_id), "Invalid app ID")
     registry = json.loads((root / "registry/retired_ids.json").read_text("utf-8"))
     require(app_id not in registry["apps"]["ids"] and tid not in
             {x.upper() for x in registry["apps"]["title_ids"]}, "Retired app identity")
@@ -192,13 +192,15 @@ def plan_one(root, spec, entry):
                 and same[0].get("source_name") == "Orbit"
                 and same[0].get("source_id") == spec["candidate_key"], "App ID already registered")
         return None, {}
+    validate_approval(spec, entry)
     require(not any(str(a.get("title_id", "")).upper() == tid for a in existing), "Title ID already registered")
     require(not (root / "apps" / (app_id + ".json")).exists(), "Filename already exists")
+    require(bool(spec["author_ids"]) and len(set(spec["author_ids"])) == len(spec["author_ids"]), "Invalid reviewed authors")
     for aid in spec["author_ids"]:
         require(re.fullmatch(r"[a-z0-9_-]+", aid) and aid not in registry["authors"]["ids"]
                 and (root / "authors" / (aid + ".json")).is_file(), "Missing or retired reviewed author")
     category = read_json(root / "categories" / (spec["category_id"] + ".json"))
-    require(set(spec["subcategory_ids"]) <= {s["id"] for s in category["subcategories"]}, "Invalid subcategory")
+    require(bool(spec["subcategory_ids"]) and set(spec["subcategory_ids"]) <= {s["id"] for s in category["subcategories"]}, "Invalid subcategory")
     repo = spec["project"]
     # Require Orbit's stable numeric repository ID to match current GitHub metadata.
     metadata = api_json(repo, "")
@@ -242,7 +244,7 @@ def main():
     inventory = json.loads(public_bytes(ORBIT, 16*1024*1024))
     for spec in policy["approved"]:
         try:
-            app, media = plan_one(ROOT, spec, inventory[spec["candidate_key"]])
+            app, media = plan_one(ROOT, spec, inventory.get(spec["candidate_key"], {}))
             if app is None:
                 print("Already imported:", spec["id"])
                 continue
@@ -261,7 +263,6 @@ def main():
         except (ValueError, KeyError, OSError, requests.RequestException, Deferred, zipfile.BadZipFile) as exc:
             # Independent candidates, but failed validations must be visible.
             print(f"::warning::Orbit candidate {spec.get('id')} deferred: {type(exc).__name__}: {exc}")
-            failures = True
             if len(policy["approved"]) == 1:
                 return 1
     return 0
