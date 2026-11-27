@@ -1,0 +1,50 @@
+{
+  "app_id": "syncthing-vita",
+  "identifier": "psvitaalive-syncthing-vita",
+  "source_url": "https://github.com/GeoffreyMetais/syncthing-vita/releases/download/v0.2.0/SYNCTHING.vpk",
+  "files": {
+    "syncthing-vita v0.2.0.vpk": {
+      "size": 1444248,
+      "md5": "d458042ea4987b5a8bd08f2e21929e4f",
+      "sha256": "5f2220c022a0944ff21dfec8cc4c2c53c9d48c30fb85dc1e03e099b894936930"
+    },
+    "icon0.png": {
+      "size": 7051,
+      "md5": "1b547fe2562bfb217c39e4cc9e5c53a8",
+      "sha256": "8f259199658fcdf6ead409467dc47275284c03d2075f76341cac850c7bcc901e"
+    },
+    "shot_01.png": {
+      "size": 47640,
+      "md5": "8eca1c1917261347952c79140194fb6d",
+      "sha256": "27839b183222bb4557be86658e4c9775ec52f07d817d7c93cc8b56ecdada5b7e"
+    },
+    "SOURCES.txt": {
+      "size": 682,
+      "md5": "3c3fdd03b36541e7cf9b494a3d181a83",
+      "sha256": "9a6068403b5de9f8e899cad2f3137ec50de598bfa478f463d5a3ce19ca7e2cd1"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/8f259199658fcdf6ead409467dc47275284c03d2075f76341cac850c7bcc901e.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/syncthing-vita/27839b183222bb4557be86658e4c9775ec52f07d817d7c93cc8b56ecdada5b7e.png": "shot_01.png"
+  },
+  "attempted": [
+    "syncthing-vita v0.2.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:40:45+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "SYNCTHING",
+    "name": "Syncthing",
+    "search_title": "Syncthing",
+    "version": "0.2.0",
+    "repo": "GeoffreyMetais/syncthing-vita",
+    "tag": "v0.2.0",
+    "asset": "SYNCTHING.vpk",
+    "url": "https://github.com/GeoffreyMetais/syncthing-vita/releases/download/v0.2.0/SYNCTHING.vpk",
+    "size": 1444248,
+    "sha256": "5f2220c022a0944ff21dfec8cc4c2c53c9d48c30fb85dc1e03e099b894936930",
+    "creator": "Geoffrey Métais"
+  }
+}
