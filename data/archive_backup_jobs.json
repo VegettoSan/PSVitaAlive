@@ -12,6 +12,18 @@
       "title_id": "MHRE00001",
       "sha256": "99b4fe5e14f27b2d77945703f54c2c0ef90ba6c95973b76729c0c207940bb979",
       "md5": "e60fe07048fb87f3b9b487b4e52ef425"
+    },
+    "mario-strikers-charged": {
+      "version": "2.0",
+      "source_url": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita/releases/download/v2.0/Strikers-Charged-Vita.vpk",
+      "archive_identifier": "mario-strikers-charged-ps-vita",
+      "filename": "mario-strikers-charged v2.0.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-27T20:23:34+00:00",
+      "size_bytes": 11803115,
+      "title_id": "MSCN00003",
+      "sha256": "4d7793aa583f38a30c09c4278e0f48c1a5a393c669add18239e257c1fbfc743f",
+      "md5": "d0552a0c17a7249eef87f22212f87a5e"
     }
   },
   "superseded": {
