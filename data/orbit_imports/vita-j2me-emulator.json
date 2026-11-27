@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "app_id": "vita-j2me-emulator",
+  "candidate_key": "gh:1440254477",
+  "repo": "MetalSyntax/vita-j2me-emulator",
+  "tag": "v1.0.1",
+  "sha256": "23973cf0dc2169276bc0eaf8c1e73d1b9ab8ee17525178b9d189abbcce718438"
+}

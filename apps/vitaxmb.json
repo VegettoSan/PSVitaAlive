@@ -1,0 +1,40 @@
+{
+  "id": "vitaxmb",
+  "tid": "VXMB00001",
+  "n": "VitaXMB",
+  "d": "A PSP-style XMB launcher for the PlayStation Vita: games, music, settings and system apps in the original layout, motion and sound.",
+  "ld": "The cross media bar, rebuilt for the Vita: your games and homebrew, music, settings and system apps in the layout, motion and sound of the original.",
+  "aids": [
+    "dekiller82"
+  ],
+  "cid": "utilities",
+  "sids": [
+    "launcher"
+  ],
+  "req": "- VitaXMB is an unsafe homebrew (it reads other apps' folders and launches other titles), so it needs a hacked Vita with HENkaku / Enso and Enable Unsafe Homebrew switched on.\n- 1. Install the plugins. The easiest way is AutoPlugin 2 (https://github.com/ONElua/AutoPlugin2), a plugin manager: install AutoBoot and NoLockScreen through it and it registers them for you, so you do not have to edit tai/config.txt. Both are also on VitaDB (https://www.rinnegatamante.eu/vitadb/#/).\n- VitaXMB must be installed (its bubble is on the LiveArea) and Enable Unsafe Homebrew must be on in the HENkaku settings.\n- A plugin that starts an app at boot can fire before the system is ready; some builds have a delay setting.\n- Starting a game without a bubble: Adrenaline 8 has no way to start an ISO by itself, so VitaXMB uses Adrenaline's Autorun: it puts a small PSP program (ux0:pspemu/PSP/GAME/BOOT/EBOOT.PBP) in place, sets Adrenaline's start-program option, and starts Adrenaline. The PSP program mounts the game and starts it. VitaXMB puts Adrenaline's option back the next time it starts. If you have the AdrBubbleBooter modules installed, VitaXMB uses a bubble for the games that have one.\n- Rows show the landscape gate image of the app's LiveArea and, on rest, its background. They are found in this order: the app's own sce_sys/livearea (homebrew), LiveArea's copy in ur0:appmeta/<id>/livearea, and the plain pic0.png copy in ur0:appmeta/<id>.\n- Retro games. VitaXMB can list the ROMs you already have and start them through RetroArch or Emu4Vita+, without the other launcher's own browser:\n- Way 1, RetroArch playlists: open RetroArch and scan your ROMs once (Import Content > Scan Directory). RetroArch then writes ux0:data/retroarch/playlists/<system>.lpl, and VitaXMB reads those. The ROMs can be anywhere on the card. A fresh RetroArch has empty playlists, so nothing shows until you have scanned.\n- Way 2, RetroFlow-style folders: put the ROMs in ux0:data/RetroFlow/ROMS/<system folder>/ (the exact folder names are in the table below). No scan and no RetroFlow Launcher needed, only the folders.\n- One folder per system inside ux0:data/RetroFlow/ROMS/, named exactly like the table below (the names are the libretro system names, with their  -  separators). Put the ROM files in it. One level of subfolders is read too (for example a folder per game or per letter); deeper ones are not.\n- Installing needs VitaShell's modules in ux0:VitaShell (the same ones VitaShell uses to install packages). If the system installer refuses the package, the downloaded .vpk is kept in ux0:data/VitaXMB/ so you can install it with VitaShell.\n- This is a beta. Please test it and tell me what you see. VitaXMB can load the PSP's custom themes (.ctf and .ptf, the 6.60 / 6.61 CXMB kind). Put theme files in ux0:data/VitaXMB/themes (or ux0:pspemu/PSP/THEME) and choose one under Settings > Theme Settings > Custom Theme (beta). Choosing Off returns to the stock look.",
+  "st": "Archive",
+  "v": "1.10.2",
+  "vd": "2026-11-08",
+  "sz": 12335016,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/29f5c19f6deb79a3abdcd259f385e35052bf3a0f6a4b0543ec9abdf8ac0e7dab.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/8008a0e59c561a781540e3b6670f4984c359a90775bae1bc4b3ce3d3bf3ddf7c.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1404951197",
+  "su": "https://github.com/dekiller82/VitaXMB",
+  "rp": "https://github.com/dekiller82/VitaXMB/releases/tag/v1.10.2",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/dekiller82/VitaXMB"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/dekiller82/VitaXMB/releases/download/v1.10.2/VitaXMB-v1.10.2.vpk",
+      "rec": true
+    }
+  ]
+}

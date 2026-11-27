@@ -4605,6 +4605,46 @@
     ]
   },
   {
+    "id": "vitaxmb",
+    "tid": "VXMB00001",
+    "n": "VitaXMB",
+    "d": "A PSP-style XMB launcher for the PlayStation Vita: games, music, settings and system apps in the original layout, motion and sound.",
+    "ld": "The cross media bar, rebuilt for the Vita: your games and homebrew, music, settings and system apps in the layout, motion and sound of the original.",
+    "aids": [
+      "dekiller82"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "launcher"
+    ],
+    "req": "- VitaXMB is an unsafe homebrew (it reads other apps' folders and launches other titles), so it needs a hacked Vita with HENkaku / Enso and Enable Unsafe Homebrew switched on.\n- 1. Install the plugins. The easiest way is AutoPlugin 2 (https://github.com/ONElua/AutoPlugin2), a plugin manager: install AutoBoot and NoLockScreen through it and it registers them for you, so you do not have to edit tai/config.txt. Both are also on VitaDB (https://www.rinnegatamante.eu/vitadb/#/).\n- VitaXMB must be installed (its bubble is on the LiveArea) and Enable Unsafe Homebrew must be on in the HENkaku settings.\n- A plugin that starts an app at boot can fire before the system is ready; some builds have a delay setting.\n- Starting a game without a bubble: Adrenaline 8 has no way to start an ISO by itself, so VitaXMB uses Adrenaline's Autorun: it puts a small PSP program (ux0:pspemu/PSP/GAME/BOOT/EBOOT.PBP) in place, sets Adrenaline's start-program option, and starts Adrenaline. The PSP program mounts the game and starts it. VitaXMB puts Adrenaline's option back the next time it starts. If you have the AdrBubbleBooter modules installed, VitaXMB uses a bubble for the games that have one.\n- Rows show the landscape gate image of the app's LiveArea and, on rest, its background. They are found in this order: the app's own sce_sys/livearea (homebrew), LiveArea's copy in ur0:appmeta/<id>/livearea, and the plain pic0.png copy in ur0:appmeta/<id>.\n- Retro games. VitaXMB can list the ROMs you already have and start them through RetroArch or Emu4Vita+, without the other launcher's own browser:\n- Way 1, RetroArch playlists: open RetroArch and scan your ROMs once (Import Content > Scan Directory). RetroArch then writes ux0:data/retroarch/playlists/<system>.lpl, and VitaXMB reads those. The ROMs can be anywhere on the card. A fresh RetroArch has empty playlists, so nothing shows until you have scanned.\n- Way 2, RetroFlow-style folders: put the ROMs in ux0:data/RetroFlow/ROMS/<system folder>/ (the exact folder names are in the table below). No scan and no RetroFlow Launcher needed, only the folders.\n- One folder per system inside ux0:data/RetroFlow/ROMS/, named exactly like the table below (the names are the libretro system names, with their  -  separators). Put the ROM files in it. One level of subfolders is read too (for example a folder per game or per letter); deeper ones are not.\n- Installing needs VitaShell's modules in ux0:VitaShell (the same ones VitaShell uses to install packages). If the system installer refuses the package, the downloaded .vpk is kept in ux0:data/VitaXMB/ so you can install it with VitaShell.\n- This is a beta. Please test it and tell me what you see. VitaXMB can load the PSP's custom themes (.ctf and .ptf, the 6.60 / 6.61 CXMB kind). Put theme files in ux0:data/VitaXMB/themes (or ux0:pspemu/PSP/THEME) and choose one under Settings > Theme Settings > Custom Theme (beta). Choosing Off returns to the stock look.",
+    "st": "Archive",
+    "v": "1.10.2",
+    "vd": "2026-11-08",
+    "sz": 12335016,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/29f5c19f6deb79a3abdcd259f385e35052bf3a0f6a4b0543ec9abdf8ac0e7dab.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/8008a0e59c561a781540e3b6670f4984c359a90775bae1bc4b3ce3d3bf3ddf7c.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1404951197",
+    "su": "https://github.com/dekiller82/VitaXMB",
+    "rp": "https://github.com/dekiller82/VitaXMB/releases/tag/v1.10.2",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/dekiller82/VitaXMB"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/dekiller82/VitaXMB/releases/download/v1.10.2/VitaXMB-v1.10.2.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "autoplugin-2",
     "tid": "AUTOPLUG2",
     "n": "Autoplugin 2",
@@ -5270,6 +5310,47 @@
     "ic": "https://archive.org/download/twinsanityevolved-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/twinsanityevolved-ps-vita/shot0.jpg"
+    ]
+  },
+  {
+    "id": "vita-j2me-emulator",
+    "tid": "VITAJ2ME0",
+    "n": "VitaJ2ME",
+    "d": "Emulator of Java ME for PS Vita",
+    "ld": "VitaJ2ME runs Java ME (J2ME / MIDP 2.0, CLDC 1.1) games natively on the PlayStation Vita. It is a port of **PSPKVM** (Sun's phoneME Feature VM, as adapted for the PSP) from MIPS to ARMv7, with a new native front end: a game library, per-game settings, a virtual keypad, touch support and an in-game menu.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "emulators",
+    "sids": [
+      "other"
+    ],
+    "req": "- Extract VitaJ2ME-v1.0.1-data.zip to ux0:data/. You should end up with\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.0.1",
+    "vd": "2026-11-05",
+    "sz": 3856563,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ddd027af31b3784fb0e4a7451ae17c41233e3e27217970ca0d30692933440cd0.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/33a02619a5d34923e93784bcf5b3fa38bfaaa625c400156c6ed790458441709a.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ed84871b3105f9d053846fcf6ec4d400c52b5510d68f8c952d77632fa7f93913.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1440254477",
+    "su": "https://github.com/MetalSyntax/vita-j2me-emulator",
+    "rp": "https://github.com/MetalSyntax/vita-j2me-emulator/releases/tag/v1.0.1",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/vita-j2me-emulator"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/vita-j2me-emulator/releases/download/v1.0.1/VitaJ2ME-v1.0.1.vpk",
+        "rec": true
+      }
     ]
   },
   {
@@ -8028,7 +8109,7 @@
     "aids": [
       "arielxflores"
     ],
-    "cid": "emulators",
+    "cid": "ports",
     "sids": [
       "other"
     ],
@@ -8250,6 +8331,47 @@
     "ic": "https://archive.org/download/hero-of-sparta-ps-vita-port/icon0.png",
     "ss": [
       "https://archive.org/download/hero-of-sparta-ps-vita-port/pic0.png"
+    ]
+  },
+  {
+    "id": "igi-vita",
+    "tid": "PIGI00001",
+    "n": "Project IGI",
+    "d": "Project I.G.I. native PS Vita port - releases (no game files)",
+    "ld": "Project I.G.I. (Innerloop, 2000) running natively on the PS Vita / PS TV. This is not an emulator: the original Windows executable was statically recompiled to C and built for the Vita, with Direct3D 7 / DirectSound / DirectInput reimplemented on top of vitaGL and the Vita's own APIs. Hot parts of the game (terrain, meshes, skinning, culling...) have been rewritten by hand for the Vita's CPU.",
+    "aids": [
+      "henrykun55"
+    ],
+    "cid": "emulators",
+    "sids": [
+      "other"
+    ],
+    "req": "- A PS Vita or PS TV with HENkaku/Ensō (any firmware supported by them) and\n- The PC game files from the original 2000 CD release. The port is built\n- Updating to a newer version only needs the new vpk; your game data and saves in\n- Installing an update needs Enable Unsafe Homebrew on in Settings > HENkaku",
+    "st": "Archive",
+    "v": "0.5.0",
+    "vd": "2026-10-13",
+    "sz": 6776165,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/0cd6d9605e0a033a3b25be85970c4561709253d29b1dec7b8a0bd8858b1e7e0b.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/ea0d1ed9b1f48938df3df9f36f2f89068331e3bd0546589b5609986b6f55f4ab.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/6fc0eaa68a54330dc8595f2c0ae959ef618d9d906a46387517dfeeb9cc2b080c.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1402586244",
+    "su": "https://github.com/HenryKun55/igi-vita",
+    "rp": "https://github.com/HenryKun55/igi-vita/releases/tag/v0.5.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/HenryKun55/igi-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/HenryKun55/igi-vita/releases/download/v0.5.0/igi.vpk",
+        "rec": true
+      }
     ]
   },
   {
@@ -8610,9 +8732,10 @@
     "aids": [
       "archelkrozt"
     ],
-    "cid": "media",
+    "cid": "networking",
     "sids": [
-      "image-viewer"
+      "messaging",
+      "client"
     ],
     "req": "- Install the new VPK on top of the old one. Only the app in ux0:app/VIRC00001/ is replaced;",
     "st": "Archive",
@@ -9176,6 +9299,47 @@
     ]
   },
   {
+    "id": "dungeon-hunter-3-vita",
+    "tid": "PSVDH0003",
+    "n": "Dungeon Hunter 3",
+    "d": "Android to PS Vita port of Gameloft's Dungeon Hunter 3",
+    "ld": "A native port of Gameloft's **Dungeon Hunter 3** (Android, v1.5.2c) to the PlayStation Vita, built on the so-loader technique: the original Android `libDH3.so` is relocated and run directly on the Vita, with a FalsoJNI-based bridge standing in for the parts of the Android runtime the game calls into (Java callbacks, file system, OBB, input, audio, video, IME), rendering through a patched vitaGL built from source.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "plugins",
+    "sids": [
+      "other"
+    ],
+    "req": "- Install kubridge.skprx and ur0:data/libshacccg.suprx if you don't have them already.\n- Copy your own game data to ux0:data/dungeonhunter3/ (layout in the README).\n- [Getting the game data](#-installation) for what you need to supply yourself.\n- Copy the files above to ux0:data/dungeonhunter3/.\n- On the Vita: kubridge (https://github.com/bythos14/kubridge) and libshacccg.suprx (see [Prerequisites](#-prerequisites)).\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.0.0",
+    "vd": "2026-10-06",
+    "sz": 1121900,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/94de9eb287d517e3574e1145163539d3f6e0ae8b2b6a26a007f4a1afa1c8d5ab.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/093ead8fee7b51800c87f9e588d24b40639fb52155169129ec8da817afed0962.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/d3fdda19a0bb9ef23e81886e680b0cf901e457b65f9f71af46c5ab7174570a26.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1406607400",
+    "su": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita",
+    "rp": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/tag/v1.0.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/download/v1.0.0/dungeonhunter3.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "insaniquarium",
     "tid": "INSNQ4R13",
     "n": "Insaniquarium!",
@@ -9502,6 +9666,47 @@
     "ic": "https://archive.org/download/real-racing-2-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/real-racing-2-ps-vita/bg.png"
+    ]
+  },
+  {
+    "id": "eternal-legacy-vita",
+    "tid": "PSVELG001",
+    "n": "Eternal Legacy",
+    "d": "Android to PS Vita port of Gameloft's Eternal Legacy",
+    "ld": "This port runs the compiled native Android library (`libEternalLegacy.so`, armeabi) directly on the PS Vita's ARM Cortex-A9 CPU, using a dynamic library loader (*soloader*) based on TheFloW's architecture, an Android runtime emulation layer (*FalsoJNI*), and vitaGL for OpenGL ES 2.0 graphics. The engine is Gameloft's *glitch* engine (derived from Irrlicht) with *gameswf* for the Flash UI and *Vox* for audio.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "plugins",
+    "sids": [
+      "other"
+    ],
+    "req": "- PS Vita / PS TV running HENkaku or Enso (Firmware 3.60 / 3.65).\n- kubridge.skprx and fd_fix.skprx installed in your taiHEN config.txt under KERNEL.\n- libshacccg.suprx installed in ur0:data/libshacccg.suprx (extractable via ShaRKBR33D).\n- Extract libEternalLegacy.so from lib/armeabi/libEternalLegacy.so in the APK and copy it to ux0:data/eternallegacy/.\n- Copy libEternalLegacy.so to ux0:data/eternallegacy/.\n- Missing data: if the game reports missing data, make sure ux0:data/eternallegacy/GloftELHP/ and\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.0.0",
+    "vd": "2026-09-29",
+    "sz": 1075480,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/d4a0e2216cc90b472e5b25ae74d59f3a04925c63e0d4c674c424977bc1fd770a.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/454e01fc6cde477620582692fecd97f11f8c1a3da930a3ef819172a16ac86c78.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/6591e97c3148d46cdbd2fc1f32f005f7c5dc2251c2e873d3657171a3c5eac93b.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1394311511",
+    "su": "https://github.com/MetalSyntax/Eternal-Legacy-vita",
+    "rp": "https://github.com/MetalSyntax/Eternal-Legacy-vita/releases/tag/v1.0.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Eternal-Legacy-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Eternal-Legacy-vita/releases/download/v1.0.0/eternallegacy.vpk",
+        "rec": true
+      }
     ]
   },
   {

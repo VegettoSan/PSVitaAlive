@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "app_id": "dungeon-hunter-3-vita",
+  "candidate_key": "gh:1406607400",
+  "repo": "MetalSyntax/Dungeon-Hunter-3-Vita",
+  "tag": "v1.0.0",
+  "sha256": "7559400a62177d5fcc1295458b79f51ea01f1ce932d7fae521806c43c663c03d"
+}

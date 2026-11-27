@@ -1,0 +1,41 @@
+{
+  "id": "dungeon-hunter-3-vita",
+  "tid": "PSVDH0003",
+  "n": "Dungeon Hunter 3",
+  "d": "Android to PS Vita port of Gameloft's Dungeon Hunter 3",
+  "ld": "A native port of Gameloft's **Dungeon Hunter 3** (Android, v1.5.2c) to the PlayStation Vita, built on the so-loader technique: the original Android `libDH3.so` is relocated and run directly on the Vita, with a FalsoJNI-based bridge standing in for the parts of the Android runtime the game calls into (Java callbacks, file system, OBB, input, audio, video, IME), rendering through a patched vitaGL built from source.",
+  "aids": [
+    "metalsyntax"
+  ],
+  "cid": "plugins",
+  "sids": [
+    "other"
+  ],
+  "req": "- Install kubridge.skprx and ur0:data/libshacccg.suprx if you don't have them already.\n- Copy your own game data to ux0:data/dungeonhunter3/ (layout in the README).\n- [Getting the game data](#-installation) for what you need to supply yourself.\n- Copy the files above to ux0:data/dungeonhunter3/.\n- On the Vita: kubridge (https://github.com/bythos14/kubridge) and libshacccg.suprx (see [Prerequisites](#-prerequisites)).\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+  "st": "Archive",
+  "v": "1.0.0",
+  "vd": "2026-10-06",
+  "sz": 1121900,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/94de9eb287d517e3574e1145163539d3f6e0ae8b2b6a26a007f4a1afa1c8d5ab.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/093ead8fee7b51800c87f9e588d24b40639fb52155169129ec8da817afed0962.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/d3fdda19a0bb9ef23e81886e680b0cf901e457b65f9f71af46c5ab7174570a26.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1406607400",
+  "su": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita",
+  "rp": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/tag/v1.0.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/download/v1.0.0/dungeonhunter3.vpk",
+      "rec": true
+    }
+  ]
+}

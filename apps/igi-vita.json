@@ -1,0 +1,41 @@
+{
+  "id": "igi-vita",
+  "tid": "PIGI00001",
+  "n": "Project IGI",
+  "d": "Project I.G.I. native PS Vita port - releases (no game files)",
+  "ld": "Project I.G.I. (Innerloop, 2000) running natively on the PS Vita / PS TV. This is not an emulator: the original Windows executable was statically recompiled to C and built for the Vita, with Direct3D 7 / DirectSound / DirectInput reimplemented on top of vitaGL and the Vita's own APIs. Hot parts of the game (terrain, meshes, skinning, culling...) have been rewritten by hand for the Vita's CPU.",
+  "aids": [
+    "henrykun55"
+  ],
+  "cid": "emulators",
+  "sids": [
+    "other"
+  ],
+  "req": "- A PS Vita or PS TV with HENkaku/Ensō (any firmware supported by them) and\n- The PC game files from the original 2000 CD release. The port is built\n- Updating to a newer version only needs the new vpk; your game data and saves in\n- Installing an update needs Enable Unsafe Homebrew on in Settings > HENkaku",
+  "st": "Archive",
+  "v": "0.5.0",
+  "vd": "2026-10-13",
+  "sz": 6776165,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/0cd6d9605e0a033a3b25be85970c4561709253d29b1dec7b8a0bd8858b1e7e0b.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/ea0d1ed9b1f48938df3df9f36f2f89068331e3bd0546589b5609986b6f55f4ab.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/6fc0eaa68a54330dc8595f2c0ae959ef618d9d906a46387517dfeeb9cc2b080c.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1402586244",
+  "su": "https://github.com/HenryKun55/igi-vita",
+  "rp": "https://github.com/HenryKun55/igi-vita/releases/tag/v0.5.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/HenryKun55/igi-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/HenryKun55/igi-vita/releases/download/v0.5.0/igi.vpk",
+      "rec": true
+    }
+  ]
+}
