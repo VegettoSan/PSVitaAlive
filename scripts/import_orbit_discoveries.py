@@ -1,8 +1,7 @@
 """Import reviewed Orbit discoveries into canonical PSVitaAlive sources.
 
 No direct changes to generated catalogs; the canonical validator and backup
-workflow are authoritative. Only explicitly reviewed historical releases with
-redistribution evidence are admitted by this initial production policy.
+workflow are authoritative. Automatic registration is independent of license metadata; preservation uses the existing policy.
 """
 from __future__ import annotations
 
@@ -106,7 +105,7 @@ def validate_approval(spec, entry):
     require(re.fullmatch(r"[A-Z0-9]{9}", spec["title_id"]), "Invalid Title ID")
     require(re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", spec["project"])
             and not any(p in (".", "..") for p in spec["project"].split("/")), "Invalid project")
-    require(spec["status"] == "Legacy", "Unapproved discovery status")
+    require(spec["status"] in ({"Legacy", "Archive"} if spec.get("automatic") else {"Legacy"}), "Unapproved discovery status")
     require(entry.get("key") == spec["candidate_key"] and
             entry.get("project", "").casefold() == spec["project"].casefold()
             and entry.get("platform") == "github", "Orbit candidate identity changed")
@@ -117,10 +116,9 @@ def select_release(spec, release):
             and release.get("prerelease") is False and release.get("tag_name") == spec["tag"],
             "Latest stable release differs from reviewed tag")
     published = date.fromisoformat(str(release.get("published_at", ""))[:10])
-    if spec.get("automatic"):
-        require(published <= date.today() - timedelta(days=spec["min_release_age_days"]), "Release is not yet eligible for Legacy")
-    else:
-        require(published < date(2022, 1, 1), "Pilot status policy only admits historical releases before 2022")
+    require(published <= date.today(), "Future release date")
+    if not spec.get("automatic"):
+        require(published < date(2022, 1, 1), "Historical reviewed pilot release expected")
     assets = [a for a in release.get("assets", []) if isinstance(a, dict)
               and str(a.get("name", "")).lower().endswith(".vpk")]
     require(len(assets) == 1 and assets[0].get("state") == "uploaded", "No unique uploaded VPK")
@@ -229,7 +227,7 @@ def plan_one(root, spec, entry, new_author=None):
             "Orbit and latest release disagree")
     if spec.get("automatic"):
         require(url == spec["expected_url"], "Enrichment and current release differ")
-        require(auto.mit_notice(repo, spec["tag"], api_json, public_bytes) == spec["license_notice"], "License changed during import")
+        # Registration links to the original public release; license is not a catalog gate.
     else:
         reviewed_license(root, app_id, repo, spec["tag"])
     size, sha = official_asset_metadata({"source_url": url})
@@ -244,7 +242,11 @@ def plan_one(root, spec, entry, new_author=None):
         native_name, name_field = vpk_display_name(target)
         icon, shots, media = native_media(target, app_id)
     app = {k: spec[k] for k in ("id", "title_id", "name", "description", "long_description",
-                                "author_ids", "category_id", "subcategory_ids", "requirements", "status", "license")}
+                                "author_ids", "category_id", "subcategory_ids", "requirements", "status")}
+    if spec.get("license"):
+        app["license"] = spec["license"]
+    if spec.get("automatic"):
+        app["status"] = "Legacy" if date.fromisoformat(published) <= date.today() - timedelta(days=365) else "Archive"
     app["name"] = native_name or spec["name"]
     print("Display name:", app_id, repr(app["name"]), "source:", name_field or "reviewed repository fallback", flush=True)
     app.update(version=spec["tag"].lstrip("vV"), version_date=published, size=size,
@@ -313,8 +315,7 @@ def main():
     config = policy.get("automatic") or {}
     if not config.get("enabled"):
         return 0
-    require(1 <= config["max_new"] <= 6 and config["max_new"] <= config["max_checks"] <= 30
-            and config["min_release_age_days"] >= 365 and config["allowed_licenses"] == ["MIT"], "Unsafe automatic policy")
+    require(1 <= config["max_new"] <= 6 and config["max_new"] <= config["max_checks"] <= 30, "Unsafe automatic policy")
     state = json.loads(public_bytes(auto.QUEUE,32*1024*1024))
     registry = json.loads((ROOT/"registry/retired_ids.json").read_text("utf-8"))
     diagnostics = {}
