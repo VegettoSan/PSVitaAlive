@@ -31,7 +31,8 @@
   "attempted": [
     "syncthing-vita v0.2.0.vpk",
     "icon0.png",
-    "shot_01.png"
+    "shot_01.png",
+    "SOURCES.txt"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:40:45+00:00",
