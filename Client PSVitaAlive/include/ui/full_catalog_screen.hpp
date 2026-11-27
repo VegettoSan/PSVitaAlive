@@ -670,6 +670,7 @@ private:
     std::function<bool()> storageInstallerBusy_;
     StorageAppDisplayFn storageAppDisplay_;
     bool storageVisible_ = false;
+    uint64_t storageTransitionUs_ = 0; // shared 200 ms entrance fade
     bool storageConfirm_ = false;
     int storagePendingAction_ = -1; // double-confirm the exact cleanup action
     struct StorageDisplayRow {
