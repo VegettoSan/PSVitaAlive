@@ -63,29 +63,41 @@ uint64_t measure(const std::string& root) {
     uint32_t visited=0;
     return measureTree(root,0,visited);
 }
-bool eraseTree(const std::string& root,unsigned depth=0) {
-    StorageManager st;
-    if(!st.exists(root)) return true;
-    if(!st.isDirectory(root)) return st.removeFile(root);
+bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
     if(depth>=kMaxDepth) return false;
-    // Vita filesystem directory enumeration can skip an entry after a delete;
-    // rescan until empty, not merely the first 4096 file names.
-    for(unsigned pass=0;pass<20;pass++) {
+    unsigned mode=knownMode;
+    if(!mode) {
+        SceIoStat st{};
+        const int rc=sceIoGetstat(root.c_str(),&st);
+        if(rc<0) return static_cast<uint32_t>(rc)==0x80010002u;
+        mode=st.st_mode;
+    }
+    const auto type=mode & SCE_S_IFMT;
+    if(type==SCE_S_IFREG) return sceIoRemove(root.c_str())>=0;
+    if(type!=SCE_S_IFDIR) return false;
+    struct Child { std::string name; unsigned mode; };
+    // Enumerate in bounded batches, then close before mutating the directory.
+    // d_stat already identifies ordinary files; do not stat them again.
+    constexpr size_t batchLimit=1024;
+    uint32_t visited=0;
+    for(;;) {
         const SceUID d=sceIoDopen(root.c_str());
         if(d<0) return false;
         SceIoDirent e{};
-        bool found=false, ok=true;
+        std::vector<Child> batch;
         int rc=0;
-        while((rc=sceIoDread(d,&e))>0) {
-            if(!safeName(e.d_name)) continue;
-            found=true;
-            if(!eraseTree(root+"/"+e.d_name,depth+1)) ok=false;
+        bool ok=true;
+        while(batch.size()<batchLimit && (rc=sceIoDread(d,&e))>0) {
+            if(std::strcmp(e.d_name,".")==0 || std::strcmp(e.d_name,"..")==0) continue;
+            if(!safeName(e.d_name) || ++visited>200000) {ok=false;break;}
+            batch.push_back({e.d_name,static_cast<unsigned>(e.d_stat.st_mode)});
         }
         sceIoDclose(d);
         if(rc<0 || !ok) return false;
-        if(!found) return st.removeDirectory(root);
+        if(batch.empty()) return sceIoRmdir(root.c_str())>=0;
+        for(const auto& child:batch)
+            if(!eraseTree(root+"/"+child.name,depth+1,child.mode))return false;
     }
-    return false;
 }
 void add(UsageSnapshot& snap,const std::string& path,const std::string& label,bool saved,
          const std::vector<std::string>& paths={}) {
