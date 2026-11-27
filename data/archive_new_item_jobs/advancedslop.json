@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123.png": "shot_01.png"
   },
   "attempted": [
-    "advancedslop v0.1.0.vpk"
+    "advancedslop v0.1.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:29:33+00:00",
