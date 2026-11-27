@@ -1,0 +1,40 @@
+{
+  "id": "sumvita",
+  "tid": "SUMV00001",
+  "n": "Sumvita",
+  "d": "A calculator for the PS Vita that shows its working.",
+  "ld": "A calculator for the PS Vita that shows its working. Sumvita has normal, scientific and graphing calculators, an algebra mode, and 92 GCSE question tools. Every answer can open a step-by-step page that sets out the working the way a maths teacher would.",
+  "aids": [
+    "stevenjc2009-byte"
+  ],
+  "cid": "utilities",
+  "sids": [
+    "calculator"
+  ],
+  "req": "- no data",
+  "st": "Archive",
+  "v": "1.2.0",
+  "vd": "2026-11-13",
+  "sz": 2493332,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/10934c87cb09de7d31a6730a0cdcc6a6361bb7a25df68b5be984669be4ae2903.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/sumvita/05ba59052e798a66a5bdeca56bce51217ebb35e92cf70bfdaaba95dc42cc906d.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1454516259",
+  "su": "https://github.com/stevenjc2009-byte/sumvita",
+  "rp": "https://github.com/stevenjc2009-byte/sumvita/releases/tag/v1.2.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/stevenjc2009-byte/sumvita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/stevenjc2009-byte/sumvita/releases/download/v1.2.0/Sumvita.vpk",
+      "rec": true
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "rayman-2-the-great-escape-vita",
+  "tid": "PSVRTGE02",
+  "n": "Rayman 2 The Great Escape",
+  "d": "iOS to PS Vita port of Rayman 2 The Great Escape",
+  "ld": "Rayman 2 The Great Escape · PS Vita Port",
+  "aids": [
+    "metalsyntax"
+  ],
+  "cid": "ports",
+  "sids": [
+    "platformer"
+  ],
+  "req": "- No game files are included: the music must be converted from your own copy with tools/stage_data.sh (see below).\n- Copy that folder to ux0:data/rayman2thegreatescape/:\n- libshacccg.suprx (https://github.com/Rinnegatamante/ShaRKBR33D/releases/latest) in ur0:data/ (extract it with ShaRKBR33D).\n- Game files: open the decrypted .ipa as a ZIP and extract Payload/Rayman2.app/.\n- Copy to the Vita (ux0:data/rayman2thegreatescape/):\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+  "st": "Archive",
+  "v": "1.0.0",
+  "vd": "2026-11-11",
+  "sz": 2041324,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/914221b51f0f1cee58bde1ae8b8022a1e775c2beeae41b363ed25bf72e4303b4.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/930c226ae4554ee7c93e55a97ed76fad38e6b34c9e394d8fb29526bc65763721.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/b6e5f4de761b1dddfd9efb4080f82f85fc789c80d19fca840043ce0e19d01339.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1453333116",
+  "su": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita",
+  "rp": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita/releases/tag/v1.0.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita/releases/download/v1.0.0/rayman2thegreatescape.vpk",
+      "rec": true
+    }
+  ]
+}
