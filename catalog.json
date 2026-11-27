@@ -1,5 +1,59 @@
 [
   {
+    "id": "resident-evil-code-veronica-x",
+    "tid": "RECVX0001",
+    "n": "Resident Evil Code: Veronica X",
+    "d": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
+    "ld": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
+    "aids": [
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "action",
+      "shooter",
+      "strategy",
+      "source-port"
+    ],
+    "v": "1.5",
+    "vd": "2026-11-27",
+    "req": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
+    "sz": 28870168,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Rinnegatamante/recvx_vita/releases/download/v.1.5/RECVX.vpk",
+        "sz": 28870168,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files Fixed",
+        "u": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2147483648,
+        "xp": "ux0:data/",
+        "ips": [
+          "recvx"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Rinnegatamante/recvx_vita"
+      }
+    ],
+    "ic": "https://archive.org/download/resident-evil-code-veronica-x-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot0.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot1.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot2.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot3.png",
+      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot4.png"
+    ]
+  },
+  {
     "id": "spongebob-battle-for-bikini-bottom",
     "tid": "BBVT00002",
     "n": "Spongebob: Battle for Bikini Bottom",
@@ -2451,60 +2505,6 @@
     "ic": "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/mx-vs-atv-unleashed-ps-vita/icon0.png"
-    ]
-  },
-  {
-    "id": "resident-evil-code-veronica-x",
-    "tid": "RECVX0001",
-    "n": "Resident Evil Code: Veronica X",
-    "d": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
-    "ld": "Port of Resident Evil: Code Veronica X for PSVita based off the decompilation of the PS2 version.",
-    "aids": [
-      "rinnegatamante"
-    ],
-    "cid": "ports",
-    "sids": [
-      "action",
-      "shooter",
-      "strategy",
-      "source-port"
-    ],
-    "v": "1.4.5",
-    "vd": "2026-11-17",
-    "req": "- Install libshacccg.suprx in ur0:data/ (shader compiler).\n- If the shader compiler is missing or the game fails to start, try ShaRKF00D to extract/install it. ShaRKF00D requires PSM Runtime 2.01; PSM Runtime is not required when libshacccg.suprx is already valid.\n- ISO file of Resident Evil: Code Veronica X NTSC-U for PS2.",
-    "sz": 28873254,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/resident-evil-code-veronica-x-vita/resident-evil-code-veronica-x%20v1.4.5.vpk",
-        "sz": 28873254,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files Fixed",
-        "u": "https://archive.org/download/resident-evil-code-veronica-x-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2147483648,
-        "xp": "ux0:data/",
-        "ips": [
-          "recvx"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/Rinnegatamante/recvx_vita"
-      }
-    ],
-    "ic": "https://archive.org/download/resident-evil-code-veronica-x-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot0.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot1.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot2.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot3.png",
-      "https://archive.org/download/resident-evil-code-veronica-x-vita/shot4.png"
     ]
   },
   {
