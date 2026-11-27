@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/eternal-legacy-vita/6591e97c3148d46cdbd2fc1f32f005f7c5dc2251c2e873d3657171a3c5eac93b.png": "shot_02.png"
   },
   "attempted": [
-    "eternal-legacy-vita v1.0.0.vpk"
+    "eternal-legacy-vita v1.0.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T21:26:12+00:00",
