@@ -16,10 +16,10 @@
   "v": "1.0.1",
   "vd": "2026-11-05",
   "sz": 3856563,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ddd027af31b3784fb0e4a7451ae17c41233e3e27217970ca0d30692933440cd0.png",
+  "ic": "https://archive.org/download/psvitaalive-vita-j2me-emulator/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/33a02619a5d34923e93784bcf5b3fa38bfaaa625c400156c6ed790458441709a.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ed84871b3105f9d053846fcf6ec4d400c52b5510d68f8c952d77632fa7f93913.png"
+    "https://archive.org/download/psvitaalive-vita-j2me-emulator/shot_01.png",
+    "https://archive.org/download/psvitaalive-vita-j2me-emulator/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1440254477",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/vita-j2me-emulator/releases/download/v1.0.1/VitaJ2ME-v1.0.1.vpk",
+      "u": "https://archive.org/download/psvitaalive-vita-j2me-emulator/vita-j2me-emulator%20v1.0.1.vpk",
       "rec": true
     }
   ]
