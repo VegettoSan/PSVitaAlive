@@ -16,10 +16,10 @@
   "v": "1.0.3",
   "vd": "2026-11-05",
   "sz": 1124549,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/d8b05aa5b16b56c1d79fa74966d32c03013b0d4b862a942a58e5ae2f0b4a6de0.png",
+  "ic": "https://archive.org/download/psvitaalive-riptide-gp-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/e70b4600c3123b202f551c79ebc657ba8b61cfd481d8f954118fe7b71755f913.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579.png"
+    "https://archive.org/download/psvitaalive-riptide-gp-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-riptide-gp-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1399172442",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/download/v1.0.3/riptidegp.vpk",
+      "u": "https://archive.org/download/psvitaalive-riptide-gp-vita/riptide-gp-vita%20v1.0.3.vpk",
       "rec": true
     }
   ]
