@@ -116,10 +116,43 @@ def git_publish(root: Path, paths: list[str], message: str, *, validate: bool) -
         return
     if r.returncode != 1:
         raise Deferred("CATALOG_PUSH_BLOCKED", "Unable to inspect Git staged changes; stop batch")
-    for args in (("commit", "-m", message), ("push", "origin", "HEAD:main")):
-        r = git(*args)
-        if r.returncode:
-            raise Deferred("CATALOG_PUSH_BLOCKED", "GitHub main changed or rejected commit; stop batch before any other uploads")
+    if git("commit", "-m", message).returncode:
+        raise Deferred("CATALOG_PUSH_BLOCKED", "Unable to commit preservation changes")
+    # The publisher lock cannot serialize Discord's independent state writes.
+    # Only this explicitly independent file may be rebased automatically:
+    # a change to catalog inputs, policy, scripts or backup state requires
+    # a fresh run, because the current batch may hold stale in-memory data.
+    safe_concurrent_paths = {".github/discord/state.json"}
+    for attempt in range(4):
+        pushed = git("push", "origin", "HEAD:main")
+        if pushed.returncode == 0:
+            return
+        if attempt == 3 or git("fetch", "origin", "main").returncode:
+            break
+        base = git("merge-base", "HEAD", "origin/main")
+        if base.returncode or not base.stdout.strip():
+            break
+        changed = git("diff", "--name-only", "-z", "--no-renames",
+                      base.stdout.strip(), "origin/main")
+        if changed.returncode:
+            break
+        remote_paths = set(changed.stdout.rstrip("\0").split("\0")) - {""}
+        if not remote_paths or not remote_paths <= safe_concurrent_paths:
+            break
+        clean = git("status", "--porcelain", "--untracked-files=no")
+        if clean.returncode or clean.stdout.strip():
+            break
+        if git("rebase", "origin/main").returncode:
+            git("rebase", "--abort")
+            break
+        if validate:
+            r = subprocess.run([sys.executable, "scripts/validate_catalog_ci.py"],
+                               cwd=root, capture_output=True, text=True, env=env)
+            if r.returncode:
+                raise Deferred("CATALOG_PUSH_BLOCKED", "Canonical validation failed after concurrent state recovery")
+        print("Preservation: rebased independent Discord state change; retrying push.", flush=True)
+    raise Deferred("CATALOG_PUSH_BLOCKED",
+                   "GitHub main changed in relevant files or push rejected; stop batch before any other uploads")
 
 
 def expected_filename(item: dict) -> str:
