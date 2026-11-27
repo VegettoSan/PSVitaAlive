@@ -1,0 +1,56 @@
+{
+  "app_id": "rayman-2-the-great-escape-vita",
+  "identifier": "psvitaalive-rayman-2-the-great-escape-vita",
+  "source_url": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita/releases/download/v1.0.0/rayman2thegreatescape.vpk",
+  "files": {
+    "rayman-2-the-great-escape-vita v1.0.0.vpk": {
+      "size": 2041324,
+      "md5": "7f4df88ad450371da42dc2002cfe6684",
+      "sha256": "187b717a15b58e537335bbabfea6e59676b1577c5a388ca0a270334b11de782c"
+    },
+    "icon0.png": {
+      "size": 9930,
+      "md5": "7a6b4846e83083540c8687896f9a2b90",
+      "sha256": "914221b51f0f1cee58bde1ae8b8022a1e775c2beeae41b363ed25bf72e4303b4"
+    },
+    "shot_01.png": {
+      "size": 151071,
+      "md5": "672f3491792ba0a5ec855d452122d92f",
+      "sha256": "930c226ae4554ee7c93e55a97ed76fad38e6b34c9e394d8fb29526bc65763721"
+    },
+    "shot_02.png": {
+      "size": 121914,
+      "md5": "7f5a4c05f04a10ebc686c34e9355565f",
+      "sha256": "b6e5f4de761b1dddfd9efb4080f82f85fc789c80d19fca840043ce0e19d01339"
+    },
+    "SOURCES.txt": {
+      "size": 962,
+      "md5": "9e92a017ae912333d3c9bb0557ae4817",
+      "sha256": "608299333987c91ee550e47cf7ad2d99003068fd78ac96794061cf8908f157ba"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/914221b51f0f1cee58bde1ae8b8022a1e775c2beeae41b363ed25bf72e4303b4.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/930c226ae4554ee7c93e55a97ed76fad38e6b34c9e394d8fb29526bc65763721.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/b6e5f4de761b1dddfd9efb4080f82f85fc789c80d19fca840043ce0e19d01339.png": "shot_02.png"
+  },
+  "attempted": [
+    "rayman-2-the-great-escape-vita v1.0.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:58:51+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PSVRTGE02",
+    "name": "Rayman 2 The Great Escape",
+    "search_title": "Rayman 2 The Great Escape",
+    "version": "1.0.0",
+    "repo": "MetalSyntax/Rayman-2-The-Great-Escape-vita",
+    "tag": "v1.0.0",
+    "asset": "rayman2thegreatescape.vpk",
+    "url": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita/releases/download/v1.0.0/rayman2thegreatescape.vpk",
+    "size": 2041324,
+    "sha256": "187b717a15b58e537335bbabfea6e59676b1577c5a388ca0a270334b11de782c",
+    "creator": "MetalSyntax"
+  }
+}
