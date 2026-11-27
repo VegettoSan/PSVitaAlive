@@ -1,4 +1,6 @@
-# PSVitaAlive — Catalog schema V2 migration (work branch)
+# PSVitaAlive — Catalog schema V2 migration (historical record)
+
+**Current status (2026-11-27):** the staged rollout was completed through PR #65 after the 02.18 compatibility release. Compact V2 source and public catalogs are now in production. The planning notes and measurement results below describe the historical migration, not pending work. Routine source roundtrip checks and game compaction run in [`validate.yml`](../.github/workflows/validate.yml); the client consumer checks run in [`client-build.yml`](../.github/workflows/client-build.yml). The branch-only migration audit and write-back workflows have been retired. See [current automatic publication](AUTOMATIC_CATALOG_PUBLICATION_20261127.md) for the live catalog pipeline. This status does not certify every hardware test.
 
 > Status: **staged deployment required**: publish dual-reader client 02.18 first;
 > integrate compact source JSON and public V2 catalogs only after release verification.

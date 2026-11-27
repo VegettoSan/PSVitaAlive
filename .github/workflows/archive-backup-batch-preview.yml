@@ -10,7 +10,6 @@ on:
       - 'tests/test_archive_owner_preflight.py'
       - 'scripts/archive_upload_one_pilot.py'
       - 'tests/test_archive_upload_one_pilot.py'
-      - '.github/workflows/archive-upload-one-pilot.yml'
       - '.github/workflows/archive-owner-preflight.yml'
       - '.github/workflows/archive-backup-batch-preview.yml'
   push:
