@@ -1,19 +1,6 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "deltarune-vita": {
-      "version": "0.84",
-      "source_url": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.84/Deltarune-v0.84.Internal-Build-Test.vpk",
-      "archive_identifier": "psvitaalive-deltarune-vita",
-      "filename": "deltarune-vita v0.84.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-27T00:41:58+00:00",
-      "size_bytes": 10226927,
-      "title_id": "DLTVITA01",
-      "sha256": "dda1e0cc9140ed8288ea08e983410799ffaffbbaebd4aa77daf405f8dcc09b9a",
-      "md5": "f73ad319e26b5466f350510300507d07"
-    }
-  },
+  "inflight": {},
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
