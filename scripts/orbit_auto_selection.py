@@ -40,7 +40,7 @@ def canonical_records(root, kind):
     return [to_v1(json.loads(p.read_text("utf-8"))) for p in (root/kind).glob("*.json")]
 
 
-def eligible_rows(inventory, state, policy, existing, retired):
+def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None):
     require(state.get("schema_version") == 1 and isinstance(state.get("records"), dict)
             and len(state["records"]) <= 5000, "Invalid Orbit checkpoint")
     ids = {a.get("id") for a in existing} | set(retired["apps"]["ids"])
@@ -48,10 +48,13 @@ def eligible_rows(inventory, state, policy, existing, retired):
     sources = {str(a.get("source_url", "")).rstrip("/").casefold() for a in existing}
     source_ids = {a.get("source_id") for a in existing if a.get("source_name") == "Orbit"}
     rows = []
+    def skip(reason):
+        if diagnostics is not None:
+            diagnostics[reason] = diagnostics.get(reason, 0) + 1
     for key, record in state["records"].items():
         entry = inventory.get(key)
         if not isinstance(entry, dict) or not isinstance(record, dict) or record.get("fingerprint") != fingerprint(entry):
-            continue
+            skip("stale or absent discovery"); continue
         result = record.get("result") or {}
         draft = entry.get("app_draft") or {}
         vpk = result.get("vpk") or {}
@@ -66,28 +69,31 @@ def eligible_rows(inventory, state, policy, existing, retired):
                 or entry.get("platform") != "github" or entry.get("project_type") != "homebrew"
                 or not isinstance(project, str) or not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", project)
                 or any(p in (".", "..") for p in project.split("/"))
-                or project.casefold() in policy["excluded_projects"]
-                or entry.get("lineage_is_fork") is True
-                or key in source_ids or ("https://github.com/"+project).casefold() in sources
-                or not isinstance(app_id, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}", app_id)
-                or app_id in ids or not isinstance(tid, str) or not re.fullmatch(r"[A-Z0-9]{9}", tid) or tid in tids
-                or result.get("state") != "inspected" or title.get("state") != "high" or title.get("suggestion") != tid
-                or vpk.get("state") != "verified" or vpk.get("crc_checked") is not True
-                or not re.fullmatch(r"[a-f0-9]{64}", str(vpk.get("sha256", "")))
-                or type(vpk.get("bytes_read")) is not int or not 0 < vpk["bytes_read"] <= 64*1024*1024
-                or not (vpk.get("artwork") or {}).get("icon")
-                or cat.get("state") != "suggested" or cat.get("category_id") not in policy["allowed_categories"]
-                or author.get("state") not in ("existing", "draft") or req.get("state") == "review"):
-            continue
+                or project.casefold() in policy["excluded_projects"] or entry.get("lineage_is_fork") is True):
+            skip("source or lineage review"); continue
+        if (key in source_ids or ("https://github.com/"+project).casefold() in sources
+                or not isinstance(app_id,str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}",app_id) or app_id in ids):
+            skip("known, retired or invalid app"); continue
         try:
             if date.fromisoformat(draft["version_date"]) > date.today()-timedelta(days=policy["min_release_age_days"]):
-                continue
+                skip("recent release needs status review"); continue
         except (ValueError, TypeError, KeyError):
-            continue
-        # No commercial ports, external game files, BIOS or ROM bundles in initial automatic lane.
+            skip("release date unavailable"); continue
+        if (result.get("state") != "inspected" or title.get("state") != "high" or title.get("suggestion") != tid
+                or not isinstance(tid,str) or not re.fullmatch(r"[A-Z0-9]{9}",tid) or tid in tids
+                or vpk.get("state") != "verified" or vpk.get("crc_checked") is not True
+                or not re.fullmatch(r"[a-f0-9]{64}",str(vpk.get("sha256","")))
+                or type(vpk.get("bytes_read")) is not int or not 0 < vpk["bytes_read"] <= 64*1024*1024):
+            skip("package or identity incomplete"); continue
+        if not (vpk.get("artwork") or {}).get("icon"):
+            skip("native icon not yet verified"); continue
+        if cat.get("state") != "suggested" or cat.get("category_id") not in policy["allowed_categories"]:
+            skip("category review"); continue
+        if author.get("state") not in ("existing","draft") or req.get("state") == "review":
+            skip("author or requirements review"); continue
         if re.search(r"\b(?:commercial|proprietary|game data|game files|copyrighted|bios|roms|original game files)\b",
-                     " ".join(str(x or "") for x in (draft.get("description"), draft.get("long_description"),req.get("value"))), re.I):
-            continue
+                     " ".join(str(x or "") for x in (draft.get("description"),draft.get("long_description"),req.get("value"))),re.I):
+            skip("third-party data review"); continue
         rows.append((key, entry, result))
     # Reject conflicts across independently discovered projects as well as canonical files.
     from collections import Counter
