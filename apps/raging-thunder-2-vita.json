@@ -1,0 +1,42 @@
+{
+  "id": "raging-thunder-2-vita",
+  "tid": "PSVRT0002",
+  "n": "Raging Thunder 2",
+  "d": "Android to PS Vita port of Raging Thunder 2",
+  "ld": "Unofficial port of **Raging Thunder 2** (Polarbit, Android, APK v1.0.16) to the PS Vita. It runs the unmodified ARM game library `librthunder2lite.so` (`armeabi`) through a native loader (TheFloW's so-loader + FalsoJNI), with rendering via vitaGL.",
+  "aids": [
+    "metalsyntax"
+  ],
+  "cid": "ports",
+  "sids": [
+    "racing",
+    "arcade"
+  ],
+  "req": "- > Disclaimer: this project contains no game assets. You must provide your own legally obtained copy of the game\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+  "st": "Archive",
+  "v": "1.1.2",
+  "vd": "2026-11-13",
+  "sz": 1169550,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/ab40ce02a386e9b762b2e24581f5b130170708bb217b054f226256a54412c968.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/cdb5ac87d8c705d1472735dbc945ab4dbcce06decd0a029ba6da5cd185b29578.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/8217ab3a2b292ce4f7cb916e0e61e6220b4ad4385f11020de5421ab0460d934f.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1399248536",
+  "su": "https://github.com/MetalSyntax/Raging-Thunder-2-vita",
+  "rp": "https://github.com/MetalSyntax/Raging-Thunder-2-vita/releases/tag/v1.1.2",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/MetalSyntax/Raging-Thunder-2-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/MetalSyntax/Raging-Thunder-2-vita/releases/download/v1.1.2/ragingthunder2.vpk",
+      "rec": true
+    }
+  ]
+}

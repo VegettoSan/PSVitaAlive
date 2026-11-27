@@ -2411,10 +2411,10 @@
     "v": "1.2.0",
     "vd": "2026-11-18",
     "sz": 1585492,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ae91a8c4956797065016b8c9fd0798cc814a4a9d6c664a662804d0589a373345.png",
+    "ic": "https://archive.org/download/psvitaalive-inotia2-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ef479aa8b1f06079583931f1c93de4da28c20a5279a61b6118d7ba388a42e497.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/16f5a17f9088e26833d9aae7bc8ef464f8c16b3eaeb61d7356cd736fb1ecf11c.png"
+      "https://archive.org/download/psvitaalive-inotia2-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-inotia2-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1421587563",
@@ -2429,7 +2429,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Inotia2-vita/releases/download/v1.2.0/inotia2.vpk",
+        "u": "https://archive.org/download/psvitaalive-inotia2-vita/inotia2-vita%20v1.2.0.vpk",
         "rec": true
       }
     ]
@@ -3693,6 +3693,48 @@
         "t": "Download",
         "n": "VPK",
         "u": "https://archive.org/download/psvitaalive-linuxonvita/linuxonvita%20v1.6.0.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
+    "id": "raging-thunder-2-vita",
+    "tid": "PSVRT0002",
+    "n": "Raging Thunder 2",
+    "d": "Android to PS Vita port of Raging Thunder 2",
+    "ld": "Unofficial port of **Raging Thunder 2** (Polarbit, Android, APK v1.0.16) to the PS Vita. It runs the unmodified ARM game library `librthunder2lite.so` (`armeabi`) through a native loader (TheFloW's so-loader + FalsoJNI), with rendering via vitaGL.",
+    "aids": [
+      "metalsyntax"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "arcade"
+    ],
+    "req": "- > Disclaimer: this project contains no game assets. You must provide your own legally obtained copy of the game\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
+    "st": "Archive",
+    "v": "1.1.2",
+    "vd": "2026-11-13",
+    "sz": 1169550,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/ab40ce02a386e9b762b2e24581f5b130170708bb217b054f226256a54412c968.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/cdb5ac87d8c705d1472735dbc945ab4dbcce06decd0a029ba6da5cd185b29578.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/8217ab3a2b292ce4f7cb916e0e61e6220b4ad4385f11020de5421ab0460d934f.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1399248536",
+    "su": "https://github.com/MetalSyntax/Raging-Thunder-2-vita",
+    "rp": "https://github.com/MetalSyntax/Raging-Thunder-2-vita/releases/tag/v1.1.2",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/MetalSyntax/Raging-Thunder-2-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/MetalSyntax/Raging-Thunder-2-vita/releases/download/v1.1.2/ragingthunder2.vpk",
         "rec": true
       }
     ]
@@ -5589,10 +5631,10 @@
     "v": "1.0.3",
     "vd": "2026-11-05",
     "sz": 1124549,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/d8b05aa5b16b56c1d79fa74966d32c03013b0d4b862a942a58e5ae2f0b4a6de0.png",
+    "ic": "https://archive.org/download/psvitaalive-riptide-gp-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/e70b4600c3123b202f551c79ebc657ba8b61cfd481d8f954118fe7b71755f913.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579.png"
+      "https://archive.org/download/psvitaalive-riptide-gp-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-riptide-gp-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1399172442",
@@ -5607,7 +5649,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Riptide-GP-vita/releases/download/v1.0.3/riptidegp.vpk",
+        "u": "https://archive.org/download/psvitaalive-riptide-gp-vita/riptide-gp-vita%20v1.0.3.vpk",
         "rec": true
       }
     ]
@@ -8413,10 +8455,10 @@
     "v": "1.0.3",
     "vd": "2026-10-22",
     "sz": 1132906,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/8e400c3391cca23087a1d4046f0bd7fd5d763151270d43e5869a4255383ec809.png",
+    "ic": "https://archive.org/download/psvitaalive-snail-mail-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/63dafdaf6cc8c598fc12d9d45c569e2400b48c913d3a1daee8ba6fca548f8305.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/96979f681787f83aad298c545f3e3631eb5232b15f1b3139fa4eec4e0c9a579f.png"
+      "https://archive.org/download/psvitaalive-snail-mail-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-snail-mail-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1408995882",
@@ -8431,7 +8473,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Snail-Mail-vita/releases/download/v1.0.3/snailmail.vpk",
+        "u": "https://archive.org/download/psvitaalive-snail-mail-vita/snail-mail-vita%20v1.0.3.vpk",
         "rec": true
       }
     ]
@@ -8559,10 +8601,10 @@
     "v": "1.0.0",
     "vd": "2026-10-20",
     "sz": 2323545,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/e57e20a91b4687a0e584aaad9f01135598a06c7a9e431331bb3d6e50092195c1.png",
+    "ic": "https://archive.org/download/psvitaalive-skater-nation-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/d8dd937f1191fd4b60f42c328750d09c9426781a68045b3ff0cf9926dfc93877.png",
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0.png"
+      "https://archive.org/download/psvitaalive-skater-nation-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-skater-nation-vita/shot_02.png"
     ],
     "sn": "Orbit",
     "si": "gh:1426476181",
@@ -8577,7 +8619,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/download/v1.0.0/skaternation.vpk",
+        "u": "https://archive.org/download/psvitaalive-skater-nation-vita/skater-nation-vita%20v1.0.0.vpk",
         "rec": true
       }
     ]
@@ -10414,9 +10456,9 @@
     "v": "1.1",
     "vd": "2026-09-27",
     "sz": 1161978,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/80438637f98cbabe43e91f02cefdd0bfd58695f21990341a9b6c4a02b218b298.png",
+    "ic": "https://archive.org/download/psvitaalive-bikerace-vita/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/8b00b3bde524a7a1de0c63559c7aef3916d811aedb24570062d6678146c2af68.png"
+      "https://archive.org/download/psvitaalive-bikerace-vita/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1367526488",
@@ -10431,7 +10473,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/franciscoclou/bikerace-vita/releases/download/v1.1/BikeRace.vpk",
+        "u": "https://archive.org/download/psvitaalive-bikerace-vita/bikerace-vita%20v1.1.vpk",
         "rec": true
       }
     ]
@@ -11405,7 +11447,7 @@
   },
   {
     "id": "peelgallery",
-    "tid": "peelgallery",
+    "tid": "PEELGALLR",
     "n": "PeelGallery",
     "d": "PeelGallery is a simple Homebrew application for the PS Vita; it acts as an intuitive visual frontend (gallery) for easily managing and swapping the lock screen wallpapers handled by the Fruitpeel plugin.",
     "ld": "The application reads compatible images on your console and lets you browse them in a grid view. Selecting an image automatically replaces the Fruitpeel system file and restarts the console to apply the change.\n\nFeatures:\nPreview Grid: Optimized (2x2) caching system ensures you never run out of RAM, regardless of how many backgrounds you have.\nDedicated LiveArea button: Clean installation with a custom LiveArea.\nQuick installation: Install and apply in seconds.\nHow to use it on PS Vita?\nDownload the PeelGallery.vpk file and install it on your console using VitaShell.\nPlace your compatible images in the following path: ux0:/data/PeelGallery/\nOpen the application and navigate using the D-Pad, or use the L/R triggers to skip pages.\nPress X to apply the background. The console will restart automatically, and your lock screen wallpaper will be updated.",
@@ -11419,14 +11461,14 @@
     "v": "1.0",
     "vd": "2026-09-08",
     "req": "-fruitpeel plugin",
-    "sz": 4404019,
+    "sz": 4295510,
     "st": "Verified",
     "l": [
       {
         "t": "Download",
         "n": "VPK",
         "u": "https://github.com/AlecksPV1/PeelGallery/releases/download/v1.0/PeelGallery.vpk",
-        "sz": 4404019
+        "sz": 4295510
       },
       {
         "t": "Repository",
