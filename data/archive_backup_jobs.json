@@ -1,6 +1,19 @@
 {
   "schema_version": 1,
-  "inflight": {},
+  "inflight": {
+    "pes6-vita": {
+      "version": "0.0.6-beta",
+      "source_url": "https://github.com/germanalvarez15/pes6-vita/releases/download/0.0.6-beta/pes6vita.vpk",
+      "archive_identifier": "pes6-psp-port-ps-vita",
+      "filename": "pes6-vita v0.0.6-beta.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-27T00:40:36+00:00",
+      "size_bytes": 27264658,
+      "title_id": "PESV00006",
+      "sha256": "b901eabf10905e5bc7b95729ca41e183d508d9024ab80e93c28aab5f0c5538e4",
+      "md5": "fba87e9b3cc405f2bb7509f0357b0fea"
+    }
+  },
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
