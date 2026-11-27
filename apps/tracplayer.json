@@ -17,9 +17,9 @@
   "v": "1",
   "vd": "2025-08-30",
   "sz": 17079871,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/tracplayer/60c98477fd8fb4f9d76e4993a3659fac5e8b62a6c96934b6a251deb5748c6897.png",
+  "ic": "https://archive.org/download/psvitaalive-tracplayer/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/tracplayer/d816e70a44c207a2dc0e47348fd9db8ef6dab8773c2ab5116f1776e733701815.png"
+    "https://archive.org/download/psvitaalive-tracplayer/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1045741507",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/AntHJ/TRACPlayer/releases/download/v1/TRAKPlayer.vpk",
+      "u": "https://archive.org/download/psvitaalive-tracplayer/tracplayer%20v1.vpk",
       "rec": true
     }
   ]
