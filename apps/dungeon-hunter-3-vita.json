@@ -7,9 +7,10 @@
   "aids": [
     "metalsyntax"
   ],
-  "cid": "plugins",
+  "cid": "ports",
   "sids": [
-    "other"
+    "rpg",
+    "action"
   ],
   "req": "- Install kubridge.skprx and ur0:data/libshacccg.suprx if you don't have them already.\n- Copy your own game data to ux0:data/dungeonhunter3/ (layout in the README).\n- [Getting the game data](#-installation) for what you need to supply yourself.\n- Copy the files above to ux0:data/dungeonhunter3/.\n- On the Vita: kubridge (https://github.com/bythos14/kubridge) and libshacccg.suprx (see [Prerequisites](#-prerequisites)).\n- > Game files are never distributed. You always need your own legally obtained copy of the game.",
   "st": "Archive",
