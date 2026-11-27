@@ -3,6 +3,7 @@
 import json
 import tempfile
 import unittest
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from unittest.mock import patch
 
@@ -145,7 +146,8 @@ class TestReleaseSynchronization(unittest.TestCase):
                 source["allow_prereleases"] = allowed
                 file.write_text(json.dumps(to_v2(source)), encoding="utf-8")
                 changes, skipped = plan_changes(root, {
-                    "schema_version": 1, "releases": [latest]})
+                    "schema_version": 1, "releases": [latest]},
+                    now=datetime(2026, 11, 10, tzinfo=timezone.utc))
                 self.assertEqual(skipped, [])
                 self.assertEqual(len(changes), 1)
                 self.assertEqual(changes[0][1]["version"], expected)
@@ -160,13 +162,14 @@ class TestReleaseSynchronization(unittest.TestCase):
             assets=[{"name": "vita.vpk", "size": 401,
                      "download_url": "https://github.com/example/vita-app/releases/download/v1.2-beta3/vita.vpk"}],
         )
-        self.assertFalse(automatic_prerelease_allowed(source, pre, stable),
+        check_time = datetime(2026, 11, 9, tzinfo=timezone.utc)
+        self.assertFalse(automatic_prerelease_allowed(source, pre, stable, now=check_time),
                          "Exactly seven days is not more than a week")
         pre["published"] = "2026-11-08T00:00:01Z"
-        self.assertTrue(automatic_prerelease_allowed(source, pre, stable))
+        self.assertTrue(automatic_prerelease_allowed(source, pre, stable, now=check_time))
         for bad_time in ["2026-11-01T00:00:00Z", "garbage", ""]:
             pre["published"] = bad_time
-            self.assertFalse(automatic_prerelease_allowed(source, pre, stable))
+            self.assertFalse(automatic_prerelease_allowed(source, pre, stable, now=check_time))
         pre["published"] = "2026-11-08T00:00:01Z"
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -181,6 +184,62 @@ class TestReleaseSynchronization(unittest.TestCase):
             self.assertEqual(skipped, [])
             self.assertEqual(len(changes), 1)
             self.assertEqual(changes[0][1]["version"], "1.2-beta3")
+
+    def test_prerelease_grace_expires_without_a_new_release(self):
+        from scripts.sync_release_updates import automatic_prerelease_allowed
+        source = app()
+        source["version"] = "1.1"
+        stable = release(tag="v1.1", published="2026-11-01T00:00:00Z")
+        pre = release(tag="v1.2-alpha", prerelease=True,
+                      published="2026-11-02T00:00:00Z",
+                      assets=[{"name": "vita.vpk", "size": 321,
+                               "download_url": "https://github.com/example/vita-app/releases/download/v1.2-alpha/vita.vpk"}])
+        boundary = datetime(2026, 11, 9, tzinfo=timezone.utc)
+        self.assertFalse(automatic_prerelease_allowed(source, pre, stable, now=boundary))
+        after = boundary + timedelta(seconds=1)
+        self.assertTrue(automatic_prerelease_allowed(source, pre, stable, now=after))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps/vita-app.json").write_text(json.dumps(to_v2(source)))
+            snap = {"schema_version": 1, "releases": [{**pre, "stable_release": stable}]}
+            self.assertEqual(plan_changes(root, snap, now=boundary)[0], [])
+            changes, _ = plan_changes(root, snap, now=after)
+            self.assertEqual(changes[0][1]["version"], "1.2-alpha")
+            self.assertEqual(changes[0][1]["size"], 321)
+
+    def test_newer_stable_always_wins_even_after_grace_and_opt_in(self):
+        from scripts.sync_release_updates import automatic_prerelease_allowed
+        source = app()
+        source["allow_prereleases"] = True
+        stable = release(tag="v1.2", published="2026-11-03T00:00:00Z",
+                         assets=[{"name":"vita.vpk", "size":222,
+                                  "download_url":"https://github.com/example/vita-app/releases/download/v1.2/vita.vpk"}])
+        pre = release(tag="v1.2-beta2", prerelease=True, published="2026-11-02T00:00:00Z")
+        now = datetime(2026, 11, 20, tzinfo=timezone.utc)
+        self.assertFalse(automatic_prerelease_allowed(source, pre, stable, now=now))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps/vita-app.json").write_text(json.dumps(to_v2(source)))
+            changes, _ = plan_changes(root, {"schema_version":1,
+                                  "releases":[{**pre,"stable_release":stable}]}, now=now)
+            self.assertEqual(changes[0][1]["version"], "1.2")
+
+    def test_ambiguous_prerelease_does_not_block_valid_stable_fallback(self):
+        source = app()
+        stable = release(tag="v1.1", published="2026-11-01T00:00:00Z")
+        pre = release(tag="v1.2-beta", prerelease=True, published="2026-11-02T00:00:00Z",
+                      assets=[{"name": "a.vpk"}, {"name": "b.vpk"}])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "apps").mkdir()
+            (root / "apps/vita-app.json").write_text(json.dumps(to_v2(source)))
+            changes, skipped = plan_changes(root, {"schema_version":1,
+                             "releases":[{**pre,"stable_release":stable}]},
+                             now=datetime(2026,11,20,tzinfo=timezone.utc))
+            self.assertEqual(changes[0][1]["version"], "1.1")
+            self.assertTrue(any("2 .vpk assets" in message for message in skipped))
 
     def test_prerelease_auto_if_no_stable_confirmed_but_not_when_unknown(self):
         from scripts.sync_release_updates import automatic_prerelease_allowed

@@ -2,7 +2,8 @@
 """Safely update *canonical* apps/*.json from the release monitor snapshot.
 
 Never writes generated catalog.json. Deliberately conservative:
-- Stable releases by default; select newer pre-releases when opt-in, >7 days after the last stable or no stable exists.
+- Stable releases by default; confirmed prerelease-only projects update immediately.
+- Newer prereleases qualify after the seven-day grace period, even if no new release arrives.
 - One canonical application explicitly references the upstream repository.
 - Exactly one .vpk asset by metadata; never downloads or inspects files.
 - Replace ONLY the existing Download named VPK (no extra buttons).
@@ -200,16 +201,19 @@ def effective_release_version(item: dict) -> str | None:
     return version if token == [version] else None
 
 
-def automatic_prerelease_allowed(app: dict, pre: dict, stable: dict | None) -> bool:
-    """Choose beta automatically only after >7 days or confirmed no stable.
+def automatic_prerelease_allowed(app: dict, pre: dict, stable: dict | None,
+                                 *, now: datetime | None = None) -> bool:
+    """Allow confirmed prerelease-only projects and let the grace period expire.
 
-    An explicit app-level opt-in may accept a newer beta sooner, but never
-    displaces a stable release published *after* that prerelease.
+    Preserve the existing gap-from-stable rule. Also allow a prerelease that
+    has itself been available for >7 days without a newer stable. Never
+    displace a semantically equal/newer or later-published stable release.
     """
     if not newer_version(app.get("version"), effective_release_version(pre)):
         return False
     pre_date = release_instant(pre.get("published"))
-    if pre_date is None:
+    now = now if now is not None else datetime.now(timezone.utc)
+    if pre_date is None or now.tzinfo is None or pre_date > now:
         return False
     if stable is None:
         return (app.get("allow_prereleases") is True
@@ -222,7 +226,8 @@ def automatic_prerelease_allowed(app: dict, pre: dict, stable: dict | None) -> b
                          effective_release_version(pre)):
         return False
     return (app.get("allow_prereleases") is True
-            or pre_date - stable_date > timedelta(days=7))
+            or pre_date - stable_date > timedelta(days=7)
+            or now - pre_date > timedelta(days=7))
 
 
 
@@ -510,7 +515,7 @@ def folder_release_update(app: dict, item: dict, repo: str) -> tuple[dict | None
     return proposal, "ready"
 
 
-def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
+def plan_changes(root: Path, snapshot: dict, *, now: datetime | None = None) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
     if not isinstance(snapshot, dict) or snapshot.get("schema_version") != 1:
         raise ValueError("Unsupported upstream snapshot")
     releases = snapshot.get("releases")
@@ -561,10 +566,12 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
             skipped.append(f"{repo}: duplicate/ambiguous Title ID")
             continue
         # Github's latest may be a prerelease. Prefer the stable fallback
-        # until a newer prerelease is >7 days later, or there is positively
-        # no stable release. An explicit per-app opt-in can track it sooner.
+        # until the previous stable predates it by >7 days, or the
+        # prerelease itself has aged >7 days without a newer stable.
+        # A confirmed prerelease-only repo or explicit opt-in can track sooner.
         candidate = release
         accept_pre = False
+        stable = None
         if release.get("prerelease") or is_prerelease_version(release.get("tag")):
             stable = release.get("stable_release")
             if stable is not None:
@@ -580,7 +587,7 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
                 if not trusted_stable:
                     skipped.append(f"{repo}: untrusted stable fallback: manual review")
                     continue
-            accept_pre = automatic_prerelease_allowed(app, release, stable)
+            accept_pre = automatic_prerelease_allowed(app, release, stable, now=now)
             if release.get("review_required") is True:
                 skipped.append(f"{repo}: developer draft/untested rolling build requires manual review")
                 accept_pre = False
@@ -595,8 +602,17 @@ def plan_changes(root: Path, snapshot: dict) -> tuple[list[tuple[Path, dict, boo
         proposal, reason = release_update(app, candidate, repo, auto_prerelease=accept_pre)
         if proposal is not None:
             changes.append((path, proposal, compact))
-        elif newer_version(app.get("version"), effective_release_version(candidate)):
-            skipped.append(f"{repo}: {reason}")
+        else:
+            if newer_version(app.get("version"), effective_release_version(candidate)):
+                skipped.append(f"{repo}: {reason}")
+            # A newer beta may have ambiguous or missing VPKs. Do not let
+            # that prevent a separate trusted stable upgrade from applying.
+            if accept_pre and isinstance(stable, dict):
+                fallback, fallback_reason = release_update(app, stable, repo)
+                if fallback is not None:
+                    changes.append((path, fallback, compact))
+                elif newer_version(app.get("version"), effective_release_version(stable)):
+                    skipped.append(f"{repo}: stable fallback: {fallback_reason}")
     # Folder VPKs are per-app records, not conventional GitHub Releases.
     # Repositories shared by many apps are safe only when folder + Title ID
     # identify one canonical JSON, with no duplicates anywhere in apps/.
