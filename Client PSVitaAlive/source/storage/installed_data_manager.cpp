@@ -149,46 +149,54 @@ bool scanTree(const std::string& p, const SceIoStat& st, unsigned depth,
     return complete;
 }
 bool eraseTree(const std::string& path, unsigned depth,
-               uint32_t& count, InstalledDataOperationProgress* progress,bool gameMedia=false) {
+               uint32_t& count, InstalledDataOperationProgress* progress,bool gameMedia=false,
+               unsigned knownMode=0) {
     if ((depth == 0 && !safeExternalDataPath(path) && !gameMedia) ||
         depth > MAX_DEPTH || ++count > MAX_ENTRIES) return false;
-    SceIoStat st{};
-    if (!exists(path, &st)) return !gameMedia;
-    if(gameMedia && ((st.st_mode & SCE_S_IFMT)!=SCE_S_IFDIR && (st.st_mode & SCE_S_IFMT)!=SCE_S_IFREG))return false;
-    if(gameMedia && depth==0 && !safeGameMediaPath(path,(st.st_mode & SCE_S_IFMT)==SCE_S_IFDIR))return false;
-    if (!(st.st_mode & SCE_S_IFDIR)) {
+    unsigned mode=knownMode;
+    if (!mode) {
+        SceIoStat st{};
+        if (!exists(path, &st)) return false;
+        mode=st.st_mode;
+    }
+    const auto type=mode & SCE_S_IFMT;
+    if (type!=SCE_S_IFDIR && type!=SCE_S_IFREG) return false;
+    if(gameMedia && depth==0 && !safeGameMediaPath(path,type==SCE_S_IFDIR))return false;
+    if (type!=SCE_S_IFDIR) {
         const bool ok = sceIoRemove(path.c_str()) >= 0;
         if (ok && progress)
             progress->filesRemoved.fetch_add(1, std::memory_order_relaxed);
         return ok;
     }
-    // Removing during enumeration may skip entries; reopen until empty.
-    for (unsigned pass = 0; pass < 32; ++pass) {
+    // Read bounded batches before mutating the directory. Reuse d_stat
+    // instead of resolving the same FAT path twice for every small file.
+    // Closing the enumerator before deletion also avoids skipped entries.
+    struct Child { std::string name; unsigned mode; };
+    constexpr size_t batchLimit=1024;
+    for (;;) {
         const SceUID d = sceIoDopen(path.c_str());
         if (d < 0) return false;
+        std::vector<Child> batch;
         SceIoDirent e{};
-        int rc = 0;
-        bool found = false;
-        bool ok = true;
-        while ((rc = sceIoDread(d, &e)) > 0) {
-            if (std::strcmp(e.d_name, ".") == 0 ||
-                std::strcmp(e.d_name, "..") == 0) continue;
-            if (!validInstalledChildName(e.d_name)) { ok = false; break; }
-            found = true;
-            if (!eraseTree(path + "/" + e.d_name, depth+1, count, progress,gameMedia)) {
-                ok = false; break;
+        int rc=0;
+        bool ok=true;
+        while (batch.size()<batchLimit && (rc=sceIoDread(d,&e))>0) {
+            if (std::strcmp(e.d_name,".")==0 || std::strcmp(e.d_name,"..")==0) continue;
+            if (!validInstalledChildName(e.d_name) || count+batch.size()>=MAX_ENTRIES) {
+                ok=false; break;
             }
+            batch.push_back({e.d_name,static_cast<unsigned>(e.d_stat.st_mode)});
         }
         sceIoDclose(d);
-        if (rc < 0 || !ok) return false;
-        if (!found) {
-            const bool ok = sceIoRmdir(path.c_str()) >= 0;
-            if (ok && progress)
-                progress->foldersRemoved.fetch_add(1, std::memory_order_relaxed);
-            return ok;
+        if(rc<0 || !ok) return false;
+        if(batch.empty()) {
+            const bool removed=sceIoRmdir(path.c_str())>=0;
+            if(removed && progress)progress->foldersRemoved.fetch_add(1,std::memory_order_relaxed);
+            return removed;
         }
+        for(const auto& child:batch)
+            if(!eraseTree(path+"/"+child.name,depth+1,count,progress,gameMedia,child.mode))return false;
     }
-    return false;
 }
 void uniqueRoots(std::vector<std::string>& roots) {
     std::sort(roots.begin(), roots.end());
