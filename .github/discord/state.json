@@ -2232,6 +2232,9 @@
     "PDWT00001": {
       "version": "v.1.0"
     },
+    "PEELGALLR": {
+      "version": "1.0"
+    },
     "PEKKAKANA": {
       "version": "v.1.0"
     },
@@ -2429,6 +2432,9 @@
     },
     "PSVRT0001": {
       "version": "1.0.2"
+    },
+    "PSVRT0002": {
+      "version": "1.1.2"
     },
     "PSVRTGE02": {
       "version": "1.0.0"
@@ -3845,9 +3851,6 @@
     },
     "ZXGQ00004": {
       "version": "v.2.1.0"
-    },
-    "peelgallery": {
-      "version": "1.0"
     }
   },
   "catalog_initialized": true,
