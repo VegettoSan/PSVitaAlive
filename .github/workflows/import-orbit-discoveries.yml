@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - scripts/import_orbit_discoveries.py
+      - scripts/orbit_auto_selection.py
+      - tests/test_orbit_auto_selection.py
       - scripts/vpk_display_name.py
       - tests/test_vpk_display_name.py
       - config/orbit_publication_approved.json
@@ -16,6 +18,8 @@ on:
     branches: [main]
     paths:
       - scripts/import_orbit_discoveries.py
+      - scripts/orbit_auto_selection.py
+      - tests/test_orbit_auto_selection.py
       - scripts/vpk_display_name.py
       - tests/test_vpk_display_name.py
       - config/orbit_publication_approved.json
@@ -23,6 +27,8 @@ on:
   schedule:
     - cron: '07 */3 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [orbit_enrichment_ready]
 permissions:
   contents: write
 concurrency:
@@ -52,6 +58,8 @@ jobs:
           python -m pip install 'internetarchive==5.13.0' 'requests==2.32.5' 'Pillow==12.1.1'
       - name: Test import safeguards
         run: python -m unittest discover -s tests -p 'test_import_orbit_discoveries.py' -v
+      - name: Test automatic candidate policy
+        run: python -m unittest discover -s tests -p 'test_orbit_auto_selection.py' -v
       - name: Test native display titles
         run: python -m unittest discover -s tests -p 'test_vpk_display_name.py' -v
       - name: Audit real pilot native title (read only)
@@ -89,8 +97,9 @@ jobs:
         with:
           name: orbit-canonical-preview
           path: |
-            apps/minfwver.json
-            apps/media/minfwver/
+            apps/*.json
+            data/orbit_imports/
+            data/orbit_import_cursor.json
           if-no-files-found: ignore
           retention-days: 14
       - name: Commit only canonical sources and trigger normal publication
@@ -100,6 +109,8 @@ jobs:
         run: |
           set -euo pipefail
           git add -- apps authors
+          if [ -d data/orbit_imports ]; then git add -- data/orbit_imports; fi
+          if [ -f data/orbit_import_cursor.json ]; then git add -- data/orbit_import_cursor.json; fi
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -111,10 +122,10 @@ jobs:
           import json
           from pathlib import Path
           from scripts.catalog_schema_v2 import to_v1
-          approved=json.loads(Path('config/orbit_publication_approved.json').read_text())['approved']
           catalog=to_v1(json.loads(Path('catalog.json').read_text()))
           ids={a.get('id') for a in catalog}
-          pending=any((Path('apps')/(a['id']+'.json')).is_file() and a['id'] not in ids for a in approved)
+          pending=any(a.get('source_name')=='Orbit' and a.get('id') not in ids
+                      for a in (to_v1(json.loads(p.read_text())) for p in Path('apps').glob('*.json')))
           raise SystemExit(0 if pending else 1)
           PY
           then

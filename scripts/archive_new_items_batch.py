@@ -228,8 +228,17 @@ def auto_spec(root, app, app_id, counts, job=None):
         # A newly discovered package is not automatically redistributable.
         # Keep the reviewed release's actual notice in the immutable checkpoint.
         from scripts.import_orbit_discoveries import reviewed_license
+        from scripts.orbit_auto_selection import RECEIPTS
         try:
             spec["license_notice"] = reviewed_license(root, app_id, identity["repo"], identity["tag"])
+            receipt_path = root / RECEIPTS / (app_id + ".json")
+            if receipt_path.is_file():
+                receipt = json.loads(receipt_path.read_text("utf-8"))
+                expected = receipt.get("sha256")
+                if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected) or (sha and sha != expected):
+                    raise ValueError("Automatic import receipt digest does not match upstream")
+                # Preserve the exact binary that was independently checked before import.
+                spec["sha256"] = expected
         except (ValueError, OSError, KeyError) as exc:
             raise Deferred("SOURCE_REVIEW", "Orbit license requires review: " + str(exc)) from None
         except Exception:

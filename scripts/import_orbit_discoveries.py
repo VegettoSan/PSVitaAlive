@@ -16,7 +16,7 @@ import stat
 import tempfile
 import zipfile
 from collections import Counter
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import quote
 
@@ -24,6 +24,7 @@ import requests
 from PIL import Image
 from scripts.catalog_schema_v2 import to_v1, to_v2
 from scripts.vpk_display_name import vpk_display_name
+from scripts import orbit_auto_selection as auto
 from scripts.archive_backup_batch import Deferred, download_source, official_asset_metadata
 from scripts.archive_new_items_batch import automatic_identity, validate_vpk_title
 from scripts.sync_release_updates import normalized_repo, release_asset_url_matches
@@ -76,7 +77,18 @@ def reviewed_license(root, app_id, repo, tag):
     policy = json.loads((root / POLICY).read_text("utf-8"))
     matches = [p for p in policy["approved"] if p["id"] == app_id
                and p["project"].casefold() == repo.casefold() and p["tag"] == tag]
-    require(len(matches) == 1, "Release has no reviewed redistribution permission")
+    if not matches:
+        path = root / auto.RECEIPTS / (app_id + ".json")
+        require(path.is_file(), "Release has no automatic license receipt")
+        receipt = json.loads(path.read_text("utf-8"))
+        require(receipt.get("schema_version") == 1 and receipt.get("app_id") == app_id
+                and str(receipt.get("repo", "")).casefold() == repo.casefold()
+                and receipt.get("tag") == tag and receipt.get("license") == "MIT",
+                "Automatic license receipt does not match release")
+        notice = auto.mit_notice(repo, tag, api_json, public_bytes)
+        require(notice == receipt.get("license_notice"), "Automatic license notice changed")
+        return notice
+    require(len(matches) == 1, "Conflicting reviewed redistribution permission")
     spec = matches[0]
     require(spec["license"] == "MIT" and spec["license_path"] == "LICENSE",
             "Only reviewed MIT notices in the initial policy")
@@ -105,7 +117,10 @@ def select_release(spec, release):
             and release.get("prerelease") is False and release.get("tag_name") == spec["tag"],
             "Latest stable release differs from reviewed tag")
     published = date.fromisoformat(str(release.get("published_at", ""))[:10])
-    require(published < date(2022, 1, 1), "Pilot status policy only admits historical releases before 2022")
+    if spec.get("automatic"):
+        require(published <= date.today() - timedelta(days=spec["min_release_age_days"]), "Release is not yet eligible for Legacy")
+    else:
+        require(published < date(2022, 1, 1), "Pilot status policy only admits historical releases before 2022")
     assets = [a for a in release.get("assets", []) if isinstance(a, dict)
               and str(a.get("name", "")).lower().endswith(".vpk")]
     require(len(assets) == 1 and assets[0].get("state") == "uploaded", "No unique uploaded VPK")
@@ -180,7 +195,7 @@ def native_media(path, app_id):
     return icon, shots[:5], result
 
 
-def plan_one(root, spec, entry):
+def plan_one(root, spec, entry, new_author=None):
     app_id, tid = spec["id"], spec["title_id"]
     require(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}", app_id), "Invalid app ID")
     registry = json.loads((root / "registry/retired_ids.json").read_text("utf-8"))
@@ -199,7 +214,7 @@ def plan_one(root, spec, entry):
     require(bool(spec["author_ids"]) and len(set(spec["author_ids"])) == len(spec["author_ids"]), "Invalid reviewed authors")
     for aid in spec["author_ids"]:
         require(re.fullmatch(r"[a-z0-9_-]+", aid) and aid not in registry["authors"]["ids"]
-                and (root / "authors" / (aid + ".json")).is_file(), "Missing or retired reviewed author")
+                and ((root / "authors" / (aid + ".json")).is_file() or (new_author and new_author.get("id") == aid)), "Missing or retired reviewed author")
     category = read_json(root / "categories" / (spec["category_id"] + ".json"))
     require(bool(spec["subcategory_ids"]) and set(spec["subcategory_ids"]) <= {s["id"] for s in category["subcategories"]}, "Invalid subcategory")
     repo = spec["project"]
@@ -212,13 +227,19 @@ def plan_one(root, spec, entry):
     require(any(l.get("type") == "Download" and l.get("url") == url
                 for l in entry.get("app_draft", {}).get("links", []) if isinstance(l, dict)),
             "Orbit and latest release disagree")
-    reviewed_license(root, app_id, repo, spec["tag"])
+    if spec.get("automatic"):
+        require(url == spec["expected_url"], "Enrichment and current release differ")
+        require(auto.mit_notice(repo, spec["tag"], api_json, public_bytes) == spec["license_notice"], "License changed during import")
+    else:
+        reviewed_license(root, app_id, repo, spec["tag"])
     size, sha = official_asset_metadata({"source_url": url})
     require(size == asset["size"] and size <= MAX_VPK, "Official release size changed")
     with tempfile.TemporaryDirectory() as temp:
         target = Path(temp) / "app.vpk"
         _, measured = download_source({"source_url": url, "size_bytes": size, "source_sha256": sha},
                                       target, max_file=MAX_VPK)
+        if spec.get("automatic"):
+            require(measured == spec["expected_sha256"], "VPK changed since enrichment")
         full_package(target, tid)
         native_name, name_field = vpk_display_name(target)
         icon, shots, media = native_media(target, app_id)
@@ -239,6 +260,44 @@ def plan_one(root, spec, entry):
     return app, media
 
 
+def stage_one(root, spec, entry, author=None):
+    app, media = plan_one(root, spec, entry, author)
+    if app is None:
+        print("Already imported:", spec["id"], flush=True)
+        return False
+    files = dict(media)
+    files[Path("apps") / (app["id"] + ".json")] = (json.dumps(to_v2(app), ensure_ascii=False, indent=2)+"\n").encode()
+    if author:
+        files[Path("authors") / (author["id"] + ".json")] = (json.dumps(to_v2(author), ensure_ascii=False, indent=2)+"\n").encode()
+    if spec.get("automatic"):
+        files[auto.RECEIPTS / (app["id"] + ".json")] = (json.dumps(auto.receipt(spec), ensure_ascii=False, indent=2)+"\n").encode()
+    # Fail before writing if any target would overwrite an existing file.
+    for rel, raw in files.items():
+        dest = root / rel
+        require(not dest.exists() or (rel in media and dest.read_bytes() == raw), "Canonical path already exists")
+    created = []
+    try:
+        for rel, raw in files.items():
+            dest = root / rel
+            if not dest.exists():
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                with dest.open("xb") as out:
+                    created.append(dest)
+                    out.write(raw)
+        # Isolate invalid candidates instead of poisoning the entire batch.
+        import subprocess
+        check = subprocess.run(["python", "scripts/validate_catalog_ci.py"], cwd=root,
+                               env={**os.environ, "VITAHUB_SKIP_REMOTE_CHECKS":"true"},
+                               capture_output=True, text=True, timeout=120)
+        require(check.returncode == 0, "Canonical validation rejected candidate: " + check.stdout[-3000:])
+    except BaseException:
+        for dest in reversed(created):
+            dest.unlink(missing_ok=True)
+        raise
+    print("Staged canonical V2 app:", app["id"], flush=True)
+    return True
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", action="store_true", required=True)
@@ -248,27 +307,42 @@ def main():
     inventory = json.loads(public_bytes(ORBIT, 16*1024*1024))
     for spec in policy["approved"]:
         try:
-            app, media = plan_one(ROOT, spec, inventory.get(spec["candidate_key"], {}))
-            if app is None:
-                print("Already imported:", spec["id"])
-                continue
-            for rel, raw in media.items():
-                dest = ROOT / rel
-                dest.parent.mkdir(parents=True, exist_ok=True)
-                if dest.exists():
-                    require(dest.read_bytes() == raw, "Media collision")
-                else:
-                    dest.write_bytes(raw)
-            path = ROOT / "apps" / (app["id"] + ".json")
-            with path.open("x", encoding="utf-8") as out:
-                json.dump(to_v2(app), out, ensure_ascii=False, indent=2)
-                out.write("\n")
-            print("Staged canonical V2 app:", path.relative_to(ROOT))
+            stage_one(ROOT, spec, inventory.get(spec["candidate_key"], {}))
         except (ValueError, KeyError, OSError, requests.RequestException, Deferred, zipfile.BadZipFile) as exc:
-            # Independent candidates, but failed validations must be visible.
-            print(f"::warning::Orbit candidate {spec.get('id')} deferred: {type(exc).__name__}: {exc}")
-            if len(policy["approved"]) == 1:
-                return 1
+            print(f"::warning::Reviewed candidate {spec.get('id')} deferred: {type(exc).__name__}: {exc}", flush=True)
+    config = policy.get("automatic") or {}
+    if not config.get("enabled"):
+        return 0
+    require(1 <= config["max_new"] <= 6 and config["max_new"] <= config["max_checks"] <= 30
+            and config["min_release_age_days"] >= 365 and config["allowed_licenses"] == ["MIT"], "Unsafe automatic policy")
+    state = json.loads(public_bytes(auto.QUEUE,32*1024*1024))
+    registry = json.loads((ROOT/"registry/retired_ids.json").read_text("utf-8"))
+    diagnostics = {}
+    rows = auto.eligible_rows(inventory,state,config,auto.canonical_records(ROOT,"apps"),registry,diagnostics)
+    print("Automatic eligibility deferrals:", json.dumps(diagnostics,sort_keys=True), flush=True)
+    cursor_path = ROOT/auto.CURSOR
+    cursor = json.loads(cursor_path.read_text("utf-8")) if cursor_path.exists() else {"last_key":""}
+    last = cursor.get("last_key","")
+    rows.sort(key=lambda row: (row[0] <= last,row[0]))
+    print("Automatic preflight eligible:",len(rows), "of",len(inventory), flush=True)
+    created=0
+    checked=0
+    for row in rows[:config["max_checks"]]:
+        if created >= config["max_new"]:
+            break
+        key,entry,result=row
+        checked+=1
+        last=key
+        try:
+            spec,author=auto.automatic_spec(ROOT,row,config,registry,api_json,public_bytes)
+            if stage_one(ROOT,spec,entry,author):
+                created+=1
+        except (ValueError, KeyError, TypeError, OSError, requests.RequestException, Deferred, zipfile.BadZipFile) as exc:
+            print(f"::warning::Automatic candidate {key} deferred: {type(exc).__name__}: {exc}", flush=True)
+    if checked:
+        cursor_path.parent.mkdir(parents=True,exist_ok=True)
+        cursor_path.write_text(json.dumps({"last_key":last},indent=2)+"\n","utf-8")
+    print(f"Automatic publication staged: {created}; checked: {checked}; preflight eligible: {len(rows)}", flush=True)
     return 0
 
 
