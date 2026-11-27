@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ee4dc7433d48c5a3c0ce6fb8520284172b019e463d42ac36d8ef3da434bedd46.png": "shot_01.png"
   },
   "attempted": [
-    "linuxonvita v1.6.0.vpk"
+    "linuxonvita v1.6.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:42:28+00:00",
