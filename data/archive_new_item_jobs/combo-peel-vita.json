@@ -1,0 +1,50 @@
+{
+  "app_id": "combo-peel-vita",
+  "identifier": "psvitaalive-combo-peel-vita",
+  "source_url": "https://github.com/Retroaria/combo-peel-vita/releases/download/v1.1/ComboPeel.vpk",
+  "files": {
+    "combo-peel-vita v1.1.vpk": {
+      "size": 94035,
+      "md5": "6aaa6f0e1dc04fc0a31ee15f3c856ef3",
+      "sha256": "50c7e0c9fa13f18eeb026f406ff2b56783d2dae64e927c58ad519b9625e046f6"
+    },
+    "icon0.png": {
+      "size": 2203,
+      "md5": "0976c77fb53fbab68aa46b9f013211de",
+      "sha256": "01a02a09651ed86590a56204938a5e6342c0d213f9d6b2956a4a7ed283f81e17"
+    },
+    "shot_01.png": {
+      "size": 9688,
+      "md5": "9963136e0a89fd0f60e6d609b81aa740",
+      "sha256": "957554cf5f8f5fd23fdd4ecf3d45215246830644b672e50e560a6f2fa12a59b0"
+    },
+    "SOURCES.txt": {
+      "size": 659,
+      "md5": "19c865b15bf1b2c17d1a4d8da92e8c37",
+      "sha256": "00fab52d546eaa099cee37523fd111d1cf4ec3bc0c29bc9ce4bf45b16b92a124"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/01a02a09651ed86590a56204938a5e6342c0d213f9d6b2956a4a7ed283f81e17.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/957554cf5f8f5fd23fdd4ecf3d45215246830644b672e50e560a6f2fa12a59b0.png": "shot_01.png"
+  },
+  "attempted": [
+    "combo-peel-vita v1.1.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:07:11+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "CPEL00001",
+    "name": "ComboPeel",
+    "search_title": "ComboPeel",
+    "version": "1.1",
+    "repo": "Retroaria/combo-peel-vita",
+    "tag": "v1.1",
+    "asset": "ComboPeel.vpk",
+    "url": "https://github.com/Retroaria/combo-peel-vita/releases/download/v1.1/ComboPeel.vpk",
+    "size": 94035,
+    "sha256": "50c7e0c9fa13f18eeb026f406ff2b56783d2dae64e927c58ad519b9625e046f6",
+    "creator": "Retroaria"
+  }
+}
