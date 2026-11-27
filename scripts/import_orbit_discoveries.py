@@ -23,6 +23,7 @@ from urllib.parse import quote
 import requests
 from PIL import Image
 from scripts.catalog_schema_v2 import to_v1, to_v2
+from scripts.vpk_display_name import vpk_display_name
 from scripts.archive_backup_batch import Deferred, download_source, official_asset_metadata
 from scripts.archive_new_items_batch import automatic_identity, validate_vpk_title
 from scripts.sync_release_updates import normalized_repo, release_asset_url_matches
@@ -219,9 +220,12 @@ def plan_one(root, spec, entry):
         _, measured = download_source({"source_url": url, "size_bytes": size, "source_sha256": sha},
                                       target, max_file=MAX_VPK)
         full_package(target, tid)
+        native_name, name_field = vpk_display_name(target)
         icon, shots, media = native_media(target, app_id)
     app = {k: spec[k] for k in ("id", "title_id", "name", "description", "long_description",
                                 "author_ids", "category_id", "subcategory_ids", "requirements", "status", "license")}
+    app["name"] = native_name or spec["name"]
+    print("Display name:", app_id, repr(app["name"]), "source:", name_field or "reviewed repository fallback", flush=True)
     app.update(version=spec["tag"].lstrip("vV"), version_date=published, size=size,
                icon=icon, screenshots=shots, source_name="Orbit", source_id=spec["candidate_key"],
                source_url="https://github.com/" + repo,
