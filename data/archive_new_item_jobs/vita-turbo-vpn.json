@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/beefe4b4a69a7ca4fe716ffaa9d257443af21a70cad5fade498f9b71e66a659d.png": "shot_01.png"
   },
   "attempted": [
-    "vita-turbo-vpn v0.1.0.vpk"
+    "vita-turbo-vpn v0.1.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T21:07:25+00:00",
