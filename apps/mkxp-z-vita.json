@@ -1,0 +1,41 @@
+{
+  "id": "mkxp-z-vita",
+  "tid": "HARDRPG01",
+  "n": "HardRPG",
+  "d": "HardRPG: play RPG Maker XP, VX, VX Ace, 2000 and 2003 games on PS Vita.",
+  "ld": "Copy your games to the Vita and play them from a game library with covers. XP, VX and VX Ace games run natively on mkxp-z-vita, this repository's Vita port of mkxp-z. RPG Maker 2000 and 2003 games run on the EasyRPG Player that comes built in. RPG Maker Dante 98 and Dante 98 II games (the PC-98 RPG Makers) run natively on a built-in port of OpenDT. It is free, open source homebrew for any Vita with HENkaku or Ensō.",
+  "aids": [
+    "asukate"
+  ],
+  "cid": "ports",
+  "sids": [
+    "rpg"
+  ],
+  "req": "- Copy each game's folder into ux0:/data/hardrpg/games/.\n- Copy everything inside app/ to ux0:/data/hardrpg/rtp/Standard/.\n- Copy everything inside app/ to ux0:/data/hardrpg/rtp/RPGVX/.\n- Copy everything inside app/ to ux0:/data/hardrpg/rtp/RPGVXAce/.\n- Copy everything inside RTP2000/ to ux0:/data/hardrpg/rtp/2000/.\n- Copy everything inside RTP2003/ to ux0:/data/hardrpg/rtp/2003/.\n- start. The copy is kept in ux0:/data/hardrpg/rescue/ and never replaces your\n- [Original game fonts](#original-game-fonts) to use your own copy.",
+  "st": "Archive",
+  "v": "0.6.1-alpha",
+  "vd": "2026-11-24",
+  "sz": 31017402,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/6b55598c2a02a56d5ed8d6fa9b288af726b5efcd3f03310ee70bbde0bc45b44f.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/776cc3f88e5138a61de25341ceb48ae06b6e4f4e744e0521db84a0e12d9caf44.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/cdf8dbf001b130e515c979ddc197d213fc2b14b80a6900889ac0de4262d12b87.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1400262917",
+  "su": "https://github.com/Asukate/mkxp-z-vita",
+  "rp": "https://github.com/Asukate/mkxp-z-vita/releases/tag/v0.6.1-alpha",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Asukate/mkxp-z-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Asukate/mkxp-z-vita/releases/download/v0.6.1-alpha/HardRPG-0.6.1.vpk",
+      "rec": true
+    }
+  ]
+}

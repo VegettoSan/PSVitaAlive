@@ -10,11 +10,6 @@
       "reason": "upstream_missing",
       "retry_at": "2026-12-04T22:14:14.394741+00:00"
     },
-    "gh:1400262917": {
-      "evidence": "c7adf945f52b7f2d754655dd5e774d91a7331998a5cc7f49c9b37ef8664d3abd",
-      "reason": "release_changed",
-      "retry_at": "2026-11-28T10:14:14.394741+00:00"
-    },
     "gh:1424321443": {
       "evidence": "68306256c23c1625ac98d357e7ce09a6161d602da6ceb82601d5fef3a2902ea6",
       "reason": "metadata_review",
@@ -36,5 +31,5 @@
       "retry_at": "2026-12-04T22:14:14.394741+00:00"
     }
   },
-  "last_key": "gh:1335918227"
+  "last_key": "gh:1400262917"
 }

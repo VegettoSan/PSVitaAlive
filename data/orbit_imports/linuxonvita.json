@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "app_id": "linuxonvita",
+  "candidate_key": "gh:1380273847",
+  "repo": "devwithzachary/LinuxOnVita",
+  "tag": "1.6.0",
+  "sha256": "5204cce2e18c8a3314f7fe452a206dfa6d006590c2bf54b77cadce33efbd0aa5"
+}

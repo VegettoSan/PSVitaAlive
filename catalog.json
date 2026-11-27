@@ -487,9 +487,10 @@
     "aids": [
       "federicopellegrino994"
     ],
-    "cid": "modding",
+    "cid": "ports",
     "sids": [
-      "textures"
+      "action",
+      "adventure"
     ],
     "req": "- ⚠️ No game files are included. You need your own copy of the Xbox game (USA version). Please don't ask for ISOs.\n- 3. Copy the game files to the Vita\n- When you're done, this file must exist: ux0:data/twotowers/game_files/default.xbe.\n- Download PSVshell (https://github.com/Electry/PSVshell) and install it as its readme explains (a plugin in ur0:tai/ plus a line in config.txt).\n- A native PC port of The Lord of the Rings: The Two Towers (Xbox, USA, 2002), made by static recompilation. It needs your own copy of the game, either the disc image (ISO) or an extracted folder. No game data is included.\n- No game data is included. You need your own copy of the game (Xbox, USA disc image).\n- A PS Vita / PS TV with HENkaku/Ensō (any recent setup with VitaShell).\n- About 4–5 GB free on ux0: for the game files.\n- so that you have, for example, ux0:data/twotowers/game_files/default.xbe and",
     "st": "Archive",
@@ -879,6 +880,47 @@
     ]
   },
   {
+    "id": "mkxp-z-vita",
+    "tid": "HARDRPG01",
+    "n": "HardRPG",
+    "d": "HardRPG: play RPG Maker XP, VX, VX Ace, 2000 and 2003 games on PS Vita.",
+    "ld": "Copy your games to the Vita and play them from a game library with covers. XP, VX and VX Ace games run natively on mkxp-z-vita, this repository's Vita port of mkxp-z. RPG Maker 2000 and 2003 games run on the EasyRPG Player that comes built in. RPG Maker Dante 98 and Dante 98 II games (the PC-98 RPG Makers) run natively on a built-in port of OpenDT. It is free, open source homebrew for any Vita with HENkaku or Ensō.",
+    "aids": [
+      "asukate"
+    ],
+    "cid": "ports",
+    "sids": [
+      "rpg"
+    ],
+    "req": "- Copy each game's folder into ux0:/data/hardrpg/games/.\n- Copy everything inside app/ to ux0:/data/hardrpg/rtp/Standard/.\n- Copy everything inside app/ to ux0:/data/hardrpg/rtp/RPGVX/.\n- Copy everything inside app/ to ux0:/data/hardrpg/rtp/RPGVXAce/.\n- Copy everything inside RTP2000/ to ux0:/data/hardrpg/rtp/2000/.\n- Copy everything inside RTP2003/ to ux0:/data/hardrpg/rtp/2003/.\n- start. The copy is kept in ux0:/data/hardrpg/rescue/ and never replaces your\n- [Original game fonts](#original-game-fonts) to use your own copy.",
+    "st": "Archive",
+    "v": "0.6.1-alpha",
+    "vd": "2026-11-24",
+    "sz": 31017402,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/6b55598c2a02a56d5ed8d6fa9b288af726b5efcd3f03310ee70bbde0bc45b44f.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/776cc3f88e5138a61de25341ceb48ae06b6e4f4e744e0521db84a0e12d9caf44.png",
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/cdf8dbf001b130e515c979ddc197d213fc2b14b80a6900889ac0de4262d12b87.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1400262917",
+    "su": "https://github.com/Asukate/mkxp-z-vita",
+    "rp": "https://github.com/Asukate/mkxp-z-vita/releases/tag/v0.6.1-alpha",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/Asukate/mkxp-z-vita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Asukate/mkxp-z-vita/releases/download/v0.6.1-alpha/HardRPG-0.6.1.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "nfs-carbon",
     "tid": "NFSCVITA0",
     "n": "NFS Carbon",
@@ -1064,9 +1106,10 @@
     "aids": [
       "geoffreymetais"
     ],
-    "cid": "utilities",
+    "cid": "networking",
     "sids": [
-      "other"
+      "file-sharing",
+      "client"
     ],
     "req": "- You need a PS Vita (or PS TV) running homebrew (HENkaku / Ensō), with Enable Unsafe\n- Homebrew turned on in HENkaku Settings: the app needs full homebrew permissions to read",
     "st": "Archive",
@@ -2917,7 +2960,7 @@
     ],
     "cid": "plugins",
     "sids": [
-      "other"
+      "input"
     ],
     "req": "- Requer HENkaku/Ensō com \"Enable Unsafe Homebrew\" ativado. Para remover, instale o VPK de novo e aperte Triângulo (Desinstalar).\n- Requisitos: HENkaku/Ensō com \"Enable Unsafe Homebrew\" ativado nas HENkaku Settings.",
     "st": "Archive",
@@ -3057,8 +3100,10 @@
     "aids": [
       "drinkingsubset"
     ],
-    "cid": "plugins",
+    "cid": "system",
     "sids": [
+      "recovery",
+      "diagnostics",
       "storage"
     ],
     "req": "- No boot plugin changes: just install the VPK.\n- Install VitaRecovery_v1.2.3.vpk with VitaShell. No boot plugin changes, so you do not need to reinstall Boot Recovery. \"Enable Unsafe Homebrew\" must stay ticked in HENkaku Settings.\n- You have a basic understanding of PS Vita custom firmware and the risks involved in modifying system files.\n- Boot Recovery: installer for the boot plugins (Install / Update / Uninstall)\n- Safe Mode, Undo Safe Mode (puts back your exact config from before Safe Mode), View & Toggle, Re-enable All (turns on every plugin), Reset to Minimal (old config kept as config.txt.before_reset), Backup / Restore config.\n- Back Up Layout: copies ur0:shell/db/app.db to ux0:data/vita_recovery/layout/app.db and checks the copy before it replaces the old backup. The backup before it is kept too (\"Older\"). Nothing is rotated if the layout hasn't changed.\n- Restore Latest Backup / Restore Older Backup: builds the restored layout on a copy (the live database is never edited), shows what will happen, then restarts the Vita. Early in the next boot the boot plugin swaps it in and keeps the replaced database as ur0:shell/db/app.db.prelayout. Apps no longer installed are skipped; apps installed after the backup are added after the last bubble.\n- Requires Ensō and the current boot plugin. Uses the Vita's own SQLite module.\n- Checks this GitHub repository for the latest release and downloads the .vpk to ux0:downloads/ with a SHA-256 check. You install it yourself with VitaShell. Uses its own HTTPS client (mbedTLS with bundled root certificates) because the Vita's built-in SSL cannot connect to GitHub on older firmware.\n- Jailbreak required: HENkaku / h-encore / h-encore2 on firmware 3.60–3.74. Boot-time recovery (hold R), Rebuild Database and Home Screen Layout restore need Ensō.\n- Since v1.1.9 the app is \"unsafe\" homebrew: tick HENkaku Settings → Enable Unsafe Homebrew (VitaShell needs the same setting). It can then read every drive, but only writes to user storage; system drives (os0: vs0: sa0: pd0: tm0: ud0: vd0:) stay read-only.\n- sceAppMgrLaunchAppByUri needs SceShell to be running, so it cannot be called from the kernel plugin. The kernel plugin only checks the buttons early in boot and writes a flag file. The user plugin runs inside SceShell, reads the flag and launches the app.",
@@ -3572,6 +3617,46 @@
     ]
   },
   {
+    "id": "linuxonvita",
+    "tid": "LNXONVITA",
+    "n": "LinuxOnVita",
+    "d": "Linux... on the PS Vita!",
+    "ld": "A complete distribution, automated build environment, and handheld userland for running **Linux 6.12** on hacked PlayStation Vita consoles (HENlo / HENkaku / Ensō 3.60 & 3.65).",
+    "aids": [
+      "devwithzachary"
+    ],
+    "cid": "demos",
+    "sids": [
+      "proof-of-concept"
+    ],
+    "req": "- Recommended (VPK only): Download LinuxOnVita.vpk, install it via VitaShell, and launch LinuxOnVita to automatically deploy ux0:/linux/ and boot Linux.\n- Custom Firmware: Any PS Vita (1000 OLED, 2000 Slim, or PlayStation TV) running 3.60 or 3.65 with HENkaku / Ensō (see vita.hacks.guide (https://vita.hacks.guide)).\n- Open Settings -> HENkaku Settings -> check Enable Unsafe Homebrew [✓]. If unchecked, the loader plugin will fail with error 0x8002D003.\n- Supported Storage (SD2Vita or Internal eMMC):\n- No Sony memory card required! Linux boot files and runtime storage can be installed directly to your SD2Vita (ux0:) or internal system storage (ur0:).\n- Note on Sony Memory Cards: The proprietary Sony memory card interface (MSIF) cannot be detected or accessed by Linux at runtime. You do not need an official Sony memory card to install or boot Linux.\n- > Kernel Plugin Compatibility - Read Before Installing\n- > LinuxOnVita is developed and tested on a PS Vita 1000 (OLED) running 3.65 Ensō with no additional plugins or mods installed. Behaviour on other configurations is not guaranteed.\n- > Several users have reported boot loops on return to VitaOS after running Linux when USB streaming, storage remapping, or other kernel-level plugins are active. Known problematic plugins include:\n- > - VitaUSBStream (and related streaming plugins)\n- > - Any other KERNEL section plugin that hooks USB, storage, or partition remapping\n- > These plugins re-initialise hardware at startup. Because the baremetal loader reconfigures the MSIF memory card controller and USB subsystem directly during Linux boot, some plugins can encounter unexpected hardware state on the return reboot and crash.",
+    "st": "Archive",
+    "v": "1.6.0",
+    "vd": "2026-11-13",
+    "sz": 26968793,
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ae0a9cce07e80c7ebf5a54bfa54dbabaf565246ee3b3824feea53a951fb4e3dd.png",
+    "ss": [
+      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ee4dc7433d48c5a3c0ce6fb8520284172b019e463d42ac36d8ef3da434bedd46.png"
+    ],
+    "sn": "Orbit",
+    "si": "gh:1380273847",
+    "su": "https://github.com/devwithzachary/LinuxOnVita",
+    "rp": "https://github.com/devwithzachary/LinuxOnVita/releases/tag/1.6.0",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/devwithzachary/LinuxOnVita"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/devwithzachary/LinuxOnVita/releases/download/1.6.0/LinuxOnVita.vpk",
+        "rec": true
+      }
+    ]
+  },
+  {
     "id": "raging-thunder",
     "tid": "PSVRT0001",
     "n": "Raging Thunder",
@@ -3778,7 +3863,7 @@
     ],
     "cid": "emulators",
     "sids": [
-      "other"
+      "commodore"
     ],
     "req": "- Copy legally obtained Kickstart ROMs to:\n- Copy Amiga disk images to a folder on ux0: or uma0:.\n- For the CD32 preset, both ROMs are required:\n- Copy the .lha files to any accessible folder on your Vita (ux0: or uma0:).",
     "st": "Archive",

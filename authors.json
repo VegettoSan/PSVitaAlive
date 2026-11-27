@@ -806,6 +806,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "asukate",
+    "n": "Asukate",
+    "b": "Developer",
+    "av": "https://avatars.githubusercontent.com/u/119147874?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/Asukate",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "atspwang618",
     "n": "ATSPwang618",
     "av": "https://avatars.githubusercontent.com/u/212236324?v=4",
@@ -11007,6 +11022,21 @@
       }
     ],
     "ic": "https://github.com/TheMrIron2.png"
+  },
+  {
+    "id": "devwithzachary",
+    "n": "Zachary Powell",
+    "b": "Developer",
+    "av": "https://avatars.githubusercontent.com/u/1653539?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/devwithzachary",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
     "id": "zack",
