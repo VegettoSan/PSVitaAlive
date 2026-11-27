@@ -16,10 +16,10 @@
   "v": "1.0.0",
   "vd": "2026-10-20",
   "sz": 2323545,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/e57e20a91b4687a0e584aaad9f01135598a06c7a9e431331bb3d6e50092195c1.png",
+  "ic": "https://archive.org/download/psvitaalive-skater-nation-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/d8dd937f1191fd4b60f42c328750d09c9426781a68045b3ff0cf9926dfc93877.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0.png"
+    "https://archive.org/download/psvitaalive-skater-nation-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-skater-nation-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1426476181",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/download/v1.0.0/skaternation.vpk",
+      "u": "https://archive.org/download/psvitaalive-skater-nation-vita/skater-nation-vita%20v1.0.0.vpk",
       "rec": true
     }
   ]
