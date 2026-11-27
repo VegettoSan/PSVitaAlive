@@ -16,10 +16,10 @@
   "v": "1.0.0",
   "vd": "2026-11-11",
   "sz": 2041324,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/914221b51f0f1cee58bde1ae8b8022a1e775c2beeae41b363ed25bf72e4303b4.png",
+  "ic": "https://archive.org/download/psvitaalive-rayman-2-the-great-escape-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/930c226ae4554ee7c93e55a97ed76fad38e6b34c9e394d8fb29526bc65763721.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/rayman-2-the-great-escape-vita/b6e5f4de761b1dddfd9efb4080f82f85fc789c80d19fca840043ce0e19d01339.png"
+    "https://archive.org/download/psvitaalive-rayman-2-the-great-escape-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-rayman-2-the-great-escape-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1453333116",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Rayman-2-The-Great-Escape-vita/releases/download/v1.0.0/rayman2thegreatescape.vpk",
+      "u": "https://archive.org/download/psvitaalive-rayman-2-the-great-escape-vita/rayman-2-the-great-escape-vita%20v1.0.0.vpk",
       "rec": true
     }
   ]

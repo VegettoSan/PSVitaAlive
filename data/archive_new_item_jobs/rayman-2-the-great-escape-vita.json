@@ -41,7 +41,7 @@
     "shot_02.png",
     "SOURCES.txt"
   ],
-  "status": "CREATING",
+  "status": "PUBLISHED_VERIFIED",
   "created_at": "2026-11-27T21:58:51+00:00",
   "source_spec": {
     "automatic": true,
@@ -56,5 +56,6 @@
     "size": 2041324,
     "sha256": "187b717a15b58e537335bbabfea6e59676b1577c5a388ca0a270334b11de782c",
     "creator": "MetalSyntax"
-  }
+  },
+  "completed_at": "2026-11-27T22:06:41+00:00"
 }
