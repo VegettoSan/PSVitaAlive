@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/8217ab3a2b292ce4f7cb916e0e61e6220b4ad4385f11020de5421ab0460d934f.png": "shot_02.png"
   },
   "attempted": [
-    "raging-thunder-2-vita v1.1.2.vpk"
+    "raging-thunder-2-vita v1.1.2.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T23:13:01+00:00",
