@@ -66,3 +66,5 @@ jobs:
           PY
 
 # Reconciliation-only rerun: TRANSFER_PREPARED cannot send a second VPK PUT.
+
+# Safe manifest reconciliation (no repeated PUT while checkpoint exists).
