@@ -1,5 +1,58 @@
 [
   {
+    "id": "spongebob-battle-for-bikini-bottom",
+    "tid": "BBVT00002",
+    "n": "Spongebob: Battle for Bikini Bottom",
+    "d": "Port of Spongebob: Battle for Bikini Bottom for PSVita.",
+    "ld": "Port of Spongebob: Battle for Bikini Bottom for PSVita based off the decompilation of the Gamecube version.",
+    "aids": [
+      "rinnegatamante"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "v": "1.2",
+    "vd": "2026-11-27",
+    "req": "- libshacccg.suprx",
+    "sz": 4458754,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/Rinnegatamante/bfbb-vita/releases/download/v.1.2/bfbb.vpk",
+        "sz": 4458754,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1503238554,
+        "xp": "ux0:data/",
+        "ips": [
+          "bfbb"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/Rinnegatamante/bfbb-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
+      "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
+    ]
+  },
+  {
     "id": "opennow-vita",
     "tid": "OPENNOWV0",
     "n": "OpenNow Vita",
@@ -1018,6 +1071,55 @@
     ]
   },
   {
+    "id": "pes6-vita",
+    "tid": "PESV00006",
+    "n": "PES6 Vita",
+    "d": "PES6 (PSP) port to PS Vita",
+    "ld": "An unofficial port of Pro Evolution Soccer 6 (PSP, Europe, ULES00476) to the PS Vita.",
+    "aids": [
+      "germanalvarez15"
+    ],
+    "cid": "ports",
+    "sids": [
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.0.6-beta",
+    "vd": "2026-11-23",
+    "req": "- libshacccg.suprx\n- About 1.3 GB free on the Vita.",
+    "sz": 27264658,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/germanalvarez15/pes6-vita/releases/download/0.0.6-beta/pes6vita.vpk",
+        "sz": 27264658,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/pes6-psp-port-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1288490189,
+        "xp": "ux0:data/",
+        "ips": [
+          "pes6vita"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/germanalvarez15/pes6-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/pes6-psp-port-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/pes6-psp-port-ps-vita/bg.png"
+    ]
+  },
+  {
     "id": "all-is-lost",
     "tid": "AILO69420",
     "n": "All is Lost",
@@ -1275,59 +1377,6 @@
     "ic": "https://archive.org/download/NFSUG1VITA/icon0.png",
     "ss": [
       "https://archive.org/download/NFSUG1VITA/shot0.png"
-    ]
-  },
-  {
-    "id": "spongebob-battle-for-bikini-bottom",
-    "tid": "BBVT00002",
-    "n": "Spongebob: Battle for Bikini Bottom",
-    "d": "Port of Spongebob: Battle for Bikini Bottom for PSVita.",
-    "ld": "Port of Spongebob: Battle for Bikini Bottom for PSVita based off the decompilation of the Gamecube version.",
-    "aids": [
-      "rinnegatamante"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
-    ],
-    "v": "1.1",
-    "vd": "2026-11-22",
-    "req": "- libshacccg.suprx",
-    "sz": 4458266,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/spongebob-battle-for-bikini-bottom%20v1.1.vpk",
-        "sz": 4458266,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/battle-for-bikini-bottom-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 1503238554,
-        "xp": "ux0:data/",
-        "ips": [
-          "bfbb"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/Rinnegatamante/bfbb-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/battle-for-bikini-bottom-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot0.jpg",
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
-      "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
     ]
   },
   {
@@ -1614,55 +1663,6 @@
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot1.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot2.png",
       "https://archive.org/download/dragon-ball-z-budokai-tenkaichi-3-ps-vita/shot3.png"
-    ]
-  },
-  {
-    "id": "pes6-vita",
-    "tid": "PESV00006",
-    "n": "PES6 Vita",
-    "d": "PES6 (PSP) port to PS Vita",
-    "ld": "An unofficial port of Pro Evolution Soccer 6 (PSP, Europe, ULES00476) to the PS Vita.",
-    "aids": [
-      "germanalvarez15"
-    ],
-    "cid": "ports",
-    "sids": [
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.0.4",
-    "vd": "2026-11-20",
-    "req": "- libshacccg.suprx\n- About 1.3 GB free on the Vita.",
-    "sz": 27262976,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/pes6-psp-port-ps-vita/pes6vita%20v0.0.4.vpk",
-        "sz": 27262976,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/pes6-psp-port-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 1288490189,
-        "xp": "ux0:data/",
-        "ips": [
-          "pes6vita"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/germanalvarez15/pes6-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/pes6-psp-port-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/pes6-psp-port-ps-vita/bg.png"
     ]
   },
   {
@@ -3637,6 +3637,60 @@
     ]
   },
   {
+    "id": "deltarune-vita",
+    "tid": "DLTVITA01",
+    "n": "Deltarune Vita",
+    "d": "Port of Deltarune for PSVita.",
+    "ld": "An unofficial port of DELTARUNE Chapters 1-5 for the PlayStation Vita.\n\n- PsVitaAlive -",
+    "aids": [
+      "wolff"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "v": "0.84",
+    "vd": "2026-11-11",
+    "req": "- libshacccg.suprx\n- Game Data Files: Steam",
+    "sz": 10226927,
+    "st": "Legacy",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/WolffsRoom/DeltaruneVita/releases/download/v0.84/Deltarune-v0.84.Internal-Build-Test.vpk",
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/psvitaalive-deltarune-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2040109466,
+        "xp": "ux0:data/",
+        "ips": [
+          "deltarune"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/WolffsRoom/DeltaruneVita"
+      }
+    ],
+    "ic": "https://archive.org/download/psvitaalive-deltarune-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-deltarune-vita/shot_01.png",
+      "https://archive.org/download/psvitaalive-deltarune-vita/shot_02.png",
+      "https://archive.org/download/psvitaalive-deltarune-vita/shot_03.png",
+      "https://archive.org/download/psvitaalive-deltarune-vita/shot_04.png"
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "1439",
+    "su": "https://github.com/WolffsRoom/DeltaruneVita",
+    "rp": "https://github.com/WolffsRoom/DeltaruneVita/releases",
+    "ua": "2026-08-13T15:34"
+  },
+  {
     "id": "bloxicon",
     "tid": "RBXV00001",
     "n": "Bloxicon",
@@ -4106,60 +4160,6 @@
     "ss": [
       "https://archive.org/download/harry-potter-flipendo-ps-vita/shot0.png"
     ]
-  },
-  {
-    "id": "deltarune-vita",
-    "tid": "DLTVITA01",
-    "n": "Deltarune Vita",
-    "d": "Port of Deltarune for PSVita.",
-    "ld": "An unofficial port of DELTARUNE Chapters 1-5 for the PlayStation Vita.\n\n- PsVitaAlive -",
-    "aids": [
-      "wolff"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "0.81",
-    "vd": "2026-11-08",
-    "req": "- libshacccg.suprx\n- Game Data Files: Steam",
-    "sz": 2359296,
-    "st": "Legacy",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-deltarune-vita/Deltarune-v0.69.vpk",
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/psvitaalive-deltarune-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2040109466,
-        "xp": "ux0:data/",
-        "ips": [
-          "deltarune"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/WolffsRoom/DeltaruneVita"
-      }
-    ],
-    "ic": "https://archive.org/download/psvitaalive-deltarune-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-deltarune-vita/shot_01.png",
-      "https://archive.org/download/psvitaalive-deltarune-vita/shot_02.png",
-      "https://archive.org/download/psvitaalive-deltarune-vita/shot_03.png",
-      "https://archive.org/download/psvitaalive-deltarune-vita/shot_04.png"
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "1439",
-    "su": "https://github.com/WolffsRoom/DeltaruneVita",
-    "rp": "https://github.com/WolffsRoom/DeltaruneVita/releases",
-    "ua": "2026-08-13T15:34"
   },
   {
     "id": "soulcalibur-vita",
@@ -6268,6 +6268,49 @@
     ]
   },
   {
+    "id": "vitamediadeck",
+    "tid": "VMDK00001",
+    "n": "VitaMediaDeck",
+    "d": "Private PS Vita media library and playback application",
+    "ld": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
+    "aids": [
+      "spyro-98"
+    ],
+    "cid": "media",
+    "sids": [
+      "audio",
+      "music-player",
+      "video",
+      "video-player",
+      "streaming"
+    ],
+    "v": "1.4.4",
+    "vd": "2026-10-30",
+    "req": "- No Data",
+    "sz": 6323853,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/spyro-98/VitaMediaDeck/releases/download/1.4.4/VitaMediaDeck-1.4.4-beta.vpk",
+        "sz": 6323853,
+        "rec": true
+      },
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/spyro-98/VitaMediaDeck"
+      }
+    ],
+    "ic": "https://archive.org/download/vita-media-deck/icon0.png",
+    "ss": [
+      "https://archive.org/download/vita-media-deck/shot0.jpeg",
+      "https://archive.org/download/vita-media-deck/shot1.jpeg",
+      "https://archive.org/download/vita-media-deck/shot2.jpeg"
+    ]
+  },
+  {
     "id": "batman-ac-lockdown",
     "tid": "ACLD00001",
     "n": "Batman AC Lockdown",
@@ -6510,49 +6553,6 @@
     "ic": "https://archive.org/download/vitalatro/icon0.png",
     "ss": [
       "https://archive.org/download/vitalatro/Shot0.png"
-    ]
-  },
-  {
-    "id": "vitamediadeck",
-    "tid": "VMDK00001",
-    "n": "VitaMediaDeck",
-    "d": "Private PS Vita media library and playback application",
-    "ld": "VitaMediaDeck plays video and music already owned and stored by the user. Media can come from the Vita memory card or from an authenticated WebDAV, SFTP, or SMB server. Browsing, demuxing, hardware decoding, audio/video synchronization, and rendering all run on the console; no companion service is required.",
-    "aids": [
-      "spyro-98"
-    ],
-    "cid": "media",
-    "sids": [
-      "audio",
-      "music-player",
-      "video",
-      "video-player",
-      "streaming"
-    ],
-    "v": "1.4.3",
-    "vd": "2026-10-29",
-    "req": "- No Data",
-    "sz": 6294292,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/vita-media-deck/vitamediadeck%20v1.4.3.vpk",
-        "sz": 6294292,
-        "rec": true
-      },
-      {
-        "t": "Repository",
-        "n": "GitHub",
-        "u": "https://github.com/spyro-98/VitaMediaDeck"
-      }
-    ],
-    "ic": "https://archive.org/download/vita-media-deck/icon0.png",
-    "ss": [
-      "https://archive.org/download/vita-media-deck/shot0.jpeg",
-      "https://archive.org/download/vita-media-deck/shot1.jpeg",
-      "https://archive.org/download/vita-media-deck/shot2.jpeg"
     ]
   },
   {
@@ -11892,6 +11892,59 @@
     "ua": "2026-08-18T21:51"
   },
   {
+    "id": "save-keeper",
+    "tid": "SVK000001",
+    "n": "Save Keeper",
+    "d": "Save backup manager with Google Drive sync.",
+    "ld": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
+    "aids": [
+      "claude-ai",
+      "falkenhawk"
+    ],
+    "cid": "utilities",
+    "sids": [
+      "other"
+    ],
+    "v": "1.4.0-test2",
+    "vd": "2026-08-19",
+    "req": "Not specified",
+    "sz": 3189266,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-save-keeper/shot_01.png",
+      "https://archive.org/download/psvitaalive-save-keeper/shot_02.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.4.0-test2/save-keeper.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/falkenhawk/vita-save-keeper"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/falkenhawk/vita-save-keeper/releases"
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "1430",
+    "su": "https://github.com/falkenhawk/vita-save-keeper",
+    "rp": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0",
+    "ua": "2026-08-13T15:34:48.327643+00:00"
+  },
+  {
     "id": "vitabright-lut-editor",
     "tid": "VBRIGHTTL",
     "n": "Vitabright Lut Editor",
@@ -12006,59 +12059,6 @@
     "su": "https://x.com/devnoname120",
     "rp": "https://x.com/devnoname120",
     "ua": "2026-08-13T15:34"
-  },
-  {
-    "id": "save-keeper",
-    "tid": "SVK000001",
-    "n": "Save Keeper",
-    "d": "Save backup manager with Google Drive sync.",
-    "ld": "Back up your PS Vita and PSP save games and sync them to your own Google Drive. Made for people with more than one Vita (or a PS TV) who want their saves to follow them.",
-    "aids": [
-      "claude-ai",
-      "falkenhawk"
-    ],
-    "cid": "utilities",
-    "sids": [
-      "other"
-    ],
-    "v": "1.3.1",
-    "vd": "2026-08-16",
-    "req": "Not specified",
-    "sz": 3150095,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-save-keeper/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-save-keeper/shot_01.png",
-      "https://archive.org/download/psvitaalive-save-keeper/shot_02.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-save-keeper/save-keeper%20v1.3.1.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/falkenhawk/vita-save-keeper"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/falkenhawk/vita-save-keeper/releases"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "1430",
-    "su": "https://github.com/falkenhawk/vita-save-keeper",
-    "rp": "https://github.com/falkenhawk/vita-save-keeper/releases/tag/v1.3.0",
-    "ua": "2026-08-13T15:34:48.327643+00:00"
   },
   {
     "id": "neovitadb-downloader",
