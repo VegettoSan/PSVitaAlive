@@ -1,0 +1,50 @@
+{
+  "app_id": "vitaxmb",
+  "identifier": "psvitaalive-vitaxmb",
+  "source_url": "https://github.com/dekiller82/VitaXMB/releases/download/v1.10.2/VitaXMB-v1.10.2.vpk",
+  "files": {
+    "vitaxmb v1.10.2.vpk": {
+      "size": 12335016,
+      "md5": "12a0b0d7ae7c6adaa0aaf064a2e8a68b",
+      "sha256": "d20cecea0dd4cef780c8eeba0a4e8b69f6fe58f7642e3acff67280545ae990ed"
+    },
+    "icon0.png": {
+      "size": 6603,
+      "md5": "77b748a8cd4ba3a8938e85b4ebed04c0",
+      "sha256": "29f5c19f6deb79a3abdcd259f385e35052bf3a0f6a4b0543ec9abdf8ac0e7dab"
+    },
+    "shot_01.png": {
+      "size": 20278,
+      "md5": "8c99e700630c251038cd3e0265a25acc",
+      "sha256": "8008a0e59c561a781540e3b6670f4984c359a90775bae1bc4b3ce3d3bf3ddf7c"
+    },
+    "SOURCES.txt": {
+      "size": 636,
+      "md5": "a6b2955ea6b4cddc9f6ce54f438b8f81",
+      "sha256": "8c4135198bef6fa294e98c2caa36084c7748cce4a38249ceb1fa74d63f915c7f"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/29f5c19f6deb79a3abdcd259f385e35052bf3a0f6a4b0543ec9abdf8ac0e7dab.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitaxmb/8008a0e59c561a781540e3b6670f4984c359a90775bae1bc4b3ce3d3bf3ddf7c.png": "shot_01.png"
+  },
+  "attempted": [
+    "vitaxmb v1.10.2.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:21:57+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "VXMB00001",
+    "name": "VitaXMB",
+    "search_title": "VitaXMB",
+    "version": "1.10.2",
+    "repo": "dekiller82/VitaXMB",
+    "tag": "v1.10.2",
+    "asset": "VitaXMB-v1.10.2.vpk",
+    "url": "https://github.com/dekiller82/VitaXMB/releases/download/v1.10.2/VitaXMB-v1.10.2.vpk",
+    "size": 12335016,
+    "sha256": "d20cecea0dd4cef780c8eeba0a4e8b69f6fe58f7642e3acff67280545ae990ed",
+    "creator": "dekiller82"
+  }
+}
