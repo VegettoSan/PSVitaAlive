@@ -1,0 +1,95 @@
+name: Import reviewed Orbit discoveries
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/import_orbit_discoveries.py
+      - config/orbit_publication_approved.json
+      - tests/test_import_orbit_discoveries.py
+      - .github/workflows/import-orbit-discoveries.yml
+      - scripts/archive_new_items_batch.py
+      - .github/workflows/validate.yml
+      - .github/workflows/archive-backup-batch.yml
+  push:
+    branches: [main]
+    paths:
+      - scripts/import_orbit_discoveries.py
+      - config/orbit_publication_approved.json
+      - .github/workflows/import-orbit-discoveries.yml
+  schedule:
+    - cron: '07 */3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('orbit-import-preview-{0}', github.event.pull_request.number) || 'vitahub-catalog-publisher' }}
+  cancel-in-progress: false
+jobs:
+  import:
+    if: >-
+      github.repository == 'VegettoSan/PSVitaAlive' &&
+      (github.ref == 'refs/heads/main' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Sync official main before import
+        if: github.ref == 'refs/heads/main'
+        run: git pull --ff-only origin main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install existing preservation dependencies
+        run: python -m pip install -r requirements.txt 'internetarchive==5.13.0' 'requests==2.32.5' 'Pillow==12.1.1'
+      - name: Test import safeguards
+        run: python -m unittest discover -s tests -p 'test_import_orbit_discoveries.py' -v
+      - name: Test existing preservation safeguards
+        run: python -m unittest discover -s tests -p 'test_archive_new_items_batch.py' -v
+      - name: Stage approved discoveries (real package and license validation)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m scripts.import_orbit_discoveries --stage
+      - name: Validate full canonical source catalog
+        env:
+          VITAHUB_SKIP_REMOTE_CHECKS: 'true'
+        run: python scripts/validate_catalog_ci.py
+      - name: Save proposed sources for inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orbit-canonical-preview
+          path: |
+            apps/minfwver.json
+            apps/media/minfwver/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Commit only canonical sources and trigger normal publication
+        if: github.ref == 'refs/heads/main' && success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git add -- apps authors
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Import reviewed Orbit discoveries into canonical sources'
+            git push origin HEAD:main
+          fi
+          # A failed dispatch must be retryable even after the source commit.
+          if python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1
+          approved=json.loads(Path('config/orbit_publication_approved.json').read_text())['approved']
+          catalog=to_v1(json.loads(Path('catalog.json').read_text()))
+          ids={a.get('id') for a in catalog}
+          pending=any((Path('apps')/(a['id']+'.json')).is_file() and a['id'] not in ids for a in approved)
+          raise SystemExit(0 if pending else 1)
+          PY
+          then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/dispatches" -f event_type=orbit_catalog_imported
+          fi
