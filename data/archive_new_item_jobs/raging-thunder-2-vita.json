@@ -1,0 +1,56 @@
+{
+  "app_id": "raging-thunder-2-vita",
+  "identifier": "psvitaalive-raging-thunder-2-vita",
+  "source_url": "https://github.com/MetalSyntax/Raging-Thunder-2-vita/releases/download/v1.1.2/ragingthunder2.vpk",
+  "files": {
+    "raging-thunder-2-vita v1.1.2.vpk": {
+      "size": 1169550,
+      "md5": "eb8a002206a11d5be26acc2de3d6b5fa",
+      "sha256": "0577072f02e59eae7b5a8aa4715698ac03c14e81f42af14343e428edf677191a"
+    },
+    "icon0.png": {
+      "size": 14832,
+      "md5": "e2173d4fd9712e9d84d2238cfa76bc35",
+      "sha256": "ab40ce02a386e9b762b2e24581f5b130170708bb217b054f226256a54412c968"
+    },
+    "shot_01.png": {
+      "size": 292726,
+      "md5": "9957420747a4f9e6e5a91edbf2e8c2d4",
+      "sha256": "cdb5ac87d8c705d1472735dbc945ab4dbcce06decd0a029ba6da5cd185b29578"
+    },
+    "shot_02.png": {
+      "size": 239478,
+      "md5": "002a228dc85a73d85788c5d4b7e1a641",
+      "sha256": "8217ab3a2b292ce4f7cb916e0e61e6220b4ad4385f11020de5421ab0460d934f"
+    },
+    "SOURCES.txt": {
+      "size": 892,
+      "md5": "665d638d48aef85bc94c66598e6237f4",
+      "sha256": "525b24a1a3b197699600c75bd49d4e22dffd20c3e0182c8478ac5a7b73b70a8b"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/ab40ce02a386e9b762b2e24581f5b130170708bb217b054f226256a54412c968.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/cdb5ac87d8c705d1472735dbc945ab4dbcce06decd0a029ba6da5cd185b29578.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/raging-thunder-2-vita/8217ab3a2b292ce4f7cb916e0e61e6220b4ad4385f11020de5421ab0460d934f.png": "shot_02.png"
+  },
+  "attempted": [
+    "raging-thunder-2-vita v1.1.2.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T23:13:01+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PSVRT0002",
+    "name": "Raging Thunder 2",
+    "search_title": "Raging Thunder 2",
+    "version": "1.1.2",
+    "repo": "MetalSyntax/Raging-Thunder-2-vita",
+    "tag": "v1.1.2",
+    "asset": "ragingthunder2.vpk",
+    "url": "https://github.com/MetalSyntax/Raging-Thunder-2-vita/releases/download/v1.1.2/ragingthunder2.vpk",
+    "size": 1169550,
+    "sha256": "0577072f02e59eae7b5a8aa4715698ac03c14e81f42af14343e428edf677191a",
+    "creator": "MetalSyntax"
+  }
+}
