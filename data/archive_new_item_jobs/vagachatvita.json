@@ -1,0 +1,62 @@
+{
+  "app_id": "vagachatvita",
+  "identifier": "psvitaalive-vagachatvita",
+  "source_url": "https://github.com/Frxn5J/VagaChatVITA/releases/download/0.1.0/VagaChatVITA.vpk",
+  "files": {
+    "vagachatvita Alpha 0.1.0--a6bfec2bdf7307f0ac25ac45.vpk": {
+      "size": 2534795,
+      "md5": "9f51041b7f13cd1a7818e2868f849bf3",
+      "sha256": "63c2b55c74f45002939a243de5e1c6c81a01b8ba334ae586fee164b14b0cecb0"
+    },
+    "icon0.png": {
+      "size": 2709,
+      "md5": "5859c4297ea6733f2fe45b5d82ec2468",
+      "sha256": "ac72f28d697d0205d91ea2299387b8846a6ebbe7abba6375768c3ff3a248265d"
+    },
+    "shot_01.png": {
+      "size": 30073,
+      "md5": "5d1737786142c836658c7db1cf13fd86",
+      "sha256": "f75d0943e87149c2441dd1fe37ce12d7f2ca9480a282e05377987d584c2f2e11"
+    },
+    "shot_02.png": {
+      "size": 39613,
+      "md5": "0df4f7f5762aab7e579f3e7b153ef0c7",
+      "sha256": "60a50abf0e0bacad50ef0cdd839f96ea29cc686bab50d3f303d7f555ab93408c"
+    },
+    "shot_03.png": {
+      "size": 53209,
+      "md5": "87ac73e99c1d2c105409a5b4bbed1173",
+      "sha256": "bb2c85d8638301b6802aa0ed796005e7b46d1fa68dd3f7815a7c8677eeefdf16"
+    },
+    "SOURCES.txt": {
+      "size": 711,
+      "md5": "bbe7b8dbfa8fec5f14c45ed2d866a7cd",
+      "sha256": "060bc89f62e747af6b600772696936c108b2a390d992b468d86dc7b7005f4be2"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/Frxn5J/VagaChatVITA/refs/heads/main/assets/icon0.png": "icon0.png",
+    "https://github.com/Frxn5J/VagaChatVITA/blob/main/assets/startup.png?raw=true": "shot_01.png",
+    "https://github.com/Frxn5J/VagaChatVITA/blob/main/Screenshot%202026-09-06%20003733.png?raw=true": "shot_02.png",
+    "https://github.com/Frxn5J/VagaChatVITA/blob/main/Screenshot%202026-09-06%20003720.png?raw=true": "shot_03.png"
+  },
+  "attempted": [
+    "vagachatvita Alpha 0.1.0--a6bfec2bdf7307f0ac25ac45.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T00:10:10+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "VAGROUTE1",
+    "name": "VagaChatVITA",
+    "search_title": "VagaChatVITA",
+    "version": "Alpha 0.1.0",
+    "repo": "Frxn5J/VagaChatVITA",
+    "tag": "0.1.0",
+    "asset": "VagaChatVITA.vpk",
+    "url": "https://github.com/Frxn5J/VagaChatVITA/releases/download/0.1.0/VagaChatVITA.vpk",
+    "size": 2534795,
+    "sha256": "63c2b55c74f45002939a243de5e1c6c81a01b8ba334ae586fee164b14b0cecb0",
+    "creator": "Frxn5J"
+  }
+}
