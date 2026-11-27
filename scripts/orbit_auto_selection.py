@@ -75,8 +75,8 @@ def eligible_rows(inventory, state, policy, existing, retired, diagnostics=None)
                 or not isinstance(app_id,str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,70}",app_id) or app_id in ids):
             skip("known, retired or invalid app"); continue
         try:
-            if date.fromisoformat(draft["version_date"]) > date.today()-timedelta(days=policy["min_release_age_days"]):
-                skip("recent release needs status review"); continue
+            if date.fromisoformat(draft["version_date"]) > date.today():
+                skip("future release date"); continue
         except (ValueError, TypeError, KeyError):
             skip("release date unavailable"); continue
         if (result.get("state") != "inspected" or title.get("state") != "high" or title.get("suggestion") != tid
@@ -121,7 +121,7 @@ def mit_notice(repo, tag, api_json, public_bytes):
     return notice
 
 
-def owner_author(root, entry, result, metadata, public_bytes, retired, notice):
+def owner_author(root, entry, result, metadata, public_bytes, retired, notice=None):
     """Match exact public account, or create the same profile as the web generator."""
     owner = metadata.get("owner") or {}
     handle = owner.get("login")
@@ -135,12 +135,8 @@ def owner_author(root, entry, result, metadata, public_bytes, retired, notice):
     require(profile.get("id") == owner.get("id") and profile.get("type") == "User"
             and str(profile.get("login","")).casefold()==handle.casefold()
             and str(profile.get("html_url","")).casefold()==url.casefold(), "Public profile identity changed")
-    # The license must name the owner by account or public display name; do not
-    # automatically attribute a third party's code solely to a repository owner.
-    copyright_lines = " ".join(l for l in notice.splitlines() if re.search(r"\bcopyright\b",l,re.I) and "permission" not in l.lower())
-    holder = re.sub(r"[^a-z0-9]","",unicodedata.normalize("NFKD",copyright_lines).lower())
-    aliases = [re.sub(r"[^a-z0-9]","",unicodedata.normalize("NFKD",str(x or "")).lower()) for x in (handle,profile.get("name"))]
-    require(any(len(a)>=3 and a in holder for a in aliases), "License holder does not establish owner attribution")
+    # Attribution follows the independently verified original repository
+    # owner and canonical profiles; it does not depend on license text.
     authors = canonical_records(root,"authors")
     matches = [a for a in authors if any(isinstance(l,dict) and str(l.get("url","")).rstrip("/").casefold()==url.casefold() for l in a.get("links",[]))]
     require(len(matches)<=1, "Multiple author profiles for owner")
@@ -170,8 +166,7 @@ def automatic_spec(root, row, policy, retired, api_json, public_bytes):
             and metadata.get("fork") is False, "Repository identity or lineage changed")
     tag=vpk.get("tag")
     require(isinstance(tag,str) and 0<len(tag)<=100 and not any(c.isspace() for c in tag), "Invalid release tag")
-    notice=mit_notice(project,tag,api_json,public_bytes)
-    aids,author=owner_author(root,entry,result,metadata,public_bytes,retired,notice)
+    aids,author=owner_author(root,entry,result,metadata,public_bytes,retired)
     cat=result["category"]
     taxonomy=canonical_records(root,"categories")
     category=next((c for c in taxonomy if c["id"]==cat["category_id"]),None)
@@ -186,14 +181,13 @@ def automatic_spec(root, row, policy, retired, api_json, public_bytes):
     req=(result.get("requirements") or {}).get("value") or "- no data"
     require(isinstance(req,str) and len(req)<=12000,"Invalid requirements")
     spec={"automatic":True,"candidate_key":key,"project":project,"id":draft["id"],"title_id":vpk["title_id"],
-          "tag":tag,"status":"Legacy","author_ids":aids,"category_id":cat["category_id"],"subcategory_ids":subs,
+          "tag":tag,"status":"Legacy" if date.fromisoformat(draft["version_date"]) <= date.today()-timedelta(days=365) else "Archive","author_ids":aids,"category_id":cat["category_id"],"subcategory_ids":subs,
           "name":str(draft.get("name") or project.split("/")[-1])[:128],"description":desc,"long_description":long_desc,
-          "requirements":req,"license":"MIT","license_notice":notice,"min_release_age_days":policy["min_release_age_days"],
+          "requirements":req,
           "expected_sha256":vpk["sha256"],"expected_url":vpk["url"]}
     return spec,author
 
 
 def receipt(spec):
     return {"schema_version":1,"app_id":spec["id"],"candidate_key":spec["candidate_key"],"repo":spec["project"],
-            "tag":spec["tag"],"sha256":spec["expected_sha256"],"license":"MIT",
-            "license_notice":spec["license_notice"]}
+            "tag":spec["tag"],"sha256":spec["expected_sha256"]}

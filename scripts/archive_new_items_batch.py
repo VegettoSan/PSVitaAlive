@@ -216,33 +216,38 @@ def auto_spec(root, app, app_id, counts, job=None):
                 or not isinstance(saved.get("sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", saved["sha256"])
                 or not isinstance(saved.get("creator"), str) or not saved["creator"].strip()):
             raise Deferred("PENDING_MANUAL", "Automatic checkpoint source identity changed")
-        if app.get("source_name") == "Orbit" and (not isinstance(saved.get("license_notice"), str)
-                or "Permission is hereby granted" not in saved["license_notice"]):
-            raise Deferred("SOURCE_REVIEW", "Missing reviewed Orbit license in checkpoint")
         return dict(saved)
     size, sha = official_asset_metadata({"source_url": identity["url"]})
     if not 0 < size <= HARD_MAX_FILE:
         raise Deferred("TOO_LARGE_PENDING", "Official VPK exceeds limit")
     spec = dict(identity, size=size, sha256=sha, creator=author_credit(root, app))
     if app.get("source_name") == "Orbit":
-        # A newly discovered package is not automatically redistributable.
-        # Keep the reviewed release's actual notice in the immutable checkpoint.
-        from scripts.import_orbit_discoveries import reviewed_license
+        # Apply the existing preservation exclusion policy, not a second MIT-only gate.
+        # A receipt pins the package identity; it is not a grant of copyright.
         from scripts.orbit_auto_selection import RECEIPTS
-        try:
-            spec["license_notice"] = reviewed_license(root, app_id, identity["repo"], identity["tag"])
-            receipt_path = root / RECEIPTS / (app_id + ".json")
-            if receipt_path.is_file():
+        receipt_path = root / RECEIPTS / (app_id + ".json")
+        if receipt_path.is_file():
+            try:
                 receipt = json.loads(receipt_path.read_text("utf-8"))
                 expected = receipt.get("sha256")
-                if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected) or (sha and sha != expected):
-                    raise ValueError("Automatic import receipt digest does not match upstream")
-                # Preserve the exact binary that was independently checked before import.
+                if (receipt.get("schema_version") != 1 or receipt.get("app_id") != app_id
+                        or str(receipt.get("repo", "")).casefold() != identity["repo"].casefold()
+                        or receipt.get("tag") != identity["tag"]
+                        or not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected)
+                        or (sha and sha != expected)):
+                    raise ValueError("Automatic import receipt identity or digest mismatch")
                 spec["sha256"] = expected
-        except (ValueError, OSError, KeyError) as exc:
-            raise Deferred("SOURCE_REVIEW", "Orbit license requires review: " + str(exc)) from None
-        except Exception:
-            raise Deferred("WAITING_SOURCE", "Could not retrieve reviewed Orbit license") from None
+                if isinstance(receipt.get("license_notice"), str) and receipt["license_notice"].strip():
+                    spec["license_notice"] = receipt["license_notice"]
+            except (ValueError, OSError, KeyError) as exc:
+                raise Deferred("SOURCE_REVIEW", str(exc)) from None
+        else:
+            # Keep the original reviewed pilot's notice, when present.
+            from scripts.import_orbit_discoveries import reviewed_license
+            try:
+                spec["license_notice"] = reviewed_license(root, app_id, identity["repo"], identity["tag"])
+            except Exception:
+                pass
     for url in [app.get("icon"), *(app.get("screenshots") or [])]:
         if url and artwork_download_url(url, spec) is None:
             raise Deferred("SOURCE_REVIEW", "Artwork requires a provider-specific adapter")

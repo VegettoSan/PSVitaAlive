@@ -43,7 +43,11 @@ class AutomaticTests(unittest.TestCase):
             r={**self.result,field:value}
             self.assertEqual(self.rows(result=r),[])
 
-    def test_recent_fork_and_commercial_data_deferred(self):
+    def test_recent_release_can_be_registered_for_preservation(self):
+        from datetime import date
+        self.assertEqual(len(self.rows(entry={**self.entry,"app_draft":{**self.entry["app_draft"],"version_date":date.today().isoformat()}})),1)
+
+    def test_future_fork_and_commercial_data_deferred(self):
         for update in ({"lineage_is_fork":True},{"app_draft":{**self.entry["app_draft"],"version_date":"2099-01-01"}},
                        {"app_draft":{**self.entry["app_draft"],"description":"Requires commercial game data"}}):
             self.assertEqual(self.rows(entry={**self.entry,**update}),[])
@@ -73,8 +77,9 @@ class AutomaticTests(unittest.TestCase):
             self.assertEqual(author["id"],"dev")
             (root/"authors/dev.json").write_text(json.dumps(author))
             self.assertEqual(auto.owner_author(root,self.entry,self.result,meta,reader,self.retired,NOTICE),(["dev"],None))
+            self.assertEqual(auto.owner_author(root,self.entry,self.result,meta,reader,self.retired,None),(["dev"],None))
             with self.assertRaises(ValueError):
-                auto.owner_author(root,self.entry,self.result,meta,reader,self.retired,NOTICE.replace("2020 dev","2020 other"))
+                auto.owner_author(root,{**self.entry,"author_profile":"https://github.com/other"},self.result,meta,reader,self.retired)
 
 if __name__=="__main__":
     unittest.main()
