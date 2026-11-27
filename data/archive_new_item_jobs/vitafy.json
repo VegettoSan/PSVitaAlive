@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitafy/0a031e6179636c47235a7f1b5a6e5a54e0533b504e3eb455acdd3fabf11f8538.png": "shot_01.png"
   },
   "attempted": [
-    "vitafy v0.1.0.vpk"
+    "vitafy v0.1.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T21:08:50+00:00",
