@@ -1,0 +1,41 @@
+{
+  "id": "phoenix-wright-ace-attorney-trilogy",
+  "tid": "OBJECTION",
+  "n": "Phoenix Wright: Ace Attorney Trilogy",
+  "d": "Decompilation of the PC remake of the game.",
+  "ld": "Phoenix Wright: Ace Attorney is a visual novel adventure game developed by Capcom where you play as defense attorney Phoenix Wright, investigating crime scenes and defending clients in court. Originally released in Japan in 2001 for the Game Boy Advance, the game reached global audiences with its 2005 Nintendo DS port and later modern remasters like Phoenix Wright: Ace Attorney Trilogy.",
+  "aids": [
+    "bekalife08"
+  ],
+  "cid": "ports",
+  "sids": [
+    "adventure",
+    "puzzle",
+    "other"
+  ],
+  "v": "1.0.0",
+  "vd": "2026-11-15",
+  "req": "Basic plugins like kubridge and libsharcccg. You also need NoTrpDrm to make the unofficial trophies work. But you wouldn't be able to sync your trophies to your PSN account.",
+  "sz": 20971520,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/media_20261127/pwaatvita.vpk",
+      "sz": 20971520
+    },
+    {
+      "t": "Game Files",
+      "n": "Media Folder",
+      "u": "https://archive.org/download/media_20261127/Media.zip",
+      "sz": 1610612736,
+      "xp": "ux0:app/OBJECTION",
+      "ips": [
+        "Media",
+        "Media/StreamingAssets"
+      ],
+      "rec": true
+    }
+  ]
+}
