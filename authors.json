@@ -8211,6 +8211,21 @@
     "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
   },
   {
+    "id": "bekalife08",
+    "n": "RetroBoy",
+    "av": "https://avatars.githubusercontent.com/u/149923414?v=4",
+    "b": "Developer",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/BekaLife08",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "retrogamer74",
     "n": "RetroGamer74",
     "av": "https://github.com/RetroGamer74.png",
