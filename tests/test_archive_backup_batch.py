@@ -3,6 +3,7 @@ import io
 import hashlib
 import json
 import tempfile
+import subprocess
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -11,7 +12,7 @@ from unittest.mock import patch
 from scripts.archive_backup_batch import (
     Deferred, expected_filename, source_matches_approved, candidate_proposal,
     save_canonical, existing_file, safe_host, stream_download, run_one, load_state, MIB,
-    write_state, public_url, verify_public_download, load_policy, policy_entry, should_stop_batch,
+    git_publish, write_state, public_url, verify_public_download, load_policy, policy_entry, should_stop_batch,
 )
 
 
@@ -60,6 +61,51 @@ class DownloadFake:
 
     def close(self):
         self.closed = True
+
+
+class GitPublicationTests(unittest.TestCase):
+    def test_concurrent_main_changes(self):
+        for remote_path, should_retry in ((".github/discord/state.json", True),
+                                          ("apps/demo.json", False),
+                                          ("config/archive_backup_approved_apps.json", False)):
+            with self.subTest(remote_path=remote_path), tempfile.TemporaryDirectory() as tmp:
+                parent = Path(tmp)
+                def git(root, *args):
+                    return subprocess.check_output(["git", *args], cwd=root,
+                                                   stderr=subprocess.STDOUT, text=True).strip()
+                git(parent, "init", "--bare", "origin.git")
+                git(parent, "clone", "origin.git", "worker")
+                worker = parent / "worker"
+                git(worker, "checkout", "-b", "main")
+                for key, value in (("user.name", "Test"), ("user.email", "test@example.invalid")):
+                    git(worker, "config", key, value)
+                (worker / "base.txt").write_text("base")
+                git(worker, "add", ".")
+                git(worker, "commit", "-m", "base")
+                git(worker, "push", "origin", "main")
+                git(parent, "clone", "-b", "main", "origin.git", "other")
+                other = parent / "other"
+                git(other, "config", "user.name", "Test")
+                git(other, "config", "user.email", "test@example.invalid")
+                path = other / remote_path
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("concurrent change")
+                git(other, "add", ".")
+                git(other, "commit", "-m", "concurrent update")
+                git(other, "push", "origin", "main")
+                (worker / "checkpoint.json").write_text("{}")
+                if should_retry:
+                    git_publish(worker, ["checkpoint.json"], "checkpoint", validate=False)
+                    git(other, "pull", "--ff-only")
+                    self.assertEqual((other / "checkpoint.json").read_text(), "{}")
+                    self.assertEqual(path.read_text(), "concurrent change")
+                else:
+                    with self.assertRaises(Deferred) as exc:
+                        git_publish(worker, ["checkpoint.json"], "checkpoint", validate=False)
+                    self.assertEqual(exc.exception.status, "CATALOG_PUSH_BLOCKED")
+                    self.assertFalse((other / "checkpoint.json").exists())
+                    self.assertEqual(git(other, "rev-parse", "HEAD"),
+                                     git(other, "ls-remote", "origin", "refs/heads/main").split()[0])
 
 
 class BatchTests(unittest.TestCase):
