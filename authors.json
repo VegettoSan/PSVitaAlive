@@ -4918,6 +4918,21 @@
     "ic": "https://github.com/jtothebell.png"
   },
   {
+    "id": "juanjsebgarcia",
+    "n": "Juan",
+    "b": "Security Engineer, Python charmer, JSON wizard.",
+    "av": "https://avatars.githubusercontent.com/u/16254139?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/juanjsebgarcia",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
     "id": "julius-team",
     "n": "Julius Team",
     "av": "https://github.com/bvschaik.png",
@@ -7790,6 +7805,21 @@
         "t": "Other",
         "n": "Buscar autor",
         "u": "https://github.com/search?q=phoe-nix&type=users",
+        "rec": true
+      }
+    ],
+    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/authors/icon/autoricon.png"
+  },
+  {
+    "id": "pietro00x",
+    "n": "Pietro A",
+    "b": "Developer",
+    "av": "https://avatars.githubusercontent.com/u/117343810?v=4",
+    "l": [
+      {
+        "t": "Repository",
+        "n": "GitHub",
+        "u": "https://github.com/Pietro00x",
         "rec": true
       }
     ],

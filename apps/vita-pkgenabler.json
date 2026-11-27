@@ -1,0 +1,40 @@
+{
+  "id": "vita-pkgenabler",
+  "tid": "PKGENABLE",
+  "n": "PKG Enabler",
+  "d": "Enable the built-in Package Installer",
+  "ld": "A small tool to create a Package Installer bubble and re-enable its functionality via plugin.",
+  "aids": [
+    "freakler"
+  ],
+  "cid": "utilities",
+  "sids": [
+    "installer"
+  ],
+  "req": "- A small tool to create a Package Installer bubble and re-enable its functionality via plugin.",
+  "st": "Legacy",
+  "v": "1.00",
+  "vd": "2020-08-17",
+  "sz": 73760,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/83325580ead31a9cc7fa89a9b2791626c815231e5206832e887bed972e6d3ac6.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/306ed09ca20dd3e961bee5dc9548ad89a43887b2c1ed485d7a1a11033858896e.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:288250922",
+  "su": "https://github.com/Freakler/vita-PKGEnabler",
+  "rp": "https://github.com/Freakler/vita-PKGEnabler/releases/tag/1.00",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Freakler/vita-PKGEnabler"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Freakler/vita-PKGEnabler/releases/download/1.00/PKGEnabler_v100.vpk",
+      "rec": true
+    }
+  ]
+}

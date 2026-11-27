@@ -1,0 +1,40 @@
+{
+  "id": "vita-turbo-vpn",
+  "tid": "VPNT00001",
+  "n": "Vita Turbo VPN",
+  "d": "A VPN client for the whole PS Vita: every app and game through your own tunnel server (taiHEN plugin and app, firmware 3.60-3.74)",
+  "ld": "A taiHEN plugin (kernel module + Settings and quick-menu pages) and a LiveArea app, for HENkaku/Ensō on firmware 3.60 to 3.74.",
+  "aids": [
+    "juanjsebgarcia"
+  ],
+  "cid": "plugins",
+  "sids": [
+    "other"
+  ],
+  "req": "- Copy the three .suprx/.skprx plugin files to ur0:tai/.\n- Copy your .conf profiles to ux0:data/vita-turbo-vpn/profiles/, or import them by QR code in the app.\n- The README (https://github.com/juanjsebgarcia/vita-turbo-vpn#install) has the full steps. If anything goes wrong, hold L while the Vita boots to skip all plugins.\n- Copy .conf files to ux0:data/vita-turbo-vpn/profiles/ (the same\n- yours. Keep backups, and make sure you know how to boot without plugins (hold\n- a PS Vita or PS TV with HENkaku or Ensō (taiHEN) on\n- Copy the three plugin files to ur0:tai/, for example over FTP (VitaShell)\n- Copy your .conf files to ux0:data/vita-turbo-vpn/profiles/\n- config file, then copy qmr_plugin.rco to ur0:QuickMenuReborn/.",
+  "st": "Archive",
+  "v": "0.1.0",
+  "vd": "2026-11-11",
+  "sz": 1074517,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/b700a26452489375997d5bec42cd7df109387ce322bd2c0a85170e0db838a9db.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/beefe4b4a69a7ca4fe716ffaa9d257443af21a70cad5fade498f9b71e66a659d.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1438633591",
+  "su": "https://github.com/juanjsebgarcia/vita-turbo-vpn",
+  "rp": "https://github.com/juanjsebgarcia/vita-turbo-vpn/releases/tag/v0.1.0",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/juanjsebgarcia/vita-turbo-vpn"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/juanjsebgarcia/vita-turbo-vpn/releases/download/v0.1.0/vita-turbo-vpn.vpk",
+      "rec": true
+    }
+  ]
+}

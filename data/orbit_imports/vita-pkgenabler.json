@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "app_id": "vita-pkgenabler",
+  "candidate_key": "gh:288250922",
+  "repo": "Freakler/vita-PKGEnabler",
+  "tag": "1.00",
+  "sha256": "e4fe9be699c0eb487fb5c3b777dadcee163859ccb97537ed7f2bddc9c8b02b04"
+}
