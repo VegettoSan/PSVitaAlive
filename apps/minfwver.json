@@ -19,9 +19,9 @@
   "v": "2.1",
   "vd": "2021-07-11",
   "sz": 119681,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/cad2a5a0f1b55cde853afdd54fb30ac6bb5549f5ec905d86216768de5905df20.png",
+  "ic": "https://archive.org/download/psvitaalive-minfwver/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/8d0f993a9fd2ae592523a44b038c122f7fdc01cadfacf1dfabb1df42701f61aa.png"
+    "https://archive.org/download/psvitaalive-minfwver/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:279624330",
@@ -36,7 +36,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Electric1447/MinFWVer/releases/download/v2.1/minfwver.vpk",
+      "u": "https://archive.org/download/psvitaalive-minfwver/minfwver%20v2.1.vpk",
       "rec": true
     }
   ]
