@@ -16,9 +16,9 @@
   "v": "1.0",
   "vd": "2026-10-18",
   "sz": 1193064,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/2d38616c4ba7369505a655a93b8648490a469daa5a4566cb3a8f0959c29b6159.png",
+  "ic": "https://archive.org/download/psvitaalive-lsdrevamped-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/lsdrevamped-vita/5b963471b520c1594cc2d07e7175f4c81320ee8ba61c2c7f49d647802f861878.png"
+    "https://archive.org/download/psvitaalive-lsdrevamped-vita/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1424005296",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/arielxflores/LSDRevamped-Vita/releases/download/v1.0/LSDRevamped-Vita.vpk",
+      "u": "https://archive.org/download/psvitaalive-lsdrevamped-vita/lsdrevamped-vita%20v1.0.vpk",
       "rec": true
     }
   ]
