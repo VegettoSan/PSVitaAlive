@@ -1,0 +1,56 @@
+{
+  "app_id": "skater-nation-vita",
+  "identifier": "psvitaalive-skater-nation-vita",
+  "source_url": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/download/v1.0.0/skaternation.vpk",
+  "files": {
+    "skater-nation-vita v1.0.0.vpk": {
+      "size": 2323545,
+      "md5": "bca659e74bc9422b9b42c14a31124fbf",
+      "sha256": "e3f0d5891921636454ad56e55f2b7116c07dda986166d0c33e336da75d84c4d7"
+    },
+    "icon0.png": {
+      "size": 12665,
+      "md5": "d17160efe4df3eb196743a7d9ee1640c",
+      "sha256": "e57e20a91b4687a0e584aaad9f01135598a06c7a9e431331bb3d6e50092195c1"
+    },
+    "shot_01.png": {
+      "size": 233794,
+      "md5": "b197886eb0fe01e91705a6b8db8543fa",
+      "sha256": "d8dd937f1191fd4b60f42c328750d09c9426781a68045b3ff0cf9926dfc93877"
+    },
+    "shot_02.png": {
+      "size": 196583,
+      "md5": "7488d3661b9cbe855351c40f77e1e11d",
+      "sha256": "71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0"
+    },
+    "SOURCES.txt": {
+      "size": 869,
+      "md5": "44a866d1792f7e3a847563da8b5fb036",
+      "sha256": "07e44f5f85d96dc04af2f89535c3e2a1eafd53321d2e6610de4341069ad4a070"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/e57e20a91b4687a0e584aaad9f01135598a06c7a9e431331bb3d6e50092195c1.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/d8dd937f1191fd4b60f42c328750d09c9426781a68045b3ff0cf9926dfc93877.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0.png": "shot_02.png"
+  },
+  "attempted": [
+    "skater-nation-vita v1.0.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:58:50+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PSVSN0001",
+    "name": "Skater Nation",
+    "search_title": "Skater Nation",
+    "version": "1.0.0",
+    "repo": "MetalSyntax/Skater-Nation-vita",
+    "tag": "v1.0.0",
+    "asset": "skaternation.vpk",
+    "url": "https://github.com/MetalSyntax/Skater-Nation-vita/releases/download/v1.0.0/skaternation.vpk",
+    "size": 2323545,
+    "sha256": "e3f0d5891921636454ad56e55f2b7116c07dda986166d0c33e336da75d84c4d7",
+    "creator": "MetalSyntax"
+  }
+}
