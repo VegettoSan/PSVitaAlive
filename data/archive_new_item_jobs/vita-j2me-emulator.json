@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-j2me-emulator/ed84871b3105f9d053846fcf6ec4d400c52b5510d68f8c952d77632fa7f93913.png": "shot_02.png"
   },
   "attempted": [
-    "vita-j2me-emulator v1.0.1.vpk"
+    "vita-j2me-emulator v1.0.1.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T21:20:15+00:00",
