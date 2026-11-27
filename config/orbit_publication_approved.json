@@ -31,7 +31,6 @@
     "enabled": true,
     "max_new": 3,
     "max_checks": 12,
-    "min_release_age_days": 365,
     "allowed_categories": [
       "demos",
       "utilities",
@@ -43,15 +42,16 @@
       "accessibility",
       "networking",
       "customization",
-      "system"
-    ],
-    "allowed_licenses": [
-      "MIT"
+      "system",
+      "ports",
+      "plugins",
+      "modding",
+      "preservation"
     ],
     "excluded_projects": [
       "vegettosan/psvitaalive",
       "vegettosan/psvita-homebrews-new-releases"
     ],
-    "note": "Automatic Legacy registration for historical, non-fork, native homebrew with unambiguous identity, current stable VPK and a verified MIT license at its release tag. Recent projects and unsupported licenses or data requirements remain in review. This is not author-submitted Verified status."
+    "note": "Automatic registration from verified public upstream VPKs. License metadata is not a catalog eligibility gate. Historical projects use Legacy; recent discoveries registered for preservation use Archive, never Verified. Existing preservation exclusions and source integrity checks continue to apply."
   }
 }
