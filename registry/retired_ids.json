@@ -3,13 +3,22 @@
   "apps": {
     "ids": [
       "aleph-one-vita",
-      "pw-ace-attorney"
+      "pw-ace-attorney",
+      "phoenix-wright-ace-attorney-trilogy"
     ],
     "title_ids": [
       "ALPH00001",
       "OBJECTION"
     ],
-    "restorable": []
+    "restorable": [
+      {
+        "id": "phoenix-wright-ace-attorney-trilogy",
+        "title_id": "OBJECTION",
+        "author_ids": [
+          "bekalife08"
+        ]
+      }
+    ]
   },
   "authors": {
     "ids": [
