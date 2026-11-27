@@ -127,6 +127,7 @@ void FullCatalogScreen::openInstalledDataMenu(bool fromStorage,
     // its existing app-icon LRU; no duplicate textures are created.
     installedDataIntroducedIconTextures_.clear();
     installedDataVisible_ = true;
+    storageTransitionUs_=sceKernelGetProcessTimeWide();
     installedDataFromStorage_ = fromStorage;
     installedDataGameMode_=fromStorage?storageGameMode_:0;
     installedDataPreferredId_ = titleId;
@@ -856,7 +857,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
     if (installedDataConfirm_) {
         // Large, legible confirmation that names ALL catalog users of shared
         // roots; only three rows are rendered at once to avoid text overflow.
-        constexpr int DW=824, DH=474, BW=244, BH=46, GAP=22;
+        constexpr int DW=InstalledDataLayout::confirmWidth, DH=InstalledDataLayout::confirmHeight, BW=244, BH=46, GAP=22;
         const int dx=(SCREEN_W-DW)/2, dy=(SCREEN_H-DH)/2;
         const int firstButtonX=dx+(DW-(2*BW+GAP))/2;
         const int buttonsY=dy+DH-59;
@@ -885,7 +886,7 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
             vita2d_draw_rectangle(dx+DW-3,dy+3,3,DH-6,BORDER);
             vita2d_draw_rectangle(dx,dy+DH-3,DW,3,BORDER);
         }
-        drawMarqueeText(&font_,dx+24,dy+38,DW-48,ACCENT,1.07f,
+        drawMarqueeText(&font_,dx+24,dy+38,DW-155,ACCENT,1.07f,
             ::psvitaalive::L("ID_CONFIRM_TITLE"),false);
         if(app)drawMarqueeText(&font_,dx+24,dy+75,DW-48,WHITE,.98f,
             app->name,false);
@@ -970,7 +971,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
         skin::hint(&font_,firstButtonX+BW+GAP+12,buttonsY+31,BW-24,BG,.92f,deleteText,true,28);
         return;
     }
-    constexpr int W = 864, H = 500, VISIBLE = 3, ROW = 90;
+    constexpr int W=InstalledDataLayout::width, H=InstalledDataLayout::height,
+        VISIBLE=InstalledDataLayout::visibleRows, ROW=InstalledDataLayout::rowHeight;
     const int x = (SCREEN_W-W)/2, y=(SCREEN_H-H)/2;
     vita2d_draw_rectangle(0,0,SCREEN_W,SCREEN_H,RGBA8(0,0,0,190));
     if (skin::ready()) {
@@ -985,8 +987,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
     }
     if(gameMode) {
         const std::string title=::psvitaalive::L(storageInstalledSectionKey(static_cast<CatalogType>(installedDataGameMode_)));
-        drawMarqueeText(&font_,x+25,y+40,W-50,WHITE,1.14f,title,false);
-    } else ::psvitaalive::ui::uiDrawText(&font_,x+25,y+40,WHITE,1.14f,::psvitaalive::L("ID_TITLE"));
+        drawMarqueeText(&font_,x+25,y+40,W-160,WHITE,1.14f,title,false);
+    } else drawMarqueeText(&font_,x+25,y+40,W-160,WHITE,1.14f,::psvitaalive::L("ID_TITLE"),false);
     if (installedDataWorker_ >= 0 && installedDataAction_ >= 0) {
         const auto& prog = installedDataOpProgress_;
         const uint32_t phase = prog.phase.load(std::memory_order_acquire);
