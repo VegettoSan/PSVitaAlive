@@ -18,10 +18,10 @@
   "v": "1.2.3",
   "vd": "2026-11-16",
   "sz": 602773,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/a422f81e9113b42afc98e85df1a748d11bf5b31ba53675f69ee3f96fa8d7eb29.png",
+  "ic": "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/c0812825d81b3cba47e02cf7116cb8d787bfae305cb6e833fd7e1e965f2de425.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/fb9b6b8ec88f8b48cd83a6e52fb2508accb228037a4ad0b45528768977609d65.png"
+    "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/shot_01.png",
+    "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1176231607",
@@ -36,7 +36,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project/releases/download/v1.2.3/VitaRecovery_v1.2.3.vpk",
+      "u": "https://archive.org/download/psvitaalive-ps-vita-recovery-menu-project/ps-vita-recovery-menu-project%20v1.2.3.vpk",
       "rec": true
     }
   ]
