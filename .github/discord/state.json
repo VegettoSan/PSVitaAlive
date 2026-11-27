@@ -2241,6 +2241,9 @@
     "PICRESTGM": {
       "version": "v.1.15"
     },
+    "PIGI00001": {
+      "version": "0.5.0"
+    },
     "PIKLEBALL": {
       "version": "v.1.0"
     },
@@ -2378,6 +2381,12 @@
     },
     "PSVDH0002": {
       "version": "1.1.0"
+    },
+    "PSVDH0003": {
+      "version": "1.0.0"
+    },
+    "PSVELG001": {
+      "version": "1.0.0"
     },
     "PSVGC0001": {
       "version": "v.2.0"
@@ -3390,6 +3399,9 @@
     "VITAHBSRT": {
       "version": "v.1.27"
     },
+    "VITAJ2ME0": {
+      "version": "1.0.1"
+    },
     "VITAKSHOC": {
       "version": "v.01.10"
     },
@@ -3551,6 +3563,9 @@
     },
     "VWAV00001": {
       "version": "v1.0.0-stable"
+    },
+    "VXMB00001": {
+      "version": "1.10.2"
     },
     "WAGC00001": {
       "version": "v0.1.1"
