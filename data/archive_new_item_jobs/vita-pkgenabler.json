@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/306ed09ca20dd3e961bee5dc9548ad89a43887b2c1ed485d7a1a11033858896e.png": "shot_01.png"
   },
   "attempted": [
-    "vita-pkgenabler v1.00.vpk"
+    "vita-pkgenabler v1.00.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T21:05:49+00:00",
