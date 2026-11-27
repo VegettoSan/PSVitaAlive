@@ -1,19 +1,6 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "manhunt": {
-      "version": "0.10.5",
-      "source_url": "https://github.com/xesf/manhunt-releases/releases/download/v0.10.5/manhunt-v0.10.5-vita.vpk",
-      "archive_identifier": "manhunt-1-2-ps-vita-port",
-      "filename": "manhunt v0.10.5.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-27T11:28:35+00:00",
-      "size_bytes": 1862643,
-      "title_id": "MHRE00001",
-      "sha256": "1c0109a0f23b464cae80f9792ba1f997cde97963f2d47987e0f8e6f5ed6e7784",
-      "md5": "fd73dc6b47cf3dcdfa23d57ca803b909"
-    }
-  },
+  "inflight": {},
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
