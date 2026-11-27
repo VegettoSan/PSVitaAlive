@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/riptide-gp-vita/96e9136cfe36676b03d9696d31f7342bc716d61a446e52842c79decca830a579.png": "shot_02.png"
   },
   "attempted": [
-    "riptide-gp-vita v1.0.3.vpk"
+    "riptide-gp-vita v1.0.3.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:56:20+00:00",
