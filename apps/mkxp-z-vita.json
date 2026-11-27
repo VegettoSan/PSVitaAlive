@@ -16,10 +16,10 @@
   "v": "0.6.1-alpha",
   "vd": "2026-11-24",
   "sz": 31017402,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/6b55598c2a02a56d5ed8d6fa9b288af726b5efcd3f03310ee70bbde0bc45b44f.png",
+  "ic": "https://archive.org/download/psvitaalive-mkxp-z-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/776cc3f88e5138a61de25341ceb48ae06b6e4f4e744e0521db84a0e12d9caf44.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/mkxp-z-vita/cdf8dbf001b130e515c979ddc197d213fc2b14b80a6900889ac0de4262d12b87.png"
+    "https://archive.org/download/psvitaalive-mkxp-z-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-mkxp-z-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1400262917",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Asukate/mkxp-z-vita/releases/download/v0.6.1-alpha/HardRPG-0.6.1.vpk",
+      "u": "https://archive.org/download/psvitaalive-mkxp-z-vita/mkxp-z-vita%20v0.6.1-alpha.vpk",
       "rec": true
     }
   ]
