@@ -7,9 +7,10 @@
   "aids": [
     "geoffreymetais"
   ],
-  "cid": "utilities",
+  "cid": "networking",
   "sids": [
-    "other"
+    "file-sharing",
+    "client"
   ],
   "req": "- You need a PS Vita (or PS TV) running homebrew (HENkaku / Ensō), with Enable Unsafe\n- Homebrew turned on in HENkaku Settings: the app needs full homebrew permissions to read",
   "st": "Archive",
