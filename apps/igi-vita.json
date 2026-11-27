@@ -17,10 +17,10 @@
   "v": "0.5.0",
   "vd": "2026-10-13",
   "sz": 6776165,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/0cd6d9605e0a033a3b25be85970c4561709253d29b1dec7b8a0bd8858b1e7e0b.png",
+  "ic": "https://archive.org/download/psvitaalive-igi-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/ea0d1ed9b1f48938df3df9f36f2f89068331e3bd0546589b5609986b6f55f4ab.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/igi-vita/6fc0eaa68a54330dc8595f2c0ae959ef618d9d906a46387517dfeeb9cc2b080c.png"
+    "https://archive.org/download/psvitaalive-igi-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-igi-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1402586244",
@@ -35,7 +35,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/HenryKun55/igi-vita/releases/download/v0.5.0/igi.vpk",
+      "u": "https://archive.org/download/psvitaalive-igi-vita/igi-vita%20v0.5.0.vpk",
       "rec": true
     }
   ]
