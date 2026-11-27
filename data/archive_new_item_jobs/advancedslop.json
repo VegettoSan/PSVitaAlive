@@ -1,0 +1,50 @@
+{
+  "app_id": "advancedslop",
+  "identifier": "psvitaalive-advancedslop",
+  "source_url": "https://github.com/Grarak/AdvancedSlop/releases/download/0.1.0/advancedslop.vpk",
+  "files": {
+    "advancedslop v0.1.0.vpk": {
+      "size": 3333738,
+      "md5": "e52007092a4dc6e79a30d4d203955d83",
+      "sha256": "6e461ae6f289ccdf5198d62cceae889c8c8d187c45daf83e0c6419f1457ff236"
+    },
+    "icon0.png": {
+      "size": 1864,
+      "md5": "d0c644021a6005b1446fdbd01a5aa290",
+      "sha256": "b61a2ff397beb7f6ecfb361925450d3e93d452297de618337c1b7f0e70d4d45e"
+    },
+    "shot_01.png": {
+      "size": 7207,
+      "md5": "319a9c12289cfab689465f28a230826f",
+      "sha256": "251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123"
+    },
+    "SOURCES.txt": {
+      "size": 641,
+      "md5": "eebf7813e7b93f8a9fe8dd493ea9bed6",
+      "sha256": "255192b7110f9aada057cf6514bc5eb7072452a3bfc2e30401cc93e091f9813e"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/b61a2ff397beb7f6ecfb361925450d3e93d452297de618337c1b7f0e70d4d45e.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/advancedslop/251284585706fcaacc3cd6530158825ebbb41800c25a294954e20a4189dba123.png": "shot_01.png"
+  },
+  "attempted": [
+    "advancedslop v0.1.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:29:33+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "ADVSLOP00",
+    "name": "AdvancedSlop",
+    "search_title": "AdvancedSlop",
+    "version": "0.1.0",
+    "repo": "Grarak/AdvancedSlop",
+    "tag": "0.1.0",
+    "asset": "advancedslop.vpk",
+    "url": "https://github.com/Grarak/AdvancedSlop/releases/download/0.1.0/advancedslop.vpk",
+    "size": 3333738,
+    "sha256": "6e461ae6f289ccdf5198d62cceae889c8c8d187c45daf83e0c6419f1457ff236",
+    "creator": "Grarak"
+  }
+}
