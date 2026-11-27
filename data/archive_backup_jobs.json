@@ -24,18 +24,6 @@
       "title_id": "DLTVITA01",
       "sha256": "dda1e0cc9140ed8288ea08e983410799ffaffbbaebd4aa77daf405f8dcc09b9a",
       "md5": "f73ad319e26b5466f350510300507d07"
-    },
-    "save-keeper": {
-      "version": "1.4.0-test2",
-      "source_url": "https://github.com/falkenhawk/vita-save-keeper/releases/download/v1.4.0-test2/save-keeper.vpk",
-      "archive_identifier": "psvitaalive-save-keeper",
-      "filename": "save-keeper v1.4.0-test2.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-27T00:45:11+00:00",
-      "size_bytes": 3189266,
-      "title_id": "SVK000001",
-      "sha256": "69eb205acd4e588a5ee5dce64b8ef29bc751ea97037bd7f0144230bf4a52c23c",
-      "md5": "19327d3a494ad721527a37254d1661d4"
     }
   },
   "superseded": {
