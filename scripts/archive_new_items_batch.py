@@ -216,11 +216,24 @@ def auto_spec(root, app, app_id, counts, job=None):
                 or not isinstance(saved.get("sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", saved["sha256"])
                 or not isinstance(saved.get("creator"), str) or not saved["creator"].strip()):
             raise Deferred("PENDING_MANUAL", "Automatic checkpoint source identity changed")
+        if app.get("source_name") == "Orbit" and (not isinstance(saved.get("license_notice"), str)
+                or "Permission is hereby granted" not in saved["license_notice"]):
+            raise Deferred("SOURCE_REVIEW", "Missing reviewed Orbit license in checkpoint")
         return dict(saved)
     size, sha = official_asset_metadata({"source_url": identity["url"]})
     if not 0 < size <= HARD_MAX_FILE:
         raise Deferred("TOO_LARGE_PENDING", "Official VPK exceeds limit")
     spec = dict(identity, size=size, sha256=sha, creator=author_credit(root, app))
+    if app.get("source_name") == "Orbit":
+        # A newly discovered package is not automatically redistributable.
+        # Keep the reviewed release's actual notice in the immutable checkpoint.
+        from scripts.import_orbit_discoveries import reviewed_license
+        try:
+            spec["license_notice"] = reviewed_license(root, app_id, identity["repo"], identity["tag"])
+        except (ValueError, OSError, KeyError) as exc:
+            raise Deferred("SOURCE_REVIEW", "Orbit license requires review: " + str(exc)) from None
+        except Exception:
+            raise Deferred("WAITING_SOURCE", "Could not retrieve reviewed Orbit license") from None
     for url in [app.get("icon"), *(app.get("screenshots") or [])]:
         if url and artwork_download_url(url, spec) is None:
             raise Deferred("SOURCE_REVIEW", "Artwork requires a provider-specific adapter")
@@ -275,7 +288,8 @@ def stage(app, item, folder, spec):
         f"Original binary: {item['source_url']}\n"
         f"Upstream release: {repo}/releases/tag/{spec['tag']}\n"
         f"Upstream source: {repo}/tree/{spec['tag']}\n"
-        + "".join(f"{filename}: {url}\n" for url, filename in media.items()), "utf-8")
+        + "".join(f"{filename}: {url}\n" for url, filename in media.items())
+        + ("\nOriginal license notice:\n" + spec["license_notice"] + "\n" if spec.get("license_notice") else ""), "utf-8")
     files[source.name] = initial.digest(source)
     return files, media
 
