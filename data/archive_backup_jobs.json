@@ -1,6 +1,19 @@
 {
   "schema_version": 1,
-  "inflight": {},
+  "inflight": {
+    "spongebob-battle-for-bikini-bottom": {
+      "version": "1.2",
+      "source_url": "https://github.com/Rinnegatamante/bfbb-vita/releases/download/v.1.2/bfbb.vpk",
+      "archive_identifier": "battle-for-bikini-bottom-vita",
+      "filename": "spongebob-battle-for-bikini-bottom v1.2.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-27T00:39:11+00:00",
+      "size_bytes": 4458754,
+      "title_id": "BBVT00002",
+      "sha256": "995a465b91f361ba1585cefb1f9a9d00f0e900f169d359ad39f10ed75dd463e7",
+      "md5": "9766870dca95086cb5775def9d30e9a5"
+    }
+  },
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
