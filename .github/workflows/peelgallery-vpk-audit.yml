@@ -1,0 +1,59 @@
+name: Audit PeelGallery official VPK (read only)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/peelgallery.json'
+      - '.github/workflows/peelgallery-vpk-audit.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download pinned official VPK
+        run: |
+          curl --fail --location --retry 2 --max-time 120 --max-filesize 4295510 \
+            -o /tmp/PeelGallery.vpk https://github.com/AlecksPV1/PeelGallery/releases/download/v1.0/PeelGallery.vpk
+          echo 'd25569029531ca5cd799969ef4d5b12cd2d3550e818d63c56fa94e867ec03244  /tmp/PeelGallery.vpk' | sha256sum -c -
+      - name: Inspect native metadata without execution
+        run: |
+          python - <<'PY'
+          import json, pathlib, struct, zipfile
+          p = pathlib.Path('/tmp/PeelGallery.vpk')
+          assert p.stat().st_size == 4295510
+          with zipfile.ZipFile(p) as z:
+              names = z.namelist()
+              print('Root eboot.bin count:', names.count('eboot.bin'))
+              print('SFO candidates:', [n for n in names if n.lower().endswith('/param.sfo')])
+              assert names.count('sce_sys/param.sfo') == 1
+              info = z.getinfo('sce_sys/param.sfo')
+              assert 20 <= info.file_size <= 65536
+              data = z.read(info)
+          magic, version, keys, vals, count = struct.unpack_from('<4sIIII', data)
+          assert magic == b'\x00PSF' and 0 < count <= 512 and 20 + count*16 <= keys <= vals <= len(data)
+          ids = []
+          for i in range(count):
+              k, fmt, length, maximum, off = struct.unpack_from('<HHIII', data, 20+16*i)
+              start = keys+k
+              assert keys <= start < vals
+              end = data.find(b'\0', start, vals)
+              assert end >= 0
+              if data[start:end] == b'TITLE_ID':
+                  assert fmt == 0x0204 and 1 <= length <= maximum and vals+off+length <= len(data)
+                  ids.append(data[vals+off:vals+off+length].rstrip(b'\0').decode('ascii'))
+          assert len(ids) == 1
+          tid = ids[0]
+          print('OFFICIAL_TITLE_ID:', repr(tid))
+          print('OFFICIAL_SIZE:', p.stat().st_size)
+          matches = []
+          for f in pathlib.Path('apps').glob('*.json'):
+              a = json.loads(f.read_text())
+              if str(a.get('tid', a.get('title_id', ''))).casefold() == tid.casefold():
+                  matches.append(str(f))
+          print('CANONICAL_TITLE_ID_MATCHES:', matches)
+          PY

@@ -64,6 +64,40 @@ class DownloadFake:
 
 
 class GitPublicationTests(unittest.TestCase):
+    def test_transient_push_rejection_with_unchanged_main(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            def git(*args):
+                return subprocess.check_output(["git", *args], cwd=root,
+                                               stderr=subprocess.STDOUT, text=True).strip()
+            git("init", "--bare", "origin.git")
+            git("clone", "origin.git", "worker")
+            worker = root / "worker"
+            def run(*args):
+                return subprocess.check_output(["git", *args], cwd=worker,
+                                               stderr=subprocess.STDOUT, text=True).strip()
+            run("checkout", "-b", "main")
+            run("config", "user.name", "Test")
+            run("config", "user.email", "test@example.invalid")
+            (worker / "base.txt").write_text("base")
+            run("add", ".")
+            run("commit", "-m", "base")
+            run("push", "origin", "main")
+            (worker / "checkpoint.json").write_text("{}")
+            real_run = subprocess.run
+            rejected = []
+            def flaky(command, *args, **kwargs):
+                if command[:2] == ["git", "push"] and not rejected:
+                    rejected.append(True)
+                    return subprocess.CompletedProcess(command, 1, "", "transient rejection")
+                return real_run(command, *args, **kwargs)
+            with patch("scripts.archive_backup_batch.subprocess.run", side_effect=flaky), \
+                 patch("scripts.archive_backup_batch.time.sleep"):
+                git_publish(worker, ["checkpoint.json"], "checkpoint", validate=False)
+            self.assertEqual(len(rejected), 1)
+            self.assertEqual(run("rev-parse", "HEAD"),
+                             run("ls-remote", "origin", "refs/heads/main").split()[0])
+
     def test_concurrent_main_changes(self):
         for remote_path, should_retry in ((".github/discord/state.json", True),
                                           ("apps/demo.json", False),
