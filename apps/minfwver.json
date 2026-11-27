@@ -1,0 +1,43 @@
+{
+  "id": "minfwver",
+  "tid": "MINFW0000",
+  "n": "MinFWVer",
+  "d": "Checks the minimum factory firmware version of your PS Vita.",
+  "ld": "Utility for checking the factory firmware version of a PS Vita. Published by Electric1447; the factory firmware code is credited to TheFloW in the original README.",
+  "aids": [
+    "electric",
+    "theflow"
+  ],
+  "cid": "system",
+  "sids": [
+    "firmware-tools",
+    "system-information"
+  ],
+  "req": "- Homebrew-enabled PS Vita with Unsafe Homebrew enabled.",
+  "st": "Legacy",
+  "lic": "MIT",
+  "v": "2.1",
+  "vd": "2021-07-11",
+  "sz": 119681,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/cad2a5a0f1b55cde853afdd54fb30ac6bb5549f5ec905d86216768de5905df20.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/8d0f993a9fd2ae592523a44b038c122f7fdc01cadfacf1dfabb1df42701f61aa.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:279624330",
+  "su": "https://github.com/Electric1447/MinFWVer",
+  "rp": "https://github.com/Electric1447/MinFWVer/releases/tag/v2.1",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Electric1447/MinFWVer"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Electric1447/MinFWVer/releases/download/v2.1/minfwver.vpk",
+      "rec": true
+    }
+  ]
+}
