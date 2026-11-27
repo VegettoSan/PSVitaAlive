@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/minfwver/8d0f993a9fd2ae592523a44b038c122f7fdc01cadfacf1dfabb1df42701f61aa.png": "shot_01.png"
   },
   "attempted": [
-    "minfwver v2.1.vpk"
+    "minfwver v2.1.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T20:17:05+00:00",
