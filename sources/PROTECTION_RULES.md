@@ -30,4 +30,7 @@ The registry is the protection layer for removals. The external aggregation path
 - `title_id`: `OBJECTION`
 - Withdrawn 2026-11-21 after the original port developer reported that the published entry came from an unofficial submission of an unfinished test build.
 - The submitted `suspect-wild` author profile has also been retired because it was created only for this entry. It must not be reused as the developer's identity.
-- Re-publication requires an official stable release and the original port developer's approval, with correct authorship and an explicit reviewed restoration entry for the reserved IDs. Until then, do not reimport or relist this port.
+- The original unauthorized test listing remains retired and must never be revived under `suspect-wild`.
+- The port's developer `BekaLife08` (RetroBoy) submitted PR #121 under `phoenix-wright-ace-attorney-trilogy`; after review this is the sole allowed restoration for `OBJECTION`, using `author_ids: ["bekalife08"]`.
+- `registry/retired_ids.json` preserves the old `pw-ace-attorney` identity while explicitly allowlisting the developer's new identity. This does not authorize other apps or authors to reuse the Title ID.
+- Publication remains subject to the corrected canonical JSON, Archive.org mirror verification, and CI checks; never import any retired external record automatically.
