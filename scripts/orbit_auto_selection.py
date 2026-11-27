@@ -115,7 +115,7 @@ def mit_notice(repo, tag, api_json, public_bytes):
     return notice
 
 
-def owner_author(root, entry, result, metadata, api_json, retired, notice):
+def owner_author(root, entry, result, metadata, public_bytes, retired, notice):
     """Match exact public account, or create the same profile as the web generator."""
     owner = metadata.get("owner") or {}
     handle = owner.get("login")
@@ -125,7 +125,6 @@ def owner_author(root, entry, result, metadata, api_json, retired, notice):
     url = "https://github.com/"+handle
     require(str(entry.get("author_profile","")).rstrip("/").casefold() == url.casefold(), "Owner/profile mismatch")
     # Public user identity is independently verified, including numeric account ID.
-    from scripts.import_orbit_discoveries import public_bytes
     profile = json.loads(public_bytes("https://api.github.com/users/"+quote(handle,safe=""), 2*1024*1024, api=True))
     require(profile.get("id") == owner.get("id") and profile.get("type") == "User"
             and str(profile.get("login","")).casefold()==handle.casefold()
@@ -166,7 +165,7 @@ def automatic_spec(root, row, policy, retired, api_json, public_bytes):
     tag=vpk.get("tag")
     require(isinstance(tag,str) and 0<len(tag)<=100 and not any(c.isspace() for c in tag), "Invalid release tag")
     notice=mit_notice(project,tag,api_json,public_bytes)
-    aids,author=owner_author(root,entry,result,metadata,api_json,retired,notice)
+    aids,author=owner_author(root,entry,result,metadata,public_bytes,retired,notice)
     cat=result["category"]
     taxonomy=canonical_records(root,"categories")
     category=next((c for c in taxonomy if c["id"]==cat["category_id"]),None)
