@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - scripts/import_orbit_discoveries.py
+      - scripts/vpk_display_name.py
+      - tests/test_vpk_display_name.py
       - config/orbit_publication_approved.json
       - tests/test_import_orbit_discoveries.py
       - .github/workflows/import-orbit-discoveries.yml
@@ -14,6 +16,8 @@ on:
     branches: [main]
     paths:
       - scripts/import_orbit_discoveries.py
+      - scripts/vpk_display_name.py
+      - tests/test_vpk_display_name.py
       - config/orbit_publication_approved.json
       - .github/workflows/import-orbit-discoveries.yml
   schedule:
@@ -48,6 +52,27 @@ jobs:
           python -m pip install 'internetarchive==5.13.0' 'requests==2.32.5' 'Pillow==12.1.1'
       - name: Test import safeguards
         run: python -m unittest discover -s tests -p 'test_import_orbit_discoveries.py' -v
+      - name: Test native display titles
+        run: python -m unittest discover -s tests -p 'test_vpk_display_name.py' -v
+      - name: Audit real pilot native title (read only)
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import tempfile
+          from scripts.import_orbit_discoveries import full_package
+          from scripts.archive_backup_batch import download_source, official_asset_metadata
+          from scripts.vpk_display_name import vpk_display_name
+          url='https://github.com/Electric1447/MinFWVer/releases/download/v2.1/minfwver.vpk'
+          size,sha=official_asset_metadata({'source_url':url})
+          with tempfile.TemporaryDirectory() as d:
+              path=Path(d)/'pilot.vpk'
+              _, measured=download_source({'source_url':url,'size_bytes':size,'source_sha256':sha},path,max_file=64*1024*1024)
+              full_package(path,'MINFW0000')
+              print('Pilot native display title:', repr(vpk_display_name(path)), 'SHA256:',measured)
+          PY
       - name: Test existing preservation safeguards
         run: python -m unittest discover -s tests -p 'test_archive_new_items_batch.py' -v
       - name: Stage approved discoveries (real package and license validation)
