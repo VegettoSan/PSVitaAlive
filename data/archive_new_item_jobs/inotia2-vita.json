@@ -1,0 +1,56 @@
+{
+  "app_id": "inotia2-vita",
+  "identifier": "psvitaalive-inotia2-vita",
+  "source_url": "https://github.com/MetalSyntax/Inotia2-vita/releases/download/v1.2.0/inotia2.vpk",
+  "files": {
+    "inotia2-vita v1.2.0.vpk": {
+      "size": 1585492,
+      "md5": "2d27a91f13eae2985f6bfa443800be8d",
+      "sha256": "86f78e1b26be6e99ce1ad6b8102941ea9084f48d5be069cbb301c06f8fd4be8d"
+    },
+    "icon0.png": {
+      "size": 16289,
+      "md5": "71d6e0b0bdbdb7263b44680cc46801bd",
+      "sha256": "ae91a8c4956797065016b8c9fd0798cc814a4a9d6c664a662804d0589a373345"
+    },
+    "shot_01.png": {
+      "size": 239334,
+      "md5": "34e6555c237d9b7d396b1f8ffc577559",
+      "sha256": "ef479aa8b1f06079583931f1c93de4da28c20a5279a61b6118d7ba388a42e497"
+    },
+    "shot_02.png": {
+      "size": 118266,
+      "md5": "e29a6340fb5c27a2c86006df8fda859b",
+      "sha256": "16f5a17f9088e26833d9aae7bc8ef464f8c16b3eaeb61d7356cd736fb1ecf11c"
+    },
+    "SOURCES.txt": {
+      "size": 823,
+      "md5": "fab7e676f82b731577ebcd5294e9881f",
+      "sha256": "9ee8b42de799c80b4765a0ce76bb367cb5c34621fd9da1b51e35fba569537991"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ae91a8c4956797065016b8c9fd0798cc814a4a9d6c664a662804d0589a373345.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/ef479aa8b1f06079583931f1c93de4da28c20a5279a61b6118d7ba388a42e497.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/inotia2-vita/16f5a17f9088e26833d9aae7bc8ef464f8c16b3eaeb61d7356cd736fb1ecf11c.png": "shot_02.png"
+  },
+  "attempted": [
+    "inotia2-vita v1.2.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T23:03:04+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "INOTIA2PV",
+    "name": "Inotia 2",
+    "search_title": "Inotia 2",
+    "version": "1.2.0",
+    "repo": "MetalSyntax/Inotia2-vita",
+    "tag": "v1.2.0",
+    "asset": "inotia2.vpk",
+    "url": "https://github.com/MetalSyntax/Inotia2-vita/releases/download/v1.2.0/inotia2.vpk",
+    "size": 1585492,
+    "sha256": "86f78e1b26be6e99ce1ad6b8102941ea9084f48d5be069cbb301c06f8fd4be8d",
+    "creator": "MetalSyntax"
+  }
+}
