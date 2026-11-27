@@ -11,17 +11,17 @@
   "sids": [
     "other"
   ],
-  "v": "Alpha 0.1.0",
+  "v": "0.1.0",
   "vd": "2026-09-06",
   "req": "NoNpDrm",
-  "sz": 2537554,
+  "sz": 2534795,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
       "u": "https://github.com/Frxn5J/VagaChatVITA/releases/download/0.1.0/VagaChatVITA.vpk",
-      "sz": 2537554,
+      "sz": 2534795,
       "rec": true
     },
     {

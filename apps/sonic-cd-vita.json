@@ -11,7 +11,7 @@
   "sids": [
     "other"
   ],
-  "v": "v.0.2 Alpha",
+  "v": "0.2",
   "vd": "2021-01-05",
   "req": "- Game Data Files: Android OR PC",
   "sz": 969613,
@@ -28,7 +28,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-sonic-cd-vita/sonic-cd-vita.vpk",
+      "u": "https://github.com/SonicMastr/Sonic-CD-Vita/releases/download/0.2/SonicCD.vpk",
       "rec": true
     },
     {
