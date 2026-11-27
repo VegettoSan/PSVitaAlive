@@ -14,32 +14,18 @@ on:
       - scripts/archive_new_items_batch.py
       - .github/workflows/validate.yml
       - .github/workflows/archive-backup-batch.yml
-  push:
-    branches: [main]
-    paths:
-      - scripts/import_orbit_discoveries.py
-      - scripts/orbit_auto_selection.py
-      - tests/test_orbit_auto_selection.py
-      - scripts/vpk_display_name.py
-      - tests/test_vpk_display_name.py
-      - config/orbit_publication_approved.json
-      - .github/workflows/import-orbit-discoveries.yml
-  schedule:
-    - cron: '07 */3 * * *'
   workflow_dispatch:
-  repository_dispatch:
-    types: [orbit_enrichment_ready]
 permissions:
   contents: write
-concurrency:
-  group: ${{ github.event_name == 'pull_request' && format('orbit-import-preview-{0}', github.event.pull_request.number) || 'vitahub-catalog-publisher' }}
-  cancel-in-progress: false
 jobs:
   import:
     if: >-
       github.repository == 'VegettoSan/PSVitaAlive' &&
       (github.ref == 'refs/heads/main' ||
       (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository))
+    concurrency:
+      group: ${{ github.event_name == 'pull_request' && format('orbit-import-preview-{0}', github.event.pull_request.number) || 'vitahub-catalog-publisher' }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -83,7 +69,7 @@ jobs:
           PY
       - name: Test existing preservation safeguards
         run: python -m unittest discover -s tests -p 'test_archive_new_items_batch.py' -v
-      - name: Stage approved discoveries (real package and license validation)
+      - name: Stage eligible discoveries (real package and identity validation)
         env:
           GH_TOKEN: ${{ github.token }}
         run: python -m scripts.import_orbit_discoveries --stage
