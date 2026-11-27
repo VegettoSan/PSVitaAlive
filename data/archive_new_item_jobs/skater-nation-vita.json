@@ -35,7 +35,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/skater-nation-vita/71f1b476d04cdd1076f610ec4b9e549b2ba50eb2c3afea8d2672fe8abf00d6e0.png": "shot_02.png"
   },
   "attempted": [
-    "skater-nation-vita v1.0.0.vpk"
+    "skater-nation-vita v1.0.0.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T22:58:50+00:00",
