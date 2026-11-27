@@ -1,0 +1,50 @@
+{
+  "app_id": "tracplayer",
+  "identifier": "psvitaalive-tracplayer",
+  "source_url": "https://github.com/AntHJ/TRACPlayer/releases/download/v1/TRAKPlayer.vpk",
+  "files": {
+    "tracplayer v1.vpk": {
+      "size": 17079871,
+      "md5": "e5b347ca00e9f72bebda23d310985615",
+      "sha256": "c327bb5ad571bacd72ec25d04393752a071da9063aab52d3745b1fafc1682ba0"
+    },
+    "icon0.png": {
+      "size": 8008,
+      "md5": "e63255897a71da8e7445a8a609d09c08",
+      "sha256": "60c98477fd8fb4f9d76e4993a3659fac5e8b62a6c96934b6a251deb5748c6897"
+    },
+    "shot_01.png": {
+      "size": 179765,
+      "md5": "e62fecb4213939760c4e3b1f29c31951",
+      "sha256": "d816e70a44c207a2dc0e47348fd9db8ef6dab8773c2ab5116f1776e733701815"
+    },
+    "SOURCES.txt": {
+      "size": 615,
+      "md5": "96372338693f661117f26e4ce8880db1",
+      "sha256": "20019d6d2179b1dbd7d3b91854cb4581a7d93f2183186d5c81debb0e43f61cb8"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/tracplayer/60c98477fd8fb4f9d76e4993a3659fac5e8b62a6c96934b6a251deb5748c6897.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/tracplayer/d816e70a44c207a2dc0e47348fd9db8ef6dab8773c2ab5116f1776e733701815.png": "shot_01.png"
+  },
+  "attempted": [
+    "tracplayer v1.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:51:25+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "TRACPLAYR",
+    "name": "TRAC Player",
+    "search_title": "TRAC Player",
+    "version": "1",
+    "repo": "AntHJ/TRACPlayer",
+    "tag": "v1",
+    "asset": "TRAKPlayer.vpk",
+    "url": "https://github.com/AntHJ/TRACPlayer/releases/download/v1/TRAKPlayer.vpk",
+    "size": 17079871,
+    "sha256": "c327bb5ad571bacd72ec25d04393752a071da9063aab52d3745b1fafc1682ba0",
+    "creator": "AntHJ"
+  }
+}
