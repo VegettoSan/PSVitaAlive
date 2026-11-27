@@ -16,9 +16,9 @@
   "v": "1.00",
   "vd": "2020-08-17",
   "sz": 73760,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/83325580ead31a9cc7fa89a9b2791626c815231e5206832e887bed972e6d3ac6.png",
+  "ic": "https://archive.org/download/psvitaalive-vita-pkgenabler/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-pkgenabler/306ed09ca20dd3e961bee5dc9548ad89a43887b2c1ed485d7a1a11033858896e.png"
+    "https://archive.org/download/psvitaalive-vita-pkgenabler/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:288250922",
@@ -33,7 +33,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/Freakler/vita-PKGEnabler/releases/download/1.00/PKGEnabler_v100.vpk",
+      "u": "https://archive.org/download/psvitaalive-vita-pkgenabler/vita-pkgenabler%20v1.00.vpk",
       "rec": true
     }
   ]
