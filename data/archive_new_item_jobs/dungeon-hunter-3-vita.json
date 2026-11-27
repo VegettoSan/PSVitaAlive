@@ -1,0 +1,56 @@
+{
+  "app_id": "dungeon-hunter-3-vita",
+  "identifier": "psvitaalive-dungeon-hunter-3-vita",
+  "source_url": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/download/v1.0.0/dungeonhunter3.vpk",
+  "files": {
+    "dungeon-hunter-3-vita v1.0.0.vpk": {
+      "size": 1121900,
+      "md5": "8bfd78fd5e2a0a9d701e031ea162b266",
+      "sha256": "7559400a62177d5fcc1295458b79f51ea01f1ce932d7fae521806c43c663c03d"
+    },
+    "icon0.png": {
+      "size": 11922,
+      "md5": "b42f8fcac092efef7566750844f1dcc7",
+      "sha256": "94de9eb287d517e3574e1145163539d3f6e0ae8b2b6a26a007f4a1afa1c8d5ab"
+    },
+    "shot_01.png": {
+      "size": 256545,
+      "md5": "eba9db8d02af38b6018624d721edf7bc",
+      "sha256": "093ead8fee7b51800c87f9e588d24b40639fb52155169129ec8da817afed0962"
+    },
+    "shot_02.png": {
+      "size": 218271,
+      "md5": "4c1b476b9085e01bcb7414cb11f7165d",
+      "sha256": "d3fdda19a0bb9ef23e81886e680b0cf901e457b65f9f71af46c5ab7174570a26"
+    },
+    "SOURCES.txt": {
+      "size": 892,
+      "md5": "908f98b82f6ba638fd3239c08f65ee8c",
+      "sha256": "09dfecb167c02bf3521e4c48ffa905854fcf71c20a578970d3229f757722f7a7"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/94de9eb287d517e3574e1145163539d3f6e0ae8b2b6a26a007f4a1afa1c8d5ab.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/093ead8fee7b51800c87f9e588d24b40639fb52155169129ec8da817afed0962.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/dungeon-hunter-3-vita/d3fdda19a0bb9ef23e81886e680b0cf901e457b65f9f71af46c5ab7174570a26.png": "shot_02.png"
+  },
+  "attempted": [
+    "dungeon-hunter-3-vita v1.0.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:24:15+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "PSVDH0003",
+    "name": "Dungeon Hunter 3",
+    "search_title": "Dungeon Hunter 3",
+    "version": "1.0.0",
+    "repo": "MetalSyntax/Dungeon-Hunter-3-Vita",
+    "tag": "v1.0.0",
+    "asset": "dungeonhunter3.vpk",
+    "url": "https://github.com/MetalSyntax/Dungeon-Hunter-3-Vita/releases/download/v1.0.0/dungeonhunter3.vpk",
+    "size": 1121900,
+    "sha256": "7559400a62177d5fcc1295458b79f51ea01f1ce932d7fae521806c43c663c03d",
+    "creator": "MetalSyntax"
+  }
+}
