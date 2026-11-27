@@ -1,0 +1,56 @@
+{
+  "app_id": "ps-vita-recovery-menu-project",
+  "identifier": "psvitaalive-ps-vita-recovery-menu-project",
+  "source_url": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project/releases/download/v1.2.3/VitaRecovery_v1.2.3.vpk",
+  "files": {
+    "ps-vita-recovery-menu-project v1.2.3.vpk": {
+      "size": 602773,
+      "md5": "c09ac3a88774b3b215728af029df1995",
+      "sha256": "65c278fbb75f42e2769902d7b7681f7b0466c87cfe1c850140ba5fae20f50c03"
+    },
+    "icon0.png": {
+      "size": 1117,
+      "md5": "0b2008b0a8e6a523b57428f314d4234a",
+      "sha256": "a422f81e9113b42afc98e85df1a748d11bf5b31ba53675f69ee3f96fa8d7eb29"
+    },
+    "shot_01.png": {
+      "size": 9850,
+      "md5": "83621c3fc7bd0b9e27beeec6328d82e6",
+      "sha256": "c0812825d81b3cba47e02cf7116cb8d787bfae305cb6e833fd7e1e965f2de425"
+    },
+    "shot_02.png": {
+      "size": 13839,
+      "md5": "17f35e4d32ce73413b24c7829a086be4",
+      "sha256": "fb9b6b8ec88f8b48cd83a6e52fb2508accb228037a4ad0b45528768977609d65"
+    },
+    "SOURCES.txt": {
+      "size": 947,
+      "md5": "38457f60d6de0b1f3a776b80bc9f7600",
+      "sha256": "2398766d7cf4277f17dd0bdc613dfe40de802fb0ec8580f8135360b826a566cd"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/a422f81e9113b42afc98e85df1a748d11bf5b31ba53675f69ee3f96fa8d7eb29.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/c0812825d81b3cba47e02cf7116cb8d787bfae305cb6e833fd7e1e965f2de425.png": "shot_01.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/ps-vita-recovery-menu-project/fb9b6b8ec88f8b48cd83a6e52fb2508accb228037a4ad0b45528768977609d65.png": "shot_02.png"
+  },
+  "attempted": [
+    "ps-vita-recovery-menu-project v1.2.3.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:33:32+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "RECM00001",
+    "name": "PS Vita Recovery",
+    "search_title": "PS Vita Recovery",
+    "version": "1.2.3",
+    "repo": "DrinkingSubset/PS-Vita-Recovery-Menu-Project",
+    "tag": "v1.2.3",
+    "asset": "VitaRecovery_v1.2.3.vpk",
+    "url": "https://github.com/DrinkingSubset/PS-Vita-Recovery-Menu-Project/releases/download/v1.2.3/VitaRecovery_v1.2.3.vpk",
+    "size": 602773,
+    "sha256": "65c278fbb75f42e2769902d7b7681f7b0466c87cfe1c850140ba5fae20f50c03",
+    "creator": "Jose"
+  }
+}
