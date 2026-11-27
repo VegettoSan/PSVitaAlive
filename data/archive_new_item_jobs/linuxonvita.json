@@ -1,0 +1,50 @@
+{
+  "app_id": "linuxonvita",
+  "identifier": "psvitaalive-linuxonvita",
+  "source_url": "https://github.com/devwithzachary/LinuxOnVita/releases/download/1.6.0/LinuxOnVita.vpk",
+  "files": {
+    "linuxonvita v1.6.0.vpk": {
+      "size": 26968793,
+      "md5": "dda3b9082aa0bd67bb8bd46ae8482dec",
+      "sha256": "5204cce2e18c8a3314f7fe452a206dfa6d006590c2bf54b77cadce33efbd0aa5"
+    },
+    "icon0.png": {
+      "size": 5083,
+      "md5": "df2a9980099d96236fbc5349d9c2cef2",
+      "sha256": "ae0a9cce07e80c7ebf5a54bfa54dbabaf565246ee3b3824feea53a951fb4e3dd"
+    },
+    "shot_01.png": {
+      "size": 9840,
+      "md5": "8bd042159d8bfa2f5d572336793ffc1c",
+      "sha256": "ee4dc7433d48c5a3c0ce6fb8520284172b019e463d42ac36d8ef3da434bedd46"
+    },
+    "SOURCES.txt": {
+      "size": 666,
+      "md5": "d8b8c2f321f798f4ff48a253de276de5",
+      "sha256": "ef092192add9443ba2d12491735c9e3d455707be98d36078e965a13c7a6fa8f0"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ae0a9cce07e80c7ebf5a54bfa54dbabaf565246ee3b3824feea53a951fb4e3dd.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/linuxonvita/ee4dc7433d48c5a3c0ce6fb8520284172b019e463d42ac36d8ef3da434bedd46.png": "shot_01.png"
+  },
+  "attempted": [
+    "linuxonvita v1.6.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T22:42:28+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "LNXONVITA",
+    "name": "LinuxOnVita",
+    "search_title": "LinuxOnVita",
+    "version": "1.6.0",
+    "repo": "devwithzachary/LinuxOnVita",
+    "tag": "1.6.0",
+    "asset": "LinuxOnVita.vpk",
+    "url": "https://github.com/devwithzachary/LinuxOnVita/releases/download/1.6.0/LinuxOnVita.vpk",
+    "size": 26968793,
+    "sha256": "5204cce2e18c8a3314f7fe452a206dfa6d006590c2bf54b77cadce33efbd0aa5",
+    "creator": "Zachary Powell"
+  }
+}
