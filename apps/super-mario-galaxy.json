@@ -14,17 +14,17 @@
     "puzzle",
     "source-port"
   ],
-  "v": "2.2.1",
-  "vd": "2026-11-08",
+  "v": "3.0",
+  "vd": "2026-11-27",
   "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-  "sz": 8912896,
+  "sz": 13616965,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/smg-vita/Galaxy-Vita%20v2.2.1.vpk",
-      "sz": 8912896,
+      "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita/releases/download/v3.0/Galaxy-Vita.vpk",
+      "sz": 13616965,
       "rec": true
     },
     {
