@@ -9,7 +9,7 @@ on:
     - cron: "17 */3 * * *"
   workflow_dispatch:
   repository_dispatch:
-    types: [orbit_catalog_imported]
+    types: [orbit_catalog_imported, orbit_enrichment_ready]
   # Rebuild public catalogs only AFTER a verified Archive.org batch ends.
   # GITHUB_TOKEN commits do not emit normal push-triggered workflow runs.
   workflow_run:
@@ -21,10 +21,6 @@ permissions:
 
 # Serialize catalog generation/publication. This prevents concurrent runs from
 # creating the same new app/author file and then colliding during rebase.
-concurrency:
-  group: vitahub-catalog-publisher
-  cancel-in-progress: false
-
 jobs:
   validate:
     # workflow_run is privileged; accept only the official successful main batch.
@@ -33,6 +29,9 @@ jobs:
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.head_branch == 'main' &&
        github.event.workflow_run.head_repository.full_name == 'VegettoSan/PSVitaAlive')
+    concurrency:
+      group: ${{ github.event_name == 'pull_request' && format('catalog-pr-{0}', github.event.pull_request.number) || 'vitahub-catalog-publisher' }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     # Activated only AFTER official Release 02.18 is available.
     env:
@@ -44,6 +43,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.sha || 'main' }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -109,6 +109,34 @@ jobs:
           name: vpk-label-audit
           path: /tmp/psva-vpk-label-audit.json
           retention-days: 14
+
+      - name: Import eligible Orbit discoveries under the catalog lock
+        id: orbit_import
+        if: >-
+          github.repository == 'VegettoSan/PSVitaAlive' &&
+          github.ref == 'refs/heads/main' &&
+          (github.event_name == 'push' || github.event_name == 'schedule' ||
+           github.event_name == 'workflow_dispatch' ||
+           (github.event_name == 'repository_dispatch' && github.event.action == 'orbit_enrichment_ready'))
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # A temporary Orbit or network problem should not prevent rebuilding
+          # the already registered canonical catalog.
+          if python -m pip install 'internetarchive==5.13.0' 'requests==2.32.5' 'Pillow==12.1.1'; then
+            if ! python -m scripts.import_orbit_discoveries --stage; then
+              echo "::warning::Orbit import did not complete; the next scheduled run will retry."
+            fi
+          else
+            echo "::warning::Orbit dependencies unavailable; existing catalog will still be validated."
+          fi
+          if [ -n "$(git status --porcelain -- data/orbit_imports/)" ]; then
+            echo "new_apps=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "new_apps=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Generate catalogs from local apps/authors/categories
         env:
@@ -420,6 +448,8 @@ jobs:
           if [ -d reports ]; then
             git add -A -- reports
           fi
+          if [ -d data/orbit_imports ]; then git add -- data/orbit_imports; fi
+          if [ -f data/orbit_import_cursor.json ]; then git add -- data/orbit_import_cursor.json; fi
 
           if git diff --cached --quiet; then
             echo "No canonical source or generated catalog changes detected."
@@ -467,6 +497,12 @@ jobs:
             > /tmp/psva-discord-dispatch.json
           gh api --method POST "repos/$GITHUB_REPOSITORY/dispatches" \
             --input /tmp/psva-discord-dispatch.json
+
+      - name: Trigger existing preservation after new Orbit registrations
+        if: github.event_name != 'pull_request' && (steps.orbit_import.outputs.new_apps == 'true' || (github.event_name == 'repository_dispatch' && github.event.action == 'orbit_catalog_imported'))
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/dispatches" -f event_type=orbit_catalog_preserve_ready
 
       - name: Trigger release tracker after successful catalog publication
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'repository_dispatch'
