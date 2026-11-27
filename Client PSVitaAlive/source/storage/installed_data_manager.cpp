@@ -154,7 +154,7 @@ bool eraseTree(const std::string& path, unsigned depth,
     if ((depth == 0 && !safeExternalDataPath(path) && !gameMedia) ||
         depth > MAX_DEPTH || ++count > MAX_ENTRIES) return false;
     unsigned mode=knownMode;
-    if (!mode) {
+    if (!(mode & SCE_S_IFMT)) {
         SceIoStat st{};
         if (!exists(path, &st)) return false;
         mode=st.st_mode;
@@ -812,7 +812,10 @@ bool InstalledDataManager::removeGameMedia(const InstalledDataApp& app,Installed
     if(progress){progress->entriesTotal.store(count);progress->rootsTotal.store(1);progress->phase.store(2,std::memory_order_release);}
     uint32_t removed=0;
     InstalledDirectoryCache::invalidateMediaPath(path);
+    const uint64_t eraseStarted=sceKernelGetProcessTimeWide();
     const bool erased=eraseTree(path,0,removed,progress,true);
+    diagnostics::log("[StorageDelete] root="+path+" entries="+std::to_string(removed)+" ms="+
+        std::to_string((sceKernelGetProcessTimeWide()-eraseStarted)/1000ULL)+" ok="+(erased?"1":"0"));
     // Verify via the still-accessible parent; a missing mount is not success.
     const auto slash=path.find_last_of('/');
     const SceUID parent=sceIoDopen(path.substr(0,slash).c_str());
@@ -921,7 +924,11 @@ bool InstalledDataManager::removeExternal(const InstalledDataSnapshot& snapshot,
         if (!path.exists) continue;
         if (progress) progress->currentRootIndex.store(static_cast<uint32_t>(i), std::memory_order_release);
         uint32_t count = 0;
-        if (!eraseTree(path.path, 0, count, progress)) {
+        const uint64_t eraseStarted=sceKernelGetProcessTimeWide();
+        const bool erased=eraseTree(path.path,0,count,progress);
+        diagnostics::log("[StorageDelete] root="+path.path+" entries="+std::to_string(count)+" ms="+
+            std::to_string((sceKernelGetProcessTimeWide()-eraseStarted)/1000ULL)+" ok="+(erased?"1":"0"));
+        if (!erased) {
             diagnostics::log("[InstalledData] unable to remove " + path.path);
             removed = false;
         } else if (progress) {

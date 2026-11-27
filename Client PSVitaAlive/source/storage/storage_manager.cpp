@@ -106,17 +106,14 @@ bool StorageManager::createDirectories(const std::string& path) {
 }
 
 bool StorageManager::removeFile(const std::string& path) {
-    if (!exists(path)) {
-        return true;
-    }
-    return sceIoRemove(path.c_str()) >= 0;
+    // A successful remove is the existence check; only ENOENT is idempotent.
+    const int rc=sceIoRemove(path.c_str());
+    return rc>=0 || static_cast<uint32_t>(rc)==0x80010002u;
 }
 
 bool StorageManager::removeDirectory(const std::string& path) {
-    if (!exists(path)) {
-        return true;
-    }
-    return sceIoRmdir(path.c_str()) >= 0;
+    const int rc=sceIoRmdir(path.c_str());
+    return rc>=0 || static_cast<uint32_t>(rc)==0x80010002u;
 }
 
 bool StorageManager::rename(const std::string& oldPath, const std::string& newPath) {

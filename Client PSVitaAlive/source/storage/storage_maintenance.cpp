@@ -6,6 +6,7 @@
 #include <psp2/io/dirent.h>
 #include <psp2/io/fcntl.h>
 #include <psp2/io/stat.h>
+#include <psp2/kernel/processmgr.h>
 #include <algorithm>
 #include <cstring>
 #include <string>
@@ -64,9 +65,9 @@ uint64_t measure(const std::string& root) {
     return measureTree(root,0,visited);
 }
 bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
-    if(depth>=kMaxDepth) return false;
+    if(depth>kMaxDepth) return false;
     unsigned mode=knownMode;
-    if(!mode) {
+    if(!(mode & SCE_S_IFMT)) {
         SceIoStat st{};
         const int rc=sceIoGetstat(root.c_str(),&st);
         if(rc<0) return static_cast<uint32_t>(rc)==0x80010002u;
@@ -74,7 +75,7 @@ bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
     }
     const auto type=mode & SCE_S_IFMT;
     if(type==SCE_S_IFREG) return sceIoRemove(root.c_str())>=0;
-    if(type!=SCE_S_IFDIR) return false;
+    if(type!=SCE_S_IFDIR || depth>=kMaxDepth) return false;
     struct Child { std::string name; unsigned mode; };
     // Enumerate in bounded batches, then close before mutating the directory.
     // d_stat already identifies ordinary files; do not stat them again.
@@ -100,12 +101,12 @@ bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
     }
 }
 void add(UsageSnapshot& snap,const std::string& path,const std::string& label,bool saved,
-         const std::vector<std::string>& paths={}) {
+         bool measureSizes, const std::vector<std::string>& paths={}) {
     if(snap.items.size()>=kMaxItems) return;
     UsageItem item;
     item.path=path; item.label=label; item.savedZip=saved;
     item.ownedPaths=paths.empty()?std::vector<std::string>{path}:paths;
-    for(const auto& p:item.ownedPaths) item.bytes+=measure(p);
+    if(measureSizes) for(const auto& p:item.ownedPaths) item.bytes+=measure(p);
     if(saved) snap.savedZipBytes+=item.bytes;
     else snap.temporaryBytes+=item.bytes;
     snap.items.push_back(std::move(item));
@@ -124,7 +125,7 @@ unsigned readPartCount(const std::string& info, std::string& data) {
     if(c=='4') return 4;
     return 0;
 }
-void scanSaved(UsageSnapshot& snap) {
+void scanSaved(UsageSnapshot& snap,bool measureSizes) {
     StorageManager st;
     for(const auto& folder:entries(kManual)) {
         const std::string dir=std::string(kManual)+"/"+folder;
@@ -147,7 +148,7 @@ void scanSaved(UsageSnapshot& snap) {
             if(!complete) continue;
             paths.push_back(info);
             const auto before = snap.items.size();
-            add(snap,info,"ZIP: "+folder+"/"+name.substr(0,name.size()-9),true,paths);
+            add(snap,info,"ZIP: "+folder+"/"+name.substr(0,name.size()-9),true,measureSizes,paths);
             if (snap.items.size() != before) {
                 auto& item = snap.items.back();
                 item.appId = savedZipField(metadata, "App ID: ");
@@ -159,7 +160,7 @@ void scanSaved(UsageSnapshot& snap) {
         }
     }
 }
-void scanJobs(UsageSnapshot& snap) {
+void scanJobs(UsageSnapshot& snap,bool measureSizes) {
     StorageManager st;
     for(const auto& name:entries(kJobs)) {
         if(!starts(name,"job_")) continue;
@@ -171,38 +172,36 @@ void scanJobs(UsageSnapshot& snap) {
         const bool legacy=metadata.find("\"cleanup_protocol\": 2")==std::string::npos &&
             metadata.find("\"state\": \"Completed\"")!=std::string::npos &&
             (metadata.find(".zip")!=std::string::npos || metadata.find(".ZIP")!=std::string::npos);
-        add(snap,dir,kept||legacy?"Recovery job: "+name:"Download job: "+name,kept||legacy);
+        add(snap,dir,kept||legacy?"Recovery job: "+name:"Download job: "+name,kept||legacy,measureSizes);
     }
 }
-void scanTmp(UsageSnapshot& snap) {
+void scanTmp(UsageSnapshot& snap,bool measureSizes) {
     StorageManager st;
     for(const auto& name:entries(kTmp)) {
         // Strict allowlist: do not delete a user-created file merely because it lives under tmp/.
         if(!isOwnedTempName(name)) continue;
         const std::string path=std::string(kTmp)+"/"+name;
-        if(st.exists(path)) add(snap,path,"Temporary: "+name,false);
+        if(st.exists(path)) add(snap,path,"Temporary: "+name,false,measureSizes);
     }
 }
-void scanDeepStages(UsageSnapshot& snap,const char* root) {
+void scanDeepStages(UsageSnapshot& snap,const char* root,bool measureSizes) {
     StorageManager st;
     for(const auto& name:entries(root)) {
         if(!starts(name,"PSVA_ZIP_STAGE_")) continue;
         const std::string path=std::string(root)+"/"+name;
         if(isOwnedZipStagePath(path) && st.isDirectory(path))
-            add(snap,path,"ZIP staging: "+name,false);
+            add(snap,path,"ZIP staging: "+name,false,measureSizes);
     }
 }
-} // namespace
-
-UsageSnapshot StorageMaintenance::scan(bool includeReadOnlyCache, bool includeSavedZip) {
+UsageSnapshot scanInventory(bool includeReadOnlyCache, bool includeSavedZip,bool measureSizes) {
     UsageSnapshot snap;
-    scanJobs(snap);
-    scanTmp(snap);
+    scanJobs(snap,measureSizes);
+    scanTmp(snap,measureSizes);
     StorageManager st;
-    if(st.isDirectory(kVpk)) add(snap,kVpk,"VPK promotion staging",false);
-    scanDeepStages(snap,"ux0:data");
-    scanDeepStages(snap,"uma0:data");
-    if (includeSavedZip) scanSaved(snap);
+    if(st.isDirectory(kVpk)) add(snap,kVpk,"VPK promotion staging",false,measureSizes);
+    scanDeepStages(snap,"ux0:data",measureSizes);
+    scanDeepStages(snap,"uma0:data",measureSizes);
+    if (includeSavedZip) scanSaved(snap,measureSizes);
     // Display caches for transparency without offering to delete them.
     if (includeReadOnlyCache) {
         snap.catalogBytes=measure("ux0:data/psvitaalive/cache/catalog");
@@ -210,9 +209,15 @@ UsageSnapshot StorageMaintenance::scan(bool includeReadOnlyCache, bool includeSa
     }
     return snap;
 }
+} // namespace
+
+UsageSnapshot StorageMaintenance::scan(bool includeReadOnlyCache, bool includeSavedZip) {
+    return scanInventory(includeReadOnlyCache,includeSavedZip,true);
+}
 bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     // A fresh inventory checks both ownership and the exact set of known paths.
-    const UsageSnapshot fresh=scan(false, selected.savedZip);
+    // Revalidate identity and exact ownership, not the byte size of every unrelated tree.
+    const UsageSnapshot fresh=scanInventory(false, selected.savedZip,false);
     const auto it=std::find_if(fresh.items.begin(),fresh.items.end(),
         [&](const UsageItem& item) {
             return item.path==selected.path && item.savedZip==selected.savedZip &&
@@ -221,7 +226,10 @@ bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     if(it==fresh.items.end()) return false;
     bool ok=true;
     for(const auto& path:it->ownedPaths) {
-        if(!eraseTree(path)) {
+        const uint64_t started=sceKernelGetProcessTimeWide();
+        const bool erased=eraseTree(path);
+        diagnostics::log("[StorageDelete] root="+path+" ms="+std::to_string((sceKernelGetProcessTimeWide()-started)/1000ULL)+" ok="+(erased?"1":"0"));
+        if(!erased) {
             ok=false;
             diagnostics::log("[StorageMaintenance] removal failed: "+path);
         }
@@ -233,7 +241,7 @@ bool StorageMaintenance::removeOwnedZipStage(const std::string& path) {
     return eraseTree(path);
 }
 uint32_t StorageMaintenance::cleanupTransient() {
-    const UsageSnapshot snap=scan(false, false);
+    const UsageSnapshot snap=scanInventory(false, false,false);
     uint32_t removed=0;
     for(const auto& item:snap.items) {
         if(!item.savedZip && removeSelected(item)) ++removed;
