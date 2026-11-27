@@ -1,0 +1,50 @@
+{
+  "app_id": "vita-turbo-vpn",
+  "identifier": "psvitaalive-vita-turbo-vpn",
+  "source_url": "https://github.com/juanjsebgarcia/vita-turbo-vpn/releases/download/v0.1.0/vita-turbo-vpn.vpk",
+  "files": {
+    "vita-turbo-vpn v0.1.0.vpk": {
+      "size": 1074517,
+      "md5": "1cf4b7badaf5e350f4cc98c0cab8bf65",
+      "sha256": "1b77dbdd42e76cc3a6bd7c0836d6a7b48b247b67f46b9db924a98b3c67b967ab"
+    },
+    "icon0.png": {
+      "size": 2452,
+      "md5": "9843537a36ef31aff1d59eccbcca2f3a",
+      "sha256": "b700a26452489375997d5bec42cd7df109387ce322bd2c0a85170e0db838a9db"
+    },
+    "shot_01.png": {
+      "size": 7462,
+      "md5": "0e8cc51a2cce15bccf8731099935c6cb",
+      "sha256": "beefe4b4a69a7ca4fe716ffaa9d257443af21a70cad5fade498f9b71e66a659d"
+    },
+    "SOURCES.txt": {
+      "size": 680,
+      "md5": "15e4dd738c5d4a83522d56c81c353658",
+      "sha256": "af57cab7db2d2fe3e3eea507c49f152b62ce3eebb215979504f1415a88d48d4d"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/b700a26452489375997d5bec42cd7df109387ce322bd2c0a85170e0db838a9db.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vita-turbo-vpn/beefe4b4a69a7ca4fe716ffaa9d257443af21a70cad5fade498f9b71e66a659d.png": "shot_01.png"
+  },
+  "attempted": [
+    "vita-turbo-vpn v0.1.0.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T21:07:25+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "VPNT00001",
+    "name": "Vita Turbo VPN",
+    "search_title": "Vita Turbo VPN",
+    "version": "0.1.0",
+    "repo": "juanjsebgarcia/vita-turbo-vpn",
+    "tag": "v0.1.0",
+    "asset": "vita-turbo-vpn.vpk",
+    "url": "https://github.com/juanjsebgarcia/vita-turbo-vpn/releases/download/v0.1.0/vita-turbo-vpn.vpk",
+    "size": 1074517,
+    "sha256": "1b77dbdd42e76cc3a6bd7c0836d6a7b48b247b67f46b9db924a98b3c67b967ab",
+    "creator": "Juan"
+  }
+}
