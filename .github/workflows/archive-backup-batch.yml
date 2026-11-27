@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - .github/workflows/archive-backup-batch.yml
       - scripts/archive_item_creation.py
       - scripts/audit_archive_versions.py
       - scripts/sync_release_updates.py
@@ -20,22 +19,20 @@ on:
   # Follow Orbit's normal release-monitor dispatch, but do not write at
   # the same moment as the catalog synchronization: shared lock serializes.
   workflow_run:
-    workflows: ['Sync Verified Homebrew Releases', 'Validate and Generate Local Catalog']
+    workflows: ['Sync Verified Homebrew Releases']
     types: [completed]
   schedule:
     # Orbit scans at 17 */3; backup scan at minute 47 is the safe fallback.
     - cron: '47 */3 * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [orbit_catalog_preserve_ready]
 
 permissions:
   contents: write
   # No actions:write token: validate.yml handles this batch via workflow_run.
 
 # Same publisher lock as validate.yml and sync_homebrew_releases.yml.
-concurrency:
-  group: vitahub-catalog-publisher
-  cancel-in-progress: false
-
 jobs:
   preserve-approved-vpks:
     if: >-
@@ -44,15 +41,19 @@ jobs:
       (
         github.event_name == 'schedule' ||
         github.event_name == 'push' ||
+        (github.event_name == 'repository_dispatch' && github.event.action == 'orbit_catalog_preserve_ready') ||
         (github.event_name == 'workflow_run' &&
          github.event.workflow_run.conclusion == 'success' &&
          github.event.workflow_run.event == 'repository_dispatch' &&
-         (github.event.workflow_run.name == 'Sync Verified Homebrew Releases' || github.event.workflow_run.name == 'Validate and Generate Local Catalog') &&
+         github.event.workflow_run.name == 'Sync Verified Homebrew Releases' &&
          github.event.workflow_run.head_branch == 'main' &&
          github.event.workflow_run.head_repository.full_name == 'VegettoSan/PSVitaAlive') ||
         (github.event_name == 'workflow_dispatch' &&
          github.actor == 'VegettoSan')
       )
+    concurrency:
+      group: vitahub-catalog-publisher
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 130
     steps:
