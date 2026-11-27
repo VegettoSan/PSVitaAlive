@@ -1776,6 +1776,14 @@ bool isNonReportableInstallError(const std::string& msg) {
 }
 
 std::string formatEta(uint64_t seconds){if(seconds==0)return "--";uint64_t h=seconds/3600,m=(seconds%3600)/60,sec=seconds%60;char o[64];if(h)sceClibSnprintf(o,sizeof(o),"%llu:%02llu:%02llu",(unsigned long long)h,(unsigned long long)m,(unsigned long long)sec);else sceClibSnprintf(o,sizeof(o),"%02llu:%02llu",(unsigned long long)m,(unsigned long long)sec);return o;}
+std::string FullCatalogScreen::deletionTimingText(bool measurable,uint64_t done,uint64_t total) {
+    const uint64_t now=sceKernelGetProcessTimeWide();
+    const uint64_t end=deletionFinishedUs_?deletionFinishedUs_:now;
+    const uint64_t elapsed=end>=deletionStartedUs_?(end-deletionStartedUs_)/1000000ULL:0;
+    const uint64_t eta=deletionEta_.update(now,measurable,done,total);
+    return std::string(::psvitaalive::L("LABEL_ELAPSED"))+": "+(elapsed?formatEta(elapsed):"00:00")+
+        "  |  "+::psvitaalive::L(::psvitaalive::TextId::LabelEta)+": "+(eta?"~"+formatEta(eta):"--");
+}
 FullCatalogScreen::FullCatalogScreen()=default;FullCatalogScreen::~FullCatalogScreen(){shutdown();}
 
 
@@ -3764,6 +3772,22 @@ void FullCatalogScreen::startStorageOperation(int action) {
     }
     storageOperationLabel_=action>=0?storageSnapshot_.items[static_cast<size_t>(action)].label:
         ::psvitaalive::L(action==-3?"STORAGE_TEMP":action==-4?"STORAGE_ZIPS":"STORAGE_CLEAN_ALL");
+    storageDeleteDone_.store(0,std::memory_order_relaxed);
+    storageDeleteTotal_=0;
+    if(action!=-1) {
+        bool known=true;
+        for(size_t i=0;i<storageSnapshot_.items.size();++i) {
+            const auto& item=storageSnapshot_.items[i];
+            if(!storageCleanupItemAllowed(scope,item.savedZip) ||
+               (action>=0 && i!=static_cast<size_t>(action)) ||
+               (action==-3 && item.savedZip) || (action==-4 && !item.savedZip)) continue;
+            known=known && item.entriesKnown;
+            storageDeleteTotal_+=item.entries;
+        }
+        if(!known)storageDeleteTotal_=0;
+        deletionStartedUs_=sceKernelGetProcessTimeWide();
+        deletionFinishedUs_=0;deletionEta_.reset();
+    }
     storageAction_ = action;
     storageWorkPhase_.store(action == -1 ? StorageWorkPhase::ScanStorage :
         StorageWorkPhase::Cleaning, std::memory_order_relaxed);
@@ -3798,7 +3822,7 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
             if (!storageCleanupItemAllowed(static_cast<CatalogType>(self->storageGameMode_), item.savedZip)) continue;
             if (self->storageAction_ == -3 && item.savedZip) continue;
             if (self->storageAction_ == -4 && !item.savedZip) continue;
-            if (!::psvitaalive::storage::StorageMaintenance::removeSelected(item))
+            if (!::psvitaalive::storage::StorageMaintenance::removeSelected(item,&self->storageDeleteDone_))
                 ok = false;
         }
     } else if (self->storageAction_ >= 0) {
@@ -3806,7 +3830,7 @@ int FullCatalogScreen::storageWorkerEntry(SceSize, void* argp) {
         if (index < self->storageSnapshot_.items.size() &&
             storageCleanupItemAllowed(static_cast<CatalogType>(self->storageGameMode_), self->storageSnapshot_.items[index].savedZip)) {
             ok = ::psvitaalive::storage::StorageMaintenance::removeSelected(
-                self->storageSnapshot_.items[index]);
+                self->storageSnapshot_.items[index],&self->storageDeleteDone_);
         } else ok = false;
     }
     self->storageWorkPhase_.store(StorageWorkPhase::ScanStorage, std::memory_order_relaxed);
@@ -3891,6 +3915,7 @@ void FullCatalogScreen::pollStorageOperation() {
     gameStorageCandidates_.clear();
     gameStorageCandidates_.shrink_to_fit();
     if (storageAction_ != -1) {
+        deletionFinishedUs_=sceKernelGetProcessTimeWide();
         releaseInstalledDataProtection();
         showToast(::psvitaalive::L(storageWorkerOk_.load(std::memory_order_acquire)
             ? "STORAGE_REMOVED" : "STORAGE_REMOVE_FAILED"), 2600);
@@ -3976,7 +4001,7 @@ void FullCatalogScreen::drawStorageOverlay() {
         const char* phaseKey=phase==StorageWorkPhase::ScanInstalled?(storageInstalledSectionKey(static_cast<CatalogType>(storageGameMode_))):
             phase==StorageWorkPhase::ResolveZips?"STORAGE_ZIPS":
             phase==StorageWorkPhase::ScanStorage?"STORAGE_TOTAL":nullptr;
-        constexpr int cardW=w-96,cardH=228;
+        constexpr int cardW=w-96,cardH=260;
         const int cardX=x+(w-cardW)/2,cardY=y+112;
         skin::surface(skin::ui_atlas::ui_panel_inset,cardX,cardY,cardW,cardH,SURFACE);
         skin::icon(skin::icons_atlas::icon_storage,cardX+24,cardY+24,40,ACCENT);
@@ -3990,7 +4015,9 @@ void FullCatalogScreen::drawStorageOverlay() {
         const int offset=Layout::loadingSegmentOffset(barW,sceKernelGetProcessTimeWide()/1000ULL);
         skin::surface(skin::ui_atlas::ui_progress_track,barX,barY,barW,barH,BORDER);
         skin::surface(skin::ui_atlas::ui_progress_fill,barX+offset,barY,segment,barH,ACCENT);
-        drawMarqueeText(&font_,cardX+28,cardY+181,cardW-56,DIM,.94f,
+        if(storageAction_!=-1) drawMarqueeText(&font_,cardX+28,cardY+171,cardW-56,WHITE,.94f,
+            deletionTimingText(phase==StorageWorkPhase::Cleaning,storageDeleteDone_.load(std::memory_order_relaxed),storageDeleteTotal_),false);
+        drawMarqueeText(&font_,cardX+28,cardY+218,cardW-56,DIM,.94f,
             ::psvitaalive::L("STORAGE_WAIT"),false);
         return;
     }
@@ -13489,13 +13516,18 @@ void FullCatalogScreen::draw(){
                 const auto pct=::psvitaalive::storage::installedDataDeletionPercent(done,total);
                 line(145,WHITE,.88f,(total?std::to_string(pct)+"%   ":"")+
                     std::string(::psvitaalive::L("ID_OP_FILES_REMOVED"))+" "+std::to_string(files));
-                line(172,DIM,.82f,std::string(::psvitaalive::L("ID_OP_DIRS_REMOVED"))+" "+std::to_string(dirs));
-            } else line(145,DIM,.82f,::psvitaalive::L("ID_OP_INDETERMINATE"));
+                line(172,DIM,.82f,deletionTimingText(true,done,total));
+            } else {
+                line(145,DIM,.82f,::psvitaalive::L("ID_OP_INDETERMINATE"));
+                line(172,DIM,.82f,deletionTimingText(false,0,0));
+            }
         } else {
             line(56,WHITE,1.04f,::psvitaalive::L("STORAGE_TITLE"));
             line(86,ACCENT,.91f,::psvitaalive::L("STORAGE_WORKING"));
             line(115,WHITE,.88f,storageOperationLabel_);
             line(145,DIM,.82f,::psvitaalive::L("STORAGE_WAIT"));
+            line(172,DIM,.82f,deletionTimingText(storageWorkPhase_.load(std::memory_order_relaxed)==StorageWorkPhase::Cleaning,
+                storageDeleteDone_.load(std::memory_order_relaxed),storageDeleteTotal_));
         }
         drawBatteryIndicator(&font_,gProtectionX+kQueueProtectionBlockW/2,gProtectionY+188,.82f,true);
         skin::hint(&font_,gProtectionX,gProtectionY+236,kQueueProtectionBlockW,DIM,.68f,

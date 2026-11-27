@@ -10,7 +10,10 @@ assert "StorageMaintenance::scan(true, homebrew)" in ui
 assert "if (includeSavedZip) scanSaved(snap,measureSizes);" in maintenance
 assert "scanInventory(false, selected.savedZip,false)" in maintenance
 assert "item.ownedPaths==selected.ownedPaths" in maintenance
-assert "if(measureSizes) for(const auto& p:item.ownedPaths) item.bytes+=measure(p);" in maintenance
+assert "if(measureSizes) for(const auto& p:item.ownedPaths)" in maintenance
+assert "item.bytes+=measure(p,&item.entries,&item.entriesKnown);" in maintenance
+assert "removedEntries->fetch_add(1,std::memory_order_relaxed)" in maintenance
+assert "deletionTimingText(removingFiles,timingDone" in inspector
 assert "storageCleanupItemAllowed(static_cast<CatalogType>(self->storageGameMode_), item.savedZip)" in ui
 assert "storageCatalogCleanupAction(scope, action)" in ui
 assert "if (storageShowsSavedZips(static_cast<CatalogType>(storageGameMode_)))" in ui

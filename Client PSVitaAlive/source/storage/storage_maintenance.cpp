@@ -41,30 +41,41 @@ std::vector<std::string> entries(const std::string& dir) {
     sceIoDclose(d);
     return v;
 }
-uint64_t measureTree(const std::string& path,unsigned depth,uint32_t& visited) {
-    if(depth>kMaxDepth || ++visited>200000) return 0;
-    StorageManager st;
-    if(!st.isDirectory(path)) {
-        const int64_t sz=st.fileSize(path);
-        return sz>0?static_cast<uint64_t>(sz):0;
-    }
+uint64_t measureTree(const std::string& path,unsigned depth,uint32_t& visited,bool& complete,
+                     const SceIoStat* known=nullptr) {
+    if(depth>kMaxDepth || visited>=200000) {complete=false;return 0;}
+    ++visited;
+    SceIoStat st{};
+    if(known && (known->st_mode & SCE_S_IFMT)) st=*known;
+    else if(sceIoGetstat(path.c_str(),&st)<0) {complete=false;return 0;}
+    const auto type=st.st_mode & SCE_S_IFMT;
+    if(type==SCE_S_IFREG) return st.st_size>0?static_cast<uint64_t>(st.st_size):0;
+    if(type!=SCE_S_IFDIR) {complete=false;return 0;}
     SceUID d=sceIoDopen(path.c_str());
-    if(d<0) return 0;
+    if(d<0) {complete=false;return 0;}
     uint64_t bytes=0;
     SceIoDirent e{};
-    while(sceIoDread(d,&e)>0 && visited<200000) {
-        if(!safeName(e.d_name)) continue;
-        const uint64_t part=measureTree(path+"/"+e.d_name,depth+1,visited);
+    int rc=0;
+    while((rc=sceIoDread(d,&e))>0) {
+        if(std::strcmp(e.d_name,".")==0 || std::strcmp(e.d_name,"..")==0) continue;
+        if(!safeName(e.d_name)) {complete=false;continue;}
+        if(visited>=200000) {complete=false;break;}
+        const uint64_t part=measureTree(path+"/"+e.d_name,depth+1,visited,complete,&e.d_stat);
         bytes=part>UINT64_MAX-bytes?UINT64_MAX:bytes+part;
     }
+    if(rc<0)complete=false;
     sceIoDclose(d);
     return bytes;
 }
-uint64_t measure(const std::string& root) {
-    uint32_t visited=0;
-    return measureTree(root,0,visited);
+uint64_t measure(const std::string& root,uint64_t* entries=nullptr,bool* known=nullptr) {
+    uint32_t visited=0;bool complete=true;
+    const auto bytes=measureTree(root,0,visited,complete);
+    if(entries)*entries+=visited;
+    if(known)*known=*known && complete;
+    return bytes;
 }
-bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
+bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0,
+               std::atomic<uint64_t>* removedEntries=nullptr) {
     if(depth>kMaxDepth) return false;
     unsigned mode=knownMode;
     if(!(mode & SCE_S_IFMT)) {
@@ -74,7 +85,11 @@ bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
         mode=st.st_mode;
     }
     const auto type=mode & SCE_S_IFMT;
-    if(type==SCE_S_IFREG) return sceIoRemove(root.c_str())>=0;
+    if(type==SCE_S_IFREG) {
+        const bool ok=sceIoRemove(root.c_str())>=0;
+        if(ok && removedEntries) removedEntries->fetch_add(1,std::memory_order_relaxed);
+        return ok;
+    }
     if(type!=SCE_S_IFDIR || depth>=kMaxDepth) return false;
     struct Child { std::string name; unsigned mode; };
     // Enumerate in bounded batches, then close before mutating the directory.
@@ -95,9 +110,13 @@ bool eraseTree(const std::string& root,unsigned depth=0,unsigned knownMode=0) {
         }
         sceIoDclose(d);
         if(rc<0 || !ok) return false;
-        if(batch.empty()) return sceIoRmdir(root.c_str())>=0;
+        if(batch.empty()) {
+            const bool ok=sceIoRmdir(root.c_str())>=0;
+            if(ok && removedEntries) removedEntries->fetch_add(1,std::memory_order_relaxed);
+            return ok;
+        }
         for(const auto& child:batch)
-            if(!eraseTree(root+"/"+child.name,depth+1,child.mode))return false;
+            if(!eraseTree(root+"/"+child.name,depth+1,child.mode,removedEntries))return false;
     }
 }
 void add(UsageSnapshot& snap,const std::string& path,const std::string& label,bool saved,
@@ -106,7 +125,9 @@ void add(UsageSnapshot& snap,const std::string& path,const std::string& label,bo
     UsageItem item;
     item.path=path; item.label=label; item.savedZip=saved;
     item.ownedPaths=paths.empty()?std::vector<std::string>{path}:paths;
-    if(measureSizes) for(const auto& p:item.ownedPaths) item.bytes+=measure(p);
+    item.entriesKnown=measureSizes;
+    if(measureSizes) for(const auto& p:item.ownedPaths)
+        item.bytes+=measure(p,&item.entries,&item.entriesKnown);
     if(saved) snap.savedZipBytes+=item.bytes;
     else snap.temporaryBytes+=item.bytes;
     snap.items.push_back(std::move(item));
@@ -214,7 +235,7 @@ UsageSnapshot scanInventory(bool includeReadOnlyCache, bool includeSavedZip,bool
 UsageSnapshot StorageMaintenance::scan(bool includeReadOnlyCache, bool includeSavedZip) {
     return scanInventory(includeReadOnlyCache,includeSavedZip,true);
 }
-bool StorageMaintenance::removeSelected(const UsageItem& selected) {
+bool StorageMaintenance::removeSelected(const UsageItem& selected,std::atomic<uint64_t>* removedEntries) {
     // A fresh inventory checks both ownership and the exact set of known paths.
     // Revalidate identity and exact ownership, not the byte size of every unrelated tree.
     const UsageSnapshot fresh=scanInventory(false, selected.savedZip,false);
@@ -227,7 +248,7 @@ bool StorageMaintenance::removeSelected(const UsageItem& selected) {
     bool ok=true;
     for(const auto& path:it->ownedPaths) {
         const uint64_t started=sceKernelGetProcessTimeWide();
-        const bool erased=eraseTree(path);
+        const bool erased=eraseTree(path,0,0,removedEntries);
         diagnostics::log("[StorageDelete] root="+path+" ms="+std::to_string((sceKernelGetProcessTimeWide()-started)/1000ULL)+" ok="+(erased?"1":"0"));
         if(!erased) {
             ok=false;

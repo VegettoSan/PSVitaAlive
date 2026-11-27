@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <atomic>
 #include <string>
 #include <vector>
 
@@ -10,6 +11,8 @@ struct UsageItem {
     std::string path;
     std::string label;
     uint64_t bytes = 0;
+    uint64_t entries = 0; // measured during the existing size scan
+    bool entriesKnown = false;
     bool savedZip = false;
     std::vector<std::string> ownedPaths;
     // Display-only recovery identity; never used to authorize cleanup.
@@ -40,7 +43,7 @@ class StorageMaintenance {
 public:
     static UsageSnapshot scan(bool includeReadOnlyCache = true, bool includeSavedZip = true);
     // Refuses to delete a path that no longer appears in a fresh owned-file scan.
-    static bool removeSelected(const UsageItem& selected);
+    static bool removeSelected(const UsageItem& selected, std::atomic<uint64_t>* removedEntries=nullptr);
     // Remove abandoned temporary work, never saved ZIPs or unknown user files.
     static uint32_t cleanupTransient();
     // Only numeric PSVitaAlive-generated PSVA_ZIP_STAGE directories are eligible.

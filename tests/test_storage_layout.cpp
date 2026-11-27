@@ -1,4 +1,5 @@
 #include "ui/storage_layout.hpp"
+#include "ui/deletion_eta.hpp"
 #include "storage/saved_zip_metadata.hpp"
 #include <cassert>
 #include <string>
@@ -27,6 +28,18 @@ int main() {
     assert(!savedZipMatchesApp("arcaea","WRONG","arcaea","ARCA69420"));
     assert(!savedZipMatchesApp("other","ARCA69420","arcaea","ARCA69420"));
 
+    // ETA uses real progress, adjusts to slower storage, and expires on stalls.
+    psvitaalive::ui::DeletionEta eta;
+    assert(eta.update(0,true,0,100)==0);
+    assert(eta.update(2000000,true,20,100)==0);
+    const auto fast=eta.update(4000000,true,40,100);
+    assert(fast==6);
+    assert(eta.update(6000000,true,42,100)>fast);
+    assert(eta.update(14000000,true,42,100)==0);
+    assert(eta.update(15000000,true,43,100)==0);
+    assert(eta.update(16000000,false,43,100)==0);
+    assert(eta.update(17000000,true,100,100)==0);
+    assert(eta.update(18000000,true,0,0)==0);
     using L = StorageLayout;
     static_assert(L::loadingSegmentOffset(400,0)==0);
     static_assert(L::loadingSegmentOffset(400,900)==300);

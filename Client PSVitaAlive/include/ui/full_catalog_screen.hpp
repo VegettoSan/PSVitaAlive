@@ -6,6 +6,7 @@
 #include "ui/loading_input_policy.hpp"
 #include "ui/navigation_focus.hpp"
 #include "ui/storage_layout.hpp"
+#include "ui/deletion_eta.hpp"
 #include "installer/app_settings.hpp"
 #include "installer/install_controller.hpp"
 #include "installer/queue_history.hpp"
@@ -671,6 +672,11 @@ private:
     StorageAppDisplayFn storageAppDisplay_;
     bool storageVisible_ = false;
     uint64_t storageTransitionUs_ = 0; // shared 200 ms entrance fade
+    uint64_t deletionStartedUs_=0, deletionFinishedUs_=0;
+    DeletionEta deletionEta_;
+    uint64_t storageDeleteTotal_=0; // approximate count from the existing inventory
+    std::atomic<uint64_t> storageDeleteDone_{0};
+    std::string deletionTimingText(bool measurable,uint64_t done,uint64_t total);
     std::string storageOperationLabel_; // immutable while the storage worker is active
     bool storageConfirm_ = false;
     int storagePendingAction_ = -1; // double-confirm the exact cleanup action

@@ -353,6 +353,10 @@ void FullCatalogScreen::startInstalledDataOperation(int action) {
     installedDataPreflightFailed_.store(false, std::memory_order_release);
     installedDataScanProgress_.reset();
     installedDataOpProgress_.reset();
+    if(action>=0) {
+        deletionStartedUs_=sceKernelGetProcessTimeWide();
+        deletionFinishedUs_=0;deletionEta_.reset();
+    }
     installedDataWorker_ = sceKernelCreateThread("PSVAInstalledData",
         &FullCatalogScreen::installedDataWorkerEntry,
         0x10000110, 96 * 1024, 0, 0, nullptr);
@@ -600,7 +604,10 @@ void FullCatalogScreen::pollInstalledDataOperation() {
     sceKernelWaitThreadEnd(installedDataWorker_, nullptr, nullptr);
     sceKernelDeleteThread(installedDataWorker_);
     installedDataWorker_ = -1;
-    if (finishedAction >= 0) releaseInstalledDataProtection();
+    if (finishedAction >= 0) {
+        deletionFinishedUs_=sceKernelGetProcessTimeWide();
+        releaseInstalledDataProtection();
+    }
 
     if (finishedAction == -3) {
         const std::string measured = installedDataScanFocusId_;
@@ -1048,9 +1055,13 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 (sceKernelGetProcessTimeWide()/19000ULL)%(barW-40));
             skin::surface(skin::ui_atlas::ui_progress_fill,marker,barY,40,23,ACCENT);
         }
-        drawMarqueeText(&font_,x+30,y+420,W-60,DIM,.92f,
+        const uint64_t timingDone=static_cast<uint64_t>(prog.filesRemoved.load(std::memory_order_relaxed))+
+            prog.foldersRemoved.load(std::memory_order_relaxed);
+        drawMarqueeText(&font_,x+30,y+417,W-60,WHITE,.94f,
+            deletionTimingText(removingFiles,timingDone,prog.entriesTotal.load(std::memory_order_acquire)),false);
+        drawMarqueeText(&font_,x+30,y+450,W-60,DIM,.92f,
             ::psvitaalive::L("ID_OP_DO_NOT_CLOSE"),false);
-        drawMarqueeText(&font_,x+30,y+451,W-60,ACCENT,.86f,
+        drawMarqueeText(&font_,x+30,y+481,W-60,ACCENT,.86f,
             ::psvitaalive::L("LOCKED_BANNER_1"),false);
         return;
     }
@@ -1146,6 +1157,8 @@ void FullCatalogScreen::drawInstalledDataOverlay() {
                 y+(action==1?224:271),dataOk?ACCENT:WHITE,1.00f,
                 ::psvitaalive::L(dataText));
         }
+        drawMarqueeText(&font_,x+30,y+316,W-60,WHITE,.94f,
+            deletionTimingText(false,0,0),false);
         ::psvitaalive::ui::uiDrawText(&font_,x+30,y+345,DIM,.90f,
             ::psvitaalive::L("ID_RESULT_RECHECK"));
         skin::surface(skin::ui_atlas::ui_button_primary,x+30,y+381,W-60,62,ACCENT);
