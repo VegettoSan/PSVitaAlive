@@ -1,0 +1,50 @@
+{
+  "app_id": "bikerace-vita",
+  "identifier": "psvitaalive-bikerace-vita",
+  "source_url": "https://github.com/franciscoclou/bikerace-vita/releases/download/v1.1/BikeRace.vpk",
+  "files": {
+    "bikerace-vita v1.1.vpk": {
+      "size": 1161978,
+      "md5": "0eb3e179b9eedf5c0148a685d533e8b4",
+      "sha256": "d05474c9db1552f01519e15fdc9cef5919aff4ba59427c0cc964aa021ae89c6d"
+    },
+    "icon0.png": {
+      "size": 11290,
+      "md5": "8f325b5244d26cbbc8810dec5e94d616",
+      "sha256": "80438637f98cbabe43e91f02cefdd0bfd58695f21990341a9b6c4a02b218b298"
+    },
+    "shot_01.png": {
+      "size": 181396,
+      "md5": "0dcac4ea7dd4629104af21b2582b78be",
+      "sha256": "8b00b3bde524a7a1de0c63559c7aef3916d811aedb24570062d6678146c2af68"
+    },
+    "SOURCES.txt": {
+      "size": 664,
+      "md5": "9ff4dc1cb166bc0a8b8d44e4a3bec3ed",
+      "sha256": "e9ae39534f5083d598b337418b8c510ea5a440f3a5567d87f99b1b9881e30ced"
+    }
+  },
+  "media": {
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/80438637f98cbabe43e91f02cefdd0bfd58695f21990341a9b6c4a02b218b298.png": "icon0.png",
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/bikerace-vita/8b00b3bde524a7a1de0c63559c7aef3916d811aedb24570062d6678146c2af68.png": "shot_01.png"
+  },
+  "attempted": [
+    "bikerace-vita v1.1.vpk"
+  ],
+  "status": "CREATING",
+  "created_at": "2026-11-27T23:00:34+00:00",
+  "source_spec": {
+    "automatic": true,
+    "title_id": "BIKR00001",
+    "name": "Bike Race",
+    "search_title": "Bike Race",
+    "version": "1.1",
+    "repo": "franciscoclou/bikerace-vita",
+    "tag": "v1.1",
+    "asset": "BikeRace.vpk",
+    "url": "https://github.com/franciscoclou/bikerace-vita/releases/download/v1.1/BikeRace.vpk",
+    "size": 1161978,
+    "sha256": "d05474c9db1552f01519e15fdc9cef5919aff4ba59427c0cc964aa021ae89c6d",
+    "creator": "franciscoclou"
+  }
+}
