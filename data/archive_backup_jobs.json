@@ -24,6 +24,18 @@
       "title_id": "DLTVITA01",
       "sha256": "dda1e0cc9140ed8288ea08e983410799ffaffbbaebd4aa77daf405f8dcc09b9a",
       "md5": "f73ad319e26b5466f350510300507d07"
+    },
+    "vitamediadeck": {
+      "version": "1.4.4",
+      "source_url": "https://github.com/spyro-98/VitaMediaDeck/releases/download/1.4.4/VitaMediaDeck-1.4.4-beta.vpk",
+      "archive_identifier": "vita-media-deck",
+      "filename": "vitamediadeck v1.4.4.vpk",
+      "status": "TRANSFER_PREPARED",
+      "created_at": "2026-11-27T00:43:40+00:00",
+      "size_bytes": 6323853,
+      "title_id": "VMDK00001",
+      "sha256": "f5c7e1d98d09c4b9bc4e8a3dd9750267161348dd5f5bcf1492a1572de3979cfd",
+      "md5": "4dc7e1e342afa934dd46a5c3050249da"
     }
   },
   "superseded": {
