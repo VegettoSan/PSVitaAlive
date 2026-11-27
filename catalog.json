@@ -3810,9 +3810,9 @@
     "v": "0.9.15",
     "vd": "2026-11-12",
     "sz": 1001488,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/umd-player/e87a5f5847e953743c692803749d94944dbd7f346e30ff17c9466cb81a0a5122.png",
+    "ic": "https://archive.org/download/psvitaalive-umd-player/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/umd-player/709dcd3771957caa7ffe8f2be878d115c044d89c48a8ab39cabb80882729f252.png"
+      "https://archive.org/download/psvitaalive-umd-player/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1420539122",
@@ -3827,7 +3827,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/xesf/umd-player/releases/download/v0.9.15/umdplayer-v0.9.15.vpk",
+        "u": "https://archive.org/download/psvitaalive-umd-player/umd-player%20v0.9.15.vpk",
         "rec": true
       }
     ]
