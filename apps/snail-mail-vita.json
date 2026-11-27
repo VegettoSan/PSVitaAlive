@@ -16,10 +16,10 @@
   "v": "1.0.3",
   "vd": "2026-10-22",
   "sz": 1132906,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/8e400c3391cca23087a1d4046f0bd7fd5d763151270d43e5869a4255383ec809.png",
+  "ic": "https://archive.org/download/psvitaalive-snail-mail-vita/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/63dafdaf6cc8c598fc12d9d45c569e2400b48c913d3a1daee8ba6fca548f8305.png",
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/snail-mail-vita/96979f681787f83aad298c545f3e3631eb5232b15f1b3139fa4eec4e0c9a579f.png"
+    "https://archive.org/download/psvitaalive-snail-mail-vita/shot_01.png",
+    "https://archive.org/download/psvitaalive-snail-mail-vita/shot_02.png"
   ],
   "sn": "Orbit",
   "si": "gh:1408995882",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/MetalSyntax/Snail-Mail-vita/releases/download/v1.0.3/snailmail.vpk",
+      "u": "https://archive.org/download/psvitaalive-snail-mail-vita/snail-mail-vita%20v1.0.3.vpk",
       "rec": true
     }
   ]
