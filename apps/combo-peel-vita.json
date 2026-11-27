@@ -1,0 +1,40 @@
+{
+  "id": "combo-peel-vita",
+  "tid": "CPEL00001",
+  "n": "ComboPeel",
+  "d": "Plugin para PS Vita: desbloqueia a tela de bloqueio com analógico ↓ + X",
+  "ld": "Plugin de kernel (taiHEN) para PS Vita, do tipo **qualidade de vida (QoL)**: desbloqueia a tela de bloqueio com um combo de botões, com a mesma animação de \"descascar\" (peel) do gesto com o dedo.",
+  "aids": [
+    "retroaria"
+  ],
+  "cid": "plugins",
+  "sids": [
+    "other"
+  ],
+  "req": "- Requer HENkaku/Ensō com \"Enable Unsafe Homebrew\" ativado. Para remover, instale o VPK de novo e aperte Triângulo (Desinstalar).\n- Requisitos: HENkaku/Ensō com \"Enable Unsafe Homebrew\" ativado nas HENkaku Settings.",
+  "st": "Archive",
+  "v": "1.1",
+  "vd": "2026-11-16",
+  "sz": 94035,
+  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/01a02a09651ed86590a56204938a5e6342c0d213f9d6b2956a4a7ed283f81e17.png",
+  "ss": [
+    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/combo-peel-vita/957554cf5f8f5fd23fdd4ecf3d45215246830644b672e50e560a6f2fa12a59b0.png"
+  ],
+  "sn": "Orbit",
+  "si": "gh:1459407204",
+  "su": "https://github.com/Retroaria/combo-peel-vita",
+  "rp": "https://github.com/Retroaria/combo-peel-vita/releases/tag/v1.1",
+  "l": [
+    {
+      "t": "Repository",
+      "n": "GitHub",
+      "u": "https://github.com/Retroaria/combo-peel-vita"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/Retroaria/combo-peel-vita/releases/download/v1.1/ComboPeel.vpk",
+      "rec": true
+    }
+  ]
+}
