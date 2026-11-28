@@ -29,7 +29,8 @@
     "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/daff8cd1d336974b6de735b6df4f5cc09905787739cf60f02e7867823525f9c6.png": "shot_01.png"
   },
   "attempted": [
-    "vitairc v1.5.vpk"
+    "vitairc v1.5.vpk",
+    "icon0.png"
   ],
   "status": "CREATING",
   "created_at": "2026-11-27T20:58:24+00:00",
