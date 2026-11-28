@@ -1,0 +1,9 @@
+# Preservation expansion (2026-11-27)
+
+- Canonical artwork: exact VitaDBtoo and NeoVitaDB raw paths and VitaDB HTTPS hashed PNG paths are supported; existing image decoder, redirect restrictions, size limits, original URLs in SOURCES.txt and SHA-256 deduplication remain in force. This does not grant redistribution permission.
+- Stale first-PUT checkpoints: after two hours, use a single read-only ownership check and report UPLOAD_REVIEW_REQUIRED when unresolved. Never reset the checkpoint, switch identifiers or repeat an uncertain PUT. A later matching owner allows normal recovery.
+- Existing Archive.org URLs: the backup report now distinguishes already-hosted ownership notices from missing destinations and checks up to 12 per execution (rotating by workflow run number). The manifest result is not a byte-level download verification or authorization to upload.
+- Missing VPK links: inspect only explicit stable release tags, report direct VPK and Vita ZIP candidates separately, never install or publish a ZIP as a VPK. Real TITLE_ID, package validation and redistribution review remain required before adding a download.
+- GitHub confirmed GBVitaEX → MGBAVitaEX (repo ID 1338621900) and vita-save-sync → save-sync (repo ID 1276266191). Update only canonical repository references; keep the current release, VPK URL, version, authors and Title ID.
+- The ZIP-only CrossCraft Classic, CrossCraft SurvivalTest and TheXTech releases, fheroes2 (no Vita asset in the pinned release), itch.io DS8 Drumstream and the versionless Vita Steam Link download remain review cases. No credentials, paid content, Game Files, third-party Archive.org items or generated catalogs are modified by this change.
+- Validate through the normal PR/Actions flow before deploying. The existing missing-size preview test is aligned with the real official asset metadata policy (a catalog size is an estimate).

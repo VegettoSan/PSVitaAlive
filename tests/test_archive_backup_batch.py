@@ -607,5 +607,35 @@ class BatchTests(unittest.TestCase):
                     download_source(dict(item, size_bytes=1), target, max_file=100)
 
 
+class HostedOwnershipAuditTests(unittest.TestCase):
+    def test_audit_classifies_manifest_without_authorizing_uploads(self):
+        from scripts.archive_backup_batch import audit_existing_hosted
+        from scripts.archive_backup_batch_preview import candidates
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            for app_id in ("alpha", "bravo", "charlie"):
+                record = {"id": app_id, "title_id": app_id.upper() + "0000", "status": "Legacy",
+                          "links": [{"type": "Download", "name": "VPK",
+                                     "url": f"https://archive.org/download/{app_id}/app.vpk"}]}
+                (root / "apps" / (app_id + ".json")).write_text(json.dumps(record))
+            queue, reviews = candidates(root)
+            self.assertEqual(queue, [])
+            self.assertEqual(len(reviews), 3)
+            def fetch(identifier):
+                owner = {"alpha": "private@example.test", "bravo": "external@example.test", "charlie": ""}[identifier]
+                return {"metadata": {"uploader": owner}, "files": [{"name": "app.vpk"}]}
+            audit = audit_existing_hosted(root, reviews, "private@example.test", fetch=fetch)
+            self.assertEqual(audit["checked"], 3)
+            self.assertEqual([r["status"] for r in audit["rows"]],
+                             ["HOSTED_OWNED", "HOSTED_EXTERNAL", "HOSTED_OWNER_UNKNOWN"])
+            self.assertTrue(all(r["file_status"] == "PRESENT" for r in audit["rows"]))
+            self.assertNotIn("@example.test", json.dumps(audit))
+            self.assertEqual(audit_existing_hosted(root, reviews, "", fetch=fetch)["checked"], 0)
+            first = audit_existing_hosted(root, reviews, "private@example.test", fetch=fetch, max_items=1, run_number=1)
+            second = audit_existing_hosted(root, reviews, "private@example.test", fetch=fetch, max_items=1, run_number=2)
+            self.assertNotEqual(first["rows"][0]["app_id"], second["rows"][0]["app_id"])
+
+
 if __name__ == "__main__":
     unittest.main()

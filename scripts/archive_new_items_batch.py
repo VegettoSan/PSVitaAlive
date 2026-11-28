@@ -19,7 +19,9 @@ import tempfile
 import zipfile
 from collections import Counter
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import unquote, urlparse, quote
+
+import requests
 
 from scripts import archive_item_creation as initial
 from scripts.archive_backup_batch import (
@@ -28,9 +30,9 @@ from scripts.archive_backup_batch import (
     git_publish, load_policy, policy_entry, now_utc, public_url, save_canonical,
 )
 from scripts.archive_backup_batch_preview import catalog_current_asset, upload_map
-from scripts.archive_media_backup import fetch_image, safe_media_url
+from scripts.archive_media_backup import fetch_image, safe_media_url, catalog_artwork_provider
 from scripts.catalog_schema_v2 import to_v1
-from scripts.sync_release_updates import select_current_download, normalized_repo
+from scripts.sync_release_updates import select_current_download, normalized_repo, app_repositories
 
 LOG = initial.LOG
 STATE_DIR = Path("data/archive_new_item_jobs")
@@ -150,11 +152,13 @@ def author_credit(root, app):
 
 
 def artwork_download_url(url, spec):
-    """Convert only canonical GitHub blob raw links; keep original provenance."""
+    """Resolve canonical upstream and narrowly reviewed catalog artwork; keep provenance."""
     if not spec.get("automatic"):
         return url if source_artwork(url, spec) else None
     if not safe_media_url(url):
         return None
+    if catalog_artwork_provider(url):
+        return url
     u = urlparse(url)
     repos = (spec["repo"].lower(), "vegettosan/psvitaalive")
     if not any(u.path.lower().startswith("/" + repo + "/") for repo in repos):
@@ -429,7 +433,7 @@ def run_one(root, app_id, spec, creds, counts):
             publish(root, path, raw, app, item, files, media, job)
             return "PUBLISHED_VERIFIED"
         if job["attempted"]:
-            initial.wait_owned_item(identifier, creds[2])
+            initial.resume_owned_item(identifier, creds[2], job)
     with tempfile.TemporaryDirectory(prefix="psva_new_") as td:
         folder = Path(td)
         staged_files, staged_media = stage(app, item, folder, spec)
@@ -530,6 +534,65 @@ def automatic_queue(root, creds, counts, *, execute):
                 return rows
     return rows
 
+def inspect_missing_vpk_release(app, *, get=None):
+    """Read-only exact-tag discovery. ZIPs and candidate VPKs are not published."""
+    get = get or requests.get
+    refs = [app.get("release_page")] + [link.get("url") for link in app.get("links", [])
+                                      if isinstance(link, dict)]
+    repos = app_repositories(app)
+    tags = set()
+    for ref in refs:
+        if not isinstance(ref, str):
+            continue
+        try:
+            u = urlparse(ref)
+            parts = [unquote(p) for p in u.path.split("/") if p]
+            repo = normalized_repo(ref)
+            if (u.scheme == "https" and u.netloc.lower() == "github.com"
+                    and not u.query and not u.fragment and repo in repos and len(parts) == 5
+                    and parts[2:4] == ["releases", "tag"] and parts[4]):
+                tags.add((repo, parts[4]))
+        except ValueError:
+            continue
+    if len(tags) != 1 or any(isinstance(link, dict) and
+                             str(link.get("type", "")).lower() == "download"
+                             for link in app.get("links", [])):
+        return {"status": "RELEASE_SOURCE_REVIEW", "detail": "No unique explicit GitHub release tag or existing Download links"}
+    repo, tag = next(iter(tags))
+    headers = {"Accept": "application/vnd.github+json", "User-Agent": "PSVitaAlive-Release-Audit"}
+    if os.environ.get("GH_TOKEN"):
+        headers["Authorization"] = "Bearer " + os.environ["GH_TOKEN"]
+    try:
+        response = get(f"https://api.github.com/repos/{repo}/releases/tags/{quote(tag, safe='')}",
+                       headers=headers, timeout=(10, 20), allow_redirects=False)
+        if response.status_code != 200:
+            return {"status": "RELEASE_METADATA_UNAVAILABLE", "detail": f"HTTP {response.status_code}"}
+        release = response.json()
+        if release.get("tag_name") != tag or release.get("draft") is not False or release.get("prerelease") is not False:
+            return {"status": "RELEASE_SOURCE_REVIEW", "detail": "Exact stable release identity not confirmed"}
+        vpks, zips = [], []
+        for asset in release.get("assets", []):
+            if not isinstance(asset, dict) or asset.get("state") != "uploaded":
+                continue
+            name, url, size = asset.get("name"), asset.get("browser_download_url"), asset.get("size")
+            if not isinstance(name, str) or not isinstance(url, str) or type(size) is not int or not 0 < size <= HARD_MAX_FILE:
+                continue
+            u = urlparse(url)
+            parts = [unquote(p) for p in u.path.split("/") if p]
+            if (u.scheme != "https" or u.netloc.lower() != "github.com" or u.query or u.fragment
+                    or normalized_repo(url) != repo or parts[2:] != ["releases", "download", tag, name]):
+                continue
+            record = {"name": name, "url": url, "size": size}
+            if name.lower().endswith(".vpk"):
+                vpks.append(record)
+            elif name.lower().endswith(".zip") and re.search(r"(?:^|[-_.])(?:psvita|vita)(?:[-_.]|$)", name, re.I):
+                zips.append(record)
+        status = "DIRECT_VPK_REVIEW" if vpks else "ZIP_PACKAGE_REVIEW" if zips else "NO_VITA_ASSET"
+        return {"status": status, "repo": repo, "tag": tag, "vpk_assets": vpks, "vita_zip_assets": zips}
+    except Exception:
+        return {"status": "RELEASE_METADATA_UNAVAILABLE", "detail": "Release metadata could not be verified"}
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", type=Path, default=ROOT)
@@ -566,7 +629,17 @@ def main():
     if args.automatic and not any(r["status"] in STOP_BATCH for r in rows):
         rows.extend(automatic_queue(root, creds, counts, execute=args.execute))
     args.report.parent.mkdir(parents=True, exist_ok=True)
-    args.report.write_text(json.dumps({"rows": rows, "mode": "EXECUTE" if args.execute else "DRY_RUN"}, indent=2) + "\n", "utf-8")
+    discovery = []
+    if args.execute and args.automatic and not any(r["status"] in STOP_BATCH for r in rows):
+        missing = [r for r in rows if r["status"] == "SOURCE_REVIEW"
+                   and r.get("detail") == "no unique Download button named VPK: manual review"]
+        for row in missing[:8]:
+            app = to_v1(json.loads((root / "apps" / (row["app_id"] + ".json")).read_text("utf-8")))
+            result = dict(inspect_missing_vpk_release(app), app_id=row["app_id"])
+            discovery.append(result)
+            print("Missing VPK release audit: " + json.dumps(result), flush=True)
+    args.report.write_text(json.dumps({"rows": rows, "release_discovery": discovery,
+                                      "mode": "EXECUTE" if args.execute else "DRY_RUN"}, indent=2) + "\n", "utf-8")
     return 1 if any(r["status"] in STOP_BATCH for r in rows) else 0
 
 
