@@ -113,7 +113,7 @@ jobs:
 
       - name: Inspect ZIP release packages without publishing catalog links
         if: github.event_name == 'repository_dispatch' && github.event.client_payload.monitor_repository == 'VegettoSan/PsVita-Homebrews-New-Releases'
-        timeout-minutes: 8
+        timeout-minutes: 16
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

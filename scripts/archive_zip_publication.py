@@ -37,9 +37,9 @@ from scripts.sync_release_updates import (
 STATE = Path("data/archive_zip_publication_jobs.json")
 HEX = re.compile(r"[0-9a-f]{64}")
 IDENT = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{0,100}")
-MAX_JOBS = 2
-MAX_BYTES = 400 * audit.MIB
-MAX_SECONDS = 600
+MAX_JOBS = 6
+MAX_BYTES = 1024 * audit.MIB
+MAX_SECONDS = 1500
 FINAL = "PUBLISHED_VERIFIED"
 
 
@@ -150,13 +150,14 @@ def stage_vpk(asset, result, inner, app, folder, name, *, download=None):
     """Re-read exact original bytes. Do not extract unrelated files or game data."""
     download = download or stream_download
     outer = folder / "release.zip"
+    deadline = time.monotonic() + 180
     with requests.Session() as session:
         session.trust_env = False
-        size, _, sha = download(asset["url"], outer, audit.MAX_ARCHIVE, session=session)
+        size, _, sha = download(asset["url"], outer, min(audit.MAX_ARCHIVE, asset["size"]),
+                                session=session, deadline=deadline)
     if (size != asset["size"] or sha != result["outer_sha256"]
             or (asset.get("digest") and asset["digest"] != "sha256:" + sha)):
         raise Deferred("SOURCE_INTEGRITY_RETRY", "Outer ZIP differs from inspected bytes")
-    deadline = time.monotonic() + 180
     actual = audit.inspect_zip(outer, app["title_id"], deadline=deadline)
     if actual.get("status") != "VPK_FOUND" or actual.get("matches") != [inner]:
         raise Deferred("SOURCE_REVIEW", "Inner VPK proof changed")
@@ -358,12 +359,16 @@ def main():
         selected = selected[offset:] + selected[:offset]
     resume = [r for r in selected if r[0]["id"] in pending]
     new = [r for r in selected if r[0]["id"] not in pending]
+    updates = [r for r in new if select_current_download(r[0].get("links", []))[0]
+               and newer_version(r[0].get("version"), r[2])]
+    missing = [r for r in new if r not in updates]
     selected = []
-    while resume or new:
-        if resume:
-            selected.append(resume.pop(0))
-        if new:
-            selected.append(new.pop(0))
+    # Alternate resumptions, updates and initial preservation; an old
+    # stuck transfer cannot consume all six publication attempts.
+    while resume or updates or missing:
+        for lane in (resume, updates, missing):
+            if lane:
+                selected.append(lane.pop(0))
     rows, attempts, total, stopped = [], 0, 0, False
     deadline = time.monotonic() + MAX_SECONDS
     for app, repo, tag, rid, allow_pre in selected[:audit.MAX_RELEASES]:
@@ -376,10 +381,14 @@ def main():
             if release.get("prerelease") and not allow_pre:
                 raise Deferred("SOURCE_REVIEW", "Prerelease policy")
             proof = choose_verified(release, app, cache)
-            if total + proof[1]["size"] > MAX_BYTES:
+            job = state["jobs"].get(proof[0], {})
+            # A fully attempted checkpoint needs public verification only;
+            # it does not re-download its ZIP source.
+            cost = 0 if job.get("files") and set(job.get("attempted", [])) == set(job["files"]) else proof[1]["size"]
+            if total + cost > MAX_BYTES:
                 raise Deferred("DEFERRED", "ZIP byte budget")
             attempts += 1
-            total += proof[1]["size"]
+            total += cost
             status = run_one(root, state, app, repo, tag, release, proof, creds) if args.execute else "READY_PREVIEW"
         except Deferred as exc:
             status, detail = exc.status, exc.reason
