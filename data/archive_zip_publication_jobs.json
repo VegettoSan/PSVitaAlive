@@ -133,6 +133,49 @@
       ],
       "status": "TRANSFERRING",
       "created_at": "2026-11-28T00:58:10+00:00"
+    },
+    "76c592a094144245a8cd113d94b1c14031f5c67d22befe4fd7042ea84939cfe3": {
+      "app_id": "crosscraft-survivaltest",
+      "title_id": "CCST00100",
+      "identifier": "psvitaalive-crosscraft-survivaltest",
+      "create": true,
+      "asset": {
+        "repo": "crosscraft/crosscraft-survivaltest",
+        "tag": "ST4",
+        "release_id": 84634138,
+        "asset_id": 86689895,
+        "name": "CrossCraft-Vita.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-Vita.zip",
+        "size": 17518102,
+        "updated_at": "2022-12-02T00:27:24Z",
+        "digest": null
+      },
+      "inner": {
+        "entry": "CrossCraft-SurvivalTest.vpk",
+        "size": 10000187,
+        "sha256": "9bfe340cc776e6dafc95dbd27e6d3d8dfe5b80e5e79a2a99530622241d138131",
+        "title_id": "CCST00100"
+      },
+      "outer_sha256": "abcb1bc290ce3400023747e9a2ffabb38f7099c4b34104f8ae3b9c58ed6d2a50",
+      "name": "crosscraft-survivaltest ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da.vpk",
+      "sources": "crosscraft-survivaltest ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da-SOURCES.txt",
+      "files": {
+        "crosscraft-survivaltest ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da.vpk": {
+          "size": 10000187,
+          "md5": "f64bb19e965f26130d0c36bbfb71b3d0",
+          "sha256": "9bfe340cc776e6dafc95dbd27e6d3d8dfe5b80e5e79a2a99530622241d138131"
+        },
+        "crosscraft-survivaltest ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da-SOURCES.txt": {
+          "size": 570,
+          "md5": "cb9484a859658525c4448167fb74e29c",
+          "sha256": "fabc74c084fb0ed94a0b2b2e0c6082bf56cccc95699e0e09d4a6e5789ebd21f3"
+        }
+      },
+      "attempted": [
+        "crosscraft-survivaltest ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da.vpk"
+      ],
+      "status": "CREATING",
+      "created_at": "2026-11-28T00:58:35+00:00"
     }
   }
 }
