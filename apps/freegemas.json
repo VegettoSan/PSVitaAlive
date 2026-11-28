@@ -11,10 +11,10 @@
   "sids": [
     "other"
   ],
-  "v": "v.22.02",
-  "vd": "2022-02-15",
+  "v": "26.11",
+  "vd": "2026-11-18",
   "req": "Not specified",
-  "sz": 5516346,
+  "sz": 5431662,
   "st": "Legacy",
   "ic": "https://archive.org/download/psvitaalive-freegemas/icon0.png",
   "ss": [
@@ -27,7 +27,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/psvitaalive-freegemas/freegemas.vpk",
+      "u": "https://archive.org/download/psvitaalive-freegemas/freegemas%20v26.11--zip-cae1f57548f3b033.vpk",
       "rec": true
     },
     {

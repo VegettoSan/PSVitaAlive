@@ -87,8 +87,9 @@
         "freegemas v26.11--zip-cae1f57548f3b033.vpk",
         "freegemas v26.11--zip-cae1f57548f3b033-SOURCES.txt"
       ],
-      "status": "TRANSFERRING",
-      "created_at": "2026-11-28T00:57:58+00:00"
+      "status": "PUBLISHED_VERIFIED",
+      "created_at": "2026-11-28T00:57:58+00:00",
+      "completed_at": "2026-11-28T01:35:47+00:00"
     },
     "76539a9950692a02de4b1e57e5a06434fc53cfd5fa536b20e168975f0b2438dd": {
       "app_id": "star-fox-adventures",
