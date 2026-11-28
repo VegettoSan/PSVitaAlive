@@ -14,17 +14,17 @@
     "source-port",
     "other"
   ],
-  "v": "2.0",
-  "vd": "2026-11-27",
+  "v": "2.0.1",
+  "vd": "2026-11-28",
   "req": "You need a homebrew-enabled Vita, VitaShell, about 3 GB free, your own Wii USA Rev 1 (R4QE01) game dump and a legitimately obtained libshacccg.suprx.",
-  "sz": 11803115,
+  "sz": 11769156,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/mario-strikers-charged-ps-vita/mario-strikers-charged%20v2.0.vpk",
-      "sz": 11803115,
+      "u": "https://github.com/CBOC-Vita-Lab/strikers-charged-vita/releases/download/v2.0.1/Strikers-Charged-Vita.vpk",
+      "sz": 11769156,
       "rec": true
     },
     {
