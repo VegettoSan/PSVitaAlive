@@ -88,6 +88,94 @@
         "matches": [],
         "outer_sha256": "be79e3fcbcd1c2fcdf81d13be052ddb7374735b5f750d4eeb2eaeb3f36aad3f9"
       }
+    },
+    "7655698ac3b2488f7957a719f3f042b1652d7926fb07a84a4726991ef936656e": {
+      "app_id": "crosscraft-classic",
+      "title_id": "CCC000110",
+      "asset": {
+        "repo": "crosscraft/crosscraft-classic",
+        "tag": "v1.3",
+        "release_id": 84633227,
+        "asset_id": 86669476,
+        "name": "CrossCraft-Windows.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-Windows.zip",
+        "size": 8831316,
+        "updated_at": "2022-12-01T20:29:10Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "ce66259fa0c6ffa995d85db1d746fd73718305b798fbf9e6d3b26c8cbc78d924"
+      }
+    },
+    "76c592a094144245a8cd113d94b1c14031f5c67d22befe4fd7042ea84939cfe3": {
+      "app_id": "crosscraft-survivaltest",
+      "title_id": "CCST00100",
+      "asset": {
+        "repo": "crosscraft/crosscraft-survivaltest",
+        "tag": "ST4",
+        "release_id": 84634138,
+        "asset_id": 86689895,
+        "name": "CrossCraft-Vita.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-Vita.zip",
+        "size": 17518102,
+        "updated_at": "2022-12-02T00:27:24Z",
+        "digest": null
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "CrossCraft-SurvivalTest.vpk",
+            "size": 10000187,
+            "sha256": "9bfe340cc776e6dafc95dbd27e6d3d8dfe5b80e5e79a2a99530622241d138131",
+            "title_id": "CCST00100"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "abcb1bc290ce3400023747e9a2ffabb38f7099c4b34104f8ae3b9c58ed6d2a50"
+      }
+    },
+    "deee6b80edcfc3134eb76f20cfc8cdac0e99e8f551ae86ffb74b2f1794e1da78": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232563,
+        "name": "fheroes2_android.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_android.zip",
+        "size": 27189959,
+        "updated_at": "2026-06-30T14:33:00Z",
+        "digest": "sha256:88e852dbe9e5ca999e8140ee69547b17789acd179e0fb731f27f9f0a345bf3af"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "88e852dbe9e5ca999e8140ee69547b17789acd179e0fb731f27f9f0a345bf3af"
+      }
+    },
+    "7a7985330d0dbf6f7be1b93607e80da8e1727eb3fb6de98562b4b8c7efc3710a": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725524870,
+        "name": "fheroes2_android.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_android.zip",
+        "size": 27630101,
+        "updated_at": "2026-11-08T23:25:19Z",
+        "digest": "sha256:b76acc2c70acdaec6c66ad481c63c9e12c214c7707bd9b9d73c59b275f71dc63"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "b76acc2c70acdaec6c66ad481c63c9e12c214c7707bd9b9d73c59b275f71dc63"
+      }
     }
   }
 }
