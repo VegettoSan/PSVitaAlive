@@ -389,6 +389,11 @@ def reserved_identifiers(root, app_id):
             reserved.add(identifier.casefold())
         except Exception:
             raise Deferred("BATCH_ABORTED", "Cannot establish other checkpoint identifier reservations") from None
+    # ZIP-derived first creations also reserve identifiers before their first PUT.
+    from scripts.archive_zip_publication import load_jobs
+    for record in load_jobs(root)["jobs"].values():
+        if record.get("app_id") != app_id:
+            reserved.add(record["identifier"].casefold())
     for other, ids in upload_map(root / LOG).items():
         if other != app_id:
             reserved.update(i.casefold() for i in ids)
@@ -400,6 +405,9 @@ def run_one(root, app_id, spec, creds, counts):
     raw = json.loads(path.read_text("utf-8"))
     app = to_v1(raw)
     job = read_job(root, app_id)
+    from scripts.archive_zip_publication import pending_creation
+    if pending_creation(root, app_id):
+        raise Deferred("VERIFYING", "ZIP first creation already reserved; no duplicate item")
     if job.get("status") == "PUBLISHED_VERIFIED":
         return "ALREADY_PUBLISHED"
     if policy_entry(load_policy(root), app_id).get("enabled") is not True:

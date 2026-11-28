@@ -208,7 +208,8 @@ def release_assets(repo, tag, expected_release_id=None, *, get=None):
                                a["name"].casefold(), a["asset_id"]))
     if len({a["asset_id"] for a in result}) != len(result):
         raise ValueError("Duplicate asset IDs")
-    return {"direct": False, "release_id": rid, "prerelease": release["prerelease"], "assets": result}
+    return {"direct": False, "release_id": rid, "prerelease": release["prerelease"],
+            "published": release.get("published_at"), "assets": result}
 
 
 def cache_key(asset, app):
@@ -329,6 +330,7 @@ def scan(root, snapshot, cache, *, metadata=None, inspector=None, rotation=0):
         except (ValueError, TypeError, requests.RequestException):
             row["status"] = "METADATA_RETRY"
             continue
+        downloaded_here = False
         for asset in release["assets"]:
             key = cache_key(asset, app)
             hit = key in entries
@@ -336,11 +338,12 @@ def scan(root, snapshot, cache, *, metadata=None, inspector=None, rotation=0):
                 outcome = entries[key]["result"]
             elif asset["size"] > MAX_ARCHIVE:
                 outcome = {"status": "LIMIT_REVIEW", "matches": []}
-            elif (downloads >= MAX_DOWNLOADS or total + asset["size"] > MAX_BATCH
+            elif (downloaded_here or downloads >= MAX_DOWNLOADS or total + asset["size"] > MAX_BATCH
                   or time.monotonic() + 25 >= deadline):
                 outcome = {"status": "DEFERRED", "matches": []}
             else:
                 downloads += 1
+                downloaded_here = True
                 total += asset["size"]
                 outcome = inspector(asset, app, deadline=deadline)
             if not hit and outcome["status"] in TERMINAL:
