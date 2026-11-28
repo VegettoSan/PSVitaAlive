@@ -118,6 +118,62 @@ class ZipAuditTests(unittest.TestCase):
             (root / "apps/other.json").write_text(json.dumps(dict(x, id="other", title_id="OTHER0001")))
             self.assertFalse(a.collect_targets(root, {"schema_version": 1, "releases": []}))
 
+    def test_rounds_prioritize_updates_and_do_not_starve_other_apps(self):
+        star = app()
+        old = dict(app(), id="old-app", title_id="OTHER0001", links=[])
+        another = dict(app(), id="third-app", title_id="OTHER0002", links=[])
+        base_asset = release_asset()
+        def assets(prefix, count):
+            return [dict(base_asset, asset_id=i + 1, name=f"{prefix}-{i}.zip", size=100)
+                    for i in range(count)]
+        mapping = {"old": assets("linux", 4), "star": assets("StarFox-Vita", 2),
+                   "third": assets("other", 2), "old2": assets("other", 2)}
+        targets = [(old, "a/b", "old", None, False),
+                   (old, "a/b", "old2", None, False),
+                   (another, "a/c", "third", None, False),
+                   (star, "a/d", "v0.2.0", None, False)]
+        # The fake metadata supplies distinct URLs/asset IDs by release.
+        def metadata(repo, tag, rid):
+            key = "star" if tag == "v0.2.0" else tag
+            return {"direct": False, "prerelease": False,
+                    "assets": [dict(x, tag=tag) for x in mapping[key]]}
+        order = []
+        def inspect(asset, application, **kw):
+            order.append(application["id"])
+            return {"status": "NO_VPK", "matches": []}
+        with tempfile.TemporaryDirectory() as tmp, patch.object(a, "collect_targets", return_value=targets), \
+                patch.object(a, "MAX_DOWNLOADS", 6):
+            cache = a.load_cache(Path(tmp))
+            report = a.scan(Path(tmp), {}, cache, metadata=metadata, inspector=inspect)
+            self.assertEqual(order[:3], ["star-fox-adventures", "old-app", "third-app"])
+            self.assertEqual(len(set(order[:3])), 3)
+            self.assertEqual(report["downloads"], 6)
+            self.assertEqual(report["rounds"], 2)
+            self.assertEqual(report["deferred_reasons"]["DOWNLOAD_COUNT"], 4)
+            self.assertEqual(len(cache["entries"]), 6)
+            again = a.scan(Path(tmp), {}, cache, metadata=metadata, inspector=inspect)
+            self.assertEqual(again["downloads"], 4)
+            self.assertEqual(again["cache_hits"], 6)
+
+    def test_byte_budget_skips_large_candidate_and_continues(self):
+        star = app()
+        small = dict(app(), id="small", title_id="OTHER0001", links=[])
+        targets = [(star, "a/b", "v0.2.0", None, False),
+                   (small, "a/c", "v1", None, False)]
+        large = dict(release_asset(), name="Vita-large.zip", size=101)
+        tiny = dict(release_asset(), asset_id=2, name="Vita-small.zip", size=40)
+        def metadata(repo, tag, rid):
+            return {"direct": False, "prerelease": False,
+                    "assets": [large if repo == "a/b" else tiny]}
+        with tempfile.TemporaryDirectory() as tmp, patch.object(a, "collect_targets", return_value=targets), \
+                patch.object(a, "MAX_BATCH", 100), \
+                patch.object(a, "inspect_asset", return_value={"status": "NO_VPK", "matches": []}) as inspect:
+            report = a.scan(Path(tmp), {}, a.load_cache(Path(tmp)), metadata=metadata)
+            self.assertEqual(report["downloads"], 1)
+            self.assertEqual(report["download_budget_bytes"], 40)
+            self.assertEqual(report["deferred_reasons"], {"BYTE_BUDGET": 1})
+            self.assertEqual(inspect.call_args.args[0], tiny)
+
     def test_integrity_mismatch_not_cached(self):
         asset = release_asset()
         with patch.object(a, "inspect_zip") as inspect:

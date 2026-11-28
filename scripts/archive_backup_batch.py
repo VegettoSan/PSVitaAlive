@@ -259,13 +259,15 @@ def safe_host(url: str, *, archive: bool = False) -> bool:
 
 
 def stream_download(url: str, filename: Path, maximum: int, *, archive: bool = False,
-                    session=None) -> tuple[int, str, str]:
+                    session=None, deadline=None) -> tuple[int, str, str]:
     """Validate EACH redirect before connecting to it; do not fetch arbitrary URLs."""
     sess = session or requests.Session()
     current = url
     response = None
     try:
         for _ in range(6):
+            if deadline is not None and time.monotonic() >= deadline:
+                raise Deferred("WAITING_SOURCE", "Download time budget exhausted")
             if not safe_host(current, archive=archive):
                 raise Deferred("PENDING_MANUAL", "Untrusted asset/redirect host")
             try:
@@ -295,6 +297,8 @@ def stream_download(url: str, filename: Path, maximum: int, *, archive: bool = F
         with filename.open("wb") as out:
             try:
                 for chunk in response.iter_content(chunk_size=128 * 1024):
+                    if deadline is not None and time.monotonic() >= deadline:
+                        raise Deferred("WAITING_SOURCE", "Download time budget exhausted")
                     if not chunk:
                         continue
                     size += len(chunk)

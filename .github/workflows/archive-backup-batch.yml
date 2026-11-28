@@ -59,7 +59,7 @@ jobs:
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest
-    timeout-minutes: 145
+    timeout-minutes: 160
     steps:
       - name: Checkout canonical sources
         uses: actions/checkout@v4
@@ -120,7 +120,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m scripts.archive_new_items_batch --execute --automatic
       - name: Publish verified ZIP-contained VPKs
-        timeout-minutes: 15
+        timeout-minutes: 30
         env:
           IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
           IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}

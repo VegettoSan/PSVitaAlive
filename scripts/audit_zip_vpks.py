@@ -12,7 +12,7 @@ import tempfile
 import time
 import zipfile
 import zlib
-from collections import Counter
+from collections import Counter, deque
 from pathlib import Path
 from urllib.parse import quote, unquote, urlparse
 
@@ -23,21 +23,21 @@ from scripts.archive_new_items_batch import validate_vpk_title
 from scripts.catalog_schema_v2 import to_v1
 from scripts.sync_release_updates import (
     app_repositories, load_snapshot, normalized_repo, plan_changes,
-    release_instant, select_current_download, SHA_RE,
+    release_instant, select_current_download, newer_version, SHA_RE,
 )
 
 STATE = Path("data/archive_zip_inspections.json")
 SCHEMA = 1
 MIB = 1024 * 1024
 MAX_ARCHIVE = 200 * MIB
-MAX_BATCH = 400 * MIB
+MAX_BATCH = 1024 * MIB
 MAX_VPK = 200 * MIB
 MAX_EXPANDED = 512 * MIB
 MAX_ENTRIES = 4096
 MAX_CANDIDATES = 8
-MAX_DOWNLOADS = 4
-MAX_RELEASES = 16
-MAX_SECONDS = 300
+MAX_DOWNLOADS = 24
+MAX_RELEASES = 32
+MAX_SECONDS = 720
 MAX_CACHE = 5000
 TERMINAL = {"NO_VPK", "NO_VALID_VPK", "VPK_FOUND", "AMBIGUOUS_VPK",
             "INVALID_ZIP", "PACKAGE_REVIEW", "LIMIT_REVIEW"}
@@ -227,7 +227,8 @@ def inspect_asset(asset, app, *, deadline, download=None):
         try:
             with requests.Session() as session:
                 session.trust_env = False
-                size, _, sha = download(asset["url"], path, MAX_ARCHIVE, session=session)
+                size, _, sha = download(asset["url"], path, min(MAX_ARCHIVE, asset["size"]),
+                                        session=session, deadline=deadline)
             if size != asset["size"] or (asset["digest"] and "sha256:" + sha != asset["digest"]):
                 return {"status": "SOURCE_INTEGRITY_RETRY", "matches": []}
             outcome = inspect_zip(path, app["title_id"], deadline=deadline)
@@ -303,20 +304,33 @@ def load_cache(root):
     return obj
 
 
+def vita_named(asset):
+    # Name is only a scheduling hint, never a reason to reject a ZIP.
+    return bool(re.search(r"(?:^|[-_. ])(?:psvita|ps-vita|vita)(?:[-_. ]|$)",
+                          asset["name"], re.I))
+
+
 def scan(root, snapshot, cache, *, metadata=None, inspector=None, rotation=0):
     metadata = metadata or release_assets
     inspector = inspector or inspect_asset
-    deadline = time.monotonic() + MAX_SECONDS
+    started = time.monotonic()
+    deadline = started + MAX_SECONDS
+    # Preserve most of the budget for actual inspection if upstream metadata
+    # is slow. The next run rotates the starting position.
+    metadata_deadline = started + MAX_SECONDS / 3
     targets = collect_targets(root, snapshot)
     if targets:
         offset = max(0, rotation) % len(targets)
         targets = targets[offset:] + targets[:offset]
     rows, downloads, total = [], 0, 0
     entries = cache["entries"]
-    for app, repo, tag, rid, allow_pre in targets[:MAX_RELEASES]:
+    queues = {}
+    deferred_counts = Counter()
+    cache_hits = 0
+    for index, (app, repo, tag, rid, allow_pre) in enumerate(targets[:MAX_RELEASES]):
         row = {"app_id": app["id"], "title_id": app["title_id"], "repo": repo, "tag": tag, "assets": []}
         rows.append(row)
-        if time.monotonic() + 25 >= deadline:
+        if time.monotonic() + 25 >= metadata_deadline:
             row["status"] = "TIME_BUDGET"
             continue
         try:
@@ -330,26 +344,76 @@ def scan(root, snapshot, cache, *, metadata=None, inspector=None, rotation=0):
         except (ValueError, TypeError, requests.RequestException):
             row["status"] = "METADATA_RETRY"
             continue
-        downloaded_here = False
+        update = bool(select_current_download(app.get("links", []))[0]
+                      and newer_version(app.get("version"), tag))
+        # Cache hits and deterministic oversize cases require no download.
         for asset in release["assets"]:
             key = cache_key(asset, app)
-            hit = key in entries
-            if hit:
-                outcome = entries[key]["result"]
-            elif asset["size"] > MAX_ARCHIVE:
+            if key in entries:
+                row["assets"].append({"asset": asset, "cache_hit": True, **entries[key]["result"]})
+                cache_hits += 1
+                continue
+            if asset["size"] > MAX_ARCHIVE:
                 outcome = {"status": "LIMIT_REVIEW", "matches": []}
-            elif (downloaded_here or downloads >= MAX_DOWNLOADS or total + asset["size"] > MAX_BATCH
-                  or time.monotonic() + 25 >= deadline):
-                outcome = {"status": "DEFERRED", "matches": []}
-            else:
-                downloads += 1
-                downloaded_here = True
-                total += asset["size"]
-                outcome = inspector(asset, app, deadline=deadline)
-            if not hit and outcome["status"] in TERMINAL:
                 entries[key] = {"app_id": app["id"], "title_id": app["title_id"],
                                 "asset": asset, "result": outcome}
-            row["assets"].append({"asset": asset, "cache_hit": hit, **outcome})
+                row["assets"].append({"asset": asset, "cache_hit": False, **outcome})
+                continue
+            # Prefer actual updates and Vita-named archives. A low-priority
+            # ZIP still receives a turn; all releases share an app queue.
+            slot = {"asset": asset, "cache_hit": False, "status": "DEFERRED", "matches": []}
+            row["assets"].append(slot)
+            priority = (0 if update and vita_named(asset) else
+                        1 if update or vita_named(asset) else 2)
+            queues.setdefault(app["id"], []).append((priority, index, asset["size"], key, app, slot))
+    # Each round processes at most one unknown ZIP per application, even
+    # when several release tags refer to it. Preserve rotation for ties,
+    # and interleave one ordinary job after two high-priority jobs.
+    for app_id, jobs in queues.items():
+        queues[app_id] = deque(sorted(jobs, key=lambda j: (j[0], j[1], j[2], j[3])))
+    rounds = 0
+    while queues and downloads < MAX_DOWNLOADS and time.monotonic() + 25 < deadline:
+        rounds += 1
+        high, normal = deque(), deque()
+        for jobs in queues.values():
+            job = jobs.popleft()
+            (high if job[0] < 2 else normal).append(job)
+        high = deque(sorted(high, key=lambda j: (j[0], j[1])))
+        normal = deque(sorted(normal, key=lambda j: j[1]))
+        ordered = []
+        while high or normal:
+            for _ in range(2):
+                if high:
+                    ordered.append(high.popleft())
+            if normal:
+                ordered.append(normal.popleft())
+        for _, _, size, key, app, slot in ordered:
+            if downloads >= MAX_DOWNLOADS:
+                deferred_counts["DOWNLOAD_COUNT"] += 1
+                continue
+            if total + size > MAX_BATCH:
+                deferred_counts["BYTE_BUDGET"] += 1
+                continue
+            if time.monotonic() + 25 >= deadline:
+                deferred_counts["TIME_BUDGET"] += 1
+                continue
+            asset = slot["asset"]
+            downloads += 1
+            total += size
+            outcome = inspector(asset, app, deadline=deadline)
+            slot.update(outcome)
+            if outcome["status"] in TERMINAL:
+                entries[key] = {"app_id": app["id"], "title_id": app["title_id"],
+                                "asset": asset, "result": outcome}
+        queues = {app_id: jobs for app_id, jobs in queues.items() if jobs}
+    for jobs in queues.values():
+        for _, _, size, _, _, _slot in jobs:
+            reason = ("DOWNLOAD_COUNT" if downloads >= MAX_DOWNLOADS else
+                      "BYTE_BUDGET" if total + size > MAX_BATCH else "TIME_BUDGET")
+            deferred_counts[reason] += 1
+    for row in rows:
+        if "status" in row:
+            continue
         outcomes = [a["status"] for a in row["assets"]]
         matches = sum(len(a.get("matches", [])) for a in row["assets"])
         if any(s not in {"NO_VPK", "NO_VALID_VPK", "VPK_FOUND", "AMBIGUOUS_VPK"} for s in outcomes):
@@ -365,7 +429,8 @@ def scan(root, snapshot, cache, *, metadata=None, inspector=None, rotation=0):
     while len(entries) > MAX_CACHE:
         entries.pop(next(iter(entries)))
     return {"targets": len(targets), "checked": len(rows), "downloads": downloads,
-            "download_budget_bytes": total, "rows": rows}
+            "download_budget_bytes": total, "cache_hits": cache_hits, "rounds": rounds,
+            "deferred_reasons": dict(deferred_counts), "rows": rows}
 
 
 def main():
@@ -394,7 +459,9 @@ def main():
         print("ZIP audit: " + json.dumps({"app_id": row["app_id"], "tag": row["tag"],
                                          "status": row["status"], "assets": len(row["assets"]),
                                          "cache_hits": sum(a["cache_hit"] for a in row["assets"])}), flush=True)
-    print(f"ZIP audit targets={report['targets']}, checked={report['checked']}, downloads={report['downloads']}")
+    print(f"ZIP audit targets={report['targets']}, checked={report['checked']}, downloads={report['downloads']}, "
+          f"cache_hits={report['cache_hits']}, rounds={report['rounds']}, "
+          f"deferred={json.dumps(report['deferred_reasons'], sort_keys=True)}")
     final = json.dumps(cache, ensure_ascii=False, indent=2)
     if args.persist and final != previous:
         path = root / STATE
