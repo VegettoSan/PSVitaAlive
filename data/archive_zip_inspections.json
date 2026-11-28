@@ -176,6 +176,518 @@
         "matches": [],
         "outer_sha256": "b76acc2c70acdaec6c66ad481c63c9e12c214c7707bd9b9d73c59b275f71dc63"
       }
+    },
+    "f0613a7d624155865becc4e34710658df6aa609fd836a465e7616bdc987890bd": {
+      "app_id": "freegemas",
+      "title_id": "FGEM00001",
+      "asset": {
+        "repo": "josetomastocino/freegemas",
+        "tag": "26.11",
+        "release_id": 450164073,
+        "asset_id": 763872002,
+        "name": "freegemas-vita.zip",
+        "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/26.11/freegemas-vita.zip",
+        "size": 5446007,
+        "updated_at": "2026-11-18T15:16:27Z",
+        "digest": "sha256:0b7357a288a743bc4cbe00d3ce241cc8b447598d462aed00338c85b11018de93"
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "freegemas-vita/freegemas.vpk",
+            "size": 5431662,
+            "sha256": "cae1f57548f3b033b6959ef0545ddb457aa913fa558af4de92a9c3f06166f79f",
+            "title_id": "FGEM00001"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "0b7357a288a743bc4cbe00d3ce241cc8b447598d462aed00338c85b11018de93"
+      }
+    },
+    "76539a9950692a02de4b1e57e5a06434fc53cfd5fa536b20e168975f0b2438dd": {
+      "app_id": "star-fox-adventures",
+      "title_id": "STFX00001",
+      "asset": {
+        "repo": "tchisholm20/starfox-adventures-vita",
+        "tag": "v0.2.0",
+        "release_id": 445102222,
+        "asset_id": 746659833,
+        "name": "StarFoxAdventures-Vita-2026-11-13.zip",
+        "url": "https://github.com/tchisholm20/starfox-adventures-vita/releases/download/v0.2.0/StarFoxAdventures-Vita-2026-11-13.zip",
+        "size": 8700171,
+        "updated_at": "2026-11-14T07:13:49Z",
+        "digest": "sha256:962eaa5b898f2bb207808f3114c0eebc1971692e3d9b8f54a9ad40c335d462d1"
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "StarFoxAdventures-Vita-2026-11-13/StarFoxAdventures.vpk",
+            "size": 8719901,
+            "sha256": "41d390fd7d207762751d057f81f953408018668d4fe74ecd41851f5bb3ff375a",
+            "title_id": "STFX00001"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "962eaa5b898f2bb207808f3114c0eebc1971692e3d9b8f54a9ad40c335d462d1"
+      }
+    },
+    "1447d98f6e7f50cb3a36825ae1fba6228835d640de80e08774b746ca92f62da6": {
+      "app_id": "crosscraft-survivaltest",
+      "title_id": "CCST00100",
+      "asset": {
+        "repo": "crosscraft/crosscraft-survivaltest",
+        "tag": "ST4",
+        "release_id": 84634138,
+        "asset_id": 86700494,
+        "name": "CrossCraft-3DS.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-3DS.zip",
+        "size": 8336815,
+        "updated_at": "2022-12-02T02:40:42Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "ab37a358d94ea36c25d8c9b3102e1240098c02bf376d8f4150b82151f3541afa"
+      }
+    },
+    "ab1a27fe79eeebeb15162eb3561d0e02a96d75f704512fad51abdf75aba42300": {
+      "app_id": "the-drifter",
+      "title_id": "DRFT00001",
+      "asset": {
+        "repo": "xob0t/the-drifter-vita",
+        "tag": "v1.4.2",
+        "release_id": 454797040,
+        "asset_id": 780671647,
+        "name": "the-drifter-vita.zip",
+        "url": "https://github.com/xob0t/the-drifter-vita/releases/download/v1.4.2/the-drifter-vita.zip",
+        "size": 734035,
+        "updated_at": "2026-11-22T22:29:25Z",
+        "digest": "sha256:4f247bd32145fdede72b72798b9c224472518d6c948cf5bf116a09a97eb4467e"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "4f247bd32145fdede72b72798b9c224472518d6c948cf5bf116a09a97eb4467e"
+      }
+    },
+    "ccd296adca3d53c173c3aa1572cfb543cf2426e510be1f78691ab64eebf0d193": {
+      "app_id": "balatro-vita",
+      "title_id": "BALA00001",
+      "asset": {
+        "repo": "daexxxx/balatro-vita",
+        "tag": "v0.13.1",
+        "release_id": 274070685,
+        "asset_id": 336212774,
+        "name": "balatro.patch.zip",
+        "url": "https://github.com/Daexxxx/Balatro-Vita/releases/download/v0.13.1/balatro.patch.zip",
+        "size": 45700517,
+        "updated_at": "2026-01-04T17:05:58Z",
+        "digest": "sha256:3b9218e694203a3e3eaca61dc1bf1526952144718fb54547c690d650cefb020b"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "3b9218e694203a3e3eaca61dc1bf1526952144718fb54547c690d650cefb020b"
+      }
+    },
+    "e4bf936cf93384c4852d87b3cff2506643d8b006fc466eeeea4e16bf5e1c52b8": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232740,
+        "name": "fheroes2_macos_x86-64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_macos_x86-64_SDL2.zip",
+        "size": 5060440,
+        "updated_at": "2026-06-30T14:33:01Z",
+        "digest": "sha256:8d2964fa4836623410d302e20dee99f55cc7620f7d3be77d086b38b86ded932b"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "8d2964fa4836623410d302e20dee99f55cc7620f7d3be77d086b38b86ded932b"
+      }
+    },
+    "0f9930fc4a1fbbeca097a550afd54dd6c900dfac02596a26c77f93f967aa4d3b": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944171,
+        "name": "thextech-vita-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-vita-v1.3.7.3.zip",
+        "size": 4871436,
+        "updated_at": "2026-06-22T20:48:10Z",
+        "digest": "sha256:09b28db661d8d89dcdce86a53e428691d3ee3ca34f80f949ad3529c3c23f7a5d"
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "thextech-vita/thextech.vpk",
+            "size": 4809659,
+            "sha256": "ec0217b60ee5e389fa71ba362229f0973fa55e76b48d57a809c903eee0ffd5d6",
+            "title_id": "THEXTECH0"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "09b28db661d8d89dcdce86a53e428691d3ee3ca34f80f949ad3529c3c23f7a5d"
+      }
+    },
+    "94eac6d52840f283e5e9db62651d3a585202505d04681fd634e24248b14e8ad9": {
+      "app_id": "freegemas",
+      "title_id": "FGEM00001",
+      "asset": {
+        "repo": "josetomastocino/freegemas",
+        "tag": "26.11",
+        "release_id": 450164073,
+        "asset_id": 763872093,
+        "name": "freegemas-windows.zip",
+        "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/26.11/freegemas-windows.zip",
+        "size": 5979911,
+        "updated_at": "2026-11-18T15:16:29Z",
+        "digest": "sha256:3f842d7b10fd11c65292ef36d33b952d0784cf154ee1a5b4735deb582bd81335"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "3f842d7b10fd11c65292ef36d33b952d0784cf154ee1a5b4735deb582bd81335"
+      }
+    },
+    "cfea3a2b8889192df18246c76a6ee18f7921393f7f59c2e8c77c3135d3cedadd": {
+      "app_id": "crosscraft-survivaltest",
+      "title_id": "CCST00100",
+      "asset": {
+        "repo": "crosscraft/crosscraft-survivaltest",
+        "tag": "ST4",
+        "release_id": 84634138,
+        "asset_id": 86678043,
+        "name": "CrossCraft-Windows.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-Windows.zip",
+        "size": 8860608,
+        "updated_at": "2022-12-01T22:08:41Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "2a7c0acb4f09cfb1dde1e58d8052abe378d32915373387c064564a946c2df8a5"
+      }
+    },
+    "7f57826a97b86612167c1917b9875ad46505ee0e237b9333bf9c4d6b63852b27": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232839,
+        "name": "fheroes2_ubuntu_arm64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_ubuntu_arm64_SDL2.zip",
+        "size": 5287568,
+        "updated_at": "2026-06-30T14:33:10Z",
+        "digest": "sha256:77574d76b89e91c6f6b936ca02b170e634073c1f8adc00d0420ab3ccb4d484b6"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "77574d76b89e91c6f6b936ca02b170e634073c1f8adc00d0420ab3ccb4d484b6"
+      }
+    },
+    "58b88bd5c86138e9cb10ae2859e9bf757a473a04b808503f6f2f3b7e4b91f55d": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454935331,
+        "name": "moondust-devkit-config-pack-thextech-sdk-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/moondust-devkit-config-pack-thextech-sdk-v1.3.7.3.zip",
+        "size": 1472962,
+        "updated_at": "2026-06-22T20:37:48Z",
+        "digest": "sha256:d86766599ee88669e4213bb4338626d1175be5a38552347ea9d3a7354913bb3b"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "d86766599ee88669e4213bb4338626d1175be5a38552347ea9d3a7354913bb3b"
+      }
+    },
+    "d3ff661102267f31f073e3c74f6871f2a2ec8900107cea28a486ad8fea685a08": {
+      "app_id": "freegemas",
+      "title_id": "FGEM00001",
+      "asset": {
+        "repo": "josetomastocino/freegemas",
+        "tag": "26.11",
+        "release_id": 450164073,
+        "asset_id": 763872090,
+        "name": "freegemas-linux.zip",
+        "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/26.11/freegemas-linux.zip",
+        "size": 6077919,
+        "updated_at": "2026-11-18T15:16:29Z",
+        "digest": "sha256:faa8c90a919a1af3e7547e1a467e366d3325ae3515c36f7abd0544e6369c4403"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "faa8c90a919a1af3e7547e1a467e366d3325ae3515c36f7abd0544e6369c4403"
+      }
+    },
+    "b3324609cea2855fcc696f24d1f3f401649ee1d74df9568df5f95032cea9b50d": {
+      "app_id": "crosscraft-survivaltest",
+      "title_id": "CCST00100",
+      "asset": {
+        "repo": "crosscraft/crosscraft-survivaltest",
+        "tag": "ST4",
+        "release_id": 84634138,
+        "asset_id": 86689626,
+        "name": "CrossCraft-PSP.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-PSP.zip",
+        "size": 9746437,
+        "updated_at": "2022-12-02T00:24:30Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "2c027ec68a3854e7e5b38d166847790ef5d91ad48fe6d1938bbf8f0fbafced13"
+      }
+    },
+    "d7a28f7234dfddc9b3452ad17653f355bd745097717b01219bda51e346defc56": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232870,
+        "name": "fheroes2_ubuntu_x86-64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_ubuntu_x86-64_SDL2.zip",
+        "size": 5529615,
+        "updated_at": "2026-06-30T14:33:12Z",
+        "digest": "sha256:ba0bc878e939e1bb93876d059571fce5c907a818d1500c185b06bbf076c1a2d6"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "ba0bc878e939e1bb93876d059571fce5c907a818d1500c185b06bbf076c1a2d6"
+      }
+    },
+    "32ba5d42befaad9acae9304f68ad52f8df87880388a41524238dcdcc0d409ca2": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944749,
+        "name": "thextech-wii-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-wii-v1.3.7.3.zip",
+        "size": 3617665,
+        "updated_at": "2026-06-22T20:48:43Z",
+        "digest": "sha256:2ade7de8d9864c241db93efffd8bb870aced4bcd5ae7b64d65d2a5f3b65fe91c"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "2ade7de8d9864c241db93efffd8bb870aced4bcd5ae7b64d65d2a5f3b65fe91c"
+      }
+    },
+    "c10f7937b7ced5e65efd3b2ce7522ef46f3c154711c578c4384e4dadad68d62e": {
+      "app_id": "freegemas",
+      "title_id": "FGEM00001",
+      "asset": {
+        "repo": "josetomastocino/freegemas",
+        "tag": "26.11",
+        "release_id": 450164073,
+        "asset_id": 763872091,
+        "name": "freegemas-macos-universal.zip",
+        "url": "https://github.com/JoseTomasTocino/freegemas/releases/download/26.11/freegemas-macos-universal.zip",
+        "size": 8481458,
+        "updated_at": "2026-11-18T15:16:29Z",
+        "digest": "sha256:becf986fff46fedc3a3d12de93c9434ebb1649af9ec45a426f3dd578b2d88358"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "becf986fff46fedc3a3d12de93c9434ebb1649af9ec45a426f3dd578b2d88358"
+      }
+    },
+    "a78235f394ff2332e76aa60dd7c6a272fbb6a4bc150916f407fe28cb37869e02": {
+      "app_id": "crosscraft-survivaltest",
+      "title_id": "CCST00100",
+      "asset": {
+        "repo": "crosscraft/crosscraft-survivaltest",
+        "tag": "ST4",
+        "release_id": 84634138,
+        "asset_id": 86690181,
+        "name": "CrossCraft-Linux.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases/download/ST4/CrossCraft-Linux.zip",
+        "size": 12896495,
+        "updated_at": "2022-12-02T00:30:47Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "aa05f3e65a3e274c3d2e2e36a0ad647eb633d9579553dd62f8d90b882a0af59a"
+      }
+    },
+    "731abe6ce48a2947e288414a878c4e254e791647253c3be45a1eb155df414737": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232793,
+        "name": "fheroes2_switch.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_switch.zip",
+        "size": 8498968,
+        "updated_at": "2026-06-30T14:33:08Z",
+        "digest": "sha256:117a3e450da734cc3c0efd5618efdcb538b04723b2aa06b71ec4ca7aabca2fca"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "117a3e450da734cc3c0efd5618efdcb538b04723b2aa06b71ec4ca7aabca2fca"
+      }
+    },
+    "40656f86f64e873b38e34a19056552a77cc3653185287d2890dfd34c86b20dc8": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454940119,
+        "name": "thextech-3ds-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-3ds-v1.3.7.3.zip",
+        "size": 4225243,
+        "updated_at": "2026-06-22T20:43:34Z",
+        "digest": "sha256:da0faa8004ccd4e3f0dcccd76c4984dfa293d6e20a542946e377ec6d6b885caa"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "da0faa8004ccd4e3f0dcccd76c4984dfa293d6e20a542946e377ec6d6b885caa"
+      }
+    },
+    "d04b528b2c32aee0f9d72037953ad5edda4765b86f4f34cec471dbca7b52211a": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462233119,
+        "name": "fheroes2_windows_x86_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_windows_x86_SDL2.zip",
+        "size": 11894107,
+        "updated_at": "2026-06-30T14:33:31Z",
+        "digest": "sha256:dcfe6f3937e2c53061984696f8af10b69676fa3c90ab60b470c344eaa9059603"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "dcfe6f3937e2c53061984696f8af10b69676fa3c90ab60b470c344eaa9059603"
+      }
+    },
+    "122962d97aea4ff1952305a0cb4a9f210444e51880bf8d062dcfb499e2c568d1": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454943702,
+        "name": "thextech-sdl2-wiiu-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-sdl2-wiiu-v1.3.7.3.zip",
+        "size": 4986388,
+        "updated_at": "2026-06-22T20:47:44Z",
+        "digest": "sha256:f206f2726a51caa4113246e7bef8f8d4880ada38572265d4e24b31d489d5d2df"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "f206f2726a51caa4113246e7bef8f8d4880ada38572265d4e24b31d489d5d2df"
+      }
+    },
+    "2c8b5f65367a8c155722c2651a188d98b86648bc98527cb75e02242badd0457a": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232934,
+        "name": "fheroes2_windows_x64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_windows_x64_SDL2.zip",
+        "size": 12520412,
+        "updated_at": "2026-06-30T14:33:15Z",
+        "digest": "sha256:aec387da1acd52cd422b49a6cf463829f790574dd2a970b7929a3d56f1096746"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "aec387da1acd52cd422b49a6cf463829f790574dd2a970b7929a3d56f1096746"
+      }
+    },
+    "f0b3f8ef289932b2f950619bd0bcdb7630ba09e5c7c881fbac57230494a59391": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454943660,
+        "name": "thextech-sdl2-src-for-wii-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-sdl2-src-for-wii-v1.3.7.3.zip",
+        "size": 5123894,
+        "updated_at": "2026-06-22T20:47:41Z",
+        "digest": "sha256:cafd24c3f8ae9c9c6984eeea7fa072a81b70229fad08c4cb6768b6afd484bc07"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "cafd24c3f8ae9c9c6984eeea7fa072a81b70229fad08c4cb6768b6afd484bc07"
+      }
+    },
+    "ab48b401d76e27b1144dfa15b05b601b37fc0a8f0fd6909025a5860ef5b8157e": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.17",
+        "release_id": 346895574,
+        "asset_id": 462232748,
+        "name": "fheroes2_psv.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.17/fheroes2_psv.zip",
+        "size": 14601805,
+        "updated_at": "2026-06-30T14:33:05Z",
+        "digest": "sha256:0f1fd5bf7baffbe407edf02d5dd19492c078824e763b69576bca7bb2a83edcc7"
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "fheroes2.vpk",
+            "size": 14598378,
+            "sha256": "e6d265a9cd40176476a4258afe026e0aa04684d910ac94653d91393900d61ac1",
+            "title_id": "FHOMM0002"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "0f1fd5bf7baffbe407edf02d5dd19492c078824e763b69576bca7bb2a83edcc7"
+      }
     }
   }
 }
