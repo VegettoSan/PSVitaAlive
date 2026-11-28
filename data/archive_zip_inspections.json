@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "entries": {
+    "0419dc2924cb455ae4d40219550eeb22f55a0ad620ffed3e3f92c40ae40b4c55": {
+      "app_id": "crosscraft-classic",
+      "title_id": "CCC000110",
+      "asset": {
+        "repo": "crosscraft/crosscraft-classic",
+        "tag": "v1.3",
+        "release_id": 84633227,
+        "asset_id": 86643771,
+        "name": "CrossCraft-Vita.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-Vita.zip",
+        "size": 10028371,
+        "updated_at": "2022-12-01T15:42:10Z",
+        "digest": null
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "CrossCraft-Classic.vpk",
+            "size": 10018605,
+            "sha256": "1cbecebff557c490e1b04100a8abd1093a1791b239ea907bf5c48a1dc742ed3b",
+            "title_id": "CCC000110"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "67d053771bdec88cff945653c738626fef63eca74a3fd3ad651a9cbbaba3c0d0"
+      }
+    },
+    "0655e50df4cd46201694792f1302ce1c29ea844d0718d26d929c2728ec474bae": {
+      "app_id": "crosscraft-classic",
+      "title_id": "CCC000110",
+      "asset": {
+        "repo": "crosscraft/crosscraft-classic",
+        "tag": "v1.3",
+        "release_id": 84633227,
+        "asset_id": 86642900,
+        "name": "CrossCraft-3DS.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-3DS.zip",
+        "size": 8230254,
+        "updated_at": "2022-12-01T15:42:13Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "5e6fe67e9e2ad0f931c15172f55ddf6dfd5ce52f320d7cd3ddcd184a3da5200a"
+      }
+    },
+    "2da5374e0a36dac8bbceb19a2a9a653b175428772011619cd0ea603b514c11be": {
+      "app_id": "crosscraft-classic",
+      "title_id": "CCC000110",
+      "asset": {
+        "repo": "crosscraft/crosscraft-classic",
+        "tag": "v1.3",
+        "release_id": 84633227,
+        "asset_id": 86643744,
+        "name": "CrossCraft-Linux.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-Linux.zip",
+        "size": 14946577,
+        "updated_at": "2022-12-01T15:42:06Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "9b02440ea7aa8591f92793965a9a262ba939178ef32bd93cc87b7af31953cffe"
+      }
+    },
+    "fe769277cb772b5ce926a582aa06d1f9be5a7a2d4160a01a7d3223a2c60701d0": {
+      "app_id": "crosscraft-classic",
+      "title_id": "CCC000110",
+      "asset": {
+        "repo": "crosscraft/crosscraft-classic",
+        "tag": "v1.3",
+        "release_id": 84633227,
+        "asset_id": 86643758,
+        "name": "CrossCraft-PSP.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-PSP.zip",
+        "size": 11863120,
+        "updated_at": "2022-12-01T15:42:08Z",
+        "digest": null
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "be79e3fcbcd1c2fcdf81d13be052ddb7374735b5f750d4eeb2eaeb3f36aad3f9"
+      }
+    }
+  }
+}
