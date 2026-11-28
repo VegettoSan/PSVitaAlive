@@ -2345,6 +2345,60 @@
     ]
   },
   {
+    "id": "freegemas",
+    "tid": "FGEM00001",
+    "n": "Freegemas",
+    "d": "Port of Freegemas for PSVITA.",
+    "ld": "A port of Freegemas for PSVITA/PSTV. Freegemas is an open source clone of the well known Bejeweled.\n\n- PsVitaAlive -",
+    "aids": [
+      "sharkwouter"
+    ],
+    "cid": "ports",
+    "sids": [
+      "other"
+    ],
+    "v": "26.11",
+    "vd": "2026-11-18",
+    "req": "Not specified",
+    "sz": 5431662,
+    "st": "Legacy",
+    "ic": "https://archive.org/download/psvitaalive-freegemas/icon0.png",
+    "ss": [
+      "https://archive.org/download/psvitaalive-freegemas/shot_01.png",
+      "https://archive.org/download/psvitaalive-freegemas/shot_02.png",
+      "https://archive.org/download/psvitaalive-freegemas/shot_03.png",
+      "https://archive.org/download/psvitaalive-freegemas/shot_04.png"
+    ],
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psvitaalive-freegemas/freegemas%20v26.11--zip-cae1f57548f3b033.vpk",
+        "rec": true
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/JoseTomasTocino/freegemas/releases"
+      },
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/JoseTomasTocino/freegemas/releases/tag/22.02"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/JoseTomasTocino/freegemas"
+      }
+    ],
+    "sn": "VitaHomebrewDB",
+    "si": "609",
+    "su": "https://github.com/JoseTomasTocino/freegemas",
+    "rp": "https://github.com/JoseTomasTocino/freegemas/releases",
+    "ua": "2026-08-13T15:34:48.557273+00:00"
+  },
+  {
     "id": "asphalt-6",
     "tid": "ASPHALT06",
     "n": "Asphalt 6",
@@ -3501,6 +3555,56 @@
     "ic": "https://archive.org/download/celosia-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/celosia-ps-vita/shot0.png"
+    ]
+  },
+  {
+    "id": "star-fox-adventures",
+    "tid": "STFX00001",
+    "n": "Star Fox Adventures",
+    "d": "Star Fox Adventures for PS Vita: a native port",
+    "ld": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
+    "aids": [
+      "tchisholm20"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.2.0",
+    "vd": "2026-11-14",
+    "req": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
+    "sz": 8719901,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/star-fox-adventures-for-ps-vita/star-fox-adventures%20v0.2.0--zip-41d390fd7d207762.vpk",
+        "sz": 8719901,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 1468006,
+        "xp": "ux0:data/",
+        "ips": [
+          "stairfax"
+        ]
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/tchisholm20/starfox-adventures-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
+    "ss": [
+      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -5652,56 +5756,6 @@
         "u": "https://archive.org/download/psvitaalive-riptide-gp-vita/riptide-gp-vita%20v1.0.3.vpk",
         "rec": true
       }
-    ]
-  },
-  {
-    "id": "star-fox-adventures",
-    "tid": "STFX00001",
-    "n": "Star Fox Adventures",
-    "d": "Star Fox Adventures for PS Vita: a native port",
-    "ld": "A native PS Vita port of Star Fox Adventures (GameCube), built on the Star Fox Adventures decompilation and its PC port branch (Cassieandstuff/SFA-Decomp@pc-port-continued), with a graphics backend written for the Vita's GPU.",
-    "aids": [
-      "tchisholm20"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.1.3",
-    "vd": "2026-11-05",
-    "req": "- A PS Vita or PS TV on custom firmware (HENkaku / Enso).\n- libshacccg.suprx at ur0:data/libshacccg.suprx (the shader compiler that many Vita homebrew ports also need). Without it the game still runs, but shaders that are not included in the package draw through a slower fallback.\n- A disc image of your own copy of Star Fox Adventures for GameCube, USA, Rev 1 (game id GSAE01, disc version 1), as a full, uncompressed .iso (about 1.4 GB).",
-    "sz": 9017754,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/star-fox-adventures-for-ps-vita/StarFoxAdventures%20v0.1.3.vpk",
-        "sz": 9017754,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/star-fox-adventures-for-ps-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 1468006,
-        "xp": "ux0:data/",
-        "ips": [
-          "stairfax"
-        ]
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/tchisholm20/starfox-adventures-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/star-fox-adventures-for-ps-vita/icon0.png",
-    "ss": [
-      "https://archive.org/download/star-fox-adventures-for-ps-vita/shot0.png"
     ]
   },
   {
@@ -36539,7 +36593,7 @@
     "v": "ST4",
     "vd": "2022-12-02",
     "req": "Not specified",
-    "sz": 17518102,
+    "sz": 10000187,
     "st": "Legacy",
     "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0850-crosscraft-survivaltest.png",
     "ss": [
@@ -36560,6 +36614,12 @@
         "t": "Official Website",
         "n": "Release Page",
         "u": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psvitaalive-crosscraft-survivaltest/crosscraft-survivaltest%20ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da.vpk",
+        "rec": true
       }
     ],
     "sn": "NeoVitaDB",
@@ -40988,60 +41048,6 @@
     "su": "https://gamejolt.com/games/BATDS-PSP/688387",
     "rp": "https://gamejolt.com/games/BATDS-PSP/688387",
     "ua": "2026-08-13T15:34:48.557155+00:00"
-  },
-  {
-    "id": "freegemas",
-    "tid": "FGEM00001",
-    "n": "Freegemas",
-    "d": "Port of Freegemas for PSVITA.",
-    "ld": "A port of Freegemas for PSVITA/PSTV. Freegemas is an open source clone of the well known Bejeweled.\n\n- PsVitaAlive -",
-    "aids": [
-      "sharkwouter"
-    ],
-    "cid": "ports",
-    "sids": [
-      "other"
-    ],
-    "v": "v.22.02",
-    "vd": "2022-02-15",
-    "req": "Not specified",
-    "sz": 5516346,
-    "st": "Legacy",
-    "ic": "https://archive.org/download/psvitaalive-freegemas/icon0.png",
-    "ss": [
-      "https://archive.org/download/psvitaalive-freegemas/shot_01.png",
-      "https://archive.org/download/psvitaalive-freegemas/shot_02.png",
-      "https://archive.org/download/psvitaalive-freegemas/shot_03.png",
-      "https://archive.org/download/psvitaalive-freegemas/shot_04.png"
-    ],
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/psvitaalive-freegemas/freegemas.vpk",
-        "rec": true
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/JoseTomasTocino/freegemas/releases"
-      },
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/JoseTomasTocino/freegemas/releases/tag/22.02"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/JoseTomasTocino/freegemas"
-      }
-    ],
-    "sn": "VitaHomebrewDB",
-    "si": "609",
-    "su": "https://github.com/JoseTomasTocino/freegemas",
-    "rp": "https://github.com/JoseTomasTocino/freegemas/releases",
-    "ua": "2026-08-13T15:34:48.557273+00:00"
   },
   {
     "id": "the-curse-of-issyos",
