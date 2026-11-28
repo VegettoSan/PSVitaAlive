@@ -1,6 +1,19 @@
 {
   "schema_version": 1,
-  "pending": {},
+  "pending": {
+    "43490df82dfc54889474ced4a3429ce990bb09e4d610d86034ab15e6533cc798": {
+      "app_id": "crosscraft-survivaltest",
+      "identifier": "psvitaalive-crosscraft-survivaltest",
+      "filename": "media_d4d538a7c87ef7d6149df654d869ef47fef69917a66891afa326e40dd8cdd5d5.png",
+      "source_url": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0850-crosscraft-survivaltest.png",
+      "info": {
+        "size": 23023,
+        "md5": "5ce6bbed6b64d7670418082f6b0e5300",
+        "sha256": "d4d538a7c87ef7d6149df654d869ef47fef69917a66891afa326e40dd8cdd5d5"
+      },
+      "created_at": "2026-11-28T01:35:52+00:00"
+    }
+  },
   "completed": {
     "e47bea4d6998a23afd7ae2a479d192a5a78929993c1c68676fe5e5d77ebbcbfe": {
       "app_id": "crosscraft-classic",
