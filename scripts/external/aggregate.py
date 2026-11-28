@@ -311,7 +311,7 @@ def persist_source_files(root: Path, final_apps: list[dict], final_authors: dict
     print(f"  Author JSON files created: {changed_authors}")
 
 
-def build(root: Path):
+def build(root: Path, *, persist=True):
     rebuild_requested = os.environ.get("VITAHUB_REBUILD_FROM_EXTERNAL", "").lower() in {"1", "true", "yes"}
     local_apps, authors, categories = load_local()
     protected_local_ids = {app.get("id") for _, app in local_apps if app.get("id")}
@@ -558,13 +558,14 @@ def build(root: Path):
             + (" ..." if len(missing_local) > 20 else "")
         )
 
-    persist_source_files(
-        root,
-        final_apps,
-        final_authors,
-        rebuild_requested=rebuild_requested,
-        protected_local_ids=protected_local_ids,
-    )
+    if persist:
+        persist_source_files(
+            root,
+            final_apps,
+            final_authors,
+            rebuild_requested=rebuild_requested,
+            protected_local_ids=protected_local_ids,
+        )
 
     print("External aggregation summary:")
     print(f"  External rebuild requested: {'yes' if rebuild_requested else 'no'}")

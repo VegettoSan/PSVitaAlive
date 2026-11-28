@@ -412,7 +412,7 @@ def fill_generated_metadata(apps, authors):
         author["links"] = author_links.get(author.get("id"), [])[:5]
 
 
-def generate():
+def generate(*, publication_only=False):
     from external.aggregate import build
     from catalog_schema_v2 import to_v2
 
@@ -420,7 +420,9 @@ def generate():
     # Turn on only during the controlled post-release catalog cutover.
     public_v2 = os.getenv("PSVA_PUBLIC_SCHEMA_V2", "").lower() in {"1", "true", "yes"}
 
-    apps, authors, categories, conflicts = build(ROOT)
+    apps, authors, categories, conflicts = build(ROOT, persist=not publication_only)
+    if conflicts and publication_only:
+        raise ValueError('Fast catalog publication refuses unresolved aggregation conflicts')
     if conflicts:
         report_dir = ROOT / "reports"
         report_dir.mkdir(exist_ok=True)
@@ -464,7 +466,7 @@ def generate():
 
 if __name__ == "__main__":
     try:
-        generate()
+        generate(publication_only='--publication-only' in sys.argv[1:])
     except Exception as exc:
         print(f"VitaHub catalog generation failed: {type(exc).__name__}: {exc}", file=sys.stderr)
         sys.exit(1)

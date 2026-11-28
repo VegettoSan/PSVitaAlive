@@ -7,6 +7,9 @@ on:
       - scripts/archive_item_creation.py
       - scripts/audit_zip_vpks.py
       - scripts/archive_zip_publication.py
+      - scripts/discord_notifications.py
+      - scripts/generate_catalog.py
+      - scripts/external/aggregate.py
       - tests/test_archive_zip_publication.py
       - scripts/audit_archive_versions.py
       - scripts/sync_release_updates.py
@@ -89,6 +92,17 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Publish verified ZIP-contained VPKs
+        timeout-minutes: 30
+        env:
+          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
+          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
+          IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
+          PSVA_FAST_CATALOG_PUBLICATION: "true"
+          DISCORD_NEW_HOMEBREW_WEBHOOK_URL: ${{ secrets.DISCORD_NEW_HOMEBREW_WEBHOOK_URL }}
+          DISCORD_HOMEBREW_UPDATES_WEBHOOK_URL: ${{ secrets.DISCORD_HOMEBREW_UPDATES_WEBHOOK_URL }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m scripts.archive_zip_publication --execute
       - name: Process approved owned-item VPK batch
         if: github.event_name != 'push'
         env:
@@ -119,14 +133,6 @@ jobs:
           IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m scripts.archive_new_items_batch --execute --automatic
-      - name: Publish verified ZIP-contained VPKs
-        timeout-minutes: 30
-        env:
-          IA_ACCESS_KEY: ${{ secrets.IA_ACCESS_KEY }}
-          IA_SECRET_KEY: ${{ secrets.IA_SECRET_KEY }}
-          IA_EXPECTED_UPLOADER: ${{ secrets.IA_EXPECTED_UPLOADER }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -m scripts.archive_zip_publication --execute
       - name: Preserve changed media in existing owned items
         timeout-minutes: 8
         env:

@@ -45,6 +45,49 @@ def state_from_file(path):
             "apps": data.get("apps", {}), "releases": data.get("releases", [])}
 
 
+def vpk_available(app):
+    for link in app.get("links") or []:
+        if not isinstance(link, dict) or str(link.get("type", "")).casefold() != "download":
+            continue
+        url = link.get("url")
+        if isinstance(url, str):
+            parsed = urllib.parse.urlsplit(url)
+            if parsed.scheme in ("http", "https") and parsed.netloc and urllib.parse.unquote(parsed.path).lower().endswith(".vpk"):
+                return True
+    return False
+
+
+def verified_first_downloads(apps, job_path):
+    """Migrate old version-only state without announcing every existing VPK.
+    Only exact, publicly verified ZIP checkpoints can recover a missed event.
+    """
+    jobs = read_json(job_path, {}) if job_path else {}
+    if not isinstance(jobs, dict) or not isinstance(jobs.get("jobs", {}), dict):
+        raise ValueError("Invalid ZIP publication checkpoint file")
+    by_id = {a["title_id"]: a for a in apps}
+    recovered = set()
+    for key, job in jobs.get("jobs", {}).items():
+        if not isinstance(job, dict) or job.get("status") != "PUBLISHED_VERIFIED":
+            continue
+        # CrossCraft Classic was published before the availability marker
+        # existed. Its exact verified historical checkpoint is grandfathered.
+        legacy_classic = (key == "0419dc2924cb455ae4d40219550eeb22f55a0ad620ffed3e3f92c40ae40b4c55"
+                          and job.get("app_id") == "crosscraft-classic" and job.get("title_id") == "CCC000110")
+        if not (job.get("first_download") is True or legacy_classic):
+            continue
+        app = by_id.get(job.get("title_id"))
+        if not app or app.get("id") != job.get("app_id"):
+            continue
+        name, identifier = job.get("name"), job.get("identifier")
+        if not isinstance(name, str) or not isinstance(identifier, str):
+            continue
+        url = "https://archive.org/download/" + urllib.parse.quote(identifier, safe="") + "/" + urllib.parse.quote(name, safe="")
+        if any(isinstance(l, dict) and l.get("type") == "Download" and l.get("url") == url
+               for l in app.get("links") or []):
+            recovered.add(app["title_id"])
+    return recovered
+
+
 def snapshot(catalog):
     if not isinstance(catalog, list) or not catalog:
         raise ValueError("Catalog must be a non-empty array (refusing to overwrite state)")
@@ -55,11 +98,12 @@ def snapshot(catalog):
         title_id = app.get("title_id")
         if not isinstance(title_id, str) or not title_id.strip() or title_id in result:
             raise ValueError("Missing or duplicate title_id")
-        result[title_id] = {"version": str(app.get("version") or "").strip()}
+        result[title_id] = {"version": str(app.get("version") or "").strip(),
+                            "vpk_available": vpk_available(app)}
     return result
 
 
-def changes(old, new, apps):
+def changes(old, new, apps, recovered=()):
     additions, updates = [], []
     for app in apps:
         title_id = app["title_id"]
@@ -67,6 +111,10 @@ def changes(old, new, apps):
             additions.append(app)
         elif old[title_id].get("version", "") != new[title_id]["version"]:
             updates.append((app, old[title_id].get("version", "")))
+        elif new[title_id]["vpk_available"] and (
+                old[title_id].get("vpk_available") is False or
+                ("vpk_available" not in old[title_id] and title_id in recovered)):
+            additions.append(app)
     return additions, updates
 
 
@@ -93,14 +141,15 @@ def discord_icon_url(value):
     return url
 
 
-def app_embed(app, old_version=None):
+def app_embed(app, old_version=None, *, available=False):
     title_id = app["title_id"]
     name = limited(app.get("name") or title_id, 180)
     version = limited(app.get("version") or "Unknown", 70)
     description = limited(app.get("description"), 250)
     url = SITE + urllib.parse.quote(title_id, safe="")
     if old_version is None:
-        title, line = f"New Homebrew: {name}", f"Version: **{version}**"
+        title = f"Homebrew Now Available: {name}" if available else f"New Homebrew: {name}"
+        line = f"Version: **{version}**" + ("\nVPK download is now available." if available else "")
     else:
         title = f"Homebrew Updated: {name}"
         line = f"Version: **{limited(old_version or 'Unknown', 70)} → {version}**"
@@ -153,7 +202,7 @@ def send(url, payload):
     raise RuntimeError("Discord webhook exhausted retries")
 
 
-def notify_catalog(catalog_path, state_path):
+def notify_catalog(catalog_path, state_path, *, zip_jobs=None):
     apps = to_v1(read_json(catalog_path))
     current = snapshot(apps)
     state = state_from_file(state_path)
@@ -163,15 +212,19 @@ def notify_catalog(catalog_path, state_path):
         save_json(state_path, state)
         print(f"Initialized Discord catalog baseline: {len(current)} Homebrew (no announcements).")
         return
-    added, updated = changes(state["apps"], current, apps)
+    recovered = verified_first_downloads(apps, zip_jobs)
+    added, updated = changes(state["apps"], current, apps, recovered)
     if not added and not updated:
-        print("No new Homebrew or version changes; nothing to announce.")
+        if state["apps"] != current:
+            state["apps"] = current
+            save_json(state_path, state)
+        print("No new Homebrew, version changes or first VPK downloads; nothing to announce.")
         return
     urls = {kind: webhook_url(kind) for kind, items in (("new", added), ("updated", updated)) if items}
     for kind, items in (("new", added), ("updated", updated)):
         for start in range(0, len(items), 10):
             batch = items[start:start + 10]
-            embeds = ([app_embed(app) for app in batch] if kind == "new"
+            embeds = ([app_embed(app, available=app["title_id"] in state["apps"]) for app in batch] if kind == "new"
                       else [app_embed(app, prior) for app, prior in batch])
             send(urls[kind], {"embeds": embeds})
             print(f"Sent {kind} notification batch ({len(batch)} apps).")
@@ -247,10 +300,11 @@ def main():
     parser.add_argument("--mode", choices=("catalog", "release"), required=True)
     parser.add_argument("--state", required=True)
     parser.add_argument("--catalog", default="catalog.json")
+    parser.add_argument("--zip-jobs", default="data/archive_zip_publication_jobs.json")
     parser.add_argument("--event", default=os.getenv("GITHUB_EVENT_PATH", ""))
     args = parser.parse_args()
     if args.mode == "catalog":
-        notify_catalog(args.catalog, args.state)
+        notify_catalog(args.catalog, args.state, zip_jobs=args.zip_jobs)
     else:
         notify_release(args.event, args.state, args.catalog)
 

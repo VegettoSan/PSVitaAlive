@@ -119,6 +119,50 @@ class DiscordNotificationTests(unittest.TestCase):
                 dn.notify_catalog(catalog, state)
                 self.assertEqual(send.call_count, 2)
 
+    def test_first_vpk_download_notifies_once_but_mirror_does_not(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            catalog, state = root / "catalog.json", root / "state.json"
+            app = {"id": "example", "title_id": "TEST00001", "name": "Example", "version": "1.0"}
+            catalog.write_text(json.dumps([app]))
+            dn.notify_catalog(catalog, state)
+            app["links"] = [{"type": "Download", "url": "https://archive.org/download/example/app.vpk"}]
+            catalog.write_text(json.dumps([app]))
+            with patch.object(dn, "webhook_url", return_value="https://example.test/new") as webhook, \
+                 patch.object(dn, "send") as send:
+                dn.notify_catalog(catalog, state)
+                webhook.assert_called_once_with("new")
+                self.assertIn("Homebrew Now Available", send.call_args.args[1]["embeds"][0]["title"])
+                app["links"][0]["url"] = "https://archive.org/download/mirror/app.vpk"
+                catalog.write_text(json.dumps([app]))
+                dn.notify_catalog(catalog, state)
+                send.assert_called_once()
+
+    def test_legacy_crosscraft_recovery_exact_verified_link_once(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            catalog, state, jobs = root / "catalog.json", root / "state.json", root / "jobs.json"
+            app = {"id": "crosscraft-classic", "title_id": "CCC000110", "version": "v1.3",
+                   "links": [{"type": "Download", "url": "https://archive.org/download/psvitaalive-crosscraft-classic/app%20v1.3.vpk"}]}
+            catalog.write_text(json.dumps([app]))
+            dn.save_json(state, {"schema": 1, "catalog_initialized": True,
+                                 "apps": {"CCC000110": {"version": "v1.3"}}, "releases": []})
+            key = "0419dc2924cb455ae4d40219550eeb22f55a0ad620ffed3e3f92c40ae40b4c55"
+            job = {"app_id": app["id"], "title_id": app["title_id"], "status": "PUBLISHED_VERIFIED",
+                   "identifier": "psvitaalive-crosscraft-classic", "name": "app v1.3.vpk"}
+            dn.save_json(jobs, {"jobs": {key: job}})
+            with patch.object(dn, "webhook_url", return_value="https://example.test/new"), \
+                 patch.object(dn, "send") as send:
+                dn.notify_catalog(catalog, state, zip_jobs=jobs)
+                self.assertIn("Homebrew Now Available", send.call_args.args[1]["embeds"][0]["title"])
+                dn.notify_catalog(catalog, state, zip_jobs=jobs)
+                send.assert_called_once()
+
+    def test_unknown_legacy_baseline_is_not_mass_announced(self):
+        app = {"title_id": "TEST00001", "version": "1.0",
+               "links": [{"type": "Download", "url": "https://example.test/app.vpk"}]}
+        self.assertEqual(dn.changes({"TEST00001": {"version": "1.0"}}, dn.snapshot([app]), [app]), ([], []))
+
     def test_release_deduplication(self):
         with tempfile.TemporaryDirectory() as folder:
             base = Path(folder)

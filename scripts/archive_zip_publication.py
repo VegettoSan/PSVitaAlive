@@ -12,6 +12,8 @@ import csv
 import json
 import os
 import re
+import subprocess
+import sys
 import tempfile
 import time
 import zipfile
@@ -316,16 +318,76 @@ def run_one(root, state, app, repo, tag, release, proof, creds, *, publish=git_p
         with log.open("a", newline="", encoding="utf-8") as out:
             csv.writer(out).writerow([app_id, identifier, "ok", ";".join(job["files"]), "",
                                       "https://archive.org/details/" + identifier])
-    job.update(status=FINAL, completed_at=now_utc())
+    job.update(status=FINAL, completed_at=now_utc(),
+               first_download=select_current_download(app.get("links", []))[0] is None)
     persist(root, state, f"chore: publish verified ZIP VPK for {app_id}",
             publish=publish, paths=(str(path.relative_to(root)), str(initial.LOG)), validate=True)
     return FINAL
+
+
+def publish_catalog_now(root, paths, message, *, validate):
+    """Generate official public catalogs in the same verified app transaction.
+    Only source records are inputs; the generator never hand-edits the output.
+    The normal validator still performs the full reconciliation after the batch.
+    """
+    if not validate:
+        return git_publish(root, paths, message, validate=False)
+    if os.environ.get("PSVA_FAST_CATALOG_PUBLICATION") != "true":
+        return git_publish(root, paths, message, validate=True)
+    old_catalog = json.loads((root / "catalog.json").read_text("utf-8"))
+    # Require the already-published V2 format; never initiate a schema cutover.
+    if not isinstance(old_catalog, list) or not old_catalog or not all(
+            isinstance(a, dict) and "tid" in a and "title_id" not in a for a in old_catalog):
+        raise Deferred("CATALOG_PUSH_BLOCKED", "Fast publication requires existing public V2 catalog")
+    env = dict(os.environ, PSVA_SOURCE_SCHEMA_V2="true", PSVA_PUBLIC_SCHEMA_V2="true",
+               VITAHUB_REBUILD_FROM_EXTERNAL="false", VITAHUB_SKIP_REMOTE_MEDIA="true",
+               VITAHUB_SKIP_REMOTE_CHECKS="true")
+    generated = subprocess.run([sys.executable, "scripts/generate_catalog.py", "--publication-only"],
+                               cwd=root, env=env)
+    if generated.returncode:
+        raise Deferred("CATALOG_PUSH_BLOCKED", "Official catalog generation failed")
+    current = to_v1(json.loads((root / "catalog.json").read_text("utf-8")))
+    by_id = {a["id"]: a for a in current}
+    if len(by_id) != len(current):
+        raise Deferred("CATALOG_PUSH_BLOCKED", "Duplicate generated app identity")
+    for path in paths:
+        if not path.startswith("apps/"):
+            continue
+        app = to_v1(json.loads((root / path).read_text("utf-8")))
+        public = by_id.get(app["id"], {})
+        link, _ = select_current_download(app.get("links", []))
+        if (not link or public.get("title_id") != app.get("title_id")
+                or public.get("version") != app.get("version")
+                or not any(l.get("type") == "Download" and l.get("url") == link["url"]
+                           for l in public.get("links", []))):
+            raise Deferred("CATALOG_PUSH_BLOCKED", "Generated public record does not match verified VPK")
+    git_publish(root, [*paths, "catalog.json", "authors.json", "categories.json"],
+                message, validate=True)
+    print("ZIP publication: official catalogs committed with verified VPK", flush=True)
+
+
+def announce_now(root):
+    """Announce from committed public catalog under the existing publisher lock.
+    Network failures fall back to the ordinary Discord workflow; a failed
+    GitHub state push must stop the batch rather than re-send in this run.
+    """
+    if os.environ.get("PSVA_FAST_CATALOG_PUBLICATION") != "true":
+        return
+    from scripts.discord_notifications import notify_catalog
+    state_path = root / ".github/discord/state.json"
+    try:
+        notify_catalog(root / "catalog.json", state_path, zip_jobs=root / STATE)
+    except (ValueError, RuntimeError, OSError) as exc:
+        print("ZIP publication: Discord delivery deferred: " + type(exc).__name__, flush=True)
+        return
+    git_publish(root, [".github/discord/state.json"], "chore(discord): record verified ZIP availability [skip ci]", validate=False)
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--root", type=Path, default=ROOT)
     p.add_argument("--execute", action="store_true")
+    p.add_argument("--resume-only", action="store_true", help="Reconcile existing pending ZIP jobs only")
     args = p.parse_args()
     creds = tuple(os.environ.get(k, "") for k in ("IA_ACCESS_KEY", "IA_SECRET_KEY", "IA_EXPECTED_UPLOADER"))
     if args.execute and (os.environ.get("GITHUB_REPOSITORY") != "VegettoSan/PSVitaAlive"
@@ -350,6 +412,8 @@ def main():
             selected.append(rows[0])
     # Resume outstanding transfers before fresh work; rotate the rest.
     pending = {j["app_id"] for j in state["jobs"].values() if j.get("status") != FINAL}
+    if args.resume_only:
+        selected = [r for r in selected if r[0]["id"] in pending]
     try:
         offset = max(0, int(os.environ.get("GITHUB_RUN_NUMBER", "1")) - 1)
     except ValueError:
@@ -389,7 +453,11 @@ def main():
                 raise Deferred("DEFERRED", "ZIP byte budget")
             attempts += 1
             total += cost
-            status = run_one(root, state, app, repo, tag, release, proof, creds) if args.execute else "READY_PREVIEW"
+            if args.resume_only and proof[0] not in state["jobs"]:
+                raise Deferred("DEFERRED", "No matching pending checkpoint for this release")
+            status = run_one(root, state, app, repo, tag, release, proof, creds, publish=publish_catalog_now) if args.execute else "READY_PREVIEW"
+            if args.execute and status == FINAL:
+                announce_now(root)
         except Deferred as exc:
             status, detail = exc.status, exc.reason
         except (requests.RequestException, ValueError):
