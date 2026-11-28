@@ -4774,7 +4774,7 @@
       {
         "t": "Official Website",
         "n": "Release Page",
-        "u": "https://github.com/unveroleone/vita-save-sync/releases"
+        "u": "https://github.com/unveroleone/save-sync/releases"
       },
       {
         "t": "Official Website",
@@ -4784,7 +4784,7 @@
       {
         "t": "Repository",
         "n": "Repositorio",
-        "u": "https://github.com/unveroleone/vita-save-sync"
+        "u": "https://github.com/unveroleone/save-sync"
       },
       {
         "t": "Official Website",
@@ -4794,8 +4794,8 @@
     ],
     "sn": "VitaHomebrewDB",
     "si": "1418",
-    "su": "https://github.com/unveroleone/vita-save-sync",
-    "rp": "https://github.com/unveroleone/vita-save-sync/releases",
+    "su": "https://github.com/unveroleone/save-sync",
+    "rp": "https://github.com/unveroleone/save-sync/releases",
     "ua": "2026-08-13T15:34:48.333453+00:00"
   },
   {
@@ -12780,18 +12780,18 @@
       {
         "t": "Official Website",
         "n": "Release Page",
-        "u": "https://github.com/Zushikina-kun/GBVitaEX/releases"
+        "u": "https://github.com/Zushikina-kun/MGBAVitaEX/releases"
       },
       {
         "t": "Repository",
         "n": "Repositorio",
-        "u": "https://github.com/Zushikina-kun/GBVitaEX"
+        "u": "https://github.com/Zushikina-kun/MGBAVitaEX"
       }
     ],
     "sn": "VitaDB",
     "si": "1472",
-    "su": "https://github.com/Zushikina-kun/GBVitaEX",
-    "rp": "https://github.com/Zushikina-kun/GBVitaEX/releases",
+    "su": "https://github.com/Zushikina-kun/MGBAVitaEX",
+    "rp": "https://github.com/Zushikina-kun/MGBAVitaEX/releases",
     "ua": "2026-08-19T18:56:46.398303+00:00"
   },
   {
