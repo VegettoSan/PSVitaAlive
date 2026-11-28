@@ -688,6 +688,354 @@
         "vpk_entries": 1,
         "outer_sha256": "0f1fd5bf7baffbe407edf02d5dd19492c078824e763b69576bca7bb2a83edcc7"
       }
+    },
+    "4edc83ad1b4fa6fb280afc9dab1e8776682b2b23a3992285b5856e3677668ec4": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141079,
+        "name": "fheroes2_macos_x86-64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_macos_x86-64_SDL2.zip",
+        "size": 5379945,
+        "updated_at": "2026-11-08T20:43:26Z",
+        "digest": "sha256:59f81060dac91f4195271a997561390d31b902d44d2082d7240db6107d80275f"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "59f81060dac91f4195271a997561390d31b902d44d2082d7240db6107d80275f"
+      }
+    },
+    "0e20df72ed33f83c60cda2a2700a866a4b1c4d3126030df8ca48e1ba82ffd498": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944815,
+        "name": "thextech-wiki-docs-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-wiki-docs-v1.3.7.3.zip",
+        "size": 5302400,
+        "updated_at": "2026-06-22T20:48:47Z",
+        "digest": "sha256:1597243f3cf9471db2dd05b71c8566233f938c9f731f6a92a82996840543a62b"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "1597243f3cf9471db2dd05b71c8566233f938c9f731f6a92a82996840543a62b"
+      }
+    },
+    "c5b6681182b075e0d80f338dbd17e74d87d25a3f7bb99acb1781b3eb2467f600": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141754,
+        "name": "fheroes2_ubuntu_arm64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_ubuntu_arm64_SDL2.zip",
+        "size": 5681093,
+        "updated_at": "2026-11-08T20:43:44Z",
+        "digest": "sha256:f0eb41db4a3d009cdc635ee0836d720a54d8e4107ed89027f9de7b0e302fb99e"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "f0eb41db4a3d009cdc635ee0836d720a54d8e4107ed89027f9de7b0e302fb99e"
+      }
+    },
+    "5250d6c05d2b45eba7a5f22712460ba06b48810d7e8e56ba32b0754b1f63b0a4": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944129,
+        "name": "thextech-switch-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-switch-v1.3.7.3.zip",
+        "size": 6390713,
+        "updated_at": "2026-06-22T20:48:07Z",
+        "digest": "sha256:1161300fee30b8b366018ebc13162bc64eb6acf3f11a9cfac69b7738ddf78a6f"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "1161300fee30b8b366018ebc13162bc64eb6acf3f11a9cfac69b7738ddf78a6f"
+      }
+    },
+    "8447bff7759dee3a09f1843af5be9535bd02faacc8e9cc71cc2137ecad62051f": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141870,
+        "name": "fheroes2_ubuntu_x86-64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_ubuntu_x86-64_SDL2.zip",
+        "size": 5923454,
+        "updated_at": "2026-11-08T20:43:48Z",
+        "digest": "sha256:bf1973e1edca4776ac36a5162c5b518ce910f7cbdce3568ad7067c865891fe10"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "bf1973e1edca4776ac36a5162c5b518ce910f7cbdce3568ad7067c865891fe10"
+      }
+    },
+    "9b435c9410dc88f41a048140176a1b701687bd68780bad30660e5b77391e9ad3": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454941541,
+        "name": "thextech-convert-kit-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-convert-kit-v1.3.7.3.zip",
+        "size": 7551386,
+        "updated_at": "2026-06-22T20:45:01Z",
+        "digest": "sha256:ffb39697dd4b7a1bb4000e09aac152406abe38758866aa4a8170acaab230bb96"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "ffb39697dd4b7a1bb4000e09aac152406abe38758866aa4a8170acaab230bb96"
+      }
+    },
+    "2329ea396aac5413067e6f5276b81ea19009d7d58b0f14f8b9ac7a1cbb73c123": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141559,
+        "name": "fheroes2_switch.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_switch.zip",
+        "size": 8882064,
+        "updated_at": "2026-11-08T20:43:40Z",
+        "digest": "sha256:afda46e9793d2f100a7af819533ed209f0259af61743803d354337fe56f7da05"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "afda46e9793d2f100a7af819533ed209f0259af61743803d354337fe56f7da05"
+      }
+    },
+    "668f587992012e537ca9ad4036f17fb554c690ccdb35f2dc9e2ce3b47b7eafac": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944646,
+        "name": "thextech-wiiu-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-wiiu-v1.3.7.3.zip",
+        "size": 11452574,
+        "updated_at": "2026-06-22T20:48:41Z",
+        "digest": "sha256:08ed03620c48c671543565572cc35d40434657f7ebbe39384f11929b23972c85"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "08ed03620c48c671543565572cc35d40434657f7ebbe39384f11929b23972c85"
+      }
+    },
+    "59489c5810595bf1742ae261d7a559f677ab54f41ace76d0e99f524b0630b20d": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725143248,
+        "name": "fheroes2_windows_x86_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_windows_x86_SDL2.zip",
+        "size": 12277249,
+        "updated_at": "2026-11-08T20:44:32Z",
+        "digest": "sha256:5a9b85926f2b2ea0f1cf4f4f788b4bf82dcb72b01be7d60a54726e152bdea375"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "5a9b85926f2b2ea0f1cf4f4f788b4bf82dcb72b01be7d60a54726e152bdea375"
+      }
+    },
+    "85154711b425e52ffc94eb789be234edc7848a9e825f8392b4dbcc9b95fc9890": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454942796,
+        "name": "thextech-game-template-v1.3.7.3-macOS.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-game-template-v1.3.7.3-macOS.zip",
+        "size": 11721281,
+        "updated_at": "2026-06-22T20:46:40Z",
+        "digest": "sha256:3bd2b3e3d25fe02091eb61ff3c763a5df8f5b128801829f40351adb14e401e33"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "3bd2b3e3d25fe02091eb61ff3c763a5df8f5b128801829f40351adb14e401e33"
+      }
+    },
+    "9ab7691d905d26e70bb82011f461b0d27ce80c19ea9b2aee9418f9e83408152c": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141995,
+        "name": "fheroes2_windows_x64_SDL2.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_windows_x64_SDL2.zip",
+        "size": 12887302,
+        "updated_at": "2026-11-08T20:43:56Z",
+        "digest": "sha256:34cda1c1c21bcd668d13460943a4bf8eb94df7396f7f20806f807800b4de71e2"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "34cda1c1c21bcd668d13460943a4bf8eb94df7396f7f20806f807800b4de71e2"
+      }
+    },
+    "4cb2ce3f82cd73cfc4cf7bce3106498da777d20ad48a856832a9b5c3d17e6ab5": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944205,
+        "name": "thextech-wii-assets-aod-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-wii-assets-aod-v1.3.7.3.zip",
+        "size": 21097211,
+        "updated_at": "2026-06-22T20:48:20Z",
+        "digest": "sha256:c1c9856ca62c40ee9f1c0da51b75c081d5248bcb58fb6da6e84d40189d25a52c"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "c1c9856ca62c40ee9f1c0da51b75c081d5248bcb58fb6da6e84d40189d25a52c"
+      }
+    },
+    "7e860dcc890232a5df293f62e41b03aa8aba35a0128f26a27cde706a8846fc27": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141208,
+        "name": "fheroes2_psv.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_psv.zip",
+        "size": 14982748,
+        "updated_at": "2026-11-08T20:43:34Z",
+        "digest": "sha256:305f294ac284b389889aa1dfa32b1b77d3870dff841cdff41f29c1b1fad65e82"
+      },
+      "result": {
+        "status": "VPK_FOUND",
+        "matches": [
+          {
+            "entry": "fheroes2.vpk",
+            "size": 14972179,
+            "sha256": "c5d1669f048e1ac3f364cbf4e869503f1b0a5c1d746550b5d79708868a89802d",
+            "title_id": "FHOMM0002"
+          }
+        ],
+        "vpk_entries": 1,
+        "outer_sha256": "305f294ac284b389889aa1dfa32b1b77d3870dff841cdff41f29c1b1fad65e82"
+      }
+    },
+    "dd71964218aa6cc821dcb681fbb470d32763a061ac295fa116c80ecd9a424a85": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454944422,
+        "name": "thextech-wii-assets-smbx13-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-wii-assets-smbx13-v1.3.7.3.zip",
+        "size": 29790917,
+        "updated_at": "2026-06-22T20:48:35Z",
+        "digest": "sha256:3f33e0653a847f407ab17b53f54a776a0c43c4ee903843536f0bdec9d1239e96"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "3f33e0653a847f407ab17b53f54a776a0c43c4ee903843536f0bdec9d1239e96"
+      }
+    },
+    "fc4928ecfeeedae63360ef15897e9274c01986b26e14861f0c39e51b7554e65f": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454939746,
+        "name": "thextech-3ds-assets-smbx13-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-3ds-assets-smbx13-v1.3.7.3.zip",
+        "size": 48012828,
+        "updated_at": "2026-06-22T20:43:31Z",
+        "digest": "sha256:411684a4a197b5b5ad14401eeba75e9acc9bb9a0f783e8e5f740589087805f8a"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "411684a4a197b5b5ad14401eeba75e9acc9bb9a0f783e8e5f740589087805f8a"
+      }
+    },
+    "ead6dd6041fd962afa4aac8462fbfcfb063bd2c061ec8eaf3f4025ed7d72748d": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454939507,
+        "name": "thextech-3ds-assets-aod-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-3ds-assets-aod-v1.3.7.3.zip",
+        "size": 60025376,
+        "updated_at": "2026-06-22T20:43:07Z",
+        "digest": "sha256:8c872df866d2b9eac9d47a03d97982cf06f76b67e6fbeb97da7781a72eb0b155"
+      },
+      "result": {
+        "status": "NO_VPK",
+        "matches": [],
+        "outer_sha256": "8c872df866d2b9eac9d47a03d97982cf06f76b67e6fbeb97da7781a72eb0b155"
+      }
+    },
+    "bcd863a3552cc952e3f1c58a17fade619d13aa26b3ec185dbe47fe606f624d77": {
+      "app_id": "thextech",
+      "title_id": "THEXTECH0",
+      "asset": {
+        "repo": "thextech/thextech",
+        "tag": "v1.3.7.3-1",
+        "release_id": 343149160,
+        "asset_id": 454942175,
+        "name": "thextech-full-src-v1.3.7.3.zip",
+        "url": "https://github.com/TheXTech/TheXTech/releases/download/v1.3.7.3-1/thextech-full-src-v1.3.7.3.zip",
+        "size": 61026592,
+        "updated_at": "2026-06-22T20:46:05Z",
+        "digest": "sha256:dcf9ffea7678e230251aebccb26da32412ef9410c2ee391d589d8c90a061de4c"
+      },
+      "result": {
+        "status": "LIMIT_REVIEW",
+        "matches": [],
+        "outer_sha256": "dcf9ffea7678e230251aebccb26da32412ef9410c2ee391d589d8c90a061de4c"
+      }
     }
   }
 }
