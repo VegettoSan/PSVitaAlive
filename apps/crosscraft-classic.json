@@ -15,7 +15,7 @@
   "v": "v1.3",
   "vd": "2022-12-01",
   "req": "Not specified",
-  "sz": 10028371,
+  "sz": 10018605,
   "st": "Legacy",
   "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0848-crosscraft-classic.png",
   "ss": [
@@ -37,6 +37,12 @@
       "t": "Official Website",
       "n": "Release Page",
       "u": "https://github.com/CrossCraft/CrossCraft-Classic/releases"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crosscraft-classic/crosscraft-classic%20v1.3--zip-1cbecebff557c490.vpk",
+      "rec": true
     }
   ],
   "sn": "NeoVitaDB",
