@@ -76,7 +76,7 @@ class PreviewTests(unittest.TestCase):
             self.assertEqual(queue[0]["version"], "v.0.8")
             self.assertEqual(queue[0]["kind"], "CATALOG_BACKFILL")
 
-    def test_current_vpk_without_size_requires_specific_review(self):
+    def test_current_vpk_without_size_remains_eligible_for_official_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "apps").mkdir()
@@ -89,10 +89,10 @@ class PreviewTests(unittest.TestCase):
             a["size"] = None
             (root / "apps/alpha.json").write_text(json.dumps(a))
             queue, reviews = candidates(root)
-            self.assertEqual(queue, [])
-            self.assertEqual(reviews[0]["app_id"], "alpha")
-            self.assertEqual(reviews[0]["status"], "SOURCE_ADAPTER_PENDING")
-            self.assertIn("size", reviews[0]["reason"])
+            self.assertEqual(reviews, [])
+            self.assertEqual(len(queue), 1)
+            self.assertEqual(queue[0]["app_id"], "alpha")
+            self.assertEqual(queue[0]["size_bytes"], 0)
 
     def test_shared_repository_is_not_rejected_when_catalog_identifies_exact_vpk(self):
         with tempfile.TemporaryDirectory() as tmp:

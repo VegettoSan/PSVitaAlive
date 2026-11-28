@@ -43,10 +43,31 @@ HOSTS = {"raw.githubusercontent.com", "github.com", "media.githubusercontent.com
          "objects.githubusercontent.com", "opengraph.githubassets.com"}
 
 
+def catalog_artwork_provider(url):
+    """Recognize only the existing catalog image layouts, not arbitrary hosts."""
+    try:
+        u = urlparse(url)
+        if (u.scheme != "https" or u.username or u.password or u.port
+                or u.query or u.fragment):
+            return None
+        host = u.netloc.lower()
+        if host == "raw.githubusercontent.com":
+            if re.fullmatch(r"/DrDecki/VitaDBtoo-db/main/(?:icons|screenshots)/[0-9a-f]{64}\.png", u.path, re.I):
+                return "VitaDBtoo"
+            if re.fullmatch(r"/robin994/NeoVitaDB-Catalog/main/icons_vita/[0-9]+-[A-Za-z0-9_.-]+\.png", u.path, re.I):
+                return "NeoVitaDB"
+        if host == "www.rinnegatamante.eu" and re.fullmatch(
+                r"/vitadb/(?:icons|screenshots)/[0-9a-f]{64}\.png", u.path, re.I):
+            return "VitaDB"
+    except (ValueError, TypeError, AttributeError):
+        pass
+    return None
+
+
 def safe_media_url(url):
     try:
         u = urlparse(url)
-        return (u.scheme == "https" and u.netloc.lower() in HOSTS
+        return (u.scheme == "https" and (u.netloc.lower() in HOSTS or catalog_artwork_provider(url) == "VitaDB")
                 and not u.username and not u.password and not u.fragment
                 and bool(u.path))
     except (ValueError, TypeError, AttributeError):

@@ -200,6 +200,8 @@ def candidates(root: Path, snapshot: dict | None = None) -> tuple[list[dict], li
             if current_archive == target and evidence == "historical-upload-log":
                 continue
             report.append({"app_id": app.get("id"), "status": "PENDING_MANUAL",
+                           "review_kind": "ALREADY_HOSTED_OWNERSHIP_UNCONFIRMED",
+                           "archive_identifier": current_archive,
                            "reason": "primary Archive.org VPK is not confirmed as PSVitaAlive-owned"})
             continue
 

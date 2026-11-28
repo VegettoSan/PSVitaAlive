@@ -6,6 +6,8 @@ import zipfile
 from pathlib import Path
 from unittest.mock import patch
 from collections import Counter
+from datetime import datetime, timezone
+from types import SimpleNamespace
 from scripts import archive_new_items_batch as b
 from scripts.archive_backup_batch import Deferred
 
@@ -185,6 +187,57 @@ class NewItemsBatchTests(unittest.TestCase):
                          "https://raw.githubusercontent.com/T64NCollection/TNTV/main/icon.png")
         self.assertIsNone(b.artwork_download_url("https://github.com/other/repo/blob/main/icon.png?raw=true", spec))
         self.assertIsNone(b.artwork_download_url("https://127.0.0.1/icon.png", spec))
+
+    def test_catalog_artwork_adapters_are_narrow(self):
+        spec = {"automatic": True, "repo": "owner/upstream"}
+        from scripts.archive_media_backup import safe_media_url
+        digest = "a" * 64
+        urls = [
+            f"https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/icons/{digest}.png",
+            f"https://www.rinnegatamante.eu/vitadb/screenshots/{digest}.png",
+            "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/1095-halo-2d.png",
+        ]
+        for url in urls:
+            self.assertEqual(b.artwork_download_url(url, spec), url)
+        for url in [urls[0].replace("/icons/", "/arbitrary/"), urls[1] + "?x=1",
+                    urls[1].replace("www.rinnegatamante.eu", "www.rinnegatamante.eu.evil.test"),
+                    urls[1].replace("/vitadb/", "/other/"),
+                    urls[2].replace("/icons_vita/", "/other/")]:
+            self.assertIsNone(b.artwork_download_url(url, spec))
+        self.assertTrue(safe_media_url(urls[1]))
+        self.assertFalse(safe_media_url("https://www.rinnegatamante.eu/other/image.png"))
+
+    def test_stale_creation_checkpoint_keeps_original_identifier_and_never_retries(self):
+        job = {"created_at": "2026-11-27T20:00:00+00:00", "attempted": ["app.vpk"]}
+        now = datetime(2026, 11, 27, 23, 0, tzinfo=timezone.utc)
+        with patch.object(b.initial, "put_file") as put:
+            with self.assertRaises(Deferred) as err:
+                b.initial.resume_owned_item("item", "owner", job, fetch=lambda _: None, now=now)
+            self.assertEqual(err.exception.status, "UPLOAD_REVIEW_REQUIRED")
+            md = {"metadata": {"uploader": "owner"}, "files": []}
+            self.assertEqual(b.initial.resume_owned_item("item", "owner", job, fetch=lambda _: md, now=now), md)
+            put.assert_not_called()
+        self.assertEqual(job["attempted"], ["app.vpk"])
+
+    def test_missing_vpk_audit_never_treats_zip_as_vpk(self):
+        app = {"source_url": "https://github.com/a/b", "links": [
+            {"type": "Official Website", "url": "https://github.com/a/b/releases/tag/v1"}]}
+        zip_asset = {"name": "CrossCraft-Vita.zip", "state": "uploaded", "size": 1024,
+                     "browser_download_url": "https://github.com/a/b/releases/download/v1/CrossCraft-Vita.zip"}
+        foreign = {"name": "foreign.vpk", "state": "uploaded", "size": 100,
+                   "browser_download_url": "https://github.com/other/b/releases/download/v1/foreign.vpk"}
+        data = {"tag_name": "v1", "draft": False, "prerelease": False, "assets": [zip_asset, foreign]}
+        with patch.object(b.requests, "get", return_value=SimpleNamespace(status_code=200, json=lambda: data)) as get:
+            result = b.inspect_missing_vpk_release(app)
+            self.assertEqual(result["status"], "ZIP_PACKAGE_REVIEW")
+            self.assertEqual(result["vpk_assets"], [])
+            self.assertEqual(result["vita_zip_assets"][0]["name"], "CrossCraft-Vita.zip")
+            self.assertTrue(get.call_args.args[0].endswith("/releases/tags/v1"))
+            self.assertFalse(get.call_args.kwargs["allow_redirects"])
+        app["links"].append({"type": "Official Website", "url": "https://github.com/a/b/releases/tag/v2"})
+        with patch.object(b.requests, "get") as get:
+            self.assertEqual(b.inspect_missing_vpk_release(app)["status"], "RELEASE_SOURCE_REVIEW")
+            get.assert_not_called()
 
     def test_title_id_checks_real_bounded_sfo(self):
         value = b"NTET00001\x00"

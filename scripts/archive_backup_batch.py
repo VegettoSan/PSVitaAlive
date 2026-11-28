@@ -26,7 +26,7 @@ from urllib.parse import quote, unquote, urljoin, urlparse
 import requests
 
 from scripts.archive_backup_batch_preview import (
-    candidates, item_owned_by_account, resolve_item, upload_map,
+    candidates, item_owned_by_account, resolve_item, upload_map, archive_id,
 )
 from scripts.archive_owner_preflight import fetch_item_metadata
 from scripts.archive_upload_one_pilot import has_remote_name, safe_redirect
@@ -680,6 +680,71 @@ def should_stop_batch(status: str) -> bool:
     return status in {"WAITING_ARCHIVE", "UPLOAD_RESULT_UNCERTAIN", "CATALOG_PUSH_BLOCKED"}
 
 
+def audit_existing_hosted(root, reviews, owner, *, fetch=None, max_items=12,
+                          run_number=None, deadline=None):
+    """Read-only rolling classification; NEVER authorizes a PUT or a new item.
+
+    Inspect only current canonical Archive.org VPK URLs already flagged by
+    candidates(). No uploader addresses, secrets, or remote metadata are logged.
+    Presence in a manifest is not proof of public bytes or redistribution rights.
+    """
+    fetch = fetch or fetch_item_metadata
+    pending = sorted((r for r in reviews
+                      if r.get("review_kind") == "ALREADY_HOSTED_OWNERSHIP_UNCONFIRMED"),
+                     key=lambda r: r["app_id"])
+    limit = min(max(0, max_items), 12, len(pending))
+    rows = []
+    if not limit or not owner.strip():
+        return {"eligible": len(pending), "checked": 0, "rows": rows}
+    if run_number is None:
+        try:
+            run_number = int(os.environ.get("GITHUB_RUN_NUMBER", "1"))
+        except ValueError:
+            run_number = 1
+    offset = (max(0, run_number - 1) * limit) % len(pending)
+    selected = (pending[offset:] + pending[:offset])[:limit]
+    for review in selected:
+        if deadline is not None and time.monotonic() + 25 >= deadline:
+            break
+        row = {"app_id": review["app_id"], "archive_identifier": review["archive_identifier"],
+               "status": "HOSTED_METADATA_UNAVAILABLE", "file_status": "UNKNOWN"}
+        try:
+            if not VALID_ID.fullmatch(row["app_id"]):
+                raise ValueError()
+            app = to_v1(json.loads((root / "apps" / (row["app_id"] + ".json")).read_text("utf-8")))
+            link, _ = select_current_download(app.get("links"))
+            url = link.get("url") if link else None
+            parsed = urlparse(url or "")
+            parts = [unquote(p) for p in parsed.path.split("/") if p]
+            if (parsed.scheme != "https" or parsed.username or parsed.password or parsed.port
+                    or parsed.query or parsed.fragment or archive_id(url) != row["archive_identifier"]
+                    or len(parts) < 3 or parts[0] != "download"
+                    or any(p in {".", ".."} for p in parts)
+                    or not parts[-1].lower().endswith(".vpk")):
+                row["status"] = "HOSTED_URL_REVIEW"
+            else:
+                md = fetch(row["archive_identifier"])
+                if isinstance(md, dict) and isinstance(md.get("metadata"), dict):
+                    uploader = md["metadata"].get("uploader")
+                    if item_owned_by_account(md, owner)[0]:
+                        row["status"] = "HOSTED_OWNED"
+                    elif isinstance(uploader, str) and uploader.strip():
+                        row["status"] = "HOSTED_EXTERNAL"
+                    else:
+                        row["status"] = "HOSTED_OWNER_UNKNOWN"
+                    if isinstance(md.get("files"), list):
+                        name = "/".join(parts[2:])
+                        matches = [f for f in md["files"] if isinstance(f, dict)
+                                   and f.get("name") == name]
+                        row["file_status"] = ("PRESENT" if len(matches) == 1 else
+                                              "MISSING" if not matches else "CONFLICT")
+        except Exception:
+            # A temporary read failure must never interrupt preservation.
+            row["status"] = "HOSTED_METADATA_UNAVAILABLE"
+        rows.append(row)
+    return {"eligible": len(pending), "checked": len(rows), "rows": rows}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
@@ -775,8 +840,11 @@ def main() -> int:
         historical = recover_one_historical(
             root, state, creds[2], max_file=min(args.max_file_mib * MIB,
                                                args.max_batch_mib * MIB - total))
+    ownership_audit = audit_existing_hosted(root, reviews, creds[2] if args.execute else "",
+                                            deadline=deadline)
     report = {
         "mode": "EXECUTE" if args.execute else "DRY_RUN",
+        "ownership_audit": ownership_audit,
         "limits": {"files": args.max_files, "file_mib": args.max_file_mib,
                    "batch_mib": args.max_batch_mib, "minutes": args.max_minutes},
         "results": results, "review_count": len(reviews),
@@ -799,6 +867,9 @@ def main() -> int:
     summary += ["", f"Historical checkpoints retained: **{sum(len(entries) for entries in state.get('superseded', {}).values())}**",
                 f"Current-catalog backup review notices: **{len(reviews)}**",
                 f"By reason class: **{', '.join(f'{name}={amount}' for name, amount in sorted(tally.items())) or 'none'}**",
+                f"Already hosted, ownership not confirmed: **{ownership_audit['eligible']}**; "
+                f"read-only ownership checks this run: **{ownership_audit['checked']}**",
+                "Ownership audit: " + (", ".join(f"{k}={v}" for k, v in sorted(Counter(r["status"] for r in ownership_audit["rows"]).items())) or "none"),
                 "These review notices are not uninstalled apps or missing upstream updates.",
                 "See run.json for each app_id and exact reason.",
                 "All generated catalogs are owned exclusively by validate.yml."]

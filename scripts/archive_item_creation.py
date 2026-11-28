@@ -12,6 +12,7 @@ import re
 import tempfile
 import time
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse, quote
 
@@ -379,6 +380,31 @@ def wait_owned_item(identifier, owner, *, fetch=None, sleep=None):
         require_owner(md, owner)
         return md
     raise Deferred("VERIFYING", "Item ownership not visible yet; remaining files stay pending")
+
+
+def resume_owned_item(identifier, owner, job, *, fetch=None, sleep=None, now=None):
+    """Aged uncertain first PUTs need explicit review, not repeated PUTs.
+    
+    Every later run may still recover automatically if ownership becomes
+    visible. Never reset a checkpoint or choose a different identifier.
+    """
+    fetch = fetch or lookup
+    now = now or datetime.now(timezone.utc)
+    try:
+        created = datetime.fromisoformat(job["created_at"])
+        stale = created.tzinfo is not None and (now - created).total_seconds() >= 7200
+    except (KeyError, TypeError, ValueError):
+        stale = False
+    if not stale:
+        return wait_owned_item(identifier, owner, fetch=fetch, sleep=sleep)
+    md = fetch(identifier)
+    uploader = md.get("metadata", {}).get("uploader") if md else None
+    if not isinstance(uploader, str) or not uploader.strip():
+        raise Deferred("UPLOAD_REVIEW_REQUIRED",
+                       "First PUT checkpoint is over 2h old; ownership still unconfirmed. "
+                       "Check the original item and upload/task history; no repeat PUT.")
+    require_owner(md, owner)
+    return md
 
 
 def transfer_batch(root, app, identifier, files, folder, job, creds,
