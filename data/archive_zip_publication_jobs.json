@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "jobs": {
+    "0419dc2924cb455ae4d40219550eeb22f55a0ad620ffed3e3f92c40ae40b4c55": {
+      "app_id": "crosscraft-classic",
+      "title_id": "CCC000110",
+      "identifier": "psvitaalive-crosscraft-classic",
+      "create": true,
+      "asset": {
+        "repo": "crosscraft/crosscraft-classic",
+        "tag": "v1.3",
+        "release_id": 84633227,
+        "asset_id": 86643771,
+        "name": "CrossCraft-Vita.zip",
+        "url": "https://github.com/CrossCraft/CrossCraft-Classic/releases/download/v1.3/CrossCraft-Vita.zip",
+        "size": 10028371,
+        "updated_at": "2022-12-01T15:42:10Z",
+        "digest": null
+      },
+      "inner": {
+        "entry": "CrossCraft-Classic.vpk",
+        "size": 10018605,
+        "sha256": "1cbecebff557c490e1b04100a8abd1093a1791b239ea907bf5c48a1dc742ed3b",
+        "title_id": "CCC000110"
+      },
+      "outer_sha256": "67d053771bdec88cff945653c738626fef63eca74a3fd3ad651a9cbbaba3c0d0",
+      "name": "crosscraft-classic v1.3--zip-1cbecebff557c490.vpk",
+      "sources": "crosscraft-classic v1.3--zip-1cbecebff557c490-SOURCES.txt",
+      "files": {
+        "crosscraft-classic v1.3--zip-1cbecebff557c490.vpk": {
+          "size": 10018605,
+          "md5": "f48e9fe137543ffbee1c41825f1ea745",
+          "sha256": "1cbecebff557c490e1b04100a8abd1093a1791b239ea907bf5c48a1dc742ed3b"
+        },
+        "crosscraft-classic v1.3--zip-1cbecebff557c490-SOURCES.txt": {
+          "size": 552,
+          "md5": "ee193e829e2134c805c72efcae6939a1",
+          "sha256": "3126512ff3bd80c8ffaa89846ef2086f180e42f70557a5d9bcd3e2d892d63a41"
+        }
+      },
+      "attempted": [
+        "crosscraft-classic v1.3--zip-1cbecebff557c490.vpk"
+      ],
+      "status": "CREATING",
+      "created_at": "2026-11-28T00:31:36+00:00"
+    }
+  }
+}
