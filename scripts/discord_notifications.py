@@ -51,8 +51,14 @@ def vpk_available(app):
             continue
         url = link.get("url")
         if isinstance(url, str):
-            parsed = urllib.parse.urlsplit(url)
-            if parsed.scheme in ("http", "https") and parsed.netloc and urllib.parse.unquote(parsed.path).lower().endswith(".vpk"):
+            try:
+                parsed = urllib.parse.urlsplit(url)
+            except ValueError:
+                continue
+            path = urllib.parse.unquote(parsed.path).lower()
+            label = str(link.get("name", "")).casefold().split()
+            if (parsed.scheme in ("http", "https") and parsed.netloc
+                    and (path.endswith(".vpk") or ("vpk" in label and not path.endswith((".zip", ".7z", ".rar"))))):
                 return True
     return False
 

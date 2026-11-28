@@ -156,5 +156,44 @@ class ZipPublicationTests(unittest.TestCase):
             self.assertTrue(updated["links"][0]["url"].endswith(".vpk"))
             self.assertEqual(p.load_jobs(root)["jobs"][key]["status"], p.FINAL)
 
+    def test_fast_publication_commits_generated_catalog_and_verified_source_together(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            old = app()
+            new = p.proposed_app(old, REPO, TAG, DATE, 50, URL)
+            from scripts.catalog_schema_v2 import to_v2
+            (root / "catalog.json").write_text(json.dumps(to_v2([old])))
+            (root / "apps/star-fox-adventures.json").write_text(json.dumps(new))
+            def generate(command, cwd, env):
+                self.assertEqual(command[-1], "--publication-only")
+                self.assertEqual(env["PSVA_PUBLIC_SCHEMA_V2"], "true")
+                (root / "catalog.json").write_text(json.dumps(to_v2([new])))
+                (root / "authors.json").write_text("[]")
+                (root / "categories.json").write_text("[]")
+                return type("Result", (), {"returncode": 0})()
+            paths = ["apps/star-fox-adventures.json", str(p.STATE)]
+            with patch.dict("os.environ", {"PSVA_FAST_CATALOG_PUBLICATION": "true"}), \
+                 patch.object(p.subprocess, "run", side_effect=generate), \
+                 patch.object(p, "git_publish") as commit:
+                p.publish_catalog_now(root, paths, "verified", validate=True)
+                commit.assert_called_once_with(root, paths + ["catalog.json", "authors.json", "categories.json"],
+                                               "verified", validate=True)
+
+    def test_fast_publication_rejects_unmatched_public_record(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            from scripts.catalog_schema_v2 import to_v2
+            (root / "catalog.json").write_text(json.dumps(to_v2([app()])))
+            (root / "apps/star-fox-adventures.json").write_text(
+                json.dumps(p.proposed_app(app(), REPO, TAG, DATE, 50, URL)))
+            with patch.dict("os.environ", {"PSVA_FAST_CATALOG_PUBLICATION": "true"}), \
+                 patch.object(p.subprocess, "run", return_value=type("Result", (), {"returncode": 0})()), \
+                 patch.object(p, "git_publish") as commit:
+                with self.assertRaises(Deferred):
+                    p.publish_catalog_now(root, ["apps/star-fox-adventures.json"], "verified", validate=True)
+                commit.assert_not_called()
+
 if __name__ == "__main__":
     unittest.main()

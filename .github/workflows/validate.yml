@@ -434,6 +434,33 @@ jobs:
           done
           # The PS Vita license sidecar (.zrifidx) is deliberately untouched.
 
+      - name: Test immediate official catalog generation against real canonical sources
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/psva-fast-publication
+          cp catalog.json authors.json categories.json /tmp/psva-fast-publication/
+          git diff -- apps authors categories > /tmp/psva-fast-publication/source-before.diff
+          python scripts/generate_catalog.py --publication-only
+          git diff -- apps authors categories > /tmp/psva-fast-publication/source-after.diff
+          cmp /tmp/psva-fast-publication/source-before.diff /tmp/psva-fast-publication/source-after.diff
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from scripts.catalog_schema_v2 import to_v1
+          def app_identity(path):
+              return {a['title_id']: (a['id'], a['version'], sorted(l['url'] for l in a.get('links', []) if l.get('type') == 'Download')) for a in to_v1(json.loads(Path(path).read_text()))}
+          assert app_identity('catalog.json') == app_identity('/tmp/psva-fast-publication/catalog.json'), 'Fast and normal public catalog app/version/download identities diverge'
+          for name in ('authors.json', 'categories.json'):
+              old = to_v1(json.loads((Path('/tmp/psva-fast-publication') / name).read_text()))
+              new = to_v1(json.loads(Path(name).read_text()))
+              assert {x['id'] for x in old} == {x['id'] for x in new}, name + ' identities diverge'
+          PY
+          for name in catalog.json authors.json categories.json; do
+            cp "/tmp/psva-fast-publication/$name" "$name"
+          done
+
       - name: Verify generated catalogs
         run: |
           test -s catalog.json
