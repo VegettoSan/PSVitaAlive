@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "pending": {
+    "e47bea4d6998a23afd7ae2a479d192a5a78929993c1c68676fe5e5d77ebbcbfe": {
+      "app_id": "crosscraft-classic",
+      "identifier": "psvitaalive-crosscraft-classic",
+      "filename": "media_fba6d344ace6b02e6707a197c32d5b975c9a690b8418ce923cf1b113a5297a42.png",
+      "source_url": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0848-crosscraft-classic.png",
+      "info": {
+        "size": 26014,
+        "md5": "e3abdc4d0df4d7ec29b94f2f7198eb96",
+        "sha256": "fba6d344ace6b02e6707a197c32d5b975c9a690b8418ce923cf1b113a5297a42"
+      },
+      "created_at": "2026-11-28T00:54:49+00:00"
+    }
+  },
+  "completed": {}
+}
