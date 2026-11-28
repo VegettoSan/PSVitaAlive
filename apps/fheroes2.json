@@ -12,10 +12,10 @@
   "sids": [
     "strategy"
   ],
-  "v": "1.1.17",
-  "vd": "2026-06-30",
+  "v": "1.1.18",
+  "vd": "2026-11-08",
   "req": "- Game Data Files: PC",
-  "sz": 14601805,
+  "sz": 14972179,
   "st": "Legacy",
   "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0354-fheroes2.png",
   "ss": [
@@ -40,6 +40,12 @@
       "t": "Official Website",
       "n": "Official Website",
       "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48768"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-fheroes2/fheroes2%20v1.1.18--zip-c5d1669f048e1ac3.vpk",
+      "rec": true
     }
   ],
   "sn": "NeoVitaDB",
