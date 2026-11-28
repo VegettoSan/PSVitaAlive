@@ -180,6 +180,49 @@
       "status": "PUBLISHED_VERIFIED",
       "created_at": "2026-11-28T00:58:35+00:00",
       "completed_at": "2026-11-28T01:35:38+00:00"
+    },
+    "7e860dcc890232a5df293f62e41b03aa8aba35a0128f26a27cde706a8846fc27": {
+      "app_id": "fheroes2",
+      "title_id": "FHOMM0002",
+      "identifier": "psvitaalive-fheroes2",
+      "create": true,
+      "asset": {
+        "repo": "ihhub/fheroes2",
+        "tag": "1.1.18",
+        "release_id": 438509264,
+        "asset_id": 725141208,
+        "name": "fheroes2_psv.zip",
+        "url": "https://github.com/ihhub/fheroes2/releases/download/1.1.18/fheroes2_psv.zip",
+        "size": 14982748,
+        "updated_at": "2026-11-08T20:43:34Z",
+        "digest": "sha256:305f294ac284b389889aa1dfa32b1b77d3870dff841cdff41f29c1b1fad65e82"
+      },
+      "inner": {
+        "entry": "fheroes2.vpk",
+        "size": 14972179,
+        "sha256": "c5d1669f048e1ac3f364cbf4e869503f1b0a5c1d746550b5d79708868a89802d",
+        "title_id": "FHOMM0002"
+      },
+      "outer_sha256": "305f294ac284b389889aa1dfa32b1b77d3870dff841cdff41f29c1b1fad65e82",
+      "name": "fheroes2 v1.1.18--zip-c5d1669f048e1ac3.vpk",
+      "sources": "fheroes2 v1.1.18--zip-c5d1669f048e1ac3-SOURCES.txt",
+      "files": {
+        "fheroes2 v1.1.18--zip-c5d1669f048e1ac3.vpk": {
+          "size": 14972179,
+          "md5": "6ac121c7737879b7a0e134812bf6abac",
+          "sha256": "c5d1669f048e1ac3f364cbf4e869503f1b0a5c1d746550b5d79708868a89802d"
+        },
+        "fheroes2 v1.1.18--zip-c5d1669f048e1ac3-SOURCES.txt": {
+          "size": 504,
+          "md5": "05be658b1efb726b6ab0e2d8cd11ddbd",
+          "sha256": "b04053eb91f5ec0fc58d268bd648ff1c8b801f926838edbe5672364eb54c2ce1"
+        }
+      },
+      "attempted": [
+        "fheroes2 v1.1.18--zip-c5d1669f048e1ac3.vpk"
+      ],
+      "status": "CREATING",
+      "created_at": "2026-11-28T03:04:52+00:00"
     }
   }
 }
