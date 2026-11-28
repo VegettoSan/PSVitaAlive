@@ -24,7 +24,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita/releases/download/v3.0.1/Galaxy-Vita.vpk",
+        "u": "https://archive.org/download/smg-vita/super-mario-galaxy%20v3.0.1.vpk",
         "sz": 14008203,
         "rec": true
       },
@@ -183,7 +183,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.9.1/NFSU2VITA.vpk",
+        "u": "https://archive.org/download/NFSUG2_VITA/nfs-underground-2%20v0.9.1.vpk",
         "sz": 11776045,
         "rec": true
       },
@@ -4950,6 +4950,62 @@
     "ss": [
       "https://archive.org/download/harry-potter-flipendo-ps-vita/shot0.png"
     ]
+  },
+  {
+    "id": "fheroes2",
+    "tid": "FHOMM0002",
+    "n": "fheroes2",
+    "d": "HoMM II port for PSVITA.",
+    "ld": "Heroes of Might and Magic II: The Succession Wars is a turn-based strategy video game developed by Jon Van Caneghem through New World Computing and published in 1996 by the 3DO Company. The game is the second installment of the Heroes of Might and Magic series and is typically credited as the breakout game for the series. Heroes II was voted the sixth-best PC game of all time by PC Gamer in May 1997.\nAn expansion pack, The Price of Loyalty, was released in 1997. Later, 3DO bundled Heroes II and its expansion pack in one box, released as Heroes of Might and Magic II Gold in 1998.\n\n- PsVitaAlive -",
+    "aids": [
+      "fheroes2-team",
+      "northfear"
+    ],
+    "cid": "ports",
+    "sids": [
+      "strategy"
+    ],
+    "v": "1.1.18",
+    "vd": "2026-11-08",
+    "req": "- Game Data Files: PC",
+    "sz": 14972179,
+    "st": "Legacy",
+    "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0354-fheroes2.png",
+    "ss": [
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7941ace420beacf6b182d8e944aad8e2b79ecc02b88d93de1d52f94d61d96dc3.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/735ab339bfe29a9007061b7b7afbf248dec1c565ce2723a56abee5a01c16bf40.png",
+      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png",
+      "https://www.rinnegatamante.eu/vitadb/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png"
+    ],
+    "l": [
+      {
+        "t": "Official Website",
+        "n": "Release Page",
+        "u": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17"
+      },
+      {
+        "t": "Repository",
+        "n": "Repositorio",
+        "u": "https://github.com/ihhub/fheroes2"
+      },
+      {
+        "t": "Official Website",
+        "n": "Official Website",
+        "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48768"
+      },
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://archive.org/download/psvitaalive-fheroes2/fheroes2%20v1.1.18--zip-c5d1669f048e1ac3.vpk",
+        "rec": true
+      }
+    ],
+    "sn": "NeoVitaDB",
+    "si": "354",
+    "su": "https://github.com/ihhub/fheroes2",
+    "rp": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17",
+    "ua": "2026-08-13T15:34:48.355426+00:00"
   },
   {
     "id": "soulcalibur-vita",
@@ -16288,56 +16344,6 @@
       "https://archive.org/download/vita-mania-psvita/shot0.png",
       "https://archive.org/download/vita-mania-psvita/shot1.png"
     ]
-  },
-  {
-    "id": "fheroes2",
-    "tid": "FHOMM0002",
-    "n": "fheroes2",
-    "d": "HoMM II port for PSVITA.",
-    "ld": "Heroes of Might and Magic II: The Succession Wars is a turn-based strategy video game developed by Jon Van Caneghem through New World Computing and published in 1996 by the 3DO Company. The game is the second installment of the Heroes of Might and Magic series and is typically credited as the breakout game for the series. Heroes II was voted the sixth-best PC game of all time by PC Gamer in May 1997.\nAn expansion pack, The Price of Loyalty, was released in 1997. Later, 3DO bundled Heroes II and its expansion pack in one box, released as Heroes of Might and Magic II Gold in 1998.\n\n- PsVitaAlive -",
-    "aids": [
-      "fheroes2-team",
-      "northfear"
-    ],
-    "cid": "ports",
-    "sids": [
-      "strategy"
-    ],
-    "v": "1.1.17",
-    "vd": "2026-06-30",
-    "req": "- Game Data Files: PC",
-    "sz": 14601805,
-    "st": "Legacy",
-    "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0354-fheroes2.png",
-    "ss": [
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/7941ace420beacf6b182d8e944aad8e2b79ecc02b88d93de1d52f94d61d96dc3.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/735ab339bfe29a9007061b7b7afbf248dec1c565ce2723a56abee5a01c16bf40.png",
-      "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/a36b55e36258a3e00fde42f5af08ff751e683046a995219b0539b9e47440b4e0.png",
-      "https://www.rinnegatamante.eu/vitadb/screenshots/dfd827eb465a9950e018754abf794bc1decabee6f7d7cb6848884a386d72f510.png"
-    ],
-    "l": [
-      {
-        "t": "Official Website",
-        "n": "Release Page",
-        "u": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17"
-      },
-      {
-        "t": "Repository",
-        "n": "Repositorio",
-        "u": "https://github.com/ihhub/fheroes2"
-      },
-      {
-        "t": "Official Website",
-        "n": "Official Website",
-        "u": "http://wololo.net/talk/viewtopic.php?f=116&t=48768"
-      }
-    ],
-    "sn": "NeoVitaDB",
-    "si": "354",
-    "su": "https://github.com/ihhub/fheroes2",
-    "rp": "https://github.com/ihhub/fheroes2/releases/tag/1.1.17",
-    "ua": "2026-08-13T15:34:48.355426+00:00"
   },
   {
     "id": "dark-lands-vita",
