@@ -9316,9 +9316,9 @@
     "v": "1.5",
     "vd": "2026-10-11",
     "sz": 3554434,
-    "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/41c698e6f401fa05cf5390610eeaa3d53135c0948321179814930f9284e4b0ce.png",
+    "ic": "https://archive.org/download/psvitaalive-vitairc/icon0.png",
     "ss": [
-      "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/daff8cd1d336974b6de735b6df4f5cc09905787739cf60f02e7867823525f9c6.png"
+      "https://archive.org/download/psvitaalive-vitairc/shot_01.png"
     ],
     "sn": "Orbit",
     "si": "gh:1403711314",
@@ -9333,7 +9333,7 @@
       {
         "t": "Download",
         "n": "VPK",
-        "u": "https://github.com/ArchelKrozt/VitaIRC/releases/download/v1.5/VitaIRC.vpk",
+        "u": "https://archive.org/download/psvitaalive-vitairc/vitairc%20v1.5.vpk",
         "rec": true
       }
     ]
@@ -36587,7 +36587,7 @@
     "req": "Not specified",
     "sz": 10018605,
     "st": "Legacy",
-    "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0848-crosscraft-classic.png",
+    "ic": "https://archive.org/download/psvitaalive-crosscraft-classic/media_fba6d344ace6b02e6707a197c32d5b975c9a690b8418ce923cf1b113a5297a42.png",
     "ss": [
       "https://raw.githubusercontent.com/DrDecki/VitaDBtoo-db/main/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png",
       "https://www.rinnegatamante.eu/vitadb/screenshots/808852b117f554d12ebdfb82a88f2f44948758e9f31a1648dfcebcd4f8f1be35.png"
