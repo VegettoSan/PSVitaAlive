@@ -103,5 +103,58 @@ class ZipPublicationTests(unittest.TestCase):
             self.assertTrue(p.pending_creation(root, app()["id"]))
             self.assertFalse(p.pending_creation(root, "other"))
 
+    def test_publish_only_after_public_verification_and_resume_no_reupload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "apps").mkdir()
+            (root / "scripts").mkdir()
+            old = app()
+            old["icon"] = "https://archive.org/download/starfox/icon.png"
+            old["screenshots"] = ["https://archive.org/download/starfox/shot.png"]
+            path = root / "apps/star-fox-adventures.json"
+            path.write_text(json.dumps(old))
+            (root / p.initial.LOG).write_text("app_id,identifier,status,files,error,url\n")
+            a = asset()
+            entry = proof(a)
+            result = entry["result"]
+            inner = result["matches"][0]
+            key = p.audit.cache_key(a, old)
+            choice = (key, a, result, inner)
+            state = p.load_jobs(root)
+            def publish(root, paths, msg, validate=False):
+                if validate:
+                    self.assertEqual(json.loads(path.read_text())["version"], "0.2.0")
+                else:
+                    self.assertEqual(json.loads(path.read_text()), old)
+            metadata = {"metadata": {"uploader": "owner"}, "files": []}
+            with patch.object(p, "load_policy", return_value={"*": {"enabled": True}}), \
+                 patch.object(p.initial, "lookup", return_value=metadata), \
+                 patch.object(p.fresh, "reserved_identifiers", return_value=set()), \
+                 patch.object(p.fresh, "author_credit", return_value="Developer"), \
+                 patch.object(p, "stage_vpk", return_value={"size": 50, "sha256": "b"*64, "md5": "c"*32}) as stage, \
+                 patch.object(p.initial, "put_file") as put, \
+                 patch.object(p.initial, "verify_batch", side_effect=Deferred("VERIFYING", "not visible")):
+                with self.assertRaises(Deferred) as err:
+                    p.run_one(root, state, old, REPO, TAG, {"published": DATE}, choice,
+                              ("a", "b", "owner"), publish=publish)
+                self.assertEqual(err.exception.status, "VERIFYING")
+                self.assertEqual(json.loads(path.read_text()), old)
+                self.assertEqual(put.call_count, 2)
+                self.assertEqual(stage.call_count, 1)
+            state = p.load_jobs(root)
+            with patch.object(p, "load_policy", return_value={"*": {"enabled": True}}), \
+                 patch.object(p.fresh, "reserved_identifiers", return_value=set()), \
+                 patch.object(p.initial, "verify_batch"), patch.object(p, "stage_vpk") as stage, \
+                 patch.object(p.initial, "put_file") as put:
+                self.assertEqual(p.run_one(root, state, old, REPO, TAG, {"published": DATE},
+                                            choice, ("a", "b", "owner"), publish=publish), p.FINAL)
+                stage.assert_not_called()
+                put.assert_not_called()
+            updated = json.loads(path.read_text())
+            self.assertEqual(updated["version"], "0.2.0")
+            self.assertEqual(updated["links"][1:], old["links"][1:])
+            self.assertTrue(updated["links"][0]["url"].endswith(".vpk"))
+            self.assertEqual(p.load_jobs(root)["jobs"][key]["status"], p.FINAL)
+
 if __name__ == "__main__":
     unittest.main()

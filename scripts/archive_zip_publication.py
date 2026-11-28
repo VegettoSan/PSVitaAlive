@@ -31,7 +31,7 @@ from scripts.archive_backup_batch_preview import resolve_item, upload_map, archi
 from scripts.catalog_schema_v2 import to_v1
 from scripts.sync_release_updates import (
     app_repositories, load_snapshot, newer_version, version_order, release_date,
-    normalized_repo, select_current_download,
+    normalized_repo, select_current_download, numeric_version,
 )
 
 STATE = Path("data/archive_zip_publication_jobs.json")
@@ -122,6 +122,11 @@ def proposed_app(app, repo, tag, published, size, url):
     if not (same or new) or (new and release_date(app.get("version_date")) and when < app["version_date"][:10]):
         raise Deferred("SOURCE_REVIEW", "Not a matching or newer canonical version")
     if current:
+        old_numeric, new_numeric = numeric_version(old_version), numeric_version(tag)
+        if (archive_id(current.get("url")) and release_date(app.get("version_date")) == when
+                and old_numeric is not None and new_numeric is not None
+                and old_numeric[:4] == new_numeric[:4] and old_numeric[4] < 5 and new_numeric[4] == 5):
+            raise Deferred("SOURCE_REVIEW", "Same-day prerelease/stable identity uncertain")
         if not new:
             raise Deferred("ALREADY_CURRENT", "Never replace a same-version published VPK")
         if not (archive_id(current.get("url")) or normalized_repo(current.get("url")) in app_repositories(app)):
@@ -248,8 +253,12 @@ def run_one(root, state, app, repo, tag, release, proof, creds, *, publish=git_p
         if job["files"][name]["sha256"] != inner["sha256"] or job["files"][name]["size"] != inner["size"]:
             raise Deferred("SOURCE_REVIEW", "Checkpoint VPK digest mismatch")
         identifier, create = job["identifier"], job["create"]
-        if create and identifier not in initial.identifier_options(app_id):
-            raise Deferred("SOURCE_REVIEW", "Invalid first creation identifier")
+        if create:
+            if identifier not in initial.identifier_options(app_id):
+                raise Deferred("SOURCE_REVIEW", "Invalid first creation identifier")
+            hints = initial.archive_hints(app, upload_map(root / initial.LOG))
+            if hints - {identifier}:
+                raise Deferred("SOURCE_REVIEW", "Canonical Archive.org destination changed since checkpoint")
         if not create:
             target, _ = resolve_item(app, upload_map(root / initial.LOG))
             if target != identifier:
@@ -347,7 +356,14 @@ def main():
     if selected:
         offset %= len(selected)
         selected = selected[offset:] + selected[:offset]
-    selected.sort(key=lambda r: r[0]["id"] not in pending)
+    resume = [r for r in selected if r[0]["id"] in pending]
+    new = [r for r in selected if r[0]["id"] not in pending]
+    selected = []
+    while resume or new:
+        if resume:
+            selected.append(resume.pop(0))
+        if new:
+            selected.append(new.pop(0))
     rows, attempts, total, stopped = [], 0, 0, False
     deadline = time.monotonic() + MAX_SECONDS
     for app, repo, tag, rid, allow_pre in selected[:audit.MAX_RELEASES]:
