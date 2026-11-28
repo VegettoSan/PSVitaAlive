@@ -14,17 +14,17 @@
     "puzzle",
     "source-port"
   ],
-  "v": "3.0",
-  "vd": "2026-11-27",
+  "v": "3.0.1",
+  "vd": "2026-11-28",
   "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-  "sz": 13616965,
+  "sz": 14008203,
   "st": "Verified",
   "l": [
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://archive.org/download/smg-vita/super-mario-galaxy%20v3.0.vpk",
-      "sz": 13616965,
+      "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita/releases/download/v3.0.1/Galaxy-Vita.vpk",
+      "sz": 14008203,
       "rec": true
     },
     {
