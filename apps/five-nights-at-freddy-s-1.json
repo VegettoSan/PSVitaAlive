@@ -1,0 +1,57 @@
+{
+  "id": "five-nights-at-freddy-s-1",
+  "tid": "FNAFSCN01",
+  "n": "Five Nights at Freddy's 1",
+  "d": "Unofficial native PS Vita port of Five Nights at Freddy's.",
+  "ld": "A native PS Vita port based on Android 2.0.7, featuring Nights 1–6, Custom Night, touch controls, remappable buttons, local saves, and subtitles.",
+  "aids": [
+    "nox"
+  ],
+  "cid": "ports",
+  "sids": [
+    "other"
+  ],
+  "v": "1.0.6",
+  "vd": "2026-11-27",
+  "req": "Homebrew-enabled PS Vita. Game data prepared locally from a supported Android 2.0.7 copy using the PC Data Tool. The installation guide covers Windows, macOS, and Linux.",
+  "sz": 473727,
+  "st": "Verified",
+  "l": [
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://github.com/noxgp/fnaf1_ps_vita/releases/download/v1.0.6/FNAF1-Vita-v1.0.6.vpk",
+      "sz": 473727,
+      "rec": true
+    },
+    {
+      "t": "Repository",
+      "n": "GitHub repository",
+      "u": "https://github.com/noxgp/fnaf1_ps_vita"
+    },
+    {
+      "t": "Documentation",
+      "n": "Installation guide",
+      "u": "https://github.com/noxgp/fnaf1_ps_vita#installation"
+    },
+    {
+      "t": "Other",
+      "n": "Data Tool (PC)",
+      "u": "https://github.com/noxgp/fnaf1_ps_vita/releases/download/v1.0.6/FNAF1-Data-Tool-v1.0.6.zip"
+    },
+    {
+      "t": "Other",
+      "n": "Gameplay video",
+      "u": "https://www.youtube.com/watch?v=apsBzw1BZuw"
+    },
+    {
+      "t": "Issues",
+      "n": "Report a bug",
+      "u": "https://github.com/noxgp/fnaf1_ps_vita/issues"
+    }
+  ],
+  "sn": "GitHub",
+  "su": "https://github.com/noxgp/fnaf1_ps_vita",
+  "rp": "https://github.com/noxgp/fnaf1_ps_vita/releases/tag/v1.0.6",
+  "cl": "Update 6 (Vita APP_VER 00.28)\nMatched D-pad and touch panning to full analog speed, restored office panning during the visible stages of a power outage, and aligned the door and light layers during flicker.\nSynchronized door lights and their buzz, and added the jam sound for jammed light buttons.\nFixed Chica's priority in CAM 4B and preloaded camera feeds, borders, and the REC indicator.\nFixed the monitor-down timing for Bonnie and Chica, locked input during the attack transition, and added breathing sounds.\nPreloaded Foxy's running and jumpscare frames and improved frame timing.\nReworked the warning, menu audio, newspaper, and night transitions. Restored the white flashes, intro sound, and Android loading clock.\nRestored the Night 5 paycheck music and fixed Continue while keeping Night 6 as a separate unlock.\nUpdated the Vita app title and separated the port credit and update label from the Android version label."
+}
