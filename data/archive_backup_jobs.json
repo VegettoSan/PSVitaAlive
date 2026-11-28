@@ -1,19 +1,6 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "nfs-underground-2": {
-      "version": "0.9.1",
-      "source_url": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.9.1/NFSU2VITA.vpk",
-      "archive_identifier": "NFSUG2_VITA",
-      "filename": "nfs-underground-2 v0.9.1.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-28T03:02:24+00:00",
-      "size_bytes": 11776045,
-      "title_id": "NFSU2VITA",
-      "sha256": "b8a357efb0757307113d43cc027555b6a8bc69d7d3c5caa358d3bfe6453c25ee",
-      "md5": "415f6e724cb4887412e4caa8ca7f7b5f"
-    }
-  },
+  "inflight": {},
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
