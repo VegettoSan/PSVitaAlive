@@ -131,8 +131,9 @@
         "star-fox-adventures v0.2.0--zip-41d390fd7d207762.vpk",
         "star-fox-adventures v0.2.0--zip-41d390fd7d207762-SOURCES.txt"
       ],
-      "status": "TRANSFERRING",
-      "created_at": "2026-11-28T00:58:10+00:00"
+      "status": "PUBLISHED_VERIFIED",
+      "created_at": "2026-11-28T00:58:10+00:00",
+      "completed_at": "2026-11-28T01:35:33+00:00"
     },
     "76c592a094144245a8cd113d94b1c14031f5c67d22befe4fd7042ea84939cfe3": {
       "app_id": "crosscraft-survivaltest",
