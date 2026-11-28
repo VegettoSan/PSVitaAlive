@@ -1,19 +1,6 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "save-sync": {
-      "version": "0.1.11",
-      "source_url": "https://github.com/unveroleone/save-sync/releases/download/v0.1.11/vita-save-cloud.vpk",
-      "archive_identifier": "psvitaalive-save-sync",
-      "filename": "save-sync v0.1.11.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-28T00:05:18+00:00",
-      "size_bytes": 8132562,
-      "title_id": "SAVSYNC01",
-      "sha256": "c80618e69dbf8fba1920a763ccdb403144b0eb3a541c45b4589f7703877845c2",
-      "md5": "fc63340d186ad5021053901ef85055dc"
-    }
-  },
+  "inflight": {},
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
