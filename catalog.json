@@ -1,5 +1,64 @@
 [
   {
+    "id": "super-mario-galaxy",
+    "tid": "SMGV00001",
+    "n": "Super Mario Galaxy",
+    "d": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
+    "ld": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
+    "aids": [
+      "cboc-vita-lab"
+    ],
+    "cid": "ports",
+    "sids": [
+      "adventure",
+      "platformer",
+      "puzzle",
+      "source-port"
+    ],
+    "v": "3.0.1",
+    "vd": "2026-11-28",
+    "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
+    "sz": 14008203,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita/releases/download/v3.0.1/Galaxy-Vita.vpk",
+        "sz": 14008203,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files USA",
+        "u": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
+        "sz": 2469606195,
+        "xp": "ux0:data/",
+        "ips": [
+          "smg"
+        ]
+      },
+      {
+        "t": "Mod",
+        "n": "HD Textures",
+        "u": "https://archive.org/download/smg-vita/hdtex.pack",
+        "sz": 4718592,
+        "xp": "ux0:data/smg/"
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
+      }
+    ],
+    "ic": "https://archive.org/download/smg-vita/New%20icon0.png",
+    "ss": [
+      "https://archive.org/download/smg-vita/shot0.png",
+      "https://archive.org/download/smg-vita/shot.png",
+      "https://archive.org/download/smg-vita/shot1.png"
+    ]
+  },
+  {
     "id": "manhunt",
     "tid": "MHRE00001",
     "n": "Manhunt",
@@ -97,6 +156,66 @@
     "ss": [
       "https://archive.org/download/mario-strikers-charged-ps-vita/shot0.png",
       "https://archive.org/download/mario-strikers-charged-ps-vita/shot1.jpg"
+    ]
+  },
+  {
+    "id": "nfs-underground-2",
+    "tid": "NFSU2VITA",
+    "n": "NFS Underground 2",
+    "d": "Need for Speed Underground 2 port for the PS VITA",
+    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
+    "aids": [
+      "danos-x5"
+    ],
+    "cid": "ports",
+    "sids": [
+      "racing",
+      "simulation",
+      "strategy",
+      "source-port"
+    ],
+    "v": "0.9.1",
+    "vd": "2026-11-27",
+    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
+    "sz": 11776045,
+    "st": "Verified",
+    "l": [
+      {
+        "t": "Download",
+        "n": "VPK",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA/releases/download/v0.9.1/NFSU2VITA.vpk",
+        "sz": 11776045,
+        "rec": true
+      },
+      {
+        "t": "Game Files",
+        "n": "Game Files",
+        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
+        "sz": 2899102925,
+        "xp": "ux0:data/",
+        "ips": [
+          "NeedForSpeedUnderground2"
+        ]
+      },
+      {
+        "t": "Plugin",
+        "n": "CapUnlocker 1.4 (Recommended)",
+        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
+        "sz": 5837,
+        "xp": "ur0:tai/",
+        "sec": "*KERNEL",
+        "ln": "ur0:tai/CapUnlocker.skprx",
+        "rq": false
+      },
+      {
+        "t": "Repository",
+        "n": "Github",
+        "u": "https://github.com/danos-x5/NFSUG2_VITA"
+      }
+    ],
+    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
+    "ss": [
+      "https://archive.org/download/NFSUG2_VITA/shot0.png"
     ]
   },
   {
@@ -204,65 +323,6 @@
       "https://archive.org/download/battle-for-bikini-bottom-vita/shot1.jpg",
       "https://archive.org/download/battle-for-bikini-bottom-vita/shot2.jpg",
       "https://archive.org/download/battle-for-bikini-bottom-vita/shot3.jpg"
-    ]
-  },
-  {
-    "id": "super-mario-galaxy",
-    "tid": "SMGV00001",
-    "n": "Super Mario Galaxy",
-    "d": "Super Mario Galaxy, running natively on PS Vita. Rear touch Star Bit aiming, touch and tilt controls.",
-    "ld": "This is Super Mario Galaxy running natively on a PS Vita. There's no emulator and no streaming involved: the game itself was rebuilt to run on the Vita's own processor and graphics chip.",
-    "aids": [
-      "cboc-vita-lab"
-    ],
-    "cid": "ports",
-    "sids": [
-      "adventure",
-      "platformer",
-      "puzzle",
-      "source-port"
-    ],
-    "v": "3.0",
-    "vd": "2026-11-27",
-    "req": "- ur0:data/libshacccg.suprx\n- You'll need your own copy of the game (Wii, USA, RMGE01).",
-    "sz": 13616965,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/smg-vita/super-mario-galaxy%20v3.0.vpk",
-        "sz": 13616965,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files USA",
-        "u": "https://archive.org/download/smg-vita/Game%20Files%20for%20PSVA.zip",
-        "sz": 2469606195,
-        "xp": "ux0:data/",
-        "ips": [
-          "smg"
-        ]
-      },
-      {
-        "t": "Mod",
-        "n": "HD Textures",
-        "u": "https://archive.org/download/smg-vita/hdtex.pack",
-        "sz": 4718592,
-        "xp": "ux0:data/smg/"
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/CBOC-Vita-Lab/galaxy-vita"
-      }
-    ],
-    "ic": "https://archive.org/download/smg-vita/New%20icon0.png",
-    "ss": [
-      "https://archive.org/download/smg-vita/shot0.png",
-      "https://archive.org/download/smg-vita/shot.png",
-      "https://archive.org/download/smg-vita/shot1.png"
     ]
   },
   {
@@ -615,66 +675,6 @@
     "ic": "https://archive.org/download/psva-need-for-speed-hot-pursuit-2-ps-vita/icon0.png",
     "ss": [
       "https://archive.org/download/psva-need-for-speed-hot-pursuit-2-ps-vita/shot0.png"
-    ]
-  },
-  {
-    "id": "nfs-underground-2",
-    "tid": "NFSU2VITA",
-    "n": "NFS Underground 2",
-    "d": "Need for Speed Underground 2 port for the PS VITA",
-    "ld": "A fan project that enables you to play your own PC copy of Need For Speed Underground 2 (Version 1.2) on your PS VITA.",
-    "aids": [
-      "danos-x5"
-    ],
-    "cid": "ports",
-    "sids": [
-      "racing",
-      "simulation",
-      "strategy",
-      "source-port"
-    ],
-    "v": "0.9.0",
-    "vd": "2026-11-25",
-    "req": "- PS Vita with HENkaku / Ensō and VitaShell\n- About 2.5 GB free on the memory card\n- CapUnlocker is recommended: it lets the port use the Vita's fourth CPU core.\n- PSVshell is optional but recommended in this playtest state: overclocking the CPU to 500 MHz with it increases performance.",
-    "sz": 11972573,
-    "st": "Verified",
-    "l": [
-      {
-        "t": "Download",
-        "n": "VPK",
-        "u": "https://archive.org/download/NFSUG2_VITA/nfs-underground-2%20v0.9.0.vpk",
-        "sz": 11972573,
-        "rec": true
-      },
-      {
-        "t": "Game Files",
-        "n": "Game Files",
-        "u": "https://archive.org/download/NFSUG2_VITA/Game%20Files%20for%20PSVA.zip",
-        "sz": 2899102925,
-        "xp": "ux0:data/",
-        "ips": [
-          "NeedForSpeedUnderground2"
-        ]
-      },
-      {
-        "t": "Plugin",
-        "n": "CapUnlocker 1.4 (Recommended)",
-        "u": "https://archive.org/download/plugins-ps-vita/CapUnlocker.skprx",
-        "sz": 5837,
-        "xp": "ur0:tai/",
-        "sec": "*KERNEL",
-        "ln": "ur0:tai/CapUnlocker.skprx",
-        "rq": false
-      },
-      {
-        "t": "Repository",
-        "n": "Github",
-        "u": "https://github.com/danos-x5/NFSUG2_VITA"
-      }
-    ],
-    "ic": "https://archive.org/download/NFSUG2_VITA/icon0.png",
-    "ss": [
-      "https://archive.org/download/NFSUG2_VITA/shot0.png"
     ]
   },
   {
