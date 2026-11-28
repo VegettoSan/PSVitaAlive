@@ -515,7 +515,7 @@ def folder_release_update(app: dict, item: dict, repo: str) -> tuple[dict | None
     return proposal, "ready"
 
 
-def plan_changes(root: Path, snapshot: dict, *, now: datetime | None = None) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
+def plan_changes(root: Path, snapshot: dict, *, now: datetime | None = None, zip_candidates: list | None = None) -> tuple[list[tuple[Path, dict, bool]], list[str]]:
     if not isinstance(snapshot, dict) or snapshot.get("schema_version") != 1:
         raise ValueError("Unsupported upstream snapshot")
     releases = snapshot.get("releases")
@@ -605,6 +605,8 @@ def plan_changes(root: Path, snapshot: dict, *, now: datetime | None = None) -> 
         else:
             if newer_version(app.get("version"), effective_release_version(candidate)):
                 skipped.append(f"{repo}: {reason}")
+                if zip_candidates is not None and reason == "no .vpk asset: manual update required":
+                    zip_candidates.append((app, candidate, repo))
             # A newer beta may have ambiguous or missing VPKs. Do not let
             # that prevent a separate trusted stable upgrade from applying.
             if accept_pre and isinstance(stable, dict):
@@ -613,6 +615,8 @@ def plan_changes(root: Path, snapshot: dict, *, now: datetime | None = None) -> 
                     changes.append((path, fallback, compact))
                 elif newer_version(app.get("version"), effective_release_version(stable)):
                     skipped.append(f"{repo}: stable fallback: {fallback_reason}")
+                    if zip_candidates is not None and fallback_reason == "no .vpk asset: manual update required":
+                        zip_candidates.append((app, stable, repo))
     # Folder VPKs are per-app records, not conventional GitHub Releases.
     # Repositories shared by many apps are safe only when folder + Title ID
     # identify one canonical JSON, with no duplicates anywhere in apps/.

@@ -39,6 +39,14 @@ jobs:
       - name: Run release synchronization regression tests
         run: python -m unittest discover -s tests -p 'test_sync_release_updates.py' -v
 
+      - name: Install ZIP inspection dependencies
+        if: github.event_name == 'repository_dispatch'
+        run: python -m pip install 'requests==2.32.5' 'Pillow==12.1.1'
+
+      - name: Test bounded ZIP inspection and persistent results
+        if: github.event_name == 'repository_dispatch'
+        run: python -m unittest discover -s tests -p 'test_audit_zip_vpks.py' -v
+
       - name: Propose safe release metadata updates
         id: propose
         env:
@@ -102,3 +110,26 @@ jobs:
         run: |
           set -euo pipefail
           gh api --method POST "repos/$GITHUB_REPOSITORY/actions/workflows/validate.yml/dispatches" -f ref=main
+
+      - name: Inspect ZIP release packages without publishing catalog links
+        if: github.event_name == 'repository_dispatch' && github.event.client_payload.monitor_repository == 'VegettoSan/PsVita-Homebrews-New-Releases'
+        timeout-minutes: 8
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MONITOR_REF: ${{ github.event.client_payload.monitor_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python -m scripts.audit_zip_vpks --monitor-ref "$MONITOR_REF" --persist
+
+      - name: Save ZIP inspection report
+        if: always() && github.event_name == 'repository_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: zip-vpk-inspection-report
+          path: zip-audit-report/
+          if-no-files-found: ignore
+          retention-days: 14
