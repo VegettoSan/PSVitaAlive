@@ -1,19 +1,6 @@
 {
   "schema_version": 1,
-  "inflight": {
-    "gbvitaex": {
-      "version": "2.1.6",
-      "source_url": "https://github.com/Zushikina-kun/MGBAVitaEX/releases/download/v2.1.6/MGBAVitaEX-v2.1.6.vpk",
-      "archive_identifier": "psvitaalive-gbvitaex",
-      "filename": "gbvitaex v2.1.6.vpk",
-      "status": "TRANSFER_PREPARED",
-      "created_at": "2026-11-28T00:06:48+00:00",
-      "size_bytes": 793158,
-      "title_id": "GBVX00001",
-      "sha256": "fd13b6d34f721a343b5d23b96d44ec1d8072e3661a8e0e8124541c4417c1757e",
-      "md5": "5ba479e56ef399db51b5d0d51008ea03"
-    }
-  },
+  "inflight": {},
   "superseded": {
     "nfs-carbon": {
       "nfs-carbon v0.1.6.vpk": {
