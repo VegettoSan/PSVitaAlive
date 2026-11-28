@@ -15,7 +15,7 @@
   "v": "ST4",
   "vd": "2022-12-02",
   "req": "Not specified",
-  "sz": 17518102,
+  "sz": 10000187,
   "st": "Legacy",
   "ic": "https://raw.githubusercontent.com/robin994/NeoVitaDB-Catalog/main/icons_vita/0850-crosscraft-survivaltest.png",
   "ss": [
@@ -36,6 +36,12 @@
       "t": "Official Website",
       "n": "Release Page",
       "u": "https://github.com/CrossCraft/CrossCraft-SurvivalTest/releases"
+    },
+    {
+      "t": "Download",
+      "n": "VPK",
+      "u": "https://archive.org/download/psvitaalive-crosscraft-survivaltest/crosscraft-survivaltest%20ST4--ef145e08a384cc3d47508ea4--zip-9bfe340cc776e6da.vpk",
+      "rec": true
     }
   ],
   "sn": "NeoVitaDB",
