@@ -34,7 +34,7 @@
     "shot_01.png",
     "SOURCES.txt"
   ],
-  "status": "CREATING",
+  "status": "PUBLISHED_VERIFIED",
   "created_at": "2026-11-27T20:58:24+00:00",
   "source_spec": {
     "automatic": true,
@@ -49,5 +49,6 @@
     "size": 3554434,
     "sha256": "7711d21ff81eaf6f4311bfcd4bdb5f6206786214e945b556ee94be551ec66afa",
     "creator": "LinuxSan"
-  }
+  },
+  "completed_at": "2026-11-28T00:57:21+00:00"
 }

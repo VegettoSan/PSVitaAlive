@@ -17,9 +17,9 @@
   "v": "1.5",
   "vd": "2026-10-11",
   "sz": 3554434,
-  "ic": "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/41c698e6f401fa05cf5390610eeaa3d53135c0948321179814930f9284e4b0ce.png",
+  "ic": "https://archive.org/download/psvitaalive-vitairc/icon0.png",
   "ss": [
-    "https://raw.githubusercontent.com/VegettoSan/PSVitaAlive/main/apps/media/vitairc/daff8cd1d336974b6de735b6df4f5cc09905787739cf60f02e7867823525f9c6.png"
+    "https://archive.org/download/psvitaalive-vitairc/shot_01.png"
   ],
   "sn": "Orbit",
   "si": "gh:1403711314",
@@ -34,7 +34,7 @@
     {
       "t": "Download",
       "n": "VPK",
-      "u": "https://github.com/ArchelKrozt/VitaIRC/releases/download/v1.5/VitaIRC.vpk",
+      "u": "https://archive.org/download/psvitaalive-vitairc/vitairc%20v1.5.vpk",
       "rec": true
     }
   ]
