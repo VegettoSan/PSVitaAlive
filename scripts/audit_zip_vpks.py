@@ -31,6 +31,7 @@ SCHEMA = 1
 MIB = 1024 * 1024
 MAX_ARCHIVE = 200 * MIB
 MAX_BATCH = 1024 * MIB
+MAX_INNER_TOTAL = 400 * MIB  # unchanged per-archive expansion safety limit
 MAX_VPK = 200 * MIB
 MAX_EXPANDED = 512 * MIB
 MAX_ENTRIES = 4096
@@ -113,7 +114,7 @@ def inspect_zip(path, title_id, *, deadline=None):
             if not vpks:
                 return {"status": "NO_VPK", "matches": []}
             if (len(vpks) > MAX_CANDIDATES or any(i.file_size > MAX_VPK for i in vpks)
-                    or sum(i.file_size for i in vpks) > MAX_BATCH):
+                    or sum(i.file_size for i in vpks) > MAX_INNER_TOTAL):
                 return {"status": "LIMIT_REVIEW", "matches": []}
             matches, rejected = [], []
             for n, info in enumerate(vpks):

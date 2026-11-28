@@ -150,13 +150,14 @@ def stage_vpk(asset, result, inner, app, folder, name, *, download=None):
     """Re-read exact original bytes. Do not extract unrelated files or game data."""
     download = download or stream_download
     outer = folder / "release.zip"
+    deadline = time.monotonic() + 180
     with requests.Session() as session:
         session.trust_env = False
-        size, _, sha = download(asset["url"], outer, audit.MAX_ARCHIVE, session=session)
+        size, _, sha = download(asset["url"], outer, min(audit.MAX_ARCHIVE, asset["size"]),
+                                session=session, deadline=deadline)
     if (size != asset["size"] or sha != result["outer_sha256"]
             or (asset.get("digest") and asset["digest"] != "sha256:" + sha)):
         raise Deferred("SOURCE_INTEGRITY_RETRY", "Outer ZIP differs from inspected bytes")
-    deadline = time.monotonic() + 180
     actual = audit.inspect_zip(outer, app["title_id"], deadline=deadline)
     if actual.get("status") != "VPK_FOUND" or actual.get("matches") != [inner]:
         raise Deferred("SOURCE_REVIEW", "Inner VPK proof changed")
